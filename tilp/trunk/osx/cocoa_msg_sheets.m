@@ -14,13 +14,12 @@
   * A private function, not to be used anywhere else.
   */
 
-/*
  static int
  create_cocoa_msg_sheet_common(const char *title, char *msg, const char *button1, int type)
  {
     return 0;
  }
-*/
+ 
  
  int
  create_cocoa_user1_sheet (const char *title, char *message, const char *button1)
