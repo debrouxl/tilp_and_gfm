@@ -114,7 +114,6 @@ refresh_outline(void)
             
             if (q->is_folder)
                 {
-                    fprintf(stderr, "DEBUG: Got a folder\n");
                     // dictionary that will hold the stuff
                     tmpDict = [[NSMutableDictionary alloc] init];
                     
@@ -129,11 +128,9 @@ refresh_outline(void)
                     
                     // we're in a new folder, so...
                     varPos = 0;
-                    fprintf(stderr, "DEBUG: End of folder\n");
                 }
             else
                 {
-                    fprintf(stderr, "DEBUG: Got a var\n");
                     // dictionary that will hold this var
                     tmpDict = [[NSMutableDictionary alloc] init];
                 
@@ -150,28 +147,20 @@ refresh_outline(void)
                     [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
                     [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
                     [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
-                    
-                    fprintf(stderr, "DEBUG: varsize ld : %ld u : %u i : %i\n", q->varsize, q->varsize, q->varsize);
-                    
                     [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
         
                     [tmpArray insertObject:tmpDict atIndex:varPos];
                     varPos++;
-                    fprintf(stderr, "DEBUG: End of var\n");
                 }
                
             // next one
             p = p->next;
         }
     
-    fprintf(stderr, "DEBUG: Dirlist parsing finished\n");
-    
-    // get a tree from our big fscking dictionary...
+     // get a tree from our big fscking dictionary...
     
     if (objects_ptr->dirlistData != nil)
         {
-            fprintf(stderr, "DEBUG: releasing older dirlistData\n");
-        
             dirlistData = objects_ptr->dirlistData;
             objects_ptr->dirlistData = nil;
             [dirlistData release];
@@ -181,24 +170,15 @@ refresh_outline(void)
     dirlistData = [[SimpleTreeNode treeFromDictionary:content] retain];
     objects_ptr->dirlistData = dirlistData;
     
-    fprintf(stderr, "DEBUG: got a treeNode\n");
-    
     // release the big fscking dictionary. Feel better, eh ? :)
-    
-    fprintf(stderr, "DEBUG: Releasing content\n");
-    
     [content release];
     content = nil;
     
-    // ... then *HUMPFFF* pass the BAAAAAAALLLLLLLLLLLLLLLLLLLLLLL !!!
-    
-    fprintf(stderr, "DEBUG: Reloading OutlineView\n");
-    
+    // ... then *HUMPFFF* pass the BAAAAAAALLLLLLLLLLLLLLLLLLLLLLL !!! 
     dirlistTree = objects_ptr->dirlistTree;
     [dirlistTree reloadData];
         
     // ball passed. blargh.
-    fprintf(stderr, "DEBUG: refresh_outline() ended\n");
 }
 
 void
@@ -218,27 +198,12 @@ refresh_infos(void)
     int folders = 0;
     int mem = 0;
 
-    fprintf(stderr, "DEBUG: IN REFRESH_INFOS()\n");
-
     number_of_folders_vars_and_mem(&folders, &vars, &mem);
-    
-    fprintf(stderr, "DEBUG: Got number of folders and vars\n");
-    
+  
     strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
-    
-    fprintf(stderr, "DEBUG: Set number of vars string\n");
-    
     strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
-    
-    fprintf(stderr, "DEBUG: Set number of folders string\n");
-    
     strMemoryUsed = [NSString stringWithFormat:@"%u", mem];
-    
-    fprintf(stderr, "DEBUG: Set memory used string\n");
-    
     strCurrentFolder = [NSString stringWithCString:ctree_win.cur_folder];
-
-    fprintf(stderr, "DEBUG: Set current folder string\n");
 
     currentFolder = objects_ptr->currentFolder;
     numberOfFolders = objects_ptr->numberOfFolders;
@@ -246,35 +211,7 @@ refresh_infos(void)
     memoryUsed = objects_ptr->memoryUsed;
     
     [currentFolder setStringValue:strCurrentFolder];
-    
-    fprintf(stderr, "DEBUG: Set current folder\n");
-    
     [numberOfFolders setStringValue:strNumberOfFolders];
-    
-    fprintf(stderr, "DEBUG: Set number of folders\n");
-    
     [numberOfVars setStringValue:strNumberOfVars];
-    
-    fprintf(stderr, "DEBUG: Set number of vars\n");
-    
     [memoryUsed setStringValue:strMemoryUsed];
-    
-    fprintf(stderr, "DEBUG: Set memory used\n");
-    
-#if 0 // releasing or autoreleasing leads to a EXC_BAD_ACCESS signal to be raised   
-    [strCurrentFolder autorelease];
-    
-    fprintf(stderr, "DEBUG: Autoreleased current folder\n");
-    
-    [strNumberOfFolders autorelease];
-    
-    fprintf(stderr, "DEBUG: Autoreleased number of folders\n");
-    
-    [strNumberOfVars autorelease];
-    
-    fprintf(stderr, "DEBUG: Autoreleased number of vars\n");
-    
-    [strMemoryUsed autorelease];
-#endif    
-    fprintf(stderr, "DEBUG: REFRESH_INFOS() ENDED\n");
 }

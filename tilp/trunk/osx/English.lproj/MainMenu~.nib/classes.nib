@@ -4,7 +4,6 @@
             ACTIONS = {
                 dlgboxentryButton1Push = id; 
                 dlgboxentryButton2Push = id; 
-                pbar2Abort = id; 
                 pbarButtonPush = id; 
                 remoteControlChangeMode = id; 
                 remoteControlTextEntered = id; 

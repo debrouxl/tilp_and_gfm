@@ -216,14 +216,19 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [screendumpWindow makeKeyAndOrderFront:self];
     
     [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
-    
+  
     bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
-    [bitmap autorelease];
+    //[bitmap autorelease]; // needed ??
+    
+    if (bitmap == nil)
+        fprintf(stderr, "DEBUG: BITMAP IS NULL !!!\n");
     
     // FIXME OS X
     // maybe we need to tell the NSImage to render our bitmap...       
-    screen = [[NSImage alloc] initWithData:bitmap];
-    [screen autorelease];
+    screen = [NSImage alloc];
+    if ([screen initWithData:bitmap] == nil)
+        fprintf(stderr, "DEBUG: NSIMAGE COULDN'T INITIALIZE WITH DATAS !!\n");
+    //[screen autorelease]; // needed ??
     
     [screendumpImage setImage:screen];
 }

@@ -62,14 +62,18 @@
 	* found - [NSApp addWindowsItem:title:filename], so did the "Windows"
 	  menu management
 	* replaced the standard about panel with something more verbose
-* 20011119 : v 0.1.8
+* 20011119 : v0.1.8
 	* Made user prefs available earlier
 	* Added a matrix in the "Adavanced" tab for the console verbosity
 	* Fixes wrt libticables config
-* 20011128 : vO.1.9
+* 20011128 : v0.1.9
 	* Fixed release problem in refresh_infos() causing an EXC_BAD_ACCESS
 	to be raised at runtime
 	* Fixed a typo in SimpleTreeNode.m : VarSize != Varsize !!!
+* 20011129 : v0.2.0
+	* Fixed progress indicators windows (design and labels concerns)
+	* Fixed progress indicators refresh
+	* Fixed labels refresh
 
 
 
