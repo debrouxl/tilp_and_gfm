@@ -421,11 +421,13 @@ int tilp_calc_send_flash_os(char *filename)
 	case CALC_TI82:
 	case CALC_TI83:
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI85:
 	case CALC_TI92:
 		gif->create_pbar_type3(_("Flash"));
 		break;
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		gif->create_pbar_type5(_("Flash"), "");
