@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                doBackup = id; 
+                doRestore = id; 
+                getDirlist = id; 
+                getScreen = id; 
+                isReady = id; 
+            }; 
+            CLASS = ToolbarController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mainWindow = id; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
