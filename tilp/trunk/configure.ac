@@ -22,7 +22,6 @@ AC_CONFIG_FILES([
   icons/Makefile
   intl/Makefile
   man/Makefile
-  misc/Makefile
   pixmaps/Makefile
   po/Makefile.in
   registry/Makefile

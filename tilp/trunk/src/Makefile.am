@@ -10,10 +10,10 @@ pkginclude_HEADERS = tilp_plugin.h
 # build instructions
 tilp_CPPFLAGS = @TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
-	-DSHARE_DIR=\"$(DESTDIR)$(pkgdatadir)\" \
-	-DLOCALEDIR=\"$(DESTDIR)$(datadir)/locale\" \
-	-DPLUGIN_DIR=\"$(DESTDIR)$(pkglibdir)\" \
-	-DSYSCONFDIR=\"$(DESTDIR)$(sysconfdir)\" \
+	-DSHARE_DIR=\"$(pkgdatadir)\" \
+	-DLOCALEDIR=\"$(datadir)/locale\" \
+	-DPLUGIN_DIR=\"$(pkglibdir)\" \
+	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	-DGTK_DISABLE_DEPRECATED
 tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \

@@ -2,10 +2,12 @@
 
 # subdirectories to scan
 SUBDIRS = \
-	build desktop glade help icons intl man misc \
+	build desktop glade help icons intl man \
 	pixmaps po src registry #plugins
 
-EXTRA_DIST = README.* RELEASE TODO po/TRANSLATORS
+dist_pkgdata_DATA = COPYING RELEASE
+
+EXTRA_DIST = README.* TODO po/TRANSLATORS
 
 bundle:
 	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*

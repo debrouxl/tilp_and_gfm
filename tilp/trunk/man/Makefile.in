@@ -181,6 +181,7 @@ target_alias = @target_alias@
 tilp_pixmap_dir = @tilp_pixmap_dir@
 tilp_plugin_dir = @tilp_plugin_dir@
 man_MANS = tilp.1
+pkgdata_DATA = Manpage.txt
 
 EXTRA_DIST = $(man_MANS) cleaner.c Manpage.txt #dos2unix.c
 subdir = man
@@ -192,6 +193,8 @@ DIST_SOURCES =
 
 NROFF = nroff
 MANS = $(man_MANS)
+DATA = $(pkgdata_DATA)
+
 DIST_COMMON = Makefile.am Makefile.in
 all: all-am
 
@@ -258,6 +261,24 @@ uninstall-man1:
 	  echo " rm -f $(DESTDIR)$(man1dir)/$$inst"; \
 	  rm -f $(DESTDIR)$(man1dir)/$$inst; \
 	done
+pkgdataDATA_INSTALL = $(INSTALL_DATA)
+install-pkgdataDATA: $(pkgdata_DATA)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
+	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
+	  $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
+	done
+
+uninstall-pkgdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkgdata_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
+	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
+	done
 tags: TAGS
 TAGS:
 
@@ -298,10 +319,10 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(MANS)
+all-am: Makefile $(MANS) $(DATA)
 
 installdirs:
-	$(mkinstalldirs) $(DESTDIR)$(man1dir)
+	$(mkinstalldirs) $(DESTDIR)$(man1dir) $(DESTDIR)$(pkgdatadir)
 install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
@@ -342,7 +363,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-man
+install-data-am: install-man install-pkgdataDATA
 
 install-exec-am:
 
@@ -368,7 +389,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-info-am uninstall-man
+uninstall-am: uninstall-info-am uninstall-man uninstall-pkgdataDATA
 
 uninstall-man: uninstall-man1
 
@@ -376,11 +397,12 @@ uninstall-man: uninstall-man1
 	distclean distclean-generic distclean-libtool distdir dvi \
 	dvi-am info info-am install install-am install-data \
 	install-data-am install-exec install-exec-am install-info \
-	install-info-am install-man install-man1 install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-info-am uninstall-man uninstall-man1
+	install-info-am install-man install-man1 install-pkgdataDATA \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	uninstall uninstall-am uninstall-info-am uninstall-man \
+	uninstall-man1 uninstall-pkgdataDATA
 
 
 all: dist_win

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-11 18:33+0200\n"
+"POT-Creation-Date: 2004-05-20 00:08+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Sylvain Garsault <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: Français <kde-francophone@kde.org>\n"
@@ -48,19 +48,19 @@ msgstr "Action"
 msgid "action.c: GUI loading failed !\n"
 msgstr "action.c : échec du chargement de l'interface graphique !\n"
 
-#: src/action.c:215 src/action.c:333
+#: src/action.c:215 src/action.c:331
 msgid "skip"
 msgstr "ignorer"
 
-#: src/action.c:216 src/action.c:275 src/action.c:333
+#: src/action.c:216 src/action.c:273 src/action.c:331
 msgid "overwrite"
 msgstr "écraser"
 
-#: src/action.c:301 src/tilp_files.c:696 src/tilp_slct.c:124
+#: src/action.c:299 src/tilp_files.c:696 src/tilp_slct.c:124
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: src/action.c:301 src/tilp_files.c:697
+#: src/action.c:299 src/tilp_files.c:697
 msgid "New name: "
 msgstr "Nouveau nom : "
 
@@ -108,7 +108,7 @@ msgstr "Applications"
 msgid "Any Folder"
 msgstr "N'importe quel dossier"
 
-#: src/dboxes.c:41 src/dboxes.c:90 src/popup.c:166 src/popup.c:246
+#: src/dboxes.c:41 src/dboxes.c:87 src/popup.c:166 src/popup.c:246
 #: src/popup.c:338 src/tilp_calcs.c:216 src/tilp_calcs.c:249
 #: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
 #: src/tilp_calcs.c:301 src/tilp_files.c:105 src/tilp_files.c:119
@@ -118,24 +118,24 @@ msgstr "N'importe quel dossier"
 msgid "Information"
 msgstr "Information"
 
-#: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
+#: src/dboxes.c:44 src/dboxes.c:90 src/tilp_calcs.c:112 src/tilp_calcs.c:242
 #: src/tilp_calcs.c:396 src/tilp_files.c:686 src/tilp_slct.c:91
 #: src/tilp_slct.c:94
 msgid "Warning"
 msgstr "Avertissement"
 
-#: src/dboxes.c:47 src/dboxes.c:96
+#: src/dboxes.c:47 src/dboxes.c:93
 msgid "Question"
 msgstr "Question"
 
-#: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
-#: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:341 src/tilp_calcs.c:391
-#: src/tilp_calcs.c:590 src/tilp_calcs.c:596 src/tilp_calcs.c:602
-#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:734
-#: src/tilp_files.c:766 src/tilp_files.c:785 src/tilp_files.c:804
-#: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
-#: src/tilp_misc.c:169 src/tilp_misc.c:298 src/tilp_rcfile.c:51
-#: src/tilp_rcfile.c:566
+#: src/dboxes.c:50 src/dboxes.c:96 src/main.c:199 src/popup.c:173
+#: src/popup.c:253 src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:341
+#: src/tilp_calcs.c:391 src/tilp_calcs.c:590 src/tilp_calcs.c:596
+#: src/tilp_calcs.c:602 src/tilp_error.c:81 src/tilp_error.c:83
+#: src/tilp_files.c:734 src/tilp_files.c:766 src/tilp_files.c:785
+#: src/tilp_files.c:804 src/tilp_main.c:323 src/tilp_main.c:332
+#: src/tilp_main.c:341 src/tilp_misc.c:169 src/tilp_misc.c:298
+#: src/tilp_rcfile.c:51 src/tilp_rcfile.c:572
 msgid "Error"
 msgstr "Erreur"
 
@@ -143,7 +143,7 @@ msgstr "Erreur"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Impossible de supprimer les fichiers temporaires.\n"
 
-#: src/gtk_refresh.c:136
+#: src/gtk_refresh.c:133
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
@@ -191,6 +191,10 @@ msgstr "Détection des greffons..."
 msgid "Command line..."
 msgstr "Ligne de commande..."
 
+#: src/main.c:199
+msgid "An TiLP session is already running. Check the task list."
+msgstr ""
+
 #: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:145
 msgid "A file must have been selected in the right window."
 msgstr "Un fichier doit être sélectionné dans la fenêtre de droite."
@@ -223,15 +227,15 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr "Système de greffons : système pas encore défini !"
 
-#: src/popup.c:368 src/tilp.c:542 glade/clist_rbm-2.str:18
+#: src/popup.c:368 src/tilp.c:541 glade/clist_rbm-2.str:18
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:124
+#: src/popup.c:368 src/tilp.c:541 src/tilp_slct.c:124
 msgid "Name: "
 msgstr "Nom"
 
-#: src/popup.c:369 src/tilp.c:543
+#: src/popup.c:369 src/tilp.c:542
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
@@ -256,11 +260,11 @@ msgstr "Changer de lecteur"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Impossible de trouver le fichier pixmap : %s"
 
-#: src/tilp.c:64
+#: src/tilp.c:65
 msgid "Status: not connected."
 msgstr "État : déconnecté."
 
-#: src/tilp.c:246
+#: src/tilp.c:247
 msgid ""
 "It's not a FLASH upgrade or this FLASH file is not intended for this "
 "calculator type."
@@ -268,7 +272,7 @@ msgstr ""
 "Il ne s'agit pas d'une mise à jour FLASH ou ce fichier FLASH n'est pas "
 "destiné à ce type de calculatrice."
 
-#: src/tilp.c:261
+#: src/tilp.c:262
 msgid "Manual_en.html"
 msgstr "Manual_fr.html"
 
@@ -790,7 +794,7 @@ msgstr ""
 "Vous pouvez créer un fichier de configuration par l'intermédiaire du menu "
 "'Fichier|Enregistrer la configuration'.\n"
 
-#: src/tilp_rcfile.c:567
+#: src/tilp_rcfile.c:573
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
 msgstr ""
 "Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
@@ -1290,71 +1294,76 @@ msgstr "TiEmu"
 msgid "virtual"
 msgstr "virtuel"
 
-#: glade/comm-2.str:21
+#: glade/comm-2.str:21 glade/comm-2.str:27
+#, fuzzy
+msgid "null"
+msgstr "_complet"
+
+#: glade/comm-2.str:22
 msgid "custom"
 msgstr "personnalisé"
 
-#: glade/comm-2.str:22
+#: glade/comm-2.str:23
 msgid "#1"
 msgstr "n°1"
 
-#: glade/comm-2.str:23
+#: glade/comm-2.str:24
 msgid "#2"
 msgstr "n°2"
 
-#: glade/comm-2.str:24
+#: glade/comm-2.str:25
 msgid "#3"
 msgstr "n°3"
 
-#: glade/comm-2.str:25
+#: glade/comm-2.str:26
 msgid "#4"
 msgstr "n°4"
 
-#: glade/comm-2.str:26
+#: glade/comm-2.str:28
 msgid "TI73"
 msgstr "TI73"
 
-#: glade/comm-2.str:27
+#: glade/comm-2.str:29
 msgid "TI82"
 msgstr "TI82"
 
-#: glade/comm-2.str:28
+#: glade/comm-2.str:30
 msgid "TI83"
 msgstr "TI83"
 
-#: glade/comm-2.str:29
+#: glade/comm-2.str:31
 msgid "TI83+"
 msgstr "TI83+"
 
-#: glade/comm-2.str:30
+#: glade/comm-2.str:32
 msgid "TI85"
 msgstr "TI85"
 
-#: glade/comm-2.str:31
+#: glade/comm-2.str:33
 msgid "TI86"
 msgstr "TI86"
 
-#: glade/comm-2.str:32
+#: glade/comm-2.str:34
 msgid "TI89"
 msgstr "TI89"
 
-#: glade/comm-2.str:33
+#: glade/comm-2.str:35
 msgid "TI92"
 msgstr "TI92"
 
-#: glade/comm-2.str:34
+#: glade/comm-2.str:36
 msgid "TI92+"
 msgstr "TI92+"
 
-#: glade/comm-2.str:35
+#: glade/comm-2.str:37
 msgid "V200PLT"
 msgstr "V200PLT"
 
-#: glade/comm-2.str:36
+#: glade/comm-2.str:38
 msgid "Settings"
 msgstr "Configuration"
 
-#: glade/comm-2.str:37
+#: glade/comm-2.str:39
 msgid "Have a problem ? Check out the log:"
 msgstr ""
 "Un problème est apparu ? Vérifiez le fichier de journalisation (log) : "

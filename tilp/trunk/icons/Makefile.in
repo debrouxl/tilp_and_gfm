@@ -23,6 +23,7 @@ pkgincludedir = $(includedir)/@PACKAGE@
 top_builddir = ..
 
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
+INSTALL = @INSTALL@
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
 install_sh_SCRIPT = $(install_sh) -c
@@ -35,7 +36,6 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_triplet = @host@
-INSTALL = @INSTALL@
 ACLOCAL = @ACLOCAL@
 ALLOCA = @ALLOCA@
 AMDEP_FALSE = @AMDEP_FALSE@
@@ -123,7 +123,7 @@ PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
-SHELL = /bin/sh
+SHELL = @SHELL@
 STRIP = @STRIP@
 TICABLES_CFLAGS = @TICABLES_CFLAGS@
 TICABLES_LIBS = @TICABLES_LIBS@
@@ -180,19 +180,32 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tilp_pixmap_dir = @tilp_pixmap_dir@
 tilp_plugin_dir = @tilp_plugin_dir@
+LINK_ICONS = \
+	App_Var.ico \
+	Complex_List.ico \
+	Complex_Matrix.ico \
+	Complex_Vector.ico \
+	Diff_Equ.ico \
+	Function.ico \
+	Parametric.ico \
+	Polar.ico \
+	Y_Var.ico
 
-ICONS = *.ico
-EXTRA_DIST = $(ICONS)
 
-tilp_icon_dir = $(pkgdatadir)/icons
+iconsdir = $(pkgdatadir)/icons
+icons_DATA = $(LINK_ICONS) *.ico
 
-FN = `echo  $$I | mawk '{ gsub(/\.ico/, "", $$0); print ($$0)}'`
+EXTRA_DIST = *.ico
+
+FN = `echo $$I | sed 's/\.ico$//'`
 subdir = icons
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
+DATA = $(icons_DATA)
+
 DIST_COMMON = Makefile.am Makefile.in
 all: all-am
 
@@ -212,6 +225,24 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
+iconsDATA_INSTALL = $(INSTALL_DATA)
+install-iconsDATA: $(icons_DATA)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(iconsdir)
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(iconsDATA_INSTALL) $$d$$p $(DESTDIR)$(iconsdir)/$$f"; \
+	  $(iconsDATA_INSTALL) $$d$$p $(DESTDIR)$(iconsdir)/$$f; \
+	done
+
+uninstall-iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f $(DESTDIR)$(iconsdir)/$$f"; \
+	  rm -f $(DESTDIR)$(iconsdir)/$$f; \
+	done
 tags: TAGS
 TAGS:
 
@@ -250,13 +281,19 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-hook
 check-am: all-am
 check: check-am
-all-am: Makefile
+all-am: Makefile $(DATA)
 
 installdirs:
+	$(mkinstalldirs) $(DESTDIR)$(iconsdir)
+install: install-am
 install-exec: install-exec-am
 install-data: install-data-am
+uninstall: uninstall-am
 
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
@@ -293,7 +330,7 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-iconsDATA
 
 install-exec-am:
 
@@ -319,30 +356,42 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-info-am
+uninstall-am: uninstall-iconsDATA uninstall-info-am
 
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
 	distclean distclean-generic distclean-libtool distdir dvi \
 	dvi-am info info-am install install-am install-data \
-	install-data-am install-exec install-exec-am install-info \
-	install-info-am install-man install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-data-am install-exec install-exec-am install-iconsDATA \
+	install-info install-info-am install-man install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-info-am
+	uninstall-iconsDATA uninstall-info-am
 
 
-install: $(ICONS) links
-	@echo Installing icons...
-	@$(INSTALL) -m755 -d $(DESTDIR)$(tilp_icon_dir)
-	@for I in *.ico ; do \
-		$(INSTALL) -m644 $$I $(DESTDIR)$(tilp_icon_dir)/; \
-        done
-	@echo Done
+dist-hook:
+	@list='$(LINK_ICONS)'; for icon in $$list; do \
+	  rm -rf $(distdir)/$$icon; \
+	done
 
-uninstall:
-	@echo Removing icons...
-	$(RM) $(DESTDIR)$(tilp_icon_dir)/*.ico
+App_Var.ico: Application.ico
+	ln -sf Application.ico App_Var.ico
+Complex_List.ico: List.ico
+	ln -sf List.ico Complex_List.ico
+Complex_Matrix.ico: Matrix.ico
+	ln -sf Matrix.ico Complex_Matrix.ico
+Complex_Vector.ico: Vector.ico
+	ln -sf Vector.ico Complex_Vector.ico
+Diff_Equ.ico: Equation.ico
+	ln -sf Equation.ico Diff_Equ.ico
+Function.ico: Equation.ico
+	ln -sf Equation.ico Function.ico
+Parametric.ico: Equation.ico
+	ln -sf Equation.ico Parametric.ico
+Polar.ico: Equation.ico
+	ln -sf Equation.ico Polar.ico
+Y_Var.ico: Equation.ico
+	ln -sf Equation.ico Y_Var.ico
 
 convert:
 	@echo Converting icons to pixmaps
@@ -350,19 +399,6 @@ convert:
 		echo $$I into $(FN).xpm; \
 		winicontoppm $$I | ppmtoxpm  -name $(FN) > $(FN).xpm; \
 	done
-	@echo Done
-
-links:
-	@echo Linking some icons...
-	ln -sf Application.ico App_Var.ico
-	ln -sf List.ico Complex_List.ico
-	ln -sf Matrix.ico Complex_Matrix.ico
-	ln -sf Vector.ico Complex_Vector.ico
-	ln -sf Equation.ico Diff_Equ.ico
-	ln -sf Equation.ico Function.ico
-	ln -sf Equation.ico Parametric.ico
-	ln -sf Equation.ico Polar.ico
-	ln -sf Equation.ico Y_Var.ico
 	@echo Done
 
 dos2unix:
