@@ -9,7 +9,7 @@ if USE_GROFF
 SUBDIRS += man
 endif
 
-dist_pkgdata_DATA = COPYING RELEASE
+dist_pkgdata_DATA = COPYING RELEASE ./registry/tilp.registry
 
 EXTRA_DIST = README.* TODO po/TRANSLATORS
 

@@ -7,7 +7,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/intl
 noinst_PROGRAMS = tilpreg
 tilpreg_SOURCES = main.c main.h
 
-registrydir = $(sysconfdir)/tilp
+registrydir = $(pkgdatadir)/tilp
 dist_registry_DATA = tilp.registry
 
 install:

@@ -75,6 +75,7 @@ FFLAGS = @FFLAGS@
 GENCAT = @GENCAT@
 GLADE_CFLAGS = @GLADE_CFLAGS@
 GLADE_LIBS = @GLADE_LIBS@
+GLIBC2 = @GLIBC2@
 GLIBC21 = @GLIBC21@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
@@ -95,6 +96,7 @@ INTLBISON = @INTLBISON@
 INTLLIBS = @INTLLIBS@
 INTLOBJS = @INTLOBJS@
 INTL_LIBTOOL_SUFFIX_PREFIX = @INTL_LIBTOOL_SUFFIX_PREFIX@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
@@ -191,7 +193,7 @@ SUBDIRS = \
 	pixmaps po src registry plugins\
 $(am__append_1)
 
-dist_pkgdata_DATA = COPYING RELEASE
+dist_pkgdata_DATA = COPYING RELEASE ./registry/tilp.registry
 
 EXTRA_DIST = README.* TODO po/TRANSLATORS
 subdir = .
@@ -428,7 +430,7 @@ distcleancheck_listfiles = find . -type f -print
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkinstalldirs) $(distdir)/. $(distdir)/intl $(distdir)/po
+	$(mkinstalldirs) $(distdir)/. $(distdir)/./registry $(distdir)/intl $(distdir)/po
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
