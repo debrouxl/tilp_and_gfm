@@ -540,6 +540,6 @@ begin
   
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the GTK+ 2.0 Runtime Environment before installing TiLP. You can obtain GTK+ from http://www.dropline.net/gtk.', mbError, MB_OK);
+    MsgBox ('Please install the 'GTK+ 2.0 Runtime Environment' of DropLine Systems. You can obtain GTK+ from <http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download>.', mbError, MB_OK);
   end;
 end;
