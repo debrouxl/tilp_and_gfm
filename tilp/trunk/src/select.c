@@ -35,7 +35,6 @@ void clist_selection_destroy(void)
 /* Destroy the selection of the ctree window */
 void ctree_selection_destroy(void)
 {
-//printf("<<%p>>\n", ctree_win.selection);
   if(ctree_win.selection != NULL)
     {
       g_list_free(ctree_win.selection);

@@ -20,22 +20,22 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include "rcfile.h"
+#include "files.h"
+#include "paths.h"
+#include "platform.h"
+#include "tilibs.h"
+#else
 #include <glib/glib.h>
 #include <libticables/cabl_int.h>
 #include <libticalcs/calc_int.h>
-#elif defined(__WIN32__)
-#include <windows.h>
-#include <process.h>
 #endif
 
 #include "defs.h"
 #include "gui_indep.h"
 #include "intl.h"
 #include "error.h"
-#ifndef __MACOSX__
-#include "rcfile.h"
-#endif
 #include "struct.h"
 #include "cb_calc.h"
 
@@ -70,7 +70,7 @@ int cb_load_config_file(void)
 */
 int cb_default_config(void)
 {
-#if defined(__UNIX__) || defined(__WIN32__)
+#if defined(__LINUX__) || defined(__WIN32__)
   gchar *locale;
 #endif
 
@@ -303,7 +303,7 @@ int initialize_paths(void)
   /*
     Initialize share path
   */
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   inst_paths.share_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				   G_DIR_SEPARATOR_S, NULL);
 #endif
@@ -312,7 +312,7 @@ int initialize_paths(void)
     Initialize pixmaps path
   */
   
-#ifdef __UNIX__
+#ifdef __LINUX__
   inst_paths.pixmap_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				    "/pixmaps/", NULL);
 #elif defined(__WIN32__)
@@ -343,7 +343,7 @@ int initialize_paths(void)
   /*
     Initialize help path
   */
-#ifdef __UNIX__
+#ifdef __LINUX__
   inst_paths.help_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				  "/help/", NULL);
 #elif defined(__WIN32__)
@@ -357,7 +357,7 @@ int initialize_paths(void)
   /*
     Initialize manpage path
   */
-#ifdef __UNIX__
+#ifdef __LINUX__
   inst_paths.manpage_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				       "/", NULL);
 #elif defined(__WIN32__)
@@ -534,6 +534,11 @@ int cb_ungroup_files(void)
   TiffepFileInfo *fi_dst = NULL;
   TiffepVarInfo  *vi_src = NULL;
   TiffepVarInfo  *vi_dst = NULL;
+
+  gchar *filename;
+  GList *sel;
+  TilpFileInfo *f;
+  GList *vl = NULL;
   
   if(clist_win.selection == NULL) 
     return 0;
@@ -594,6 +599,10 @@ int cb_group_files(void)
   TiffepFileInfo *fi_dst = NULL;
   TiffepVarInfo  *vi_src = NULL;
   TiffepVarInfo  *vi_dst = NULL;
+
+  gchar *filename;
+  GList *sel;
+  TilpFileInfo *f;
   
   if((sel = clist_win.selection) == NULL) 
     return 0;

@@ -95,8 +95,8 @@
 #define TERM 2
 
 /* Unused stuffs */
+#ifdef __MACOSX__
 #define UNUSED -1
-
 #endif
 
 /* File receiving */
@@ -113,3 +113,4 @@
 #define TMPFILE_GROUP    "tilp.group"
 #define TMPFILE_FLASHAPP "tilp.flashapp"
 
+#endif

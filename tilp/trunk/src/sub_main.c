@@ -25,7 +25,10 @@
 #include <string.h>
 #include <fcntl.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include <glib.h>
+#include "tilibs.h"
+#else
 #include <glib/glib.h>
 #include <libticalcs/calc_int.h>
 #endif
@@ -74,10 +77,8 @@ gint   is_active = 0;    /* Set if a transfer is active */
 gint working_mode = MODE_GTK;
 #elif defined(__MACOSX__)
 gint working_mode = MODE_OSX;
-#elif defined(__WIN32__) && defined(USE_MFC)
+#elif defined(__WIN32__)
 gint working_mode = MODE_MFC;
-#elif defined(__WIN32__) && !defined(USE_MFC)
-gint working_mode = MODE_GTK;
 #endif
 
 
@@ -85,7 +86,7 @@ struct clist_window clist_win = { NULL, NULL, NULL, NULL, 0 };
 struct ctree_window ctree_win = { NULL, "", 0, NULL, NULL, NULL };
 
 // Default relative path for Windows
-#ifdef __WIN32__
+#ifndef __MACOSX__
 struct installation_paths inst_paths = 
 { 
   "", "\\locale", "\\manpages", "\\help", "\\pixmaps"

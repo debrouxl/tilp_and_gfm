@@ -20,18 +20,15 @@
 #include <string.h>
 #include <unistd.h>
 
-#if defined(__LINUX__)
-# include <tilp/cabl_err.h>
-# include <tilp/calc_err.h>
-#elif defined(__MACOSX__)
+#ifndef __MACOSX__
+# include "platform.h"
+# include "tilibs.h"
+#else
 # include <libticables/cabl_err.h>
 # include <libticalcs/calc_err.h>
 # include <libticalcs/calc_int.h>
 # include <glib/glib.h>
 # include <stdlib.h>
-#else
-# include "calc_err.h"
-# include "cabl_err.h"
 #endif
 
 #include "sub_main.h"
@@ -54,8 +51,12 @@ int cb_calc_is_ready(void)
 
   if(options.auto_detect)
     {
-      if(tilp_error(ticalc_73_83p_89_92p_isready(&(options.lp.calc_type))))
-	return -1;
+         err = ticalc_73_83p_89_92p_isready(&(options.lp.calc_type));
+         if(tilp_error(err))
+         {
+                 
+               return -1;
+         }
       ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
     }
   else
@@ -149,7 +150,8 @@ int cb_send_backup(char *filename)
       break;
     }
 
-  ticalc_open_ti_file(filename, "rb", &bck);
+  err = ticalc_open_ti_file(filename, "rb", &bck);
+  if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
   err=ti_calc.send_backup(bck, file_mode | file_check);
   ticalc_close_ti_file();
   gif->destroy_pbar();
@@ -206,7 +208,8 @@ int cb_recv_backup(void)
       info_update.refresh();
       if(info_update.cancel) break;
 
-      ticalc_open_ti_file(tmp_filename, "wb", &bck);
+      err=ticalc_open_ti_file(tmp_filename, "wb", &bck);
+         if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
       err=ti_calc.recv_backup(bck, MODE_NORMAL | file_mode, &version);
       ticalc_close_ti_file(bck);
     }
@@ -281,7 +284,7 @@ int cb_rom_dump(void)
 	      info_update.refresh();
 	      if(info_update.cancel) break;
 	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-	      if(tilp_error(err)) return -1;
+              if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	      err=ti_calc.dump_rom(dump, ret);
 	      fclose(dump);
 	    }
@@ -323,7 +326,7 @@ int cb_rom_dump(void)
 		  info_update.refresh();
 		  if(info_update.cancel) break;
 		  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-		  if(tilp_error(err)) return -1;
+                  if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 		  err=ti_calc.dump_rom(dump, (ret == 1) ? 
 				       SHELL_ZSHELL : SHELL_USGARD);
 		  fclose(dump);
@@ -360,7 +363,7 @@ int cb_rom_dump(void)
 	      info_update.refresh();
 	      if(info_update.cancel) break;
 	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-	      if(tilp_error(err)) return -1;
+              if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	      err=ti_calc.dump_rom(dump, ret);
 	      fclose(dump);
 	    }
@@ -388,7 +391,7 @@ int cb_rom_dump(void)
 	  info_update.refresh();
 	  if(info_update.cancel) break;
 	  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-	  if(tilp_error(err)) return -1;
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	  err=ti_calc.dump_rom(dump, ret);
 	  fclose(dump);
 	}
@@ -427,7 +430,7 @@ int cb_rom_dump(void)
 		  info_update.refresh();
 		  if(info_update.cancel) break;
 		  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-		  if(tilp_error(err)) return -1;
+                  if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 		  err=ti_calc.dump_rom(dump, ret);
 		  fclose(dump);
 		}
@@ -484,6 +487,7 @@ int cb_send_var(void)
   int path_mode = MODE_NORMAL;
   int file_mode = MODE_NORMAL;
   int file_check = MODE_NORMAL;
+  int err;
 
   if(is_active)
     return -1;
@@ -543,12 +547,9 @@ int cb_send_var(void)
 	  /****************/
 	  /* A group file */
 	  /****************/
-	  
-	  if(tilp_error(ticalc_open_ti_file(f->filename, "rb", &txt)))
-	    {
-	      gif->destroy_pbar();
-	      return -1;
-	    }
+
+          err = tilp_error(ticalc_open_ti_file(f->filename, "rb", &txt));
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	  
 	  /* It is not the last file to send */
 	  if( ((ptr->next) != NULL) && (l > 1) )
@@ -595,11 +596,8 @@ int cb_send_var(void)
 			   _("Use the 'Send application' menu item instead."));
 	      return -1;
 	    }  
-	  if(tilp_error(ticalc_open_ti_file(f->filename, "rb", &txt)))
-	    {
-	      gif->destroy_pbar();
-	      return -1;
-	    }
+          err = ticalc_open_ti_file(f->filename, "rb", &txt);
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	  
 	  /* It is not the last file to send */
 	  if( ((ptr->next) != NULL) && (l > 1) )
@@ -752,7 +750,8 @@ int cb_recv_var(void)
 	    }
 	  if(skip == 0)
 	    {
-	      ticalc_open_ti_file(file_n, "wb", &txt);
+               err = tilp_error(ticalc_open_ti_file(file_n, "wb", &txt));
+               if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	     
 	      /* This part generates the header for single files */
 	      switch(options.lp.calc_type)
@@ -791,7 +790,8 @@ int cb_recv_var(void)
 	  strcpy(tmp_filename, g_get_tmp_dir());
 	  strcat(tmp_filename, DIR_SEPARATOR);
 	  strcat(tmp_filename, TMPFILE_GROUP);
-	  ticalc_open_ti_file(tmp_filename, "wb", &txt);
+          err = ticalc_open_ti_file(tmp_filename, "wb", &txt);
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	  
 	  switch(options.lp.calc_type)
 	    {
@@ -862,6 +862,7 @@ int cb_recv_var(void)
 	    }
 	  ticalc_close_ti_file();
 	  gif->destroy_pbar();
+          return 1;
  	}
       break;
     case CALC_TI82:
@@ -872,7 +873,9 @@ int cb_recv_var(void)
       strcat(tmp_filename, TMPFILE_GROUP);
       do
 	{
-	  ticalc_open_ti_file(tmp_filename, "wb", &txt);
+          err = ticalc_open_ti_file(tmp_filename, "wb", &txt);
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
+
 	
 	  info_update.refresh();
 	  if(info_update.cancel) break;
@@ -895,7 +898,8 @@ int cb_recv_var(void)
 	  else
 	    strcpy(str, varname);
 	  strcat(str, ".");
-	  ticalc_open_ti_file(tmp_filename, "rb", &txt);
+          err = ticalc_open_ti_file(tmp_filename, "wb", &txt);
+          if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	
 	  for(i=0; i<11; i++) fgetc(txt);
 	  for(i=0; i<42; i++) fgetc(txt);
@@ -918,7 +922,10 @@ int cb_recv_var(void)
 		      dirname=gif->dlgbox_entry(_("Rename the file"),
 					   _("New name: "), str);
 		      if(dirname == NULL) 
-			return -1;
+                        {
+                          gif->destroy_pbar();
+                          return -1;
+                        }
 		      strcpy(str, dirname);
 		      g_free(dirname);
 		    case BUTTON1:
@@ -982,7 +989,8 @@ int cb_send_flash_app(char *filename)
       break;
     }
 
-  ticalc_open_ti_file(filename, "rb", &bck);
+  err = ticalc_open_ti_file(filename, "rb", &bck);
+  if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
   old_timeout = ticable_get_timeout();
   ticable_set_timeout(100); // 10 seconds
   err=ti_calc.send_flash(bck, MODE_APPS);
@@ -1027,7 +1035,8 @@ int cb_send_flash_os(char *filename)
       break;
     }
 
-  ticalc_open_ti_file(filename, "rb", &bck);
+  err = ticalc_open_ti_file(filename, "rb", &bck);
+  if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
   old_timeout = ticable_get_timeout();
   ticable_set_timeout(100); // 10 seconds
   err=ti_calc.send_flash(bck, MODE_AMS);
@@ -1113,7 +1122,10 @@ int cb_recv_app(void)
 		  dirname=gif->dlgbox_entry(_("Rename the file"),
 					    _("New name: "), filename);
 		  if(dirname == NULL) 
-		    return -1;
+                    {
+                      gif->destroy_pbar();
+                      return -1;
+                    }
 		  strcpy(filename, dirname);
 		  g_free(dirname);
 		case BUTTON1:

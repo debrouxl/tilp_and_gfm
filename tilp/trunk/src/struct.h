@@ -19,12 +19,15 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
+#ifndef __MACOSX__
+#include <glib.h>
+#include "platform.h"
+#include "tilibs.h"
+#else
 #include <glib/glib.h>
-
-#ifdef __MACOSX__
 #include <libticables/cabl_int.h>
 #include <libticalcs/calc_def.h>
-#endif /* __MACOSX__ */
+#endif /* !__MACOSX__ */
 
 #include "img_fmt.h"
 
@@ -52,6 +55,8 @@ extern struct installation_paths
   gchar *pixmap_dir;  // pixmaps
   gchar *startup_dir; // directory where the program has been launched
 } inst_paths;
+
+typedef struct installation_paths TilpInstPaths;
 #endif
 
 /* This struct contains the general options to configure the program */

@@ -31,7 +31,10 @@
 #include <dirent.h>
 #include <unistd.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include <glib.h>
+#include "platform.h"
+#else
 #include <glib/glib.h>
 #endif
 

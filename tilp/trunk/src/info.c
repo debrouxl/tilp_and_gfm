@@ -20,7 +20,10 @@
 #include <strings.h>
 #include <sys/stat.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include <glib.h>
+#include "tilibs.h"
+#else
 #include <glib/glib.h>
 #include <libticables/typedefs.h>
 #include <libticalcs/calc_int.h>

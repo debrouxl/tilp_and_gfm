@@ -20,15 +20,19 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#ifndef __WIN32__
-#include <dirent.h>
-#endif
+
+#include "platform.h"
+#include "tilibs.h"
+
 #include <sys/stat.h>
 #include <unistd.h>
 #include <ctype.h>
 #include <string.h>
 
-#include "includes.h"
+#include "cb_calc.h"
+#include "gui_indep.h"
+#include "struct.h"
+#include "error.h"
 
 char fname[64];
 int linkType = 0;

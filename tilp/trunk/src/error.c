@@ -23,7 +23,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include "tilibs.h"
+#else
 #include <libticalcs/calc_int.h>
 #endif
 
@@ -61,7 +63,7 @@ int tilp_error(int err_num)
 	}
     }
 
-  DISPLAY("%s\n", s);
+  DISPLAY_ERROR("%s\n", s);
   gif->msg_box(_("Error"), s);
   
   return err_num;

@@ -18,7 +18,9 @@
 
 #include <stdio.h>
 
-#ifdef __MACOSX__
+#ifndef __MACOSX__
+#include "tilibs.h"
+#else
 #include <libticalcs/calc_int.h>
 #endif
 
