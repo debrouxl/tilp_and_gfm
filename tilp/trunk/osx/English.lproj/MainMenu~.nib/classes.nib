@@ -90,6 +90,7 @@
             CLASS = MenuController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                dirlistTree = id; 
                 mainWindow = id; 
                 msgSheetText = id; 
                 msgSheetWindow = id; 

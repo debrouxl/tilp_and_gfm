@@ -15,8 +15,8 @@
 
 #define DIR_SEPARATOR "/"
 
-#define TILP_OSX_VERSION "0.2.1"
+#define TILP_OSX_VERSION "0.2.4"
 
-#define VERSION "4.51 OSX 0.2.1"
+#define VERSION "4.51 OSX 0.2.4"
 
 #endif /* !__CONFIG_H__ */
