@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-10 17:28+0200\n"
+"POT-Creation-Date: 2004-04-14 19:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:390 src/tilp_files.c:684 src/tilp_slct.c:89
+#: src/tilp_calcs.c:397 src/tilp_files.c:684 src/tilp_slct.c:89
 #: src/tilp_slct.c:92
 msgid "Warning"
 msgstr ""
@@ -128,8 +128,8 @@ msgstr ""
 
 #. gif->destroy_pbar();
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
-#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:339 src/tilp_calcs.c:385
-#: src/tilp_calcs.c:581 src/tilp_calcs.c:587 src/tilp_calcs.c:593
+#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:341 src/tilp_calcs.c:392
+#: src/tilp_calcs.c:591 src/tilp_calcs.c:597 src/tilp_calcs.c:603
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
 #: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
@@ -345,18 +345,18 @@ msgid ""
 "3: TiLP will automatically launch the program (if you are in HOME).\n"
 msgstr ""
 
-#: src/tilp_calcs.c:341
+#: src/tilp_calcs.c:343
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:353 src/tilp_calcs.c:358 src/tilp_calcs.c:402
-#: src/tilp_calcs.c:407
+#: src/tilp_calcs.c:355 src/tilp_calcs.c:360 src/tilp_calcs.c:409
+#: src/tilp_calcs.c:414
 msgid "Flash"
 msgstr ""
 
-#: src/tilp_calcs.c:381
+#: src/tilp_calcs.c:388
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -368,49 +368,49 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:387
+#: src/tilp_calcs.c:394
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:440
+#: src/tilp_calcs.c:450
 msgid "Receiving application(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:529
+#: src/tilp_calcs.c:539
 msgid "Converting..."
 msgstr ""
 
-#: src/tilp_calcs.c:582
+#: src/tilp_calcs.c:592
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:589
+#: src/tilp_calcs.c:599
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:594
+#: src/tilp_calcs.c:604
 msgid "There is an unknown file type in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:608
+#: src/tilp_calcs.c:618
 msgid "Sending group file"
 msgstr ""
 
-#: src/tilp_calcs.c:612
+#: src/tilp_calcs.c:622
 msgid "Sending variable"
 msgstr ""
 
-#: src/tilp_calcs.c:614
+#: src/tilp_calcs.c:624
 msgid "Sending variables"
 msgstr ""
 
-#: src/tilp_calcs.c:681 src/tilp_calcs.c:802
+#: src/tilp_calcs.c:691 src/tilp_calcs.c:812
 msgid "Receiving variable(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:803
+#: src/tilp_calcs.c:813
 msgid "Waiting..."
 msgstr ""
 

@@ -1,3 +1,4 @@
+# traduction de tilp.po en Français
 # traduction de fr.po en Français
 # FRENCH translation of 6.61.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
@@ -7,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: fr\n"
+"Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-04-10 17:28+0200\n"
-"PO-Revision-Date: 2004-03-27 14:15+0000\n"
+"PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Sylvain Garsault <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: Français <kde-francophone@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -145,7 +146,6 @@ msgid "Unable to remove the temporary file.\n"
 msgstr "Impossible de supprimer les fichiers temporaires.\n"
 
 #: src/gtk_refresh.c:131
-#, fuzzy
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
@@ -193,7 +193,7 @@ msgstr "Détection des greffons..."
 
 #: src/main.c:168
 msgid "Command line..."
-msgstr ""
+msgstr "Ligne de commande..."
 
 #: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:140
 msgid "A file must have been selected in the right window."
@@ -438,8 +438,7 @@ msgstr "Conversion..."
 
 #: src/tilp_calcs.c:582
 msgid "You can not send both variables and applications simultaneously."
-msgstr ""
-"Vous ne pouvez pas envoyer à la fois des variables et des applications."
+msgstr "Vous ne pouvez pas envoyer à la fois des variables et des applications."
 
 #: src/tilp_calcs.c:589
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
@@ -555,9 +554,8 @@ msgid "-link=...     give the link cable type\n"
 msgstr "-link=...      spécifie le type de câble\n"
 
 #: src/tilp_main.c:84
-#, fuzzy
 msgid "-port=...     give the port number\n"
-msgstr "-dev_port=... spécifie le port du périphérique\n"
+msgstr "-port=...     spécifie le numéro du port\n"
 
 #: src/tilp_main.c:85
 msgid "-timeout=...  give the time out in seconds\n"
@@ -568,14 +566,12 @@ msgid "-delay=...    give the delay in microseconds\n"
 msgstr "-delay=...    spécifie le délai en microsecondes\n"
 
 #: src/tilp_main.c:87
-#, fuzzy
 msgid "-dev_port=... give the device port (override 'port=')\n"
-msgstr "-dev_port=... spécifie le port du périphérique\n"
+msgstr "-dev_port=... spécifie le port du périphérique (annule \"port=\")\n"
 
 #: src/tilp_main.c:88
-#, fuzzy
 msgid "-adr_port=... give the address of the port (override 'port=')\n"
-msgstr "-adr_port=... spécifie l'adresse du port\n"
+msgstr "-adr_port=... spécifie l'adresse du port (annule \"port=\")\n"
 
 #: src/tilp_main.c:90
 msgid "filename      a filename to send (console or GTK+)\n"
@@ -586,19 +582,17 @@ msgid "See the manpage for more informations...\n"
 msgstr "Reportez-vous aux pages de man pour plus d'informations...\n"
 
 #: src/tilp_main.c:103
-#, fuzzy, c-format
+#, c-format
 msgid "TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"
-msgstr "TiLP - Version %s, (C) 1999-2003 Romain Liévin <roms@tilp.info>\n"
+msgstr "TiLP - Version %s, (C) 1999-2004 Romain Liévin <roms@tilp.info>\n"
 
 #: src/tilp_main.c:107
-#, fuzzy
 msgid "FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"
-msgstr "Portage FreeBSD, (c) 2003 Tijl Coosemans\n"
+msgstr "Portage FreeBSD, (c) 2003-2004 Tijl Coosemans\n"
 
 #: src/tilp_main.c:112
 #, c-format
-msgid ""
-"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
+msgid "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 "Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp."
 "info>\n"
@@ -612,19 +606,18 @@ msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "LISEZ S'IL VOUS PLAÎT LA DOCUMENTATION POUR PLUS DE DÉTAILS\n"
 
 #: src/tilp_main.c:118
-#, fuzzy, c-format
+#, c-format
 msgid "built on %s %s\n"
 msgstr "Compilé sur %s %s\n"
 
 #: src/tilp_main.c:321
-#, fuzzy, c-format
+#, c-format
 msgid "libtifiles library version <%s> mini required.\n"
-msgstr "La version <%s> au minimum de libticables est requise.\n"
+msgstr "La version <%s> au minimum de libtifiles est requise.\n"
 
 #: src/tilp_main.c:324
-#, fuzzy
 msgid "Libtifiles: version mismatches."
-msgstr "Libticables : mauvaise version."
+msgstr "Libtifiles : mauvaise version."
 
 #: src/tilp_main.c:330
 #, c-format
@@ -682,7 +675,7 @@ msgstr "Nom de fichier non valide. Il n'y a pas d'extension !\n"
 
 #: src/tilp_misc.c:229
 msgid "Unknown file type.\n"
-msgstr ""
+msgstr "Type de fichier inconnu.\n"
 
 #: src/tilp_misc.c:257
 msgid "Create new directory"
@@ -717,7 +710,6 @@ msgid "group"
 msgstr "grouper"
 
 #: src/tilp_plugin.c:150
-#, fuzzy
 msgid "scanning plug-ins... "
 msgstr "Détection des greffons... "
 
@@ -731,7 +723,6 @@ msgstr "Fait !\n"
 
 #. Scan registry
 #: src/tilp_plugin.c:174
-#, fuzzy
 msgid "scanning registry... "
 msgstr "Recherche dans le registre... "
 
@@ -786,8 +777,7 @@ msgstr ""
 
 #: src/tilp_prompt.c:179
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
-msgstr ""
-"Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
+msgstr "Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
 
 #: src/tilp_rcfile.c:50
 #, c-format
@@ -805,13 +795,11 @@ msgstr ""
 
 #: src/tilp_rcfile.c:567
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
-msgstr ""
-"Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
+msgstr "Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
 
 #: src/tilp_refresh.c:95
-#, fuzzy
 msgid "initialized in command line mode.\n"
-msgstr "Initialisation en mode ligne de commande.\n"
+msgstr "Initialisé en mode ligne de commande.\n"
 
 #. Place a progress bar
 #: src/tilp_screen.c:38
@@ -1077,8 +1065,7 @@ msgstr "_Aller au dossier parent"
 
 #: glade/clist_rbm-2.str:33
 msgid "Set the current directory as working directory whenever TiLP starts."
-msgstr ""
-"Définit le dossier courant comme dossier de travail au démarrage de TiLP."
+msgstr "Définit le dossier courant comme dossier de travail au démarrage de TiLP."
 
 #: glade/clist_rbm-2.str:34
 msgid "_Set as working folder"
@@ -1285,12 +1272,11 @@ msgstr "Réglages de la communication"
 
 #: glade/comm-2.str:8
 msgid "_Auto-detect"
-msgstr ""
+msgstr "_Autodétection"
 
 #: glade/comm-2.str:9
-#, fuzzy
 msgid "Cable:"
-msgstr "_Câble"
+msgstr "Câble : "
 
 #: glade/comm-2.str:10
 msgid "Port:"
@@ -1298,66 +1284,63 @@ msgstr "Port :"
 
 #: glade/comm-2.str:11
 msgid "Calc:"
-msgstr ""
+msgstr "Calc : "
 
 #: glade/comm-2.str:12
 msgid "Timeout:"
 msgstr "Limite de temps :"
 
 #: glade/comm-2.str:13
-#, fuzzy
 msgid "Delay:"
-msgstr "Délai :    "
+msgstr "Délai : "
 
 #: glade/comm-2.str:14
-#, fuzzy
 msgid "GrayLink"
-msgstr "TiGraphLink _Gris"
+msgstr "GrayLink (gris)"
 
 #: glade/comm-2.str:15
 msgid "BlackLink"
-msgstr ""
+msgstr "BlackLink (noir)"
 
 #: glade/comm-2.str:16
 msgid "SilverLink"
-msgstr ""
+msgstr "SilverLink (argent)"
 
 #: glade/comm-2.str:17
 msgid "ParallelLink"
-msgstr ""
+msgstr "Câble parallèle"
 
 #: glade/comm-2.str:18
 msgid "VTi"
-msgstr ""
+msgstr "VTi"
 
 #: glade/comm-2.str:19
-#, fuzzy
 msgid "TiEmu"
-msgstr "Limite de temps :"
+msgstr "TiEmu"
 
 #: glade/comm-2.str:20
 msgid "virtual"
-msgstr ""
+msgstr "virtuel"
 
 #: glade/comm-2.str:21
 msgid "custom"
-msgstr ""
+msgstr "personnalisé"
 
 #: glade/comm-2.str:22
 msgid "#1"
-msgstr ""
+msgstr "n°1"
 
 #: glade/comm-2.str:23
 msgid "#2"
-msgstr ""
+msgstr "n°2"
 
 #: glade/comm-2.str:24
 msgid "#3"
-msgstr ""
+msgstr "n°3"
 
 #: glade/comm-2.str:25
 msgid "#4"
-msgstr ""
+msgstr "n°4"
 
 #: glade/comm-2.str:26
 msgid "TI73"
@@ -1372,9 +1355,8 @@ msgid "TI83"
 msgstr "TI83"
 
 #: glade/comm-2.str:29
-#, fuzzy
 msgid "TI83+"
-msgstr "TI83"
+msgstr "TI83+"
 
 #: glade/comm-2.str:30
 msgid "TI85"
@@ -1397,17 +1379,16 @@ msgid "TI92+"
 msgstr "TI92+"
 
 #: glade/comm-2.str:35
-#, fuzzy
 msgid "V200PLT"
-msgstr "V200"
+msgstr "V200PLT"
 
 #: glade/comm-2.str:36
 msgid "Settings"
-msgstr ""
+msgstr "Configuration"
 
 #: glade/comm-2.str:37
 msgid "Have a problem ? Check out the log:"
-msgstr ""
+msgstr "Un problème est apparu ? Vérifiez le fichier de journalisation (log) : "
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -1940,8 +1921,7 @@ msgstr "Le site Web de TI"
 
 #: glade/tilp-2.str:44
 msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
-msgstr ""
-"http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
+msgstr "http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
 
 #: glade/tilp-2.str:45
 msgid "Calculator software"
@@ -1989,20 +1969,19 @@ msgstr "Le site Web de TiLP"
 
 #: glade/tilp-2.str:56
 msgid "Display the log file generated by TiLP. Useful for debugging problems."
-msgstr ""
+msgstr "Affiche le fichier de journalisation (log) généré par TiLP. Utile pour obtenir des informations de débogage."
 
 #: glade/tilp-2.str:57
-#, fuzzy
 msgid "_Log"
-msgstr "_Logo"
+msgstr "Fichier de _journalisation"
 
 #: glade/tilp-2.str:58
 msgid "How to send a bug report..."
-msgstr ""
+msgstr "Comment envoyer un rapport de bogue..."
 
 #: glade/tilp-2.str:59
 msgid "_Bug report"
-msgstr ""
+msgstr "Rapport de _bogue"
 
 #: glade/tilp-2.str:62
 msgid "Check whether calculator is ready..."
@@ -2014,8 +1993,7 @@ msgstr "Prêt ?"
 
 #: glade/tilp-2.str:64
 msgid "List calculator content (folders, variables and applications)."
-msgstr ""
-"Liste le contenu de la calculatrice (dossiers, variables et applications)."
+msgstr "Liste le contenu de la calculatrice (dossiers, variables et applications)."
 
 #: glade/tilp-2.str:65
 msgid "Dirlist"
@@ -2095,119 +2073,3 @@ msgstr "Titre"
 msgid "Name:"
 msgstr "Nom :"
 
-#~ msgid "IDlist"
-#~ msgstr "IDlist"
-
-#~ msgid "AUg"
-#~ msgstr "Aug"
-
-#, fuzzy
-#~ msgid "in micro-seconds"
-#~ msgstr "microsecondes"
-
-#, fuzzy
-#~ msgid "in deci-seconds"
-#~ msgstr "dixièmes de secondes"
-
-#~ msgid "Parallel port #1"
-#~ msgstr "Port parallèle #1"
-
-#~ msgid "Serial port #1"
-#~ msgstr "Port série #1"
-
-#~ msgid "Virtual port #1 (emu)"
-#~ msgstr "Port virtuel #1 (emu)"
-
-#~ msgid "Parallel port #2"
-#~ msgstr "Port parallèle #2"
-
-#~ msgid "Serial port #2"
-#~ msgstr "Port série #2"
-
-#~ msgid "Virtual port #2 (tilp)"
-#~ msgstr "Port virtuel #2 (tilp)"
-
-#~ msgid "Parallel port #3"
-#~ msgstr "Port parallèle #3"
-
-#~ msgid "Serial port #3"
-#~ msgstr "Port série #3"
-
-#~ msgid "Serial port #4"
-#~ msgstr "Port série #4"
-
-#~ msgid "_TIEmu virtual link"
-#~ msgstr "Câble virtuel _TIEmu"
-
-#~ msgid "_VTi virtual link"
-#~ msgstr "Câble virtuel _VTi"
-
-#~ msgid "_AVRlink"
-#~ msgstr "_AVRlink"
-
-#~ msgid "_USB TIGraphLink"
-#~ msgstr "TIGraphLink _USB"
-
-#~ msgid "Home-made _parallel"
-#~ msgstr "_Parallèle artisanal"
-
-#~ msgid ""
-#~ "_Black TIGraphLink\n"
-#~ "Home-made serial"
-#~ msgstr ""
-#~ "TiGraphLink _Noir\n"
-#~ "Série artisanal"
-
-#~ msgid "Type:"
-#~ msgstr "Type :"
-
-#~ msgid "0x3f8 (COM1)"
-#~ msgstr "0x3f8 (COM1)"
-
-#~ msgid "0x2f8 (COM2)"
-#~ msgstr "0x2f8 (COM2)"
-
-#~ msgid "0x3e8 (COM3)"
-#~ msgstr "0x3e8 (COM3)"
-
-#~ msgid "0x2e8 (COM4)"
-#~ msgstr "0x2e8 (COM4)"
-
-#~ msgid "TI83+(SE)"
-#~ msgstr "TI83+(SE)"
-
-#~ msgid "_Auto-detect (73, 83+, 89, 92+)"
-#~ msgstr "_Auto-détection (73, 83+, 89, 92+)"
-
-#~ msgid "Speed:"
-#~ msgstr "Vitesse :"
-
-#~ msgid "9600"
-#~ msgstr "9600"
-
-#~ msgid "19200"
-#~ msgstr "19200"
-
-#~ msgid "38400"
-#~ msgstr "38400"
-
-#~ msgid "57600"
-#~ msgstr "57600"
-
-#~ msgid "bauds"
-#~ msgstr "bauds"
-
-#~ msgid "_Flow control (RTS/CTS)"
-#~ msgstr "Contrôle de _flux (RTS/CTS)"
-
-#~ msgid "AVRlink"
-#~ msgstr "AVRlink"
-
-#~ msgid "Error management"
-#~ msgstr "Gestion des erreurs"
-
-#~ msgid "Home-made cables"
-#~ msgstr "Câbles artisanaux"
-
-#~ msgid "Miscellaneous"
-#~ msgstr "Divers"
