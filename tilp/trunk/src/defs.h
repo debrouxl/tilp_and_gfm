@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -43,17 +43,9 @@
 #define SHOW 1
 #define HIDE 0
 
-/* ?? */
+/* Transfer in progress (mutex locking) */
 #define UNLOCK 0
 #define LOCK   1
-
-/* Server or not */
-#define NO_SERVER  0
-#define USE_SERVER 1
-
-/* 'tidev' kernel module or not */
-#define NO_TIDEV 0
-#define USE_TIDEV 1
 
 /* PCX or XPM image format */
 #define TIFF 3
@@ -75,10 +67,10 @@
 #define BUTTON3 3
 
 /* Different working modes */
-#define MODE_CMD 1 /* Console mode */
-#define MODE_CON 2 /* Command line mode */
-#define MODE_GTK 3 /* GTK gui mode (Linux/Win32) */
-#define MODE_MFC 4 /* MFC gui mode (WiN32 only) */
+#define MODE_CMD 1 /* Console mode                  */
+#define MODE_CON 2 /* Command line mode             */
+#define MODE_GTK 3 /* GTK gui mode (Linux/Win32)    */
+#define MODE_MFC 4 /* MFC gui mode (WiN32 only)     */
 #define MODE_INT 5 /* Interactive mode (Linux only) */
 #define MODE_OSX 6 /* Cocoa GUI mode (Mac OS X) */
 

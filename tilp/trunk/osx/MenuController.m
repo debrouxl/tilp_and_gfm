@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -538,9 +538,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)romDump:(id)sender
 {
     // FIXME OS X
-    
-    // well, it's contained in these wonderful loops using gtk_events_pending()
-    // for now, I don't care, I'll have a look once the USB driver will be OK.
+    // Abort button
     
     NSSavePanel *sp;
     NSString *proposedFile;

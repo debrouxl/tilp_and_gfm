@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@
 
 #ifndef __MACOSX__
 int cb_save_config_file(void);
-
 int cb_load_config_file(void);
 
 int cb_change_drive(char drive_letter);
@@ -30,13 +29,10 @@ int cb_change_drive(char drive_letter);
 int cb_default_config(void);
 
 int cb_probe_calc(void);
-
 int cb_probe_cable(void);
-
 int cb_probe_port(void);
 
 int cb_registry_register(void);
-
 int cb_registry_unregister(void);
 
 int cb_send_cmdline(void);

@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -33,8 +33,11 @@
 #include <paths.h>
 #include <sys/param.h>
 
+#include <libticalcs/calc_int.h>
+
 #include "../src/struct.h"
 #include "../src/defs.h"
+#include "../src/error.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
@@ -71,6 +74,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (IBAction)prefsClose:(id)sender
 {
+    //int err;
+
     NSString *portName;
     
     // general
@@ -105,14 +110,14 @@ extern struct cocoa_objects_ptr *objects_ptr;
         {
             options.lp.link_type = LINK_UGL;
             
-            options.lp.port = USB_PORT_1;
+            options.lp.port = OSX_USB_PORT;
             memset(options.lp.device, 0, sizeof(options.lp.device));
         }
     else if (NSOnState == [linkCableTPU state])
         {
             options.lp.link_type = LINK_TPU;
          
-            options.lp.port = USB_PORT_1;
+            options.lp.port = OSX_USB_PORT;
             memset(options.lp.device, 0, sizeof(options.lp.device));
         }
     else if (NSOnState == [linkCableTIE state])
@@ -159,7 +164,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.lp.calc_type = CALC_TI82;
     else if (NSOnState == [calcType73 state])
         options.lp.calc_type = CALC_TI73;
-        
+                          
     options.auto_detect = [calcTypeProbe state];
     
     // screendump
@@ -185,7 +190,16 @@ extern struct cocoa_objects_ptr *objects_ptr;
         
     rc_save_user_prefs();
     
-    ticable_set_param(&(options.lp));
+    ticable_set_param2(options.lp);
+    
+//    tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
+//    err = link_cable.init();
+//    if(err)
+//        tilp_error(err);
+    
+    ticable_set_cable(options.lp.link_type, &link_cable);
+    
+    ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
 
     [NSApp stopModal];
 
@@ -301,7 +315,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
             }
 
-    switch(options.lp.calc_type)
+    switch(ticalc_get_calc())
         {
             case CALC_TI92P:
                 [calcTypeMatrix setState:NSOnState atRow:0 column:0];
@@ -331,7 +345,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [calcTypeMatrix setState:NSOnState atRow:2 column:2];
                 break;
         }
-        
+                
     if (options.auto_detect == TRUE)
         [calcTypeProbe setState:NSOnState];
     else

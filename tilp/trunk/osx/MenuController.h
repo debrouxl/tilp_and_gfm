@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *

@@ -118,6 +118,7 @@
                 calcType83p = id; 
                 calcType85 = id; 
                 calcType86 = id; 
+                calcType89 = id; 
                 calcType92 = id; 
                 calcType92p = id; 
                 calcTypeMatrix = id; 

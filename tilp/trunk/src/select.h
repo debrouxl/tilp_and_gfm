@@ -1,5 +1,5 @@
 /*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,12 +19,8 @@
 #ifndef SELECT_H
 #define SELECT_H
 
-DLLEXPORT
 void clist_selection_destroy(void);
-//void clist_selection_refresh(void);
 
-DLLEXPORT
 void ctree_selection_destroy(void);
-//void ctree_selection_refresh(void);
 
 #endif

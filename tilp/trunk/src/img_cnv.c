@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -45,9 +45,7 @@ int convert_bitmap_to_bytemap(Image *img) // tested: OK (12/05)
     fprintf(stdout, "Malloc error.\n");
   dst = img->bytemap;
 
-  // could be greatly optimized using memset...
-  //memset(dts, 0, (img->width * img->heigth));
-
+  memset(dst, 0, (img->width >> 3) * img->height); // thanks, JB ! -- You're welcome, Roms :-)
   for(row=0; row<img->height; row++)
     {
       for(col=0; col<(img->width)>>3; col++)
@@ -59,8 +57,8 @@ int convert_bitmap_to_bytemap(Image *img) // tested: OK (12/05)
 	      pixel = data & mask;
 	      if(!pixel)
 		dst[row*(img->width)+8*col+bit]=0xff;
-	      else // not needed if we use memset
-		dst[row*(img->width)+8*col+bit]=0x00;
+	      //else
+	      //dst[row*(img->width)+8*col+bit]=0x00;
 	      mask>>=1;
 	    }
 	}
@@ -239,6 +237,9 @@ int convert_bytemap_to_rgbmap(Image *img) // tested: OK (14/05)
   src = img->bytemap;
   alloc_rgbmap(img);
   dst = img->rgbmap;
+
+  // could be greatly optimized using memset...
+  //memset(dts, 0, (img->width * img->heigth));
 
   for(row=0; row<img->height; row++)
     {

@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *  Config header
@@ -30,8 +30,8 @@
 
 #define DIR_SEPARATOR "/"
 
-#define TILP_OSX_VERSION "0.3.0"
+#define TILP_OSX_VERSION "0.3.2"
 
-#define VERSION "4.73 OS X 0.3.0"
+#define VERSION "4.82 OS X 0.3.2"
 
 #endif /* !__CONFIG_H__ */

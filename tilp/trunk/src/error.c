@@ -1,5 +1,5 @@
 /*  tilp - linking program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,27 +32,34 @@
 #include "gui_indep.h"
 
 /*
+  When set, error codes are pushed (stored).
+  When clear, errors are poped (displayed).
+ */
+int push = 0;
+
+/*
   This function take as input parameter an error code and displays both
   in a message box and to stderr an error message.
  */
 int tilp_error(int err_num)
 {
   int err;
+  //static int err_code[8];
+  //static int i = 0;
   char s[1024] = N_("Error code not found. This is a bug. Please report it.\n");  
 
-  if(err_num == 0)
+  if(!err_num)
     return 0;
 
   /* Close the link cable port */
-  link_cable.close_port();
+  link_cable.close();
   if(err_num)
     {
-      fprintf(stderr, _("Error code %i: "), err_num);
+      DISPLAY(_("Error code %i: "), err_num);
     }
 
   /* Retrieve the error message */
   err = ticable_get_error(err_num, s);
-  //printf("err_num: %i, err: %i, msg: %s\n", err_num, err, s);
   if(err)
     {
       err = ticalc_get_error(err_num, s);
@@ -61,7 +68,8 @@ int tilp_error(int err_num)
 	  // nothing
 	}
     }
-
+  
+  //err_code[i++] = err;
   fprintf(stderr, "%s\n", s);
   gif->msg_box(_("Error"), s);
   

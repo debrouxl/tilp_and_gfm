@@ -26,7 +26,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA = {
-		activeBuildStyle = 4A9504CCFFE6A4B311CA0CBA;
+		activeBuildStyle = 4A9504CDFFE6A4B311CA0CBA;
 		activeTarget = 29B97326FDCFA39411CA2CEA;
 		addToTargets = (
 			29B97326FDCFA39411CA2CEA,
@@ -41,9 +41,9 @@
 					Frame = "{{0, 23}, {933, 511}}";
 					Split0 = {
 						ActiveTab = 2;
-						Frame = "{{226, 0}, {707, 511}}";
+						Frame = "{{225, 0}, {708, 511}}";
 						Split0 = {
-							Frame = "{{0, 180}, {707, 331}}";
+							Frame = "{{0, 202}, {708, 309}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -51,12 +51,12 @@
 								ActiveTab = 1;
 								Frame = "{{0, 0}, {707, 354}}";
 								Split0 = {
-									Frame = "{{0, 135}, {707, 219}}";
+									Frame = "{{0, 134}, {707, 220}}";
 									Split0 = {
-										Frame = "{{0, 0}, {341, 219}}";
+										Frame = "{{0, 0}, {341, 220}}";
 									};
 									Split1 = {
-										Frame = "{{350, 0}, {357, 219}}";
+										Frame = "{{350, 0}, {357, 220}}";
 									};
 									SplitCount = 2;
 								};
@@ -73,16 +73,16 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {707, 102}}";
+							Frame = "{{0, 0}, {708, 161}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {707, 102}}";
+								Frame = "{{0, 0}, {708, 161}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {709, 101}}";
-							BuildTranscriptFrame = "{{0, 110}, {709, 47}}";
-							Frame = "{{0, 0}, {707, 155}}";
+							BuildMessageFrame = "{{0, 0}, {710, 84}}";
+							BuildTranscriptFrame = "{{0, 93}, {710, 87}}";
+							Frame = "{{0, 0}, {708, 178}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -100,7 +100,7 @@
 						OptionsSetName = "Hierarchy, all classes";
 					};
 					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
+						Frame = "{{0, 0}, {200, 511}}";
 					};
 					Tab3 = {
 						Frame = "{{0, 0}, {200, 511}}";
@@ -175,6 +175,11 @@
 			sepNavWindowFrame = "{{-8, 241}, {750, 502}}";
 		};
 	};
+	F577769B01E88FF201CCF140 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{10, 164}, {750, 502}}";
+		};
+	};
 	F582706F01762A8B01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
@@ -193,11 +198,6 @@
 	F582712101762AFA01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{0, 244}, {750, 502}}";
-		};
-	};
-	F582712901762AFA01000102 = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
 	F582712D01762AFA01000102 = {

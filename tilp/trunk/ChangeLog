@@ -132,8 +132,13 @@
 	* Modified Preferences system and panel for the Grey TIGL
 * 20011219 : v0.3.1
 	* Bugfixes in the preferences system, wrt Grey TIGL
+* 20020106 : v0.3.1
+	* Happy new year !
+	   => Copyright 1999-2002, 2001-2002
+	* Merged in TiLP 4.82
+* 20020112 : v0.3.2
+	* libticables/libticalcs fixes.
 	
-
 
 
 

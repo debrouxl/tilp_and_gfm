@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,8 +22,6 @@
   and glists.
  */
 
-/* FIXME OSX : this is not really needed, we use the finder... */
-
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -37,12 +35,11 @@
 #include <glib/glib.h>
 #endif
 
-#include "defs.h"
 #include "struct.h"
+#include "defs.h"
 #include "intl.h"
 #include "gui_indep.h"
 #include "error.h"
-#include "select.h"
 
 /*******************************/
 /* File manipulation functions */
@@ -186,7 +183,7 @@ char *get_attributes(struct file_info f_info)
 */
 void get_user_name(struct file_info f_info, char **name)
 {
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   struct passwd *pwuid;
   
   if((pwuid=getpwuid(f_info.user)) == NULL)
@@ -207,7 +204,7 @@ void get_user_name(struct file_info f_info, char **name)
  */
 void get_group_name(struct file_info f_info, char **name)
 {
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   struct group *grpid;
   
   if((grpid=getgrgid(f_info.group)) == NULL)
@@ -251,7 +248,7 @@ void get_date(struct file_info f_info, char **s)
 */
 int get_home_path(char **path)
 {
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   uid_t uid;
   struct passwd *p;
   
@@ -578,7 +575,6 @@ void l_directory_list()
       g_list_free(clist_win.dirlist);
       clist_win.dirlist=NULL;
     }  
-  clist_selection_destroy();
   
   if( (dir=opendir(clist_win.cur_dir)) == NULL) 
     {
@@ -624,8 +620,6 @@ int c_directory_list(void)
   struct varinfo varlist;
   int n;
   int ret = 0;
-
-  ctree_selection_destroy();
 
   gif->create_pbar_type2(_("Directory list"), 
 			 _("Reading variables"));

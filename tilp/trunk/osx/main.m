@@ -1,7 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Romain Lievin, Julien BLACHE
  *
- *  Cocoa GUI for Mac OS X
+ *  Cocoa GUI for Mac OS X -- from gtk/gtk_main.c
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include "../src/main.h"
+#include "../src/sub_main.h"
 #include "../src/defs.h"
 #include "../src/gui_indep.h"
 #include "../src/struct.h"
@@ -52,7 +52,9 @@ void signal_handler(int sig_no)
   DISPLAY("Signal SIGINT (Ctrl+C) caught...\n");
   DISPLAY("Trying to destroy ressources... ");
   
-  link_cable.term_port();
+  link_cable.exit();
+  ticalc_exit();
+  ticable_exit();
 #ifdef HAVE_TIFFEP
   shm_detach(&s);
   shm_destroy(&s);
@@ -68,11 +70,13 @@ int main(int argc, const char *argv[], char **arge)
 
 #ifdef HAVE_TIFFEP
   TiffepMsg msg;
+  gint err;
+  gint id;
 #endif
     
   objects_ptr = (struct cocoa_objects_ptr *)malloc(sizeof(struct cocoa_objects_ptr));
     
-  /* Init the classes pointers -- is it safe ? */
+  /* Init the classes pointers */
   objects_ptr->myBoxesController = nil;
   objects_ptr->myMenuController = nil;
   objects_ptr->myPrefsController = nil;
@@ -92,7 +96,7 @@ int main(int argc, const char *argv[], char **arge)
 #endif
   
   /* Init the tilp core */
-  main_init(argc, argv, arge); // general
+  sub_main(argc, argv, arge);
 
   // we no longer need the pool
   [prefsPool release];
@@ -127,7 +131,7 @@ int main(int argc, const char *argv[], char **arge)
     }
 #endif
 
-
+  // FIXME OS X : cmdline gui
   if(working_mode != MODE_OSX)
     {
       fprintf(stderr, "Trying to use an unsupported Graphical User Interface.\n");
@@ -135,5 +139,20 @@ int main(int argc, const char *argv[], char **arge)
       exit(-1);
     }
     
+  /* Probing */
+  DISPLAY("probing: %i\n", link_cable.probe());
+    
     return NSApplicationMain(argc, argv);
+}
+
+
+// FIXME OS X : unneeded for now
+/*
+  Entry points for the TiLP module (used by GtkTiEmu) for a direct
+  internal linkport connection.
+*/
+int module_init(LinkCable *lc)
+{
+  ticalc_set_calc(options.lp.calc_type, &ti_calc, lc);
+  return 0;
 }

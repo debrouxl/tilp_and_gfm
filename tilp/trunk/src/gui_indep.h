@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,16 +37,16 @@ struct gui_fncts
   int (*user3_box) (const char *title, char *message,
 		    const char *btn1, const char *btn2, 
 		    const char *btn3); // 3 buttons
-
+  
   /* Display a modal entry dialog box with a title, a message and
-   a predefined content.
-   It returns NULL if the dbox has been cancelled else it returns
-   an allocated string which contains the typed text.
-   Think to free the returned buffer when no longer needed !!!
+     a predefined content.
+     It returns NULL if the dbox has been cancelled else it returns
+     an allocated string which contains the typed text.
+     Think to free the returned buffer when no longer needed !!!
   */
   char* (*dlgbox_entry) (const char *title, const char *message,
 			 const char *content);
-
+  
   /* 
      Display a dialog box with 1 progress bar and a 'Cancel' button.
      If the cancel button is pressed, you should have this in your
@@ -67,10 +67,11 @@ struct gui_fncts
 
 };
 typedef struct gui_fncts GUI_FNCTS;
+typedef struct gui_fncts GuiFncts;
 
-extern GUI_FNCTS *gif;
+extern GuiFncts *gif;
 
-void set_gui_fncts(GUI_FNCTS *gf);
+void set_gui_fncts(GuiFncts *gf);
 
 #endif
 

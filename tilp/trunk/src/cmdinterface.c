@@ -157,7 +157,7 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
       
       if(!strcmp(cmd, "receive"))
 	{
-	  //cb_receive_var();
+	  //cb_recv_var();
 	  if(arg1)
 	    { 
 	    }

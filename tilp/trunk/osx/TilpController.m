@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -32,7 +32,7 @@
 #include "../src/gui_indep.h"
 #include "../src/defs.h"
 #include "../src/cb_misc.h"
-#include "../src/main.h"
+#include "../src/sub_main.h"
 #include "../src/cb_calc.h"
 #include "../src/files.h"
 #include "../src/info.h"

@@ -1,5 +1,5 @@
-/*  ti_link - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -25,11 +25,11 @@ void process_buffer(gchar *buf);
 int copy_file(char *src, char *dst);
 int move_file(char *src, char *dst);
 
-int get_home_path(char **path);
-char *get_attributes(struct file_info f_info);
-void get_user_name(struct file_info f_info, char **name);
-void get_group_name(struct file_info f_info, char **name);
-void get_date(struct file_info f_info, char **s);
+int   get_home_path(char **path);
+char* get_attributes(struct file_info f_info);
+void  get_user_name(struct file_info f_info, char **name);
+void  get_group_name(struct file_info f_info, char **name);
+void  get_date(struct file_info f_info, char **s);
 
 void varlist_to_glist(struct varinfo varlist);
 struct varinfo *glist_to_varlist(GList *glist);
@@ -38,6 +38,7 @@ void generate_group_file_header(FILE *file, int mask_mode,
 				int calc_type);
 
 void l_directory_list();
+#define local_directory_list l_directory_list
 
 void sort_lfiles_by_name(GList *list);
 void sort_lfiles_by_date(GList *list);
@@ -47,6 +48,7 @@ void sort_lfiles_by_group(GList *list);
 void sort_lfiles_by_attrib(GList *list);
 
 int c_directory_list(void);
+#define remote_directory_list c_directory_list
 
 void sort_cfiles_by_name(GList *list);
 void sort_cfiles_by_info(GList *list);

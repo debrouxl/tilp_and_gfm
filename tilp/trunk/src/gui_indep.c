@@ -1,5 +1,5 @@
 /*  tilp - linking program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,7 +31,6 @@ GUI_FNCTS *gif = NULL;
 /*
   Initialize the internal structure
 */
-
 void set_gui_fncts(GUI_FNCTS *gf)
 {
   gif = gf;

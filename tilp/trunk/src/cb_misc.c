@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ int cb_default_config(void)
   options.screen_format = PCX;
   options.screen_clipping = CLIPPED_SCREEN;
 
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   options.unzip_location = g_strdup("unzip");
   options.unzip_options = g_strdup("");
   options.tar_location = g_strdup("tar");
@@ -105,7 +105,7 @@ options.tar_options = NULL;
   /* Fill lp struct with default values */
   ticable_get_default_param(&(options.lp));
 
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   strcpy(options.left_font_name,
 	 "");
   strcpy(options.right_font_name, 
@@ -130,7 +130,7 @@ options.tar_options = NULL;
   locale = g_win32_getlocale();
   fprintf(stdout, "Current locale: <%s>\n", locale);
   g_free(locale);
-#elif defined(__UNIX__)
+#elif defined(__LINUX__)
   locale = setlocale(LC_ALL, NULL);
   fprintf(stdout, "Current locale: <%s>\n", locale);
   strcpy(options.locale, locale);
@@ -218,7 +218,7 @@ int cb_probe_calc(void)
 #ifndef __MACOSX__
 int cb_registry_register(void)
 {
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   gif->msg_box(_("Information"), 
 	  _("Available on Win32 platforms only."));
 #elif defined(__WIN32__)
@@ -240,7 +240,7 @@ int cb_registry_register(void)
 
 int cb_registry_unregister(void)
 {
-#if defined(__UNIX__)
+#if defined(__LINUX__)
   gif->msg_box(_("Information"), 
 	  _("Available on Win32 platforms only."));
 #elif defined(__WIN32__)
@@ -320,7 +320,7 @@ int initialize_paths(void)
      '/usr/share/locale/fr/LC_MESSAGES/tilp.mo'
   */
 #if defined(HAVE_LIBINTL_H)
-#ifdef __UNIX__
+#ifdef __LINUX__
   inst_paths.locale_dir = g_strconcat(inst_paths.base_dir, PACKAGE_LOCALE_DIR,
 				    G_DIR_SEPARATOR_S, NULL);
 #elif defined(__WIN32__)
@@ -367,7 +367,7 @@ int initialize_paths(void)
   inst_paths.startup_dir = g_strconcat(curdir, G_DIR_SEPARATOR_S, NULL);
   //fprintf(stderr, "inst_paths.startup_dir = <%s>\n", inst_paths.startup_dir);
 
-#ifdef __UNIX__		// on UNIX systems, HOME directory by default for security reasons
+#ifdef __LINUX__		// on LINUX systems, HOME directory by default for security reasons
   if(get_home_path(&home_dir))
     {
       chdir(home_dir);
@@ -390,6 +390,8 @@ int initialize_paths(void)
   return 0;
 }
 
+
+TIEXPORT
 int cb_change_drive(char drive_letter)
 {
 #ifdef __WIN32__
@@ -452,6 +454,7 @@ static int which_calc_type_from_file(char *filename)
   the clist_win.selection selection
   Manage file type, calculator detection and some other things.
 */
+TIEXPORT
 int cb_send_cmdline(void)
 {
   gchar *e;

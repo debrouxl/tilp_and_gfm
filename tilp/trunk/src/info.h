@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 #include "struct.h"
 
-int number_of_folders_vars_and_mem(int *d, int *v, longword *m);
+int number_of_folders_vars_and_mem    (int *d, int *v, longword *m);
 int number_of_directories_vars_and_mem(int *d, int *v, longword *m);
 
 #endif

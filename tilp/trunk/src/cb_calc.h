@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,33 +20,22 @@
 #define CB_CALC_H
 
 int cb_calc_is_ready(void);
-
 int cb_send_backup(char *filename);
-
 int cb_receive_backup(void);
-
 int cb_id_list(void);
-
 int cb_rom_dump(void);
-
 int cb_rom_version(void);
-
 int cb_send_var(void);
-
 int cb_receive_var(int *to_save);
-
 int cb_dirlist(void);
-
 int cb_send_flash_app(char *filename);
-
 int cb_send_flash_os(char *filename);
+int cb_receive_app(void);
 
 extern struct screenshot ti_screen;
 
 int cb_screen_capture(void);
-
 int cb_screen_save(char *filename);
-
 int cb_ams_to_rom(char *filename);
 
 #endif

@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -23,6 +23,8 @@
 
 #include "../src/struct.h"
 #include "../src/defs.h"
+
+#include <libticalcs/calc_int.h>
 
 #import <Cocoa/Cocoa.h>
 
@@ -69,7 +71,7 @@ rc_init_with_default(void)
     
     options.lp.link_type = LINK_UGL;
     options.lp.timeout = 150;
-    options.lp.port = USB_PORT_1;
+    options.lp.port = OSX_USB_PORT;
     options.lp.calc_type = CALC_TI92P;
     options.lp.method = IOM_AUTO;
     memset(options.lp.device, 0, sizeof(options.lp.device));
@@ -120,7 +122,7 @@ rc_fill_dictionary(void)
             [tilpConfig setObject:value forKey:@"link_port"];
         }
     
-    value = [[NSNumber alloc] initWithInt:options.lp.calc_type];
+    value = [[NSNumber alloc] initWithInt:ticalc_get_calc()];
     [tilpConfig setObject:value forKey:@"calc_type"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.timeout];
@@ -205,14 +207,14 @@ rc_get_user_prefs(void)
         options.lp.link_type = [value intValue];
         
             if ((options.lp.link_type == LINK_UGL) || (options.lp.link_type == LINK_TPU))
-                options.lp.port = USB_PORT_1;
+                options.lp.port = OSX_USB_PORT;
             else if ((options.lp.link_type == LINK_TIE) || (options.lp.link_type == LINK_VTI))
                 options.lp.port = VIRTUAL_PORT_1; // FIXME OS X : dunno if it's the good one
             else if (options.lp.link_type == LINK_TGL)
                 {
                     if ([tilpConfig objectForKey:@"serial_device"] != nil)
                         [[tilpConfig objectForKey:@"serial_device"] getCString:options.lp.device];
-                        
+                                                
                     if ((value = [tilpConfig objectForKey:@"link_port"]))
                         {
                             options.lp.port = [value intValue];

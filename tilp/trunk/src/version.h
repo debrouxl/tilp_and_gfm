@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,16 +19,19 @@
 #ifndef __TILP_VERSION__
 #define __TILP_VERSION__
 
-/* Some definitions */
+/*
+  This file contains version number
+  and library requirements.
+*/
 
 #ifdef __WIN32__
-# define TILP_VERSION "4.72" // For Win32
+# define TILP_VERSION "4.80" // For Win32
 #else
 # define TILP_VERSION VERSION
 #endif
-
-#define LIB_CABLE_VERSION_REQUIRED "2.2.0"
-#define LIB_CALC_VERSION_REQUIRED "2.0.0"
+#define LIB_CABLE_VERSION_REQUIRED  "3.0.0"
+#define LIB_CALC_VERSION_REQUIRED   "3.0.0"
+#define LIB_TIFFEP_VERSION_REQUIRED "1.0.0"
 
 #endif
 

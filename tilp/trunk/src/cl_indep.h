@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,16 +23,17 @@
   GUI independant functions for the command line mode
 */
 
-void cmdline_msg_box(const char *title, char *message);
-int cmdline_user1_box(const char *title, char *message, 
-		      const char *b1);
-int cmdline_user2_box(const char *title, char *message, 
-		      const char *b1, const char *b2);
-int cmdline_user3_box(const char *title, char *message, 
-		      const char *b1, const char *b2, const char *b3);
-char *cmdline_dlgbox_entry(const char *title, 
+void  cmdline_msg_box(const char *title, char *message);
+int   cmdline_user1_box(const char *title, char *message, 
+			const char *b1);
+int   cmdline_user2_box(const char *title, char *message, 
+			const char *b1, const char *b2);
+int   cmdline_user3_box(const char *title, char *message, 
+			const char *b1, const char *b2, const char *b3);
+char* cmdline_dlgbox_entry(const char *title, 
 			   const char *message, 
 			   const char * content);
+
 void cmdline_create_pbar_type1(const char *title);
 void cmdline_create_pbar_type2(const char *title, char *text);
 void cmdline_create_pbar_type3(const char *title);

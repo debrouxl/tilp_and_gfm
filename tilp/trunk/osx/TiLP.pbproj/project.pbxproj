@@ -245,6 +245,7 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				F516701C01E1037501041594,
 				F50751E0019C12DA0140747F,
 				F5090AF30178A67A01000102,
 				089C165CFE840E0CC02AAC07,
@@ -1543,7 +1544,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>TiLP is a Linking Program for TI calculators</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>TiLP</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.sf.tilp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -1553,11 +1554,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.73-osx0.3.0</string>
+	<string>4.82-osx0.3.2</string>
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>4.73-osx0.3.0</string>
+	<string>4.82-osx0.3.2</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -1575,8 +1576,6 @@
 				F50FDB8F0179C7F801000102,
 				F50FDB980179D45601000102,
 				F50FDB9A0179D45601000102,
-				F50FDB9C0179D45601000102,
-				F50FDBA00179D45601000102,
 				F50FDBA10179D45601000102,
 				F50FDBA20179D45601000102,
 				F50FDBA30179D45601000102,
@@ -1600,6 +1599,8 @@
 				F50B5A3301A922F501000102,
 				F50B140801C158DF01000102,
 				F510099A01C27E8A01000102,
+				F577769A01E88FE101CCF140,
+				F577769D01E89C7201CCF140,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -1624,6 +1625,7 @@
 				F50D0B1A019DAC3B01041594,
 				F5F274FE019EE8CD01A9EF85,
 				F51015F401C3610A01000102,
+				F516701D01E1037501041594,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1633,7 +1635,6 @@
 			files = (
 				29B9732CFDCFA39411CA2CEA,
 				F51316020178382A01000102,
-				F50FDB900179CA0B01000102,
 				F50FDB910179D3E101000102,
 				F50FDB920179D3E101000102,
 				F50FDB930179D3E101000102,
@@ -1644,7 +1645,6 @@
 				F5D45987017F491C01000103,
 				F50D8E550181700601000102,
 				F50D8E560181707F01000102,
-				F50D8E570181721101000102,
 				F50D8E5A018175BC01000102,
 				F50D8E5F0181A22D01000102,
 				F5F18AE40189B60F01BE4DDB,
@@ -1659,6 +1659,8 @@
 				F50B140E01C185B401000102,
 				F510099B01C27E8A01000102,
 				F58C6F7401CCF0AC01000102,
+				F577769C01E88FF201CCF140,
+				F577769E01E89C7201CCF140,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -1917,12 +1919,6 @@
 			settings = {
 			};
 		};
-		F50D8E570181721101000102 = {
-			fileRef = F58271DD01762CF701000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F50D8E5A018175BC01000102 = {
 			fileRef = F582715201762C7701000102;
 			isa = PBXBuildFile;
@@ -2038,12 +2034,6 @@
 			settings = {
 			};
 		};
-		F50FDB900179CA0B01000102 = {
-			fileRef = F58271E001762CF701000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F50FDB910179D3E101000102 = {
 			fileRef = F58271E201762CF701000102;
 			isa = PBXBuildFile;
@@ -2076,18 +2066,6 @@
 		};
 		F50FDB9A0179D45601000102 = {
 			fileRef = F582712101762AFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDB9C0179D45601000102 = {
-			fileRef = F582712301762AFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBA00179D45601000102 = {
-			fileRef = F582712901762AFA01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2254,6 +2232,18 @@
 			settings = {
 			};
 		};
+		F516701C01E1037501041594 = {
+			isa = PBXFileReference;
+			name = TiLP.icns;
+			path = ../TiLP.icns;
+			refType = 3;
+		};
+		F516701D01E1037501041594 = {
+			fileRef = F516701C01E1037501041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5216B0101B6E45B01000102 = {
 			isa = PBXFrameworkReference;
 			name = CoreFoundation.framework;
@@ -2273,6 +2263,42 @@
 		};
 		F536EFB90180C7CB01000103 = {
 			fileRef = F536EFB80180C7CA01000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F577769901E88FE101CCF140 = {
+			isa = PBXFileReference;
+			name = sub_main.h;
+			path = ../src/sub_main.h;
+			refType = 2;
+		};
+		F577769A01E88FE101CCF140 = {
+			fileRef = F577769901E88FE101CCF140;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F577769B01E88FF201CCF140 = {
+			isa = PBXFileReference;
+			name = sub_main.c;
+			path = ../src/sub_main.c;
+			refType = 2;
+		};
+		F577769C01E88FF201CCF140 = {
+			fileRef = F577769B01E88FF201CCF140;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F577769D01E89C7201CCF140 = {
+			fileRef = F582712301762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F577769E01E89C7201CCF140 = {
+			fileRef = F58271DD01762CF701000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2318,7 +2344,7 @@
 				F582711E01762AFA01000102,
 				F582712101762AFA01000102,
 				F582712301762AFA01000102,
-				F582712901762AFA01000102,
+				F577769901E88FE101CCF140,
 				F582712B01762AFA01000102,
 				F582712D01762AFA01000102,
 				F582712F01762AFA01000102,
@@ -2340,7 +2366,7 @@
 		F582706E0176297F01000102 = {
 			children = (
 				F58271DD01762CF701000102,
-				F58271E001762CF701000102,
+				F577769B01E88FF201CCF140,
 				F58271E101762CF701000102,
 				F58271E201762CF701000102,
 				F58271E301762CF701000102,
@@ -3011,12 +3037,6 @@
 			path = ../src/select.h;
 			refType = 2;
 		};
-		F582712901762AFA01000102 = {
-			isa = PBXFileReference;
-			name = main.h;
-			path = ../src/main.h;
-			refType = 2;
-		};
 		F582712B01762AFA01000102 = {
 			isa = PBXFileReference;
 			name = info.h;
@@ -3483,12 +3503,6 @@
 			isa = PBXFileReference;
 			name = select.c;
 			path = ../src/select.c;
-			refType = 2;
-		};
-		F58271E001762CF701000102 = {
-			isa = PBXFileReference;
-			name = main.c;
-			path = ../src/main.c;
 			refType = 2;
 		};
 		F58271E101762CF701000102 = {

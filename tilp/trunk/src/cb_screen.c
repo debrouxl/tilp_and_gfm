@@ -1,5 +1,5 @@
-/*  tilp - link program for TI calculators
- *  Copyright (C) 1999-2001  Romain Lievin
+/*  tilp - a linking program for TI graphing calculators
+ *  Copyright (C) 1999-2002  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@
 #include <string.h>
 
 #include "struct.h"
-#include "main.h"
-#include "gui_indep.h"
-#include "intl.h"
-#include "error.h"
 #include "defs.h"
+#include "intl.h"
+#include "sub_main.h"
+#include "gui_indep.h"
 #include "cb_calc.h"
+#include "error.h"
 
 struct screenshot ti_screen = { { NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0 }, 
 				{ 0, 0, 0, 0 } };
@@ -78,7 +78,7 @@ int cb_screen_capture(void)
 }
 
 /*
-  Save the current screen capture the right format according to
+  Save the current screen in the right format according to
   the current tilp options.
   Returns 0 if successful
 */
@@ -106,7 +106,7 @@ int cb_screen_save(char *filename)
       break;
 #endif
     }
-  fclose(image);
+  fclose(image);  
   
   return 0;
 }
