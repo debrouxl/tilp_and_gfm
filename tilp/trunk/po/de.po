@@ -6,7 +6,7 @@
 # instead of "couldn't do foo".
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2003-05-04 10:39+0200\n"
+"POT-Creation-Date: 2003-05-04 11:06+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"

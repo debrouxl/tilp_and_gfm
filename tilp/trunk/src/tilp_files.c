@@ -312,17 +312,6 @@ const char *tilp_file_get_type(TilpFileInfo * fi)
 /****************************/
 
 #ifndef __MACOSX__
-static char *process_filename(char *filename)
-{
-	size_t i;
-	for (i = 0; i < strlen(filename); i++) {
-		unsigned char c = 0xff & filename[i];
-		if (c > 127)
-			filename[i] = '?';
-	}
-	return filename;
-}
-
 static void free_file_info_struct(gpointer data)
 {
 	TilpFileInfo *fi = data;
@@ -343,7 +332,7 @@ int tilp_dirlist_local(void)
 
 	dir = g_dir_open(clist_win.current_dir, 0, &error);
 	if (dir == NULL) {
-		msg_box("Error", "Unable to open directory !");
+		gif->msg_box("Error", "Unable to open directory !");
 		return -1;
 	}
 

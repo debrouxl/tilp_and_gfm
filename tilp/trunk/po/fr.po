@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 6.61\n"
-"POT-Creation-Date: 2003-05-04 10:39+0200\n"
+"POT-Creation-Date: 2003-05-04 11:06+0200\n"
 "PO-Revision-Date: 2003-04-09 21:08+0200\n"
 "Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: FRENCH <fr@li.org>\n"
