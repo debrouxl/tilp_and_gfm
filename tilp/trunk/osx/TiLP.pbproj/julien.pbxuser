@@ -21,6 +21,8 @@
 		addToTargets = (
 			29B97326FDCFA39411CA2CEA,
 		);
+		breakpoints = (
+		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
 				ContentSize = "{904, 588}";
@@ -28,10 +30,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {904, 565}}";
 					Split0 = {
-						ActiveTab = 1;
-						Frame = "{{225, 0}, {679, 565}}";
+						ActiveTab = 2;
+						Frame = "{{226, 0}, {678, 565}}";
 						Split0 = {
-							Frame = "{{0, 75}, {679, 490}}";
+							Frame = "{{0, 165}, {678, 400}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -67,9 +69,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {681, 37}}";
-							BuildTranscriptFrame = "{{0, 46}, {681, 33}}";
-							Frame = "{{0, 0}, {679, 77}}";
+							BuildMessageFrame = "{{0, 0}, {680, 88}}";
+							BuildTranscriptFrame = "{{0, 97}, {680, 45}}";
+							Frame = "{{0, 0}, {678, 140}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {612, 295}}";
@@ -78,7 +80,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {200, 565}}";
+						Frame = "{{0, 0}, {201, 565}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {202, 56}}";
@@ -117,6 +119,11 @@
 			);
 		};
 	};
+	F50E4E7A017F181501000103 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
 	F51315FF0178382A01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
@@ -127,7 +134,17 @@
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
+	F582706F01762A8B01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
 	F582707901762A8B01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	F582712101762AFA01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
 		};
@@ -135,6 +152,11 @@
 	F582712901762AFA01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F582718E01762CAD01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
 	F58271E901762CF701000102 = {

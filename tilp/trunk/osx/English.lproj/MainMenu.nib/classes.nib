@@ -1,5 +1,54 @@
 {
     IBClasses = (
+        {
+            ACTIONS = {
+                dlgboxentryButton1Push = id; 
+                dlgboxentryButton2Push = id; 
+                msgboxButtonPush = id; 
+                pbarButtonPush = id; 
+                remoteControlChangeMode = id; 
+                remoteControlTextEntered = id; 
+                screendumpLoadImage = id; 
+                screendumpRefresh = id; 
+                screendumpSaveImage = id; 
+            }; 
+            CLASS = BoxesController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                MenuController = id; 
+                PrefsController = id; 
+                TilpController = id; 
+                ToolbarController = id; 
+                dlgboxentryButton1 = id; 
+                dlgboxentryButton2 = id; 
+                dlgboxentryEntry = id; 
+                dlgboxentryText = id; 
+                dlgboxentryWindow = id; 
+                pbar1PBar = id; 
+                pbar1Rate = id; 
+                pbar1Window = id; 
+                pbar3PBar1 = id; 
+                pbar3PBar2 = id; 
+                pbar3Rate = id; 
+                pbar3Window = id; 
+                pbar4PBar = id; 
+                pbar4Rate = id; 
+                pbar4Text = id; 
+                pbar4Window = id; 
+                pbar5PBar1 = id; 
+                pbar5PBar2 = id; 
+                pbar5Rate = id; 
+                pbar5Text = id; 
+                pbar5Window = id; 
+                remoteControlRemoteMode = id; 
+                remoteControlTerminalMode = id; 
+                remoteControlTextArea = id; 
+                remoteControlWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
@@ -28,14 +77,32 @@
             }; 
             CLASS = MenuController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {prefWindow = id; }; 
+            OUTLETS = {
+                BoxesController = id; 
+                PrefsController = id; 
+                TilpController = id; 
+                ToolbarController = id; 
+                mainWindow = id; 
+                prefsWindow = id; 
+            }; 
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {changeTimeout = id; closePrefs = id; }; 
+            ACTIONS = {
+                prefsAdvanced = id; 
+                prefsCalc = id; 
+                prefsClose = id; 
+                prefsGeneral = id; 
+                prefsHardware = id; 
+                prefsScreendump = id; 
+            }; 
             CLASS = PrefsController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                BoxesController = id; 
+                MenuController = id; 
+                TilpController = id; 
+                ToolbarController = id; 
                 calcType73 = id; 
                 calcType82 = id; 
                 calcType83 = id; 
@@ -45,20 +112,23 @@
                 calcType89 = id; 
                 calcType92 = id; 
                 calcType92p = id; 
-                calcTypeAutoDetect = id; 
-                linkCableTypeTIEMU = id; 
-                linkCableTypeTIGLUSB = id; 
-                linkCableTypeTPC = id; 
-                linkCableTypeVTI = id; 
-                linkTimeout = id; 
+                calcTypeProbe = id; 
+                linkCableTIGLUSB = id; 
+                linkCableTPC = id; 
+                linkCableVTE = id; 
+                linkCableVTI = id; 
+                linkTimeoutField = id; 
+                linkTimeoutValueStepper = id; 
                 orderDecreasing = id; 
                 orderIncreasing = id; 
                 pathModeFull = id; 
                 pathModeLocal = id; 
+                prefsWindow = id; 
+                screenFormatPCX = id; 
+                screenFormatTIFF = id; 
+                screenFormatXPM = id; 
                 screenModeClipped = id; 
                 screenModeFull = id; 
-                screendumpPCX = id; 
-                screendumpXPM = id; 
                 sortByInfo = id; 
                 sortByName = id; 
                 sortBySize = id; 
@@ -72,8 +142,13 @@
             CLASS = TilpController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                BoxesController = id; 
+                MenuController = id; 
+                PrefsController = id; 
+                ToolbarController = id; 
                 currentFolder = id; 
                 dirlistTree = id; 
+                mainWindow = id; 
                 memoryUsed = id; 
                 numberOfFolders = id; 
                 numberOfVars = id; 
@@ -90,7 +165,13 @@
             }; 
             CLASS = ToolbarController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {mainWindow = id; }; 
+            OUTLETS = {
+                BoxesController = id; 
+                MenuController = id; 
+                PrefsController = id; 
+                TilpController = id; 
+                mainWindow = id; 
+            }; 
             SUPERCLASS = NSObject; 
         }
     ); 

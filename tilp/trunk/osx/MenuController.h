@@ -2,7 +2,12 @@
 
 @interface MenuController : NSObject
 {
-    IBOutlet id prefWindow;
+    IBOutlet id BoxesController;
+    IBOutlet id mainWindow;
+    IBOutlet id PrefsController;
+    IBOutlet id prefsWindow;
+    IBOutlet id TilpController;
+    IBOutlet id ToolbarController;
 }
 - (IBAction)defaultConfig:(id)sender;
 - (IBAction)doBackup:(id)sender;

@@ -2,11 +2,27 @@
 
 @implementation PrefsController
 
-- (IBAction)changeTimeout:(id)sender
+- (IBAction)prefsAdvanced:(id)sender
 {
 }
 
-- (IBAction)closePrefs:(id)sender
+- (IBAction)prefsCalc:(id)sender
+{
+}
+
+- (IBAction)prefsClose:(id)sender
+{
+}
+
+- (IBAction)prefsGeneral:(id)sender
+{
+}
+
+- (IBAction)prefsHardware:(id)sender
+{
+}
+
+- (IBAction)prefsScreendump:(id)sender
 {
 }
 

@@ -209,10 +209,11 @@
 		};
 		29B97314FDCFA39411CA2CEA = {
 			children = (
+				F50E4E81017F224201000103,
 				080E96DDFE201D6D7F000001,
 				F582706C0176297F01000102,
-				F582709D01762ABB01000102,
 				29B97315FDCFA39411CA2CEA,
+				F582709D01762ABB01000102,
 				29B97317FDCFA39411CA2CEA,
 				29B97323FDCFA39411CA2CEA,
 				19C28FACFE9D520D11CA2CBB,
@@ -286,11 +287,11 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TiLP;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas -Wno-precomp";
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
@@ -334,6 +335,37 @@
 				F51316010178382A01000102,
 				F514E0E50178CA7001000102,
 				F50FDB8F0179C7F801000102,
+				F50FDB980179D45601000102,
+				F50FDB990179D45601000102,
+				F50FDB9A0179D45601000102,
+				F50FDB9B0179D45601000102,
+				F50FDB9C0179D45601000102,
+				F50FDB9D0179D45601000102,
+				F50FDB9E0179D45601000102,
+				F50FDBA00179D45601000102,
+				F50FDBA10179D45601000102,
+				F50FDBA20179D45601000102,
+				F50FDBA30179D45601000102,
+				F50FDBA40179D45601000102,
+				F50FDBA50179D45601000102,
+				F50FDBA60179D45601000102,
+				F50FDBA70179D45601000102,
+				F50FDBA80179D45601000102,
+				F50FDBA90179D45601000102,
+				F50FDBAA0179D45601000102,
+				F50FDBAB0179D45601000102,
+				F50FDBAC0179D45601000102,
+				F50FDBAD0179D45601000102,
+				F50FDBAE0179D45601000102,
+				F50FDBAF0179D45601000102,
+				F50FDBB00179D45601000102,
+				F50FDBB10179D45601000102,
+				F50FDBB20179D45601000102,
+				F50FDBB30179D45601000102,
+				F50E4E78017F17D801000103,
+				F50E4E7C017F181501000103,
+				F50E4E8A017F249701000103,
+				F5D45989017F4A2001000103,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -359,6 +391,17 @@
 				F51316020178382A01000102,
 				F514E0E60178CA7001000102,
 				F50FDB900179CA0B01000102,
+				F50FDB910179D3E101000102,
+				F50FDB920179D3E101000102,
+				F50FDB930179D3E101000102,
+				F50FDB940179D3E101000102,
+				F50E4E79017F17D801000103,
+				F50E4E7D017F181601000103,
+				F50E4E8B017F249701000103,
+				F5D45984017F491C01000103,
+				F5D45985017F491C01000103,
+				F5D45986017F491C01000103,
+				F5D45987017F491C01000103,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -456,6 +499,97 @@
 			settings = {
 			};
 		};
+		F50E4E76017F17D701000103 = {
+			isa = PBXFileReference;
+			path = BoxesController.h;
+			refType = 4;
+		};
+		F50E4E77017F17D701000103 = {
+			isa = PBXFileReference;
+			path = BoxesController.m;
+			refType = 4;
+		};
+		F50E4E78017F17D801000103 = {
+			fileRef = F50E4E76017F17D701000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50E4E79017F17D801000103 = {
+			fileRef = F50E4E77017F17D701000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50E4E7A017F181501000103 = {
+			isa = PBXFileReference;
+			path = TilpController.h;
+			refType = 4;
+		};
+		F50E4E7B017F181501000103 = {
+			isa = PBXFileReference;
+			path = TilpController.m;
+			refType = 4;
+		};
+		F50E4E7C017F181501000103 = {
+			fileRef = F50E4E7A017F181501000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50E4E7D017F181601000103 = {
+			fileRef = F50E4E7B017F181501000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50E4E81017F224201000103 = {
+			children = (
+				F50E4E82017F224201000103,
+				F50E4E83017F224201000103,
+			);
+			isa = PBXGroup;
+			name = "GUI cocoa";
+			refType = 4;
+		};
+		F50E4E82017F224201000103 = {
+			children = (
+				F50E4E89017F249701000103,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F50E4E83017F224201000103 = {
+			children = (
+				F50E4E88017F249701000103,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			refType = 4;
+		};
+		F50E4E88017F249701000103 = {
+			isa = PBXFileReference;
+			path = cocoa_msg_sheets.m;
+			refType = 2;
+		};
+		F50E4E89017F249701000103 = {
+			isa = PBXFileReference;
+			path = cocoa_msg_sheets.h;
+			refType = 2;
+		};
+		F50E4E8A017F249701000103 = {
+			fileRef = F50E4E89017F249701000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50E4E8B017F249701000103 = {
+			fileRef = F50E4E88017F249701000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F50FDB8E0179C7F801000102 = {
 			isa = PBXFileReference;
 			path = config.h;
@@ -469,6 +603,192 @@
 		};
 		F50FDB900179CA0B01000102 = {
 			fileRef = F58271E001762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB910179D3E101000102 = {
+			fileRef = F58271E201762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB920179D3E101000102 = {
+			fileRef = F58271E301762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB930179D3E101000102 = {
+			fileRef = F58271E501762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB940179D3E101000102 = {
+			fileRef = F58271E701762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB980179D45601000102 = {
+			fileRef = F582711E01762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB990179D45601000102 = {
+			fileRef = F582711F01762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB9A0179D45601000102 = {
+			fileRef = F582712101762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB9B0179D45601000102 = {
+			fileRef = F582712201762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB9C0179D45601000102 = {
+			fileRef = F582712301762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB9D0179D45601000102 = {
+			fileRef = F582712401762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDB9E0179D45601000102 = {
+			fileRef = F582712701762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA00179D45601000102 = {
+			fileRef = F582712901762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA10179D45601000102 = {
+			fileRef = F582712B01762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA20179D45601000102 = {
+			fileRef = F582712D01762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA30179D45601000102 = {
+			fileRef = F582712F01762AFA01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA40179D45601000102 = {
+			fileRef = F582707201762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA50179D45601000102 = {
+			fileRef = F582707601762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA60179D45601000102 = {
+			fileRef = F582707701762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA70179D45601000102 = {
+			fileRef = F582707901762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA80179D45601000102 = {
+			fileRef = F582707A01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBA90179D45601000102 = {
+			fileRef = F582707B01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAA0179D45601000102 = {
+			fileRef = F582707C01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAB0179D45601000102 = {
+			fileRef = F582707D01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAC0179D45601000102 = {
+			fileRef = F582707E01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAD0179D45601000102 = {
+			fileRef = F582707F01762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAE0179D45601000102 = {
+			fileRef = F582708001762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBAF0179D45601000102 = {
+			fileRef = F582708101762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBB00179D45601000102 = {
+			fileRef = F582708201762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBB10179D45601000102 = {
+			fileRef = F582708301762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBB20179D45601000102 = {
+			fileRef = F582708401762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FDBB30179D45601000102 = {
+			fileRef = F582708501762A8B01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -560,9 +880,11 @@
 		};
 		F58270640176284A01000102 = {
 			children = (
+				F50E4E76017F17D701000103,
 				F514E0E40178CA7001000102,
 				F58270650176284A01000102,
 				F51316000178382A01000102,
+				F50E4E7A017F181501000103,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -587,9 +909,11 @@
 		};
 		F582706B0176297F01000102 = {
 			children = (
+				F50E4E77017F17D701000103,
 				F514E0E30178CA7001000102,
 				F51315FF0178382A01000102,
 				F58270630176284A01000102,
+				F50E4E7B017F181501000103,
 			);
 			isa = PBXGroup;
 			name = Sources;
@@ -613,7 +937,6 @@
 				F582712201762AFA01000102,
 				F582712301762AFA01000102,
 				F582712401762AFA01000102,
-				F582712501762AFA01000102,
 				F582712601762AFA01000102,
 				F582712701762AFA01000102,
 				F582712801762AFA01000102,
@@ -639,6 +962,7 @@
 				F582708301762A8B01000102,
 				F582708401762A8B01000102,
 				F582708501762A8B01000102,
+				F5D45988017F4A1F01000103,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -1394,12 +1718,6 @@
 			path = ../src/rcfile.h;
 			refType = 2;
 		};
-		F582712501762AFA01000102 = {
-			isa = PBXFileReference;
-			name = plugin_interface.h;
-			path = ../src/plugin_interface.h;
-			refType = 2;
-		};
 		F582712601762AFA01000102 = {
 			isa = PBXFileReference;
 			name = paths.h;
@@ -1999,6 +2317,42 @@
 			name = gtoolbar.c;
 			path = /Users/julien/devel/TiLP/src/gtoolbar.c;
 			refType = 0;
+		};
+		F5D45984017F491C01000103 = {
+			fileRef = F582715301762C7701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5D45985017F491C01000103 = {
+			fileRef = F582715401762C7701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5D45986017F491C01000103 = {
+			fileRef = F582715501762C7701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5D45987017F491C01000103 = {
+			fileRef = F58271E101762CF701000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5D45988017F4A1F01000103 = {
+			isa = PBXFileReference;
+			name = intl.h;
+			path = ../src/intl.h;
+			refType = 2;
+		};
+		F5D45989017F4A2001000103 = {
+			fileRef = F5D45988017F4A1F01000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA;
