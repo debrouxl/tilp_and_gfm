@@ -85,8 +85,15 @@ Source: "C:\sources\roms\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ign
 ;Source: "C:\sources\roms\tilp\fonts\Ti83ppcb.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp\fonts\TI-92P.TTF";   DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ; Script to modify AUTOEXEC.bat
+
 ; Install helper
-Source: "C:\sources\roms\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; Flags: ignoreversion; Attribs: hidden; MinVersion: 4,0;
+;Source: "C:\sources\roms\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; Flags: ignoreversion; Attribs: hidden; MinVersion: 4,0;
+
+; GTK+ specific
+Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
+;libglade/libxml add-on (ignore since no version checking is possible)
+Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{code:GetGtkPath}\lib"; Flags: onlyifdoesntexist;
+Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{code:GetGtkPath}\lib"; Flags: onlyifdoesntexist;
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -113,7 +120,7 @@ Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
 Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
 
 [Registry]
-; This adds the GTK+ libraries to gtk-foo.exe's path
+; This adds the GTK+ libraries to tilp.exe's path
 ;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
 ;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueData: "{app}\tilp.exe"; Flags: uninsdeletevalue
 ;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetGtkPath}\lib"; Flags: uninsdeletevalue
@@ -544,14 +551,12 @@ end;
 
 function InitializeSetup(): Boolean;
 begin
-
   // Retrieve GTK path
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the "GTK+ 2.0 Runtime Environment" (2.4-rc16). You can obtain GTK+ from <http://gladewin32.sourceforge.net/>.', mbError, MB_OK);
+    MsgBox ('Please install the "GTK+ 2.x Runtime Environment" (2.4.3). You can obtain GTK+ from <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
   end;
 
-  // Maybe I should include libglade/libxml and use GTK/The GiMP runtime package
   // Retrieve GTK version (2.4.3 for GiMP package or aio-2.4-rc16/2.4.6-c2 for libglade package)
   if Result then begin
     Result := GetGtkVersionInstalled ();
@@ -563,9 +568,14 @@ begin
         end;
       end
       else begin
-        if CompareStr(GtkVersion, '2.4.3') < 0 then begin
-          MsgBox ('Wrong package version. You need version 2.4.3 mini from <The GiMP>.', mbError, MB_OK);
-        end;
+        if CompareStr(GtkVersion, '2.2.4') = 0 then begin
+           MsgBox('A GTK+ package is present but it is now abandonned. Please uninstall it and download a new one at <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
+        end
+        else begin
+          if CompareStr(GtkVersion, '2.4.3') < 0 then begin
+            MsgBox ('Wrong package version. You need at least version 2.4.3 from <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
+          end;
+        end
       end
     end
     else begin
@@ -573,17 +583,14 @@ begin
     end;
   end;
 
-  // Remove WiMP theme when running on Win9x/Me
-  if Result then begin
-      WimpPath := GtkPath + '\lib\gtk-2.0\2.2.0\engines\libwimp.dll';
-      if FileExists(WimpPath) and not UsingWinNT() then begin
-        DeleteFile(WimpPath);
-        MsgBox('The GTK+ Wimp theme engine has been removed to avoid lot of warnings in console.', mbError, MB_OK);
-      end;
-  end;
-
   // Check version of USB driver
   if IsTiglUsbVersion3Mini() then begin
     MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
+  end;
+  
+  // Check for non-NT and WiMP theme
+  WimpPath := GtkPath + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
+  if FileExists(WimpPath) and not UsingWinNT() then begin
+        MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP', mbError, MB_OK);
   end;
 end;

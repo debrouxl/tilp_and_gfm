@@ -10,8 +10,8 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.x libraries (another new package from http://gladewin32.sourceforge.net/)
-    Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.6-rc2.exe?download>
+ - the GTK+ 2.x libraries (!!! new package !!!)
+    Location: <<http://www2.arnes.si/~sopjsimo/gimp/stable.html>>
  - the SilverLink driver v3.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 
