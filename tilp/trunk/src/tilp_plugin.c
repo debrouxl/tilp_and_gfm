@@ -39,7 +39,7 @@
 
 #include "tilp_plugin.h"
 
-#define DEBUG
+//#define DEBUG
 
 // list of plug-ins
 static GList *plugin_list = NULL;
@@ -415,7 +415,7 @@ int tilp_plugins_read(const char *filename)
 
 		argv[0] = g_strdup(module_infos->path);
 		argv[1] = g_strdup(filename);
-		printf("<%s %s>\n", argv[0], argv[1]);
+		//printf("<%s %s>\n", argv[0], argv[1]);
 		result = g_spawn_async(inst_paths.base_dir, argv, NULL, 0,
 				       NULL, NULL, NULL, NULL);
 		g_strfreev(argv);
