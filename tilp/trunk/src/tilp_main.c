@@ -191,12 +191,16 @@ int scan_cmdline(int argc, const char **argv)
 				options.lp.calc_type = CALC_TI92P;
 			if (!strcmp(q, "ti92"))
 				options.lp.calc_type = CALC_TI92;
+			if (!strcmp(q, "ti89t"))
+				options.lp.calc_type = CALC_TI89T;
 			if (!strcmp(q, "ti89"))
 				options.lp.calc_type = CALC_TI89;
 			if (!strcmp(q, "ti86"))
 				options.lp.calc_type = CALC_TI86;
 			if (!strcmp(q, "ti85"))
 				options.lp.calc_type = CALC_TI85;
+			if (!strcmp(q, "ti84+"))
+				options.lp.calc_type = CALC_TI84P;
 			if (!strcmp(q, "ti83+"))
 				options.lp.calc_type = CALC_TI83P;
 			if (!strcmp(q, "ti83"))

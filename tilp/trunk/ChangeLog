@@ -16,6 +16,9 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 18/09/2004, version 6.75 ((3.8.6, 0.6.1, 4.5.4): roms
+	Added TI84+ and TI89 Titanium support thru std I/O port (linkport).
+
 - 22/08/2004, version 6.74c (3.8.6, 0.6.0, 4.5.3): roms 
 	Rebuild to use a new GTK+/Win32 package. The previous one was abandonned and conflicts with The GiMP.
 

@@ -2,8 +2,8 @@
 
 
 
-Previous version: 6.74b		(02/07/2004)
-Current version:  6.74c		(22/08/2004)
+Previous version: 6.74c		(22/08/2004)
+Current version:  6.75		(18/09/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -20,13 +20,15 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- none
+	- TI84+ support
+	- TI89 Titanium support (no OS upgrade)
 
 Improvements:
 -------------
 
 	- use a new GTK+/Win32 package because the previous one is not maintained any longer and it was
 		conflicting with the one needed by 'The GiMP' (a PhotoShop-like GNU program).
+	- accelerator keys for dialog boxes (Esc = Cancel, Enter = OK).
 	
 
 Known problems:

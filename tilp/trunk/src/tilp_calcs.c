@@ -125,10 +125,12 @@ int tilp_calc_send_backup(char *filename)
 	case CALC_TI73:
 	case CALC_TI83:
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI92:
 		gif->create_pbar_type3(_("Backup"));
 		break;
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		gif->create_pbar_type5(_("Backup"), "");
@@ -160,9 +162,11 @@ int tilp_calc_recv_backup(void)
 	case CALC_TI73:
 	case CALC_TI83:
 	case CALC_TI83P:
+	case CALC_TI84P:
 		gif->create_pbar_type3(_("Backup"));
 		break;
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		gif->create_pbar_type5(_("Backup"), "");
@@ -283,6 +287,7 @@ int tilp_calc_rom_dump(void)
 			return -1;
 		break;
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI86:
 		ret = gif->msg_box4(_("Information"), _
 				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'asm(rom86)'."));
@@ -293,6 +298,7 @@ int tilp_calc_rom_dump(void)
 			return -1;
 		break;
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		return do_rom_dump(0);
@@ -350,11 +356,13 @@ int tilp_calc_send_flash_app(char *filename)
 	case CALC_TI82:
 	case CALC_TI83:
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI85:
 	case CALC_TI92:
 		gif->create_pbar_type3(_("Flash"));
 		break;
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		gif->create_pbar_type3(_("Flash"));
@@ -415,7 +423,7 @@ int tilp_calc_send_flash_os(char *filename)
 		break;
 	}
 	old_timeout = ticable_get_timeout();
-	if(options.lp.calc_type == CALC_TI83P)
+	if((options.lp.calc_type == CALC_TI83P) || (options.lp.calc_type == CALC_TI84P))
 		ticable_set_timeout(300);
 	else
 		ticable_set_timeout(100);
@@ -443,7 +451,9 @@ int tilp_calc_recv_app(void)
 	switch (options.lp.calc_type) {
 	case CALC_TI73:
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
 		gif->create_pbar_type5(_("Receiving application(s)"), "");
@@ -576,6 +586,7 @@ int tilp_calc_send_var(gint to_flash)
 			mode |= MODE_SEND_TO_FLASH;
 
 		else if (options.lp.calc_type == CALC_TI89
+			 || options.lp.calc_type == CALC_TI89T
 			 || options.lp.calc_type == CALC_TI92P
 			 || options.lp.calc_type == CALC_V200)
 			mode |= MODE_BACKUP;
@@ -679,8 +690,10 @@ int tilp_calc_recv_var(void)
 	case CALC_TI73:
 	case CALC_TI83:
 	case CALC_TI83P:
+	case CALC_TI84P:
 	case CALC_TI86:
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92:
 	case CALC_TI92P:
 	case CALC_V200:

@@ -171,33 +171,37 @@ gint display_comm_dbox()
 	case CALC_TI83P:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
-	  
-	case CALC_TI85:
+
+	case CALC_TI84P:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 	  
-	case CALC_TI86:
+	case CALC_TI85:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	  
-	case CALC_TI89:
+	case CALC_TI86:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	  break;
 	  
-	case CALC_TI92:
+	case CALC_TI89:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
-	  
-	case CALC_TI92P:
+
+	case CALC_TI89T:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
 	  break;
 	  
-	case CALC_V200:
+	case CALC_TI92:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 9);
 	  break;
-	
-	default:
+	  
+	case CALC_TI92P:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 10);
+	  break;
+	  
+	case CALC_V200:
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 11);
 	  break;
 	}
 
@@ -397,31 +401,41 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
   	break;
 
 	case 4:
+    		tmp_lp.calc_type = CALC_TI84P;
+    		gtk_widget_set_sensitive(button, TRUE);
+  	break;
+
+	case 5:
     		tmp_lp.calc_type = CALC_TI85;
     		gtk_widget_set_sensitive(button, FALSE);
   	break;
 
-	case 5:
+	case 6:
     		tmp_lp.calc_type = CALC_TI86;
     		gtk_widget_set_sensitive(button, FALSE);
   	break;
 
-	case 6:
+	case 7:
     		tmp_lp.calc_type = CALC_TI89;
     		gtk_widget_set_sensitive(button, TRUE);
   	break;
 
-	case 7:
-    		tmp_lp.calc_type = CALC_TI92;
-    		gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
 	case 8:
-    		tmp_lp.calc_type = CALC_TI92P;
+    		tmp_lp.calc_type = CALC_TI89T;
     		gtk_widget_set_sensitive(button, TRUE);
   	break;
 
 	case 9:
+    		tmp_lp.calc_type = CALC_TI92;
+    		gtk_widget_set_sensitive(button, FALSE);
+  	break;
+
+	case 10:
+    		tmp_lp.calc_type = CALC_TI92P;
+    		gtk_widget_set_sensitive(button, TRUE);
+  	break;
+
+	case 11:
     		tmp_lp.calc_type = CALC_V200;
     		gtk_widget_set_sensitive(button, TRUE);
 	break;

@@ -153,6 +153,9 @@ void tilp_rcfile_read(void)
 			else if (!strcmp(p, "ti92"))
 				options.lp.calc_type = CALC_TI92;
 
+			else if (!strcmp(p, "ti89t"))
+				options.lp.calc_type = CALC_TI89T;
+
 			else if (!strcmp(p, "ti89"))
 				options.lp.calc_type = CALC_TI89;
 
@@ -161,6 +164,9 @@ void tilp_rcfile_read(void)
 
 			else if (!strcmp(p, "ti85"))
 				options.lp.calc_type = CALC_TI85;
+
+			else if (!strcmp(p, "ti84+"))
+				options.lp.calc_type = CALC_TI84P;
 
 			else if (!strcmp(p, "ti83+"))
 				options.lp.calc_type = CALC_TI83P;
@@ -597,6 +603,9 @@ void tilp_rcfile_write(void)
 	case CALC_TI92:
 		fprintf(txt, "ti92\n");
 		break;
+	case CALC_TI89T:
+		fprintf(txt, "ti89t\n");
+		break;
 	case CALC_TI89:
 		fprintf(txt, "ti89\n");
 		break;
@@ -605,6 +614,9 @@ void tilp_rcfile_write(void)
 		break;
 	case CALC_TI85:
 		fprintf(txt, "ti85\n");
+		break;
+	case CALC_TI84P:
+		fprintf(txt, "ti84+\n");
 		break;
 	case CALC_TI83P:
 		fprintf(txt, "ti83+\n");
