@@ -220,6 +220,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 
 AC_OUTPUT([Makefile
+desktop/Makefile
 glade/Makefile
 help/Makefile
 icons/Makefile

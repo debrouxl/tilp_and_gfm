@@ -17,6 +17,7 @@ files:
 
 install: $(PLUGINS)
 	@echo Clean-up in plug-ins directory...
+	@$(INSTALL) -d $(tilp_plugin_dir)
 	$(RM) $(DESTDIR)$(tilp_plugin_dir)/*.a 
 	$(RM) $(DESTDIR)$(tilp_plugin_dir)/*.la
 	$(RM) $(DESTDIR)$(tilp_plugin_dir)/*.so

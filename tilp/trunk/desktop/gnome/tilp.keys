@@ -1,0 +1,9 @@
+application/x-tilp
+	icon_filename=/usr/share/tilp/pixmaps/logo.xpm
+	icon-filename=/usr/share/tilp/pixmaps/logo.xpm
+	short_list_application_ids_for_novice_user_level=tilp
+	short_list_application_ids_for_intermediate_user_level=tilp
+	short_list_application_ids_for_advanced_user_level=tilp
+	description=TI File
+	open=tilp %f &
+        view=tilp %f &

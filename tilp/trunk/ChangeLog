@@ -12,7 +12,12 @@ Some explanations about the version number:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
-- 27/08/2003, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms
+- 24/03/2004, version 6.70 (3.7.6, 0.5.6, 4.5.2): roms
+	Added menu entry (KDE).
+	Added mime types (Gnome).
+	Bug fix: creation of the '/usr/lib/tilp' directory.
+	
+- 17/03/2004, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms
 	Use new libticalcs (removed GLib dependancies) thus libticalcs-4 is no 
 	longer needed.
 	We were using dirlist in v1 mode due to memory corruption.

@@ -31,3 +31,4 @@ uninstall: $(FILES)
 	@echo Removing plug-ins registry...
 	cd $(sysconfdir)/tilp; $(RM) tilp.registry
 	-rmdir $(sysconfdir)/tilp
+	@echo Done.

@@ -2,7 +2,7 @@
 
 # subdirectories to scan
 SUBDIRS = \
-	glade help icons man misc pixmaps src \
+	desktop glade help icons man misc pixmaps src \
 	plugins registry \
 	po intl
 

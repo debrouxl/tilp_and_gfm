@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=TiLP
+Name[fr_FR]=TiLP
+Comment=Ti Linking Program
+Comment[fr_FR]=Programme de connexion pour calculatrices TI
+GenericName=tilp
+GenericName[fr_FR]=tilp
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=/usr/bin/tilp
+TryExec=
+Icon=/usr/share/tilp/pixmaps/logo.xpm
+X-GNOME-DocPath=
+Terminal=false
+#Categories=Application;Office;
+Categories=Application;Accessories;
+#Categories=Application;Utility;
+#Application;Game;
+#Application;Network;
