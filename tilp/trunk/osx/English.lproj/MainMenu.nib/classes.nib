@@ -59,8 +59,6 @@
                 isReady = id; 
                 newWindow = id; 
                 probeCalc = id; 
-                probeLink = id; 
-                receiveFLASHApp = id; 
                 remoteControl = id; 
                 romDump = id; 
                 romVersion = id; 

@@ -16,7 +16,6 @@
                 MenuController = id; 
                 PrefsController = id; 
                 TilpController = id; 
-                ToolbarController = id; 
                 dlgboxentryButton1 = id; 
                 dlgboxentryButton2 = id; 
                 dlgboxentryEntry = id; 
@@ -60,7 +59,6 @@
                 isReady = id; 
                 newWindow = id; 
                 probeCalc = id; 
-                probeLink = id; 
                 receiveFLASHApp = id; 
                 remoteControl = id; 
                 romDump = id; 
@@ -76,7 +74,6 @@
                 BoxesController = id; 
                 PrefsController = id; 
                 TilpController = id; 
-                ToolbarController = id; 
                 mainWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
@@ -93,7 +90,6 @@
                 BoxesController = id; 
                 MenuController = id; 
                 TilpController = id; 
-                ToolbarController = id; 
                 calcType73 = id; 
                 calcType82 = id; 
                 calcType83 = id; 
@@ -145,7 +141,6 @@
                 BoxesController = id; 
                 MenuController = id; 
                 PrefsController = id; 
-                ToolbarController = id; 
                 currentFolder = id; 
                 dirlistTree = id; 
                 dlgboxEntry = id; 
@@ -153,27 +148,6 @@
                 memoryUsed = id; 
                 numberOfFolders = id; 
                 numberOfVars = id; 
-            }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
-            ACTIONS = {
-                doBackup = id; 
-                doRestore = id; 
-                getDirlist = id; 
-                getScreen = id; 
-                isReady = id; 
-            }; 
-            CLASS = ToolbarController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                BoxesController = id; 
-                MenuController = id; 
-                PrefsController = id; 
-                TilpController = id; 
-                mainWindow = id; 
-                screendumpImage = id; 
-                screendumpWindow = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

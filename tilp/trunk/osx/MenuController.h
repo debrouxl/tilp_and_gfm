@@ -28,7 +28,6 @@
 
 // link
 
-- (IBAction)probeLink:(id)sender;
 - (IBAction)probeCalc:(id)sender;
 
 // functions 1
@@ -44,7 +43,6 @@
 
 - (IBAction)sendFLASHApp:(id)sender;
 - (IBAction)sendAMS:(id)sender;
-- (IBAction)receiveFLASHApp:(id)sender;
 - (IBAction)getIDList:(id)sender;
 - (IBAction)romDump:(id)sender;
 - (IBAction)romVersion:(id)sender;

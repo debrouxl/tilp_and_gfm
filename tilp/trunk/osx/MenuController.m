@@ -132,12 +132,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 // link
 
-- (IBAction)probeLink:(id)sender
-{
-    // unusable atm.
-    //cb_probe_cable();
-}
-
 - (IBAction)probeCalc:(id)sender
 {
     cb_probe_calc();
@@ -161,6 +155,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     id remoteControlWindow;
     id remoteControlTextArea;
     
+    if (is_active)
+        return;
+    
     remoteControlWindow = objects_ptr->remoteControlWindow;
     
     if ([remoteControlWindow isVisible])
@@ -180,6 +177,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     NSData *bitmap;
     NSImage *screen;
+
+    if (is_active)
+        return;
 
     if (cb_screen_capture() != 0)
         return;
@@ -203,17 +203,21 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // see gtk code, I believe it's not so simple...
     // Plus, we must update the NSOutlineView
 
-    cb_dirlist();
+    if (is_active)
+        return;
+
+    if (cb_dirlist() != 0)
+        return;
+        
+    // send a reloadData message to the outline view
 }
 
 - (IBAction)doRestore:(id)sender
 {
     NSOpenPanel *op;
-    NSString *nsfile;
-    
+        
     int result;
-    char *file;
-
+    
     // FIXME OS X
     // find the extension of the file to pass as an argument to the NSOpenPanel
     
@@ -228,41 +232,40 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     if(result != BUTTON1)
         return;
 
-    result = -1; // neutral value
-    
     op = [NSOpenPanel openPanel];
     
     [op setTitle:@"Choose the file to restore"];
     [op setAllowsMultipleSelection:NO];
     
-    result = [op runModalForDirectory:NSHomeDirectory() file:nil
-              types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
-                                      
-    if (result == NSOKButton)
-        {
-            nsfile = [[op filenames] objectAtIndex:0];
-            
-            file = (char *)malloc([nsfile cStringLength] + 1);
-            
-            [nsfile getCString:file];
-            
-            cb_send_backup(file);
-            
-            [nsfile release];
-            
-            free(file);
-        }
-    
-    [op release];
+    [op beginSheetForDirectory:NSHomeDirectory()
+        file:nil
+        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        modalForWindow:mainWindow
+        modalDelegate:BoxesController
+        didEndSelector:@selector(doRestoreDidEnd:returnCode:contextInfo:)
+        contextInfo:nil];
 }
 
 - (IBAction)doBackup:(id)sender
 {
-    // FIXME OS X : hmmm... there should be a fileselection
-    // at some point inside cb_receive_backup()...
-    // that would be a NSSavePanel
+    // FIXME OS X : propose a default filename w/appropriate extension
+        
+    NSSavePanel *sp;
     
-    cb_receive_backup();
+    if (is_active)
+        return;
+    
+    if (cb_receive_backup() != 0)
+        return;
+    
+    sp = [NSSavePanel savePanel];
+    
+    [sp beginSheetForDirectory:NSHomeDirectory()
+        file:@""
+        modalForWindow:mainWindow
+        modalDelegate:BoxesController
+        didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
+        contextInfo:sp];
 }
 
 
@@ -270,23 +273,60 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)sendFLASHApp:(id)sender
 {
+    NSOpenPanel *op;
+
     // FIXME OS X
-    // use a fileselection here
-    // then call cb_send_flash_app(char *filename) from cb_calc.c
+    // find the extension of the file to pass as an argument to the NSOpenPanel
+    
+    if (is_active)
+        return;
+    
+    op = [NSOpenPanel openPanel];
+    
+    [op setTitle:@"Choose the Flash Application to send"];
+    [op setAllowsMultipleSelection:NO];
+    
+    [op beginSheetForDirectory:NSHomeDirectory()
+        file:nil
+        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        modalForWindow:mainWindow
+        modalDelegate:BoxesController
+        didEndSelector:@selector(sendFlashAppDidEnd:returnCode:contextInfo:)
+        contextInfo:nil];
 }
 
 - (IBAction)sendAMS:(id)sender
 {
-    // FIXME OS X
-    // use a fileselection here
-    // then call cb_send_flash_os(char *filename) from cb_calc.c
-}
+    NSOpenPanel *op;
+    
+    int result;
 
-- (IBAction)receiveFLASHApp:(id)sender
-{
     // FIXME OS X
-    // I didn't find this one yet...
-    // OK it's not implemented... ROMAIN !! I'm gonna LART you !
+    // find the extension of the file to pass as an argument to the NSOpenPanel
+    
+    if (is_active)
+        return;
+    
+    result = gif->user2_box(_("Warning"), 
+                            _("You're going to install a new Operating System on your calculator. This process will take up to 45 minutes. Make sure your batteries are OK before continuing. If, for anyh reason, the transfer should be interrupted, wait until the calc displays \"Wainting to receive...\" than retart the transfer."),
+		            _("Proceed"), 
+		            _("Cancel"));
+                            
+    if(result != BUTTON1)
+        return;
+    
+    op = [NSOpenPanel openPanel];
+    
+    [op setTitle:@"Choose the file containing AMS"];
+    [op setAllowsMultipleSelection:NO];
+    
+    [op beginSheetForDirectory:NSHomeDirectory()
+        file:nil
+        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        modalForWindow:mainWindow
+        modalDelegate:BoxesController
+        didEndSelector:@selector(sendAMSDidEnd:returnCode:contextInfo:)
+        contextInfo:nil];
 }
 
 - (IBAction)getIDList:(id)sender
@@ -299,6 +339,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // FIXME OS X
     // we need a fileselection here
     // then call cb_ams_to_rom(char *filename) from cb_calc.c
+    
+    if (is_active)
+        return;
+        
+    // see gtk_tilp_cb.c...
 }
 
 - (IBAction)romVersion:(id)sender
@@ -309,7 +354,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)installShell:(id)sender
 {
     // FIXME OS X
-    // I didn't find this one yet...
+    // Implemented in Tiffep.
+    // So, wait until the Tiffep is ported to Mac OS X :)
 }
 
 
@@ -320,6 +366,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // FIXME OS X
     // a bit of Cocoa coding is required here. Later.
     // could be tricky... see Cocoa's docs.
+    // maybe NSWindowController... ?
 }
 
 

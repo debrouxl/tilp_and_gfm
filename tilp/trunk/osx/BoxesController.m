@@ -1,7 +1,12 @@
 
+#include <unistd.h>
+
 #include "../src/cb_calc.h"
+#include "../src/files.h"
 #include "../src/struct.h"
+#include "../src/gui_indep.h"
 #include "../src/defs.h"
+#include "../src/intl.h"
 
 #include "cocoa_structs.h"
 
@@ -131,10 +136,7 @@ extern int is_active;
     // maybe it's tricky, maybe it's not...
     
     // this method would in fact be a delegate of the NSTextField
-    // I fear I'll have to get a complete string
-    // and then do a loop to send each byte to the calc
-    // no, no, it's not ugly...
-    // => textDidEndEditing...
+    // ==>> textDidChange I believe
     
     // Oh, I just remembered we also need to match some keys
     // to access other TI functions (Apps, etc...)
@@ -165,12 +167,11 @@ extern int is_active;
 
 - (IBAction)screendumpSaveImage:(id)sender
 {
+    // FIXME OS X : propose a default filename w/appropriate extension
+
     NSSavePanel *sp;
-    NSData *tiff;
-    
-    int result;
-    char *filename;
-    
+    NSString *proposedFile;
+
     sp = [NSSavePanel savePanel];
 
     switch (options.screen_format)
@@ -178,23 +179,112 @@ extern int is_active;
             case TIFF:
                 [sp setRequiredFileType:@"tiff"];
                 [sp setTitle:@"Save screen as TIFF"];
+                proposedFile = @"screendump.tiff";
                 break;
             case PCX:
                 [sp setRequiredFileType:@"pcx"];
                 [sp setTitle:@"Save screen as PCX"];
+                proposedFile = @"screendump.pcx";
                 break;
             case XPM:
                 [sp setRequiredFileType:@"xpm"];
                 [sp setTitle:@"Save screen as XPM"];
+                proposedFile = @"screendump.xpm";
                 break;
         }
         
-    result = [sp runModalForDirectory:NSHomeDirectory() file:@""];
+    [sp beginSheetForDirectory:NSHomeDirectory()
+        file:proposedFile
+        modalForWindow:screendumpWindow
+        modalDelegate:self
+        didEndSelector:@selector(screendumpSaveImageDidEnd:returnCode:contextInfo:)
+        contextInfo:sp];
+}
+
+
+// NSOpenPanels callbacks
+
+- (void)doRestoreDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSString *nsfile;
+    char *file;
     
-    if (result == NSOKButton)
+    if (returnCode == NSOKButton)
         {
-            filename = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:filename];
+            nsfile = [[sheet filenames] objectAtIndex:0];
+            
+            file = (char *)malloc([nsfile cStringLength] + 1);
+            
+            [nsfile getCString:file];
+            
+            cb_send_backup(file);
+                    
+            [nsfile release];
+            
+            free(file);
+        }
+}
+
+
+- (void)sendFlashAppDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSString *nsfile;
+    char *file;
+
+    if (returnCode == NSOKButton)
+        {
+            nsfile = [[sheet filenames] objectAtIndex:0];
+            
+            file = (char *)malloc([nsfile cStringLength] + 1);
+            
+            [nsfile getCString:file];
+            
+            cb_send_flash_app(file);
+            
+            [nsfile release];
+            
+            free(file);
+        }
+}
+
+- (void)sendAMSDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSString *nsfile;
+    char *file;
+
+     if (returnCode == NSOKButton)
+        {
+            nsfile = [[sheet filenames] objectAtIndex:0];
+            
+            file = (char *)malloc([nsfile cStringLength] + 1);
+            
+            [nsfile getCString:file];
+            
+            cb_send_flash_os(file);
+            
+            [nsfile release];
+            
+            free(file);
+        }
+}
+
+
+// NSSavePanels callbacks
+
+- (void)screendumpSaveImageDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSData *tiff;
+    NSSavePanel *sp; // sheet is an NSWindow, which does not sound very logical
+                     // compared to the NSOpenPanel, so I'm passing sp as the contextInfo
+
+    char *file;
+
+    if (returnCode == NSOKButton)
+        {
+            sp = contextInfo;
+        
+            file = (char *)malloc([[sp filename] cStringLength] + 1);
+            [[sp filename] getCString:file];
             
             switch (options.screen_format)
                 {
@@ -203,13 +293,87 @@ extern int is_active;
                         [tiff writeToFile:[sp filename] atomically:YES];
                         break;
                     case PCX:
-                        cb_screen_save(filename);
+                        cb_screen_save(file);
                         break;
                     case XPM:
-                        cb_screen_save(filename);
+                        cb_screen_save(file);
                         break;
                 }
-            free(filename);
+            free(file);
+        }
+}
+
+- (void)doBackupDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSSavePanel *sp;
+    
+    char *file;
+    char *tmpfile;
+    int ret;
+    int skip = 0;
+    
+    gchar buffer[MAXCHARS];
+    gchar *dirname;
+    
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
+            
+    strcpy(tmpfile, g_get_tmp_dir());
+    strcat(tmpfile, "/tilp.ROMdump");
+    
+    if (returnCode == NSOKButton)
+        {
+            sp = contextInfo;
+                              
+            file = (char *)malloc([[sp filename] cStringLength] + 1);
+            [[sp filename] getCString:file];
+
+            if(options.confirm == CONFIRM_YES)
+                {
+                    if(access(file, F_OK) == 0)
+                        {
+                            sprintf(buffer, _("The file %s already exists.\n\n"),
+                                            file);
+                            
+                            ret = gif->user3_box(_("Warning"), buffer,
+                                                 _("Overwrite"), _("Rename"),
+                                                 _("Skip"));
+                            switch(ret)	
+                                {
+                                    case BUTTON2:
+                                        dirname = gif->dlgbox_entry(_("Rename the file"),
+                                                                    _("New name : "), file);
+                                        if(dirname == NULL) return;
+                                        free(file);
+                                        file = (char *)malloc(strlen(dirname) + 1);
+                                        strcpy(file, dirname);
+                                        g_free(dirname);
+                                        break;
+                                    case BUTTON1:
+                                        skip=0;
+                                        break;
+                                    case BUTTON3:
+                                        skip=1;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                        }
+                }
+                
+            if(skip == 0)
+                {
+                    if(move_file(tmpfile, file))
+                        {	
+                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
+                        }
+                }
+        }
+    else
+        {
+            if(unlink(tmpfile))
+                {
+                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
+                }
         }
 }
 
