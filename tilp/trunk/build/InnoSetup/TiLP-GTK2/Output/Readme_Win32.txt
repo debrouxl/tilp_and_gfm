@@ -13,7 +13,7 @@ REQUIREMENTS
  - the GTK+ 2.x libraries (new package)
     Location: http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download
  - the SilverLink driver v3.x if you have a SilverLink cable
-	Location: http://www.ticalc.org/pub/win/link/tiglusbinf.zip
+	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 
 NOTES
 -----
