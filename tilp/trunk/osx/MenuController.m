@@ -43,7 +43,7 @@ extern int is_active;
 #import "TilpController.h"
 #import "TransfersController.h"
 #import "SheetsController.h"
-
+#import "RCTextView.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
@@ -216,6 +216,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // maybe use the Command key...
     // forget key combos, will make a keyboard...
 
+    NSSize scrollSize;
+
     if ((options.lp.calc_type != CALC_TI89) && (options.lp.calc_type != CALC_TI92) && (options.lp.calc_type != CALC_TI92P))
         {
             [mySheetsController msgSheet:@"The remote control is not supported by this model of calculator. Sorry !"
@@ -231,10 +233,26 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         {
             [remoteControlWindow orderFront:self];
             
+            // FIXME OS X
+            // pop the keyboard up, too.
+            
             return;
         }
         
-    [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
+    //[remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
+    
+    scrollSize = [remoteControlScrollView contentSize];
+    
+    remoteControlTextArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
+                                                textContainer:[[remoteControlScrollView documentView] textContainer]];
+        
+    [remoteControlTextArea setEditable:YES];
+    
+    [remoteControlScrollView setDocumentView:remoteControlTextArea];
+    
+    [remoteControlTextArea insertText:@"NOT IMPLEMENTED"];
+    
+    [remoteControlScrollView display];
     
     [remoteControlWindow makeKeyAndOrderFront:self];
     

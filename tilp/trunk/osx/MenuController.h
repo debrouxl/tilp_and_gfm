@@ -32,6 +32,7 @@
     IBOutlet id msgSheetWindow;
     IBOutlet id remoteControlTextArea;
     IBOutlet id remoteControlWindow;
+    IBOutlet id remoteControlScrollView;
  
     IBOutlet id myBoxesController;
     IBOutlet id myPrefsController;

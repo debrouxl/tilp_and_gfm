@@ -85,6 +85,7 @@
 				F58270640176284A01000102,
 				F582706B0176297F01000102,
 				F5F1CF40019C3112010BF862,
+				F50D800401F72A5A01000102,
 			);
 			isa = PBXGroup;
 			name = Classes;
@@ -1602,6 +1603,7 @@
 				F577769D01E89C7201CCF140,
 				F50C433501F4624B01000102,
 				F50C433801F4701301000102,
+				F50D800701F72CCC01000102,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -1663,6 +1665,7 @@
 				F577769E01E89C7201CCF140,
 				F50C433601F4624B01000102,
 				F50C433701F4648501000102,
+				F50D800801F72CCC01000102,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -1939,6 +1942,54 @@
 		};
 		F50D0B1A019DAC3B01041594 = {
 			fileRef = F50D0B14019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D800001F729B301000102 = {
+			isa = PBXFileReference;
+			path = RCTextView.h;
+			refType = 2;
+		};
+		F50D800101F729B301000102 = {
+			isa = PBXFileReference;
+			path = RCTextView.m;
+			refType = 2;
+		};
+		F50D800401F72A5A01000102 = {
+			children = (
+				F50D800501F72A5A01000102,
+				F50D800601F72A5A01000102,
+			);
+			isa = PBXGroup;
+			name = "Remote Control";
+			path = "";
+			refType = 4;
+		};
+		F50D800501F72A5A01000102 = {
+			children = (
+				F50D800001F729B301000102,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F50D800601F72A5A01000102 = {
+			children = (
+				F50D800101F729B301000102,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			refType = 4;
+		};
+		F50D800701F72CCC01000102 = {
+			fileRef = F50D800001F729B301000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D800801F72CCC01000102 = {
+			fileRef = F50D800101F729B301000102;
 			isa = PBXBuildFile;
 			settings = {
 			};

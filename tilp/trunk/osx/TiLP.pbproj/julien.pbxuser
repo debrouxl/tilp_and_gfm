@@ -40,23 +40,23 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {958, 535}}";
 					Split0 = {
-						ActiveTab = 1;
-						Frame = "{{225, 0}, {733, 535}}";
+						ActiveTab = 2;
+						Frame = "{{238, 0}, {720, 535}}";
 						Split0 = {
-							Frame = "{{0, 152}, {733, 383}}";
+							Frame = "{{0, 167}, {720, 368}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {708, 354}}";
+								Frame = "{{0, 0}, {720, 354}}";
 								Split0 = {
-									Frame = "{{0, 134}, {708, 220}}";
+									Frame = "{{0, 134}, {720, 220}}";
 									Split0 = {
-										Frame = "{{0, 0}, {341, 220}}";
+										Frame = "{{0, 0}, {346, 220}}";
 									};
 									Split1 = {
-										Frame = "{{350, 0}, {358, 220}}";
+										Frame = "{{355, 0}, {365, 220}}";
 									};
 									SplitCount = 2;
 								};
@@ -65,24 +65,24 @@
 									Frame = "{{0, 0}, {707, 115}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {708, 110}}";
+									Frame = "{{0, 0}, {720, 110}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {708, 354}}";
+							Frame = "{{0, 0}, {720, 354}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {733, 128}}";
+							Frame = "{{0, 0}, {720, 128}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {733, 128}}";
+								Frame = "{{0, 0}, {720, 128}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {735, 65}}";
-							BuildTranscriptFrame = "{{0, 74}, {735, 71}}";
-							Frame = "{{0, 0}, {733, 143}}";
+							BuildMessageFrame = "{{0, 0}, {722, 65}}";
+							BuildTranscriptFrame = "{{0, 74}, {722, 71}}";
+							Frame = "{{0, 0}, {720, 143}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -91,7 +91,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {201, 535}}";
+						Frame = "{{0, 0}, {214, 535}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {202, 56}}";
@@ -133,6 +133,11 @@
 	F50751D8019C0A370140747F = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F50751E0019C12DA0140747F = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
 	F50C433401F4624B01000102 = {

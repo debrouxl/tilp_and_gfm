@@ -163,8 +163,11 @@
 	* Try to get all windows or sheets open by the same thread. We use
 	NSNotification to achieve that, did a test with pbarType1. Not
 	really what I expected...
-	
-
+* 20020117 : v0.3.8
+	* Implementing Remote Control
+	     => Added RCTextView, subclassing NSTextView
+	     => Modified the Remote Control window to use
+	     a scrolled NSTextView
 
 
 
