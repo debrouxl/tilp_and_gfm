@@ -9,6 +9,10 @@ Some explanations about the version number:
 	whereas an odd number is an unstable/devel version.
 	New form #3: tilp (cables, calcs, tiffep) version.
 
+Tips:
+     cd working-copy
+	svn export . ../tiemu-x.y
+	
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
