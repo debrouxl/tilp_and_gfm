@@ -545,9 +545,6 @@ extern int is_active;
                     fprintf(stdout, _("Unable to remove the temporary file.\n"));
                 }
         }
-        
-    //[mytmpfile release];
-    //[context release];
 }
 
 - (void)getVarsDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo

@@ -123,6 +123,9 @@
 	* Legal stuff : GPL headers
 * 20011216 : v0.3.0
 	* Fixed paths in PB project files
+	* Grey TIGL support
+	* Timeout handling (back to tenth of seconds)
+	* Romdump
 	
 
 

@@ -19,6 +19,7 @@
  */
 
 #include <glib/glib.h>
+#include <libticalcs/calc_int.h>
 
 #include "../src/cb_misc.h"
 #include "../src/cb_calc.h"
@@ -538,7 +539,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     // FIXME OS X
     
-    // 'k... we must call cb_ams_to_rom() otherwise nothing will happen...
     // well, it's contained in these wonderful loops using gtk_events_pending()
     // for now, I don't care, I'll have a look once the USB driver will be OK.
     
@@ -547,11 +547,20 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     int ret;
     int err = 0;
+    char *tmp_filename = NULL;
+    
+    FILE *dump = NULL;
     
     if (is_active)
         return;
  
     proposedFile = @"romdump.rom";
+ 
+    tmp_filename = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
+ 
+    strcpy(tmp_filename, g_get_tmp_dir());
+    strcat(tmp_filename, DIR_SEPARATOR);
+    strcat(tmp_filename, "tilp.ROMdump");
  
     ret = gif->user2_box(_("Warning"), 
                          _("An assembly program will be sent to your calc if you decide to continue. Consider doing a backup before."),
@@ -573,6 +582,23 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                         case BUTTON1:
                             gif->create_pbar_type5(_("ROM dump"), 
                                                    _("Receiving bytes"));
+                                                   
+                            do
+                                {
+                                    //removed by JB
+                                    //while( gtk_events_pending() ) { gtk_main_iteration(); }
+                                    if(info_update.cancel)
+                                        break;
+                                        
+                                    err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+                                    
+                                    if(tilp_error(err))
+                                        return;
+                                    
+                                    err = ti_calc.dump_rom(dump, ret);
+                                    fclose(dump);
+                                }
+                            while((err == 35) || (err == 3));
                                                    
                             destroy_pbar();
                             if(tilp_error(err))
@@ -612,6 +638,22 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                 {
                                     gif->create_pbar_type5(_("ROM dump"), 
                                                            _("Receiving bytes"));
+                                                           
+                                    do
+                                        {
+                                            //while( gtk_events_pending() ) { gtk_main_iteration(); }
+                                            if(info_update.cancel)
+                                                break;
+                                            
+                                            err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+                                            
+                                            if(tilp_error(err))
+                                                return;
+                                            
+                                            err = ti_calc.dump_rom(dump, (ret == 1) ? SHELL_ZSHELL : SHELL_USGARD);
+                                            fclose(dump);
+                                        }
+                                    while((err == 35) || (err == 3));
 	      
                                     destroy_pbar();
                                     if(tilp_error(err))
@@ -644,7 +686,24 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                         case BUTTON1:
                             gif->create_pbar_type5(_("ROM dump"), 
                                                    _("Receiving bytes"));
-	  
+                                                   
+                            do
+                                {
+                                    //while( gtk_events_pending() ) { gtk_main_iteration(); }
+                                    if(info_update.cancel)
+                                        break;
+                                        
+                                    err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+                                    
+                                    if(tilp_error(err))
+                                        return;
+                                    
+                                    err = ti_calc.dump_rom(dump, ret);
+                                    
+                                    fclose(dump);
+                                }
+                            while((err == 35) || (err == 3));
+
                             destroy_pbar();
                             if(tilp_error(err))
                                 return;
@@ -670,6 +729,23 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
             case CALC_TI92P:
                 gif->create_pbar_type5(_("ROM dump"), 
                                        _("Receiving bytes"));
+                                       
+                do
+                    {
+                        //while( gtk_events_pending() ) { gtk_main_iteration(); }
+                        if(info_update.cancel)
+                            break;
+                            
+                        err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+                        
+                        if(tilp_error(err))
+                            return;
+                            
+                        err = ti_calc.dump_rom(dump, ret);
+                        
+                        fclose(dump);
+                    }
+                while( ((err == 35) || (err == 3)) );
 
                 destroy_pbar();
                 if(tilp_error(err))
@@ -706,6 +782,23 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                 printf(_("ROM size: %i Mb\n"), ret);
                                 gif->create_pbar_type5(_("ROM dump"), 
                                                        _("Receiving bytes"));
+                                                    
+                                do
+                                    {
+                                        //while( gtk_events_pending() ) { gtk_main_iteration(); }
+                                        if(info_update.cancel)
+                                            break;
+                                        
+                                        err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+                                        
+                                        if(tilp_error(err))
+                                            return;
+                                            
+                                        err=ti_calc.dump_rom(dump, ret);
+                                        
+                                        fclose(dump);
+                                    }
+                                while((err == 35) || (err == 3));
 
                                 destroy_pbar();
                                 if(tilp_error(err))

@@ -92,6 +92,19 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.lp.link_type = LINK_TIE;
     else if (NSOnState == [linkCableVTI state])
         options.lp.link_type = LINK_VTI;
+    else if (NSOnState == [linkCableTGL state]) // beta support
+        {
+            options.lp.link_type = LINK_TGL;
+        
+            if (NSOnState == [portSerial2 state])
+                options.lp.port = SERIAL_PORT_2;
+            else if (NSOnState == [portSerial3 state])
+                options.lp.port = SERIAL_PORT_3;
+            else if (NSOnState == [portSerial4 state])
+                options.lp.port = SERIAL_PORT_4;
+            else
+                options.lp.port = SERIAL_PORT_1;
+        }
 
     // calculator
 
@@ -138,6 +151,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.console_mode = DSP_OFF;
         
     rc_save_user_prefs();
+    
+    ticable_set_param(&(options.lp));
 
     [NSApp stopModal];
 }
@@ -188,6 +203,25 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 break;
             case LINK_VTI:
                 [linkTypeMatrix setState:NSOnState atRow:1 column:1];
+                break;
+            case LINK_TGL: // beta support
+                [linkTypeMatrix setState:NSOnState atRow:0 column:0];
+                break;
+        }
+        
+    switch(options.lp.port)
+        {
+            case SERIAL_PORT_2:
+                [portMatrix setState:NSOnState atRow:0 column:1];
+                break;
+            case SERIAL_PORT_3:
+                [portMatrix setState:NSOnState atRow:1 column:0];
+                break;
+            case SERIAL_PORT_4:
+                [portMatrix setState:NSOnState atRow:1 column:1];
+                break;
+            default:
+                [portMatrix setState:NSOnState atRow:0 column:0];
                 break;
         }
 
@@ -245,10 +279,10 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else
         [screenModeMatrix setState:NSOnState atRow:1 column:0];
         
-    if ((options.lp.timeout > 0) && (options.lp.timeout <= 1000))
+    if ((options.lp.timeout > 0) && (options.lp.timeout <= 50))
         [linkTimeoutField setIntValue:options.lp.timeout];
-    else // defaults to 150
-        [linkTimeoutField setIntValue:150];
+    else // defaults to 5 (tenth of seconds -- half a second)
+        [linkTimeoutField setIntValue:5];
         
     if (options.console_mode == DSP_ON)
         [consoleModeMatrix setState:NSOnState atRow:0 column:0];

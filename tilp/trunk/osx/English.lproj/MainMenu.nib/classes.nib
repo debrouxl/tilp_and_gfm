@@ -126,6 +126,7 @@
                 consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 
+                linkCableTGL = id; 
                 linkCableTIE = id; 
                 linkCableTPU = id; 
                 linkCableUGL = id; 
@@ -144,6 +145,11 @@
                 pathModeFull = id; 
                 pathModeLocal = id; 
                 pathModeMatrix = id; 
+                portMatrix = id; 
+                portSerial1 = id; 
+                portSerial2 = id; 
+                portSerial3 = id; 
+                portSerial4 = id; 
                 prefsWindow = id; 
                 screenFormatMatrix = id; 
                 screenFormatPCX = id; 
