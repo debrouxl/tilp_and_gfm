@@ -138,6 +138,10 @@
 	* Merged in TiLP 4.82
 * 20020112 : v0.3.2
 	* libticables/libticalcs fixes.
+* 20020113 : v0.3.3
+	* Fixed version in window title, about box.
+	* Fixed typos in GUI.
+	* When a folder is selected, transfer all the vars in the folder.
 	
 
 

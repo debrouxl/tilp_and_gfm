@@ -45,6 +45,7 @@ extern int is_active;
 
 #define NODE(n)			((SimpleTreeNode*)n)
 #define NODE_DATA(n) 		((SimpleNodeData*)[NODE((n)) nodeData])
+#define SAFENODE(n) 		((SimpleTreeNode*)((n)?(n):(dirlistData)))
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
@@ -155,12 +156,15 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     NSString *tmpfile;
     NSSavePanel *sp;
     id item;
+    id foldItem;
     
     GList *list = NULL;
     
     struct varinfo *v = NULL;
     
     int result;
+    int i, row;
+    int indexes[256];
     
     items = [NSMutableArray array];
     
@@ -178,20 +182,58 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     itemsEnum = [items objectEnumerator];
     
+    i = 0;
+    
     while ((item = [itemsEnum nextObject]) != nil)
         {
-            if ([[NODE_DATA(item) varinfo] varinfo] == NULL)
-                break;
-        
-            v = (struct varinfo *)malloc(sizeof(struct varinfo));
-            memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(struct varinfo));
+            // if a folder is selected, select all vars in this folder
+            if ([NODE_DATA(item) isGroup] == YES)
+              {              
+                  foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
+                  
+                  while ([NODE_DATA(foldItem) isGroup] == NO)
+                    {
+                        v = (struct varinfo *)malloc(sizeof(struct varinfo));
+                          
+                        memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(struct varinfo));
+                        
+                        list = g_list_append(list, v);
+                                                        
+                        indexes[i++] = [dirlistTree rowForItem:foldItem];
+                                                        
+                        foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
+                    }
+              }
+            else
+              {
+                  row = [dirlistTree rowForItem:item];
+                  
+                  // make sure it is not already in the list
+                  for (i = 0; i < g_list_length(list); i++)
+                    {
+                        if (row == indexes[i])
+                          {
+                              row = -1;
+                              
+                              break;
+                          }
+                    }
+              
+                  if (row > 0)
+                    {
+                        v = (struct varinfo *)malloc(sizeof(struct varinfo));
+              
+                        memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(struct varinfo));
+                  
+                        list = g_list_append(list, v);
+                  
+                        indexes[i++] = [dirlistTree rowForItem:item];
+                    }
+              }
             
-            list = g_list_append(list, v);
-            
-            //free(v);
             v = NULL;
         }
-    
+        
     ctree_win.selection = list;
  
     cb_receive_var(&result);
@@ -249,9 +291,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.3.0" forKey:@"Version"];
-    [aboutOptions setObject:@"Copyright © 1999-2001 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"4.73" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"0.3.2" forKey:@"Version"];
+    [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
+    [aboutOptions setObject:@"4.82" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     

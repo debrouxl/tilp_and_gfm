@@ -689,8 +689,13 @@ int cb_receive_var(int *to_save)
 	    }
 	  ticalc_close_ti_file();
 	  gif->destroy_pbar();
+          
+#ifndef __MACOSX__
 	  *to_save = 1;
-	}
+#else
+          *to_save = 'g';
+#endif
+ 	}
       break;
     case CALC_TI82:
     case CALC_TI85:
@@ -708,7 +713,7 @@ int cb_receive_var(int *to_save)
 	  ticalc_close_ti_file();
 	}
       while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
-      gif->destroy_pbar      ();
+      gif->destroy_pbar();
       if(tilp_error(err))
 	{
 	  return -1;

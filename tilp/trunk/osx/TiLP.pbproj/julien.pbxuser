@@ -40,10 +40,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {933, 511}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{225, 0}, {708, 511}}";
 						Split0 = {
-							Frame = "{{0, 202}, {708, 309}}";
+							Frame = "{{0, 185}, {708, 326}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -80,9 +80,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {710, 84}}";
-							BuildTranscriptFrame = "{{0, 93}, {710, 87}}";
-							Frame = "{{0, 0}, {708, 178}}";
+							BuildMessageFrame = "{{0, 0}, {710, 65}}";
+							BuildTranscriptFrame = "{{0, 74}, {710, 71}}";
+							Frame = "{{0, 0}, {708, 143}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";

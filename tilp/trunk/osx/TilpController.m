@@ -478,6 +478,7 @@ struct gui_fncts gui_functions;
         {
             q = (struct varinfo *)(p->data);
             
+            // FIXME OS X : flash apps
             if((options.lp.calc_type != CALC_TI83P) && ((q->vartype) ==  ti_calc.tixx_flash(options.lp.calc_type)))
                 {
                     p = p->next;
@@ -497,7 +498,7 @@ struct gui_fncts gui_functions;
                     
                     [tmpDict setObject:tmpArray forKey:@"Entries"];
                     [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Group"];
-                    
+
                     // we're in a new folder, so...
                     varPos = 0;
                 }
@@ -696,7 +697,9 @@ struct gui_fncts gui_functions;
                                 {
                                     if ([[[file pathExtension] lowercaseString] isEqualToString:tiType])
                                         {
+#ifdef OSX_DEBUG
                                             fprintf(stderr, " should be a TI file\n");
+#endif
                                             filenameIsValid = YES;
                                             break;
                                         }
@@ -704,7 +707,9 @@ struct gui_fncts gui_functions;
                                 
                             if (filenameIsValid == NO)
                                 {
+#ifdef OSX_DEBUG
                                     fprintf(stderr, " is probably not a TI file, rejecting DROP\n");
+#endif
                                     break;
                                 }
                         }
@@ -726,9 +731,6 @@ struct gui_fncts gui_functions;
 
     // maybe we could thread cb_send_var() here...
     fprintf(stderr, "Building filelist...\n");
-    
-    // get a GList
-    //filelist = g_list_alloc();
     
     pboard = [info draggingPasteboard];
     
