@@ -102,7 +102,7 @@
 						SplitCount = 2;
 					};
 					Tab4 = {
-						Frame = "{{0, 0}, {250, 100}}";
+						Frame = "{{0, 0}, {250, 565}}";
 					};
 					TabCount = 5;
 				};
@@ -124,9 +124,19 @@
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
+	F50E4E7B017F181501000103 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
 	F51315FF0178382A01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F536EFB80180C7CA01000103 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{-8, 241}, {750, 502}}";
 		};
 	};
 	F58270650176284A01000102 = {
@@ -152,6 +162,11 @@
 	F582712901762AFA01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F582712C01762AFA01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
 		};
 	};
 	F582718E01762CAD01000102 = {

@@ -338,7 +338,6 @@
 				F50FDB980179D45601000102,
 				F50FDB990179D45601000102,
 				F50FDB9A0179D45601000102,
-				F50FDB9B0179D45601000102,
 				F50FDB9C0179D45601000102,
 				F50FDB9D0179D45601000102,
 				F50FDB9E0179D45601000102,
@@ -366,6 +365,7 @@
 				F50E4E7C017F181501000103,
 				F50E4E8A017F249701000103,
 				F5D45989017F4A2001000103,
+				F536EFB90180C7CB01000103,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -555,6 +555,7 @@
 		F50E4E82017F224201000103 = {
 			children = (
 				F50E4E89017F249701000103,
+				F536EFB80180C7CA01000103,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -645,12 +646,6 @@
 		};
 		F50FDB9A0179D45601000102 = {
 			fileRef = F582712101762AFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDB9B0179D45601000102 = {
-			fileRef = F582712201762AFA01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -869,6 +864,17 @@
 		};
 		F514E0E60178CA7001000102 = {
 			fileRef = F514E0E30178CA7001000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F536EFB80180C7CA01000103 = {
+			isa = PBXFileReference;
+			path = cocoa_structs.h;
+			refType = 4;
+		};
+		F536EFB90180C7CB01000103 = {
+			fileRef = F536EFB80180C7CA01000103;
 			isa = PBXBuildFile;
 			settings = {
 			};

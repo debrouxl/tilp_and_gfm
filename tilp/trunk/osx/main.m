@@ -2,12 +2,6 @@
 #include <config.h>
 #endif
 
-#include "../src/main.h"
-#include "../src/defs.h"
-#include "../src/gui_indep.h"
-#include "../src/struct.h"
-#include "../src/cb_misc.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +12,16 @@
 #include <libticalcs/calc_int.h>
 
 #import <Cocoa/Cocoa.h>
+
+#include "../src/main.h"
+#include "../src/defs.h"
+#include "../src/gui_indep.h"
+#include "../src/struct.h"
+#include "../src/cb_misc.h"
+
+#include "cocoa_structs.h"
+
+struct cocoa_classes_ptr *classes_ptr;
 
 #ifdef HAVE_TIFFEP
 Shm s;
@@ -43,6 +47,15 @@ int main(int argc, const char *argv[], char **arge)
 #ifdef HAVE_TIFFEP
   TiffepMsg msg;
 #endif
+    
+  classes_ptr = (struct cocoa_classes_ptr *)malloc(sizeof(struct cocoa_classes_ptr));
+    
+  /* Init the classes pointers */
+  classes_ptr->BoxesController = nil;
+  classes_ptr->MenuController = nil;
+  classes_ptr->PrefsController = nil;
+  classes_ptr->ToolbarController = nil;
+  classes_ptr->TilpController = nil;
     
   /* Install a signal handler */
   signal(SIGINT, signal_handler);
