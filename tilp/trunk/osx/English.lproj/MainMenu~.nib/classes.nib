@@ -80,6 +80,8 @@
                 TilpController = id; 
                 ToolbarController = id; 
                 mainWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
                 thanksPanel = id; 
                 thanksPanelText = id; 
             }; 
@@ -105,9 +107,9 @@
                 calcType92p = id; 
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
-                linkCableTIGLUSB = id; 
-                linkCableTPC = id; 
-                linkCableVTE = id; 
+                linkCableTIE = id; 
+                linkCableTPU = id; 
+                linkCableUGL = id; 
                 linkCableVTI = id; 
                 linkTimeoutField = id; 
                 linkTimeoutValueStepper = id; 
@@ -171,6 +173,8 @@
                 PrefsController = id; 
                 TilpController = id; 
                 mainWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

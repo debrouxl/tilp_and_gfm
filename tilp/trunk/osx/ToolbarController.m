@@ -1,3 +1,9 @@
+
+#include "../src/cb_calc.h"
+#include "../src/struct.h"
+
+extern struct screenshot ti_screen;
+
 #import "ToolbarController.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSString *label,NSString *paletteLabel,NSString *toolTip,id target,SEL settingSelector, id itemContent,SEL action)
@@ -18,7 +24,6 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     // it (above).
     [theDict setObject:item forKey:identifier];
 }
-
 
 @implementation ToolbarController
 
@@ -109,22 +114,43 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
 
 - (IBAction)doBackup:(id)sender
 {
+    cb_receive_backup();
 }
 
 - (IBAction)doRestore:(id)sender
 {
+    // FIXME OS X
+    // pop-up a fileselection then call
+    // cb_send_backup(char *filename);
 }
 
 - (IBAction)getDirlist:(id)sender
 {
+    cb_dirlist();
 }
 
 - (IBAction)getScreen:(id)sender
 {
+    NSData *bitmap;
+    NSImage *screen;
+
+    if (cb_screen_capture() != 0)
+        return;
+    
+    [screendumpWindow makeKeyAndOrderFront:self];
+    
+    bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
+    [bitmap autorelease];
+    
+    screen = [[NSImage alloc] initWithData:bitmap];
+    [screen autorelease];
+    
+    [screendumpImage setImage:screen];
 }
 
 - (IBAction)isReady:(id)sender
 {
+    cb_calc_is_ready();
 }
 
 @end

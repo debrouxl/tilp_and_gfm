@@ -80,6 +80,8 @@
                 TilpController = id; 
                 ToolbarController = id; 
                 mainWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
                 thanksPanel = id; 
                 thanksPanelText = id; 
             }; 
@@ -171,6 +173,8 @@
                 PrefsController = id; 
                 TilpController = id; 
                 mainWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

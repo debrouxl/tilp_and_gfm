@@ -41,7 +41,7 @@ rc_init_with_default(void)
     options.ctree_sort = SORT_BY_NAME;
     options.ctree_sort_order = SORT_UP;
     options.path_mode = FULL_PATH;
-    options.screen_format = PCX;
+    options.screen_format = TIFF;
     options.screen_clipping = CLIPPED_SCREEN;
     options.transfer_mode = SILENT_MODE;
     options.file_checking = UNUSED;

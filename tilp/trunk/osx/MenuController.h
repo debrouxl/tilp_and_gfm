@@ -8,6 +8,8 @@
     IBOutlet id ToolbarController;
 
     IBOutlet id mainWindow;
+    IBOutlet id screendumpWindow;
+    IBOutlet id screendumpImage;
     IBOutlet id thanksPanel;
     IBOutlet id thanksPanelText;
 }

@@ -92,8 +92,8 @@
     
     if (NSOnState == [screenFormatPCX state])
         options.screen_format = PCX;
-    //else if (NSOnState == [screenFormatTIFF state]) // FIXME OS X
-    //    options.screen_format == TIFF
+    else if (NSOnState == [screenFormatTIFF state])
+        options.screen_format = TIFF;
     else if (NSOnState == [screenFormatXPM state])
         options.screen_format = XPM;
 
@@ -194,15 +194,15 @@
     
     switch(options.screen_format)
         {
-            case PCX:
+            case TIFF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:0];
                 break;
-            case XPM:
+            case PCX:
                 [screenFormatMatrix setState:NSOnState atRow:1 column:0];
                 break;
-            //case TIFF:  // FIXME OS X
-            //    [screenFormatMatrix setState:NSOnState atRow:2 column:0];
-            //    break;
+            case XPM:
+                [screenFormatMatrix setState:NSOnState atRow:2 column:0];
+                break;
         }
         
     if (options.screen_clipping == FULL_SCREEN)

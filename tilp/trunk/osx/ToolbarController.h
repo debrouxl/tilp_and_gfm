@@ -4,6 +4,8 @@
 {
     NSMutableDictionary *toolbarItems;
     IBOutlet id mainWindow;
+    IBOutlet id screendumpWindow;
+    IBOutlet id screendumpImage;
     IBOutlet id BoxesController;
     IBOutlet id MenuController;
     IBOutlet id PrefsController;

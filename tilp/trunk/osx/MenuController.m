@@ -1,10 +1,12 @@
 #include "../src/cb_misc.h"
 #include "../src/cb_calc.h"
+#include "../src/struct.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
+extern struct screenshot ti_screen;
 
 #import "MenuController.h"
 
@@ -60,7 +62,21 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (IBAction)getScreen:(id)sender
 {
-    cb_screen_capture();
+    NSData *bitmap;
+    NSImage *screen;
+
+    if (cb_screen_capture() != 0)
+        return;
+    
+    [screendumpWindow makeKeyAndOrderFront:self];
+    
+    bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
+    [bitmap autorelease];
+    
+    screen = [[NSImage alloc] initWithData:bitmap];
+    [screen autorelease];
+    
+    [screendumpImage setImage:screen];
 }
 
 - (IBAction)getDirlist:(id)sender
