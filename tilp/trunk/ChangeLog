@@ -45,6 +45,8 @@
 	* implemented remoteControlChangeMode
 * 20011031 : v0.1.4	
 	* implemented ROM dump menu
+* 20011101 : v0.1.4
+	* forgot to enter/leave terminal mode when switching mode
 
 
 
