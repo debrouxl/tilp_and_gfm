@@ -110,6 +110,10 @@ SOURCE=..\..\src\clock.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\comm.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\ctree.c
 # End Source File
 # Begin Source File
@@ -472,10 +476,6 @@ SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # Begin Source File
 
 SOURCE=..\..\ChangeLog
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\comm.c
 # End Source File
 # Begin Source File
 

@@ -198,10 +198,13 @@ int tilp_calc_idlist(void)
 {
 	char buffer[MAXCHARS];
 	char idlist[32];
+
 	if (tilp_calc_isready())
 		return -1;
+
 	if (tilp_error(ti_calc.get_idlist(idlist)))
 		return -1;
+
 	strcpy(buffer, _("ID-LIST : "));
 	strncat(buffer, idlist + 8, 5);
 	strcat(buffer, "-");
@@ -209,7 +212,9 @@ int tilp_calc_idlist(void)
 	strcat(buffer, "-");
 	strncat(buffer, idlist + 8 + 5 + 5, 4);
 	strcat(buffer, "\0");
-	gif->msg_box(_("IDlist"), buffer);
+
+	gif->msg_box(_("Information"), buffer);
+
 	return 0;
 }
 
