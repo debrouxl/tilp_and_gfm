@@ -45,6 +45,7 @@
 #include "about.h"
 #include "screenshot.h"
 #include "action.h"
+#include "gtk_refresh.h"
 
 
 /******************/

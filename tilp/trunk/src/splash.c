@@ -31,6 +31,7 @@
 #include "support.h"
 #include "tilp_version.h"
 #include "tilp_core.h"
+#include "gtk_refresh.h"
 
 typedef struct {
 	GtkWidget *window;
