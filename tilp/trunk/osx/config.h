@@ -34,7 +34,7 @@
 
 #define ALLOW_EXIT_HOMEDIR
 
-#define TILP_OSX_VERSION "0.6.1"
+#define TILP_OSX_VERSION "0.6.2"
 
 // the line below must be modified at each revision !
 #define SVN_REV "$Rev$"

@@ -1,4 +1,7 @@
-* 20030419 : v6.62 ($Rev$)
+* 20030419 : v6.62 / 0.6.2 ($Rev$)
+	* Rewrote getVarsThreaded.
+	* Got rid of the special items in the dirlistTree.
+* 20030419 : v6.62 / 0.6.1 (Rev: 251)
 	* Fixed dirlist.
 	* Fixed screendump rendering.
 	* Screendumps can now be saved in PDF.

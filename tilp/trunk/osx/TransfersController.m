@@ -68,179 +68,126 @@ extern struct cocoa_objects_ptr *objects_ptr;
   [NSThread exit];
 }
 
+static void
+add_item_to_selection_list(GList **list, id item)
+{
+    TiVarEntry *v;
+    
+    v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
+
+    memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(TiVarEntry));
+
+    *list = g_list_append(*list, v);    
+}
 
 - (void)getVarsThreaded:(id)sender
 {
     NSAutoreleasePool *localPool;
 
-    NSMutableArray *items;
-    NSEnumerator *itemsEnum;
     NSEnumerator *selectedRows;
+    NSEnumerator *varsEnum;
     NSNumber *selRow;
+    NSMutableArray *vars;
     id item;
     id foldItem;
+
+    BOOL expanded;
     
     GList *vars_list = NULL;
     GList *flash_list = NULL;
     
-    TiVarEntry *v = NULL;
-    
     int tiVarsRow;
-    int i, j, row;
-    int vars_indexes[128]; // I don't know if 128 vars can be fitted on the TI, but :-)
-    int flash_indexes[64];
+    int row;
+    int didBackup = 0;
 
     localPool = [[NSAutoreleasePool alloc] init];
     
-    items = [NSMutableArray array];
+    vars = [NSMutableArray array];
     
     selectedRows = [dirlistTree selectedRowEnumerator];
     selRow = nil;
     
     // If the FLASH Applications folder is expanded, then the TI Variables item is not at row 6
-    if ([dirlistTree isItemExpanded:[dirlistTree itemAtRow:5]])
+    if ([dirlistTree isItemExpanded:[dirlistTree itemAtRow:0]])
         {
-            tiVarsRow = 5 + 1 + [myTilpController outlineView:dirlistTree numberOfChildrenOfItem:[dirlistTree itemAtRow:5]];
+            tiVarsRow = 1 + [myTilpController outlineView:dirlistTree numberOfChildrenOfItem:[dirlistTree itemAtRow:0]];
         }
     else
-        tiVarsRow = 6;
+        tiVarsRow = 1;
     
     while ((selRow = [selectedRows nextObject]))
+    {
+        row = [selRow intValue];
+        // FLASH Applications item => get each FLASH App
+        if (row == 0)
         {
-            switch([selRow intValue])
-                {
-                    case 0: // do a screendump
-                        [self getScreen:self];
-                        break;
-                    case 1: // do a romdump
-                        [self romDump:self];
-                        break;
-                    case 2: // memory item => do... I don't know
-                        fprintf(stderr, "DEBUG: GET VARS => MEMORY ITEM, UNUSED\n");
-                        break;
-                    case 3: // get ID list
-                        tilp_calc_idlist();
-                        break;
-                    case 4: // keyboard item => do... I don't know
-                        fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
-                        break;
-                    case 5: // FLASH Applications item => get each FLASH App
-                        item = [dirlistTree itemAtRow:5];
-                        
-                        [dirlistTree expandItem:item];
-                                          
-                        foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
-                  
-                        while ([NODE_DATA(foldItem) isGroup] == NO)
-                            {
-                                v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
-                          
-                                memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(TiVarEntry));
-                        
-                                flash_list = g_list_append(flash_list, v);
-                                                        
-                                foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
-                            }
-                            
-                            ctree_win.selection2 = flash_list;
-                        break;
-                    default:
-                        if ([selRow intValue] == tiVarsRow)
-                            {
-                                // do a backup of all vars
-                                [self doBackup:self];
-                            }
-                        else if (([selRow intValue] > 5) && ([dirlistTree itemAtRow:[selRow intValue]]))
-                            [items addObject:[dirlistTree itemAtRow:[selRow intValue]]];
-                }
+            item = [dirlistTree itemAtRow:0];
+            expanded = [dirlistTree isItemExpanded:item];
+            [dirlistTree expandItem:item];
+
+            foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
+            while ([NODE_DATA(foldItem) isGroup] == NO)
+            {
+                add_item_to_selection_list(&flash_list, foldItem);
+                foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
+            }
+
+            ctree_win.selection2 = flash_list;
+
+            if (expanded != YES)
+                [dirlistTree collapseItem:item];
         }
-
-    itemsEnum = [items objectEnumerator];
-    
-    i = 0;
-    
-    while ((item = [itemsEnum nextObject]) != nil)
+        else if (row == tiVarsRow)
         {
-            // if a folder is selected, select all vars in this folder
-            if ([NODE_DATA(item) isGroup] == YES)
-              {
-                  [dirlistTree expandItem:item];
-       
-                  foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
+            [self doBackup:nil];
+            didBackup = 1;
+        }
+        else
+        {
+            if ((flash_list == NULL) && (row < tiVarsRow))
+            {
+                // add to the flash_list
+                add_item_to_selection_list(&flash_list, [dirlistTree itemAtRow:row]);
+            }
+            else if (didBackup == 0)
+            {
+                // add to the vars_list
+                item = [dirlistTree itemAtRow:row];
+                if ([NODE_DATA(item) isGroup] == YES)
+                {
+                    // add every var in the folder to the array
+                    expanded = [dirlistTree isItemExpanded:item];
+                    [dirlistTree expandItem:item];
 
-                  while ([NODE_DATA(foldItem) isGroup] == NO)
+                    foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
+                    while ([NODE_DATA(foldItem) isGroup] == NO)
                     {
-                        v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
-                          
-                        memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(TiVarEntry));
-                        
-                        row = [dirlistTree rowForItem:foldItem];
-
-                        if (row > tiVarsRow)
-                          {
-                              vars_list = g_list_append(vars_list, v);
-                              vars_indexes[i++] = [dirlistTree rowForItem:foldItem];
-                          }
-                        else
-                          {
-                              flash_list = g_list_append(flash_list, v);
-                              flash_indexes[i++] = [dirlistTree rowForItem:foldItem];
-                          }
-                                                                                                                
+                        [vars addObject:foldItem];
                         foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
                     }
-              }
-            else
-              {
-                  row = [dirlistTree rowForItem:item];
 
-                  // make sure it is not already in the list
-                  for (j = 0; j < g_list_length(vars_list); j++)
-                    {
-                        if (row == vars_indexes[j])
-                          {
-                              row = -1;
-                              
-                              break;
-                          }
-                    }
-                    
-                  for (j = 0; j < g_list_length(flash_list); j++)
-                    {
-                        if (row == flash_indexes[j])
-                          {
-                              row = -1;
-                              
-                              break;
-                          }
-                    }
-
-                  if (row > 0)
-                    {
-                        v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
-                        
-                        memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(TiVarEntry));
-                  
-                        if (row > tiVarsRow)
-                            {
-                                vars_list = g_list_append(vars_list, v);
-                                vars_indexes[i++] = [dirlistTree rowForItem:item];
-                            }
-                        else
-                            {
-                                flash_list = g_list_append(flash_list, v);
-                                flash_indexes[i++] = [dirlistTree rowForItem:item];
-                            }
-                    }
-              }
-            
-            v = NULL;
+                    if (expanded != YES)
+                        [dirlistTree collapseItem:item];
+                }
+                else
+                {
+                    // add the var to the array if it's not alreay in
+                    if ([vars containsObject:item] == NO)
+                        [vars addObject:item];
+                }
+            }
         }
+    }
+
+    varsEnum = [vars objectEnumerator];
+
+    while ((item = [varsEnum nextObject]) != nil)
+        add_item_to_selection_list(&vars_list, item);
         
     ctree_win.selection = vars_list; 
   
     // Retrieve vars
-    if (ctree_win.selection != NULL)
+    if (vars_list != NULL)
     {
         tilp_calc_recv_var();
 
@@ -248,8 +195,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
         g_list_free(vars_list);
     }
 
-    // FLASH APPS HERE !
-        
+    // Retrieve FLASH Apps
     if (flash_list != NULL)
     {
         ctree_win.selection2 = flash_list;
@@ -543,13 +489,27 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
     sp = [NSSavePanel savePanel];
     
     calcDict = [myTilpController getCurrentCalcDict];
-    
-    [sp beginSheetForDirectory:NSHomeDirectory()
-        file:[calcDict objectForKey:@"defaultBackupFilename"]
-        modalForWindow:[myBoxesController keyWindow]
-        modalDelegate:myBoxesController
-        didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
-        contextInfo:sp];
+
+    // getVarsThreaded can call us with sender == nil
+    // in which case we should open this dialog in the current directory
+    if (sender != nil)
+    {
+        [sp beginSheetForDirectory:NSHomeDirectory()
+                              file:[calcDict objectForKey:@"defaultBackupFilename"]
+                    modalForWindow:[myBoxesController keyWindow]
+                     modalDelegate:myBoxesController
+                    didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
+                       contextInfo:sp];
+    }
+    else
+    {
+        [sp beginSheetForDirectory:[NSString stringWithCString:g_get_current_dir()]
+                              file:[calcDict objectForKey:@"defaultBackupFilename"]
+                    modalForWindow:[myBoxesController keyWindow]
+                     modalDelegate:myBoxesController
+                    didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
+                       contextInfo:sp];        
+    }
 }
 
 - (int)sendChar:(uint16_t)tikey

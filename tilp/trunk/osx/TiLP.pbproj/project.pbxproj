@@ -256,8 +256,6 @@
 				F51015F301C3610A01000102,
 				F50D0B0F019DAC3B01041594,
 				F50D0B10019DAC3B01041594,
-				F50D0B11019DAC3B01041594,
-				F50D0B12019DAC3B01041594,
 				F50D0B13019DAC3B01041594,
 				F50D0B14019DAC3B01041594,
 				F50751D8019C0A370140747F,
@@ -1623,8 +1621,6 @@
 				F50751E1019C12DA0140747F,
 				F50D0B15019DAC3B01041594,
 				F50D0B16019DAC3B01041594,
-				F50D0B17019DAC3B01041594,
-				F50D0B18019DAC3B01041594,
 				F50D0B19019DAC3B01041594,
 				F50D0B1A019DAC3B01041594,
 				F5F274FE019EE8CD01A9EF85,
@@ -1913,18 +1909,6 @@
 			path = images/doc.tiff;
 			refType = 2;
 		};
-		F50D0B11019DAC3B01041594 = {
-			isa = PBXFileReference;
-			name = keyboard_mini.tiff;
-			path = images/keyboard_mini.tiff;
-			refType = 2;
-		};
-		F50D0B12019DAC3B01041594 = {
-			isa = PBXFileReference;
-			name = screen_mini.tiff;
-			path = images/screen_mini.tiff;
-			refType = 2;
-		};
 		F50D0B13019DAC3B01041594 = {
 			isa = PBXFileReference;
 			name = dir_c.tiff;
@@ -1945,18 +1929,6 @@
 		};
 		F50D0B16019DAC3B01041594 = {
 			fileRef = F50D0B10019DAC3B01041594;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50D0B17019DAC3B01041594 = {
-			fileRef = F50D0B11019DAC3B01041594;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50D0B18019DAC3B01041594 = {
-			fileRef = F50D0B12019DAC3B01041594;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -110,8 +110,8 @@ void version(void)
     
 #ifdef __MACOSX__
 	DISPLAY(_
-		("Mac OS X port Version %s, (C) 2001-2003 Julien Blache <jb@tilp.info>\n"),
-		TILP_OSX_VERSION);
+		("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"),
+		TILP_OSX_VERSION, SVN_REV);
 #endif
 
 	DISPLAY(_("Built on %s %s\n"), __DATE__, __TIME__);

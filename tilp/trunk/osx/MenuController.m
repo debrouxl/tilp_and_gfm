@@ -164,12 +164,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                  modalDelegate:myBoxesController
                 didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
                    contextInfo:nil];
-
-#if 0    
-    [NSThread detachNewThreadSelector:@selector(getVarsThreaded:)
-              toTarget:myTransfersController
-              withObject:self];
-#endif /* 0 */
 }
 
 // Application menu
@@ -181,7 +175,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:[NSString stringWithCString:SVN_REV] forKey:@"Version"];
+    [aboutOptions setObject:[NSString stringWithFormat:@"%s - %s", TILP_OSX_VERSION, SVN_REV] forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2003 Romain LIÉVIN, Julien BLACHE   <roms@tilp.info>, <jb@tilp.info>" forKey:@"Copyright"];
     [aboutOptions setObject:@"6.62" forKey:@"ApplicationVersion"];
 

@@ -1414,7 +1414,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 469";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 10039;
 		rType = 0;
 		vrLen = 506;
 		vrLoc = 17652;
@@ -1434,7 +1434,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreenThreaded:";
 		rLen = 0;
-		rLoc = 14400;
+		rLoc = 7486;
 		rType = 0;
 		vrLen = 319;
 		vrLoc = 14233;
@@ -1464,7 +1464,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreenThreaded:";
 		rLen = 0;
-		rLoc = 14431;
+		rLoc = 7517;
 		rType = 0;
 		vrLen = 364;
 		vrLoc = 14368;
@@ -1484,7 +1484,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreenThreaded:";
 		rLen = 25;
-		rLoc = 14406;
+		rLoc = 7492;
 		rType = 0;
 		vrLen = 504;
 		vrLoc = 14307;
@@ -1504,7 +1504,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 469";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 10039;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 16517;
@@ -1524,7 +1524,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreenThreaded:";
 		rLen = 0;
-		rLoc = 14400;
+		rLoc = 7486;
 		rType = 0;
 		vrLen = 486;
 		vrLoc = 14307;
@@ -1584,7 +1584,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: sendAMS:";
 		rLen = 0;
-		rLoc = 10455;
+		rLoc = 11056;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 10462;
@@ -1594,7 +1594,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 19487;
+		rLoc = 12573;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 19088;
@@ -1942,7 +1942,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 17937;
+		rLoc = 11023;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 16066;
@@ -1962,7 +1962,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22025;
+		rLoc = 20698;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 19582;
@@ -1972,7 +1972,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: remoteControl:";
 		rLen = 0;
-		rLoc = 7992;
+		rLoc = 8593;
 		rType = 0;
 		vrLen = 649;
 		vrLoc = 7717;
@@ -1992,7 +1992,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_calcs.c: 561";
 		rLen = 0;
-		rLoc = 13508;
+		rLoc = 13347;
 		rType = 0;
 		vrLen = 492;
 		vrLoc = 15721;
@@ -2002,7 +2002,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 19487;
+		rLoc = 12573;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 19088;
@@ -2022,7 +2022,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: doBackup:";
 		rLen = 0;
-		rLoc = 19590;
+		rLoc = 12676;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 19088;
@@ -2042,7 +2042,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 19487;
+		rLoc = 12573;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 19088;
@@ -2202,7 +2202,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: doBackupDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 7049;
+		rLoc = 7717;
 		rType = 0;
 		vrLen = 588;
 		vrLoc = 2290;
@@ -2232,7 +2232,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: outlineView:acceptDrop:item:childIndex:";
 		rLen = 0;
-		rLoc = 27007;
+		rLoc = 25680;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 24649;
@@ -2242,7 +2242,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: p";
 		rLen = 0;
-		rLoc = 3553;
+		rLoc = 3544;
 		rType = 0;
 		vrLen = 473;
 		vrLoc = 3410;
@@ -2272,7 +2272,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 66;
-		rLoc = 17085;
+		rLoc = 15871;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 15527;
@@ -2292,7 +2292,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 18676;
+		rLoc = 17462;
 		rType = 0;
 		vrLen = 692;
 		vrLoc = 18832;
@@ -2372,7 +2372,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 6770;
@@ -2382,7 +2382,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_calcs.c: f";
 		rLen = 48;
-		rLoc = 14047;
+		rLoc = 13886;
 		rType = 0;
 		vrLen = 747;
 		vrLoc = 13697;
@@ -2402,7 +2402,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_calcs.c: tilp_calc_send_var";
 		rLen = 57;
-		rLoc = 13990;
+		rLoc = 13829;
 		rType = 0;
 		vrLen = 852;
 		vrLoc = 14174;
@@ -2482,7 +2482,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 7955;
+		rLoc = 7946;
 		rType = 0;
 		vrLen = 646;
 		vrLoc = 7358;
@@ -2492,7 +2492,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 66;
-		rLoc = 17085;
+		rLoc = 15871;
 		rType = 0;
 		vrLen = 603;
 		vrLoc = 15527;
@@ -2512,7 +2512,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 18612;
+		rLoc = 17398;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 16159;
@@ -2532,7 +2532,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: cmi";
 		rLen = 23;
-		rLoc = 22000;
+		rLoc = 20673;
 		rType = 0;
 		vrLen = 898;
 		vrLoc = 19220;
@@ -2552,7 +2552,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: fi";
 		rLen = 0;
-		rLoc = 26640;
+		rLoc = 25313;
 		rType = 0;
 		vrLen = 673;
 		vrLoc = 24166;
@@ -2572,7 +2572,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22025;
+		rLoc = 20698;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 19377;
@@ -2592,7 +2592,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_calcs.c: tilp_calc_send_var";
 		rLen = 57;
-		rLoc = 13990;
+		rLoc = 13829;
 		rType = 0;
 		vrLen = 334;
 		vrLoc = 20128;
@@ -2622,7 +2622,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22025;
+		rLoc = 20698;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 19248;
@@ -2722,7 +2722,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: defaultConfig:";
 		rLen = 0;
-		rLoc = 6095;
+		rLoc = 6696;
 		rType = 0;
 		vrLen = 367;
 		vrLoc = 5884;
@@ -2862,7 +2862,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: remoteControl:";
 		rLen = 0;
-		rLoc = 7992;
+		rLoc = 8593;
 		rType = 0;
 		vrLen = 668;
 		vrLoc = 7717;
@@ -2942,7 +2942,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 195";
 		rLen = 0;
-		rLoc = 6152;
+		rLoc = 6753;
 		rType = 0;
 		vrLen = 189;
 		vrLoc = 6143;
@@ -2962,7 +2962,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 194";
 		rLen = 0;
-		rLoc = 6152;
+		rLoc = 6753;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 5918;
@@ -2972,7 +2972,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: screendumpSaveImageDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 6511;
+		rLoc = 7179;
 		rType = 0;
 		vrLen = 859;
 		vrLoc = 6218;
@@ -3042,7 +3042,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: screendumpSaveImageDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 6157;
+		rLoc = 6825;
 		rType = 0;
 		vrLen = 884;
 		vrLoc = 5798;
@@ -3132,7 +3132,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 706;
 		vrLoc = 6665;
@@ -3212,7 +3212,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 1100;
@@ -3232,7 +3232,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 816;
 		vrLoc = 1100;
@@ -3262,7 +3262,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 194";
 		rLen = 0;
-		rLoc = 6152;
+		rLoc = 6753;
 		rType = 0;
 		vrLen = 522;
 		vrLoc = 5918;
@@ -3292,7 +3292,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 17858;
+		rLoc = 10944;
 		rType = 0;
 		vrLen = 906;
 		vrLoc = 15716;
@@ -3392,7 +3392,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 21214;
+		rLoc = 20000;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 17891;
@@ -3492,7 +3492,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22025;
+		rLoc = 20698;
 		rType = 0;
 		vrLen = 932;
 		vrLoc = 19389;
@@ -3522,7 +3522,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 17858;
+		rLoc = 10944;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 15135;
@@ -3542,7 +3542,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 17171;
+		rLoc = 10257;
 		rType = 0;
 		vrLen = 1105;
 		vrLoc = 15084;
@@ -3642,7 +3642,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 1077;
@@ -3662,7 +3662,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 294";
 		rLen = 36;
-		rLoc = 9450;
+		rLoc = 10051;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 9303;
@@ -3682,7 +3682,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 351";
 		rLen = 39;
-		rLoc = 12828;
+		rLoc = 5914;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 12925;
@@ -3722,7 +3722,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 18190;
+		rLoc = 16976;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 17752;
@@ -3742,7 +3742,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 18096;
+		rLoc = 11182;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -3762,7 +3762,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: getDirlist:";
 		rLen = 0;
-		rLoc = 8368;
+		rLoc = 8969;
 		rType = 0;
 		vrLen = 685;
 		vrLoc = 7851;
@@ -3782,7 +3782,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: getDirlist:";
 		rLen = 0;
-		rLoc = 8368;
+		rLoc = 8969;
 		rType = 0;
 		vrLen = 572;
 		vrLoc = 8058;
@@ -3802,7 +3802,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: screendumpSaveImageDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 6627;
+		rLoc = 7295;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 5903;
@@ -3822,7 +3822,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 21187;
+		rLoc = 19973;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 21673;
@@ -3862,7 +3862,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 18604;
+		rLoc = 17390;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 17946;
@@ -3882,7 +3882,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22538;
+		rLoc = 21211;
 		rType = 0;
 		vrLen = 1178;
 		vrLoc = 21442;
@@ -3912,7 +3912,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: getScreen:";
 		rLen = 0;
-		rLoc = 8240;
+		rLoc = 8841;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 8056;
@@ -3922,7 +3922,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 22522;
+		rLoc = 21195;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 21418;
@@ -3942,7 +3942,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 22604;
+		rLoc = 21277;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 21401;
@@ -4062,7 +4062,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 17146;
+		rLoc = 15932;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 16825;
@@ -4072,7 +4072,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7099;
+		rLoc = 7107;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 1077;
@@ -4092,7 +4092,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 294";
 		rLen = 36;
-		rLoc = 9450;
+		rLoc = 10051;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 9303;
@@ -4112,7 +4112,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 351";
 		rLen = 39;
-		rLoc = 12828;
+		rLoc = 5914;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 12925;
@@ -4192,7 +4192,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 17146;
+		rLoc = 15932;
 		rType = 0;
 		vrLen = 800;
 		vrLoc = 16825;
@@ -4212,7 +4212,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshOutline";
 		rLen = 0;
-		rLoc = 18190;
+		rLoc = 16976;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 17752;
@@ -4232,7 +4232,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: probeCalc:";
 		rLen = 0;
-		rLoc = 6152;
+		rLoc = 6753;
 		rType = 0;
 		vrLen = 488;
 		vrLoc = 6050;
@@ -4302,7 +4302,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: doRestore:";
 		rLen = 0;
-		rLoc = 8639;
+		rLoc = 9240;
 		rType = 0;
 		vrLen = 673;
 		vrLoc = 8518;
@@ -4312,7 +4312,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 4991;
+		rLoc = 4999;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 5076;
@@ -4392,7 +4392,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: doBackupDidEnd:returnCode:contextInfo:";
 		rLen = 46;
-		rLoc = 7360;
+		rLoc = 8028;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 7575;
@@ -4412,7 +4412,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: getVarsDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 9874;
+		rLoc = 9154;
 		rType = 0;
 		vrLen = 381;
 		vrLoc = 10840;
@@ -4482,7 +4482,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: 256";
 		rLen = 0;
-		rLoc = 6622;
+		rLoc = 6613;
 		rType = 0;
 		vrLen = 543;
 		vrLoc = 6359;
@@ -4532,7 +4532,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: outlineView:acceptDrop:item:childIndex:";
 		rLen = 59;
-		rLoc = 27150;
+		rLoc = 25823;
 		rType = 0;
 		vrLen = 667;
 		vrLoc = 24649;
@@ -4541,8 +4541,8 @@
 		fRef = F50C433401F4624B01000102;
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getVarsThreaded:";
-		rLen = 39;
-		rLoc = 8778;
+		rLen = 27;
+		rLoc = 5487;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 8438;
@@ -4590,7 +4590,7 @@
 		isa = PBXTextBookmark;
 		name = "config.h: VERSION";
 		rLen = 0;
-		rLoc = 1185;
+		rLoc = 1151;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 422;
@@ -4650,7 +4650,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: render_screen_blurry";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 10039;
 		rType = 0;
 		vrLen = 814;
 		vrLoc = 15880;
@@ -4690,7 +4690,7 @@
 		isa = PBXTextBookmark;
 		name = "config.h: VERSION";
 		rLen = 0;
-		rLoc = 1185;
+		rLoc = 1151;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 422;
@@ -4720,7 +4720,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: showAbout:";
 		rLen = 0;
-		rLoc = 5535;
+		rLoc = 6136;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 5104;
@@ -4740,7 +4740,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: showAbout:";
 		rLen = 0;
-		rLoc = 5655;
+		rLoc = 6256;
 		rType = 0;
 		vrLen = 1034;
 		vrLoc = 103;
@@ -5110,7 +5110,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: showAbout:";
 		rLen = 0;
-		rLoc = 5655;
+		rLoc = 6256;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 103;
@@ -5250,7 +5250,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 8562;
+		rLoc = 8553;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 647;
@@ -5330,7 +5330,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: refreshInfos";
 		rLen = 0;
-		rLoc = 22025;
+		rLoc = 20698;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 19524;
@@ -5520,7 +5520,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 19487;
+		rLoc = 12573;
 		rType = 0;
 		vrLen = 662;
 		vrLoc = 17896;
@@ -5540,7 +5540,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: ret";
 		rLen = 0;
-		rLoc = 18998;
+		rLoc = 12084;
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 17866;
@@ -5560,7 +5560,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 19487;
+		rLoc = 12573;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 12492;
@@ -5570,7 +5570,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: 281";
 		rLen = 166;
-		rLoc = 6734;
+		rLoc = 7402;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 7825;
@@ -5580,7 +5580,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 20060;
+		rLoc = 13361;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 18654;
@@ -5610,7 +5610,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 17171;
+		rLoc = 10257;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 15101;
@@ -5630,7 +5630,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: vars_indexes";
 		rLen = 0;
-		rLoc = 2394;
+		rLoc = 2512;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 1187;
@@ -5680,7 +5680,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: doBackupDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 7512;
+		rLoc = 8180;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 7788;
@@ -5700,7 +5700,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: doBackupDidEnd:returnCode:contextInfo:";
 		rLen = 46;
-		rLoc = 7360;
+		rLoc = 8028;
 		rType = 0;
 		vrLen = 537;
 		vrLoc = 901;
@@ -5720,7 +5720,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: getFlashAppDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 10808;
+		rLoc = 9573;
 		rType = 0;
 		vrLen = 68;
 		vrLoc = 11153;
@@ -5880,7 +5880,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 8173;
+		rLoc = 8164;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 6954;
@@ -5950,7 +5950,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 7458;
+		rLoc = 7449;
 		rType = 0;
 		vrLen = 806;
 		vrLoc = 7004;
@@ -5960,7 +5960,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: 118";
 		rLen = 17;
-		rLoc = 4022;
+		rLoc = 4030;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 994;
@@ -6000,7 +6000,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 7436;
+		rLoc = 7427;
 		rType = 0;
 		vrLen = 786;
 		vrLoc = 7004;
@@ -6030,7 +6030,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: tilp_main";
 		rLen = 0;
-		rLoc = 8562;
+		rLoc = 8553;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 647;
@@ -6130,7 +6130,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: 252";
 		rLen = 0;
-		rLoc = 6663;
+		rLoc = 7331;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 5908;
@@ -6140,7 +6140,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 524";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 10039;
 		rType = 0;
 		vrLen = 815;
 		vrLoc = 18132;
@@ -6160,7 +6160,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 524";
 		rLen = 0;
-		rLoc = 16953;
+		rLoc = 10039;
 		rType = 0;
 		vrLen = 780;
 		vrLoc = 18132;
@@ -6190,7 +6190,7 @@
 		isa = PBXTextBookmark;
 		name = "BoxesController.m: screendumpSaveImageDidEnd:returnCode:contextInfo:";
 		rLen = 0;
-		rLoc = 6627;
+		rLoc = 7295;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 5903;
@@ -6360,7 +6360,7 @@
 		isa = PBXTextBookmark;
 		name = "config.h: 35";
 		rLen = 0;
-		rLoc = 1232;
+		rLoc = 1198;
 		rType = 0;
 		vrLen = 528;
 		vrLoc = 614;
@@ -6400,7 +6400,7 @@
 		isa = PBXTextBookmark;
 		name = "config.h: 35";
 		rLen = 0;
-		rLoc = 1232;
+		rLoc = 1198;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 0;
@@ -7310,7 +7310,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_main.c: 256";
 		rLen = 0;
-		rLoc = 6622;
+		rLoc = 6613;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 6359;
@@ -7340,7 +7340,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: defaultConfig:";
 		rLen = 0;
-		rLoc = 6094;
+		rLoc = 6695;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 5884;

@@ -462,43 +462,6 @@ TilpGuiFncts gui_functions;
 
   [content setObject:mainEntries forKey:@"Entries"];
 
-  // general handlers => screen, ROM, keyboard, ID list, backup, ...
-
-  tmpDict = [[NSMutableDictionary alloc] init];
-
-  [mainEntries insertObject:tmpDict atIndex:0];
-
-  [tmpDict setObject:@"Screen" forKey:@"Varname"];
-  [tmpDict setObject:[NSImage imageNamed:@"screen_mini.tiff"] forKey:@"Image"];
-
-  tmpDict = [[NSMutableDictionary alloc] init];
-
-  [mainEntries insertObject:tmpDict atIndex:1];
-
-  [tmpDict setObject:@"ROM (AMS)" forKey:@"Varname"];
-  [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
-
-  tmpDict = [[NSMutableDictionary alloc] init];
-
-  [mainEntries insertObject:tmpDict atIndex:2];
-
-  [tmpDict setObject:@"Memory" forKey:@"Varname"];
-  [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
-
-  tmpDict = [[NSMutableDictionary alloc] init];
-
-  [mainEntries insertObject:tmpDict atIndex:3];
-
-  [tmpDict setObject:@"ID List" forKey:@"Varname"];
-  [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-
-  tmpDict = [[NSMutableDictionary alloc] init];
-
-  [mainEntries insertObject:tmpDict atIndex:4];
-
-  [tmpDict setObject:@"Keyboard" forKey:@"Varname"];
-  [tmpDict setObject:[NSImage imageNamed:@"keyboard_mini.tiff"] forKey:@"Image"];
-
   // now the real fun is about to begin
 
   tmpArray = nil; // GCC, please, just shut the f*ck up about this one.
@@ -509,7 +472,7 @@ TilpGuiFncts gui_functions;
 
   tmpDict = [[NSMutableDictionary alloc] init];
 
-  [mainEntries insertObject:tmpDict atIndex:5];
+  [mainEntries insertObject:tmpDict atIndex:0];
 
   [tmpDict setObject:@"FLASH Apps" forKey:@"Group"];
   [tmpDict setObject:tiAppsArray forKey:@"Entries"];
@@ -520,7 +483,7 @@ TilpGuiFncts gui_functions;
 
   tmpDict = [[NSMutableDictionary alloc] init];
 
-  [mainEntries insertObject:tmpDict atIndex:6];
+  [mainEntries insertObject:tmpDict atIndex:1];
 
   [tmpDict setObject:@"TI Variables" forKey:@"Group"];
   [tmpDict setObject:tiVarsArray forKey:@"Entries"];
@@ -667,12 +630,10 @@ TilpGuiFncts gui_functions;
   // ball passed. blargh.
 
   // expand the "TI Variables" item if it has children
-  // NOTICE : the itemAtRow: argument will change if you add/remove items
-  // before the "TI Variables" item...
   if (ctree_win.dirlist != NULL)
-    [dirlistTree expandItem:[dirlistTree itemAtRow:6]];
+    [dirlistTree expandItem:[dirlistTree itemAtRow:1]];
   else
-    [dirlistTree collapseItem:[dirlistTree itemAtRow:6]];
+    [dirlistTree collapseItem:[dirlistTree itemAtRow:1]];
 
   // Update the memory information
   [numberOfFolders setStringValue:[NSString stringWithFormat:@"Number of folders : %d", cmi.folders]];
