@@ -471,6 +471,8 @@ extern int is_active;
     NSImage *screen;
     NSBitmapImageRep *bitmap;
     NSSize size;
+    NSRect viewFrame;
+    NSSize newSize;
     
     int row;
     int col;
@@ -480,12 +482,6 @@ extern int is_active;
     
     if ((is_active) || (cb_screen_capture() != 0) || (ti_screen.img.bitmap == NULL))
         return;
-
-    if ([screendumpWindow isVisible] == NO)
-        {
-            [screendumpWindow makeKeyAndOrderFront:self];
-            [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
-        }
         
     convert_bitmap_to_bytemap(&(ti_screen.img));
     
@@ -504,7 +500,7 @@ extern int is_active;
     
     data = ti_screen.img.bytemap;
 
-    // speed-up things : set a white width * height area (* 4 => 4 bytes per pixel)
+    // speed things up : set a white width * height area (* 4 => 4 bytes per pixel)
     memset(pixels, 0xFF, (ti_screen.img.width * ti_screen.img.height * 4)); 
 
     for(row = 0; row < ti_screen.img.height; row++)
@@ -526,15 +522,39 @@ extern int is_active;
                 }
         }
 
-    size = NSMakeSize(ti_screen.img.width, ti_screen.img.height);
+    if (options.screen_clipping == FULL_SCREEN)
+      size = NSMakeSize(ti_screen.sc.width, ti_screen.sc.height);
+    else
+      size = NSMakeSize(ti_screen.sc.clipped_width, ti_screen.sc.clipped_height);
     
     screen = [[NSImage alloc] initWithSize:size];
     
     [screen addRepresentation:bitmap];
-    
-    [screendumpImage setImageFrameStyle:NSImageFrameGroove];
 
     [screendumpImage setImage:screen];
+
+    if ([screendumpWindow isVisible] == NO)
+    {
+      // resize the window
+      viewFrame = [screendumpImage frame];
+
+      // resize the imageview
+      viewFrame.size = size;
+      viewFrame.origin.x = 53;
+      viewFrame.origin.y = 60;
+      
+      newSize.width = viewFrame.size.width + 106;
+      newSize.height = viewFrame.size.height + 80;
+
+      [screendumpWindow setContentSize:newSize];
+      [screendumpImage setFrame:viewFrame];
+      
+      // show and add to the Windows menu
+      [screendumpWindow makeKeyAndOrderFront:self];
+      [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
+    }
+
+    // TODO : resize proportionally (10.2), displaying the scaling rate...
 }
 
 - (void)romDump:(id)sender

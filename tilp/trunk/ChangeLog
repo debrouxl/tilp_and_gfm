@@ -280,7 +280,8 @@
 	* Fix memory information wrt FLASH Apps with libticalcs >= 3.3.2.
 	* Accept FLASH Apps and ROM upgrades when dropped on the dirlist.
 	  Thanks Romain for this one, it comes with TiLP 5.11 :)
-
+	* Resize the screendump window wrt the size of the screen.
+	
 
 
 
