@@ -24,6 +24,7 @@ extern int is_active;
 
 #import "MenuController.h"
 #import "TilpController.h"
+#import "SheetsController.h"
 
 #define NODE(n)			((SimpleTreeNode*)n)
 #define NODE_DATA(n) 		((SimpleNodeData*)[NODE((n)) nodeData])
@@ -282,6 +283,13 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // need to find how to catch certain key combos...
     // maybe use the Command key...
     // forget key combos, will make a keyboard...
+
+    if ((options.lp.calc_type != CALC_TI89) && (options.lp.calc_type != CALC_TI92) && (options.lp.calc_type != CALC_TI92P))
+        {
+            [mySheetsController msgSheet:@"The remote control is not supported by this model of calculator. Sorry !"
+                                title:@"Unsupported !"];
+            return;
+        }
 
     if (is_active)
         return;

@@ -112,7 +112,10 @@
 	not supported by Apple...
 	* Added a Varinfo class to hold the struct varinfo in dirlist items
 	* Registered files extensions
-
+* 20011209 : v0.2.4
+	* Added osx/images/calc.tiff to CVS
+	* Do not open remote control if calc is not one of TI89/92/92+
+	
 
 
 

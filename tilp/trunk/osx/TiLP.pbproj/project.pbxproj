@@ -246,6 +246,7 @@
 				F5090AF30178A67A01000102,
 				089C165CFE840E0CC02AAC07,
 				00FFA4BA01707A727F000001,
+				F51015F301C3610A01000102,
 				F50D0B0F019DAC3B01041594,
 				F50D0B10019DAC3B01041594,
 				F50D0B11019DAC3B01041594,
@@ -329,6 +330,1206 @@
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>TI 73 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73n</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73t</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Table Setup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73v</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Vector</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73w</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73y</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Y-Variable</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82b</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Group file</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82n</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82t</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Table Setup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82w</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82y</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Y-Variable</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>82z</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 82 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83b</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83n</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83s</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83y</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Y-Variable</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xb</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xc</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xd</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xg</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xi</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xl</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xm</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xn</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xp</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xs</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>8xy</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83+ Y-Variable</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85b</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85e</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Equation</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85n</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85r</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85s</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85v</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Vector</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86e</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Equation</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86n</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Real Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86r</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86s</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86v</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Vector</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86w</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Window Settings</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89a</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Figure</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89b</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89e</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Equation</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89f</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Function</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89s</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89t</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>83t</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 83 Table Setup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89x</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Macro for the Geometry Application</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89z</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Assembly Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92a</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Figure</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92b</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92d</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92e</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Equation</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92f</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Function</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92g</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92i</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92l</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92m</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92p</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92s</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92t</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>92x</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92 Macro for the Geometry Application</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xa</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Figure</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xb</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Backup</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xc</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xd</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Graphic DataBase</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xe</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Equation</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Function</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xg</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Group File</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xi</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Picture</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xl</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ List</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xm</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Matrix</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xp</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xs</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ String</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xt</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xx</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Macro for the Geometry Application</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xz</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Assembly Program</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xu</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ Advanced Mathematics Software ROM Image</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>9xk</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 92+ FLASH Application</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89u</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 Advanced Mathematics Software ROM Image</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>89k</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 89 FLASH Application</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>85k</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 85 Constant</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>86k</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 86 Constant</string>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 		</dict>
@@ -424,6 +1625,7 @@
 				F50D0B19019DAC3B01041594,
 				F50D0B1A019DAC3B01041594,
 				F5F274FE019EE8CD01A9EF85,
+				F51015F401C3610A01000102,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -990,6 +2192,18 @@
 		};
 		F510099B01C27E8A01000102 = {
 			fileRef = F510099901C27E8A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F51015F301C3610A01000102 = {
+			isa = PBXFileReference;
+			name = calc.tiff;
+			path = images/calc.tiff;
+			refType = 2;
+		};
+		F51015F401C3610A01000102 = {
+			fileRef = F51015F301C3610A01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
