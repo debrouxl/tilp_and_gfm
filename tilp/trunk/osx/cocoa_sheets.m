@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -25,7 +27,20 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 #import <Cocoa/Cocoa.h>
 #import "SheetsController.h"
- 
+#import "TilpController.h"
+
+// this function has nothing to do with msg sheets
+void
+cocoa_set_link_status(int status)
+{
+    id myTilpController;
+
+    myTilpController = objects_ptr->myTilpController;
+
+    [myTilpController setLinkStatus:status];
+}
+
+
 // we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
 // and also request the user attention (ie. the app's icon will jump on the screen)
 // see requestUserAttention()
@@ -37,12 +52,12 @@ create_cocoa_msg_sheet(const char *title, char *message)
     
     mySheetsController = objects_ptr->mySheetsController;
 
-    [mySheetsController msgSheet:[NSString stringWithCString:message]
-                      title:[NSString stringWithCString:title]];
+    [mySheetsController msgSheet:[NSString stringWithCString:title]
+                         message:[NSString stringWithCString:message]];
 }
 
 int
-create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
+create_cocoa_msg2_sheet(const char *title, char *message)
 {
     int ret;
 
@@ -50,16 +65,15 @@ create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
     
     mySheetsController = objects_ptr->mySheetsController;
 
-    ret = [mySheetsController user1Sheet:[NSString stringWithCString:title]
-                              message:[NSString stringWithCString:message]
-                              button1:[NSString stringWithCString:button1]];
+    ret = [mySheetsController msg2Sheet:[NSString stringWithCString:title]
+                                message:[NSString stringWithCString:message]];
                         
     return ret;
 }
                                                     
  
 int
-create_cocoa_user2_sheet(const char *title, char *message, const char *button1, const char *button2)
+create_cocoa_msg3_sheet(const char *title, char *message, const char *button1, const char *button2, const char *button3)
 {
     int ret;
 
@@ -67,16 +81,17 @@ create_cocoa_user2_sheet(const char *title, char *message, const char *button1, 
     
     mySheetsController = objects_ptr->mySheetsController;
 
-    ret = [mySheetsController user2Sheet:[NSString stringWithCString:title]
-                              message:[NSString stringWithCString:message]
-                              button1:[NSString stringWithCString:button1]
-                              button2:[NSString stringWithCString:button2]];
+    ret = [mySheetsController msg3Sheet:[NSString stringWithCString:title]
+                                message:[NSString stringWithCString:message]
+                                button1:[NSString stringWithCString:button1]
+                                button2:[NSString stringWithCString:button2]
+                                button3:[NSString stringWithCString:button3]];
 
     return ret;
 }
  
 int
-create_cocoa_user3_sheet(const char *title, char *message, const char *button1, const char *button2, const char *button3)
+create_cocoa_msg4_sheet(const char *title, char *message)
 {
     int ret;
 
@@ -84,17 +99,14 @@ create_cocoa_user3_sheet(const char *title, char *message, const char *button1, 
     
     mySheetsController = objects_ptr->mySheetsController;
 
-    ret = [mySheetsController user3Sheet:[NSString stringWithCString:title]
-                              message:[NSString stringWithCString:message]
-                              button1:[NSString stringWithCString:button1]
-                              button2:[NSString stringWithCString:button2]
-                              button3:[NSString stringWithCString:button3]];
+    ret = [mySheetsController msg4Sheet:[NSString stringWithCString:title]
+                                message:[NSString stringWithCString:message]];
                               
     return ret;
 }
 
 char *
-create_cocoa_dlgbox_entry(const char *title, const char *message, const char *content)
+create_cocoa_msg_entry(const char *title, const char *message, const char *content)
 {
     char *ret;
 
@@ -103,9 +115,9 @@ create_cocoa_dlgbox_entry(const char *title, const char *message, const char *co
     
     mySheetsController = objects_ptr->mySheetsController;
 
-    data = [mySheetsController dlgboxEntry:[NSString stringWithCString:title]
-                               message:[NSString stringWithCString:message]
-                               content:[NSString stringWithCString:content]];
+    data = [mySheetsController msgEntrySheet:[NSString stringWithCString:title]
+                                     message:[NSString stringWithCString:message]
+                                     content:[NSString stringWithCString:content]];
                                
     ret = strdup([data cString]);
     

@@ -1,3 +1,9 @@
+* 20030416 : v0.6.1 ($Rev$)
+	* Merge up to 6.62.
+	* Code cleanup in some areas.
+	* Some little things added.
+	* Added blurry screen dump.
+	* Added link status.
 * Sometime in September, 2002 : v5.11-JAGUAR (0.6.0)
 	* Metal look on the main window and some other.
 	* Various very small fixes.

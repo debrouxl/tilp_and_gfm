@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -20,13 +22,13 @@
   
 #include <unistd.h>
 
-#include <libticalcs/defs92.h>
+#include <libticalcs/calc_def.h>
+#include <libticalcs/ti92.h>
 
-#include "../src/cb_calc.h"
-#include "../src/files.h"
-#include "../src/struct.h"
-#include "../src/gui_indep.h"
-#include "../src/defs.h"
+#include "../src/tilp_core.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_indep.h"
+#include "../src/tilp_defs.h"
 #include "../src/intl.h"
 
 #include "cocoa_structs.h"
@@ -35,11 +37,6 @@
 #import "TransfersController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-
-extern struct screenshot ti_screen;
-extern struct ticalc_info_update info_update;
-
-extern int is_active;
 
 @implementation BoxesController
 
@@ -57,24 +54,21 @@ extern int is_active;
 - (id)keyWindow
 {
     if ([NSApp keyWindow] != nil)
-        {
-            return [NSApp keyWindow];
-        }
+        return [NSApp keyWindow];
     else
+    {
+        if ([mainWindow isVisible])
+            return mainWindow;
+        else
         {
-            if ([mainWindow isVisible])
-                {
-                    return mainWindow;
-                }
-            else
-                {
-                    [mainWindow makeKeyAndOrderFront:self];
-                    
-                    return mainWindow;
-                }
+            [mainWindow makeKeyAndOrderFront:self];
+
+            return mainWindow;
         }
+    }
 }
 
+// obsolete
 - (void)user1ButtonPush:(id)sender
 {
     objects_ptr->user1_return = BUTTON1;
@@ -167,20 +161,11 @@ extern int is_active;
                 [sp setTitle:@"Save screen as TIFF"];
                 proposedFile = @"screendump.tiff";
                 break;
-            case PCX:
-                [sp setRequiredFileType:@"pcx"];
-                [sp setTitle:@"Save screen as PCX"];
-                proposedFile = @"screendump.pcx";
+            case PDF:
+                //[sp setRequiredFileType:@"pdf"];
+                //[sp setTitle:@"Save screen as PDF"];
+                //proposedFile = @"screendump.pdf";
                 break;
-            case XPM:
-                [sp setRequiredFileType:@"xpm"];
-                [sp setTitle:@"Save screen as XPM"];
-                proposedFile = @"screendump.xpm";
-                break;
-            case BMP:
-                [sp setRequiredFileType:@"bmp"];
-                [sp setTitle:@"Save screen as BMP"];
-                proposedFile = @"screendump.bmp";
             default: // just in case...
                 return;
         }
@@ -253,9 +238,6 @@ extern int is_active;
     NSData *tiff;
     NSSavePanel *sp; // sheet is an NSWindow, which does not sound very logical
                      // compared to the NSOpenPanel, so I'm passing sp as the contextInfo
-
-    char *file;
-
     if (returnCode == NSOKButton)
         {
             sp = contextInfo;
@@ -266,12 +248,7 @@ extern int is_active;
                         tiff = [[screendumpImage image] TIFFRepresentation];
                         [tiff writeToFile:[sp filename] atomically:YES];
                         break;
-                    case PCX:
-                    case XPM:
-                    case BMP:
-                        file = strdup([[sp filename] fileSystemRepresentation]);
-                        cb_screen_save(file);
-                        free(file);
+                    case PDF:
                         break;
                     default:
                         break;
@@ -285,9 +262,8 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int skip = 0;
     
-    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.backup") + 1);
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_BACKUP) + 2);
             
     strcpy(tmpfile, g_get_tmp_dir());
     strcat(tmpfile, G_DIR_SEPARATOR_S);
@@ -298,22 +274,13 @@ extern int is_active;
             sp = contextInfo;
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-                
-            if(skip == 0)
-                {
-                    if(move_file(tmpfile, file))
-                        {	
-                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-                        }
-                }
+
+            if(tilp_file_move(tmpfile, file))
+                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
         }
     else
-        {
-            if(unlink(tmpfile))
-                {
-                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
-                }
-        }
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
 }
 
 - (void)romDumpDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -322,9 +289,8 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int skip = 0;
     
-    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_ROMDUMP) + 2);
             
     strcpy(tmpfile, g_get_tmp_dir());
     strcat(tmpfile, G_DIR_SEPARATOR_S);
@@ -336,21 +302,12 @@ extern int is_active;
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
 
-            if(skip == 0)
-                {
-                    if(move_file(tmpfile, file))
-                        {	
-                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-                        }
-                }
+            if(tilp_file_move(tmpfile, file))
+                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
         }
     else
-        {
-            if(unlink(tmpfile))
-                {
-                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
-                }
-        }
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
 }
 
 - (void)getSingleVarDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -361,7 +318,6 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int skip = 0;
     
     context = contextInfo;
     
@@ -378,22 +334,13 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-            
-            if(skip == 0)
-                {
-                    if(move_file(tmpfile, file))
-                        {	
-                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-                        }
-                }
+
+            if(tilp_file_move(tmpfile, file))
+                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
         }
     else
-        {
-            if(unlink(tmpfile))
-                {
-                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
-                }
-        }
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
 }
 
 - (void)getVarsDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -403,11 +350,10 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int skip = 0;
     
     context = contextInfo;
 
-    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.PAK") + 1);
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_GROUP) + 2);
             
     strcpy(tmpfile, g_get_tmp_dir());
     strcat(tmpfile, G_DIR_SEPARATOR_S);
@@ -418,22 +364,13 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-                
-            if(skip == 0)
-                {
-                    if(move_file(tmpfile, file))
-                        {	
-                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-                        }
-                }
+
+            if(tilp_file_move(tmpfile, file))
+                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
         }
     else
-        {
-            if(unlink(tmpfile))
-                {
-                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
-                }
-        }
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
 }
 
 - (void)getFlashAppDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
@@ -444,7 +381,6 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int skip = 0;
     
     context = contextInfo;
     
@@ -461,22 +397,13 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-                
-            if(skip == 0)
-                {
-                    if(move_file(tmpfile, file))
-                        {                        
-                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-                        }
-                }
+
+            if(tilp_file_move(tmpfile, file))
+                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
         }
     else
-        {
-            if(unlink(tmpfile))
-                {
-                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
-                }
-        }
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
 }
 
 @end

@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -20,7 +22,7 @@
   
 #include <stdlib.h>
 
-#include "../src/struct.h"
+#include "../src/tilp_struct.h"
  
 #import "Varinfo.h"
 
@@ -35,7 +37,7 @@
 
     varinfo = NULL;
     
-    varinfo = (struct varinfo *)malloc(sizeof(struct varinfo));
+    varinfo = (TiVarEntry *)malloc(sizeof(TiVarEntry));
     
     if (varinfo == NULL)
         return nil;
@@ -43,7 +45,7 @@
     return self;
 }
 
-- (id)initWithPointer:(struct varinfo *)ptr
+- (id)initWithPointer:(TiVarEntry *)ptr
 {
     self = [super init];
     
@@ -52,12 +54,12 @@
 
     varinfo = NULL;
     
-    varinfo = (struct varinfo *)malloc(sizeof(struct varinfo));
+    varinfo = (TiVarEntry *)malloc(sizeof(TiVarEntry));
     
     if (varinfo == NULL)
         return nil;
 
-    memcpy(varinfo, ptr, sizeof(struct varinfo));
+    memcpy(varinfo, ptr, sizeof(TiVarEntry));
 
     return self;
 
@@ -73,22 +75,22 @@
     [super dealloc];
 }
 
-- (void)setVarinfo:(struct varinfo *)ptr
+- (void)setVarinfo:(TiVarEntry *)ptr
 {
     if (varinfo != NULL)
         free(varinfo);
         
         varinfo = NULL;
     
-    varinfo = (struct varinfo *)malloc(sizeof(struct varinfo));
+    varinfo = (TiVarEntry *)malloc(sizeof(TiVarEntry));
     
     if (varinfo == NULL)
         return;
 
-    memcpy(varinfo, ptr, sizeof(struct varinfo));
+    memcpy(varinfo, ptr, sizeof(TiVarEntry));
 }
 
-- (struct varinfo *)varinfo
+- (TiVarEntry *)varinfo
 {
     return varinfo;
 }

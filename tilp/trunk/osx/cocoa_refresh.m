@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -22,16 +24,14 @@
 #include <libticables/cabl_int.h>
 #include <libticables/cabl_def.h>
 
-#include "../src/struct.h"
-#include "../src/defs.h"
-#include "../src/gui_indep.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_defs.h"
+#include "../src/tilp_indep.h"
 #include "../src/intl.h"
 
 #include "cocoa_structs.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-
-extern struct ticalc_info_update info_update;
 
 #import "cocoa_refresh.h"
 #import "SheetsController.h"
@@ -41,14 +41,14 @@ extern struct ticalc_info_update info_update;
 TicableDataRate *dr;
 
 void
-gt_start(void)
+cocoa_refresh_start(void)
 {
     info_update.prev_percentage = info_update.percentage = 0.0;
     ticable_get_datarate(&dr);
 }
 
 void
-gt_stop(void)
+cocoa_refresh_stop(void)
 {
     info_update.prev_percentage = info_update.percentage = 0.0;
 }
@@ -74,14 +74,14 @@ refresh_pbar2(void)
 }
 
 void
-gt_pbar(void)
+cocoa_refresh_pbar(void)
 {
     refresh_pbar1();
     refresh_pbar2();
 }
 
 void
-gt_label(void)
+cocoa_refresh_label(void)
 {
     id mySheetsController;
       
@@ -91,56 +91,20 @@ gt_label(void)
 }
 
 void
-gt_refresh(void)
+cocoa_refresh_gui(void)
 {
   // Nothing to do
 }
 
-int
-gt_choose(char *cur_varname, char *new_varname)
-{
-    int ret=0;
-    int action = ACTION_NONE;
-    gchar *s;
-    
-    strcpy(new_varname, "");
-    ret = gif->user3_box(_("Action"), 
-                         _("The variable already exists..."), 
-                         _("Skip"), _("Overwrite"), _("Rename"));
-    switch(ret)
-        {
-            case BUTTON1:
-                action = ACTION_SKIP;
-                break;
-            case BUTTON2:
-                action = ACTION_OVERWRITE;
-                break;
-            case BUTTON3:
-                action = ACTION_RENAME;
-                s = gif->dlgbox_entry(_("Rename the variable"),
-                                      _("New name: "), cur_varname);
-                if((s == NULL) || (strlen(s)>17)) { action=ACTION_SKIP; break; }
-                strcpy(new_varname, s);
-                g_free(s);
-                break;
-            default:
-                break;
-        }
-
-    return action;
-}
-
 void
-gt_init_refresh_functions(void)
+cocoa_init_refresh_functions(void)
 {
     ticalc_set_update(&info_update, 
-                      gt_start,
-		      gt_stop,
-		      gt_refresh,
-		      gif->msg_box, 
-		      gt_pbar, 
-		      gt_label, 
-		      gt_choose);
+                      cocoa_refresh_start,
+		      cocoa_refresh_stop,
+		      cocoa_refresh_gui,
+		      cocoa_refresh_pbar,
+                      cocoa_refresh_label);
 
     fprintf(stdout, _("Initialized in Cocoa mode.\n"));
 }

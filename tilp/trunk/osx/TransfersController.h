@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -49,6 +51,6 @@
 - (void)getScreen:(id)sender;
 - (void)romDump:(id)sender;
 - (void)doBackup:(id)sender;
-- (int)sendChar:(unsigned int)tikey;
+- (int)sendChar:(uint16_t)tikey;
 
 @end

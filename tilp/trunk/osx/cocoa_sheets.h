@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -21,38 +23,39 @@
 #ifndef __COCOA_MSG_SHEETS_H__
 #define __COCOA_MSG_SHEETS_H__
 
+// this function has nothing to do with msg sheets
+void
+cocoa_set_link_status (int status);
+
+
 void
 create_cocoa_msg_sheet		(const char *title,
                                  char *message);
 
 int
-create_cocoa_user1_sheet	(const char *title,
-                                 char *message,
-                                 const char *button1);
-                                                    
-void
-create_cocoa_pbar_type2_sheet	(const char *title,
+create_cocoa_msg2_sheet	        (const char *title,
                                  char *message);
- 
- 
+
 int
-create_cocoa_user2_sheet	(const char *title,
-                                 char *message,
-                                 const char *button1,
-                                 const char *button2);
- 
-int
-create_cocoa_user3_sheet	(const char *title,
+create_cocoa_msg3_sheet	        (const char *title,
                                  char *message,
                                  const char *button1,
                                  const char *button2,
                                  const char *button3);
 
+int
+create_cocoa_msg4_sheet	        (const char *title,
+                                 char *message);
+
 char *
-create_cocoa_dlgbox_entry	(const char *title,
+create_cocoa_msg_entry	        (const char *title,
                                  const char *message,
                                  const char *content);
- 
+
+void
+create_cocoa_pbar_type2_sheet	(const char *title,
+                                 char *message);
+
 void
 create_cocoa_pbar_type1_sheet	(const char *title);
  

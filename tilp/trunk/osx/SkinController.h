@@ -1,8 +1,10 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2002-2003 Julien BLACHE <jb@tilp.info>
  *
  *  skinedit - a skin editor for TiEmu v2.00
- *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2002-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *

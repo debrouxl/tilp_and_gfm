@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -21,23 +23,17 @@
 #include <glib/glib.h>
 #include <libticalcs/calc_int.h>
 
-#include "../src/cb_misc.h"
-#include "../src/cb_calc.h"
-#include "../src/struct.h"
-#include "../src/gui_indep.h"
-#include "../src/error.h"
+#include "../src/tilp_core.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_indep.h"
+#include "../src/tilp_defs.h"
 #include "../src/intl.h"
-#include "../src/defs.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 #include "cocoa_sheets.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-
-extern struct screenshot ti_screen;
-
-extern int is_active;
 
 #import "MenuController.h"
 #import "TilpController.h"
@@ -165,9 +161,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.6.0" forKey:@"Version"];
-    [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@tilp.info>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"5.11" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:[NSString stringWithCString:SVN_REV] forKey:@"Version"];
+    [aboutOptions setObject:@"Copyright © 1999-2003 Romain LIÉVIN, Julien BLACHE   <roms@tilp.info>, <jb@tilp.info>" forKey:@"Copyright"];
+    [aboutOptions setObject:@"6.62" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
@@ -189,50 +185,39 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)defaultConfig:(id)sender
 {
-    cb_default_config();
-    
     rc_init_with_default();
     rc_fill_dictionary();
 }
-
-
-// link
-
-- (IBAction)probeCalc:(id)sender
-{
-    cb_probe_calc();
-}
-
 
 // functions
 
 - (IBAction)isReady:(id)sender
 {
-    if (cb_calc_is_ready() == 0)
+    if (tilp_calc_isready() == 0)
         {
-            switch(ticalc_get_calc2())
+            switch(ticalc_return_calc())
                 {
                     case CALC_TI73:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-73 Ready !"];
+                        [mySheetsController msgSheet:@"TI-73 Ready !" message:@"The calculator is ready."];
                         break;
                     case CALC_TI83P:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-83 Plus Ready !"];
+                        [mySheetsController msgSheet:@"TI-83 Plus Ready !" message:@"The calculator is ready."];
                         break;
                     case CALC_TI89:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-89 Ready !"];
+                        [mySheetsController msgSheet:@"TI-89 Ready !" message:@"The calculator is ready."];
                         break;
                     case CALC_TI92:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-92 Ready !"];
+                        [mySheetsController msgSheet:@"TI-92 Ready !" message:@"The calculator is ready."];
                         break;
                     case CALC_TI92P:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-92 Plus Ready !"];
+                        [mySheetsController msgSheet:@"TI-92 Plus Ready !" message:@"The calculator is ready."];
                         break;
                     case CALC_TI82:
                     case CALC_TI83:
                     case CALC_TI85:
                     case CALC_TI86:
                     default:
-                        [mySheetsController msgSheet:@"Your calculator does not support the \"Ready\" function." title:@"Ready ?"];
+                        [mySheetsController msgSheet:@"Ready ?" message:@"Your calculator does not support the \"Ready\" function."];
                         break;
                 }
         }
@@ -240,17 +225,18 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)remoteControl:(id)sender
 {
-    if (is_active)
-        return;
+    TicalcType calc;
 
-    if ((ticalc_get_calc2() == CALC_TI89) ||(ticalc_get_calc2() == CALC_TI92) || (ticalc_get_calc2() == CALC_TI92P))
+    ticalc_get_calc(&calc);
+    
+    if ((calc == CALC_TI89) ||(calc == CALC_TI92) || (calc == CALC_TI92P))
         {
             [myCalcKeyboardController loadKeyboard];
         }
     else
         {
-            [mySheetsController msgSheet:@"The remote control is not supported by this model of calculator. Sorry !"
-                                title:@"Unsupported !"];
+            [mySheetsController msgSheet:@"Unsupported !"
+                                message:@"The remote control is not supported by this model of calculator. Sorry !"];
         }
 }
 
@@ -263,10 +249,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)getDirlist:(id)sender
 {
-    if (is_active)
-        return;
-
-    if (cb_dirlist() != 0)
+    if (tilp_calc_dirlist() != 0)
         return;
         
     [myTilpController refreshOutline];
@@ -280,13 +263,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         
     int result;
 
-    if (is_active)
-        return;
-            
-    result = gif->user2_box(_("Warning"), 
-                            _("You are going to restore the calculator content with your backup. The whole memory will be erased.\nAre you sure you want to do that ?"),
-		            _("Proceed"), 
-		            _("Cancel"));
+    result = gif->msg_box2(_("Warning"),
+                           _("You are going to restore the calculator content with your backup. The whole memory will be erased.\nAre you sure you want to do that ?"));
                             
     if (result != BUTTON1)
         return;
@@ -318,10 +296,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     NSOpenPanel *op;
     NSDictionary *calcDict;
-    
-    if (is_active)
-        return;
-    
+
     op = [NSOpenPanel openPanel];
     
     calcDict = [myTilpController getCurrentCalcDict];
@@ -345,13 +320,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     int result;
     
-    if (is_active)
-        return;
-    
-    result = gif->user2_box(_("Warning"), 
-                            _("You're going to install a new Operating System on your calculator. This process can take up to 45 minutes. Make sure your batteries are OK before continuing. If, for any reason, the transfer must be interrupted, wait until the calc displays \"Wainting to receive...\" then retart the transfer."),
-		            _("Proceed"), 
-		            _("Cancel"));
+    result = gif->msg_box2(_("Warning"),
+                           _("You're going to install a new Operating System on your calculator. This process can take up to 45 minutes. Make sure your batteries are OK before continuing. If, for any reason, the transfer must be interrupted, wait until the calc displays \"Wainting to receive...\" then retart the transfer."));
                             
     if (result != BUTTON1)
         return;
@@ -374,7 +344,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)getIDList:(id)sender
 {
-    cb_id_list();
+    tilp_calc_idlist();
 }
 
 - (IBAction)romDump:(id)sender

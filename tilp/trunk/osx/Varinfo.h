@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -17,19 +19,21 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
-#include "../src/struct.h"
+
+#include <libticalcs/calc_def.h>
+
+#include "../src/tilp_struct.h"
 
 #import <Foundation/Foundation.h>
 
 @interface Varinfo : NSObject
 {
-    struct varinfo *varinfo;
+    TiVarEntry *varinfo;
 }
 
-- (id)initWithPointer:(struct varinfo *)ptr;
+- (id)initWithPointer:(TiVarEntry *)ptr;
 
-- (void)setVarinfo:(struct varinfo *)ptr;
-- (struct varinfo *)varinfo;
+- (void)setVarinfo:(TiVarEntry *)ptr;
+- (TiVarEntry *)varinfo;
 
 @end

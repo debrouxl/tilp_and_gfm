@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -20,8 +22,6 @@
 
 #ifndef __KEYS89_H__
 #define __KEYS89_H__
-
-#include <libticables/typedefs.h>
 
 #define TIKEY89_F1		1
 #define TIKEY89_F2		2
@@ -77,11 +77,11 @@
 
 struct ti89key
 {
-  word none;
-  word shift;
-  word second;
-  word diamond;
-  word alpha;
+  uint16_t none;
+  uint16_t shift;
+  uint16_t second;
+  uint16_t diamond;
+  uint16_t alpha;
 };
 
 

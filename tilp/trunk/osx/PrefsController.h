@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -31,6 +33,7 @@
     IBOutlet id calcType89;
     IBOutlet id calcType92;
     IBOutlet id calcType92p;
+    IBOutlet id calcTypeV200;
     IBOutlet id calcTypeProbe;
     IBOutlet id consoleModeMatrix;
     IBOutlet id consoleSilent;
@@ -39,31 +42,31 @@
     IBOutlet id linkCableTPU;
     IBOutlet id linkCableTIE;
     IBOutlet id linkCableTGL;
+    IBOutlet id linkCableVTI;
     IBOutlet id portCombo;
     IBOutlet id portType;
     IBOutlet id portWarning;
-    IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
+    IBOutlet id multipleVarsSingle;
+    IBOutlet id multipleVarsGroup;
     IBOutlet id orderDecreasing;
     IBOutlet id orderIncreasing;
     IBOutlet id pathModeFull;
     IBOutlet id pathModeLocal;
     IBOutlet id prefsWindow;
-    IBOutlet id screenFormatPCX;
+    IBOutlet id screenFormatPDF;
     IBOutlet id screenFormatTIFF;
-    IBOutlet id screenFormatXPM;
-    IBOutlet id screenFormatBMP;
     IBOutlet id screenModeClipped;
     IBOutlet id screenModeFull;
+    IBOutlet id screenRenderingBlurry;
+    IBOutlet id screenRenderingBW;
     IBOutlet id sortByInfo;
     IBOutlet id sortByName;
     IBOutlet id sortBySize;
     IBOutlet id sortByType;
-    IBOutlet id transferModeManual;
-    IBOutlet id transferModeSilent;
-    
-    IBOutlet id transferModeMatrix;
+
+    IBOutlet id multipleVarsMatrix;
     IBOutlet id pathModeMatrix;
     IBOutlet id orderMatrix;
     IBOutlet id sortByMatrix;
@@ -71,6 +74,7 @@
     IBOutlet id calcTypeMatrix;
     IBOutlet id screenFormatMatrix;
     IBOutlet id screenModeMatrix;
+    IBOutlet id screenRenderingMatrix;
     
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -25,7 +27,7 @@
 {
     IBOutlet id dirlistTree;
 
-    IBOutlet id currentFolder;
+    IBOutlet id linkStatus;
     IBOutlet id numberOfFolders;
     IBOutlet id memoryStats;
     IBOutlet id varsStats;
@@ -45,6 +47,8 @@
 }
 
 - (NSDictionary *)getCurrentCalcDict;
+
+- (void)setLinkStatus:(int)status;
 
 - (void)refreshOutline;
 - (void)refreshInfos;

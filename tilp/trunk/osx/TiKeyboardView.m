@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -56,7 +58,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 #endif
           if ([self mouse:mouseClick inRect:[self bounds]])
               {
-                  if (ticalc_get_calc2() == CALC_TI89)
+                  if (ticalc_return_calc() == CALC_TI89)
                       {
                           [myCalcKeyboardController sendKey89:mouseClick];
                       }

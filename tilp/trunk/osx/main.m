@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Romain Lievin, Julien BLACHE
+ *  Copyright (C) 2001-2003 Romain Lievin, Julien BLACHE
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X -- from gtk/gtk_main.c
  *
@@ -34,11 +36,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include "../src/sub_main.h"
-#include "../src/defs.h"
-#include "../src/gui_indep.h"
-#include "../src/struct.h"
-#include "../src/cb_misc.h"
+#include "../src/tilp_core.h"
+#include "../src/tilp_defs.h"
+#include "../src/tilp_indep.h"
+#include "../src/tilp_struct.h"
 
 // a utility function
 uint32_t swap_bytes(uint32_t a)
@@ -46,14 +47,9 @@ uint32_t swap_bytes(uint32_t a)
   return (a >> 24) | ((a & 0xff0000) >> 16) << 8 | ((a & 0xff00) >> 8) << 16 | (a & 0xff) << 8;
 }
 
-
 #include "cocoa_structs.h"
 
 struct cocoa_objects_ptr *objects_ptr;
-
-#ifdef HAVE_TIFFEP
-Shm s;
-#endif
 
 void signal_handler(int sig_no)
 {
@@ -63,24 +59,15 @@ void signal_handler(int sig_no)
   link_cable.exit();
   ticalc_exit();
   ticable_exit();
-#ifdef HAVE_TIFFEP
-  shm_detach(&s);
-  shm_destroy(&s);
-#endif
   DISPLAY("Done.\n");
 
   exit(0);
 }
 
+// FIXME OS X : need to resync'ed with tilp v6.62 main.c
 int main(int argc, const char *argv[], char **arge)
 {
   NSAutoreleasePool *prefsPool;
-
-#ifdef HAVE_TIFFEP
-  TiffepMsg msg;
-  gint err;
-  gint id;
-#endif
     
   objects_ptr = (struct cocoa_objects_ptr *)malloc(sizeof(struct cocoa_objects_ptr));
     
@@ -104,7 +91,7 @@ int main(int argc, const char *argv[], char **arge)
 #endif
   
   /* Init the tilp core */
-  sub_main(argc, argv, arge);
+  tilp_main(argc, argv, arge);
 
   working_mode = MODE_GUI | MODE_OSX;
 
@@ -115,36 +102,10 @@ int main(int argc, const char *argv[], char **arge)
 #endif
   prefsPool = nil;
 
-  /* Listen TiFFEP commands */
-#ifdef HAVE_TIFFEP
-  if(tiffep_server_is_running())
-    {
-      /* Connect to server */
-      if(err = tiffep_connect(&s))
-	{
-	  msg_box(_("Error"), 
-		  _("The TiFFEP server can not be connected."));
-	}
-        
-      // FIXME OS X
-      // this won't work on Mac OS X as is
-      id = gtk_idle_add(listen_tiffep, (gpointer)(&s));
-      DISPLAY(_("The TiFFEP is running. Listening activated.\n"));
-
-      /* Send a simple echo */
-      cmd_send_echo(s);
-      tiffep_cmd_recv_ok(s);
-    }
-  else
-    {
-      DISPLAY(_("The TiFFEP is not running. Listening deactivated.\n"));
-    }
-#endif
-
   // FIXME OS X : cmdline gui
   if(working_mode != (MODE_GUI | MODE_OSX))
     {
-      fprintf(stderr, "Trying to use an unsupported Graphical User Interface.\n");
+      fprintf(stderr, "Trying to use an unsupported User Interface.\n");
       fprintf(stderr, "Program halted.\n");
       exit(-1);
     }
@@ -153,16 +114,4 @@ int main(int argc, const char *argv[], char **arge)
   DISPLAY("probing: %i\n", link_cable.probe());
     
   return NSApplicationMain(argc, argv);
-}
-
-
-// FIXME OS X : unneeded for now
-/*
-  Entry points for the TiLP module (used by GtkTiEmu) for a direct
-  internal linkport connection.
-*/
-int module_init(LinkCable *lc)
-{
-  ticalc_set_calc(options.lp.calc_type, &ti_calc, lc);
-  return 0;
 }

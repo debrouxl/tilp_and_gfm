@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -103,11 +105,11 @@
 
 struct ti92key
 {
-  unsigned int none;
-  unsigned int shift;
-  unsigned int second;
-  unsigned int diamond;
-  unsigned int grab;
+  uint16_t none;
+  uint16_t shift;
+  uint16_t second;
+  uint16_t diamond;
+  uint16_t grab;
 };
 
 

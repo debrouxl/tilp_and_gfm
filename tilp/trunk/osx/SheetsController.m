@@ -1,34 +1,34 @@
 /*  TiLP - Linking program for TI calculators
-*  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
-*
-*  Cocoa GUI for Mac OS X
-*
-*  This program is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
+ *
+ *  Cocoa GUI for Mac OS X
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 #include <libticables/cabl_def.h>
 
 #include "cocoa_structs.h"
 
-#include "../src/struct.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_defs.h"
 #include "../src/intl.h"
-#include "../src/defs.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-
-extern struct ticalc_info_update info_update;
 
 #import <Cocoa/Cocoa.h>
 
@@ -74,7 +74,7 @@ extern struct ticalc_info_update info_update;
 }
 
 
-- (void)msgSheet:(NSString *)message title:(NSString *)title
+- (void)msgSheet:(NSString *)title message:(NSString *)message
 {
   [self hideCurrentPBar];
 
@@ -89,207 +89,212 @@ extern struct ticalc_info_update info_update;
 
 /* user boxes */
 
-- (int)user1Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1
+- (int)msg2Sheet:(NSString *)title message:(NSString *)message
 {
 #ifndef TILP_USES_SHEETS
-  NSModalSession session;
+    NSModalSession session;
 #endif
 
-  NSRect oldFrame, newFrame, windowFrame;
-  
-  [self hideCurrentPBar];
+    NSRect oldFrame, newFrame, windowFrame;
 
-  [user1Text setStringValue:message];
+    objects_ptr->user2_return = 0;
 
-  // begin window resizing
-  oldFrame = newFrame = [user1Text frame];
-  windowFrame = [user1Window frame];
+    [self hideCurrentPBar];
 
-  newFrame.size.height = 10000.0;  // a large number
-  newFrame.size = [[user1Text cell] cellSizeForBounds:newFrame];
+    [user2Text setStringValue:message];
 
-  if (newFrame.size.height > oldFrame.size.height)
-    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
-  else if (newFrame.size.height < oldFrame.size.height)
-    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [user1Window setFrame:windowFrame display:NO];
-  // end of window resizing
-  
-  [user1Button setTitle:button1];
+    // begin window resizing
+    oldFrame = newFrame = [user2Text frame];
+    windowFrame = [user2Window frame];
 
-  [user1Window setExcludedFromWindowsMenu:YES];
+    newFrame.size.height = 10000.0;  // a large number
+    newFrame.size = [[user2Text cell] cellSizeForBounds:newFrame];
+
+    if (newFrame.size.height > oldFrame.size.height)
+        windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+    else if (newFrame.size.height < oldFrame.size.height)
+        windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
+
+    [user2Window setFrame:windowFrame display:NO];
+    // end of window resizing
+
+    [user2Button1 setTitle:@"OK"];
+    [user2Button2 setTitle:@"Cancel"];
+
+    [user2Window setExcludedFromWindowsMenu:YES];
 
 #ifdef TILP_USES_SHEETS
-  [NSApp beginSheet:user1Window
-     modalForWindow:[myBoxesController keyWindow]
-      modalDelegate:nil
-     didEndSelector:nil
-        contextInfo:nil];
+    [NSApp beginSheet:user2Window
+       modalForWindow:[myBoxesController keyWindow]
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
 
-  [NSApp runModalForWindow:user1Window];
+    [NSApp runModalForWindow:user2Window];
 
-  [NSApp endSheet:user1Window];
+    [NSApp endSheet:user2Window];
 #else
-  [user1Window setTitle:title];
+    [user2Window setTitle:title];
 
-  session = [NSApp beginModalSessionForWindow:user1Window];
+    session = [NSApp beginModalSessionForWindow:user2Window];
 
-  [user1Window makeKeyAndOrderFront:self];
+    [user2Window makeKeyAndOrderFront:self];
 
-  for (;;)
-  {
-    if([NSApp runModalSession:session] != NSRunContinuesResponse)
-      break;
-  }
+    for (;;)
+    {
+        if([NSApp runModalSession:session] != NSRunContinuesResponse)
+            break;
+    }
 
-  [NSApp endModalSession:session];
+    [NSApp endModalSession:session];
 #endif
 
-  [user1Window orderOut:self];
+    [user2Window orderOut:self];
 
-  [self showCurrentPBar];
+    [self showCurrentPBar];
 
-  return objects_ptr->user1_return;
+    return objects_ptr->user2_return;
 }
 
-- (int)user2Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2
+- (int)msg3Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3
 {
 #ifndef TILP_USES_SHEETS
-  NSModalSession session;
+    NSModalSession session;
 #endif
 
-  NSRect oldFrame, newFrame, windowFrame;
-  
-  objects_ptr->user2_return = 0;
+    NSRect oldFrame, newFrame, windowFrame;
 
-  [self hideCurrentPBar];
+    [self hideCurrentPBar];
 
-  [user2Text setStringValue:message];
+    [user3Text setStringValue:message];
 
+    // begin window resizing
+    oldFrame = newFrame = [user3Text frame];
+    windowFrame = [user3Window frame];
 
-  // begin window resizing
-  oldFrame = newFrame = [user2Text frame];
-  windowFrame = [user2Window frame];
+    newFrame.size.height = 10000.0;  // a large number
+    newFrame.size = [[user3Text cell] cellSizeForBounds:newFrame];
 
-  newFrame.size.height = 10000.0;  // a large number
-  newFrame.size = [[user2Text cell] cellSizeForBounds:newFrame];
+    if (newFrame.size.height > oldFrame.size.height)
+        windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+    else if (newFrame.size.height < oldFrame.size.height)
+        windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  if (newFrame.size.height > oldFrame.size.height)
-    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
-  else if (newFrame.size.height < oldFrame.size.height)
-    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
+    [user3Window setFrame:windowFrame display:NO];
+    // end of window resizing
 
-  [user2Window setFrame:windowFrame display:NO];
-  // end of window resizing
+    [user3Button1 setTitle:button1];
+    [user3Button2 setTitle:button2];
+    [user3Button3 setTitle:button3];
 
-  [user2Button1 setTitle:button1];
-  [user2Button2 setTitle:button2];
-
-  [user2Window setExcludedFromWindowsMenu:YES];
+    [user3Window setExcludedFromWindowsMenu:YES];
 
 #ifdef TILP_USES_SHEETS
-  [NSApp beginSheet:user2Window
-     modalForWindow:[myBoxesController keyWindow]
-      modalDelegate:nil
-     didEndSelector:nil
-        contextInfo:nil];
+    [NSApp beginSheet:user3Window
+       modalForWindow:[myBoxesController keyWindow]
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
 
-  [NSApp runModalForWindow:user2Window];
+    [NSApp runModalForWindow:user3Window];
 
-  [NSApp endSheet:user2Window];
+    [NSApp endSheet:user3Window];
 #else
-  [user2Window setTitle:title];
+    [user3Window setTitle:title];
 
-  session = [NSApp beginModalSessionForWindow:user2Window];
+    session = [NSApp beginModalSessionForWindow:user3Window];
 
-  [user2Window makeKeyAndOrderFront:self];
+    [user3Window makeKeyAndOrderFront:self];
 
-  for (;;)
-  {
-    if([NSApp runModalSession:session] != NSRunContinuesResponse)
-      break;
-  }
+    for (;;)
+    {
+        if([NSApp runModalSession:session] != NSRunContinuesResponse)
+            break;
+    }
 
-  [NSApp endModalSession:session];
+    [NSApp endModalSession:session];
 #endif
 
-  [user2Window orderOut:self];
+    [user3Window orderOut:self];
 
-  [self showCurrentPBar];
+    [self showCurrentPBar];
 
-  return objects_ptr->user2_return;
+    return objects_ptr->user3_return;
 }
 
-- (int)user3Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3
+- (int)msg4Sheet:(NSString *)title message:(NSString *)message
 {
 #ifndef TILP_USES_SHEETS
-  NSModalSession session;
+    NSModalSession session;
 #endif
 
-  NSRect oldFrame, newFrame, windowFrame;
-  
-  [self hideCurrentPBar];
+    NSRect oldFrame, newFrame, windowFrame;
 
-  [user3Text setStringValue:message];
+    objects_ptr->user2_return = 0;
 
-  // begin window resizing
-  oldFrame = newFrame = [user3Text frame];
-  windowFrame = [user3Window frame];
+    [self hideCurrentPBar];
 
-  newFrame.size.height = 10000.0;  // a large number
-  newFrame.size = [[user3Text cell] cellSizeForBounds:newFrame];
+    [user2Text setStringValue:message];
 
-  if (newFrame.size.height > oldFrame.size.height)
-    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
-  else if (newFrame.size.height < oldFrame.size.height)
-    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [user3Window setFrame:windowFrame display:NO];
-  // end of window resizing
-  
-  [user3Button1 setTitle:button1];
-  [user3Button2 setTitle:button2];
-  [user3Button3 setTitle:button3];
+    // begin window resizing
+    oldFrame = newFrame = [user2Text frame];
+    windowFrame = [user2Window frame];
 
-  [user3Window setExcludedFromWindowsMenu:YES];
+    newFrame.size.height = 10000.0;  // a large number
+    newFrame.size = [[user2Text cell] cellSizeForBounds:newFrame];
+
+    if (newFrame.size.height > oldFrame.size.height)
+        windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+    else if (newFrame.size.height < oldFrame.size.height)
+        windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
+
+    [user2Window setFrame:windowFrame display:NO];
+    // end of window resizing
+
+    [user2Button1 setTitle:@"Next"];
+    [user2Button2 setTitle:@"Cancel"];
+
+    [user2Window setExcludedFromWindowsMenu:YES];
 
 #ifdef TILP_USES_SHEETS
-  [NSApp beginSheet:user3Window
-     modalForWindow:[myBoxesController keyWindow]
-      modalDelegate:nil
-     didEndSelector:nil
-        contextInfo:nil];
+    [NSApp beginSheet:user2Window
+       modalForWindow:[myBoxesController keyWindow]
+        modalDelegate:nil
+       didEndSelector:nil
+          contextInfo:nil];
 
-  [NSApp runModalForWindow:user3Window];
+    [NSApp runModalForWindow:user2Window];
 
-  [NSApp endSheet:user3Window];
+    [NSApp endSheet:user2Window];
 #else
-  [user3Window setTitle:title];
+    [user2Window setTitle:title];
 
-  session = [NSApp beginModalSessionForWindow:user3Window];
+    session = [NSApp beginModalSessionForWindow:user2Window];
 
-  [user3Window makeKeyAndOrderFront:self];
+    [user2Window makeKeyAndOrderFront:self];
 
-  for (;;)
-  {
-    if([NSApp runModalSession:session] != NSRunContinuesResponse)
-      break;
-  }
+    for (;;)
+    {
+        if([NSApp runModalSession:session] != NSRunContinuesResponse)
+            break;
+    }
 
-  [NSApp endModalSession:session];
+    [NSApp endModalSession:session];
 #endif
 
-  [user3Window orderOut:self];
+    [user2Window orderOut:self];
 
-  [self showCurrentPBar];
+    [self showCurrentPBar];
 
-  return objects_ptr->user3_return;
+    return objects_ptr->user2_return;
 }
+
 
 /* dialog box w/entry field */
 
-- (NSString *)dlgboxEntry:(NSString *)title message:(NSString *)message content:(NSString *)content
+- (NSString *)msgEntrySheet:(NSString *)title message:(NSString *)message content:(NSString *)content
 {
 #ifndef TILP_USES_SHEETS
   NSModalSession session;

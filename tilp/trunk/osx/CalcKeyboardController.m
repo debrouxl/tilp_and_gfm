@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2002-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -25,7 +27,6 @@
 
 #include <stdint.h>
 
-#include <libticables/typedefs.h>
 #include <libticalcs/calc_int.h>
 #include <libticalcs/calc_def.h>
 
@@ -140,7 +141,7 @@ unsigned short sknKey92[] =
   }
 
   
-  if (ticalc_get_calc2() == CALC_TI89)
+  if (ticalc_return_calc() == CALC_TI89)
   {
     [mySkinController loadSkin:[[NSBundle mainBundle] pathForResource:@"ti89" ofType:@"skn"]
                       skinSize:&skinSize
@@ -197,7 +198,7 @@ unsigned short sknKey92[] =
   [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n"];
   [textArea insertText:@"\n"];
   
-  if (ticalc_get_calc2() == CALC_TI89)
+  if (ticalc_return_calc() == CALC_TI89)
     [keyboardWindow setTitle:@"TI-89 Remote Control"];
   else
     [keyboardWindow setTitle:@"TI-92 Remote Control"];

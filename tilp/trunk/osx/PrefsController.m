@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -35,9 +37,8 @@
 
 #include <libticalcs/calc_int.h>
 
-#include "../src/struct.h"
-#include "../src/defs.h"
-#include "../src/error.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_defs.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
@@ -76,7 +77,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 {
     NSString *portName;
     
-    // general
+// general
     
     if (NSOnState == [orderIncreasing state])
         options.ctree_sort_order = SORT_UP;
@@ -92,17 +93,17 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else if (NSOnState == [sortByType state])
         options.ctree_sort = SORT_BY_TYPE;
 
+    if (NSOnState == [multipleVarsGroup state])
+        options.single_or_group = RECV_AS_GROUP;
+    else if (NSOnState == [multipleVarsSingle state])
+        options.single_or_group = RECV_AS_SINGLE;
+    
     if (NSOnState == [pathModeFull state])
         options.path_mode = FULL_PATH;
     else if (NSOnState == [pathModeLocal state])
         options.path_mode = LOCAL_PATH;
-
-    if (NSOnState == [transferModeManual state])
-        options.transfer_mode = MANUAL_MODE;
-    else if (NSOnState == [transferModeSilent state])
-        options.transfer_mode = SILENT_MODE;
-
-    // hardware
+    
+// hardware
     
     if (NSOnState == [linkCableUGL state])
         {
@@ -142,9 +143,11 @@ extern struct cocoa_objects_ptr *objects_ptr;
             [portName getCString:options.lp.device];
         }
 
-    // calculator
+// calculator
 
-    if (NSOnState == [calcType92p state])
+    if (NSOnState == [calcTypeV200 state])
+        options.lp.calc_type = CALC_V200;
+    else if (NSOnState == [calcType92p state])
         options.lp.calc_type = CALC_TI92P;
     else if (NSOnState == [calcType92 state])
         options.lp.calc_type = CALC_TI92;
@@ -165,23 +168,24 @@ extern struct cocoa_objects_ptr *objects_ptr;
                           
     options.auto_detect = [calcTypeProbe state];
     
-    // screendump
+// screendump
     
-    if (NSOnState == [screenFormatPCX state])
-        options.screen_format = PCX;
-    else if (NSOnState == [screenFormatTIFF state])
+    if (NSOnState == [screenFormatTIFF state])
         options.screen_format = TIFF;
-    else if (NSOnState == [screenFormatXPM state])
-        options.screen_format = XPM;
-    else if (NSOnState == [screenFormatBMP state])
-        options.screen_format = BMP;
+//    else if (NSOnState == [screenFormatPDF state])
+//        options.screen_format = PDF;
 
+    if (NSOnState == [screenRenderingBlurry state])
+        options.screen_blurry = TRUE;
+    else if (NSOnState == [screenRenderingBW state])
+        options.screen_blurry = FALSE;
+    
     if (NSOnState == [screenModeClipped state])
         options.screen_clipping = TRUE;
     else if (NSOnState == [screenModeFull state])
         options.screen_clipping = FALSE;
         
-    // advanced
+// advanced
     
     if (NSOnState == [consoleVerbose state])
         options.console_mode = DSP_ON;
@@ -191,8 +195,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
     ticable_set_param2(options.lp);
         
     ticable_set_cable(options.lp.link_type, &link_cable);
-    
-    ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
+
+    ticalc_set_calc(options.lp.calc_type, &ti_calc);
 
     rc_save_user_prefs();
 
@@ -221,16 +225,13 @@ extern struct cocoa_objects_ptr *objects_ptr;
     // get the list of all serial ports
     gotListing = [self getSerialPortsList];
 
+// general
+    
     if (options.path_mode == FULL_PATH)
         [pathModeMatrix setState:NSOnState atRow:0 column:0];
     else
         [pathModeMatrix setState:NSOnState atRow:0 column:1];
-    
-    if (options.transfer_mode == SILENT_MODE)
-        [transferModeMatrix setState:NSOnState atRow:0 column:0];
-    else
-        [transferModeMatrix setState:NSOnState atRow:0 column:1];
-        
+
     switch(options.ctree_sort)
         {
             case SORT_BY_NAME:
@@ -246,16 +247,21 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [sortByMatrix setState:NSOnState atRow:1 column:1];
                 break;
         }
-        
+
+    if (options.single_or_group == RECV_AS_GROUP)
+        [multipleVarsMatrix setState:NSOnState atRow:0 column:0];
+    else
+        [multipleVarsMatrix setState:NSOnState atRow:0 column:1];
+    
     if (options.ctree_sort_order == SORT_UP)
         [orderMatrix setState:NSOnState atRow:0 column:0];
     else
         [orderMatrix setState:NSOnState atRow:0 column:1];
 
+// hardware
+    
     if ((portNameArray == nil) || (gotListing != YES))
-        {
-            [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
-        }
+        [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
     else
         {
             [portCombo reloadData];
@@ -302,6 +308,13 @@ extern struct cocoa_objects_ptr *objects_ptr;
                             }
                     }
                 break;
+            case LINK_NONE:
+            case LINK_SER:
+            case LINK_PAR:
+            case LINK_AVR:
+            case LINK_VTL:
+            default:
+                break;
         }
 
         if ((gotListing == YES) && (portNameArray != nil) && (deviceMatched == NO))
@@ -310,34 +323,39 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
             }
 
-    switch(ticalc_get_calc2())
+// calculator
+    
+    switch(ticalc_return_calc())
         {
-            case CALC_TI92P:
+            case CALC_V200:
                 [calcTypeMatrix setState:NSOnState atRow:0 column:0];
                 break;
-            case CALC_TI92:
+            case CALC_TI92P:
                 [calcTypeMatrix setState:NSOnState atRow:1 column:0];
                 break;
-            case CALC_TI89:
+            case CALC_TI92:
                 [calcTypeMatrix setState:NSOnState atRow:2 column:0];
                 break;
-            case CALC_TI86:
+            case CALC_TI89:
                 [calcTypeMatrix setState:NSOnState atRow:0 column:1];
                 break;
-            case CALC_TI85:
+            case CALC_TI86:
                 [calcTypeMatrix setState:NSOnState atRow:1 column:1];
                 break;
-            case CALC_TI83P:
+            case CALC_TI85:
                 [calcTypeMatrix setState:NSOnState atRow:2 column:1];
                 break;
-            case CALC_TI83:
+            case CALC_TI83P:
                 [calcTypeMatrix setState:NSOnState atRow:0 column:2];
                 break;
-            case CALC_TI82:
+            case CALC_TI83:
                 [calcTypeMatrix setState:NSOnState atRow:1 column:2];
                 break;
-            case CALC_TI73:
+            case CALC_TI82:
                 [calcTypeMatrix setState:NSOnState atRow:2 column:2];
+                break;
+            case CALC_TI73:
+                [calcTypeMatrix setState:NSOnState atRow:0 column:3];
                 break;
         }
                 
@@ -345,28 +363,33 @@ extern struct cocoa_objects_ptr *objects_ptr;
         [calcTypeProbe setState:NSOnState];
     else
         [calcTypeProbe setState:NSOffState];
+
+// screendump
     
     switch(options.screen_format)
         {
             case TIFF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:0];
                 break;
-            case BMP:
+#if 0
+            case PDF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:1];
                 break;
-            case PCX:
-                [screenFormatMatrix setState:NSOnState atRow:1 column:0];
-                break;
-            case XPM:
-                [screenFormatMatrix setState:NSOnState atRow:1 column:1];
-                break;
+#endif /* 0 */
         }
+
+    if (options.screen_blurry == FALSE)
+        [screenRenderingMatrix setState:NSOnState atRow:0 column:0];
+    else
+        [screenRenderingMatrix setState:NSOnState atRow:0 column:1];
         
     if (options.screen_clipping == FULL_SCREEN)
         [screenModeMatrix setState:NSOnState atRow:0 column:0];
     else
         [screenModeMatrix setState:NSOnState atRow:0 column:1];
-        
+
+// advanced
+
     if ((options.lp.timeout > 0) && (options.lp.timeout <= 50))
         [linkTimeoutField setIntValue:options.lp.timeout];
     else // defaults to 5 (tenth of seconds -- half a second)

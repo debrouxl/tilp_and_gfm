@@ -1,5 +1,5 @@
 /*  tilp - a linking program for TI graphing calculators
- *  Copyright (C) 1999-2002  Romain Lievin
+ *  Copyright (C) 1999-2003  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,35 +16,20 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __SUB_MAIN_H__
-#define __SUB_MAIN_H__
+#ifndef __TILP_VERSION__
+#define __TILP_VERSION__
 
-#ifdef __cplusplus
-extern "C" {
+/*
+  This file contains version number
+  and library requirements.
+*/
+
+#ifdef __WIN32__
+# define TILP_VERSION "6.60"	// For Win32
+#else
+# define TILP_VERSION VERSION
 #endif
-
-/********************/
-/* Global variables */
-/********************/
-extern int is_active;    // Set if a transfer is active
-extern int working_mode; // GUI working mode
-
-/******************/
-/* Some functions */
-/******************/
-int help(void);
-int version(void);
-int scan_cmdline(int argc, const char **argv);
-
-int sub_main(int argc, const char *argv[], char **arge);
-#define main_init sub_main // for compatibility
-
-#ifdef __cplusplus
-}
-#endif
+#define LIB_CABLE_VERSION_REQUIRED  "3.6.1"
+#define LIB_CALC_VERSION_REQUIRED   "4.3.3"
 
 #endif
-
-
-
-

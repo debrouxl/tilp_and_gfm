@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -77,13 +79,13 @@
 - (void)showCurrentPBar;
 - (void)hideCurrentPBar;
 
-- (void)msgSheet:(NSString *)message title:(NSString *)title;
+- (void)msgSheet:(NSString *)title message:(NSString *)message;
 
-- (int)user1Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1;
-- (int)user2Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2;
-- (int)user3Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3;
+- (int)msg2Sheet:(NSString *)title message:(NSString *)message;
+- (int)msg3Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3;
+- (int)msg4Sheet:(NSString *)title message:(NSString *)message;
 
-- (NSString *)dlgboxEntry:(NSString *)title message:(NSString *)message content:(NSString *)content;
+- (NSString *)msgEntrySheet:(NSString *)title message:(NSString *)message content:(NSString *)content;
 
 - (void)pbarType2:(NSString *)message;
 

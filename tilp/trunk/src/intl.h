@@ -1,5 +1,5 @@
 /*  tilp - a linking program for TI graphing calculators
- *  Copyright (C) 1999-2002  Romain Lievin
+ *  Copyright (C) 1999-2003  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,9 +27,7 @@
 #  include <config.h>
 #endif
 
-#ifdef HAVE_LOCALE_H
-# include <locale.h>
-#endif
+#include <locale.h>
 
 /*
  * Standard gettext macros.
@@ -53,21 +51,10 @@
 #  define N_(String) (String)
 #endif
 
-/* Taken from Gimp Win32 */
-/*
-#define INIT_LOCALE( domain )	G_STMT_START{	\
-	gtk_set_locale ();			\
-	setlocale (LC_NUMERIC, "C");		\
-	bindtextdomain (domain, LOCALEDIR);	\
-	textdomain (domain);			\
-				}G_STMT_END
-*/
-
-#ifdef __WIN32__
+#if defined(__WIN32__) && !defined(__MINGW32__)
 # undef PACKAGE
-# define PACKAGE "tilp"           	// name of package
-# define PACKAGE_LOCALE_DIR ""		// place of the translated file
+# define PACKAGE "tilp"		// name of package
+# define LOCALEDIR ""		// place of the translated file
 #endif
 
 #endif
-

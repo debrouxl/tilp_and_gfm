@@ -87,7 +87,6 @@
                 installShell = id; 
                 isReady = id; 
                 newWindow = id; 
-                probeCalc = id; 
                 remoteControl = id; 
                 romDump = id; 
                 saveConfig = id; 
@@ -130,6 +129,7 @@
                 calcType92p = id; 
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
+                calcTypeV200 = id; 
                 consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 
@@ -141,6 +141,9 @@
                 linkTimeoutField = id; 
                 linkTimeoutValueStepper = id; 
                 linkTypeMatrix = id; 
+                multipleVarsGroup = id; 
+                multipleVarsMatrix = id; 
+                multipleVarsSingle = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 mySheetsController = id; 
@@ -156,22 +159,20 @@
                 portType = id; 
                 portWarning = id; 
                 prefsWindow = id; 
-                screenFormatBMP = id; 
                 screenFormatMatrix = id; 
-                screenFormatPCX = id; 
+                screenFormatPDF = id; 
                 screenFormatTIFF = id; 
-                screenFormatXPM = id; 
                 screenModeClipped = id; 
                 screenModeFull = id; 
                 screenModeMatrix = id; 
+                screenRenderingBW = id; 
+                screenRenderingBlurry = id; 
+                screenRenderingMatrix = id; 
                 sortByInfo = id; 
                 sortByMatrix = id; 
                 sortByName = id; 
                 sortBySize = id; 
                 sortByType = id; 
-                transferModeManual = id; 
-                transferModeMatrix = id; 
-                transferModeSilent = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -241,8 +242,8 @@
             CLASS = TilpController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                currentFolder = id; 
                 dirlistTree = id; 
+                linkStatus = id; 
                 memoryStats = id; 
                 myBoxesController = id; 
                 myMenuController = id; 

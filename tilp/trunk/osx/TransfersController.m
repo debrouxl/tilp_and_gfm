@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -25,17 +27,12 @@
 #include "cocoa_structs.h"
 #include "cocoa_sheets.h"
 
-#include "../src/cb_calc.h"
-#include "../src/gui_indep.h"
+#include "../src/tilp_core.h"
+#include "../src/tilp_indep.h"
+#include "../src/tilp_defs.h"
 #include "../src/intl.h"
-#include "../src/defs.h"
-#include "../src/cb_misc.h"
-#include "../src/cb_calc.h"
-#include "../src/error.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-
-extern int is_active;
 
 #import "TilpController.h"
 #import "SheetsController.h"
@@ -65,7 +62,7 @@ extern int is_active;
   
   localPool = [[NSAutoreleasePool alloc] init];
   
-  cb_send_var();
+  tilp_calc_send_var(0);
   
   [localPool release];
   [NSThread exit];
@@ -91,13 +88,13 @@ extern int is_active;
     GList *flash_list = NULL;
     GList *l = NULL;
     
-    struct varinfo *v = NULL;
+    TiVarEntry *v = NULL;
     
     int result = -1;
     int tiVarsRow;
     int i, j, row;
-    int vars_indexes[1024]; // I don't know if 1024 vars can be fitted on the TI, but :-)
-    int flash_indexes[256];
+    int vars_indexes[128]; // I don't know if 128 vars can be fitted on the TI, but :-)
+    int flash_indexes[64];
 
     localPool = [[NSAutoreleasePool alloc] init];
     
@@ -128,7 +125,7 @@ extern int is_active;
                         fprintf(stderr, "DEBUG: GET VARS => MEMORY ITEM, UNUSED\n");
                         break;
                     case 3: // get ID list
-                        cb_id_list();
+                        tilp_calc_idlist();
                         break;
                     case 4: // keyboard item => do... I don't know
                         fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
@@ -181,9 +178,9 @@ extern int is_active;
 
                   while ([NODE_DATA(foldItem) isGroup] == NO)
                     {
-                        v = (struct varinfo *)malloc(sizeof(struct varinfo));
+                        v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
                           
-                        memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(struct varinfo));
+                        memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(TiVarEntry));
                         
                         row = [dirlistTree rowForItem:foldItem];
 
@@ -228,9 +225,9 @@ extern int is_active;
 
                   if (row > 0)
                     {
-                        v = (struct varinfo *)malloc(sizeof(struct varinfo));
+                        v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
                         
-                        memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(struct varinfo));
+                        memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(TiVarEntry));
                   
                         if (row > tiVarsRow)
                             {
@@ -252,7 +249,7 @@ extern int is_active;
   
     // Retrieve vars
     if (ctree_win.selection != NULL)
-        result = cb_recv_var();
+        result = tilp_calc_recv_var();
   
     if (result >= 0)
         {
@@ -262,12 +259,12 @@ extern int is_active;
 
             if (result == 0)
                 {
-                    v = (struct varinfo *)ctree_win.selection->data;
+                    v = (TiVarEntry *)ctree_win.selection->data;
 
-                    [sp setRequiredFileType:[NSString stringWithCString:ti_calc.byte2fext(v->vartype)]];
+                    [sp setRequiredFileType:[NSString stringWithCString:tifiles_vartype2file(v->type)]];
                     [sp setTitle:@"Save variable as..."];
 
-                    tmpfile = [NSString stringWithFormat:@"%s.%s", v->translate, ti_calc.byte2fext(v->vartype)];
+                    tmpfile = [NSString stringWithFormat:@"%s.%s", v->trans, tifiles_vartype2file(v->type)];
                 
                     context = [[NSMutableDictionary alloc] init];
                 
@@ -313,18 +310,18 @@ extern int is_active;
                     
                     ctree_win.selection2->data = l->data;
                     
-                    if (cb_recv_app() == 0)
+                    if (tilp_calc_recv_app() == 0)
                         {
                             calcDict = [myTilpController getCurrentCalcDict];
         
                             sp = [NSSavePanel savePanel];
                         
-                            v = (struct varinfo *)ctree_win.selection2->data;
+                            v = (TiVarEntry *)ctree_win.selection2->data;
                 
-                            [sp setRequiredFileType:[NSString stringWithCString:ti_calc.byte2fext(v->vartype)]];
+                            [sp setRequiredFileType:[NSString stringWithCString:tifiles_vartype2file(v->type)]];
                             [sp setTitle:@"Save FLASH Application as..."];
                 
-                            tmpfile = [NSString stringWithFormat:@"%s.%s", v->translate, ti_calc.byte2fext(v->vartype)];
+                            tmpfile = [NSString stringWithFormat:@"%s.%s", v->trans, tifiles_vartype2file(v->type)];
                 
                             context = [[NSMutableDictionary alloc] init];
                 
@@ -370,7 +367,7 @@ extern int is_active;
         {
             file = strdup([nsfile fileSystemRepresentation]);
 
-            cb_send_flash_app(file);
+            tilp_calc_send_flash_app(file);
             
             free(file);
         }
@@ -394,7 +391,7 @@ extern int is_active;
             
     file = strdup([[nsfiles lastObject] fileSystemRepresentation]);
 
-    cb_send_flash_os(file);
+    tilp_calc_send_flash_os(file);
             
     free(file);
     
@@ -417,7 +414,7 @@ extern int is_active;
             
     file = strdup([[nsfiles lastObject] fileSystemRepresentation]);
     
-    cb_send_backup(file);
+    tilp_calc_send_backup(file);
             
     free(file);
     
@@ -464,6 +461,79 @@ extern int is_active;
 }
 
 // NOT THREADED
+
+static void
+render_screen_bw(uint8_t *data, unsigned char *pixels)
+{
+    int row;
+    int col;
+    int shift;
+    
+    // speed things up : set a white width * height area (* 4 => 4 bytes per pixel)
+    memset(pixels, 0xFF, (ti_screen.width * ti_screen.height * 4));
+
+    shift = 0;
+    for(row = 0; row < ti_screen.height; row++)
+    {
+        for(col = 0; col < ti_screen.width; col++)
+        {
+            if ((*data >> shift) & 1) // black => set R/G/B to 0
+            {
+                *pixels++ = 0; // red
+                *pixels++ = 0; // blue
+                *pixels++ = 0; // green
+                pixels++; // alpha, but already set to 0xFF
+            }
+            else // white, increment the pixels pointer
+            {
+                pixels += 4;
+            }
+
+            if (shift++ > 7)
+            {
+                shift = 0;
+                data++;
+            }
+        }
+    }    
+}
+
+static void
+render_screen_blurry(uint8_t *data, unsigned char *pixels)
+{
+    int row;
+    int col;
+    int shift;
+
+    shift = 0;
+    for(row = 0; row < ti_screen.height; row++)
+    {
+        for(col = 0; col < ti_screen.width; col++)
+        {
+            if ((*data >> shift) & 1) // black => set R/G/B to 0x00/0x00/0x34
+            {
+                *pixels++ = 0x00; // red
+                *pixels++ = 0x00; // blue
+                *pixels++ = 0x34; // green
+                *pixels++ = 0xFF; // alpha
+            }
+            else // white => set R/G/B to A8/B4/A8
+            {
+                *pixels++ = 0xA8; // red
+                *pixels++ = 0xB4; // blue
+                *pixels++ = 0xA8; // green
+                *pixels++ = 0xFF; // alpha
+            }
+
+            if (shift++ > 7)
+            {
+                shift = 0;
+                data++;
+            }
+        }
+    }    
+}
+
 - (void)getScreen:(id)sender
 {
     // Ol, a big THANK YOU for this one
@@ -474,20 +544,15 @@ extern int is_active;
     NSRect viewFrame;
     NSSize newSize;
     
-    int row;
-    int col;
-
     unsigned char *pixels;
-    byte *data;
+    uint8_t *data;
     
-    if ((is_active) || (cb_screen_capture() != 0) || (ti_screen.img.bitmap == NULL))
+    if ((tilp_screen_capture() != 0) || (ti_screen.bitmap == NULL))
         return;
-        
-    convert_bitmap_to_bytemap(&(ti_screen.img));
     
     bitmap = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
-                                       pixelsWide:ti_screen.img.width
-                                       pixelsHigh:ti_screen.img.height
+                                       pixelsWide:ti_screen.width
+                                       pixelsHigh:ti_screen.height
                                        bitsPerSample:8
                                        samplesPerPixel:4
                                        hasAlpha:YES
@@ -498,34 +563,14 @@ extern int is_active;
     
     pixels = [bitmap bitmapData];
     
-    data = ti_screen.img.bytemap;
+    data = ti_screen.bitmap;
 
-    // speed things up : set a white width * height area (* 4 => 4 bytes per pixel)
-    memset(pixels, 0xFF, (ti_screen.img.width * ti_screen.img.height * 4)); 
-
-    for(row = 0; row < ti_screen.img.height; row++)
-        {
-            for(col = 0; col < ti_screen.img.width; col++)
-                {
-                    if (*data == 1) // black => set R/G/B to 0
-                        {
-                            *pixels++ = 0; // red
-                            *pixels++ = 0; // blue
-                            *pixels++ = 0; // green
-                            pixels++; // alpha, but already set to 0xFF
-                        }
-                    else // white, increment the pixels pointer
-                        {
-                            pixels += 4;
-                        }
-                    data++;
-                }
-        }
-
-    if (options.screen_clipping == FULL_SCREEN)
-      size = NSMakeSize(ti_screen.sc.width, ti_screen.sc.height);
+    if (options.screen_blurry)
+        render_screen_blurry(data, pixels);
     else
-      size = NSMakeSize(ti_screen.sc.clipped_width, ti_screen.sc.clipped_height);
+        render_screen_bw(data, pixels);
+
+    size = NSMakeSize(ti_screen.width, ti_screen.height);
     
     screen = [[NSImage alloc] initWithSize:size];
     
@@ -561,281 +606,23 @@ extern int is_active;
 {
     NSSavePanel *sp;
     NSString *proposedFile;
-    
-    int ret;
-    int err = 0;
-    char *tmp_filename = NULL;
-    
-    FILE *dump = NULL;
-    
-    if (is_active)
-        return;
- 
+
     proposedFile = @"romdump.rom";
- 
-    tmp_filename = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_ROMDUMP) + 2);
- 
-    strcpy(tmp_filename, g_get_tmp_dir());
-    strcat(tmp_filename, G_DIR_SEPARATOR_S);
-    strcat(tmp_filename, TMPFILE_ROMDUMP);
- 
-    ret = gif->user2_box(_("Warning"), 
-                         _("An assembly program will be sent to your calc if you decide to continue.\nConsider doing a backup before."),
-                         _("Proceed"), 
-                         _("Cancel"));
-    if(ret != BUTTON1)
+
+    if (tilp_calc_rom_dump() != 0)
         return;
-  
-    switch(options.lp.calc_type)
-        {
-            case CALC_TI83:
-            case CALC_TI83P:
-                ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is needed to perform a ROM dump. You must have AShell installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run it on your calc."),
-                                     _("Proceed"), 
-                                     _("Cancel"));
-                switch(ret)
-                    {
-                        case BUTTON1:
-                            gif->create_pbar_type5(_("ROM dump"), 
-                                                   _("Receiving bytes"));
-                                                   
-                            do
-                                {
-                                    if(info_update.cancel)
-                                        break;
-                                        
-                                    err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-                                    
-                                    if(tilp_error(err))
-                                        return;
-                                    
-                                    err = ti_calc.dump_rom(dump, ret);
-                                    fclose(dump);
-                                }
-                            while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
-                                                   
-                            destroy_pbar();
-                            if(tilp_error(err))
-                                return;	      
 
-                            sp = [NSSavePanel savePanel];
+    sp = [NSSavePanel savePanel];
 
-                            [sp setRequiredFileType:@"rom"];
-                            [sp setTitle:@"Save ROM dump as..."];
+    [sp setRequiredFileType:@"rom"];
+    [sp setTitle:@"Save ROM dump as..."];
 
-                            [sp beginSheetForDirectory:NSHomeDirectory()
-                                    file:proposedFile
-                                    modalForWindow:[myBoxesController keyWindow]
-                                    modalDelegate:myBoxesController
-                                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
-                                    contextInfo:sp];
-                                    
-                            break;
-                        default:
-                            return; 
-                    }
-                break;
-            case CALC_TI85:
-                ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is needed to perform a ROM dump. You must have ZShell or Usgard installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run this program."),
-                                     _("Proceed"), 
-                                     _("Cancel"));
-                switch(ret)
-                    {	
-                        case BUTTON1:
-                            ret = gif->user3_box(_("Shell type"), 
-                                                 _("Select a shell"), 
-                                                 _("ZShell"), _("Usgard"), _("Cancel"));
-                            if(ret == 3)
-                                return;
-                            else	
-                                {
-                                    gif->create_pbar_type5(_("ROM dump"), 
-                                                           _("Receiving bytes"));
-                                                           
-                                    do
-                                        {
-                                            if(info_update.cancel)
-                                                break;
-                                            
-                                            err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-                                            
-                                            if(tilp_error(err))
-                                                return;
-                                            
-                                            err = ti_calc.dump_rom(dump, (ret == 1) ? SHELL_ZSHELL : SHELL_USGARD);
-                                            fclose(dump);
-                                        }
-                                    while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
-	      
-                                    destroy_pbar();
-                                    if(tilp_error(err))
-                                        return;
-                                        
-                                    sp = [NSSavePanel savePanel];
-                                        
-                                    [sp setRequiredFileType:@"rom"];
-                                    [sp setTitle:@"Save ROM dump as..."];
-
-                                    [sp beginSheetForDirectory:NSHomeDirectory()
-                                        file:proposedFile
-                                        modalForWindow:[myBoxesController keyWindow]
-                                        modalDelegate:myBoxesController
-                                        didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
-                                        contextInfo:sp];
-                                }
-                            break;	
-                        default:
-                            return; 
-                    }
-                break;
-            case CALC_TI86:
-                ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is required to perform a ROM dump. You must have a shell installed on your calculator to run this program.\nTiLP will transfer this program on your calc, then wait until you run it."),
-                                     _("Procced"), 
-                                     _("Cancel"));
-                switch(ret)
-                    {
-                        case BUTTON1:
-                            gif->create_pbar_type5(_("ROM dump"), 
-                                                   _("Receiving bytes"));
-                                                   
-                            do
-                                {
-                                    if(info_update.cancel)
-                                        break;
-                                        
-                                    err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-                                    
-                                    if(tilp_error(err))
-                                        return;
-                                    
-                                    err = ti_calc.dump_rom(dump, ret);
-                                    
-                                    fclose(dump);
-                                }
-                            while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
-
-                            destroy_pbar();
-                            if(tilp_error(err))
-                                return;
-                                
-                            sp = [NSSavePanel savePanel];
-                            
-                            [sp setRequiredFileType:@"rom"];
-                            [sp setTitle:@"Save ROM dump as..."];
-
-                            [sp beginSheetForDirectory:NSHomeDirectory()
-                                file:proposedFile
-                                modalForWindow:[myBoxesController keyWindow]
-                                modalDelegate:myBoxesController
-                                didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
-                                contextInfo:sp];
-
-                            break;
-                        default:
-                            return; 
-                    }
-                break;
-            case CALC_TI89:
-            case CALC_TI92P:
-                gif->create_pbar_type5(_("ROM dump"), 
-                                       _("Receiving bytes"));
-                                       
-                do
-                    {
-                        if(info_update.cancel)
-                            break;
-                            
-                        err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-                        
-                        if(tilp_error(err))
-                            return;
-                            
-                        err = ti_calc.dump_rom(dump, ret);
-                        
-                        fclose(dump);
-                    }
-                while( ((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT)) );
-
-                destroy_pbar();
-                if(tilp_error(err))
-                    return;	      
-                    
-                sp = [NSSavePanel savePanel];
-                
-                [sp setRequiredFileType:@"rom"];
-                [sp setTitle:@"Save ROM dump as..."];
-                
-                [sp beginSheetForDirectory:NSHomeDirectory()
-                    file:proposedFile
-                    modalForWindow:[myBoxesController keyWindow]
-                    modalDelegate:myBoxesController
-                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
-                    contextInfo:sp];
-
-                break;
-            case CALC_TI92:
-                ret = gif->user2_box(_("Information"), 
-                                     _("The FargoII shell must be installed on your calc to perform a ROM dump."),
-                                     _("Proceed"), 
-                                     _("Cancel"));
-                switch(ret)
-                    {
-                        case BUTTON1:
-                            ret = gif->user3_box(_("ROM size"), 
-                                                 _("Select the size of your ROM or cancel"), 
-                                                 _("1Mb"), _("2 Mb"), _("Cancel"));
-                        if(ret == 3)
-                            return;
-                        else
-                            {
-                                printf(_("ROM size: %i Mb\n"), ret);
-                                gif->create_pbar_type5(_("ROM dump"), 
-                                                       _("Receiving bytes"));
-                                                    
-                                do
-                                    {
-                                        if(info_update.cancel)
-                                            break;
-                                        
-                                        err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
-                                        
-                                        if(tilp_error(err))
-                                            return;
-                                            
-                                        err=ti_calc.dump_rom(dump, ret);
-                                        
-                                        fclose(dump);
-                                    }
-                                while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
-
-                                destroy_pbar();
-                                if(tilp_error(err))
-                                    return;	      
-                                    
-                                sp = [NSSavePanel savePanel];
-                                    
-                                [sp setRequiredFileType:@"rom"];
-                                [sp setTitle:@"Save ROM dump as..."];
-
-                                [sp beginSheetForDirectory:NSHomeDirectory()
-                                    file:proposedFile
-                                    modalForWindow:[myBoxesController keyWindow]
-                                    modalDelegate:myBoxesController
-                                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
-                                    contextInfo:sp];
-                            }	  
-                        break;
-                    default: 
-                        return;
-                    }
-                break;
-            default:
-                DISPLAY(_("Unsupported ROM dump\n"));
-                break;
-        }
+    [sp beginSheetForDirectory:NSHomeDirectory()
+                          file:proposedFile
+                modalForWindow:[myBoxesController keyWindow]
+                 modalDelegate:myBoxesController
+                didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                   contextInfo:sp];
 }
 
 - (void)doBackup:(id)sender
@@ -843,10 +630,7 @@ extern int is_active;
     NSSavePanel *sp;
     NSDictionary *calcDict;
     
-    if (is_active)
-        return;
-    
-    if (cb_recv_backup() != 0)
+    if (tilp_calc_recv_backup() != 0)
         return;
     
     sp = [NSSavePanel savePanel];
@@ -861,7 +645,7 @@ extern int is_active;
         contextInfo:sp];
 }
 
-- (int)sendChar:(unsigned int)tikey
+- (int)sendChar:(uint16_t)tikey
 {
 #ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);

@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *  Config header
@@ -25,13 +27,18 @@
 #define HAVE_UNISTD_H
 #define HAVE_DIRENT_H
 
-#define HAVE_TILP_MACROS_H
-#define HAVE_TILP_TYPEDEFS_H
+#define HAVE_TILP_TICABLES_H
+#define HAVE_TILP_TIFILES_H
 
 #define DIR_SEPARATOR "/"
 
-#define TILP_OSX_VERSION "0.6.0"
+#define ALLOW_EXIT_HOMEDIR
 
-#define VERSION "5.11"
+#define TILP_OSX_VERSION "0.6.1"
+
+// the line below must be modified at each revision !
+#define SVN_REV "$Rev$"
+
+#define VERSION "6.62"
 
 #endif /* !__CONFIG_H__ */

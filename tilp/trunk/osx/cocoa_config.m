@@ -1,5 +1,7 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -21,8 +23,8 @@
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 
-#include "../src/struct.h"
-#include "../src/defs.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_defs.h"
 
 #include <libticalcs/calc_int.h>
 
@@ -35,22 +37,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 // initialized, so no classes are available.
 
 void
-rc_set_unused_items(void)
-{
-    // what we do not use
-    options.xsize = UNUSED;
-    options.ysize = UNUSED;
-    options.clist_sort = UNUSED;
-    options.clist_sort_order = UNUSED;
-    options.show = UNUSED;
-    options.plugins_loading = UNUSED;
-    options.unzip_location = NULL;
-    options.unzip_options = NULL;
-    options.tar_location = NULL;
-    options.tar_options = NULL;
-}
-
-void
 rc_init_with_default(void)
 {
     // what we use
@@ -59,14 +45,14 @@ rc_init_with_default(void)
     options.path_mode = FULL_PATH;
     options.screen_format = TIFF;
     options.screen_clipping = CLIPPED_SCREEN;
-    options.transfer_mode = SILENT_MODE;
-    options.file_checking = FILE_CHECKING_MID;
-    options.file_mode = EXTENDED_FORMAT;
+    options.screen_blurry = FALSE;
     // verbosity of libticables (DISPLAY() function)
     options.console_mode = DSP_OFF;
     options.auto_detect = TRUE;
     options.show_gui = TRUE;
     options.confirm = TRUE;
+    options.single_or_group = RECV_AS_GROUP;
+    options.working_dir = g_get_home_dir();
     
     options.lp.link_type = LINK_UGL;
     options.lp.timeout = 15;
@@ -74,8 +60,6 @@ rc_init_with_default(void)
     options.lp.calc_type = CALC_TI92P;
     options.lp.method = IOM_AUTO;
     memset(options.lp.device, 0, sizeof(options.lp.device));
-    
-    rc_set_unused_items();
 }
 
 void
@@ -89,9 +73,6 @@ rc_fill_dictionary(void)
     value = [[NSNumber alloc] initWithInt:options.path_mode];
     [tilpConfig setObject:value forKey:@"path_mode"];
     
-    value = [[NSNumber alloc] initWithInt:options.transfer_mode];
-    [tilpConfig setObject:value forKey:@"transfer_mode"];
-    
     value = [[NSNumber alloc] initWithInt:options.ctree_sort];
     [tilpConfig setObject:value forKey:@"ctree_sort"];
     
@@ -103,12 +84,18 @@ rc_fill_dictionary(void)
     
     value = [[NSNumber alloc] initWithInt:options.screen_clipping];
     [tilpConfig setObject:value forKey:@"screen_clipping"];
+
+    value = [[NSNumber alloc] initWithInt:options.screen_blurry];
+    [tilpConfig setObject:value forKey:@"screen_blurry"];
     
     value = [[NSNumber alloc] initWithInt:options.auto_detect];
     [tilpConfig setObject:value forKey:@"auto_detect"];
 
     value = [[NSNumber alloc] initWithInt:options.console_mode];
     [tilpConfig setObject:value forKey:@"console_mode"];
+
+    value = [[NSNumber alloc] initWithInt:options.single_or_group];
+    [tilpConfig setObject:value forKey:@"single_or_group"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.link_type];
     [tilpConfig setObject:value forKey:@"link_type"];
@@ -121,7 +108,7 @@ rc_fill_dictionary(void)
             [tilpConfig setObject:value forKey:@"link_port"];
         }
     
-    value = [[NSNumber alloc] initWithInt:ticalc_get_calc2()];
+    value = [[NSNumber alloc] initWithInt:ticalc_return_calc()];
     [tilpConfig setObject:value forKey:@"calc_type"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.timeout];
@@ -162,44 +149,31 @@ rc_get_user_prefs(void)
     objects_ptr->prefs = prefs;
     
     if ((value = [tilpConfig objectForKey:@"path_mode"]))
-    {
         options.path_mode = [value intValue];
-    }
-    
-    if ((value = [tilpConfig objectForKey:@"transfer_mode"]))
-    {
-        options.transfer_mode = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"ctree_sort"]))
-    {
         options.ctree_sort = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"ctree_sort_order"]))
-    {
         options.ctree_sort_order = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"screen_format"]))
-    {
         options.screen_format = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"screen_clipping"]))
-    {
         options.screen_clipping = [value intValue];
-    }
+
+    if ((value = [tilpConfig objectForKey:@"screen_blurry"]))
+        options.screen_blurry = [value intValue];
     
     if ((value = [tilpConfig objectForKey:@"auto_detect"]))
-    {
         options.auto_detect = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"console_mode"]))
-    {
         options.console_mode = [value intValue];
-    }
+
+    if ((value = [tilpConfig objectForKey:@"single_or_group"]))
+        options.single_or_group = [value intValue];
     
     if ((value = [tilpConfig objectForKey:@"link_type"]))
     {
@@ -222,16 +196,10 @@ rc_get_user_prefs(void)
     }
     
     if ((value = [tilpConfig objectForKey:@"calc_type"]))
-    {
         options.lp.calc_type = [value intValue];
-    }
     
     if ((value = [tilpConfig objectForKey:@"timeout"]))
-    {
         options.lp.timeout = [value intValue];
-    }
-    
-    rc_set_unused_items();
 }
     
     

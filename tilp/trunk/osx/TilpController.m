@@ -1,22 +1,24 @@
 /*  TiLP - Linking program for TI calculators
-*  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
-*
-*  Cocoa GUI for Mac OS X
-*
-*  This program is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  This program is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with this program; if not, write to the Free Software
-*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-*/
+ *  Copyright (C) 2001-2003 Julien BLACHE <jb@tilp.info>
+ *
+ *  $Id$
+ *
+ *  Cocoa GUI for Mac OS X
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ */
 
 /*
  * The code for the toolbar is derived from Apple Sample Code (ToolbarSample)
@@ -30,15 +32,10 @@
 
 #include <libticalcs/calc_int.h>
 
-#include "../src/struct.h"
-#include "../src/gui_indep.h"
-#include "../src/defs.h"
-#include "../src/cb_misc.h"
-#include "../src/sub_main.h"
-#include "../src/cb_calc.h"
-#include "../src/files.h"
-#include "../src/info.h"
-#include "../src/vars.h"
+#include "../src/tilp_core.h"
+#include "../src/tilp_struct.h"
+#include "../src/tilp_indep.h"
+#include "../src/tilp_defs.h"
 
 #include "cocoa_sheets.h"
 #include "cocoa_structs.h"
@@ -56,7 +53,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 @implementation TilpController
 
-struct gui_fncts gui_functions;
+TilpGuiFncts gui_functions;
 
 - (id)init
 {
@@ -90,7 +87,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.73g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.73g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI73]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI73]];
 
   [tmpMutDict removeAllObjects];
 
@@ -112,7 +110,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.82g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.82g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI82]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI82]];
 
   [tmpMutDict removeAllObjects];
 
@@ -135,7 +134,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.83g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.83g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83]];
 
   [tmpMutDict removeAllObjects];
 
@@ -157,7 +157,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.8xg" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.8xg" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83P]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83P]];
 
   [tmpMutDict removeAllObjects];
 
@@ -180,7 +181,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.85g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.85g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI85]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI85]];
 
   [tmpMutDict removeAllObjects];
 
@@ -203,7 +205,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.86g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.86g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI86]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI86]];
 
   [tmpMutDict removeAllObjects];
 
@@ -227,7 +230,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.89g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.89g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI89]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI89]];
 
   [tmpMutDict removeAllObjects];
 
@@ -250,7 +254,8 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.92g" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.92g" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92]];
 
   [tmpMutDict removeAllObjects];
 
@@ -274,8 +279,36 @@ struct gui_fncts gui_functions;
   [tmpMutDict setObject:@"backup.9xg" forKey:@"defaultBackupFilename"];
   [tmpMutDict setObject:@"group.9xg" forKey:@"defaultGroupFilename"];
 
-  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92P]];
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92P]];
 
+  [tmpMutDict removeAllObjects];
+
+  // TI V200
+  tmpArray = [NSArray arrayWithObjects:@"v2a", @"v2c", @"v2d", @"v2e",
+      @"v2f", @"v2g", @"v2i", @"v2k",
+      @"v2l", @"v2m", @"v2p", @"v2q",
+      @"v2r", @"v2s", @"v2t", @"v2u",
+      @"v2w", @"v2x", @"v2y", @"v2z",
+      nil];
+
+  [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+
+  tmpArray = [NSArray arrayWithObjects:@"v2u", nil];
+  [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+
+  tmpArray = [NSArray arrayWithObjects:@"v2k", nil];
+  [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+
+  tmpArray = [NSArray arrayWithObjects:@"v2g", nil];
+  [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+
+  [tmpMutDict setObject:@"backup.v2g" forKey:@"defaultBackupFilename"];
+  [tmpMutDict setObject:@"group.v2g" forKey:@"defaultGroupFilename"];
+
+  [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict]
+                        forKey:[NSString stringWithFormat:@"CALC %i", CALC_V200]];  
+  
   [tmpMutDict release];
 
   calcsProperties = [NSDictionary dictionaryWithDictionary:tmpCalcProperties];
@@ -333,19 +366,19 @@ struct gui_fncts gui_functions;
 
   // Init the GUI independant functions
   gui_functions.msg_box = create_cocoa_msg_sheet;
-  gui_functions.user1_box = create_cocoa_user1_sheet;
-  gui_functions.user2_box = create_cocoa_user2_sheet;
-  gui_functions.user3_box = create_cocoa_user3_sheet;
-  gui_functions.dlgbox_entry = create_cocoa_dlgbox_entry;
+  gui_functions.msg_box2 = create_cocoa_msg2_sheet;
+  gui_functions.msg_box3 = create_cocoa_msg3_sheet;
+  gui_functions.msg_box4 = create_cocoa_msg4_sheet;
+  gui_functions.msg_entry = create_cocoa_msg_entry;
   gui_functions.create_pbar_type1 = create_cocoa_pbar_type1_sheet;
   gui_functions.create_pbar_type2 = create_cocoa_pbar_type2_sheet;
   gui_functions.create_pbar_type3 = create_cocoa_pbar_type3_sheet;
   gui_functions.create_pbar_type4 = create_cocoa_pbar_type4_sheet;
   gui_functions.create_pbar_type5 = create_cocoa_pbar_type5_sheet;
   gui_functions.destroy_pbar = destroy_pbar;
-  set_gui_fncts(&gui_functions);
+  tilp_gui_set_fncts(&gui_functions);
 
-  gt_init_refresh_functions();
+  cocoa_init_refresh_functions();
 
   // init the outline view
   [dirlistTree setDelegate:self];
@@ -365,12 +398,8 @@ struct gui_fncts gui_functions;
   // register for dragging
   [dirlistTree registerForDraggedTypes:[NSArray arrayWithObjects:@"NSFilenamesPboardType", nil]];
 
-  // If variables have been passed on the command
-  // line in GUI mode then send them
-  if(working_mode == MODE_OSX)
-  {
-    cb_send_cmdline();
-  }
+  // register the ready callback
+  tilp_calc_register(cocoa_set_link_status);
 }
 
 // calc properties
@@ -380,15 +409,34 @@ struct gui_fncts gui_functions;
   return [calcsProperties objectForKey:[NSString stringWithFormat:@"CALC %i", options.lp.calc_type]];
 }
 
+// link status
+
+- (void)setLinkStatus:(int)status
+{
+    if (status != -1)
+    {
+        [linkStatus setTextColor:[NSColor greenColor]];
+        [linkStatus setStringValue:[NSString stringWithCString:tifiles_calctype_to_string(options.lp.calc_type)]];
+    }
+    else
+    {
+        [linkStatus setTextColor:[NSColor redColor]];
+        [linkStatus setStringValue:@"Not connected"];
+    }
+}
+
 // outline view and infos refresh
 
 - (void)refreshOutline
 {
   int folderPos = 0; // position in tiVarsArray
   int varPos = 0; // position in the array representing the folder
-
-  struct varinfo *q;
-
+  TicalcType calc;
+  uint8_t calc_flash;
+  uint8_t calc_folder;
+  
+  TiVarEntry *v;
+  
   NSMutableDictionary *content;
   NSMutableDictionary *tmpDict;
   NSMutableArray *mainEntries;
@@ -397,7 +445,7 @@ struct gui_fncts gui_functions;
   NSMutableArray *tmpArray;
   Varinfo *varinfo;
 
-  GList *p;
+  GNode *p;
 
   switch(options.ctree_sort)
   {
@@ -405,13 +453,13 @@ struct gui_fncts gui_functions;
       //sort_cfiles_by_name(ctree_win.varlist);
       break;
     case SORT_BY_INFO:
-      sort_cfiles_by_info(ctree_win.varlist);
+      tilp_sort_vars_by_info();
       break;
     case SORT_BY_TYPE:
-      sort_cfiles_by_type(ctree_win.varlist);
+      tilp_sort_vars_by_type();
       break;
     case SORT_BY_SIZE:
-      sort_cfiles_by_size(ctree_win.varlist);
+      tilp_sort_vars_by_size();
       break;
   }
 
@@ -488,20 +536,24 @@ struct gui_fncts gui_functions;
   [tmpDict setObject:@"TI Variables" forKey:@"Group"];
   [tmpDict setObject:tiVarsArray forKey:@"Entries"];
 
+  ticalc_get_calc(&calc);
+  calc_flash = tifiles_flash_type();
+  calc_folder = tifiles_folder_type();
+  
   // ok, we must now populate our big fscking dictionary with the
   // list of FLASH APPS and variables
 
   // FLASH APPS
 
-  if (ticalc_flash_type(ticalc_get_calc2()) != -1)
+  if (calc_flash != -1)
   {
-    p = ctree_win.varlist;
+    p = ctree_win.dirlist;
 
     while (p != NULL)
     {
-      q = (struct varinfo *)(p->data);
+      v = (TiVarEntry *)(p->data);
 
-      if (q->vartype != ticalc_flash_type(ticalc_get_calc2()))
+      if (v->type != calc_flash)
       {
         p = p->next;
         continue;
@@ -510,22 +562,22 @@ struct gui_fncts gui_functions;
       // dictionary that will hold this app
       tmpDict = [[NSMutableDictionary alloc] init];
 
-      switch (q->varattr)
+      switch (v->attr)
       {
-        case VARATTR_LOCK:
+        case ATTRB_LOCKED:
           [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
           break;
-        case VARATTR_ARCH:
+        case ATTRB_ARCHIVED:
           [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
           break;
       }
 
       [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-      [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
-      [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
-      [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+      [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
+      [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
 
-      varinfo = [[Varinfo alloc] initWithPointer:q];
+      varinfo = [[Varinfo alloc] initWithPointer:v];
       [tmpDict setObject:varinfo forKey:@"varinfo"];
 
       [tiAppsArray insertObject:tmpDict atIndex:varPos];
@@ -538,19 +590,19 @@ struct gui_fncts gui_functions;
 
   // Variables
 
-  p = ctree_win.varlist;
+  p = ctree_win.dirlist;
 
   while (p != NULL)
   {
-    q = (struct varinfo *)(p->data);
+    v = (TiVarEntry *)(p->data);
 
-    if(q->vartype == ticalc_flash_type(ticalc_get_calc2()))
+    if(v->type == calc_flash)
     {
       p = p->next;
       continue;
     }
 
-    if (q->vartype == ticalc_folder_type(ticalc_get_calc2()))
+    if (v->type == calc_folder)
     {
       // dictionary that will hold the stuff
       tmpDict = [[NSMutableDictionary alloc] init];
@@ -562,7 +614,7 @@ struct gui_fncts gui_functions;
       tmpArray = [[NSMutableArray alloc] init];
 
       [tmpDict setObject:tmpArray forKey:@"Entries"];
-      [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Group"];
+      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Group"];
 
       // we're in a new folder, so...
       varPos = 0;
@@ -572,22 +624,22 @@ struct gui_fncts gui_functions;
       // dictionary that will hold this var
       tmpDict = [[NSMutableDictionary alloc] init];
 
-      switch (q->varattr)  // Uh, you'd better #define'd this type of things, Romain
+      switch (v->attr)
       {
-        case VARATTR_LOCK:
+        case ATTRB_LOCKED:
           [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
           break;
-        case VARATTR_ARCH:
+        case ATTRB_ARCHIVED:
           [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
           break;
       }
 
       [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-      [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
-      [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
-      [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+      [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
+      [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
 
-      varinfo = [[Varinfo alloc] initWithPointer:q];
+      varinfo = [[Varinfo alloc] initWithPointer:v];
       [tmpDict setObject:varinfo forKey:@"varinfo"];
 
       [tmpArray insertObject:tmpDict atIndex:varPos];
@@ -621,7 +673,7 @@ struct gui_fncts gui_functions;
   // expand the "TI Variables" item if it has children
   // NOTICE : the itemAtRow: argument will change if you add/remove items
   // before the "TI Variables" item...
-  if (ctree_win.varlist != NULL)
+  if (ctree_win.dirlist != NULL)
     [dirlistTree expandItem:[dirlistTree itemAtRow:6]];
   else
     [dirlistTree collapseItem:[dirlistTree itemAtRow:6]];
@@ -629,11 +681,9 @@ struct gui_fncts gui_functions;
 
 - (void)refreshInfos
 {
-  struct calc_mem_info cmi;
+  TilpCalcMemInfo cmi;
 
-  get_calc_mem_info(&cmi);
-
-  [currentFolder setStringValue:[NSString stringWithFormat:@"Current folder : %s", ctree_win.cur_folder]];
+  tilp_get_calc_mem_info(&cmi);
 
   [numberOfFolders setStringValue:[NSString stringWithFormat:@"Number of folders : %u", cmi.folders]];
 
@@ -781,7 +831,7 @@ struct gui_fncts gui_functions;
 - (BOOL)outlineView:(NSOutlineView*)olv acceptDrop:(id <NSDraggingInfo>)info item:(id)targetItem childIndex:(int)childIndex
 {
   GList *filelist = NULL;
-  struct file_info *fi = NULL;
+  TilpFileInfo *fi = NULL;
 
   NSPasteboard *pboard;
   NSArray *filenames;
@@ -804,7 +854,8 @@ struct gui_fncts gui_functions;
 
       while ((file = [filesEnum nextObject]) != nil)
       {
-        fi = (struct file_info *)malloc(sizeof(struct file_info));
+        fi = (TilpFileInfo *)malloc(sizeof(TilpFileInfo));
+        memset(fi, 0, sizeof(TilpFileInfo));
 
         if (fi == NULL)
         {
@@ -814,7 +865,7 @@ struct gui_fncts gui_functions;
           return NO;
         }
 
-        fi->filename = strdup([file fileSystemRepresentation]);
+        fi->name = strdup([file fileSystemRepresentation]);
 
         filelist = g_list_append(filelist, fi);
       }
