@@ -25,6 +25,9 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
 
 OUTDIR=.
@@ -55,15 +58,16 @@ CLEAN :
 	-@erase "$(INTDIR)\comm.obj"
 	-@erase "$(INTDIR)\ctree.obj"
 	-@erase "$(INTDIR)\dboxes.obj"
+	-@erase "$(INTDIR)\dnd.obj"
 	-@erase "$(INTDIR)\extprgms.obj"
 	-@erase "$(INTDIR)\filesel.obj"
 	-@erase "$(INTDIR)\general.obj"
 	-@erase "$(INTDIR)\gtk_refresh.obj"
 	-@erase "$(INTDIR)\labels.obj"
+	-@erase "$(INTDIR)\logfile.obj"
 	-@erase "$(INTDIR)\main.obj"
 	-@erase "$(INTDIR)\manpage.obj"
 	-@erase "$(INTDIR)\pbars.obj"
-	-@erase "$(INTDIR)\pbars_db.obj"
 	-@erase "$(INTDIR)\popup.obj"
 	-@erase "$(INTDIR)\release.obj"
 	-@erase "$(INTDIR)\screenshot.obj"
@@ -95,41 +99,8 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
 CPP_PROJ=/nologo /G3 /ML /w /W0 /GX /O2 /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "NDEBUG" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-RSC=rc.exe
-RSC_PROJ=/l 0x40c /fo"$(INTDIR)\tilp.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_console.bsc" 
 BSC32_SBRS= \
@@ -137,6 +108,16 @@ BSC32_SBRS= \
 LINK32=link.exe
 LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib intl.lib /nologo /subsystem:console /incremental:no /pdb:"$(OUTDIR)\TiLP.pdb" /machine:I386 /out:"$(OUTDIR)\TiLP.exe" 
 LINK32_OBJS= \
+	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib" \
 	"$(INTDIR)\about.obj" \
 	"$(INTDIR)\action.obj" \
 	"$(INTDIR)\clist.obj" \
@@ -144,15 +125,16 @@ LINK32_OBJS= \
 	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\ctree.obj" \
 	"$(INTDIR)\dboxes.obj" \
+	"$(INTDIR)\dnd.obj" \
 	"$(INTDIR)\extprgms.obj" \
 	"$(INTDIR)\filesel.obj" \
 	"$(INTDIR)\general.obj" \
 	"$(INTDIR)\gtk_refresh.obj" \
 	"$(INTDIR)\labels.obj" \
+	"$(INTDIR)\logfile.obj" \
 	"$(INTDIR)\main.obj" \
 	"$(INTDIR)\manpage.obj" \
 	"$(INTDIR)\pbars.obj" \
-	"$(INTDIR)\pbars_db.obj" \
 	"$(INTDIR)\popup.obj" \
 	"$(INTDIR)\release.obj" \
 	"$(INTDIR)\screenshot.obj" \
@@ -163,6 +145,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp.obj" \
 	"$(INTDIR)\toolbar.obj" \
 	"$(INTDIR)\wizard.obj" \
+	"$(INTDIR)\tilp.res" \
 	"$(INTDIR)\tilp_calcs.obj" \
 	"$(INTDIR)\tilp_error.obj" \
 	"$(INTDIR)\tilp_files.obj" \
@@ -177,7 +160,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\tilp.res" \
+	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
 	"..\..\..\ticables\build\msvc\ticables.lib" \
 	"..\..\..\ticalcs\build\msvc\ticalcs.lib" \
 	"..\..\..\tifiles\build\msvc\tifiles.lib"
@@ -217,15 +200,16 @@ CLEAN :
 	-@erase "$(INTDIR)\comm.obj"
 	-@erase "$(INTDIR)\ctree.obj"
 	-@erase "$(INTDIR)\dboxes.obj"
+	-@erase "$(INTDIR)\dnd.obj"
 	-@erase "$(INTDIR)\extprgms.obj"
 	-@erase "$(INTDIR)\filesel.obj"
 	-@erase "$(INTDIR)\general.obj"
 	-@erase "$(INTDIR)\gtk_refresh.obj"
 	-@erase "$(INTDIR)\labels.obj"
+	-@erase "$(INTDIR)\logfile.obj"
 	-@erase "$(INTDIR)\main.obj"
 	-@erase "$(INTDIR)\manpage.obj"
 	-@erase "$(INTDIR)\pbars.obj"
-	-@erase "$(INTDIR)\pbars_db.obj"
 	-@erase "$(INTDIR)\popup.obj"
 	-@erase "$(INTDIR)\release.obj"
 	-@erase "$(INTDIR)\screenshot.obj"
@@ -263,8 +247,78 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "_DEBUG" /D "GTK" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "_DEBUG" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+RSC_PROJ=/l 0x809 /fo"$(INTDIR)\Tilp.res" /d "_DEBUG" 
+BSC32=bscmake.exe
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_console.bsc" 
+BSC32_SBRS= \
+	
+LINK32=link.exe
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\TiLP.pdb" /debug /machine:I386 /out:"$(OUTDIR)\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib" 
+LINK32_OBJS= \
+	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib" \
+	"$(INTDIR)\about.obj" \
+	"$(INTDIR)\action.obj" \
+	"$(INTDIR)\clist.obj" \
+	"$(INTDIR)\clock.obj" \
+	"$(INTDIR)\comm.obj" \
+	"$(INTDIR)\ctree.obj" \
+	"$(INTDIR)\dboxes.obj" \
+	"$(INTDIR)\dnd.obj" \
+	"$(INTDIR)\extprgms.obj" \
+	"$(INTDIR)\filesel.obj" \
+	"$(INTDIR)\general.obj" \
+	"$(INTDIR)\gtk_refresh.obj" \
+	"$(INTDIR)\labels.obj" \
+	"$(INTDIR)\logfile.obj" \
+	"$(INTDIR)\main.obj" \
+	"$(INTDIR)\manpage.obj" \
+	"$(INTDIR)\pbars.obj" \
+	"$(INTDIR)\popup.obj" \
+	"$(INTDIR)\release.obj" \
+	"$(INTDIR)\screenshot.obj" \
+	"$(INTDIR)\scroptions.obj" \
+	"$(INTDIR)\shell.obj" \
+	"$(INTDIR)\splash.obj" \
+	"$(INTDIR)\support.obj" \
+	"$(INTDIR)\tilp.obj" \
+	"$(INTDIR)\toolbar.obj" \
+	"$(INTDIR)\wizard.obj" \
+	"$(INTDIR)\tilp.res" \
+	"$(INTDIR)\tilp_calcs.obj" \
+	"$(INTDIR)\tilp_error.obj" \
+	"$(INTDIR)\tilp_files.obj" \
+	"$(INTDIR)\tilp_indep.obj" \
+	"$(INTDIR)\tilp_main.obj" \
+	"$(INTDIR)\tilp_misc.obj" \
+	"$(INTDIR)\tilp_paths.obj" \
+	"$(INTDIR)\tilp_plugin.obj" \
+	"$(INTDIR)\tilp_prompt.obj" \
+	"$(INTDIR)\tilp_rcfile.obj" \
+	"$(INTDIR)\tilp_refresh.obj" \
+	"$(INTDIR)\tilp_screen.obj" \
+	"$(INTDIR)\tilp_slct.obj" \
+	"$(INTDIR)\tilp_vars.obj" \
+	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
+	"$(OUTDIR)\ticables.lib" \
+	"$(OUTDIR)\ticalcs.lib" \
+	"$(OUTDIR)\tifiles.lib"
+
+"$(OUTDIR)\TiLP.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+!ENDIF 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -295,67 +349,6 @@ CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../libs/cables/src" /I ".
    $(CPP) @<<
    $(CPP_PROJ) $< 
 <<
-
-RSC=rc.exe
-RSC_PROJ=/l 0x809 /fo"$(INTDIR)\tilp.res" /d "_DEBUG" 
-BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_console.bsc" 
-BSC32_SBRS= \
-	
-LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib intl.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\TiLP.pdb" /debug /machine:I386 /out:"$(OUTDIR)\TiLP.exe" /pdbtype:sept 
-LINK32_OBJS= \
-	"$(INTDIR)\about.obj" \
-	"$(INTDIR)\action.obj" \
-	"$(INTDIR)\clist.obj" \
-	"$(INTDIR)\clock.obj" \
-	"$(INTDIR)\comm.obj" \
-	"$(INTDIR)\ctree.obj" \
-	"$(INTDIR)\dboxes.obj" \
-	"$(INTDIR)\extprgms.obj" \
-	"$(INTDIR)\filesel.obj" \
-	"$(INTDIR)\general.obj" \
-	"$(INTDIR)\gtk_refresh.obj" \
-	"$(INTDIR)\labels.obj" \
-	"$(INTDIR)\main.obj" \
-	"$(INTDIR)\manpage.obj" \
-	"$(INTDIR)\pbars.obj" \
-	"$(INTDIR)\pbars_db.obj" \
-	"$(INTDIR)\popup.obj" \
-	"$(INTDIR)\release.obj" \
-	"$(INTDIR)\screenshot.obj" \
-	"$(INTDIR)\scroptions.obj" \
-	"$(INTDIR)\shell.obj" \
-	"$(INTDIR)\splash.obj" \
-	"$(INTDIR)\support.obj" \
-	"$(INTDIR)\tilp.obj" \
-	"$(INTDIR)\toolbar.obj" \
-	"$(INTDIR)\wizard.obj" \
-	"$(INTDIR)\tilp_calcs.obj" \
-	"$(INTDIR)\tilp_error.obj" \
-	"$(INTDIR)\tilp_files.obj" \
-	"$(INTDIR)\tilp_indep.obj" \
-	"$(INTDIR)\tilp_main.obj" \
-	"$(INTDIR)\tilp_misc.obj" \
-	"$(INTDIR)\tilp_paths.obj" \
-	"$(INTDIR)\tilp_plugin.obj" \
-	"$(INTDIR)\tilp_prompt.obj" \
-	"$(INTDIR)\tilp_rcfile.obj" \
-	"$(INTDIR)\tilp_refresh.obj" \
-	"$(INTDIR)\tilp_screen.obj" \
-	"$(INTDIR)\tilp_slct.obj" \
-	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\tilp.res" \
-	"$(OUTDIR)\ticables.lib" \
-	"$(OUTDIR)\ticalcs.lib" \
-	"$(OUTDIR)\tifiles.lib"
-
-"$(OUTDIR)\TiLP.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
-    $(LINK32) @<<
-  $(LINK32_FLAGS) $(LINK32_OBJS)
-<<
-
-!ENDIF 
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
@@ -410,6 +403,12 @@ SOURCE=..\..\src\dboxes.c
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
+SOURCE=..\..\src\dnd.c
+
+"$(INTDIR)\dnd.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
 SOURCE=..\..\src\extprgms.c
 
 "$(INTDIR)\extprgms.obj" : $(SOURCE) "$(INTDIR)"
@@ -440,6 +439,12 @@ SOURCE=..\..\src\labels.c
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
+SOURCE=..\..\src\logfile.c
+
+"$(INTDIR)\logfile.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
 SOURCE=..\..\src\main.c
 
 "$(INTDIR)\main.obj" : $(SOURCE) "$(INTDIR)"
@@ -455,12 +460,6 @@ SOURCE=..\..\src\manpage.c
 SOURCE=..\..\src\pbars.c
 
 "$(INTDIR)\pbars.obj" : $(SOURCE) "$(INTDIR)"
-	$(CPP) $(CPP_PROJ) $(SOURCE)
-
-
-SOURCE=..\..\src\pbars_db.c
-
-"$(INTDIR)\pbars_db.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -524,7 +523,7 @@ SOURCE=..\..\src\wizard.c
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=.\tilp.rc
+SOURCE=.\Tilp.rc
 
 "$(INTDIR)\tilp.res" : $(SOURCE) "$(INTDIR)"
 	$(RSC) $(RSC_PROJ) $(SOURCE)

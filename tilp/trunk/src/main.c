@@ -85,6 +85,7 @@ int main(int argc, char *argv[], char **arge)
 {
 	char rc_version[32];
 	GdkPixbuf *icon;
+	//uint8_t varname[20], utf8[35];
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
@@ -173,6 +174,10 @@ int main(int argc, char *argv[], char **arge)
 
 	/* GTK main loop */
 	splash_screen_stop();
+
+	//strcpy(varname, "group/");
+	//tifiles_translate_varname(varname, utf8, 0);
+
 	gtk_main();
 	return 0;
 }

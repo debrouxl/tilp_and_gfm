@@ -31,7 +31,7 @@
 #elif defined(__WIN32__)
 # define INI_FILE  "tilp.ini"
 # define REG_FILE "tilp.registry"
-# define LOG_FILE "C:\\tilp.log"
+# define LOG_FILE "C:\\msvc\\tilp\\tilp.log"
 #endif
 
 

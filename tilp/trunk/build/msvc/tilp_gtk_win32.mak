@@ -25,6 +25,10 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+MTL=midl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
 
 OUTDIR=.
@@ -96,42 +100,8 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
+CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
-RSC=rc.exe
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_win32.bsc" 
@@ -144,6 +114,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\action.obj" \
 	"$(INTDIR)\clist.obj" \
 	"$(INTDIR)\clock.obj" \
+	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\ctree.obj" \
 	"$(INTDIR)\dboxes.obj" \
 	"$(INTDIR)\dnd.obj" \
@@ -180,7 +151,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
@@ -279,42 +249,8 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
 CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-MTL=midl.exe
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
-RSC=rc.exe
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "_DEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_win32.bsc" 
@@ -327,6 +263,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\action.obj" \
 	"$(INTDIR)\clist.obj" \
 	"$(INTDIR)\clock.obj" \
+	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\ctree.obj" \
 	"$(INTDIR)\dboxes.obj" \
 	"$(INTDIR)\dnd.obj" \
@@ -363,7 +300,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
@@ -386,6 +322,36 @@ LINK32_OBJS= \
 <<
 
 !ENDIF 
+
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
