@@ -83,8 +83,10 @@ void tilp_delete_selected_files()
 {
 	GList *ptr;
 	gint ret;
+
 	if (clist_win.selection == NULL)
 		return;
+
 	if (g_list_length(clist_win.selection) == 1) {
 		ret = gif->msg_box2(_("Warning"), _
 				    ("Are you sure you want to remove this file ?\n\n"));
@@ -92,14 +94,17 @@ void tilp_delete_selected_files()
 		ret = gif->msg_box2(_("Warning"), _
 				    ("Are you sure you want to remove these files ?\n\n"));
 	}
+
 	if (ret == BUTTON2)
 		return;
+
 	ptr = clist_win.selection;
 	while (ptr != NULL) {
 		TilpFileInfo *fi = ptr->data;
 		tilp_file_delete(fi->name);
 		ptr = ptr->next;
 	}
+
 	tilp_dirlist_local();
 }
 
