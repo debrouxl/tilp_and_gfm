@@ -45,8 +45,7 @@
 static void init_linux_paths(void)
 {
 	inst_paths.base_dir =
-	    g_strconcat(inst_paths.base_dir, SHARE_DIR, G_DIR_SEPARATOR_S,
-			NULL);
+	    g_strconcat(SHARE_DIR, G_DIR_SEPARATOR_S, NULL);
 	inst_paths.pixmap_dir =
 	    g_strconcat(inst_paths.base_dir, "pixmaps/", NULL);
 	inst_paths.icon_dir =

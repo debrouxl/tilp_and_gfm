@@ -144,7 +144,7 @@ tilp_SOURCES =  	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c
 
 noinst_HEADERS = *.h
 
-EXTRA_DIST = win32
+EXTRA_DIST = 
 
 # libtool stuff: set export symbols for resolving
 tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
