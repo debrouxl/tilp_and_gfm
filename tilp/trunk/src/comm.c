@@ -91,11 +91,11 @@ gint display_comm_dbox()
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 
-	case LINK_TIE:
+	case LINK_VTI:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 
-	case LINK_VTI:
+    case LINK_TIE:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	
@@ -260,8 +260,6 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 6: tmp_lp.link_type = LINK_VTL; break;
     case 7: tmp_lp.link_type = LINK_NUL; break;
 	}
-
-    printf("nitem = %i\n", nitem);
 	
 	// force port to avoid libticables bad argument 
 	if(!init) {

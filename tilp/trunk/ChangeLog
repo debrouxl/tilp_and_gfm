@@ -12,6 +12,13 @@ Some explanations about the version number:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 29/06/2004, version 6.74 (3.8.6, 0.5.9, 4.5.3): roms
+	Checked possible bugs reported on TI89 AMS 2.05 by Lionel Debroux <lionel_debroux@yahoo.fr>:
+	- warning with PortTalk (mis-installed): not reproducted.
+	- change settings set an error: not reproduced.
+	- comm box: VTi and TiEmu cable were swapped, fixed.
+	- pb of backup: not reproduced.
+
 - 16/05/2004, version 6.73 (3.8.5, 0.5.9, 4.5.3): roms
 	Added null cable support.
 	Bug fix in the comm box.

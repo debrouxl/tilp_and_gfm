@@ -346,7 +346,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="null1">
+			    <widget class="GtkMenuItem" id="nul1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">null</property>
 			      <property name="use_underline">True</property>
