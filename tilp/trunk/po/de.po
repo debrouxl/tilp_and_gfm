@@ -6,7 +6,7 @@
 # instead of "couldn't do foo".
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2003-05-03 10:50+0200\n"
+"POT-Creation-Date: 2003-05-03 16:20+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -227,7 +227,7 @@ msgstr "Fehler"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/gtk_refresh.c:116
+#: src/gtk_refresh.c:126
 msgid "Initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
 

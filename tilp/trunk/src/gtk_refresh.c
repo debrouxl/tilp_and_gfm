@@ -1,4 +1,3 @@
-/* Hey EMACS -*- linux-c -*- */
 /*  tilp - a linking program for TI graphing calculators
  *  Copyright (C) 1999-2003  Romain Lievin
  *
@@ -25,94 +24,105 @@
 #include <gtk/gtk.h>
 
 #include "tilp_core.h"
-
 #include "gstruct.h"
+
 TicableDataRate *dr;
+
 static void gtkgui_start()
 {
-	info_update.prev_percentage = info_update.percentage = 0.0;
-	ticable_get_datarate(&dr);
-} static void gtkgui_stop()
-{
-	info_update.prev_percentage = info_update.percentage = 0.0;
-} static void refresh_pbar1()
-{
-	gchar buffer[32];
-	gfloat rate;
-	info_update.percentage =
-	    (float) info_update.count / info_update.total;
-	if (p_win.pbar1 != NULL) {
+  info_update.prev_percentage = info_update.percentage = 0.0;
+  ticable_get_datarate(&dr);
+} 
 
-		/* Refresh if necessary (for speeding up !) */
-		if ((info_update.percentage -
-		     info_update.prev_percentage) < 0.05) {
-			if ((info_update.percentage -
-			     info_update.prev_percentage) < 0)
-				info_update.prev_percentage =
-				    info_update.percentage;
+static void gtkgui_stop()
+{
+  info_update.prev_percentage = info_update.percentage = 0.0;
+} 
 
-			else
-				return;
-		} else
-			info_update.prev_percentage =
-			    info_update.percentage;
-		rate = dr->count / toCURRENT(dr->start);
-		g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s",
-			   rate / 1000);
-		gtk_label_set(GTK_LABEL(p_win.label_rate), buffer);
-		gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar1),
-					info_update.percentage);
-		while (gtk_events_pending()) {
-			gtk_main_iteration();
-		}
+static void refresh_pbar1()
+{
+  gchar buffer[32];
+  gfloat rate;
+  
+  info_update.percentage = (float) info_update.count / info_update.total;
+
+  if (p_win.pbar1 != NULL) 
+    {
+      
+      /* Refresh if necessary (for speeding up !) */
+      if ((info_update.percentage - info_update.prev_percentage) < 0.05) 
+	{
+	  if ((info_update.percentage - info_update.prev_percentage) < 0)
+	    info_update.prev_percentage = info_update.percentage;
+	  else
+	    return;
+	} 
+      else
+	info_update.prev_percentage = info_update.percentage;
+      
+      rate = dr->count / toCURRENT(dr->start);
+      g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", rate / 1000);
+      gtk_label_set(GTK_LABEL(p_win.label_rate), buffer);
+      gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar1),
+			      info_update.percentage);
+      while (gtk_events_pending()) 
+	{
+	  gtk_main_iteration();
 	}
+    }
 }
+
 static void refresh_pbar2()
 {
-	if (p_win.pbar2 != NULL) {
-
-		/* Refresh if necessary (for speeding up !) */
-		if ((info_update.main_percentage -
-		     info_update.prev_main_percentage) < 0.05)
-			return;
-
-		else
-			info_update.prev_main_percentage =
-			    info_update.main_percentage;
-		gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar2),
-					info_update.main_percentage);
-		while (gtk_events_pending()) {
-			gtk_main_iteration();
-		}
+  if (p_win.pbar2 != NULL) 
+    {
+      /* Refresh if necessary (for speeding up !) */
+      if ((info_update.main_percentage - 
+	   info_update.prev_main_percentage) < 0.05)
+	return;
+      else
+	info_update.prev_main_percentage = info_update.main_percentage;
+      gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar2),
+			      info_update.main_percentage);
+      while (gtk_events_pending()) 
+	{
+	  gtk_main_iteration();
 	}
+    }
 }
+
 static void gtkgui_pbar()
 {
-	refresh_pbar1();
-	refresh_pbar2();
-} static void gtkgui_label()
+  refresh_pbar1();
+  refresh_pbar2();
+} 
+
+// note: info_update.label_text encoding is depends on 
+// tifiles_translate_set_encoding()
+static void gtkgui_label()
 {
-	gchar *utf;
-	gsize bw;
-	if (p_win.label == NULL)
-		return;
-	utf =
-	    g_locale_to_utf8(info_update.label_text, -1, NULL, &bw, NULL);
-	gtk_label_set(GTK_LABEL(p_win.label), utf);
-	while (gtk_events_pending()) {
-		gtk_main_iteration();
-	}
+  if (p_win.label == NULL)
+    return;
+
+  gtk_label_set(GTK_LABEL(p_win.label), info_update.label_text);
+  while (gtk_events_pending()) 
+    {
+      gtk_main_iteration();
+    }
 }
+
 static void gtkgui_refresh()
 {
-	while (gtk_events_pending()) {
-		gtk_main_iteration();
-	}
+  while (gtk_events_pending()) 
+    {
+      gtk_main_iteration();
+    }
 }
+
 void tilp_guigtk_set_refresh(void)
 {
-	ticalc_set_update(&info_update, gtkgui_start, gtkgui_stop,
-			  gtkgui_refresh, gtkgui_pbar, gtkgui_label);
-	fprintf(stdout, _("Initialized in GTK+ mode.\n"));
-	return;
+  ticalc_set_update(&info_update, gtkgui_start, gtkgui_stop,
+		    gtkgui_refresh, gtkgui_pbar, gtkgui_label);
+  fprintf(stdout, _("Initialized in GTK+ mode.\n"));
+  return;
 }

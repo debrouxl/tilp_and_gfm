@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 6.61\n"
-"POT-Creation-Date: 2003-05-03 10:50+0200\n"
+"POT-Creation-Date: 2003-05-03 16:20+0200\n"
 "PO-Revision-Date: 2003-04-09 21:08+0200\n"
 "Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: FRENCH <fr@li.org>\n"
@@ -222,7 +222,7 @@ msgstr "Erreur"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Impossible de supprimer les fichiers temporaires.\n"
 
-#: src/gtk_refresh.c:116
+#: src/gtk_refresh.c:126
 msgid "Initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
