@@ -102,13 +102,33 @@ extern struct cocoa_objects_ptr *objects_ptr;
     // hardware
     
     if (NSOnState == [linkCableUGL state])
-        options.lp.link_type = LINK_UGL;
+        {
+            options.lp.link_type = LINK_UGL;
+            
+            options.lp.port = USB_PORT_1;
+            memset(options.lp.device, 0, sizeof(options.lp.device));
+        }
     else if (NSOnState == [linkCableTPU state])
-        options.lp.link_type = LINK_TPU;
+        {
+            options.lp.link_type = LINK_TPU;
+         
+            options.lp.port = USB_PORT_1;
+            memset(options.lp.device, 0, sizeof(options.lp.device));
+        }
     else if (NSOnState == [linkCableTIE state])
-        options.lp.link_type = LINK_TIE;
+        {
+            options.lp.link_type = LINK_TIE;
+        
+            options.lp.port = VIRTUAL_PORT_1;
+            memset(options.lp.device, 0, sizeof(options.lp.device));
+        }
     else if (NSOnState == [linkCableVTI state])
-        options.lp.link_type = LINK_VTI;
+        {
+            options.lp.link_type = LINK_VTI;
+         
+            options.lp.port = VIRTUAL_PORT_1;
+            memset(options.lp.device, 0, sizeof(options.lp.device));
+        }
     else if (NSOnState == [linkCableTGL state]) // beta support
         {
             options.lp.link_type = LINK_TGL;
@@ -272,7 +292,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
                                 break;
                             }
                     }
-                [portEnumerator release];
                 break;
         }
 

@@ -130,6 +130,8 @@
 	* Small fixes wrt pbar_type* windows sizing
 	* Grey TIGL support
 	* Modified Preferences system and panel for the Grey TIGL
+* 20011219 : v0.3.1
+	* Bugfixes in the preferences system, wrt Grey TIGL
 	
 
 

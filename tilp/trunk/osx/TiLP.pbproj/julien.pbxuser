@@ -8,6 +8,11 @@
 		dylibVariantSuffix = "";
 		enableDebugStr = 1;
 		environmentEntries = (
+			{
+				active = YES;
+				name = NSZombieEnabled;
+				value = YES;
+			},
 		);
 		isa = PBXExecutable;
 		shlibInfoDictList = (
@@ -48,10 +53,10 @@
 								Split0 = {
 									Frame = "{{0, 135}, {707, 219}}";
 									Split0 = {
-										Frame = "{{0, 0}, {342, 219}}";
+										Frame = "{{0, 0}, {341, 219}}";
 									};
 									Split1 = {
-										Frame = "{{351, 0}, {356, 219}}";
+										Frame = "{{350, 0}, {357, 219}}";
 									};
 									SplitCount = 2;
 								};
