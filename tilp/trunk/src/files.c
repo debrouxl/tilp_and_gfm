@@ -18,8 +18,8 @@
 
 /*
   This file contains utility functions about files, attributes,
-  sorting routines for selection, conversion routines between dirlist
-  and glists.
+  sorting routines for selection.
+  These functions are mainly used by the right window.
  */
 
 #include <stdio.h>
@@ -28,13 +28,14 @@
 #include <strings.h>
 #include <time.h>
 #include <sys/stat.h>
-#include <dirent.h>
+//#include <dirent.h>
 #include <unistd.h>
 
 #ifndef __MACOSX__
 #include <glib.h>
 #include "platform.h"
 #else
+#include <dirent.h>
 #include <glib/glib.h>
 #endif
 
@@ -43,6 +44,7 @@
 #include "intl.h"
 #include "gui_indep.h"
 #include "error.h"
+#include "vars.h"
 
 /*******************************/
 /* File manipulation functions */
@@ -53,16 +55,17 @@
  */
 int copy_file(char *src, char *dst)
 {
+#ifndef __WIN32__
   FILE *in, *out;
   int c;
 
    if((in=fopen(src, "rb")) == NULL)
     {
-      return 1;
+      return -1;
     }
    if((out=fopen(dst, "wb")) == NULL)
      {
-      return 2;
+      return -2;
     }
    while(!feof(in))
      {
@@ -72,6 +75,10 @@ int copy_file(char *src, char *dst)
      }
    fclose(in);
    fclose(out);
+#else
+	if(!CopyFile(src, dst, FALSE))
+		return -1;
+#endif
 
   return 0;
 }
@@ -81,12 +88,45 @@ int copy_file(char *src, char *dst)
  */
 int move_file(char *src, char *dst)
 {
+#ifndef __WIN32__
   int ret;
 
   ret=copy_file(src, dst);
   if(ret) return ret;
   unlink(src);
+#else
+	if(!MoveFile(src, dst))
+		return -1;
+#endif
 
+  return 0;
+}
+
+int delete_file(char *f)
+{
+  if(unlink(f) == -1)
+    {
+#ifdef __WIN32__
+      if(!RemoveDirectory(f))
+#else
+	/* [X91] temporarily drop root privileges */
+#ifdef __LINUX__
+	uid_t	effective;
+      
+      effective = geteuid();
+      seteuid(getuid());
+#endif
+      if(remove(f) == -1)
+#endif
+	{
+	  gif->msg_box(_("Information"),
+		       _("Unable to remove the file. You can not delete non empty folders !"));
+	  return -1;
+	}
+#ifdef __LINUX__
+      seteuid(effective);
+#endif
+    }
   return 0;
 }
 
@@ -131,6 +171,7 @@ void process_unix2dos(gchar *buf)
 	buf[i]='\0';
 
 }
+
 
 /*************************************/
 /* Extracting informations functions */
@@ -193,23 +234,6 @@ char *get_attributes(TilpFileInfo f_info)
     case S_IFSOCK:	s[1]='s';
       break;
     }
-  /*
-#else
-	if(f_info.attrib & _S_IREAD) s[5]='r';
-	if(f_info.attrib & _S_IWRITE) s[6]='w';
-	if(f_info.attrib & _S_IEXEC) s[7]='x';
-
-	switch(_S_IFMT & f_info.attrib)  
-    {
-	case _S_IFDIR:	s[1]='d';
-      break;
-    case _S_IFCHR:	s[1]='c';
-      break;
-    case _S_IFIFO:	s[1]='p';
-      break;
-    }
-#endif
-	*/
 
   return s;
 }
@@ -257,8 +281,8 @@ void get_group_name(TilpFileInfo f_info, char **name)
 }
 
 /*
-
- */
+	Return the date of file
+*/
 void get_date(TilpFileInfo f_info, char **s)
 {
   char *p;
@@ -297,8 +321,6 @@ int get_home_path(char **path)
     }
   else
     {
-      //fprintf(stderr, "User login name: %s\n", p->pw_name);
-      //fprintf(stderr, "User's home directory: %s\n", p->pw_dir);
       *path = g_strdup(p->pw_dir);
       return 1;
     }
@@ -306,196 +328,6 @@ int get_home_path(char **path)
   return 0;
 }
 
-/*********************/
-/* Convert functions */
-/*********************/
-
-void display_dirlist(TicalcVarInfo *varlist)
-{
-  int i;
-  TicalcVarInfo *ptr;
-
-  ptr=varlist;
-  while(ptr != NULL)
-    {
-      for(i=0; i<8; i++)
-	{
-	  if(isprint((ptr->varname)[i]))
-	    fprintf(stdout, "%c", (ptr->varname)[i]);
-	  else
-	    fprintf(stdout, " ");
-	}
-      fprintf(stdout, "|");
-      for(i=0; i<8; i++)
-	{
-	  fprintf(stdout, "%02X", (byte)(ptr->varname)[i]);
-	}
-      fprintf(stdout, "¦");
-      for(i=0; i<8; i++)
-	{
-	  if(isprint((ptr->translate)[i]))
-	    fprintf(stdout, "%c", (ptr->translate)[i]);
-	  else
-	    fprintf(stdout, " ");
-	}
-      fprintf(stdout, "|");
-      fprintf(stdout, "%i  ", (int)(ptr->varattr));
-      fprintf(stdout, "|");
-      fprintf(stdout, "%02X ", ptr->vartype);
-      fprintf(stdout, "|");
-      fprintf(stdout, "%08X ", ptr->varsize);
-      fprintf(stdout, "|");
-      fprintf(stdout, "%s", (ptr->folder)->varname);
-      fprintf(stdout, "\n");
-
-      ptr=ptr->next;
-    }
-}
-
-//#define VDIR  /* For test/debug purpose */
-/* 
-   Convert the TicalcVarInfo list supplied by calc_directorylist into a GList
-*/ 
-void varlist_to_glist(TicalcVarInfo varlist)
-{
-  TicalcVarInfo *p;
-#ifdef VDIR
-  int i;
-  TicalcVarInfo *ptr;
-#endif
-
-  /* Free the previous list */
-  if(ctree_win.varlist != NULL)
-    {
-      g_list_foreach(ctree_win.varlist, (GFunc) g_free, NULL);
-      g_list_free(ctree_win.varlist);
-      ctree_win.varlist=NULL;
-    }
-  strcpy(ctree_win.cur_folder, varlist.varname);
-  ctree_win.memory = varlist.varsize;
-#ifdef VDIR
-  fprintf(stdout, _("Name    |Name bin        |Name tr |Lk|Ty|Size     |Parent\n"));
-#endif
-  
-  p=&varlist;
-  p=p->next;
-  while(p != NULL)
-    {
-#ifdef VDIR
-      ptr=p;
-      for(i=0; i<8; i++)
-	{
-	  if(isprint((ptr->varname)[i]))
-	    fprintf(stdout, "%c", (ptr->varname)[i]);
-	  else
-	    fprintf(stdout, " ");
-	}
-      fprintf(stdout, " ");
-      for(i=0; i<8; i++)
-	{
-	  fprintf(stdout, "%02X", (byte)(ptr->varname)[i]);
-	}
-      fprintf(stdout, " ");
-      for(i=0; i<8; i++)
-	{
-	  if(isprint((ptr->translate)[i]))
-	    fprintf(stdout, "%c", (ptr->translate)[i]);
-	  else
-	    fprintf(stdout, " ");
-	}
-      fprintf(stdout, " ");
-      fprintf(stdout, "%i  ", (int)(ptr->varattr));
-      fprintf(stdout, "%02X ", ptr->vartype);
-      fprintf(stdout, "%08X ", ptr->varsize);
-      fprintf(stdout, "%s\n", (ptr->folder)->varname);
-#endif      
-      ctree_win.varlist = g_list_append(ctree_win.varlist, (gpointer)p);
-
-      p=p->next;
-    }
-}
-
-/* 
-   Convert a GList (a directory list or a selection) into a struct 
-   varinfo list such as the same supplied by calc_directorylist but 
-   without the first element.
-   Remove also the last folder if it is empty (else group will send 'bit time out').
-*/ 
-TicalcVarInfo *glist_to_varlist(GList *glist)
-{
-  GList *ptr;
-  TicalcVarInfo *v;
-  TicalcVarInfo *p;
-  TicalcVarInfo varlist;
-  
-  ptr=glist;
-  p=&varlist;
-  p->next = NULL;
-  if(ptr == NULL) return NULL;
-  while(ptr != NULL)
-    {
-      /* Get element */
-      v=(TicalcVarInfo *)ptr->data;
-      printf("Varname: %s, vartype: %s\n", v->varname, ti_calc.byte2type(v->vartype));
-      printf("Parent folder: %s\n", (v->folder)->varname);
-
-      /* If the LAST element is just a folder, skip it */
-      if( (v->is_folder == FOLDER) && (ptr->next == NULL) )
-		break;
-
-      /* Allocate a new structure */
-      (p->next) = (TicalcVarInfo *)g_malloc(sizeof(TicalcVarInfo));
-      p=p->next;
-      p->next = NULL;
-
-      /* Copy the structure */
-      strcpy(p->varname, v->varname);
-      p->vartype=v->vartype;
-      p->varattr=v->varattr;
-      p->varsize=v->varsize;
-      strcpy(p->translate, v->translate);
-      p->folder=v->folder;
-
-      ptr=ptr->next;
-    }
-
-  return varlist.next;
-}
-
-void free_varlist(TicalcVarInfo *vlist)
-{
-  TicalcVarInfo *p, *q;
-
-  p=vlist;
-  do
-    {
-      q=p->next;
-	  //printf("free: varname=%s\n", p->varname);
-      g_free(p); // a bug ?!
-      p=q;
-    }
-  while(p != NULL);
-}
-
-/* 
-   This function generates the header of the TI file when a group
-   is received.
-*/
-void generate_group_file_header(FILE *file, int mask_mode, 
-				const char *id, TicalcVarInfo *v, 
-				int calc_type)
-{
-  TicalcVarInfo *vi;
-
-  vi = glist_to_varlist(ctree_win.selection);
-  //display_dirlist(vi);
-  ti_calc.generate_group_file_header(file, mask_mode, id, vi, 
-				     options.lp.calc_type);
-  free_varlist(vi);
-
-  return;
-
-}
 
 /****************************/
 /* Directory list functions */
@@ -508,7 +340,9 @@ void free_file_info_struct(gpointer data)
   g_free(data);
 }
 
-/* Make a directory listing of the current directory and place the result in the clist_win.dirlist GList */
+/* Make a directory listing of the current directory and place the result 
+   in the clist_win.dirlist GList 
+*/
 void l_directory_list()
 {
   DIR *dir;
@@ -534,7 +368,6 @@ void l_directory_list()
 	 {
 	   if( ((file->d_name)[0]=='.') && (options.show == HIDE) ) { continue; }
 	 }
-      //if(strcmp(file->d_name, ".")==0 || strcmp(file->d_name, "..")==0) { continue; }
       fi=(TilpFileInfo *)g_malloc(sizeof(TilpFileInfo));
       fi->filename=g_strdup(file->d_name);
       if(stat(file->d_name, &f_info)!=0)
@@ -588,10 +421,10 @@ int c_directory_list(void)
 
 /* 
    For these routines I have used the worst sorting method but the easiest: 
-   the bubble sort algorithm !!! */
+   the bubble sort algorithm !!! 
+*/
 
 
-/* Sort files by directory/files */
 void sort_lfiles_by_type(GList *list)
 {
   GList *p, *q;
@@ -618,7 +451,6 @@ void sort_lfiles_by_type(GList *list)
 	}
     }
 }
-
 
 void sort_lfiles_by_name(GList *list)
 {
@@ -882,99 +714,6 @@ void sort_lfiles_by_attrib(GList *list)
     }
 }
 
-/* Sort variables by name */
-static gint GCompareCalculatorNames (gconstpointer a, gconstpointer b)
-{
-  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
-
-  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
-      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
-    {
-      if(options.ctree_sort_order == SORT_UP)
-	return strcmp(fi_b->translate, fi_a->translate);
-      else
-	return strcmp(fi_a->translate, fi_b->translate);
-    }
-  else
-    return -1;
-}
-
-void sort_cfiles_by_name(GList *list)
-{
-  g_list_sort(list, GCompareCalculatorNames);
-}
-
-/* Sort variables by attribute */
-static gint GCompareCalculatorAttributes (gconstpointer a, gconstpointer b)
-{
-  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
-
-  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
-      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
-    {
-      if(options.ctree_sort_order == SORT_UP)
-	return (fi_b->varattr - fi_a->varattr);
-      else
-	return (fi_a->varattr - fi_b->varattr);
-    }
-  else
-    return -1;
-}
-
-void sort_cfiles_by_info(GList *list)
-{
-  g_list_sort(list, GCompareCalculatorAttributes);
-}
-
-/* Sort variables by type */
-static gint GCompareCalculatorTypes (gconstpointer a, gconstpointer b)
-{
-  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
-
-  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
-      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
-    {
-      if(options.ctree_sort_order == SORT_UP)
-	return (fi_b->vartype - fi_a->vartype);
-      else
-	return (fi_a->vartype - fi_b->vartype);
-    }
-  else
-    return -1;
-}
-
-void sort_cfiles_by_type(GList *list)
-{
-  g_list_sort(list, GCompareCalculatorTypes);
-}
-
-/* Sort variables by size */
-static gint GCompareCalculatorSizes (gconstpointer a, gconstpointer b)
-{
-  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
-
-  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
-      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
-    {
-      if(options.ctree_sort_order == SORT_UP)
-	return (fi_a->varsize - fi_b->varsize);
-      else
-	return (fi_b->varsize - fi_a->varsize);
-    }
-  else
-    return -1;
-}
-
-void sort_cfiles_by_size(GList *list)
-{
-  g_list_sort(list, GCompareCalculatorSizes);
-}
-
-
 /* Return the filename or its extension if it has one */
 char *file_extension(char *filename)
 {
@@ -989,8 +728,3 @@ char *file_extension(char *filename)
   
   return p;
 }
-
-
-
-
-

@@ -101,7 +101,7 @@ void cmdline_init_refresh_functions(void)
 		    cmdline_label,
 		    cmdline_choose
 		    );
-  fprintf(stdout, _("Initialized in command line mode.\n"));
+  DISPLAY(_("Initialized in command line mode.\n"));
   
   return;
 }

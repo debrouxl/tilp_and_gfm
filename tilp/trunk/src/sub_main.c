@@ -73,13 +73,7 @@ struct goptions options; /* General options */
 
 gint   is_active = 0;    /* Set if a transfer is active */
  
-#if defined(__LINUX__)
-gint working_mode = MODE_GTK;
-#elif defined(__MACOSX__)
-gint working_mode = MODE_OSX;
-#elif defined(__WIN32__)
-gint working_mode = MODE_MFC;
-#endif
+gint working_mode = MODE_INI;
 
 
 struct clist_window clist_win = { NULL, NULL, NULL, NULL, 0 };
@@ -265,7 +259,7 @@ int sub_main(int argc, char *argv[], char **arge)
   /*
     Display the working mode
   */
-  switch(working_mode)
+  switch(working_mode & ~MODE_GUI)
     {
     case MODE_CMD:
       DISPLAY(_("Working mode: command line.\n"));
@@ -274,8 +268,11 @@ int sub_main(int argc, char *argv[], char **arge)
       DISPLAY(_("Working mode: console.\n"));
       break;
     case MODE_GTK:
-      DISPLAY(_("Working mode: Gtk+ GUI.\n"));
+      DISPLAY(_("Working mode: GTK+.\n"));
       break;
+    case MODE_MFC: 
+      DISPLAY(_("Working mode: MFC.\n"));
+	      break;
     case MODE_INT:
       DISPLAY(_("Working mode: interactive (prompt).\n"));
       break;
@@ -290,7 +287,7 @@ int sub_main(int argc, char *argv[], char **arge)
   */
 // FIXME OS X : try it out...
 #ifndef __MACOSX__
-  if(working_mode == MODE_CMD)
+  if((working_mode == MODE_CMD) || (working_mode == MODE_INI))
     {
       cb_send_cmdline();
       return 0;

@@ -68,12 +68,15 @@
 #define BUTTON3 3
 
 /* Different working modes */
-#define MODE_CMD 1 /* Console mode                  */
-#define MODE_CON 2 /* Command line mode             */
-#define MODE_GTK 3 /* GTK gui mode (Linux/Win32)    */
-#define MODE_MFC 4 /* MFC gui mode (WiN32 only)     */
-#define MODE_INT 5 /* Interactive mode (Linux only) */
-#define MODE_OSX 6 /* Cocoa GUI mode (Mac OS X) */
+#define MODE_INI 0      /* Startup phase                 */
+#define MODE_CON (1<<0) /* Console mode                  */
+#define MODE_CMD (1<<1) /* Command line mode             */
+#define MODE_GTK (1<<2) /* GTK gui mode (Linux/Win32)    */
+#define MODE_MFC (1<<3) /* MFC gui mode (WiN32 only)     */
+#define MODE_INT (1<<4) /* Interactive mode (Linux only) */
+#define MODE_OSX (1<<5) /* Cocoa GUI mode (Mac OS X)     */
+#define MODE_GUI (1<<6) /* GUI mode (GTK, MFC, Cocoa)    */
+
 
 /* Cmd line operation to perform */
 #define OP_BACKUP    1

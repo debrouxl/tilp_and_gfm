@@ -37,6 +37,7 @@
 #include "gui_indep.h"
 #include "error.h"
 #include "files.h"
+#include "vars.h"
 #include "select.h"
 
 /* All functions returns -1 if error, 0 if OK (a file need to be saved). */
@@ -48,15 +49,17 @@
 int cb_calc_is_ready(void)
 {
   int err;
-
-  if(options.auto_detect)
+  int c = 0;
+  
+  ticalc_get_calc(&c);
+  
+  if(options.auto_detect && ((c == CALC_TI73) || (c == CALC_TI83P) || (c == CALC_TI89) || (c == CALC_TI92P)))
     {
-         err = ticalc_73_83p_89_92p_isready(&(options.lp.calc_type));
-         if(tilp_error(err))
-         {
-                 
-               return -1;
-         }
+      err = ticalc_73_83p_89_92p_isready(&(options.lp.calc_type));
+      if(tilp_error(err))
+      {  
+        return -1;
+      }
       ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
     }
   else
@@ -90,7 +93,7 @@ int cb_dirlist(void)
   if(cb_calc_is_ready())
     return -1;
   
-  if (c_directory_list() != 0)
+  if (remote_directory_list() != 0)
     return -1;
 
   return 0;
@@ -719,12 +722,25 @@ int cb_recv_var(void)
 #endif
 	  strcat(file_n, ".");
 	  strcat(file_n, ti_calc.byte2fext(v->vartype));
+
+	  if(file_n[0] < 0)
+	  {
+			dirname=gif->dlgbox_entry(_("Invalid file name, rename it"),
+						_("New name: "), file_n);
+		      if(dirname == NULL) 
+			  {
+				  gif->destroy_pbar();
+			return -1;
+			  }
+		      strcpy(file_n, dirname);
+		      g_free(dirname);
+	  }
 	  
 	  if(options.confirm == CONFIRM_YES)
 	    {
 	      if( access(file_n, F_OK) == 0 )
 		{
-		  sprintf(buffer, _("The file %s already exists."), file_n);
+		  sprintf(buffer, _("The file %s already exists. Overwrite ?"), file_n);
 		  ret=gif->user3_box(_("Warning"), buffer,
 				     _(" Overwrite "), _(" Rename "),
 				     _(" Skip "));
@@ -733,8 +749,11 @@ int cb_recv_var(void)
 		    case BUTTON2:
 		      dirname=gif->dlgbox_entry(_("Rename the file"),
 						_("New name: "), file_n);
-		      if(dirname == NULL) 
-			return -1;
+		      if(dirname == NULL)
+                        {
+                          gif->destroy_pbar();
+                          return -1;
+                        }
 		      strcpy(file_n, dirname);
 		      g_free(dirname);
 		    case BUTTON1:
@@ -911,7 +930,7 @@ int cb_recv_var(void)
 	    {
 	      if( access(str, F_OK) == 0 )
 		{
-		  sprintf(buffer, _("The file %s already exists."),
+		  sprintf(buffer, _("The file %s already exists. Overwrite ?"),
 			  str);
 		  ret=gif->user3_box(_("Warning"), buffer,
 				_(" Overwrite "), _(" Rename "),
@@ -1111,7 +1130,7 @@ int cb_recv_app(void)
 	{
 	  if( access(filename, F_OK) == 0 )
 	    {
-	      sprintf(buffer, _("The file %s already exists."),
+	      sprintf(buffer, _("The file %s already exists. Overwrite ?"),
 		      filename);
 	      ret=gif->user3_box(_("Warning"), buffer,
 				 _(" Overwrite "), _(" Rename "),

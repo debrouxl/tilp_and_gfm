@@ -151,25 +151,58 @@ options.tar_options = NULL;
 /* Unused */
 int cb_probe_port(void)
 {
-  gif->msg_box(_("Information"),
-	       _("This function is not yet available."));
-
-  return 0;
-}
-
-/* Unused */
-int cb_probe_cable(void)
-{
   gchar *os;
   PortInfo pi;
-  
+
   gif->msg_box(_("Information"),
-               _("Implemented but not activated yet (mouse hang-up)."));
+	       _("This function is not yet available."));
   return 0;
 
   ticable_detect_os(&os);
   ticable_detect_port(&pi);
-  ticable_detect_cable(&pi);
+
+  return 0;
+}
+
+#define MAXC 1024
+#define TMPPIPE "C:\\pipe.tmp"
+
+/* Unused */
+int cb_probe_cable(char **result)
+{
+  char *os;
+  TicablePortInfo pi;
+  char buf[MAXC];
+  FILE *old, *f;
+  int i;
+  int c = 0;  
+
+  /* Probe ports: send DISPLAY output to file */
+  old = ticable_DISPLAY_set_output_to_file(TMPPIPE);
+  
+  ticable_detect_os(&os);
+  ticable_detect_port(&pi);
+  //ticable_detect_cable(&pi);
+  
+  /* Restore DISPLAY output to stderr */
+  //f = ticable_DISPLAY_set_output_to_stream(old);
+  ticable_DISPLAY_close_file();
+  
+  /* Now, open and read file content */
+  f = fopen(TMPPIPE, "rb");
+  if(f == NULL)
+    return -1;
+  
+  for(i=0; c != EOF; i++)
+    {
+      c = buf[i] = fgetc(f);
+      if(buf[i] == EOF) break;
+    }
+  buf[i]='\0';
+  fclose(f);
+  unlink(TMPPIPE);
+
+  *result = g_strdup(buf);
 
   return 0;
 }
@@ -409,9 +442,12 @@ int cb_change_drive(char drive_letter)
   gchar *s;
   
   snprintf(clist_win.cur_dir, 8, "%c:\\", (char)drive_letter);
-  s = g_filename_from_utf8(clist_win.cur_dir, NULL);
-  if(chdir(s) == -1)	//chdir(clist_win.cur_dir);
+  //s = g_filename_from_utf8(clist_win.cur_dir, NULL);
+  s = g_strdup(clist_win.cur_dir);
+  if(chdir(s) == -1)
+  {
 	  gif->msg_box(_("Error"), _("Unable to change directory."));
+  }
   g_free(s);
 #else
   gif->msg_box(_("Information"),

@@ -29,18 +29,13 @@ void process_buffer(gchar *buf);
 void process_unix2dos(gchar *buf);
 int copy_file(char *src, char *dst);
 int move_file(char *src, char *dst);
+int delete_file(char *f);
 
 int   get_home_path(char **path);
 char* get_attributes(struct file_info f_info);
 void  get_user_name(struct file_info f_info, char **name);
 void  get_group_name(struct file_info f_info, char **name);
 void  get_date(struct file_info f_info, char **s);
-
-void varlist_to_glist(struct varinfo varlist);
-struct varinfo *glist_to_varlist(GList *glist);
-void generate_group_file_header(FILE *file, int mask_mode, 
-				const char *id, struct varinfo *v, 
-				int calc_type);
 
 void l_directory_list();
 #define local_directory_list l_directory_list
@@ -51,14 +46,6 @@ void sort_lfiles_by_size(GList *list);
 void sort_lfiles_by_user(GList *list);
 void sort_lfiles_by_group(GList *list);
 void sort_lfiles_by_attrib(GList *list);
-
-int c_directory_list(void);
-#define remote_directory_list c_directory_list
-
-void sort_cfiles_by_name(GList *list);
-void sort_cfiles_by_info(GList *list);
-void sort_cfiles_by_type(GList *list);
-void sort_cfiles_by_size(GList *list);
 
 char *file_extension(char *filename);
 

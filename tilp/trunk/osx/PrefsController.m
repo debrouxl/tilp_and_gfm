@@ -132,7 +132,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
             options.lp.port = VIRTUAL_PORT_1;
             memset(options.lp.device, 0, sizeof(options.lp.device));
         }
-    else if (NSOnState == [linkCableTGL state]) // beta support
+    else if (NSOnState == [linkCableTGL state])
         {
             options.lp.link_type = LINK_TGL;
             options.lp.port = OSX_SERIAL_PORT;
@@ -274,7 +274,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
             case LINK_VTI:
                 [linkTypeMatrix setState:NSOnState atRow:1 column:1];
                 break;
-            case LINK_TGL: // beta support
+            case LINK_TGL:
                 [linkTypeMatrix setState:NSOnState atRow:2 column:0];
                 
                     if ((portNameArray == nil) || (gotListing != YES))

@@ -106,6 +106,8 @@ int main(int argc, const char *argv[], char **arge)
   /* Init the tilp core */
   sub_main(argc, argv, arge);
 
+  working_mode = MODE_GUI | MODE_OSX;
+
   // we no longer need the pool
   [prefsPool release];
 #ifdef OSX_DEBUG
@@ -140,7 +142,7 @@ int main(int argc, const char *argv[], char **arge)
 #endif
 
   // FIXME OS X : cmdline gui
-  if(working_mode != MODE_OSX)
+  if(working_mode != (MODE_GUI | MODE_OSX))
     {
       fprintf(stderr, "Trying to use an unsupported Graphical User Interface.\n");
       fprintf(stderr, "Program halted.\n");

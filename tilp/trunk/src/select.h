@@ -20,6 +20,10 @@
 #define SELECT_H
 
 void clist_selection_destroy(void);
+void clist_file_selection_destroy(void);
+void add_file_to_file_selection(const char *filename);
+void delete_selected_files();
+void rename_selected_files();
 
 void ctree_selection_destroy(void);
 

@@ -38,6 +38,7 @@
 #include "../src/cb_calc.h"
 #include "../src/files.h"
 #include "../src/info.h"
+#include "../src/vars.h"
 
 #include "cocoa_sheets.h"
 #include "cocoa_structs.h"

@@ -29,8 +29,7 @@ int cb_change_drive(char drive_letter);
 int cb_default_config(void);
 
 int cb_probe_calc(void);
-int cb_probe_cable(void);
-int cb_probe_port(void);
+int cb_probe_cable(char **result);
 
 int cb_registry_register(void);
 int cb_registry_unregister(void);

@@ -38,10 +38,10 @@
     IBOutlet id linkCableUGL;
     IBOutlet id linkCableTPU;
     IBOutlet id linkCableTIE;
-    IBOutlet id linkCableTGL; // beta support
-    IBOutlet id portCombo; // beta support
-    IBOutlet id portType; // beta support
-    IBOutlet id portWarning; // beta support
+    IBOutlet id linkCableTGL;
+    IBOutlet id portCombo;
+    IBOutlet id portType;
+    IBOutlet id portWarning;
     IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;

@@ -32,39 +32,72 @@
 #include "intl.h"
 #include "struct.h"
 #include "gui_indep.h"
+#include "defs.h"
+
+extern int working_mode;
+static GList *stack = NULL;
 
 /*
-  This function take as input parameter an error code and displays both
-  in a message box and to stderr an error message.
+  This function take as input parameter an error code and displays it
+  in a message box.
+
+  This function is 'buffered': if error messages appear during startup
+  (console or terminal), they will be displayed in the GUI.
  */
-int tilp_error(int err_num)
+int tilp_error(int errcode)
 {
-  int err;
-  char s[1024] = N_("Error code not found. This is a bug. Please report it.\n");  
+  char s[1024] = N_("code not found. This is a bug. Please report it.\n");  
 
-  if(!err_num) return 0;
-
+  if(!errcode) return 0;
+  
   /* Close the link cable port */
   link_cable.close();
-  if(err_num)
-    {
-      DISPLAY(_("Error code %i: "), err_num);
-    }
 
-  /* Retrieve the error message */
-  err = ticable_get_error(err_num, s);
-  
-  if(err)
+  /* Push error messages */
+  stack = g_list_append(stack, GINT_TO_POINTER(errcode));
+
+  /* Pop error messages */
+  if(working_mode & MODE_GUI)
     {
-      err = ticalc_get_error(err_num, s);
-      if(err)
+      int i;
+      int err;
+      
+      for(i=0; i<g_list_length(stack); i++)
 	{
-	  // nothing
-	}
-    }
+	  err = GPOINTER_TO_INT((g_list_nth(stack, i))->data);
+ 
+	  /* Retrieve the error message */
+	  err = ticable_get_error(err, s);
+	  if(err)
+	    {
+	      err = ticalc_get_error(err, s);
+	      if(err)
+		{
+		  // nothing: error for TiLP
+		}
+	    }
 
-  DISPLAY_ERROR("%s\n", s);
-  gif->msg_box(_("Error"), s);
+	  gif->msg_box(_("Error"), s);
+	}
+
+      g_list_free(stack);
+      stack = NULL;
+    }
+  else
+    {
+      int err = errcode;
+      /* Retrieve the error message */
+      err = ticable_get_error(err, s);
+      if(!err) 
+	return 0;
+      else
+	{
+	  err = ticalc_get_error(err, s);
+	  if(!err) return 0;
+	}
+      
+      DISPLAY_ERROR("%s\n", s);
+    }
   
-  return err_num;
+  return 0;
 }
