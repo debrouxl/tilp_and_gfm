@@ -79,6 +79,7 @@
 #define MODE_GTK 3 /* GTK gui mode (Linux/Win32) */
 #define MODE_MFC 4 /* MFC gui mode (WiN32 only) */
 #define MODE_INT 5 /* Interactive mode (Linux only) */
+#define MODE_OSX 6 /* Cocoa GUI mode (Mac OS X) */
 
 /* Cmd line operation to perform */
 #define OP_BACKUP    1

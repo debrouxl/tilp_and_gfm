@@ -16,6 +16,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,16 +52,23 @@ struct gui_fncts indep_functions;
 struct goptions options;
 
 gint   is_active = 0; // Set if a transfer is active
+
+#ifdef __MACOSX__
+gint   working_mode = MODE_OSX;
+#else
 gint   working_mode = MODE_GTK;
+#endif
 
 struct clist_window clist_win = { NULL, NULL, NULL, NULL, 0 };
 struct ctree_window ctree_win = { NULL, "", NULL };
 
+#ifdef __WIN32__
 // Default relative path for Windows
 struct installation_paths inst_paths = 
 { 
   "", "\\locale", "\\manpages", "\\help", "\\pixmaps"
 }; 
+#endif
 
 #ifdef HAVE_TIFFEP
 Registry *plugin_registry = NULL;
@@ -134,9 +144,11 @@ int main_init(int argc, char *argv[], char **arge)
 #endif
   //gtk_set_locale ();
   //setlocale (LC_ALL, "C");
+#ifndef __MACOSX__
   bindtextdomain (/*PACKAGE*/"tilp", inst_paths.locale_dir); //bindtextdomain("tilp", inst_paths.locale_dir);
   textdomain ("tilp"/*PACKAGE*/);
-  
+#endif  
+
   /* 
      Dislay library version 
   */
@@ -221,6 +233,9 @@ int main_init(int argc, char *argv[], char **arge)
     case MODE_INT:
       DISPLAY(_("Working mode: interactive (prompt).\n"));
       break;
+    case MODE_OSX:
+      DISPLAY(_("Working mode: Cocoa OS X GUI.\n"));
+      break;
     }
 
   /* 
@@ -251,8 +266,8 @@ int main_init(int argc, char *argv[], char **arge)
 int help(void)
 {
   fprintf(stdout, _("\n"));
-  fprintf(stdout, _("tilp - Version %s, (C) Romain Lievin 1999-2000\n"), 
-    TILP_VERSION);
+//fprintf(stdout, _("tilp - Version %s, (C) Romain Lievin 1999-2000\n"), 
+//TILP_VERSION);
 //fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 //fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
   fprintf(stdout, _("usage: tilp [-options] [filename]\n"));
@@ -280,8 +295,12 @@ int help(void)
 */
 int version(void)
 {
-  fprintf(stdout, _("tilp - Version %s, (C) Romain Lievin 1999-2000\n"), 
+  fprintf(stdout, _("TiLP - Version %s, (C) Romain Lievin 1999-2000\n"), 
 	  TILP_VERSION);
+#ifdef __MACOSX__
+  fprintf(stdout, _("Mac OS X port Version %s, (C) 2001 Julien BLACHE\n"),
+          TILP_OSX_VERSION);
+#endif
   fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
   fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
 
