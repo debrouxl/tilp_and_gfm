@@ -273,6 +273,7 @@
 * 20020602 : v5.08 (0.6.0)
 	* Set title on userX_box and dlgboxentry when not displayed as sheet.
 	* Fix userX_box and dlgboxentry so the text is displayed correctly. At last.
+	* Fix dirlist wrt FLASH apps with libticalcs >= 3.3.2.
 	
 
 
