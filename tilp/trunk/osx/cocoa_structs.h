@@ -2,13 +2,14 @@
  * TiLP Cocoa GUI for Mac OS X
  */
  
- #ifndef __COCOA_STRUCTS_H__
- #define __COCOA_STRUCTS_H__
+#ifndef __COCOA_STRUCTS_H__
+#define __COCOA_STRUCTS_H__
  
- #import <Cocoa/Cocoa.h>
+#import <Cocoa/Cocoa.h>
+#import <SimpleTreeNode.h>
  
- struct cocoa_objects_ptr
- {
+struct cocoa_objects_ptr
+{
     // our classes
     id BoxesController;
     id MenuController;
@@ -17,6 +18,11 @@
     
     // the main window
     id mainWindow;
+    
+    // the NSOutlineView
+    id dirlistTree;
+    // and its content
+    SimpleTreeNode *dirlistData;
     
     // the dlgbox (for pbars, see the following struct)
     id dlgboxentryWindow;
@@ -42,12 +48,12 @@
     // used for dlgbox_entry and userX_box
     char *dlgbox_data;
     int box_button;
- };
+};
 
 
- // this struct replaces the progess_window p_win struct...
- struct cocoa_pbars_ptr
- {
+// this struct replaces the progess_window p_win struct...
+struct cocoa_pbars_ptr
+{
     // replaces the gtk event loop
     int finished;
  
@@ -82,7 +88,6 @@
     // keep track of the textfields used
     id pbar_rate;
     id pbar_text;
- 
  };
  
- #endif /* !__COCOA_STRUCTS_H__ */
+#endif /* !__COCOA_STRUCTS_H__ */

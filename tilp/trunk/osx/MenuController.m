@@ -11,6 +11,7 @@
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 #include "cocoa_sheets.h"
+#include "cocoa_outline_refresh.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -203,17 +204,13 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)getDirlist:(id)sender
 {
-    // FIXME OS X
-    // see gtk code, I believe it's not so simple...
-    // Plus, we must update the NSOutlineView
-
     if (is_active)
         return;
 
     if (cb_dirlist() != 0)
         return;
         
-    // send a reloadData message to the outline view
+    refresh_outline();
 }
 
 - (IBAction)doRestore:(id)sender
@@ -342,6 +339,10 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     // FIXME OS X
     // file extensions, proposed filenames...
+    
+    // 'k... we must call cb_ams_to_rom() otherwise nothing will happen...
+    // well, it's contained in these wonderful loops using gtk_events_pending()
+    // for now, I don't care, I'll have a look once the USB driver will be OK.
     
     NSSavePanel *sp;
     NSString *proposedFile;

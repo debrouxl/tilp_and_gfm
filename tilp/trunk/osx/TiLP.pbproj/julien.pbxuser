@@ -30,23 +30,22 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {908, 570}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{226, 0}, {682, 570}}";
 						Split0 = {
-							Frame = "{{0, 158}, {682, 412}}";
+							Frame = "{{0, 173}, {682, 397}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
-								ActiveTab = 1;
 								Frame = "{{0, 0}, {682, 208}}";
 								Split0 = {
-									Frame = "{{0, 148}, {682, 60}}";
+									Frame = "{{0, 25}, {682, 183}}";
 									Split0 = {
-										Frame = "{{0, 0}, {333, 60}}";
+										Frame = "{{0, 0}, {333, 183}}";
 									};
 									Split1 = {
-										Frame = "{{342, 0}, {340, 60}}";
+										Frame = "{{342, 0}, {340, 183}}";
 									};
 									SplitCount = 2;
 								};
@@ -70,9 +69,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {684, 63}}";
-							BuildTranscriptFrame = "{{0, 72}, {684, 63}}";
-							Frame = "{{0, 0}, {682, 133}}";
+							BuildMessageFrame = "{{0, 0}, {684, 64}}";
+							BuildTranscriptFrame = "{{0, 73}, {684, 29}}";
+							Frame = "{{0, 0}, {682, 100}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -192,6 +191,11 @@
 	};
 	F582717901762CAD01000102 = {
 		uiCtxt = {
+			sepNavWindowFrame = "{{16, 98}, {750, 502}}";
+		};
+	};
+	F582718301762CAD01000102 = {
+		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
@@ -203,6 +207,11 @@
 	F582719B01762CAD01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{6, 232}, {750, 502}}";
+		};
+	};
+	F58271E801762CF701000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{-2, 211}, {750, 502}}";
 		};
 	};
 	F58271E901762CF701000102 = {

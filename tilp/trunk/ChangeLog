@@ -49,7 +49,12 @@
 	* forgot to enter/leave terminal mode when switching mode
 	* get an NSSavePanel before using it in - [MenuController romDump:]
 	* code cleaning in - [MenuController romDump:]
-
+* 20011109 : v0.1.5
+	* 8h train trip again, so coding...
+	      * added some files from an Apple Sample code to manage the OutlineView
+	      * coded refresh_ctree() which converts a GList into an NSDictionary suitable for use with our OutlineView handling code
+	      * added 2 vars to cocoa_objects_ptr
+	
 
 
 	

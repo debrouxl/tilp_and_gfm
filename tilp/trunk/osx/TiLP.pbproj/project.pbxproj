@@ -84,6 +84,7 @@
 			children = (
 				F58270640176284A01000102,
 				F582706B0176297F01000102,
+				F5F1CF40019C3112010BF862,
 			);
 			isa = PBXGroup;
 			name = Classes;
@@ -240,9 +241,12 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				F50751E0019C12DA0140747F,
 				F5090AF30178A67A01000102,
 				089C165CFE840E0CC02AAC07,
 				00FFA4BA01707A727F000001,
+				F50751D8019C0A370140747F,
+				F50751D9019C0A370140747F,
 				00FFA4BC01707AE57F000001,
 				00FFA4BE01707B147F000001,
 				00FFA4C401707C907F000001,
@@ -290,6 +294,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__";
 				OTHER_LDFLAGS = "";
+				PREBINDING = NO;
 				PRODUCT_NAME = TiLP;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas -Wno-precomp";
@@ -369,6 +374,11 @@
 				F50D8E5D0181A1D501000102,
 				F5F18AE10189B5F001BE4DDB,
 				F5F18AE20189B5F001BE4DDB,
+				F5F1CF49019C3165010BF862,
+				F5F1CF4A019C3165010BF862,
+				F5F1CF4C019C31B5010BF862,
+				F5F1CF51019C3296010BF862,
+				F5F1CF55019C332C010BF862,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -383,6 +393,9 @@
 				00FFA4C501707C907F000001,
 				F5090AF50178A67A01000102,
 				F50F01010183725501000102,
+				F50751DA019C0A370140747F,
+				F50751DB019C0A370140747F,
+				F50751E1019C12DA0140747F,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -411,6 +424,11 @@
 				F50D8E5F0181A22D01000102,
 				F5F18AE40189B60F01BE4DDB,
 				F5F18AE60189B62501BE4DDB,
+				F5F1CF45019C3132010BF862,
+				F5F1CF46019C3132010BF862,
+				F5F1CF4E019C31C8010BF862,
+				F5F1CF52019C3296010BF862,
+				F5F1CF56019C332C010BF862,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -475,6 +493,41 @@
 //F52
 //F53
 //F54
+		F50751D8019C0A370140747F = {
+			isa = PBXFileReference;
+			name = archived.tiff;
+			path = images/archived.tiff;
+			refType = 2;
+		};
+		F50751D9019C0A370140747F = {
+			isa = PBXFileReference;
+			name = dir.tiff;
+			path = images/dir.tiff;
+			refType = 2;
+		};
+		F50751DA019C0A370140747F = {
+			fileRef = F50751D8019C0A370140747F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50751DB019C0A370140747F = {
+			fileRef = F50751D9019C0A370140747F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50751E0019C12DA0140747F = {
+			isa = PBXFileReference;
+			path = TODO.rtf;
+			refType = 2;
+		};
+		F50751E1019C12DA0140747F = {
+			fileRef = F50751E0019C12DA0140747F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F5090AF10178A61401000102 = {
 			fileRef = 29B97325FDCFA39411CA2CEA;
 			isa = PBXBuildFile;
@@ -613,6 +666,7 @@
 				F536EFB80180C7CA01000103,
 				F5F18ADF0189B5F001BE4DDB,
 				F5F18AE00189B5F001BE4DDB,
+				F5F1CF53019C332C010BF862,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -623,6 +677,7 @@
 				F50D8E5E0181A22D01000102,
 				F5F18AE30189B60F01BE4DDB,
 				F5F18AE50189B62501BE4DDB,
+				F5F1CF54019C332C010BF862,
 			);
 			isa = PBXGroup;
 			name = Sources;
@@ -2368,6 +2423,148 @@
 		};
 		F5F18AE60189B62501BE4DDB = {
 			fileRef = F5F18AE50189B62501BE4DDB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF40019C3112010BF862 = {
+			children = (
+				F5F1CF41019C3112010BF862,
+				F5F1CF42019C3112010BF862,
+			);
+			isa = PBXGroup;
+			name = outlineView;
+			refType = 4;
+		};
+		F5F1CF41019C3112010BF862 = {
+			children = (
+				F5F1CF4B019C31B4010BF862,
+				F5F1CF47019C3165010BF862,
+				F5F1CF48019C3165010BF862,
+				F5F1CF4F019C3296010BF862,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F5F1CF42019C3112010BF862 = {
+			children = (
+				F5F1CF4D019C31C8010BF862,
+				F5F1CF43019C3131010BF862,
+				F5F1CF44019C3131010BF862,
+				F5F1CF50019C3296010BF862,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			path = "";
+			refType = 4;
+		};
+		F5F1CF43019C3131010BF862 = {
+			isa = PBXFileReference;
+			path = SimpleTreeNode.m;
+			refType = 4;
+		};
+		F5F1CF44019C3131010BF862 = {
+			isa = PBXFileReference;
+			path = ImageAndTextCell.m;
+			refType = 4;
+		};
+		F5F1CF45019C3132010BF862 = {
+			fileRef = F5F1CF43019C3131010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF46019C3132010BF862 = {
+			fileRef = F5F1CF44019C3131010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF47019C3165010BF862 = {
+			isa = PBXFileReference;
+			path = ImageAndTextCell.h;
+			refType = 4;
+		};
+		F5F1CF48019C3165010BF862 = {
+			isa = PBXFileReference;
+			path = SimpleTreeNode.h;
+			refType = 4;
+		};
+		F5F1CF49019C3165010BF862 = {
+			fileRef = F5F1CF47019C3165010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF4A019C3165010BF862 = {
+			fileRef = F5F1CF48019C3165010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF4B019C31B4010BF862 = {
+			isa = PBXFileReference;
+			path = TreeNode.h;
+			refType = 4;
+		};
+		F5F1CF4C019C31B5010BF862 = {
+			fileRef = F5F1CF4B019C31B4010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF4D019C31C8010BF862 = {
+			isa = PBXFileReference;
+			path = TreeNode.m;
+			refType = 4;
+		};
+		F5F1CF4E019C31C8010BF862 = {
+			fileRef = F5F1CF4D019C31C8010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF4F019C3296010BF862 = {
+			isa = PBXFileReference;
+			path = NSArray_Extensions.h;
+			refType = 2;
+		};
+		F5F1CF50019C3296010BF862 = {
+			isa = PBXFileReference;
+			path = NSArray_Extensions.m;
+			refType = 2;
+		};
+		F5F1CF51019C3296010BF862 = {
+			fileRef = F5F1CF4F019C3296010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF52019C3296010BF862 = {
+			fileRef = F5F1CF50019C3296010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF53019C332C010BF862 = {
+			isa = PBXFileReference;
+			path = cocoa_outline_refresh.h;
+			refType = 4;
+		};
+		F5F1CF54019C332C010BF862 = {
+			isa = PBXFileReference;
+			path = cocoa_outline_refresh.m;
+			refType = 4;
+		};
+		F5F1CF55019C332C010BF862 = {
+			fileRef = F5F1CF53019C332C010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F1CF56019C332C010BF862 = {
+			fileRef = F5F1CF54019C332C010BF862;
 			isa = PBXBuildFile;
 			settings = {
 			};
