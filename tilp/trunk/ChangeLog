@@ -1,3 +1,5 @@
+SubVersion: $Id$
+
 Some explanations about the version number: 
 	Form #0: the version number is like X.XX-Y.YY where X.XX shows the 
 	version of the GTK interface and Y.YY shows the version of the TI link

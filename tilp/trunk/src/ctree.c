@@ -1,5 +1,8 @@
-/*  tilp - a linking program for TI graphing calculators
- *  Copyright (C) 1999-2003  Romain Lievin
+/* Hey EMACS -*- linux-c -*- */
+/* $Id$ */
+
+/*  tilp - Ti Linking Program
+ *  Copyright (C) 1999-2004  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

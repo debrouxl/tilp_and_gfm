@@ -1,5 +1,8 @@
-/*  gtktiemu - a TI89/92/92+ emulator
- *  (c) Copyright 2000-2001, Romain Lievin and Thomas Corvazier
+/* Hey EMACS -*- linux-c -*- */
+/* $Id$ */
+
+/*  tilp - Ti Linking Program
+ *  Copyright (C) 1999-2004  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
