@@ -179,7 +179,7 @@ gint display_action_dbox(gchar * dest)
 				    g_malloc0(1 * sizeof(TilpAction));
 				gchar **row_text =
 				    g_malloc0(5 * sizeof(gchar *));
-				char trans[9];
+				char trans[18];
 				gchar full_name[19];
 
 				strcpy(f->actions[i] + 1, ve_src->name);
@@ -187,8 +187,7 @@ gint display_action_dbox(gchar * dest)
 						       ve_src->folder,
 						       ve_src->name);
 				ve_dst =
-				    ticalc_check_if_var_exists(ctree_win.
-							       dirlist,
+				    ticalc_check_if_var_exists(ctree_win.var_tree /* ctree_win.dirlist*/,
 							       full_name);
 				if (ve_dst == NULL)
 					continue;
@@ -288,8 +287,8 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		TilpAction *ta;
 		TiVarEntry *ve_dst;
 		gchar *new_name = NULL;
-		gchar **row_text = calloc(5, sizeof(gchar *));
-		char trans[9];
+		gchar **row_text = g_malloc0(5 * sizeof(gchar *));
+		char trans[18];
 		char full_name[19];
 
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
@@ -309,7 +308,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 
 		// check that new varname does not exist
 		ve_dst =
-		    ticalc_check_if_var_exists(ctree_win.dirlist,
+		    ticalc_check_if_var_exists(ctree_win.var_tree /*ctree_win.dirlist*/,
 					       full_name);
 		strcpy(ta->varname, full_name);
 		g_free(new_name);
@@ -335,7 +334,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		gtk_list_store_set(list, &iter, COLUMN_VAR, row_text[0],
 				   COLUMN_ATTR, row_text[1], COLUMN_ACTION,
 				   row_text[3], -1);
-		g_strfreev(row_text);
+		g_strfreev(row_text);   //bug
 	}
 }
 
