@@ -208,12 +208,11 @@ struct gui_fncts gui_functions;
   [tmpMutDict removeAllObjects];
 
   // TI 89
-  // Not including 89k and 89u
   tmpArray = [NSArray arrayWithObjects:@"89a", @"89b", @"89c", @"89d",
     @"89e", @"89f", @"89g", @"89i",
     @"89l", @"89m", @"89p", @"89s",
     @"89t", @"89x", @"89y", @"89z",
-    nil];
+    @"89k", @"89u", nil];
   [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
 
   tmpArray = [NSArray arrayWithObjects:@"89u", nil];
@@ -256,11 +255,11 @@ struct gui_fncts gui_functions;
   [tmpMutDict removeAllObjects];
 
   // TI 92+
-  // Not including 9xu and 9xk
   tmpArray = [NSArray arrayWithObjects:@"9xa", @"9xb", @"9xc", @"9xd",
     @"9xe", @"9xf", @"9xg", @"9xi",
     @"9xl", @"9xm", @"9xp", @"9xs",
-    @"9xt", @"9xx", @"9xz", nil];
+    @"9xt", @"9xx", @"9xz", @"9xk",
+    @"9xu", nil];
   [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
 
   tmpArray = [NSArray arrayWithObjects:@"9xu", nil];

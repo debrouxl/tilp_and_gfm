@@ -111,7 +111,7 @@ int cb_send_backup(char *filename)
   int file_check = MODE_NORMAL;
   
   ret = gif->user2_box(_("Warning"), 
-		       _("You are going to restore the content of your calculator with a backup. The whole memory will be erased. Are you sure you want to do that ?"),
+		       _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"),
 		       _("Next >"), 
 		       _("Cancel"));
   if(ret != BUTTON1)
@@ -265,7 +265,7 @@ int cb_rom_dump(void)
   gchar tmp_filename[MAXCHARS];
   
   ret = gif->user2_box(_("Warning"), 
-		       _("An assembly program is about to be sent on your calculator. If you have not a backup yet, you should do one before proceeding with ROM dumping !"),
+		       _("An assembly program is about to be\nsent on your calculator. If you have not made\na backup yet, you should do one before\nproceeding with ROM dumping !"),
 		       _("Next >"), 
 		       _("Cancel"));
   if(ret != BUTTON1) return -1;
@@ -275,7 +275,7 @@ int cb_rom_dump(void)
     case CALC_TI73:
     case CALC_TI83:
       ret = gif->user2_box(_("Information"), 
-			   _("You must have AShell on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("You must have AShell on your calculator\nin order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait\nuntil you launch it from the calculator."),
 			   _("Next >"), 
 			   _("Cancel"));
       switch(ret)
@@ -310,7 +310,7 @@ int cb_rom_dump(void)
       break;
     case CALC_TI85:
       ret = gif->user2_box(_("Information"), 
-			   _("You must have Zshell or Usgard on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("You must have Zshell or Usgard on your calculator\nin order to do a ROM dump.\nTiLP will transfer the ROM dump program and it will wait\nuntil you launch it from the calculator."),
 			   _("Next >"), 
 			   _("Cancel"));
       switch(ret)
@@ -355,7 +355,7 @@ int cb_rom_dump(void)
 	  case CALC_TI83P:
     case CALC_TI86:
       ret = gif->user2_box(_("Information"), 
-			   _("You must have a shell (any) on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("You must have a shell (any) on your calculator\nin order to do a ROM dump.\nTiLP will transfer the ROM dump program and it will wait\nuntil you launch it from the calculator."),
 			   _("Next >"), 
 			   _("Cancel"));
       switch(ret)
@@ -413,7 +413,7 @@ int cb_rom_dump(void)
       break;
     case CALC_TI92:
       ret = gif->user2_box(_("Information"), 
-			   _("You must have the FargoII shell on your calculator in order to do a ROM dump."),
+			   _("You must have the FargoII shell on your calculator\nin order to do a ROM dump."),
 			   _("Next >"), 
 			   _("Cancel"));
       switch(ret)
@@ -543,7 +543,7 @@ int cb_send_flash_os(char *filename)
   FILE *bck;
   gint old_timeout;
 
-  char *msg =_("You are going to upgrade the Operating System of your calculator.\nHe is strongly recommended for Windows users to close any application and to turn off your screen saver (this makes the transfer rate decrease !). If the transfer fails, wait until the TI89/TI92+ displays 'Waiting to receive' and try the transfer again. For TI73/83+ users, turns the calculator off and press a key.");
+  char *msg =_("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nFor TI73/83+ users, turn the calculator off and press a key.");
   
   ret=gif->user2_box(_("Warning"), msg,
 		     _("Continue"), _("Cancel"));

@@ -284,7 +284,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         return;
             
     result = gif->user2_box(_("Warning"), 
-                            _("You are going to restore the calculator content with your backup. The whole memory will be erased. Are you sure you want to do that ?"),
+                            _("You are going to restore the calculator content\nwith your backup. The whole memory\nwill be erased.\nAre you sure you want to do that ?"),
 		            _("Proceed"), 
 		            _("Cancel"));
                             
@@ -349,7 +349,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         return;
     
     result = gif->user2_box(_("Warning"), 
-                            _("You're going to install a new Operating System on your calculator. This process will take up to 45 minutes. Make sure your batteries are OK before continuing. If, for anyh reason, the transfer should be interrupted, wait until the calc displays \"Wainting to receive...\" than retart the transfer."),
+                            _("You're going to install a new Operating System\non your calculator. This process can take\nup to 45 minutes. Make sure your batteries\nare OK before continuing. If, for any reason,\nthe transfer must be interrupted, wait\nuntil the calc displays\n\"Wainting to receive...\"\nthen retart the transfer."),
 		            _("Proceed"), 
 		            _("Cancel"));
                             

@@ -278,6 +278,8 @@
 	* Merge up to 5.11.
 	* Fix separator in userX_box and dlgboxentry.
 	* Fix memory information wrt FLASH Apps with libticalcs >= 3.3.2.
+	* Accept FLASH Apps and ROM upgrades when dropped on the dirlist.
+	  Thanks Romain for this one, it comes with TiLP 5.11 :)
 
 
 
