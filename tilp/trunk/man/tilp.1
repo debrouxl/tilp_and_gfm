@@ -75,9 +75,9 @@ in microseconds. This is the time which separate the transmission of 2 bytes.
 The default value is 5 microseconds. Decrease this value increase the 
 transfer speed but decrease the reliability of the transmission.
 .SH EXAMPLE
-Sending an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
+Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
-tilp -calc=ti89 -link=serial -port=2 -timeout=20   group.89g
+tilp -cmdline -calc=ti89 -link=serial -port=2 -timeout=20   group.89g
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.

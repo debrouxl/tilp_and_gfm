@@ -154,12 +154,10 @@ int scan_cmdline(int argc, const char **argv)
 			if (!g_path_is_absolute(p)) {
 				filename_on_cmdline =
 				    g_strconcat(g_get_current_dir(),
-						G_DIR_SEPARATOR_S, NULL);
-				filename_on_cmdline =
-				    g_strconcat(filename_on_cmdline, p,
-						NULL);
-			} else
+						G_DIR_SEPARATOR_S, p, NULL);
+			} else {
 				filename_on_cmdline = g_strdup(p);
+			}
 
 			//printf("<<%s>\n", filename_on_cmdline);
 
@@ -234,7 +232,7 @@ int scan_cmdline(int argc, const char **argv)
 		}
 		if (strstr(arg, "port=")) {
 			int port = USER_PORT;
-			port = (int) atol(&arg[5]);
+			port = (int) atol(&arg[5]) - 1;
 			switch(options.lp.link_type)
 			{
 			case LINK_PAR: 
@@ -394,7 +392,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	   and exit else fallback on a graphic interface.
 	 */
 #ifndef __MACOSX__
-	if (working_mode == MODE_CMD) {
+	if (working_mode & MODE_CMD) {
 		tilp_cmdline_send();
 		exit(0);
 	}
@@ -402,7 +400,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/*
 	   Enter in console mode (prompt)
 	 */
-	if (working_mode == MODE_CON) {
+	if (working_mode & MODE_CON) {
 		tilp_prompt();
 		exit(0);
 	}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-03 15:10+0200\n"
+"POT-Creation-Date: 2004-04-03 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,8 +216,8 @@ msgstr ""
 #: src/tilp_calcs.c:576 src/tilp_calcs.c:582 src/tilp_calcs.c:588
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
-#: src/tilp_main.c:319 src/tilp_main.c:328 src/tilp_misc.c:167
-#: src/tilp_misc.c:292 src/tilp_rcfile.c:557
+#: src/tilp_main.c:340 src/tilp_main.c:349 src/tilp_misc.c:167
+#: src/tilp_misc.c:296 src/tilp_rcfile.c:557
 msgid "Error"
 msgstr ""
 
@@ -631,41 +631,41 @@ msgstr ""
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr ""
 
-#: src/tilp_main.c:317
+#: src/tilp_main.c:338
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:320
+#: src/tilp_main.c:341
 msgid "Libticables: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:326
+#: src/tilp_main.c:347
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:329
+#: src/tilp_main.c:350
 msgid "Libticalcs: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:353
+#: src/tilp_main.c:374
 msgid "Working mode: command line.\n"
 msgstr ""
 
-#: src/tilp_main.c:356
+#: src/tilp_main.c:377
 msgid "Working mode: console (prompt).\n"
 msgstr ""
 
-#: src/tilp_main.c:359
+#: src/tilp_main.c:380
 msgid "Working mode: GTK+.\n"
 msgstr ""
 
-#: src/tilp_main.c:362
+#: src/tilp_main.c:383
 msgid "Working mode: MFC.\n"
 msgstr ""
 
-#: src/tilp_main.c:365
+#: src/tilp_main.c:386
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr ""
 
@@ -681,37 +681,41 @@ msgstr ""
 msgid "This function is not available in the Win version."
 msgstr ""
 
-#: src/tilp_misc.c:198
+#: src/tilp_misc.c:199
 msgid "Invalid filename. There is no extension !\n"
 msgstr ""
 
-#: src/tilp_misc.c:251
+#: src/tilp_misc.c:227
+msgid "Unknown file type.\n"
+msgstr ""
+
+#: src/tilp_misc.c:255
 msgid "Create new directory"
 msgstr ""
 
-#: src/tilp_misc.c:253
+#: src/tilp_misc.c:257
 msgid "Directory where files will be ungrouped: "
 msgstr ""
 
-#: src/tilp_misc.c:254
+#: src/tilp_misc.c:258
 msgid "ungrouped"
 msgstr ""
 
-#: src/tilp_misc.c:293
+#: src/tilp_misc.c:297
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
 msgstr ""
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:301
 msgid "Group files"
 msgstr ""
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:301
 msgid "Group name: "
 msgstr ""
 
-#: src/tilp_misc.c:298
+#: src/tilp_misc.c:302
 msgid "group"
 msgstr ""
 

@@ -193,7 +193,7 @@ tilp_glade_dir=$datadir/$PACKAGE/glade
 AC_SUBST(tilp_glade_dir)
 
 # exit HOME dir facility
-AC_ARG_ENABLE(exit_homedir, [  --enable-exit-homedir        allow user to exit home dir [default=no]],,enable_exit_homedir=no)
+AC_ARG_ENABLE(exit_homedir, [  --enable-exit-homedir        allow user to exit home dir [default=yes]],,enable_exit_homedir=yes)
 
 AC_MSG_CHECKING(whether authorizing user to go outside the HOME dir)
 if test "x$enable_exit_homedir" = "xyes"; then
@@ -247,8 +247,8 @@ if test "x$enable_exit_homedir" = "xno"; then
  echo "By default, it is disabled for security reasons !" ;
 else
  echo ;
- echo "You have enabled the 'exit HOME dir' mode. Please keep in mind that " ;
- echo "it's not secure..." ;
+ echo "The 'exit HOME dir' facility is now enabled as default behaviour. "
+ echo "Please keep in mind tha this is not secure..." ;
 fi
 
 echo ;

@@ -187,6 +187,7 @@ int tilp_cmdline_send(void)
 	TilpFileInfo *fi;
 	int last = options.confirm;
 	gchar *ext = NULL;
+	
 	if (clist_win.selection == NULL)
 		return -1;
 
@@ -198,6 +199,7 @@ int tilp_cmdline_send(void)
 			      ("Invalid filename. There is no extension !\n"));
 		exit(-1);
 	}
+
 	// Determine calculator type and override current settings
 	options.lp.calc_type = tifiles_which_calc_type(fi->name);
 	ticalc_set_calc(options.lp.calc_type, &ti_calc);
@@ -221,6 +223,8 @@ int tilp_cmdline_send(void)
 			return 0;
 		} else if (tifiles_is_a_backup_file(fi->name)) {
 			tilp_calc_send_backup(fi->name);
+		} else {
+			DISPLAY(_("Unknown file type.\n"));
 		}
 	} else {
 
