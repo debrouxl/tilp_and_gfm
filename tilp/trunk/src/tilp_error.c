@@ -42,7 +42,7 @@ static GList *stack = NULL;
  */
 int tilp_error(int errcode)
 {
-	char s[256] = "code not found. This is a bug. Please report it.\n";
+	char s[512] = "code not found. This is a bug. Please report it.\n";
 #ifndef __MACOSX__
 	char *utf;
 	gsize bw;

@@ -15,6 +15,7 @@ To do:
 - 19/04/2004, version 6.72 (3.8.2, 0.5.8, 4.5.3): roms
 	Comm box improved: reset port when changing cable (avoid bad args).
 	Added local GTK+ deprecation in toolbar.c (GTK+ 2.4, Gentoo).
+	Bug fix (SilverLink Win32): string buffer in tilp_error too short.
 	
 - 08/04/2004, version 6.71 (3.8.1, 0.5.8, 4.5.3): roms
         Redirection of stdout/stderr by callbacks and minor improvements.
