@@ -97,19 +97,13 @@ static void gtkgui_pbar()
   refresh_pbar2();
 } 
 
-// note: info_update.label_text encoding is depends on 
-// tifiles_translate_set_encoding()
+// note: info_update.label_text is encoded in UTF8 but variable names ('%s')
+// are encoded according to tifiles_translate_set_encoding()
 static void gtkgui_label()
 {
-	gsize br, bw;
-	gchar *utf8;
-
   if (p_win.label == NULL)
     return;
-
-	utf8 = g_locale_to_utf8(info_update.label_text, -1, &br, &bw, NULL);
-
-  gtk_label_set(GTK_LABEL(p_win.label), utf8);
+    gtk_label_set(GTK_LABEL(p_win.label), info_update.label_text);
   while (gtk_events_pending()) 
     {
       gtk_main_iteration();

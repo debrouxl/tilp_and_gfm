@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 6.61\n"
-"POT-Creation-Date: 2003-05-04 11:06+0200\n"
+"POT-Creation-Date: 2003-05-09 18:32+0200\n"
 "PO-Revision-Date: 2003-05-07 13:35GMT\n"
 "Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: FRENCH <fr@li.org>\n"
@@ -52,23 +52,23 @@ msgstr "ignorer"
 msgid "overwrite"
 msgstr "écraser"
 
-#: src/action.c:298 src/tilp_files.c:702 src/tilp_slct.c:117
+#: src/action.c:298 src/tilp_files.c:693 src/tilp_slct.c:117
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: src/action.c:298 src/tilp_files.c:703
+#: src/action.c:298 src/tilp_files.c:694
 msgid "New name: "
 msgstr "Nouveau nom: "
 
-#: src/clist.c:127 src/ctree.c:120
+#: src/clist.c:127 src/ctree.c:115
 msgid "Name"
 msgstr "Nom"
 
-#: src/clist.c:131 src/ctree.c:140
+#: src/clist.c:131 src/ctree.c:135
 msgid "Type"
 msgstr "Type"
 
-#: src/clist.c:135 src/ctree.c:144
+#: src/clist.c:135 src/ctree.c:139
 msgid "Size"
 msgstr "Taille"
 
@@ -164,7 +164,7 @@ msgstr "Port série #3"
 msgid "Serial port #4"
 msgstr "Port série #4"
 
-#: src/ctree.c:135
+#: src/ctree.c:130
 msgid "Attr"
 msgstr "Attribut"
 
@@ -188,10 +188,11 @@ msgstr "Applications"
 msgid "Any Folder"
 msgstr "N'importe quel dossier"
 
+#. RemoveDirectory(f)
 #: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:164 src/popup.c:244
 #: src/popup.c:336 src/tilp_calcs.c:242 src/tilp_calcs.c:251
 #: src/tilp_calcs.c:260 src/tilp_calcs.c:280 src/tilp_calcs.c:294
-#: src/tilp_files.c:101 src/tilp_files.c:115 src/tilp_files.c:133
+#: src/tilp_files.c:103 src/tilp_files.c:117 src/tilp_files.c:135
 #: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:170
 #: src/tilp_rcfile.c:118 src/tilp_slct.c:122 src/tilp_slct.c:137
 #: src/tilp_slct.c:148 src/tilp_slct.c:159
@@ -199,7 +200,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:110 src/tilp_calcs.c:235
-#: src/tilp_calcs.c:383 src/tilp_files.c:692 src/tilp_slct.c:87
+#: src/tilp_calcs.c:383 src/tilp_files.c:683 src/tilp_slct.c:87
 #: src/tilp_slct.c:90
 msgid "Warning"
 msgstr "Avertissement"
@@ -212,8 +213,8 @@ msgstr "Question"
 #: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:171 src/popup.c:251
 #: src/popup.c:408 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
 #: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
-#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:739
-#: src/tilp_files.c:771 src/tilp_files.c:790 src/tilp_files.c:809
+#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:731
+#: src/tilp_files.c:763 src/tilp_files.c:782 src/tilp_files.c:801
 #: src/tilp_main.c:316 src/tilp_main.c:325 src/tilp_misc.c:165
 #: src/tilp_misc.c:290 src/tilp_rcfile.c:555
 msgid "Error"
@@ -223,30 +224,30 @@ msgstr "Erreur"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Impossible de supprimer les fichiers temporaires.\n"
 
-#: src/gtk_refresh.c:126
+#: src/gtk_refresh.c:131
 msgid "Initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
-#: src/labels.c:57
+#: src/labels.c:59
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr "Mémoire libre: %u octets"
 
-#: src/labels.c:61
+#: src/labels.c:63
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr "Mémoire utilisée: %u octets"
 
-#: src/labels.c:65
+#: src/labels.c:67
 #, c-format
 msgid "Memory used: %s"
 msgstr "Mémoire utilisée: %s"
 
-#: src/labels.c:65
+#: src/labels.c:67
 msgid "N/A"
 msgstr "N/A"
 
-#: src/labels.c:70
+#: src/labels.c:72
 #, c-format
 msgid "Current directory: %s"
 msgstr "Dossier courant: %s"
@@ -512,7 +513,8 @@ msgstr "Conversion..."
 
 #: src/tilp_calcs.c:575
 msgid "You can not send both variables and applications simultaneously."
-msgstr "Vous ne pouvez pas envoyer à la fois des variables et des applications."
+msgstr ""
+"Vous ne pouvez pas envoyer à la fois des variables et des applications."
 
 #: src/tilp_calcs.c:582
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
@@ -544,13 +546,18 @@ msgstr "Réception de variable(s)"
 msgid "Waiting..."
 msgstr "En attente..."
 
-#: src/tilp_files.c:102 src/tilp_files.c:116
+#: src/tilp_files.c:104
+#, fuzzy
+msgid "Unable to remove the file !"
+msgstr "Impossible de supprimer les fichiers temporaires.\n"
+
+#: src/tilp_files.c:118
 msgid "Unable to remove the file. You can not delete non empty folders !"
 msgstr ""
 "Impossible de supprimer ce fichier. Vous ne pouvez pas supprimer des "
 "dossiers non-vidés !"
 
-#: src/tilp_files.c:134
+#: src/tilp_files.c:136
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -558,7 +565,7 @@ msgstr ""
 "Impossible de créer ce dossier.\n"
 "\n"
 
-#: src/tilp_files.c:689
+#: src/tilp_files.c:680
 #, c-format
 msgid ""
 "The file %s already exists.\n"
@@ -567,31 +574,31 @@ msgstr ""
 "Le fichier %s existe déjà.\n"
 "L'écraser ?"
 
-#: src/tilp_files.c:693
+#: src/tilp_files.c:684
 msgid "Overwrite "
 msgstr "Écraser"
 
-#: src/tilp_files.c:693
+#: src/tilp_files.c:684
 msgid "Rename "
 msgstr "Renommer"
 
-#: src/tilp_files.c:694
+#: src/tilp_files.c:685
 msgid "Skip "
 msgstr "Quitter"
 
-#: src/tilp_files.c:741
+#: src/tilp_files.c:733
 msgid "Unable to move the temporary file.\n"
 msgstr "Impossible de déplacer les fichiers temporaires.\n"
 
-#: src/tilp_files.c:770 src/tilp_files.c:807
+#: src/tilp_files.c:762 src/tilp_files.c:799
 msgid "Chdir error.\n"
 msgstr "Erreur de création de répertoire.\n"
 
-#: src/tilp_files.c:771 src/tilp_files.c:810 src/tilp_misc.c:165
+#: src/tilp_files.c:763 src/tilp_files.c:802 src/tilp_misc.c:165
 msgid "Unable to change directory."
 msgstr "Impossible de changer de répertoire."
 
-#: src/tilp_files.c:791
+#: src/tilp_files.c:783
 msgid "You can not go outside of your HOME directory."
 msgstr "Vous ne pouvez pas sortir de votre répertoire HOME."
 
@@ -658,8 +665,11 @@ msgstr "Portage FreeBSD, (c) 2003 Tijl Coosemans\n"
 
 #: src/tilp_main.c:113
 #, c-format
-msgid "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
-msgstr "Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp.info>\n"
+msgid ""
+"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
+msgstr ""
+"Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp."
+"info>\n"
 
 #: src/tilp_main.c:117
 #, c-format
@@ -828,7 +838,8 @@ msgstr ""
 
 #: src/tilp_prompt.c:177
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
-msgstr "Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
+msgstr ""
+"Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
 
 #: src/tilp_rcfile.c:46
 #, c-format
@@ -846,7 +857,8 @@ msgstr ""
 
 #: src/tilp_rcfile.c:556
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
-msgstr "Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
+msgstr ""
+"Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
 
 #: src/tilp_refresh.c:87
 msgid "Initialized in command line mode.\n"
@@ -1115,7 +1127,8 @@ msgstr "Aller au dossier parent"
 
 #: glade/clist_rbm-2.str:33
 msgid "Set the current directory as working directory whenever TiLP starts."
-msgstr "Définit le dossier courant comme dossier de travail au démarrage de TiLP."
+msgstr ""
+"Définit le dossier courant comme dossier de travail au démarrage de TiLP."
 
 #: glade/clist_rbm-2.str:34
 msgid "_Set as working folder"
@@ -1976,7 +1989,8 @@ msgstr "Le site Web de TI"
 
 #: glade/tilp-2.str:45
 msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
-msgstr "http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
+msgstr ""
+"http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
 
 #: glade/tilp-2.str:46
 msgid "Calculator software"
@@ -2032,7 +2046,8 @@ msgstr "Prêt ?"
 
 #: glade/tilp-2.str:61
 msgid "List calculator content (folders, variables and applications)."
-msgstr "Liste le contenu de la calculatrice (dossiers, variables et applications)."
+msgstr ""
+"Liste le contenu de la calculatrice (dossiers, variables et applications)."
 
 #: glade/tilp-2.str:62
 msgid "Dirlist"
@@ -2111,4 +2126,3 @@ msgstr "Titre"
 #: glade/user_boxes-2.str:10
 msgid "Name:"
 msgstr "Nom:"
-

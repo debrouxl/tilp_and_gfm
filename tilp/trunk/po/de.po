@@ -6,7 +6,7 @@
 # instead of "couldn't do foo".
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2003-05-04 23:15+0200\n"
+"POT-Creation-Date: 2003-05-09 18:32+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -52,23 +52,23 @@ msgstr "überspringen"
 msgid "overwrite"
 msgstr "überschreiben"
 
-#: src/action.c:298 src/tilp_files.c:691 src/tilp_slct.c:117
+#: src/action.c:298 src/tilp_files.c:693 src/tilp_slct.c:117
 msgid "Rename the file"
 msgstr "Datei umbenennen"
 
-#: src/action.c:298 src/tilp_files.c:692
+#: src/action.c:298 src/tilp_files.c:694
 msgid "New name: "
 msgstr "Neuer Name: "
 
-#: src/clist.c:127 src/ctree.c:120
+#: src/clist.c:127 src/ctree.c:115
 msgid "Name"
 msgstr "Name"
 
-#: src/clist.c:131 src/ctree.c:140
+#: src/clist.c:131 src/ctree.c:135
 msgid "Type"
 msgstr "Typ"
 
-#: src/clist.c:135 src/ctree.c:144
+#: src/clist.c:135 src/ctree.c:139
 msgid "Size"
 msgstr "Größe"
 
@@ -164,7 +164,7 @@ msgstr "Serieller Port 3"
 msgid "Serial port #4"
 msgstr "Serieller Port 4"
 
-#: src/ctree.c:135
+#: src/ctree.c:130
 #, fuzzy
 msgid "Attr"
 msgstr "Attribut"
@@ -192,10 +192,11 @@ msgstr "Aktion"
 msgid "Any Folder"
 msgstr ""
 
+#. RemoveDirectory(f)
 #: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:164 src/popup.c:244
 #: src/popup.c:336 src/tilp_calcs.c:242 src/tilp_calcs.c:251
 #: src/tilp_calcs.c:260 src/tilp_calcs.c:280 src/tilp_calcs.c:294
-#: src/tilp_files.c:101 src/tilp_files.c:115 src/tilp_files.c:133
+#: src/tilp_files.c:103 src/tilp_files.c:117 src/tilp_files.c:135
 #: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:170
 #: src/tilp_rcfile.c:118 src/tilp_slct.c:122 src/tilp_slct.c:137
 #: src/tilp_slct.c:148 src/tilp_slct.c:159
@@ -203,7 +204,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:110 src/tilp_calcs.c:235
-#: src/tilp_calcs.c:383 src/tilp_files.c:681 src/tilp_slct.c:87
+#: src/tilp_calcs.c:383 src/tilp_files.c:683 src/tilp_slct.c:87
 #: src/tilp_slct.c:90
 msgid "Warning"
 msgstr "Warnung"
@@ -216,8 +217,8 @@ msgstr "Frage"
 #: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:171 src/popup.c:251
 #: src/popup.c:408 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
 #: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
-#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:728
-#: src/tilp_files.c:760 src/tilp_files.c:779 src/tilp_files.c:798
+#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:731
+#: src/tilp_files.c:763 src/tilp_files.c:782 src/tilp_files.c:801
 #: src/tilp_main.c:316 src/tilp_main.c:325 src/tilp_misc.c:165
 #: src/tilp_misc.c:290 src/tilp_rcfile.c:555
 msgid "Error"
@@ -227,30 +228,30 @@ msgstr "Fehler"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/gtk_refresh.c:126
+#: src/gtk_refresh.c:131
 msgid "Initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
 
-#: src/labels.c:57
+#: src/labels.c:59
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr "Freier Speicher: %u Bytes"
 
-#: src/labels.c:61
+#: src/labels.c:63
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr "Benutzter Speicher: %u Bytes"
 
-#: src/labels.c:65
+#: src/labels.c:67
 #, c-format
 msgid "Memory used: %s"
 msgstr "Benutzter Speicher: %s"
 
-#: src/labels.c:65
+#: src/labels.c:67
 msgid "N/A"
 msgstr "N/A"
 
-#: src/labels.c:70
+#: src/labels.c:72
 #, c-format
 msgid "Current directory: %s"
 msgstr "Aktuelles Verzeichnis: %s"
@@ -496,11 +497,16 @@ msgstr "Empfange Variable(n)"
 msgid "Waiting..."
 msgstr "Warte..."
 
-#: src/tilp_files.c:102 src/tilp_files.c:116
+#: src/tilp_files.c:104
+#, fuzzy
+msgid "Unable to remove the file !"
+msgstr "Temporäre Datei kann nicht entfernt werden.\n"
+
+#: src/tilp_files.c:118
 msgid "Unable to remove the file. You can not delete non empty folders !"
 msgstr ""
 
-#: src/tilp_files.c:134
+#: src/tilp_files.c:136
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -508,39 +514,39 @@ msgstr ""
 "Verzeichnis konnte nicht angelegt werden.\n"
 "\n"
 
-#: src/tilp_files.c:678
+#: src/tilp_files.c:680
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:682
+#: src/tilp_files.c:684
 msgid "Overwrite "
 msgstr "Überschreiben "
 
-#: src/tilp_files.c:682
+#: src/tilp_files.c:684
 msgid "Rename "
 msgstr "Umbenennen "
 
-#: src/tilp_files.c:683
+#: src/tilp_files.c:685
 msgid "Skip "
 msgstr "Überspringen "
 
-#: src/tilp_files.c:730
+#: src/tilp_files.c:733
 #, fuzzy
 msgid "Unable to move the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/tilp_files.c:759 src/tilp_files.c:796
+#: src/tilp_files.c:762 src/tilp_files.c:799
 msgid "Chdir error.\n"
 msgstr "Verzeichnis konnte nicht gewechselt werden.\n"
 
-#: src/tilp_files.c:760 src/tilp_files.c:799 src/tilp_misc.c:165
+#: src/tilp_files.c:763 src/tilp_files.c:802 src/tilp_misc.c:165
 msgid "Unable to change directory."
 msgstr "Verzeichnis konnte nicht gewechselt werden."
 
-#: src/tilp_files.c:780
+#: src/tilp_files.c:783
 msgid "You can not go outside of your HOME directory."
 msgstr ""
 
