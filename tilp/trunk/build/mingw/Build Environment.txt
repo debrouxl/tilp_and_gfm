@@ -1,5 +1,68 @@
-Procedure to set up the environment:
+Win32
+-----
 
-- get MinGW & MSys from http:// and install it
-- get the pango, atk, glib, gtk+ devel packages from www.gimp.org
+Below, you will find a methodology which is common to:
+- libtifiles, libticables, libticalcs,
+- tilp,
+- tiemu.
+
+You should strictly follow it else you will encounter some (very) weird stuffs !
+Create this methodology takes me a lot of time and experimentations.
+
+Well, let get's us:
+
+
+- get MinGW & MSys from http://www.mingw.org and install them. You can merge 
+them if you want but MinGW does not encourage this. This was my way until I discover
+Tor' method (GiMP for Win32) with /target.
+I assume you installed MinGW as C:\MinGW and MSys as C:\MSys
+
+- create a MSys\target folder. To install the packages, simply uncompress 
+	downloaded archives which contains 'lib', 'bin', ... folders
+	and copy them into the /target folder (overwrite = yes).
+
+- edit your MSys\etc\profile and add the following lines:
+	export PKG_CONFIG_PATH="/target/lib/pkgconfig"
+	export CPPFLAGS="-I/target/include"
+	export LDFLAGS="-L/target/lib"
+	export PATH="/target/bin:$PATH"
+
+- pkg-config: get it from <http://www.gimp.org/~tml/gimp/win32/downloads.html> as
+	well as glib (binary), libiconv (binary) and gettext-runtime (binary).
+	Copy folders (bin, lib, ...) into MSys/target.
+
+	Check install is good by a 'pkg-config.exe --help'.
+
+- gtk+ 2.4: get glib-dev, gtk+-dev, atk-dev, pango-dev from the same location. You
+	can get binaries if you want (not mandatory but should be better).
+
+- libxml2 (pre-built): get it from <http://gnuwin32.Sf.net> and
+	think to add the libxml2.pc provided and to remove libxml2.la.
+
+- libglade (pre-built): get it from <http://gladewin32.sourceforge.net/> as 
+	devel package.
+
+- libxml2 (rebuild): get libxml2-2.5.10 from <http://xmlsoft.org/sources/old/>.
+	./configure --prefix=/target --without-ftp --without-http
+	You will need zlib from <http://gnuwin32.Sf.net> as dependancy.
+
+- libglade (rebuild): get libglade from ??
+	./configure --prefix=/target
+
+- ticables, tifiles, ticalcs:
+	./configure --prefix=/target --disable-nls
+
+- tilp:
+	./configure --prefix=/target --disable-nls	
+
+
 - get the libglade from http://gladewin32.sourceforge.net/modules.php?name=Downloads&d_op=viewdownload&cid=3
+
+List of packages for infos:
+
+
+
+Linux (cross)
+-------------
+
+Later...

@@ -35,12 +35,6 @@
 #endif
 
 
-/* Windows specific */
-#if defined(__WIN32__)
-#  define SHARE_DIR ""
-#endif
-
-
 /* Temporary filenames (used by cb_calc.c) */
 #define TMPFILE_BACKUP   "tilp.backup"
 #define TMPFILE_ROMDUMP  "tilp.romdump"
