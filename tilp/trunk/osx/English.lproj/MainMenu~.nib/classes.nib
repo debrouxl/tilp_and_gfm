@@ -118,7 +118,6 @@
                 calcType83p = id; 
                 calcType85 = id; 
                 calcType86 = id; 
-                calcType89 = id; 
                 calcType92 = id; 
                 calcType92p = id; 
                 calcTypeMatrix = id; 
@@ -145,11 +144,9 @@
                 pathModeFull = id; 
                 pathModeLocal = id; 
                 pathModeMatrix = id; 
-                portMatrix = id; 
-                portSerial1 = id; 
-                portSerial2 = id; 
-                portSerial3 = id; 
-                portSerial4 = id; 
+                portCombo = id; 
+                portType = id; 
+                portWarning = id; 
                 prefsWindow = id; 
                 screenFormatMatrix = id; 
                 screenFormatPCX = id; 

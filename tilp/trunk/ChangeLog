@@ -126,6 +126,10 @@
 	* Grey TIGL support
 	* Timeout handling (back to tenth of seconds)
 	* Romdump
+* 20011218 : v0.3.1
+	* Small fixes wrt pbar_type* windows sizing
+	* Grey TIGL support
+	* Modified Preferences system and panel for the Grey TIGL
 	
 
 

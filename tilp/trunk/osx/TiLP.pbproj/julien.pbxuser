@@ -35,36 +35,36 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {933, 511}}";
 					Split0 = {
-						ActiveTab = 1;
+						ActiveTab = 2;
 						Frame = "{{226, 0}, {707, 511}}";
 						Split0 = {
-							Frame = "{{0, 127}, {707, 384}}";
+							Frame = "{{0, 180}, {707, 331}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {771, 390}}";
+								Frame = "{{0, 0}, {707, 354}}";
 								Split0 = {
-									Frame = "{{0, 279}, {771, 111}}";
+									Frame = "{{0, 135}, {707, 219}}";
 									Split0 = {
-										Frame = "{{0, 0}, {376, 111}}";
+										Frame = "{{0, 0}, {342, 219}}";
 									};
 									Split1 = {
-										Frame = "{{385, 0}, {386, 111}}";
+										Frame = "{{351, 0}, {356, 219}}";
 									};
 									SplitCount = 2;
 								};
 								SplitCount = 1;
 								Tab0 = {
-									Frame = "{{0, 0}, {682, 50}}";
+									Frame = "{{0, 0}, {707, 115}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {771, 254}}";
+									Frame = "{{0, 0}, {707, 110}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {771, 390}}";
+							Frame = "{{0, 0}, {707, 354}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {

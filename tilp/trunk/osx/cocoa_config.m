@@ -83,7 +83,7 @@ rc_fill_dictionary(void)
     NSNumber *value;
 
     tilpConfig = objects_ptr->tilpConfig;
-    
+        
     value = [[NSNumber alloc] initWithInt:options.path_mode];
     [tilpConfig setObject:value forKey:@"path_mode"];
     
@@ -110,6 +110,12 @@ rc_fill_dictionary(void)
     
     value = [[NSNumber alloc] initWithInt:options.lp.link_type];
     [tilpConfig setObject:value forKey:@"link_type"];
+    
+    if (options.lp.link_type == LINK_TGL)
+        [tilpConfig setObject:[NSString stringWithCString:options.lp.device] forKey:@"serial_device"];
+    
+    value = [[NSNumber alloc] initWithInt:options.lp.port];
+    [tilpConfig setObject:value forKey:@"link_port"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.calc_type];
     [tilpConfig setObject:value forKey:@"calc_type"];
@@ -199,6 +205,14 @@ rc_get_user_prefs(void)
                 options.lp.port = USB_PORT_1;
             else if ((options.lp.link_type == LINK_TIE) || (options.lp.link_type == LINK_VTI))
                 options.lp.port = VIRTUAL_PORT_1; // FIXME OS X : dunno if it's the good one
+            else if (options.lp.link_type == LINK_TGL)
+                if ([tilpConfig objectForKey:@"serial_device"] != nil)
+                    [[tilpConfig objectForKey:@"serial_device"] getCString:options.lp.device];
+    }
+    
+    if ((value = [tilpConfig objectForKey:@"link_port"]))
+    {
+        options.lp.port = [value intValue];
     }
     
     if ((value = [tilpConfig objectForKey:@"calc_type"]))

@@ -145,6 +145,7 @@
 				29B97325FDCFA39411CA2CEA,
 				29B97324FDCFA39411CA2CEA,
 				F5216B0101B6E45B01000102,
+				F50A7EB801CFA70801000102,
 			);
 			isa = PBXGroup;
 			name = "Other Frameworks";
@@ -1680,6 +1681,7 @@
 				F51283E401797CFA01000102,
 				F5216B0201B6E45B01000102,
 				F51015FF01C3778201000102,
+				F50A7EB901CFA70901000102,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -1775,6 +1777,18 @@
 		};
 		F5090AF50178A67A01000102 = {
 			fileRef = F5090AF30178A67A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50A7EB801CFA70801000102 = {
+			isa = PBXFrameworkReference;
+			name = IOKit.framework;
+			path = /System/Library/Frameworks/IOKit.framework;
+			refType = 0;
+		};
+		F50A7EB901CFA70901000102 = {
+			fileRef = F50A7EB801CFA70801000102;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -17,6 +17,21 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
+ 
+/*
+ * The code for establishing a list of available serial devices is derived from
+ * Apple Sample Code (SerialPortSample). Apple is not liable for anything regarding
+ * this code, according to the Apple Sample Code License.
+ */
+
+#include <CoreFoundation/CoreFoundation.h>
+
+#include <IOKit/IOKitLib.h>
+#include <IOKit/serial/IOSerialKeys.h>
+#include <IOKit/IOBSD.h>
+
+#include <paths.h>
+#include <sys/param.h>
 
 #include "../src/struct.h"
 #include "../src/defs.h"
@@ -56,6 +71,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (IBAction)prefsClose:(id)sender
 {
+    NSString *portName;
+    
     // general
     
     if (NSOnState == [orderIncreasing state])
@@ -95,15 +112,11 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else if (NSOnState == [linkCableTGL state]) // beta support
         {
             options.lp.link_type = LINK_TGL;
+            options.lp.port = OSX_SERIAL_PORT;
         
-            if (NSOnState == [portSerial2 state])
-                options.lp.port = SERIAL_PORT_2;
-            else if (NSOnState == [portSerial3 state])
-                options.lp.port = SERIAL_PORT_3;
-            else if (NSOnState == [portSerial4 state])
-                options.lp.port = SERIAL_PORT_4;
-            else
-                options.lp.port = SERIAL_PORT_1;
+            portName = [portNameArray objectAtIndex:[portCombo indexOfSelectedItem]];
+
+            [portName getCString:options.lp.device];
         }
 
     // calculator
@@ -155,10 +168,30 @@ extern struct cocoa_objects_ptr *objects_ptr;
     ticable_set_param(&(options.lp));
 
     [NSApp stopModal];
+
+    if (portNameArray != nil)
+        {
+            [portNameArray release];
+            portNameArray = nil;
+        }
+        
+    if (portTypeArray != nil)
+        {
+            [portTypeArray release];
+            portTypeArray = nil;
+        }
 }
 
 - (IBAction)showPrefsSheet:(id)sender
 {
+    NSEnumerator *portEnumerator;
+    NSString *portName;
+    BOOL gotListing;
+    BOOL deviceMatched = NO;
+
+    // get the list of all serial ports
+    gotListing = [self getSerialPortsList];
+
     if (options.path_mode == FULL_PATH)
         [pathModeMatrix setState:NSOnState atRow:0 column:0];
     else
@@ -190,6 +223,16 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else
         [orderMatrix setState:NSOnState atRow:0 column:1];
 
+    if ((portNameArray == nil) || (gotListing != YES))
+        {
+            [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
+        }
+    else
+        {
+            [portCombo reloadData];
+            [portWarning setStringValue:@""];
+        }
+
     switch(options.lp.link_type)
         {
             case LINK_UGL:
@@ -205,25 +248,39 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [linkTypeMatrix setState:NSOnState atRow:1 column:1];
                 break;
             case LINK_TGL: // beta support
-                [linkTypeMatrix setState:NSOnState atRow:0 column:0];
+                [linkTypeMatrix setState:NSOnState atRow:2 column:0];
+                
+                    if ((portNameArray == nil) || (gotListing != YES))
+                        {
+                            [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
+                            break;
+                        }
+                        
+                portEnumerator = [portNameArray objectEnumerator];
+                
+                [portWarning setStringValue:@""];
+                
+                while ((portName = [portEnumerator nextObject]) != nil)
+                    {
+                        if ((options.lp.device != NULL) && ([portName isEqualToString:[NSString stringWithCString:options.lp.device]]))
+                            {
+                                [portCombo selectItemAtIndex:[portNameArray indexOfObject:portName]];
+                                [portCombo setObjectValue:portName];
+                                
+                                deviceMatched = YES;
+                                
+                                break;
+                            }
+                    }
+                [portEnumerator release];
                 break;
         }
-        
-    switch(options.lp.port)
-        {
-            case SERIAL_PORT_2:
-                [portMatrix setState:NSOnState atRow:0 column:1];
-                break;
-            case SERIAL_PORT_3:
-                [portMatrix setState:NSOnState atRow:1 column:0];
-                break;
-            case SERIAL_PORT_4:
-                [portMatrix setState:NSOnState atRow:1 column:1];
-                break;
-            default:
-                [portMatrix setState:NSOnState atRow:0 column:0];
-                break;
-        }
+
+        if ((gotListing == YES) && (portNameArray != nil) && (deviceMatched == NO))
+            {
+                [portCombo selectItemAtIndex:0];
+                [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
+            }
 
     switch(options.lp.calc_type)
         {
@@ -300,4 +357,170 @@ extern struct cocoa_objects_ptr *objects_ptr;
     [NSApp endSheet:prefsWindow];
     [prefsWindow orderOut:self];
 }
+
+- (BOOL)getSerialPortsList
+{
+    mach_port_t			masterPort;
+    kern_return_t 		kr = KERN_FAILURE;
+    io_object_t 		serialService;
+    io_iterator_t 		serialIterator;
+    
+    CFTypeRef			portNameAsCFString;
+    CFTypeRef			bsdPathAsCFString;
+    CFMutableDictionaryRef 	classesToMatch;
+
+    char portName[128];
+    char bsdPath[MAXPATHLEN];
+
+    Boolean result;
+    
+#ifdef OSX_DEBUG
+    fprintf(stderr, "DEBUG: getting serial ports listing...\n");
+#endif
+
+    kr = IOMasterPort(MACH_PORT_NULL, &masterPort);
+        
+    if (KERN_SUCCESS != kr)
+        {
+#ifdef OSX_DEBUG
+            fprintf(stderr, "IOMasterPort returned %d\n", kr);
+#endif
+            return NO;
+        }
+
+    // Serial devices are instances of class IOSerialBSDClient
+    classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue);
+    
+    if (classesToMatch != NULL)
+        {
+            CFDictionarySetValue(classesToMatch,
+                                CFSTR(kIOSerialBSDTypeKey),
+                                CFSTR(kIOSerialBSDAllTypes)); // all serial...
+        }
+#ifdef OSX_DEBUG
+    else
+        fprintf(stderr, "IOServiceMatching returned a NULL dictionary.\n");
+#endif
+    
+    kr = IOServiceGetMatchingServices(masterPort, classesToMatch, &serialIterator);    
+    
+    if (KERN_SUCCESS != kr)
+        {
+#ifdef OSX_DEBUG
+            fprintf(stderr, "IOServiceGetMatchingServices returned %d\n", kr);
+#endif
+            return NO;
+        }
+        
+    if (portNameArray != nil)
+        [portNameArray release];
+        
+    portNameArray = [[NSMutableArray alloc] init];
+    [portNameArray retain];
+        
+    if (portTypeArray != nil)
+        [portTypeArray release];
+        
+    portTypeArray = [[NSMutableArray alloc] init];
+    [portTypeArray retain];
+        
+    while ((serialService = IOIteratorNext(serialIterator)))
+        {
+            bsdPathAsCFString = IORegistryEntryCreateCFProperty(serialService,
+                                                                CFSTR(kIOCalloutDeviceKey),
+                                                                kCFAllocatorDefault,
+                                                                0);
+            if (bsdPathAsCFString)
+                {
+                    result = CFStringGetCString(bsdPathAsCFString,
+                                                bsdPath,
+                                                sizeof(bsdPath), 
+                                                kCFStringEncodingASCII);
+                    CFRelease(bsdPathAsCFString);
+            
+                    if (result)
+                        {
+#ifdef OSX_DEBUG
+                            fprintf(stderr, "BSD path: %s, ", bsdPath);
+#endif                            
+                            [portNameArray addObject:[NSString stringWithCString:bsdPath]];
+                        }
+                }
+
+
+            portNameAsCFString = IORegistryEntryCreateCFProperty(serialService,
+                                                                CFSTR(kIOTTYDeviceKey),
+                                                                kCFAllocatorDefault,
+                                                                0);
+            if (portNameAsCFString)
+                {
+                    result = CFStringGetCString(portNameAsCFString,
+                                                portName,
+                                                sizeof(portName), 
+                                                kCFStringEncodingASCII);
+                    CFRelease(portNameAsCFString);
+            
+                    if (result)
+                        {
+#ifdef OSX_DEBUG
+                            fprintf(stderr, "Serial stream name: %s", portName);
+#endif
+                            [portTypeArray addObject:[NSString stringWithFormat:@"Type : %s", portName]];
+                            
+                            kr = KERN_SUCCESS;
+                        }
+                }
+#ifdef OSX_DEBUG
+            fprintf(stderr, "\n");
+#endif
+            IOObjectRelease(serialService);
+        }
+
+    IOObjectRelease(serialIterator);
+
+#ifdef OSX_DEBUG
+    fprintf(stderr, "DEBUG: got listing...\n");
+#endif
+
+    return (kr == KERN_SUCCESS) ? YES : NO;
+}
+
+// NSComboBox datasource
+- (id)comboBox:(NSComboBox *)combo objectValueForItemAtIndex:(int)index
+{
+#ifdef OSX_DEBUG
+    fprintf(stderr, "DEBUG: asking object value\n");
+#endif
+
+    if (portNameArray != nil)
+        return [portNameArray objectAtIndex:index];
+    else
+        return nil;
+}
+- (int)numberOfItemsInComboBox:(NSComboBox *)combo;
+{
+#ifdef OSX_DEBUG
+    fprintf(stderr, "DEBUG: asking number of elements\n");
+#endif
+
+    if (portNameArray != nil)
+        return [portNameArray count];
+    else
+        return 0;
+}
+
+// NSComboBox delegate
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification
+{
+    NSString *type;
+
+#ifdef OSX_DEBUG
+    fprintf(stderr, "DEBUG: SELECTION CHANGED\n");
+#endif
+
+    type = [portTypeArray objectAtIndex:[portCombo indexOfSelectedItem]];
+    
+    [portType setStringValue:type];
+}
+
 @end

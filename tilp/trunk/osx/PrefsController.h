@@ -39,11 +39,9 @@
     IBOutlet id linkCableTPU;
     IBOutlet id linkCableTIE;
     IBOutlet id linkCableTGL; // beta support
-    IBOutlet id portMatrix; // beta support
-    IBOutlet id portSerial1;
-    IBOutlet id portSerial2;
-    IBOutlet id portSerial3;
-    IBOutlet id portSerial4;
+    IBOutlet id portCombo; // beta support
+    IBOutlet id portType; // beta support
+    IBOutlet id portWarning; // beta support
     IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
@@ -78,8 +76,20 @@
     IBOutlet id myMenuController;
     IBOutlet id myTilpController;
     IBOutlet id mySheetsController;
+    
+    NSMutableArray *portNameArray;
+    NSMutableArray *portTypeArray;
 }
 - (IBAction)prefsAdvanced:(id)sender;
 - (IBAction)prefsClose:(id)sender;
 - (IBAction)showPrefsSheet:(id)sender;
+
+- (BOOL)getSerialPortsList;
+
+// NSComboBox datasource
+- (id)comboBox:(NSComboBox *)combo objectValueForItemAtIndex:(int)index;
+- (int)numberOfItemsInComboBox:(NSComboBox *)combo;
+
+// NSComboBox delegate
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification;
 @end
