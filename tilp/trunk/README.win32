@@ -18,7 +18,10 @@ REQUIREMENTS
 NOTES
 -----
 
-1°) This release is a no longer a native port of TiLP. You need some extra libraries (GTK+ 2.0).
+1°) This release is a no longer a native port of TiLP. You need some extra libraries 
+(GTK+ 2.0). The GTK+ package includes the Wimp (Windows IMPersonator) theme 
+engine which gives Windows look & feel (includes XP theming). Note: disabled on 
+non-NT systems.
 
 2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 the Win32 driver on the Linux Programmer Group at http://lpg.ticalc.org/prj_usb.

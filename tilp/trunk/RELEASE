@@ -34,8 +34,10 @@ Improvements:
 Known problems:
 ---------------
 
+	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
+		It has been currelty disabled.
 	- [Linux]: the timeout value can not be changed with kernel modules.
-	Consequently, OS upgrades will fail...
+		Consequently, OS upgrades will fail...
 		=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b or Linux kernel >= 2.4.27 or 2.6.7.
 
 

@@ -90,7 +90,7 @@ Source: "C:\home\devel\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{a
 
 ; Fix Gtk-Wimp installation problem (file is not at the right location)
 ;Source: "C:\Program Files\Fichiers Communs\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
-Source: "C:\Program Files\Common Files\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
+Source: "C:\Program Files\Common Files\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall; MinVersion: 0,4;
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -540,6 +540,6 @@ begin
   
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the 'GTK+ 2.0 Runtime Environment' of DropLine Systems. You can obtain GTK+ from <http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download>.', mbError, MB_OK);
+    MsgBox ('Please install the "GTK+ 2.0 Runtime Environment" of DropLine Systems. You can obtain GTK+ from <http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download>.', mbError, MB_OK);
   end;
 end;
