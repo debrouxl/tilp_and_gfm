@@ -42,9 +42,7 @@ rc_set_unused_items(void)
     options.ysize = UNUSED;
     options.clist_sort = UNUSED;
     options.clist_sort_order = UNUSED;
-    options.confirm = UNUSED;
     options.show = UNUSED;
-    options.file_mode = UNUSED;
     options.plugins_loading = UNUSED;
     options.unzip_location = NULL;
     options.unzip_options = NULL;
@@ -62,15 +60,16 @@ rc_init_with_default(void)
     options.screen_format = TIFF;
     options.screen_clipping = CLIPPED_SCREEN;
     options.transfer_mode = SILENT_MODE;
-    options.file_checking = UNUSED;
+    options.file_checking = FILE_CHECKING_MID;
+    options.file_mode = EXTENDED_FORMAT;
     // verbosity of libticables (DISPLAY() function)
     options.console_mode = DSP_OFF;
     options.auto_detect = TRUE;
     options.show_gui = TRUE;
-    options.force_dirlist = TRUE;
+    options.confirm = TRUE;
     
     options.lp.link_type = LINK_UGL;
-    options.lp.timeout = 150;
+    options.lp.timeout = 15;
     options.lp.port = OSX_USB_PORT;
     options.lp.calc_type = CALC_TI92P;
     options.lp.method = IOM_AUTO;

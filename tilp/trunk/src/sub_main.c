@@ -69,12 +69,17 @@ GuiFncts indep_functions;
 struct goptions options; /* General options */
 
 gint   is_active = 0;    /* Set if a transfer is active */
-
-#ifdef __MACOSX__
-gint   working_mode = MODE_OSX;
-#else
-gint   working_mode = MODE_GTK;
+ 
+#if defined(__LINUX__)
+gint working_mode = MODE_GTK;
+#elif defined(__MACOSX__)
+gint working_mode = MODE_OSX;
+#elif defined(__WIN32__) && defined(_AFXDLL)
+gint working_mode = MODE_MFC;
+#elif defined(__WIN32__) && !defined(_AFXDLL)
+gint working_mode = MODE_GTK;
 #endif
+
 
 struct clist_window clist_win = { NULL, NULL, NULL, NULL, 0 };
 struct ctree_window ctree_win = { NULL, "", 0, NULL, NULL, NULL };
@@ -103,7 +108,6 @@ int initialize_paths(void);
 */
 int sub_main(int argc, char *argv[], char **arge)
 {
-  gint err;
 #ifdef HAVE_TIFFEP
   gchar buffer[MAXCHARS];
 #endif
@@ -220,12 +224,10 @@ int sub_main(int argc, char *argv[], char **arge)
   /* 
      Initialize the libTIcable library 
   */
-  ticable_init();
-  ticable_set_param2(options.lp);
-  tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
-  err = link_cable.init();
-  if(err)
-      tilp_error(err);
+	ticable_init();
+	ticable_set_param2(options.lp);
+	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
+	tilp_error(link_cable.init());
 
 #ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: ticable init done.\n");
@@ -311,28 +313,28 @@ int sub_main(int argc, char *argv[], char **arge)
 */
 int help(void)
 {
-  fprintf(stdout, _("\n"));
-  fprintf(stdout, _("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), TILP_VERSION);
+  DISPLAY(_("\n"));
+  DISPLAY(_("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), TILP_VERSION);
 #ifdef __MACOSX__
-  fprintf(stdout, _("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"), TILP_OSX_VERSION);
+  DISPLAY(_("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"), TILP_OSX_VERSION);
 #endif
-//fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-//fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-  fprintf(stdout, _("Usage: tilp [-options] [filename]\n"));
-  fprintf(stdout, "\n");
-  fprintf(stdout, _("-h, --help    display this information page and exit\n"));
-  fprintf(stdout, _("-v, --version display the version information and exit\n"));
-  fprintf(stdout, _("-cmdline      use command line and stop\n"));
-  fprintf(stdout, _("-gui=...      use the specified GUI (prompt, console, gtk)\n"));
-  fprintf(stdout, _("-calc=...     give the calculator type\n"));
-  fprintf(stdout, _("-link=...     give the link cable type\n"));
-  fprintf(stdout, _("-dev_port=... give the device port (TI Graph Link cable only)\n"));
-  fprintf(stdout, _("-adr_port=... give the address of the port (parallel or serial link cable only)\n"));
-  fprintf(stdout, _("-timeout=...  give the time out in seconds\n"));
-  fprintf(stdout, _("-delay=...    give the delay in microseconds\n"));
-  fprintf(stdout, _("\n"));
-  fprintf(stdout, _("filename      a filename to send (console or GTK+)\n"));
-  fprintf(stdout, _("\n"));
+//DISPLAY(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+//DISPLAY(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+  DISPLAY(_("Usage: tilp [-options] [filename]\n"));
+  DISPLAY("\n");
+  DISPLAY(_("-h, --help    display this information page and exit\n"));
+  DISPLAY(_("-v, --version display the version information and exit\n"));
+  DISPLAY(_("-cmdline      use command line and stop\n"));
+  DISPLAY(_("-gui=...      use the specified GUI (prompt, console, gtk)\n"));
+  DISPLAY(_("-calc=...     give the calculator type\n"));
+  DISPLAY(_("-link=...     give the link cable type\n"));
+  DISPLAY(_("-dev_port=... give the device port (TI Graph Link cable only)\n"));
+  DISPLAY(_("-adr_port=... give the address of the port (parallel or serial link cable only)\n"));
+  DISPLAY(_("-timeout=...  give the time out in seconds\n"));
+  DISPLAY(_("-delay=...    give the delay in microseconds\n"));
+  DISPLAY("\n");
+  DISPLAY(_("filename      a filename to send (console or GTK+)\n"));
+  DISPLAY("\n");
 
   exit(0);
   return 0;
@@ -343,15 +345,19 @@ int help(void)
 */
 int version(void)
 {
-  fprintf(stdout, _("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), 
+  ticable_DISPLAY_settings(DSP_ON);
+
+  DISPLAY(_("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), 
 	  TILP_VERSION);
 #ifdef __MACOSX__
-  fprintf(stdout, _("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"),
+  DISPLAY(_("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"),
           TILP_OSX_VERSION);
 #endif
-  fprintf(stdout, _("Built on %s %s\n"), __DATE__, __TIME__);
-  fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-  fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+  DISPLAY(_("Built on %s %s\n"), __DATE__, __TIME__);
+  DISPLAY(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+  DISPLAY(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+
+  ticable_DISPLAY_settings(options.console_mode);
 
   return 0;
 }
@@ -396,7 +402,7 @@ int scan_cmdline(int argc, char **argv)
 #endif
 	  else
 	    filename_on_cmdline = g_strdup(p);
-	  //DISPLAY("Full filename to send: <%s>\n", filename_on_cmdline);
+	  DISPLAY("Full filename to send: <%s>\n", filename_on_cmdline);
 	  fi = (struct file_info *)g_malloc(sizeof(struct file_info));
 	  fi->filename = g_strdup(filename_on_cmdline);
 	  clist_win.selection = g_list_prepend(clist_win.selection, 
@@ -430,6 +436,7 @@ int scan_cmdline(int argc, char **argv)
 	  if(!strcmp(q, "ti83+")) options.lp.calc_type=CALC_TI83P;
 	  if(!strcmp(q, "ti83"))  options.lp.calc_type=CALC_TI83;
 	  if(!strcmp(q, "ti82"))  options.lp.calc_type=CALC_TI82;
+	  if(!strcmp(q, "ti73"))  options.lp.calc_type=CALC_TI73;
 	}
 
       if(strstr  (msg, "link="     )) 

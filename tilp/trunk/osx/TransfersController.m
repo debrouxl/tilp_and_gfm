@@ -86,14 +86,17 @@ extern int is_active;
     id item;
     id foldItem;
     
-    GList *list = NULL;
+    GList *vars_list = NULL;
+    GList *flash_list = NULL;
+    GList *l = NULL;
     
     struct varinfo *v = NULL;
     
-    int result = 0;
+    int result = -1;
     int tiVarsRow;
     int i, j, row;
-    int indexes[256]; // I don't know if 256 vars can be fitted on the TI, but :-)
+    int vars_indexes[1024]; // I don't know if 1024 vars can be fitted on the TI, but :-)
+    int flash_indexes[256];
 
     localPool = [[NSAutoreleasePool alloc] init];
     
@@ -115,47 +118,50 @@ extern int is_active;
             switch([selRow intValue])
                 {
                     case 0: // do a screendump
-                        fprintf(stderr, "DEBUG: GET VARS => SCREEN DUMP\n");
-                        
                         [self getScreen:self];
                         break;
                     case 1: // do a romdump
-                        fprintf(stderr, "DEBUG: GET VARS => ROM DUMP\n");
-                        
                         [self romDump:self];
                         break;
                     case 2: // memory item => do... I don't know
                         fprintf(stderr, "DEBUG: GET VARS => MEMORY ITEM, UNUSED\n");
                         break;
                     case 3: // get ID list
-                        fprintf(stderr, "DEBUG: GET VARS => GET ID LIST\n");
-                        
                         cb_id_list();
                         break;
                     case 4: // keyboard item => do... I don't know
                         fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
                         break;
                     case 5: // FLASH Applications item => get each FLASH App
-                        fprintf(stderr, "DEBUG: GET VARS => GET EACH FLASH APP\n");
-                        // FIXME OS X : waiting for Romain to define FLASH App receive...
+#if 0 // problems with savepanel and transfer
+                        item = [dirlistTree itemAtRow:5];
+                        
+                        [dirlistTree expandItem:item];
+                                          
+                        foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
+                  
+                        while ([NODE_DATA(foldItem) isGroup] == NO)
+                            {
+                                v = (struct varinfo *)malloc(sizeof(struct varinfo));
+                          
+                                memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(struct varinfo));
+                        
+                                flash_list = g_list_append(flash_list, v);
+                                                        
+                                foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
+                            }
+                            
+                            ctree_win.selection2 = flash_list;
+#endif
                         break;
                     default:
-                        if (([selRow intValue] > tiVarsRow) && ([dirlistTree itemAtRow:[selRow intValue]]))
-                            [items addObject:[dirlistTree itemAtRow:[selRow intValue]]];
-                        else if ([selRow intValue] == tiVarsRow)
+                        if ([selRow intValue] == tiVarsRow)
                             {
                                 // do a backup of all vars
-                                fprintf(stderr, "DEBUG: GET VARS => FULL BACKUP\n");
-                                
                                 [self doBackup:self];
                             }
-                        else if (([selRow intValue] > 5) && ([selRow intValue] < tiVarsRow))
-                            {
-                                // FLASH App selected
-                                fprintf(stderr, "DEBUG: GET VARS => FLASH APP SELECTED\n");
-                                // FIXME OS X : waiting for Romain to define FLASH App receive...
-                            }
-                        break;
+                        else if (([selRow intValue] > 5) && ([dirlistTree itemAtRow:[selRow intValue]]))
+                            [items addObject:[dirlistTree itemAtRow:[selRow intValue]]];
                 }
         }
     
@@ -169,70 +175,97 @@ extern int is_active;
             if ([NODE_DATA(item) isGroup] == YES)
               {
                   [dirlistTree expandItem:item];
-                                          
+       
                   foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
-                  
+
                   while ([NODE_DATA(foldItem) isGroup] == NO)
                     {
                         v = (struct varinfo *)malloc(sizeof(struct varinfo));
                           
                         memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(struct varinfo));
                         
-                        list = g_list_append(list, v);
-                                                        
-                        indexes[i++] = [dirlistTree rowForItem:foldItem];
-                                                        
+                        row = [dirlistTree rowForItem:foldItem];
+
+                        if (row > tiVarsRow)
+                          {
+                              vars_list = g_list_append(vars_list, v);
+                              vars_indexes[i++] = [dirlistTree rowForItem:foldItem];
+                          }
+                        else
+                          {
+                              flash_list = g_list_append(flash_list, v);
+                              flash_indexes[i++] = [dirlistTree rowForItem:foldItem];
+                          }
+                                                                                                                
                         foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:foldItem] + 1];
                     }
               }
             else
               {
                   row = [dirlistTree rowForItem:item];
-                  
+
                   // make sure it is not already in the list
-                  for (j = 0; j < g_list_length(list); j++)
+                  for (j = 0; j < g_list_length(vars_list); j++)
                     {
-                        if (row == indexes[j])
+                        if (row == vars_indexes[j])
                           {
                               row = -1;
                               
                               break;
                           }
                     }
-              
+                    
+                  for (j = 0; j < g_list_length(flash_list); j++)
+                    {
+                        if (row == flash_indexes[j])
+                          {
+                              row = -1;
+                              
+                              break;
+                          }
+                    }
+
                   if (row > 0)
                     {
                         v = (struct varinfo *)malloc(sizeof(struct varinfo));
-              
+                        
                         memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(struct varinfo));
                   
-                        list = g_list_append(list, v);
-                  
-                        indexes[i++] = [dirlistTree rowForItem:item];
+                        if (row > tiVarsRow)
+                            {
+                                vars_list = g_list_append(vars_list, v);
+                                vars_indexes[i++] = [dirlistTree rowForItem:item];
+                            }
+                        else
+                            {
+                                flash_list = g_list_append(flash_list, v);
+                                flash_indexes[i++] = [dirlistTree rowForItem:item];
+                            }
                     }
               }
             
             v = NULL;
         }
         
-    ctree_win.selection = list;
- 
-    if (list != NULL)
-        cb_receive_var(&result);
-      
-    if (result > 0)
+    ctree_win.selection = vars_list; 
+  
+    // Retrieve vars
+    if (ctree_win.selection != NULL)
+        result = cb_recv_var();
+  
+    if (result >= 0)
         {
             calcDict = [myTilpController getCurrentCalcDict];
-        
+
             sp = [NSSavePanel savePanel];
-        
-            if (result == 'v')
+
+            if (result == 0)
                 {
                     v = (struct varinfo *)ctree_win.selection->data;
-                
+
                     [sp setRequiredFileType:[NSString stringWithCString:ti_calc.byte2fext(v->vartype)]];
                     [sp setTitle:@"Save variable as..."];
-                
+
                     tmpfile = [NSString stringWithFormat:@"%s.%s", v->translate, ti_calc.byte2fext(v->vartype)];
                 
                     context = [[NSMutableDictionary alloc] init];
@@ -247,7 +280,7 @@ extern int is_active;
                         didEndSelector:@selector(getSingleVarDidEnd:returnCode:contextInfo:)
                         contextInfo:context];
                 }
-            else if (result == 'g')
+            else if (result > 0)
                 {
                     [sp setRequiredFileType:[[calcDict objectForKey:@"extBackup"] lastObject]];
                     [sp setTitle:@"Save group file as..."];
@@ -265,7 +298,52 @@ extern int is_active;
                 }
         }
     ctree_win.selection = NULL;
-    g_list_free(list);
+    g_list_free(vars_list);
+    
+    // FLASH APPS HERE !
+        
+    if (flash_list != NULL)
+        {
+            l = flash_list;
+        
+            while (l != NULL)
+                {
+                    ctree_win.selection2 = g_list_alloc();
+                    
+                    ctree_win.selection2->data = l->data;
+                    
+                    if (cb_recv_app() == 0)
+                        {
+                            calcDict = [myTilpController getCurrentCalcDict];
+        
+                            sp = [NSSavePanel savePanel];
+                        
+                            v = (struct varinfo *)ctree_win.selection2->data;
+                
+                            [sp setRequiredFileType:[NSString stringWithCString:ti_calc.byte2fext(v->vartype)]];
+                            [sp setTitle:@"Save FLASH Application as..."];
+                
+                            tmpfile = [NSString stringWithFormat:@"%s.%s", v->translate, ti_calc.byte2fext(v->vartype)];
+                
+                            context = [[NSMutableDictionary alloc] init];
+                
+                            [context setObject:sp forKey:@"savepanel"];
+                            [context setObject:tmpfile forKey:@"tmpfile"];
+                
+                            [sp beginSheetForDirectory:NSHomeDirectory()
+                                file:tmpfile 
+                                modalForWindow:[myBoxesController keyWindow]
+                                modalDelegate:myBoxesController
+                                didEndSelector:@selector(getFlashAppDidEnd:returnCode:contextInfo:)
+                                contextInfo:context];
+
+                            l = l->next;
+                        }
+                }
+                
+            g_list_free(ctree_win.selection2);
+            g_list_free(flash_list);
+        }
     
     [localPool release];
     [NSThread exit];
@@ -749,7 +827,7 @@ extern int is_active;
     if (is_active)
         return;
     
-    if (cb_receive_backup() != 0)
+    if (cb_recv_backup() != 0)
         return;
     
     sp = [NSSavePanel savePanel];

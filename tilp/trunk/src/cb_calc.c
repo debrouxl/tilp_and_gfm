@@ -42,6 +42,9 @@
 #include "files.h"
 #include "select.h"
 
+/* All functions returns -1 if error, 0 if OK (a file need to be saved). */
+
+
 /*
   Check whether the calc is ready (with or without auto-detection)
 */
@@ -49,15 +52,10 @@ int cb_calc_is_ready(void)
 {
   int err;
 
-  if(is_active) 
-    return -1;
-
-	//DISPLAY("tilp: ti_calc=%p, isready=%p, set_calc=%p, init=%p\n", &ti_calc, ti_calc.isready, ticalc_set_calc, ticalc_init);
-
   if(options.auto_detect)
     {
-      if(tilp_error(ticalc_83p_89_92p_isready(&(options.lp.calc_type))))
-		return -1;
+      if(tilp_error(ticalc_73_83p_89_92p_isready(&(options.lp.calc_type))))
+	return -1;
       ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
     }
   else
@@ -73,8 +71,34 @@ int cb_calc_is_ready(void)
   return 0;
 }
 
+
 /*
-  Send a backup
+  Screendump: see cb_screen.c
+*/
+
+
+/*
+  Do a directory listing
+*/
+TIEXPORT
+int cb_dirlist(void)
+{
+  if(is_active)
+    return -1;
+
+  if(cb_calc_is_ready())
+    return -1;
+  
+  if (c_directory_list() != 0)
+    return -1;
+
+  return 0;
+}
+
+
+
+/*
+  Send a backup from the specified filename
 */
 int cb_send_backup(char *filename)
 {
@@ -82,9 +106,6 @@ int cb_send_backup(char *filename)
   FILE *bck;
   int file_mode = MODE_NORMAL;
   int file_check = MODE_NORMAL;
-
-  if(is_active)
-    return 0;
 
   if(cb_calc_is_ready())
     return -1;
@@ -115,6 +136,7 @@ int cb_send_backup(char *filename)
       gif->create_pbar_type5(_("Backup"), 
 			     _("Waiting for confirmation on calc..."));
       break;
+	case CALC_TI73:
     case CALC_TI83:
     case CALC_TI83P:
     case CALC_TI92:
@@ -130,41 +152,24 @@ int cb_send_backup(char *filename)
   ticalc_open_ti_file(filename, "rb", &bck);
   err=ti_calc.send_backup(bck, file_mode | file_check);
   ticalc_close_ti_file();
-  switch(options.lp.calc_type)
-    {
-    case CALC_TI82:
-    case CALC_TI83:
-    case CALC_TI83P:
-    case CALC_TI85:
-    case CALC_TI86:
-    case CALC_TI92:
-      gif->destroy_pbar();
-      break;
-    case CALC_TI89:
-    case CALC_TI92P:
-      gif->destroy_pbar();
-      break;
-    }
+  gif->destroy_pbar();
   if(tilp_error(err)) 
     return -1;
 
   return 0;
 }
 
+
 /*
   Receive a backup
 */
-TIEXPORT
-int cb_receive_backup(void)
+int cb_recv_backup(void)
 {
   FILE *bck;
   int err=0;
   longword version;
   char tmp_filename[MAXCHARS];
   int file_mode=MODE_NORMAL;
-
-  if(is_active) 
-    return -1;
 
   if(cb_calc_is_ready())
     return -1;
@@ -179,6 +184,7 @@ int cb_receive_backup(void)
     case CALC_TI86:
       gif->create_pbar_type5(_("Backup"), _("Waiting for backup from calc..."));
       break;
+	  case CALC_TI73:
     case CALC_TI83:
     case CALC_TI83P:
       gif->create_pbar_type3(_("Backup"));
@@ -194,7 +200,7 @@ int cb_receive_backup(void)
 
   strcpy(tmp_filename, g_get_tmp_dir());
   strcat(tmp_filename, DIR_SEPARATOR);
-  strcat(tmp_filename, "tilp.backup");
+  strcat(tmp_filename, TMPFILE_BACKUP);
   do
     {
       info_update.refresh();
@@ -209,23 +215,7 @@ int cb_receive_backup(void)
 	  (options.lp.calc_type == CALC_TI85) ||
 	  (options.lp.calc_type == CALC_TI86)) );
   
-  switch(options.lp.calc_type)
-    {
-    case CALC_TI82:
-    case CALC_TI83:
-    case CALC_TI83P:
-    case CALC_TI85:
-    case CALC_TI86:
-      gif->destroy_pbar();
-      break;
-    case CALC_TI89:
-    case CALC_TI92P:
-      gif->destroy_pbar();
-      break;
-    case CALC_TI92:
-      gif->destroy_pbar();
-      break;
-    }
+  gif->destroy_pbar();
   if(tilp_error(err)) 
     return -1;
 
@@ -235,14 +225,10 @@ int cb_receive_backup(void)
 /*
   Receive the IDlist
 */
-TIEXPORT
 int cb_id_list(void)
 {
   char buffer[MAXCHARS];
   char idlist[MAXCHARS];
-
-  if(is_active) 
-    return -1;
 
   if(cb_calc_is_ready())
     return -1;
@@ -251,21 +237,217 @@ int cb_id_list(void)
     return -1;
   strcpy(buffer, _("IDlist: "));
   strcat(buffer, idlist+2);
-  gif->msg_box(_("IDlist"), 
-	       buffer);
+  gif->msg_box(_("IDlist"), buffer);
   
-  return -1;
+  return 0;
 }
 
 /*
-  Do a ROM dump
-  Too many dependancies with GUI...
+  Do a ROM dumping
 */
-TIEXPORT
 int cb_rom_dump(void)
 {
-  if(is_active) 
-    return -1;
+  gint ret;
+  FILE *dump;
+  int err=0;
+  gchar tmp_filename[MAXCHARS];
+  
+  ret = gif->user2_box(_("Warning"), 
+		       _("An assembly program is about to be sent on your calculator. You should do a backup..."),
+		       _("Next >"), 
+		       _("Cancel"));
+  if(ret != BUTTON1) return -1;
+  
+  switch(options.lp.calc_type)
+    {
+    case CALC_TI73:
+    case CALC_TI83:
+    case CALC_TI83P:
+      ret = gif->user2_box(_("Information"), 
+			   _("You must have AShell on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("Next >"), 
+			   _("Cancel"));
+      switch(ret)
+	{
+	case BUTTON1: // OK/Next
+	  gif->create_pbar_type5(_("ROM dump"), 
+				 _("Receiving bytes"));
+	  
+	  strcpy(tmp_filename, g_get_tmp_dir());
+	  strcat(tmp_filename, DIR_SEPARATOR);
+	  strcat(tmp_filename, TMPFILE_ROMDUMP);
+	  do
+	    {
+	      info_update.refresh();
+	      if(info_update.cancel) break;
+	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+	      if(tilp_error(err)) return -1;
+	      err=ti_calc.dump_rom(dump, ret);
+	      fclose(dump);
+	    }
+	  while( ((err == ERR_RCV_BIT_TIMEOUT) || 
+		  (err == ERR_RCV_BYT_TIMEOUT)) );
+	  
+	  gif->destroy_pbar();
+	  if(tilp_error(err)) return -1;	      
+	  return 0;
+	  break;
+	default: // Cancel */
+	  return -1; 
+	  break;
+	}
+      break;
+    case CALC_TI85:
+      ret = gif->user2_box(_("Information"), 
+			   _("You must have Zshell or Usgard on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("Next >"), 
+			   _("Cancel"));
+      switch(ret)
+	{
+	case BUTTON1: // OK/Next
+	  /* Ask for the shell type */
+	  ret = gif->user3_box("Shell type", 
+			       "Select a shell", 
+			       "Zshell", "Usgard", "Cancel");
+	  if(ret == 3) return -1;
+	  else
+	    {
+	      gif->create_pbar_type5(_("ROM dump"), 
+				     _("Receiving bytes"));
+	      
+	      strcpy(tmp_filename, g_get_tmp_dir());
+	      strcat(tmp_filename, DIR_SEPARATOR);
+	      strcat(tmp_filename, TMPFILE_ROMDUMP);
+	      do
+		{
+		  info_update.refresh();
+		  if(info_update.cancel) break;
+		  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+		  if(tilp_error(err)) return -1;
+		  err=ti_calc.dump_rom(dump, (ret == 1) ? 
+				       SHELL_ZSHELL : SHELL_USGARD);
+		  fclose(dump);
+		}
+	      while( ((err == ERR_RCV_BIT_TIMEOUT) || 
+		      (err == ERR_RCV_BYT_TIMEOUT)) );
+	      
+	      gif->destroy_pbar();
+	      if(tilp_error(err)) return -1;	      
+	      return 0;
+	    }
+	  break;
+	default: // Cancel */
+	  return -1; 
+	  break;
+	}
+      break;
+    case CALC_TI86:
+      ret = gif->user2_box(_("Information"), 
+			   _("You must have a shell (any) on your calculator in order to do a ROM dump.\nTiLP wil transfer the ROM dump program and it will wait until you launch it from the calculator."),
+			   _("Next >"), 
+			   _("Cancel"));
+      switch(ret)
+	{
+	case BUTTON1: // OK/Next
+	  gif->create_pbar_type5(_("ROM dump"), 
+				 _("Receiving bytes"));
+	  
+	  strcpy(tmp_filename, g_get_tmp_dir());
+	  strcat(tmp_filename, DIR_SEPARATOR);
+	  strcat(tmp_filename, TMPFILE_ROMDUMP);
+	  do
+	    {
+	      info_update.refresh();
+	      if(info_update.cancel) break;
+	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+	      if(tilp_error(err)) return -1;
+	      err=ti_calc.dump_rom(dump, ret);
+	      fclose(dump);
+	    }
+	  while( (err == ERR_RCV_BYT_TIMEOUT) || 
+		 (err == ERR_RCV_BIT_TIMEOUT) );
+	  
+	  gif->destroy_pbar();
+	  if(tilp_error(err)) return -1;	      
+	  return 0;
+	  break;
+	default: // Cancel */
+	  return -1; 
+	  break;
+	}
+      break;
+    case CALC_TI89:
+    case CALC_TI92P:
+      gif->create_pbar_type5(_("ROM dump"), _("Receiving bytes"));
+      
+      strcpy(tmp_filename, g_get_tmp_dir());
+      strcat(tmp_filename, DIR_SEPARATOR);
+      strcat(tmp_filename, TMPFILE_ROMDUMP);
+      do
+	{
+	  info_update.refresh();
+	  if(info_update.cancel) break;
+	  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+	  if(tilp_error(err)) return -1;
+	  err=ti_calc.dump_rom(dump, ret);
+	  fclose(dump);
+	}
+      while( (err == ERR_RCV_BYT_TIMEOUT) || 
+	     (err == ERR_RCV_BIT_TIMEOUT) );
+      
+      gif->destroy_pbar();
+      if(tilp_error(err)) return -1;	      
+      return 0;
+      break;
+    case CALC_TI92:
+      ret = gif->user2_box(_("Information"), 
+			   _("You must have the FargoII shell on your calculator in order to do a ROM dump."),
+			   _("Next >"), 
+			   _("Cancel"));
+      switch(ret)
+	{
+	case BUTTON1: // OK/Next
+	  /* Ask for the ROM size */
+	  ret = gif->user3_box("ROM size", 
+			       "Select the size of your ROM or cancel", 
+			       "1Mb", "2 Mb", "Cancel");
+	  if(ret == 3)
+	    return -1;
+	  else
+	    {
+	      printf("ROM size: %i Mb\n", ret);
+	      gif->create_pbar_type5(_("ROM dump"), 
+				     _("Receiving bytes"));
+	      
+	      strcpy(tmp_filename, g_get_tmp_dir());
+	      strcat(tmp_filename, DIR_SEPARATOR);
+	      strcat(tmp_filename, TMPFILE_ROMDUMP);
+	      do
+		{
+		  info_update.refresh();
+		  if(info_update.cancel) break;
+		  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
+		  if(tilp_error(err)) return -1;
+		  err=ti_calc.dump_rom(dump, ret);
+		  fclose(dump);
+		}
+	      while( (err == ERR_RCV_BYT_TIMEOUT) || 
+		     (err == ERR_RCV_BIT_TIMEOUT) );
+	      
+	      gif->destroy_pbar();
+	      if(tilp_error(err)) return -1;	      
+	      return 0;//display_fileselection_7();
+	    }	  
+	  break;
+	default: // Cancel */
+	  return -1;
+	  break;
+	}
+      break;
+    default:
+      DISPLAY("Unsupported ROM dump\n");
+      break;
+    }
 
   return 0;
 }
@@ -273,7 +455,6 @@ int cb_rom_dump(void)
 /*
   Get the ROM version
 */
-TIEXPORT
 int cb_rom_version(void)
 {
   char version[MAXCHARS];
@@ -293,7 +474,6 @@ int cb_rom_version(void)
 /*
   Send one or more selected variables
 */
-TIEXPORT
 int cb_send_var(void)
 {
   GList *ptr;
@@ -314,9 +494,6 @@ int cb_send_var(void)
   if(cb_calc_is_ready())
     return -1;
 
-  //if(options.force_dirlist == TRUE)
-  //  c_directory_list();
-
   if(options.path_mode == LOCAL_PATH)
     path_mode = MODE_LOCAL_PATH;
   if(options.file_mode == EXTENDED_FORMAT)
@@ -336,8 +513,8 @@ int cb_send_var(void)
       file_check = MODE_FILE_CHK_MID;
       break;
     }
-
-  if(options.force_dirlist == TRUE)
+  
+  if(options.confirm == CONFIRM_YES)
     file_mode |= MODE_DIRLIST;
 
   ptr = clist_win.selection;
@@ -345,9 +522,10 @@ int cb_send_var(void)
   
   /* Choose the appropriate dialog box */
   if(l == 1)
-    { // a single file (single var or group)
+    { 
+      // a single file (single var or group)
       f=(struct file_info *)ptr->data;
-      if(strstr(f->filename, ti_calc.group_file_ext(options.lp.calc_type)))
+      if(strstr(f->filename, ticalc_group_file_ext(options.lp.calc_type)))
 	gif->create_pbar_type5(_("Sending group file"), "");
       else
 	gif->create_pbar_type4(_("Sending variable"), "");
@@ -360,7 +538,7 @@ int cb_send_var(void)
     {
       f=(struct file_info *)ptr->data;
       
-      if(strstr(f->filename, ti_calc.group_file_ext(options.lp.calc_type)))
+      if(strstr(f->filename, ticalc_group_file_ext(options.lp.calc_type)))
 	{ 
 	  /****************/
 	  /* A group file */
@@ -403,18 +581,18 @@ int cb_send_var(void)
 	  /* A single file */
 	  /*****************/
 	  
-	  if(strstr(f->filename, ti_calc.backup_file_ext(options.lp.calc_type)))
+	  if(strstr(f->filename, ticalc_backup_file_ext(options.lp.calc_type)))
 	    {
 	      gif->destroy_pbar();
 	      gif->msg_box(_("Error"), 
 			   _("Use the 'Send backup' menu item instead."));
 	      return -1;
 	    }
-	  if(strstr(f->filename, ti_calc.flash_app_file_ext(options.lp.calc_type)))
+	  if(strstr(f->filename, ticalc_flash_app_file_ext(options.lp.calc_type)))
 	    {
 	      gif->destroy_pbar();
 	      gif->msg_box(_("Error"), 
-			   _("Use the 'Send (free) application' menu item instead."));
+			   _("Use the 'Send application' menu item instead."));
 	      return -1;
 	    }  
 	  if(tilp_error(ticalc_open_ti_file(f->filename, "rb", &txt)))
@@ -465,9 +643,13 @@ int cb_send_var(void)
 }
 
 /*
-  Receive one or more selected variables
+  Receive one or more selected variables.
+  Returned value:
+  - negative if error
+  - zero if successful (single file)
+  - positive if successful (group file name TMPFILE_GROUP)
 */
-int cb_receive_var(int *to_save)
+int cb_recv_var(void)
 {
   int err=0;
   GList *ptr;
@@ -488,8 +670,6 @@ int cb_receive_var(int *to_save)
   char varname[9];
   int file_mode=MODE_NORMAL;
 
-  *to_save = 0;
-
   if(is_active) 
     return -1;
 
@@ -501,6 +681,7 @@ int cb_receive_var(int *to_save)
   
   switch(options.lp.calc_type)
     {
+    case CALC_TI73:
     case CALC_TI83:
     case CALC_TI83P:
     case CALC_TI86:
@@ -508,14 +689,16 @@ int cb_receive_var(int *to_save)
     case CALC_TI92:
     case CALC_TI92P:
       if(ctree_win.selection==NULL) 
-	return 0;
+	return -1;
+
       if(g_list_length(ctree_win.selection)==1)
 	{
 	  /* Single file */
 	  gif->create_pbar_type4(_("Receiving variable"), "");
 	  v=(struct varinfo *)ctree_win.selection->data;
 	  
-	  if( (options.lp.calc_type != CALC_TI83) && 
+	  if( (options.lp.calc_type != CALC_TI73) && 
+	      (options.lp.calc_type != CALC_TI83) && 
 	      (options.lp.calc_type != CALC_TI83P) && 
 	      (options.lp.calc_type != CALC_TI86) )
 	    {
@@ -543,16 +726,15 @@ int cb_receive_var(int *to_save)
 	    {
 	      if( access(file_n, F_OK) == 0 )
 		{
-		  sprintf(buffer, _("The file %s already exists."),
-			  file_n);
+		  sprintf(buffer, _("The file %s already exists."), file_n);
 		  ret=gif->user3_box(_("Warning"), buffer,
-				_(" Overwrite "), _(" Rename "),
-				_(" Skip "));
+				     _(" Overwrite "), _(" Rename "),
+				     _(" Skip "));
 		  switch(ret)
 		    {
 		    case BUTTON2:
 		      dirname=gif->dlgbox_entry(_("Rename the file"),
-					   _("New name: "), file_n);
+						_("New name: "), file_n);
 		      if(dirname == NULL) 
 			return -1;
 		      strcpy(file_n, dirname);
@@ -572,10 +754,6 @@ int cb_receive_var(int *to_save)
 	    {
 	      ticalc_open_ti_file(file_n, "wb", &txt);
 	     
-	      /*
-		printf("%8s %8s %8s %02X\n", (v->folder)->varname, v->varname, v->translate, v->vartype);
-		printf("-> %p\n", txt);
-	      */
 	      /* This part generates the header for single files */
 	      switch(options.lp.calc_type)
 		{
@@ -595,9 +773,8 @@ int cb_receive_var(int *to_save)
 		default:
 		  break;
 		}
-	      err=ti_calc.recv_var(txt, MODE_RECEIVE_SINGLE_VAR 
-				      | file_mode, 
-				      var_n, v->vartype, v->varlocked);
+	      err=ti_calc.recv_var(txt, MODE_RECEIVE_SINGLE_VAR | file_mode, 
+				   var_n, v->vartype, v->varattr);
 	      ticalc_close_ti_file();
 	      if(tilp_error(err))
 		{
@@ -606,10 +783,6 @@ int cb_receive_var(int *to_save)
 		}
 	    }
 	  gif->destroy_pbar();
-#ifdef __MACOSX__
-          // a single _v_ar
-          *to_save = 'v';
-#endif
 	}
       else
 	{
@@ -617,7 +790,7 @@ int cb_receive_var(int *to_save)
 	  gif->create_pbar_type5(_("Receiving variables"), "");
 	  strcpy(tmp_filename, g_get_tmp_dir());
 	  strcat(tmp_filename, DIR_SEPARATOR);
-	  strcat(tmp_filename, "tilp.PAK");
+	  strcat(tmp_filename, TMPFILE_GROUP);
 	  ticalc_open_ti_file(tmp_filename, "wb", &txt);
 	  
 	  switch(options.lp.calc_type)
@@ -645,15 +818,13 @@ int cb_receive_var(int *to_save)
 	  while(ptr!=NULL)
 	    {
 	      v=(struct varinfo *)ptr->data;
-	      //printf(_("Varname: %s, vartype: %s\n"), v->varname, ti_calc.byte2type(v->vartype));
-	      //printf(_("Parent folder: %s\n"), (v->folder)->varname);
-	      //printf(_("Type: %i\n"), v->is_folder);
 
 	      /* If the LAST element is just a folder, skip it */
 	      if( (v->is_folder == FOLDER) && (ptr->next == NULL) )
 		break;
-
-	      if( (options.lp.calc_type != CALC_TI83) && 
+	      
+	      if( (options.lp.calc_type != CALC_TI73) && 
+		  (options.lp.calc_type != CALC_TI83) && 
 		  (options.lp.calc_type != CALC_TI83P) && 
 		  (options.lp.calc_type != CALC_TI86) )
 		{
@@ -667,15 +838,15 @@ int cb_receive_var(int *to_save)
 		}
 	      if(i == 0)
 		err=ti_calc.recv_var(txt, MODE_RECEIVE_FIRST_VAR 
-					| file_mode, 
-					var_n, v->vartype, v->varlocked);
+				     | file_mode, 
+				     var_n, v->vartype, v->varattr);
 	      else if( i == l-1)
 		err=ti_calc.recv_var(txt, MODE_RECEIVE_LAST_VAR 
-					| file_mode, 
-					var_n, v->vartype, v->varlocked);
+				     | file_mode, 
+				     var_n, v->vartype, v->varattr);
 	      else 
 		err=ti_calc.recv_var(txt, MODE_RECEIVE_VARS | file_mode, 
-					var_n, v->vartype, v->varlocked);
+				     var_n, v->vartype, v->varattr);
 	      if(tilp_error(err)) 
 		{
 		  ticalc_close_ti_file();
@@ -691,12 +862,6 @@ int cb_receive_var(int *to_save)
 	    }
 	  ticalc_close_ti_file();
 	  gif->destroy_pbar();
-          
-#ifndef __MACOSX__
-	  *to_save = 1;
-#else
-          *to_save = 'g';
-#endif
  	}
       break;
     case CALC_TI82:
@@ -704,7 +869,7 @@ int cb_receive_var(int *to_save)
       gif->create_pbar_type4(_("Receiving variable(s)"), _("Waiting..."));
       strcpy(tmp_filename, g_get_tmp_dir());
       strcat(tmp_filename, DIR_SEPARATOR);
-      strcat(tmp_filename, "tilp.PAK");
+      strcat(tmp_filename, TMPFILE_GROUP);
       do
 	{
 	  ticalc_open_ti_file(tmp_filename, "wb", &txt);
@@ -776,30 +941,10 @@ int cb_receive_var(int *to_save)
       else
 	{
 	  /* Group file */
-#ifndef __MACOSX__
-	  *to_save = 1;
-#else
-          // a _g_roup file
-          *to_save = 'g';
-#endif
+          return 1;
 	}
       break;
     }
-
-  return 0;
-}
-
-TIEXPORT
-int cb_dirlist(void)
-{
-  if(is_active)
-    return -1;
-
-  if(cb_calc_is_ready())
-    return -1;
-  
-  if (c_directory_list() != 0)
-    return -1;
 
   return 0;
 }
@@ -822,6 +967,7 @@ int cb_send_flash_app(char *filename)
 
   switch(options.lp.calc_type)
     {
+    case CALC_TI73:
     case CALC_TI82:
     case CALC_TI83:
     case CALC_TI83P:
@@ -831,7 +977,7 @@ int cb_send_flash_app(char *filename)
       break;
     case CALC_TI89:
     case CALC_TI92P:
-      gif->create_pbar_type5(_("Flash"), "");
+      gif->create_pbar_type3(_("Flash"));
       break;
       break;
     }
@@ -842,29 +988,16 @@ int cb_send_flash_app(char *filename)
   err=ti_calc.send_flash(bck, MODE_APPS);
   ticable_set_timeout(old_timeout);
   ticalc_close_ti_file();
-  switch(options.lp.calc_type)
-    {
-    case CALC_TI82:
-    case CALC_TI83:
-    case CALC_TI83P:
-    case CALC_TI85:
-    case CALC_TI92:
-      gif->destroy_pbar();
-      break;
-    case CALC_TI89:
-    case CALC_TI92P:
-      gif->destroy_pbar();
-      break;
-    }
+  gif->destroy_pbar();  
   if(tilp_error(err)) return -1;
 
   return 0;
 }
 
 /*
-  Send a FLASH OS (AMS)
+  Send a FLASH Operating System (AMS).
+  Note: the timeout is increased to 10 seconds during the operation.
 */
-TIEXPORT
 int cb_send_flash_os(char *filename)
 {
   int err;
@@ -879,6 +1012,7 @@ int cb_send_flash_os(char *filename)
 
   switch(options.lp.calc_type)
     {
+    case CALC_TI73:
     case CALC_TI82:
     case CALC_TI83:
     case CALC_TI83P:
@@ -899,36 +1033,22 @@ int cb_send_flash_os(char *filename)
   err=ti_calc.send_flash(bck, MODE_AMS);
   ticable_set_timeout(old_timeout);
   ticalc_close_ti_file();
-  switch(options.lp.calc_type)
-    {
-    case CALC_TI82:
-    case CALC_TI83:
-    case CALC_TI83P:
-    case CALC_TI85:
-    case CALC_TI92:
-      gif->destroy_pbar();
-      break;
-    case CALC_TI89:
-    case CALC_TI92P:
-      gif->destroy_pbar();
-      break;
-    }
+  gif->destroy_pbar();
   if(tilp_error(err)) return -1;
 
   return 0;
 }
 
 /*
-  Receive a (free) FLASH app
+  Receive an FLASH application
 */
-int cb_receive_app(void)
+int cb_recv_app(void)
 {
   int err=0;
   GList *ptr;
   FILE *txt;
   struct varinfo *v;
-  char filename[25];
-  char tmp_filename[MAXCHARS];
+  char filename[MAXCHARS];
   int ret, skip=0;
   char buffer[MAXCHARS];
   char *dirname;
@@ -944,6 +1064,7 @@ int cb_receive_app(void)
 
   switch(options.lp.calc_type)
     {
+    case CALC_TI73:
     case CALC_TI82:
     case CALC_TI83:
     case CALC_TI85:
@@ -962,20 +1083,21 @@ int cb_receive_app(void)
   while(ptr != NULL)
     {
       v=(struct varinfo *)ptr->data;
-
+      
       /* If the LAST element is just a folder, skip it */
       if( (v->is_folder == FOLDER) && (ptr->next == NULL) )
 	break;
 
-      strcpy(tmp_filename, g_get_tmp_dir());
-      strcat(tmp_filename, DIR_SEPARATOR);
-      strcat(tmp_filename, "tilp.PAK");
-      
+#ifndef __MACOSX__
       strcpy(filename, v->translate);
+#else
+      strcpy(filename, g_get_tmp_dir());
+      strcat(filename, G_DIR_SEPARATOR_S);
+      strcat(filename, v->translate);
+#endif
       strcat(filename, ".");
       strcat(filename, ti_calc.byte2fext(v->vartype));
-      //strcpy(filename, "test.8Xk");
-
+      
       if(options.confirm == CONFIRM_YES)
 	{
 	  if( access(filename, F_OK) == 0 )
@@ -1009,11 +1131,12 @@ int cb_receive_app(void)
 	{
 	  err = ticalc_open_ti_file(filename, "wb", &txt);	
 	  if(!err)
-	  {
-		err = ti_calc.recv_flash(txt, MODE_NORMAL, v->translate, v->varsize);
-		ticalc_close_ti_file();
-	  }
-	  if(tilp_error(err)) 
+	    {
+	      err = ti_calc.recv_flash(txt, MODE_NORMAL, 
+				       v->translate, v->varsize);
+	      ticalc_close_ti_file();
+	    }
+	  if(tilp_error(err))
 	    {
 	      gif->destroy_pbar();
 	      return -1;
@@ -1030,7 +1153,6 @@ int cb_receive_app(void)
 /*
   Convert a FLASH OS (AMS) into a ROM image
 */
-TIEXPORT
 int cb_ams_to_rom(char *filename)
 {
   FILE *file, *fo;
@@ -1052,7 +1174,7 @@ int cb_ams_to_rom(char *filename)
   file = fopen(filename, "rb");
   if(file == NULL)
     {
-      fprintf(stderr, "Unable to open this file: <%s>\n", filename);
+      DISPLAY_ERROR("Unable to open this file: <%s>\n", filename);
       return -1;
     }
   
@@ -1069,7 +1191,7 @@ int cb_ams_to_rom(char *filename)
   fo = fopen(filename2, "wb");
   if(fo == NULL)
     {
-      fprintf(stderr, "Unable to open this file: <%s>\n", filename2);
+      DISPLAY_ERROR("Unable to open this file: <%s>\n", filename2);
       return -1;
     }
 
@@ -1160,7 +1282,6 @@ int cb_ams_to_rom(char *filename)
   /* Now, read data from the file and convert it */
   num_blocks = flash_size/65536;
   DISPLAY("Number of blocks: %i\n", num_blocks + 1);
-  DISPLAY("Processing: ");
 
   /* Boot block */
   for(i=0; i<0x05; i++)

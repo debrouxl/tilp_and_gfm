@@ -499,7 +499,7 @@ struct gui_fncts gui_functions;
       {
           q = (struct varinfo *)(p->data);
         
-          if (q->vartype != ti_calc.tixx_flash(ticalc_get_calc()))
+          if (q->vartype != ticalc_flash_type(ticalc_get_calc()))
               {
                   if ((p != ctree_win.varlist) && q->is_folder) // we're at the second folder (first folder _is_ ctree_win.varlist itself)
                       break;
@@ -512,12 +512,12 @@ struct gui_fncts gui_functions;
           // dictionary that will hold this app
           tmpDict = [[NSMutableDictionary alloc] init];
                 
-          switch (q->varlocked)  // Uh, you'd better #define'd this type of things, Romain
+          switch (q->varattr)
               {
-                  case 1:
+                  case VARATTR_LOCK:
                       [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
                       break;
-                  case 3:
+                  case VARATTR_ARCH:
                       [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
                       break;
               }
@@ -545,7 +545,7 @@ struct gui_fncts gui_functions;
         {
             q = (struct varinfo *)(p->data);
             
-            if(q->vartype == ti_calc.tixx_flash(ticalc_get_calc()))
+            if(q->vartype == ticalc_flash_type(ticalc_get_calc()))
                 {
                     p = p->next;
                     continue;
@@ -573,12 +573,12 @@ struct gui_fncts gui_functions;
                     // dictionary that will hold this var
                     tmpDict = [[NSMutableDictionary alloc] init];
                 
-                    switch (q->varlocked)  // Uh, you'd better #define'd this type of things, Romain
+                    switch (q->varattr)  // Uh, you'd better #define'd this type of things, Romain
                         {
-                            case 1:
+                            case VARATTR_LOCK:
                                 [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
                                 break;
-                            case 3:
+                            case VARATTR_ARCH:
                                 [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
                                 break;
                         }

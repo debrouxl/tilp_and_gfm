@@ -93,7 +93,40 @@ void process_buffer(gchar *buf)
   gint i;
   
   for(i=0; i<strlen(buf); i++)
+  {
     if(buf[i]=='\r') buf[i]=' ';
+  }
+}
+
+/* Replace a '\r\n' or a '\n' by '\r' */
+void process_unix2dos(gchar *buf)
+{
+	int i;
+	int l = strlen(buf);
+
+	for(i=0; i<l; i++)
+	{/*
+		if( (buf[i] == '\r') && (buf[i+1] == '\n') )
+		{
+			buf[i] = '\r';
+			buf[i+1] = '\n';
+		}
+		if( (buf[i] == '\n') && (buf[i+1] == '\r') )
+		{
+			buf[i] = '\r';
+			buf[i+1] = '\n';
+		}
+		if(buf[i] == '\r') buf[i] = '\n';
+		*/
+		if( (buf[i] == '\r') || (buf[i] == '\n') )
+		{
+			buf[i]='\r';
+			buf[i+1]='\n';
+			i++;
+		}
+	}
+	buf[i]='\0';
+
 }
 
 /*************************************/
@@ -304,7 +337,7 @@ void display_dirlist(struct varinfo *varlist)
 	    fprintf(stdout, " ");
 	}
       fprintf(stdout, "|");
-      fprintf(stdout, "%i  ", (int)(ptr->varlocked));
+      fprintf(stdout, "%i  ", (int)(ptr->varattr));
       fprintf(stdout, "|");
       fprintf(stdout, "%02X ", ptr->vartype);
       fprintf(stdout, "|");
@@ -369,7 +402,7 @@ void varlist_to_glist(struct varinfo varlist)
 	    fprintf(stdout, " ");
 	}
       fprintf(stdout, " ");
-      fprintf(stdout, "%i  ", (int)(ptr->varlocked));
+      fprintf(stdout, "%i  ", (int)(ptr->varattr));
       fprintf(stdout, "%02X ", ptr->vartype);
       fprintf(stdout, "%08X ", ptr->varsize);
       fprintf(stdout, "%s\n", (ptr->folder)->varname);
@@ -416,7 +449,7 @@ struct varinfo *glist_to_varlist(GList *glist)
       /* Copy the structure */
       strcpy(p->varname, v->varname);
       p->vartype=v->vartype;
-      p->varlocked=v->varlocked;
+      p->varattr=v->varattr;
       p->varsize=v->varsize;
       strcpy(p->translate, v->translate);
       p->folder=v->folder;
@@ -443,8 +476,8 @@ void free_varlist(struct varinfo *vlist)
 }
 
 /* 
-   This function will become obsolete: replaced by 
-   generate..._header_from_varlist 
+   This function generates the header of the TI file when a group
+   is received.
 */
 void generate_group_file_header(FILE *file, int mask_mode, 
 				const char *id, struct varinfo *v, 
@@ -454,99 +487,10 @@ void generate_group_file_header(FILE *file, int mask_mode,
 
   vi = glist_to_varlist(ctree_win.selection);
   //display_dirlist(vi);
-  //fprintf(stderr, "<%p>\n", file);
   ti_calc.generate_group_file_header(file, mask_mode, id, vi, 
 				     options.lp.calc_type);
   free_varlist(vi);
 
-  /* Code below no longer used */
-  /*  
-  longword index=0x52;
-  int i;
-  char desc[43] = _("Group received by tilp");
-  char variable_name[9];
-  char folder_name[9];
-  char previous_folder[9];
-  int j=0;
-  GList *ptr;
-  long file_offset=0;
-  word num_vars=0;
-  
-  fprintf(file, id);
-  fprintf(file, "%c%c", 0x01, 0x00);
-  for(i=0; i<8; i++) fprintf(file, "%c", '\0');
-  for(i=0; i<40; i++) fprintf(file, "%c", desc[i]);  
- 
-  
-  strcpy(previous_folder, "");
-  j=0;
-  index=0x52;
-  ptr=ctree_win.selection;
-  while(ptr!=NULL)
-    {
-      v=(struct varinfo *)ptr->data;
-      strcpy(folder_name, (v->folder)->varname);
-      strcpy(variable_name, v->varname);
-      if(strcmp(previous_folder, folder_name)) j++;
-      j++;
-      
-      strcpy(previous_folder, (v->folder)->varname);
-      ptr=ptr->next;
-    }
-  fprintf(file, "%c%c", LSW(j), MSW(j));
-  j--;
-  
-  strcpy(previous_folder, "");
-  index+=j*16;
-  ptr=ctree_win.selection; 
-  while(ptr!=NULL)
-    {
-      v=(struct varinfo *)ptr->data;
-      strcpy(folder_name, (v->folder)->varname);
-      strcpy(variable_name, v->varname);
-      if(strcmp(previous_folder, folder_name))
-	{
-	
-	  fprintf(file, "%c%c%c%c", (index & 0xFF),(index & 0x0000FF00)>>8, 
-		  (index & 0x00FF0000)>>16, (index & 0xFF000000)>>24);
-	  for(i=0; i<strlen(folder_name); i++) fprintf(file, "%c", folder_name[i]);
-	  for(i=strlen(folder_name); i<8; i++) fprintf(file, "%c", '\0');
-	  fprintf(file, "%c%c", tixx_dir(options.lp.calc_type), 0x00);
-	  if(file_offset != 0)
-	    {
-	      fseek(file, file_offset, SEEK_SET);
-	      fprintf(file, "%c%c", LSW(num_vars), MSW(num_vars));
-	      fseek(file, 0L, SEEK_END);
-	      num_vars=0;
-	    }
-	  file_offset=ftell(file);
-	  fprintf(file, "%c%c", 0x00, 0x00);
-	}
-      
-      fprintf(file, "%c%c%c%c", (index & 0xFF),(index & 0x0000FF00)>>8, 
-	      (index & 0x00FF0000)>>16, (index & 0xFF000000)>>24);
-      index+=v->varsize+6;
-      for(i=0; i<strlen(variable_name); i++) fprintf(file, "%c", variable_name[i]);
-      for(i=strlen(variable_name); i<8; i++) fprintf(file, "%c", '\0');
-      fprintf(file, "%c", v->vartype);
-      if(mask_mode &  MODE_KEEP_ARCH_ATTRIB)
-	fprintf(file, "%c", v->varlocked); // extended group file
-      else
-	fprintf(file, "%c", 0x00); // standard group file
-      fprintf(file, "%c%c", 0x00, 0x00);
-      num_vars++;
-
-      strcpy(previous_folder, folder_name);
-      ptr=ptr->next;
-    }
-  fseek(file, file_offset, SEEK_SET);
-  fprintf(file, "%c%c", LSW(num_vars), MSW(num_vars));
-  fseek(file, 0L, SEEK_END);
-  
-  fprintf(file, "%c%c%c%c", (index & 0xFF),(index & 0x0000FF00)>>8, 
-	  (index & 0x00FF0000)>>16, (index & 0xFF000000)>>24);
-  fprintf(file, "%c%c", 0xA5, 0x5A);
-*/
   return;
 
 }
@@ -988,7 +932,7 @@ void sort_cfiles_by_info(GList *list)
 	  if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) 
 	      && (fi_p->is_folder != FOLDER) && (fi_q->is_folder != FOLDER) )
 	    {
-	      if(fi_p->varlocked < fi_q->varlocked)
+	      if(fi_p->varattr < fi_q->varattr)
 		{
 		  end=j;
 		  tmp=p->data;

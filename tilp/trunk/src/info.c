@@ -50,11 +50,11 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
               }
           else
               {
-                  if (vi->vartype != ti_calc.tixx_flash(ticalc_get_calc()))
+                  if (vi->vartype != ticalc_flash_type(ticalc_get_calc()))
                       {
                           cmi->vars++;
                                             
-                          if (vi->varlocked == 3) // variable is archived
+                          if (vi->varattr == VARATTR_ARCH) // variable is archived
                               {
                                   cmi->archivemem += vi->varsize;
                               }
@@ -64,7 +64,7 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
                               }
                       }
                   // remember the FLASH apps are listed in all folders... so cmi->folders must not be > 1
-                  else if ((cmi->folders == 1) && (vi->vartype == ti_calc.tixx_flash(ticalc_get_calc())))
+                  else if ((cmi->folders == 1) && (vi->vartype == ticalc_flash_type(ticalc_get_calc())))
                       {
                           cmi->flash++;
                       

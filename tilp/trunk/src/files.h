@@ -26,6 +26,7 @@ extern "C" {
 #endif
 
 void process_buffer(gchar *buf);
+void process_unix2dos(gchar *buf);
 int copy_file(char *src, char *dst);
 int move_file(char *src, char *dst);
 

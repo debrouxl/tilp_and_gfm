@@ -135,7 +135,7 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
   
       if(!strcmp(cmd, "backup"))
 	{
-	  cb_receive_backup();
+	  cb_recv_backup();
 	  if(arg1)
 	    {
 	    }

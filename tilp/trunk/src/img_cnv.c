@@ -268,8 +268,7 @@ int convert_bytemap_to_rgbmap(Image *img) // tested: OK (14/05)
 /* Destroy the bitmap */
 void delete_bitmap(Image *img)
 {
-  //DISPLAY("delete_bitmap\n");
-  if(img->bitmap)
+  if(img->bitmap != NULL)
     {
       //free(img->bitmap);
       img->bitmap = NULL;
@@ -287,7 +286,7 @@ void alloc_bitmap(Image *img)
 void delete_bytemap(Image *img)
 {
   //DISPLAY("delete_bytemap\n");
-  if(img->bytemap)
+	if(img->bytemap != NULL)
     {
       free(img->bytemap);
       img->bytemap = NULL;
@@ -305,7 +304,7 @@ void alloc_bytemap(Image *img)
 void delete_colormap(Image *img)
 {
   //DISPLAY("delete_colormap\n");
-  if(img->colormap)
+  if(img->colormap != NULL)
     {
       free(img->colormap);
       img->colormap = NULL;
@@ -339,7 +338,7 @@ void delete_pixmap(Image *img)
 void delete_rgbmap(Image *img)
 {
   //DISPLAY("delete_rgbmap\n");
-  if(img->rgbmap)
+  if(img->rgbmap != NULL)
     {
       free(img->rgbmap);
       img->rgbmap = NULL;

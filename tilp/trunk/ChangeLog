@@ -224,6 +224,9 @@
 	* Fixed the glib build, so that g_warning and friends are
 	no longer functions defined in glib.h but macros. Cleaner build.
 	* Threaded vars upload.
+* 20020213 : v0.4.9
+	* Merge up to 4.92.
+	* Receive FLASH Apps.
 	
 
 

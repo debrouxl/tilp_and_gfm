@@ -25,7 +25,7 @@
 */
 
 #ifdef __WIN32__
-# define TILP_VERSION "4.84" // For Win32
+# define TILP_VERSION "4.92" // For Win32
 #else
 # define TILP_VERSION VERSION
 #endif

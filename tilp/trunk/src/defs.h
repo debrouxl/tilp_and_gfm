@@ -48,7 +48,8 @@
 #define LOCK   1
 
 /* PCX or XPM image format */
-#define TIFF 3
+#define TIFF 4
+#define BMP 3
 #define JPG 2
 #define PCX 1
 #define XPM 0
@@ -98,5 +99,17 @@
 
 #endif
 
+/* File receiving */
+#define RECV_AS_SINGLE 0
+#define RECV_AS_GROUP  1
 
+/* Checksum */
+#define USE_CHECKSUM   1
+#define NOUSE_CHECKSUM 0
+
+/* Temporary filenames (used by cb_calc.c) */
+#define TMPFILE_BACKUP   "tilp.backup"
+#define TMPFILE_ROMDUMP  "tilp.romdump"
+#define TMPFILE_GROUP    "tilp.group"
+#define TMPFILE_FLASHAPP "tilp.flashapp"
 

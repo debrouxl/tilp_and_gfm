@@ -40,11 +40,6 @@ int cb_screen_capture(void)
 {
   int err;
 
-  /*
-  if(tilp_error(cb_calc_is_ready()))
-	  return -1;
-  */
-  
   /* Place a progress bar */
   gif->create_pbar_type1(_("Screendump"));
   info_update.refresh();
@@ -85,7 +80,7 @@ int cb_screen_save(char *filename)
 {
   FILE *image;
 
-  if((image=fopen(filename, "wt")) == NULL)
+  if((image=fopen(filename, "wb")) == NULL)
     {
       DISPLAY(_("Unable to open this file: %s\n"), filename);
     }

@@ -44,8 +44,7 @@ extern gint registry_allowed;
 #ifndef __MACOSX__
 extern struct installation_paths
 {
-  gchar *base_dir;    // Windows directory (determined at startup)
-  
+  gchar *base_dir;    // Windows directory (determined at startup)  
   gchar *share_dir;   // shared directory
   gchar *locale_dir;  // locale
   gchar *manpage_dir; // manpages
@@ -83,7 +82,8 @@ extern struct goptions
   int console_mode;
   int auto_detect;
   int show_gui;
-  int force_dirlist;
+  int single_or_group;
+  int use_checksum;
 
   struct ticable_param lp;
 } options;
@@ -124,22 +124,22 @@ struct plugin_info
 /* This struct is used by the CList window */
 extern struct clist_window
 {
-  GList *dirlist;
-  gchar *cur_dir;
-  GList *selection;
-  GList *file_selection;
-  int copy_cut;
+  GList *dirlist;        // linked list of files & directories
+  gchar *cur_dir;        // current active directory
+  GList *selection;      // selection of files (send, view, ...)
+  GList *file_selection; // selection of files (cut/copy/paste)
+  int copy_cut;          // action type
 } clist_win;
 
 /* This struct is used by the CTree window */
 extern struct ctree_window
 {
-  GList *varlist;
-  char cur_folder[9];
-  int memory;			// memory free or used by calc
-  GList *selection;  // selection of vars
-  GList *selection2; // selection of apps
-  gpointer node;     // parent node of vars tree
+  GList *varlist;        // linked list of variables & folders
+  char cur_folder[9];    // current folder (does not work)
+  int memory;		 // memory free or used by calc
+  GList *selection;      // selection of variables
+  GList *selection2;     // selection of applications
+  gpointer node;         // parent node of vars tree
 } ctree_win;
 
 /* Used by the screendump related boxes */

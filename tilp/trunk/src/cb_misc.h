@@ -37,6 +37,9 @@ int cb_registry_unregister(void);
 
 int cb_send_cmdline(void);
 
+int cb_group_files(void);
+int cb_ungroup_files(void);
+
 #endif
 
 

@@ -80,7 +80,7 @@ void
 gt_label(void)
 {
     id mySheetsController;
-    
+      
     mySheetsController = objects_ptr->mySheetsController;
     
     [mySheetsController refreshLabel];

@@ -100,16 +100,9 @@ extern struct ticalc_info_update info_update;
 }
 #endif
  
-- (void)msgSheet:(NSString *)message title:(NSString *)title
+
+- (void)showCurrentSheet
 {
-    // No delegate for this one, we don't care.
-    // keep NSBeginAlertSheet here for the moment ; I think we'll have to use a modal sheet, too.
-    
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
-    
-    NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow], nil, nil, nil, nil, message);
-                      
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
@@ -120,6 +113,28 @@ extern struct ticalc_info_update info_update;
 
             [NSApp endSheet:pbarWindow];
         }
+}
+
+- (void)hideCurrentSheet
+{
+    if (pbarWindow != nil)
+        {
+            [pbarWindow orderOut:self];
+        }
+}
+ 
+ 
+- (void)msgSheet:(NSString *)message title:(NSString *)title
+{
+    // No delegate for this one, we don't care.
+    // keep NSBeginAlertSheet here for the moment ; I think we'll have to use a modal sheet, too.
+    
+    if (pbarWindow != nil)
+        [pbarWindow orderOut:nil];
+    
+    NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow], nil, nil, nil, nil, message);
+                      
+    [self showCurrentSheet];
 }
  
 /* user boxes */
@@ -145,17 +160,8 @@ extern struct ticalc_info_update info_update;
     [NSApp endSheet:user1Window];
     [user1Window orderOut:nil];
 
-    if (pbarWindow != nil)
-        {
-            [NSApp beginSheet:pbarWindow
-                   modalForWindow:[myBoxesController keyWindow]
-                   modalDelegate:nil
-                   didEndSelector:nil
-                   contextInfo:nil];
-
-            [NSApp endSheet:pbarWindow];
-        }
-
+    [self showCurrentSheet];
+    
     return objects_ptr->user1_return;
 }
                                                       
@@ -181,16 +187,7 @@ extern struct ticalc_info_update info_update;
     [NSApp endSheet:user2Window];
     [user2Window orderOut:nil];
     
-    if (pbarWindow != nil)
-        {
-            [NSApp beginSheet:pbarWindow
-                   modalForWindow:[myBoxesController keyWindow]
-                   modalDelegate:nil
-                   didEndSelector:nil
-                   contextInfo:nil];
-
-            [NSApp endSheet:pbarWindow];
-        }
+    [self showCurrentSheet];
 
     return objects_ptr->user2_return;
 }
@@ -218,16 +215,7 @@ extern struct ticalc_info_update info_update;
     [NSApp endSheet:user3Window];
     [user3Window orderOut:nil];
 
-    if (pbarWindow != nil)
-        {
-            [NSApp beginSheet:pbarWindow
-                   modalForWindow:[myBoxesController keyWindow]
-                   modalDelegate:nil
-                   didEndSelector:nil
-                   contextInfo:nil];
-
-            [NSApp endSheet:pbarWindow];
-        }
+    [self showCurrentSheet];
 
     return objects_ptr->user3_return;
 }
@@ -266,6 +254,8 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
 
+    pbar_text = pbar2Text;
+
     [pbar2Text setStringValue:message];
 
     [pbar2Window setExcludedFromWindowsMenu:YES];
@@ -278,16 +268,7 @@ extern struct ticalc_info_update info_update;
    
     [NSApp endSheet:pbar2Window];
     
-    if (pbarWindow != nil)
-        {
-            [NSApp beginSheet:pbarWindow
-                   modalForWindow:[myBoxesController keyWindow]
-                   modalDelegate:nil
-                   didEndSelector:nil
-                   contextInfo:nil];
-
-            [NSApp endSheet:pbarWindow];
-        }
+    [self showCurrentSheet];
 }
 
 - (void)pbarType1
@@ -302,13 +283,7 @@ extern struct ticalc_info_update info_update;
   
     [pbar1Window setExcludedFromWindowsMenu:YES];
         
-    [NSApp beginSheet:pbar1Window
-           modalForWindow:[myBoxesController keyWindow]
-           modalDelegate:nil
-           didEndSelector:nil
-           contextInfo:nil];
-    
-    [NSApp endSheet:pbar1Window];
+    [self showCurrentSheet];
 }
  
 - (void)pbarType3
@@ -324,13 +299,7 @@ extern struct ticalc_info_update info_update;
 
     [pbar3Window setExcludedFromWindowsMenu:YES];
 
-    [NSApp beginSheet:pbar3Window
-           modalForWindow:[myBoxesController keyWindow]
-           modalDelegate:nil
-           didEndSelector:nil
-           contextInfo:nil];
-
-    [NSApp endSheet:pbar3Window];
+    [self showCurrentSheet];
 }
  
 - (void)pbarType4:(NSString *)message
@@ -348,13 +317,7 @@ extern struct ticalc_info_update info_update;
     
     [pbar4Text setStringValue:message];
    
-    [NSApp beginSheet:pbar4Window
-           modalForWindow:[myBoxesController keyWindow]
-           modalDelegate:nil
-           didEndSelector:nil
-           contextInfo:nil];
-
-    [NSApp endSheet:pbar4Window];
+    [self showCurrentSheet];
 }
  
 - (void)pbarType5:(NSString *)message
@@ -373,13 +336,7 @@ extern struct ticalc_info_update info_update;
 
     [pbar5Window setExcludedFromWindowsMenu:YES];
 
-    [NSApp beginSheet:pbar5Window
-           modalForWindow:[myBoxesController keyWindow]
-           modalDelegate:nil
-           didEndSelector:nil
-           contextInfo:nil];
-           
-    [NSApp endSheet:pbar5Window]; 
+    [self showCurrentSheet];
 }
  
 
@@ -472,9 +429,10 @@ extern struct ticalc_info_update info_update;
                         
             [pbar1 setDoubleValue:(double)(info_update.percentage * 100)];
             [pbar_rate setStringValue:[NSString stringWithFormat:@"Rate : %3.2f KBytes/s", (rate / 1000)]];
-                        
-            [pbar1 displayIfNeeded];
-            [pbar_rate displayIfNeeded];
+            
+            // not needed
+            //[pbar1 displayIfNeeded];
+            //[pbar_rate displayIfNeeded];
         }
 }
 
@@ -489,6 +447,7 @@ extern struct ticalc_info_update info_update;
                 info_update.prev_main_percentage = info_update.main_percentage;
       
             [pbar2 setDoubleValue:(double)(info_update.main_percentage * 100)];
+            
             [pbar2 displayIfNeeded];
         }
 }
