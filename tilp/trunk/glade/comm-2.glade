@@ -344,6 +344,14 @@
 			      <property name="use_underline">True</property>
 			    </widget>
 			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="null1">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">null</property>
+			      <property name="use_underline">True</property>
+			    </widget>
+			  </child>
 			</widget>
 		      </child>
 		    </widget>
@@ -403,6 +411,14 @@
 			    <widget class="GtkMenuItem" id="number4">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">#4</property>
+			      <property name="use_underline">True</property>
+			    </widget>
+			  </child>
+
+			  <child>
+			    <widget class="GtkMenuItem" id="number5">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">null</property>
 			      <property name="use_underline">True</property>
 			    </widget>
 			  </child>

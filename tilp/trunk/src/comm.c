@@ -91,24 +91,24 @@ gint display_comm_dbox()
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 
-	case LINK_AVR:
+	case LINK_TIE:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 
-	case LINK_TIE:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
-	  break;
-
 	case LINK_VTI:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	
 	case LINK_VTL:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+	  break;
+
+    case LINK_NUL:
+      gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 
 	default:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 	}
 
@@ -138,6 +138,10 @@ gint display_comm_dbox()
 	case SERIAL_PORT_4:
 	case USB_PORT_4:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+	  break;
+
+    case NULL_PORT:
+      gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	  
 	case USER_PORT:
@@ -251,11 +255,13 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 1: tmp_lp.link_type = LINK_SER; break;
 	case 2: tmp_lp.link_type = LINK_SLV; break;
 	case 3:	tmp_lp.link_type = LINK_PAR; break;
-	case 4: tmp_lp.link_type = LINK_AVR; break;
-	case 5: tmp_lp.link_type = LINK_VTI; break;
-	case 6: tmp_lp.link_type = LINK_TIE; break;
-	case 7: tmp_lp.link_type = LINK_VTL; break;
+	case 4: tmp_lp.link_type = LINK_VTI; break;
+	case 5: tmp_lp.link_type = LINK_TIE; break;
+	case 6: tmp_lp.link_type = LINK_VTL; break;
+    case 7: tmp_lp.link_type = LINK_NUL; break;
 	}
+
+    printf("nitem = %i\n", nitem);
 	
 	// force port to avoid libticables bad argument 
 	if(!init) {
@@ -271,6 +277,9 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 		case LINK_PAR:
 		case LINK_SLV:
 			gtk_option_menu_set_history(GTK_OPTION_MENU(port), 1);
+                        break;
+        case LINK_NUL:
+            gtk_option_menu_set_history(GTK_OPTION_MENU(port), 5);
                         break;
 		default:
 			break;
@@ -344,6 +353,9 @@ comm_port_changed                      (GtkOptionMenu   *optionmenu,
 			else if(!strcmp(ed, "number2"))
 			  tmp_lp.port = VIRTUAL_PORT_2;
 		break;
+
+            case LINK_NUL:
+                tmp_lp.port = NULL_PORT;
 
       		default: 
 		break;

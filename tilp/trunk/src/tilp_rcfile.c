@@ -203,6 +203,9 @@ void tilp_rcfile_read(void)
 			else if (!strcmp(p, "UsbGraphLink"))
 				options.lp.link_type = LINK_UGL;
 
+            else if (!strcmp(p, "null"))
+				options.lp.link_type = LINK_NUL;
+
 			else
 				stop(l);
 			continue;
@@ -281,6 +284,9 @@ void tilp_rcfile_read(void)
 
 			else if (!strcmp(p, "USB port #4"))
 				options.lp.port = USB_PORT_4;
+
+            else if (!strcmp(p, "null port"))
+				options.lp.port = NULL_PORT;
 
 			else
 				stop(l);
@@ -641,6 +647,9 @@ void tilp_rcfile_write(void)
 	case LINK_UGL:
 		fprintf(txt, "UsbGraphLink\n");
 		break;
+    case LINK_NUL:
+        fprintf(txt, "null\n");
+		break;
 	default:
 		fprintf(txt, "invalid\n");
 		break;
@@ -690,6 +699,9 @@ void tilp_rcfile_write(void)
 		break;
 	case USB_PORT_4:
 		fprintf(txt, "USB port #4\n");
+		break;
+    case NULL_PORT:
+        fprintf(txt, "null port\n");
 		break;
 	default:
 		fprintf(txt, "invalid\n");

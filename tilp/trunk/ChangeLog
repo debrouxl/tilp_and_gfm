@@ -12,6 +12,10 @@ Some explanations about the version number:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 16/05/2004, version 6.73 (3.8.5, 0.5.9, 4.5.3): roms
+	Added null cable support.
+	Bug fix in the comm box.
+
 - 24/04/2004, version 6.72 (3.8.4, 0.5.9, 4.5.3): roms
 	Comm box improved: reset port when changing cable (avoid bad args).
 	Added local GTK+ deprecation in toolbar.c (GTK+ 2.4, Gentoo).
