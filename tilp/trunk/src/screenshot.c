@@ -32,6 +32,7 @@
 #include "support.h"
 #include "dboxes.h"
 #include "scroptions.h"
+#include "gtk_refresh.h"
 
 GtkWidget *scrn_win;
 static GtkWidget *scrn_img;

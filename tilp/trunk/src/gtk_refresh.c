@@ -28,6 +28,7 @@
 
 #include "tilp_core.h"
 #include "gstruct.h"
+#include "gtk_refresh.h"
 
 #define SPEED_UP	// do'nt do too many pbar refresh
 
