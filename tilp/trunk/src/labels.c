@@ -25,44 +25,77 @@
 
 #include "tilp_core.h"
 #include "gstruct.h"
+
 struct clabel_window clabel_win = { 0 };
-
-static char* format(char *s, char *buf)
-{
-  gchar *i = NULL;
-  gchar *j = NULL;
-  
-  i = (gchar *) strchr(s, DIR_SEPARATOR_C);	// first slash
-  j = (gchar *) strrchr(s, DIR_SEPARATOR_C);	// last slash
-  
-  if (i == j)
-      return s;
-  
-  i = (gchar *) strchr(i + 1, DIR_SEPARATOR_C);	// second slash
-
-  if (i == j)  // only 2 slashes in the path
-    return s;
-
-  *i = '\0';
-  strcpy(buf, s);
-  strcat(buf, DIR_SEPARATOR_S);
-  strcat(buf, "...");
-  strcat(buf, j);
-
-  return buf;
-}
-
 
 #ifdef __WIN32__
 #define snprintf _snprintf
 #endif				/*  */
 
+static char* format(char *src, char *dst)
+{
+	char header[5];		// "C:\" as Win32 or "/" as Linux)
+	char *path;			// leading path
+	char *p;
+	int n;
+
+	char *left = NULL;	// left part
+	char *right = NULL;	// right part
+
+	char str[8];
+
+	// remove header to be platform independant
+#ifdef __WIN32__
+	strncpy(header, src, 3);
+	header[3] = '\0';
+	path = &src[3];
+#else
+	strcpy(header, "/");
+	path = &src[1];
+#endif
+  
+	// count number of path elements (slashes)
+	for(n = 0, p = src; ; n++) {
+		p = (char *)strchr(p, DIR_SEPARATOR_C);	
+		if(!p)
+			break;
+		p++;
+	}
+
+	if(n <= 2)
+		strcpy(dst, src);
+	else {
+		left = strdup(path);
+		right = strdup(path);
+
+		p = (char *)strchr(left, DIR_SEPARATOR_C);		// first slash (head)
+		*p = '\0';
+
+		p = (char *)strrchr(right, DIR_SEPARATOR_C);	// last slash (tail)
+
+		strcpy(dst, header);
+		strcat(dst, left);
+		strcat(dst, DIR_SEPARATOR_S);
+		strcat(dst, "...");
+		strcat(dst, p);
+		
+		snprintf(str, 8, " (%i)", n);
+		strcat(dst, str);
+
+		free(left);
+		free(right);
+	}
+
+	return dst;
+}
+
 /* Refresh the info window */
 void labels_refresh(void)
 {
-	gchar buffer[MAXCHARS];
+	gchar buffer[256];
 	gsize br, bw;
 	gchar *utf8;
+	gchar path[256];
 
 	switch (ti_calc.memory) {
 	case MEMORY_FREE:
@@ -77,11 +110,10 @@ void labels_refresh(void)
 		snprintf(buffer, MAXCHARS, _("Memory used: %s"), _("N/A"));
 		break;
 	}
-
 	gtk_label_set_text(GTK_LABEL(clabel_win.label21), buffer);
-	snprintf(buffer, MAXCHARS, _("Current directory: %s"),
-		 clist_win.current_dir);
-
-	utf8 = g_filename_to_utf8(buffer, -1, &br, &bw, NULL);
-	gtk_label_set_text(GTK_LABEL(clabel_win.label22), format(utf8, buffer));
+	
+	utf8 = g_filename_to_utf8(clist_win.current_dir, -1, &br, &bw, NULL);
+	format(utf8, path);
+	snprintf(buffer, MAXCHARS, _("Current directory: %s"), path);
+	gtk_label_set_text(GTK_LABEL(clabel_win.label22), buffer);
 }
