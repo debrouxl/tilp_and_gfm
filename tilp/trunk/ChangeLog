@@ -25,14 +25,16 @@ TiLP said "Error creating directory", then it made the group file a
 zero-byte file without storing the ungrouped contents anywhere that I
 could see.>>
 
-- 21/02/2005:
-	Fixed /usr/lib/tilp creation.
-	
-- 29/01/2005, version 6.77 (3.8.6, 0.6.1, 4.5.6): roms
+- 28/02/2005, version 6.78 (3.8.8, 0.6.2, 4.5.7): roms
+	Fixed creation of /usr/lib/tilp directory.
+	Fixed 'Help->User's manual item'.
+	ROM dump for TI83+/84+ SilverEdition is now complete.
+
+- 29/01/2005, version 6.77 (3.8.7, 0.6.1, 4.5.6): roms
 	Added full FLASH support for TI89 Titanium.
 	Added full FLASH support for TI84+. This might have broken TI83+ support.
 
-- 02/10/2004, version 6.76 (3.8.6, 0.6.1, 4.5.5): roms
+- 02/10/2004, version 6.76 (3.8.7, 0.6.1, 4.5.5): roms
 	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.
 	Bug fixed in the action box (overwrite/rename variables).
 	Log file location improved by Julien Blache <jb@jblache.org>.

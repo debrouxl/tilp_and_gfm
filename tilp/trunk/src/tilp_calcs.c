@@ -290,11 +290,16 @@ int tilp_calc_rom_dump(void)
 		break;
 	case CALC_TI83P:
 	case CALC_TI84P:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(DUMPROM)'.\nThanks to Benjamin Moody for the ROM dumper !"));
+		ret = gif->msg_box4(_("Information"), 
+				    _("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(prgmROMDUMP)'.\nThanks to Benjamin Moody for the ROM dumper !"));
 		if (ret == BUTTON1)
-			return do_rom_dump(0);
-
+		{
+			ret = gif->msg_box3(_("Question"), _("Is your calculator model a SilverEdition ?"), _("Yes"), _("No"), _("Cancel"));
+			if(ret == 3)
+				return -1;
+			else
+				return do_rom_dump((ret == BUTTON1) ? ROM_SE : 0);
+		}
 		else
 			return -1;
 		break;
