@@ -3,7 +3,7 @@
 
 
 Previous version: 6.75		(18/09/2004)
-Current version:  6.76		(22/10/2004)
+Current version:  6.76		(28/10/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -31,6 +31,7 @@ Bug fixes:
 ----------
 
 	- avoid overwrite of group file when ungrouping in the same folder as the group file.
+	- action box (overwrite/rename variable).
 
 Known problems:
 ---------------
