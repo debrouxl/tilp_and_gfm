@@ -1,16 +1,112 @@
 #include "../src/cb_misc.h"
 #include "../src/cb_calc.h"
 #include "../src/struct.h"
+#include "../src/gui_indep.h"
+#include "../src/intl.h"
+#include "../src/defs.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
+
 extern struct screenshot ti_screen;
+
+extern int is_active;
 
 #import "MenuController.h"
 
+static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
+{
+    NSToolbarItem *item;
+    
+    item = [[[NSToolbarItem alloc] initWithItemIdentifier:identifier] autorelease];
+    
+    [item setLabel:label];
+    [item setPaletteLabel:paletteLabel];
+    [item setToolTip:toolTip];
+    [item setTarget:target];
+    
+    [item performSelector:settingSelector withObject:itemContent];
+    [item setAction:action];
+  
+    [theDict setObject:item forKey:identifier];
+}
+
+
 @implementation MenuController
+
+// the toolbar
+
+-(void)awakeFromNib
+{
+    NSToolbar *toolbar;
+    
+    toolbar = [[[NSToolbar alloc] initWithIdentifier:@"myToolbar"] autorelease];
+    
+    fprintf(stderr, "menu => got awakeFromNib\n");
+    
+    toolbarItems = [[NSMutableDictionary dictionary] retain];
+
+    addToolbarItem(toolbarItems, @"isReady", @"Ready ?", @"Ready ?", @"Test if the calculator is ready", self, @selector(setImage:), [NSImage imageNamed:@"ready.tiff"], @selector(isReady:));
+
+    addToolbarItem(toolbarItems, @"getScreen", @"Screen", @"Screen", @"Request screendump", self, @selector(setImage:), [NSImage imageNamed:@"screen.tiff"], @selector(getScreen:));
+    
+    addToolbarItem(toolbarItems, @"getDirlist", @"Dirlist", @"Dirlist",@"Obtain dirlist", self, @selector(setImage:), [NSImage imageNamed:@"dirlist.tiff"], @selector(getDirlist:));
+
+    addToolbarItem(toolbarItems, @"doBackup", @"Backup", @"Backup", @"Perform a backup", self, @selector(setImage:), [NSImage imageNamed:@"memory.tiff"], @selector(doBackup:));
+
+    addToolbarItem(toolbarItems, @"doRestore", @"Restore", @"Restore", @"Restore a backup", self, @selector(setImage:), [NSImage imageNamed:@"memory.tiff"], @selector(doRestore:));
+
+    [toolbar setDelegate:self];
+
+    [toolbar setAllowsUserCustomization:YES];
+
+    [toolbar setAutosavesConfiguration: YES]; 
+ 
+    [toolbar setDisplayMode:NSToolbarDisplayModeIconAndLabel];
+    
+    [mainWindow setToolbar:toolbar];
+}
+
+- (void) dealloc
+{
+    [toolbarItems release];
+
+    [super dealloc];
+}
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
+{
+    NSToolbarItem *newItem;
+    NSToolbarItem *item;
+    
+    newItem = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier] autorelease];
+    item = [toolbarItems objectForKey:itemIdentifier];
+    
+    [newItem setLabel:[item label]];
+    [newItem setPaletteLabel:[item paletteLabel]];
+
+    [newItem setImage:[item image]];
+
+    [newItem setToolTip:[item toolTip]];
+    [newItem setTarget:[item target]];
+    [newItem setAction:[item action]];
+    [newItem setMenuFormRepresentation:[item menuFormRepresentation]];
+
+    return newItem;
+}
+
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
+{
+    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"doBackup", @"doRestore", nil];
+}
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
+{
+    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"doBackup", @"doRestore" ,nil];
+}
+
 
 // file
 
@@ -93,6 +189,8 @@ extern struct screenshot ti_screen;
     bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
     [bitmap autorelease];
     
+    // FIXME OS X
+    // maybe we need to tell the NSImage to render our bitmap...       
     screen = [[NSImage alloc] initWithData:bitmap];
     [screen autorelease];
     
@@ -101,21 +199,69 @@ extern struct screenshot ti_screen;
 
 - (IBAction)getDirlist:(id)sender
 {
+    // FIXME OS X
+    // see gtk code, I believe it's not so simple...
+    // Plus, we must update the NSOutlineView
+
     cb_dirlist();
 }
 
 - (IBAction)doRestore:(id)sender
 {
+    NSOpenPanel *op;
+    NSString *nsfile;
+    
+    int result;
+    char *file;
+
     // FIXME OS X
-    // we need a fileselection here (NSOpenPanel)
-    // then call cb_send_backup(char *filename) from cb_calc.c
+    // find the extension of the file to pass as an argument to the NSOpenPanel
+    
+    if (is_active)
+        return;
+    
+    result = gif->user2_box(_("Warning"), 
+                            _("You are going to restore the calculator content with your backup. The whole memory will be erased. Are you sure you want to do that ?"),
+		            _("Proceed"), 
+		            _("Cancel"));
+                            
+    if(result != BUTTON1)
+        return;
+
+    result = -1; // neutral value
+    
+    op = [NSOpenPanel openPanel];
+    
+    [op setTitle:@"Choose the file to restore"];
+    [op setAllowsMultipleSelection:NO];
+    
+    result = [op runModalForDirectory:NSHomeDirectory() file:nil
+              types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
+                                      
+    if (result == NSOKButton)
+        {
+            nsfile = [[op filenames] objectAtIndex:0];
+            
+            file = (char *)malloc([nsfile cStringLength] + 1);
+            
+            [nsfile getCString:file];
+            
+            cb_send_backup(file);
+            
+            [nsfile release];
+            
+            free(file);
+        }
+    
+    [op release];
 }
 
 - (IBAction)doBackup:(id)sender
 {
     // FIXME OS X : hmmm... there should be a fileselection
     // at some point inside cb_receive_backup()...
-    // that would be NSSavePanel
+    // that would be a NSSavePanel
+    
     cb_receive_backup();
 }
 

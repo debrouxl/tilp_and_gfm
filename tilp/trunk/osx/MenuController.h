@@ -5,14 +5,21 @@
     IBOutlet id BoxesController;
     IBOutlet id PrefsController;
     IBOutlet id TilpController;
-    IBOutlet id ToolbarController;
 
     IBOutlet id mainWindow;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;
     IBOutlet id thanksPanel;
     IBOutlet id thanksPanelText;
+    
+    NSMutableDictionary *toolbarItems;
 }
+
+// toolbar
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;    
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar;
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar;
 
 // file
 

@@ -36,7 +36,6 @@
     IBOutlet id sortBySize;
     IBOutlet id sortByType;
     IBOutlet id TilpController;
-    IBOutlet id ToolbarController;
     IBOutlet id transferModeManual;
     IBOutlet id transferModeSilent;
     

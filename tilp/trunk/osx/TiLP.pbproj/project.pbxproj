@@ -323,11 +323,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.51-osx0.1.2</string>
+	<string>4.51-osx0.1.3</string>
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>4.51-osx0.1.2</string>
+	<string>4.51-osx0.1.3</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -340,7 +340,6 @@
 		29B97327FDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
 			files = (
-				F58270660176284A01000102,
 				F51316010178382A01000102,
 				F514E0E50178CA7001000102,
 				F50FDB8F0179C7F801000102,
@@ -392,7 +391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				29B9732CFDCFA39411CA2CEA,
-				F58270670176284A01000102,
 				F51316020178382A01000102,
 				F514E0E60178CA7001000102,
 				F50FDB900179CA0B01000102,
@@ -887,46 +885,22 @@
 			settings = {
 			};
 		};
-		F58270630176284A01000102 = {
-			isa = PBXFileReference;
-			path = ToolbarController.m;
-			refType = 2;
-		};
 		F58270640176284A01000102 = {
 			children = (
 				F50E4E76017F17D701000103,
 				F514E0E40178CA7001000102,
 				F51316000178382A01000102,
-				F58270650176284A01000102,
 				F50E4E7A017F181501000103,
 			);
 			isa = PBXGroup;
 			name = Headers;
 			refType = 4;
 		};
-		F58270650176284A01000102 = {
-			isa = PBXFileReference;
-			path = ToolbarController.h;
-			refType = 2;
-		};
-		F58270660176284A01000102 = {
-			fileRef = F58270650176284A01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F58270670176284A01000102 = {
-			fileRef = F58270630176284A01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F582706B0176297F01000102 = {
 			children = (
 				F50E4E77017F17D701000103,
 				F514E0E30178CA7001000102,
 				F51315FF0178382A01000102,
-				F58270630176284A01000102,
 				F50E4E7B017F181501000103,
 			);
 			isa = PBXGroup;

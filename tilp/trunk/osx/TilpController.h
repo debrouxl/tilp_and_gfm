@@ -12,7 +12,7 @@
     IBOutlet id numberOfFolders;
     IBOutlet id numberOfVars;
     IBOutlet id PrefsController;
-    IBOutlet id ToolbarController;
+
     NSMutableDictionary *tilpConfig;
     NSUserDefaults *prefs;
 }

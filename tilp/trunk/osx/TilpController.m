@@ -53,7 +53,6 @@ struct gui_fncts gui_functions;
     objects_ptr->BoxesController = BoxesController;
     objects_ptr->MenuController = MenuController;
     objects_ptr->PrefsController = PrefsController;
-    objects_ptr->ToolbarController = ToolbarController;
     objects_ptr->TilpController = self;
   
     objects_ptr->mainWindow = mainWindow;

@@ -2,46 +2,51 @@
  * TiLP Cocoa GUI for Mac OS X
  */
  
- #include "cocoa_sheets.h"
- #include "cocoa_structs.h"
+#include "cocoa_sheets.h"
+#include "cocoa_structs.h"
  
- #include "../src/intl.h"
- #include "../src/defs.h"
+#include "../src/struct.h"
+#include "../src/intl.h"
+#include "../src/defs.h"
  
- extern struct cocoa_objects_ptr *objects_ptr;
- extern struct cocoa_pbars_ptr *pbars_ptr;
+extern struct cocoa_objects_ptr *objects_ptr;
+extern struct cocoa_pbars_ptr *pbars_ptr;
  
- #import <Cocoa/Cocoa.h>
+extern struct ticalc_info_update info_update;
  
- // we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
- // and also request the user attention (ie. the app's icon will jump on the screen)
-
+#import <Cocoa/Cocoa.h>
  
- void
- create_cocoa_msg_sheet(const char *title, char *message)
- {
+// we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
+// and also request the user attention (ie. the app's icon will jump on the screen)
+// see requestUserAttention()
+ 
+void
+create_cocoa_msg_sheet(const char *title, char *message)
+{
     NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], nil, nil, nil);
- }
+}
  
- int
- create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
- {
-      NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], [NSString stringWithCString:button1], nil, nil);
+int
+create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
+{
+    NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], [NSString stringWithCString:button1], nil, nil);
                  
-     return BUTTON1;
- }
+    return BUTTON1;
+}
                                                     
- void
- create_cocoa_pbar_type2_sheet(const char *title, char *message)
- {                      
+void
+create_cocoa_pbar_type2_sheet(const char *title, char *message)
+{                      
     NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], @"Abort", nil, nil);
- }
+    
+    info_update.cancel = 1;
+}
  
- /* user boxes */
+/* user boxes */
  
- int
- create_cocoa_user2_sheet(const char *title, char *message, const char *button1, const char *button2)
- {
+int
+create_cocoa_user2_sheet(const char *title, char *message, const char *button1, const char *button2)
+{
     int ret;
     
     ret = NSRunAlertPanel([NSString stringWithCString:title],
@@ -51,11 +56,11 @@
                           nil);
                                 
     return ((ret == NSAlertDefaultReturn) ? BUTTON1 : BUTTON2);
- }
+}
  
- int
- create_cocoa_user3_sheet(const char *title, char *message, const char *button1, const char *button2, const char *button3)
- {
+int
+create_cocoa_user3_sheet(const char *title, char *message, const char *button1, const char *button2, const char *button3)
+{
     int ret;
  
     ret = NSRunAlertPanel([NSString stringWithCString:title],
@@ -79,13 +84,13 @@
 
 
     return ret;
- }
+}
  
- /* dialog box w/entry field */
+/* dialog box w/entry field */
  
- char *
- create_cocoa_dlgbox_entry(const char *title, const char *message, const char *content)
- {
+char *
+create_cocoa_dlgbox_entry(const char *title, const char *message, const char *content)
+{
     id mainWindow;
     id dlgboxEntry;
     
@@ -112,13 +117,13 @@
     [dlgboxEntry orderOut:nil];
     
     return objects_ptr->dlgbox_data;
- }
+}
  
- /* pbars */
+/* pbars */
  
- void
- create_cocoa_pbar_type1_sheet(const char *title)
- {
+void
+create_cocoa_pbar_type1_sheet(const char *title)
+{
     id mainWindow;
     id pbar1Window;
     
@@ -145,11 +150,11 @@
     
     [NSApp endSheet:pbar1Window];
     [pbar1Window orderOut:nil]; 
- }
+}
  
- void
- create_cocoa_pbar_type3_sheet(const char *title)
- {
+void
+create_cocoa_pbar_type3_sheet(const char *title)
+{
     id mainWindow;
     id pbar3Window;
 
@@ -173,11 +178,11 @@
         
     [NSApp endSheet:pbar3Window];
     [pbar3Window orderOut:nil]; 
- }
+}
  
- void
- create_cocoa_pbar_type4_sheet(const char *title, char *text)
- {
+void
+create_cocoa_pbar_type4_sheet(const char *title, char *text)
+{
     id mainWindow;
     id pbar4Window;
     
@@ -202,11 +207,11 @@
         
     [NSApp endSheet:pbar4Window];
     [pbar4Window orderOut:nil]; 
- }
+}
  
- void
- create_cocoa_pbar_type5_sheet(const char *title, char *text)
- {
+void
+create_cocoa_pbar_type5_sheet(const char *title, char *text)
+{
     id mainWindow;
     id pbar5Window;
     
@@ -231,14 +236,14 @@
         
     [NSApp endSheet:pbar5Window];
     [pbar5Window orderOut:nil]; 
- }
+}
  
 
 /* destroy pbars */
  
- void
- destroy_pbar(void)
- {
+void
+destroy_pbar(void)
+{
     id pbar1Window;
     id pbar3Window;
     id pbar4Window;
@@ -282,4 +287,4 @@
     pbars_ptr->pbar_text = nil;
     
     pbars_ptr->finished = 0;
- }
+}

@@ -30,31 +30,32 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {908, 570}}";
 					Split0 = {
-						ActiveTab = 1;
+						ActiveTab = 2;
 						Frame = "{{226, 0}, {682, 570}}";
 						Split0 = {
-							Frame = "{{0, 173}, {682, 397}}";
+							Frame = "{{0, 158}, {682, 412}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
+								ActiveTab = 1;
 								Frame = "{{0, 0}, {682, 208}}";
 								Split0 = {
-									Frame = "{{0, 25}, {682, 183}}";
+									Frame = "{{0, 148}, {682, 60}}";
 									Split0 = {
-										Frame = "{{0, 0}, {333, 183}}";
+										Frame = "{{0, 0}, {333, 60}}";
 									};
 									Split1 = {
-										Frame = "{{342, 0}, {340, 183}}";
+										Frame = "{{342, 0}, {340, 60}}";
 									};
 									SplitCount = 2;
 								};
 								SplitCount = 1;
 								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
+									Frame = "{{0, 0}, {682, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
+									Frame = "{{0, 0}, {682, 123}}";
 								};
 								TabCount = 2;
 							};
@@ -147,11 +148,6 @@
 	F536EFB80180C7CA01000103 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{-8, 241}, {750, 502}}";
-		};
-	};
-	F58270650176284A01000102 = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
 	F582706F01762A8B01000102 = {

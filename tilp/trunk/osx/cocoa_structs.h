@@ -13,7 +13,6 @@
     id BoxesController;
     id MenuController;
     id PrefsController;
-    id ToolbarController;
     id TilpController;
     
     // the main window

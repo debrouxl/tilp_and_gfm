@@ -36,6 +36,8 @@
 	* msg_box, userX_box and pbar_type2 are now alert panels (and
 	not sheets)
 	* finished the implementation of - [ToolbarController doRestore]
+* 20011030 : v0.1.3
+	* merged ToolbarController into MenuController
 	
 
 

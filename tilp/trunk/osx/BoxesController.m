@@ -1,15 +1,15 @@
+
 #include "../src/cb_calc.h"
 #include "../src/struct.h"
+#include "../src/defs.h"
 
 #include "cocoa_structs.h"
-
-#include "../src/defs.h"
-#include "../src/cb_calc.h"
 
 #import "BoxesController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 extern struct cocoa_pbars_ptr *pbars_ptr;
+
 extern struct screenshot ti_screen;
 extern struct ticalc_info_update info_update;
 
@@ -56,6 +56,7 @@ extern int is_active;
     objects_ptr->term_mode = REMOTE;
 }
 
+// will be used later, when returning to sheets for this type of message box
 - (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     info_update.cancel = 1;

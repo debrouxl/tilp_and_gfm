@@ -32,8 +32,10 @@
     IBOutlet id screendumpImage;
     IBOutlet id screendumpWindow;
     IBOutlet id TilpController;
-    IBOutlet id ToolbarController;
 }
+
+- (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+
 - (IBAction)dlgboxentryButton1Push:(id)sender;
 - (IBAction)dlgboxentryButton2Push:(id)sender;
 - (IBAction)pbarButtonPush:(id)sender;
@@ -41,7 +43,5 @@
 - (IBAction)remoteControlTextEntered:(id)sender;
 - (IBAction)screendumpRefresh:(id)sender;
 - (IBAction)screendumpSaveImage:(id)sender;
-
-- (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 
 @end
