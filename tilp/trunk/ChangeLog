@@ -12,7 +12,7 @@ Some explanations about the version number:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
-- 19/04/2004, version 6.72 (3.8.1, 0.5.8, 4.5.3): roms
+- 19/04/2004, version 6.72 (3.8.2, 0.5.8, 4.5.3): roms
 	Comm box improved: reset port when changing cable (avoid bad args).
 	
 - 08/04/2004, version 6.71 (3.8.1, 0.5.8, 4.5.3): roms

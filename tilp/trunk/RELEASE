@@ -51,7 +51,7 @@ Known problems:
 
 	- [Linux]: the timeout value can not be changed with kernel modules.
 	Consequently, OS upgrades will fail...
-	=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07
+	=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b
 
 
 Bug report:
