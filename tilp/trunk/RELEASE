@@ -3,7 +3,7 @@
 
 
 Previous version: 6.67-beta2 (11/05/2003)
-Current version:  6.68	     (04/04/2004)
+Current version:  6.70	     (04/04/2004)
 
 
 TiLP is available for 4 platforms:
@@ -27,6 +27,8 @@ Improvements:
 	- communication box simplified
 	- bug fixes
 	- some internal clean-ups
+	- GTK now uses a theme (Gtk-Wimp) which gives Windows look & feel and supports
+		XP theming !
 
 Known problems:
 ---------------

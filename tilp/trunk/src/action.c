@@ -246,6 +246,7 @@ gint display_action_dbox(gchar * dest)
 	case GTK_RESPONSE_CANCEL:
 		button = BUTTON2;
 	default:
+                button = BUTTON2;
 		break;
 	}
 
