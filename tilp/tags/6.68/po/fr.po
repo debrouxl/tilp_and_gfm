@@ -1,0 +1,2133 @@
+# FRENCH translation of 6.61.
+# Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# GARSAULT Sylvain <sylvain.garsault@freesbee.fr>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 6.61\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-27 14:23+0200\n"
+"PO-Revision-Date: 2003-05-07 13:35GMT\n"
+"Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
+"Language-Team: FRENCH <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
+
+#: src/about.c:71
+msgid "about.c: GUI loading failed !\n"
+msgstr "about.c: échec du chargement de l'interface graphique !\n"
+
+#: src/about.c:77
+#, c-format
+msgid "* TILP version %s (cables=%s, files=%s, calcs=%s)"
+msgstr "* TILP version %s (cables=%s, files=%s, calcs=%s)"
+
+#: src/action.c:99
+msgid "Varname"
+msgstr "Nom de variable"
+
+#: src/action.c:104
+msgid "Attribute"
+msgstr "Attribut"
+
+#: src/action.c:109
+msgid "Filename"
+msgstr "Nom de fichier"
+
+#: src/action.c:114
+msgid "Action"
+msgstr "Action"
+
+#: src/action.c:149 src/clock.c:131
+msgid "action.c: GUI loading failed !\n"
+msgstr "action.c: échec du chargement de l'interface graphique !\n"
+
+#: src/action.c:213 src/action.c:330
+msgid "skip"
+msgstr "ignorer"
+
+#: src/action.c:214 src/action.c:272 src/action.c:330
+msgid "overwrite"
+msgstr "écraser"
+
+#: src/action.c:298 src/tilp_files.c:693 src/tilp_slct.c:117
+msgid "Rename the file"
+msgstr "Renommer le fichier"
+
+#: src/action.c:298 src/tilp_files.c:694
+msgid "New name: "
+msgstr "Nouveau nom: "
+
+#: src/clist.c:127 src/ctree.c:115
+msgid "Name"
+msgstr "Nom"
+
+#: src/clist.c:131 src/ctree.c:135
+msgid "Type"
+msgstr "Type"
+
+#: src/clist.c:135 src/ctree.c:139
+msgid "Size"
+msgstr "Taille"
+
+#: src/clist.c:139
+msgid "Date"
+msgstr "Date"
+
+#: src/clock.c:45 src/clock.c:206 glade/clock-2.str:25
+msgid "Jan"
+msgstr "Jan"
+
+#: src/clock.c:48 src/clock.c:209 glade/clock-2.str:26
+msgid "Feb"
+msgstr "Fev"
+
+#: src/clock.c:51 src/clock.c:212 glade/clock-2.str:27
+msgid "Mar"
+msgstr "Mar"
+
+#: src/clock.c:54 src/clock.c:215 glade/clock-2.str:28
+msgid "Apr"
+msgstr "Avr"
+
+#: src/clock.c:57 src/clock.c:218 glade/clock-2.str:29
+msgid "May"
+msgstr "Mai"
+
+#: src/clock.c:60 src/clock.c:221 glade/clock-2.str:30
+msgid "Jun"
+msgstr "Jun"
+
+#: src/clock.c:63 src/clock.c:224 glade/clock-2.str:31
+msgid "Jul"
+msgstr "Jul"
+
+#: src/clock.c:66 src/clock.c:227
+msgid "Aug"
+msgstr "Aug"
+
+#: src/clock.c:69 src/clock.c:230 glade/clock-2.str:33
+msgid "Sep"
+msgstr "Sep"
+
+#: src/clock.c:72 src/clock.c:233 glade/clock-2.str:34
+msgid "Oct"
+msgstr "Oct"
+
+#: src/clock.c:75 src/clock.c:236 glade/clock-2.str:35
+msgid "Nov"
+msgstr "Nov"
+
+#: src/clock.c:78 src/clock.c:239 glade/clock-2.str:36
+msgid "Dec"
+msgstr "Dec"
+
+#: src/comm.c:56
+msgid "comm.c: GUI loading failed !\n"
+msgstr "comm.c: échec du chargement de l'interface graphique !\n"
+
+#: src/comm.c:213
+msgid "Parallel port #1"
+msgstr "Port parallèle #1"
+
+#: src/comm.c:224
+msgid "Serial port #1"
+msgstr "Port série #1"
+
+#: src/comm.c:232 src/comm.c:247
+msgid "Virtual port #1 (emu)"
+msgstr "Port virtuel #1 (emu)"
+
+#: src/comm.c:271
+msgid "Parallel port #2"
+msgstr "Port parallèle #2"
+
+#: src/comm.c:281
+msgid "Serial port #2"
+msgstr "Port série #2"
+
+#: src/comm.c:289 src/comm.c:304
+msgid "Virtual port #2 (tilp)"
+msgstr "Port virtuel #2 (tilp)"
+
+#: src/comm.c:335
+msgid "Parallel port #3"
+msgstr "Port parallèle #3"
+
+#: src/comm.c:345
+msgid "Serial port #3"
+msgstr "Port série #3"
+
+#: src/comm.c:390
+msgid "Serial port #4"
+msgstr "Port série #4"
+
+#: src/ctree.c:130
+msgid "Attr"
+msgstr "Attribut"
+
+#: src/ctree.h:30
+msgid "Screen"
+msgstr "Écran"
+
+#: src/ctree.h:31
+msgid "Operating System"
+msgstr "Système d'exploitation"
+
+#: src/ctree.h:32
+msgid "Variables"
+msgstr "Variables"
+
+#: src/ctree.h:33
+msgid "Applications"
+msgstr "Applications"
+
+#: src/ctree.h:34
+msgid "Any Folder"
+msgstr "N'importe quel dossier"
+
+#. RemoveDirectory(f)
+#: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:164 src/popup.c:244
+#: src/popup.c:336 src/tilp_calcs.c:242 src/tilp_calcs.c:251
+#: src/tilp_calcs.c:260 src/tilp_calcs.c:280 src/tilp_calcs.c:294
+#: src/tilp_files.c:103 src/tilp_files.c:117 src/tilp_files.c:135
+#: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:170
+#: src/tilp_rcfile.c:118 src/tilp_slct.c:122 src/tilp_slct.c:137
+#: src/tilp_slct.c:148 src/tilp_slct.c:159
+msgid "Information"
+msgstr "Information"
+
+#: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:110 src/tilp_calcs.c:235
+#: src/tilp_calcs.c:383 src/tilp_files.c:683 src/tilp_slct.c:87
+#: src/tilp_slct.c:90
+msgid "Warning"
+msgstr "Avertissement"
+
+#: src/dboxes.c:45 src/dboxes.c:94
+msgid "Question"
+msgstr "Question"
+
+#. gif->destroy_pbar();
+#: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:171 src/popup.c:251
+#: src/popup.c:408 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
+#: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
+#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:731
+#: src/tilp_files.c:763 src/tilp_files.c:782 src/tilp_files.c:801
+#: src/tilp_main.c:316 src/tilp_main.c:325 src/tilp_misc.c:165
+#: src/tilp_misc.c:290 src/tilp_rcfile.c:555
+msgid "Error"
+msgstr "Erreur"
+
+#: src/filesel.c:81 src/filesel.c:118 src/filesel.c:154
+msgid "Unable to remove the temporary file.\n"
+msgstr "Impossible de supprimer les fichiers temporaires.\n"
+
+#: src/gtk_refresh.c:128
+msgid "Initialized in GTK+ mode.\n"
+msgstr "Initialisé en mode GTK+.\n"
+
+#: src/labels.c:59
+#, c-format
+msgid "Memory free: %u bytes"
+msgstr "Mémoire libre: %u octets"
+
+#: src/labels.c:63
+#, c-format
+msgid "Memory used: %u bytes"
+msgstr "Mémoire utilisée: %u octets"
+
+#: src/labels.c:67
+#, c-format
+msgid "Memory used: %s"
+msgstr "Mémoire utilisée: %s"
+
+#: src/labels.c:67
+msgid "N/A"
+msgstr "N/A"
+
+#: src/labels.c:72
+#, c-format
+msgid "Current directory: %s"
+msgstr "Dossier courant: %s"
+
+#: src/main.c:74
+msgid "Done.\n"
+msgstr "Fait.\n"
+
+#. Create the main window
+#: src/main.c:115
+msgid "Loading GUI..."
+msgstr "Chargement de l'IHM..."
+
+#: src/main.c:126
+msgid "TiLP"
+msgstr "TiLP"
+
+#. Scan plug-ins
+#: src/main.c:157
+msgid "Scanning plugins..."
+msgstr "Détection des greffons..."
+
+#: src/popup.c:165 src/popup.c:245 src/tilp_slct.c:138
+msgid "A file must have been selected in the right window."
+msgstr "Un fichier doit être sélectionné dans la fenêtre de droite."
+
+#: src/popup.c:172
+msgid ""
+"It seems that the 'unzip' program is unavailable.\n"
+"Windows users: you must have the 'WinZip Command Line Support Add-On' (233 "
+"Kb) for this. If not, \n"
+"you can download it at www.winzip.com."
+msgstr ""
+"Le programme 'unzip' ne semble pas être disponible.\n"
+"Utilisateurs Windows: vous devez disposer d'un 'Add-On pour le Support de la "
+"Ligne de Commande' (233Ko). Dans le cas contraire, \n"
+"vous pouvez le télécharger sur www.winzip.com."
+
+#: src/popup.c:252
+msgid ""
+"It seems that the 'unzip' program is unavailable.\n"
+"Windows users: you must have the 'WinZip Command Line Support Add-On' (233 "
+"Kb) for this. Else, \n"
+"you can download it at www.wintar.com."
+msgstr ""
+"Le programme 'unzip' ne semble pas être disponible.\n"
+"Utilisateurs Windows: vous devez disposer d'un 'Add-On pour le Support de la "
+"Ligne de Commande' (233Ko). Dans le cas contraire, \n"
+"vous pouvez le télécharger sur www.wintar.com."
+
+#: src/popup.c:337
+msgid "Plugin mechanism: system not defined yet !"
+msgstr "Système de greffons: système pas encore défini !"
+
+#: src/popup.c:366 src/tilp.c:509 glade/clist_rbm-2.str:19
+msgid "Make a new directory"
+msgstr "Créer un nouveau dossier"
+
+#: src/popup.c:366 src/tilp.c:509 src/tilp_slct.c:117
+msgid "Name: "
+msgstr "Nom"
+
+#: src/popup.c:367 src/tilp.c:510
+msgid "new_directory"
+msgstr "nouveau_dossier"
+
+#: src/popup.c:409
+msgid ""
+"It seems that the 'appsign' program is not available.\n"
+"You can download it on http://education.ti.com."
+msgstr ""
+"Le programme 'appsign' ne semble pas être disponible.\n"
+"Vous pouvez le télécharger sur http://education.ti.com."
+
+#: src/popup.c:512
+msgid "Open with"
+msgstr "Ouvrir avec"
+
+#. A..Z -> 26 letters
+#: src/popup.c:574
+msgid "Change drive"
+msgstr "Changer de lecteur"
+
+#: src/support.c:82 src/support.c:101
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Impossible de trouver le fichier pixmap: %s"
+
+#: src/tilp.c:63
+msgid "Status: not connected."
+msgstr "État: déconnecté."
+
+#: src/tilp.c:246
+msgid ""
+"It's not a FLASH upgrade or this FLASH file is not intended for this "
+"calculator type."
+msgstr ""
+"Il ne s'agit pas d'une mise à jour FLASH ou ce fichier FLASH n'est pas "
+"destiné à ce type de calculatrice."
+
+#: src/tilp.c:261
+msgid "Manual_en.html"
+msgstr ""
+
+#: src/tilp_calcs.c:111
+msgid ""
+"You are going to restore the content\n"
+"of your calculator with a backup.\n"
+"The whole memory will be erased.\n"
+"Are you sure you want to do that ?"
+msgstr ""
+"Vous allez restaurer le contenu de\n"
+"votre calculatrice avec une sauvegarde.\n"
+"Toute la mémoire sera effacée.\n"
+"Êtes-vous sûr de vouloir continuer ?"
+
+#: src/tilp_calcs.c:120 src/tilp_calcs.c:127 src/tilp_calcs.c:132
+#: src/tilp_calcs.c:155 src/tilp_calcs.c:161 src/tilp_calcs.c:166
+#: src/tilp_calcs.c:169 glade/tilp-2.str:64
+msgid "Backup"
+msgstr "Sauvergarde"
+
+#: src/tilp_calcs.c:121
+msgid "Waiting for confirmation on calc..."
+msgstr "En attente d'une confirmation de la calculatrice..."
+
+#: src/tilp_calcs.c:156
+msgid "Waiting for backup from calc..."
+msgstr "En attente de la sauvegarde de la calculatrice..."
+
+#: src/tilp_calcs.c:169
+msgid "Receiving blocks"
+msgstr "Réception des blocs"
+
+#: src/tilp_calcs.c:203
+msgid "ID-LIST : "
+msgstr "ID-LIST : "
+
+#: src/tilp_calcs.c:210
+msgid "IDlist"
+msgstr "IDlist"
+
+#: src/tilp_calcs.c:222
+msgid "ROM dump"
+msgstr "Copier ROM"
+
+#: src/tilp_calcs.c:222
+msgid "Receiving bytes"
+msgstr "Réception des octets"
+
+#: src/tilp_calcs.c:236
+msgid ""
+"An assembly program is about to be\n"
+"sent on your calculator. If you have not made\n"
+"a backup yet, you should do one before\n"
+"proceeding with ROM dumping..."
+msgstr ""
+"Un programme en assembleur va être\n"
+"envoyé sur votre calculatrice. Si vous\n"
+"n'avez pas encore fait de sauvegarde, vous\n"
+"devriez le faire avant de procéder à toute\n"
+"modification de la ROM..."
+
+#: src/tilp_calcs.c:243
+msgid ""
+"1: you must have AShell installed on your calculator\n"
+"2: TiLP will automatically transfer the ROM dump program\n"
+"3: but, it will wait for you to manually launch it from the calculator."
+msgstr ""
+"1: vous devez avoir AShell d'installé sur votre calculatrice\n"
+"2: TiLP transférera automatiquement le programme en ROM\n"
+"3: mais il attendra que vous le lanciez manuellement sur la calculatrice."
+
+#: src/tilp_calcs.c:252
+msgid ""
+"1: you must have ASh installed on your calculator\n"
+"2: you must be in receive mode (LINK menu)\n"
+"3: TiLP will transfer the ROM dumping program\n"
+"4: it will wait for you to manually launch it from the calculator."
+msgstr ""
+"1: vous devez avoir ASh d'installé sur votre calculatrice\n"
+"2: vous devez être en mode réception (menu LINK)\n"
+"3: TiLP transférera le programme en ROM\n"
+"4: il attendra que vous le lanciez manuellement sur la calculatrice."
+
+#: src/tilp_calcs.c:261
+msgid ""
+"1: you must have Zshell or Usgard installed on your calculator\n"
+"2: you must be in receive mode (LINK menu)\n"
+"3: TiLP will transfer the ROM dumping program\n"
+"4: it will wait for you to manually launch it from the calculator."
+msgstr ""
+"1: vous devez avoir Zshell ou Usgard d'installé sur votre calculatrice\n"
+"2: vous devez être en mode réception (menu LINK)\n"
+"3: TiLP transférera le programme en ROM\n"
+"4: il attendra que vous le lanciez manuellement sur la calculatrice."
+
+#: src/tilp_calcs.c:281
+msgid ""
+"1: TiLP will automatically transfer the ROM dumping program\n"
+"2: but, it will wait for you to manually launch it from the calculator "
+"(either by the shell, either by typing 'asm(rom86)'."
+msgstr ""
+"1: TiLP transférera automatiquement le programme en ROM\n"
+"2: mais il attendra que vous le lanciez manuellement sur la calculatrice "
+"(soit par le shell, soit en tapant 'asm(rom86)'."
+
+#: src/tilp_calcs.c:295
+msgid ""
+"1: you must have the FargoII shell installed on your calculator\n"
+"2: TiLP will automatically transfer the ROM dumping program\n"
+"3: TiLP will automatically launch the program (if you are in HOME).\n"
+msgstr ""
+"1: vous devez avoir FargoII d'installé sur votre calculatrice\n"
+"2: TiLP transférera automatiquement le programme en ROM\n"
+"3: TiLP lancera automatiquement le programme (si vous êtes dans HOME).\n"
+
+#: src/tilp_calcs.c:334
+msgid ""
+"It's not an FLASH application or this FLASH application is not intended for "
+"this calculator type."
+msgstr ""
+"Il ne s'agit pas d'une application FLASH ou cette application FLASH n'est "
+"pas destinée à ce type de calculatrice."
+
+#: src/tilp_calcs.c:346 src/tilp_calcs.c:351 src/tilp_calcs.c:395
+#: src/tilp_calcs.c:400
+msgid "Flash"
+msgstr "Flash"
+
+#: src/tilp_calcs.c:374
+msgid ""
+"You are going to upgrade the Operating System\n"
+"of your calculator.\n"
+"You are advised to eventually turn off\n"
+"your screen saver, which could cause the transfer to crash.\n"
+"If the transfer fails, wait until the TI89/TI92+ displays\n"
+"\"Waiting to receive\"\n"
+"and restart the transfer again.\n"
+"TI73/83+ users need to turn the calculator off and press a key."
+msgstr ""
+"Vous allez mettre à jour le système d'exploitation\n"
+"de votre calculatrice.\n"
+"Il est conseillé de désactiver l'économiseur d'écran, qui\n"
+"pourrait causer l'échec du transfert.\n"
+"En cas d'échec du transfert, attendez que la TI89/TI92+\n"
+"affiche \"Wating to receive\"\n"
+"et recommencer le transfert.\n"
+"Les utilisateurs de TI73/83+ devront éteindre la calculatrice puis appuyer "
+"sur une touche."
+
+#: src/tilp_calcs.c:380
+msgid ""
+"It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
+"calculator type."
+msgstr ""
+"Il ne s'agit pas d'une mise à jour FLASH ou cette mise à jour FLASH n'est "
+"pas destinée à ce type de calculatrice."
+
+#: src/tilp_calcs.c:433
+msgid "Receiving application(s)"
+msgstr "Réception d'une (des) application(s)"
+
+#: src/tilp_calcs.c:522
+msgid "Converting..."
+msgstr "Conversion..."
+
+#: src/tilp_calcs.c:575
+msgid "You can not send both variables and applications simultaneously."
+msgstr ""
+"Vous ne pouvez pas envoyer à la fois des variables et des applications."
+
+#: src/tilp_calcs.c:582
+msgid "You can not send backups in this way. Use the 'Restore' button instead."
+msgstr ""
+"Vous ne pouvez pas envoyer de sauvegarde de cette façon. Utilisez plutôt le "
+"bouton 'Restaurer'."
+
+#: src/tilp_calcs.c:587
+msgid "There is an unknown file type in the selection."
+msgstr "Il y a un type de fichier inconnu dans la sélection."
+
+#: src/tilp_calcs.c:601
+msgid "Sending group file"
+msgstr "Envoi des fichiers groupés"
+
+#: src/tilp_calcs.c:605
+msgid "Sending variable"
+msgstr "Envoi d'une variable"
+
+#: src/tilp_calcs.c:607
+msgid "Sending variables"
+msgstr "Envoi des variables"
+
+#: src/tilp_calcs.c:674 src/tilp_calcs.c:795
+msgid "Receiving variable(s)"
+msgstr "Réception de variable(s)"
+
+#: src/tilp_calcs.c:796
+msgid "Waiting..."
+msgstr "En attente..."
+
+#: src/tilp_files.c:104
+#, fuzzy
+msgid "Unable to remove the file !"
+msgstr "Impossible de supprimer les fichiers temporaires.\n"
+
+#: src/tilp_files.c:118
+msgid "Unable to remove the file. You can not delete non empty folders !"
+msgstr ""
+"Impossible de supprimer ce fichier. Vous ne pouvez pas supprimer des "
+"dossiers non-vidés !"
+
+#: src/tilp_files.c:136
+msgid ""
+"Unable to create the directory.\n"
+"\n"
+msgstr ""
+"Impossible de créer ce dossier.\n"
+"\n"
+
+#: src/tilp_files.c:680
+#, c-format
+msgid ""
+"The file %s already exists.\n"
+"Overwrite ?"
+msgstr ""
+"Le fichier %s existe déjà.\n"
+"L'écraser ?"
+
+#: src/tilp_files.c:684
+msgid "Overwrite "
+msgstr "Écraser"
+
+#: src/tilp_files.c:684
+msgid "Rename "
+msgstr "Renommer"
+
+#: src/tilp_files.c:685
+msgid "Skip "
+msgstr "Quitter"
+
+#: src/tilp_files.c:733
+msgid "Unable to move the temporary file.\n"
+msgstr "Impossible de déplacer les fichiers temporaires.\n"
+
+#: src/tilp_files.c:762 src/tilp_files.c:799
+msgid "Chdir error.\n"
+msgstr "Erreur de création de répertoire.\n"
+
+#: src/tilp_files.c:763 src/tilp_files.c:802 src/tilp_misc.c:165
+msgid "Unable to change directory."
+msgstr "Impossible de changer de répertoire."
+
+#: src/tilp_files.c:783
+msgid "You can not go outside of your HOME directory."
+msgstr "Vous ne pouvez pas sortir de votre répertoire HOME."
+
+#: src/tilp_main.c:72
+msgid "Usage: tilp [-options] [filename]\n"
+msgstr "Utilisation: tilp [-options][nom_de_fichier]\n"
+
+#: src/tilp_main.c:75
+msgid "-h, --help    display this information page and exit\n"
+msgstr "-h, --help    affiche cette page d'information et quitte\n"
+
+#: src/tilp_main.c:77
+msgid "-v, --version display the version information and exit\n"
+msgstr "-v, --version      affiche le numéro de version et quitte\n"
+
+#: src/tilp_main.c:78
+msgid "-cmdline      use command line and stop\n"
+msgstr "-cmdline      utilise la ligne de commande et s'arrête\n"
+
+#: src/tilp_main.c:79
+msgid "-gui=...      use the specified GUI (console, gtk)\n"
+msgstr "-gui=...      utilise l'interface graphique spécifiée (console,gtk)\n"
+
+#: src/tilp_main.c:80
+msgid "-calc=...     give the calculator type\n"
+msgstr "-calc=...      spécifie le type de calculatrice\n"
+
+#: src/tilp_main.c:81
+msgid "-link=...     give the link cable type\n"
+msgstr "-link=...      spécifie le type de câble\n"
+
+#: src/tilp_main.c:82
+msgid "-dev_port=... give the device port\n"
+msgstr "-dev_port=... spécifie le port du périphérique\n"
+
+#: src/tilp_main.c:83
+msgid "-adr_port=... give the address of the port\n"
+msgstr "-adr_port=... spécifie l'adresse du port\n"
+
+#: src/tilp_main.c:84
+msgid "-timeout=...  give the time out in seconds\n"
+msgstr "-timeout=... spécifie la limite de temps en secondes\n"
+
+#: src/tilp_main.c:85
+msgid "-delay=...    give the delay in microseconds\n"
+msgstr "-delay=...    spécifie le délai en microsecondes\n"
+
+#: src/tilp_main.c:87
+msgid "filename      a filename to send (console or GTK+)\n"
+msgstr "filename      un nom de fichier à envoyer (console ou GTK+)\n"
+
+#: src/tilp_main.c:89
+msgid "See the manpage for more informations...\n"
+msgstr "Reportez-vous aux pages de man pour plus d'informations...\n"
+
+#: src/tilp_main.c:104
+#, fuzzy, c-format
+msgid "TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"
+msgstr "TiLP - Version %s, (C) 1999-2003 Romain Liévin <roms@tilp.info>\n"
+
+#: src/tilp_main.c:108
+msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
+msgstr "Portage FreeBSD, (c) 2003 Tijl Coosemans\n"
+
+#: src/tilp_main.c:113
+#, c-format
+msgid ""
+"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
+msgstr ""
+"Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp."
+"info>\n"
+
+#: src/tilp_main.c:117
+#, c-format
+msgid "Built on %s %s\n"
+msgstr "Compilé sur %s %s\n"
+
+#: src/tilp_main.c:118
+msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
+msgstr "CE PROGRAMME N'OFFRE ABSOLUMENT AUCUNE GARANTIE\n"
+
+#: src/tilp_main.c:119
+msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
+msgstr "LISEZ S'IL VOUS PLAÎT LA DOCUMENTATION POUR PLUS DE DÉTAILS\n"
+
+#: src/tilp_main.c:314
+#, c-format
+msgid "libticables library version <%s> mini required.\n"
+msgstr "La version <%s> au minimum de libticables est requise.\n"
+
+#: src/tilp_main.c:317
+msgid "Libticables: version mismatches."
+msgstr "Libticables: mauvaise version."
+
+#: src/tilp_main.c:323
+#, c-format
+msgid "libticalcs library version <%s> mini required.\n"
+msgstr "La version <%s> au minimum de libticables est nécessaire.\n"
+
+#: src/tilp_main.c:326
+msgid "Libticalcs: version mismatches."
+msgstr "Libticalcs: mauvaise version."
+
+#: src/tilp_main.c:350
+msgid "Working mode: command line.\n"
+msgstr "Mode de fonctionnement: ligne de commande.\n"
+
+#: src/tilp_main.c:353
+msgid "Working mode: console (prompt).\n"
+msgstr "Mode de fonctionnement: console (prompt).\n"
+
+#: src/tilp_main.c:356
+msgid "Working mode: GTK+.\n"
+msgstr "Mode de fonctionnement: GTK+.\n"
+
+#: src/tilp_main.c:359
+msgid "Working mode: MFC.\n"
+msgstr "Mode de fonctionnement: MFC.\n"
+
+#: src/tilp_main.c:362
+msgid "Working mode: Cocoa OS X GUI.\n"
+msgstr "Mode de fonctionnement: Cocoa OS X GUI.\n"
+
+#: src/tilp_misc.c:46
+msgid "Configuration file saved."
+msgstr "Fichier de configuration enregistré."
+
+#: src/tilp_misc.c:57
+msgid "Configuration file loaded."
+msgstr "Fichier de configuration chargé."
+
+#: src/tilp_misc.c:171
+msgid "This function is not available in the Win version."
+msgstr "Cette fonction n'est pas disponibles dans la version Windows."
+
+#: src/tilp_misc.c:196
+msgid "Invalid filename. There is no extension !\n"
+msgstr "Nom de fichier non valide. Il n'y a pas d'extension !\n"
+
+#: src/tilp_misc.c:249
+msgid "Create new directory"
+msgstr "Créer un nouveau dossier"
+
+#: src/tilp_misc.c:251
+msgid "Directory where files will be ungrouped: "
+msgstr "Dossier dans lequel les fichiers seront dégroupés: "
+
+#: src/tilp_misc.c:252
+msgid "ungrouped"
+msgstr "dégroupé"
+
+#: src/tilp_misc.c:291
+msgid ""
+"You must select at least 2 files.\n"
+"\n"
+msgstr ""
+"Vous devez sélectionner au moins 2 fichiers.\n"
+"\n"
+
+#: src/tilp_misc.c:295
+msgid "Group files"
+msgstr "Grouper fichiers"
+
+#: src/tilp_misc.c:295
+msgid "Group name: "
+msgstr "Nom de groupe: "
+
+#: src/tilp_misc.c:296
+msgid "group"
+msgstr "grouper"
+
+#: src/tilp_plugin.c:148
+msgid "Scanning plug-ins... "
+msgstr "Détection des greffons... "
+
+#: src/tilp_plugin.c:151
+msgid "tilp_plugins_scan: opendir error\n"
+msgstr "tilp_plugins_scan: erreur à l'ouverture d'un dossier\n"
+
+#: src/tilp_plugin.c:169 src/tilp_plugin.c:231
+msgid "Done !\n"
+msgstr "Fait !\n"
+
+#. Scan registry
+#: src/tilp_plugin.c:172
+msgid "Scanning registry... "
+msgstr "Recherche dans le registre... "
+
+#: src/tilp_prompt.c:65
+msgid ""
+"Currently recognized commands: ls, cd, help, quit, exit, ready, screen "
+"[filename], dirlist [filename], backup [filename], restore [filename], send "
+"[filename], receive [filename] and dump [filename]\n"
+msgstr ""
+"Commandes actuellement supportées: ls, cd, help, quit, exit, ready, screen "
+"[nom_de_fichier], dirlist [nom_de_fichier], backup [nom_de_fichier], restore "
+"[nom_de_fichier], send [nom_de_fichier], receive [nom_de_fichier] et dump "
+"[nom_de_fichier]\n"
+
+#: src/tilp_prompt.c:96
+msgid ""
+"\n"
+"Illegal directory!\n"
+msgstr ""
+"\n"
+"Dossier non valide !\n"
+
+#: src/tilp_prompt.c:100
+#, c-format
+msgid ""
+"\n"
+"Current directory changed to:\n"
+"%s\n"
+msgstr ""
+"\n"
+"Changer le dossier courant:\n"
+"%s\n"
+
+#: src/tilp_prompt.c:104
+#, c-format
+msgid ""
+"\n"
+"Current directory is:\n"
+"%s\n"
+msgstr ""
+"\n"
+"Le dossier courant est:\n"
+"%s\n"
+
+#: src/tilp_prompt.c:160
+msgid ""
+"\n"
+"cmd> "
+msgstr ""
+"\n"
+"cmd> "
+
+#: src/tilp_prompt.c:177
+msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
+msgstr ""
+"Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
+
+#: src/tilp_rcfile.c:46
+#, c-format
+msgid "Configuration file error at line %i.\n"
+msgstr "Erreur dans le fichier de configuration à la ligne %i.\n"
+
+#: src/tilp_rcfile.c:117 src/tilp_rcfile.c:119
+msgid ""
+"Configuration file not found, use default values. You can create one by the "
+"'File|Save config' command menu.\n"
+msgstr ""
+"Fichier de configuration non-trouvé, utilisation des réglages par défaut. "
+"Vous pouvez en créer un par l'intermédiaire du menu 'Fichier|Sauver "
+"configuration'.\n"
+
+#: src/tilp_rcfile.c:556
+msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
+msgstr ""
+"Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
+
+#: src/tilp_refresh.c:87
+msgid "Initialized in command line mode.\n"
+msgstr "Initialisation en mode ligne de commande.\n"
+
+#. Place a progress bar
+#: src/tilp_screen.c:35
+msgid "Screendump"
+msgstr "Capture d'écran"
+
+#: src/tilp_slct.c:88
+msgid ""
+"Are you sure you want to remove this file ?\n"
+"\n"
+msgstr ""
+"Êtes-vous sûr(e) de vouloir supprimer ce fichier ?\n"
+"\n"
+
+#: src/tilp_slct.c:91
+msgid ""
+"Are you sure you want to remove these files ?\n"
+"\n"
+msgstr ""
+"Êtes-vous sûr(e) de vouloir supprimer ces fichiers ?\n"
+"\n"
+
+#: src/tilp_slct.c:123
+msgid "Unable to rename the file or directory."
+msgstr "Impossible de renommer fichier ou dossier."
+
+#: src/tilp_slct.c:149 src/tilp_slct.c:160
+msgid "A variable must have been selected in the left window."
+msgstr "Une variable doit être sélectionnée dans la fenêtre de gauche."
+
+#. get new tree
+#: src/tilp_vars.c:68
+msgid "Directory list"
+msgstr "Liste des dossiers"
+
+#: src/tilp_vars.c:69
+msgid "Reading variables"
+msgstr "Lecture des variables"
+
+#: src/wizard.c:46
+msgid ""
+"Welcome to TiLP\n"
+"\n"
+"This box will help you to configure TiLP for your first use. If you need to "
+"re-launch the Wizard, go to Help->Wizard."
+msgstr ""
+"Bienvenue à TiLP\n"
+"\n"
+"Cette fenêtre va vous aider à configurer TiLP pour la première utilisation. "
+"Si vous avez besoin de relancer l'assistant, allez dans Aide->Assistant."
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/about-2.str:8 glade/tilp-2.str:57
+msgid "About TiLP..."
+msgstr "A propos de TiLP..."
+
+#: glade/about-2.str:9
+msgid "_Logo"
+msgstr "_Logo"
+
+#: glade/about-2.str:10
+msgid "* TiLP, version 6.00"
+msgstr " Tilp, version 6.00"
+
+#: glade/about-2.str:11
+msgid ""
+"* Supported platforms are:\n"
+"  - Linux (i386, Alpha, Sparc): RL <roms@lpg.ticalc.org>\n"
+"  - Win32 (Windows 9x/Me/NT4/2000): RL <roms@lpg.ticalc.org>\n"
+"  - Macintosh (Mac OS-X): JB <jb@jblache.org>\n"
+"  - FreeBSD: TC <tijl@ulyssis.org>"
+msgstr ""
+"* Les plateformes supportées sont:\n"
+"  - Linux (i386, Alpha, Sparc): RL <roms@lpg.ticalc.org>\n"
+"  - Win32 (Windows 9x/Me/NT4/2000): RL <roms@lpg.ticalc.org>\n"
+"  - Macintosh (Mac OS-X): JB <jb@jblache.org>\n"
+"  - FreeBSD: TC <tijl@ulyssis.org>"
+
+#: glade/about-2.str:16
+msgid "* Official homepage: http://tilp.info"
+msgstr "* Page Web officielle: http://tilp.info"
+
+#: glade/about-2.str:17
+msgid "* Web site designed by Russel G. Howe"
+msgstr "* Site Web construit par Russel G. Howe"
+
+#: glade/about-2.str:18
+msgid "* Logo by Laminoir"
+msgstr "* Logo par Laminoir"
+
+#: glade/about-2.str:19
+msgid "* GUI generated by Glade (RAD)"
+msgstr "* Interface graphique générée par Glade (RAD)"
+
+#: glade/about-2.str:20
+msgid ""
+"* Program placed under GPL license. \n"
+"Libraries placed under LPGL."
+msgstr ""
+"* Programme placé sous licence GPL. \n"
+"Librairies placées sous licence LGPL"
+
+#: glade/about-2.str:22
+msgid "* Program developed by the TiLP team <tilp-users@lists.sf.net>"
+msgstr "* Programme développé par l'équipe TiLP <tilp-users@lists.sf.net>"
+
+#: glade/about-2.str:23 glade/tilp-2.str:58
+msgid "_About"
+msgstr "_A propos de"
+
+#: glade/about-2.str:24
+msgid "Cannot find the license file."
+msgstr "Impossible de trouver le fichier de licence."
+
+#: glade/about-2.str:25
+msgid "Li_cense"
+msgstr "Li_cence"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/action-2.str:8
+msgid "Upload Variables"
+msgstr "Télécharger Variables"
+
+#: glade/action-2.str:9
+msgid ""
+"The following variable(s) exist(s) on calculator. Please select what you "
+"would like to do...\n"
+"Note that locked/archived can not be overwritten unless renamed."
+msgstr ""
+"La ou les variables suivantes existent sur la calculatrice. Choisissez s'il "
+"vous plaît ce que vous voulez faire...\n"
+"Note: les variables vérouillées/archivées ne peuvent pas être écrasées et "
+"doivent être renommées."
+
+#: glade/action-2.str:11
+msgid "_Overwrite"
+msgstr "_Écraser"
+
+#: glade/action-2.str:12 glade/clist_rbm-2.str:16
+msgid "_Rename"
+msgstr "_Renommer"
+
+#: glade/action-2.str:13
+msgid "_Skip"
+msgstr "_Ignorer"
+
+#: glade/action-2.str:14
+msgid "Select _All"
+msgstr "Tout sélectionner"
+
+#: glade/action-2.str:15
+msgid "_Deselect All"
+msgstr "Tout _désélectionner"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/clist_rbm-2.str:8
+msgid "_Edit"
+msgstr "_Éditer"
+
+#: glade/clist_rbm-2.str:9
+msgid "Cut selected files"
+msgstr "Couper fichiers sélectionnés"
+
+#: glade/clist_rbm-2.str:10
+msgid "_Cut"
+msgstr "_Couper"
+
+#: glade/clist_rbm-2.str:11
+msgid "Copy selected files"
+msgstr "Copier fichiers sélectionnés"
+
+#: glade/clist_rbm-2.str:12
+msgid "C_opy"
+msgstr "C_opier"
+
+#: glade/clist_rbm-2.str:13
+msgid "Paste previously selected files"
+msgstr "Copier les fichiers précédemment sélectionnés"
+
+#: glade/clist_rbm-2.str:14
+msgid "_Paste"
+msgstr "_Coller"
+
+#: glade/clist_rbm-2.str:15
+msgid "Rename file(s)"
+msgstr "Renommer fichier(s)"
+
+#: glade/clist_rbm-2.str:17
+msgid "Delete selected file(s)"
+msgstr "Supprimer fichier(s) sélectionné(s)"
+
+#: glade/clist_rbm-2.str:18
+msgid "_Delete"
+msgstr "Supprimer"
+
+#: glade/clist_rbm-2.str:20
+msgid "New _folder"
+msgstr "Nouveau dossier"
+
+#: glade/clist_rbm-2.str:21 glade/screenshot-2.str:9 glade/tilp-2.str:9
+msgid "_File"
+msgstr "_Fichier"
+
+#: glade/clist_rbm-2.str:22
+msgid "Un_archive"
+msgstr "Dés_archiver"
+
+#: glade/clist_rbm-2.str:23
+msgid "Unzip selected file(s)"
+msgstr "Dézipper fichier(s) sélectionnés(s)"
+
+#: glade/clist_rbm-2.str:24
+msgid "Un_zip"
+msgstr "Dé_zipper"
+
+#: glade/clist_rbm-2.str:25
+msgid "Untar (tar.gz/tgz) selected file(s)"
+msgstr "Décompresser (tar.gz/tgz) fichier(s) sélectionné(s)"
+
+#: glade/clist_rbm-2.str:26
+msgid "Un_tar"
+msgstr "Décompresser _tar"
+
+#: glade/clist_rbm-2.str:27
+msgid "Select all files"
+msgstr "Sélectionner tous les fichiers"
+
+#: glade/clist_rbm-2.str:28
+msgid "_Select all"
+msgstr "Tout _sélectionner"
+
+#: glade/clist_rbm-2.str:29
+msgid "Unselect all files"
+msgstr "Désélectionner tous les fichiers"
+
+#: glade/clist_rbm-2.str:30
+msgid "_Unselect all"
+msgstr "To_ut désélectionner"
+
+#: glade/clist_rbm-2.str:31
+msgid "Goes up into the parent folder"
+msgstr "Aller au dossier parent"
+
+#: glade/clist_rbm-2.str:32
+msgid "_Go to parent dir"
+msgstr "Aller au dossier parent"
+
+#: glade/clist_rbm-2.str:33
+msgid "Set the current directory as working directory whenever TiLP starts."
+msgstr ""
+"Définit le dossier courant comme dossier de travail au démarrage de TiLP."
+
+#: glade/clist_rbm-2.str:34
+msgid "_Set as working folder"
+msgstr "Définir comme dossier de travail"
+
+#: glade/clist_rbm-2.str:35
+msgid "Refresh file informations"
+msgstr "Recharger informations fichier"
+
+#: glade/clist_rbm-2.str:36
+msgid "_Refresh"
+msgstr "_Recharger"
+
+#: glade/clist_rbm-2.str:37
+msgid "_Group files"
+msgstr "_Grouper fichiers"
+
+#: glade/clist_rbm-2.str:38
+msgid "Ungroup selected file(s)"
+msgstr "Dégrouper fichier(s) sélectionné(s)"
+
+#: glade/clist_rbm-2.str:39
+msgid "_Ungroup"
+msgstr "Dégro_uper"
+
+#: glade/clist_rbm-2.str:40
+msgid "Group selected file(s) together"
+msgstr "Grouper ensemble les fichiers sélectionnés"
+
+#: glade/clist_rbm-2.str:41
+msgid "_Group"
+msgstr "_Grouper"
+
+#: glade/clist_rbm-2.str:42 glade/tilp-2.str:26
+msgid "_Misc"
+msgstr "Divers"
+
+#: glade/clist_rbm-2.str:43
+msgid ""
+"TI83+: send selected variables into FLASH instead of sending them into RAM."
+"\\r\\nTI89/92+/V200: send variables but keep attribute (locked/archived)."
+msgstr ""
+"TI83+: envoyer les variables sélectionnées en FLASH plutôt qu'en RAM.\\r"
+"\\nTI89/92+/V200: envoyer les variables mais en conservant l'attribut "
+"(vérouillé/archivé)."
+
+#: glade/clist_rbm-2.str:44
+msgid "Send var(s) to FLASH"
+msgstr "Envoyer var(s) en FLASH"
+
+#: glade/clist_rbm-2.str:45
+msgid ""
+"Sign an Intel Hexa file (generated by an assembler) for producing a .8xk "
+"FLASH application file. More informations by typing 'appsign'."
+msgstr ""
+"Signer un fichier Intel Hexa (généré par un assembleur) pour produire un "
+"fichier application FLASH .8xk. Plus d'informations en tapant 'appsign'."
+
+#: glade/clist_rbm-2.str:46
+msgid "_Sign TI83+ FLASH apps"
+msgstr "_Signer apps FLASH TI83+"
+
+#: glade/clist_rbm-2.str:47
+msgid "Convert a .tib/.9xu/.89u file into a ROM image"
+msgstr "Convertir un fichier .tib/.9xu/.89u en une image ROM"
+
+#: glade/clist_rbm-2.str:48
+msgid "_Convert AMS upgrade"
+msgstr "_Convertir mise à jour AMS"
+
+#: glade/clist_rbm-2.str:49
+msgid "_Console"
+msgstr "_Console"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/clock-2.str:8
+msgid "Clock Management"
+msgstr "Réglages de l'horloge"
+
+#: glade/clock-2.str:9
+msgid "_on"
+msgstr "_activé"
+
+#: glade/clock-2.str:10
+msgid "of_f"
+msgstr "_désactivé"
+
+#: glade/clock-2.str:11
+msgid "Clock is..."
+msgstr "L'horloge est..."
+
+#: glade/clock-2.str:12
+msgid "_AM/PM"
+msgstr "_AM/PM"
+
+#: glade/clock-2.str:13
+msgid "_24h"
+msgstr "_24h"
+
+#: glade/clock-2.str:14 glade/clock-2.str:24 glade/comm-2.str:38
+#: glade/extprgms-2.str:11 glade/extprgms-2.str:15 glade/extprgms-2.str:20
+#: glade/extprgms-2.str:24 glade/extprgms-2.str:29 glade/extprgms-2.str:32
+#: glade/extprgms-2.str:37 glade/extprgms-2.str:40 glade/user_boxes-2.str:9
+msgid "*"
+msgstr "*"
+
+#: glade/clock-2.str:15
+msgid "MM/DD/YY"
+msgstr "MM/JJ/AA"
+
+#: glade/clock-2.str:16
+msgid "DD/MM/YY"
+msgstr "JJ/MM/AA"
+
+#: glade/clock-2.str:17
+msgid "MM.DD.YY"
+msgstr "MM.JJ.AA"
+
+#: glade/clock-2.str:18
+msgid "DD.MM.YY"
+msgstr "JJ.MM.AA"
+
+#: glade/clock-2.str:19
+msgid "YY.MM.DD"
+msgstr "AA.MM.JJ"
+
+#: glade/clock-2.str:20
+msgid "MM-DD-YY"
+msgstr "MM-JJ-AA"
+
+#: glade/clock-2.str:21
+msgid "DD-MM-YY"
+msgstr "JJ-MM-AA"
+
+#: glade/clock-2.str:22
+msgid "YY-MM-DD"
+msgstr "AA-MM-JJ"
+
+#: glade/clock-2.str:23
+msgid "Format"
+msgstr "Format"
+
+#: glade/clock-2.str:32
+msgid "AUg"
+msgstr "Aug"
+
+#: glade/clock-2.str:37
+msgid "Date & Time"
+msgstr "Date & Heure"
+
+#: glade/clock-2.str:38
+msgid " _Sync with PC "
+msgstr " _Synchroniser avec le PC"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/comm-2.str:8
+msgid "Communication Settings"
+msgstr "Réglages de la Communication"
+
+#: glade/comm-2.str:9
+msgid "_TIEmu virtual link"
+msgstr "Câble virtuel _TIEmu"
+
+#: glade/comm-2.str:10
+msgid "_VTi virtual link"
+msgstr "Câble virtuel _VTi"
+
+#: glade/comm-2.str:11
+msgid "_AVRlink"
+msgstr "_AVRlink"
+
+#: glade/comm-2.str:12
+msgid "_USB TIGraphLink"
+msgstr "TIGraphLink _USB"
+
+#: glade/comm-2.str:13
+msgid "Home-made _parallel"
+msgstr "_Parallèle artisanal"
+
+#: glade/comm-2.str:14
+msgid ""
+"_Black TIGraphLink\n"
+"Home-made serial"
+msgstr ""
+"TiGraphLink Noir\n"
+"Série artisanal"
+
+#: glade/comm-2.str:16
+msgid "_Gray TIGraphLink"
+msgstr "TiGraphLink _Gris"
+
+#: glade/comm-2.str:17 glade/comm-2.str:34
+msgid "Type:"
+msgstr "Type:"
+
+#: glade/comm-2.str:18
+msgid "0x3f8 (COM1)"
+msgstr "0x3f8 (COM1)"
+
+#: glade/comm-2.str:19
+msgid "0x2f8 (COM2)"
+msgstr "0x2f8 (COM2)"
+
+#: glade/comm-2.str:20
+msgid "0x3e8 (COM3)"
+msgstr "0x3e8 (COM3)"
+
+#: glade/comm-2.str:21
+msgid "0x2e8 (COM4)"
+msgstr "0x2e8 (COM4)"
+
+#: glade/comm-2.str:22
+msgid "Port:"
+msgstr "Port:"
+
+#: glade/comm-2.str:23
+msgid "_Cable"
+msgstr "_Câble"
+
+#: glade/comm-2.str:24
+msgid "TI86"
+msgstr "TI86"
+
+#: glade/comm-2.str:25
+msgid "TI73"
+msgstr "TI73"
+
+#: glade/comm-2.str:26
+msgid "TI92"
+msgstr "TI92"
+
+#: glade/comm-2.str:27
+msgid "TI82"
+msgstr "TI82"
+
+#: glade/comm-2.str:28
+msgid "TI83"
+msgstr "TI83"
+
+#: glade/comm-2.str:29
+msgid "TI83+(SE)"
+msgstr "TI83+(SE)"
+
+#: glade/comm-2.str:30
+msgid "TI85"
+msgstr "TI85"
+
+#: glade/comm-2.str:31
+msgid "TI89"
+msgstr "TI89"
+
+#: glade/comm-2.str:32
+msgid "TI92+"
+msgstr "TI92+"
+
+#: glade/comm-2.str:33
+msgid "V200"
+msgstr "V200"
+
+#: glade/comm-2.str:35
+msgid "_Auto-detect (73, 83+, 89, 92+)"
+msgstr "_Auto-détection (73, 83+, 89, 92+)"
+
+#: glade/comm-2.str:36 glade/general-2.str:37
+msgid "_Calculator"
+msgstr "_Calculatrice"
+
+#: glade/comm-2.str:37
+msgid "Speed:"
+msgstr "Vitesse:"
+
+#: glade/comm-2.str:39
+msgid "9600"
+msgstr "9600"
+
+#: glade/comm-2.str:40
+msgid "19200"
+msgstr "19200"
+
+#: glade/comm-2.str:41
+msgid "38400"
+msgstr "38400"
+
+#: glade/comm-2.str:42
+msgid "57600"
+msgstr "57600"
+
+#: glade/comm-2.str:43
+msgid "bauds"
+msgstr "bauds"
+
+#: glade/comm-2.str:44
+msgid "_Flow control (RTS/CTS)"
+msgstr "Contrôle de _flux (RTS/CTS)"
+
+#: glade/comm-2.str:45
+msgid "AVRlink"
+msgstr "AVRlink"
+
+#: glade/comm-2.str:46
+msgid "Timeout:"
+msgstr "Limite de temps:"
+
+#: glade/comm-2.str:47
+msgid "deci-seconds"
+msgstr "dixièmes de secondes"
+
+#: glade/comm-2.str:48
+msgid "Error management"
+msgstr "Erreur après..."
+
+#: glade/comm-2.str:49
+msgid "Delay:    "
+msgstr "Délai:    "
+
+#: glade/comm-2.str:50
+msgid "microseconds"
+msgstr "microsecondes"
+
+#: glade/comm-2.str:51
+msgid "Home-made cables"
+msgstr "Câbles artisanaux"
+
+#: glade/comm-2.str:52
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/extprgms-2.str:8
+msgid "External programs location"
+msgstr "Emplacement des programmes externes"
+
+#: glade/extprgms-2.str:9 glade/extprgms-2.str:18 glade/extprgms-2.str:27
+#: glade/extprgms-2.str:35
+msgid "Location:"
+msgstr "Emplacement:"
+
+#: glade/extprgms-2.str:10
+msgid "wzunzip.exe"
+msgstr "wzunzip.exe"
+
+#: glade/extprgms-2.str:12 glade/extprgms-2.str:21 glade/extprgms-2.str:30
+#: glade/extprgms-2.str:38
+msgid "..."
+msgstr "..."
+
+#: glade/extprgms-2.str:13 glade/extprgms-2.str:22 glade/extprgms-2.str:31
+#: glade/extprgms-2.str:39
+msgid "Options:"
+msgstr "Options:"
+
+#: glade/extprgms-2.str:14
+msgid "-d"
+msgstr "-d"
+
+#: glade/extprgms-2.str:16
+msgid "ZIP program:"
+msgstr "Programme ZIP:"
+
+#: glade/extprgms-2.str:17
+msgid "_ZIP"
+msgstr "_ZIP"
+
+#: glade/extprgms-2.str:19
+msgid "tar"
+msgstr "tar"
+
+#: glade/extprgms-2.str:23
+msgid "xvzf"
+msgstr "xvzf"
+
+#: glade/extprgms-2.str:25
+msgid "TAR.GZ/TGZ program:"
+msgstr "Programme TAR.GZ/TGZ:"
+
+#: glade/extprgms-2.str:26
+msgid "_TGZ"
+msgstr "_TGZ"
+
+#: glade/extprgms-2.str:28
+msgid "appsign"
+msgstr "appsign"
+
+#: glade/extprgms-2.str:33
+msgid "APPSIGN 83+ program:"
+msgstr "Programme APPSIGN 83+:"
+
+#: glade/extprgms-2.str:34
+msgid "_AppSign"
+msgstr "_AppSign"
+
+#: glade/extprgms-2.str:36
+msgid "/usr/bin/mozilla"
+msgstr "/usr/bin/mozilla"
+
+#: glade/extprgms-2.str:41
+msgid "Web Browser:"
+msgstr "Navigateur Web:"
+
+#: glade/extprgms-2.str:42
+msgid "_Browser"
+msgstr "Navigateur"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/general-2.str:8
+msgid "General options"
+msgstr "Options générales"
+
+#: glade/general-2.str:9 glade/general-2.str:23
+msgid "_name"
+msgstr "_nom"
+
+#: glade/general-2.str:10
+msgid "dat_e"
+msgstr "dat_e"
+
+#: glade/general-2.str:11 glade/general-2.str:26
+msgid "_size"
+msgstr "_taille"
+
+#: glade/general-2.str:12 glade/general-2.str:24
+msgid "_type"
+msgstr "_type"
+
+#: glade/general-2.str:13 glade/general-2.str:27
+msgid "Sort by"
+msgstr "Trier par"
+
+#: glade/general-2.str:14
+msgid "all _files"
+msgstr "tous les _fichiers"
+
+#: glade/general-2.str:15
+msgid "T_I files only"
+msgstr "Fichiers T_I seulement"
+
+#: glade/general-2.str:16
+msgid "File displaying"
+msgstr "Affichage des fichiers"
+
+#: glade/general-2.str:17 glade/general-2.str:28
+msgid "_up"
+msgstr "ha_ut"
+
+#: glade/general-2.str:18 glade/general-2.str:29
+msgid "_down"
+msgstr "bas"
+
+#: glade/general-2.str:19 glade/general-2.str:30
+msgid "Order"
+msgstr "Ordre"
+
+#: glade/general-2.str:20
+msgid "confirm deleting/overwriting"
+msgstr "confirmer supprimer/écraser"
+
+#: glade/general-2.str:21
+msgid "Files/Variables"
+msgstr "Fichiers/Variables"
+
+#: glade/general-2.str:22
+msgid "_Computer"
+msgstr "Ordinateur"
+
+#: glade/general-2.str:25
+msgid "_info"
+msgstr "_info"
+
+#: glade/general-2.str:31 glade/screen_options-2.str:9
+msgid "_full"
+msgstr "complet"
+
+#: glade/general-2.str:32
+msgid "_local"
+msgstr "relatif"
+
+#: glade/general-2.str:33
+msgid "Path mode"
+msgstr "Type de chemin"
+
+#: glade/general-2.str:34
+msgid "sin_gle"
+msgstr "un par un"
+
+#: glade/general-2.str:35
+msgid "_group"
+msgstr "_groupés"
+
+#: glade/general-2.str:36
+msgid "Receiving files"
+msgstr "Réception des fichiers"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/manpage-2.str:8
+msgid "Page of Manual"
+msgstr "Page de Manuel"
+
+#: glade/manpage-2.str:9
+msgid "Cannot find the manpage file."
+msgstr "Impossible de trouver les fichiers manpage."
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/pbars-2.str:8
+msgid "Title 1"
+msgstr "Titre 1"
+
+#: glade/pbars-2.str:9
+msgid "Transfer status:"
+msgstr "État du transfert:"
+
+#: glade/pbars-2.str:10
+msgid "Rate: 0.00 Kb/s"
+msgstr "Vitesse: 0.00 Ko/s"
+
+#: glade/pbars-2.str:11
+msgid "Title 2"
+msgstr "Titre 2"
+
+#: glade/pbars-2.str:12
+msgid "Message."
+msgstr "Message."
+
+#: glade/pbars-2.str:13
+msgid "Title 3"
+msgstr "Titre 3"
+
+#: glade/pbars-2.str:14 glade/pbars-2.str:22
+msgid "Total transfer:"
+msgstr "Transfert total."
+
+#: glade/pbars-2.str:15 glade/pbars-2.str:18 glade/pbars-2.str:23
+msgid "Current transfer:"
+msgstr "Transfert courant:"
+
+#: glade/pbars-2.str:16 glade/pbars-2.str:20 glade/pbars-2.str:25
+msgid "Rate: 0.0 Kbytes/s"
+msgstr "Vitesse: 0.0 Koctets/s"
+
+#: glade/pbars-2.str:17
+msgid "Title 4"
+msgstr "Titre 4"
+
+#: glade/pbars-2.str:19 glade/pbars-2.str:24
+msgid "Text"
+msgstr "Texte"
+
+#: glade/pbars-2.str:21
+msgid "Title 5"
+msgstr "Titre 5"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/release-2.str:8
+msgid "Welcome to TiLP !"
+msgstr "Bienvenue à TiLP !"
+
+#: glade/release-2.str:9
+msgid ""
+"This box appears only 1 time or whenever a new version is installed.\n"
+"You will find in the box below some news about TiLP (the RELEASE file):"
+msgstr ""
+"Cette fenêtre apparaît la première fois ou lorsque une nouvelle version est "
+"installée.\n"
+"Vous trouverez ci-dessous les dernières nouvelles à propos de TiLP (fichier "
+"RELEASE):"
+
+#: glade/release-2.str:11
+msgid "Cannot find the RELEASE file."
+msgstr "Impossible de trouver le fichier RELEASE."
+
+#: glade/release-2.str:12
+msgid ""
+"Latest version of TiLP can  be found at: <http://lpg.ticalc.org/prj_tilp>\n"
+"Please report any bugs to the TiLP team: <tilp-users@lists.sf.net>."
+msgstr ""
+"La dernière version de TiLP peut être trouvée sur: <http://lpg.ticalc.org/"
+"prj_tilp>\n"
+"Veuillez reporter les bugs éventuels à l'équipe TiLP: <tilp-users@lists.sf."
+"net>."
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/screen_options-2.str:8
+msgid "Screen Capture Options"
+msgstr "Options de Capture d'Écran"
+
+#: glade/screen_options-2.str:10
+msgid "_clipped (TI89)"
+msgstr "atta_ché (TI89)"
+
+#: glade/screen_options-2.str:11
+msgid "Screen mode:"
+msgstr "Type d'écran:"
+
+#: glade/screen_options-2.str:12
+msgid "_emulate"
+msgstr "_émuler"
+
+#: glade/screen_options-2.str:13
+msgid "Gray-scale:"
+msgstr "Niveau de gris:"
+
+#: glade/screen_options-2.str:14
+msgid "Screen Format"
+msgstr "Format d'écran"
+
+#: glade/screen_options-2.str:15
+msgid "_PNG"
+msgstr "_PNG"
+
+#: glade/screen_options-2.str:16
+msgid "_XPM (Unix format)"
+msgstr "_XPM (format Unix)"
+
+#: glade/screen_options-2.str:17
+msgid "_JPEG (non interlaced)"
+msgstr "_JPEG (non entrelacé)"
+
+#: glade/screen_options-2.str:18
+msgid "_BMP (Windows)"
+msgstr "_BMP (Windows)"
+
+#: glade/screen_options-2.str:19
+msgid "Image type:"
+msgstr "Type d'image:"
+
+#: glade/screen_options-2.str:20
+msgid "File Format"
+msgstr "Format de Fichier"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/screenshot-2.str:8
+msgid "Screen capture"
+msgstr "Capture d'écran"
+
+#: glade/screenshot-2.str:10
+msgid "_Load"
+msgstr "Charger"
+
+#: glade/screenshot-2.str:11
+msgid "_Save"
+msgstr "Enregi_strer"
+
+#: glade/screenshot-2.str:12 glade/tilp-2.str:18
+msgid "_Quit"
+msgstr "_Quitter"
+
+#: glade/screenshot-2.str:13
+msgid "_Options"
+msgstr "_Options"
+
+#: glade/screenshot-2.str:14 glade/tilp-2.str:74
+msgid "Refresh"
+msgstr "Recharger"
+
+#: glade/screenshot-2.str:15
+msgid "Save"
+msgstr "Enregistrer"
+
+#: glade/screenshot-2.str:16
+msgid "Quit"
+msgstr "Quitter"
+
+#: glade/screenshot-2.str:17
+msgid "Help"
+msgstr "Aide"
+
+#: glade/screenshot-2.str:18
+msgid "Calculator screen"
+msgstr "Écran de la calculatrice"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/tilp-2.str:8
+msgid "TiLP ('Ti Linking Program')"
+msgstr "TiLP ('Ti Linking Program')"
+
+#: glade/tilp-2.str:10
+msgid "_Open"
+msgstr "_Ouvrir"
+
+#: glade/tilp-2.str:11
+msgid "Save current settings (in the configuration file '~/.tilp')."
+msgstr ""
+"Enregistrer les réglages actuels (dans le fichier de configuration '~/."
+"tilp')."
+
+#: glade/tilp-2.str:12
+msgid "Save _config"
+msgstr "Enregistrer _configuration"
+
+#: glade/tilp-2.str:13
+msgid "Load the previously saved settings."
+msgstr "Charger les réglages précédemment enregistrés."
+
+#: glade/tilp-2.str:14
+msgid "_Reload config"
+msgstr "_Recharger la configuration"
+
+#: glade/tilp-2.str:15
+msgid "Load default settings."
+msgstr "Charger les réglages par défaut."
+
+#: glade/tilp-2.str:16
+msgid "_Default config"
+msgstr "Configuration par _défaut"
+
+#: glade/tilp-2.str:17
+msgid "Exit from TiLP."
+msgstr "Quitter TiLP"
+
+#: glade/tilp-2.str:19
+msgid "_Setup"
+msgstr "Option_s"
+
+#: glade/tilp-2.str:20
+msgid "General options."
+msgstr "Options générales."
+
+#: glade/tilp-2.str:21
+msgid "_General"
+msgstr "_Général"
+
+#: glade/tilp-2.str:22
+msgid "Location of external programs."
+msgstr "Emplacement des programmes externes."
+
+#: glade/tilp-2.str:23
+msgid "_External programs"
+msgstr "Programmes _externes"
+
+#: glade/tilp-2.str:24
+msgid "Communication settings."
+msgstr "Réglages de la communication."
+
+#: glade/tilp-2.str:25
+msgid "_Communication"
+msgstr "_Communication"
+
+#: glade/tilp-2.str:27
+msgid "Clock management (AMS2.08 mini)."
+msgstr "Réglages de l'horloge (AMS2.08 mini)."
+
+#: glade/tilp-2.str:28
+msgid "_Clock"
+msgstr "Horloge"
+
+#: glade/tilp-2.str:29
+msgid "Get the ID-LIST of an FLASH calculator."
+msgstr "Obtenir l'ID LIST d'une calculatrice FLASH."
+
+#: glade/tilp-2.str:30
+msgid "Get _IDlist"
+msgstr "Obtenir _IDlist"
+
+#: glade/tilp-2.str:31
+msgid "Teminal box and remote control."
+msgstr "Fenêtre de terminal et télécommande."
+
+#: glade/tilp-2.str:32
+msgid "Remote _control"
+msgstr "Télé_commande"
+
+#: glade/tilp-2.str:33
+msgid "Get a ROM image for an emulator.."
+msgstr "Obtenir une image ROM pour un émulateur"
+
+#: glade/tilp-2.str:34
+msgid "ROM _dump..."
+msgstr "Copier ROM..."
+
+#: glade/tilp-2.str:35
+msgid "Send an OS upgrade to the calculator"
+msgstr "Envoyer une mise à jour du système d'exploitation sur la calculatrice."
+
+#: glade/tilp-2.str:36
+msgid "_Upgrade OS"
+msgstr "Mettre à jo_ur système d'exploitation"
+
+#: glade/tilp-2.str:37
+msgid "_Help"
+msgstr "Aide"
+
+#: glade/tilp-2.str:38
+msgid "The TiLP User's Manual in html format."
+msgstr "Le manuel de l'utilisateur TiLP en format html."
+
+#: glade/tilp-2.str:39
+msgid "_User's Manual"
+msgstr "Manuel de l'_Utilisateur"
+
+#: glade/tilp-2.str:40
+msgid "The Linux manual page."
+msgstr "La page de manuel Linux."
+
+#: glade/tilp-2.str:41
+msgid "_Manpage"
+msgstr "_Manpage"
+
+#: glade/tilp-2.str:42
+msgid "_Bookmarks"
+msgstr "_Favoris"
+
+#: glade/tilp-2.str:43
+msgid "http://education.ti.com, the Texas Instruments web site"
+msgstr "http://education.ti.com, le site web de Texas Instruments"
+
+#: glade/tilp-2.str:44
+msgid "TI's web site"
+msgstr "Le site Web de TI"
+
+#: glade/tilp-2.str:45
+msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
+msgstr ""
+"http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
+
+#: glade/tilp-2.str:46
+msgid "Calculator software"
+msgstr "Logiciels pour calculatrice"
+
+#: glade/tilp-2.str:47
+msgid "A great web site on TI related stuffs."
+msgstr "Un site web sur tout ce qui touche aux TI."
+
+#: glade/tilp-2.str:48
+msgid "ticalc.org"
+msgstr "ticalc.org"
+
+#: glade/tilp-2.str:49
+msgid "Some news on the TI world."
+msgstr "Nouvelles du monde TI."
+
+#: glade/tilp-2.str:50
+msgid "tinews.net"
+msgstr "tinews.net"
+
+#: glade/tilp-2.str:51
+msgid "A French calculator web site."
+msgstr "Un site Français sur les calculatrices."
+
+#: glade/tilp-2.str:52
+msgid "ti-fr.org"
+msgstr "ti-fr.org"
+
+#: glade/tilp-2.str:53
+msgid "http://lpg.ticalc.org, the Linux Programmer Group"
+msgstr "http://lpg.ticalc.org, le groupe de programmeurs Linux."
+
+#: glade/tilp-2.str:54
+msgid "The LPG"
+msgstr "Le LPG"
+
+#: glade/tilp-2.str:55
+msgid "http://tilp.info, the TiLP web site."
+msgstr "http://tilp.info, le site Web de TiLP."
+
+#: glade/tilp-2.str:56
+msgid "TiLP's web site"
+msgstr "Le site Web de TiLP"
+
+#: glade/tilp-2.str:59
+msgid "Check whether calculator is ready..."
+msgstr "Vérifie si la calculatrice est prête..."
+
+#: glade/tilp-2.str:60
+msgid "Ready ?"
+msgstr "Prêt ?"
+
+#: glade/tilp-2.str:61
+msgid "List calculator content (folders, variables and applications)."
+msgstr ""
+"Liste le contenu de la calculatrice (dossiers, variables et applications)."
+
+#: glade/tilp-2.str:62
+msgid "Dirlist"
+msgstr "Lister"
+
+#: glade/tilp-2.str:63
+msgid "Backup the calculator content."
+msgstr "Sauvergarder le contenu de la calculatrice."
+
+#: glade/tilp-2.str:65
+msgid "Restore the calculator content."
+msgstr "Restaurer le contenu de la calculatrice."
+
+#: glade/tilp-2.str:66
+msgid "Restore"
+msgstr "Restaurer"
+
+#: glade/tilp-2.str:67
+msgid "Receive variables from non-silent calculators."
+msgstr "Recevoir des variables de calculatrices non silencieuses."
+
+#: glade/tilp-2.str:68
+msgid "Receive"
+msgstr "Recevoir"
+
+#: glade/tilp-2.str:69
+msgid "Create a new directory."
+msgstr "Créer un nouveau dossier."
+
+#: glade/tilp-2.str:70
+msgid "MkDir"
+msgstr "Nouveau Dossier"
+
+#: glade/tilp-2.str:71
+msgid "Delete selected files."
+msgstr "Supprimer les fichiers sélectionnés."
+
+#: glade/tilp-2.str:72
+msgid "Delete"
+msgstr "Supprimer"
+
+#: glade/tilp-2.str:73
+msgid "Refresh right frame."
+msgstr "Recharger le panneau de droite."
+
+#: glade/tilp-2.str:75
+msgid "Calculator files"
+msgstr "Fichiers de la calculatrice"
+
+#: glade/tilp-2.str:76
+msgid "Computer files"
+msgstr "Fichiers de l'ordinateur"
+
+#: glade/tilp-2.str:77
+msgid "Memory free: 0 bytes"
+msgstr "Mémoire libre: 0 octets"
+
+#: glade/tilp-2.str:78
+msgid "Current dir: none"
+msgstr "Dossier courant: aucun"
+
+#: glade/tilp-2.str:79
+msgid "Informations"
+msgstr "Informations"
+
+#.
+#. * Chaînes de caractères à traduire générées par
+#. * Glade. Ajouter ce fichier au fichier POTFILE.in
+#. * de votre projet. NE PAS compiler ce fichier
+#. * avec le reste de votre application.
+#.
+#: glade/user_boxes-2.str:8
+msgid "Title"
+msgstr "Titre"
+
+#: glade/user_boxes-2.str:10
+msgid "Name:"
+msgstr "Nom:"

@@ -1,0 +1,50 @@
+The TiLP project is managed by the TiLP team.
+The TiLP team includes the following people:
+
+
+Romain Lievin (roms): main developer, Win32 port
+================================================
+
+web: http://lpg.ticalc.org/prj_tilp
+mail: roms@tilp.info
+
+
+Julien Blache (jb): Mac OS-X port, Debian packaging
+===================================================
+
+web: http://jblache.org
+mail: jb@jblache.org
+
+
+Tijl Coosemans (Kalimero): BSD port
+===================================
+
+web: http://tijl.studentenweb.org
+mail: tijl@ulyssis.org
+
+
+Severin Trochut (surfkiller): BeOS port
+=======================================
+
+mail: setrochu@sun.cpe.fr
+
+
+Jesse Palmer (jp3d): icon designer
+==================================
+
+web: http://jp3d.net
+mail: jp@jp3d.net
+
+
+Packagers:
+==========
+- Julien Blache <jb@jblache.org>: Linux/Debian
+- Benjamin Gordon: <ben@bxg.org>: Linux/Redhat
+- Romain Lievin: <roms@tilp.info>: Win32
+
+
+All the others who have contributed to
+======================================
+
+Some contributions have been brought about this software by people.
+See the THANKS file for more informations.

@@ -1,0 +1,146 @@
+REGEDIT
+;****************************************************************
+;* RegEdit file for tilp					*
+;* 								*
+;* This file automatically registers TI related files types	*
+;* as well as an entry for tilp in the right button menu	*
+;* of your Explorer.						*
+;* It supposes that tilp is installed in 			*
+;* C:\Program Files\roms\tilp				*
+;****************************************************************
+
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+; TI92+ file entries
+HKEY_CLASSES_ROOT\.9xb = tilp.ID
+HKEY_CLASSES_ROOT\.9xg = tilp.ID
+HKEY_CLASSES_ROOT\.9xe = tilp.ID
+HKEY_CLASSES_ROOT\.9xl = tilp.ID
+HKEY_CLASSES_ROOT\.9xm = tilp.ID
+HKEY_CLASSES_ROOT\.9xc = tilp.ID
+HKEY_CLASSES_ROOT\.9xt = tilp.ID
+HKEY_CLASSES_ROOT\.9xs = tilp.ID
+HKEY_CLASSES_ROOT\.9xd = tilp.ID
+HKEY_CLASSES_ROOT\.9xa = tilp.ID
+HKEY_CLASSES_ROOT\.9xi = tilp.ID
+HKEY_CLASSES_ROOT\.9xp = tilp.ID
+HKEY_CLASSES_ROOT\.9xf = tilp.ID
+HKEY_CLASSES_ROOT\.9xx = tilp.ID
+HKEY_CLASSES_ROOT\.9xz = tilp.ID
+HKEY_CLASSES_ROOT\.9xk = tilp.ID
+HKEY_CLASSES_ROOT\.9xu = tilp.ID
+; TI92 file entries
+HKEY_CLASSES_ROOT\.92b = tilp.ID
+HKEY_CLASSES_ROOT\.92g = tilp.ID
+HKEY_CLASSES_ROOT\.92e = tilp.ID
+HKEY_CLASSES_ROOT\.92l = tilp.ID
+HKEY_CLASSES_ROOT\.92m = tilp.ID
+HKEY_CLASSES_ROOT\.92c = tilp.ID
+HKEY_CLASSES_ROOT\.92t = tilp.ID
+HKEY_CLASSES_ROOT\.92s = tilp.ID
+HKEY_CLASSES_ROOT\.92d = tilp.ID
+HKEY_CLASSES_ROOT\.92a = tilp.ID
+HKEY_CLASSES_ROOT\.92i = tilp.ID
+HKEY_CLASSES_ROOT\.92p = tilp.ID
+HKEY_CLASSES_ROOT\.92f = tilp.ID
+HKEY_CLASSES_ROOT\.92x = tilp.ID
+; TI89 file entries
+HKEY_CLASSES_ROOT\.89b = tilp.ID
+HKEY_CLASSES_ROOT\.89g = tilp.ID
+HKEY_CLASSES_ROOT\.89e = tilp.ID
+HKEY_CLASSES_ROOT\.89l = tilp.ID
+HKEY_CLASSES_ROOT\.89m = tilp.ID
+HKEY_CLASSES_ROOT\.89c = tilp.ID
+HKEY_CLASSES_ROOT\.89t = tilp.ID
+HKEY_CLASSES_ROOT\.89s = tilp.ID
+HKEY_CLASSES_ROOT\.89d = tilp.ID
+HKEY_CLASSES_ROOT\.89a = tilp.ID
+HKEY_CLASSES_ROOT\.89i = tilp.ID
+HKEY_CLASSES_ROOT\.89p = tilp.ID
+HKEY_CLASSES_ROOT\.89f = tilp.ID
+HKEY_CLASSES_ROOT\.89x = tilp.ID
+HKEY_CLASSES_ROOT\.89z = tilp.ID
+HKEY_CLASSES_ROOT\.89k = tilp.ID
+HKEY_CLASSES_ROOT\.89u = tilp.ID
+; TI86 file entries
+HKEY_CLASSES_ROOT\.86g = tilp.ID
+HKEY_CLASSES_ROOT\.86n = tilp.ID
+HKEY_CLASSES_ROOT\.86c = tilp.ID
+HKEY_CLASSES_ROOT\.86v = tilp.ID
+HKEY_CLASSES_ROOT\.86l = tilp.ID
+HKEY_CLASSES_ROOT\.86m = tilp.ID
+HKEY_CLASSES_ROOT\.86k = tilp.ID
+HKEY_CLASSES_ROOT\.86e = tilp.ID
+HKEY_CLASSES_ROOT\.86s = tilp.ID
+HKEY_CLASSES_ROOT\.86d = tilp.ID
+HKEY_CLASSES_ROOT\.86i = tilp.ID
+HKEY_CLASSES_ROOT\.86r = tilp.ID
+HKEY_CLASSES_ROOT\.86w = tilp.ID
+HKEY_CLASSES_ROOT\.86p = tilp.ID
+; TI85 file entries
+HKEY_CLASSES_ROOT\.85b = tilp.ID
+HKEY_CLASSES_ROOT\.85g = tilp.ID
+HKEY_CLASSES_ROOT\.85n = tilp.ID
+HKEY_CLASSES_ROOT\.85c = tilp.ID
+HKEY_CLASSES_ROOT\.85v = tilp.ID
+HKEY_CLASSES_ROOT\.85l = tilp.ID
+HKEY_CLASSES_ROOT\.85m = tilp.ID
+HKEY_CLASSES_ROOT\.85k = tilp.ID
+HKEY_CLASSES_ROOT\.85e = tilp.ID
+HKEY_CLASSES_ROOT\.85s = tilp.ID
+HKEY_CLASSES_ROOT\.85d = tilp.ID
+HKEY_CLASSES_ROOT\.85i = tilp.ID
+HKEY_CLASSES_ROOT\.85p = tilp.ID
+HKEY_CLASSES_ROOT\.85r = tilp.ID
+; TI83+ file entries
+HKEY_CLASSES_ROOT\.8xb = tilp.ID
+HKEY_CLASSES_ROOT\.8xg = tilp.ID
+HKEY_CLASSES_ROOT\.8xn = tilp.ID
+HKEY_CLASSES_ROOT\.8xl = tilp.ID
+HKEY_CLASSES_ROOT\.8xm = tilp.ID
+HKEY_CLASSES_ROOT\.8xy = tilp.ID
+HKEY_CLASSES_ROOT\.8xs = tilp.ID
+HKEY_CLASSES_ROOT\.8xp = tilp.ID
+HKEY_CLASSES_ROOT\.8xi = tilp.ID
+HKEY_CLASSES_ROOT\.8xd = tilp.ID
+HKEY_CLASSES_ROOT\.8xc = tilp.ID
+; TI83 file entries
+HKEY_CLASSES_ROOT\.83b = tilp.ID
+HKEY_CLASSES_ROOT\.83g = tilp.ID
+HKEY_CLASSES_ROOT\.83n = tilp.ID
+HKEY_CLASSES_ROOT\.83l = tilp.ID
+HKEY_CLASSES_ROOT\.83m = tilp.ID
+HKEY_CLASSES_ROOT\.83y = tilp.ID
+HKEY_CLASSES_ROOT\.83s = tilp.ID
+HKEY_CLASSES_ROOT\.83p = tilp.ID
+HKEY_CLASSES_ROOT\.83i = tilp.ID
+HKEY_CLASSES_ROOT\.83d = tilp.ID
+HKEY_CLASSES_ROOT\.83c = tilp.ID
+; TI82 file entries
+HKEY_CLASSES_ROOT\.82b = tilp.ID
+HKEY_CLASSES_ROOT\.82g = tilp.ID
+HKEY_CLASSES_ROOT\.82n = tilp.ID
+HKEY_CLASSES_ROOT\.82l = tilp.ID
+HKEY_CLASSES_ROOT\.82m = tilp.ID
+HKEY_CLASSES_ROOT\.82y = tilp.ID
+HKEY_CLASSES_ROOT\.82p = tilp.ID
+HKEY_CLASSES_ROOT\.82i = tilp.ID
+HKEY_CLASSES_ROOT\.82d = tilp.ID
+HKEY_CLASSES_ROOT\.82w = tilp.ID
+HKEY_CLASSES_ROOT\.82z = tilp.ID
+HKEY_CLASSES_ROOT\.82t = tilp.ID
+HKEY_CLASSES_ROOT\.82z = tilp.ID
+
+;
+; tilp & Explorer right button menu entry
+;
+HKEY_CLASSES_ROOT\tilp.ID = TIxx file
+HKEY_CLASSES_ROOT\tilp.ID\DefaultIcon = C:\Program Files\GtkApps\tilp\tilp.exe,0
+HKEY_CLASSES_ROOT\tilp.ID\shell\open = Open with &TiLP
+HKEY_CLASSES_ROOT\tilp.ID\shell\open\command = C:\Program Files\GtkApps\tilp\tilp.exe "%1"
+
+;HKEY_CLASSES_ROOT\tilp.ID\shell\open\ddeexec = [open("%1")]
+;HKEY_CLASSES_ROOT\tilp.ID\shell\open\ddeexec\application = ;tilp

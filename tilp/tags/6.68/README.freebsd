@@ -1,0 +1,70 @@
+				*****************
+				* TiLP FreeBSD	*
+				*****************
+
+
+Maintainer: Tijl Coosemans <tijl@ulyssis.org>
+Development platform: FreeBSD 4.8-STABLE, XFree86 4.3.0, GTK 2.2.1
+
+
+REQUIREMENTS
+------------
+
+ - X11 (X Window System)
+ - GTK 2.0.0 or higher (http://www.gtk.org/)
+ - the ticables, tifiles and ticalcs-4 libraries (http://tilp.info/)
+ - libusb if you want to use the SilverLink cable (TI-GRAPH LINK USB).
+
+
+INSTALLATION
+------------
+
+The easiest and most recommended way is to use the FreeBSD ports collection.
+When you keep your local copy of the ports tree in /usr/ports the
+following should fetch, compile and install TiLP and all of its libraries
+and clean things up afterwards.
+
+# cd /usr/ports/comms/tilp
+# make install distclean
+
+When you want to have support for the Silver Link USB cable, you need to
+define WITH_LIBUSB, like this.
+
+# make WITH_LIBUSB=yes install distclean
+
+
+USAGE
+-----
+
+TiLP needs access to some device nodes, which are usually only accessible by
+root, so you'll need to run TiLP with super user priviledges. As root, just
+enter the command 'tilp'.
+
+
+AVAILABILITY
+------------
+
+  http://lpg.ticalc.org/prj_tilp/ (redirected to http://tilp.sourceforge.net/)
+
+
+COPYRIGHT
+---------
+
+TiLP is Copyright (C) 1999-2003 by the TiLP team <tilp-users@lists.sf.net>
+
+Copying is allowed under the terms of GNU General Public License.  
+See the file COPYING for more details.
+
+
+THANKS
+------
+
+See the THANKS file, please.
+
+
+---------------------------------------------------------------------------
+Please report any bugs, questions, ...  (please give us your platform, your 
+calculator type (with ROM version) and your link cable model).
+
+
+The TiLP team <tilp-users@lists.sf.net>
