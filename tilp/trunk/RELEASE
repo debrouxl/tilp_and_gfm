@@ -3,7 +3,7 @@
 
 
 Previous version: 6.67-beta2 (11/05/2003)
-Current version:  6.71	     (04/04/2004)
+Current version:  6.71	     (16/04/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -25,11 +25,25 @@ New capabilities:
 Improvements:
 -------------
 
-	- communication box simplified
-	- many bug fixes
-	- some internal clean-ups
+	- fixed error 997 (overlapped I/O in progress) by new SilverLink driver (v2.3)
 	- GTK now uses a theme engine (Gtk-Wimp) which gives Windows 
-		look & feel (it supports XP theming, too !).
+		look & feel (it supports XP theming, too !)
+	- communication box simplified
+	- some internal clean-ups
+	- TIB support
+	- many bug fixes from BugTracker: 
+		#904838: crash with /usr/lib/tilp
+		#847930: tib files,
+		#837114: bad TI85 file format
+		#600195: idem 
+		#600297: idem
+		#801482: rom dump pbs w/ usb
+		#781694: crash with flashsav.89z
+		#775151: wrong DLL version
+		#738486: TI83+ flash app timeout
+		#689704: idem
+	- and some others.
+	
 
 Known problems:
 ---------------
