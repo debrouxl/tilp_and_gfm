@@ -1,0 +1,4 @@
+
+
+gchar *s = N_("Page of Manual");
+gchar *s = N_("Cannot find the manpage file.");

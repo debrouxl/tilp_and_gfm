@@ -1,0 +1,5 @@
+
+
+gchar *s = N_("Title");
+gchar *s = N_("*");
+gchar *s = N_("Name:");

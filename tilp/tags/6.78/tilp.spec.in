@@ -1,0 +1,49 @@
+%define name	tilp
+%define version @VERSION@
+%define release 1
+%define builddir $RPM_BUILD_DIR/%{name}-%{version}
+
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Vendor:		Romain Lievin 
+Packager:	Romain Lievin rlievin@mail.com
+#URL:		
+Source:         %{name}-%{version}.tar.gz
+#Patch:		
+Group:		Application/Generic
+Copyright:	GPL
+#Icon:		
+#Requires:	
+BuildRoot:	/var/tmp/%{name}-%{version}
+Summary:	TiLP is a TI<->PC linking program
+%description
+TiLP is a TI<->PC linking program
+@configure_input@
+Please edit tilp.spec.in to add several more lines of description
+here if appropriate, and to delete these instructions.
+
+%prep
+%setup -n %{name}-%{version} 
+#%patch -p1
+
+%build
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix}
+make
+
+%install
+if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
+mkdir -p $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
+# Build the file-list automagically :)
+cd $RPM_BUILD_ROOT
+find . -type d | sed '1,2d;s,^\.,\%attr(-\,root\,root) \%dir ,' > $RPM_BUILD_DIR/file.list.%{name}
+find . -type f | sed 's,^\.,\%attr(-\,root\,root) ,' >> $RPM_BUILD_DIR/file.list.%{name}
+find . -type l | sed 's,^\.,\%attr(-\,root\,root) ,' >> $RPM_BUILD_DIR/file.list.%{name}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+rm ../file.list.%{name}
+
+%files -f ../file.list.%{name}
+%doc README

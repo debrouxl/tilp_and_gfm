@@ -1,0 +1,69 @@
+			[ Release notes ]
+
+
+
+Previous version: 6.77		(30/01/2005)
+Current version:  6.78		(28/02/2005)
+
+SubVersion (CVS) revision: $Id$
+
+TiLP is available for 4 platforms:
+Linux (GTK), Windows (GTK), Mac OS-X (Cocoa) and FreeBSD (GTK).
+
+If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
+a Linux/Win32/Mac OS-X driver on the Linux Programmer Group at 
+<http://lpg.ticalc.org/prj_usb>.
+
+For the other link cables, no driver is needed because it's provided.
+
+Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP 
+		  but supported by our driver.
+
+
+New capabilities:
+-----------------
+
+	- ROM dumping is now working with SilverEdition models (TI83+/TI84+).
+
+Improvements:
+-------------
+
+	- none.
+
+Bug fixes:
+----------
+
+	- 'Help->User's manual item'
+	- [Linux] creation of /usr/lib/tilp directory 
+
+Known problems:
+---------------
+
+	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
+		You can disable it by using the GTK theme selector.
+	- [Linux]: don't user kernel module for SilverLink, use built-in ticables support instead.
+
+
+Bug report:
+-----------
+
+If you think that you have found a bug, please report it. This allows us to 
+improve TiLP and make it better.
+
+It seems that some guys have backup problems with TI89/92+. If you have 
+installed a kernel or some other assembly program which modify the FLASH or
+RAM memory, this may explain your problem. But, mail us anyways.
+
+
+Mailing:
+--------
+
+See the User's Manual...
+
+The TiLP project by the TiLP team <http://lpg.ticalc.org/prj_tilp>.
+
+
+Getting involved ?:
+-------------------
+
+See the Jobs section of the TiLP web site.
