@@ -28,8 +28,8 @@
 
     IBOutlet id currentFolder;
     IBOutlet id numberOfFolders;
-    IBOutlet id numberOfVars;
-    IBOutlet id memoryUsed;
+    IBOutlet id memoryStats;
+    IBOutlet id varsStats;
  
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

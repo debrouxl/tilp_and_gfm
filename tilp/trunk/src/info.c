@@ -23,31 +23,79 @@
 #ifdef __MACOSX__
 #include <glib/glib.h>
 #include <libticables/typedefs.h>
+#include <libticalcs/calc_int.h>
 #endif
 
 #include "struct.h"
 
-int number_of_folders_vars_and_mem(int *d, int *v, longword *m)
+void get_calc_mem_info(struct calc_mem_info *cmi)
 {
   GList *p;
   struct varinfo *vi;
   
-  p=ctree_win.varlist;
-  *d=0; *v=0; *m=0;
-  while(p != NULL)
-    {
-      vi=(struct varinfo *)(p->data);
-      //if( (vi->vartype) == ti_calc.tixx_dir(options.lp.calc_type))
-      if(vi->is_folder == FOLDER)
-	(*d)++;
-      else 
-	(*v)++;
-      (*m) += (vi->varsize);
+  p = ctree_win.varlist;
 
-      p=p->next;
-    }
+  cmi->vars = 0;
+  cmi->folders = 0;
+  cmi->mem = 0;
+  cmi->archivemem = 0;
   
-  return 0;
+  cmi->flash = 0;
+  cmi->flashmem = 0;
+  
+  cmi->freemem = 0;
+  
+// FIXME OS X : ENABLE ONCE LIBTICALCS SUPPORTS IT !
+#if 0
+  if (p != NULL) // the first item is bogus, for historical reasons
+      {
+          vi = (struct varinfo *)(p->data);
+          
+          cmi->freemem = vi->varsize; // but it provides the amount of free memory :)
+          
+          p = p->next;
+      }
+#endif
+  
+  while (p != NULL)
+      {
+          vi = (struct varinfo *)(p->data);
+
+          if (vi->is_folder)
+              {
+                  cmi->folders++;
+              }
+          else
+              {
+                  if (vi->vartype != ti_calc.tixx_flash(ticalc_get_calc()))
+                      {
+                          cmi->vars++;
+                                            
+                          if (vi->varlocked == 3) // variable is archived
+                              {
+                                  cmi->archivemem += vi->varsize;
+                              }
+                          else
+                              {
+                                  cmi->mem += vi->varsize;
+                              }
+                      }
+                  // remember the FLASH apps are listed in all folders... so cmi->folders must not be > 1
+                  else if ((vi->vartype == ti_calc.tixx_flash(ticalc_get_calc())) && (cmi->folders == 1))
+                      {
+                          cmi->flash++;
+                      
+                          cmi->flashmem += vi->varsize;
+                      }
+              }
+          p = p->next;
+      }
+
+    // return mem stats in KiloBytes
+    cmi->mem = cmi->mem / 1024;
+    cmi->archivemem = cmi->archivemem / 1024;
+    cmi->flashmem = cmi->flashmem / 1024;
+    cmi->freemem = cmi->freemem / 1024;
 }
 
 int number_of_directories_vars_and_mem(int *d, int *v, longword *m)

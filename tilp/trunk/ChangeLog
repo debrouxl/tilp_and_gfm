@@ -180,6 +180,8 @@
 	* Overriding -insertText: was _not_ a good idea.
 	* Overriding -keyDown: is a far better one :)
 	* So we have a mostly working remote control.
+* 20020120 : v0.4.0
+	* Fixed the Information box.
 
 
 

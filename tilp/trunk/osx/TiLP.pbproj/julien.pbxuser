@@ -43,7 +43,7 @@
 						ActiveTab = 1;
 						Frame = "{{238, 0}, {720, 535}}";
 						Split0 = {
-							Frame = "{{0, 152}, {720, 383}}";
+							Frame = "{{0, 133}, {720, 402}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -73,10 +73,10 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {720, 128}}";
+							Frame = "{{0, 0}, {720, 109}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {720, 128}}";
+								Frame = "{{0, 0}, {720, 109}}";
 							};
 						};
 						Tab2 = {
@@ -207,7 +207,7 @@
 	};
 	F582712101762AFA01000102 = {
 		uiCtxt = {
-			sepNavWindowFrame = "{{0, 244}, {750, 502}}";
+			sepNavWindowFrame = "{{0, 155}, {750, 502}}";
 		};
 	};
 	F582712D01762AFA01000102 = {

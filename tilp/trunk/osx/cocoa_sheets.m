@@ -131,15 +131,17 @@ create_cocoa_pbar_type1_sheet(const char *title)
     
     if ([NSThread isMultiThreaded])
       {
+#ifdef OSX_DEBUG
           fprintf(stderr, "DEBUG: MULTITHREAD, issuing notification\n");
-      
+#endif
           [[NSNotificationCenter defaultCenter] postNotificationName:@"TilpThreadNeedsSheet"
                                                 object:@"pbarType1"];
       }
     else
       {
+#ifdef OSX_DEBUG
           fprintf(stderr, "DEBUG: NOT THREADED, spawning sheet\n");
-      
+#endif
           [mySheetsController pbarType1];
       }
 }

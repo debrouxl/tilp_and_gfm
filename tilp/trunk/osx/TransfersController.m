@@ -224,7 +224,6 @@ extern int is_active;
                 
                     [context setObject:sp forKey:@"savepanel"];
                     [context setObject:tmpfile forKey:@"tmpfile"];
-                    //[context setObject:localPool forKey:@"pool"];
                 
                     [sp beginSheetForDirectory:NSHomeDirectory()
                         file:tmpfile 
@@ -241,7 +240,6 @@ extern int is_active;
                     context = [[NSMutableDictionary alloc] init];
                 
                     [context setObject:sp forKey:@"savepanel"];
-                    //[context setObject:localPool forKey:@"pool"];
                 
                     [sp beginSheetForDirectory:NSHomeDirectory()
                         file:[calcDict objectForKey:@"defaultGroupFilename"]
@@ -494,8 +492,6 @@ extern int is_active;
                                                    
                             do
                                 {
-                                    //removed by JB
-                                    //while( gtk_events_pending() ) { gtk_main_iteration(); }
                                     if(info_update.cancel)
                                         break;
                                         
@@ -550,7 +546,6 @@ extern int is_active;
                                                            
                                     do
                                         {
-                                            //while( gtk_events_pending() ) { gtk_main_iteration(); }
                                             if(info_update.cancel)
                                                 break;
                                             
@@ -598,7 +593,6 @@ extern int is_active;
                                                    
                             do
                                 {
-                                    //while( gtk_events_pending() ) { gtk_main_iteration(); }
                                     if(info_update.cancel)
                                         break;
                                         
@@ -641,7 +635,6 @@ extern int is_active;
                                        
                 do
                     {
-                        //while( gtk_events_pending() ) { gtk_main_iteration(); }
                         if(info_update.cancel)
                             break;
                             
@@ -694,7 +687,6 @@ extern int is_active;
                                                     
                                 do
                                     {
-                                        //while( gtk_events_pending() ) { gtk_main_iteration(); }
                                         if(info_update.cancel)
                                             break;
                                         
@@ -767,8 +759,10 @@ extern int is_active;
 
 - (int)sendChar:(unsigned int)tikey
 {
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);
-    
+#endif
+
     if (tilp_error(ti_calc.send_key(tikey)))
         return -1;
         

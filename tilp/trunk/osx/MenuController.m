@@ -163,7 +163,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.3.6" forKey:@"Version"];
+    [aboutOptions setObject:@"0.4.0" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
     [aboutOptions setObject:@"4.82" forKey:@"ApplicationVersion"];
 

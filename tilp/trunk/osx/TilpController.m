@@ -542,7 +542,7 @@ struct gui_fncts gui_functions;
         {
             q = (struct varinfo *)(p->data);
             
-            if(q->vartype == ti_calc.tixx_flash(options.lp.calc_type))
+            if(q->vartype == ti_calc.tixx_flash(ticalc_get_calc()))
                 {
                     p = p->next;
                     continue;
@@ -627,6 +627,25 @@ struct gui_fncts gui_functions;
 
 - (void)refreshInfos
 {
+    struct calc_mem_info cmi;
+    
+    get_calc_mem_info(&cmi);
+    
+    [currentFolder setStringValue:[NSString stringWithFormat:@"Current folder : %s", ctree_win.cur_folder]];
+    
+    [numberOfFolders setStringValue:[NSString stringWithFormat:@"Number of folders : %u", cmi.folders]];
+    
+    if (cmi.flash == 0)
+        [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %u", cmi.vars]];
+    else
+        [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %u, FLASH Apps : %u", cmi.vars, cmi.flash]];
+    
+    [memoryStats setStringValue:[NSString stringWithFormat:@"Memory used : %u KB (archive %u KB, FLASH %u KB, free %u KB)", (cmi.mem + cmi.archivemem + cmi.flashmem), cmi.archivemem, cmi.flashmem, cmi.freemem]];
+}
+
+#if 0
+- (void)refreshInfos
+{
     NSString *strCurrentFolder;
     NSString *strNumberOfFolders;
     NSString *strNumberOfVars;
@@ -635,6 +654,9 @@ struct gui_fncts gui_functions;
     int vars = 0;
     int folders = 0;
     int mem = 0;
+    
+    int flash = 0;
+    int flashmem = 0;
 
     struct varinfo *q;
     GList *p;
@@ -643,7 +665,7 @@ struct gui_fncts gui_functions;
 
     q = (struct varinfo *)(p->data);
 
-    number_of_folders_vars_and_mem(&folders, &vars, &mem);
+    number_of_folders_vars_and_mem(&folders, &vars, &flash, &mem, &flashmem);
   
     strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
     strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
@@ -655,7 +677,7 @@ struct gui_fncts gui_functions;
     [numberOfVars setStringValue:strNumberOfVars];
     [memoryUsed setStringValue:strMemoryUsed];
 }
-
+#endif
 
 // required to be a valid dataSource for NSOutlineView
 // more methods are available, see the docs...
@@ -799,9 +821,10 @@ struct gui_fncts gui_functions;
     NSEnumerator *filesEnum;
     NSString *file;
 
-    // maybe we could thread cb_send_var() here...
+#ifdef OSX_DEBUG
     fprintf(stderr, "Building filelist...\n");
-    
+#endif
+
     pboard = [info draggingPasteboard];
     
     if ([[pboard types] indexOfObject:@"NSFilenamesPboardType"] != NSNotFound)
@@ -833,6 +856,7 @@ struct gui_fncts gui_functions;
     
     clist_win.selection = filelist;
     
+    // FIXME OS X : thread it ?
     cb_send_var();
     
     return YES;

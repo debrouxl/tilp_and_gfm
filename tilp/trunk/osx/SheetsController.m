@@ -54,9 +54,11 @@ extern struct ticalc_info_update info_update;
     
     if (self == nil)
         return nil;
-    
+
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: registering for TilpThreadNeedsSheet notification\n");
-    
+#endif
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                           selector:@selector(threadNeedsSheet:)
                                           name:@"TilpThreadNeedsSheet"
@@ -67,8 +69,9 @@ extern struct ticalc_info_update info_update;
 
 - (void)dealloc
 {
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: unregistering for TilpThreadNeedsSheet notification\n");
-
+#endif
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
@@ -80,13 +83,14 @@ extern struct ticalc_info_update info_update;
     NSString *sheet;
     
     sheet = (NSString *)[notification object];
-    
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: THREAD issued a request\n");
-    
+#endif
     if ([sheet isEqualToString:@"pbarType1"])
         {
+#ifdef OSX_DEBUG
             fprintf(stderr, "DEBUG: THREAD requested PBAR TYPE 1\n");
-        
+#endif
             [self pbarType1];
         }
 }
@@ -435,9 +439,6 @@ extern struct ticalc_info_update info_update;
 
 // this is the refresh part of the stuff :-)
 
-// FIXME OS X
-// find a mean to allow cocoa to process its events between pbar refresh...
-
 - (void)refreshPbar1
 {
     static gfloat rate;
@@ -464,9 +465,6 @@ extern struct ticalc_info_update info_update;
                         
             [pbar1 displayIfNeeded];
             [pbar_rate displayIfNeeded];
-  
-            // FIXME OS X
-            // HERE WE NEED TO PASS THE BALL TO COCOA AGAIN TO PROCESS ITS EVENTS !!!
         }
 }
 
@@ -482,9 +480,6 @@ extern struct ticalc_info_update info_update;
       
             [pbar2 setDoubleValue:(double)(info_update.main_percentage * 100)];
             [pbar2 displayIfNeeded];
-      
-            // FIXME OS X
-            // HERE WE NEED TO PASS THE BALL TO COCOA, TOO.
         }
 }
 

@@ -379,14 +379,14 @@
                 currentFolder = id; 
                 dirlistTree = id; 
                 mainWindow = id; 
-                memoryUsed = id; 
+                memoryStats = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTransfersController = id; 
                 numberOfFolders = id; 
-                numberOfVars = id; 
+                varsStats = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

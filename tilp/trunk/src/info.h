@@ -21,7 +21,7 @@
 
 #include "struct.h"
 
-int number_of_folders_vars_and_mem    (int *d, int *v, longword *m);
+void get_calc_mem_info(struct calc_mem_info *cmi);
 int number_of_directories_vars_and_mem(int *d, int *v, longword *m);
 
 #endif

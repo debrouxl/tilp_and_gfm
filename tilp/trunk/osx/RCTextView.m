@@ -88,7 +88,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
     eventChars = [event characters];
     [eventChars retain]; // retain in case of a link problem, prevents a SIGBUS
 
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: keyDown EVENT !\n");
+#endif
      
     for (i = 0; i < [eventChars length]; i++)
         { 
@@ -96,8 +98,10 @@ extern struct cocoa_objects_ptr *objects_ptr;
             send = NO;
             
             uchar = [eventChars characterAtIndex:i];
-        
+
+#ifdef OSX_DEBUG        
             fprintf(stderr, "DEBUG: UNICODE '%c' val = %d\n", uchar, uchar);   
+#endif
 
             if (uchar == 127) // backspace
                 {
@@ -115,7 +119,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
         
             if (send == YES)
                 {
+#ifdef OSX_DEBUG
                     fprintf(stderr, "DEBUG: sending char to TI\n");
+#endif
         
                     ret = [myTransfersController sendChar:toSend];
 
@@ -132,8 +138,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
     
     if (process == YES)
         {
+#ifdef OSX_DEBUG
             fprintf(stderr, "DEBUG: processing event\n");
-        
+#endif        
             [super keyDown:event];
         }
     

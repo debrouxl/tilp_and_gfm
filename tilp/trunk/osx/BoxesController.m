@@ -122,9 +122,9 @@ extern int is_active;
 - (IBAction)pbarButtonPush:(id)sender
 {
     // the sheet will be closed by calling gif->destroy_pbar();
-
+#ifdef OSX_DEBUG
     fprintf(stderr, "*** ABORT BUTTON PUSHED !!! ***\n");
-
+#endif
     info_update.cancel = 1;
     
     // but if it's a pbar type 2, ...

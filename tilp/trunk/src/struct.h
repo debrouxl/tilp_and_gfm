@@ -95,6 +95,20 @@ struct file_info
   mode_t attrib;
 };
 
+/* Used to retrieve stats on the on-calc memory usage */
+struct calc_mem_info
+{
+  int vars;        // number of vars
+  int folders;     // number of folders
+  int mem;         // memory used (not archive memory)
+  int archivemem;  // archive memory used
+  
+  int flash;      // number of FLASH apps
+  int flashmem;   // FLASH mem used
+  
+  int freemem;    // remaining memory (see libticalcs... dunno where this memory remains ;))
+};
+
 /* Used for the directory list of plugins */
 struct plugin_info
 {
