@@ -7,13 +7,15 @@ AC_PREREQ(2.52)
 AC_INIT(src/tilp_main.c)
 
 # set program version number
-VERSION=6.67-beta3
+VERSION=6.68
 PACKAGE=tilp
 AC_SUBST(VERSION)
 AC_SUBST(PACKAGE)
 
 # specify a config file
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+AM_MAINTAINER_MODE
+
 AM_CONFIG_HEADER(config.h)
 
 # determine the system type

@@ -7,7 +7,8 @@ endif
 DEFS=@DEFS@ \
 	-DSHARE_DIR=\"${prefix}/share/tilp\" 	\
 	-DLOCALEDIR=\"$(locale_dir)\" 		\
-	-DPLUGIN_DIR=\"${tilp_plugin_dir}\"
+	-DPLUGIN_DIR=\"${tilp_plugin_dir}\"	\
+	-DSYSCONFDIR=\"$(sysconfdir)\"
 
 INCLUDES = -I$(top_srcdir) -I$(includedir) \
 	-I../intl -I$(top_srcdir)/intl \

@@ -5,9 +5,9 @@ INSTALL=@INSTALL@
 
 FILES = ../RELEASE ../COPYING  ../man/Manpage.txt
 APPSIGN = appsign-linux-i386-bin.zip
-EXTRA_DIST = $(FILES) $(APPSIGN)
+EXTRA_DIST = $(FILES)
 
-install: $(FILES) extract
+install: $(FILES)
 	@echo Installing miscellaneous files...
 	@$(INSTALL) -d $(SHARE_DIR)
 	@$(INSTALL) -m644 ../RELEASE $(SHARE_DIR)

@@ -22,11 +22,12 @@ EXTRA_DIST = tilp.registry
 
 install: tilp.registry
 	@echo Installing plug-ins registry...
-	@$(INSTALL) -m755 -d $(prefix)/etc
-	@$(INSTALL) -m755 -d $(prefix)/etc/tilp
-	@$(INSTALL) -m644 tilp.registry $(prefix)/etc/tilp
+	@$(INSTALL) -m755 -d $(sysconfdir)
+	@$(INSTALL) -m755 -d $(sysconfdir)/tilp
+	@$(INSTALL) -m644 tilp.registry $(sysconfdir)/tilp
 	@echo Done.
 
 uninstall: $(FILES)
 	@echo Removing plug-ins registry...
-	cd $(prefix)/etc/tilp; $(RM) tilp.registry
+	cd $(sysconfdir)/tilp; $(RM) tilp.registry
+	-rmdir $(sysconfdir)/tilp

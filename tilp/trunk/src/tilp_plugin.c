@@ -173,7 +173,7 @@ int tilp_plugins_scan(void)
 #ifdef __WIN32__
 	reg_fn = g_strconcat(inst_paths.base_dir, REG_FILE, NULL);
 #else				/*  */
-	reg_fn = g_strconcat(PREFIX "/etc/tilp/", REG_FILE, NULL);
+	reg_fn = g_strconcat(SYSCONFDIR "/tilp/", REG_FILE, NULL);
 #endif				/*  */
 	//printf("<%s>\n", reg_fn);
 	reg = fopen(reg_fn, "rt");

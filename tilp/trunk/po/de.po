@@ -6,7 +6,8 @@
 # instead of "couldn't do foo".
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2003-05-09 18:32+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-27 14:23+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -228,7 +229,7 @@ msgstr "Fehler"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/gtk_refresh.c:131
+#: src/gtk_refresh.c:128
 msgid "Initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
 
@@ -321,7 +322,7 @@ msgid "Open with"
 msgstr "Öffnen mit"
 
 #. A..Z -> 26 letters
-#: src/popup.c:576
+#: src/popup.c:574
 msgid "Change drive"
 msgstr "Wechsle Laufwerk"
 
@@ -339,6 +340,10 @@ msgstr " Status: nicht verbunden."
 msgid ""
 "It's not a FLASH upgrade or this FLASH file is not intended for this "
 "calculator type."
+msgstr ""
+
+#: src/tilp.c:261
+msgid "Manual_en.html"
 msgstr ""
 
 #: src/tilp_calcs.c:111
@@ -605,7 +610,7 @@ msgstr "Siehe Handbuch (man tilp) für mehr Informationen...\n"
 
 #: src/tilp_main.c:104
 #, c-format
-msgid "TiLP - Version %s, (C) 1999-2003 Romain Livin <roms@tilp.info>\n"
+msgid "TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"
 msgstr ""
 
 #: src/tilp_main.c:108

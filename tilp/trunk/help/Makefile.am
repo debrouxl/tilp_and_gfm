@@ -10,6 +10,7 @@ install: $(FILES)
 	@for I in ./* ; do \
 		$(INSTALL) -m644 $$I $(DESTDIR)$(tilp_help_dir)/; \
 	done
+	@rm -f $(SHARE_DIR)/help/Makefile*
 	@echo Done
 
 uninstall:
