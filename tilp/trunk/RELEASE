@@ -3,7 +3,7 @@
 
 
 Previous version: 6.71	     (16/04/2004)
-Current version:  6.72	     (21/04/2004)
+Current version:  6.72	     (24/04/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -27,6 +27,7 @@ Improvements:
 
 	- communication box (reset port when changing cable) to avoid 'invalid port' error.
 	- [LINUX] SilverLink data-rate improved when sending variables/apps.
+	- [WIN32] SilverLink data-rate improved when sending variables/apps (new driver).
 	- [WIN32] idem, need driver v2.4
 	- [LINUX] wrong timeout passed to SilverLink (libusb) => transfer interruptions.
 	
