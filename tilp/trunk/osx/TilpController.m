@@ -53,4 +53,31 @@ struct gui_fncts gui_functions;
     }
 }
 
+// required to be a valid dataSource for NSOutlineView
+// more methods are available, see the docs...
+
+- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+    // FIXME OS X
+    return 0;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+    // FIXME OS X
+    return YES;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+{
+    // FIXME OS X
+    return NULL;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    // FIXME OS X
+    return NULL;
+}
+
 @end

@@ -19,6 +19,7 @@
     IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
+    IBOutlet id mainWindow;
     IBOutlet id MenuController;
     IBOutlet id orderDecreasing;
     IBOutlet id orderIncreasing;
@@ -38,6 +39,15 @@
     IBOutlet id ToolbarController;
     IBOutlet id transferModeManual;
     IBOutlet id transferModeSilent;
+    
+    IBOutlet id transferModeMatrix;
+    IBOutlet id pathModeMatrix;
+    IBOutlet id orderMatrix;
+    IBOutlet id sortByMatrix;
+    IBOutlet id linkTypeMatrix;
+    IBOutlet id calcTypeMatrix;
+    IBOutlet id screenFormatMatrix;
+    IBOutlet id screenModeMatrix;
 }
 - (IBAction)prefsAdvanced:(id)sender;
 - (IBAction)prefsCalc:(id)sender;
@@ -45,4 +55,5 @@
 - (IBAction)prefsGeneral:(id)sender;
 - (IBAction)prefsHardware:(id)sender;
 - (IBAction)prefsScreendump:(id)sender;
+- (IBAction)showPrefsSheet:(id)sender;
 @end

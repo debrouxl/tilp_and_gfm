@@ -10,10 +10,92 @@
 #include "cocoa_structs.h"
 
 #include "../src/struct.h"
+#include "../src/defs.h"
 
 #import <Cocoa/Cocoa.h>
 
 extern struct cocoa_objects_ptr *objects_ptr;
+
+void
+rc_set_unused_items(void)
+{
+    // what we do not use
+    options.xsize = UNUSED;
+    options.ysize = UNUSED;
+    options.clist_sort = UNUSED;
+    options.clist_sort_order = UNUSED;
+    options.confirm = UNUSED;
+    options.show = UNUSED;
+    options.file_mode = UNUSED;
+    options.plugins_loading = UNUSED;
+    options.unzip_location = NULL;
+    options.unzip_options = NULL;
+    options.tar_location = NULL;
+    options.tar_options = NULL;
+}
+
+void
+rc_init_with_default(void)
+{
+    // what we use
+    options.ctree_sort = SORT_BY_NAME;
+    options.ctree_sort_order = SORT_UP;
+    options.path_mode = FULL_PATH;
+    options.screen_format = PCX;
+    options.screen_clipping = CLIPPED_SCREEN;
+    options.transfer_mode = SILENT_MODE;
+    options.file_checking = UNUSED;
+    options.console_mode = 0;
+    options.auto_detect = TRUE;
+    options.show_gui = TRUE;
+    options.force_dirlist = TRUE;
+    
+    options.lp.link_type = LINK_UGL;
+    options.lp.timeout = 150;
+    options.lp.port = UNUSED; // later
+    options.lp.calc_type = CALC_TI92P;
+    
+    rc_set_unused_items();
+}
+
+void
+rc_fill_dictionary(void)
+{
+    NSMutableDictionary *tilpConfig;
+    NSNumber *value;
+
+    tilpConfig = objects_ptr->tilpConfig;
+    
+    value = [[NSNumber alloc] initWithInt:options.path_mode];
+    [tilpConfig setObject:value forKey:@"path_mode"];
+    
+    value = [[NSNumber alloc] initWithInt:options.transfer_mode];
+    [tilpConfig setObject:value forKey:@"transfer_mode"];
+    
+    value = [[NSNumber alloc] initWithInt:options.ctree_sort];
+    [tilpConfig setObject:value forKey:@"ctree_sort"];
+    
+    value = [[NSNumber alloc] initWithInt:options.ctree_sort_order];
+    [tilpConfig setObject:value forKey:@"ctree_sort_order"];
+    
+    value = [[NSNumber alloc] initWithInt:options.screen_format];
+    [tilpConfig setObject:value forKey:@"screen_format"];
+    
+    value = [[NSNumber alloc] initWithInt:options.screen_clipping];
+    [tilpConfig setObject:value forKey:@"screen_clipping"];
+    
+    value = [[NSNumber alloc] initWithInt:options.auto_detect];
+    [tilpConfig setObject:value forKey:@"auto_detect"];
+    
+    value = [[NSNumber alloc] initWithInt:options.lp.link_type];
+    [tilpConfig setObject:value forKey:@"link_type"];
+    
+    value = [[NSNumber alloc] initWithInt:options.lp.calc_type];
+    [tilpConfig setObject:value forKey:@"calc_type"];
+    
+    value = [[NSNumber alloc] initWithInt:options.lp.timeout];
+    [tilpConfig setObject:value forKey:@"timeout"];
+}
 
 void
 read_rc_file(void)
@@ -31,7 +113,8 @@ read_rc_file(void)
     else
         {
             tilpConfig = [[NSMutableDictionary alloc] init];
-            // init_with_default_values();
+            rc_init_with_default();
+            rc_fill_dictionary();
             return;
         }
   
@@ -91,7 +174,7 @@ read_rc_file(void)
         options.lp.timeout = [value intValue];
     }
     
-    // set_unused_items();
+    rc_set_unused_items();
 }
     
     
@@ -100,41 +183,10 @@ write_rc_file(void)
 {
     NSUserDefaults *prefs;
     NSMutableDictionary *tilpConfig;
-    NSNumber *value;
-
+    
     prefs = objects_ptr->prefs;
     tilpConfig = objects_ptr->tilpConfig;
-    
-    value = [[NSNumber alloc] initWithInt:options.path_mode];
-    [tilpConfig setObject:value forKey:@"path_mode"];
-    
-    value = [[NSNumber alloc] initWithInt:options.transfer_mode];
-    [tilpConfig setObject:value forKey:@"transfer_mode"];
-    
-    value = [[NSNumber alloc] initWithInt:options.ctree_sort];
-    [tilpConfig setObject:value forKey:@"ctree_sort"];
-    
-    value = [[NSNumber alloc] initWithInt:options.ctree_sort_order];
-    [tilpConfig setObject:value forKey:@"ctree_sort_order"];
-    
-    value = [[NSNumber alloc] initWithInt:options.screen_format];
-    [tilpConfig setObject:value forKey:@"screen_format"];
-    
-    value = [[NSNumber alloc] initWithInt:options.screen_clipping];
-    [tilpConfig setObject:value forKey:@"screen_clipping"];
-    
-    value = [[NSNumber alloc] initWithInt:options.auto_detect];
-    [tilpConfig setObject:value forKey:@"auto_detect"];
-    
-    value = [[NSNumber alloc] initWithInt:options.lp.link_type];
-    [tilpConfig setObject:value forKey:@"link_type"];
-    
-    value = [[NSNumber alloc] initWithInt:options.lp.calc_type];
-    [tilpConfig setObject:value forKey:@"calc_type"];
-    
-    value = [[NSNumber alloc] initWithInt:options.lp.timeout];
-    [tilpConfig setObject:value forKey:@"timeout"];
-
+  
     [prefs setObject:tilpConfig forKey:@"tilpConfig"];
 }
     

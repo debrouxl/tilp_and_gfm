@@ -5,7 +5,6 @@
     IBOutlet id BoxesController;
     IBOutlet id mainWindow;
     IBOutlet id PrefsController;
-    IBOutlet id prefsWindow;
     IBOutlet id TilpController;
     IBOutlet id ToolbarController;
 }
@@ -29,6 +28,5 @@
 - (IBAction)sendAMS:(id)sender;
 - (IBAction)sendFLASHApp:(id)sender;
 - (IBAction)sendVar:(id)sender;
-- (IBAction)showPrefsSheet:(id)sender;
 - (IBAction)showThanks:(id)sender;
 @end

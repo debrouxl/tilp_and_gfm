@@ -72,7 +72,6 @@
                 sendAMS = id; 
                 sendFLASHApp = id; 
                 sendVar = id; 
-                showPrefsSheet = id; 
                 showThanks = id; 
             }; 
             CLASS = MenuController; 
@@ -83,7 +82,6 @@
                 TilpController = id; 
                 ToolbarController = id; 
                 mainWindow = id; 
-                prefsWindow = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -95,6 +93,7 @@
                 prefsGeneral = id; 
                 prefsHardware = id; 
                 prefsScreendump = id; 
+                showPrefsSheet = id; 
             }; 
             CLASS = PrefsController; 
             LANGUAGE = ObjC; 
@@ -112,6 +111,7 @@
                 calcType89 = id; 
                 calcType92 = id; 
                 calcType92p = id; 
+                calcTypeMatrix = id; 
                 calcTypeProbe = id; 
                 linkCableTIGLUSB = id; 
                 linkCableTPC = id; 
@@ -119,21 +119,29 @@
                 linkCableVTI = id; 
                 linkTimeoutField = id; 
                 linkTimeoutValueStepper = id; 
+                linkTypeMatrix = id; 
+                mainWindow = id; 
                 orderDecreasing = id; 
                 orderIncreasing = id; 
+                orderMatrix = id; 
                 pathModeFull = id; 
                 pathModeLocal = id; 
+                pathModeMatrix = id; 
                 prefsWindow = id; 
+                screenFormatMatrix = id; 
                 screenFormatPCX = id; 
                 screenFormatTIFF = id; 
                 screenFormatXPM = id; 
                 screenModeClipped = id; 
                 screenModeFull = id; 
+                screenModeMatrix = id; 
                 sortByInfo = id; 
+                sortByMatrix = id; 
                 sortByName = id; 
                 sortBySize = id; 
                 sortByType = id; 
                 transferModeManual = id; 
+                transferModeMatrix = id; 
                 transferModeSilent = id; 
             }; 
             SUPERCLASS = NSObject; 
