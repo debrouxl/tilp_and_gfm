@@ -7,7 +7,7 @@ AC_PREREQ(2.52)
 AC_INIT(src/tilp_main.c)
 
 # set program version number
-VERSION=6.67
+VERSION=6.68
 PACKAGE=tilp
 AC_SUBST(VERSION)
 AC_SUBST(PACKAGE)
