@@ -189,7 +189,7 @@ int read_xpm_format(FILE *file, Image *img)
 /* Conversion & utility functions */ 
 /**********************************/
 
-#define DEBUG
+//#define DEBUG
 
 /* Convert the image stored in the 'bitmap' variable into a pixmap */
 int convert_bitmap_to_pixmap(Image *img) //tested: OK (12/05)

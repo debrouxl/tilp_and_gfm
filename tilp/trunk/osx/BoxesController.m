@@ -28,7 +28,9 @@ extern int is_active;
 
 - (void)awakeFromNib
 {
+#ifdef OSX_DEBUG
     fprintf(stderr, "boxes => got awakeFromNib\n");
+#endif
 
     // Init the instance pointer
     objects_ptr->myBoxesController = self;

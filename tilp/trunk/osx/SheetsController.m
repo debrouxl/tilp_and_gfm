@@ -24,8 +24,10 @@ extern struct ticalc_info_update info_update;
  
 - (void)awakeFromNib
 {
+#ifdef OSX_DEBUG
     fprintf(stderr, "sheets => got awakeFromNib\n");
-    
+#endif
+
     // Init instance pointer
     objects_ptr->mySheetsController = self;
 }

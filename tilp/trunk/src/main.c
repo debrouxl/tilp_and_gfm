@@ -35,8 +35,6 @@
 # include <windows.h>
 #endif
 
-
-
 #include "main.h"
 #include "intl.h"
 #include "defs.h"
@@ -63,9 +61,9 @@
 /***************************************/
 
 /* A structure of functions to drive a link cable */
-struct ticable_link link_cable;
+LinkCable link_cable;
 /* A structure of functions to drive a calculator */
-struct ticalc_fncts ti_calc;
+TicalcFncts ti_calc;
 
 /* A structure of functions to do the refresh of progress bar */
 struct ticalc_info_update info_update;
@@ -136,7 +134,6 @@ int main_init(int argc, char *argv[], char **arge)
   // for avoiding NULL accesses.
   // Initialization made with console mode functions
 
-//#ifndef __MACOSX__
   indep_functions.msg_box = cmdline_msg_box;
   indep_functions.user1_box = cmdline_user1_box;
   indep_functions.user2_box = cmdline_user2_box;
@@ -150,12 +147,13 @@ int main_init(int argc, char *argv[], char **arge)
   indep_functions.destroy_pbar = cmdline_destroy_pbar;
   set_gui_fncts(&indep_functions);  // Init indep functions
   cmdline_init_refresh_functions(); // Init refresh functions
-//#endif /* !__MACOSX__ */
 
   // Initialize options with default values
   cb_default_config();
 
-printf("DEBUG: default config done\n");
+#ifdef OSX_DEBUG
+  printf("DEBUG: default config done\n");
+#endif
 
   // Parse the config file
 #ifndef __MACOSX__
@@ -164,14 +162,18 @@ printf("DEBUG: default config done\n");
   rc_get_user_prefs();
 #endif
 
-printf("DEBUG: read rc done\n");  
+#ifdef OSX_DEBUG
+  printf("DEBUG: read rc done\n");  
+#endif
 
   ticable_DISPLAY_settings(options.console_mode);
 
   // Scan the command line
   scan_cmdline(argc, argv);
-  
-printf("DEBUG: scan cmdline done\n");
+
+#ifdef OSX_DEBUG  
+  printf("DEBUG: scan cmdline done\n");
+#endif  
   
   /* 
      Initialize i18n support 
@@ -198,7 +200,7 @@ printf("DEBUG: scan cmdline done\n");
 	  ticable_get_version());
   DISPLAY(_("libticalcs library, version %s\n"),
           ticalc_get_version());
-#ifdef HAVE_TIFFEP
+#ifdef HAVE_LIBTIFFEP
   DISPLAY(_("libtiffep library, version %s\n"),
 	  tiffep_get_version());
 #endif
@@ -210,16 +212,18 @@ printf("DEBUG: scan cmdline done\n");
     {
       fprintf(stderr, _("Library version <%s> mini required.\n"), 
 	      LIB_CABLE_VERSION_REQUIRED);
-      exit(-1);
+      //exit(-1);
     }
   if(strcmp(ticalc_get_version(), LIB_CALC_VERSION_REQUIRED) < 0)
     {
       fprintf(stderr, _("Library version <%s> mini required.\n"),
               LIB_CALC_VERSION_REQUIRED);
-      exit(-1);
+      //exit(-1);
     }
 
-printf("DEBUG: libs versions test done\n");
+#ifdef OSX_DEBUG
+  printf("DEBUG: libs versions test done\n");
+#endif
 
   /* Probe ports: bug under Win2k Pro */
   //ticable_detect_os(&os);
@@ -239,14 +243,18 @@ printf("DEBUG: libs versions test done\n");
       tilp_error(err);
     }
     
-printf("DEBUG: ticable INIT done\n");
+#ifdef OSX_DEBUG
+  printf("DEBUG: ticable INIT done\n");
+#endif
     
   /* 
      Initialize the libTIcalc library 
   */
   ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
 
-printf("DEBUG: ticalc INIT done\n");
+#ifdef OSX_DEBUG
+  printf("DEBUG: ticalc INIT done\n");
+#endif
 
   /* 
      List and load plugins 
@@ -404,10 +412,9 @@ int scan_cmdline(int argc, char **argv)
 	    filename_on_cmdline = g_strdup(p);
 	  //DISPLAY("Full filename to send: <%s>\n", filename_on_cmdline);
 	  fi = (struct file_info *)g_malloc(sizeof(struct file_info));
-	  fi->filename = (char *)g_malloc((strlen(filename_on_cmdline) + 1) * 
-					  sizeof(char));
-	  strcpy(fi->filename, filename_on_cmdline);
-	  clist_win.selection = g_list_prepend(clist_win.selection, (gpointer)fi);
+         fi->filename = g_strdup(filename_on_cmdline);
+         clist_win.selection = g_list_prepend(clist_win.selection, 
+                                              (gpointer)fi);
 		options.show_gui = FALSE;
 	}
       strcpy(msg, p);

@@ -302,7 +302,9 @@ struct gui_fncts gui_functions;
     NSTableColumn *column;
     ImageAndTextCell *imageAndTextCell;
 
+#ifdef OSX_DEBUG
     fprintf(stderr, "tilp => got awakeFromNib\n");
+#endif
 
     // Init the instance pointer
     objects_ptr->myTilpController = self;
@@ -655,8 +657,9 @@ struct gui_fncts gui_functions;
     
     if ([[pboard types] indexOfObject:@"NSFilenamesPboardType"] != NSNotFound)
         {
+#ifdef OSX_DEBUG
             fprintf(stderr, "DEBUG: DRAG: NSFilenamesPboardType is AVAILABLE\n");
-            
+#endif
             filenames = [pboard propertyListForType:@"NSFilenamesPboardType"];
     
             if (filenames != nil)
@@ -669,8 +672,9 @@ struct gui_fncts gui_functions;
                     
                     while ((file = [filesEnum nextObject]) != nil)
                         {
+#ifdef OSX_DEBUG
                             fprintf(stderr, "DEBUG: FILE : %s", [file cString]);
-                            
+#endif
                             while ((tiType = [tiTypesEnum nextObject]) != nil)
                                 {
                                     if ([[[file pathExtension] lowercaseString] isEqualToString:tiType])
@@ -725,7 +729,9 @@ struct gui_fncts gui_functions;
                             
                             if (fi == NULL)
                                 {
+#ifdef OSX_DEBUG
                                     fprintf(stderr, "DEBUG: fi is NULL !!\n");
+#endif
                                     return NO;
                                 }
                             

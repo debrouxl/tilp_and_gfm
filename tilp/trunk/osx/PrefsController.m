@@ -16,7 +16,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (void)awakeFromNib
 {
+#ifdef OSX_DEBUG
     fprintf(stderr, "prefs => got awakeFromNib\n");
+#endif
     
     // Init instance pointer
     objects_ptr->myPrefsController = self;

@@ -113,7 +113,9 @@ rc_get_user_prefs(void)
 
     if ([prefs objectForKey:@"Config"])
         {
+#ifdef OSX_DEBUG
             printf("DEBUG: got user prefs\n");
+#endif
             tilpConfig = [[[NSMutableDictionary alloc] initWithDictionary:[prefs objectForKey:@"Config"]] retain];
         }	
     else

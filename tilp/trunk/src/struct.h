@@ -59,13 +59,11 @@ struct plugin_info
 /* This struct is used by the CList window */
 extern struct clist_window
 {
-  //  GtkWidget *widget;
   GList *dirlist;
   gchar *cur_dir;
   GList *selection;
   GList *file_selection;
   int copy_cut;
-  //char win_dir[4*MAXCHARS];
 } clist_win;
 
 #ifndef __MACOSX__
@@ -85,7 +83,6 @@ extern struct installation_paths
 /* This struct is used by the CTree window */
 extern struct ctree_window
 {
-  //GtkWidget *widget;
   GList *varlist;
   char cur_folder[9];
   GList *selection;

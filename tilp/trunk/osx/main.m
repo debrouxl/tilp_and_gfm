@@ -67,14 +67,18 @@ int main(int argc, const char *argv[], char **arge)
   // mandatory to get the prefs in main_init()
   // because Cocoa is not yet initialized  
   prefsPool = [[NSAutoreleasePool alloc] init];
+#ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: autorelease pool initialized\n");
+#endif
   
   /* Init the tilp core */
   main_init(argc, argv, arge); // general
 
   // we no longer need the pool
   [prefsPool release];
+#ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: autorelease pool released\n");
+#endif
   prefsPool = nil;
 
   /* Listen TiFFEP commands */

@@ -54,9 +54,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 -(void)awakeFromNib
 {
     NSToolbar *toolbar;
-    
+
+#ifdef OSX_DEBUG
     fprintf(stderr, "menu => got awakeFromNib\n");
-    
+#endif
+
     // Init the instance pointer
     objects_ptr->myMenuController = self;
     
@@ -230,9 +232,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.2.4" forKey:@"Version"];
+    [aboutOptions setObject:@"0.3.0" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2001 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"4.51" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"4.73" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     

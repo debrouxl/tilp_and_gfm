@@ -22,13 +22,13 @@
 /* Some definitions */
 
 #ifdef __WIN32__
-# define TILP_VERSION "4.46" // For Win32
+# define TILP_VERSION "4.72" // For Win32
 #else
 # define TILP_VERSION VERSION
 #endif
 
-#define LIB_CABLE_VERSION_REQUIRED "2.0.0"
-#define LIB_CALC_VERSION_REQUIRED "1.6.4"
+#define LIB_CABLE_VERSION_REQUIRED "2.2.0"
+#define LIB_CALC_VERSION_REQUIRED "2.0.0"
 
 #endif
 

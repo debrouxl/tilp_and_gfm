@@ -90,6 +90,15 @@ int move_file(char *src, char *dst)
   return 0;
 }
 
+/* Remove '\r' characters for GtkText */
+void process_buffer(gchar *buf)
+{
+  gint i;
+  
+  for(i=0; i<strlen(buf); i++)
+    if(buf[i]=='\r') buf[i]=' ';
+}
+
 /*************************************/
 /* Extracting informations functions */
 /*************************************/
@@ -102,8 +111,7 @@ char *get_attributes(struct file_info f_info)
 {
   char *s;
 
-  s=(char *)g_malloc((12+1)*sizeof(char));
-  strcpy(s, " ---------- ");
+  s=g_strdup(" ---------- ");
 
   if(f_info.attrib & S_IRUSR) s[2]='r';
   if(f_info.attrib & S_IWUSR) s[3]='w';
@@ -187,8 +195,7 @@ void get_user_name(struct file_info f_info, char **name)
     }
   else
     {
-      *name=(char *)g_malloc((strlen(pwuid->pw_name)+1)*sizeof(char));
-      strcpy(*name, pwuid->pw_name);
+      *name=g_strdup(grpid->gr_name);
     }
 #else
   *name = NULL;
@@ -236,8 +243,7 @@ void get_date(struct file_info f_info, char **s)
       buffer[i-13]=*(p+i);
     }
   buffer[i-13]='\0';
-  *s=(char *)g_malloc((strlen(buffer)+1)*sizeof(char));
-  strcpy(*s, buffer);
+  *s=g_strdup(buffer);
 }
 
 /*
@@ -261,8 +267,7 @@ int get_home_path(char **path)
     {
       //fprintf(stderr, "User login name: %s\n", p->pw_name);
       //fprintf(stderr, "User's home directory: %s\n", p->pw_dir);
-      *path = (char *)g_malloc((strlen(p->pw_dir)+1)*sizeof(char));
-      strcpy(*path, p->pw_dir);
+      *path = g_strdup(p->pw_dir);
       return 1;
     }
 #endif
@@ -588,8 +593,7 @@ void l_directory_list()
 	 }
       //if(strcmp(file->d_name, ".")==0 || strcmp(file->d_name, "..")==0) { continue; }
       fi=(struct file_info *)g_malloc(sizeof(struct file_info));
-      fi->filename=(char *)g_malloc((strlen(file->d_name)+1)*sizeof(char));
-      strcpy(fi->filename, file->d_name);
+      fi->filename=g_strdup(file->d_name);
       if(stat(file->d_name, &f_info)!=0)
 	{
 	  fi->date=0;

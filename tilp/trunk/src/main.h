@@ -22,8 +22,8 @@
 /********************/
 /* Global variables */
 /********************/
-extern int is_active;
-extern int working_mode;
+extern int is_active;     // Set if a transfer is active
+extern int working_mode;  // GUI working mode
 
 /******************/
 /* Some functions */

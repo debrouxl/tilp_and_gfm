@@ -1,5 +1,7 @@
 /*
- * config header for TiLP on Mac OS X
+ * TiLP for Mac OS X
+ *
+ * Config header
  *
  * Licensed under the GNU GPL V2.
  */
@@ -15,8 +17,8 @@
 
 #define DIR_SEPARATOR "/"
 
-#define TILP_OSX_VERSION "0.2.4"
+#define TILP_OSX_VERSION "0.3.0"
 
-#define VERSION "4.51 OS X 0.2.4"
+#define VERSION "4.73 OS X 0.3.0"
 
 #endif /* !__CONFIG_H__ */

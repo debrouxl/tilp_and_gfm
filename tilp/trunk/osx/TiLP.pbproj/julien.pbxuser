@@ -195,11 +195,6 @@
 			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
-	F582712C01762AFA01000102 = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
-		};
-	};
 	F582712D01762AFA01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";

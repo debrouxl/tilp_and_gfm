@@ -30,9 +30,15 @@
 #include "win32/unistd.h"
 #endif
 
+#ifdef __MACOSX__
 #include <libticables/typedefs.h>
 #include <libticables/macros.h>
 #include <libticables/verbose.h>
+#include <glib/glib.h>
+#else
+#include "tilibs.h"
+#include <glib.h>
+#endif
 
 #include "img_fmt.h"
 

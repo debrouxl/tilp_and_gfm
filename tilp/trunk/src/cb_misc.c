@@ -84,23 +84,15 @@ int cb_default_config(void)
   options.screen_clipping = CLIPPED_SCREEN;
 
 #if defined(__UNIX__)
-  options.unzip_location = g_malloc((strlen("unzip") + 1) * sizeof(gchar));
-  strcpy(options.unzip_location, "unzip");
-  options.unzip_options = g_malloc((strlen("") + 1) * sizeof(gchar));
-  strcpy(options.unzip_options, "");
-  options.tar_location = g_malloc((strlen("tar") + 1) * sizeof(gchar));
-  strcpy(options.tar_location, "tar");
-  options.tar_options = g_malloc((strlen("") + 1) * sizeof(gchar));
-  strcpy(options.tar_options, "");
+  options.unzip_location = g_strdup("unzip");
+  options.unzip_options = g_strdup("");
+  options.tar_location = g_strdup("tar");
+  options.tar_options = g_strdup("");
 #elif defined(__WIN32__)
-  options.unzip_location = g_malloc((strlen("\"C:\\Program Files\\WinZip\\wzunzip.exe\"") + 1) * sizeof(gchar));
-  strcpy(options.unzip_location, "\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
-  options.unzip_options = g_malloc((strlen("") + 1) * sizeof(gchar));
-  strcpy(options.unzip_options, "");
-  options.tar_location = g_malloc((strlen("\"C:\\Program Files\\WinZip\\wzunzip.exe\"") + 1) * sizeof(gchar));
-  strcpy(options.tar_location, "\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
-  options.tar_options = g_malloc((strlen("") + 1) * sizeof(gchar));
-  strcpy(options.tar_options, "");
+  options.unzip_location = g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
+  options.unzip_options = g_strdup("");
+  options.tar_location = g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
+  options.tar_options = g_strdup("");
 #else
 options.unzip_location = NULL;
 options.unzip_options = NULL;
@@ -317,7 +309,7 @@ int initialize_paths(void)
 #else
   inst_paths.pixmap_dir = NULL;
 #endif
-  fprintf(stderr, "inst_paths.pixmap_dir = <%s>\n", inst_paths.pixmap_dir);
+  //DISPLAY("inst_paths.pixmap_dir = <%s>\n", inst_paths.pixmap_dir);
 
   /* 
      Init internationalization for Linux or Windows

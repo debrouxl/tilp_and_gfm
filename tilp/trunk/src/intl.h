@@ -27,8 +27,9 @@
 #  include <config.h>
 #endif
 
-#include <locale.h>
-//#include <glib.h>
+#ifdef HAVE_LOCALE_H
+# include <locale.h>
+#endif
 
 /*
  * Standard gettext macros.

@@ -671,10 +671,9 @@ int cb_receive_var(int *to_save)
 		}
 	      i++;
 	      info_update.main_percentage=(float)i/l;
-#ifdef GTK
 	      info_update.pbar();
-	      info_update.refresh();
-#endif
+              info_update.refresh();
+              
 	      ptr=ptr->next;
 	    }      
 	  //fclose(txt);
@@ -1045,7 +1044,7 @@ int cb_ams_to_rom(char *filename)
   /* Boot block */
   for(i=0; i<0x05; i++)
     fputc(0xff, fo);
-
+    
   offset = ftell(file);
   fseek(file, 0x8d, SEEK_CUR); // MSB of the PC reset vector
   data = fgetc(file);
@@ -1068,12 +1067,21 @@ int cb_ams_to_rom(char *filename)
   for(i=0x66; i<0x12000; i++)
     fputc(0xff, fo);
   
+  gif->create_pbar_type1(_("Converting..."));
+  
   /* FLASH upgrade */
   for(i=0; i<num_blocks; i++ )
     {
-      DISPLAY(".", i);
-      fflush(stdout);
-
+      info_update.percentage = (float)i/(num_blocks);
+      info_update.pbar();
+      if(info_update.cancel) 
+       {
+         gif->destroy_pbar();
+         fclose(file);
+         fclose(fo);
+         return -1;
+       }
+ 
       for(j=0; j<65536; j++)
  	{
 	  data=fgetc(file);
@@ -1081,18 +1089,27 @@ int cb_ams_to_rom(char *filename)
 	}
     }
 
-  DISPLAY(".");
-  fflush(stdout);
   last_block=flash_size % 65536;
   for(j=0; j<last_block; j++)
     {
       data=fgetc(file);
       fputc(data, fo);
     }
-  DISPLAY("\n");
-  DISPLAY("Completing to 2MB size\n");
+
+  info_update.percentage = (float)i/(num_blocks);
+  info_update.pbar();
+  if(info_update.cancel) 
+    {
+      gif->destroy_pbar();
+      fclose(file);
+      fclose(fo);
+      return -1;
+    }
+
   for(j=0x12000+flash_size; j<2*1024*1024; j++)
   fputc(0xff, fo);
+  
+  gif->destroy_pbar();
   fclose(file);
   fclose(fo);
 

@@ -44,6 +44,7 @@ int do_command(unsigned char *cmd, unsigned char *arg1);
 void prompt_commands(void);
 void print_dir(void);
 
+void display_dirlist(struct varinfo *varlist);
 
 int do_command(unsigned char *cmd, unsigned char *arg1) 
 {    
