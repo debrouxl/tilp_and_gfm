@@ -125,6 +125,11 @@
 			sepNavWindowFrame = "{{2, 125}, {750, 502}}";
 		};
 	};
+	F50E4E77017F17D701000103 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{275, 244}, {750, 502}}";
+		};
+	};
 	F50E4E7A017F181501000103 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";

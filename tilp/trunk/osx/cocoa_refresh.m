@@ -26,6 +26,9 @@ extern struct cocoa_pbars_ptr *pbars_ptr;
 #import <Cocoa/Cocoa.h>
 
 // FIXME OS X
+// cannot close the pbar by clicking on abort
+
+// FIXME OS X
 // see if we need to call displayIfNeeded when updating a progressIndicator
 
 void

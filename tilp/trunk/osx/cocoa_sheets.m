@@ -262,26 +262,18 @@ destroy_pbar(void)
  
     if ([pbar1Window isVisible])
         {
-            [pbar1Window close];
-            
-            [NSApp stopModal];
+             [NSApp stopModal];
         }
     else if ([pbar3Window isVisible])
         {
-            [pbar3Window close];
-            
             [NSApp stopModal];
         }
     else if ([pbar4Window isVisible])
         {
-            [pbar4Window close];
-            
             [NSApp stopModal];
         }
     else if ([pbar5Window isVisible])
         {
-            [pbar5Window close];
-            
             [NSApp stopModal];
         }
     else

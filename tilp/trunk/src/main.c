@@ -347,7 +347,7 @@ int help(void)
 */
 int version(void)
 {
-  fprintf(stdout, _("TiLP - Version %s, (C) Romain Lievin 1999-2001\n"), 
+  fprintf(stdout, _("TiLP - Version %s, (C) 1999-2001 Romain LIEVIN, Julien BLACHE\n"), 
 	  TILP_VERSION);
 #ifdef __MACOSX__
   fprintf(stdout, _("Mac OS X port Version %s, (C) 2001 Julien BLACHE\n"),

@@ -1,12 +1,16 @@
+#include <glib/glib.h>
+
 #include "../src/cb_misc.h"
 #include "../src/cb_calc.h"
 #include "../src/struct.h"
 #include "../src/gui_indep.h"
+#include "../src/error.h"
 #include "../src/intl.h"
 #include "../src/defs.h"
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
+#include "cocoa_sheets.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -337,13 +341,216 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)romDump:(id)sender
 {
     // FIXME OS X
+    // file extensions, proposed filenames...
+    
     // we need a fileselection here
     // then call cb_ams_to_rom(char *filename) from cb_calc.c
     
+    NSSavePanel *sp;
+    NSString *proposedFile;
+    
+    int ret;
+    int err = 0;
+    gchar tmp_filename[MAXCHARS]; // I don't like that...
+    
     if (is_active)
         return;
-        
-    // see gtk_tilp_cb.c...
+ 
+    ret = gif->user2_box(_("Warning"), 
+                         _("An assembly program will be sent to your calc if you decide to continue. Consider doing a backup before."),
+                         _("Proceed"), 
+                         _("Cancel"));
+    if(ret != BUTTON1)
+        return;
+  
+    switch(options.lp.calc_type)
+        {
+            case CALC_TI83:
+            case CALC_TI83P:
+                ret = gif->user2_box(_("Information"), 
+                                     _("An assembly program is needed to perform a ROM dump. You must AShell installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run it on your calc."),
+                                     _("Proceed"), 
+                                     _("Cancel"));
+                switch(ret)
+                    {
+                        case BUTTON1:
+                            gif->create_pbar_type5(_("ROM dump"), 
+                                                   _("Receiving bytes"));
+	  
+                            strcpy(tmp_filename, g_get_tmp_dir());
+                            strcat(tmp_filename, DIR_SEPARATOR);
+                            strcat(tmp_filename, "tilp.ROMdump");
+
+                            destroy_pbar();
+                            if(tilp_error(err))
+                                return;	      
+
+                            [sp setRequiredFileType:@"dunno"];
+                            [sp setTitle:@"Save ROM dump as..."];
+                            proposedFile = @"romdump.dunno";
+
+                            [sp beginSheetForDirectory:NSHomeDirectory()
+                                    file:proposedFile
+                                    modalForWindow:mainWindow
+                                    modalDelegate:BoxesController
+                                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                                    contextInfo:sp];
+                                    
+                            break;
+                        default:
+                            return; 
+                    }
+                break;
+            case CALC_TI85:
+                ret = gif->user2_box(_("Information"), 
+                                     _("An assembly program is needed to perform a ROM dump. You must have ZShell or Usgard installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run this program."),
+                                     _("Proceed"), 
+                                     _("Cancel"));
+                switch(ret)
+                    {	
+                        case BUTTON1:
+                            ret = gif->user3_box(_("Shell type"), 
+                                                 _("Select a shell"), 
+                                                 _("ZShell"), _("Usgard"), _("Cancel"));
+                            if(ret == 3)
+                                return;
+                            else	
+                                {
+                                    gif->create_pbar_type5(_("ROM dump"), 
+                                                           _("Receiving bytes"));
+	      
+                                    strcpy(tmp_filename, g_get_tmp_dir());
+                                    strcat(tmp_filename, DIR_SEPARATOR);
+                                    strcat(tmp_filename, "tilp.ROMdump");
+
+                                    destroy_pbar();
+                                    if(tilp_error(err))
+                                        return;
+                                        
+                                    [sp setRequiredFileType:@"dunno"];
+                                    [sp setTitle:@"Save ROM dump as..."];
+                                    proposedFile = @"romdump.dunno";
+
+                                    [sp beginSheetForDirectory:NSHomeDirectory()
+                                        file:proposedFile
+                                        modalForWindow:mainWindow
+                                        modalDelegate:BoxesController
+                                        didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                                        contextInfo:sp];
+                                }
+                            break;	
+                        default:
+                            return; 
+                    }
+                break;
+            case CALC_TI86:
+                ret = gif->user2_box(_("Information"), 
+                                     _("An assembly program is required to perform a ROM dump. You must have a shell installed on your calculator to run this program.\nTiLP will transfer this program on your calc, then wait until you run it."),
+                                     _("Procced"), 
+                                     _("Cancel"));
+                switch(ret)
+                    {
+                        case BUTTON1:
+                            gif->create_pbar_type5(_("ROM dump"), 
+                                                   _("Receiving bytes"));
+	  
+                            strcpy(tmp_filename, g_get_tmp_dir());
+                            strcat(tmp_filename, DIR_SEPARATOR);
+                            strcat(tmp_filename, "tilp.ROMdump");
+	  
+                            destroy_pbar();
+                            if(tilp_error(err))
+                                return;
+                                
+                            
+                            [sp setRequiredFileType:@"dunno"];
+                            [sp setTitle:@"Save ROM dump as..."];
+                            proposedFile = @"romdump.dunno";
+
+                            [sp beginSheetForDirectory:NSHomeDirectory()
+                                file:proposedFile
+                                modalForWindow:mainWindow
+                                modalDelegate:BoxesController
+                                didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                                contextInfo:sp];
+
+                            break;
+                        default:
+                            return; 
+                    }
+                break;
+            case CALC_TI89:
+            case CALC_TI92P:
+                gif->create_pbar_type5(_("ROM dump"), 
+                                       _("Receiving bytes"));
+
+                strcpy(tmp_filename, g_get_tmp_dir());
+                strcat(tmp_filename, DIR_SEPARATOR);
+                strcat(tmp_filename, "tilp.ROMdump");
+   	      
+                destroy_pbar();
+                if(tilp_error(err))
+                    return;	      
+                    
+                [sp setRequiredFileType:@"dunno"];
+                [sp setTitle:@"Save ROM dump as..."];
+                proposedFile = @"romdump.dunno";
+                
+                [sp beginSheetForDirectory:NSHomeDirectory()
+                    file:proposedFile
+                    modalForWindow:mainWindow
+                    modalDelegate:BoxesController
+                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                    contextInfo:sp];
+
+                break;
+            case CALC_TI92:
+                ret = gif->user2_box(_("Information"), 
+                                     _("The FargoII shell must be installed on your calc to perform a ROM dump."),
+                                     _("Proceed"), 
+                                     _("Cancel"));
+                switch(ret)
+                    {
+                        case BUTTON1:
+                            ret = gif->user3_box(_("ROM size"), 
+                                                 _("Select the size of your ROM or cancel"), 
+                                                 _("1Mb"), _("2 Mb"), _("Cancel"));
+                        if(ret == 3)
+                            return;
+                        else
+                            {
+                                printf(_("ROM size: %i Mb\n"), ret);
+                                gif->create_pbar_type5(_("ROM dump"), 
+                                                       _("Receiving bytes"));
+
+                                strcpy(tmp_filename, g_get_tmp_dir());
+                                strcat(tmp_filename, DIR_SEPARATOR);
+                                strcat(tmp_filename, "tilp.ROMdump");
+	      
+                                destroy_pbar();
+                                if(tilp_error(err))
+                                    return;	      
+                                    
+                                [sp setRequiredFileType:@"dunno"];
+                                [sp setTitle:@"Save ROM dump as..."];
+                                proposedFile = @"romdump.dunno";
+
+                                [sp beginSheetForDirectory:NSHomeDirectory()
+                                    file:proposedFile
+                                    modalForWindow:mainWindow
+                                    modalDelegate:BoxesController
+                                    didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
+                                    contextInfo:sp];
+                            }	  
+                        break;
+                    default: 
+                        return;
+                    }
+                break;
+            default:
+                DISPLAY(_("Unsupported ROM dump\n"));
+                break;
+        }
 }
 
 - (IBAction)romVersion:(id)sender
