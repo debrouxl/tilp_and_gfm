@@ -54,7 +54,7 @@
 
 #ifdef __WIN32__
 static BOOL alloc_console_called = FALSE;
-HANDLE hConsole;
+HANDLE hConsole = (HANDLE)-1;
 #endif
 
 static FILE *flog = NULL;
@@ -66,6 +66,10 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
         char buffer[128];
         int cnt;
         DWORD nWritten;
+
+        // if console, do verbose
+        if(options.console_mode == FALSE)
+                goto skip_console;
 
         // open console once
         if (alloc_console_called == FALSE) {
@@ -86,7 +90,7 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	switch(level) {
 	case 1: cnt = sprintf(buffer, _("wrn: ")); break;
 	case 2: cnt = sprintf(buffer, _("err: ")); break;
-	default: cnt = 0; break:
+	default: cnt = 0; break;
 	}
 	WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
 
@@ -109,8 +113,11 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	//
 	vfprintf(stdout, format, ap);
 #endif
+skip_console:
+
 	if (flog == NULL) {
     		flog = fopen(LOG_FILE, "wt");
+                //flog = fopen(inst_paths.base_dir, "wt");
 	} else {
 	      	if(print_domain) {
 			fprintf(flog, domain);

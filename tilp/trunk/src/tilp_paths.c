@@ -53,8 +53,10 @@ static void init_linux_paths(void)
 	    g_strconcat(inst_paths.base_dir, "icons/", NULL);
 	inst_paths.help_dir =
 	    g_strconcat(inst_paths.base_dir, "help/", NULL);
-	inst_paths.manpage_dir = g_strconcat(inst_paths.base_dir, NULL);
-	inst_paths.plugin_dir = g_strdup(PLUGIN_DIR);
+	inst_paths.manpage_dir = 
+            g_strconcat(inst_paths.base_dir, "", NULL);
+	inst_paths.plugin_dir = 
+            g_strdup(PLUGIN_DIR);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade/", NULL);
 
@@ -88,6 +90,7 @@ static void init_win32_paths(void)
 	inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
 	g_free(dirname);
 	free(sBuffer);  // malloc -> free
+
 	inst_paths.pixmap_dir =
 	    g_strconcat(inst_paths.base_dir, "pixmaps\\", NULL);
 	inst_paths.icon_dir =
