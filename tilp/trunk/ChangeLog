@@ -3,4 +3,6 @@
 * 20011020 : v0.0.7
 	* wiped out gtk_* files from CVS.
 	* core integration goes on...
+* 20011020 : v0.0.8
+	* finished integration, step 1.
 	
