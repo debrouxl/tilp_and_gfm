@@ -45,6 +45,9 @@ gint display_manpage_dbox()
 	gint len = 0;
 	struct stat stbuf;
 	gint result;
+#if 0
+	GtkTextIter start, end;
+#endif
 
 	filename =
 	    g_strconcat(inst_paths.manpage_dir, "Manpage.txt", NULL);
@@ -70,16 +73,15 @@ gint display_manpage_dbox()
 	dbox = glade_xml_get_widget(xml, "manpage_dbox");
 	text = glade_xml_get_widget(xml, "textview1");
 	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
-
-/*
+#if 0
 	gtk_text_buffer_get_bounds(txtbuf, &start, &end);
 	gtk_text_buffer_delete(txtbuf, &start, &end);
 	gtk_text_view_set_left_margin(GTK_TEXT_VIEW(text), 15);
-*/
+#endif
 	gtk_text_buffer_set_text(txtbuf, buffer, len);
 	gtk_widget_realize(dbox);
 	gtk_widget_show(dbox);
-	gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
+	//gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
 
 	while (gtk_events_pending())
 		gtk_main_iteration();

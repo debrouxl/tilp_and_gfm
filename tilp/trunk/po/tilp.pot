@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-25 22:36+0100\n"
+"POT-Creation-Date: 2004-04-03 15:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,11 +53,11 @@ msgstr ""
 msgid "overwrite"
 msgstr ""
 
-#: src/action.c:301 src/tilp_files.c:695 src/tilp_slct.c:119
+#: src/action.c:301 src/tilp_files.c:694 src/tilp_slct.c:119
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:301 src/tilp_files.c:696
+#: src/action.c:301 src/tilp_files.c:695
 msgid "New name: "
 msgstr ""
 
@@ -201,7 +201,7 @@ msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:237
-#: src/tilp_calcs.c:385 src/tilp_files.c:685 src/tilp_slct.c:89
+#: src/tilp_calcs.c:385 src/tilp_files.c:684 src/tilp_slct.c:89
 #: src/tilp_slct.c:92
 msgid "Warning"
 msgstr ""
@@ -214,9 +214,9 @@ msgstr ""
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
 #: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:334 src/tilp_calcs.c:380
 #: src/tilp_calcs.c:576 src/tilp_calcs.c:582 src/tilp_calcs.c:588
-#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:733
-#: src/tilp_files.c:765 src/tilp_files.c:784 src/tilp_files.c:803
-#: src/tilp_main.c:318 src/tilp_main.c:327 src/tilp_misc.c:167
+#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
+#: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
+#: src/tilp_main.c:319 src/tilp_main.c:328 src/tilp_misc.c:167
 #: src/tilp_misc.c:292 src/tilp_rcfile.c:557
 msgid "Error"
 msgstr ""
@@ -512,38 +512,38 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/tilp_files.c:682
+#: src/tilp_files.c:681
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:686
+#: src/tilp_files.c:685
 msgid "Overwrite "
 msgstr ""
 
-#: src/tilp_files.c:686
+#: src/tilp_files.c:685
 msgid "Rename "
 msgstr ""
 
-#: src/tilp_files.c:687
+#: src/tilp_files.c:686
 msgid "Skip "
 msgstr ""
 
-#: src/tilp_files.c:735
+#: src/tilp_files.c:734
 msgid "Unable to move the temporary file.\n"
 msgstr ""
 
-#: src/tilp_files.c:764 src/tilp_files.c:801
+#: src/tilp_files.c:763 src/tilp_files.c:800
 msgid "Chdir error.\n"
 msgstr ""
 
-#: src/tilp_files.c:765 src/tilp_files.c:804 src/tilp_misc.c:167
+#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:167
 msgid "Unable to change directory."
 msgstr ""
 
-#: src/tilp_files.c:785
+#: src/tilp_files.c:784
 msgid "You can not go outside of your HOME directory."
 msgstr ""
 
@@ -576,92 +576,96 @@ msgid "-link=...     give the link cable type\n"
 msgstr ""
 
 #: src/tilp_main.c:84
-msgid "-dev_port=... give the device port\n"
+msgid "-port=...     give the port number\n"
 msgstr ""
 
 #: src/tilp_main.c:85
-msgid "-adr_port=... give the address of the port\n"
-msgstr ""
-
-#: src/tilp_main.c:86
 msgid "-timeout=...  give the time out in seconds\n"
 msgstr ""
 
-#: src/tilp_main.c:87
+#: src/tilp_main.c:86
 msgid "-delay=...    give the delay in microseconds\n"
 msgstr ""
 
-#: src/tilp_main.c:89
+#: src/tilp_main.c:87
+msgid "-dev_port=... give the device port (override 'port=')\n"
+msgstr ""
+
+#: src/tilp_main.c:88
+msgid "-adr_port=... give the address of the port (override 'port=')\n"
+msgstr ""
+
+#: src/tilp_main.c:90
 msgid "filename      a filename to send (console or GTK+)\n"
 msgstr ""
 
-#: src/tilp_main.c:91
+#: src/tilp_main.c:92
 msgid "See the manpage for more informations...\n"
 msgstr ""
 
-#: src/tilp_main.c:106
+#: src/tilp_main.c:107
 #, c-format
 msgid "TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:110
+#: src/tilp_main.c:111
 msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 msgstr ""
 
-#: src/tilp_main.c:115
+#: src/tilp_main.c:116
 #, c-format
 msgid ""
 "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:119
+#: src/tilp_main.c:120
 #, c-format
 msgid "Built on %s %s\n"
 msgstr ""
 
-#: src/tilp_main.c:120
+#: src/tilp_main.c:121
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr ""
 
-#: src/tilp_main.c:121
+#: src/tilp_main.c:122
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr ""
 
-#: src/tilp_main.c:316
+#: src/tilp_main.c:317
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:319
+#: src/tilp_main.c:320
 msgid "Libticables: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:325
+#: src/tilp_main.c:326
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:328
+#: src/tilp_main.c:329
 msgid "Libticalcs: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:352
+#: src/tilp_main.c:353
 msgid "Working mode: command line.\n"
 msgstr ""
 
-#: src/tilp_main.c:355
+#: src/tilp_main.c:356
 msgid "Working mode: console (prompt).\n"
 msgstr ""
 
-#: src/tilp_main.c:358
+#: src/tilp_main.c:359
 msgid "Working mode: GTK+.\n"
 msgstr ""
 
-#: src/tilp_main.c:361
+#: src/tilp_main.c:362
 msgid "Working mode: MFC.\n"
 msgstr ""
 
-#: src/tilp_main.c:364
+#: src/tilp_main.c:365
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr ""
 
@@ -1539,16 +1543,15 @@ msgid "Receiving files"
 msgstr ""
 
 #.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
 #.
-#: glade/manpage-2.str:8
+#: glade/manpage-2.str:7
 msgid "Page of Manual"
 msgstr ""
 
-#: glade/manpage-2.str:9
+#: glade/manpage-2.str:8
 msgid "Cannot find the manpage file."
 msgstr ""
 

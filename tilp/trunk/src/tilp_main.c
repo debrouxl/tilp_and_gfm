@@ -81,10 +81,11 @@ void help(void)
 	DISPLAY(_("-gui=...      use the specified GUI (console, gtk)\n"));
 	DISPLAY(_("-calc=...     give the calculator type\n"));
 	DISPLAY(_("-link=...     give the link cable type\n"));
-	DISPLAY(_("-dev_port=... give the device port\n"));
-	DISPLAY(_("-adr_port=... give the address of the port\n"));
+	DISPLAY(_("-port=...     give the port number\n"));
 	DISPLAY(_("-timeout=...  give the time out in seconds\n"));
 	DISPLAY(_("-delay=...    give the delay in microseconds\n"));
+        DISPLAY(_("-dev_port=... give the device port (override 'port=')\n"));
+        DISPLAY(_("-adr_port=... give the address of the port (override 'port=')\n"));
 	DISPLAY("\n");
 	DISPLAY(_("filename      a filename to send (console or GTK+)\n"));
 	DISPLAY("\n");
@@ -230,6 +231,29 @@ int scan_cmdline(int argc, const char **argv)
 				options.lp.link_type = LINK_UGL;
 			if (!strcmp(q, "slv"))
 				options.lp.link_type = LINK_SLV;
+		}
+		if (strstr(arg, "port=")) {
+			int port = USER_PORT;
+			port = (int) atol(&arg[5]);
+			switch(options.lp.link_type)
+			{
+			case LINK_PAR: 
+				options.lp.port = PARALLEL_PORT_1 + port;
+				break;
+			case LINK_SER:
+			case LINK_TGL: 
+				options.lp.port = SERIAL_PORT_1 + port;
+				break;
+			case LINK_SLV: 
+				options.lp.port = USB_PORT_1 + port;
+				break;
+			case LINK_TIE:
+			case LINK_VTI:
+				options.lp.port = VIRTUAL_PORT_1 + port;
+				break;
+			default:
+				break;
+			}
 		}
 		if (strstr(arg, "dev_port="))
 			strcpy(options.lp.device, arg + 9);

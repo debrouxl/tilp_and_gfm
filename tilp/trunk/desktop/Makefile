@@ -118,7 +118,7 @@ TIFILES_CFLAGS = -I/usr/include/tilp
 TIFILES_LIBS = -ltifiles  
 USE_INCLUDED_LIBINTL = no
 USE_NLS = yes
-VERSION = 6.69
+VERSION = 6.70
 locale_dir = ${prefix}/share/locale
 tilp_glade_dir = ${prefix}/share/tilp/glade
 tilp_help_dir = ${prefix}/share/tilp/help
@@ -279,6 +279,11 @@ install: $(FILES)
 
 uninstall: $(FILES)
 	@echo Removing desktop files...
+	rm -f /usr/share/application-registry/tilp.application
+	rm -f /usr/share/mime-info/tilp.*
+	rm -f /usr/share/applications/TiLP.desktop
+	rm -f /usr/share/applnk/Edutainment/Mathematics/tilp.desktop
+	rm -f /usr/share/mimelnk/application/x-tilp.desktop
 	@echo Done.
 
 dos2unix:
