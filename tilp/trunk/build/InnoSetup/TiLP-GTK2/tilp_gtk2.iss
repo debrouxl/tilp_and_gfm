@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP
-AppVerName=TiLP 6.72
+AppVerName=TiLP 6.74
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
