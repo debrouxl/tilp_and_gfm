@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-10 17:31+0200\n"
+"POT-Creation-Date: 2004-04-17 16:28+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -121,7 +121,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:390 src/tilp_files.c:684 src/tilp_slct.c:89
+#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:89
 #: src/tilp_slct.c:92
 msgid "Warning"
 msgstr "Warnung"
@@ -132,8 +132,8 @@ msgstr "Frage"
 
 #. gif->destroy_pbar();
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
-#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:339 src/tilp_calcs.c:385
-#: src/tilp_calcs.c:581 src/tilp_calcs.c:587 src/tilp_calcs.c:593
+#: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:341 src/tilp_calcs.c:391
+#: src/tilp_calcs.c:590 src/tilp_calcs.c:596 src/tilp_calcs.c:602
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
 #: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
@@ -151,26 +151,26 @@ msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
 
-#: src/labels.c:69
+#: src/labels.c:102
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr "Freier Speicher: %u Bytes"
 
-#: src/labels.c:73
+#: src/labels.c:106
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr "Benutzter Speicher: %u Bytes"
 
-#: src/labels.c:77
+#: src/labels.c:110
 #, c-format
 msgid "Memory used: %s"
 msgstr "Benutzter Speicher: %s"
 
-#: src/labels.c:77
+#: src/labels.c:110
 msgid "N/A"
 msgstr "N/A"
 
-#: src/labels.c:82
+#: src/labels.c:117
 #, c-format
 msgid "Current directory: %s"
 msgstr "Aktuelles Verzeichnis: %s"
@@ -221,15 +221,15 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr "Pluginmechanismus: System noch nicht definiert!"
 
-#: src/popup.c:368 src/tilp.c:535 glade/clist_rbm-2.str:19
+#: src/popup.c:368 src/tilp.c:542 glade/clist_rbm-2.str:19
 msgid "Make a new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/popup.c:368 src/tilp.c:535 src/tilp_slct.c:119
+#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:119
 msgid "Name: "
 msgstr "Name: "
 
-#: src/popup.c:369 src/tilp.c:536
+#: src/popup.c:369 src/tilp.c:543
 msgid "new_directory"
 msgstr "neues_verzeichnis"
 
@@ -258,13 +258,13 @@ msgstr "Pixmapdatei nicht gefunden: %s"
 msgid "Status: not connected."
 msgstr " Status: nicht verbunden."
 
-#: src/tilp.c:247
+#: src/tilp.c:246
 msgid ""
 "It's not a FLASH upgrade or this FLASH file is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp.c:262
+#: src/tilp.c:261
 msgid "Manual_en.html"
 msgstr ""
 
@@ -351,18 +351,18 @@ msgid ""
 "3: TiLP will automatically launch the program (if you are in HOME).\n"
 msgstr ""
 
-#: src/tilp_calcs.c:341
+#: src/tilp_calcs.c:343
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:353 src/tilp_calcs.c:358 src/tilp_calcs.c:402
-#: src/tilp_calcs.c:407
+#: src/tilp_calcs.c:355 src/tilp_calcs.c:360 src/tilp_calcs.c:408
+#: src/tilp_calcs.c:413
 msgid "Flash"
 msgstr "Flash"
 
-#: src/tilp_calcs.c:381
+#: src/tilp_calcs.c:388
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -374,49 +374,49 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:387
+#: src/tilp_calcs.c:393
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:440
+#: src/tilp_calcs.c:449
 msgid "Receiving application(s)"
 msgstr "Empfange Anwendung(en)"
 
-#: src/tilp_calcs.c:529
+#: src/tilp_calcs.c:538
 msgid "Converting..."
 msgstr "Konvertiere..."
 
-#: src/tilp_calcs.c:582
+#: src/tilp_calcs.c:591
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:589
+#: src/tilp_calcs.c:598
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:594
+#: src/tilp_calcs.c:603
 msgid "There is an unknown file type in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:608
+#: src/tilp_calcs.c:617
 msgid "Sending group file"
 msgstr "Sende Gruppendatei"
 
-#: src/tilp_calcs.c:612
+#: src/tilp_calcs.c:621
 msgid "Sending variable"
 msgstr "Sende Variable"
 
-#: src/tilp_calcs.c:614
+#: src/tilp_calcs.c:623
 msgid "Sending variables"
 msgstr "Sende Variablen"
 
-#: src/tilp_calcs.c:681 src/tilp_calcs.c:802
+#: src/tilp_calcs.c:690 src/tilp_calcs.c:811
 msgid "Receiving variable(s)"
 msgstr "Empfange Variable(n)"
 
-#: src/tilp_calcs.c:803
+#: src/tilp_calcs.c:812
 msgid "Waiting..."
 msgstr "Warte..."
 

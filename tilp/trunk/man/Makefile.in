@@ -132,7 +132,7 @@ tilp_plugin_dir = @tilp_plugin_dir@
 
 man_MANS = tilp.1
 
-EXTRA_DIST = $(man_MANS) cleaner.c Manpage.txt
+EXTRA_DIST = $(man_MANS) cleaner.c dos2unix.c Manpage.txt
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
 CONFIG_CLEAN_FILES = 
@@ -290,8 +290,9 @@ view: $(man_MANS)
 dist_win: $(man_MANS)
 	groff -Tascii -man $(man_MANS) > Manpage
 	gcc cleaner.c -o cleaner
+	gcc dos2unix.c -o dos2unix
 	./cleaner Manpage
-	dos2unix Manpage.txt
+	./dos2unix Manpage.txt
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

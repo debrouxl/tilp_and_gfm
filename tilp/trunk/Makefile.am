@@ -2,9 +2,8 @@
 
 # subdirectories to scan
 SUBDIRS = \
-	desktop glade help icons man misc pixmaps src \
-	plugins registry \
-	po intl
+	desktop glade help icons intl man misc pixmaps po \
+	src plugins registry
 
 EXTRA_DIST = \
 	ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL* NEWS 	\

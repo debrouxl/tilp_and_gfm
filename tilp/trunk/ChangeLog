@@ -14,9 +14,14 @@ To do:
 
 - 08/04/2004, version 6.71 (3.8.1, 0.5.8, 4.5.3): roms
         Redirection of stdout/stderr by callbacks and minor improvements.
-		Timeout has been increased to 30s instead of 10s during FLASH apps/os sending
-		to avoid garbage collection.
-	
+	Timeout has been increased to 30s instead of 10s during FLASH apps/os 
+	sending	to avoid garbage collection.
+	SilverLink/Win32 support is ok for all operations.
+	SilverLink/Linux support is ok for all operations except sending OS.
+	Bug: formatting of path in labels.c
+	Bug: wrong handling of TIB files.
+	Fixed many other bugs.
+		
 - 24/03/2004, version 6.70 (3.8.0, 0.5.7, 4.5.2): roms
 	Added menu entry and mime types for KDE & Gnome.
 	Bug fix: creation of the '/usr/lib/tilp' directory.
@@ -25,8 +30,6 @@ To do:
 	Added access to log file from menu.
 	GUI clean-up.
 	configure.in requires latest versions for _all_ libs. To be sure !
-	Bug: formatting of path in labels.c
-	Bug: wrong handling of TIB files.
 	
 - 17/03/2004, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms
 	Use new libticalcs (removed GLib dependancies) thus libticalcs-4 is no 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-10 17:28+0200\n"
+"POT-Creation-Date: 2004-04-17 16:28+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Sylvain Garsault <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: Français <kde-francophone@kde.org>\n"
@@ -120,7 +120,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:390 src/tilp_files.c:684 src/tilp_slct.c:89
+#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:89
 #: src/tilp_slct.c:92
 msgid "Warning"
 msgstr "Avertissement"
@@ -131,8 +131,8 @@ msgstr "Question"
 
 #. gif->destroy_pbar();
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
-#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:339 src/tilp_calcs.c:385
-#: src/tilp_calcs.c:581 src/tilp_calcs.c:587 src/tilp_calcs.c:593
+#: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:341 src/tilp_calcs.c:391
+#: src/tilp_calcs.c:590 src/tilp_calcs.c:596 src/tilp_calcs.c:602
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
 #: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
@@ -149,26 +149,26 @@ msgstr "Impossible de supprimer les fichiers temporaires.\n"
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
-#: src/labels.c:69
+#: src/labels.c:102
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr "Mémoire libre : %u octets"
 
-#: src/labels.c:73
+#: src/labels.c:106
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr "Mémoire utilisée : %u octets"
 
-#: src/labels.c:77
+#: src/labels.c:110
 #, c-format
 msgid "Memory used: %s"
 msgstr "Mémoire utilisée : %s"
 
-#: src/labels.c:77
+#: src/labels.c:110
 msgid "N/A"
 msgstr "N/A"
 
-#: src/labels.c:82
+#: src/labels.c:117
 #, c-format
 msgid "Current directory: %s"
 msgstr "Dossier courant : %s"
@@ -227,15 +227,15 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr "Système de greffons : système pas encore défini !"
 
-#: src/popup.c:368 src/tilp.c:535 glade/clist_rbm-2.str:19
+#: src/popup.c:368 src/tilp.c:542 glade/clist_rbm-2.str:19
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: src/popup.c:368 src/tilp.c:535 src/tilp_slct.c:119
+#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:119
 msgid "Name: "
 msgstr "Nom"
 
-#: src/popup.c:369 src/tilp.c:536
+#: src/popup.c:369 src/tilp.c:543
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
@@ -265,7 +265,7 @@ msgstr "Impossible de trouver le fichier pixmap : %s"
 msgid "Status: not connected."
 msgstr "État : déconnecté."
 
-#: src/tilp.c:247
+#: src/tilp.c:246
 msgid ""
 "It's not a FLASH upgrade or this FLASH file is not intended for this "
 "calculator type."
@@ -273,7 +273,7 @@ msgstr ""
 "Il ne s'agit pas d'une mise à jour FLASH ou ce fichier FLASH n'est pas "
 "destiné à ce type de calculatrice."
 
-#: src/tilp.c:262
+#: src/tilp.c:261
 msgid "Manual_en.html"
 msgstr "Manual_fr.html"
 
@@ -386,7 +386,7 @@ msgstr ""
 "2: TiLP transférera automatiquement le programme en ROM\n"
 "3: TiLP lancera automatiquement le programme (si vous êtes dans HOME).\n"
 
-#: src/tilp_calcs.c:341
+#: src/tilp_calcs.c:343
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
@@ -394,12 +394,12 @@ msgstr ""
 "Il ne s'agit pas d'une application FLASH ou cette application FLASH n'est "
 "pas destinée à ce type de calculatrice."
 
-#: src/tilp_calcs.c:353 src/tilp_calcs.c:358 src/tilp_calcs.c:402
-#: src/tilp_calcs.c:407
+#: src/tilp_calcs.c:355 src/tilp_calcs.c:360 src/tilp_calcs.c:408
+#: src/tilp_calcs.c:413
 msgid "Flash"
 msgstr "Flash"
 
-#: src/tilp_calcs.c:381
+#: src/tilp_calcs.c:388
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -420,7 +420,7 @@ msgstr ""
 "Les utilisateurs de TI73/83+ devront éteindre la calculatrice puis appuyer "
 "sur une touche."
 
-#: src/tilp_calcs.c:387
+#: src/tilp_calcs.c:393
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
@@ -428,45 +428,46 @@ msgstr ""
 "Il ne s'agit pas d'une mise à jour FLASH ou cette mise à jour FLASH n'est "
 "pas destinée à ce type de calculatrice."
 
-#: src/tilp_calcs.c:440
+#: src/tilp_calcs.c:449
 msgid "Receiving application(s)"
 msgstr "Réception d'une (des) application(s)"
 
-#: src/tilp_calcs.c:529
+#: src/tilp_calcs.c:538
 msgid "Converting..."
 msgstr "Conversion..."
 
-#: src/tilp_calcs.c:582
+#: src/tilp_calcs.c:591
 msgid "You can not send both variables and applications simultaneously."
-msgstr "Vous ne pouvez pas envoyer à la fois des variables et des applications."
+msgstr ""
+"Vous ne pouvez pas envoyer à la fois des variables et des applications."
 
-#: src/tilp_calcs.c:589
+#: src/tilp_calcs.c:598
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 "Vous ne pouvez pas envoyer de sauvegarde de cette façon. Utilisez plutôt le "
 "bouton \"Restaurer\"."
 
-#: src/tilp_calcs.c:594
+#: src/tilp_calcs.c:603
 msgid "There is an unknown file type in the selection."
 msgstr "Il y a un type de fichier inconnu dans la sélection."
 
-#: src/tilp_calcs.c:608
+#: src/tilp_calcs.c:617
 msgid "Sending group file"
 msgstr "Envoi des fichiers groupés"
 
-#: src/tilp_calcs.c:612
+#: src/tilp_calcs.c:621
 msgid "Sending variable"
 msgstr "Envoi d'une variable"
 
-#: src/tilp_calcs.c:614
+#: src/tilp_calcs.c:623
 msgid "Sending variables"
 msgstr "Envoi des variables"
 
-#: src/tilp_calcs.c:681 src/tilp_calcs.c:802
+#: src/tilp_calcs.c:690 src/tilp_calcs.c:811
 msgid "Receiving variable(s)"
 msgstr "Réception de variable(s)"
 
-#: src/tilp_calcs.c:803
+#: src/tilp_calcs.c:812
 msgid "Waiting..."
 msgstr "En attente..."
 
@@ -592,7 +593,8 @@ msgstr "Portage FreeBSD, (c) 2003-2004 Tijl Coosemans\n"
 
 #: src/tilp_main.c:112
 #, c-format
-msgid "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
+msgid ""
+"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 "Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp."
 "info>\n"
@@ -777,7 +779,8 @@ msgstr ""
 
 #: src/tilp_prompt.c:179
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
-msgstr "Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
+msgstr ""
+"Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
 
 #: src/tilp_rcfile.c:50
 #, c-format
@@ -795,7 +798,8 @@ msgstr ""
 
 #: src/tilp_rcfile.c:567
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
-msgstr "Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
+msgstr ""
+"Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
 
 #: src/tilp_refresh.c:95
 msgid "initialized in command line mode.\n"
@@ -1065,7 +1069,8 @@ msgstr "_Aller au dossier parent"
 
 #: glade/clist_rbm-2.str:33
 msgid "Set the current directory as working directory whenever TiLP starts."
-msgstr "Définit le dossier courant comme dossier de travail au démarrage de TiLP."
+msgstr ""
+"Définit le dossier courant comme dossier de travail au démarrage de TiLP."
 
 #: glade/clist_rbm-2.str:34
 msgid "_Set as working folder"
@@ -1388,7 +1393,8 @@ msgstr "Configuration"
 
 #: glade/comm-2.str:37
 msgid "Have a problem ? Check out the log:"
-msgstr "Un problème est apparu ? Vérifiez le fichier de journalisation (log) : "
+msgstr ""
+"Un problème est apparu ? Vérifiez le fichier de journalisation (log) : "
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -1921,7 +1927,8 @@ msgstr "Le site Web de TI"
 
 #: glade/tilp-2.str:44
 msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
-msgstr "http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
+msgstr ""
+"http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
 
 #: glade/tilp-2.str:45
 msgid "Calculator software"
@@ -1969,7 +1976,9 @@ msgstr "Le site Web de TiLP"
 
 #: glade/tilp-2.str:56
 msgid "Display the log file generated by TiLP. Useful for debugging problems."
-msgstr "Affiche le fichier de journalisation (log) généré par TiLP. Utile pour obtenir des informations de débogage."
+msgstr ""
+"Affiche le fichier de journalisation (log) généré par TiLP. Utile pour "
+"obtenir des informations de débogage."
 
 #: glade/tilp-2.str:57
 msgid "_Log"
@@ -1993,7 +2002,8 @@ msgstr "Prêt ?"
 
 #: glade/tilp-2.str:64
 msgid "List calculator content (folders, variables and applications)."
-msgstr "Liste le contenu de la calculatrice (dossiers, variables et applications)."
+msgstr ""
+"Liste le contenu de la calculatrice (dossiers, variables et applications)."
 
 #: glade/tilp-2.str:65
 msgid "Dirlist"
@@ -2072,4 +2082,3 @@ msgstr "Titre"
 #: glade/user_boxes-2.str:10
 msgid "Name:"
 msgstr "Nom :"
-

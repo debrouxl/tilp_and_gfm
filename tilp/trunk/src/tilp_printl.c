@@ -113,7 +113,9 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	//
 	vfprintf(stdout, format, ap);
 #endif
+#ifdef __WIN32__
 skip_console:
+#endif
 
 	if (flog == NULL) {
     		flog = fopen(LOG_FILE, "wt");
@@ -135,7 +137,7 @@ skip_console:
 	vfprintf(flog, format, ap);
 
 	// check for printing domain on next loop
-	if(strchr(format, '\n'))
+	if(strchr(format, '\n') || strchr(format, '\r'))
 		print_domain = !0;
 	
 	return 0;

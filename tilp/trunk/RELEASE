@@ -25,9 +25,10 @@ New capabilities:
 Improvements:
 -------------
 
-	- fixed error 997 (overlapped I/O in progress) by new SilverLink driver (v2.3)
-	- GTK now uses a theme engine (Gtk-Wimp) which gives Windows 
-		look & feel (it supports XP theming, too !)
+	- [WIN32] fixed error 997 (overlapped I/O in progress) by 
+	new SilverLink driver (v2.3)
+	- [WIN32] GTK now uses a theme engine (Gtk-Wimp) which gives 
+	Windows look & feel (it supports XP theming, too !)
 	- communication box simplified
 	- some internal clean-ups
 	- TIB support

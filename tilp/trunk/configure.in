@@ -43,49 +43,15 @@ AC_PROG_LN_S
 AC_ISC_POSIX
 AC_PROG_AWK
 
+# gettext support (must be set here; before libti* dependancy checks)
+ALL_LINGUAS="fr de"
+AM_GNU_GETTEXT
+
 # find pkg-config
 AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
 if test x$PKG_CONFIG = xno ; then
   AC_MSG_ERROR([*** pkg-config not found. See http://www.freedesktop.org/software/pkgconfig/])
 fi
-
-# check for ticables presence
-PKG_CHECK_MODULES(TICABLES, ticables >= 3.8.0)
-AC_SUBST(TICABLES_CFLAGS)
-AC_SUBST(TICABLES_LIBS)
-
-# check for tifiles presence
-PKG_CHECK_MODULES(TIFILES, tifiles >= 0.5.7)
-AC_SUBST(TIFILES_CFLAGS)
-AC_SUBST(TIFILES_LIBS)
-
-# check for ticalcs presence
-PKG_CHECK_MODULES(TICALCS, ticalcs >= 4.5.2)
-AC_SUBST(TICALCS_CFLAGS)
-AC_SUBST(TICALCS_LIBS)
-
-# check for glib presence
-PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.0.0)
-AC_SUBST(GLIB_CFLAGS)
-AC_SUBST(GLIB_LIBS)
-
-# check for gdk-pixbuf presence
-#PKG_CHECK_MODULES(GLIB, gdk_pixbuf-2.0 >= 2.0.0)
-#AC_SUBST(GLIB_CFLAGS)
-#AC_SUBST(GLIB_LIBS)
-
-# check for gtk presence
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.0.0)
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
-
-# check for libglade presence
-PKG_CHECK_MODULES(GTK, libglade-2.0 >= 1.99.0)
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
-
-CFLAGS="$CFLAGS $TICABLES_CFLAGS $TIFILES_CFLAGS $TICALCS_CFLAGS $GLIB_CFLAGS $GTK_CFLAGS"
-LDFLAGS="$LDFLAGS $TICABLES_LIBS $TIFILES_LIBS $TICALCS_LIBS $GLIB_LIBS $GTK_LIBS"
 
 # checks for libraries.
 AC_CHECK_LIB(dl, dlopen)
@@ -168,9 +134,8 @@ if test x"$tilp_native_win32" = xyes; then
   fi
 fi
 
-#AC_CYGWIN32
-AC_MINGW32
-AC_EXEEXT
+#AC_MINGW32
+#AC_EXEEXT
 
 case $host in
   *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__ -Os -s" ;;
@@ -178,6 +143,44 @@ case $host in
   *-*-*bsd*)  ARCH="-D__BSD__" ;;
   *)          ARCH="-D__LINUX__" ;;
 esac
+
+# check for ticables presence
+PKG_CHECK_MODULES(TICABLES, ticables >= 3.8.0)
+AC_SUBST(TICABLES_CFLAGS)
+AC_SUBST(TICABLES_LIBS)
+
+# check for tifiles presence
+PKG_CHECK_MODULES(TIFILES, tifiles >= 0.5.7)
+AC_SUBST(TIFILES_CFLAGS)
+AC_SUBST(TIFILES_LIBS)
+
+# check for ticalcs presence
+PKG_CHECK_MODULES(TICALCS, ticalcs >= 4.5.2)
+AC_SUBST(TICALCS_CFLAGS)
+AC_SUBST(TICALCS_LIBS)
+
+# check for glib presence
+PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.0.0)
+AC_SUBST(GLIB_CFLAGS)
+AC_SUBST(GLIB_LIBS)
+
+# check for gdk-pixbuf presence
+#PKG_CHECK_MODULES(GLIB, gdk_pixbuf-2.0 >= 2.0.0)
+#AC_SUBST(GLIB_CFLAGS)
+#AC_SUBST(GLIB_LIBS)
+
+# check for gtk presence
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.0.0)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
+
+# check for libglade presence
+PKG_CHECK_MODULES(GTK, libglade-2.0 >= 1.99.0)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
+
+CFLAGS="$CFLAGS $TICABLES_CFLAGS $TIFILES_CFLAGS $TICALCS_CFLAGS $GLIB_CFLAGS $GTK_CFLAGS"
+LDFLAGS="$LDFLAGS $TICABLES_LIBS $TIFILES_LIBS $TICALCS_LIBS $GLIB_LIBS $GTK_LIBS"
 
 # initialize libtool
 AM_DISABLE_STATIC
@@ -208,10 +211,6 @@ if test "x$enable_exit_homedir" = "xyes"; then
 else
   AC_MSG_RESULT(no)
 fi
-
-# gettext support
-ALL_LINGUAS="fr de"
-AM_GNU_GETTEXT
 
 locale_dir='${prefix}/share/locale'
 AC_SUBST(locale_dir)
