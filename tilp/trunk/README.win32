@@ -10,18 +10,19 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.x libraries (new package)
-    Location: http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download
+ - the GTK+ 2.x libraries (another new package from http://gladewin32.sourceforge.net/)
+    Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.6-rc2.exe?download>
  - the SilverLink driver v3.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 
 NOTES
 -----
 
-1°) This release is a no longer a native port of TiLP. You need some extra libraries 
+1°) You need some extra libraries 
 (GTK+ 2.0). The GTK+ package includes the Wimp (Windows IMPersonator) theme 
-engine which gives Windows look & feel (includes XP theming). Note: disabled on 
-non-NT systems.
+engine which gives Windows look & feel (includes XP theming). Is also included the GTK theme selector.
+You may need to use it on non-NT systems if you get a lot of warnings about a font. Simply disable the
+WiMP theme for another one.
 
 2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 the Win32 driver on the Linux Programmer Group at http://lpg.ticalc.org/prj_usb.

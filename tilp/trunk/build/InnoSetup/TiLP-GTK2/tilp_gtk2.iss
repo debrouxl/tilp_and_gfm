@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP
-AppVerName=TiLP 6.74
+AppVerName=TiLP 6.74c
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -88,10 +88,6 @@ Source: "C:\sources\roms\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ign
 ; Install helper
 Source: "C:\sources\roms\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; Flags: ignoreversion; Attribs: hidden; MinVersion: 4,0;
 
-; Fix Gtk-Wimp installation problem (file is not at the right location)
-;Source: "C:\Program Files\Fichiers Communs\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
-Source: "C:\Program Files\Common Files\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall; MinVersion: 0,4;
-
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 Name: "{app}\plugins"; Flags: uninsneveruninstall;
@@ -111,8 +107,6 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP"; Filename: "
 [Run]
 ; Remove any previously installed PortTalk driver (especially v1.x)
 Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
-; Boost GTK2 (Win9x/Me)
-Filename: "{app}\AddEntry.exe"; Description: "Modify AUTOEXEC.BAT (you will have to restart Windows !)"; StatusMsg: "Modifying AUTOEXEC.BAT..."; Flags: postinstall nowait runminimized; MinVersion: 4,0;
 
 [UninstallRun]
 ; Remove any previously installed PortTalk driver (especially v1.x)
@@ -120,9 +114,9 @@ Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
 
 [Registry]
 ; This adds the GTK+ libraries to gtk-foo.exe's path
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueData: "{app}\tilp.exe"; Flags: uninsdeletevalue
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetGtkPath}\lib"; Flags: uninsdeletevalue
+;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
+;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueData: "{app}\tilp.exe"; Flags: uninsdeletevalue
+;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetGtkPath}\lib"; Flags: uninsdeletevalue
 
 [Registry]
 ; Register TI fonts
@@ -501,13 +495,14 @@ Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName
 [UninstallDelete]
 Type: files; Name: "{app}\tilp.url"
 
-;; Taken from "http://www.dropline.net/gtk/support.php"
+;; Taken from "http://www.dropline.net/gtk/support.php" with some customizations
 
 [Code]
 var
   Exists: Boolean;
   GtkPath: String;
   WimpPath: String;
+  GtkVersion: String;
 
 function GetGtkInstalled (): Boolean;
 begin
@@ -518,11 +513,11 @@ begin
    Result := Exists
 end;
 
-function GetOldGtkInstalled (): Boolean;
+function GetGtkVersionInstalled (): Boolean;
 begin
-  Exists := RegQueryStringValue (HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\gtk-win32-runtime_is1', 'DisplayName', GtkPath);
+  Exists := RegQueryStringValue (HKLM, 'Software\GTK\2.0', 'Version', GtkVersion);
   if not Exists then begin
-    Exists := RegQueryStringValue (HKCU, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\gtk-win32-runtime_is1', 'DisplayName', GtkPath);
+    Exists := RegQueryStringValue (HKCU, 'Software\GTK\2.0', 'Version', GtkVersion);
   end;
    Result := Exists
 end;
@@ -530,6 +525,11 @@ end;
 function GetGtkPath (S: String): String;
 begin
     Result := GtkPath;
+end;
+
+function GetGtkVersion (S: String): String;
+begin
+    Result := GtkVersion;
 end;
 
 function IsTiglUsbVersion3Mini (): Boolean;
@@ -544,25 +544,46 @@ end;
 
 function InitializeSetup(): Boolean;
 begin
-  Result := GetOldGtkInstalled ();
-  if Result then begin
-    MsgBox ('Warning: it seems you have the "GTK+/Win32 Runtime (2003-05-14)" package installed. TiLP is now using a more standard package. You must uninstall it else TiLP will fail to start.', mbError, MB_OK);
-  end;
-  
+
+  // Retrieve GTK path
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the "GTK+ 2.0 Runtime Environment" of DropLine Systems. You can obtain GTK+ from <http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download>.', mbError, MB_OK);
+    MsgBox ('Please install the "GTK+ 2.0 Runtime Environment" (2.4-rc16). You can obtain GTK+ from <http://gladewin32.sourceforge.net/>.', mbError, MB_OK);
   end;
-  
+
+  // Maybe I should include libglade/libxml and use GTK/The GiMP runtime package
+  // Retrieve GTK version (2.4.3 for GiMP package or aio-2.4-rc16/2.4.6-c2 for libglade package)
+  if Result then begin
+    Result := GetGtkVersionInstalled ();
+
+    if (Length(GtkVersion) > 0) then begin
+      if StrGet(GtkVersion, 1) = 'a' then begin
+        if CompareStr(GtkVersion, 'aio-2.4-rc16') < 0 then begin
+          MsgBox ('Wrong package version. You need version aio-2.4-rc16 mini from <http://gladewin32.sourceforge.net/>.', mbError, MB_OK);
+        end;
+      end
+      else begin
+        if CompareStr(GtkVersion, '2.4.3') < 0 then begin
+          MsgBox ('Wrong package version. You need version 2.4.3 mini from <The GiMP>.', mbError, MB_OK);
+        end;
+      end
+    end
+    else begin
+      MsgBox ('GTK+ 2.0 package seems to be mis-installed or corrupted.', mbError, MB_OK);
+    end;
+  end;
+
+  // Remove WiMP theme when running on Win9x/Me
   if Result then begin
       WimpPath := GtkPath + '\lib\gtk-2.0\2.2.0\engines\libwimp.dll';
       if FileExists(WimpPath) and not UsingWinNT() then begin
         DeleteFile(WimpPath);
-        MsgBox('The GTK+ Wimp theme engine has been disabled to avoid lot of warnings in console.', mbError, MB_OK);
+        MsgBox('The GTK+ Wimp theme engine has been removed to avoid lot of warnings in console.', mbError, MB_OK);
       end;
   end;
-  
+
+  // Check version of USB driver
   if IsTiglUsbVersion3Mini() then begin
-    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP requires v3.x (check out the README for download location).', mbError, MB_OK);
+    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
   end;
 end;
