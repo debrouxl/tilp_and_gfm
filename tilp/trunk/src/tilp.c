@@ -270,7 +270,7 @@ GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
 	  GtkWidget *dialog;
 	  GTimer *timer;
 	  const gchar *message =
-	    "A web browser has been laucnhed: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+	    "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
 	  dialog =
 	    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 				   GTK_MESSAGE_INFO,
@@ -315,7 +315,7 @@ static void go_to_bookmark(const char *link)
 		GtkWidget *dialog;
 		GTimer *timer;
 		const gchar *message =
-		    "A web browser has been laucnhed: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+		    "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
 		dialog =
 		    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_INFO,

@@ -13,8 +13,7 @@ To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
 - 24/03/2004, version 6.70 (3.7.6, 0.5.6, 4.5.2): roms
-	Added menu entry (KDE).
-	Added mime types (Gnome).
+	Added menu entry and mime types for KDE & Gnome.
 	Bug fix: creation of the '/usr/lib/tilp' directory.
 	
 - 17/03/2004, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms

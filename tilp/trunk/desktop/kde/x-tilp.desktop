@@ -3,6 +3,6 @@ Encoding=UTF-8
 Type=MimeType
 MimeType=application/x-tilp
 Icon=/usr/share/tilp/icons/OS_upgrade.xpm
-Patterns=*.73*;*.82*;*.8x*;*.8X*;*.85*;*.86*;*.89*;*.92*;*.9x*;*.9X*;*.v2*;*.V22*;
+Patterns=*.73*;*.82*;*.8x*;*.8X*;*.85*;*.86*;*.89*;*.92*;*.9x*;*.9X*;*.v2*;*.V2*;
 Comment=TI File
 Comment[fr]=Fichier TI

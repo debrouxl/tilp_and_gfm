@@ -167,7 +167,6 @@ const char *tilp_file_get_attributes(TilpFileInfo * fi)
 	if (fi->attrib & S_ISUID) {
 		if (fi->attrib & S_IXUSR)
 			s[4] = 's';
-
 		else
 			s[4] = 'S';
 	}
