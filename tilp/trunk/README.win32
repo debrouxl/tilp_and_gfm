@@ -11,7 +11,7 @@ REQUIREMENTS
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
  - the GTK+ 2.x libraries
-        Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.exe?download
+        Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.zip?download
  - the SilverLink driver v2.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf.zip
 
