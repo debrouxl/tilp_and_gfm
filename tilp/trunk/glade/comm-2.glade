@@ -289,7 +289,7 @@
 			<widget class="GtkMenu" id="menu1">
 
 			  <child>
-			    <widget class="GtkMenuItem" id="graylink2">
+			    <widget class="GtkMenuItem" id="tgl1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">GrayLink</property>
 			      <property name="use_underline">True</property>
@@ -298,7 +298,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="blacklink1">
+			    <widget class="GtkMenuItem" id="ser1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">BlackLink</property>
 			      <property name="use_underline">True</property>
@@ -307,7 +307,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="silverlink1">
+			    <widget class="GtkMenuItem" id="slv1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">SilverLink</property>
 			      <property name="use_underline">True</property>
@@ -316,7 +316,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="parallellink1">
+			    <widget class="GtkMenuItem" id="par1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">ParallelLink</property>
 			      <property name="use_underline">True</property>
@@ -334,7 +334,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="tiemu1">
+			    <widget class="GtkMenuItem" id="tie1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">TiEmu</property>
 			      <property name="use_underline">True</property>
@@ -343,7 +343,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkMenuItem" id="virtual2">
+			    <widget class="GtkMenuItem" id="vtl1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">virtual</property>
 			      <property name="use_underline">True</property>
@@ -374,7 +374,7 @@
 			<widget class="GtkMenu" id="menu3">
 
 			  <child>
-			    <widget class="GtkMenuItem" id="custom1">
+			    <widget class="GtkMenuItem" id="number0">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">custom</property>
 			      <property name="use_underline">True</property>

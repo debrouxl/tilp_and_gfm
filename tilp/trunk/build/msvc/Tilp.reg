@@ -17,4 +17,4 @@ REGEDIT4
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\TiLP.exe]
 @="C:\\msvc\\tilp\\tilp.exe"
-"Path"="C:\\msvc\\tilp\\TiLP;C:\\Program Files\\Common Files\\GTK\\2.0\\lib"
+"Path"="C:\\msvc\\tilp;C:\\Program Files\\Fichiers Communs\\GTK\\2.0\\lib"
