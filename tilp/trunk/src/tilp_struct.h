@@ -55,6 +55,7 @@ extern "C" {
     gchar *icon_dir;		// icons
     gchar *plugin_dir;		// plug-ins
     gchar *glade_dir;		// directory of files for Glade
+    gchar *home_dir;		// $HOME
   } TilpInstPaths;
 #endif
 

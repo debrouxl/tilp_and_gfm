@@ -58,6 +58,8 @@ static void init_linux_paths(void)
             g_strdup(PLUGIN_DIR);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade/", NULL);
+	inst_paths.home_dir =
+		g_strdup(g_get_home_dir());
 
 	/* bintextdomain(PACKAGE, "/usr/share/locale"); ->
 	   '/usr/share/locale/  fr/LC_MESSAGES/tilp.mo' */
@@ -66,7 +68,7 @@ static void init_linux_paths(void)
 #endif				/*  */
 
 	// on LINUX systems, HOME directory by default for security reasons
-	tilp_chdir(g_get_home_dir());
+	tilp_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 
@@ -102,6 +104,8 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "plugins\\", NULL);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
+	inst_paths.home_dir = 
+	    g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
 
 	/* bintextdomain(PACKAGE, "/usr/share/locale"); ->
 	   '/usr/share/locale/  fr/LC_MESSAGES/tilp.mo' */
@@ -111,9 +115,7 @@ static void init_win32_paths(void)
 #endif				/*  */
 
 	// on WIN32 systems, 'My TI Files' by default
-	home_dir = g_strconcat(inst_paths.base_dir, "My TI Files", NULL);
-	tilp_chdir(home_dir);
-	g_free(home_dir);
+	_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 int tilp_paths_init(void)
