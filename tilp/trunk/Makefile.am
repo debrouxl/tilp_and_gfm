@@ -2,8 +2,12 @@
 
 # subdirectories to scan
 SUBDIRS = \
-	build desktop glade help icons intl man \
-	pixmaps po src registry #plugins
+	build desktop glade help icons intl \
+	pixmaps po src registry plugins
+
+if USE_GROFF
+SUBDIRS += man
+endif
 
 dist_pkgdata_DATA = COPYING RELEASE
 

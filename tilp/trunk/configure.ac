@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP, 6.76, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP, 6.77, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -45,6 +45,8 @@ AC_PROG_MAKE_SET
 AC_PROG_LN_S
 AC_ISC_POSIX
 AC_PROG_AWK
+AC_CHECK_PROG(GROFF, groff, yes, no)
+AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 
 # Checks for libraries.
 AM_GNU_GETTEXT

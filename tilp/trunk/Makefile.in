@@ -36,6 +36,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 host_triplet = @host@
+@USE_GROFF_TRUE@am__append_1 = man
 ACLOCAL = @ACLOCAL@
 ALLOCA = @ALLOCA@
 AMDEP_FALSE = @AMDEP_FALSE@
@@ -78,6 +79,7 @@ GLIBC21 = @GLIBC21@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMSGFMT = @GMSGFMT@
+GROFF = @GROFF@
 GTK_CFLAGS = @GTK_CFLAGS@
 GTK_LIBS = @GTK_LIBS@
 HAVE_ASPRINTF = @HAVE_ASPRINTF@
@@ -131,6 +133,8 @@ TICALCS_CFLAGS = @TICALCS_CFLAGS@
 TICALCS_LIBS = @TICALCS_LIBS@
 TIFILES_CFLAGS = @TIFILES_CFLAGS@
 TIFILES_LIBS = @TIFILES_LIBS@
+USE_GROFF_FALSE = @USE_GROFF_FALSE@
+USE_GROFF_TRUE = @USE_GROFF_TRUE@
 USE_INCLUDED_LIBINTL = @USE_INCLUDED_LIBINTL@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
@@ -183,9 +187,9 @@ tilp_plugin_dir = @tilp_plugin_dir@
 
 # subdirectories to scan
 SUBDIRS = \
-	build desktop glade help icons intl man \
-	pixmaps po src registry #plugins
-
+	build desktop glade help icons intl \
+	pixmaps po src registry plugins\
+$(am__append_1)
 
 dist_pkgdata_DATA = COPYING RELEASE
 
@@ -210,7 +214,8 @@ DIST_COMMON = README $(dist_pkgdata_DATA) $(srcdir)/Makefile.in \
 	config.h.in config.rpath config.sub configure configure.ac \
 	depcomp install-sh ltmain.sh missing mkinstalldirs tilp.lsm.in \
 	tilp.spec.in
-DIST_SUBDIRS = $(SUBDIRS)
+DIST_SUBDIRS = build desktop glade help icons intl pixmaps po src \
+	registry plugins man
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -450,7 +455,7 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-	list='$(SUBDIRS)'; for subdir in $$list; do \
+	list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
 	  if test "$$subdir" = .; then :; else \
 	    test -d $(distdir)/$$subdir \
 	    || mkdir $(distdir)/$$subdir \
