@@ -1,0 +1,82 @@
+Appsign v1.0
+Linux port of TI's appsign program.
+Ported by Peter Martijn Kuipers (appsign@hbyte.net)
+
+The program is a static elf build, so it should work on most
+modern linux distributions.
+If you find bugs, report them to me.
+
+Usage: appsign hexfile appfile 8xkfile [-a] [-k keyfile] [-d] [-t tempfile]
+       appsign basename [-k keyfile] [-a] [-d] [-t tempfile]
+
+ Arguments:
+   hexfile     : the output file from your assembler, in intel hex format
+                 Extension: .hex
+   appfile     : the signed output, but without the graphlink header.
+                 Extension: .app
+   8xkfile     : the signed output, with the graphlink header added.
+                 Extension: .8xk
+   basename    : The name of your hexfile, without the .hex extension.
+                 The extensions .hex, .app, and .8xk will be added by the
+                 program. [basename].hex is the file you want signed.
+
+ Options:
+   -a          : only make an appfile, don't add the graphlink header
+   -d          : show some debugging info and don't delete unwanted files
+   -k keyfile  : use keyfile to sign the application with, instead of
+                 0104.key (the freeware key)
+   -t tempfile : use tempfile as a temporary file, instead of the default
+                 tempfile. Can be in a different directory.
+
+
+-If you use only 2 arguments to appsign, the first is considered the hexfile,
+ and the 2nd the 8xk file. When you're using the -a option, the 2nd is
+ considered the appfile.
+
+ This is sufficient for normal use.
+ Example:
+
+ "appsign nifty"
+
+ this signs "nifty.hex" into "nifty.8xk", whithout leaving a "nifty.app" 
+ file behind.
+
+
+-All filenames may not exeed 64 characters, including path information.
+
+-Appsign defaults to the freeware private key, 0104.key. 
+ It expects to find it in the current working directory, so don't 
+ panic if it says it can't open the keyfile if it isn't there.
+ Alternatively you can make a tiny batch or alias that does this:
+
+ appsign -k [yourdir]/0104.key [arguments]
+
+ to keep it in a specified directory and still let it work...
+ Remember the 64 char name limit when doing this.
+
+-To sign an app in the current directory, you need read and write permissions 
+ to the current directory, as well as the input file, and any existing 
+ output files.
+ Appsign will complain if access can not be aquired.
+
+-License/Disclaimer: (to protect myself and TI)
+ 
+ Disclaimer:
+ This program comes wihout any warrenties, not even the implied warranty of
+ merchantability or fitness for a particular purpose, to the maximum extent
+ permitted by applicable law.
+ You will hold neither the Porter/Author, nor Texas Instruments responsible
+ for any and all damages caused by the use of this program.
+
+ Copying and Reverse engineering:
+ You may copy the program to any unlimited number of machines or people,
+ prived that all license and copyright noticed remain intact.
+ You may not reverse-engineer, disassemble, reassemble, or decompile the 
+ program.
+
+
+Good luck programming,
+--Peter-Martijn
+
+
+

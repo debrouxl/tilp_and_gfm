@@ -1,0 +1,39 @@
+This is a list of some things to do:
+
+* image loader: PCX/XPM/JPG
+
+- use Vti skins and display a TI keyboard for remote control
+
++ implement the management of group files (merging, splitting, exploding, ...)
++ a better doc (html) & Help formatted (html, groff, gnome help ??)
++ TI83(+) ROM dumper (for Tilem)
++ view into PAK/Group (clist+menus+send var) -> plugin (Group File Manager)
++ if parport not compiled in kernel, tilp segfaults
++ command line: the ability to use any function from cmdline (OS, ROMdump, ...)
++ add an overwrite protection (PC->TI) by systematically doing a dirlist
++ force ready call (auto-detect) before each function
++ extract a ROM image from a .tib/.9xu/.89u FLASH file
++ TI89/92+ ROM dump
++ TI89/92+ pbs and auto-detection
++ TI89 support to improve (especially HW2)
++ accelerator keys for the dialog box buttons. Mouse is sometimes boring.
++ fargo4TiLP & fargo (flinker): done through TiFFEP
++ close TiLP after command line use (console/Explorer)
++ do associations types in IS instead of Tilp.reg
++ sending by command line: use the file type for determining the calc type
++ TI86 has a backup capability but no TIGL file format !!!
++ TI82, 85 support to finish
++ fonts in dboxes !
++ TI83 support to update
++ locale & i18n
++ the ability to override the file format to send (82 file -> TI85)
++ internationalization of TiLP
++ if 2 sessions of TiLP are launched under Win32, it may cause some pbs
++ startup box
++ rights access pbs on directories
++ pixmaps
++ choose the font to use in the right window
+
++ = done.
+* = in progress.
+- = to do...

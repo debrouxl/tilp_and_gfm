@@ -1,0 +1,42 @@
+/*
+ * Chaînes de caractères à traduire générées par
+ * Glade. Ajouter ce fichier au fichier POTFILE.in
+ * de votre projet. NE PAS compiler ce fichier
+ * avec le reste de votre application.
+ */
+
+gchar *s = N_("External programs location");
+gchar *s = N_("Location:");
+gchar *s = N_("wzunzip.exe");
+gchar *s = N_("*");
+gchar *s = N_("...");
+gchar *s = N_("Options:");
+gchar *s = N_("-d");
+gchar *s = N_("*");
+gchar *s = N_("ZIP program:");
+gchar *s = N_("_ZIP");
+gchar *s = N_("Location:");
+gchar *s = N_("tar");
+gchar *s = N_("*");
+gchar *s = N_("...");
+gchar *s = N_("Options:");
+gchar *s = N_("xvzf");
+gchar *s = N_("*");
+gchar *s = N_("TAR.GZ/TGZ program:");
+gchar *s = N_("_TGZ");
+gchar *s = N_("Location:");
+gchar *s = N_("appsign");
+gchar *s = N_("*");
+gchar *s = N_("...");
+gchar *s = N_("Options:");
+gchar *s = N_("*");
+gchar *s = N_("APPSIGN 83+ program:");
+gchar *s = N_("_AppSign");
+gchar *s = N_("Location:");
+gchar *s = N_("/usr/bin/mozilla");
+gchar *s = N_("*");
+gchar *s = N_("...");
+gchar *s = N_("Options:");
+gchar *s = N_("*");
+gchar *s = N_("Web Browser:");
+gchar *s = N_("_Browser");
