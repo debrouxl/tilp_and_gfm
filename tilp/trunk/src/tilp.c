@@ -462,8 +462,13 @@ void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
 		return;
 	f = (TilpFileInfo *) clist_win.selection->data;
 	if (tifiles_is_a_flash_file(f->name)) {
-		if (tilp_calc_send_flash_app(f->name) != 0)
-			return;
+		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_app_file_ext())) {
+			if (tilp_calc_send_flash_app(f->name) != 0)
+				return;
+		} else if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext())) {
+			if (tilp_calc_send_flash_os(f->name) != 0)
+				return;
+		}
 	} else {
 		if (options.confirm == CONFIRM_YES) {
 

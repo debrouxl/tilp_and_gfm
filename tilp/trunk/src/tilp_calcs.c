@@ -377,7 +377,7 @@ int tilp_calc_send_flash_app(char *filename)
 /*
   Send a FLASH Operating System (AMS).
   Note: the timeout is increased to 10 seconds during the operation.
-  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attemp
+  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attempt
 	(TI83+ only, bug #738486)
 */
 int tilp_calc_send_flash_os(char *filename)
