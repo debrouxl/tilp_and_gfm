@@ -254,9 +254,9 @@ extern int is_active;
             
             [nsfile getCString:file];
             
-            cb_send_flash_app(file);
-            
             [nsfile release];
+            
+            cb_send_flash_app(file);
             
             free(file);
         }

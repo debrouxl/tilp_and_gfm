@@ -163,21 +163,66 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     struct varinfo *v = NULL;
     
     int result;
-    int i, row;
-    int indexes[256];
+    int tiVarsRow;
+    int i, j, row;
+    int indexes[256]; // I don't know if 256 vars can be fitted on the TI, but :-)
     
     items = [NSMutableArray array];
     
     selectedRows = [dirlistTree selectedRowEnumerator];
     selRow = nil;
     
+    // If the FLASH Applications folder is expanded, then the TI Variables item is not at row 6
+    if ([dirlistTree isItemExpanded:[dirlistTree itemAtRow:5]])
+        {
+            tiVarsRow = 5 + 1 + [myTilpController outlineView:dirlistTree numberOfChildrenOfItem:[dirlistTree itemAtRow:5]];
+        }
+    else
+        tiVarsRow = 6;
+    
     while ((selRow = [selectedRows nextObject]))
         {
-            if ([selRow intValue] < 6)
-                break;
-        
-            if ([dirlistTree itemAtRow:[selRow intValue]]) 
-                [items addObject: [dirlistTree itemAtRow:[selRow intValue]]];
+            switch([selRow intValue])
+                {
+                    case 0:
+                        // do a screendump
+                        fprintf(stderr, "DEBUG: GET VARS => SCREEN DUMP\n");
+                        break;
+                    case 1:
+                        // do a romdump
+                        fprintf(stderr, "DEBUG: GET VARS => ROM DUMP\n");
+                        break;
+                    case 2:
+                        // memory item => do... I don't know
+                        fprintf(stderr, "DEBUG: GET VARS => MEMORY ITEM, UNUSED\n");
+                        break;
+                    case 3:
+                        // get ID list
+                        fprintf(stderr, "DEBUG: GET VARS => GET ID LIST\n");
+                        break;
+                    case 4:
+                        // keyboard item => do... I don't know
+                        fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
+                        break;
+                    case 5:
+                        // FLASH Applications item => get each FLASH App
+                        fprintf(stderr, "DEBUG: GET VARS => GET EACH FLASH APP\n");
+                        break;
+                    default:
+                        if (([selRow intValue] > tiVarsRow) && ([dirlistTree itemAtRow:[selRow intValue]]))
+                            [items addObject:[dirlistTree itemAtRow:[selRow intValue]]];
+                        else if ([selRow intValue] == tiVarsRow)
+                            {
+                                // do a backup of all vars
+                                fprintf(stderr, "DEBUG: GET VARS => FULL BACKUP\n");
+                            }
+                        else if (([selRow intValue] > 5) && ([selRow intValue] < tiVarsRow))
+                            {
+                                // FLASH App selected
+                                fprintf(stderr, "DEBUG: GET VARS => FLASH APP SELECTED\n");
+                            }
+                        break;
+                }
         }
     
     itemsEnum = [items objectEnumerator];
@@ -188,7 +233,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         {
             // if a folder is selected, select all vars in this folder
             if ([NODE_DATA(item) isGroup] == YES)
-              {              
+              {
+                  [dirlistTree expandItem:item];
+                                          
                   foldItem = [dirlistTree itemAtRow:[dirlistTree rowForItem:item] + 1];
                   
                   while ([NODE_DATA(foldItem) isGroup] == NO)
@@ -209,9 +256,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                   row = [dirlistTree rowForItem:item];
                   
                   // make sure it is not already in the list
-                  for (i = 0; i < g_list_length(list); i++)
+                  for (j = 0; j < g_list_length(list); j++)
                     {
-                        if (row == indexes[i])
+                        if (row == indexes[j])
                           {
                               row = -1;
                               
@@ -291,7 +338,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.3.2" forKey:@"Version"];
+    [aboutOptions setObject:@"0.3.4" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIƒVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
     [aboutOptions setObject:@"4.82" forKey:@"ApplicationVersion"];
 

@@ -142,7 +142,11 @@
 	* Fixed version in window title, about box.
 	* Fixed typos in GUI.
 	* When a folder is selected, transfer all the vars in the folder.
-	
+* 20020114 : v0.3.4
+	* Improved getVars.
+	* Dirlist now displays FLASH Apps too.
+	* Fixed sendFlashApp.
+
 
 
 

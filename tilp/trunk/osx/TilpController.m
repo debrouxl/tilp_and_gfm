@@ -28,6 +28,8 @@
 #include <config.h>
 #endif
 
+#include <libticalcs/calc_int.h>
+
 #include "../src/struct.h"
 #include "../src/gui_indep.h"
 #include "../src/defs.h"
@@ -390,6 +392,7 @@ struct gui_fncts gui_functions;
     NSMutableDictionary *tmpDict;
     NSMutableArray *mainEntries;
     NSMutableArray *tiVarsArray;
+    NSMutableArray *tiAppsArray;
     NSMutableArray *tmpArray;
     Varinfo *varinfo;
   
@@ -460,26 +463,86 @@ struct gui_fncts gui_functions;
     
     // now the real fun is about to begin
     
-    tiVarsArray = [[NSMutableArray alloc] init];
+    // FLASH APPS
+    
+    tiAppsArray = [[NSMutableArray alloc] init];
     
     tmpDict = [[NSMutableDictionary alloc] init];
     
     [mainEntries insertObject:tmpDict atIndex:5];
     
+    [tmpDict setObject:@"FLASH Applications" forKey:@"Group"];
+    [tmpDict setObject:tiAppsArray forKey:@"Entries"];
+    
+    // VARIABLES
+    
+    tiVarsArray = [[NSMutableArray alloc] init];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:6];
+    
     [tmpDict setObject:@"TI Variables" forKey:@"Group"];
     [tmpDict setObject:tiVarsArray forKey:@"Entries"];
     
     // ok, we must now populate our big fscking dictionary with the
-    // list of variables
+    // list of FLASH APPS and variables
     
+    // FLASH APPS
+    
+    p = ctree_win.varlist;
+
+    while (p != NULL)
+      {
+          q = (struct varinfo *)(p->data);
+        
+          if (q->vartype != ti_calc.tixx_flash(ticalc_get_calc()))
+              {
+                  if ((p != ctree_win.varlist) && q->is_folder) // we're at the second folder (first folder _is_ ctree_win.varlist itself)
+                      break;
+              
+                  p = p->next;
+                  
+                  continue;
+              }
+                          
+          // dictionary that will hold this app
+          tmpDict = [[NSMutableDictionary alloc] init];
+                
+          switch (q->varlocked)  // Uh, you'd better #define'd this type of things, Romain
+              {
+                  case 1:
+                      [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
+                      break;
+                  case 3:
+                      [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
+                      break;
+              }
+                    
+          [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+          [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
+          [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
+          [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+        
+          varinfo = [[Varinfo alloc] initWithPointer:q];
+          [tmpDict setObject:varinfo forKey:@"varinfo"];
+        
+          [tiAppsArray insertObject:tmpDict atIndex:varPos];
+          varPos++;
+
+          p = p->next;
+      }
+
+
+    // Variables
+
     p = ctree_win.varlist;
 
     while (p != NULL)
         {
             q = (struct varinfo *)(p->data);
             
-            // FIXME OS X : flash apps
-            if((options.lp.calc_type != CALC_TI83P) && ((q->vartype) ==  ti_calc.tixx_flash(options.lp.calc_type)))
+            if(q->vartype == ti_calc.tixx_flash(options.lp.calc_type))
                 {
                     p = p->next;
                     continue;
@@ -557,9 +620,9 @@ struct gui_fncts gui_functions;
     // NOTICE : the itemAtRow: argument will change if you add/remove items
     // before the "TI Variables" item...
     if (ctree_win.varlist != NULL)
-        [dirlistTree expandItem:[dirlistTree itemAtRow:5]];
+        [dirlistTree expandItem:[dirlistTree itemAtRow:6]];
     else
-        [dirlistTree collapseItem:[dirlistTree itemAtRow:5]];
+        [dirlistTree collapseItem:[dirlistTree itemAtRow:6]];
 }
 
 - (void)refreshInfos
