@@ -25,6 +25,9 @@ NULL=
 NULL=nul
 !ENDIF 
 
+CPP=cl.exe
+RSC=rc.exe
+
 !IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
 
 OUTDIR=.
@@ -35,11 +38,11 @@ OutDir=.
 
 !IF "$(RECURSE)" == "0" 
 
-ALL : "$(OUTDIR)\tilp.exe"
+ALL : "$(OUTDIR)\TiLP.exe"
 
 !ELSE 
 
-ALL : "tifiles - Win32 Release" "ticalcs - Win32 Release" "ticables - Win32 Release" "$(OUTDIR)\tilp.exe"
+ALL : "tifiles - Win32 Release" "ticalcs - Win32 Release" "ticables - Win32 Release" "$(OUTDIR)\TiLP.exe"
 
 !ENDIF 
 
@@ -90,52 +93,19 @@ CLEAN :
 	-@erase "$(INTDIR)\toolbar.obj"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\wizard.obj"
-	-@erase "$(OUTDIR)\tilp.exe"
+	-@erase "$(OUTDIR)\TiLP.exe"
 
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /G3 /ML /w /W0 /GX /O2 /I "../src" /I "../../libs/cables/src/" /I "../../libs/calcs/src/" /I "../../libs/files/src/" /I "../dep/win32/" /I "../../../" /D "NDEBUG" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "HAVE_LIBINTL_H" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-RSC=rc.exe
+CPP_PROJ=/nologo /G3 /ML /w /W0 /GX /O2 /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "NDEBUG" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\tilp.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_console.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=gnu-intl.lib gmodule-1.3.lib glib-1.3.lib gdk-1.3.lib gtk-1.3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"$(OUTDIR)\tilp.pdb" /machine:I386 /out:"$(OUTDIR)\tilp.exe" 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib intl.lib /nologo /subsystem:console /incremental:no /pdb:"$(OUTDIR)\TiLP.pdb" /machine:I386 /out:"$(OUTDIR)\TiLP.exe" 
 LINK32_OBJS= \
 	"$(INTDIR)\about.obj" \
 	"$(INTDIR)\action.obj" \
@@ -178,11 +148,11 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
 	"$(INTDIR)\tilp.res" \
-	"..\..\..\libs\cables\win32\msvc\ticables.lib" \
-	"..\..\..\libs\calcs\win32\msvc\ticalcs.lib" \
-	"..\..\..\libs\files\win32\msvc\tifiles.lib"
+	"..\..\..\libs\cables\build\msvc\ticables.lib" \
+	"..\..\..\libs\calcs\build\msvc\ticalcs.lib" \
+	"..\..\..\libs\files\build\msvc\tifiles.lib"
 
-"$(OUTDIR)\tilp.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+"$(OUTDIR)\TiLP.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -197,11 +167,11 @@ OutDir=C:\msvc\tilp\
 
 !IF "$(RECURSE)" == "0" 
 
-ALL : "$(OUTDIR)\tilp.exe"
+ALL : "$(OUTDIR)\TiLP.exe"
 
 !ELSE 
 
-ALL : "tifiles - Win32 Debug" "ticalcs - Win32 Debug" "ticables - Win32 Debug" "$(OUTDIR)\tilp.exe"
+ALL : "tifiles - Win32 Debug" "ticalcs - Win32 Debug" "ticables - Win32 Debug" "$(OUTDIR)\TiLP.exe"
 
 !ENDIF 
 
@@ -253,9 +223,9 @@ CLEAN :
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
 	-@erase "$(INTDIR)\wizard.obj"
-	-@erase "$(OUTDIR)\tilp.exe"
-	-@erase "$(OUTDIR)\tilp.ilk"
-	-@erase "$(OUTDIR)\tilp.pdb"
+	-@erase "$(OUTDIR)\TiLP.exe"
+	-@erase "$(OUTDIR)\TiLP.ilk"
+	-@erase "$(OUTDIR)\TiLP.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -263,47 +233,14 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP=cl.exe
-CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "_DEBUG" /D "GTK" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
-
-.c{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.obj::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.c{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cpp{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-.cxx{$(INTDIR)}.sbr::
-   $(CPP) @<<
-   $(CPP_PROJ) $< 
-<<
-
-RSC=rc.exe
+CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "_DEBUG" /D "GTK" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 RSC_PROJ=/l 0x809 /fo"$(INTDIR)\tilp.res" /d "_DEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_console.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
-LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\tilp.pdb" /debug /machine:I386 /out:"$(OUTDIR)\tilp.exe" /pdbtype:sept 
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib intl.lib /nologo /subsystem:console /incremental:yes /pdb:"$(OUTDIR)\TiLP.pdb" /debug /machine:I386 /out:"$(OUTDIR)\TiLP.exe" /pdbtype:sept 
 LINK32_OBJS= \
 	"$(INTDIR)\about.obj" \
 	"$(INTDIR)\action.obj" \
@@ -350,12 +287,42 @@ LINK32_OBJS= \
 	"$(OUTDIR)\ticalcs.lib" \
 	"$(OUTDIR)\tifiles.lib"
 
-"$(OUTDIR)\tilp.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+"$(OUTDIR)\TiLP.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
 !ENDIF 
+
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
@@ -617,78 +584,78 @@ SOURCE=..\..\src\tilp_vars.c
 !IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
 
 "ticables - Win32 Release" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticables - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "tilp_gtk_console - Win32 Debug"
 
 "ticables - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticables - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 
 !IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
 
 "ticalcs - Win32 Release" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticalcs - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "tilp_gtk_console - Win32 Debug"
 
 "ticalcs - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticalcs - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 
 !IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
 
 "tifiles - Win32 Release" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "tifiles - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "tilp_gtk_console - Win32 Debug"
 
 "tifiles - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "tifiles - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 

@@ -48,18 +48,15 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-!IF  "$(CFG)" == "TiLP - Win32 Release"
-
 MTL=midl.exe
-MTL_PROJ=
+
+!IF  "$(CFG)" == "TiLP - Win32 Release"
 
 !ELSEIF  "$(CFG)" == "TiLP - Win32 Debug"
 
-MTL=midl.exe
-MTL_PROJ=
-
 !ENDIF 
 
+MTL_PROJ=
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
 !IF EXISTS("TiLP.dep")
@@ -75,78 +72,78 @@ MTL_PROJ=
 !IF  "$(CFG)" == "TiLP - Win32 Release"
 
 "ticables - Win32 Release" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticables - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "TiLP - Win32 Debug"
 
 "ticables - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticables - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\cables\win32\msvc"
+   cd "\home\devel\tilp_project\libs\cables\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 
 !IF  "$(CFG)" == "TiLP - Win32 Release"
 
 "ticalcs - Win32 Release" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticalcs - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "TiLP - Win32 Debug"
 
 "ticalcs - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "ticalcs - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\calcs\win32\msvc"
+   cd "\home\devel\tilp_project\libs\calcs\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 
 !IF  "$(CFG)" == "TiLP - Win32 Release"
 
 "tifiles - Win32 Release" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Release" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "tifiles - Win32 ReleaseCLEAN" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Release" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ELSEIF  "$(CFG)" == "TiLP - Win32 Debug"
 
 "tifiles - Win32 Debug" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Debug" 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 "tifiles - Win32 DebugCLEAN" : 
-   cd "\devel\tilp_project\libs\files\win32\msvc"
+   cd "\home\devel\tilp_project\libs\files\build\msvc"
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Debug" RECURSE=1 CLEAN 
-   cd "..\..\..\..\tilp\win32\msvc"
+   cd "..\..\..\..\tilp\build\msvc"
 
 !ENDIF 
 

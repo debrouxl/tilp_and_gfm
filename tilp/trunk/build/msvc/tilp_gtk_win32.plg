@@ -6,15 +6,52 @@
 --------------------Configuration: tilp_gtk_win32 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1E2.tmp" with contents
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSPA7.tmp" with contents
 [
-/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /D "GTK" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /GZ /c 
-"C:\devel\tilp_project\tilp\src\ctree.c"
+/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../src/win32" /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "GTK" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /GZ /c 
+"C:\home\devel\tilp_project\tilp\src\about.c"
+"C:\home\devel\tilp_project\tilp\src\action.c"
+"C:\home\devel\tilp_project\tilp\src\clist.c"
+"C:\home\devel\tilp_project\tilp\src\clock.c"
+"C:\home\devel\tilp_project\tilp\src\comm.c"
+"C:\home\devel\tilp_project\tilp\src\ctree.c"
+"C:\home\devel\tilp_project\tilp\src\dboxes.c"
+"C:\home\devel\tilp_project\tilp\src\extprgms.c"
+"C:\home\devel\tilp_project\tilp\src\filesel.c"
+"C:\home\devel\tilp_project\tilp\src\general.c"
+"C:\home\devel\tilp_project\tilp\src\gtk_refresh.c"
+"C:\home\devel\tilp_project\tilp\src\labels.c"
+"C:\home\devel\tilp_project\tilp\src\logfile.c"
+"C:\home\devel\tilp_project\tilp\src\main.c"
+"C:\home\devel\tilp_project\tilp\src\manpage.c"
+"C:\home\devel\tilp_project\tilp\src\pbars.c"
+"C:\home\devel\tilp_project\tilp\src\popup.c"
+"C:\home\devel\tilp_project\tilp\src\release.c"
+"C:\home\devel\tilp_project\tilp\src\screenshot.c"
+"C:\home\devel\tilp_project\tilp\src\scroptions.c"
+"C:\home\devel\tilp_project\tilp\src\shell.c"
+"C:\home\devel\tilp_project\tilp\src\tilp.c"
+"C:\home\devel\tilp_project\tilp\src\toolbar.c"
+"C:\home\devel\tilp_project\tilp\src\wizard.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_calcs.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_error.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_files.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_main.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_misc.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_paths.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_plugin.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_prompt.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_rcfile.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_refresh.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_screen.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_slct.c"
+"C:\home\devel\tilp_project\tilp\src\tilp_vars.c"
+"C:\home\devel\tilp_project\tilp\src\dnd.c"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1E2.tmp" 
-Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1E3.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSPA7.tmp" 
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSPA8.tmp" with contents
 [
-kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib glib-2.0.lib gobject-2.0.lib gdk-win32-2.0.lib gmodule-2.0.lib gdk_pixbuf-2.0.lib atk-1.0.lib gtk-win32-2.0.lib glade-2.0.lib intl.lib /nologo /subsystem:windows /incremental:yes /pdb:"C:\msvc\tilp\TiLP.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept 
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"C:\msvc\tilp\TiLP.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib" 
 \msvc\Output\tilp_gtk\about.obj
 \msvc\Output\tilp_gtk\action.obj
 \msvc\Output\tilp_gtk\clist.obj
@@ -27,6 +64,7 @@ kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32
 \msvc\Output\tilp_gtk\general.obj
 \msvc\Output\tilp_gtk\gtk_refresh.obj
 \msvc\Output\tilp_gtk\labels.obj
+\msvc\Output\tilp_gtk\logfile.obj
 \msvc\Output\tilp_gtk\main.obj
 \msvc\Output\tilp_gtk\manpage.obj
 \msvc\Output\tilp_gtk\pbars.obj
@@ -55,15 +93,68 @@ kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32
 \msvc\Output\tilp_gtk\tilp_slct.obj
 \msvc\Output\tilp_gtk\tilp_vars.obj
 \msvc\Output\tilp_gtk\tilp.res
+"..\..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
+..\..\..\..\..\..\Gtk2Dev\lib\intl.lib
+"..\..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
+"..\..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
+\msvc\Output\tilp_gtk\dnd.obj
 \msvc\tilp\ticables.lib
 \msvc\tilp\ticalcs.lib
 \msvc\tilp\tifiles.lib
 ]
-Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1E3.tmp"
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSPA8.tmp"
 <h3>Output Window</h3>
 Compiling...
+about.c
+action.c
+clist.c
+clock.c
+comm.c
 ctree.c
+dboxes.c
+extprgms.c
+filesel.c
+general.c
+gtk_refresh.c
+labels.c
+logfile.c
+main.c
+manpage.c
+pbars.c
+popup.c
+release.c
+screenshot.c
+scroptions.c
+Generating Code...
+Compiling...
+shell.c
+tilp.c
+toolbar.c
+wizard.c
+tilp_calcs.c
+tilp_error.c
+tilp_files.c
+tilp_main.c
+tilp_misc.c
+tilp_paths.c
+tilp_plugin.c
+tilp_prompt.c
+tilp_rcfile.c
+tilp_refresh.c
+tilp_screen.c
+tilp_slct.c
+tilp_vars.c
+dnd.c
+Generating Code...
 Linking...
+   Creating library C:\msvc\tilp\TiLP.lib and object C:\msvc\tilp\TiLP.exp
 
 
 

@@ -25,7 +25,7 @@
 #include <gtk/gtk.h>
 #include <pango/pango.h>
 
-#include <tilp/tnode.h>//#include "tilibs.h"
+//#include <tilp/tnode.h>//#include "tilibs.h"
 #include "tilp_core.h"
 
 #include "gstruct.h"

@@ -581,7 +581,7 @@ static void on_clist_rbm_show2(GtkWidget * widget, gpointer user_data)
 	gtk_container_add(GTK_CONTAINER(menu), change_drive);
 	change_drive_menu = gtk_menu_new();
 	g_object_set_data_full(G_OBJECT(menu), "change_drive_menu",
-			       gtk_widget_ref(change_driver_menu),
+			       gtk_widget_ref(change_drive_menu),
 			       (GDestroyNotify)gtk_widget_unref);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(change_drive),
 				  change_drive_menu);
