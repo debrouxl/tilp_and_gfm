@@ -62,6 +62,10 @@ static FILE *flog = NULL;
 static int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 {
 	static int print_domain = !0;
+	// We cannot use the va_list twice without copying it or calling
+        // va_start() again (which we cannot do here, as we're getting a va_list)
+	va_list log_ap;
+	va_copy(log_ap, ap);
 #ifdef __WIN32__
         char buffer[128];
         int cnt;
@@ -134,7 +138,8 @@ skip_console:
 	}
 
 	// print same stuffs in file
-	vfprintf(flog, format, ap);
+	vfprintf(flog, format, log_ap);
+	va_end(log_ap);
 
 	// check for printing domain on next loop
 	if(strchr(format, '\n') || strchr(format, '\r'))
