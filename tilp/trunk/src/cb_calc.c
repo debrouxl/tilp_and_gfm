@@ -436,7 +436,7 @@ int cb_rom_dump(void)
 	      
 	      gif->destroy_pbar();
 	      if(tilp_error(err)) return -1;	      
-	      return 0;//display_fileselection_7();
+	      return 0;
 	    }	  
 	  break;
 	default: // Cancel */

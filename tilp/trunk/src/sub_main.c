@@ -74,9 +74,9 @@ gint   is_active = 0;    /* Set if a transfer is active */
 gint working_mode = MODE_GTK;
 #elif defined(__MACOSX__)
 gint working_mode = MODE_OSX;
-#elif defined(__WIN32__) && defined(_AFXDLL)
+#elif defined(__WIN32__) && defined(USE_MFC)
 gint working_mode = MODE_MFC;
-#elif defined(__WIN32__) && !defined(_AFXDLL)
+#elif defined(__WIN32__) && !defined(USE_MFC)
 gint working_mode = MODE_GTK;
 #endif
 
@@ -93,9 +93,8 @@ struct installation_paths inst_paths =
 #endif
 
 #ifdef HAVE_TIFFEP
-Registry *plugin_registry = NULL;
+TiffepRegistry *plugin_registry = NULL;
 gint registry_allowed = FALSE;
-//gint tiffep_enabled = FALSE;
 #endif
 
 #ifndef __MACOSX__
@@ -215,6 +214,7 @@ int sub_main(int argc, char *argv[], char **arge)
       gif->msg_box(_("Error"), _("Libtiffep: version mismatches."));
       exit(-1);
     }
+	*/
 #endif
 
 #ifdef OSX_DEBUG
@@ -318,8 +318,8 @@ int help(void)
 #ifdef __MACOSX__
   DISPLAY(_("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"), TILP_OSX_VERSION);
 #endif
-//DISPLAY(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-//DISPLAY(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+  DISPLAY(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+  DISPLAY(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
   DISPLAY(_("Usage: tilp [-options] [filename]\n"));
   DISPLAY("\n");
   DISPLAY(_("-h, --help    display this information page and exit\n"));

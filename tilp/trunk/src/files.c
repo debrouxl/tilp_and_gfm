@@ -137,7 +137,7 @@ void process_unix2dos(gchar *buf)
   Retrieve informations about attributes from a file info structure
   and returns a string
  */
-char *get_attributes(struct file_info f_info)
+char *get_attributes(TilpFileInfo f_info)
 {
   char *s;
 
@@ -214,7 +214,7 @@ char *get_attributes(struct file_info f_info)
 /*
   Returns the user's name
 */
-void get_user_name(struct file_info f_info, char **name)
+void get_user_name(TilpFileInfo f_info, char **name)
 {
 #if defined(__LINUX__)
   struct passwd *pwuid;
@@ -225,7 +225,7 @@ void get_user_name(struct file_info f_info, char **name)
     }
   else
     {
-      *name=g_strdup(grpid->gr_name);
+      *name=g_strdup(pwuid->pw_name);
     }
 #else
   *name = NULL;
@@ -235,7 +235,7 @@ void get_user_name(struct file_info f_info, char **name)
 /*
   Returns the group's name
  */
-void get_group_name(struct file_info f_info, char **name)
+void get_group_name(TilpFileInfo f_info, char **name)
 {
 #if defined(__LINUX__)
   struct group *grpid;
@@ -246,8 +246,7 @@ void get_group_name(struct file_info f_info, char **name)
     }
   else
     {
-      *name=(char *)g_malloc((strlen(grpid->gr_name)+1)*sizeof(char));
-      strcpy(*name, grpid->gr_name);
+      *name=g_strdup(grpid->gr_name);
     }
     #else
           *name = NULL;
@@ -257,7 +256,7 @@ void get_group_name(struct file_info f_info, char **name)
 /*
 
  */
-void get_date(struct file_info f_info, char **s)
+void get_date(TilpFileInfo f_info, char **s)
 {
   char *p;
   char buffer[32];
@@ -308,10 +307,10 @@ int get_home_path(char **path)
 /* Convert functions */
 /*********************/
 
-void display_dirlist(struct varinfo *varlist)
+void display_dirlist(TicalcVarInfo *varlist)
 {
   int i;
-  struct varinfo *ptr;
+  TicalcVarInfo *ptr;
 
   ptr=varlist;
   while(ptr != NULL)
@@ -352,14 +351,14 @@ void display_dirlist(struct varinfo *varlist)
 
 //#define VDIR  /* For test/debug purpose */
 /* 
-   Convert the struct varinfo list supplied by calc_directorylist into a GList
+   Convert the TicalcVarInfo list supplied by calc_directorylist into a GList
 */ 
-void varlist_to_glist(struct varinfo varlist)
+void varlist_to_glist(TicalcVarInfo varlist)
 {
-  struct varinfo *p;
+  TicalcVarInfo *p;
 #ifdef VDIR
   int i;
-  struct varinfo *ptr;
+  TicalcVarInfo *ptr;
 #endif
 
   /* Free the previous list */
@@ -419,12 +418,12 @@ void varlist_to_glist(struct varinfo varlist)
    without the first element.
    Remove also the last folder if it is empty (else group will send 'bit time out').
 */ 
-struct varinfo *glist_to_varlist(GList *glist)
+TicalcVarInfo *glist_to_varlist(GList *glist)
 {
   GList *ptr;
-  struct varinfo *v;
-  struct varinfo *p;
-  struct varinfo varlist;
+  TicalcVarInfo *v;
+  TicalcVarInfo *p;
+  TicalcVarInfo varlist;
   
   ptr=glist;
   p=&varlist;
@@ -433,7 +432,7 @@ struct varinfo *glist_to_varlist(GList *glist)
   while(ptr != NULL)
     {
       /* Get element */
-      v=(struct varinfo *)ptr->data;
+      v=(TicalcVarInfo *)ptr->data;
       printf("Varname: %s, vartype: %s\n", v->varname, ti_calc.byte2type(v->vartype));
       printf("Parent folder: %s\n", (v->folder)->varname);
 
@@ -442,7 +441,7 @@ struct varinfo *glist_to_varlist(GList *glist)
 		break;
 
       /* Allocate a new structure */
-      (p->next) = (struct varinfo *)g_malloc(sizeof(struct varinfo));
+      (p->next) = (TicalcVarInfo *)g_malloc(sizeof(TicalcVarInfo));
       p=p->next;
       p->next = NULL;
 
@@ -460,9 +459,9 @@ struct varinfo *glist_to_varlist(GList *glist)
   return varlist.next;
 }
 
-void free_varlist(struct varinfo *vlist)
+void free_varlist(TicalcVarInfo *vlist)
 {
-  struct varinfo *p, *q;
+  TicalcVarInfo *p, *q;
 
   p=vlist;
   do
@@ -480,10 +479,10 @@ void free_varlist(struct varinfo *vlist)
    is received.
 */
 void generate_group_file_header(FILE *file, int mask_mode, 
-				const char *id, struct varinfo *v, 
+				const char *id, TicalcVarInfo *v, 
 				int calc_type)
 {
-  struct varinfo *vi;
+  TicalcVarInfo *vi;
 
   vi = glist_to_varlist(ctree_win.selection);
   //display_dirlist(vi);
@@ -502,7 +501,7 @@ void generate_group_file_header(FILE *file, int mask_mode,
 /* Used by the function below */
 void free_file_info_struct(gpointer data)
 {
-  g_free(((struct file_info *)data)->filename);
+  g_free(((TilpFileInfo *)data)->filename);
   g_free(data);
 }
 
@@ -512,7 +511,7 @@ void l_directory_list()
   DIR *dir;
   struct dirent *file;
   struct stat f_info;
-  struct file_info *fi;
+  TilpFileInfo *fi;
 
   if(clist_win.dirlist!=NULL)
     {
@@ -533,7 +532,7 @@ void l_directory_list()
 	   if( ((file->d_name)[0]=='.') && (options.show == HIDE) ) { continue; }
 	 }
       //if(strcmp(file->d_name, ".")==0 || strcmp(file->d_name, "..")==0) { continue; }
-      fi=(struct file_info *)g_malloc(sizeof(struct file_info));
+      fi=(TilpFileInfo *)g_malloc(sizeof(TilpFileInfo));
       fi->filename=g_strdup(file->d_name);
       if(stat(file->d_name, &f_info)!=0)
 	{
@@ -559,10 +558,9 @@ void l_directory_list()
     }
 }
 
-// MODIFIED OS X
 int c_directory_list(void)
 {
-  struct varinfo varlist;
+  TicalcVarInfo varlist;
   int n;
   int ret = 0;
 
@@ -585,14 +583,18 @@ int c_directory_list(void)
 /* Sorting functions */
 /*********************/
 
-/* For these routines I have used the worst sorting method but the easiest: the bubble sort algorithm !!! */
+/* 
+   For these routines I have used the worst sorting method but the easiest: 
+   the bubble sort algorithm !!! */
+
+
 /* Sort files by directory/files */
 void sort_lfiles_by_type(GList *list)
 {
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -614,12 +616,13 @@ void sort_lfiles_by_type(GList *list)
     }
 }
 
+
 void sort_lfiles_by_name(GList *list)
 {
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   sort_lfiles_by_type(list);
 
@@ -663,7 +666,7 @@ void sort_lfiles_by_date(GList *list)
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -699,13 +702,20 @@ void sort_lfiles_by_date(GList *list)
     }
 }
 
-/* Sort files by size (smallest to biggest size) */
+void sort_lfiles_by_size2(GList *list);
+
 void sort_lfiles_by_size(GList *list)
+{
+  sort_lfiles_by_size2(list);
+  //g_list_sort(list, GCompareComputerSizes);
+}
+
+void sort_lfiles_by_size2(GList *list)
 {
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -716,8 +726,10 @@ void sort_lfiles_by_size(GList *list)
 	  q=p->next;
 	  fi_p=p->data;
 	  fi_q=q->data;
-	  if( (((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) || 
-	      (((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR)) )
+	  if( (((fi_p->attrib & S_IFMT) == S_IFDIR) && 
+	       ((fi_q->attrib & S_IFMT) == S_IFDIR)) || 
+	      (((fi_p->attrib & S_IFMT) != S_IFDIR) && 
+	       ((fi_q->attrib & S_IFMT) != S_IFDIR)) )
 	    {
 	      if(fi_p->size > fi_q->size)
 		{
@@ -727,9 +739,9 @@ void sort_lfiles_by_size(GList *list)
 		  q->data=tmp;
 		}
 	    }
-	  else
+	  else if( ((fi_q->attrib & S_IFMT) == S_IFDIR))
 	    {
-	      if( ((fi_q->attrib & S_IFMT) == S_IFDIR) && (fi_p->size > fi_q->size) )
+	      if(fi_p->size > fi_q->size)
 		{
 		  end=j;
 		  tmp=p->data;
@@ -741,14 +753,13 @@ void sort_lfiles_by_size(GList *list)
     }
 }
 
-
 /* Sort files by user (smallest to biggest size) */
 void sort_lfiles_by_user(GList *list)
 {
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -790,7 +801,7 @@ void sort_lfiles_by_group(GList *list)
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -832,7 +843,7 @@ void sort_lfiles_by_attrib(GList *list)
   GList *p, *q;
   int i, j, end, max;
   gpointer tmp;
-  struct file_info *fi_p, *fi_q;
+  TilpFileInfo *fi_p, *fi_q;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -868,157 +879,98 @@ void sort_lfiles_by_attrib(GList *list)
     }
 }
 
+/* Sort variables by name */
+static gint GCompareCalculatorNames (gconstpointer a, gconstpointer b)
+{
+  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
+  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
+
+  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
+      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
+    {
+      if(options.ctree_sort_order == SORT_UP)
+	return strcmp(fi_b->translate, fi_a->translate);
+      else
+	return strcmp(fi_a->translate, fi_b->translate);
+    }
+  else
+    return -1;
+}
+
 void sort_cfiles_by_name(GList *list)
 {
-  GList *p, *q;
-  int i, j, end, max;
-  gpointer tmp;
-  struct varinfo *fi_p, *fi_q;
+  g_list_sort(list, GCompareCalculatorNames);
+}
 
-  if (list == NULL)
-    return;
+/* Sort variables by attribute */
+static gint GCompareCalculatorAttributes (gconstpointer a, gconstpointer b)
+{
+  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
+  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
 
-  max=g_list_length(list);
-  for (i=max-1; i>0; i=end)
+  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
+      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
     {
-      end=0;
-      for(j=0, p=list; j<i; j++, p=p->next)
-	{
-	  q=p->next;
-	  fi_p=p->data;
-	  fi_q=q->data;
-	  /*
-	    if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) && 
-	    fi_p->vartype != ti_calc.tixx_dir(options.lp.calc_type) && fi_q->vartype != ti_calc.tixx_dir(options.lp.calc_type))
-	  */
-	  if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) && 
-	      (fi_p->is_folder != FOLDER) && (fi_q->is_folder != FOLDER) )
-	    {
-	      if(strcmp(fi_p->translate, fi_q->translate))
-		{
-		  end=j;
-		  tmp=p->data;
-		  p->data=q->data;
-		  q->data=tmp;
-		}
-	    }
-	}
-    } 
+      if(options.ctree_sort_order == SORT_UP)
+	return (fi_b->varattr - fi_a->varattr);
+      else
+	return (fi_a->varattr - fi_b->varattr);
+    }
+  else
+    return -1;
 }
 
 void sort_cfiles_by_info(GList *list)
 {
-  GList *p, *q;
-  int i, j, end, max;
-  gpointer tmp;
-  struct varinfo *fi_p, *fi_q;
+  g_list_sort(list, GCompareCalculatorAttributes);
+}
 
-  if (list == NULL)
-    return;
+/* Sort variables by type */
+static gint GCompareCalculatorTypes (gconstpointer a, gconstpointer b)
+{
+  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
+  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
 
-  max=g_list_length(list);
-  for (i=max-1; i>0; i=end)
+  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
+      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
     {
-      end=0;
-      for(j=0, p=list; j<i; j++, p=p->next)
-	{
-	  q=p->next;
-	  fi_p=p->data;
-	  fi_q=q->data;
-	  /*
-	    if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) && 
-	    fi_p->vartype != ti_calc.tixx_dir(options.lp.calc_type) && fi_q->vartype != ti_calc.tixx_dir(options.lp.calc_type))
-	  */
-	  if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) 
-	      && (fi_p->is_folder != FOLDER) && (fi_q->is_folder != FOLDER) )
-	    {
-	      if(fi_p->varattr < fi_q->varattr)
-		{
-		  end=j;
-		  tmp=p->data;
-		  p->data=q->data;
-		  q->data=tmp;
-		}
-	    }
-	}
-    } 
+      if(options.ctree_sort_order == SORT_UP)
+	return (fi_b->vartype - fi_a->vartype);
+      else
+	return (fi_a->vartype - fi_b->vartype);
+    }
+  else
+    return -1;
 }
 
 void sort_cfiles_by_type(GList *list)
 {
-  GList *p, *q;
-  int i, j, end, max;
-  gpointer tmp;
-  struct varinfo *fi_p, *fi_q;
+  g_list_sort(list, GCompareCalculatorTypes);
+}
 
-  if (list == NULL)
-    return;
+/* Sort variables by size */
+static gint GCompareCalculatorSizes (gconstpointer a, gconstpointer b)
+{
+  TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
+  TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
 
-  max=g_list_length(list);
-  for (i=max-1; i>0; i=end)
+  if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
+      (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
     {
-      end=0;
-      for(j=0, p=list; j<i; j++, p=p->next)
-	{
-	  q=p->next;
-	  fi_p=p->data;
-	  fi_q=q->data;
-	  /*
-	    if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) && 
-	    fi_p->vartype != ti_calc.tixx_dir(options.lp.calc_type) && fi_q->vartype != ti_calc.tixx_dir(options.lp.calc_type))
-	  */
-	  if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate)
-	      && (fi_p->is_folder != FOLDER) && (fi_q->is_folder) )
-	    {
-	      if(fi_p->vartype < fi_q->vartype)
-		{
-		  end=j;
-		  tmp=p->data;
-		  p->data=q->data;
-		  q->data=tmp;
-		}
-	    }
-	}
-    } 
+      if(options.ctree_sort_order == SORT_UP)
+	return (fi_a->varsize - fi_b->varsize);
+      else
+	return (fi_b->varsize - fi_a->varsize);
+    }
+  else
+    return -1;
 }
 
 void sort_cfiles_by_size(GList *list)
 {
-  GList *p, *q;
-  int i, j, end, max;
-  gpointer tmp;
-  struct varinfo *fi_p, *fi_q;
-
-  if (list == NULL)
-    return;
-
-  max=g_list_length(list);
-  for (i=max-1; i>0; i=end)
-    {
-      end=0;
-      for(j=0, p=list; j<i; j++, p=p->next)
-	{
-	  q=p->next;
-	  fi_p=p->data;
-	  fi_q=q->data;
-	  /*
-	    if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate) && 
-	    fi_p->vartype != ti_calc.tixx_dir(options.lp.calc_type) && fi_q->vartype != ti_calc.tixx_dir(options.lp.calc_type))
-	  */
-	  if( !strcmp((fi_p->folder)->translate, (fi_q->folder)->translate)
-	      && (fi_p->is_folder != FOLDER) && (fi_q->is_folder != FOLDER) )
-	    {
-	      if(fi_p->varsize < fi_q->varsize)
-		{
-		  end=j;
-		  tmp=p->data;
-		  p->data=q->data;
-		  q->data=tmp;
-		}
-	    }
-	}
-    } 
+  g_list_sort(list, GCompareCalculatorSizes);
 }
+
 
 /* Return the filename or its extension if it has one */
 char *file_extension(char *filename)
@@ -1034,3 +986,8 @@ char *file_extension(char *filename)
   
   return p;
 }
+
+
+
+
+

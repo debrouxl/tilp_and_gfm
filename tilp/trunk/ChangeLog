@@ -231,6 +231,8 @@
 * 20020214 : v0.5.0
 	* Title bar reads "TiLP v5.00", but it's a 4.92 modified.
 	* Added an indeterminate ProgressIndicator to pbarType2.
+* 20020214 : v4.94 (0.5.0)
+	* Final merge, step1.
 
 
 

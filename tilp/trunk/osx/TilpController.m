@@ -474,7 +474,7 @@ struct gui_fncts gui_functions;
     
     [mainEntries insertObject:tmpDict atIndex:5];
     
-    [tmpDict setObject:@"FLASH Applications" forKey:@"Group"];
+    [tmpDict setObject:@"FLASH Apps" forKey:@"Group"];
     [tmpDict setObject:tiAppsArray forKey:@"Entries"];
     
     // VARIABLES

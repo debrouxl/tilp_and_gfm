@@ -530,10 +530,10 @@ int cb_send_cmdline(void)
 int cb_ungroup_files(void)
 {
 #ifdef HAVE_LIBTIFFEP
-  FileInfo *fi_src = NULL;
-  FileInfo *fi_dst = NULL;
-  VarInfo  *vi_src = NULL;
-  VarInfo  *vi_dst = NULL;
+  TiffepFileInfo *fi_src = NULL;
+  TiffepFileInfo *fi_dst = NULL;
+  TiffepVarInfo  *vi_src = NULL;
+  TiffepVarInfo  *vi_dst = NULL;
   
   if(clist_win.selection == NULL) 
     return 0;
@@ -556,7 +556,7 @@ int cb_ungroup_files(void)
       vl = FILEINFO_VARLIST(fi_src);
       while(vl != NULL)
 	{
-	  vi_src = (VarInfo *)(vl->data);
+	  vi_src = (TiffepVarInfo *)(vl->data);
 	  fi_dst = tiffep_alloc_fi_struct();	  
 	  FILEINFO_FILETYPE(fi_dst) = FILE_SINGLE;
 	  FILEINFO_CALCTYPE(fi_dst) = FILEINFO_CALCTYPE(fi_src);
@@ -590,10 +590,10 @@ int cb_ungroup_files(void)
 int cb_group_files(void)
 {
 #ifdef HAVE_LIBTIFFEP
-  FileInfo *fi_src = NULL;
-  FileInfo *fi_dst = NULL;
-  VarInfo  *vi_src = NULL;
-  VarInfo  *vi_dst = NULL;
+  TiffepFileInfo *fi_src = NULL;
+  TiffepFileInfo *fi_dst = NULL;
+  TiffepVarInfo  *vi_src = NULL;
+  TiffepVarInfo  *vi_dst = NULL;
   
   if((sel = clist_win.selection) == NULL) 
     return 0;

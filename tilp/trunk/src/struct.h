@@ -32,12 +32,12 @@
 extern "C" {
 #endif
 
-extern LinkCable   link_cable;
+extern TicableLinkCable   link_cable;
 extern TicalcFncts ti_calc;
 extern InfoUpdate  info_update;
 
 #ifdef HAVE_TIFFEP
-extern Registry *plugin_registry;
+extern TiffepRegistry *plugin_registry;
 extern gint registry_allowed;
 #endif
 
@@ -87,6 +87,7 @@ extern struct goptions
 
   struct ticable_param lp;
 } options;
+typedef struct options TilpOptions;
 
 /* Used by the local directory list function */
 struct file_info
@@ -98,6 +99,7 @@ struct file_info
   gid_t group;
   mode_t attrib;
 };
+typedef struct file_info TilpFileInfo;
 
 /* Used to retrieve stats on the on-calc memory usage */
 struct calc_mem_info
@@ -120,6 +122,7 @@ struct plugin_info
   char *var_type;
   char *calc_type;
 };
+typedef struct plugin_info TilpPluginInfo;
 
 /* This struct is used by the CList window */
 extern struct clist_window
@@ -148,6 +151,8 @@ struct screenshot
   Image img;
   ScrCoord sc;
 };
+typedef struct screenshot TilpScreenShot;
+typedef struct calc_mem_info TilpCalcMemInfo;
 
 #ifdef __cplusplus
 }
