@@ -132,38 +132,6 @@ extern int is_active;
         [NSApp stopModal];
 }
 
-- (IBAction)remoteControlChangeMode:(id)sender
-{
-    if ((sender == remoteControlRemoteMode) && (term_mode != REMOTE))
-        {
-            // leaving terminal mode
-            ti_calc.send_key(KEY92_F5);
-            ti_calc.send_key(KEY92_CTRL);
-            ti_calc.send_key(KEY92_LP);
-            ti_calc.send_key(KEY92_r);
-        
-            [remoteControlTerminalMode setState:NSOffState];
-            
-            term_mode = REMOTE;
-            
-            //[remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
-        }
-    else if ((sender == remoteControlTerminalMode) && (term_mode != TERM))
-        {
-            [remoteControlRemoteMode setState:NSOffState];
-            
-            term_mode = TERM;
-            
-            //[remoteControlTextArea setStringValue:@"\nYou are in terminal mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
-            
-            // entering terminal mode
-            ti_calc.send_key(KEY92_F5);
-            ti_calc.send_key(KEY92_CTRL);
-            ti_calc.send_key(KEY92_LP);
-            ti_calc.send_key(KEY92_r);
-        }
-}
-
 - (IBAction)screendumpSaveImage:(id)sender
 {
     NSSavePanel *sp;
@@ -196,18 +164,6 @@ extern int is_active;
         modalDelegate:self
         didEndSelector:@selector(screendumpSaveImageDidEnd:returnCode:contextInfo:)
         contextInfo:sp];
-}
-
-- (IBAction)showKeyboard:(id)sender
-{
-    if (options.lp.calc_type == CALC_TI89)
-        {
-            [myCalc89KeyboardController showKeyboard89:self];
-        }
-    else if ((options.lp.calc_type == CALC_TI92) || (options.lp.calc_type == CALC_TI92P))
-        {
-            [myCalc92KeyboardController showKeyboard92:self];
-        }
 }
 
 

@@ -74,8 +74,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (IBAction)prefsClose:(id)sender
 {
-    //int err;
-
     NSString *portName;
     
     // general
@@ -187,19 +185,14 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.console_mode = DSP_ON;
     else if (NSOnState == [consoleSilent state])
         options.console_mode = DSP_OFF;
-        
-    rc_save_user_prefs();
-    
+            
     ticable_set_param2(options.lp);
-    
-//    tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
-//    err = link_cable.init();
-//    if(err)
-//        tilp_error(err);
-    
+        
     ticable_set_cable(options.lp.link_type, &link_cable);
     
     ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
+
+    rc_save_user_prefs();
 
     [NSApp stopModal];
 

@@ -191,8 +191,19 @@
 	    and the skins from GtkTiEmu. The keyboards are not yet
 	    usable, but the Remote control works as it did previously
 	    using the RCTextField.
-
-
+* 20020126 : v0.4.2
+	* Added 89y to the list of known vars for the TI-89 (reported
+	by: Benjamin Esham).
+	* Fixed coordinates problems on both keyboards.
+	* Cleaned up the Remote Control mess
+	    => Wiped out some methods
+	    => Wiped out some windows
+	    => Cleaned up some of the classes
+	* Fixed prefsClose: wrt calc type
+	    => Call rc_save_user_prefs() after ticalc_set_calc(),
+	    as the former uses ticalc_get_calc() which will return
+	    the right calc type only after the latter is called
+	
 
 
 

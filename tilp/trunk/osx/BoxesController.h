@@ -58,10 +58,6 @@
     IBOutlet id user3Button3;
     IBOutlet id user3Text;
     IBOutlet id user3Window;
-    IBOutlet id remoteControlRemoteMode;
-    IBOutlet id remoteControlTerminalMode;
-    IBOutlet id remoteControlTextArea;
-    IBOutlet id remoteControlWindow;
     IBOutlet id screendumpImage;
     IBOutlet id screendumpWindow;
     
@@ -72,8 +68,6 @@
     IBOutlet id myTransfersController;
     IBOutlet id myCalc89KeyboardController;
     IBOutlet id myCalc92KeyboardController;
-    
-    int term_mode;
 }
 
 - (void)user1ButtonPush:(id)sender;
@@ -84,10 +78,7 @@
 - (IBAction)dlgboxentryButton2Push:(id)sender;
 - (IBAction)pbarButtonPush:(id)sender;
 
-- (IBAction)remoteControlChangeMode:(id)sender;
 - (IBAction)screendumpSaveImage:(id)sender;
-
-- (IBAction)showKeyboard:(id)sender;
 
 // NSOpenPanels callbacks
 - (void)doRestoreDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;

@@ -26,8 +26,6 @@
     IBOutlet id dirlistTree;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;
-    IBOutlet id remoteControlWindow;
-    IBOutlet id remoteControlTextArea;
 
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

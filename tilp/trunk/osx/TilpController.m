@@ -211,7 +211,8 @@ struct gui_fncts gui_functions;
     tmpArray = [NSArray arrayWithObjects:@"89a", @"89b", @"89c", @"89d",
                                          @"89e", @"89f", @"89g", @"89i",
                                          @"89l", @"89m", @"89p", @"89s",
-                                         @"89t", @"89x", @"89z", nil];
+                                         @"89t", @"89x", @"89y", @"89z",
+                                         nil];
     [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
     
     tmpArray = [NSArray arrayWithObjects:@"89u", nil];

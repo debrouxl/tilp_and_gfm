@@ -30,15 +30,14 @@
     IBOutlet id thanksPanelText;
     IBOutlet id msgSheetText;
     IBOutlet id msgSheetWindow;
-    IBOutlet id remoteControlTextArea;
-    IBOutlet id remoteControlWindow;
-    IBOutlet id remoteControlScrollView;
  
     IBOutlet id myBoxesController;
     IBOutlet id myPrefsController;
     IBOutlet id myTilpController;
     IBOutlet id mySheetsController;
     IBOutlet id myTransfersController;
+    IBOutlet id myCalc89KeyboardController;
+    IBOutlet id myCalc92KeyboardController;
 
     NSMutableDictionary *toolbarItems;
 }

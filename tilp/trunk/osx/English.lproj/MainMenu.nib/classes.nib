@@ -47,10 +47,6 @@
                 pbar5Rate = id; 
                 pbar5Text = id; 
                 pbar5Window = id; 
-                remoteControlRemoteMode = id; 
-                remoteControlTerminalMode = id; 
-                remoteControlTextArea = id; 
-                remoteControlWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
                 user1Button = id; 
@@ -125,13 +121,12 @@
                 msgSheetText = id; 
                 msgSheetWindow = id; 
                 myBoxesController = id; 
+                myCalc89KeyboardController = id; 
+                myCalc92KeyboardController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
                 myTransfersController = id; 
-                remoteControlScrollView = id; 
-                remoteControlTextArea = id; 
-                remoteControlWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
                 thanksPanel = id; 
@@ -280,8 +275,6 @@
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
-                remoteControlTextArea = id; 
-                remoteControlWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
             }; 

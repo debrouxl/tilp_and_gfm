@@ -45,6 +45,8 @@ extern int is_active;
 #import "SheetsController.h"
 #import "BoxesController.h"
 #import "RCTextView.h"
+#import "Calc89KeyboardController.h"
+#import "Calc92KeyboardController.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
@@ -211,54 +213,22 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)remoteControl:(id)sender
 {
-    // FIXME OS X : fix the mess regarding the boxes
+    if (is_active)
+        return;
 
-    NSSize scrollSize;
-
-    if ((options.lp.calc_type != CALC_TI89) && (options.lp.calc_type != CALC_TI92) && (options.lp.calc_type != CALC_TI92P))
+    if (ticalc_get_calc() == CALC_TI89)
+        {
+            [myCalc89KeyboardController showKeyboard89:self];
+        }
+    else if ((ticalc_get_calc() == CALC_TI92) || (ticalc_get_calc() == CALC_TI92P))
+        {
+            [myCalc92KeyboardController showKeyboard92:self];
+        }
+    else
         {
             [mySheetsController msgSheet:@"The remote control is not supported by this model of calculator. Sorry !"
                                 title:@"Unsupported !"];
-                                
-            return;
         }
-
-    if (is_active)
-        return;
-        
-    if ([remoteControlWindow isVisible])
-        {
-            [remoteControlWindow orderFront:self];
-            
-            [myBoxesController showKeyboard:self];
-            
-            return;
-        }
-
-    scrollSize = [remoteControlScrollView contentSize];
-    
-    remoteControlTextArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
-                                                textContainer:[[remoteControlScrollView documentView] textContainer]];
-    
-    [remoteControlTextArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
-    [remoteControlTextArea setMaxSize:NSMakeSize(1e7, 1e7)];
-    [remoteControlTextArea setVerticallyResizable:YES];
-    [remoteControlTextArea setHorizontallyResizable:NO];
-    [remoteControlTextArea setAutoresizingMask:NSViewWidthSizable];
-    
-    [remoteControlScrollView setDocumentView:remoteControlTextArea];
-    
-    [remoteControlTextArea setEditable:YES]; 
-       
-    [remoteControlTextArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
-    
-    [remoteControlScrollView display];
-    
-    //[remoteControlWindow makeKeyAndOrderFront:self];
-    
-    [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
-    
-    [myBoxesController showKeyboard:self];
 }
 
 - (IBAction)getScreen:(id)sender

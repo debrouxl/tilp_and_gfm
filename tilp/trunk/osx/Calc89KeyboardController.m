@@ -85,7 +85,10 @@ uint32_t swap_bytes(uint32_t a);
   int i;
   unsigned char key = 0;
   
-  // FIXME OS X : we have a _little_ coordinates problem :)
+  // we have a _little_ coordinates problem :)
+  // our ImageView is 222 * 503
+  point.y = 503 - point.y;
+  
   for(i = 0; i < 80; i++)
       {
           if ((point.x >= rcKeys89[i].left) && (point.x < rcKeys89[i].right) && (point.y >= rcKeys89[i].top) && (point.y < rcKeys89[i].bottom))
@@ -164,6 +167,13 @@ uint32_t swap_bytes(uint32_t a);
 
     int i;
 
+    if ([keyboardWindow isVisible])
+        {
+            [keyboardWindow orderFront:self];
+            
+            return;
+        }
+
     skinData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ti89" ofType:@"skn"]];
 
     // Load key coordinates here
@@ -172,14 +182,13 @@ uint32_t swap_bytes(uint32_t a);
     
     for (i = 0; i < 80; i++)
         {
-            // FIXME OS X : coordinates (should be >> 1)
-            rcKeys89[i].top = swap_bytes(rcKeys89[i].top); // >> 1;
-            rcKeys89[i].bottom = swap_bytes(rcKeys89[i].bottom); // >> 1;
-            rcKeys89[i].left = swap_bytes(rcKeys89[i].left); // >> 1;
-            rcKeys89[i].right = swap_bytes(rcKeys89[i].right); // >> 1;
+            rcKeys89[i].top = swap_bytes(rcKeys89[i].top) >> 1;
+            rcKeys89[i].bottom = swap_bytes(rcKeys89[i].bottom) >> 1;
+            rcKeys89[i].left = swap_bytes(rcKeys89[i].left) >> 1;
+            rcKeys89[i].right = swap_bytes(rcKeys89[i].right) >> 1;
         }
 
-    // JPEG data begins at 152 + (1 + 80) * sizeof(RECT_)
+    // JPEG data begins at 152 + (1 + 80) * sizeof(RECT_)  (VTi v2.5)
     // there's something strange with NSData and range handling, thus the second argument...
     jpegRange = NSMakeRange(152 + 81 * sizeof(RECT_), [skinData length] - (152 + 81 * sizeof(RECT_)));
     
