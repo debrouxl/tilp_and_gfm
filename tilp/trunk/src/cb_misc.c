@@ -33,7 +33,9 @@
 #include "gui_indep.h"
 #include "intl.h"
 #include "error.h"
+#ifndef __MACOSX__
 #include "rcfile.h"
+#endif
 #include "struct.h"
 #include "cb_calc.h"
 
