@@ -1,0 +1,1877 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 34;
+	objects = {
+		00FFA4BA01707A727F000001 = {
+			isa = PBXFileReference;
+			name = screen.tiff;
+			path = images/screen.tiff;
+			refType = 4;
+		};
+		00FFA4BB01707A727F000001 = {
+			fileRef = 00FFA4BA01707A727F000001;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		00FFA4BC01707AE57F000001 = {
+			isa = PBXFileReference;
+			name = ready.tiff;
+			path = images/ready.tiff;
+			refType = 4;
+		};
+		00FFA4BD01707AE57F000001 = {
+			fileRef = 00FFA4BC01707AE57F000001;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		00FFA4BE01707B147F000001 = {
+			isa = PBXFileReference;
+			name = dirlist.tiff;
+			path = images/dirlist.tiff;
+			refType = 4;
+		};
+		00FFA4BF01707B147F000001 = {
+			fileRef = 00FFA4BE01707B147F000001;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		00FFA4C401707C907F000001 = {
+			isa = PBXFileReference;
+			name = memory.tiff;
+			path = images/memory.tiff;
+			refType = 4;
+		};
+		00FFA4C501707C907F000001 = {
+			fileRef = 00FFA4C401707C907F000001;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//000
+//001
+//002
+//003
+//004
+//040
+//041
+//042
+//043
+//044
+		043355C9FE30361CC02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXRezBuildPhase;
+			name = "ResourceManager Resources";
+		};
+//040
+//041
+//042
+//043
+//044
+//080
+//081
+//082
+//083
+//084
+		080E96DCFE201CFB7F000001 = {
+			fileRef = 29B97318FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		080E96DDFE201D6D7F000001 = {
+			children = (
+				F58270640176284A01000102,
+				F582706B0176297F01000102,
+			);
+			isa = PBXGroup;
+			name = Classes;
+			refType = 4;
+		};
+		089C165CFE840E0CC02AAC07 = {
+			children = (
+				089C165DFE840E0CC02AAC07,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			refType = 4;
+		};
+		089C165DFE840E0CC02AAC07 = {
+			fileEncoding = 10;
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/InfoPlist.strings;
+			refType = 4;
+		};
+		089C165EFE840E0CC02AAC07 = {
+			fileRef = 089C165CFE840E0CC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7A0FEA54F0111CA2CBB = {
+			children = (
+				1058C7A1FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			refType = 4;
+		};
+		1058C7A1FEA54F0111CA2CBB = {
+			isa = PBXFrameworkReference;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+		};
+		1058C7A2FEA54F0111CA2CBB = {
+			children = (
+				29B97325FDCFA39411CA2CEA,
+				29B97324FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Frameworks";
+			refType = 4;
+		};
+		1058C7A3FEA54F0111CA2CBB = {
+			fileRef = 1058C7A1FEA54F0111CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//100
+//101
+//102
+//103
+//104
+//170
+//171
+//172
+//173
+//174
+		17587328FF379C6511CA2CBB = {
+			isa = PBXApplicationReference;
+			path = TiLP.app;
+			refType = 3;
+		};
+//170
+//171
+//172
+//173
+//174
+//190
+//191
+//192
+//193
+//194
+		19C28FACFE9D520D11CA2CBB = {
+			children = (
+				17587328FF379C6511CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+		};
+//190
+//191
+//192
+//193
+//194
+//290
+//291
+//292
+//293
+//294
+		29B97313FDCFA39411CA2CEA = {
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA,
+				4A9504CDFFE6A4B311CA0CBA,
+			);
+			isa = PBXProject;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			projectDirPath = "";
+			targets = (
+				29B97326FDCFA39411CA2CEA,
+			);
+		};
+		29B97314FDCFA39411CA2CEA = {
+			children = (
+				080E96DDFE201D6D7F000001,
+				F582706C0176297F01000102,
+				F582709D01762ABB01000102,
+				29B97315FDCFA39411CA2CEA,
+				29B97317FDCFA39411CA2CEA,
+				29B97323FDCFA39411CA2CEA,
+				19C28FACFE9D520D11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = TiLP;
+			path = "";
+			refType = 4;
+		};
+		29B97315FDCFA39411CA2CEA = {
+			children = (
+				29B97316FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Sources";
+			path = "";
+			refType = 4;
+		};
+		29B97316FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			path = main.m;
+			refType = 4;
+		};
+		29B97317FDCFA39411CA2CEA = {
+			children = (
+				29B97318FDCFA39411CA2CEA,
+				089C165CFE840E0CC02AAC07,
+				00FFA4BA01707A727F000001,
+				00FFA4BC01707AE57F000001,
+				00FFA4BE01707B147F000001,
+				00FFA4C401707C907F000001,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = "";
+			refType = 4;
+		};
+		29B97318FDCFA39411CA2CEA = {
+			children = (
+				29B97319FDCFA39411CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+		};
+		29B97319FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			name = English;
+			path = English.lproj/MainMenu.nib;
+			refType = 4;
+		};
+		29B97323FDCFA39411CA2CEA = {
+			children = (
+				1058C7A0FEA54F0111CA2CBB,
+				1058C7A2FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			path = "";
+			refType = 4;
+		};
+		29B97324FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+		};
+		29B97325FDCFA39411CA2CEA = {
+			isa = PBXFrameworkReference;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+		};
+		29B97326FDCFA39411CA2CEA = {
+			buildPhases = (
+				29B97327FDCFA39411CA2CEA,
+				29B97328FDCFA39411CA2CEA,
+				29B9732BFDCFA39411CA2CEA,
+				29B9732DFDCFA39411CA2CEA,
+				043355C9FE30361CC02AAC07,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = TiLP;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = TiLP;
+			productInstallPath = "$(HOME)/Applications";
+			productName = TiLP;
+			productReference = 17587328FF379C6511CA2CBB;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
+<plist version=\"0.9\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TiLP</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+			shouldUseHeadermap = 1;
+		};
+		29B97327FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				F58270660176284A01000102,
+			);
+			isa = PBXHeadersBuildPhase;
+			name = Headers;
+		};
+		29B97328FDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				080E96DCFE201CFB7F000001,
+				089C165EFE840E0CC02AAC07,
+				00FFA4BB01707A727F000001,
+				00FFA4BD01707AE57F000001,
+				00FFA4BF01707B147F000001,
+				00FFA4C501707C907F000001,
+			);
+			isa = PBXResourcesBuildPhase;
+			name = "Bundle Resources";
+		};
+		29B9732BFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				29B9732CFDCFA39411CA2CEA,
+				F58270670176284A01000102,
+			);
+			isa = PBXSourcesBuildPhase;
+			name = Sources;
+		};
+		29B9732CFDCFA39411CA2CEA = {
+			fileRef = 29B97316FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+		29B9732DFDCFA39411CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A3FEA54F0111CA2CBB,
+			);
+			isa = PBXFrameworksBuildPhase;
+			name = "Frameworks & Libraries";
+		};
+//290
+//291
+//292
+//293
+//294
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+		4A9504CCFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+//F50
+//F51
+//F52
+//F53
+//F54
+		F58270630176284A01000102 = {
+			isa = PBXFileReference;
+			path = ToolbarController.m;
+			refType = 4;
+		};
+		F58270640176284A01000102 = {
+			children = (
+				F58270650176284A01000102,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F58270650176284A01000102 = {
+			isa = PBXFileReference;
+			path = ToolbarController.h;
+			refType = 4;
+		};
+		F58270660176284A01000102 = {
+			fileRef = F58270650176284A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F58270670176284A01000102 = {
+			fileRef = F58270630176284A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F582706B0176297F01000102 = {
+			children = (
+				F58270630176284A01000102,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			refType = 4;
+		};
+		F582706C0176297F01000102 = {
+			children = (
+				F582706D0176297F01000102,
+				F582706E0176297F01000102,
+			);
+			isa = PBXGroup;
+			name = "GUI Indep";
+			path = "";
+			refType = 4;
+		};
+		F582706D0176297F01000102 = {
+			children = (
+				F582711E01762AFA01000102,
+				F582711F01762AFA01000102,
+				F582712101762AFA01000102,
+				F582712201762AFA01000102,
+				F582712301762AFA01000102,
+				F582712401762AFA01000102,
+				F582712501762AFA01000102,
+				F582712601762AFA01000102,
+				F582712701762AFA01000102,
+				F582712801762AFA01000102,
+				F582712901762AFA01000102,
+				F582712B01762AFA01000102,
+				F582712C01762AFA01000102,
+				F582712D01762AFA01000102,
+				F582712F01762AFA01000102,
+				F582707201762A8B01000102,
+				F582707601762A8B01000102,
+				F582707701762A8B01000102,
+				F582707801762A8B01000102,
+				F582707901762A8B01000102,
+				F582707A01762A8B01000102,
+				F582707B01762A8B01000102,
+				F582707C01762A8B01000102,
+				F582707D01762A8B01000102,
+				F582707E01762A8B01000102,
+				F582707F01762A8B01000102,
+				F582708001762A8B01000102,
+				F582708101762A8B01000102,
+				F582708201762A8B01000102,
+				F582708301762A8B01000102,
+				F582708401762A8B01000102,
+				F582708501762A8B01000102,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F582706E0176297F01000102 = {
+			children = (
+				F58271DD01762CF701000102,
+				F58271DE01762CF701000102,
+				F58271DF01762CF701000102,
+				F58271E001762CF701000102,
+				F58271E101762CF701000102,
+				F58271E201762CF701000102,
+				F58271E301762CF701000102,
+				F58271E401762CF701000102,
+				F58271E501762CF701000102,
+				F58271E701762CF701000102,
+				F582714701762C7701000102,
+				F582714A01762C7701000102,
+				F582714B01762C7701000102,
+				F582714C01762C7701000102,
+				F582714D01762C7701000102,
+				F582714E01762C7701000102,
+				F582714F01762C7701000102,
+				F582715001762C7701000102,
+				F582715101762C7701000102,
+				F582715201762C7701000102,
+				F582715301762C7701000102,
+				F582715401762C7701000102,
+				F582715501762C7701000102,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			refType = 4;
+		};
+		F582706F01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = gstruct.h;
+			path = /Users/julien/devel/TiLP/src/gstruct.h;
+			refType = 0;
+		};
+		F582707001762A8B01000102 = {
+			isa = PBXFileReference;
+			name = gselect.h;
+			path = /Users/julien/devel/TiLP/src/gselect.h;
+			refType = 0;
+		};
+		F582707101762A8B01000102 = {
+			isa = PBXFileReference;
+			name = gpbar.h;
+			path = /Users/julien/devel/TiLP/src/gpbar.h;
+			refType = 0;
+		};
+		F582707201762A8B01000102 = {
+			isa = PBXFileReference;
+			name = gpakfile.h;
+			path = /Users/julien/devel/TiLP/src/gpakfile.h;
+			refType = 0;
+		};
+		F582707301762A8B01000102 = {
+			isa = PBXFileReference;
+			name = glist.h;
+			path = /Users/julien/devel/TiLP/src/glist.h;
+			refType = 0;
+		};
+		F582707401762A8B01000102 = {
+			isa = PBXFileReference;
+			name = ginfo.h;
+			path = /Users/julien/devel/TiLP/src/ginfo.h;
+			refType = 0;
+		};
+		F582707501762A8B01000102 = {
+			isa = PBXFileReference;
+			name = g_inc.h;
+			path = /Users/julien/devel/TiLP/src/g_inc.h;
+			refType = 0;
+		};
+		F582707601762A8B01000102 = {
+			isa = PBXFileReference;
+			name = files.h;
+			path = /Users/julien/devel/TiLP/src/files.h;
+			refType = 0;
+		};
+		F582707701762A8B01000102 = {
+			isa = PBXFileReference;
+			name = error.h;
+			path = /Users/julien/devel/TiLP/src/error.h;
+			refType = 0;
+		};
+		F582707801762A8B01000102 = {
+			isa = PBXFileReference;
+			name = dep.h;
+			path = /Users/julien/devel/TiLP/src/dep.h;
+			refType = 0;
+		};
+		F582707901762A8B01000102 = {
+			isa = PBXFileReference;
+			name = defs.h;
+			path = /Users/julien/devel/TiLP/src/defs.h;
+			refType = 0;
+		};
+		F582707A01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = convxx.h;
+			path = /Users/julien/devel/TiLP/src/convxx.h;
+			refType = 0;
+		};
+		F582707B01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = conv_inc.h;
+			path = /Users/julien/devel/TiLP/src/conv_inc.h;
+			refType = 0;
+		};
+		F582707C01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = conv86.h;
+			path = /Users/julien/devel/TiLP/src/conv86.h;
+			refType = 0;
+		};
+		F582707D01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = conv85.h;
+			path = /Users/julien/devel/TiLP/src/conv85.h;
+			refType = 0;
+		};
+		F582707E01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = conv83.h;
+			path = /Users/julien/devel/TiLP/src/conv83.h;
+			refType = 0;
+		};
+		F582707F01762A8B01000102 = {
+			isa = PBXFileReference;
+			name = conv82.h;
+			path = /Users/julien/devel/TiLP/src/conv82.h;
+			refType = 0;
+		};
+		F582708001762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cmdinterface.h;
+			path = /Users/julien/devel/TiLP/src/cmdinterface.h;
+			refType = 0;
+		};
+		F582708101762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cl_refresh.h;
+			path = /Users/julien/devel/TiLP/src/cl_refresh.h;
+			refType = 0;
+		};
+		F582708201762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cl_indep.h;
+			path = /Users/julien/devel/TiLP/src/cl_indep.h;
+			refType = 0;
+		};
+		F582708301762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cl_inc.h;
+			path = /Users/julien/devel/TiLP/src/cl_inc.h;
+			refType = 0;
+		};
+		F582708401762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cb_misc.h;
+			path = /Users/julien/devel/TiLP/src/cb_misc.h;
+			refType = 0;
+		};
+		F582708501762A8B01000102 = {
+			isa = PBXFileReference;
+			name = cb_calc.h;
+			path = /Users/julien/devel/TiLP/src/cb_calc.h;
+			refType = 0;
+		};
+		F582709D01762ABB01000102 = {
+			children = (
+				F582709E01762ABB01000102,
+				F582709F01762ABB01000102,
+			);
+			isa = PBXGroup;
+			name = "GUI GTK";
+			refType = 4;
+		};
+		F582709E01762ABB01000102 = {
+			children = (
+				F582712001762AFA01000102,
+				F582712E01762AFA01000102,
+				F582713001762AFA01000102,
+				F582713101762AFA01000102,
+				F582706F01762A8B01000102,
+				F582707001762A8B01000102,
+				F582707101762A8B01000102,
+				F582707301762A8B01000102,
+				F582707401762A8B01000102,
+				F582707501762A8B01000102,
+				F58270A001762AD501000102,
+				F58270A101762AD501000102,
+				F58270A201762AD501000102,
+				F58270A301762AD501000102,
+				F58270A401762AD501000102,
+				F58270A501762AD501000102,
+				F58270A601762AD501000102,
+				F58270A701762AD501000102,
+				F58270A801762AD501000102,
+				F58270A901762AD501000102,
+				F58270AA01762AD501000102,
+				F58270AB01762AD501000102,
+				F58270AC01762AD501000102,
+				F58270AD01762AD501000102,
+				F58270AE01762AD501000102,
+				F58270AF01762AD501000102,
+				F58270B001762AD501000102,
+				F58270B101762AD501000102,
+				F58270B201762AD501000102,
+				F58270B301762AD501000102,
+				F58270B401762AD501000102,
+				F58270B501762AD501000102,
+				F58270B601762AD501000102,
+				F58270B701762AD501000102,
+				F58270B801762AD501000102,
+				F58270B901762AD501000102,
+				F58270BA01762AD501000102,
+				F58270BB01762AD501000102,
+				F58270BC01762AD501000102,
+				F58270BD01762AD501000102,
+				F58270BE01762AD501000102,
+				F58270BF01762AD501000102,
+				F58270C001762AD501000102,
+				F58270C101762AD501000102,
+				F58270C201762AD501000102,
+				F58270C301762AD501000102,
+				F58270C401762AD501000102,
+				F58270C501762AD501000102,
+				F58270C601762AD501000102,
+				F58270C701762AD501000102,
+				F58270C801762AD501000102,
+				F58270C901762AD501000102,
+				F58270CA01762AD501000102,
+				F58270CB01762AD501000102,
+				F58270CC01762AD501000102,
+				F58270CD01762AD501000102,
+				F58270CE01762AD501000102,
+				F58270CF01762AD501000102,
+				F58270D001762AD501000102,
+				F58270D101762AD501000102,
+				F58270D201762AD501000102,
+				F58270D301762AD501000102,
+				F58270D401762AD501000102,
+				F58270D501762AD501000102,
+				F58270D601762AD501000102,
+				F58270D701762AD501000102,
+				F58270D801762AD501000102,
+				F58270D901762AD501000102,
+				F58270DA01762AD501000102,
+				F58270DB01762AD501000102,
+				F58270DC01762AD501000102,
+				F58270DD01762AD501000102,
+				F58270DE01762AD501000102,
+			);
+			isa = PBXGroup;
+			name = Headers;
+			refType = 4;
+		};
+		F582709F01762ABB01000102 = {
+			children = (
+				F58271E601762CF701000102,
+				F58271E801762CF701000102,
+				F58271E901762CF701000102,
+				F582714601762C7701000102,
+				F582714801762C7701000102,
+				F582714901762C7701000102,
+				F58271DC01762CF701000102,
+				F582716601762CAD01000102,
+				F582716701762CAD01000102,
+				F582716801762CAD01000102,
+				F582716901762CAD01000102,
+				F582716A01762CAD01000102,
+				F582716B01762CAD01000102,
+				F582716C01762CAD01000102,
+				F582716D01762CAD01000102,
+				F582716E01762CAD01000102,
+				F582716F01762CAD01000102,
+				F582717001762CAD01000102,
+				F582717101762CAD01000102,
+				F582717201762CAD01000102,
+				F582717301762CAD01000102,
+				F582717401762CAD01000102,
+				F582717501762CAD01000102,
+				F582717601762CAD01000102,
+				F582717701762CAD01000102,
+				F582717801762CAD01000102,
+				F582717901762CAD01000102,
+				F582717A01762CAD01000102,
+				F582717B01762CAD01000102,
+				F582717C01762CAD01000102,
+				F582717D01762CAD01000102,
+				F582717E01762CAD01000102,
+				F582717F01762CAD01000102,
+				F582718001762CAD01000102,
+				F582718101762CAD01000102,
+				F582718201762CAD01000102,
+				F582718301762CAD01000102,
+				F582718401762CAD01000102,
+				F582718501762CAD01000102,
+				F582718601762CAD01000102,
+				F582718701762CAD01000102,
+				F582718801762CAD01000102,
+				F582718901762CAD01000102,
+				F582718A01762CAD01000102,
+				F582718B01762CAD01000102,
+				F582718C01762CAD01000102,
+				F582718D01762CAD01000102,
+				F582718E01762CAD01000102,
+				F582718F01762CAD01000102,
+				F582719001762CAD01000102,
+				F582719101762CAD01000102,
+				F582719201762CAD01000102,
+				F582719301762CAD01000102,
+				F582719401762CAD01000102,
+				F582719501762CAD01000102,
+				F582719601762CAD01000102,
+				F582719701762CAD01000102,
+				F582719801762CAD01000102,
+				F582719901762CAD01000102,
+				F582719A01762CAD01000102,
+				F582719B01762CAD01000102,
+				F582719C01762CAD01000102,
+				F582719D01762CAD01000102,
+				F582719E01762CAD01000102,
+				F582719F01762CAD01000102,
+				F58271A001762CAD01000102,
+			);
+			isa = PBXGroup;
+			name = Sources;
+			refType = 4;
+		};
+		F58270A001762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_entry_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_entry_dbox.h;
+			refType = 0;
+		};
+		F58270A101762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_entry_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_entry_cb.h;
+			refType = 0;
+		};
+		F58270A201762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_delay_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_delay_dbox.h;
+			refType = 0;
+		};
+		F58270A301762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_delay_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_delay_cb.h;
+			refType = 0;
+		};
+		F58270A401762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_clist_rbm.h;
+			path = /Users/julien/devel/TiLP/src/gtk_clist_rbm.h;
+			refType = 0;
+		};
+		F58270A501762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_clist_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_clist_cb.h;
+			refType = 0;
+		};
+		F58270A601762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_calc_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_calc_dbox.h;
+			refType = 0;
+		};
+		F58270A701762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_calc_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_calc_cb.h;
+			refType = 0;
+		};
+		F58270A801762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_advanced_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_advanced_dbox.h;
+			refType = 0;
+		};
+		F58270A901762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_advanced_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_advanced_cb.h;
+			refType = 0;
+		};
+		F58270AA01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_about_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_about_dbox.h;
+			refType = 0;
+		};
+		F58270AB01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_about_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_about_cb.h;
+			refType = 0;
+		};
+		F58270AC01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_user_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_user_dbox.h;
+			refType = 0;
+		};
+		F58270AD01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_user_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_user_cb.h;
+			refType = 0;
+		};
+		F58270AE01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_timeout_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_timeout_dbox.h;
+			refType = 0;
+		};
+		F58270AF01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_timeout_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_timeout_cb.h;
+			refType = 0;
+		};
+		F58270B001762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_tilp_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_tilp_dbox.h;
+			refType = 0;
+		};
+		F58270B101762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_tilp_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_tilp_cb.h;
+			refType = 0;
+		};
+		F58270B201762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_tifileinfo_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_tifileinfo_dbox.h;
+			refType = 0;
+		};
+		F58270B301762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_tifileinfo_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_tifileinfo_cb.h;
+			refType = 0;
+		};
+		F58270B401762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_thanks_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_thanks_dbox.h;
+			refType = 0;
+		};
+		F58270B501762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_thanks_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_thanks_cb.h;
+			refType = 0;
+		};
+		F58270B601762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_term_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_term_dbox.h;
+			refType = 0;
+		};
+		F58270B701762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_term_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_term_cb.h;
+			refType = 0;
+		};
+		F58270B801762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_startup_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_startup_dbox.h;
+			refType = 0;
+		};
+		F58270B901762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_startup_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_startup_cb.h;
+			refType = 0;
+		};
+		F58270BA01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_shell_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_shell_dbox.h;
+			refType = 0;
+		};
+		F58270BB01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_shell_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_shell_cb.h;
+			refType = 0;
+		};
+		F58270BC01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_screendump_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_screendump_cb.h;
+			refType = 0;
+		};
+		F58270BD01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_scopt_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_scopt_dbox.h;
+			refType = 0;
+		};
+		F58270BE01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_scopt_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_scopt_cb.h;
+			refType = 0;
+		};
+		F58270BF01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_romdump_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_romdump_dbox.h;
+			refType = 0;
+		};
+		F58270C001762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_romdump_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_romdump_cb.h;
+			refType = 0;
+		};
+		F58270C101762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_refresh.h;
+			path = /Users/julien/devel/TiLP/src/gtk_refresh.h;
+			refType = 0;
+		};
+		F58270C201762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_probeio_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_probeio_dbox.h;
+			refType = 0;
+		};
+		F58270C301762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_probeio_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_probeio_cb.h;
+			refType = 0;
+		};
+		F58270C401762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_plugins_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_plugins_dbox.h;
+			refType = 0;
+		};
+		F58270C501762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_plugins_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_plugins_cb.h;
+			refType = 0;
+		};
+		F58270C601762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_pbar_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_pbar_dbox.h;
+			refType = 0;
+		};
+		F58270C701762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_pbar_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_pbar_cb.h;
+			refType = 0;
+		};
+		F58270C801762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_msg_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_msg_dbox.h;
+			refType = 0;
+		};
+		F58270C901762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_msg_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_msg_cb.h;
+			refType = 0;
+		};
+		F58270CA01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_manpage_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_manpage_dbox.h;
+			refType = 0;
+		};
+		F58270CB01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_manpage_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_manpage_cb.h;
+			refType = 0;
+		};
+		F58270CC01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_linkspeed_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_linkspeed_dbox.h;
+			refType = 0;
+		};
+		F58270CD01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_linkspeed_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_linkspeed_cb.h;
+			refType = 0;
+		};
+		F58270CE01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_link_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_link_dbox.h;
+			refType = 0;
+		};
+		F58270CF01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_link_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_link_cb.h;
+			refType = 0;
+		};
+		F58270D001762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_lang_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_lang_dbox.h;
+			refType = 0;
+		};
+		F58270D101762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_lang_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_lang_cb.h;
+			refType = 0;
+		};
+		F58270D201762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_inc.h;
+			path = /Users/julien/devel/TiLP/src/gtk_inc.h;
+			refType = 0;
+		};
+		F58270D301762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_idle_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_idle_cb.h;
+			refType = 0;
+		};
+		F58270D401762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_help_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_help_dbox.h;
+			refType = 0;
+		};
+		F58270D501762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_help_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_help_cb.h;
+			refType = 0;
+		};
+		F58270D601762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_general_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_general_dbox.h;
+			refType = 0;
+		};
+		F58270D701762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_general_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_general_cb.h;
+			refType = 0;
+		};
+		F58270D801762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_fsel_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_fsel_dbox.h;
+			refType = 0;
+		};
+		F58270D901762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_fsel_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_fsel_cb.h;
+			refType = 0;
+		};
+		F58270DA01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_font_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_font_dbox.h;
+			refType = 0;
+		};
+		F58270DB01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_font_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_font_cb.h;
+			refType = 0;
+		};
+		F58270DC01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_screendump_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_screendump_dbox.h;
+			refType = 0;
+		};
+		F58270DD01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_extprgms_dbox.h;
+			path = /Users/julien/devel/TiLP/src/gtk_extprgms_dbox.h;
+			refType = 0;
+		};
+		F58270DE01762AD501000102 = {
+			isa = PBXFileReference;
+			name = gtk_extprgms_cb.h;
+			path = /Users/julien/devel/TiLP/src/gtk_extprgms_cb.h;
+			refType = 0;
+		};
+		F582711E01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = version.h;
+			path = /Users/julien/devel/TiLP/src/version.h;
+			refType = 0;
+		};
+		F582711F01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = tilt_lib.h;
+			path = /Users/julien/devel/TiLP/src/tilt_lib.h;
+			refType = 0;
+		};
+		F582712001762AFA01000102 = {
+			isa = PBXFileReference;
+			name = support.h;
+			path = /Users/julien/devel/TiLP/src/support.h;
+			refType = 0;
+		};
+		F582712101762AFA01000102 = {
+			isa = PBXFileReference;
+			name = struct.h;
+			path = /Users/julien/devel/TiLP/src/struct.h;
+			refType = 0;
+		};
+		F582712201762AFA01000102 = {
+			isa = PBXFileReference;
+			name = str.h;
+			path = /Users/julien/devel/TiLP/src/str.h;
+			refType = 0;
+		};
+		F582712301762AFA01000102 = {
+			isa = PBXFileReference;
+			name = select.h;
+			path = /Users/julien/devel/TiLP/src/select.h;
+			refType = 0;
+		};
+		F582712401762AFA01000102 = {
+			isa = PBXFileReference;
+			name = rcfile.h;
+			path = /Users/julien/devel/TiLP/src/rcfile.h;
+			refType = 0;
+		};
+		F582712501762AFA01000102 = {
+			isa = PBXFileReference;
+			name = plugin_interface.h;
+			path = /Users/julien/devel/TiLP/src/plugin_interface.h;
+			refType = 0;
+		};
+		F582712601762AFA01000102 = {
+			isa = PBXFileReference;
+			name = paths.h;
+			path = /Users/julien/devel/TiLP/src/paths.h;
+			refType = 0;
+		};
+		F582712701762AFA01000102 = {
+			isa = PBXFileReference;
+			name = pakfile.h;
+			path = /Users/julien/devel/TiLP/src/pakfile.h;
+			refType = 0;
+		};
+		F582712801762AFA01000102 = {
+			isa = PBXFileReference;
+			name = misc_inc.h;
+			path = /Users/julien/devel/TiLP/src/misc_inc.h;
+			refType = 0;
+		};
+		F582712901762AFA01000102 = {
+			isa = PBXFileReference;
+			name = main.h;
+			path = /Users/julien/devel/TiLP/src/main.h;
+			refType = 0;
+		};
+		F582712B01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = info.h;
+			path = /Users/julien/devel/TiLP/src/info.h;
+			refType = 0;
+		};
+		F582712C01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = includes.h;
+			path = /Users/julien/devel/TiLP/src/includes.h;
+			refType = 0;
+		};
+		F582712D01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = img_fmt.h;
+			path = /Users/julien/devel/TiLP/src/img_fmt.h;
+			refType = 0;
+		};
+		F582712E01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = gxpm.h;
+			path = /Users/julien/devel/TiLP/src/gxpm.h;
+			refType = 0;
+		};
+		F582712F01762AFA01000102 = {
+			isa = PBXFileReference;
+			name = gui_indep.h;
+			path = /Users/julien/devel/TiLP/src/gui_indep.h;
+			refType = 0;
+		};
+		F582713001762AFA01000102 = {
+			isa = PBXFileReference;
+			name = gtree.h;
+			path = /Users/julien/devel/TiLP/src/gtree.h;
+			refType = 0;
+		};
+		F582713101762AFA01000102 = {
+			isa = PBXFileReference;
+			name = gtoolbar.h;
+			path = /Users/julien/devel/TiLP/src/gtoolbar.h;
+			refType = 0;
+		};
+		F582714601762C7701000102 = {
+			isa = PBXFileReference;
+			name = gselect.c;
+			path = /Users/julien/devel/TiLP/src/gselect.c;
+			refType = 0;
+		};
+		F582714701762C7701000102 = {
+			isa = PBXFileReference;
+			name = gpakfile.c;
+			path = /Users/julien/devel/TiLP/src/gpakfile.c;
+			refType = 0;
+		};
+		F582714801762C7701000102 = {
+			isa = PBXFileReference;
+			name = glist.c;
+			path = /Users/julien/devel/TiLP/src/glist.c;
+			refType = 0;
+		};
+		F582714901762C7701000102 = {
+			isa = PBXFileReference;
+			name = ginfo.c;
+			path = /Users/julien/devel/TiLP/src/ginfo.c;
+			refType = 0;
+		};
+		F582714A01762C7701000102 = {
+			isa = PBXFileReference;
+			name = files.c;
+			path = /Users/julien/devel/TiLP/src/files.c;
+			refType = 0;
+		};
+		F582714B01762C7701000102 = {
+			isa = PBXFileReference;
+			name = error.c;
+			path = /Users/julien/devel/TiLP/src/error.c;
+			refType = 0;
+		};
+		F582714C01762C7701000102 = {
+			isa = PBXFileReference;
+			name = conv86.c;
+			path = /Users/julien/devel/TiLP/src/conv86.c;
+			refType = 0;
+		};
+		F582714D01762C7701000102 = {
+			isa = PBXFileReference;
+			name = conv85.c;
+			path = /Users/julien/devel/TiLP/src/conv85.c;
+			refType = 0;
+		};
+		F582714E01762C7701000102 = {
+			isa = PBXFileReference;
+			name = conv83.c;
+			path = /Users/julien/devel/TiLP/src/conv83.c;
+			refType = 0;
+		};
+		F582714F01762C7701000102 = {
+			isa = PBXFileReference;
+			name = conv82.c;
+			path = /Users/julien/devel/TiLP/src/conv82.c;
+			refType = 0;
+		};
+		F582715001762C7701000102 = {
+			isa = PBXFileReference;
+			name = cmdinterface.c;
+			path = /Users/julien/devel/TiLP/src/cmdinterface.c;
+			refType = 0;
+		};
+		F582715101762C7701000102 = {
+			isa = PBXFileReference;
+			name = cl_refresh.c;
+			path = /Users/julien/devel/TiLP/src/cl_refresh.c;
+			refType = 0;
+		};
+		F582715201762C7701000102 = {
+			isa = PBXFileReference;
+			name = cl_indep.c;
+			path = /Users/julien/devel/TiLP/src/cl_indep.c;
+			refType = 0;
+		};
+		F582715301762C7701000102 = {
+			isa = PBXFileReference;
+			name = cb_calc.c;
+			path = /Users/julien/devel/TiLP/src/cb_calc.c;
+			refType = 0;
+		};
+		F582715401762C7701000102 = {
+			isa = PBXFileReference;
+			name = cb_screen.c;
+			path = /Users/julien/devel/TiLP/src/cb_screen.c;
+			refType = 0;
+		};
+		F582715501762C7701000102 = {
+			isa = PBXFileReference;
+			name = cb_misc.c;
+			path = /Users/julien/devel/TiLP/src/cb_misc.c;
+			refType = 0;
+		};
+		F582716601762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_entry_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_entry_dbox.c;
+			refType = 0;
+		};
+		F582716701762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_entry_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_entry_cb.c;
+			refType = 0;
+		};
+		F582716801762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_clist_rbm.c;
+			path = /Users/julien/devel/TiLP/src/gtk_clist_rbm.c;
+			refType = 0;
+		};
+		F582716901762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_clist_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_clist_cb.c;
+			refType = 0;
+		};
+		F582716A01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_calc_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_calc_dbox.c;
+			refType = 0;
+		};
+		F582716B01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_calc_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_calc_cb.c;
+			refType = 0;
+		};
+		F582716C01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_advanced_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_advanced_dbox.c;
+			refType = 0;
+		};
+		F582716D01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_advanced_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_advanced_cb.c;
+			refType = 0;
+		};
+		F582716E01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_about_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_about_cb.c;
+			refType = 0;
+		};
+		F582716F01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_font_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_font_cb.c;
+			refType = 0;
+		};
+		F582717001762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_user_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_user_dbox.c;
+			refType = 0;
+		};
+		F582717101762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_user_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_user_cb.c;
+			refType = 0;
+		};
+		F582717201762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_tilp_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_tilp_dbox.c;
+			refType = 0;
+		};
+		F582717301762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_tilp_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_tilp_cb.c;
+			refType = 0;
+		};
+		F582717401762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_tifileinfo_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_tifileinfo_dbox.c;
+			refType = 0;
+		};
+		F582717501762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_tifileinfo_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_tifileinfo_cb.c;
+			refType = 0;
+		};
+		F582717601762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_thanks_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_thanks_dbox.c;
+			refType = 0;
+		};
+		F582717701762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_thanks_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_thanks_cb.c;
+			refType = 0;
+		};
+		F582717801762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_term_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_term_dbox.c;
+			refType = 0;
+		};
+		F582717901762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_term_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_term_cb.c;
+			refType = 0;
+		};
+		F582717A01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_startup_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_startup_dbox.c;
+			refType = 0;
+		};
+		F582717B01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_startup_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_startup_cb.c;
+			refType = 0;
+		};
+		F582717C01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_shell_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_shell_dbox.c;
+			refType = 0;
+		};
+		F582717D01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_shell_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_shell_cb.c;
+			refType = 0;
+		};
+		F582717E01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_screendump_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_screendump_cb.c;
+			refType = 0;
+		};
+		F582717F01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_scopt_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_scopt_dbox.c;
+			refType = 0;
+		};
+		F582718001762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_scopt_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_scopt_cb.c;
+			refType = 0;
+		};
+		F582718101762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_romdump_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_romdump_dbox.c;
+			refType = 0;
+		};
+		F582718201762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_romdump_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_romdump_cb.c;
+			refType = 0;
+		};
+		F582718301762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_refresh.c;
+			path = /Users/julien/devel/TiLP/src/gtk_refresh.c;
+			refType = 0;
+		};
+		F582718401762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_probeio_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_probeio_dbox.c;
+			refType = 0;
+		};
+		F582718501762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_probeio_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_probeio_cb.c;
+			refType = 0;
+		};
+		F582718601762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_plugins_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_plugins_dbox.c;
+			refType = 0;
+		};
+		F582718701762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_plugins_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_plugins_cb.c;
+			refType = 0;
+		};
+		F582718801762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_pbar_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_pbar_dbox.c;
+			refType = 0;
+		};
+		F582718901762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_pbar_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_pbar_cb.c;
+			refType = 0;
+		};
+		F582718A01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_msg_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_msg_dbox.c;
+			refType = 0;
+		};
+		F582718B01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_msg_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_msg_cb.c;
+			refType = 0;
+		};
+		F582718C01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_manpage_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_manpage_dbox.c;
+			refType = 0;
+		};
+		F582718D01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_manpage_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_manpage_cb.c;
+			refType = 0;
+		};
+		F582718E01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_main.c;
+			path = /Users/julien/devel/TiLP/src/gtk_main.c;
+			refType = 0;
+		};
+		F582718F01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_linkspeed_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_linkspeed_dbox.c;
+			refType = 0;
+		};
+		F582719001762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_linkspeed_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_linkspeed_cb.c;
+			refType = 0;
+		};
+		F582719101762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_link_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_link_dbox.c;
+			refType = 0;
+		};
+		F582719201762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_link_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_link_cb.c;
+			refType = 0;
+		};
+		F582719301762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_lang_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_lang_dbox.c;
+			refType = 0;
+		};
+		F582719401762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_lang_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_lang_cb.c;
+			refType = 0;
+		};
+		F582719501762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_idle_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_idle_cb.c;
+			refType = 0;
+		};
+		F582719601762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_help_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_help_dbox.c;
+			refType = 0;
+		};
+		F582719701762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_help_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_help_cb.c;
+			refType = 0;
+		};
+		F582719801762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_general_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_general_dbox.c;
+			refType = 0;
+		};
+		F582719901762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_general_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_general_cb.c;
+			refType = 0;
+		};
+		F582719A01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_fsel_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_fsel_dbox.c;
+			refType = 0;
+		};
+		F582719B01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_fsel_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_fsel_cb.c;
+			refType = 0;
+		};
+		F582719C01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_font_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_font_dbox.c;
+			refType = 0;
+		};
+		F582719D01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_screendump_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_screendump_dbox.c;
+			refType = 0;
+		};
+		F582719E01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_extprgms_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_extprgms_dbox.c;
+			refType = 0;
+		};
+		F582719F01762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_extprgms_cb.c;
+			path = /Users/julien/devel/TiLP/src/gtk_extprgms_cb.c;
+			refType = 0;
+		};
+		F58271A001762CAD01000102 = {
+			isa = PBXFileReference;
+			name = gtk_about_dbox.c;
+			path = /Users/julien/devel/TiLP/src/gtk_about_dbox.c;
+			refType = 0;
+		};
+		F58271DC01762CF701000102 = {
+			isa = PBXFileReference;
+			name = support.c;
+			path = /Users/julien/devel/TiLP/src/support.c;
+			refType = 0;
+		};
+		F58271DD01762CF701000102 = {
+			isa = PBXFileReference;
+			name = select.c;
+			path = /Users/julien/devel/TiLP/src/select.c;
+			refType = 0;
+		};
+		F58271DE01762CF701000102 = {
+			isa = PBXFileReference;
+			name = rcfile.c;
+			path = /Users/julien/devel/TiLP/src/rcfile.c;
+			refType = 0;
+		};
+		F58271DF01762CF701000102 = {
+			isa = PBXFileReference;
+			name = pakfile.c;
+			path = /Users/julien/devel/TiLP/src/pakfile.c;
+			refType = 0;
+		};
+		F58271E001762CF701000102 = {
+			isa = PBXFileReference;
+			name = main.c;
+			path = /Users/julien/devel/TiLP/src/main.c;
+			refType = 0;
+		};
+		F58271E101762CF701000102 = {
+			isa = PBXFileReference;
+			name = info.c;
+			path = /Users/julien/devel/TiLP/src/info.c;
+			refType = 0;
+		};
+		F58271E201762CF701000102 = {
+			isa = PBXFileReference;
+			name = img_xpm.c;
+			path = /Users/julien/devel/TiLP/src/img_xpm.c;
+			refType = 0;
+		};
+		F58271E301762CF701000102 = {
+			isa = PBXFileReference;
+			name = img_pcx.c;
+			path = /Users/julien/devel/TiLP/src/img_pcx.c;
+			refType = 0;
+		};
+		F58271E401762CF701000102 = {
+			isa = PBXFileReference;
+			name = img_jpg.c;
+			path = /Users/julien/devel/TiLP/src/img_jpg.c;
+			refType = 0;
+		};
+		F58271E501762CF701000102 = {
+			isa = PBXFileReference;
+			name = img_cnv.c;
+			path = /Users/julien/devel/TiLP/src/img_cnv.c;
+			refType = 0;
+		};
+		F58271E601762CF701000102 = {
+			isa = PBXFileReference;
+			name = gxpm.c;
+			path = /Users/julien/devel/TiLP/src/gxpm.c;
+			refType = 0;
+		};
+		F58271E701762CF701000102 = {
+			isa = PBXFileReference;
+			name = gui_indep.c;
+			path = /Users/julien/devel/TiLP/src/gui_indep.c;
+			refType = 0;
+		};
+		F58271E801762CF701000102 = {
+			isa = PBXFileReference;
+			name = gtree.c;
+			path = /Users/julien/devel/TiLP/src/gtree.c;
+			refType = 0;
+		};
+		F58271E901762CF701000102 = {
+			isa = PBXFileReference;
+			name = gtoolbar.c;
+			path = /Users/julien/devel/TiLP/src/gtoolbar.c;
+			refType = 0;
+		};
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA;
+}
