@@ -51,6 +51,8 @@ static char *format(char *s, int max)
 void labels_refresh(void)
 {
 	gchar buffer[MAXCHARS];
+	gsize br, bw;
+	gchar *utf8;
 
 	switch (ti_calc.memory) {
 	case MEMORY_FREE:
@@ -70,5 +72,6 @@ void labels_refresh(void)
 	snprintf(buffer, MAXCHARS, _("Current directory: %s"),
 		 clist_win.current_dir);
 
-	gtk_label_set(GTK_LABEL(clabel_win.label22), format(buffer, 45));
+	utf8 = g_filename_to_utf8(buffer, -1, &br, &bw, NULL);
+	gtk_label_set(GTK_LABEL(clabel_win.label22), format(utf8, 45));
 }

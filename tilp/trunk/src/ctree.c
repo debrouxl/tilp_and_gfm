@@ -99,12 +99,7 @@ void ctree_init(void)
 	GtkTreeViewColumn *column;
 	gint i;
 	
-	// use UTF-8 for varnames
-#ifdef __WIN32__
-	tifiles_translate_set_encoding(ENCODING_LATIN1);
-#else
 	tifiles_translate_set_encoding(ENCODING_UNICODE);
-#endif
 
 	tree = gtk_tree_store_new(CTREE_NUMBER, G_TYPE_STRING,
 				  GDK_TYPE_PIXBUF, G_TYPE_STRING,

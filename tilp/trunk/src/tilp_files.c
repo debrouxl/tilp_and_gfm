@@ -86,10 +86,12 @@ int tilp_file_move(const char *src, const char *dst)
 		return ret;
 	unlink(src);
 #else				/*  */
-	if (!MoveFile(src, dst))
+	//if (!MoveFile(src, dst))
+	if(!CopyFile(src, dst, FALSE))
 		return -1;
-
-#endif				/*  */
+	if(!DeleteFile(src))
+		return -1;
+#endif				/*  %USERPROFILE%\Local Settings\Temp */
 	return 0;
 }
 
@@ -97,9 +99,9 @@ int tilp_file_move(const char *src, const char *dst)
 #ifdef __WIN32__
 int tilp_file_delete(const char *f)
 {
-	if (!RemoveDirectory(f)) {
+	if (!DeleteFile(f)/*RemoveDirectory(f)*/) {
 		gif->msg_box(_("Information"), _
-			     ("Unable to remove the file. You can not delete non empty folders !"));
+			     ("Unable to remove the file !"));
 		return -1;
 	}
 	return 0;
@@ -723,6 +725,7 @@ int tilp_file_check(const char *src, char **dst)
 int tilp_file_move_with_check(const char *src, const char *dst)
 {
 	char *dst2;
+
 	if (tilp_file_check(dst, &dst2)) {
 		if (tilp_file_move(src, dst2)) {
 			gif->msg_box(_("Error"),
