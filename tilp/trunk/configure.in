@@ -228,7 +228,6 @@ misc/Makefile
 pixmaps/Makefile
 registry/Makefile
 src/Makefile
-win32/Makefile
 plugins/Makefile
 plugins/test/Makefile
 plugins/nv82/Makefile

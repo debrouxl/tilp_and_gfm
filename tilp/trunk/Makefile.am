@@ -2,13 +2,14 @@
 
 # subdirectories to scan
 SUBDIRS = \
-	glade help icons man misc pixmaps src win32 \
+	glade help icons man misc pixmaps src \
 	plugins registry \
 	po intl
 
 EXTRA_DIST = \
 	ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL* NEWS 	\
-	README README* TODO RELEASE ./po/TRANSLATORS
+	README README* TODO RELEASE ./po/TRANSLATORS	\
+	build
 
 INCLUDES = -I$(top_srcdir) -I$(includedir) 		\
 	-I../intl -I$(top_srcdir)/intl 			\

@@ -29119,7 +29119,7 @@ LDFLAGS="$LDFLAGS $INTLLIBS -g"
 
 
 
-                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile misc/Makefile pixmaps/Makefile registry/Makefile src/Makefile win32/Makefile plugins/Makefile plugins/test/Makefile plugins/nv82/Makefile plugins/gfv/Makefile tilp.lsm tilp.spec intl/Makefile po/Makefile.in"
+                                                                                                                                                                          ac_config_files="$ac_config_files Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile misc/Makefile pixmaps/Makefile registry/Makefile src/Makefile plugins/Makefile plugins/test/Makefile plugins/nv82/Makefile plugins/gfv/Makefile tilp.lsm tilp.spec intl/Makefile po/Makefile.in"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -29671,7 +29671,6 @@ do
   "pixmaps/Makefile" ) CONFIG_FILES="$CONFIG_FILES pixmaps/Makefile" ;;
   "registry/Makefile" ) CONFIG_FILES="$CONFIG_FILES registry/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-  "win32/Makefile" ) CONFIG_FILES="$CONFIG_FILES win32/Makefile" ;;
   "plugins/Makefile" ) CONFIG_FILES="$CONFIG_FILES plugins/Makefile" ;;
   "plugins/test/Makefile" ) CONFIG_FILES="$CONFIG_FILES plugins/test/Makefile" ;;
   "plugins/nv82/Makefile" ) CONFIG_FILES="$CONFIG_FILES plugins/nv82/Makefile" ;;
