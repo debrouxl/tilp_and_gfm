@@ -320,6 +320,19 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>73c</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TI 73 Complex Number</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>TiLP</string>
 	<key>CFBundleGetInfoString</key>

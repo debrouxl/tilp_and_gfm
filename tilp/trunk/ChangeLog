@@ -110,8 +110,8 @@
 	file types and some extensions, for use in NS{Save|Open}Panels
 	* Implemented receive vars. No DnD, Cocoa App ===> Finder is currently
 	not supported by Apple...
-	* Added a Varinfo class to hold the struct varinfo in dirlist items.
-
+	* Added a Varinfo class to hold the struct varinfo in dirlist items
+	* Registered files extensions
 
 
 

@@ -99,7 +99,8 @@ struct gui_fncts gui_functions;
     // TI 83
     tmpArray = [NSArray arrayWithObjects:@"83b", @"83c", @"83d", @"83g",
                                          @"83i", @"83l", @"83m", @"83n",
-                                         @"83p", @"83s", @"83y", nil];
+                                         @"83p", @"83s", @"83t", @"83y",
+                                         nil];
     [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
     
     tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
@@ -142,9 +143,9 @@ struct gui_fncts gui_functions;
 
     // TI 85
     tmpArray = [NSArray arrayWithObjects:@"85b", @"85c", @"85d", @"85e",
-                                         @"85g", @"85i", @"85l", @"85m"
-                                         @"85n", @"85p", @"85r", @"85s",
-                                         @"85v", nil];
+                                         @"85g", @"85i", @"85k", @"85l"
+                                         @"85m", @"85n", @"85p", @"85r",
+                                         @"85s", @"85v", nil];
     [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
     
     tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
@@ -165,9 +166,9 @@ struct gui_fncts gui_functions;
     
     // TI 86
     tmpArray = [NSArray arrayWithObjects:@"86c", @"86d", @"86e", @"86g",
-                                         @"86i", @"86l", @"86m", @"86n",
-                                         @"86p", @"86r", @"86s", @"86v",
-                                         @"86w", nil];
+                                         @"86i", @"86k", @"86l", @"86m",
+                                         @"86n", @"86p", @"86r", @"86s",
+                                         @"86v", @"86w", nil];
     [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
      
     tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
