@@ -243,6 +243,8 @@ GLADE_CB void
 comm_cable_changed                     (GtkOptionMenu   *optionmenu,
                                         gpointer         user_data)
 {
+	gint i = GPOINTER_TO_INT(user_data);
+	DISPLAY("<<%i>>\n", GPOINTER_TO_INT(user_data));
 }
 
 
@@ -250,6 +252,7 @@ GLADE_CB void
 comm_cable_activate                    (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+	/*
 	GtkWidget *child = GTK_BIN(menuitem)->child;
 	const gchar *ed = gtk_label_get_text(GTK_LABEL(child));
 
@@ -269,6 +272,7 @@ comm_cable_activate                    (GtkMenuItem     *menuitem,
     tmp_lp.link_type = LINK_TIE;
   else if(!strcmp(ed, "virtual"))
     tmp_lp.link_type = LINK_VTL;
+	*/
 }
 
 
