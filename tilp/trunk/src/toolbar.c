@@ -28,6 +28,8 @@
 
 struct toolbar_window toolbar_win = { 0 };
 
+#define GTK_DISABLE_DEPRECATED
+
 void toolbar_set_images(void)
 {
 	GtkToolbar *tb = GTK_TOOLBAR(toolbar_win.toolbar);
@@ -93,6 +95,8 @@ void toolbar_set_images(void)
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 }
+
+#undef GTK_DISABLE_DEPRECATED
 
 
 /* Put sensitive some buttons of the toolbar according to some options */
