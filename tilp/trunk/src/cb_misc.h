@@ -19,9 +19,13 @@
 #ifndef CB_MISC_H
 #define CB_MISC_H
 
+#ifndef __MACOSX__
 int cb_save_config_file(void);
 
 int cb_load_config_file(void);
+
+int cb_change_drive(char drive_letter);
+#endif
 
 int cb_default_config(void);
 
@@ -30,8 +34,6 @@ int cb_probe_calc(void);
 int cb_probe_cable(void);
 
 int cb_probe_port(void);
-
-int cb_change_drive(char drive_letter);
 
 int cb_registry_register(void);
 
