@@ -99,6 +99,26 @@ Greek characters in variable names seem to work fine for the TI-89,
 though. This problem occurs with the TI-86.
 >>
 
+<<
+Sure, I guess I could do that.  There are really only two differences
+between the various models that are important here.  The ROM sizes are
+different: 83+ has 512k, 84+ has 1M, and both Silver Editions have 2M.
+Also the SE and 84+ have a hardware link assist (similar to that in
+the GrayLink and SilverLink.)
+
+Can you actually detect the different versions remotely?  I would
+expect to be able to, but I'm not very familiar with the link
+protocol.  I suppose you could figure out the size based on the
+directory listing, but that doesn't seem like the most elegant
+solution.
+
+So anyway, either TiLP needs to figure out the HW version, or the user
+needs to be able to choose the size of the image to download, or else
+the ROM dumper itself needs to be able to tell TiLP what HW it's on.
+
+Benjamin Moody
+>>
+
 + = done.
 * = in progress.
 - = to do...
