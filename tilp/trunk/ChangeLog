@@ -62,6 +62,14 @@
 	* found - [NSApp addWindowsItem:title:filename], so did the "Windows"
 	  menu management
 	* replaced the standard about panel with something more verbose
+* 20011119 : v 0.1.8
+	* Made user prefs available earlier
+	* Added a matrix in the "Adavanced" tab for the console verbosity
+	* Fixes wrt libticables config
+	
+
+
+
 
 
 	

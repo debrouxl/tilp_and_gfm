@@ -927,6 +927,9 @@ void sort_cfiles_by_name(GList *list)
   gpointer tmp;
   struct varinfo *fi_p, *fi_q;
 
+  if (list == NULL)
+    return;
+
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
     {
@@ -961,6 +964,9 @@ void sort_cfiles_by_info(GList *list)
   int i, j, end, max;
   gpointer tmp;
   struct varinfo *fi_p, *fi_q;
+
+  if (list == NULL)
+    return;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
@@ -997,6 +1003,9 @@ void sort_cfiles_by_type(GList *list)
   gpointer tmp;
   struct varinfo *fi_p, *fi_q;
 
+  if (list == NULL)
+    return;
+
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)
     {
@@ -1031,6 +1040,9 @@ void sort_cfiles_by_size(GList *list)
   int i, j, end, max;
   gpointer tmp;
   struct varinfo *fi_p, *fi_q;
+
+  if (list == NULL)
+    return;
 
   max=g_list_length(list);
   for (i=max-1; i>0; i=end)

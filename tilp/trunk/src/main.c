@@ -158,6 +158,9 @@ printf("DEBUG: default config done\n");
   // Parse the config file
 #ifndef __MACOSX__
   read_rc_file();
+#else
+  rc_get_user_prefs();
+  ticable_DISPLAY_settings(options.console_mode);
 #endif
 
 printf("DEBUG: read rc done\n");  

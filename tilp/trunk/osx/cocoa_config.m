@@ -41,15 +41,17 @@ rc_init_with_default(void)
     options.screen_clipping = CLIPPED_SCREEN;
     options.transfer_mode = SILENT_MODE;
     options.file_checking = UNUSED;
-    options.console_mode = 0;
+    // verbosity of libticables (DISPLAY() function)
+    options.console_mode = DSP_OFF;
     options.auto_detect = TRUE;
     options.show_gui = TRUE;
     options.force_dirlist = TRUE;
     
     options.lp.link_type = LINK_UGL;
     options.lp.timeout = 150;
-    options.lp.port = UNUSED; // later
+    options.lp.port = USB_PORT_1;
     options.lp.calc_type = CALC_TI92P;
+    options.lp.method = IOM_AUTO;
     
     rc_set_unused_items();
 }
@@ -82,6 +84,9 @@ rc_fill_dictionary(void)
     
     value = [[NSNumber alloc] initWithInt:options.auto_detect];
     [tilpConfig setObject:value forKey:@"auto_detect"];
+
+    value = [[NSNumber alloc] initWithInt:options.console_mode];
+    [tilpConfig setObject:value forKey:@"console_mode"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.link_type];
     [tilpConfig setObject:value forKey:@"link_type"];
@@ -159,9 +164,19 @@ rc_get_user_prefs(void)
         options.auto_detect = [value intValue];
     }
     
+    if ((value = [tilpConfig objectForKey:@"console_mode"]))
+    {
+        options.console_mode = [value intValue];
+    }
+    
     if ((value = [tilpConfig objectForKey:@"link_type"]))
     {
         options.lp.link_type = [value intValue];
+        
+            if ((options.lp.link_type == LINK_UGL) || (options.lp.link_type == LINK_TPU))
+                options.lp.port = USB_PORT_1;
+            else if ((options.lp.link_type == LINK_TIE) || (options.lp.link_type == LINK_VTI))
+                options.lp.port = VIRTUAL_PORT_1; // FIXME OS X : dunno if it's the good one
     }
     
     if ((value = [tilpConfig objectForKey:@"calc_type"]))

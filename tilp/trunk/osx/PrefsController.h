@@ -17,6 +17,9 @@
     IBOutlet id calcType92;
     IBOutlet id calcType92p;
     IBOutlet id calcTypeProbe;
+    IBOutlet id consoleModeMatrix;
+    IBOutlet id consoleSilent;
+    IBOutlet id consoleVerbose;
     IBOutlet id linkCableUGL;
     IBOutlet id linkCableTPU;
     IBOutlet id linkCableTIE;

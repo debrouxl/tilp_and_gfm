@@ -45,6 +45,8 @@ void signal_handler(int sig_no)
 
 int main(int argc, const char *argv[], char **arge)
 {
+  NSAutoreleasePool *prefsPool;
+
 #ifdef HAVE_TIFFEP
   TiffepMsg msg;
 #endif
@@ -63,10 +65,18 @@ int main(int argc, const char *argv[], char **arge)
   /* Install a signal handler */
   signal(SIGINT, signal_handler);
 
-  ticable_DISPLAY_settings(DSP_ON);
+  // mandatory to get the prefs in main_init()
+  // because Cocoa is not yet initialized  
+  prefsPool = [[NSAutoreleasePool alloc] init];
+  fprintf(stderr, "DEBUG: autorelease pool initialized\n");
   
   /* Init the tilp core */
   main_init(argc, argv, arge); // general
+
+  // we no longer need the pool
+  [prefsPool release];
+  fprintf(stderr, "DEBUG: autorelease pool released\n");
+  prefsPool = nil;
 
   /* Listen TiFFEP commands */
 #ifdef HAVE_TIFFEP

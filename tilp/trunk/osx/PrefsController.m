@@ -15,7 +15,8 @@
 {
     fprintf(stderr, "prefs => got awakeFromNib\n");
     
-    rc_get_user_prefs();
+    // called in main_init(), can't remember why I did it here...
+    //rc_get_user_prefs();
 }
 
 - (IBAction)prefsAdvanced:(id)sender
@@ -107,6 +108,13 @@
         options.screen_clipping = TRUE;
     else if (NSOnState == [screenModeFull state])
         options.screen_clipping = FALSE;
+        
+    // advanced
+    
+    if (NSOnState == [consoleVerbose state])
+        options.console_mode = DSP_ON;
+    else if (NSOnState == [consoleSilent state])
+        options.console_mode = DSP_OFF;
         
     rc_save_user_prefs();
 
@@ -220,6 +228,11 @@
         [linkTimeoutField setIntValue:options.lp.timeout];
     else // defaults to 150
         [linkTimeoutField setIntValue:150];
+        
+    if (options.console_mode == DSP_ON)
+        [consoleModeMatrix setState:NSOnState atRow:0 column:0];
+    else
+        [consoleModeMatrix setState:NSOnState atRow:0 column:1];
         
     [NSApp beginSheet:prefsWindow
            modalForWindow:mainWindow

@@ -101,6 +101,8 @@
                 calcType92p = id; 
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
+                consoleSilent = id; 
+                consoleVerbose = id; 
                 linkCableTIE = id; 
                 linkCableTPU = id; 
                 linkCableUGL = id; 
