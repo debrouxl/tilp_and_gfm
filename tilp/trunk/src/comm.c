@@ -239,7 +239,7 @@ gint display_comm_dbox()
 
 
 
-void
+GLADE_CB void
 comm_combo_cable_changed               (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -265,7 +265,7 @@ comm_combo_cable_changed               (GtkEditable     *editable,
 }
 
 
-void
+GLADE_CB void
 comm_combo_port_changed                (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -332,7 +332,7 @@ comm_combo_port_changed                (GtkEditable     *editable,
 }
 
 
-void
+GLADE_CB void
 comm_entry_calc_changed                (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -373,7 +373,7 @@ comm_entry_calc_changed                (GtkEditable     *editable,
 }
 
 
-void
+GLADE_CB void
 comm_checkbutton_calc_auto_toggled     (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
@@ -384,7 +384,7 @@ comm_checkbutton_calc_auto_toggled     (GtkToggleButton *togglebutton,
 }
 
 
-void
+GLADE_CB void
 comm_spinbutton_delay_changed          (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -393,7 +393,7 @@ comm_spinbutton_delay_changed          (GtkEditable     *editable,
 }
 
 
-void
+GLADE_CB void
 comm_spinbutton_timeout_changed        (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -402,7 +402,7 @@ comm_spinbutton_timeout_changed        (GtkEditable     *editable,
 }
 
 
-void
+GLADE_CB void
 comm_button_log_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
