@@ -167,7 +167,6 @@ static void prompt_commands(void)
 		arg1 = strtok(NULL, " ");
 		arg2 = strtok(NULL, " ");
 
-		//fprintf(stdout, "<<%s %s %s>>\n", cmd, arg1, arg2);
 		if (cmd)
 			do_command(cmd, arg1);
 	}

@@ -220,7 +220,7 @@ GLADE_CB void on_unzip1_activate(GtkMenuItem * menuitem,
 		strcat(cmdline, buffer);
 
 		// execute
-		fprintf(stdout, "Unzip cmdline: <%s>\n", cmdline);
+		lprint(0, "Unzip cmdline: <%s>\n", cmdline);
 		ret = execute_command(cmdline);
 		ptr = ptr->next;
 	}
@@ -292,7 +292,7 @@ GLADE_CB void on_untar1_activate(GtkMenuItem * menuitem,
 		}
 
 // execute
-		fprintf(stdout, "Untar cmdline: <%s>\n", cmdline);
+		lprint(0, "Untar cmdline: <%s>\n", cmdline);
 		ret = execute_command(cmdline);
 		ptr = ptr->next;
 	}

@@ -32,15 +32,18 @@
 #endif				/*  */
 
 #include "tilp_core.h"
+
 static void cmdline_start()
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
-} static void cmdline_stop()
+} 
+
+static void cmdline_stop()
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
+} 
 
-	//fprintf(stdout, "\n");
-} static void cmdline_pbar()
+static void cmdline_pbar()
 {
 
 	/*
@@ -74,14 +77,17 @@ static void cmdline_start()
 	   fprintf(stdout, "]\n", info_update.percentage);
 	 */
 }
+
 static void cmdline_label(void)
 {
 	return;
 }
+
 static void cmdline_refresh(void)
 {
 	return;
 }
+
 void tilp_cmdline_set_refresh(void)
 {
 	ticalc_set_update(&info_update, cmdline_start, cmdline_stop,

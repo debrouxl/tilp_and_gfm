@@ -554,7 +554,7 @@ void tilp_rcfile_read(void)
 		}
 	}
 	fclose(txt);
-	fprintf(stderr, "rcfile, 0x%03x\n", options.lp.io_addr);
+	lprintf(2, "rcfile, 0x%03x\n", options.lp.io_addr);
 	return;
 }
 void tilp_rcfile_write(void)

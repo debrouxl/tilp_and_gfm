@@ -327,9 +327,9 @@ int tilp_main(int argc, const char *argv[], char **arge)
 			LIB_CABLE_VERSION_REQUIRED);
 		gif->msg_box(_("Error"),
 			     _("Libticables: version mismatches."));
-        fprintf(stderr, "%s\n", ticable_get_version());
 		exit(-1);
 	}
+	
 	if (strcmp(ticalc_get_version(), LIB_CALC_VERSION_REQUIRED) < 0) {
 		printl(0, _
 			("libticalcs library version <%s> mini required.\n"),
