@@ -1,10 +1,3 @@
-/*
- * Chaînes de caractères à traduire générées par
- * Glade. Ajouter ce fichier au fichier POTFILE.in
- * de votre projet. NE PAS compiler ce fichier
- * avec le reste de votre application.
- */
-
 gchar *s = N_("Upload Variables");
 gchar *s = N_("The following variable(s) exist(s) on calculator. Please select what you would like to do...\n"
               "Note that locked/archived can not be overwritten unless renamed.");
