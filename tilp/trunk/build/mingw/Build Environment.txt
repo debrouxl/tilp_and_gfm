@@ -1,23 +1,24 @@
 Win32
 -----
 
-Below, you will find a methodology which is common to:
+1°) Below, you will find a methodology which is common to:
 - libtifiles, libticables, libticalcs,
 - tilp,
 - tiemu.
 
 You should strictly follow it else you will encounter some (very) weird stuffs !
-Create this methodology takes me a lot of time and experimentations.
+Creating this methodology takes me a lot of time and experimentations.
 
-Well, let get's us:
+You will find exact package names and locations below.
 
+2°) Well, let get's us:
 
 - get MinGW & MSys from http://www.mingw.org and install them. You can merge 
-them if you want but MinGW does not encourage this. This was my way until I discover
-Tor' method (GiMP for Win32) with /target.
-I assume you installed MinGW as C:\MinGW and MSys as C:\MSys
+them if you want but this is strongly discouraged by MinGW team. This was my way until 
+I discover Tor Lillqvist' method (GiMP for Win32) with /target.
+I assume you installed MinGW as C:\MinGW and MSys as C:\MSys.
 
-- create a MSys\target folder. To install the packages, simply uncompress 
+- create a MSys\target folder. To install packages later, simply uncompress 
 	downloaded archives which contains 'lib', 'bin', ... folders
 	and copy them into the /target folder (overwrite = yes).
 
@@ -27,26 +28,24 @@ I assume you installed MinGW as C:\MinGW and MSys as C:\MSys
 	export LDFLAGS="-L/target/lib"
 	export PATH="/target/bin:$PATH"
 
-- pkg-config: get it from <http://www.gimp.org/~tml/gimp/win32/downloads.html> as
-	well as glib (binary), libiconv (binary) and gettext-runtime (binary).
+- pkg-config: get it as	well as glib (binary), libiconv (binary) and gettext-runtime (binary).
 	Copy folders (bin, lib, ...) into MSys/target.
 
-	Check install is good by a 'pkg-config.exe --help'.
+	Check good installation by a 'pkg-config.exe --help'.
 
 - gtk+ 2.4: get glib-dev, gtk+-dev, atk-dev, pango-dev from the same location. You
 	can get binaries if you want (not mandatory but should be better).
 
-- libxml2 (pre-built): get it from <http://gnuwin32.Sf.net> and
-	think to add the libxml2.pc provided and to remove libxml2.la.
+- libxml2 (pre-built): get it and think to add the libxml2.pc provided.
+	You may need to remove target/lib/libxml2.la if libglade linkage fails (FIXME !).
 
-- libglade (pre-built): get it from <http://gladewin32.sourceforge.net/> as 
-	devel package.
+- libglade (pre-built): get it as devel package.
 
-- libxml2 (rebuild): get libxml2-2.5.10 from <http://xmlsoft.org/sources/old/>.
+- or libxml2 (rebuild): download it and do:
 	./configure --prefix=/target --without-ftp --without-http
 	You will need zlib from <http://gnuwin32.Sf.net> as dependancy.
 
-- libglade (rebuild): get libglade from ??
+- or libglade (rebuild): download it and do:
 	./configure --prefix=/target
 
 - ticables, tifiles, ticalcs:
@@ -55,14 +54,32 @@ I assume you installed MinGW as C:\MinGW and MSys as C:\MSys
 - tilp:
 	./configure --prefix=/target --disable-nls	
 
-
-- get the libglade from http://gladewin32.sourceforge.net/modules.php?name=Downloads&d_op=viewdownload&cid=3
-
 List of packages for infos:
 
+- pkgconfig-0.15: 		<http://www.gimp.org/~tml/gimp/win32/pkgconfig-0.15.zip>
+- GNU libiconv: 		<http://www.gimp.org/~tml/gimp/win32/libiconv-1.9.1.bin.woe32.zip>
+- gettext-runtime-0.13.1: 	<http://www.gimp.org/~tml/gimp/win32/gettext-runtime-0.13.1.zip>
+- glib-dev-2.4.2:		<http://www.gimp.org/~tml/gimp/win32/glib-dev-2.4.2.zip>
+- glib-2.4.2:			<http://www.gimp.org/~tml/gimp/win32/glib-2.4.2.zip>
+- gtk+-dev-2.4.3:		<http://www.gimp.org/~tml/gimp/win32/gtk+-dev-2.4.3.zip> 
+- gtk+-2.4.3:			<http://www.gimp.org/~tml/gimp/win32/gtk+-2.4.3.zip>
+- pango-dev-1.4.0:		<http://www.gimp.org/~tml/gimp/win32/pango-dev-1.4.0.zip>
+- pango-1.4.0:			<http://www.gimp.org/~tml/gimp/win32/pango-1.4.0.zip>
+- atk-dev-1.6.0:		<http://www.gimp.org/~tml/gimp/win32/atk-dev-1.6.0.zip>
+- atk-1.6.0:			<http://www.gimp.org/~tml/gimp/win32/atk-1.6.0.zip>
+- zlib-1.2.1-1-lib:		<http://gnuwin32.sourceforge.net/packages/zlib.htm>
+
+- libxml2-2.6.10 (devel):	<http://xmlsoft.org/sources/win32/libxml2-2.6.10.win32.zip>
+- liglade-2.0.1-lib: 		<http://gladewin32.sourceforge.net/> => <http://gladewin32.sourceforge.net/modules.php?name=Downloads&d_op=getit&lid=15>
+
+- libxml2-2.5.10 (src):		<http://xmlsoft.org/sources/old/libxml-2.5.10.tar.gz>
+- libglade-2.0.1 (src): 	<http://ftp.linux.org.uk/pub/linux/GNOME/sources/libglade/2.0/libglade-2.0.1.tar.bz2>
+- libglade-2.3.6 (src)		<http://ftp.gnome.org/pub/GNOME/desktop/2.6/2.6.0/sources/libglade-2.3.6.tar.gz>
 
 
 Linux (cross)
 -------------
 
 Later...
+
+--host=i386-pc-mingw32
