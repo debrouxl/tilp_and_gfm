@@ -185,7 +185,12 @@
 * 20020121 : v0.4.0
 	* Merge up to 4.85.
 	* Fixups regarding 4.85 messup with libticalcs 3.0.7.
-	
+* 20020125 : v0.4.1
+	* Change my mind again wrt Remote control
+	    => new implementation using a subclass of NSImageView
+	    and the skins from GtkTiEmu. The keyboards are not yet
+	    usable, but the Remote control works as it did previously
+	    using the RCTextField.
 
 
 

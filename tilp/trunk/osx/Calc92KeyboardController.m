@@ -18,29 +18,60 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <libticalcs/calc_def.h>
+#include <stdint.h>
 
-// built in libticalcs
-extern const struct ti_key TI92_KEYS[];
+#include "cocoa_structs.h"
+
+extern struct cocoa_objects_ptr *objects_ptr;
+
+#include "keys92.h"
+
+
+unsigned char sknKey92[] = 
+{
+  TIKEY92_GRAB,
+  TIKEY92_F1,TIKEY92_F2,TIKEY92_F3,TIKEY92_F4,TIKEY92_F5,TIKEY92_F6,TIKEY92_F7,TIKEY92_F8,
+  TIKEY92_Q,TIKEY92_W,TIKEY92_E,TIKEY92_R,TIKEY92_T,TIKEY92_Y,TIKEY92_U,TIKEY92_I,TIKEY92_O,
+  TIKEY92_P,
+  TIKEY92_A,TIKEY92_S,TIKEY92_D,TIKEY92_F,TIKEY92_G,TIKEY92_H,TIKEY92_J,TIKEY92_K,TIKEY92_L,
+  TIKEY92_Z,TIKEY92_X,TIKEY92_C,TIKEY92_V,TIKEY92_B,TIKEY92_N,TIKEY92_M,TIKEY92_THETA,
+  TIKEY92_SHIFT,TIKEY92_ON,TIKEY92_DIAMOND,TIKEY92_2ND,TIKEY92_STORE,TIKEY92_SPACE,
+  TIKEY92_EQUALS,
+  TIKEY92_BACKSPACE,TIKEY92_ENTER1,TIKEY92_2ND,TIKEY92_ESCAPE,TIKEY92_MODE,TIKEY92_CLEAR,
+  TIKEY92_LN,
+  TIKEY92_APPS,TIKEY92_ENTER2,TIKEY92_LEFT,TIKEY92_RIGHT,TIKEY92_UP,TIKEY92_DOWN,
+  TIKEY92_SIN,TIKEY92_COS,TIKEY92_TAN,TIKEY92_POWER,TIKEY92_PALEFT,TIKEY92_PARIGHT,
+  TIKEY92_COMMA,
+  TIKEY92_DIVIDE,TIKEY92_7,TIKEY92_8,TIKEY92_9,TIKEY92_MULTIPLY,TIKEY92_4,TIKEY92_5,TIKEY92_6,
+  TIKEY92_MINUS,
+  TIKEY92_1,TIKEY92_2,TIKEY92_3,TIKEY92_PLUS,TIKEY92_0,TIKEY92_DOT,TIKEY92_NEGATE,TIKEY92_ENTER1
+};
+
 
 #import "Calc92KeyboardController.h"
 #import "TransfersController.h"
+#import "RCTextView.h"
+
 
 #define K_MODE_NONE 			0
 #define K_MODE_SECOND 			1
 #define K_MODE_DIAMOND 			2
 #define K_MODE_SHIFT 			3
-#define K_MODE_ALPHA 			4
-#define K_MODE_A_LOCK 			5
-#define K_MODE_A_S_LOCK 		6
+#define K_MODE_GRAB			4
 
-#define K_MODE_SECOND_WAS_A_LOCK	11
-#define K_MODE_SECOND_WAS_A_S_LOCK	21
-
-#define K_MODE_DIAMOND_WAS_A_LOCK	12
-#define K_MODE_DIAMOND_WAS_A_S_LOCK	22
+// in main.m
+uint32_t swap_bytes(uint32_t a);
 
 @implementation Calc92KeyboardController
+
+- (void)awakeFromNib
+{
+#ifdef OSX_DEBUG
+    fprintf(stderr, "Calc92KeyboardController => got awakeFromNib\n");
+#endif
+
+    objects_ptr->myCalc92KeyboardController = self;
+}
 
 - (id)init
 {
@@ -54,346 +85,142 @@ extern const struct ti_key TI92_KEYS[];
     return self;
 }
 
-- (IBAction)key92Alpha:(id)sender
+
+- (void)sendKey:(NSPoint)point
 {
-
-    if (sender == Key92A)
-        {
-
-        }
-    else if (sender == Key92B)
-        {
-
-        }
-    else if (sender == Key92C)
-        {
-
-        }
-    else if (sender == Key92D)
-        {
-
-        }
-    else if (sender == Key92E)
-        {
-
-        }
-    else if (sender == Key92F)
-        {
-
-        }
-    else if (sender == Key92G)
-        {
-
-        }
-    else if (sender == Key92H)
-        {
-
-        }
-    else if (sender == Key92I)
-        {
-
-        }
-    else if (sender == Key92J)
-        {
-
-        }
-    else if (sender == Key92K)
-        {
-
-        }
-    else if (sender == Key92L)
-        {
-
-        }
-    else if (sender == Key92M)
-        {
-
-        }
-    else if (sender == Key92N)
-        {
-
-        }
-    else if (sender == Key92O)
-        {
-
-        }
-    else if (sender == Key92P)
-        {
-
-        }
-    else if (sender == Key92Q)
-        {
-
-        }
-    else if (sender == Key92R)
-        {
-
-        }
-    else if (sender == Key92S)
-        {
-
-        }
-    else if (sender == Key92T)
-        {
-
-        }
-    else if (sender == Key92U)
-        {
-
-        }
-    else if (sender == Key92V)
-        {
-
-        }
-    else if (sender == Key92W)
-        {
-
-        }
-    else if (sender == Key92X)
-        {
-
-        }
-    else if (sender == Key92Y)
-        {
-
-        }
-    else if (sender == Key92Z)
-        {
-
-        }
-}
-
-- (IBAction)key92Function:(id)sender
-{
-
-    if (sender == Key92Applications)
-        {
-
-        }
-    else if (sender == Key92Backspace)
-        {
-
-        }
-    else if (sender == Key92Clear)
-        {
-
-        }
-    else if (sender == Key92Diamond)
-        {
-        
-        }
-    else if (sender == Key92Down)
-        {
-
-        }
-    else if (sender == Key92Enter1)
-        {
-
-        }
-    else if (sender == Key92Enter2)
-        {
-
-        }
-    else if (sender == Key92Enter3)
-        {
-
-        }
-    else if (sender == Key92Escape)
-        {
-
-        }
-    else if (sender == Key92F1)
-        {
-
-        }
-    else if (sender == Key92F2)
-        {
-
-        }
-    else if (sender == Key92F3)
-        {
-
-        }
-    else if (sender == Key92F4)
-        {
-
-        }
-    else if (sender == Key92F5)
-        {
-
-        }
-    else if (sender == Key92F6)
-        {
-
-        }
-    else if (sender == Key92F7)
-        {
-
-        }
-    else if (sender == Key92F8)
-        {
-
-        }
-    else if (sender == Key92Hand)
-        {
-
-        }
-    else if (sender == Key92Left)
-        {
-
-        }
-    else if (sender == Key92Mode)
-        {
-
-        }
-    else if (sender == Key92On)
-        {
-
-        }
-    else if (sender == Key92Right)
-        {
-
-        }
-    else if (sender == Key92Second1)
-        {
-
-        }
-    else if (sender == Key92Second2)
-        {
-
-        }
-    else if (sender == Key92Shift)
-        {
-
-        }
-    else if (sender == Key92Up)
-        {
-
+  int i;
+  unsigned char key = 0;
+  
+  // FIXME OS X : we have a _little_ coordinates problem :)
+  for(i = 0; i < 80; i++)
+      {
+          if ((point.x >= rcKeys92[i].left) && (point.x < rcKeys92[i].right) && (point.y >= rcKeys92[i].top) && (point.y < rcKeys92[i].bottom))
+              {
+                  key = sknKey92[i];
+              
+                  break;
+              }
       }
-}
 
-- (IBAction)key92Regular:(id)sender
-{
+  // FIXME OS X : modes
 
-    if (sender == Key92Comma)
-        {
-
-        }
-    else if (sender == Key92Cos)
-        {
-
-        }
-    else if (sender == Key92Divide)
-        {
-
-        }
-    else if (sender == Key92Dot)
-        {
-
-        }
-    else if (sender == Key92Eight)
-        {
-
-        }
-    else if (sender == Key92Equal)
-        {
-
-        }
-    else if (sender == Key92Five)
-        {	
-
-        }
-    else if (sender == Key92Four)
-        {
-
-        }
-    else if (sender == Key92LeftParent)
-        {
-
-        }
-    else if (sender == Key92Ln)
-        {
-
-        }
-    else if (sender == Key92Minus)
-        {
-
-        }
-    else if (sender == Key92Multiply)
-        {
-
-        }
-    else if (sender == Key92Nine)
-        {
-
-        }
-    else if (sender == Key92NumericMinus)
-        {
-
-        }
-    else if (sender == Key92One)
-        {
-
-        }
-    else if (sender == Key92Plus)
-        {
-
-        }
-    else if (sender == Key92Power)
-        {
-
-        }
-    else if (sender == Key92RightParent)
-        {
-
-        }
-    else if (sender == Key92Seven)
-        {
-
-        }
-    else if (sender == Key92Sin)
-        {
-
-        }
-    else if (sender == Key92Six)
-        {
-
-        }
-    else if (sender == Key92Space)
-        {
-
-        }
-    else if (sender == Key92Store)
-        {
-
-        }
-    else if (sender == Key92Tan)
-        {
-
-        }
-    else if (sender == Key92Theta)
-        {
-
-        }
-    else if (sender == Key92Three)
-        {
-
-        }
-    else if (sender == Key92Two)
-        {
-
-        }
-    else if (sender == Key92Zero)
-        {
-
-        }
+  switch(key)
+      {
+          case TIKEY92_GRAB:
+              mode = K_MODE_GRAB;
+              break;
+          case TIKEY92_SHIFT:
+              mode = K_MODE_SHIFT;
+              break;
+          case TIKEY92_2ND:
+              mode = K_MODE_SECOND;
+              break;
+          case TIKEY92_DIAMOND:
+              mode = K_MODE_DIAMOND;
+              break;
+          default:
+              switch(mode)
+                  {
+                      case K_MODE_GRAB:
+                          key = TI92KEYS[key].grab;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_SECOND:
+                          key = TI92KEYS[key].second;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_DIAMOND:
+                          key = TI92KEYS[key].diamond;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_SHIFT:
+                          key = TI92KEYS[key].shift;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      default:
+                          key = TI92KEYS[key].none;
+                          break;
+                  }
+          
+              if (key > 0)
+                  [myTransfersController sendChar:key];
+                  
+              break;
+      }
 }
 
 - (void)showKeyboard92:(id)sender
 {
+    NSImage *skinImage;
+    NSData *skinData;
+    NSData *jpegData;
+    NSRange jpegRange;
+    
+    NSSize scrollSize;
+    
+    int i;
+
+    skinData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ti92" ofType:@"skn"]];
+
+    // Load key coordinates here
+
+    memcpy(&rcKeys92, [skinData bytes] + (88 + sizeof(RECT_)), 80 * sizeof(RECT_));
+    
+    for (i = 0; i < 80; i++)
+        {
+            // FIXME OS X : coordinates (should be >> 1)
+            rcKeys92[i].top = swap_bytes(rcKeys92[i].top); // >> 1;
+            rcKeys92[i].bottom = swap_bytes(rcKeys92[i].bottom); // >> 1;
+            rcKeys92[i].left = swap_bytes(rcKeys92[i].left); // >> 1;
+            rcKeys92[i].right = swap_bytes(rcKeys92[i].right); // >> 1;
+        }
+
+    // JPEG data begins at 88 + (1 + 80) * sizeof(RECT_)
+    // there's something strange with NSData and range handling, thus the second argument...
+    jpegRange = NSMakeRange(88 + 81 * sizeof(RECT_), [skinData length] - (88 + 81 * sizeof(RECT_)));
+    
+    jpegData = [skinData subdataWithRange:jpegRange];
+    
+    skinImage = [[NSImage alloc] initWithData:jpegData];
+    
+    if (skinImage == nil)
+      fprintf(stderr, "DEBUG: skinImage is nil, invalid data\n");
+
+    [skinView setImage:skinImage];
+    
+    // change the textView for an RCTextView
+
+    scrollSize = [scrollView contentSize];
+    
+    textArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
+                                   textContainer:[[scrollView documentView] textContainer]];
+    
+    [textArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
+    [textArea setMaxSize:NSMakeSize(1e7, 1e7)];
+    [textArea setVerticallyResizable:YES];
+    [textArea setHorizontallyResizable:NO];
+    [textArea setAutoresizingMask:NSViewWidthSizable];
+    
+    [scrollView setDocumentView:textArea];
+    
+    [textArea setEditable:YES]; 
+       
+    [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
+    
+    // finally show the window and add an entry to the Windows menu
     [keyboardWindow makeKeyAndOrderFront:self];
     
-    [NSApp addWindowsItem:keyboardWindow title:@"TI92/TI92+ Keyboard" filename:NO];
+    [NSApp addWindowsItem:keyboardWindow title:@"TI-92/TI-92+ Remote Control" filename:NO];
+}
+
+
+- (IBAction)clearText:(id)sender
+{
+    [textArea setString:@""];
 }
 
 @end

@@ -128,7 +128,8 @@ create_cocoa_pbar_type1_sheet(const char *title)
     id mySheetsController;
     
     mySheetsController = objects_ptr->mySheetsController;
-    
+  
+#if 0
     if ([NSThread isMultiThreaded])
       {
 #ifdef OSX_DEBUG
@@ -142,8 +143,11 @@ create_cocoa_pbar_type1_sheet(const char *title)
 #ifdef OSX_DEBUG
           fprintf(stderr, "DEBUG: NOT THREADED, spawning sheet\n");
 #endif
+#endif
           [mySheetsController pbarType1];
+#if 0
       }
+#endif
 }
  
 void

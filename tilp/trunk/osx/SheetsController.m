@@ -59,11 +59,12 @@ extern struct ticalc_info_update info_update;
     fprintf(stderr, "DEBUG: registering for TilpThreadNeedsSheet notification\n");
 #endif
 
+#if 0
     [[NSNotificationCenter defaultCenter] addObserver:self
                                           selector:@selector(threadNeedsSheet:)
                                           name:@"TilpThreadNeedsSheet"
                                           object:nil];
-    
+#endif
     return self;
 }
 
@@ -72,12 +73,15 @@ extern struct ticalc_info_update info_update;
 #ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: unregistering for TilpThreadNeedsSheet notification\n");
 #endif
+
+#if 0
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+#endif
+
     [super dealloc];
 }
  
-
+#if 0
 - (void)threadNeedsSheet:(NSNotification *)notification
 {
     NSString *sheet;
@@ -94,7 +98,7 @@ extern struct ticalc_info_update info_update;
             [self pbarType1];
         }
 }
-
+#endif
  
 - (void)msgSheet:(NSString *)message title:(NSString *)title
 {

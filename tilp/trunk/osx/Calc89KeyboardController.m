@@ -18,13 +18,35 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <libticalcs/calc_def.h>
+#include <stdint.h>
 
-// built in libticalcs
-extern const struct ti_key TI89_KEYS[];
+#include "cocoa_structs.h"
+
+extern struct cocoa_objects_ptr *objects_ptr;
+
+#include "keys89.h"
+
+unsigned char sknKey89[] =
+{
+  TIKEY89_F1, TIKEY89_F2, TIKEY89_F3, TIKEY89_F4, TIKEY89_F5,
+  TIKEY89_2ND, TIKEY89_SHIFT, TIKEY89_ESCAPE, TIKEY89_LEFT, TIKEY89_RIGHT,
+  TIKEY89_UP, TIKEY89_DOWN, TIKEY89_DIAMOND, TIKEY89_ALPHA, TIKEY89_APPS,
+  TIKEY89_HOME, TIKEY89_MODE, TIKEY89_CATALOG, TIKEY89_BACKSPACE, TIKEY89_CLEAR,
+  TIKEY89_X, TIKEY89_Y, TIKEY89_Z, TIKEY89_T, TIKEY89_POWER,
+  TIKEY89_EQUALS, TIKEY89_PALEFT, TIKEY89_PARIGHT, TIKEY89_COMMA, TIKEY89_DIVIDE,
+  TIKEY89_PIPE, TIKEY89_7, TIKEY89_8, TIKEY89_9, TIKEY89_MULTIPLY,
+  TIKEY89_EE, TIKEY89_4, TIKEY89_5, TIKEY89_6, TIKEY89_MINUS,
+  TIKEY89_STORE, TIKEY89_1, TIKEY89_2, TIKEY89_3, TIKEY89_PLUS,
+  TIKEY89_ON, TIKEY89_0, TIKEY89_PERIOD, TIKEY89_NEGATE, TIKEY89_ENTER1
+};
+
 
 #import "Calc89KeyboardController.h"
 #import "TransfersController.h"
+#import "RCTextView.h"
+
+// in main.m
+uint32_t swap_bytes(uint32_t a);
 
 #define K_MODE_NONE 			0
 #define K_MODE_SECOND 			1
@@ -35,6 +57,15 @@ extern const struct ti_key TI89_KEYS[];
 #define K_MODE_A_S_LOCK 		6
 
 @implementation Calc89KeyboardController
+
+- (void)awakeFromNib
+{
+#ifdef OSX_DEBUG
+    fprintf(stderr, "Calc89KeyboardController => got awakeFromNib\n");
+#endif
+
+    objects_ptr->myCalc89KeyboardController = self;
+}
 
 - (id)init
 {
@@ -48,319 +79,146 @@ extern const struct ti_key TI89_KEYS[];
     return self;
 }
 
-- (IBAction)key89Function:(id)sender
+
+- (void)sendKey:(NSPoint)point
 {
-    unsigned int toSend = 0;
+  int i;
+  unsigned char key = 0;
+  
+  // FIXME OS X : we have a _little_ coordinates problem :)
+  for(i = 0; i < 80; i++)
+      {
+          if ((point.x >= rcKeys89[i].left) && (point.x < rcKeys89[i].right) && (point.y >= rcKeys89[i].top) && (point.y < rcKeys89[i].bottom))
+              {
+                  key = sknKey89[i];
+              
+                  break;
+              }
+      }
 
-    if (sender == Key89Alpha)
-        {
-            switch(mode)
-                {
-                    case K_MODE_SECOND:
-                        mode = K_MODE_A_LOCK;
-                        break;
-                    case K_MODE_SHIFT:
-                        mode = K_MODE_A_S_LOCK;
-                        break;
-                    case K_MODE_ALPHA:
-                        mode = K_MODE_A_LOCK;
-                        break;
-                    case K_MODE_A_LOCK:
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_A_S_LOCK:
-                        mode = K_MODE_NONE;
-                        break;
-                    default:
-                        mode = K_MODE_ALPHA;
-                        break;
-                }
-        }
-    else if (sender == Key89Diamond)
-        {
-            switch(mode)
-                {
-                    case K_MODE_DIAMOND:
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_SHIFT:
-                        mode = K_MODE_NONE;
-                        break;
-                    default:
-                        mode = K_MODE_DIAMOND;
-                        break;
-                }
-        }
-    else if (sender == Key89Shift)
-        {
-            switch(mode)
-                {
-                    case K_MODE_DIAMOND:
-                        [myTransfersController sendChar:24576];
-                        mode = K_MODE_NONE;
-                        return;
-                    case K_MODE_SHIFT:
-                        mode = K_MODE_NONE;
-                        break;
-                    default:
-                        mode = K_MODE_SHIFT;
-                        break;
-                }
-        }
-    else if (sender == Key89Second)
-        {
-            switch(mode)
-                {
-                    case K_MODE_SECOND:
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_DIAMOND:
-                        mode = K_MODE_NONE;
-                        break;
-                    default:
-                        mode = K_MODE_SECOND;
-                        break;
-                }
-        }
+  // FIXME OS X : modes
 
-
-        
-    if (sender == Key89Applications)
-        {
-            [myTransfersController sendChar:265];
-        }
-    else if (sender == Key89Backspace)
-        {
-            [myTransfersController sendChar:257];
-        }
-    else if (sender == Key89Catalog)
-        {
-            [myTransfersController sendChar:278];
-        }
-    else if (sender == Key89Clear)
-        {
-            [myTransfersController sendChar:263];
-        }
-    else if (sender == Key89Up)
-        {
-            [myTransfersController sendChar:337];
-        }
-    else if (sender == Key89Down)
-        {
-            [myTransfersController sendChar:340];
-        }
-    else if (sender == Key89Enter)
-        {
-            [myTransfersController sendChar:13];
-        }
-    else if (sender == Key89Escape)
-        {
-            [myTransfersController sendChar:264];
-        }
-    else if (sender == Key89F1)
-        {
-            [myTransfersController sendChar:268];
-        }
-    else if (sender == Key89F2)
-        {
-            [myTransfersController sendChar:269];
-        }
-    else if (sender == Key89F3)
-        {
-            [myTransfersController sendChar:270];
-        }
-    else if (sender == Key89F4)
-        {
-            [myTransfersController sendChar:271];
-        }
-    else if (sender == Key89F5)
-        {
-            [myTransfersController sendChar:272];
-        }
-    else if (sender == Key89Home)
-        {
-            [myTransfersController sendChar:277];
-        }
-    else if (sender == Key89Left)
-        {
-            [myTransfersController sendChar:338];
-        }
-    else if (sender == Key89Mode)
-        {
-            [myTransfersController sendChar:266];
-        }
-    else if (sender == Key89Right)
-        {
-            [myTransfersController sendChar:344];
-        }
-    else if (sender == Key89On)
-        {
-            // no code ?
-        }
-}
-
-- (IBAction)key89Regular:(id)sender
-{
-    int toSend = 0;
-    int baseKey = 0;
-
-    if (sender == Key89Comma)
-        {
-            [myTransfersController sendChar:','];
-        }
-    else if (sender == Key89Divide)
-        {
-            [myTransfersController sendChar:'/'];
-        }
-    else if (sender == Key89Dot)
-        {
-            [myTransfersController sendChar:'.'];
-        }
-    else if (sender == Key89Eight)
-        {
-            baseKey = '8';
-                    
-            [myTransfersController sendChar:'8'];
-        }
-    else if (sender == Key89Equal)
-        {
-            [myTransfersController sendChar:'='];
-        }
-    else if (sender == Key89Five)
-        {
-            [myTransfersController sendChar:'5'];
-        }
-    else if (sender == Key89Four)
-        {
-            [myTransfersController sendChar:'4'];
-        }
-    else if (sender == Key89LeftParent)
-        {
-            [myTransfersController sendChar:'('];
-        }
-    else if (sender == Key89Minus)
-        {
-            [myTransfersController sendChar:'-'];
-        }
-    else if (sender == Key89Multiply)
-        {
-            [myTransfersController sendChar:'*'];
-        }
-    else if (sender == Key89Nine)
-        {
-            [myTransfersController sendChar:'9'];
-        }
-    else if (sender == Key89NumericMinus)
-        {
-            [myTransfersController sendChar:173];
-        }
-    else if (sender == Key89One)
-        {
-            [myTransfersController sendChar:'1'];
-        }
-    else if (sender == Key89Pipe)
-        {
-            [myTransfersController sendChar:'|'];
-        }
-    else if (sender == Key89Plus)
-        {
-            [myTransfersController sendChar:'+'];
-        }
-    else if (sender == Key89Power)
-        {
-            [myTransfersController sendChar:'^'];
-        }
-    else if (sender == Key89PowerTen)
-        {
-            [myTransfersController sendChar:149];
-        }
-    else if (sender == Key89RightParent)
-        {
-            [myTransfersController sendChar:')'];
-        }
-    else if (sender == Key89Seven)
-        {
-            [myTransfersController sendChar:'7'];
-        }
-    else if (sender == Key89Six)
-        {
-            [myTransfersController sendChar:'6'];
-        }
-    else if (sender == Key89Store)
-        {
-            [myTransfersController sendChar:258];
-        }
-    else if (sender == Key89T)
-        {
-            [myTransfersController sendChar:'t'];
-        }
-    else if (sender == Key89Three)
-        {
-            [myTransfersController sendChar:'3'];
-        }
-    else if (sender == Key89Two)
-        {
-            [myTransfersController sendChar:'2'];
-        }
-    else if (sender == Key89X)
-        {
-            [myTransfersController sendChar:'x'];
-        }
-    else if (sender == Key89Y)
-        {
-            [myTransfersController sendChar:'y'];
-        }
-    else if (sender == Key89Z)
-        {
-            [myTransfersController sendChar:'z'];
-        }
-    else if (sender == Key89Zero)
-        {
-            [myTransfersController sendChar:'0'];
-        }
-        
-    if (baseKey > 0)
-        {
-            switch(mode)
-                {
-                    case K_MODE_SECOND:
-                        toSend = TI89_KEYS[baseKey].second;
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_DIAMOND:
-                        toSend = TI89_KEYS[baseKey].diamond;
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_SHIFT:
-                        toSend = TI89_KEYS[baseKey].shift;
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_ALPHA:
-                        toSend = TI89_KEYS[baseKey].alpha;
-                        mode = K_MODE_NONE;
-                        break;
-                    case K_MODE_A_LOCK:
-                        toSend = TI89_KEYS[baseKey].alpha;
-                        break;
-                    case K_MODE_A_S_LOCK:
-                        toSend = TI89_KEYS[baseKey].shift;
-                        break;
-                    default:
-                        toSend = TI89_KEYS[baseKey].nothing;
-                        break;
-                }
-        }
-    else
-        return;
-        
-    fprintf(stderr, "DEBUG: => %c\n", toSend);
+  switch(key)
+      {
+          case TIKEY89_SHIFT:
+              mode = K_MODE_SHIFT;
+              break;
+          case TIKEY89_2ND:
+              mode = K_MODE_SECOND;
+              break;
+          case TIKEY89_DIAMOND:
+              mode = K_MODE_DIAMOND;
+              break;
+          case TIKEY89_ALPHA:
+              mode = K_MODE_ALPHA;
+              break;
+          default:
+              switch(mode)
+                  {
+                      case K_MODE_ALPHA:
+                          key = TI89KEYS[key].alpha;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_SECOND:
+                          key = TI89KEYS[key].second;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_DIAMOND:
+                          key = TI89KEYS[key].diamond;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_SHIFT:
+                          key = TI89KEYS[key].shift;
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_A_LOCK:
+                          key = TI89KEYS[key].alpha;
+                          break;
+                      case K_MODE_A_S_LOCK:
+                          key = TI89KEYS[key].shift;
+                          break;
+                      default:
+                          key = TI89KEYS[key].none;
+                          break;
+                  }
+          
+              if (key > 0)
+                  [myTransfersController sendChar:key];
+                  
+              break;
+      }
 }
 
 - (void)showKeyboard89:(id)sender
 {
+    NSImage *skinImage;
+    NSData *skinData;
+    NSData *jpegData;
+    NSRange jpegRange;
+
+    NSSize scrollSize;
+
+    int i;
+
+    skinData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ti89" ofType:@"skn"]];
+
+    // Load key coordinates here
+    
+    memcpy(&rcKeys89, [skinData bytes] + (152 + sizeof(RECT_)), 80 * sizeof(RECT_));
+    
+    for (i = 0; i < 80; i++)
+        {
+            // FIXME OS X : coordinates (should be >> 1)
+            rcKeys89[i].top = swap_bytes(rcKeys89[i].top); // >> 1;
+            rcKeys89[i].bottom = swap_bytes(rcKeys89[i].bottom); // >> 1;
+            rcKeys89[i].left = swap_bytes(rcKeys89[i].left); // >> 1;
+            rcKeys89[i].right = swap_bytes(rcKeys89[i].right); // >> 1;
+        }
+
+    // JPEG data begins at 152 + (1 + 80) * sizeof(RECT_)
+    // there's something strange with NSData and range handling, thus the second argument...
+    jpegRange = NSMakeRange(152 + 81 * sizeof(RECT_), [skinData length] - (152 + 81 * sizeof(RECT_)));
+    
+    jpegData = [skinData subdataWithRange:jpegRange];
+    
+    skinImage = [[NSImage alloc] initWithData:jpegData];
+    
+    if (skinImage == nil)
+      fprintf(stderr, "DEBUG: skinImage is nil, invalid data\n");
+
+    [skinView setImage:skinImage];
+    
+    // change the textView for an RCTextView
+    scrollSize = [scrollView contentSize];
+    
+    textArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
+                                   textContainer:[[scrollView documentView] textContainer]];
+    
+    [textArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
+    [textArea setMaxSize:NSMakeSize(1e7, 1e7)];
+    [textArea setVerticallyResizable:YES];
+    [textArea setHorizontallyResizable:NO];
+    [textArea setAutoresizingMask:NSViewWidthSizable];
+    
+    [scrollView setDocumentView:textArea];
+    
+    [textArea setEditable:YES]; 
+       
+    [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
+    
+    // finally show the window and add an entry to the Windows menu
     [keyboardWindow makeKeyAndOrderFront:self];
     
-    [NSApp addWindowsItem:keyboardWindow title:@"TI89 Keyboard" filename:NO];
+    [NSApp addWindowsItem:keyboardWindow title:@"TI-89 Remote Control" filename:NO];
+}
+
+- (IBAction)clearText:(id)sender
+{
+    [textArea setString:@""];
 }
 
 @end

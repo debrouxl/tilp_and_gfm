@@ -211,6 +211,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)remoteControl:(id)sender
 {
+    // FIXME OS X : fix the mess regarding the boxes
+
     NSSize scrollSize;
 
     if ((options.lp.calc_type != CALC_TI89) && (options.lp.calc_type != CALC_TI92) && (options.lp.calc_type != CALC_TI92P))
@@ -252,7 +254,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     [remoteControlScrollView display];
     
-    [remoteControlWindow makeKeyAndOrderFront:self];
+    //[remoteControlWindow makeKeyAndOrderFront:self];
     
     [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
     

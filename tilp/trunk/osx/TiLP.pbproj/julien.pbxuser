@@ -35,15 +35,15 @@
 		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
-				ContentSize = "{958, 558}";
+				ContentSize = "{1002, 551}";
 				LeftSlideOut = {
 					ActiveTab = 0;
-					Frame = "{{0, 23}, {958, 535}}";
+					Frame = "{{0, 23}, {1002, 528}}";
 					Split0 = {
-						ActiveTab = 1;
-						Frame = "{{238, 0}, {720, 535}}";
+						ActiveTab = 2;
+						Frame = "{{238, 0}, {764, 528}}";
 						Split0 = {
-							Frame = "{{0, 178}, {720, 357}}";
+							Frame = "{{0, 167}, {764, 361}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -73,16 +73,16 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {720, 154}}";
+							Frame = "{{0, 0}, {764, 94}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {720, 154}}";
+								Frame = "{{0, 0}, {764, 94}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {722, 73}}";
-							BuildTranscriptFrame = "{{0, 82}, {722, 63}}";
-							Frame = "{{0, 0}, {720, 143}}";
+							BuildMessageFrame = "{{0, 0}, {766, 73}}";
+							BuildTranscriptFrame = "{{0, 82}, {766, 63}}";
+							Frame = "{{0, 0}, {764, 143}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -91,7 +91,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {214, 535}}";
+						Frame = "{{0, 0}, {214, 528}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {202, 56}}";
@@ -113,7 +113,7 @@
 						SplitCount = 2;
 					};
 					Tab4 = {
-						Frame = "{{0, 0}, {250, 535}}";
+						Frame = "{{0, 0}, {250, 528}}";
 					};
 					TabCount = 5;
 				};
@@ -258,6 +258,11 @@
 	F58271E901762CF701000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	F5D157770201AA8701000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 102}, {750, 502}}";
 		};
 	};
 	F5F1CF43019C3131010BF862 = {

@@ -759,9 +759,9 @@ extern int is_active;
 
 - (int)sendChar:(unsigned int)tikey
 {
-#ifdef OSX_DEBUG
+//#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);
-#endif
+//#endif
 
     if (tilp_error(ti_calc.send_key(tikey)))
         return -1;

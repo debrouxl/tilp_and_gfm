@@ -24,6 +24,8 @@
 #import <Cocoa/Cocoa.h>
 #import <SimpleTreeNode.h>
  
+#include <stdint.h>
+ 
 struct cocoa_objects_ptr
 {
     // our classes
@@ -33,6 +35,9 @@ struct cocoa_objects_ptr
     id myTilpController;
     id mySheetsController;
     id myTransfersController;
+
+    id myCalc89KeyboardController;
+    id myCalc92KeyboardController;
 
     // return values for some dialog sheets
     // this is a quick hack to workaround the C way-of-life ;-)
@@ -45,5 +50,14 @@ struct cocoa_objects_ptr
     NSMutableDictionary *tilpConfig;
     NSUserDefaults *prefs;
 };
+ 
+// not really tied to cocoa, but I don't want to make another header file
+typedef struct tagRECT_
+{
+  uint32_t left;
+  uint32_t top;
+  uint32_t right;
+  uint32_t bottom;
+} RECT_;
  
 #endif /* !__COCOA_STRUCTS_H__ */

@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <stdint.h>
 
 #include <libticables/verbose.h>
 #include <libticables/cabl_int.h>
@@ -38,6 +39,13 @@
 #include "../src/gui_indep.h"
 #include "../src/struct.h"
 #include "../src/cb_misc.h"
+
+// a utility function
+uint32_t swap_bytes(uint32_t a)
+{
+  return (a >> 24) | ((a & 0xff0000) >> 16) << 8 | ((a & 0xff00) >> 8) << 16 | (a & 0xff) << 8;
+}
+
 
 #include "cocoa_structs.h"
 

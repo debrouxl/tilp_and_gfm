@@ -43,19 +43,8 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
   cmi->flash = 0;
   cmi->flashmem = 0;
   
+  // FIXME OS X : still not implemented as announced... !@#
   cmi->freemem = 0;
-  
-// FIXME OS X : ENABLE ONCE LIBTICALCS SUPPORTS IT !
-#if 0
-  if (p != NULL) // the first item is bogus, for historical reasons
-      {
-          vi = (struct varinfo *)(p->data);
-          
-          cmi->freemem = vi->varsize; // but it provides the amount of free memory :)
-          
-          p = p->next;
-      }
-#endif
   
   while (p != NULL)
       {
