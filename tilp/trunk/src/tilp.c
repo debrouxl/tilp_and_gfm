@@ -502,15 +502,20 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton * button,
 GLADE_CB void on_tilp_button10_clicked(GtkButton * button,
 				       gpointer user_data)
 {
+	gchar *utf8 = NULL;
+	gsize br, bw;
 	gchar *dirname;
-	dirname =
-	    gif->msg_entry(_("Make a new directory"), _("Name: "),
-			   _("new_directory"));
-	if (dirname == NULL)
+
+	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "),
+				 _("new_directory"));
+	if (utf8 == NULL)
 		return;
+
+	dirname = g_filename_from_utf8(utf8, -1, &br, &bw, NULL);
+
 	tilp_file_mkdir(dirname);
 	g_free(dirname);
-	tilp_clist_file_selection_destroy();
+
 	clist_refresh();
 	labels_refresh();
 }

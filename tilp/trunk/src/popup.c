@@ -36,9 +36,12 @@
 #include "tilp.h"
 #include "shell.h"
 
+
 /***********************/
 /* Popup menu creation */
 /***********************/
+
+
 static void on_clist_rbm_show(GtkWidget * widget, gpointer user_data);
 GtkWidget *create_clist_rbm(void)
 {
@@ -59,14 +62,20 @@ GtkWidget *create_clist_rbm(void)
 /************************/
 /* Popup menu callbacks */
 /************************/
+
+
 GLADE_CB void on_cut1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	clist_win.copy_cut = CUT_FILE;
-} GLADE_CB void on_copy1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_copy1_activate(GtkMenuItem * menuitem,
 				  gpointer user_data)
 {
 	clist_win.copy_cut = COPY_FILE;
-} GLADE_CB void on_paste1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_paste1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
 	GList *ptr;
@@ -102,6 +111,7 @@ GLADE_CB void on_cut1_activate(GtkMenuItem * menuitem, gpointer user_data)
 	clist_refresh();
 	labels_refresh();
 }
+
 GLADE_CB void
 on_move_to_parent_dir1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
@@ -110,14 +120,18 @@ on_move_to_parent_dir1_activate(GtkMenuItem * menuitem, gpointer user_data)
 	clist_win.current_dir = g_get_current_dir();
 	clist_refresh();
 	labels_refresh();
-} GLADE_CB void on_select_all1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_select_all1_activate(GtkMenuItem * menuitem,
 					gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
 	GtkTreeSelection *sel;
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_select_all(sel);
-} GLADE_CB void on_unselect_all1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_unselect_all1_activate(GtkMenuItem * menuitem,
 					  gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
@@ -210,6 +224,7 @@ GLADE_CB void on_unzip1_activate(GtkMenuItem * menuitem,
 	}
 	clist_refresh();
 }
+
 GLADE_CB void on_untar1_activate(GtkMenuItem * menuitem,
 				 gpointer user_data)
 {
@@ -281,19 +296,24 @@ GLADE_CB void on_untar1_activate(GtkMenuItem * menuitem,
 	}
 	clist_refresh();
 }
+
 GLADE_CB void on_ungroup1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
 	tilp_tifiles_ungroup();
 	clist_refresh();
 	labels_refresh();
-} GLADE_CB void on_group1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_group1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
 	tilp_tifiles_group();
 	clist_refresh();
 	labels_refresh();
-} GLADE_CB void on_open2_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_open2_activate(GtkMenuItem * menuitem,
 				  gpointer user_data)
 {
 
@@ -309,11 +329,15 @@ GLADE_CB void on_ungroup1_activate(GtkMenuItem * menuitem,
 		sel = g_list_next(sel);
 	}
 */
-} void on_view1_activate(GtkMenuItem * menuitem, gpointer user_data)
+} 
+
+void on_view1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	msg_box(_("Information"),
 		_("Plugin mechanism: system not defined yet !"));
-} GLADE_CB void on_rename1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_rename1_activate(GtkMenuItem * menuitem,
 				    gpointer user_data)
 {
 	tilp_rename_selected_files();
@@ -324,33 +348,48 @@ GLADE_CB void on_ungroup1_activate(GtkMenuItem * menuitem,
 	 * code (which is normally protected) is written. */
 	clist_refresh();
 	labels_refresh();
-} GLADE_CB void on_update_window1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_update_window1_activate(GtkMenuItem * menuitem,
 					   gpointer user_data)
 {
 	on_tilp_button12_clicked(NULL, NULL);
-} GLADE_CB void
+} 
+
+GLADE_CB void
 on_make_a_new_dir1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
+	gchar *utf8 = NULL;
+	gsize br, bw;
 	gchar *dirname;
-	dirname =
-	    gif->msg_entry(_("Make a new directory"), _("Name: "),
-			   _("new_directory"));
-	if (dirname == NULL)
+
+	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "),
+				 _("new_directory"));
+	if (utf8 == NULL)
 		return;
+
+	dirname = g_filename_from_utf8(utf8, -1, &br, &bw, NULL);
+
 	tilp_file_mkdir(dirname);
 	g_free(dirname);
+
 	clist_refresh();
 	labels_refresh();
 }
+
 GLADE_CB void on_delete_file1_activate(GtkMenuItem * menuitem,
 				       gpointer user_data)
 {
 	on_tilp_button11_clicked(NULL, NULL);
-} GLADE_CB void on_shell1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void on_shell1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
 	display_shell_dbox();
-} GLADE_CB void
+} 
+
+GLADE_CB void
 on_sign_ti83_flash_apps1_activate(GtkMenuItem * menuitem,
 				  gpointer user_data)
 {
@@ -398,6 +437,7 @@ on_sign_ti83_flash_apps1_activate(GtkMenuItem * menuitem,
 	}
 	clist_refresh();
 }
+
 GLADE_CB void
 on_convert_ams_upgrade1_activate(GtkMenuItem * menuitem,
 				 gpointer user_data)
@@ -414,13 +454,16 @@ on_convert_ams_upgrade1_activate(GtkMenuItem * menuitem,
 	}
 	clist_refresh();
 }
+
 GLADE_CB void
 on_set_as_working_dir1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	g_free(options.working_dir);
 	options.working_dir = g_get_current_dir();
 	tilp_config_save();
-} GLADE_CB void
+} 
+
+GLADE_CB void
 on_send_vars_to_flash1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	if (tifiles_is_flash(options.lp.calc_type))

@@ -198,7 +198,6 @@ void ctree_refresh(void)
 	GtkTreeIter child_node;
 	TNode *vars, *apps;
 	int i, j;
-	gsize br, bw;
 
 	// check for a valid tree
 	if (ctree_win.dirlist == NULL)
