@@ -1,6 +1,6 @@
-/* config.h.in.  Generated from configure.in by autoheader.  */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Whether allowing user to exit HOME dir */
+/* Define to 1 to allow user to go outside his home directory. */
 #undef ALLOW_EXIT_HOMEDIR
 
 /* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
@@ -52,27 +52,11 @@
    don't. */
 #undef HAVE_DECL__SNWPRINTF
 
-/* Define to 1 if you have the <direct.h> header file. */
-#undef HAVE_DIRECT_H
-
-/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
-   */
-#undef HAVE_DIRENT_H
-
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
 /* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
 #undef HAVE_DOPRNT
-
-/* Define to 1 if you have the `dup2' function. */
-#undef HAVE_DUP2
-
-/* Define to 1 if you have the <errno.h> header file. */
-#undef HAVE_ERRNO_H
-
-/* Define to 1 if you have the <fcntl.h> header file. */
-#undef HAVE_FCNTL_H
 
 /* Define to 1 if you have the `fwprintf' function. */
 #undef HAVE_FWPRINTF
@@ -98,9 +82,6 @@
 /* Define to 1 if you have the `getuid' function. */
 #undef HAVE_GETUID
 
-/* Define to 1 if you have the `getwd' function. */
-#undef HAVE_GETWD
-
 /* Define if you have the iconv() function. */
 #undef HAVE_ICONV
 
@@ -119,18 +100,6 @@
 
 /* Define if your <locale.h> file defines LC_MESSAGES. */
 #undef HAVE_LC_MESSAGES
-
-/* Define to 1 if you have the `dl' library (-ldl). */
-#undef HAVE_LIBDL
-
-/* Define to 1 if you have the <libintl.h> header file. */
-#undef HAVE_LIBINTL_H
-
-/* Define to 1 if you have the `jpeg' library (-ljpeg). */
-#undef HAVE_LIBJPEG
-
-/* Define to 1 if you have the `m' library (-lm). */
-#undef HAVE_LIBM
 
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
@@ -151,9 +120,6 @@
 /* Define to 1 if you have the <malloc.h> header file. */
 #undef HAVE_MALLOC_H
 
-/* Define to 1 if you have the `memchr' function. */
-#undef HAVE_MEMCHR
-
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
@@ -172,17 +138,11 @@
 /* Define to 1 if you have the `munmap' function. */
 #undef HAVE_MUNMAP
 
-/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
-#undef HAVE_NDIR_H
-
 /* Define to 1 if you have the <nl_types.h> header file. */
 #undef HAVE_NL_TYPES_H
 
 /* Define if your printf() function supports format strings with positions. */
 #undef HAVE_POSIX_PRINTF
-
-/* Define to 1 if you have the `pow' function. */
-#undef HAVE_POW
 
 /* Define to 1 if you have the `putenv' function. */
 #undef HAVE_PUTENV
@@ -243,31 +203,26 @@
 /* Define to 1 if you have the `strtoul' function. */
 #undef HAVE_STRTOUL
 
-/* Define to 1 if `st_blksize' is member of `struct stat'. */
-#undef HAVE_STRUCT_STAT_ST_BLKSIZE
-
-/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
-   */
-#undef HAVE_SYS_DIR_H
-
-/* Define to 1 if you have the <sys/file.h> header file. */
-#undef HAVE_SYS_FILE_H
-
-/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
-   */
-#undef HAVE_SYS_NDIR_H
-
 /* Define to 1 if you have the <sys/param.h> header file. */
 #undef HAVE_SYS_PARAM_H
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #undef HAVE_SYS_STAT_H
 
-/* Define to 1 if you have the <sys/time.h> header file. */
-#undef HAVE_SYS_TIME_H
-
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <tilp/macros.h> header file. */
+#undef HAVE_TILP_MACROS_H
+
+/* Define to 1 if you have the <tilp/ticables.h> header file. */
+#undef HAVE_TILP_TICABLES_H
+
+/* Define to 1 if you have the <tilp/ticalcs.h> header file. */
+#undef HAVE_TILP_TICALCS_H
+
+/* Define to 1 if you have the <tilp/tifiles.h> header file. */
+#undef HAVE_TILP_TIFILES_H
 
 /* Define to 1 if you have the `tsearch' function. */
 #undef HAVE_TSEARCH
@@ -280,9 +235,6 @@
 
 /* Define if you have the 'unsigned long long' type. */
 #undef HAVE_UNSIGNED_LONG_LONG
-
-/* Define to 1 if you have the <utime.h> header file. */
-#undef HAVE_UTIME_H
 
 /* Define to 1 if you have the `vprintf' function. */
 #undef HAVE_VPRINTF
@@ -318,14 +270,6 @@
    slash. */
 #undef LSTAT_FOLLOWS_SLASHED_SYMLINK
 
-/* Define to 1 if `major', `minor', and `makedev' are declared in <mkdev.h>.
-   */
-#undef MAJOR_IN_MKDEV
-
-/* Define to 1 if `major', `minor', and `makedev' are declared in
-   <sysmacros.h>. */
-#undef MAJOR_IN_SYSMACROS
-
 /* Name of package */
 #undef PACKAGE
 
@@ -357,9 +301,9 @@
 /* If using the C implementation of alloca, define if you know the
    direction of stack growth for your system; otherwise it will be
    automatically deduced at run-time.
-	STACK_DIRECTION > 0 => grows toward higher addresses
-	STACK_DIRECTION < 0 => grows toward lower addresses
-	STACK_DIRECTION = 0 => direction of growth unknown */
+        STACK_DIRECTION > 0 => grows toward higher addresses
+        STACK_DIRECTION < 0 => grows toward lower addresses
+        STACK_DIRECTION = 0 => direction of growth unknown */
 #undef STACK_DIRECTION
 
 /* Define to 1 if the `S_IS*' macros in <sys/stat.h> do not work properly. */
@@ -380,11 +324,9 @@
 /* Define to `int' if <sys/types.h> doesn't define. */
 #undef gid_t
 
-/* Define to `__inline__' or `__inline' if that's what the C compiler
-   calls it, or to nothing if 'inline' is not supported under any name.  */
-#ifndef __cplusplus
+/* Define as `__inline' if that's what the C compiler calls it, or to nothing
+   if it is not supported. */
 #undef inline
-#endif
 
 /* Define to rpl_malloc if the replacement function should be used. */
 #undef malloc
@@ -394,9 +336,6 @@
 
 /* Define to `long' if <sys/types.h> does not define. */
 #undef off_t
-
-/* Define to `int' if <sys/types.h> does not define. */
-#undef pid_t
 
 /* Define as the type of the result of subtracting two pointers, if the system
    doesn't define it. */

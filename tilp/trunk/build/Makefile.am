@@ -1,6 +1,4 @@
-EXTRA_DIST = mingw #*.dsw *.dsp *.mak *.rc *.ico *.reg
-
-distclean: clean
+#EXTRA_DIST = mingw/* #*.dsw *.dsp *.mak *.rc *.ico *.reg
 
 clean: 
 	$(RM) \#*

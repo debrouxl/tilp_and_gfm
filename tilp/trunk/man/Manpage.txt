@@ -204,8 +204,8 @@ CONFIG FILE FORMAT
        in a directory such as 'archive_name/'. An option such  as  'unzip_fil-
        ter=*.89* -d tidir/' can be useful too.
 
-       tar_location=   Define  the  location  of  the  program  for  untarring
-       archives. Most of the time, the 'tar' string is enough.
+       tar_location=  Define  the  location  of  the program for untarring ar-
+       chives. Most of the time, the 'tar' string is enough.
 
        tar_options= Define the options to pass on  the  command  line  of  the
        'tar'  program. By default, this option is equal to 'tar_options=xvzf'.

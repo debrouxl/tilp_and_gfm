@@ -19,6 +19,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#undef GTK_DISABLE_DEPRECATED
+
 #include <gtk/gtk.h>
 
 #include "tilp_core.h"
@@ -27,8 +29,6 @@
 #include "support.h"
 
 struct toolbar_window toolbar_win = { 0 };
-
-#define GTK_DISABLE_DEPRECATED
 
 void toolbar_set_images(void)
 {

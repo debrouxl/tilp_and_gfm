@@ -4,6 +4,8 @@ INSTALL=@INSTALL@
 ICONS = *.ico
 EXTRA_DIST = $(ICONS)
 
+tilp_icon_dir = $(pkgdatadir)/icons
+
 FN = `echo  $$I | mawk '{ gsub(/\.ico/, "", $$0); print ($$0)}'`
 
 install: $(ICONS) links

@@ -3,7 +3,7 @@ SHELL=/bin/sh
 SHARE_DIR=$(prefix)/share/tilp
 INSTALL=@INSTALL@
 
-EXTRA_DIST = gnome kde others
+EXTRA_DIST = gnome/* kde/* others/*
 
 install: $(FILES)
 	@echo Installing magic local data for file\(1\) command...

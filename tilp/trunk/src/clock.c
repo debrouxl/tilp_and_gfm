@@ -23,6 +23,8 @@
 #  include <config.h>
 #endif				/*  */
 
+#undef GTK_DISABLE_DEPRECATED
+
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <string.h>

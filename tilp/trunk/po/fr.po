@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-26 17:36+0200\n"
+"Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
+"POT-Creation-Date: 2004-05-11 18:33+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Sylvain Garsault <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: Français <kde-francophone@kde.org>\n"
@@ -44,7 +44,7 @@ msgstr "Nom de fichier"
 msgid "Action"
 msgstr "Action"
 
-#: src/action.c:152 src/clock.c:96
+#: src/action.c:152 src/clock.c:98
 msgid "action.c: GUI loading failed !\n"
 msgstr "action.c : échec du chargement de l'interface graphique !\n"
 
@@ -56,11 +56,11 @@ msgstr "ignorer"
 msgid "overwrite"
 msgstr "écraser"
 
-#: src/action.c:301 src/tilp_files.c:694 src/tilp_slct.c:124
+#: src/action.c:301 src/tilp_files.c:696 src/tilp_slct.c:124
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: src/action.c:301 src/tilp_files.c:695
+#: src/action.c:301 src/tilp_files.c:697
 msgid "New name: "
 msgstr "Nouveau nom : "
 
@@ -80,7 +80,7 @@ msgstr "Taille"
 msgid "Date"
 msgstr "Date"
 
-#: src/comm.c:58
+#: src/comm.c:60
 msgid "comm.c: GUI loading failed !\n"
 msgstr "comm.c : échec du chargement de l'interface graphique !\n"
 
@@ -108,7 +108,6 @@ msgstr "Applications"
 msgid "Any Folder"
 msgstr "N'importe quel dossier"
 
-#. RemoveDirectory(f)
 #: src/dboxes.c:41 src/dboxes.c:90 src/popup.c:166 src/popup.c:246
 #: src/popup.c:338 src/tilp_calcs.c:216 src/tilp_calcs.c:249
 #: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
@@ -120,7 +119,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:91
+#: src/tilp_calcs.c:396 src/tilp_files.c:686 src/tilp_slct.c:91
 #: src/tilp_slct.c:94
 msgid "Warning"
 msgstr "Avertissement"
@@ -129,12 +128,11 @@ msgstr "Avertissement"
 msgid "Question"
 msgstr "Question"
 
-#. gif->destroy_pbar();
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
 #: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:341 src/tilp_calcs.c:391
 #: src/tilp_calcs.c:590 src/tilp_calcs.c:596 src/tilp_calcs.c:602
-#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
-#: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
+#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:734
+#: src/tilp_files.c:766 src/tilp_files.c:785 src/tilp_files.c:804
 #: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
 #: src/tilp_misc.c:169 src/tilp_misc.c:298 src/tilp_rcfile.c:51
 #: src/tilp_rcfile.c:566
@@ -149,26 +147,26 @@ msgstr "Impossible de supprimer les fichiers temporaires.\n"
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialisé en mode GTK+.\n"
 
-#: src/labels.c:102
+#: src/labels.c:103
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr "Mémoire libre : %u octets"
 
-#: src/labels.c:106
+#: src/labels.c:107
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr "Mémoire utilisée : %u octets"
 
-#: src/labels.c:110
+#: src/labels.c:111
 #, c-format
 msgid "Memory used: %s"
 msgstr "Mémoire utilisée : %s"
 
-#: src/labels.c:110
+#: src/labels.c:111
 msgid "N/A"
 msgstr "N/A"
 
-#: src/labels.c:117
+#: src/labels.c:118
 #, c-format
 msgid "Current directory: %s"
 msgstr "Dossier courant : %s"
@@ -177,7 +175,6 @@ msgstr "Dossier courant : %s"
 msgid "Done.\n"
 msgstr "Fait.\n"
 
-#. Create the main window
 #: src/main.c:118
 msgid "Loading GUI..."
 msgstr "Chargement de l'IHM..."
@@ -186,7 +183,6 @@ msgstr "Chargement de l'IHM..."
 msgid "TiLP"
 msgstr "TiLP"
 
-#. Scan plug-ins
 #: src/main.c:160
 msgid "Scanning plugins..."
 msgstr "Détection des greffons..."
@@ -227,7 +223,7 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr "Système de greffons : système pas encore défini !"
 
-#: src/popup.c:368 src/tilp.c:542 glade/clist_rbm-2.str:19
+#: src/popup.c:368 src/tilp.c:542 glade/clist_rbm-2.str:18
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
@@ -251,7 +247,6 @@ msgstr ""
 msgid "Open with"
 msgstr "Ouvrir avec"
 
-#. A..Z -> 26 letters
 #: src/popup.c:576
 msgid "Change drive"
 msgstr "Changer de lecteur"
@@ -489,7 +484,7 @@ msgstr ""
 "Impossible de créer ce dossier.\n"
 "\n"
 
-#: src/tilp_files.c:681
+#: src/tilp_files.c:683
 #, c-format
 msgid ""
 "The file %s already exists.\n"
@@ -498,31 +493,31 @@ msgstr ""
 "Le fichier %s existe déjà.\n"
 "L'écraser ?"
 
-#: src/tilp_files.c:685
+#: src/tilp_files.c:687
 msgid "Overwrite "
 msgstr "Écraser"
 
-#: src/tilp_files.c:685
+#: src/tilp_files.c:687
 msgid "Rename "
 msgstr "Renommer"
 
-#: src/tilp_files.c:686
+#: src/tilp_files.c:688
 msgid "Skip "
 msgstr "Quitter"
 
-#: src/tilp_files.c:734
+#: src/tilp_files.c:736
 msgid "Unable to move the temporary file.\n"
 msgstr "Impossible de déplacer les fichiers temporaires.\n"
 
-#: src/tilp_files.c:763 src/tilp_files.c:800
+#: src/tilp_files.c:765 src/tilp_files.c:802
 msgid "Chdir error.\n"
 msgstr "Erreur en changeant de dossier.\n"
 
-#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:169
+#: src/tilp_files.c:766 src/tilp_files.c:805 src/tilp_misc.c:169
 msgid "Unable to change directory."
 msgstr "Impossible de changer de dossier."
 
-#: src/tilp_files.c:784
+#: src/tilp_files.c:786
 msgid "You can not go outside of your HOME directory."
 msgstr "Vous ne pouvez pas sortir de votre dossier HOME."
 
@@ -723,7 +718,6 @@ msgstr "tilp_plugins_scan : erreur à l'ouverture d'un dossier\n"
 msgid "Done !\n"
 msgstr "Fait !\n"
 
-#. Scan registry
 #: src/tilp_plugin.c:174
 msgid "scanning registry... "
 msgstr "Recherche dans le registre... "
@@ -805,7 +799,6 @@ msgstr ""
 msgid "initialized in command line mode.\n"
 msgstr "Initialisé en mode ligne de commande.\n"
 
-#. Place a progress bar
 #: src/tilp_screen.c:38
 msgid "Screendump"
 msgstr "Capture d'écran"
@@ -834,8 +827,6 @@ msgstr "Impossible de renommer le fichier ou dossier."
 msgid "A variable must have been selected in the left window."
 msgstr "Une variable doit être sélectionnée dans la fenêtre de gauche."
 
-#. get new tree
-#. get new trees
 #: src/tilp_vars.c:71 src/tilp_vars.c:83 src/tilp_vars.c:95
 msgid "Directory list"
 msgstr "Liste des dossiers"
@@ -856,25 +847,19 @@ msgstr ""
 "Cette fenêtre va vous aider à configurer TiLP pour la première utilisation. "
 "Si vous avez besoin de relancer l'assistant, allez dans Aide->Assistant."
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/about-2.str:8 glade/tilp-2.str:60
+#: glade/about-2.str:7 glade/tilp-2.str:60
 msgid "About TiLP..."
 msgstr "A propos de TiLP..."
 
-#: glade/about-2.str:9
+#: glade/about-2.str:8
 msgid "_Logo"
 msgstr "_Logo"
 
-#: glade/about-2.str:10
+#: glade/about-2.str:9
 msgid "* TiLP, version 6.00"
 msgstr " Tilp, version 6.00"
 
-#: glade/about-2.str:11
+#: glade/about-2.str:10
 msgid ""
 "* Supported platforms are:\n"
 "  - Linux (i386, Alpha, Sparc): RL <roms@lpg.ticalc.org>\n"
@@ -888,23 +873,23 @@ msgstr ""
 "  - Macintosh (Mac OS-X) : JB <jb@jblache.org>\n"
 "  - FreeBSD : TC <tijl@ulyssis.org>"
 
-#: glade/about-2.str:16
+#: glade/about-2.str:15
 msgid "* Official homepage: http://tilp.info"
 msgstr "* Page Web officielle: http://tilp.info"
 
-#: glade/about-2.str:17
+#: glade/about-2.str:16
 msgid "* Web site designed by Russel G. Howe"
 msgstr "* Site Web construit par Russel G. Howe"
 
-#: glade/about-2.str:18
+#: glade/about-2.str:17
 msgid "* Logo by Laminoir"
 msgstr "* Logo par Laminoir"
 
-#: glade/about-2.str:19
+#: glade/about-2.str:18
 msgid "* GUI generated by Glade (RAD)"
 msgstr "* Interface graphique générée par Glade (RAD)"
 
-#: glade/about-2.str:20
+#: glade/about-2.str:19
 msgid ""
 "* Program placed under GPL license. \n"
 "Libraries placed under LPGL."
@@ -912,33 +897,27 @@ msgstr ""
 "* Programme placé sous licence GPL. \n"
 "Librairies placées sous licence LGPL"
 
-#: glade/about-2.str:22
+#: glade/about-2.str:21
 msgid "* Program developed by the TiLP team <tilp-users@lists.sf.net>"
 msgstr "* Programme développé par l'équipe TiLP <tilp-users@lists.sf.net>"
 
-#: glade/about-2.str:23 glade/tilp-2.str:61
+#: glade/about-2.str:22 glade/tilp-2.str:61
 msgid "_About"
 msgstr "_A propos de TiLP"
 
-#: glade/about-2.str:24
+#: glade/about-2.str:23
 msgid "Cannot find the license file."
 msgstr "Impossible de trouver le fichier de licence."
 
-#: glade/about-2.str:25
+#: glade/about-2.str:24
 msgid "Li_cense"
 msgstr "Li_cence"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/action-2.str:8
+#: glade/action-2.str:7
 msgid "Upload Variables"
 msgstr "Envoyer les variables"
 
-#: glade/action-2.str:9
+#: glade/action-2.str:8
 msgid ""
 "The following variable(s) exist(s) on calculator. Please select what you "
 "would like to do...\n"
@@ -949,166 +928,160 @@ msgstr ""
 "Note : les variables vérouillées/archivées ne peuvent pas être écrasées et "
 "doivent être renommées."
 
-#: glade/action-2.str:11
+#: glade/action-2.str:10
 msgid "_Overwrite"
 msgstr "_Écraser"
 
-#: glade/action-2.str:12 glade/clist_rbm-2.str:16
+#: glade/action-2.str:11 glade/clist_rbm-2.str:15
 msgid "_Rename"
 msgstr "_Renommer"
 
-#: glade/action-2.str:13
+#: glade/action-2.str:12
 msgid "_Skip"
 msgstr "_Ignorer"
 
-#: glade/action-2.str:14
+#: glade/action-2.str:13
 msgid "Select _All"
 msgstr "Tout _sélectionner"
 
-#: glade/action-2.str:15
+#: glade/action-2.str:14
 msgid "_Deselect All"
 msgstr "Tout _désélectionner"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/clist_rbm-2.str:8
+#: glade/clist_rbm-2.str:7
 msgid "_Edit"
 msgstr "_Éditer"
 
-#: glade/clist_rbm-2.str:9
+#: glade/clist_rbm-2.str:8
 msgid "Cut selected files"
 msgstr "Couper fichiers sélectionnés"
 
-#: glade/clist_rbm-2.str:10
+#: glade/clist_rbm-2.str:9
 msgid "_Cut"
 msgstr "_Couper"
 
-#: glade/clist_rbm-2.str:11
+#: glade/clist_rbm-2.str:10
 msgid "Copy selected files"
 msgstr "Copier fichiers sélectionnés"
 
-#: glade/clist_rbm-2.str:12
+#: glade/clist_rbm-2.str:11
 msgid "C_opy"
 msgstr "C_opier"
 
-#: glade/clist_rbm-2.str:13
+#: glade/clist_rbm-2.str:12
 msgid "Paste previously selected files"
 msgstr "Copier les fichiers précédemment sélectionnés"
 
-#: glade/clist_rbm-2.str:14
+#: glade/clist_rbm-2.str:13
 msgid "_Paste"
 msgstr "_Coller"
 
-#: glade/clist_rbm-2.str:15
+#: glade/clist_rbm-2.str:14
 msgid "Rename file(s)"
 msgstr "Renommer fichier(s)"
 
-#: glade/clist_rbm-2.str:17
+#: glade/clist_rbm-2.str:16
 msgid "Delete selected file(s)"
 msgstr "Supprimer fichier(s) sélectionné(s)"
 
-#: glade/clist_rbm-2.str:18
+#: glade/clist_rbm-2.str:17
 msgid "_Delete"
 msgstr "_Supprimer"
 
-#: glade/clist_rbm-2.str:20
+#: glade/clist_rbm-2.str:19
 msgid "New _folder"
 msgstr "_Nouveau dossier"
 
-#: glade/clist_rbm-2.str:21 glade/screenshot-2.str:9 glade/tilp-2.str:8
+#: glade/clist_rbm-2.str:20 glade/screenshot-2.str:8 glade/tilp-2.str:8
 msgid "_File"
 msgstr "_Fichier"
 
-#: glade/clist_rbm-2.str:22
+#: glade/clist_rbm-2.str:21
 msgid "Un_archive"
 msgstr "Dés_archiver"
 
-#: glade/clist_rbm-2.str:23
+#: glade/clist_rbm-2.str:22
 msgid "Unzip selected file(s)"
 msgstr "Décompresser les fichiers zip sélectionnés"
 
-#: glade/clist_rbm-2.str:24
+#: glade/clist_rbm-2.str:23
 msgid "Un_zip"
 msgstr "Décompresser _zip"
 
-#: glade/clist_rbm-2.str:25
+#: glade/clist_rbm-2.str:24
 msgid "Untar (tar.gz/tgz) selected file(s)"
 msgstr "Décompresser (tar.gz/tgz) fichier(s) sélectionné(s)"
 
-#: glade/clist_rbm-2.str:26
+#: glade/clist_rbm-2.str:25
 msgid "Un_tar"
 msgstr "Décompresser _tar"
 
-#: glade/clist_rbm-2.str:27
+#: glade/clist_rbm-2.str:26
 msgid "Select all files"
 msgstr "Sélectionner tous les fichiers"
 
-#: glade/clist_rbm-2.str:28
+#: glade/clist_rbm-2.str:27
 msgid "_Select all"
 msgstr "Tout _sélectionner"
 
-#: glade/clist_rbm-2.str:29
+#: glade/clist_rbm-2.str:28
 msgid "Unselect all files"
 msgstr "Désélectionner tous les fichiers"
 
-#: glade/clist_rbm-2.str:30
+#: glade/clist_rbm-2.str:29
 msgid "_Unselect all"
 msgstr "Tout _désélectionner"
 
-#: glade/clist_rbm-2.str:31
+#: glade/clist_rbm-2.str:30
 msgid "Goes up into the parent folder"
 msgstr "Aller au dossier parent"
 
-#: glade/clist_rbm-2.str:32
+#: glade/clist_rbm-2.str:31
 msgid "_Go to parent dir"
 msgstr "_Aller au dossier parent"
 
-#: glade/clist_rbm-2.str:33
+#: glade/clist_rbm-2.str:32
 msgid "Set the current directory as working directory whenever TiLP starts."
 msgstr ""
 "Définit le dossier courant comme dossier de travail au démarrage de TiLP."
 
-#: glade/clist_rbm-2.str:34
+#: glade/clist_rbm-2.str:33
 msgid "_Set as working folder"
 msgstr "_Définir comme dossier de travail"
 
-#: glade/clist_rbm-2.str:35
+#: glade/clist_rbm-2.str:34
 msgid "Refresh file informations"
 msgstr "Recharger informations fichier"
 
-#: glade/clist_rbm-2.str:36
+#: glade/clist_rbm-2.str:35
 msgid "_Refresh"
 msgstr "_Recharger"
 
-#: glade/clist_rbm-2.str:37
+#: glade/clist_rbm-2.str:36
 msgid "_Group files"
 msgstr "_Grouper les fichiers"
 
-#: glade/clist_rbm-2.str:38
+#: glade/clist_rbm-2.str:37
 msgid "Ungroup selected file(s)"
 msgstr "Dégrouper les fichiers sélectionnés"
 
-#: glade/clist_rbm-2.str:39
+#: glade/clist_rbm-2.str:38
 msgid "_Ungroup"
 msgstr "Dégro_uper"
 
-#: glade/clist_rbm-2.str:40
+#: glade/clist_rbm-2.str:39
 msgid "Group selected file(s) together"
 msgstr "Grouper ensemble les fichiers sélectionnés"
 
-#: glade/clist_rbm-2.str:41
+#: glade/clist_rbm-2.str:40
 msgid "_Group"
 msgstr "_Grouper"
 
-#: glade/clist_rbm-2.str:42 glade/tilp-2.str:25
+#: glade/clist_rbm-2.str:41 glade/tilp-2.str:25
 msgid "_Misc"
 msgstr "Di_vers"
 
-#: glade/clist_rbm-2.str:43
+#: glade/clist_rbm-2.str:42
 msgid ""
 "TI83+: send selected variables into FLASH instead of sending them into RAM."
 "\\r\\nTI89/92+/V200: send variables but keep attribute (locked/archived)."
@@ -1117,11 +1090,11 @@ msgstr ""
 "\\nTI89/92+/V200 : envoyer les variables mais en conservant l'attribut "
 "(vérouillé/archivé)."
 
-#: glade/clist_rbm-2.str:44
+#: glade/clist_rbm-2.str:43
 msgid "Send var(s) to FLASH"
 msgstr "Envoyer les variables en FLASH"
 
-#: glade/clist_rbm-2.str:45
+#: glade/clist_rbm-2.str:44
 msgid ""
 "Sign an Intel Hexa file (generated by an assembler) for producing a .8xk "
 "FLASH application file. More informations by typing 'appsign'."
@@ -1129,27 +1102,22 @@ msgstr ""
 "Signe un fichier Intel Hexa (généré par un assembleur) pour produire un "
 "fichier application FLASH .8xk. Plus d'informations en tapant \"appsign\"."
 
-#: glade/clist_rbm-2.str:46
+#: glade/clist_rbm-2.str:45
 msgid "_Sign TI83+ FLASH apps"
 msgstr "_Signer apps FLASH TI83+"
 
-#: glade/clist_rbm-2.str:47
+#: glade/clist_rbm-2.str:46
 msgid "Convert a .tib/.9xu/.89u file into a ROM image"
 msgstr "Convertit un fichier .tib/.9xu/.89u en une image ROM"
 
-#: glade/clist_rbm-2.str:48
+#: glade/clist_rbm-2.str:47
 msgid "_Convert AMS upgrade"
 msgstr "_Convertir mise à jour AMS"
 
-#: glade/clist_rbm-2.str:49
+#: glade/clist_rbm-2.str:48
 msgid "_Console"
 msgstr "_Console"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
 #: glade/clock-2.str:7
 msgid "Clock Management"
 msgstr "Réglages de l'horloge"
@@ -1266,11 +1234,6 @@ msgstr "Date & Heure"
 msgid " _Sync with PC "
 msgstr " _Synchroniser avec le PC"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
 #: glade/comm-2.str:7
 msgid "Communication Settings"
 msgstr "Réglages de la communication"
@@ -1396,196 +1359,179 @@ msgid "Have a problem ? Check out the log:"
 msgstr ""
 "Un problème est apparu ? Vérifiez le fichier de journalisation (log) : "
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/extprgms-2.str:8
+#: glade/extprgms-2.str:7
 msgid "External programs location"
 msgstr "Emplacement des programmes externes"
 
-#: glade/extprgms-2.str:9 glade/extprgms-2.str:18 glade/extprgms-2.str:27
-#: glade/extprgms-2.str:35
+#: glade/extprgms-2.str:8 glade/extprgms-2.str:17 glade/extprgms-2.str:26
+#: glade/extprgms-2.str:34
 msgid "Location:"
 msgstr "Emplacement :"
 
-#: glade/extprgms-2.str:10
+#: glade/extprgms-2.str:9
 msgid "wzunzip.exe"
 msgstr "wzunzip.exe"
 
-#: glade/extprgms-2.str:11 glade/extprgms-2.str:15 glade/extprgms-2.str:20
-#: glade/extprgms-2.str:24 glade/extprgms-2.str:29 glade/extprgms-2.str:32
-#: glade/extprgms-2.str:37 glade/extprgms-2.str:40 glade/user_boxes-2.str:9
+#: glade/extprgms-2.str:10 glade/extprgms-2.str:14 glade/extprgms-2.str:19
+#: glade/extprgms-2.str:23 glade/extprgms-2.str:28 glade/extprgms-2.str:31
+#: glade/extprgms-2.str:36 glade/extprgms-2.str:39 glade/user_boxes-2.str:8
 msgid "*"
 msgstr "*"
 
-#: glade/extprgms-2.str:12 glade/extprgms-2.str:21 glade/extprgms-2.str:30
-#: glade/extprgms-2.str:38
+#: glade/extprgms-2.str:11 glade/extprgms-2.str:20 glade/extprgms-2.str:29
+#: glade/extprgms-2.str:37
 msgid "..."
 msgstr "..."
 
-#: glade/extprgms-2.str:13 glade/extprgms-2.str:22 glade/extprgms-2.str:31
-#: glade/extprgms-2.str:39
+#: glade/extprgms-2.str:12 glade/extprgms-2.str:21 glade/extprgms-2.str:30
+#: glade/extprgms-2.str:38
 msgid "Options:"
 msgstr "Options :"
 
-#: glade/extprgms-2.str:14
+#: glade/extprgms-2.str:13
 msgid "-d"
 msgstr "-d"
 
-#: glade/extprgms-2.str:16
+#: glade/extprgms-2.str:15
 msgid "ZIP program:"
 msgstr "Programme ZIP :"
 
-#: glade/extprgms-2.str:17
+#: glade/extprgms-2.str:16
 msgid "_ZIP"
 msgstr "_ZIP"
 
-#: glade/extprgms-2.str:19
+#: glade/extprgms-2.str:18
 msgid "tar"
 msgstr "tar"
 
-#: glade/extprgms-2.str:23
+#: glade/extprgms-2.str:22
 msgid "xvzf"
 msgstr "xvzf"
 
-#: glade/extprgms-2.str:25
+#: glade/extprgms-2.str:24
 msgid "TAR.GZ/TGZ program:"
 msgstr "Programme TAR.GZ/TGZ :"
 
-#: glade/extprgms-2.str:26
+#: glade/extprgms-2.str:25
 msgid "_TGZ"
 msgstr "_TGZ"
 
-#: glade/extprgms-2.str:28
+#: glade/extprgms-2.str:27
 msgid "appsign"
 msgstr "appsign"
 
-#: glade/extprgms-2.str:33
+#: glade/extprgms-2.str:32
 msgid "APPSIGN 83+ program:"
 msgstr "Programme APPSIGN 83+ :"
 
-#: glade/extprgms-2.str:34
+#: glade/extprgms-2.str:33
 msgid "_AppSign"
 msgstr "_AppSign"
 
-#: glade/extprgms-2.str:36
+#: glade/extprgms-2.str:35
 msgid "/usr/bin/mozilla"
 msgstr "/usr/bin/mozilla"
 
-#: glade/extprgms-2.str:41
+#: glade/extprgms-2.str:40
 msgid "Web Browser:"
 msgstr "Navigateur Web :"
 
-#: glade/extprgms-2.str:42
+#: glade/extprgms-2.str:41
 msgid "_Browser"
 msgstr "_Navigateur"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/general-2.str:8
+#: glade/general-2.str:7
 msgid "General options"
 msgstr "Options générales"
 
-#: glade/general-2.str:9 glade/general-2.str:23
+#: glade/general-2.str:8 glade/general-2.str:22
 msgid "_name"
 msgstr "_nom"
 
-#: glade/general-2.str:10
+#: glade/general-2.str:9
 msgid "dat_e"
 msgstr "dat_e"
 
-#: glade/general-2.str:11 glade/general-2.str:26
+#: glade/general-2.str:10 glade/general-2.str:25
 msgid "_size"
 msgstr "_taille"
 
-#: glade/general-2.str:12 glade/general-2.str:24
+#: glade/general-2.str:11 glade/general-2.str:23
 msgid "_type"
 msgstr "_type"
 
-#: glade/general-2.str:13 glade/general-2.str:27
+#: glade/general-2.str:12 glade/general-2.str:26
 msgid "Sort by"
 msgstr "Trier par"
 
-#: glade/general-2.str:14
+#: glade/general-2.str:13
 msgid "all _files"
 msgstr "tous les _fichiers"
 
-#: glade/general-2.str:15
+#: glade/general-2.str:14
 msgid "T_I files only"
 msgstr "Fichiers T_I seulement"
 
-#: glade/general-2.str:16
+#: glade/general-2.str:15
 msgid "File displaying"
 msgstr "Affichage des fichiers"
 
-#: glade/general-2.str:17 glade/general-2.str:28
+#: glade/general-2.str:16 glade/general-2.str:27
 msgid "_up"
 msgstr "ha_ut"
 
-#: glade/general-2.str:18 glade/general-2.str:29
+#: glade/general-2.str:17 glade/general-2.str:28
 msgid "_down"
 msgstr "_bas"
 
-#: glade/general-2.str:19 glade/general-2.str:30
+#: glade/general-2.str:18 glade/general-2.str:29
 msgid "Order"
 msgstr "Ordre"
 
-#: glade/general-2.str:20
+#: glade/general-2.str:19
 msgid "confirm deleting/overwriting"
 msgstr "confirmer supprimer/écraser"
 
-#: glade/general-2.str:21
+#: glade/general-2.str:20
 msgid "Files/Variables"
 msgstr "Fichiers/Variables"
 
-#: glade/general-2.str:22
+#: glade/general-2.str:21
 msgid "_Computer"
 msgstr "_Ordinateur"
 
-#: glade/general-2.str:25
+#: glade/general-2.str:24
 msgid "_info"
 msgstr "_info"
 
-#: glade/general-2.str:31 glade/screen_options-2.str:9
+#: glade/general-2.str:30 glade/screen_options-2.str:8
 msgid "_full"
 msgstr "_complet"
 
-#: glade/general-2.str:32
+#: glade/general-2.str:31
 msgid "_local"
 msgstr "_relatif"
 
-#: glade/general-2.str:33
+#: glade/general-2.str:32
 msgid "Path mode"
 msgstr "Type de chemin"
 
-#: glade/general-2.str:34
+#: glade/general-2.str:33
 msgid "sin_gle"
 msgstr "_un par un"
 
-#: glade/general-2.str:35
+#: glade/general-2.str:34
 msgid "_group"
 msgstr "_groupés"
 
-#: glade/general-2.str:36
+#: glade/general-2.str:35
 msgid "Receiving files"
 msgstr "Réception des fichiers"
 
-#: glade/general-2.str:37
+#: glade/general-2.str:36
 msgid "_Calculator"
 msgstr "_Calculatrice"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
 #: glade/manpage-2.str:7
 msgid "Page of Manual"
 msgstr "Page de Manuel"
@@ -1594,71 +1540,59 @@ msgstr "Page de Manuel"
 msgid "Cannot find the manpage file."
 msgstr "Impossible de trouver les fichiers manpage."
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/pbars-2.str:8
+#: glade/pbars-2.str:7
 msgid "Title 1"
 msgstr "Titre 1"
 
-#: glade/pbars-2.str:9
+#: glade/pbars-2.str:8
 msgid "Transfer status:"
 msgstr "État du transfert :"
 
-#: glade/pbars-2.str:10
+#: glade/pbars-2.str:9
 msgid "Rate: 0.00 Kb/s"
 msgstr "Vitesse : 0.00 Ko/s"
 
-#: glade/pbars-2.str:11
+#: glade/pbars-2.str:10
 msgid "Title 2"
 msgstr "Titre 2"
 
-#: glade/pbars-2.str:12
+#: glade/pbars-2.str:11
 msgid "Message."
 msgstr "Message."
 
-#: glade/pbars-2.str:13
+#: glade/pbars-2.str:12
 msgid "Title 3"
 msgstr "Titre 3"
 
-#: glade/pbars-2.str:14 glade/pbars-2.str:22
+#: glade/pbars-2.str:13 glade/pbars-2.str:21
 msgid "Total transfer:"
 msgstr "Transfert total :"
 
-#: glade/pbars-2.str:15 glade/pbars-2.str:18 glade/pbars-2.str:23
+#: glade/pbars-2.str:14 glade/pbars-2.str:17 glade/pbars-2.str:22
 msgid "Current transfer:"
 msgstr "Transfert courant :"
 
-#: glade/pbars-2.str:16 glade/pbars-2.str:20 glade/pbars-2.str:25
+#: glade/pbars-2.str:15 glade/pbars-2.str:19 glade/pbars-2.str:24
 msgid "Rate: 0.0 Kbytes/s"
 msgstr "Vitesse : 0.0 Koctets/s"
 
-#: glade/pbars-2.str:17
+#: glade/pbars-2.str:16
 msgid "Title 4"
 msgstr "Titre 4"
 
-#: glade/pbars-2.str:19 glade/pbars-2.str:24
+#: glade/pbars-2.str:18 glade/pbars-2.str:23
 msgid "Text"
 msgstr "Texte"
 
-#: glade/pbars-2.str:21
+#: glade/pbars-2.str:20
 msgid "Title 5"
 msgstr "Titre 5"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/release-2.str:8
+#: glade/release-2.str:7
 msgid "Welcome to TiLP !"
 msgstr "Bienvenue à TiLP !"
 
-#: glade/release-2.str:9
+#: glade/release-2.str:8
 msgid ""
 "This box appears only 1 time or whenever a new version is installed.\n"
 "You will find in the box below some news about TiLP (the RELEASE file):"
@@ -1668,11 +1602,11 @@ msgstr ""
 "Vous trouverez ci-dessous les dernières nouvelles à propos de TiLP (fichier "
 "RELEASE) :"
 
-#: glade/release-2.str:11
+#: glade/release-2.str:10
 msgid "Cannot find the RELEASE file."
 msgstr "Impossible de trouver le fichier RELEASE."
 
-#: glade/release-2.str:12
+#: glade/release-2.str:11
 msgid ""
 "Latest version of TiLP can  be found at: <http://lpg.ticalc.org/prj_tilp>\n"
 "Please report any bugs to the TiLP team: <tilp-users@lists.sf.net>."
@@ -1682,111 +1616,94 @@ msgstr ""
 "Veuillez reporter les bugs éventuels à l'équipe TiLP : <tilp-users@lists.sf."
 "net>."
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/screen_options-2.str:8
+#: glade/screen_options-2.str:7
 msgid "Screen Capture Options"
 msgstr "Options de capture d'écran"
 
-#: glade/screen_options-2.str:10
+#: glade/screen_options-2.str:9
 msgid "_clipped (TI89)"
 msgstr "atta_ché (TI89)"
 
-#: glade/screen_options-2.str:11
+#: glade/screen_options-2.str:10
 msgid "Screen mode:"
 msgstr "Type d'écran :"
 
-#: glade/screen_options-2.str:12
+#: glade/screen_options-2.str:11
 msgid "_emulate"
 msgstr "_émuler"
 
-#: glade/screen_options-2.str:13
+#: glade/screen_options-2.str:12
 msgid "Gray-scale:"
 msgstr "Niveau de gris :"
 
-#: glade/screen_options-2.str:14
+#: glade/screen_options-2.str:13
 msgid "Screen Format"
 msgstr "Format d'écran"
 
-#: glade/screen_options-2.str:15
+#: glade/screen_options-2.str:14
 msgid "_PNG"
 msgstr "_PNG"
 
-#: glade/screen_options-2.str:16
+#: glade/screen_options-2.str:15
 msgid "_XPM (Unix format)"
 msgstr "_XPM (format Unix)"
 
-#: glade/screen_options-2.str:17
+#: glade/screen_options-2.str:16
 msgid "_JPEG (non interlaced)"
 msgstr "_JPEG (non entrelacé)"
 
-#: glade/screen_options-2.str:18
+#: glade/screen_options-2.str:17
 msgid "_BMP (Windows)"
 msgstr "_BMP (Windows)"
 
-#: glade/screen_options-2.str:19
+#: glade/screen_options-2.str:18
 msgid "Image type:"
 msgstr "Type d'image :"
 
-#: glade/screen_options-2.str:20
+#: glade/screen_options-2.str:19
 msgid "File Format"
 msgstr "Format de fichier"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/screenshot-2.str:8
+#: glade/screenshot-2.str:7
 msgid "Screen capture"
 msgstr "Capture d'écran"
 
-#: glade/screenshot-2.str:10
+#: glade/screenshot-2.str:9
 msgid "_Load"
 msgstr "_Charger"
 
-#: glade/screenshot-2.str:11
+#: glade/screenshot-2.str:10
 msgid "_Save"
 msgstr "Enregi_strer"
 
-#: glade/screenshot-2.str:12 glade/tilp-2.str:17
+#: glade/screenshot-2.str:11 glade/tilp-2.str:17
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: glade/screenshot-2.str:13
+#: glade/screenshot-2.str:12
 msgid "_Options"
 msgstr "_Options"
 
-#: glade/screenshot-2.str:14 glade/tilp-2.str:77
+#: glade/screenshot-2.str:13 glade/tilp-2.str:77
 msgid "Refresh"
 msgstr "Recharger"
 
-#: glade/screenshot-2.str:15
+#: glade/screenshot-2.str:14
 msgid "Save"
 msgstr "Enregistrer"
 
-#: glade/screenshot-2.str:16
+#: glade/screenshot-2.str:15
 msgid "Quit"
 msgstr "Quitter"
 
-#: glade/screenshot-2.str:17
+#: glade/screenshot-2.str:16
 msgid "Help"
 msgstr "Aide"
 
-#: glade/screenshot-2.str:18
+#: glade/screenshot-2.str:17
 msgid "Calculator screen"
 msgstr "Écran de la calculatrice"
 
-#.
-#. * Translatable strings file generated by Glade.
-#. * Add this file to your project's POTFILES.in.
-#. * DO NOT compile it as part of your application.
-#.
 #: glade/tilp-2.str:7
 msgid "TiLP ('Ti Linking Program')"
 msgstr "TiLP (\"Ti Linking Program\")"
@@ -2069,16 +1986,10 @@ msgstr "Dossier courant : aucun"
 msgid "Informations"
 msgstr "Informations"
 
-#.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
-#.
-#: glade/user_boxes-2.str:8
+#: glade/user_boxes-2.str:7
 msgid "Title"
 msgstr "Titre"
 
-#: glade/user_boxes-2.str:10
+#: glade/user_boxes-2.str:9
 msgid "Name:"
 msgstr "Nom :"
