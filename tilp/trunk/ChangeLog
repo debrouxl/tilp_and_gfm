@@ -1,0 +1,6 @@
+* 20011014 : v0.0.6
+	* wrote main.m, reusing gtk_main.c.
+* 20011020 : v0.0.7
+	* wiped out gtk_* files from CVS.
+	* core integration goes on...
+	
