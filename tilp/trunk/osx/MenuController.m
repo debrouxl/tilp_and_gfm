@@ -343,15 +343,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // FIXME OS X
     // file extensions, proposed filenames...
     
-    // we need a fileselection here
-    // then call cb_ams_to_rom(char *filename) from cb_calc.c
-    
     NSSavePanel *sp;
     NSString *proposedFile;
     
     int ret;
     int err = 0;
-    gchar tmp_filename[MAXCHARS]; // I don't like that...
     
     if (is_active)
         return;
@@ -376,14 +372,12 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                         case BUTTON1:
                             gif->create_pbar_type5(_("ROM dump"), 
                                                    _("Receiving bytes"));
-	  
-                            strcpy(tmp_filename, g_get_tmp_dir());
-                            strcat(tmp_filename, DIR_SEPARATOR);
-                            strcat(tmp_filename, "tilp.ROMdump");
-
+                                                   
                             destroy_pbar();
                             if(tilp_error(err))
                                 return;	      
+
+                            sp = [NSSavePanel savePanel];
 
                             [sp setRequiredFileType:@"dunno"];
                             [sp setTitle:@"Save ROM dump as..."];
@@ -419,13 +413,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                     gif->create_pbar_type5(_("ROM dump"), 
                                                            _("Receiving bytes"));
 	      
-                                    strcpy(tmp_filename, g_get_tmp_dir());
-                                    strcat(tmp_filename, DIR_SEPARATOR);
-                                    strcat(tmp_filename, "tilp.ROMdump");
-
                                     destroy_pbar();
                                     if(tilp_error(err))
                                         return;
+                                        
+                                    sp = [NSSavePanel savePanel];
                                         
                                     [sp setRequiredFileType:@"dunno"];
                                     [sp setTitle:@"Save ROM dump as..."];
@@ -454,14 +446,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                             gif->create_pbar_type5(_("ROM dump"), 
                                                    _("Receiving bytes"));
 	  
-                            strcpy(tmp_filename, g_get_tmp_dir());
-                            strcat(tmp_filename, DIR_SEPARATOR);
-                            strcat(tmp_filename, "tilp.ROMdump");
-	  
                             destroy_pbar();
                             if(tilp_error(err))
                                 return;
                                 
+                            sp = [NSSavePanel savePanel];
                             
                             [sp setRequiredFileType:@"dunno"];
                             [sp setTitle:@"Save ROM dump as..."];
@@ -484,14 +473,12 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                 gif->create_pbar_type5(_("ROM dump"), 
                                        _("Receiving bytes"));
 
-                strcpy(tmp_filename, g_get_tmp_dir());
-                strcat(tmp_filename, DIR_SEPARATOR);
-                strcat(tmp_filename, "tilp.ROMdump");
-   	      
                 destroy_pbar();
                 if(tilp_error(err))
                     return;	      
                     
+                sp = [NSSavePanel savePanel];
+                
                 [sp setRequiredFileType:@"dunno"];
                 [sp setTitle:@"Save ROM dump as..."];
                 proposedFile = @"romdump.dunno";
@@ -523,13 +510,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                 gif->create_pbar_type5(_("ROM dump"), 
                                                        _("Receiving bytes"));
 
-                                strcpy(tmp_filename, g_get_tmp_dir());
-                                strcat(tmp_filename, DIR_SEPARATOR);
-                                strcat(tmp_filename, "tilp.ROMdump");
-	      
                                 destroy_pbar();
                                 if(tilp_error(err))
                                     return;	      
+                                    
+                                sp = [NSSavePanel savePanel];
                                     
                                 [sp setRequiredFileType:@"dunno"];
                                 [sp setTitle:@"Save ROM dump as..."];

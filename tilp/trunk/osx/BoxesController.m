@@ -1,6 +1,8 @@
 
 #include <unistd.h>
 
+#include <libticalcs/defs92.h>
+
 #include "../src/cb_calc.h"
 #include "../src/files.h"
 #include "../src/struct.h"
@@ -121,6 +123,8 @@ extern int is_active;
 
     info_update.cancel = 1;
     pbars_ptr->finished = 1;
+    
+    [NSApp stopModal];
 }
 
 - (IBAction)remoteControlChangeMode:(id)sender

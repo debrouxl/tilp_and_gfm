@@ -47,8 +47,8 @@
 	* implemented ROM dump menu
 * 20011101 : v0.1.4
 	* forgot to enter/leave terminal mode when switching mode
-
-
+	* get an NSSavePanel before using it in - [MenuController romDump:]
+	* code cleaning in - [MenuController romDump:]
 
 
 

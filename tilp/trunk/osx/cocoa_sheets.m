@@ -245,37 +245,13 @@ create_cocoa_pbar_type5_sheet(const char *title, char *text)
 }
  
 
-/* destroy pbars */
+// destroy pbars
  
 void
 destroy_pbar(void)
 {
-    id pbar1Window;
-    id pbar3Window;
-    id pbar4Window;
-    id pbar5Window;
-    
-    pbar1Window = pbars_ptr->pbar1Window;
-    pbar3Window = pbars_ptr->pbar3Window;
-    pbar4Window = pbars_ptr->pbar4Window;
-    pbar5Window = pbars_ptr->pbar5Window;
- 
-    if ([pbar1Window isVisible])
-        {
-             [NSApp stopModal];
-        }
-    else if ([pbar3Window isVisible])
-        {
-            [NSApp stopModal];
-        }
-    else if ([pbar4Window isVisible])
-        {
-            [NSApp stopModal];
-        }
-    else if ([pbar5Window isVisible])
-        {
-            [NSApp stopModal];
-        }
+    if (pbars_ptr->pbar1 != nil)
+        [NSApp stopModal];
     else
         return;
         

@@ -26,7 +26,7 @@ extern struct cocoa_pbars_ptr *pbars_ptr;
 #import <Cocoa/Cocoa.h>
 
 // FIXME OS X
-// cannot close the pbar by clicking on abort
+// unsure whether the refresh works...
 
 // FIXME OS X
 // see if we need to call displayIfNeeded when updating a progressIndicator
@@ -76,7 +76,7 @@ refresh_pbar1(void)
             [pbar1 setDoubleValue:(double)info_update.percentage];
             [pbar_rate setStringValue:[NSString stringWithCString:buffer]];
       
-            while(!(pbars_ptr->finished)) { /* do nothing */ }
+            //while(!pbars_ptr->finished) { /* do nothing */ }
         }
 }
 
@@ -95,7 +95,7 @@ refresh_pbar2(void)
       
             [pbar2 setDoubleValue:(double)info_update.main_percentage];
       
-            while(!(pbars_ptr->finished)) { /* do nothing */ }
+            //while(!pbars_ptr->finished) { /* do nothing */ }
         }
 }
 
@@ -118,13 +118,13 @@ gt_label(void)
   
     [pbar_text setStringValue:[NSString stringWithCString:info_update.label_text]];
   
-    while(!(pbars_ptr->finished)) { /* do nothing */ }
+    //while(!pbars_ptr->finished) { /* do nothing */ }
 }
 
 void
 gt_refresh(void)
 {
-    while(!(pbars_ptr->finished)) { /* do nothing */ }
+    //while(!pbars_ptr->finished) { /* do nothing */ }
 }
 
 int
