@@ -47,6 +47,11 @@ gint display_comm_dbox()
 	GtkWidget *data;
 	gint result;
 
+	GtkWidget *optionmenu;
+	GtkWidget *menu;
+	GtkWidget *item;
+	gint i;
+
 	xml = glade_xml_new
 	    (tilp_paths_build_glade("comm-2.glade"), "comm_dbox", PACKAGE);
 	if (!xml)
@@ -69,124 +74,124 @@ gint display_comm_dbox()
 	data = glade_xml_get_widget(xml, "optionmenu_comm_cable");
 	switch (options.lp.link_type) {
 	case LINK_TGL:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "GrayLink");
+		gtk_option_menu_set_history(data, 0);
 	  break;
 		
 	case LINK_SER:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "BlackLink");
+	  gtk_option_menu_set_history(data, 1);
 	  break;
 
 	case LINK_SLV:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "SilverLink");
+	  gtk_option_menu_set_history(data, 2);
 	  break;
 
 	case LINK_PAR:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "ParallelLink");
+	  gtk_option_menu_set_history(data, 3);
 	  break;
 
 	case LINK_AVR:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "AvrLink");
+	  gtk_option_menu_set_history(data, 4);
 	  break;
 
 	case LINK_TIE:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TiEmu");
+	  gtk_option_menu_set_history(data, 5);
 	  break;
 
 	case LINK_VTI:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "VTi");
+	  gtk_option_menu_set_history(data, 6);
 	  break;
 	
 	case LINK_VTL:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "virtual");
+	  gtk_option_menu_set_history(data, 7);
 	  break;
 
 	default:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "GrayLink");
+	  gtk_option_menu_set_history(data, 8);
 	  break;
 	}
 
 	// Port
-	data = glade_xml_get_widget(xml, "entry_comm_port");
+	data = glade_xml_get_widget(xml, "optionmenu_comm_port");
 	switch (options.lp.port) {
 	case PARALLEL_PORT_1:
 	case SERIAL_PORT_1:
 	case USB_PORT_1:
 	case VIRTUAL_PORT_1:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "#1");
+	  gtk_option_menu_set_history(data, 1);
 	  break;
 	 
 	case PARALLEL_PORT_2:
 	case SERIAL_PORT_2:
 	case USB_PORT_2:
 	case VIRTUAL_PORT_2:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "#2");
+	  gtk_option_menu_set_history(data, 2);
 	  break;
 
 	case PARALLEL_PORT_3:
 	case SERIAL_PORT_3:
 	case USB_PORT_3:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "#3");
+	  gtk_option_menu_set_history(data, 3);
 	  break;
 
 	case SERIAL_PORT_4:
 	case USB_PORT_4:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "#4");
+	  gtk_option_menu_set_history(data, 4);
 	  break;
 	  
 	case USER_PORT:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "custom");
+	  gtk_option_menu_set_history(data, 0);
 	  break;
 
 	default:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "#2");
+	  gtk_option_menu_set_history(data, 0);
 	  break;
 	}
 
 	// Calc
-	data = glade_xml_get_widget(xml, "entry_comm_calc");
+	data = glade_xml_get_widget(xml, "optionmenu_comm_calc");
 	switch (options.lp.calc_type) {
 	case CALC_TI73:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI73");
+	  gtk_option_menu_set_history(data, 0);
 	  break;
 	  
 	case CALC_TI82:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI82");
+	  gtk_option_menu_set_history(data, 1);
 	  break;
 
 	case CALC_TI83:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI83");
+	  gtk_option_menu_set_history(data, 2);
 	  break;
 	  
 	case CALC_TI83P:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI83+");
+	  gtk_option_menu_set_history(data, 3);
 	  break;
 	  
 	case CALC_TI85:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI85");
+	  gtk_option_menu_set_history(data, 4);
 	  break;
 	  
 	case CALC_TI86:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI86");
+	  gtk_option_menu_set_history(data, 5);
 	  break;
 	  
 	case CALC_TI89:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI89");
+	  gtk_option_menu_set_history(data, 6);
 	  break;
 	  
 	case CALC_TI92:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI92");
+	  gtk_option_menu_set_history(data, 7);
 	  break;
 	  
 	case CALC_TI92P:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI92+");
+	  gtk_option_menu_set_history(data, 8);
 	  break;
 	  
 	case CALC_V200:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "V200PLT");
+	  gtk_option_menu_set_history(data, 9);
 	  break;
 	
 	default:
-	  //gtk_entry_set_text(GTK_ENTRY(data), "TI89");
+	  gtk_option_menu_set_history(data, 10);
 	  break;
 	}
 
@@ -237,25 +242,19 @@ GLADE_CB void
 comm_cable_changed                     (GtkOptionMenu   *optionmenu,
                                         gpointer         user_data)
 {
-	GtkWidget *menu_item = optionmenu->menu_item;
-	gchar *name = menu_item->name;
+	gint nitem = gtk_option_menu_get_history(optionmenu);
 
-	if(!strcmp(ed, "tgl1"))
- 		tmp_lp.link_type = LINK_TGL;
-  	else if(!strcmp(ed, "ser1"))
-    		tmp_lp.link_type = LINK_SER;
-  	else if(!strcmp(ed, "slv1"))
-    		tmp_lp.link_type = LINK_SLV;
-  	else if(!strcmp(ed, "par1"))
-    		tmp_lp.link_type = LINK_PAR;
-  	else if(!strcmp(ed, "avr1"))
-    		tmp_lp.link_type = LINK_AVR;
-  	else if(!strcmp(ed, "vti1"))
-    		tmp_lp.link_type = LINK_VTI;
-  	else if(!strcmp(ed, "tie1"))
-    		tmp_lp.link_type = LINK_TIE;
-  	else if(!strcmp(ed, "vtl1"))
-    		tmp_lp.link_type = LINK_VTL;
+	switch(nitem)
+	{
+	case 0: tmp_lp.link_type = LINK_TGL; break;
+	case 1: tmp_lp.link_type = LINK_SER; break;
+	case 2: tmp_lp.link_type = LINK_SLV; break;
+	case 3:	tmp_lp.link_type = LINK_PAR; break;
+	case 4: tmp_lp.link_type = LINK_AVR; break;
+	case 5: tmp_lp.link_type = LINK_VTI; break;
+	case 6: tmp_lp.link_type = LINK_TIE; break;
+	case 7: tmp_lp.link_type = LINK_VTL; break;
+	}
 }
 
 GLADE_CB void
@@ -270,9 +269,9 @@ comm_port_changed                      (GtkOptionMenu   *optionmenu,
                                         gpointer         user_data)
 {
 	GtkWidget *menu_item = optionmenu->menu_item;
-	gchar *name = menu_item->name;
+	gchar *ed = menu_item->name;
 	
-	  if(!strcmp(ed, "custom1"))
+	if(!strcmp(ed, "custom1"))
     		tmp_lp.calc_type = USER_PORT;
   	else {
     		switch(tmp_lp.link_type)
@@ -342,39 +341,59 @@ GLADE_CB void
 comm_calc_changed                      (GtkOptionMenu   *optionmenu,
                                         gpointer         user_data)
 {
-	GtkWidget *menu_item = optionmenu->menu_item;
-	gchar *name = menu_item->name;
-	
-  	if(!strcmp(ed, "ti73")) {
-    		tmp_lp.calc_type = CALC_TI73;
+	gint nitem = gtk_option_menu_get_history(optionmenu);
+
+	switch(nitem)
+	{
+	case 0: 
+			tmp_lp.calc_type = CALC_TI73;
     		gtk_widget_set_sensitive(button, TRUE);
-  	} else if(!strcmp(ed, "ti82")) {
+	break;
+
+	case 1:
     		tmp_lp.calc_type = CALC_TI82;
     		gtk_widget_set_sensitive(button, FALSE);
-  	} else if(!strcmp(ed, "ti83")) {
+  	break;
+
+	case 2:
 	    	tmp_lp.calc_type = CALC_TI83;
 	    	gtk_widget_set_sensitive(button, FALSE);
-  	} else if(!strcmp(ed, "ti83plus")) {
+  	break;
+
+	case 3:
     		tmp_lp.calc_type = CALC_TI83P;
     		gtk_widget_set_sensitive(button, TRUE);
-  	} else if(!strcmp(ed, "ti85")) {
+  	break;
+
+	case 4:
     		tmp_lp.calc_type = CALC_TI85;
     		gtk_widget_set_sensitive(button, FALSE);
-  	} else if(!strcmp(ed, "ti86")) {
+  	break;
+
+	case 5:
     		tmp_lp.calc_type = CALC_TI86;
     		gtk_widget_set_sensitive(button, FALSE);
-  	} else if(!strcmp(ed, "ti89")) {
+  	break;
+
+	case 6:
     		tmp_lp.calc_type = CALC_TI89;
     		gtk_widget_set_sensitive(button, TRUE);
-  	} else if(!strcmp(ed, "ti92")) {
+  	break;
+
+	case 7:
     		tmp_lp.calc_type = CALC_TI92;
     		gtk_widget_set_sensitive(button, FALSE);
-  	} else if(!strcmp(ed, "ti92plus")) {
+  	break;
+
+	case 8:
     		tmp_lp.calc_type = CALC_TI92P;
     		gtk_widget_set_sensitive(button, TRUE);
-  	} else if(!strcmp(ed, "v200")) {
+  	break;
+
+	case 9:
     		tmp_lp.calc_type = CALC_V200;
     		gtk_widget_set_sensitive(button, TRUE);
+	break;
   	}	
 }
 
