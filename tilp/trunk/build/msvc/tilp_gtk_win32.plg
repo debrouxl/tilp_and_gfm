@@ -6,13 +6,14 @@
 --------------------Configuration: tilp_gtk_win32 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP938.tmp" with contents
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP97.tmp" with contents
 [
 /nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /GZ /c 
-"C:\home\devel\tilp\src\tilp_printl.c"
+"C:\home\devel\tilp\src\main.c"
+"C:\home\devel\tilp\src\tilp_paths.c"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP938.tmp" 
-Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP939.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP97.tmp" 
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP98.tmp" with contents
 [
 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"C:\msvc\tilp\TiLP.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib" 
 \msvc\Output\tilp_gtk\about.obj
@@ -73,10 +74,12 @@ kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32
 \msvc\tilp\ticalcs.lib
 \msvc\tilp\tifiles.lib
 ]
-Creating command line "link.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP939.tmp"
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP98.tmp"
 <h3>Output Window</h3>
 Compiling...
-tilp_printl.c
+main.c
+tilp_paths.c
+Generating Code...
 Linking...
 
 

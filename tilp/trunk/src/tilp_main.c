@@ -113,9 +113,9 @@ void version(void)
 		TILP_OSX_VERSION, SVN_REV);
 #endif
 
-	printl(0, _("built on %s %s\n"), __DATE__, __TIME__);
 	printl(0, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	printl(0, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+        printl(0, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
 static int strexact(char *p1, char *p2)

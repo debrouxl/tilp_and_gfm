@@ -48,18 +48,15 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-!IF  "$(CFG)" == "TiLP - Win32 Release"
-
 MTL=midl.exe
-MTL_PROJ=
+
+!IF  "$(CFG)" == "TiLP - Win32 Release"
 
 !ELSEIF  "$(CFG)" == "TiLP - Win32 Debug"
 
-MTL=midl.exe
-MTL_PROJ=
-
 !ENDIF 
 
+MTL_PROJ=
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
 !IF EXISTS("TiLP.dep")

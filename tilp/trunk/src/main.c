@@ -198,6 +198,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	if (GetLastError() == ERROR_ALREADY_EXISTS) {
 		g_error("WinMain: TiLP is already running.");
 	}
+
 	return main(__argc, __argv, NULL);
 }
 

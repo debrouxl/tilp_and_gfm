@@ -84,7 +84,7 @@ static void init_win32_paths(void)
 	sBuffer = (char *) malloc(4096 * sizeof(char));
 	dWord = GetModuleFileName(hModule, sBuffer, 4096);
 	dirname = g_dirname(sBuffer);
-	printl(2, "Current path: <%s>\n", dirname);
+	printl(2, "executable path: <%s>\n", dirname);
 	inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
 	g_free(dirname);
 	free(sBuffer);  // malloc -> free

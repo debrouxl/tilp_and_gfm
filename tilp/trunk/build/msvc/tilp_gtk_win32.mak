@@ -77,7 +77,7 @@ CLEAN :
 	-@erase "$(INTDIR)\splash.obj"
 	-@erase "$(INTDIR)\support.obj"
 	-@erase "$(INTDIR)\tilp.obj"
-	-@erase "$(INTDIR)\tilp.res"
+	-@erase "$(INTDIR)\Tilp.res"
 	-@erase "$(INTDIR)\tilp_calcs.obj"
 	-@erase "$(INTDIR)\tilp_error.obj"
 	-@erase "$(INTDIR)\tilp_files.obj"
@@ -86,6 +86,7 @@ CLEAN :
 	-@erase "$(INTDIR)\tilp_misc.obj"
 	-@erase "$(INTDIR)\tilp_paths.obj"
 	-@erase "$(INTDIR)\tilp_plugin.obj"
+	-@erase "$(INTDIR)\tilp_printl.obj"
 	-@erase "$(INTDIR)\tilp_prompt.obj"
 	-@erase "$(INTDIR)\tilp_rcfile.obj"
 	-@erase "$(INTDIR)\tilp_refresh.obj"
@@ -100,7 +101,7 @@ CLEAN :
 "$(INTDIR)" :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
-CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "NDEBUG" 
 BSC32=bscmake.exe
@@ -145,13 +146,14 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_misc.obj" \
 	"$(INTDIR)\tilp_paths.obj" \
 	"$(INTDIR)\tilp_plugin.obj" \
+	"$(INTDIR)\tilp_printl.obj" \
 	"$(INTDIR)\tilp_prompt.obj" \
 	"$(INTDIR)\tilp_rcfile.obj" \
 	"$(INTDIR)\tilp_refresh.obj" \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\tilp.res" \
+	"$(INTDIR)\Tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib" \
@@ -220,7 +222,7 @@ CLEAN :
 	-@erase "$(INTDIR)\splash.obj"
 	-@erase "$(INTDIR)\support.obj"
 	-@erase "$(INTDIR)\tilp.obj"
-	-@erase "$(INTDIR)\tilp.res"
+	-@erase "$(INTDIR)\Tilp.res"
 	-@erase "$(INTDIR)\tilp_calcs.obj"
 	-@erase "$(INTDIR)\tilp_error.obj"
 	-@erase "$(INTDIR)\tilp_files.obj"
@@ -229,6 +231,7 @@ CLEAN :
 	-@erase "$(INTDIR)\tilp_misc.obj"
 	-@erase "$(INTDIR)\tilp_paths.obj"
 	-@erase "$(INTDIR)\tilp_plugin.obj"
+	-@erase "$(INTDIR)\tilp_printl.obj"
 	-@erase "$(INTDIR)\tilp_prompt.obj"
 	-@erase "$(INTDIR)\tilp_rcfile.obj"
 	-@erase "$(INTDIR)\tilp_refresh.obj"
@@ -294,13 +297,14 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_misc.obj" \
 	"$(INTDIR)\tilp_paths.obj" \
 	"$(INTDIR)\tilp_plugin.obj" \
+	"$(INTDIR)\tilp_printl.obj" \
 	"$(INTDIR)\tilp_prompt.obj" \
 	"$(INTDIR)\tilp_rcfile.obj" \
 	"$(INTDIR)\tilp_refresh.obj" \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
-	"$(INTDIR)\tilp.res" \
+	"$(INTDIR)\Tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib" \
@@ -528,7 +532,7 @@ SOURCE=..\..\src\wizard.c
 
 SOURCE=.\Tilp.rc
 
-"$(INTDIR)\tilp.res" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\Tilp.res" : $(SOURCE) "$(INTDIR)"
 	$(RSC) $(RSC_PROJ) $(SOURCE)
 
 
@@ -577,6 +581,12 @@ SOURCE=..\..\src\tilp_paths.c
 SOURCE=..\..\src\tilp_plugin.c
 
 "$(INTDIR)\tilp_plugin.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=..\..\src\tilp_printl.c
+
+"$(INTDIR)\tilp_printl.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
