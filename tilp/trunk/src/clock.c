@@ -40,46 +40,9 @@ static void update_fields(const TicalcClock * clk)
 
 	data = glade_xml_get_widget(xml, "spinbutton1");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->day);
-	data = glade_xml_get_widget(xml, "entry1");
-
-	switch (clk->month) {
-	case 1:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Jan"));
-		break;
-	case 2:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Feb"));
-		break;
-	case 3:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Mar"));
-		break;
-	case 4:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Apr"));
-		break;
-	case 5:
-		gtk_entry_set_text(GTK_ENTRY(data), _("May"));
-		break;
-	case 6:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Jun"));
-		break;
-	case 7:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Jul"));
-		break;
-	case 8:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Aug"));
-		break;
-	case 9:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Sep"));
-		break;
-	case 10:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Oct"));
-		break;
-	case 11:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Nov"));
-		break;
-	case 12:
-		gtk_entry_set_text(GTK_ENTRY(data), _("Dec"));
-		break;
-	}
+	
+	data = glade_xml_get_widget(xml, "optionmenu1");
+	gtk_option_menu_set_history(data, clk->month - 1);
 
 	data = glade_xml_get_widget(xml, "spinbutton3");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->year);
@@ -103,9 +66,8 @@ static void update_fields(const TicalcClock * clk)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
 					     TRUE);
 
-	data = glade_xml_get_widget(xml, "entry2");
-	gtk_entry_set_text(GTK_ENTRY(data),
-			   ticalc_format_to_date(clk->date_format));
+	data = glade_xml_get_widget(xml, "optionmenu2");
+	gtk_option_menu_set_history(data, clk->date_format - 1);
 }
 
 gint display_clock_dbox()
@@ -190,6 +152,7 @@ clock_radiobutton2_toggled(GtkToggleButton * togglebutton,
 	modified = TRUE;
 } 
 
+/*
 GLADE_CB void clock_entry2_changed(GtkEditable * editable,
 				     gpointer user_data)
 {
@@ -197,10 +160,20 @@ GLADE_CB void clock_entry2_changed(GtkEditable * editable,
 	tmp_clk.date_format = ticalc_date_to_format(ed);
 	modified = TRUE;
 }
+*/
 
+GLADE_CB void comm_optionmenu2_changed     (GtkOptionMenu   *optionmenu,
+                                            gpointer         user_data)
+{
+	gint nitem = gtk_option_menu_get_history(optionmenu);
+	
+	tmp_clk.date_format = nitem + 1;
+}
+
+/*
 #ifdef __WIN32__
 #define strcasecmp _stricmp
-#endif				/*  */
+#endif			
 GLADE_CB void clock_entry1_changed(GtkEditable * editable,
 				   gpointer user_data)
 {
@@ -241,6 +214,15 @@ GLADE_CB void clock_entry1_changed(GtkEditable * editable,
 	else if (!strcasecmp(ed, _("Dec")))
 		tmp_clk.month = 12;
 	modified = TRUE;
+}
+*/
+
+GLADE_CB void comm_optionmenu1_changed     (GtkOptionMenu   *optionmenu,
+                                            gpointer         user_data)
+{
+	gint nitem = gtk_option_menu_get_history(optionmenu);
+	
+	tmp_clk.month = nitem + 1;
 }
 
 GLADE_CB void clock_spinbutton3_changed(GtkEditable * editable,

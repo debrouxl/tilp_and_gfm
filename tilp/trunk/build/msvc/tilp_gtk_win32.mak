@@ -144,7 +144,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\action.obj" \
 	"$(INTDIR)\clist.obj" \
 	"$(INTDIR)\clock.obj" \
-	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\ctree.obj" \
 	"$(INTDIR)\dboxes.obj" \
 	"$(INTDIR)\dnd.obj" \
@@ -181,6 +180,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
+	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
@@ -327,7 +327,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\action.obj" \
 	"$(INTDIR)\clist.obj" \
 	"$(INTDIR)\clock.obj" \
-	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\ctree.obj" \
 	"$(INTDIR)\dboxes.obj" \
 	"$(INTDIR)\dnd.obj" \
@@ -364,6 +363,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp_screen.obj" \
 	"$(INTDIR)\tilp_slct.obj" \
 	"$(INTDIR)\tilp_vars.obj" \
+	"$(INTDIR)\comm.obj" \
 	"$(INTDIR)\tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
