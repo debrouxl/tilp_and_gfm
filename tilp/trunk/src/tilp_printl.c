@@ -118,21 +118,21 @@ skip_console:
 	if (flog == NULL) {
     		flog = fopen(LOG_FILE, "wt");
                 //flog = fopen(inst_paths.base_dir, "wt");
-	} else {
-	      	if(print_domain) {
+	}
+	
+	if(print_domain) {
 			fprintf(flog, domain);
 			print_domain = 0;
-		}
-		
-		//
-		switch(level) {
-		case 1: fprintf(flog, _("wrn: ")); break;
-		case 2: fprintf(flog, _("err: ")); break;
-		}
-
-		// print same stuffs in file
-		vfprintf(flog, format, ap);
 	}
+		
+	//
+	switch(level) {
+	case 1: fprintf(flog, _("wrn: ")); break;
+	case 2: fprintf(flog, _("err: ")); break;
+	}
+
+	// print same stuffs in file
+	vfprintf(flog, format, ap);
 
 	// check for printing domain on next loop
 	if(strchr(format, '\n'))
