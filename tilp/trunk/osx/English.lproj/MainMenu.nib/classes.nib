@@ -24,6 +24,7 @@
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
+                myTransfersController = id; 
                 pbar1PBar = id; 
                 pbar1Rate = id; 
                 pbar1Window = id; 
@@ -98,6 +99,7 @@
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
+                myTransfersController = id; 
                 remoteControlTextArea = id; 
                 remoteControlWindow = id; 
                 screendumpImage = id; 
@@ -139,6 +141,7 @@
                 myMenuController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
+                myTransfersController = id; 
                 orderDecreasing = id; 
                 orderIncreasing = id; 
                 orderMatrix = id; 
@@ -181,6 +184,7 @@
                 myMenuController = id; 
                 myPrefsController = id; 
                 myTilpController = id; 
+                myTransfersController = id; 
                 pbar1PBar = id; 
                 pbar1Rate = id; 
                 pbar1Window = id; 
@@ -227,8 +231,22 @@
                 myMenuController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
+                myTransfersController = id; 
                 numberOfFolders = id; 
                 numberOfVars = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TransfersController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mainWindow = id; 
+                myBoxesController = id; 
+                myMenuController = id; 
+                myPrefsController = id; 
+                mySheetsController = id; 
+                myTilpController = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

@@ -380,7 +380,7 @@ extern struct ticalc_info_update info_update;
     if(pbar1 != nil) 
         {
             // refresh only if necessary
-            if((info_update.percentage - info_update.prev_percentage) < 0.01) // was 0.05 originally
+            if((info_update.percentage - info_update.prev_percentage) < 0.05) // was 0.01 originally on OS X, 0.05  in GTK code
                 {
                     if((info_update.percentage - info_update.prev_percentage) < 0)
                         info_update.prev_percentage = info_update.percentage;

@@ -636,11 +636,18 @@ struct gui_fncts gui_functions;
     int folders = 0;
     int mem = 0;
 
+    struct varinfo *q;
+    GList *p;
+
+    p = ctree_win.varlist;
+
+    q = (struct varinfo *)(p->data);
+
     number_of_folders_vars_and_mem(&folders, &vars, &mem);
   
     strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
     strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
-    strMemoryUsed = [NSString stringWithFormat:@"%u", mem];
+    strMemoryUsed = [NSString stringWithFormat:@"%u (Free : %u)", mem, q->varsize];
     strCurrentFolder = [NSString stringWithCString:ctree_win.cur_folder];
 
     [currentFolder setStringValue:strCurrentFolder];

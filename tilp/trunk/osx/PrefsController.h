@@ -76,6 +76,7 @@
     IBOutlet id myMenuController;
     IBOutlet id myTilpController;
     IBOutlet id mySheetsController;
+    IBOutlet id myTransfersController;
     
     NSMutableArray *portNameArray;
     NSMutableArray *portTypeArray;

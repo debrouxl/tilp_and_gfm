@@ -65,6 +65,7 @@
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;
     IBOutlet id myPrefsController;
+    IBOutlet id myTransfersController;
     
     id pbar1;
     id pbar2;

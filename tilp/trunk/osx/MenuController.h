@@ -37,6 +37,7 @@
     IBOutlet id myPrefsController;
     IBOutlet id myTilpController;
     IBOutlet id mySheetsController;
+    IBOutlet id myTransfersController;
 
     NSMutableDictionary *toolbarItems;
 }

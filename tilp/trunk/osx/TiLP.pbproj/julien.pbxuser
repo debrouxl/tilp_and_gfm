@@ -40,10 +40,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {958, 535}}";
 					Split0 = {
-						ActiveTab = 1;
+						ActiveTab = 2;
 						Frame = "{{225, 0}, {733, 535}}";
 						Split0 = {
-							Frame = "{{0, 157}, {733, 378}}";
+							Frame = "{{0, 167}, {733, 368}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -73,10 +73,10 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {733, 133}}";
+							Frame = "{{0, 0}, {733, 50}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {733, 133}}";
+								Frame = "{{0, 0}, {733, 50}}";
 							};
 						};
 						Tab2 = {

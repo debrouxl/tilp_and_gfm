@@ -35,6 +35,7 @@
     IBOutlet id myMenuController;
     IBOutlet id myPrefsController;
     IBOutlet id mySheetsController;
+    IBOutlet id myTransfersController;
  
     SimpleTreeNode *dirlistData;
     

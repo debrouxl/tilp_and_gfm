@@ -184,29 +184,30 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         {
             switch([selRow intValue])
                 {
-                    case 0:
-                        // do a screendump
+                    case 0: // do a screendump
                         fprintf(stderr, "DEBUG: GET VARS => SCREEN DUMP\n");
+                        
+                        [self getScreen:self];
                         break;
-                    case 1:
-                        // do a romdump
+                    case 1: // do a romdump
                         fprintf(stderr, "DEBUG: GET VARS => ROM DUMP\n");
+                        
+                        [self romDump:self];
                         break;
-                    case 2:
-                        // memory item => do... I don't know
+                    case 2: // memory item => do... I don't know
                         fprintf(stderr, "DEBUG: GET VARS => MEMORY ITEM, UNUSED\n");
                         break;
-                    case 3:
-                        // get ID list
+                    case 3: // get ID list
                         fprintf(stderr, "DEBUG: GET VARS => GET ID LIST\n");
+                        
+                        cb_id_list();
                         break;
-                    case 4:
-                        // keyboard item => do... I don't know
+                    case 4: // keyboard item => do... I don't know
                         fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
                         break;
-                    case 5:
-                        // FLASH Applications item => get each FLASH App
+                    case 5: // FLASH Applications item => get each FLASH App
                         fprintf(stderr, "DEBUG: GET VARS => GET EACH FLASH APP\n");
+                        // FIXME OS X : waiting for Romain to define FLASH App receive...
                         break;
                     default:
                         if (([selRow intValue] > tiVarsRow) && ([dirlistTree itemAtRow:[selRow intValue]]))
@@ -215,11 +216,14 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                             {
                                 // do a backup of all vars
                                 fprintf(stderr, "DEBUG: GET VARS => FULL BACKUP\n");
+                                
+                                [self doBackup:self];
                             }
                         else if (([selRow intValue] > 5) && ([selRow intValue] < tiVarsRow))
                             {
                                 // FLASH App selected
                                 fprintf(stderr, "DEBUG: GET VARS => FLASH APP SELECTED\n");
+                                // FIXME OS X : waiting for Romain to define FLASH App receive...
                             }
                         break;
                 }
@@ -574,7 +578,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     calcDict = [myTilpController getCurrentCalcDict];
     
     [op setTitle:@"Choose the Flash Application to send"];
-    [op setAllowsMultipleSelection:NO];
+    [op setAllowsMultipleSelection:YES];
     
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
@@ -583,6 +587,10 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         modalDelegate:myBoxesController
         didEndSelector:@selector(sendFlashAppDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
+    
+    [op display];
+    
+    fprintf(stderr, "DEBUG: openpanel returned\n");
 }
 
 - (IBAction)sendAMS:(id)sender

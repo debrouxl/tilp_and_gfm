@@ -45,7 +45,7 @@ int convert_bitmap_to_bytemap(Image *img) // tested: OK (12/05)
     fprintf(stdout, "Malloc error.\n");
   dst = img->bytemap;
 
-  memset(dst, 0, (img->width >> 3) * img->height); // thanks, JB ! -- You're welcome, Roms :-)
+  memset(dst, 0, img->width * img->height); // thanks, JB ! -- You're welcome, Roms :-)
   for(row=0; row<img->height; row++)
     {
       for(col=0; col<(img->width)>>3; col++)

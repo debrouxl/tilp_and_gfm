@@ -146,7 +146,12 @@
 	* Improved getVars.
 	* Dirlist now displays FLASH Apps too.
 	* Fixed sendFlashApp.
-
+* 20020115 : v0.3.5
+	* Fixed screen dump corruption in img_cnv.c.
+	* Display free mem (wrong atm, waiting for new libticalcs).
+	* Added TransfersController class.
+	* Threaded FLASH APPS upload.
+	
 
 
 

@@ -69,6 +69,7 @@
     IBOutlet id myPrefsController;
     IBOutlet id myMenuController;
     IBOutlet id mySheetsController;
+    IBOutlet id myTransfersController;
     
     int term_mode;
 }

@@ -243,22 +243,17 @@ extern int is_active;
 
 - (void)sendFlashAppDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    NSString *nsfile;
-    char *file;
+    NSArray *files;
 
     if (returnCode == NSOKButton)
-        {
-            nsfile = [[sheet filenames] objectAtIndex:0];
+        {            
+            files = [[NSArray arrayWithArray:[sheet filenames]] retain];
             
-            file = (char *)malloc([nsfile cStringLength] + 1);
-            
-            [nsfile getCString:file];
-            
-            [nsfile release];
-            
-            cb_send_flash_app(file);
-            
-            free(file);
+            [NSThread detachNewThreadSelector:@selector(sendFlashAppThreaded:)
+                      toTarget:myTransfersController
+                      withObject:files];
+                      
+            fprintf(stderr, "DEBUG: thread detached\n");
         }
 }
 
