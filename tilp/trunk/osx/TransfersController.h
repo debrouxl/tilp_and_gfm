@@ -51,6 +51,6 @@
 - (void)romDump:(id)sender;
 - (void)doBackup:(id)sender;
 - (void)receiveFlashApp:(id)sender;
-- (int)sendChar:(NSString *)aString;
+- (int)sendChar:(unsigned int)tikey;
 
 @end

@@ -29,7 +29,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 @implementation NSTextView (MyExtensions)
 
-- (void)insertTextFromCalc:(NSString *)aString
+- (void)insertCalcText:(NSString *)aString
 {
     // FIXME OS X
     // The terminal mode is not implemented in libticalcs at the moment.
@@ -37,13 +37,19 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 }
 
-- (void)insertTextStatus:(NSString *)aString
+- (void)insertStatusText:(NSString *)aString
 {
+#if 0
     [self setString:[[self string] stringByAppendingString:aString]];
-    
+
     [self didChangeText];
     
     [self display];
+#endif
+
+    [self insertText:aString]; // we should not override insertText
+    
+    [self setTextColor:[NSColor redColor] range:NSMakeRange([[self string] length] - [aString length], [[self string] length])];
 }
 
 @end
@@ -51,45 +57,88 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 @implementation RCTextView
 
-- (void)insertText:(id)aString
+// ensure we always reply YES
+- (BOOL)acceptsFirstResponder
 {
-    NSString *string;
-    unichar c;
+    return YES;
+}
+
+// get the key pressed
+// then process it
+// finally pass it to super if we don't handle it (?)
+- (void)keyDown:(NSEvent *)event
+{
+// The calc seems to be using UNICODE, hopefully we won't have to remap
+// a whole bunch of chars, only backspace and some others.
+
+    unsigned int toSend;
+    int ret;
+    int i;
+    
+    BOOL send = NO;
+    BOOL process = YES;
+    NSString *eventChars;
+    unichar uchar;
     id myTransfersController;
 
-    unsigned int i;
-    int ret;
-
-    string = (NSString *)aString;
     myTransfersController = objects_ptr->myTransfersController;
+    
+    [event retain];
+    
+    eventChars = [event characters];
+    [eventChars retain]; // retain in case of a link problem, prevents a SIGBUS
 
-    fprintf(stderr, "DEBUG: insert text (length : %d, %d) %s\n", [string cStringLength], [string length], [string cString]);
-    
-    for (i = 0; i < [string length]; i++)
-        {
-            c = [string characterAtIndex:i];
-        
-            ret = [myTransfersController sendChar:[NSString stringWithCharacters:&c length:1]];
+    fprintf(stderr, "DEBUG: keyDown EVENT !\n");
+     
+    for (i = 0; i < [eventChars length]; i++)
+        { 
+            process = YES;
+            send = NO;
             
-            if (ret)
+            uchar = [eventChars characterAtIndex:i];
+        
+            fprintf(stderr, "DEBUG: UNICODE '%c' val = %d\n", uchar, uchar);   
+
+            if (uchar == 127) // backspace
                 {
-                    [self setString:[[self string] stringByAppendingString:[NSString stringWithCString:"\n\n*** Communication Error. Aborted. ***\n"]]];
+                    toSend = 257; // backspace keycode wrt calc
                     
-                    break;
+                    send = YES;
                 }
-            else
+            else if ((uchar > 0) && (uchar < 256)) // the calc seems to be using UNICODE in this range
                 {
-                    [self setString:[[self string] stringByAppendingString:string]];
+                    toSend = uchar;
+
+                    send = YES;
+                }
+            
+        
+            if (send == YES)
+                {
+                    fprintf(stderr, "DEBUG: sending char to TI\n");
+        
+                    ret = [myTransfersController sendChar:toSend];
+
+                    if (ret < 0)
+                        {
+                            [self insertStatusText:@"*** Communication Error. Aborted. ***\n"];
                     
-                    [self didChangeText];
+                            process = NO;
+                    
+                            return;
+                        }
+                }
+          }
     
-                    [self display];
-                }
+    if (process == YES)
+        {
+            fprintf(stderr, "DEBUG: processing event\n");
+        
+            [super keyDown:event];
         }
     
-    [self didChangeText];
-    
-    [self display];
+    [event release];
+    [eventChars release];
 }
 
 @end

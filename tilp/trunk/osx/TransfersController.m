@@ -765,10 +765,13 @@ extern int is_active;
     fprintf(stderr, "**** ReceiveFlashApp: not implemented ****\n");
 }
 
-- (int)sendChar:(NSString *)aString
+- (int)sendChar:(unsigned int)tikey
 {
-    fprintf(stderr, "DEBUG: sending %s\n", [aString cString]);
-  
+    fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);
+    
+    if (tilp_error(ti_calc.send_key(tikey)))
+        return -1;
+        
     return 0;
 }
 

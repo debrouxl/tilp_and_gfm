@@ -22,8 +22,8 @@
 
 @interface NSTextView (MyExtensions)
 
-- (void)insertTextFromCalc:(NSString *)aString;
-- (void)insertTextStatus:(NSString *)aString;
+- (void)insertCalcText:(NSString *)aString;
+- (void)insertStatusText:(NSString *)aString;
 
 @end
 

@@ -176,6 +176,10 @@
 * 20020118 : v0.3.8
 	* More *boring* remote control stuff.
 	     => TI92 keyboard.
+* 20020120 : v0.3.9
+	* Overriding -insertText: was _not_ a good idea.
+	* Overriding -keyDown: is a far better one :)
+	* So we have a mostly working remote control.
 
 
 

@@ -239,8 +239,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     remoteControlTextArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
                                                 textContainer:[[remoteControlScrollView documentView] textContainer]];
-        
-    [remoteControlTextArea setEditable:YES];
+    
     [remoteControlTextArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
     [remoteControlTextArea setMaxSize:NSMakeSize(1e7, 1e7)];
     [remoteControlTextArea setVerticallyResizable:YES];
@@ -249,7 +248,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     [remoteControlScrollView setDocumentView:remoteControlTextArea];
     
-    [remoteControlTextArea insertTextStatus:@"NOT IMPLEMENTED"];
+    [remoteControlTextArea setEditable:YES]; 
+       
+    [remoteControlTextArea insertStatusText:@"NOT IMPLEMENTED\n\n"];
     
     [remoteControlScrollView display];
     
@@ -257,7 +258,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
     
-    [myBoxesController showKeyboard:self];
+    //[myBoxesController showKeyboard:self];
 }
 
 - (IBAction)getScreen:(id)sender
