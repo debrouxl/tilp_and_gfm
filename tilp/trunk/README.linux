@@ -23,8 +23,7 @@ REQUIREMENTS
  - the 'tipar' kernel module if you do not want to run TiLP with 
 	'root' privileges (required with GTK+ >1.2.9). This is required only 
 	for homemade parallel link cable.
-- the 'tiusb' kernel module or the libusb if you want to use the SilverLink
-	cable (TI-GRAPH LINK USB).
+- the libusb library to use the SilverLink cable (TI-GRAPH LINK USB).
 
 
 INSTALLATION

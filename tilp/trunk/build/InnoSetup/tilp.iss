@@ -107,6 +107,7 @@ Name: "{group}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files
 Name: "{group}\TiLP on the Web"; Filename: "{app}\tilp.url"
 Name: "{group}\Uninstall TiLP"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\User_Manual.html"
+Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
 
 Name: "{userdesktop}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
