@@ -47,8 +47,6 @@ gint display_comm_dbox()
 	GtkWidget *data;
 	gint result;
 
-	gint i;
-
 	xml = glade_xml_new
 	    (tilp_paths_build_glade("comm-2.glade"), "comm_dbox", PACKAGE);
 	if (!xml)
@@ -71,39 +69,39 @@ gint display_comm_dbox()
 	data = glade_xml_get_widget(xml, "optionmenu_comm_cable");
 	switch (options.lp.link_type) {
 	case LINK_TGL:
-		gtk_option_menu_set_history(data, 0);
-	  break;
+		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+		break;
 		
 	case LINK_SER:
-	  gtk_option_menu_set_history(data, 1);
-	  break;
+		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
+		break;
 
 	case LINK_SLV:
-	  gtk_option_menu_set_history(data, 2);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
 
 	case LINK_PAR:
-	  gtk_option_menu_set_history(data, 3);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 
 	case LINK_AVR:
-	  gtk_option_menu_set_history(data, 4);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 
 	case LINK_TIE:
-	  gtk_option_menu_set_history(data, 5);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 
 	case LINK_VTI:
-	  gtk_option_menu_set_history(data, 6);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	  break;
 	
 	case LINK_VTL:
-	  gtk_option_menu_set_history(data, 7);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 
 	default:
-	  gtk_option_menu_set_history(data, 8);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
 	  break;
 	}
 
@@ -114,33 +112,33 @@ gint display_comm_dbox()
 	case SERIAL_PORT_1:
 	case USB_PORT_1:
 	case VIRTUAL_PORT_1:
-	  gtk_option_menu_set_history(data, 1);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
 	  break;
 	 
 	case PARALLEL_PORT_2:
 	case SERIAL_PORT_2:
 	case USB_PORT_2:
 	case VIRTUAL_PORT_2:
-	  gtk_option_menu_set_history(data, 2);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
 
 	case PARALLEL_PORT_3:
 	case SERIAL_PORT_3:
 	case USB_PORT_3:
-	  gtk_option_menu_set_history(data, 3);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 
 	case SERIAL_PORT_4:
 	case USB_PORT_4:
-	  gtk_option_menu_set_history(data, 4);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 	  
 	case USER_PORT:
-	  gtk_option_menu_set_history(data, 0);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
 	  break;
 
 	default:
-	  gtk_option_menu_set_history(data, 0);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
 	  break;
 	}
 
@@ -148,47 +146,47 @@ gint display_comm_dbox()
 	data = glade_xml_get_widget(xml, "optionmenu_comm_calc");
 	switch (options.lp.calc_type) {
 	case CALC_TI73:
-	  gtk_option_menu_set_history(data, 0);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
 	  break;
 	  
 	case CALC_TI82:
-	  gtk_option_menu_set_history(data, 1);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
 	  break;
 
 	case CALC_TI83:
-	  gtk_option_menu_set_history(data, 2);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
 	  
 	case CALC_TI83P:
-	  gtk_option_menu_set_history(data, 3);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 	  
 	case CALC_TI85:
-	  gtk_option_menu_set_history(data, 4);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 	  
 	case CALC_TI86:
-	  gtk_option_menu_set_history(data, 5);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	  
 	case CALC_TI89:
-	  gtk_option_menu_set_history(data, 6);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	  break;
 	  
 	case CALC_TI92:
-	  gtk_option_menu_set_history(data, 7);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 	  
 	case CALC_TI92P:
-	  gtk_option_menu_set_history(data, 8);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
 	  break;
 	  
 	case CALC_V200:
-	  gtk_option_menu_set_history(data, 9);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 9);
 	  break;
 	
 	default:
-	  gtk_option_menu_set_history(data, 10);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 10);
 	  break;
 	}
 

@@ -42,7 +42,7 @@ static void update_fields(const TicalcClock * clk)
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->day);
 	
 	data = glade_xml_get_widget(xml, "optionmenu1");
-	gtk_option_menu_set_history(data, clk->month - 1);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), clk->month - 1);
 
 	data = glade_xml_get_widget(xml, "spinbutton3");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->year);
@@ -67,7 +67,8 @@ static void update_fields(const TicalcClock * clk)
 					     TRUE);
 
 	data = glade_xml_get_widget(xml, "optionmenu2");
-	gtk_option_menu_set_history(data, clk->date_format - 1);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 
+				    clk->date_format - 1);
 }
 
 gint display_clock_dbox()

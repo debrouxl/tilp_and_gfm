@@ -92,6 +92,6 @@ void tilp_cmdline_set_refresh(void)
 {
 	ticalc_set_update(&info_update, cmdline_start, cmdline_stop,
 			  cmdline_refresh, cmdline_pbar, cmdline_label);
-	printl(0, _("Initialized in command line mode.\n"));
+	printl(0, _("initialized in command line mode.\n"));
 	return;
 }

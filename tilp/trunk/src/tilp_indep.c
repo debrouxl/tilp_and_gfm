@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include "tilp_indep.h"
+#include "tilp_printl.h"
 
 TilpGuiFncts *gif;		// completely public
 

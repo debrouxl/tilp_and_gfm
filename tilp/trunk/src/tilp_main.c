@@ -99,10 +99,6 @@ void help(void)
 */
 void version(void)
 {
-
-#ifndef __WIN32__
-	ticable_DISPLAY_settings(DSP_ON);
-#endif
 	printl(0, _
 		("TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"),
 		TILP_VERSION);
@@ -117,10 +113,9 @@ void version(void)
 		TILP_OSX_VERSION, SVN_REV);
 #endif
 
-	printl(0, _("Built on %s %s\n"), __DATE__, __TIME__);
+	printl(0, _("built on %s %s\n"), __DATE__, __TIME__);
 	printl(0, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	printl(0, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-	ticable_DISPLAY_settings(options.console_mode);
 }
 
 static int strexact(char *p1, char *p2)
@@ -312,10 +307,10 @@ int tilp_main(int argc, const char *argv[], char **arge)
 
 	// Init locale & internationalization
 #ifdef ENABLE_NLS
-	printl(0, "tilp: setlocale: <%s>\n", setlocale(LC_ALL, ""));
-  	printl(0, "tilp: bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	printl(0, "setlocale: <%s>\n", setlocale(LC_ALL, ""));
+  	printl(0, "bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
   	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	printl(0, "tilp: textdomain: <%s>\n", textdomain(PACKAGE));
+  	printl(0, "textdomain: <%s>\n", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
 	/* 

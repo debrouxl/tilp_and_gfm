@@ -16,6 +16,7 @@
 
 #include "support.h"
 #include "intl.h"
+#include "tilp_printl.h"
 
 GtkWidget *lookup_widget(GtkWidget * widget, const gchar * widget_name)
 {

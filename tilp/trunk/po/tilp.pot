@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-08 22:13+0200\n"
+"POT-Creation-Date: 2004-04-09 22:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: src/action.c:152 src/clock.c:95
+#: src/action.c:152 src/clock.c:96
 msgid "action.c: GUI loading failed !\n"
 msgstr ""
 
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: src/comm.c:55
+#: src/comm.c:53
 msgid "comm.c: GUI loading failed !\n"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr ""
 #: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
 #: src/tilp_calcs.c:301 src/tilp_files.c:105 src/tilp_files.c:119
 #: src/tilp_files.c:137 src/tilp_misc.c:48 src/tilp_misc.c:59
-#: src/tilp_misc.c:174 src/tilp_rcfile.c:120 src/tilp_slct.c:124
+#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:124
 #: src/tilp_slct.c:139 src/tilp_slct.c:150 src/tilp_slct.c:161
 msgid "Information"
 msgstr ""
@@ -132,8 +132,9 @@ msgstr ""
 #: src/tilp_calcs.c:581 src/tilp_calcs.c:587 src/tilp_calcs.c:593
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
-#: src/tilp_main.c:328 src/tilp_main.c:337 src/tilp_misc.c:169
-#: src/tilp_misc.c:298 src/tilp_rcfile.c:562
+#: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
+#: src/tilp_misc.c:169 src/tilp_misc.c:298 src/tilp_rcfile.c:51
+#: src/tilp_rcfile.c:566
 msgid "Error"
 msgstr ""
 
@@ -142,7 +143,7 @@ msgid "Unable to remove the temporary file.\n"
 msgstr ""
 
 #: src/gtk_refresh.c:131
-msgid "Initialized in GTK+ mode.\n"
+msgid "initialized in GTK+ mode.\n"
 msgstr ""
 
 #: src/labels.c:69
@@ -174,17 +175,21 @@ msgid "Done.\n"
 msgstr ""
 
 #. Create the main window
-#: src/main.c:119
+#: src/main.c:118
 msgid "Loading GUI..."
 msgstr ""
 
-#: src/main.c:130
+#: src/main.c:129
 msgid "TiLP"
 msgstr ""
 
 #. Scan plug-ins
-#: src/main.c:161
+#: src/main.c:160
 msgid "Scanning plugins..."
+msgstr ""
+
+#: src/main.c:168
+msgid "Command line..."
 msgstr ""
 
 #: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:140
@@ -238,7 +243,7 @@ msgstr ""
 msgid "Change drive"
 msgstr ""
 
-#: src/support.c:82 src/support.c:101
+#: src/support.c:83 src/support.c:102
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr ""
@@ -514,69 +519,78 @@ msgstr ""
 msgid "See the manpage for more informations...\n"
 msgstr ""
 
-#: src/tilp_main.c:107
+#: src/tilp_main.c:103
 #, c-format
 msgid "TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:111
+#: src/tilp_main.c:107
 msgid "FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"
 msgstr ""
 
-#: src/tilp_main.c:116
+#: src/tilp_main.c:112
 #, c-format
 msgid ""
 "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:120
+#: src/tilp_main.c:116
 #, c-format
-msgid "Built on %s %s\n"
+msgid "built on %s %s\n"
 msgstr ""
 
-#: src/tilp_main.c:121
+#: src/tilp_main.c:117
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr ""
 
-#: src/tilp_main.c:122
+#: src/tilp_main.c:118
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr ""
 
-#: src/tilp_main.c:326
+#: src/tilp_main.c:321
+#, c-format
+msgid "libtifiles library version <%s> mini required.\n"
+msgstr ""
+
+#: src/tilp_main.c:324
+msgid "Libtifiles: version mismatches."
+msgstr ""
+
+#: src/tilp_main.c:330
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:329
+#: src/tilp_main.c:333
 msgid "Libticables: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:335
+#: src/tilp_main.c:339
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:338
+#: src/tilp_main.c:342
 msgid "Libticalcs: version mismatches."
 msgstr ""
 
-#: src/tilp_main.c:371
+#: src/tilp_main.c:375
 msgid "Working mode: command line.\n"
 msgstr ""
 
-#: src/tilp_main.c:374
+#: src/tilp_main.c:378
 msgid "Working mode: console (prompt).\n"
 msgstr ""
 
-#: src/tilp_main.c:377
+#: src/tilp_main.c:381
 msgid "Working mode: GTK+.\n"
 msgstr ""
 
-#: src/tilp_main.c:380
+#: src/tilp_main.c:384
 msgid "Working mode: MFC.\n"
 msgstr ""
 
-#: src/tilp_main.c:383
+#: src/tilp_main.c:387
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr ""
 
@@ -631,7 +645,7 @@ msgid "group"
 msgstr ""
 
 #: src/tilp_plugin.c:150
-msgid "Scanning plug-ins... "
+msgid "scanning plug-ins... "
 msgstr ""
 
 #: src/tilp_plugin.c:153
@@ -644,7 +658,7 @@ msgstr ""
 
 #. Scan registry
 #: src/tilp_plugin.c:174
-msgid "Scanning registry... "
+msgid "scanning registry... "
 msgstr ""
 
 #: src/tilp_prompt.c:68
@@ -682,27 +696,27 @@ msgid ""
 "cmd> "
 msgstr ""
 
-#: src/tilp_prompt.c:180
+#: src/tilp_prompt.c:179
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:48
+#: src/tilp_rcfile.c:50
 #, c-format
 msgid "Configuration file error at line %i.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:119 src/tilp_rcfile.c:121
+#: src/tilp_rcfile.c:123 src/tilp_rcfile.c:125
 msgid ""
 "Configuration file not found, use default values. You can create one by the "
 "'File|Save config' command menu.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:563
+#: src/tilp_rcfile.c:567
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
 msgstr ""
 
-#: src/tilp_refresh.c:89
-msgid "Initialized in command line mode.\n"
+#: src/tilp_refresh.c:95
+msgid "initialized in command line mode.\n"
 msgstr ""
 
 #. Place a progress bar

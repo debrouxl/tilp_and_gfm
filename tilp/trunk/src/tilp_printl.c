@@ -43,10 +43,10 @@
    Level: such as "warning", "error", "information", etc. "" = nothing.
 */
 
-#define DOMAIN_TICABLES         "ticables"
-#define DOMAIN_TIFILES          "tifiles "
-#define DOMAIN_TICALCS          "ticalcs "
-#define DOMAIN_TILP             "tilp    "
+#define DOMAIN_TICABLES         "ticables: "
+#define DOMAIN_TIFILES          "tifiles : "
+#define DOMAIN_TICALCS          "ticalcs : "
+#define DOMAIN_TILP             "tilp    : "
 
 //#define NO_STDOUT
 
@@ -75,6 +75,8 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 
         cnt = _vsnprintf(buffer, 128, format, ap);
         WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
+#else
+	vfprintf(stdout, format, ap);
 #endif
 
         if (flog == NULL) {
@@ -103,10 +105,11 @@ int ticables_printl(int level, const char *format, ...)
 	int ret = 0;
 #ifndef NO_STDOUT
 	fprintf(stdout, DOMAIN_TICABLES);
-	if(level != 0)
-		fprintf(stdout, "(%s)", 
-			(level == 2) ? _("error") : _("warning"));
-        fprintf(stdout, ": ");
+
+	switch(level) {
+		case 1: fprintf(stdout, _("wrn: ")); break;
+		case 2: fprintf(stdout, _("err: ")); break;
+	}
 #endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICABLES, level, format, ap);
@@ -121,10 +124,11 @@ int tifiles_printl(int level, const char *format, ...)
 	int ret = 0;
 #ifndef NO_STDOUT
 	fprintf(stdout, DOMAIN_TIFILES);
-	if(level != 0)
-		fprintf(stdout, "(%s)", 
-			(level == 2) ? _("error") : _("warning"));
-        fprintf(stdout, ": ");
+
+	switch(level) {
+		case 1: fprintf(stdout, _("wrn: ")); break;
+		case 2: fprintf(stdout, _("err: ")); break;
+	}
 #endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TIFILES, level, format, ap);
@@ -139,10 +143,11 @@ int ticalcs_printl(int level, const char *format, ...)
 	int ret = 0;
 #ifndef NO_STDOUT
 	fprintf(stdout, DOMAIN_TICALCS);
-	if(level != 0)
-		fprintf(stdout, "(%s)", 
-			(level == 2) ? _("error") : _("warning"));
-        fprintf(stdout, ": ");
+	
+	switch(level) {
+		case 1: fprintf(stdout, _("wrn: ")); break;
+		case 2: fprintf(stdout, _("err: ")); break;
+	}
 #endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICALCS, level, format, ap);
@@ -157,10 +162,11 @@ int default_printl(int level, const char *format, ...)
 	int ret = 0;
 #ifndef NO_STDOUT
 	fprintf(stdout, DOMAIN_TILP);
-	if(level != 0)
-		fprintf(stdout, "(%s)", 
-			(level == 2) ? _("error") : _("warning"));
-        fprintf(stdout, ": ");
+	
+	switch(level) {
+		case 1: fprintf(stdout, _("wrn: ")); break;
+		case 2: fprintf(stdout, _("err: ")); break;
+	}
 #endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TILP, level, format, ap);

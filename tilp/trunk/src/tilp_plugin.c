@@ -147,7 +147,7 @@ int tilp_plugins_scan(void)
 		return -1;
 	}
 
-	printl(0, _("Scanning plug-ins... "));
+	printl(0, _("scanning plug-ins... "));
 	dir = g_dir_open(inst_paths.plugin_dir, 0, &error);
 	if (dir == NULL) {
 		g_error(_("tilp_plugins_scan: opendir error\n"));
@@ -171,7 +171,7 @@ int tilp_plugins_scan(void)
 	printl(0, _("Done !\n"));
 
 	// Scan registry 
-	printl(0, _("Scanning registry... "));
+	printl(0, _("scanning registry... "));
 #ifdef __WIN32__
 	reg_fn = g_strconcat(inst_paths.base_dir, REG_FILE, NULL);
 #else				/*  */
