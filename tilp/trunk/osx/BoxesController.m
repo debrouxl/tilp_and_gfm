@@ -290,7 +290,8 @@ extern int is_active;
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.backup") + 1);
             
     strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, "/tilp.backup");
+    strcat(tmpfile, G_DIR_SEPARATOR_S);
+    strcat(tmpfile, TMPFILE_BACKUP);
     
     if (returnCode == NSOKButton)
         {
@@ -363,7 +364,8 @@ extern int is_active;
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
             
     strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, "/tilp.ROMdump");
+    strcat(tmpfile, G_DIR_SEPARATOR_S);
+    strcat(tmpfile, TMPFILE_ROMDUMP);
     
     if (returnCode == NSOKButton)
         {
@@ -521,7 +523,8 @@ extern int is_active;
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.PAK") + 1);
             
     strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, "/tilp.PAK");
+    strcat(tmpfile, G_DIR_SEPARATOR_S);
+    strcat(tmpfile, TMPFILE_GROUP);
     
     if (returnCode == NSOKButton)
         {

@@ -54,14 +54,14 @@
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {720, 354}}";
+								Frame = "{{0, 0}, {764, 354}}";
 								Split0 = {
-									Frame = "{{0, 134}, {720, 220}}";
+									Frame = "{{0, 134}, {764, 220}}";
 									Split0 = {
-										Frame = "{{0, 0}, {346, 220}}";
+										Frame = "{{0, 0}, {367, 220}}";
 									};
 									Split1 = {
-										Frame = "{{355, 0}, {365, 220}}";
+										Frame = "{{376, 0}, {388, 220}}";
 									};
 									SplitCount = 2;
 								};
@@ -70,11 +70,11 @@
 									Frame = "{{0, 0}, {707, 115}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {720, 110}}";
+									Frame = "{{0, 0}, {764, 110}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {720, 354}}";
+							Frame = "{{0, 0}, {764, 354}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
@@ -85,9 +85,9 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {766, 86}}";
-							BuildTranscriptFrame = "{{0, 95}, {766, 61}}";
-							Frame = "{{0, 0}, {764, 154}}";
+							BuildMessageFrame = "{{0, 0}, {766, 67}}";
+							BuildTranscriptFrame = "{{0, 76}, {766, 16}}";
+							Frame = "{{0, 0}, {764, 90}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";

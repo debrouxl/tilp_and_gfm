@@ -227,7 +227,7 @@
 * 20020213 : v0.4.9
 	* Merge up to 4.92.
 	* Receive FLASH Apps.
-	
+	* Use TMPFILE_* in BoxesController.	
 
 
 
