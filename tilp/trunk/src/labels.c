@@ -1,4 +1,3 @@
-/* Hey EMACS -*- linux-c -*- */
 /*  tilp - a linking program for TI graphing calculators
  *  Copyright (C) 1999-2003  Romain Lievin
  *
@@ -24,22 +23,27 @@
 #include "tilp_core.h"
 #include "gstruct.h"
 struct clabel_window clabel_win = { 0 };
-static char *format(char *s, int max)
+
+static void format(char *s, char *buf)
 {
-	gchar buf[MAXCHARS];
-	gchar *i = NULL;
-	gchar *j = s + strlen(s);
-	i = (gchar *) strchr(s, DIR_SEPARATOR_C);	// first slash
-	j = (gchar *) strrchr(s, DIR_SEPARATOR_C);	// last slash
-	strcpy(buf, j);
-	if (i == j)
-		return s;
-	i = (gchar *) strchr(i + 1, DIR_SEPARATOR_C);	// second slash
-	*i = '\0';
-	strcat(s, DIR_SEPARATOR_S);
-	strcat(s, "...");
-	strcat(s, buf);
-	return s;
+  gchar *i = NULL;
+  gchar *j = NULL;
+  
+  i = (gchar *) strchr(s, DIR_SEPARATOR_C);	// first slash
+  j = (gchar *) strrchr(s, DIR_SEPARATOR_C);	// last slash
+  
+  if (i == j)
+    {
+      strcpy(buf, s);
+      return;
+    }
+  
+  i = (gchar *) strchr(i + 1, DIR_SEPARATOR_C);	// second slash
+  *i = '\0';
+  strcpy(s, DIR_SEPARATOR_S);
+  strcat(s, "...");
+  strcat(s, ((*j != '\0') ? j : j++)); // in case there are only 2 slashes in the string
+  return;
 }
 
 
@@ -73,5 +77,6 @@ void labels_refresh(void)
 		 clist_win.current_dir);
 
 	utf8 = g_filename_to_utf8(buffer, -1, &br, &bw, NULL);
-	gtk_label_set_text(GTK_LABEL(clabel_win.label22), format(utf8, 45));
+	format(utf8, buffer);
+	gtk_label_set_text(GTK_LABEL(clabel_win.label22), buffer);
 }
