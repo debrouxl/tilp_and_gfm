@@ -65,7 +65,9 @@ int cb_load_config_file(void)
 
 int cb_default_config(void)
 {
+#if defined(__UNIX__) || defined(__WIN32__)
   gchar *locale;
+#endif
 
   options.xsize = 125;
   options.ysize = 90;
@@ -137,10 +139,10 @@ options.tar_options = NULL;
 #elif defined(__UNIX__)
   locale = setlocale(LC_ALL, NULL);
   fprintf(stdout, "Current locale: <%s>\n", locale);
+  strcpy(options.locale, locale);
 #else
   fprintf(stdout, "No locale.\n");
 #endif
-  strcpy(options.locale, locale);
 
   options.show_gui = TRUE;
   options.force_dirlist = TRUE;

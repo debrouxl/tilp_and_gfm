@@ -44,11 +44,13 @@
 #include "error.h"
 #include "gui_indep.h"
 #include "cb_misc.h"
+
 #ifndef __MACOSX__
 #include "rcfile.h"
 #else
 #include "../osx/cocoa_config.h"
 #endif
+
 #include "struct.h"
 #include "version.h"
 #include "cmdinterface.h"
