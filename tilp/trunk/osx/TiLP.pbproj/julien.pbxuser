@@ -30,10 +30,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {908, 570}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{226, 0}, {682, 570}}";
 						Split0 = {
-							Frame = "{{0, 158}, {682, 412}}";
+							Frame = "{{0, 173}, {682, 397}}";
 						};
 						SplitCount = 1;
 						Tab0 = {

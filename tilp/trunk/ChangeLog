@@ -22,8 +22,9 @@
 	    * removed - [BoxesController msgBoxOrUser2DidEnd] -- all we needed to do is to close
 	      close the sheet and stop the modal, this is handled by Cocoa, so it was useless.
 	    * implemented remote control/terminal callback in the MainMenu
-	    * began to implement - [ToolbarController doRestore] but I'm to tired to finish it.
-	
+	    * began to implement - [ToolbarController doRestore] but I'm too tired to finish it.
+* 20011029 : v0.1.1
+	* fixed - [TilpController awakeFromNib] : don't set some of the pointers to nil, as TilpController is the last to be sent awakeFromNib...
 	
 
 

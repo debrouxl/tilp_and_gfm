@@ -9,6 +9,8 @@
 
 - (void)awakeFromNib
 {
+    fprintf(stderr, "prefs => got awakeFromNib\n");
+    
     rc_get_user_prefs();
 }
 

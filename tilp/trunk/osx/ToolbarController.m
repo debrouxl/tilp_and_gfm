@@ -32,6 +32,8 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
 {
     NSToolbar *toolbar=[[[NSToolbar alloc] initWithIdentifier:@"myToolbar"] autorelease];
     
+    fprintf(stderr, "toolbar => got awakeFromNib\n");
+    
     // Here we create the dictionary to hold all of our "master" NSToolbarItems.
     toolbarItems=[[NSMutableDictionary dictionary] retain];
 
@@ -131,10 +133,10 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     op = [NSOpenPanel openPanel];
     
     [op setTitle:@"Choose the file to restore"];
-    [op setAllowMultipleFileSelection:NO];
+    [op setAllowsMultipleSelection:NO];
     
     result = [op runModalForDirectory:NSHomeDirectory() file:nil
-                                      types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
+              types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
                                       
     if (result == NSOKButton)
         {

@@ -19,6 +19,8 @@ extern int is_active;
 
 - (void)awakeFromNib
 {
+    fprintf(stderr, "boxes => got awakeFromNib\n");
+
     // that's ugly :-/
 
     pbars_ptr->pbar1Window = pbar1Window;
@@ -51,6 +53,7 @@ extern int is_active;
     
     objects_ptr->remoteControlWindow = remoteControlWindow;
     objects_ptr->remoteControlTextArea = remoteControlTextArea;
+    objects_ptr->term_mode = REMOTE;
 }
 
 - (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo

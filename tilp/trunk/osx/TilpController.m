@@ -47,11 +47,8 @@ struct gui_fncts gui_functions;
 
 - (void)awakeFromNib
 {   
-    // FIXME OS X
-    // I suspect I'm setting to nil some variables that are already
-    // set to the correct value by others awakeFromNib.
-    // I *REALLY* need to check that.
- 
+    fprintf(stderr, "tilp => got awakeFromNib\n");
+
     // Init the classes pointers
     objects_ptr->BoxesController = BoxesController;
     objects_ptr->MenuController = MenuController;
@@ -61,14 +58,6 @@ struct gui_fncts gui_functions;
   
     objects_ptr->mainWindow = mainWindow;
     objects_ptr->dlgboxEntry = dlgboxEntry;
-  
-    objects_ptr->alertPanel = nil;
-  
-    objects_ptr->dlgboxEntry = nil;
-  
-    objects_ptr->remoteControlWindow = nil;
-    objects_ptr->remoteControlTextArea = nil;
-    objects_ptr->term_mode = REMOTE;
   
     objects_ptr->dlgbox_data = NULL;
     objects_ptr->box_button = -1;
