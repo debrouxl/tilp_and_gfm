@@ -476,6 +476,10 @@ SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
 
 SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\..\..\..\Gtk2Dev\lib\intl.lib
+# End Source File
 # End Group
 # Begin Source File
 
@@ -484,10 +488,6 @@ SOURCE=..\..\ChangeLog
 # Begin Source File
 
 SOURCE=..\..\src\tilp_version.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\..\..\..\Gtk2Dev\lib\intl.lib
 # End Source File
 # End Target
 # End Project
