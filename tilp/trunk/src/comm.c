@@ -55,6 +55,15 @@ gint display_comm_dbox()
 	dbox = glade_xml_get_widget(xml, "comm_dbox");
 	ad = options.auto_detect;
 
+	// Auto-detect
+	button = glade_xml_get_widget(xml, "checkbutton_calc_auto");
+	if (ad)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
+					     TRUE);
+	else
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
+					     FALSE);
+
 	// Cable  
 	data = glade_xml_get_widget(xml, "entry_comm_cable");
 	switch (options.lp.link_type) {
@@ -66,16 +75,16 @@ gint display_comm_dbox()
 	  gtk_entry_set_text(GTK_ENTRY(data), "BlackLink");
 	  break;
 
+	case LINK_SLV:
+	  gtk_entry_set_text(GTK_ENTRY(data), "SilverLink");
+	  break;
+
 	case LINK_PAR:
 	  gtk_entry_set_text(GTK_ENTRY(data), "ParallelLink");
 	  break;
 
 	case LINK_AVR:
 	  gtk_entry_set_text(GTK_ENTRY(data), "AvrLink");
-	  break;
-
-	case LINK_VTL:
-	  gtk_entry_set_text(GTK_ENTRY(data), "virtual");
 	  break;
 
 	case LINK_TIE:
@@ -85,11 +94,11 @@ gint display_comm_dbox()
 	case LINK_VTI:
 	  gtk_entry_set_text(GTK_ENTRY(data), "VTi");
 	  break;
-
-	case LINK_SLV:
-	  gtk_entry_set_text(GTK_ENTRY(data), "SilverLink");
-	  break;
 	
+	case LINK_VTL:
+	  gtk_entry_set_text(GTK_ENTRY(data), "virtual");
+	  break;
+
 	default:
 	  gtk_entry_set_text(GTK_ENTRY(data), "GrayLink");
 	  break;
@@ -180,15 +189,6 @@ gint display_comm_dbox()
 	  break;
 	}
 
-	// Auto-detect
-	button = glade_xml_get_widget(xml, "checkbutton_calc_auto");
-	if (ad)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
-					     TRUE);
-	else
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
-					     FALSE);
-
 	// Timeout
 	data = glade_xml_get_widget(xml, "spinbutton_comm_timeout");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.lp.timeout);
@@ -207,16 +207,22 @@ gint display_comm_dbox()
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:
+	  /*	  printf("%s %s %i\n", 
+		 ticable_cabletype_to_string(tmp_lp.link_type),
+		 ticable_port_to_string(tmp_lp.port),
+		 tmp_lp.calc_type);
+	  */
 		if (tilp_error(link_cable.exit()))
-		  goto loop;//break;	//return;
+		  goto loop;
 		memcpy(&options.lp, &tmp_lp, sizeof(TicableLinkParam));
 		ticable_set_param(&options.lp);
-		tilp_error(ticable_set_cable
-			   (options.lp.link_type, &link_cable));
+		if(tilp_error(ticable_set_cable
+			      (options.lp.link_type, &link_cable)))
+		  goto loop;
 		ticalc_set_cable(&link_cable);
 		ticalc_set_calc(options.lp.calc_type, &ti_calc);
-		if (tilp_error(link_cable.init()))
-			break;	//return;
+		if(tilp_error(link_cable.init()))
+		  goto loop;
 		options.auto_detect = ad;
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
@@ -240,24 +246,21 @@ comm_combo_cable_changed               (GtkEditable     *editable,
   ed = gtk_editable_get_chars(editable, 0, -1);
 
   if(!strcmp(ed, "GrayLink"))
-    tmp_lp.calc_type = LINK_TGL;
+    tmp_lp.link_type = LINK_TGL;
   else if(!strcmp(ed, "BlackLink"))
-    tmp_lp.calc_type = LINK_SER;
+    tmp_lp.link_type = LINK_SER;
   else if(!strcmp(ed, "SilverLink"))
-    tmp_lp.calc_type = LINK_SLV;
-  else if(!strcmp(ed, "parallel"))
-    tmp_lp.calc_type = LINK_PAR;
-  else if(!strcmp(ed, "AVRlink"))
-    tmp_lp.calc_type = LINK_AVR;
+    tmp_lp.link_type = LINK_SLV;
+  else if(!strcmp(ed, "ParallelLink"))
+    tmp_lp.link_type = LINK_PAR;
+  else if(!strcmp(ed, "AvrLink"))
+    tmp_lp.link_type = LINK_AVR;
   else if(!strcmp(ed, "VTi"))
-    tmp_lp.calc_type = LINK_VTI;
+    tmp_lp.link_type = LINK_VTI;
   else if(!strcmp(ed, "TiEmu"))
-    tmp_lp.calc_type = LINK_TIE;
+    tmp_lp.link_type = LINK_TIE;
   else if(!strcmp(ed, "virtual"))
-    tmp_lp.calc_type = LINK_VTL;
-  else {
-    DISPLAY("Warning: value not in list: '%s' (combo_cable_changed).\n", ed);
-  }
+    tmp_lp.link_type = LINK_VTL;
 }
 
 
@@ -365,9 +368,6 @@ comm_entry_calc_changed                (GtkEditable     *editable,
   } else if(!strcmp(ed, "V200PLT")) {
     tmp_lp.calc_type = CALC_V200;
     gtk_widget_set_sensitive(button, TRUE);
-  } else {
-    tmp_lp.calc_type = CALC_TI89;
-    DISPLAY("Warning: value not in list: '%s' (entry_calc_changed).\n", ed);
   }
 }
 
