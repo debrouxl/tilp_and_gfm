@@ -32,6 +32,8 @@
 #include "cocoa_structs.h"
 
 #import "BoxesController.h"
+#import "Calc89KeyboardController.h"
+#import "Calc92KeyboardController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -132,9 +134,6 @@ extern int is_active;
 
 - (IBAction)remoteControlChangeMode:(id)sender
 {
-    // FIXME OS X
-    // fix the help text wrt the special key combos
-      
     if ((sender == remoteControlRemoteMode) && (term_mode != REMOTE))
         {
             // leaving terminal mode
@@ -201,7 +200,14 @@ extern int is_active;
 
 - (IBAction)showKeyboard:(id)sender
 {
-
+    if (options.lp.calc_type == CALC_TI89)
+        {
+            [myCalc89KeyboardController showKeyboard89:self];
+        }
+    else if ((options.lp.calc_type == CALC_TI92) || (options.lp.calc_type == CALC_TI92P))
+        {
+            [myCalc92KeyboardController showKeyboard92:self];
+        }
 }
 
 

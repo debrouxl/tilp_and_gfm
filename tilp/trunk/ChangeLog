@@ -173,6 +173,11 @@
 	* Finished TI89 keyboard.
 	     => Added a class to handle it.
 	* Properly handle the RCTextView into the NSScrollView.
+* 20020118 : v0.3.8
+	* More *boring* remote control stuff.
+	     => TI92 keyboard.
+
+
 
 
 

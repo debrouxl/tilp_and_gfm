@@ -43,6 +43,7 @@ extern int is_active;
 #import "TilpController.h"
 #import "TransfersController.h"
 #import "SheetsController.h"
+#import "BoxesController.h"
 #import "RCTextView.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
@@ -227,8 +228,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         {
             [remoteControlWindow orderFront:self];
             
-            // FIXME OS X
-            // pop the keyboard up, too.
+            [myBoxesController showKeyboard:self];
             
             return;
         }
@@ -256,6 +256,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [remoteControlWindow makeKeyAndOrderFront:self];
     
     [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
+    
+    [myBoxesController showKeyboard:self];
 }
 
 - (IBAction)getScreen:(id)sender

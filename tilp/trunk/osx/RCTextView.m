@@ -64,37 +64,28 @@ extern struct cocoa_objects_ptr *objects_ptr;
     myTransfersController = objects_ptr->myTransfersController;
 
     fprintf(stderr, "DEBUG: insert text (length : %d, %d) %s\n", [string cStringLength], [string length], [string cString]);
-
-    if ([string length] > 1)
+    
+    for (i = 0; i < [string length]; i++)
         {
-            fprintf(stderr, "DEBUG: processing string char by char\n");
-            
-            for (i = 0; i < [string length]; i++)
-                {
-                    c = [string characterAtIndex:i];
-                    [self insertText:[NSString stringWithCharacters:&c length:1]];
-                }
-        }
-    else
-        {
-            // FIXME OS X
-            // process input HERE !!
-            
-            // Try to send to the calc, then display.
+            c = [string characterAtIndex:i];
         
-            ret = [myTransfersController sendChar:string];
+            ret = [myTransfersController sendChar:[NSString stringWithCharacters:&c length:1]];
             
             if (ret)
                 {
-                    [self setString:[[self string] stringByAppendingString:[NSString stringWithCString:"\n\nCommunication Error. Aborted.\n"]]];
+                    [self setString:[[self string] stringByAppendingString:[NSString stringWithCString:"\n\n*** Communication Error. Aborted. ***\n"]]];
+                    
+                    break;
                 }
             else
                 {
                     [self setString:[[self string] stringByAppendingString:string]];
+                    
+                    [self didChangeText];
+    
+                    [self display];
                 }
         }
-        
-    [self setTextColor:[NSColor blueColor]];
     
     [self didChangeText];
     

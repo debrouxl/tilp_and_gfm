@@ -1605,6 +1605,7 @@
 				F50C433801F4701301000102,
 				F50D800701F72CCC01000102,
 				F50B125E01F78BE101000102,
+				F50FB28801F84CF101000102,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -1668,6 +1669,7 @@
 				F50C433701F4648501000102,
 				F50D800801F72CCC01000102,
 				F50B125F01F78BE101000102,
+				F50FB28901F84CF101000102,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -2128,6 +2130,28 @@
 			settings = {
 			};
 		};
+		F50FB28601F84CF101000102 = {
+			isa = PBXFileReference;
+			path = Calc92KeyboardController.h;
+			refType = 2;
+		};
+		F50FB28701F84CF101000102 = {
+			isa = PBXFileReference;
+			path = Calc92KeyboardController.m;
+			refType = 2;
+		};
+		F50FB28801F84CF101000102 = {
+			fileRef = F50FB28601F84CF101000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50FB28901F84CF101000102 = {
+			fileRef = F50FB28701F84CF101000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F50FDB8E0179C7F801000102 = {
 			isa = PBXFileReference;
 			path = config.h;
@@ -2417,6 +2441,7 @@
 				F50B140601C158DF01000102,
 				F50C433301F4624B01000102,
 				F50B125C01F78BE001000102,
+				F50FB28601F84CF101000102,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -2432,6 +2457,7 @@
 				F50B140701C158DF01000102,
 				F50C433401F4624B01000102,
 				F50B125D01F78BE001000102,
+				F50FB28701F84CF101000102,
 			);
 			isa = PBXGroup;
 			name = Sources;
