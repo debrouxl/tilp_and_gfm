@@ -27,6 +27,7 @@
     IBOutlet id dirlistTree;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;
+    IBOutlet id screendumpScale;
 
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

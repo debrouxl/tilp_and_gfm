@@ -107,6 +107,7 @@
                 clockYear = id; 
                 clockYearStepper = id; 
                 myBoxesController = id; 
+                mySheetsController = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -213,6 +214,11 @@
                 screenRenderingBW = id; 
                 screenRenderingBlurry = id; 
                 screenRenderingMatrix = id; 
+                screenScale1 = id; 
+                screenScale2 = id; 
+                screenScale3 = id; 
+                screenScale4 = id; 
+                screenScaleMatrix = id; 
                 sortByInfo = id; 
                 sortByMatrix = id; 
                 sortByName = id; 
@@ -311,6 +317,7 @@
                 mySheetsController = id; 
                 myTilpController = id; 
                 screendumpImage = id; 
+                screendumpScale = id; 
                 screendumpWindow = id; 
             }; 
             SUPERCLASS = NSObject; 

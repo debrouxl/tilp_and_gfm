@@ -77,7 +77,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
     
     if (NSOnState == [orderIncreasing state])
         options.ctree_sort_order = SORT_UP;
-    else if (NSOnState == [orderDecreasing state])
+    else
         options.ctree_sort_order = SORT_DOWN;
 
     if (NSOnState == [sortByInfo state])
@@ -91,12 +91,12 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
     if (NSOnState == [multipleVarsGroup state])
         options.single_or_group = RECV_AS_GROUP;
-    else if (NSOnState == [multipleVarsSingle state])
+    else
         options.single_or_group = RECV_AS_SINGLE;
     
     if (NSOnState == [pathModeFull state])
         options.path_mode = FULL_PATH;
-    else if (NSOnState == [pathModeLocal state])
+    else
         options.path_mode = LOCAL_PATH;
     
 // hardware
@@ -168,18 +168,27 @@ extern struct cocoa_objects_ptr *objects_ptr;
     
     if (NSOnState == [screenFormatTIFF state])
         options.screen_format = TIFF;
-    else if (NSOnState == [screenFormatPDF state])
+    else
         options.screen_format = PDF;
 
     if (NSOnState == [screenRenderingBlurry state])
         options.screen_blurry = TRUE;
-    else if (NSOnState == [screenRenderingBW state])
+    else
         options.screen_blurry = FALSE;
     
     if (NSOnState == [screenModeClipped state])
         options.screen_clipping = TRUE;
-    else if (NSOnState == [screenModeFull state])
+    else
         options.screen_clipping = FALSE;
+
+    if (NSOnState == [screenScale2 state])
+        options.screen_scaling = 2;
+    else if (NSOnState == [screenScale3 state])
+        options.screen_scaling = 3;
+    else if (NSOnState == [screenScale4 state])
+        options.screen_scaling = 4;
+    else
+        options.screen_scaling = 1;
 
 // clock
 
@@ -199,7 +208,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
     
     if (NSOnState == [consoleVerbose state])
         options.console_mode = DSP_ON;
-    else if (NSOnState == [consoleSilent state])
+    else
         options.console_mode = DSP_OFF;
             
     ticable_set_param2(options.lp);
@@ -396,9 +405,25 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else
         [screenModeMatrix setState:NSOnState atRow:0 column:1];
 
+    switch(options.screen_scaling)
+    {
+        case 2:
+            [screenScaleMatrix setState:NSOnState atRow:0 column:1];
+            break;
+        case 3:
+            [screenScaleMatrix setState:NSOnState atRow:1 column:0];
+            break;
+        case 4:
+            [screenScaleMatrix setState:NSOnState atRow:1 column:1];
+            break;
+        default:
+            [screenScaleMatrix setState:NSOnState atRow:0 column:0];
+            break;
+    }
+
 // clock
 
-    if (options.clock_mode == CLOCK_MANUAL)
+    if (options.clock_mode == CLOCK_SYNC)
         [clockModeMatrix setState:NSOnState atRow:0 column:0];
     else
         [clockModeMatrix setState:NSOnState atRow:0 column:1];

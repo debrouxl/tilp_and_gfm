@@ -70,7 +70,11 @@
     IBOutlet id clockTimeFormat12;
     IBOutlet id clockTimeFormat24;
     IBOutlet id clockDateFormat;
-
+    IBOutlet id screenScale1;
+    IBOutlet id screenScale2;
+    IBOutlet id screenScale3;
+    IBOutlet id screenScale4;
+    
     IBOutlet id multipleVarsMatrix;
     IBOutlet id pathModeMatrix;
     IBOutlet id orderMatrix;
@@ -82,6 +86,7 @@
     IBOutlet id screenRenderingMatrix;
     IBOutlet id clockModeMatrix;
     IBOutlet id clockTimeFormatMatrix;
+    IBOutlet id screenScaleMatrix;
     
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

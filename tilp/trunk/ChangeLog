@@ -1,4 +1,15 @@
-* 20030419 : v6.62 / 0.6.3 ($Rev$)
+* 20030421 : v6.62 / 0.6.5 ($Rev$)
+	* Rework the preferences panel to make it smaller.
+	* Added basic scaling support for the screendump.
+	* Added preferences for the scaling.
+	* Clock settings now defaults to "Sync w/computer".
+* 20030420 : v6.62 / 0.6.4 (Rev: 254)
+	* Added preferences for clock settings.
+	* Fixed dirlist for calcs without folders.
+	* Added a status text to the clock panel.
+	* Clock can now be synchronized or set manually.
+	* Fixed receiving multiple vars as a group.
+* 20030419 : v6.62 / 0.6.3 (Rev: 253)
 	* Added clock support.
 * 20030419 : v6.62 / 0.6.2 (Rev: 252)
 	* Rewrote getVarsThreaded.

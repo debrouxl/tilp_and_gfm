@@ -86,6 +86,7 @@ extern "C" {
     int confirm;
 
     int screen_format;
+    int screen_scaling;
     int screen_clipping;
     int screen_blurry;
 

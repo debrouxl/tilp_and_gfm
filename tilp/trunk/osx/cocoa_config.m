@@ -44,9 +44,10 @@ rc_init_with_default(void)
     options.ctree_sort_order = SORT_UP;
     options.path_mode = FULL_PATH;
     options.screen_format = TIFF;
+    options.screen_scaling = 1;
     options.screen_clipping = CLIPPED_SCREEN;
     options.screen_blurry = FALSE;
-    options.clock_mode = CLOCK_MANUAL;
+    options.clock_mode = CLOCK_SYNC;
     options.date_format = 1;
     options.time_format = 12;
     // verbosity of libticables (DISPLAY() function)
@@ -84,6 +85,9 @@ rc_fill_dictionary(void)
     
     value = [[NSNumber alloc] initWithInt:options.screen_format];
     [tilpConfig setObject:value forKey:@"screen_format"];
+
+    value = [[NSNumber alloc] initWithInt:options.screen_scaling];
+    [tilpConfig setObject:value forKey:@"screen_scaling"];
     
     value = [[NSNumber alloc] initWithInt:options.screen_clipping];
     [tilpConfig setObject:value forKey:@"screen_clipping"];
@@ -171,6 +175,9 @@ rc_get_user_prefs(void)
     
     if ((value = [tilpConfig objectForKey:@"screen_format"]))
         options.screen_format = [value intValue];
+
+    if ((value = [tilpConfig objectForKey:@"screen_scaling"]))
+        options.screen_scaling = [value intValue];
     
     if ((value = [tilpConfig objectForKey:@"screen_clipping"]))
         options.screen_clipping = [value intValue];

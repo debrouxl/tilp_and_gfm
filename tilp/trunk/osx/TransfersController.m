@@ -326,71 +326,85 @@ add_item_to_selection_list(GList **list, id item)
 // NOT THREADED
 
 static void
-render_screen_bw(uint8_t *bitmap, unsigned char *pixels)
+render_screen_bw(uint8_t *bitmap, unsigned char *pixels, int scale)
 {
     int row;
     int col;
     uint8_t data;
     int mask;
     int bit;
+    int rs, cs;
     
-    // speed things up : set a white width * height area (* 4 => 4 bytes per pixel)
-    memset(pixels, 0xFF, (ti_screen.width * ti_screen.height * 4));
+    // speed things up : set a white (width *scale) * (height * scale) area (* 4 => 4 bytes per pixel)
+    memset(pixels, 0xFF, (ti_screen.width * scale * ti_screen.height * scale * 4));
 
     for (row = 0; row < ti_screen.height; row++)
-        for (col = 0; col < (ti_screen.width >> 3); col++)
-        {
-            data = bitmap[(ti_screen.width >> 3) * row + col];
-            mask = 0x80;
-            for (bit = 0; bit < 8; bit++)
+        for (rs = 0; rs < scale; rs++) // scaling for rows
+            for (col = 0; col < (ti_screen.width >> 3); col++)
             {
-                if (data & mask) // black => set R/G/B/alpha to 0/0/0/0xFF
+                data = bitmap[(ti_screen.width >> 3) * row + col];
+                mask = 0x80;
+                for (bit = 0; bit < 8; bit++)
                 {
-                    *pixels++ = 0; // red
-                    *pixels++ = 0; // blue
-                    *pixels++ = 0; // green
-                    pixels++; // alpha, but already set to 0xFF
-                }
-                else // white => increment the pixels pointer
-                    pixels += 4;
+                    if (data & mask) // black => set R/G/B/alpha to 0/0/0/0xFF
+                    {
+                        for (cs = 0; cs < scale; cs++) // scaling for columns
+                        {
+                            *pixels++ = 0; // red
+                            *pixels++ = 0; // blue
+                            *pixels++ = 0; // green
+                            pixels++; // alpha, but already set to 0xFF
+                        }
+                    }
+                    else // white => increment the pixels pointer
+                        pixels += 4 * scale; // scaling for columns
 
-                mask >>= 1;
+                    mask >>= 1;
+                }
             }
-        }
 }
 
 static void
-render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
+render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
 {
     int row;
     int col;
     uint8_t data;
     int mask;
     int bit;
+    int rs, cs;
 
     for (row = 0; row < ti_screen.height; row++)
-        for (col = 0; col < (ti_screen.width >> 3); col++)
-        {
-            data = bitmap[(ti_screen.width >> 3) * row + col];
-            mask = 0x80;
-            for (bit = 0; bit < 8; bit++)
+        for (rs = 0; rs < scale; rs++) // scaling for rows
+            for (col = 0; col < (ti_screen.width >> 3); col++)
             {
-                if (data & mask) // black => set R/G/B to 0x00/0x00/0x34
+                data = bitmap[(ti_screen.width >> 3) * row + col];
+                mask = 0x80;
+                for (bit = 0; bit < 8; bit++)
                 {
-                    *pixels++ = 0x00; // red
-                    *pixels++ = 0x00; // blue
-                    *pixels++ = 0x34; // green
+                    if (data & mask) // black => set R/G/B to 0x00/0x00/0x34
+                    {
+                        for (cs = 0; cs < scale; cs++) // scaling for columns
+                        {
+                            *pixels++ = 0x00; // red
+                            *pixels++ = 0x00; // blue
+                            *pixels++ = 0x34; // green
+                            *pixels++ = 0xFF; // alpha
+                        }
+                    }
+                    else // white => set R/G/B to 0xA8/0xB4/0xA8
+                    {
+                        for (cs = 0; cs < scale; cs++) // scaling for columns
+                        {
+                            *pixels++ = 0xA8; // red
+                            *pixels++ = 0xB4; // blue
+                            *pixels++ = 0xA8; // green
+                            *pixels++ = 0xFF; // alpha
+                        }
+                    }
+                    mask >>= 1;
                 }
-                else // white => set R/G/B to 0xA8/0xB4/0xA8
-                {
-                    *pixels++ = 0xA8; // red
-                    *pixels++ = 0xB4; // blue
-                    *pixels++ = 0xA8; // green
-                }
-                *pixels++ = 0xFF; // alpha
-                mask >>= 1;
             }
-        }
 }
 
 - (void)getScreen:(id)sender
@@ -407,8 +421,8 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
         return;
     
     bitmap = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
-                                       pixelsWide:ti_screen.width
-                                       pixelsHigh:ti_screen.height
+                                       pixelsWide:(ti_screen.width * options.screen_scaling)
+                                       pixelsHigh:(ti_screen.height * options.screen_scaling)
                                        bitsPerSample:8
                                        samplesPerPixel:4
                                        hasAlpha:YES
@@ -419,11 +433,11 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
 
     // render the bitmap
     if (options.screen_blurry)
-        render_screen_blurry(ti_screen.bitmap, [bitmap bitmapData]);
+        render_screen_blurry(ti_screen.bitmap, [bitmap bitmapData], options.screen_scaling);
     else
-        render_screen_bw(ti_screen.bitmap, [bitmap bitmapData]);
+        render_screen_bw(ti_screen.bitmap, [bitmap bitmapData], options.screen_scaling);
 
-    size = NSMakeSize(ti_screen.width, ti_screen.height);
+    size = NSMakeSize((ti_screen.width * options.screen_scaling), (ti_screen.height * options.screen_scaling));
     
     screen = [[NSImage alloc] initWithSize:size];
     
@@ -431,7 +445,9 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
 
     [screendumpImage setImage:screen];
 
-    if ([screendumpWindow isVisible] == NO)
+// For now, always resize the window, until the resizing is handled
+// by the NSImageView -- if it happens one day.
+//    if ([screendumpWindow isVisible] == NO)
     {
       // resize the window
       viewFrame = [screendumpImage frame];
@@ -446,6 +462,11 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
 
       [screendumpWindow setContentSize:newSize];
       [screendumpImage setFrame:viewFrame];
+
+      if (options.screen_scaling > 1)
+          [screendumpScale setStringValue:[NSString stringWithFormat:@"Screen scale : %d00%%", options.screen_scaling]];
+      else
+          [screendumpScale setStringValue:@""];
       
       // show and add to the Windows menu
       [screendumpWindow makeKeyAndOrderFront:self];
