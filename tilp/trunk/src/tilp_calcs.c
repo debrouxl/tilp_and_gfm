@@ -57,10 +57,12 @@ int tilp_calc_isready(void)
 	int err = 0;
 	TicalcType c = 0;
 	ticalc_get_calc(&c);
-	if (options.auto_detect
-	    && tifiles_is_flash(options.lp.calc_type) && (options.lp.
-							  calc_type !=
-							  CALC_V200)) {
+	if (options.auto_detect && 
+		tifiles_is_flash(options.lp.calc_type) && 
+		(options.lp.calc_type != CALC_TI84P) &&
+		(options.lp.calc_type != CALC_TI89T) &&
+		(options.lp.calc_type != CALC_V200)) 
+	{
 		err =
 		    ticalc_flash_isready((TicalcType *) &
 					 (options.lp.calc_type));
