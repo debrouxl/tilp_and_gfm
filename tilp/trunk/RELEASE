@@ -2,8 +2,8 @@
 
 
 
-Previous version: 6.67-beta2 (11/05/2003)
-Current version:  6.71	     (16/04/2004)
+Previous version: 6.71	     (16/04/2004)
+Current version:  6.72	     (21/04/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -25,25 +25,10 @@ New capabilities:
 Improvements:
 -------------
 
-	- [WIN32] fixed error 997 (overlapped I/O in progress) by 
-	new SilverLink driver (v2.3)
-	- [WIN32] GTK now uses a theme engine (Gtk-Wimp) which gives 
-	Windows look & feel (it supports XP theming, too !)
-	- communication box simplified
-	- some internal clean-ups
-	- TIB support
-	- many bug fixes from BugTracker: 
-		#904838: crash with /usr/lib/tilp
-		#847930: tib files,
-		#837114: bad TI85 file format
-		#600195: idem 
-		#600297: idem
-		#801482: rom dump pbs w/ usb
-		#781694: crash with flashsav.89z
-		#775151: wrong DLL version
-		#738486: TI83+ flash app timeout
-		#689704: idem
-	- and some others.
+	- communication box (reset port when changing cable) to avoid 'invalid port' error.
+	- [LINUX] SilverLink data-rate improved when sending variables/apps.
+	- [WIN32] idem, need driver v2.4
+	- [LINUX] wrong timeout passed to SilverLink (libusb) => transfer interruptions.
 	
 
 Known problems:
@@ -51,7 +36,7 @@ Known problems:
 
 	- [Linux]: the timeout value can not be changed with kernel modules.
 	Consequently, OS upgrades will fail...
-	=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b
+		=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b or Linux kernel >= 2.4.27 or 2.6.7.
 
 
 Bug report:
