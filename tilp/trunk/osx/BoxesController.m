@@ -221,22 +221,17 @@ extern int is_active;
 
 - (void)doRestoreDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    NSString *nsfile;
-    char *file;
+    NSArray *files;
+    
+    [sheet orderOut:self];
     
     if (returnCode == NSOKButton)
         {
-            nsfile = [[sheet filenames] objectAtIndex:0];
+            files = [[NSArray arrayWithArray:[sheet filenames]] retain];
             
-            file = (char *)malloc([nsfile cStringLength] + 1);
-            
-            [nsfile getCString:file];
-            
-            cb_send_backup(file);
-                    
-            [nsfile release];
-            
-            free(file);
+            [NSThread detachNewThreadSelector:@selector(doRestoreThreaded:)
+                      toTarget:myTransfersController
+                      withObject:files];
         }
 }
 
@@ -245,6 +240,8 @@ extern int is_active;
 {
     NSArray *files;
 
+    [sheet orderOut:self];
+
     if (returnCode == NSOKButton)
         {            
             files = [[NSArray arrayWithArray:[sheet filenames]] retain];
@@ -252,29 +249,22 @@ extern int is_active;
             [NSThread detachNewThreadSelector:@selector(sendFlashAppThreaded:)
                       toTarget:myTransfersController
                       withObject:files];
-                      
-            fprintf(stderr, "DEBUG: thread detached\n");
         }
 }
 
 - (void)sendAMSDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    NSString *nsfile;
-    char *file;
-
-     if (returnCode == NSOKButton)
+    NSArray *files;
+    
+    [sheet orderOut:self];
+    
+    if (returnCode == NSOKButton)
         {
-            nsfile = [[sheet filenames] objectAtIndex:0];
+            files = [[NSArray arrayWithArray:[sheet filenames]] retain];
             
-            file = (char *)malloc([nsfile cStringLength] + 1);
-            
-            [nsfile getCString:file];
-            
-            cb_send_flash_os(file);
-            
-            [nsfile release];
-            
-            free(file);
+            [NSThread detachNewThreadSelector:@selector(sendAMSThreaded:)
+                      toTarget:myTransfersController
+                      withObject:files];
         }
 }
 
@@ -507,7 +497,9 @@ extern int is_active;
                                     case BUTTON2:
                                         dirname = gif->dlgbox_entry(_("Rename the file"),
                                                                     _("New name : "), file);
-                                        if(dirname == NULL) return;
+                                        if (dirname == NULL)
+                                            return;
+                                        
                                         free(file);
                                         file = (char *)malloc(strlen(dirname) + 1);
                                         strcpy(file, dirname);
@@ -545,6 +537,7 @@ extern int is_active;
 - (void)getVarsDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     NSSavePanel *sp;
+    NSMutableDictionary *context;
     
     char *file;
     char *tmpfile;
@@ -554,6 +547,8 @@ extern int is_active;
     gchar buffer[MAXCHARS];
     gchar *dirname;
     
+    context = contextInfo;
+
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.PAK") + 1);
             
     strcpy(tmpfile, g_get_tmp_dir());
@@ -561,7 +556,7 @@ extern int is_active;
     
     if (returnCode == NSOKButton)
         {
-            sp = contextInfo;
+            sp = [context objectForKey:@"savepanel"];
                               
             file = (char *)malloc([[sp filename] cStringLength] + 1);
             [[sp filename] getCString:file];
@@ -581,7 +576,9 @@ extern int is_active;
                                     case BUTTON2:
                                         dirname = gif->dlgbox_entry(_("Rename the file"),
                                                                     _("New name : "), file);
-                                        if(dirname == NULL) return;
+                                        if (dirname == NULL)
+                                            return;
+                                            
                                         free(file);
                                         file = (char *)malloc(strlen(dirname) + 1);
                                         strcpy(file, dirname);

@@ -80,6 +80,8 @@ extern struct ticalc_info_update info_update;
     [user1Text setStringValue:message];
     [user1Button setTitle:button1];
     
+    [user1Window setExcludedFromWindowsMenu:YES];
+    
     [NSApp beginSheet:user1Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -113,6 +115,8 @@ extern struct ticalc_info_update info_update;
     [user2Text setStringValue:message];
     [user2Button1 setTitle:button1];
     [user2Button2 setTitle:button2];
+    
+    [user2Window setExcludedFromWindowsMenu:YES];
     
     [NSApp beginSheet:user2Window
            modalForWindow:mainWindow
@@ -148,6 +152,8 @@ extern struct ticalc_info_update info_update;
     [user3Button1 setTitle:button1];
     [user3Button2 setTitle:button2];
     [user3Button3 setTitle:button3];
+    
+    [user3Window setExcludedFromWindowsMenu:YES];
     
     [NSApp beginSheet:user3Window
            modalForWindow:mainWindow
@@ -186,6 +192,8 @@ extern struct ticalc_info_update info_update;
     [dlgboxentryEntry selectText:nil];
     [dlgboxentryText setStringValue:message];
           
+    [dlgboxentryWindow setExcludedFromWindowsMenu:YES];
+          
     [NSApp beginSheet:dlgboxentryWindow
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -208,6 +216,8 @@ extern struct ticalc_info_update info_update;
         [pbarWindow orderOut:nil];
 
     [pbar2Text setStringValue:message];
+
+    [pbar2Window setExcludedFromWindowsMenu:YES];
 
     [NSApp beginSheet:pbar2Window
            modalForWindow:mainWindow
@@ -239,6 +249,8 @@ extern struct ticalc_info_update info_update;
 
     pbarWindow = pbar1Window;
   
+    [pbar1Window setExcludedFromWindowsMenu:YES];
+    
     [NSApp beginSheet:pbar1Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -259,6 +271,8 @@ extern struct ticalc_info_update info_update;
 
     pbarWindow = pbar3Window;
 
+    [pbar3Window setExcludedFromWindowsMenu:YES];
+
     [NSApp beginSheet:pbar3Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -278,6 +292,8 @@ extern struct ticalc_info_update info_update;
     pbar_text = pbar4Text;
     
     pbarWindow = pbar4Window;
+    
+    [pbar4Window setExcludedFromWindowsMenu:YES];
     
     [pbar4Text setStringValue:message];
    
@@ -303,6 +319,8 @@ extern struct ticalc_info_update info_update;
     pbarWindow = pbar5Window;
 
     [pbar5Text setStringValue:message];
+
+    [pbar5Window setExcludedFromWindowsMenu:YES];
 
     [NSApp beginSheet:pbar5Window
            modalForWindow:mainWindow

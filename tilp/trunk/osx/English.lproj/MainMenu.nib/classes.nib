@@ -241,12 +241,17 @@
             CLASS = TransfersController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                dirlistTree = id; 
                 mainWindow = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
+                remoteControlTextArea = id; 
+                remoteControlWindow = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

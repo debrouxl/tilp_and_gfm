@@ -151,6 +151,10 @@
 	* Display free mem (wrong atm, waiting for new libticalcs).
 	* Added TransfersController class.
 	* Threaded FLASH APPS upload.
+* 20020115 : v0.3.6
+	* All important transfers threaded (except dirlist).
+	      => working "Abort" buttons.
+	* Fixed Windows menu handling, wrt pbar sheets.
 	
 
 

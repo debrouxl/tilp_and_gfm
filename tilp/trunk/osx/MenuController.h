@@ -48,6 +48,8 @@
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar;
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar;
 
+- (void)getVars:(id)sender;
+
 // Application menu
 - (IBAction)showAbout:(id)sender;
 

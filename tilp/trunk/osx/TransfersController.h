@@ -23,6 +23,11 @@
 @interface TransfersController : NSObject
 {
     IBOutlet id mainWindow;
+    IBOutlet id dirlistTree;
+    IBOutlet id screendumpWindow;
+    IBOutlet id screendumpImage;
+    IBOutlet id remoteControlWindow;
+    IBOutlet id remoteControlTextArea;
 
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;
@@ -31,6 +36,20 @@
     IBOutlet id myTilpController;
 }
 
-- (void)sendFlashAppThreaded:(id)file;
+// THREADED
+- (void)getVarsThreaded:(id)sender;
+- (void)getScreenThreaded:(id)sender;
+- (void)doBackupThreaded:(id)sender;
+- (void)romDumpThreaded:(id)sender;
+
+- (void)doRestoreThreaded:(id)files;
+- (void)sendFlashAppThreaded:(id)files;
+- (void)sendAMSThreaded:(id)files;
+
+// NOT THREADED
+- (void)getScreen:(id)sender;
+- (void)romDump:(id)sender;
+- (void)doBackup:(id)sender;
+- (void)receiveFlashApp:(id)sender;
 
 @end
