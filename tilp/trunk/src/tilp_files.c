@@ -143,7 +143,7 @@ int tilp_file_mkdir(const char *pathname)
 #else				/*  */
 int tilp_file_mkdir(const char *pathname)
 {
-	mkdir(pathname, MAXCHARS);
+	mkdir(pathname);
 	return 0;
 }
 #endif				/*  */

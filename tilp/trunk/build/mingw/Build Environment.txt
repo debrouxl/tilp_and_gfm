@@ -1,0 +1,5 @@
+Procedure to set up the environment:
+
+- get MinGW & MSys from http:// and install it
+- get the pango, atk, glib, gtk+ devel packages from www.gimp.org
+- get the libglade from http://gladewin32.sourceforge.net/modules.php?name=Downloads&d_op=viewdownload&cid=3

@@ -1,0 +1,12 @@
+prefix=/target
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Libxml
+Description: a library for dynamically loading GLADE interface files
+Version: 2.0.1
+Requires: 
+Libs: -L${libdir} -lxml2
+Cflags: -I${includedir}/libxml2
+
