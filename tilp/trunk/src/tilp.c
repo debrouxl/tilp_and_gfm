@@ -258,7 +258,7 @@ GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
 
 	argv[0] = g_strdup(options.web_location);
 	argv[1] = g_strconcat(options.web_options, inst_paths.help_dir,
-			      "User_Manual.html", NULL);
+			      _("Manual_en.html"), NULL);
 
 	result = g_spawn_async(inst_paths.help_dir, argv, NULL, 0, NULL, NULL,
 			       NULL, NULL);
