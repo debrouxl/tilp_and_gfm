@@ -62,7 +62,7 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
                 char buffer[128];
                 int cnt;
                 DWORD nWritten;
-
+/*
     	        if (alloc_console_called == FALSE) {
       		        AllocConsole();
       		        alloc_console_called = TRUE;
@@ -74,7 +74,7 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
                 cnt = _vsnprintf(buffer, 128, format, ap);
                 WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
                 va_end(ap);
-
+*/
 	//return vfprintf(stdout, format, ap);
         return 0;
 }

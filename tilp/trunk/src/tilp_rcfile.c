@@ -45,9 +45,13 @@ static int get_rcfile_path(char **path)
 /* Print an error msg */
 static void stop(int line)
 {
-	fprintf(stderr, gettext("Configuration file error at line %i.\n"),
-		line);
-} static char *find_str(char *s, const char *t)
+	char buffer[256];
+
+	sprintf(buffer, _("Configuration file error at line %i.\n"), line);
+	gif->msg_box(_("Error"), buffer);
+} 
+
+static char *find_str(char *s, const char *t)
 {
 	char *p = strstr(s, t);
 	if (p == NULL)

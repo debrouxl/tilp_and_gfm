@@ -28,10 +28,12 @@
 #include <string.h>
 
 #include "tilp_indep.h"
+
 TilpGuiFncts *gif;		// completely public
+
 void cmdline_msg_box(const char *title, char *message)
 {
-  fprintf(stderr, "msg_box: %s, %s\n", title, message);
+	fprintf(stderr, "msg_box: %s, %s\n", title, message);
 }
 
 int cmdline_msg_box2(const char *title, char *message)

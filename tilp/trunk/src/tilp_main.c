@@ -342,7 +342,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Initialize the libticables library 
 	 */
-        ticable_set_printl(ticables_printl);
+        //ticable_set_printl(ticables_printl);
 	ticable_init();
 	ticable_set_param(&options.lp);
 	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
@@ -351,14 +351,14 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Initialize the libtifiles library 
 	 */
-        tifiles_set_printl(tifiles_printl);
+        //tifiles_set_printl(tifiles_printl);
 	tifiles_init();
 	tifiles_set_calc(options.lp.calc_type);	 
 
 	/* 
 	   Initialize the libticalcs library 
 	 */
-        ticalc_set_printl(ticalcs_printl);
+        //ticalc_set_printl(ticalcs_printl);
 	ticalc_init();
 	ticalc_set_cable(&link_cable);
 	ticalc_set_calc(options.lp.calc_type, &ti_calc);
