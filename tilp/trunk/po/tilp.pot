@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-03 23:13+0200\n"
+"POT-Creation-Date: 2004-04-04 15:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,7 +125,7 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: src/comm.c:52
+#: src/comm.c:53
 msgid "comm.c: GUI loading failed !\n"
 msgstr ""
 
@@ -1104,8 +1104,8 @@ msgstr ""
 msgid "_24h"
 msgstr ""
 
-#: glade/clock-2.str:14 glade/clock-2.str:24 glade/comm-2.str:11
-#: glade/comm-2.str:27 glade/comm-2.str:37 glade/extprgms-2.str:11
+#: glade/clock-2.str:14 glade/clock-2.str:24 glade/comm-2.str:10
+#: glade/comm-2.str:25 glade/comm-2.str:35 glade/extprgms-2.str:11
 #: glade/extprgms-2.str:15 glade/extprgms-2.str:20 glade/extprgms-2.str:24
 #: glade/extprgms-2.str:29 glade/extprgms-2.str:32 glade/extprgms-2.str:37
 #: glade/extprgms-2.str:40 glade/user_boxes-2.str:9
@@ -1177,140 +1177,144 @@ msgstr ""
 msgid "Link cable model."
 msgstr ""
 
-#: glade/comm-2.str:10 glade/comm-2.str:12
+#: glade/comm-2.str:11
 msgid "GrayLink"
 msgstr ""
 
-#: glade/comm-2.str:13
+#: glade/comm-2.str:12
 msgid "BlackLink"
 msgstr ""
 
-#: glade/comm-2.str:14
+#: glade/comm-2.str:13
 msgid "SilverLink"
 msgstr ""
 
-#: glade/comm-2.str:15
+#: glade/comm-2.str:14
 msgid "ParallelLink"
 msgstr ""
 
-#: glade/comm-2.str:16
+#: glade/comm-2.str:15
 msgid "AvrLink"
 msgstr ""
 
-#: glade/comm-2.str:17
+#: glade/comm-2.str:16
 msgid "VTi"
 msgstr ""
 
-#: glade/comm-2.str:18
+#: glade/comm-2.str:17
 msgid "TiEmu"
 msgstr ""
 
-#: glade/comm-2.str:19
+#: glade/comm-2.str:18
 msgid "virtual"
 msgstr ""
 
-#: glade/comm-2.str:20
+#: glade/comm-2.str:19
 msgid "Delay:    "
 msgstr ""
 
-#: glade/comm-2.str:21
+#: glade/comm-2.str:20
 msgid "in micro-seconds"
 msgstr ""
 
-#: glade/comm-2.str:22
+#: glade/comm-2.str:21
 msgid "Timeout:"
 msgstr ""
 
-#: glade/comm-2.str:23
+#: glade/comm-2.str:22
 msgid "in deci-seconds"
 msgstr ""
 
-#: glade/comm-2.str:24
+#: glade/comm-2.str:23
 msgid "Port:"
 msgstr ""
 
-#: glade/comm-2.str:25
+#: glade/comm-2.str:24
 msgid "A port number."
 msgstr ""
 
-#: glade/comm-2.str:26 glade/comm-2.str:28
+#: glade/comm-2.str:26
 msgid "custom"
 msgstr ""
 
-#: glade/comm-2.str:29
+#: glade/comm-2.str:27
 msgid "#1"
 msgstr ""
 
-#: glade/comm-2.str:30
+#: glade/comm-2.str:28
 msgid "#2"
 msgstr ""
 
-#: glade/comm-2.str:31
+#: glade/comm-2.str:29
 msgid "#3"
 msgstr ""
 
-#: glade/comm-2.str:32
+#: glade/comm-2.str:30
 msgid "#4"
 msgstr ""
 
-#: glade/comm-2.str:33
+#: glade/comm-2.str:31
 msgid "Attemp to automatically determine the hand-held model."
 msgstr ""
 
-#: glade/comm-2.str:34
+#: glade/comm-2.str:32
 msgid "_Auto-detect"
 msgstr ""
 
-#: glade/comm-2.str:35
+#: glade/comm-2.str:33
 msgid "Calc:"
 msgstr ""
 
-#: glade/comm-2.str:36
+#: glade/comm-2.str:34
 msgid "Hand-held model"
 msgstr ""
 
-#: glade/comm-2.str:38
+#: glade/comm-2.str:36
 msgid "TI73"
 msgstr ""
 
-#: glade/comm-2.str:39
+#: glade/comm-2.str:37
 msgid "TI82"
 msgstr ""
 
-#: glade/comm-2.str:40
+#: glade/comm-2.str:38
 msgid "TI83"
 msgstr ""
 
-#: glade/comm-2.str:41
+#: glade/comm-2.str:39
 msgid "TI83+"
 msgstr ""
 
-#: glade/comm-2.str:42
+#: glade/comm-2.str:40
 msgid "TI85"
 msgstr ""
 
-#: glade/comm-2.str:43
+#: glade/comm-2.str:41
 msgid "TI86"
 msgstr ""
 
-#: glade/comm-2.str:44
+#: glade/comm-2.str:42
 msgid "TI89"
 msgstr ""
 
-#: glade/comm-2.str:45
+#: glade/comm-2.str:43
 msgid "TI92"
 msgstr ""
 
-#: glade/comm-2.str:46
+#: glade/comm-2.str:44
 msgid "TI92+"
 msgstr ""
 
-#: glade/comm-2.str:47
+#: glade/comm-2.str:45
 msgid "V200PLT"
 msgstr ""
 
-#: glade/comm-2.str:48
+#: glade/comm-2.str:46
 msgid "Settings"
+msgstr ""
+
+#: glade/comm-2.str:47
+msgid "Have a problem ? Check-out the log:"
 msgstr ""
 
 #.

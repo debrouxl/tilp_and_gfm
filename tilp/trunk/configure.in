@@ -50,12 +50,12 @@ if test x$PKG_CONFIG = xno ; then
 fi
 
 # check for ticables presence
-PKG_CHECK_MODULES(TICABLES, ticables >= 3.7.1)
+PKG_CHECK_MODULES(TICABLES, ticables >= 3.8.0)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
 # check for tifiles presence
-PKG_CHECK_MODULES(TIFILES, tifiles >= 0.5.5)
+PKG_CHECK_MODULES(TIFILES, tifiles >= 0.5.7)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 

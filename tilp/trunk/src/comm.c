@@ -31,6 +31,7 @@
 #include "toolbar.h"
 #include "ctree.h"
 #include "tilp_core.h"
+#include "logfile.h"
 
 // uncomment it to get more than 1 USB port
 //#define MORE_USB_PORTS
@@ -398,4 +399,12 @@ comm_spinbutton_timeout_changed        (GtkEditable     *editable,
 {
   tmp_lp.timeout =
     gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+}
+
+
+void
+comm_button_log_clicked                (GtkButton       *button,
+                                        gpointer         user_data)
+{
+  display_logfile_dbox();
 }
