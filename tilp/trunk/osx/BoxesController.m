@@ -32,29 +32,6 @@ extern int is_active;
 
     // Init the instance pointer
     objects_ptr->myBoxesController = self;
-
-    objects_ptr->dlgboxentryWindow = dlgboxentryWindow;
-    objects_ptr->dlgboxentryEntry = dlgboxentryEntry;
-    objects_ptr->dlgboxentryText = dlgboxentryText;
-        
-    objects_ptr->user1Window = user1Window;
-    objects_ptr->user1Text = user1Text;
-    objects_ptr->user1Button = user1Button;
-    
-    objects_ptr->user2Window = user2Window;
-    objects_ptr->user2Text = user2Text;
-    objects_ptr->user2Button1 = user2Button1;
-    objects_ptr->user2Button2 = user2Button2;
-
-    objects_ptr->user3Window = user3Window;
-    objects_ptr->user3Text = user3Text;
-    objects_ptr->user3Button1 = user3Button1;
-    objects_ptr->user3Button2 = user3Button2;
-    objects_ptr->user3Button3 = user3Button3;
-        
-    objects_ptr->remoteControlWindow = remoteControlWindow;
-    objects_ptr->remoteControlTextArea = remoteControlTextArea;
-    objects_ptr->term_mode = REMOTE;
 }
 
 - (void)user1ButtonPush:(id)sender
@@ -140,7 +117,7 @@ extern int is_active;
     // FIXME OS X
     // fix the help text wrt the special key combos
       
-    if ((sender == remoteControlRemoteMode) && (objects_ptr->term_mode != REMOTE))
+    if ((sender == remoteControlRemoteMode) && (term_mode != REMOTE))
         {
             // leaving terminal mode
             ti_calc.send_key(KEY92_F5);
@@ -150,15 +127,15 @@ extern int is_active;
         
             [remoteControlTerminalMode setState:NSOffState];
             
-            objects_ptr->term_mode = REMOTE;
+            term_mode = REMOTE;
             
             [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
         }
-    else if ((sender == remoteControlTerminalMode) && (objects_ptr->term_mode != TERM))
+    else if ((sender == remoteControlTerminalMode) && (term_mode != TERM))
         {
             [remoteControlRemoteMode setState:NSOffState];
             
-            objects_ptr->term_mode = TERM;
+            term_mode = TERM;
             
             [remoteControlTextArea setStringValue:@"\nYou are in terminal mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
             

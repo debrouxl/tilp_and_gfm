@@ -7,10 +7,6 @@
 
 @interface TilpController : NSObject
 {
-    IBOutlet id BoxesController;
-    IBOutlet id MenuController;
-    IBOutlet id PrefsController;
-
     IBOutlet id dirlistTree;
     IBOutlet id mainWindow;
 
@@ -18,6 +14,11 @@
     IBOutlet id numberOfFolders;
     IBOutlet id numberOfVars;
     IBOutlet id memoryUsed;
+ 
+    IBOutlet id myBoxesController;
+    IBOutlet id myMenuController;
+    IBOutlet id myPrefsController;
+    IBOutlet id mySheetsController;
  
     SimpleTreeNode *dirlistData;
     
@@ -34,5 +35,8 @@
     NSMutableDictionary *tilpConfig;
     NSUserDefaults *prefs;
 }
+
+- (void)refreshOutline;
+- (void)refreshInfos;
 
 @end

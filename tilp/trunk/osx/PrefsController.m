@@ -227,7 +227,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
     else
         [screenModeMatrix setState:NSOnState atRow:1 column:0];
         
-    if ((options.lp.timeout > 0) && (options.lp.timeout <= 300))
+    if ((options.lp.timeout > 0) && (options.lp.timeout <= 1000))
         [linkTimeoutField setIntValue:options.lp.timeout];
     else // defaults to 150
         [linkTimeoutField setIntValue:150];

@@ -95,6 +95,14 @@
 	* Code cleaning
 	      * New class SheetsController, handling sheets and pbars refresh
 	      * Got rid of the ugly cocoa_pbars_ptr struct
+	      * Got rid of cocoa_outline_refresh.[mh], integrated refresh_outline()
+	        and refresh_infos() into TilpController
+		  => new methods refreshOutline and refreshInfos
+	      * Got rid of most of the cocoa_objects_ptr struct
+	* Various fixes
+	      * pbar_type4 glitch when sending an existing var
+	      * Timeout now in range 0 - 1000 ms (was 0 - 300 ms before,
+	        in - [PrefsController showPrefsSheet])
 
 
 

@@ -11,7 +11,6 @@
     IBOutlet id dlgboxentryEntry;
     IBOutlet id dlgboxentryText;
     IBOutlet id dlgboxentryWindow;
-    IBOutlet id MenuController;
     IBOutlet id pbar1PBar;
     IBOutlet id pbar1Rate;
     IBOutlet id pbar1Window;
@@ -43,14 +42,19 @@
     IBOutlet id user3Button3;
     IBOutlet id user3Text;
     IBOutlet id user3Window;
-    IBOutlet id PrefsController;
     IBOutlet id remoteControlRemoteMode;
     IBOutlet id remoteControlTerminalMode;
     IBOutlet id remoteControlTextArea;
     IBOutlet id remoteControlWindow;
     IBOutlet id screendumpImage;
     IBOutlet id screendumpWindow;
-    IBOutlet id TilpController;
+    
+    IBOutlet id myTilpController;
+    IBOutlet id myPrefsController;
+    IBOutlet id myMenuController;
+    IBOutlet id mySheetsController;
+    
+    int term_mode;
 }
 
 - (void)user1ButtonPush:(id)sender;

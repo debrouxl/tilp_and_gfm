@@ -12,6 +12,10 @@
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
+// This code cannot go into the PrefsController class
+// because it is used before the application is completely
+// initialized, so no classes are available.
+
 void
 rc_set_unused_items(void)
 {

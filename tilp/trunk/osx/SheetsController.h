@@ -49,6 +49,11 @@
     IBOutlet id user3Window;
     IBOutlet id mainWindow;
     
+    IBOutlet id myTilpController;
+    IBOutlet id myBoxesController;
+    IBOutlet id myMenuController;
+    IBOutlet id myPrefsController;
+    
     id pbar1;
     id pbar2;
     id pbar_text;

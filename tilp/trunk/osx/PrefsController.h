@@ -6,7 +6,6 @@
 
 @interface PrefsController : NSObject
 {
-    IBOutlet id BoxesController;
     IBOutlet id calcType73;
     IBOutlet id calcType82;
     IBOutlet id calcType83;
@@ -27,7 +26,6 @@
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
     IBOutlet id mainWindow;
-    IBOutlet id MenuController;
     IBOutlet id orderDecreasing;
     IBOutlet id orderIncreasing;
     IBOutlet id pathModeFull;
@@ -42,7 +40,6 @@
     IBOutlet id sortByName;
     IBOutlet id sortBySize;
     IBOutlet id sortByType;
-    IBOutlet id TilpController;
     IBOutlet id transferModeManual;
     IBOutlet id transferModeSilent;
     
@@ -54,6 +51,11 @@
     IBOutlet id calcTypeMatrix;
     IBOutlet id screenFormatMatrix;
     IBOutlet id screenModeMatrix;
+    
+    IBOutlet id myBoxesController;
+    IBOutlet id myMenuController;
+    IBOutlet id myTilpController;
+    IBOutlet id mySheetsController;
 }
 - (IBAction)prefsAdvanced:(id)sender;
 - (IBAction)prefsClose:(id)sender;

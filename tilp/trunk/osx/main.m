@@ -57,6 +57,7 @@ int main(int argc, const char *argv[], char **arge)
   objects_ptr->myMenuController = nil;
   objects_ptr->myPrefsController = nil;
   objects_ptr->myTilpController = nil;
+  objects_ptr->mySheetsController = nil;
   objects_ptr->tilpConfig = nil;
   objects_ptr->prefs = nil;
      

@@ -15,7 +15,6 @@
 #include "cocoa_config.h"
 #include "cocoa_structs.h"
 #include "cocoa_sheets.h"
-#include "cocoa_outline_refresh.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -24,6 +23,7 @@ extern struct screenshot ti_screen;
 extern int is_active;
 
 #import "MenuController.h"
+#import "TilpController.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
@@ -182,22 +182,15 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // maybe use the Command key...
     // forget key combos, will make a keyboard...
 
-    id remoteControlWindow;
-    id remoteControlTextArea;
-    
     if (is_active)
         return;
-    
-    remoteControlWindow = objects_ptr->remoteControlWindow;
-    
+        
     if ([remoteControlWindow isVisible])
         {
             [remoteControlWindow orderFront:self];
             return;
         }
-    
-    remoteControlTextArea = objects_ptr->remoteControlTextArea;
-    
+        
     [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
     
     [remoteControlWindow makeKeyAndOrderFront:self];
@@ -287,8 +280,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     if (cb_dirlist() != 0)
         return;
         
-    refresh_outline();
-    refresh_infos();
+    [myTilpController refreshOutline];
+    [myTilpController refreshInfos];
 }
 
 - (IBAction)doRestore:(id)sender
@@ -320,7 +313,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         file:nil
         types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
         modalForWindow:mainWindow
-        modalDelegate:BoxesController
+        modalDelegate:myBoxesController
         didEndSelector:@selector(doRestoreDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
 }
@@ -342,7 +335,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [sp beginSheetForDirectory:NSHomeDirectory()
         file:@""
         modalForWindow:mainWindow
-        modalDelegate:BoxesController
+        modalDelegate:myBoxesController
         didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
         contextInfo:sp];
 }
@@ -369,7 +362,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         file:nil
         types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
         modalForWindow:mainWindow
-        modalDelegate:BoxesController
+        modalDelegate:myBoxesController
         didEndSelector:@selector(sendFlashAppDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
 }
@@ -403,7 +396,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         file:nil
         types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
         modalForWindow:mainWindow
-        modalDelegate:BoxesController
+        modalDelegate:myBoxesController
         didEndSelector:@selector(sendAMSDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
 }
@@ -465,7 +458,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile
                                     modalForWindow:mainWindow
-                                    modalDelegate:BoxesController
+                                    modalDelegate:myBoxesController
                                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                     contextInfo:sp];
                                     
@@ -505,7 +498,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                     [sp beginSheetForDirectory:NSHomeDirectory()
                                         file:proposedFile
                                         modalForWindow:mainWindow
-                                        modalDelegate:BoxesController
+                                        modalDelegate:myBoxesController
                                         didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                         contextInfo:sp];
                                 }
@@ -538,7 +531,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                 file:proposedFile
                                 modalForWindow:mainWindow
-                                modalDelegate:BoxesController
+                                modalDelegate:myBoxesController
                                 didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                 contextInfo:sp];
 
@@ -565,7 +558,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                 [sp beginSheetForDirectory:NSHomeDirectory()
                     file:proposedFile
                     modalForWindow:mainWindow
-                    modalDelegate:BoxesController
+                    modalDelegate:myBoxesController
                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                     contextInfo:sp];
 
@@ -602,7 +595,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                 [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile
                                     modalForWindow:mainWindow
-                                    modalDelegate:BoxesController
+                                    modalDelegate:myBoxesController
                                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                     contextInfo:sp];
                             }	  

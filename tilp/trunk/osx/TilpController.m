@@ -17,11 +17,12 @@
 #include "../src/cb_misc.h"
 #include "../src/main.h"
 #include "../src/cb_calc.h"
+#include "../src/files.h"
+#include "../src/info.h"
 
 #include "cocoa_sheets.h"
 #include "cocoa_structs.h"
 #include "cocoa_refresh.h"
-#include "cocoa_outline_refresh.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -117,9 +118,8 @@ struct gui_fncts gui_functions;
     
     [dirlistData release];
     dirlistData = nil;
-    objects_ptr->dirlistData = NULL;
-    
-    // at this time, nobody uses these structs anymore (hopefully...)
+        
+    // at this time, nobody uses this struct anymore (hopefully...)
     // if you get any segfault/sigbus problem on exiting, rank this #1 :)
     free(objects_ptr);
     
@@ -155,18 +155,8 @@ struct gui_fncts gui_functions;
 
     // Init the instance pointer
     objects_ptr->myTilpController = self;
-  
-    objects_ptr->mainWindow = mainWindow;
-    
-    objects_ptr->dirlistTree = dirlistTree;
-    
-    objects_ptr->currentFolder = currentFolder;
-    objects_ptr->numberOfFolders = numberOfFolders;
-    objects_ptr->numberOfVars = numberOfVars;
-    objects_ptr->memoryUsed = memoryUsed;
       
     objects_ptr->dlgbox_data = NULL;
-    objects_ptr->box_button = -1;
     
     // Init the GUI independant functions
     gui_functions.msg_box = create_cocoa_msg_sheet;
@@ -197,17 +187,221 @@ struct gui_fncts gui_functions;
     [column setDataCell:imageAndTextCell];
     
     // init the content of the NSOutlineView
-    refresh_outline();
+    [self refreshOutline];
     
     // register for dragging
     [dirlistTree registerForDraggedTypes:[NSArray arrayWithObjects:@"NSFilenamesPboardType", nil]];
     
-    //If variables have been passed on the command line in GUI mode then
-    //send them
+    // If variables have been passed on the command
+    // line in GUI mode then send them
     if(working_mode == MODE_OSX)
         {
             cb_send_cmdline();
         }
+}
+
+// outline view and infos refresh
+
+- (void)refreshOutline
+{
+    int folderPos = 0; // position in tiVarsArray
+    int varPos = 0; // position in the array representing the folder
+
+    struct varinfo *q;
+
+    NSMutableDictionary *content;
+    NSMutableDictionary *tmpDict;
+    NSMutableArray *mainEntries;
+    NSMutableArray *tiVarsArray;
+    NSMutableArray *tmpArray;
+  
+    GList *p;
+    
+    switch(options.ctree_sort)
+        {
+            case SORT_BY_NAME:
+                //sort_cfiles_by_name(ctree_win.varlist);
+                break;
+            case SORT_BY_INFO:
+                sort_cfiles_by_info(ctree_win.varlist);
+                break;
+            case SORT_BY_TYPE:
+                sort_cfiles_by_type(ctree_win.varlist);
+                break;
+            case SORT_BY_SIZE:
+                sort_cfiles_by_size(ctree_win.varlist);
+                break;
+        }
+
+    // init our big fscking dictionary of the d34th
+    
+    content = [[NSMutableDictionary alloc] init];
+    
+    [content setObject:@"OVRoot" forKey:@"Group"];
+    
+    mainEntries = [[NSMutableArray alloc] init];
+    
+    [content setObject:mainEntries forKey:@"Entries"];
+    
+    // general handlers => screen, ROM, keyboard, ID list, backup, ...
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:0];
+    
+    [tmpDict setObject:@"Screen" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"screen_mini.tiff"] forKey:@"Image"];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:1];
+    
+    [tmpDict setObject:@"ROM (AMS)" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+   
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:2];
+    
+    [tmpDict setObject:@"Memory" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:3];
+    
+    [tmpDict setObject:@"ID List" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:4];
+    
+    [tmpDict setObject:@"Keyboard" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"keyboard_mini.tiff"] forKey:@"Image"];
+    
+    // now the real fun is about to begin
+    
+    tiVarsArray = [[NSMutableArray alloc] init];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:5];
+    
+    [tmpDict setObject:@"TI Variables" forKey:@"Group"];
+    [tmpDict setObject:tiVarsArray forKey:@"Entries"];
+    
+    // ok, we must now populate our big fscking dictionary with the
+    // list of variables
+    
+    p = ctree_win.varlist;
+
+    while (p != NULL)
+        {
+            q = (struct varinfo *)(p->data);
+            
+            if((options.lp.calc_type != CALC_TI83P) && ((q->vartype) ==  ti_calc.tixx_flash(options.lp.calc_type)))
+                {
+                    p = p->next;
+                    continue;
+                }
+            
+            if (q->is_folder)
+                {
+                    // dictionary that will hold the stuff
+                    tmpDict = [[NSMutableDictionary alloc] init];
+                    
+                    [tiVarsArray insertObject:tmpDict atIndex:folderPos];
+                    folderPos++;
+                    
+                    // array that will hold all the vars for this folder
+                    tmpArray = [[NSMutableArray alloc] init];
+                    
+                    [tmpDict setObject:tmpArray forKey:@"Entries"];
+                    [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Group"];
+                    
+                    // we're in a new folder, so...
+                    varPos = 0;
+                }
+            else
+                {
+                    // dictionary that will hold this var
+                    tmpDict = [[NSMutableDictionary alloc] init];
+                
+                    switch (q->varlocked)  // Uh, you'd better #define'd this type of things, Romain
+                        {
+                            case 1:
+                                [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
+                                break;
+                            case 3:
+                                [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
+                                break;
+                        }
+                    
+                    [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+                    [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
+                    [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
+                    [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+        
+                    [tmpArray insertObject:tmpDict atIndex:varPos];
+                    varPos++;
+                }
+               
+            // next one
+            p = p->next;
+        }
+    
+     // get a tree from our big fscking dictionary...
+    
+    // release the preceding dirlistData if it exists
+    if (dirlistData != nil)
+        {
+            [dirlistData release];
+            dirlistData = nil;
+        }
+    
+    dirlistData = [[SimpleTreeNode treeFromDictionary:content] retain];
+        
+    // release the big fscking dictionary. Feel better, eh ? :)
+    [content release];
+    content = nil;
+    
+    // ... then *HUMPFFF* pass the BAAAAAAALLLLLLLLLLLLLLLLLLLLLLL !!! 
+    [dirlistTree reloadData];
+        
+    // ball passed. blargh.
+    
+    // expand the "TI Variables" item if it has children
+    // NOTICE : the itemAtRow: argument will change if you add/remove items
+    // before the "TI Variables" item...
+    if (ctree_win.varlist != NULL)
+        [dirlistTree expandItem:[dirlistTree itemAtRow:5]];
+    else
+        [dirlistTree collapseItem:[dirlistTree itemAtRow:5]];
+}
+
+- (void)refreshInfos
+{
+    NSString *strCurrentFolder;
+    NSString *strNumberOfFolders;
+    NSString *strNumberOfVars;
+    NSString *strMemoryUsed;
+    
+    int vars = 0;
+    int folders = 0;
+    int mem = 0;
+
+    number_of_folders_vars_and_mem(&folders, &vars, &mem);
+  
+    strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
+    strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
+    strMemoryUsed = [NSString stringWithFormat:@"%u", mem];
+    strCurrentFolder = [NSString stringWithCString:ctree_win.cur_folder];
+
+    [currentFolder setStringValue:strCurrentFolder];
+    [numberOfFolders setStringValue:strNumberOfFolders];
+    [numberOfVars setStringValue:strNumberOfVars];
+    [memoryUsed setStringValue:strMemoryUsed];
 }
 
 
@@ -216,10 +410,6 @@ struct gui_fncts gui_functions;
 
 - (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-    // this method is the first called by the NSOutlineView, so it
-    // sets the dirlistData variable -- this is a workaround
-    dirlistData = objects_ptr->dirlistData;
-
     return [SAFENODE(item) numberOfChildren];
 }
 

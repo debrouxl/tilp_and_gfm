@@ -6,10 +6,6 @@
 
 @interface MenuController : NSObject
 {
-    IBOutlet id BoxesController;
-    IBOutlet id PrefsController;
-    IBOutlet id TilpController;
-
     IBOutlet id mainWindow;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;
@@ -17,7 +13,14 @@
     IBOutlet id thanksPanelText;
     IBOutlet id msgSheetText;
     IBOutlet id msgSheetWindow;
-    
+    IBOutlet id remoteControlTextArea;
+    IBOutlet id remoteControlWindow;
+ 
+    IBOutlet id myBoxesController;
+    IBOutlet id myPrefsController;
+    IBOutlet id myTilpController;
+    IBOutlet id mySheetsController;
+
     NSMutableDictionary *toolbarItems;
 }
 
