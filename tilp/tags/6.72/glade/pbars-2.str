@@ -1,0 +1,25 @@
+/*
+ * Chaînes de caractères à traduire générées par
+ * Glade. Ajouter ce fichier au fichier POTFILE.in
+ * de votre projet. NE PAS compiler ce fichier
+ * avec le reste de votre application.
+ */
+
+gchar *s = N_("Title 1");
+gchar *s = N_("Transfer status:");
+gchar *s = N_("Rate: 0.00 Kb/s");
+gchar *s = N_("Title 2");
+gchar *s = N_("Message.");
+gchar *s = N_("Title 3");
+gchar *s = N_("Total transfer:");
+gchar *s = N_("Current transfer:");
+gchar *s = N_("Rate: 0.0 Kbytes/s");
+gchar *s = N_("Title 4");
+gchar *s = N_("Current transfer:");
+gchar *s = N_("Text");
+gchar *s = N_("Rate: 0.0 Kbytes/s");
+gchar *s = N_("Title 5");
+gchar *s = N_("Total transfer:");
+gchar *s = N_("Current transfer:");
+gchar *s = N_("Text");
+gchar *s = N_("Rate: 0.0 Kbytes/s");
