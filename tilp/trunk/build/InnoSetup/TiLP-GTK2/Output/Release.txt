@@ -3,7 +3,7 @@
 
 
 Previous version: 6.67-beta2 (11/05/2003)
-Current version:  6.68		 (04/04/2004)
+Current version:  6.68	     (04/04/2004)
 
 
 TiLP is available for 4 platforms:

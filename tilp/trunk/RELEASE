@@ -2,14 +2,12 @@
 
 
 
-Previous version: 6.08-stable (17/12/2002)
-Current version:  6.67-beta2  (11/05/2003)
+Previous version: 6.67-beta2 (11/05/2003)
+Current version:  6.68	     (04/04/2004)
 
 
 TiLP is available for 4 platforms:
-Linux (GTK), Windows (GTK/MFC), Mac OS-X (Cocoa) and FreeBSD (GTK).
-
-The MFC version is obsolete now (6.08) but is still provided.
+Linux (GTK), Windows (GTK), Mac OS-X (Cocoa) and FreeBSD (GTK).
 
 If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 a Linux/Win32/Mac OS-X driver on the Linux Programmer Group at 
@@ -21,24 +19,14 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- Drag & Drop
-        - plug-in support
-	- send TI83+ vars directly to FLASH
-	- TI82 ROM dumping
-	- i18n (internationalization) support: french, deutsch (partial)
-	- greek & latin characters are displayed fine in both frames
-	- Group File Manager moved as 'Group File Viewer' plugin
+	- none
 
 Improvements:
 -------------
 
-	- GUI migration from GTK+ 1.2 to 2.0
-	- GUI reworked to be 'Human Interface Guidelines' compliant
-	- source code overhaul and clean-up
-	- clock support for TI89/92+/V200
-	- TI89/92/92+/V200 ROM dumping cleanly exits
-	- TI73/83+ & 82/83: redundant vars fixed
-	- the usual bug fixes: logging system, TI83+ & V200 types, ...
+	- communication box simplified
+	- bug fixes
+	- some internal clean-ups
 
 Known problems:
 ---------------

@@ -1,0 +1,11 @@
+Directory Layout:
+
+C:\base_folder\ticables
+C:\base_folder\ticalcs
+C:\base_folder\tifiles
+C:\base_folder\tilp
+
+Get GTK+ development package at 'http://www.dropline.net/gtk/download.php' and
+install it to C:\Gtk2Dev.
+
+Use MSVC 5.0 mini, 6.0 is better.

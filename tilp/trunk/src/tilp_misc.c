@@ -106,7 +106,9 @@ static void default_config_win32(void)
 	       "-adobe-courier-medium-r-normal--12-120-75-75-p-70-iso8859-1");
 	options.console_mode = 0;
 	locale = g_win32_getlocale();
-	fprintf(stdout, "Current locale: <%s>\n", locale);
+	
+	DISPLAY("current locale: <%s>\n", locale);
+	
 	g_free(locale);
 	options.working_dir = g_get_current_dir();
 }

@@ -128,6 +128,6 @@ void tilp_guigtk_set_refresh(void)
 {
   ticalc_set_update(&info_update, gtkgui_start, gtkgui_stop,
 		    gtkgui_refresh, gtkgui_pbar, gtkgui_label);
-  fprintf(stdout, _("Initialized in GTK+ mode.\n"));
+  DISPLAY(_("Initialized in GTK+ mode.\n"));
   return;
 }
