@@ -62,9 +62,9 @@ static void refresh_pbar1()
       
       rate = dr->count / toCURRENT(dr->start);
       g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", rate / 1000);
-      gtk_label_set(GTK_LABEL(p_win.label_rate), buffer);
-      gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar1),
-			      info_update.percentage);
+      gtk_label_set_text(GTK_LABEL(p_win.label_rate), buffer);
+      gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar1),
+				    info_update.percentage);
       while (gtk_events_pending()) 
 	{
 	  gtk_main_iteration();
@@ -82,8 +82,8 @@ static void refresh_pbar2()
 	return;
       else
 	info_update.prev_main_percentage = info_update.main_percentage;
-      gtk_progress_bar_update(GTK_PROGRESS_BAR(p_win.pbar2),
-			      info_update.main_percentage);
+      gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar2),
+				    info_update.main_percentage);
       while (gtk_events_pending()) 
 	{
 	  gtk_main_iteration();
@@ -106,7 +106,7 @@ static void gtkgui_label()
   if (p_win.label == NULL)
     return;
 
-  gtk_label_set(GTK_LABEL(p_win.label), info_update.label_text);
+  gtk_label_set_text(GTK_LABEL(p_win.label), info_update.label_text);
   while (gtk_events_pending()) 
     {
       gtk_main_iteration();

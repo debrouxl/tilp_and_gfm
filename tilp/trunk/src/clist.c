@@ -179,7 +179,6 @@ void clist_refresh(void)
 	GList *dirlist;
 	gsize br, bw;
 	gchar *utf8;
-	int i;
 
 	// reparse folders
 	tilp_clist_selection_destroy();

@@ -101,7 +101,7 @@ void version(void)
 	ticable_DISPLAY_settings(DSP_ON);
 #endif
 	DISPLAY(_
-		("TiLP - Version %s, (C) 1999-2003 Romain Liévin <roms@tilp.info>\n"),
+		("TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"),
 		TILP_VERSION);
 
 #ifdef __BSD__

@@ -68,10 +68,10 @@ void labels_refresh(void)
 		break;
 	}
 
-	gtk_label_set(GTK_LABEL(clabel_win.label21), buffer);
+	gtk_label_set_text(GTK_LABEL(clabel_win.label21), buffer);
 	snprintf(buffer, MAXCHARS, _("Current directory: %s"),
 		 clist_win.current_dir);
 
 	utf8 = g_filename_to_utf8(buffer, -1, &br, &bw, NULL);
-	gtk_label_set(GTK_LABEL(clabel_win.label22), format(utf8, 45));
+	gtk_label_set_text(GTK_LABEL(clabel_win.label22), format(utf8, 45));
 }

@@ -87,7 +87,7 @@ int main(int argc, char *argv[], char **arge)
 	signal(SIGINT, signal_handler);
 
 	/* Init the tilp core */
-	tilp_main(argc, argv, arge);
+	tilp_main(argc, (const char **)argv, arge);
 
 	/* Init GTK+ */
 	//gtk_set_locale();

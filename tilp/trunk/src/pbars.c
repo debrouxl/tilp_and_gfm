@@ -60,7 +60,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	pbar_window = glade_xml_get_widget(xml, "pbar2_dbox");
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label = glade_xml_get_widget(xml, "label3");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	while (gtk_events_pending())
 		gtk_main_iteration();
 	gtk_widget_show_all(pbar_window);
@@ -108,7 +108,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 	pbar_window = glade_xml_get_widget(xml, "pbar4_dbox");
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label = glade_xml_get_widget(xml, "label15");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar4");
 	p_win.label_rate = glade_xml_get_widget(xml, "label22");
 	while (gtk_events_pending())
@@ -135,7 +135,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	pbar_window = glade_xml_get_widget(xml, "pbar5_dbox");
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label = glade_xml_get_widget(xml, "label19");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar6");
 	p_win.pbar2 = glade_xml_get_widget(xml, "progressbar5");
 	p_win.label_rate = glade_xml_get_widget(xml, "label23");
@@ -175,7 +175,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label3");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	while (gtk_events_pending())
 		gtk_main_iteration();
 	gtk_widget_show_all(pbar_window);
@@ -213,7 +213,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label15");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	p_win.pbar1 =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar4");
 	p_win.label_rate =
@@ -236,7 +236,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label19");
-	gtk_label_set(GTK_LABEL(p_win.label), text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	p_win.pbar1 =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar6");
 	p_win.pbar2 =

@@ -267,7 +267,7 @@ GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
 	  msg_box("Error",
 		  "Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
 	} else {
-	  GtkDialog *dialog;
+	  GtkWidget *dialog;
 	  GTimer *timer;
 	  const gchar *message =
 	    "A web browser has been laucnhed: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
@@ -312,7 +312,7 @@ static void go_to_bookmark(const char *link)
 		msg_box("Error",
 			"Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
 	} else {
-		GtkDialog *dialog;
+		GtkWidget *dialog;
 		GTimer *timer;
 		const gchar *message =
 		    "A web browser has been laucnhed: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";

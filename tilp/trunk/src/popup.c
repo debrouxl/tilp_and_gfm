@@ -494,9 +494,9 @@ static void rbm_change_drive_activate(GtkMenuItem * menuitem,
 static void rbm_plugin_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	GtkWidget *child = GTK_BIN(menuitem)->child;
-	gchar *plugin_name;
+	const gchar *plugin_name;
 
-	gtk_label_get(GTK_LABEL(child), &plugin_name);
+	plugin_name = gtk_label_get_text(GTK_LABEL(child));
 	tilp_plugins_open(plugin_name);
 	tilp_plugins_run();
 	tilp_plugins_read((gchar *) user_data);
@@ -510,16 +510,15 @@ static void on_clist_rbm_show1(GtkWidget * widget, gpointer user_data)
 	GtkWidget *plugin_item;
 
 	menu_item = gtk_menu_item_new_with_label(_("Open with"));
-	gtk_widget_ref(menu_item);
-	gtk_object_set_data_full(GTK_OBJECT(menu), "menu_item", menu_item,
-				 (GtkDestroyNotify) gtk_widget_unref);
+	g_object_set_data_full(G_OBJECT(menu), "menu_item",
+			       gtk_widget_ref(menu_item),
+			       (GDestroyNotify)gtk_widget_unref);
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 	plugin_menu = gtk_menu_new();
-	gtk_widget_ref(plugin_menu);
-	gtk_object_set_data_full(GTK_OBJECT(menu), "plugin_menu",
-				 plugin_menu,
-				 (GtkDestroyNotify) gtk_widget_unref);
+	g_object_set_data_full(G_OBJECT(menu), "plugin_menu",
+			       gtk_widget_ref(plugin_menu),
+			       (GDestroyNotify)gtk_widget_unref);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menu_item), plugin_menu);
 	if (clist_win.selection == NULL) {
 		plugin_item =
@@ -547,10 +546,9 @@ static void on_clist_rbm_show1(GtkWidget * widget, gpointer user_data)
 			gtk_widget_show(plugin_item);
 			gtk_container_add(GTK_CONTAINER(plugin_menu),
 					  plugin_item);
-			gtk_signal_connect(GTK_OBJECT(plugin_item),
+			g_signal_connect((gpointer)plugin_item,
 					   "activate",
-					   GTK_SIGNAL_FUNC
-					   (rbm_plugin_activate), f->name);
+					   G_CALLBACK(rbm_plugin_activate), f->name);
 		}
 		if (i == 0) {
 			plugin_item =
@@ -574,17 +572,15 @@ static void on_clist_rbm_show2(GtkWidget * widget, gpointer user_data)
 	gchar buffer[8];
 	gint available_drives[27];	// A..Z -> 26 letters
 	change_drive = gtk_menu_item_new_with_label(_("Change drive"));
-	gtk_widget_ref(change_drive);
-	gtk_object_set_data_full(GTK_OBJECT(menu), "change_drive",
-				 change_drive,
-				 (GtkDestroyNotify) gtk_widget_unref);
+	g_object_set_data_full(G_OBJECT(menu), "change_drive",
+			       gtk_widget_ref(change_drive),
+			       (GDestroyNotify)gtk_widget_unref);
 	gtk_widget_show(change_drive);
 	gtk_container_add(GTK_CONTAINER(menu), change_drive);
 	change_drive_menu = gtk_menu_new();
-	gtk_widget_ref(change_drive_menu);
-	gtk_object_set_data_full(GTK_OBJECT(menu), "change_drive_menu",
-				 change_drive_menu,
-				 (GtkDestroyNotify) gtk_widget_unref);
+	g_object_set_data_full(G_OBJECT(menu), "change_drive_menu",
+			       gtk_widget_ref(change_driver_menu),
+			       (GDestroyNotify)gtk_widget_unref);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(change_drive),
 				  change_drive_menu);
 	curdrive = _getdrive();
@@ -595,17 +591,14 @@ static void on_clist_rbm_show2(GtkWidget * widget, gpointer user_data)
 			g_snprintf(buffer, 8, "%c:", drive + 'A' - 1);
 			available_drives[drive] = drive + 'A' - 1;
 			c_drive = gtk_menu_item_new_with_label(buffer);
-			gtk_widget_ref(c_drive);
-			gtk_object_set_data_full(GTK_OBJECT(menu),
-						 "c_drive", c_drive,
-						 (GtkDestroyNotify)
-						 gtk_widget_unref);
+			g_object_set_data_full(G_OBJECT(menu), "c_drive",
+					       gtk_widget_ref(c_drive),
+					       (GDestroyNotify)gtk_widget_unref);
 			gtk_widget_show(c_drive);
 			gtk_container_add(GTK_CONTAINER(change_drive_menu),
 					  c_drive);
-			gtk_signal_connect(GTK_OBJECT(c_drive), "activate",
-					   GTK_SIGNAL_FUNC
-					   (rbm_change_drive_activate),
+			g_signal_connect((gpointer)c_drive, "activate",
+					   G_CALLBACK(rbm_change_drive_activate),
 					   GINT_TO_POINTER(available_drives
 							   [drive]));
 		}

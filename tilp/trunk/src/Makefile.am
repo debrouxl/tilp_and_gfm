@@ -35,6 +35,7 @@ EXTRA_DIST = win32
 
 # libtool stuff: set export symbols for resolving
 tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
+tilp_CFLAGS = $(CLFAGS) -DGTK_DISABLE_DEPRECATED
 
 install-data-local:
 	$(INSTALL) -m755 -d $(DESTDIR)$(includedir)/tilp
