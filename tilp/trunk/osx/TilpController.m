@@ -569,7 +569,7 @@ TilpGuiFncts gui_functions;
           {
               // the calc has no folder, the vars will go under the "TI Variables" item
               tmpArray = tiVarsArray;
-              varPos = (varPos > folderPos) ? varPos : folderPos;
+              varPos = folderPos;
           }
 
           for (j = 0; j < g_node_n_children(p); j++)

@@ -99,6 +99,7 @@
                 clockMonthStepper = id; 
                 clockSeconds = id; 
                 clockSecondsStepper = id; 
+                clockSetStatus = id; 
                 clockStateMatrix = id; 
                 clockStateOff = id; 
                 clockStateOn = id; 
@@ -134,11 +135,11 @@
             CLASS = MenuController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                clockWindow = id; 
                 dirlistTree = id; 
                 mainWindow = id; 
                 myBoxesController = id; 
                 myCalcKeyboardController = id; 
+                myClockController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
@@ -167,6 +168,13 @@
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
                 calcTypeV200 = id; 
+                clockDateFormat = id; 
+                clockModeManual = id; 
+                clockModeMatrix = id; 
+                clockModeSync = id; 
+                clockTimeFormat12 = id; 
+                clockTimeFormat24 = id; 
+                clockTimeFormatMatrix = id; 
                 consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 

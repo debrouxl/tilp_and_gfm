@@ -336,7 +336,10 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)setClock:(id)sender
 {
-    [myClockController showClock];
+    if (options.clock_mode == CLOCK_MANUAL)
+        [myClockController showClock];
+    else
+        [myClockController clockSyncMenu];
 }
 
 - (IBAction)romDump:(id)sender

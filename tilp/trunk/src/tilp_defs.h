@@ -116,4 +116,9 @@
 #define CALC_TO_COMP 1
 #define COMP_TO_CALC 2
 
+
+/* Clock update mode */
+#define CLOCK_MANUAL 1
+#define CLOCK_SYNC   2
+
 #endif

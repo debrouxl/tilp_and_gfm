@@ -62,15 +62,11 @@ extern struct cocoa_objects_ptr *objects_ptr;
 - (IBAction)prefsAdvanced:(id)sender
 {
     if (sender == linkTimeoutValueStepper)
-        {
-            [linkTimeoutField takeIntValueFrom:linkTimeoutValueStepper];
-            options.lp.timeout = [linkTimeoutField intValue];
-        }
+        [linkTimeoutField takeIntValueFrom:linkTimeoutValueStepper];
     else if (sender == linkTimeoutField)
-        {
-            [linkTimeoutValueStepper takeIntValueFrom:linkTimeoutField];
-            options.lp.timeout = [linkTimeoutField intValue];
-        }
+        [linkTimeoutValueStepper takeIntValueFrom:linkTimeoutField];
+
+    options.lp.timeout = [linkTimeoutField intValue];
 }
 
 - (IBAction)prefsClose:(id)sender
@@ -184,7 +180,21 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.screen_clipping = TRUE;
     else if (NSOnState == [screenModeFull state])
         options.screen_clipping = FALSE;
-        
+
+// clock
+
+    if (NSOnState == [clockModeManual state])
+        options.clock_mode = CLOCK_MANUAL;
+    else
+        options.clock_mode = CLOCK_SYNC;
+
+    if (NSOnState == [clockTimeFormat12 state])
+        options.time_format = 12;
+    else
+        options.time_format = 24;
+
+    options.date_format = [clockDateFormat indexOfSelectedItem] + 1;
+    
 // advanced
     
     if (NSOnState == [consoleVerbose state])
@@ -385,6 +395,20 @@ extern struct cocoa_objects_ptr *objects_ptr;
         [screenModeMatrix setState:NSOnState atRow:0 column:0];
     else
         [screenModeMatrix setState:NSOnState atRow:0 column:1];
+
+// clock
+
+    if (options.clock_mode == CLOCK_MANUAL)
+        [clockModeMatrix setState:NSOnState atRow:0 column:0];
+    else
+        [clockModeMatrix setState:NSOnState atRow:0 column:1];
+
+    if (options.time_format == 12)
+        [clockTimeFormatMatrix setState:NSOnState atRow:0 column:0];
+    else
+        [clockTimeFormatMatrix setState:NSOnState atRow:0 column:1];
+
+    [clockDateFormat selectItemAtIndex:(options.date_format - 1)];
 
 // advanced
 

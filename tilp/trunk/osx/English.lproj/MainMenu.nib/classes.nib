@@ -99,6 +99,7 @@
                 clockMonthStepper = id; 
                 clockSeconds = id; 
                 clockSecondsStepper = id; 
+                clockSetStatus = id; 
                 clockStateMatrix = id; 
                 clockStateOff = id; 
                 clockStateOn = id; 
@@ -106,6 +107,7 @@
                 clockYear = id; 
                 clockYearStepper = id; 
                 myBoxesController = id; 
+                mySheetsController = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -167,6 +169,13 @@
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
                 calcTypeV200 = id; 
+                clockDateFormat = id; 
+                clockModeManual = id; 
+                clockModeMatrix = id; 
+                clockModeSync = id; 
+                clockTimeFormat12 = id; 
+                clockTimeFormat24 = id; 
+                clockTimeFormatMatrix = id; 
                 consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 

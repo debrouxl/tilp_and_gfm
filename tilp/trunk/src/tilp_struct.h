@@ -89,6 +89,10 @@ extern "C" {
     int screen_clipping;
     int screen_blurry;
 
+    int clock_mode;
+    int date_format;
+    int time_format;
+
 #ifndef __MACOSX__
     char *unzip_location;
     char *unzip_options;

@@ -44,135 +44,14 @@
 			00FFA4B701706F217F000001,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 72473184;
-			"PBXTemplateGeometry-F5CA7ECB015C094F0DCA290F" = {
-				ContentSize = "{822, 600}";
-				LeftSlideOut = {
-					Collapsed = NO;
-					Frame = "{{0, 0}, {822, 600}}";
-					Split0 = {
-						Collapsed = NO;
-						Frame = "{{0, 0}, {822, 600}}";
-						Split0 = {
-							Frame = "{{0, 0}, {822, 600}}";
-						};
-						SplitCount = 1;
-						Tab0 = {
-							Debugger = {
-								Collapsed = NO;
-								Frame = "{{0, 0}, {484, 208}}";
-								Split0 = {
-									Frame = "{{0, 24}, {484, 184}}";
-									Split0 = {
-										Frame = "{{0, 0}, {236, 184}}";
-									};
-									Split1 = {
-										DebugVariablesTableConfiguration = (
-											Name,
-											123,
-											Value,
-											85,
-											Summary,
-											62.123,
-										);
-										Frame = "{{245, 0}, {239, 184}}";
-									};
-									SplitCount = 2;
-								};
-								SplitCount = 1;
-								Tab0 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								Tab1 = {
-									Frame = "{{0, 0}, {100, 50}}";
-								};
-								TabCount = 2;
-								TabsVisible = YES;
-							};
-							Frame = "{{0, 0}, {484, 208}}";
-							LauncherConfigVersion = 7;
-						};
-						Tab1 = {
-							Frame = "{{0, 0}, {664, 208}}";
-							LauncherConfigVersion = 3;
-							Runner = {
-								Frame = "{{0, 0}, {664, 208}}";
-							};
-						};
-						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {666, 43}}";
-							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
-							Frame = "{{0, 0}, {664, 50}}";
-						};
-						Tab3 = {
-							Frame = "{{0, 0}, {612, 295}}";
-						};
-						TabCount = 4;
-						TabsVisible = NO;
-					};
-					SplitCount = 1;
-					Tab0 = {
-						Frame = "{{0, 0}, {313, 531}}";
-						GroupTreeTableConfiguration = (
-							TargetStatusColumn,
-							18,
-							MainColumn,
-							280,
-						);
-					};
-					Tab1 = {
-						ClassesFrame = "{{0, 0}, {280, 398}}";
-						ClassesTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXClassColumnIdentifier,
-							237,
-						);
-						Frame = "{{0, 0}, {278, 659}}";
-						MembersFrame = "{{0, 407}, {280, 252}}";
-						MembersTreeTableConfiguration = (
-							PBXBookColumnIdentifier,
-							20,
-							PBXMethodColumnIdentifier,
-							236,
-						);
-					};
-					Tab2 = {
-						Frame = "{{0, 0}, {200, 100}}";
-					};
-					Tab3 = {
-						Frame = "{{0, 0}, {200, 557}}";
-						TargetTableConfiguration = (
-							ActiveObject,
-							16,
-							ObjectNames,
-							202.296,
-						);
-					};
-					Tab4 = {
-						BreakpointsTreeTableConfiguration = (
-							breakpointColumn,
-							197,
-							enabledColumn,
-							31,
-						);
-						Frame = "{{0, 0}, {250, 100}}";
-					};
-					TabCount = 5;
-					TabsVisible = NO;
-				};
-				StatusViewVisible = NO;
-				Template = F5CA7ECB015C094F0DCA290F;
-				ToolbarVisible = NO;
-				WindowLocation = "{30, -21}";
-			};
+			PBXPerProjectTemplateStateSaveDate = 72530695;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F7377EB90451DEA201000306;
+									bookmark = F75B8A040451E29901000306;
 									history = (
 										F5CAF4E202C8CEEC01041594,
 										F7918DF20449FF9001000306,
@@ -239,7 +118,7 @@
 										F7377EAF0451DEA201000306,
 										F7377EB00451DEA201000306,
 										F7377EB10451DEA201000306,
-										F7377EB20451DEA201000306,
+										F7377EB90451DEA201000306,
 									);
 									prevStack = (
 										F518BCE102C8C84C01041594,
@@ -1024,10 +903,10 @@
 					StatusViewVisible = YES;
 					Template = F5F68CF101725D4C0D7A8F4C;
 					ToolbarVisible = YES;
-					WindowLocation = "{36, 85}";
+					WindowLocation = "{48, 94}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 72473184;
+			PBXWorkspaceStateSaveDate = 72530695;
 		};
 		perUserProjectItems = {
 			F504D2F202C9EA5A01E14247 = F504D2F202C9EA5A01E14247;
@@ -1077,7 +956,6 @@
 			F7377EAF0451DEA201000306 = F7377EAF0451DEA201000306;
 			F7377EB00451DEA201000306 = F7377EB00451DEA201000306;
 			F7377EB10451DEA201000306 = F7377EB10451DEA201000306;
-			F7377EB20451DEA201000306 = F7377EB20451DEA201000306;
 			F7377EB30451DEA201000306 = F7377EB30451DEA201000306;
 			F7377EB40451DEA201000306 = F7377EB40451DEA201000306;
 			F7377EB50451DEA201000306 = F7377EB50451DEA201000306;
@@ -1106,6 +984,7 @@
 			F75B3BF9044C11B801098EFA = F75B3BF9044C11B801098EFA;
 			F75B3BFA044C11B801098EFA = F75B3BFA044C11B801098EFA;
 			F75B3BFB044C11B801098EFA = F75B3BFB044C11B801098EFA;
+			F75B8A040451E29901000306 = F75B8A040451E29901000306;
 			F75E45C0044AF29D01000306 = F75E45C0044AF29D01000306;
 			F75E45C4044AF29D01000306 = F75E45C4044AF29D01000306;
 			F75E45CA044AF29D01000306 = F75E45CA044AF29D01000306;
@@ -2289,10 +2168,6 @@
 		glyphRangeLocation = 0;
 		isa = DVDocBookmark;
 	};
-	F7377EB20451DEA201000306 = {
-		fRef = F7377EBD0451DEA201000306;
-		isa = PBXBookmark;
-	};
 	F7377EB30451DEA201000306 = {
 		fRef = F768D9E504518ACA01000306;
 		isa = PBXTextBookmark;
@@ -2373,12 +2248,6 @@
 		isa = PBXFileReference;
 		name = index.html;
 		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/UsingHelp/index.html;
-		refType = 0;
-	};
-	F7377EBD0451DEA201000306 = {
-		isa = PBXFileReference;
-		name = index.html;
-		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Frameworks/index.html;
 		refType = 0;
 	};
 	F75B3BE3044C11B801098EFA = {
@@ -2590,6 +2459,19 @@
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 2765;
+	};
+	F75B8A040451E29901000306 = {
+		fRef = F75B8A050451E29901000306;
+		fallbackIsa = PBXBookmark;
+		glyphRangeLength = 0;
+		glyphRangeLocation = 0;
+		isa = DVDocBookmark;
+	};
+	F75B8A050451E29901000306 = {
+		isa = PBXFileReference;
+		name = index.html;
+		path = /Developer/Documentation/DeveloperTools/ProjectBuilder/ProjectBuilder.help/Contents/Resources/English.lproj/Frameworks/index.html;
+		refType = 0;
 	};
 	F75E45C0044AF29D01000306 = {
 		fRef = F7918DBA0449F79301000306;

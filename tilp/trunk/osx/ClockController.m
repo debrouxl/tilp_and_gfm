@@ -28,6 +28,7 @@
 #include "../src/tilp_defs.h"
 
 #import "ClockController.h"
+#import "SheetsController.h"
 
 @implementation ClockController
 
@@ -46,6 +47,8 @@
         return;
 
     [self updateFields];
+
+    [clockSetStatus setStringValue:@""];
     
     [NSApp beginSheet:clockWindow
        modalForWindow:[myBoxesController keyWindow]
@@ -106,6 +109,43 @@
 
     if (tilp_error(ti_calc.set_clock(&clk, 0)) != 0)
         return;
+
+    [clockWindow orderOut:self];
+}
+
+- (void)clockSyncMenu
+{
+    NSCalendarDate *now;
+
+    if (!(ti_calc.supported_operations() & OPS_CLOCK))
+    {
+        tilp_error(ERR_VOID_FUNCTION);
+        return;
+    }
+    
+    now = [NSCalendarDate calendarDate];
+
+    clk.time_format = options.time_format;
+    clk.date_format = options.date_format;
+    
+    clk.day = [now dayOfMonth];
+    clk.month = [now monthOfYear];
+    clk.year = [now yearOfCommonEra];
+    if ((clk.time_format == 12) && ([now hourOfDay] > 12))
+        clk.hours = [now hourOfDay] - 12;
+    else
+        clk.hours = [now hourOfDay];
+
+    clk.minutes = [now minuteOfHour];
+    clk.seconds = [now secondOfMinute];
+
+    if (tilp_calc_isready() != 0)
+        return;
+
+    if (tilp_error(ti_calc.set_clock(&clk, 0)) != 0)
+        return;
+
+    [mySheetsController msgSheet:@"Success" message:@"The time is set on your calc."];
 }
 
 - (IBAction)clockSync:(id)sender
@@ -124,15 +164,27 @@
         
     clk.minutes = [now minuteOfHour];
     clk.seconds = [now secondOfMinute];
+
     clk.date_format = [clockDateFormat indexOfSelectedItem] + 1;
 
     [self updateFields];
 
     if (tilp_calc_isready() != 0)
+    {
+        [clockSetStatus setTextColor:[NSColor redColor]];
+        [clockSetStatus setStringValue:@"Time not set !"];
         return;
+    }
 
     if (tilp_error(ti_calc.set_clock(&clk, 0)) != 0)
+    {
+        [clockSetStatus setTextColor:[NSColor redColor]];
+        [clockSetStatus setStringValue:@"Time not set !"];
         return;
+    }
+    
+    [clockSetStatus setTextColor:[NSColor greenColor]];
+    [clockSetStatus setStringValue:@"Time set !"];
 }
 
 - (IBAction)clockTimeFormat:(id)sender

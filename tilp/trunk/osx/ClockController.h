@@ -51,7 +51,10 @@
     IBOutlet id clockStateOn;
     IBOutlet id clockStateMatrix;
 
+    IBOutlet id clockSetStatus;
+
     IBOutlet id myBoxesController;
+    IBOutlet id mySheetsController;
     
     TicalcClock clk;
 }
@@ -61,6 +64,7 @@
 
 - (IBAction)clockCancel:(id)sender;
 - (IBAction)clockSet:(id)sender;
+- (void)clockSyncMenu;
 - (IBAction)clockSync:(id)sender;
 - (IBAction)clockTimeFormat:(id)sender;
 - (IBAction)clockStep:(id)sender;

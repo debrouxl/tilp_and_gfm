@@ -65,6 +65,11 @@
     IBOutlet id sortByName;
     IBOutlet id sortBySize;
     IBOutlet id sortByType;
+    IBOutlet id clockModeManual;
+    IBOutlet id clockModeSync;
+    IBOutlet id clockTimeFormat12;
+    IBOutlet id clockTimeFormat24;
+    IBOutlet id clockDateFormat;
 
     IBOutlet id multipleVarsMatrix;
     IBOutlet id pathModeMatrix;
@@ -75,6 +80,8 @@
     IBOutlet id screenFormatMatrix;
     IBOutlet id screenModeMatrix;
     IBOutlet id screenRenderingMatrix;
+    IBOutlet id clockModeMatrix;
+    IBOutlet id clockTimeFormatMatrix;
     
     IBOutlet id myBoxesController;
     IBOutlet id myMenuController;

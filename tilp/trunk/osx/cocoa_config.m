@@ -46,6 +46,9 @@ rc_init_with_default(void)
     options.screen_format = TIFF;
     options.screen_clipping = CLIPPED_SCREEN;
     options.screen_blurry = FALSE;
+    options.clock_mode = CLOCK_MANUAL;
+    options.date_format = 1;
+    options.time_format = 12;
     // verbosity of libticables (DISPLAY() function)
     options.console_mode = DSP_OFF;
     options.auto_detect = TRUE;
@@ -87,6 +90,15 @@ rc_fill_dictionary(void)
 
     value = [[NSNumber alloc] initWithInt:options.screen_blurry];
     [tilpConfig setObject:value forKey:@"screen_blurry"];
+
+    value = [[NSNumber alloc] initWithInt:options.clock_mode];
+    [tilpConfig setObject:value forKey:@"clock_mode"];
+
+    value = [[NSNumber alloc] initWithInt:options.date_format];
+    [tilpConfig setObject:value forKey:@"date_format"];
+
+    value = [[NSNumber alloc] initWithInt:options.time_format];
+    [tilpConfig setObject:value forKey:@"time_format"];
     
     value = [[NSNumber alloc] initWithInt:options.auto_detect];
     [tilpConfig setObject:value forKey:@"auto_detect"];
@@ -165,6 +177,15 @@ rc_get_user_prefs(void)
 
     if ((value = [tilpConfig objectForKey:@"screen_blurry"]))
         options.screen_blurry = [value intValue];
+
+    if ((value = [tilpConfig objectForKey:@"clock_mode"]))
+        options.clock_mode = [value intValue];
+
+    if ((value = [tilpConfig objectForKey:@"date_format"]))
+        options.date_format = [value intValue];
+
+    if ((value = [tilpConfig objectForKey:@"time_format"]))
+        options.time_format = [value intValue];
     
     if ((value = [tilpConfig objectForKey:@"auto_detect"]))
         options.auto_detect = [value intValue];

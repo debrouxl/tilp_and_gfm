@@ -775,10 +775,6 @@ int tilp_calc_recv_var(void)
 				if (tilp_error(err))
 					return -1;
 
-				// Detect for single/group file
-				if (!strcmp(tmp_filename, TMPFILE_GROUP))
-					return +1;
-
 				// Check for existence and move
 				src_path =
 				    g_strconcat(g_get_tmp_dir(),
@@ -790,6 +786,8 @@ int tilp_calc_recv_var(void)
 						tmp_filename, NULL);
 				tilp_file_move_with_check(src_path,
 							  dst_path);
+
+                return +1;
 			}
 		}
 		break;
