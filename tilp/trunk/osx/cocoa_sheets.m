@@ -13,11 +13,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 // we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
 // and also request the user attention (ie. the app's icon will jump on the screen)
 // see requestUserAttention()
-
-// FIXME OS X
-// do we need to wait until userX sheets are closed to open a new one ?
-// (ieis it possible to spawn a new one if one is already active ? (think modal...)
- 
  
 void
 create_cocoa_msg_sheet(const char *title, char *message)

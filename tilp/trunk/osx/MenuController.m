@@ -287,11 +287,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)doRestore:(id)sender
 {
     NSOpenPanel *op;
+    NSDictionary *calcDict;
         
     int result;
-    
-    // FIXME OS X
-    // find the extension of the file to pass as an argument to the NSOpenPanel
     
     if (is_active)
         return;
@@ -306,12 +304,14 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
     op = [NSOpenPanel openPanel];
     
+    calcDict = [myTilpController getCurrentCalcDict];
+    
     [op setTitle:@"Choose the file to restore"];
     [op setAllowsMultipleSelection:NO];
     
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
-        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        types:[calcDict objectForKey:@"extBackup"]
         modalForWindow:mainWindow
         modalDelegate:myBoxesController
         didEndSelector:@selector(doRestoreDidEnd:returnCode:contextInfo:)
@@ -320,9 +320,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)doBackup:(id)sender
 {
-    // FIXME OS X : propose a default filename w/appropriate extension
-        
     NSSavePanel *sp;
+    NSDictionary *calcDict;
     
     if (is_active)
         return;
@@ -332,8 +331,10 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     sp = [NSSavePanel savePanel];
     
+    calcDict = [myTilpController getCurrentCalcDict];
+    
     [sp beginSheetForDirectory:NSHomeDirectory()
-        file:@""
+        file:[calcDict objectForKey:@"defaultBackupFilename"]
         modalForWindow:mainWindow
         modalDelegate:myBoxesController
         didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
@@ -346,21 +347,21 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)sendFLASHApp:(id)sender
 {
     NSOpenPanel *op;
-
-    // FIXME OS X
-    // find the extension of the file to pass as an argument to the NSOpenPanel
+    NSDictionary *calcDict;
     
     if (is_active)
         return;
     
     op = [NSOpenPanel openPanel];
     
+    calcDict = [myTilpController getCurrentCalcDict];
+    
     [op setTitle:@"Choose the Flash Application to send"];
     [op setAllowsMultipleSelection:NO];
     
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
-        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        types:[calcDict objectForKey:@"extFLASHApp"]
         modalForWindow:mainWindow
         modalDelegate:myBoxesController
         didEndSelector:@selector(sendFlashAppDidEnd:returnCode:contextInfo:)
@@ -370,11 +371,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)sendAMS:(id)sender
 {
     NSOpenPanel *op;
+    NSDictionary *calcDict;
     
     int result;
-
-    // FIXME OS X
-    // find the extension of the file to pass as an argument to the NSOpenPanel
     
     if (is_active)
         return;
@@ -389,12 +388,14 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     op = [NSOpenPanel openPanel];
     
+    calcDict = [myTilpController getCurrentCalcDict];
+    
     [op setTitle:@"Choose the file containing AMS"];
     [op setAllowsMultipleSelection:NO];
     
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
-        types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]
+        types:[calcDict objectForKey:@"extAMS"]
         modalForWindow:mainWindow
         modalDelegate:myBoxesController
         didEndSelector:@selector(sendAMSDidEnd:returnCode:contextInfo:)
@@ -409,7 +410,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)romDump:(id)sender
 {
     // FIXME OS X
-    // file extensions, proposed filenames...
     
     // 'k... we must call cb_ams_to_rom() otherwise nothing will happen...
     // well, it's contained in these wonderful loops using gtk_events_pending()
@@ -423,6 +423,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     if (is_active)
         return;
+ 
+    proposedFile = @"romdump.rom";
  
     ret = gif->user2_box(_("Warning"), 
                          _("An assembly program will be sent to your calc if you decide to continue. Consider doing a backup before."),
@@ -453,7 +455,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
                             [sp setRequiredFileType:@"dunno"];
                             [sp setTitle:@"Save ROM dump as..."];
-                            proposedFile = @"romdump.dunno";
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile
@@ -493,7 +494,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                         
                                     [sp setRequiredFileType:@"dunno"];
                                     [sp setTitle:@"Save ROM dump as..."];
-                                    proposedFile = @"romdump.dunno";
 
                                     [sp beginSheetForDirectory:NSHomeDirectory()
                                         file:proposedFile
@@ -526,7 +526,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                             
                             [sp setRequiredFileType:@"dunno"];
                             [sp setTitle:@"Save ROM dump as..."];
-                            proposedFile = @"romdump.dunno";
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                 file:proposedFile
@@ -553,7 +552,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                 
                 [sp setRequiredFileType:@"dunno"];
                 [sp setTitle:@"Save ROM dump as..."];
-                proposedFile = @"romdump.dunno";
                 
                 [sp beginSheetForDirectory:NSHomeDirectory()
                     file:proposedFile
@@ -590,7 +588,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                     
                                 [sp setRequiredFileType:@"dunno"];
                                 [sp setTitle:@"Save ROM dump as..."];
-                                proposedFile = @"romdump.dunno";
 
                                 [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile

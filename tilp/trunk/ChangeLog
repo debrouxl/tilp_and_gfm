@@ -103,6 +103,11 @@
 	      * pbar_type4 glitch when sending an existing var
 	      * Timeout now in range 0 - 1000 ms (was 0 - 300 ms before,
 	        in - [PrefsController showPrefsSheet])
+* 20011208 : v0.2.4
+	* Fixed proposed filenames and extensions in the various
+	NSOpenPanels/NSSavePanels
+	* Store calc-dependent infos in a dictionary, most notably
+	file types and some extensions, for use in NS{Save|Open}Panels
 
 
 

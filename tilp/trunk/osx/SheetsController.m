@@ -21,10 +21,6 @@ extern struct ticalc_info_update info_update;
 // we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
 // and also request the user attention (ie. the app's icon will jump on the screen)
 // see requestUserAttention()
-
-// FIXME OS X
-// do we need to wait until userX sheets are closed to open a new one ?
-// (ie is it possible to spawn a new one if one is already active ? (think modal...)
  
 - (void)awakeFromNib
 {
@@ -60,10 +56,6 @@ extern struct ticalc_info_update info_update;
  
 - (int)user1Sheet:(NSString *)message button1:(NSString *)button1
 {
-    // FIXME OS X
-    // should allow cocoa to catch and process events
-    while ([user1Window isVisible]) { /* WAIT ! */ }
-    
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
     
@@ -96,11 +88,7 @@ extern struct ticalc_info_update info_update;
 }
                                                       
 - (int)user2Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2
-{    
-    // FIXME OS X
-    // should allow cocoa to catch and process events
-    while ([user2Window isVisible]) { /* WAIT ! */ }
-    
+{        
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
     
@@ -135,10 +123,6 @@ extern struct ticalc_info_update info_update;
  
 - (int)user3Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3
 {
-    // FIXME OS X
-    // should allow cocoa to catch and process events
-    while ([user3Window isVisible]) { /* WAIT ! */}
-    
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
     
@@ -202,10 +186,6 @@ extern struct ticalc_info_update info_update;
 
 - (void)pbarType2:(NSString *)message
 {
-    // FIXME OS X
-    // should allow cocoa to catch and process events
-    while ([pbar2Window isVisible]) { /* WAIT ! */ }
-
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
 

@@ -39,62 +39,218 @@ struct gui_fncts gui_functions;
 
 - (id)init
 {
+    NSMutableDictionary *tmpCalcProperties;
+    NSMutableDictionary *tmpMutDict;
+    NSArray *tmpArray;
+
     self = [super init];
     
     if (self == nil)
         return nil;
         
-    tiTypes73 = [NSArray arrayWithObjects:@"73c", @"73g", @"73i", @"73l",
-                                          @"73n", @"73p", @"73t", @"73v",
-                                          @"73w", @"73y", nil];
-    [tiTypes73 retain];
+    tmpCalcProperties = [[NSMutableDictionary alloc] init];
+    tmpMutDict = [[NSMutableDictionary alloc] init];
+        
+    // begin with the TI 73
+    tmpArray = [NSArray arrayWithObjects:@"73c", @"73g", @"73i", @"73l",
+                                         @"73n", @"73p", @"73t", @"73v",
+                                         @"73w", @"73y", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
     
-    tiTypes82 = [NSArray arrayWithObjects:@"82b", @"82d", @"82g", @"82i",
-                                          @"82l", @"82m", @"82n", @"82p",
-                                          @"82t", @"82w", @"82y", @"82z", nil];
-    [tiTypes82 retain];
-                                          
-    tiTypes83 = [NSArray arrayWithObjects:@"83b", @"83c", @"83d", @"83g",
-                                          @"83i", @"83l", @"83m", @"83n",
-                                          @"83p", @"83s", @"83y", nil];
-    [tiTypes83 retain];
-    // 83+
-    tiTypes8x = [NSArray arrayWithObjects:@"8xb", @"8xc", @"8xd", @"8xg",
-                                          @"8xi", @"8xl", @"8xm", @"8xn",
-                                          @"8xp", @"8xs", @"8xy", nil];
-    [tiTypes8x retain];
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+     
+    tmpArray = [NSArray arrayWithObjects:@"73g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.73g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI73]];
+    
+    [tmpMutDict removeAllObjects];
+    
+    // TI 82
+    tmpArray = [NSArray arrayWithObjects:@"82b", @"82d", @"82g", @"82i",
+                                         @"82l", @"82m", @"82n", @"82p",
+                                         @"82t", @"82w", @"82y", @"82z", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+        
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"82g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
 
-    tiTypes85 = [NSArray arrayWithObjects:@"85b", @"85c", @"85d", @"85e",
-                                          @"85g", @"85i", @"85k", @"85l",
-                                          @"85m", @"85n", @"85p", @"85r",
-                                          @"85s", @"85v", nil];
-    [tiTypes85 retain];
+    [tmpMutDict setObject:@"backup.82g" forKey:@"defaultBackupFilename"];
     
-    tiTypes86 = [NSArray arrayWithObjects:@"86c", @"86d", @"86e", @"86g",
-                                          @"86i", @"86k", @"86l", @"86m",
-                                          @"86n", @"86p", @"86r", @"86s",
-                                          @"86v", @"86w", nil];
-    [tiTypes86 retain];
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI82]];
     
-    tiTypes89 = [NSArray arrayWithObjects:@"89a", @"89b", @"89c", @"89d",
-                                          @"89e", @"89f", @"89g", @"89i",
-                                          @"89k", @"89l", @"89m", @"89p",
-                                          @"89s", @"89t", @"89u", @"89x",
-                                          @"89z", nil];
-    [tiTypes89 retain];
+    [tmpMutDict removeAllObjects];    
 
-    tiTypes92 = [NSArray arrayWithObjects:@"92a", @"92b", @"92c", @"92d",
-                                          @"92e", @"92f", @"92g", @"92i",
-                                          @"92l", @"92m", @"92p", @"92s",
-                                          @"92t", @"92x", nil];
-    [tiTypes92 retain];
-    // 92+
-    tiTypes9x = [NSArray arrayWithObjects:@"9xa", @"9xb", @"9xc", @"9xd",
-                                          @"9xe", @"9xf", @"9xg", @"9xi",
-                                          @"9xk", @"9xl", @"9xm", @"9xp",
-                                          @"9xs", @"9xt", @"9xu", @"9xx",
-                                          @"9xz", nil];
-    [tiTypes9x retain];
+    // TI 83
+    tmpArray = [NSArray arrayWithObjects:@"83b", @"83c", @"83d", @"83g",
+                                         @"83i", @"83l", @"83m", @"83n",
+                                         @"83p", @"83s", @"83y", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+ 
+    tmpArray = [NSArray arrayWithObjects:@"83g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.83g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83]];
+    
+    [tmpMutDict removeAllObjects];
+    
+    // TI 83+
+    tmpArray = [NSArray arrayWithObjects:@"8xb", @"8xc", @"8xd", @"8xg",
+                                         @"8xi", @"8xl", @"8xm", @"8xn",
+                                         @"8xp", @"8xs", @"8xy", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+      
+    tmpArray = [NSArray arrayWithObjects:@"8xg", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.8xg" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83P]];
+    
+    [tmpMutDict removeAllObjects];
+
+    // TI 85
+    tmpArray = [NSArray arrayWithObjects:@"85b", @"85c", @"85d", @"85e",
+                                         @"85g", @"85i", @"85l", @"85m"
+                                         @"85n", @"85p", @"85r", @"85s",
+                                         @"85v", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"85g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+  
+    [tmpMutDict setObject:@"backup.85g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI85]];
+    
+    [tmpMutDict removeAllObjects];
+    
+    // TI 86
+    tmpArray = [NSArray arrayWithObjects:@"86c", @"86d", @"86e", @"86g",
+                                         @"86i", @"86l", @"86m", @"86n",
+                                         @"86p", @"86r", @"86s", @"86v",
+                                         @"86w", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+     
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"86g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.86g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI86]];
+    
+    [tmpMutDict removeAllObjects];
+    
+    // TI 89
+    // Not including 89k and 89u
+    tmpArray = [NSArray arrayWithObjects:@"89a", @"89b", @"89c", @"89d",
+                                         @"89e", @"89f", @"89g", @"89i",
+                                         @"89l", @"89m", @"89p", @"89s",
+                                         @"89t", @"89x", @"89z", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"89u", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"89k", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"89g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.89g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI89]];
+    
+    [tmpMutDict removeAllObjects];
+ 
+    // TI 92
+    tmpArray = [NSArray arrayWithObjects:@"92a", @"92b", @"92c", @"92d",
+                                         @"92e", @"92f", @"92g", @"92i",
+                                         @"92l", @"92m", @"92p", @"92s",
+                                         @"92t", @"92x", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"NOT SUPPORTED", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+    
+    tmpArray = [NSArray arrayWithObjects:@"92g", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.92g" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92]];
+    
+    [tmpMutDict removeAllObjects];
+ 
+    // TI 92+
+    // Not including 9xu and 9xk
+    tmpArray = [NSArray arrayWithObjects:@"9xa", @"9xb", @"9xc", @"9xd",
+                                         @"9xe", @"9xf", @"9xg", @"9xi",
+                                         @"9xl", @"9xm", @"9xp", @"9xs",
+                                         @"9xt", @"9xx", @"9xz", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"tiTypes"];
+     
+    tmpArray = [NSArray arrayWithObjects:@"9xu", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extAMS"];
+   
+    tmpArray = [NSArray arrayWithObjects:@"9xk", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extFLASHApp"];
+       
+    tmpArray = [NSArray arrayWithObjects:@"9xg", nil];
+    [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
+    
+    [tmpMutDict setObject:@"backup.9xg" forKey:@"defaultBackupFilename"];
+    
+    [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92P]];
+    
+    [tmpMutDict release];
+
+    calcsProperties = [NSDictionary dictionaryWithDictionary:tmpCalcProperties];
+    
+    [tmpCalcProperties release];
+    [calcsProperties retain];
 
     return self;
 }
@@ -116,32 +272,16 @@ struct gui_fncts gui_functions;
     myTilpConfig = nil;
     objects_ptr->tilpConfig = NULL;
     
-    [dirlistData release];
+    if (dirlistData != nil)
+        [dirlistData release];
+        
     dirlistData = nil;
         
     // at this time, nobody uses this struct anymore (hopefully...)
     // if you get any segfault/sigbus problem on exiting, rank this #1 :)
     free(objects_ptr);
     
-    [tiTypes73 release];
-    [tiTypes82 release];
-    [tiTypes83 release];
-    [tiTypes8x release];
-    [tiTypes85 release];
-    [tiTypes86 release];
-    [tiTypes89 release];
-    [tiTypes92 release];
-    [tiTypes9x release];
-    
-    tiTypes73 = nil;
-    tiTypes82 = nil;
-    tiTypes83 = nil;
-    tiTypes8x = nil;
-    tiTypes85 = nil;
-    tiTypes86 = nil;
-    tiTypes89 = nil;
-    tiTypes92 = nil;
-    tiTypes9x = nil;
+    [calcsProperties release];
     
     [super dealloc];
 }
@@ -198,6 +338,13 @@ struct gui_fncts gui_functions;
         {
             cb_send_cmdline();
         }
+}
+
+// calc properties
+
+- (NSDictionary *)getCurrentCalcDict
+{
+    return [calcsProperties objectForKey:[NSString stringWithFormat:@"CALC %i", options.lp.calc_type]];
 }
 
 // outline view and infos refresh
@@ -501,36 +648,8 @@ struct gui_fncts gui_functions;
                 {
                     filesEnum = [filenames objectEnumerator];
 
-                    switch (options.lp.calc_type)
-                        {
-                            case CALC_TI73:
-                                tiTypes = tiTypes73;
-                                break;
-                            case CALC_TI83:
-                                tiTypes = tiTypes83;
-                                break;
-                            case CALC_TI83P:
-                                tiTypes = tiTypes8x;
-                                break;
-                            case CALC_TI85:
-                                tiTypes = tiTypes85;
-                                break;
-                            case CALC_TI86:
-                                tiTypes = tiTypes86;
-                                break;
-                            case CALC_TI89:
-                                tiTypes = tiTypes89;
-                                break;
-                            case CALC_TI92:
-                                tiTypes = tiTypes92;
-                                break;
-                            case CALC_TI92P:
-                                tiTypes = tiTypes9x;
-                                break;
-                            default:
-                                return NO;
-                        }
-                        
+                    tiTypes = [[self getCurrentCalcDict] objectForKey:@"tiTypes"];
+
                     tiTypesEnum = [tiTypes objectEnumerator];
                     
                     while ((file = [filesEnum nextObject]) != nil)
