@@ -246,6 +246,7 @@
 				00FFA4BC01707AE57F000001,
 				00FFA4BE01707B147F000001,
 				00FFA4C401707C907F000001,
+				F50F01000183725501000102,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -326,7 +327,7 @@
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.0</string>
+	<string>4.51-osx0.1.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -358,12 +359,6 @@
 				F50FDBA70179D45601000102,
 				F50FDBA80179D45601000102,
 				F50FDBA90179D45601000102,
-				F50FDBAA0179D45601000102,
-				F50FDBAB0179D45601000102,
-				F50FDBAC0179D45601000102,
-				F50FDBAD0179D45601000102,
-				F50FDBAE0179D45601000102,
-				F50FDBAF0179D45601000102,
 				F50FDBB00179D45601000102,
 				F50FDBB10179D45601000102,
 				F50FDBB20179D45601000102,
@@ -387,6 +382,7 @@
 				00FFA4BF01707B147F000001,
 				00FFA4C501707C907F000001,
 				F5090AF50178A67A01000102,
+				F50F01010183725501000102,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -652,6 +648,17 @@
 			settings = {
 			};
 		};
+		F50F01000183725501000102 = {
+			isa = PBXFileReference;
+			path = Thanks.rtf;
+			refType = 2;
+		};
+		F50F01010183725501000102 = {
+			fileRef = F50F01000183725501000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F50FDB8E0179C7F801000102 = {
 			isa = PBXFileReference;
 			path = config.h;
@@ -779,42 +786,6 @@
 		};
 		F50FDBA90179D45601000102 = {
 			fileRef = F582707B01762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAA0179D45601000102 = {
-			fileRef = F582707C01762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAB0179D45601000102 = {
-			fileRef = F582707D01762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAC0179D45601000102 = {
-			fileRef = F582707E01762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAD0179D45601000102 = {
-			fileRef = F582707F01762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAE0179D45601000102 = {
-			fileRef = F582708001762A8B01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDBAF0179D45601000102 = {
-			fileRef = F582708101762A8B01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1301,6 +1272,7 @@
 				F582716B01762CAD01000102,
 				F582716C01762CAD01000102,
 				F582716D01762CAD01000102,
+				F58271A001762CAD01000102,
 				F582716E01762CAD01000102,
 				F582716F01762CAD01000102,
 				F582717001762CAD01000102,
@@ -1351,7 +1323,6 @@
 				F582719D01762CAD01000102,
 				F582719E01762CAD01000102,
 				F582719F01762CAD01000102,
-				F58271A001762CAD01000102,
 			);
 			isa = PBXGroup;
 			name = Sources;

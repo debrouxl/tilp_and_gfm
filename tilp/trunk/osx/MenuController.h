@@ -3,30 +3,49 @@
 @interface MenuController : NSObject
 {
     IBOutlet id BoxesController;
-    IBOutlet id mainWindow;
     IBOutlet id PrefsController;
     IBOutlet id TilpController;
     IBOutlet id ToolbarController;
+
+    IBOutlet id mainWindow;
+    IBOutlet id thanksPanel;
+    IBOutlet id thanksPanelText;
 }
+
+// file
+
+- (IBAction)saveConfig:(id)sender;
 - (IBAction)defaultConfig:(id)sender;
-- (IBAction)doBackup:(id)sender;
-- (IBAction)doRestore:(id)sender;
-- (IBAction)getDirlist:(id)sender;
-- (IBAction)getIDList:(id)sender;
-- (IBAction)getScreen:(id)sender;
-- (IBAction)installShell:(id)sender;
-- (IBAction)isReady:(id)sender;
-- (IBAction)newWindow:(id)sender;
-- (IBAction)probeCalc:(id)sender;
+
+// link
+
 - (IBAction)probeLink:(id)sender;
-- (IBAction)receiveFLASHApp:(id)sender;
-- (IBAction)receiveVar:(id)sender;
+- (IBAction)probeCalc:(id)sender;
+
+// functions 1
+
+- (IBAction)isReady:(id)sender;
 - (IBAction)remoteControl:(id)sender;
+- (IBAction)getScreen:(id)sender;
+- (IBAction)getDirlist:(id)sender;
+- (IBAction)doRestore:(id)sender;
+- (IBAction)doBackup:(id)sender;
+
+// functions 2
+
+- (IBAction)sendFLASHApp:(id)sender;
+- (IBAction)sendAMS:(id)sender;
+- (IBAction)receiveFLASHApp:(id)sender;
+- (IBAction)getIDList:(id)sender;
 - (IBAction)romDump:(id)sender;
 - (IBAction)romVersion:(id)sender;
-- (IBAction)saveConfig:(id)sender;
-- (IBAction)sendAMS:(id)sender;
-- (IBAction)sendFLASHApp:(id)sender;
-- (IBAction)sendVar:(id)sender;
+- (IBAction)installShell:(id)sender;
+
+// window
+
+- (IBAction)newWindow:(id)sender;
+
+// help
+
 - (IBAction)showThanks:(id)sender;
 @end
