@@ -7,4 +7,4 @@ Name: libXML
 Version: 2.6.10
 Description: libXML library version2.
 Libs: -L${libdir} -lxml2     
-Cflags: -I${includedir}/libxml2 -I${includedir}/libxml2 
+Cflags: -I${includedir} -I${includedir}/libxml2 
