@@ -81,7 +81,7 @@ I assume you installed MinGW as C:\MinGW and MSys as C:\MSys (without 1.0 path).
 - tiemu:
 	./configure --prefix=/target --disable-nls
 
-3°) List of packages for infos:
+3°) List of packages (10MB) for infos:
 
 - pkgconfig-0.15: 		<http://www.gimp.org/~tml/gimp/win32/pkgconfig-0.15.zip>
 - GNU libiconv: 		<http://www.gimp.org/~tml/gimp/win32/libiconv-1.9.1.bin.woe32.zip>
@@ -108,47 +108,42 @@ I assume you installed MinGW as C:\MinGW and MSys as C:\MSys (without 1.0 path).
 - SDL-devel-1.2.7-mingw32:	<http://www.libsdl.org/download-1.2.php>
 
 
+The wget_list.txt file contains the full URL list of the files above. It can be used
+by wget (wget --input-file=wget_list.txt) to automatically download the files.
+
+Tested with TiLP & TiEmu, 24/06/04.
+
 Linux (cross)
 -------------
 
 Read carefully the Win32 section above before !
 
 Take a look at <http://www.mingw.org/mingwfaq.shtml#faq-cross>.
-Download MinGW cross-tools from <http://www.libsdl.org/extras/win32/cross/mingw32-linux-x86-glibc-2.2.tar.gz>
-
+Download MinGW cross-tools from 
+<http://www.libsdl.org/extras/win32/cross/mingw32-linux-x86-glibc-2.2.tar.gz>
 As explained in cross-README.txt, uncompress it into /usr/local.
+
+About packages, you will have to uncompress them into /target unless you modify each
+/target/lib/pkgconfig/*.pc files with the right path.
 
 Get some scripts and install them in package top dir: 
 	<http://www.libsdl.org/extras/win32/cross/cross-configure.sh>
 	<http://www.libsdl.org/extras/win32/cross/cross-make.sh>
 
 Like Windows, run:
-	export CB="/usr/local/cross-tools/i386-mingw32msvc"
-	export PKG_CONFIG_PATH="$CB/target/lib/pkgconfig"
-	export CPPFLAGS="-I$CB/target/include"		//-I$CB/include 
-	export LDFLAGS="-L$CB/target/lib"
+	export PKG_CONFIG_PATH="/target/lib/pkgconfig"
+	export CPPFLAGS="-I/target/include"
+	export LDFLAGS="-L/target/lib"
 
-	./cross-configure --prefix=$CB/target --disable-nls
+	./cross-configure --prefix=/target --disable-nls
 		edit config.h and comment the rpl_malloc & rpl_realloc entries
 	./cross-make
 
-Please not you shouldn't have Linux packages installed in /usr/include or /usr/lib
-else configure will use these ones instead of those located in $CB.
+Please note you shouldn't have the Linux-like packages installed in /usr/include or 
+/usr/lib else configure will use these ones instead of those located in /target.
 
-Tested with libti*: works fine !
+Tested with TiLP, 24/06/04.
 
-Not tested with TiLP yet, but if you follow the Windows procedure, it should be ok.
+---
 
----------------
-
-   export PKG_CONFIG_PATH="/usr/i586-mingw32msvc/target/lib/pkgconfig"
-   export CPPFLAGS="-I/usr/i586-mingw32msvc/include \
-	  -I/usr/i586-mingw32msvc/target/include"
-   export LDFLAGS="-L/usr/i586-mingw32msvc/target/lib"
-   export PATH="$PATH:/usr/i586-mingw32msvc/bin"
-
-I encountered problems (no gcc found) by putting $PATH _after_ new path.
-
-./configure --build=i586-pc-mingw32
-
-
+Romain Liévin (The TiLP Team leader).
