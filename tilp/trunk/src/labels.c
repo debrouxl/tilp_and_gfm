@@ -24,7 +24,7 @@
 #include "gstruct.h"
 struct clabel_window clabel_win = { 0 };
 
-static void format(char *s, char *buf)
+static char* format(char *s, char *buf)
 {
   gchar *i = NULL;
   gchar *j = NULL;
@@ -33,17 +33,20 @@ static void format(char *s, char *buf)
   j = (gchar *) strrchr(s, DIR_SEPARATOR_C);	// last slash
   
   if (i == j)
-    {
-      strcpy(buf, s);
-      return;
-    }
+      return s;
   
   i = (gchar *) strchr(i + 1, DIR_SEPARATOR_C);	// second slash
+
+  if (i == j)  // only 2 slashes in the path
+    return s;
+
   *i = '\0';
-  strcpy(s, DIR_SEPARATOR_S);
-  strcat(s, "...");
-  strcat(s, ((*j != '\0') ? j : j++)); // in case there are only 2 slashes in the string
-  return;
+  strcpy(buf, s);
+  strcat(buf, DIR_SEPARATOR_S);
+  strcat(buf, "...");
+  strcat(buf, j);
+
+  return buf;
 }
 
 
@@ -77,6 +80,5 @@ void labels_refresh(void)
 		 clist_win.current_dir);
 
 	utf8 = g_filename_to_utf8(buffer, -1, &br, &bw, NULL);
-	format(utf8, buffer);
-	gtk_label_set_text(GTK_LABEL(clabel_win.label22), buffer);
+	gtk_label_set_text(GTK_LABEL(clabel_win.label22), format(utf8, buffer));
 }
