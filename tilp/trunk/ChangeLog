@@ -28,7 +28,7 @@ could see.>>
 - 02/10/2004, version 6.76 (3.8.6, 0.6.1, 4.5.5): roms
 	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.
 	Bug fixed in the action box (overwrite/rename variables).
-	Log file location improved by Lulien Blache <jb@jblache.org>.
+	Log file location improved by Julien Blache <jb@jblache.org>.
 
 - 18/09/2004, version 6.75 (3.8.6, 0.6.1, 4.5.4): roms
 	Added TI84+ and TI89 Titanium support thru std I/O port (linkport).
