@@ -15,4 +15,4 @@ MinGW is not supported yet.
 ----------------------------------------------------------------------
 Please report any bugs, questions, ... to <tilp-devel@lists.sf.net>  
 
-The TiLP team <tilp-users@lists.sf.net>.
+The TiLP Team <tilp-users@lists.sf.net>.

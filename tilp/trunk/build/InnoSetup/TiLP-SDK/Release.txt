@@ -2,12 +2,14 @@
 
 
 
-Previous version: 0.01 (17/12/2002)
-Current version:  0.02 (04/05/2003)
+Previous version: 0.02 (04/05/2003)
+Current version:  0.03 (13/05/2004)
 
-- tifiles  v0.5.6
-- ticables v3.7.6
-- ticalcs  v4.4.9
+SubVersion (CVS) revision: $Id$
+
+- ticables v3.8.5
+- tifiles  v0.5.9
+- ticalcs  v4.5.3
 
 The tifiles library is not fully documented yet.
 This SDK does not contain the plug-in parts yet.
