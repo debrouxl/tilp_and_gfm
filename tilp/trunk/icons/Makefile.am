@@ -6,7 +6,7 @@ EXTRA_DIST = $(ICONS)
 
 FN = `echo  $$I | mawk '{ gsub(/\.ico/, "", $$0); print ($$0)}'`
 
-install: $(ICONS)
+install: $(ICONS) links
 	@echo Installing icons...
 	@$(INSTALL) -m755 -d $(DESTDIR)$(tilp_icon_dir)
 	@for I in *.ico ; do \
