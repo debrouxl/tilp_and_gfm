@@ -25,16 +25,16 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 
-#ifdef __WIN32__
-# include "win32/dirent.h"
-#endif				/*  */
-
 #include "tilp_core.h"
 
 #include "gstruct.h"
 #include "support.h"
 #include "labels.h"
 #include "popup.h"
+
+#ifdef __WIN32__
+#include "dirent.h"	// S_ISDIR
+#endif
 
 static GtkListStore *list;
 

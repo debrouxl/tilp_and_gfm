@@ -352,8 +352,8 @@ int tilp_dirlist_local(void)
 	if (!stat(fi->name, &f_info)) {
 		fi->date = f_info.st_mtime;
 		fi->size = f_info.st_size;
-		fi->user = f_info.st_uid;
-		fi->group = f_info.st_gid;
+		//fi->user = f_info.st_uid;
+		//fi->group = f_info.st_gid;
 		fi->attrib = f_info.st_mode;
 	}
 
@@ -368,8 +368,8 @@ int tilp_dirlist_local(void)
 		if (!stat(fi->name, &f_info)) {
 			fi->date = f_info.st_mtime;
 			fi->size = f_info.st_size;
-			fi->user = f_info.st_uid;
-			fi->group = f_info.st_gid;
+			//fi->user = f_info.st_uid;
+			//fi->group = f_info.st_gid;
 			fi->attrib = f_info.st_mode;
 		}
 		//process_filename(fi->name);
@@ -541,6 +541,7 @@ void tilp_sort_files_by_size2(void)
 	}
 }
 
+#if 0
 void tilp_sort_files_by_user(void)
 {
 	GList *list = clist_win.dirlist;
@@ -618,6 +619,7 @@ void tilp_sort_files_by_group(void)
 		}
 	}
 }
+#endif
 
 void tilp_sort_files_by_attrib(void)
 {

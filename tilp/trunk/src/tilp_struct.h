@@ -32,15 +32,7 @@
 #endif				/* !__MACOSX__ */
 
 #include <sys/types.h>
-
-#ifndef __WIN32__
-# include <sys/stat.h>
-#endif
-
-#ifdef __WIN32__
-# include "win32/grp.h"
-# include "win32/pwd.h"
-#endif
+#include <sys/stat.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -128,9 +120,13 @@ extern "C" {
     char *name;
     time_t date;
     off_t size;
-    uid_t user;
-    gid_t group;
+    //uid_t user;
+    //gid_t group;
+#ifdef __WIN32__
+		int attrib;
+#else
     mode_t attrib;
+#endif
 
     char **actions;		// Ticalc action associated w/ the file
   } TilpFileInfo;

@@ -38,7 +38,7 @@
 #endif /* !__MACOSX__ */
 
 #ifdef __WIN32__
-# include "win32/dirent.h"
+# include "dirent.h"
 #endif
 
 #include "tilp_core.h"
