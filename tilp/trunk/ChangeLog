@@ -269,7 +269,7 @@
 	* Make the remote control window resizable.
 	* Merge Calc{89,92}KeyboardController into CalcKeyboardController.
 	* Skin loading uses the skinedit SkinController class.
-	
+	* Use TiEmu v2.00 skins.	
 
 
 
