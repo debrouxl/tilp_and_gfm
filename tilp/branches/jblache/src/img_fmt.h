@@ -26,8 +26,10 @@
 #include <stdio.h>
 //#include <glib.h>
 
-#ifdef HAVE_TILP_TYPEDEFS_H
+#if defined(HAVE_TILP_TYPEDEFS_H) && !defined(__MACOSX__)
 # include <tilp/typedefs.h>
+#elif defined(HAVE_TILP_TYPEDEFS_H) && defined(__MACOSX__)
+# include <libticables/typedefs.h>
 #else
 # include "typedefs.h"
 #endif

@@ -18,7 +18,7 @@
 
 #include <stdio.h>
 
-#include "includes.h"
+#include "struct.h"
 
 /* Destroy the selection of the clist window */
 void clist_selection_destroy(void)

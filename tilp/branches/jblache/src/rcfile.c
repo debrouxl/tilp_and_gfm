@@ -20,8 +20,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#include <unistd.h>
 
-#include "includes.h"
+#include "defs.h"
+#include "gui_indep.h"
+#include "intl.h"
+#include "version.h"
+#include "struct.h"
 
 static char *rc_file; 
 static char *cwd_file;

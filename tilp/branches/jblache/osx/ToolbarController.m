@@ -1,3 +1,9 @@
+
+#include "../src/cb_calc.h"
+#include "../src/struct.h"
+
+extern struct screenshot ti_screen;
+
 #import "ToolbarController.h"
 
 static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSString *label,NSString *paletteLabel,NSString *toolTip,id target,SEL settingSelector, id itemContent,SEL action)
@@ -18,7 +24,6 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     // it (above).
     [theDict setObject:item forKey:identifier];
 }
-
 
 @implementation ToolbarController
 
@@ -56,7 +61,7 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     [toolbar setAutosavesConfiguration: YES]; 
     
     // tell the toolbar to show icons only by default
-    [toolbar setDisplayMode: NSToolbarDisplayModeIconOnly];
+    [toolbar setDisplayMode: NSToolbarDisplayModeIconAndLabel];
     // install the toolbar.
     [mainWindow setToolbar:toolbar];
 }
@@ -109,22 +114,63 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
 
 - (IBAction)doBackup:(id)sender
 {
+    cb_receive_backup();
 }
 
 - (IBAction)doRestore:(id)sender
 {
+    NSOpenPanel *op;
+    
+    int result;
+
+    // FIXME OS X
+    // see the gtk code => message box before filesel !!
+    // find the extension of the file to pass as an argument to the NSOpenPanel
+    // cb_send_backup(char *filename);
+    
+    op = [NSOpenPanel openPanel];
+    
+    [op setTitle:@"Choose the file to restore"];
+    [op setAllowMultipleFileSelection:NO];
+    
+    result = [op runModalForDirectory:NSHomeDirectory() file:nil
+                                      types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
+                                      
+    if (result == NSOKButton)
+        {
+                // FIXME OS X : see NSOpenPanel help to finish
+        }
 }
 
 - (IBAction)getDirlist:(id)sender
 {
+    cb_dirlist();
 }
 
 - (IBAction)getScreen:(id)sender
 {
+    NSData *bitmap;
+    NSImage *screen;
+
+    if (cb_screen_capture() != 0)
+        return;
+    
+    [screendumpWindow makeKeyAndOrderFront:self];
+    
+    bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
+    [bitmap autorelease];
+ 
+    // FIXME OS X
+    // maybe we need to tell the NSImage to render our bitmap...   
+    screen = [[NSImage alloc] initWithData:bitmap];
+    [screen autorelease];
+    
+    [screendumpImage setImage:screen];
 }
 
 - (IBAction)isReady:(id)sender
 {
+    cb_calc_is_ready();
 }
 
 @end

@@ -24,14 +24,14 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "includes.h"
+#include "gui_indep.h"
 
 GUI_FNCTS *gif = NULL;
 
 /*
   Initialize the internal structure
 */
-DLLEXPORT
+
 void set_gui_fncts(GUI_FNCTS *gf)
 {
   gif = gf;

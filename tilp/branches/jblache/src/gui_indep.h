@@ -70,7 +70,6 @@ typedef struct gui_fncts GUI_FNCTS;
 
 extern GUI_FNCTS *gif;
 
-DLLEXPORT
 void set_gui_fncts(GUI_FNCTS *gf);
 
 #endif

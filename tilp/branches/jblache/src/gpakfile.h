@@ -19,8 +19,6 @@
 #ifndef GPAKFILE_H
 #define GPAKFILE_H
 
-#include <gtk/gtk.h>
-
 /* Specific PAK file functions*/
 int explode_pak_file(char *filename);
 

@@ -21,13 +21,14 @@
 
 #ifdef __UNIX__
 #include <tilp/export.h>
+#elif defined(__MACOSX__)
+#include <libticables/export.h>
 #elif defined(__WIN32__)
 # include "export.h"
 #else
 # include "export.h"
 #endif
 
-DLLEXPORT
 int tilp_error(int err_num);
 
 #endif

@@ -51,16 +51,14 @@
 # endif
 #endif
 
-#ifdef HAVE_TILP_TYPEDEFS_H
-//# include <tilp/typedefs.h>
-//# include <tilp/macros.h>
-//# include <tilp/export.h>
-//# include <tilp/cabl_def.h>
+#if defined(HAVE_TILP_TYPEDEFS_H) && !defined(__MACOSX__)
 # include <tilp/cabl_int.h>
-//# include <tilp/calc_def.h>
 # include <tilp/calc_int.h>
 # include <tilp/defsxx.h>
-//# include <tilp/calc_err.h>
+#elif defined(__MACOSX__)
+#include <libticables/cabl_int.h>
+#include <libticalcs/calc_int.h>
+#include <libticalcs/defsxx.h>
 #elif defined(__WIN32__)
 # include "cabl_int.h"
 # include "calc_int.h"
@@ -80,7 +78,11 @@
 # endif
 #endif
 
+#ifndef __MACOSX__
 #include <glib.h> // for all platforms
+#else
+#include <glib/glib.h>
+#endif /* !__MACOSX__ */
 
 #ifdef GTK				// Linux or Win32 with GTK
 #include <gtk/gtk.h>

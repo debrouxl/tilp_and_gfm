@@ -56,6 +56,7 @@
 #define USE_TIDEV 1
 
 /* PCX or XPM image format */
+#define TIFF 3
 #define JPG 2
 #define PCX 1
 #define XPM 0
@@ -79,6 +80,7 @@
 #define MODE_GTK 3 /* GTK gui mode (Linux/Win32) */
 #define MODE_MFC 4 /* MFC gui mode (WiN32 only) */
 #define MODE_INT 5 /* Interactive mode (Linux only) */
+#define MODE_OSX 6 /* Cocoa GUI mode (Mac OS X) */
 
 /* Cmd line operation to perform */
 #define OP_BACKUP    1
@@ -95,7 +97,12 @@
 #define FILE_CHECKING_MID 1
 #define FILE_CHECKING_ON  2
 
+/* Terminal/remote control operating mode */
+#define REMOTE 1
+#define TERM 2
 
+/* Unused stuffs */
+#define UNUSED -1
 
 #endif
 

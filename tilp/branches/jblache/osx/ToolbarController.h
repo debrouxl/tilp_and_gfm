@@ -4,6 +4,12 @@
 {
     NSMutableDictionary *toolbarItems;
     IBOutlet id mainWindow;
+    IBOutlet id screendumpWindow;
+    IBOutlet id screendumpImage;
+    IBOutlet id BoxesController;
+    IBOutlet id MenuController;
+    IBOutlet id PrefsController;
+    IBOutlet id TilpController;
 }
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;    

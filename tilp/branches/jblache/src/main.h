@@ -32,7 +32,6 @@ int help(void);
 int version(void);
 int scan_cmdline(int argc, char **argv);
 
-DLLEXPORT
 int main_init(int argc, char *argv[], char **arge);
 
 #endif
