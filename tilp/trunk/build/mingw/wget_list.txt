@@ -1,0 +1,29 @@
+# List of files to download
+# Usage: wget --input-file=wget_list.txt
+#
+
+"http://www.gimp.org/~tml/gimp/win32/pkgconfig-0.15.zip"
+"http://www.gimp.org/~tml/gimp/win32/libiconv-1.9.1.bin.woe32.zip"
+"http://www.gimp.org/~tml/gimp/win32/gettext-runtime-0.13.1.zip"
+"http://www.gimp.org/~tml/gimp/win32/glib-dev-2.4.2.zip"
+"http://www.gimp.org/~tml/gimp/win32/glib-2.4.2.zip"
+"http://www.gimp.org/~tml/gimp/win32/gtk+-dev-2.4.3.zip"
+"http://www.gimp.org/~tml/gimp/win32/gtk+-2.4.3.zip"
+"http://www.gimp.org/~tml/gimp/win32/pango-dev-1.4.0.zip>
+"http://www.gimp.org/~tml/gimp/win32/pango-1.4.0.zip>
+"http://www.gimp.org/~tml/gimp/win32/atk-dev-1.6.0.zip>
+"http://www.gimp.org/~tml/gimp/win32/atk-1.6.0.zip>
+
+"http://belnet.dl.sourceforge.net/sourceforge/gnuwin32/zlib-1.2.1-1-lib.zip"
+"http://belnet.dl.sourceforge.net/sourceforge/gnuwin32/libxml2-2.4.12-1-lib.zip"
+
+"http://belnet.dl.sourceforge.net/sourceforge/gladewin32/libglade-2.0.1-lib.zip"
+
+"http://xmlsoft.org/sources/old/libxml-2.5.10.tar.gz"
+"http://ftp.linux.org.uk/pub/linux/GNOME/sources/libglade/2.0/libglade-2.0.1.tar.bz2"
+"http://ftp.gnome.org/pub/GNOME/desktop/2.6/2.6.0/sources/libglade-2.3.6.tar.gz"
+
+"http://belnet.dl.sourceforge.net/sourceforge/gnuwin32/jpeg-6b-3-lib.zip"
+"http://www.libsdl.org/release/SDL-devel-1.2.7-mingw32.tar.gz"
+
+# Total: 20MB ?
