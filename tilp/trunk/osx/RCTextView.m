@@ -165,7 +165,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 #ifdef OSX_DEBUG
                     fprintf(stderr, "DEBUG: sending char to TI\n");
 #endif
-        
+
                     ret = [myTransfersController sendChar:toSend];
 
                     if (ret < 0)

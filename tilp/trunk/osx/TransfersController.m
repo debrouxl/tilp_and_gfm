@@ -580,7 +580,7 @@ extern int is_active;
     strcat(tmp_filename, TMPFILE_ROMDUMP);
  
     ret = gif->user2_box(_("Warning"), 
-                         _("An assembly program will be sent\nto your calc if you decide to continue.\nConsider doing a backup before."),
+                         _("An assembly program will be sent to your calc if you decide to continue.\nConsider doing a backup before."),
                          _("Proceed"), 
                          _("Cancel"));
     if(ret != BUTTON1)
@@ -591,7 +591,7 @@ extern int is_active;
             case CALC_TI83:
             case CALC_TI83P:
                 ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is needed to perform\na ROM dump. You must have AShell installed\non your calc to run this program.\nTiLP will transfer the ROM dump program\non your calc, then wait until you run it on your calc."),
+                                     _("An assembly program is needed to perform a ROM dump. You must have AShell installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run it on your calc."),
                                      _("Proceed"), 
                                      _("Cancel"));
                 switch(ret)
@@ -638,7 +638,7 @@ extern int is_active;
                 break;
             case CALC_TI85:
                 ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is needed to perform\na ROM dump. You must have ZShell or Usgard\ninstalled on your calc to run this program.\nTiLP will transfer the ROM dump program\non your calc, then wait until you run this program."),
+                                     _("An assembly program is needed to perform a ROM dump. You must have ZShell or Usgard installed on your calc to run this program.\nTiLP will transfer the ROM dump program on your calc, then wait until you run this program."),
                                      _("Proceed"), 
                                      _("Cancel"));
                 switch(ret)
@@ -692,7 +692,7 @@ extern int is_active;
                 break;
             case CALC_TI86:
                 ret = gif->user2_box(_("Information"), 
-                                     _("An assembly program is required to perform\na ROM dump. You must have a shell installed\non your calculator to run this program.\nTiLP will transfer this program \non your calc, then wait until you run it."),
+                                     _("An assembly program is required to perform a ROM dump. You must have a shell installed on your calculator to run this program.\nTiLP will transfer this program on your calc, then wait until you run it."),
                                      _("Procced"), 
                                      _("Cancel"));
                 switch(ret)
@@ -778,7 +778,7 @@ extern int is_active;
                 break;
             case CALC_TI92:
                 ret = gif->user2_box(_("Information"), 
-                                     _("The FargoII shell must be installed\non your calc to perform a ROM dump."),
+                                     _("The FargoII shell must be installed on your calc to perform a ROM dump."),
                                      _("Proceed"), 
                                      _("Cancel"));
                 switch(ret)

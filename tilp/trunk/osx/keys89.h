@@ -18,6 +18,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef __KEYS89_H__
+#define __KEYS89_H__
+
 #include <libticables/typedefs.h>
 
 #define TIKEY89_F1		1
@@ -136,3 +139,6 @@ const struct ti89key TI89KEYS[] =
   { 173, 32, 4372, 8365, 32 }, /* (-) */
   { 13, 13, 4109, 8205, 13 }  /* ENTER */
 };
+
+#endif /* !__KEYS89_H__ */
+

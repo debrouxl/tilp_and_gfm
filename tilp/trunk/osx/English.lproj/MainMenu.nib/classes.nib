@@ -70,9 +70,7 @@
                 keyboardWindow = id; 
                 mySkinController = id; 
                 myTransfersController = id; 
-                scrollView = id; 
                 skinView = id; 
-                textArea = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

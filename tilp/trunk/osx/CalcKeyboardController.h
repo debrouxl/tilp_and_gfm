@@ -20,14 +20,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "RCTextView.h"
+
 #include "cocoa_structs.h"
 
 @interface CalcKeyboardController : NSObject
 {
     IBOutlet id keyboardWindow;
-    IBOutlet id scrollView;
     IBOutlet id skinView;
-    IBOutlet id textArea;
+
+    NSScrollView *scrollView;
+    RCTextView *textArea;
 
     IBOutlet id myTransfersController;
     IBOutlet id mySkinController;
@@ -43,7 +46,7 @@
     int mode;
 }
 
-- (void)skinViewResizes:(NSNotification *)notification;
+- (void)skinViewResizes;
 
 - (void)loadKeyboard;
 

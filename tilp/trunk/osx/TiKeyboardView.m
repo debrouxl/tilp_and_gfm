@@ -32,6 +32,14 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 @implementation TiKeyboardView
 
+- (void)drawRect:(NSRect)rect
+{
+  [super drawRect:rect];
+
+  [myCalcKeyboardController skinViewResizes];
+}
+
+
 - (void)mouseDown:(NSEvent *)event
 {
   NSPoint mouseClick;

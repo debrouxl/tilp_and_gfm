@@ -18,6 +18,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef __KEYS92_H__
+#define __KEYS92_H__
 
 #define TIKEY92_GRAB		1
 #define TIKEY92_F1		2
@@ -194,3 +196,5 @@ const struct ti92key TI92KEYS[] =
   { 339, 16723, 4435, 8531, 33107 }, /* LEFT + UP */
   { 345, 16729, 4441, 8437, 33113 }, /* LEFT + DOWN */
 };
+
+#endif /* !__KEYS92_H__ */

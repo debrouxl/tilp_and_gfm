@@ -104,30 +104,27 @@ unsigned short sknKey92[] =
 
   mode = K_MODE_NONE;
 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                        selector:@selector(skinViewResizes:)
-                                        name:@"NSViewFrameDidChangeNotification"
-                                        object:skinView];
-
+  scrollView = nil;
+  textArea = nil;
+  
   return self;
 }
 
-- (void)skinViewResizes:(NSNotification *)notification
+- (void)skinViewResizes
 {
-  if ([keyboardWindow isVisible] != YES)
-    return;
-
+  //return;
+  
   viewFrame = [skinView frame];
 
   xRatio = viewFrame.size.width / skinSize.width;
   yRatio = viewFrame.size.height / skinSize.height;
-
+  
   [scrollView setFrame:NSMakeRect((float)(lcd.left * xRatio),
                                   (float)((skinSize.height - lcd.bottom) * yRatio),
                                   (float)((lcd.right - lcd.left) * xRatio),
                                   (float)((lcd.bottom - lcd.top) * yRatio))];
-
-  [skinView setNeedsDisplay:YES];
+  
+  [scrollView setNeedsDisplay:YES];
 }
 
 
@@ -157,13 +154,32 @@ unsigned short sknKey92[] =
                       lcd:&lcd
                       keys:keys];
   }
-  
 
-  // change the textView for an RCTextView
+  viewFrame = [skinView frame];
+
+  xRatio = viewFrame.size.width / skinSize.width;
+  yRatio = viewFrame.size.height / skinSize.height;
+
+  if (scrollView != nil)
+    [scrollView release];
+  
+  scrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect((float)(lcd.left * xRatio),
+                                                              (float)((skinSize.height - lcd.bottom) * yRatio),
+                                                              (float)((lcd.right - lcd.left) * xRatio),
+                                                              (float)((lcd.bottom - lcd.top) * yRatio))];
+
   scrollSize = [scrollView contentSize];
 
-  textArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
-                                 textContainer:[[scrollView documentView] textContainer]];
+  [scrollView setBorderType:NSBezelBorder];
+  [scrollView setHasVerticalScroller:YES];
+  [scrollView setHasHorizontalScroller:NO];
+  [scrollView setAutoresizingMask:(NSViewWidthSizable | NSViewHeightSizable)];
+
+  if (textArea != nil)
+    [textArea release];
+
+  textArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0,
+                                                          scrollSize.width, scrollSize.height)];
 
   [textArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
   [textArea setMaxSize:NSMakeSize(1e7, 1e7)];
@@ -171,28 +187,23 @@ unsigned short sknKey92[] =
   [textArea setHorizontallyResizable:NO];
   [textArea setAutoresizingMask:NSViewWidthSizable];
 
+  [[textArea textContainer] setWidthTracksTextView:YES];
+
   [scrollView setDocumentView:textArea];
-
-  [textArea setEditable:YES];
-
+  [skinView addSubview:scrollView];
+  [keyboardWindow makeFirstResponder:textArea];
+  
   [textArea setString:@""];
-  [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
-
+  [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n"];
+  [textArea insertText:@"\n"];
+  
   if (ticalc_get_calc2() == CALC_TI89)
     [keyboardWindow setTitle:@"TI-89 Remote Control"];
   else
     [keyboardWindow setTitle:@"TI-92 Remote Control"];
   
-  // finally show the window and add an entry to the Windows menu
+  // finally show the window
   [keyboardWindow makeKeyAndOrderFront:self];
-
-  
-#if 0
-  if (ticalc_get_calc2() == CALC_TI89)
-    [NSApp addWindowsItem:keyboardWindow title:@"TI-89 Remote Control" filename:NO];
-  else
-    [NSApp addWindowsItem:keyboardWindow title:@"TI-92 Remote Control" filename:NO];
-#endif
 }
 
 
@@ -375,7 +386,7 @@ unsigned short sknKey92[] =
 
         if (ret < 0)
         {
-          [textArea insertStatusText:@"*** Communication Error. Aborted. ***\n"];
+          [textArea insertStatusText:@"\n*** Communication Error. Aborted. ***\n"];
         }
       }
       break;
@@ -549,7 +560,7 @@ unsigned short sknKey92[] =
 
         if (ret < 0)
         {
-          [textArea insertStatusText:@"*** Communication Error. Aborted. ***\n"];
+          [textArea insertStatusText:@"\n*** Communication Error. Aborted. ***\n"];
         }
       }
       break;

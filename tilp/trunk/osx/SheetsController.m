@@ -95,27 +95,25 @@ extern struct ticalc_info_update info_update;
   NSModalSession session;
 #endif
 
-  NSRect textFrame;
-  NSSize newSize;
+  NSRect oldFrame, newFrame, windowFrame;
   
   [self hideCurrentPBar];
 
   [user1Text setStringValue:message];
 
   // begin window resizing
-  [user1Text sizeToFit];
+  oldFrame = newFrame = [user1Text frame];
+  windowFrame = [user1Window frame];
 
-  textFrame = [user1Text frame];
+  newFrame.size.height = 10000.0;  // a large number
+  newFrame.size = [[user1Text cell] cellSizeForBounds:newFrame];
 
-  newSize.height = 88 + textFrame.size.height;
-  newSize.width = (360 > textFrame.size.width) ? 400 : (40 + textFrame.size.width);
+  if (newFrame.size.height > oldFrame.size.height)
+    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+  else if (newFrame.size.height < oldFrame.size.height)
+    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [user1Window setContentSize:newSize];
-
-  textFrame.origin.x = 20;
-  textFrame.origin.y = 68;
-
-  [user1Text setFrame:textFrame];
+  [user1Window setFrame:windowFrame display:NO];
   // end of window resizing
   
   [user1Button setTitle:button1];
@@ -161,9 +159,8 @@ extern struct ticalc_info_update info_update;
   NSModalSession session;
 #endif
 
-  NSRect textFrame;
-  NSSize newSize;
-
+  NSRect oldFrame, newFrame, windowFrame;
+  
   objects_ptr->user2_return = 0;
 
   [self hideCurrentPBar];
@@ -172,19 +169,18 @@ extern struct ticalc_info_update info_update;
 
 
   // begin window resizing
-  [user2Text sizeToFit];
+  oldFrame = newFrame = [user2Text frame];
+  windowFrame = [user2Window frame];
 
-  textFrame = [user2Text frame];
+  newFrame.size.height = 10000.0;  // a large number
+  newFrame.size = [[user2Text cell] cellSizeForBounds:newFrame];
 
-  newSize.height = 88 + textFrame.size.height;
-  newSize.width = (360 > textFrame.size.width) ? 400 : (40 + textFrame.size.width);
+  if (newFrame.size.height > oldFrame.size.height)
+    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+  else if (newFrame.size.height < oldFrame.size.height)
+    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [user2Window setContentSize:newSize];
-
-  textFrame.origin.x = 20;
-  textFrame.origin.y = 68;
-
-  [user2Text setFrame:textFrame];
+  [user2Window setFrame:windowFrame display:NO];
   // end of window resizing
 
   [user2Button1 setTitle:button1];
@@ -231,28 +227,26 @@ extern struct ticalc_info_update info_update;
   NSModalSession session;
 #endif
 
-  NSRect textFrame;
-  NSSize newSize;
+  NSRect oldFrame, newFrame, windowFrame;
   
   [self hideCurrentPBar];
 
   [user3Text setStringValue:message];
 
   // begin window resizing
-  [user3Text sizeToFit];
+  oldFrame = newFrame = [user3Text frame];
+  windowFrame = [user3Window frame];
 
-  textFrame = [user3Text frame];
+  newFrame.size.height = 10000.0;  // a large number
+  newFrame.size = [[user3Text cell] cellSizeForBounds:newFrame];
 
-  newSize.height = 88 + textFrame.size.height;
-  newSize.width = (360 > textFrame.size.width) ? 400 : (40 + textFrame.size.width);
+  if (newFrame.size.height > oldFrame.size.height)
+    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+  else if (newFrame.size.height < oldFrame.size.height)
+    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [user3Window setContentSize:newSize];
-
-  textFrame.origin.x = 20;
-  textFrame.origin.y = 68;
-
-  [user3Text setFrame:textFrame];
-  // end of window resizing  
+  [user3Window setFrame:windowFrame display:NO];
+  // end of window resizing
   
   [user3Button1 setTitle:button1];
   [user3Button2 setTitle:button2];
@@ -301,8 +295,7 @@ extern struct ticalc_info_update info_update;
   NSModalSession session;
 #endif
 
-  NSRect textFrame;
-  NSSize newSize;
+  NSRect oldFrame, newFrame, windowFrame;
   
   if ([dlgboxentryWindow isVisible])
     return NULL;
@@ -312,23 +305,20 @@ extern struct ticalc_info_update info_update;
   [dlgboxentryText setStringValue:message];
 
   // begin window resizing
-  [dlgboxentryText sizeToFit];
+  oldFrame = newFrame = [dlgboxentryText frame];
+  windowFrame = [dlgboxentryWindow frame];
 
-  textFrame = [dlgboxentryText frame];
+  newFrame.size.height = 10000.0;  // a large number
+  newFrame.size = [[dlgboxentryText cell] cellSizeForBounds:newFrame];
 
-  newSize.height = 88 + textFrame.size.height;
-  newSize.width = (260 > textFrame.size.width) ? 300 : (40 + textFrame.size.width);
+  if (newFrame.size.height > oldFrame.size.height)
+    windowFrame.size.height += (newFrame.size.height - oldFrame.size.height);
+  else if (newFrame.size.height < oldFrame.size.height)
+    windowFrame.size.height -= (oldFrame.size.height - newFrame.size.height);
 
-  [dlgboxentryWindow setContentSize:newSize];
-
-  // I'm unsure whether I need to do the same with dlgboxentryEntry and dlgboxentryText...
-  
-  textFrame.origin.x = 20;
-  textFrame.origin.y = 90;
-
-  [dlgboxentryText setFrame:textFrame];
+  [dlgboxentryWindow setFrame:windowFrame display:NO];
   // end of window resizing
-
+ 
   [dlgboxentryWindow setExcludedFromWindowsMenu:YES];
 
 #ifdef TILP_USES_SHEETS
@@ -546,19 +536,12 @@ extern TicableDataRate *dr;
     else
       info_update.prev_percentage = info_update.percentage;
 
-    // old code
-    //rate = info_update.count / ((float)(clock() - info_update.start_time)/CLOCKS_PER_SEC);
-
     rate = dr->count/toCURRENT(dr->start);
 
     // set pbar value and textField text
 
     [pbar1 setDoubleValue:(double)(info_update.percentage * 100)];
     [pbar_rate setStringValue:[NSString stringWithFormat:@"Rate : %3.2f KBytes/s", (rate / 1000)]];
-
-    // not needed
-    //[pbar1 displayIfNeeded];
-    //[pbar_rate displayIfNeeded];
   }
 }
 

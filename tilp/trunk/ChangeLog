@@ -281,10 +281,8 @@
 	* Accept FLASH Apps and ROM upgrades when dropped on the dirlist.
 	  Thanks Romain for this one, it comes with TiLP 5.11 :)
 	* Resize the screendump window wrt the size of the screen.
-	
-
-
-
-
-
+* 20020626 : v5.11 (0.6.1)
+	* Fixed userX_box and dlgboxentry for real.
+	* Attempting to fix the "TextView-goes-blurry" in the remote control window.
+	* Added tooltips to the Preferences panel.
 	
