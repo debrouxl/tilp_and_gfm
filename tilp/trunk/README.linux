@@ -10,8 +10,6 @@ DESCRIPTION
 -----------
 
 Development platform: GNU/Linux Debian, 2.5.64 kernel, XFree 4.2.1, GTK+ 2.2.
-Tested on SPARC platform with a Grey TIGL link cable.
-Ported on Alpha platform with serial link cable by James Lancaster.
 
 
 REQUIREMENTS
@@ -20,14 +18,13 @@ REQUIREMENTS
  - A UNIX computer (Intel x86, SPARC or Alpha) and a C compiler (gcc) 
 	for the Linux version
  - X11 (X Window System)
- - GTK+ 1.2.0+ http://www.gtk.org
+ - GTK+ 2.x (http://www.gtk.org)
  - the ticables, tifiles and ticalcs libraries
- - the 'tipar' or 'tiser' kernel module if you do not want to run TiLP with 
+ - the 'tipar' kernel module if you do not want to run TiLP with 
 	'root' privileges (required with GTK+ >1.2.9). This is required only 
-	for homemade parallel/serial cable and BlackLink cable.
-- the 'tiusb' kernel module of the libusb if you want to use the SilverLink
+	for homemade parallel link cable.
+- the 'tiusb' kernel module or the libusb if you want to use the SilverLink
 	cable (TI-GRAPH LINK USB).
-- appsign-linux-i386-bin utility if you want to sign free FLASH apps for TI83+
 
 
 INSTALLATION
@@ -64,7 +61,7 @@ AVAILABILITY
 COPYRIGHT
 ---------
 
-TiLP is Copyright (C) 1999-2002 by the TiLP team <tilp-users@lists.sf.net>
+TiLP is Copyright (C) 1999-2004 by the TiLP team <tilp-users@lists.sf.net>
 
 Copying is allowed under the terms of GNU General Public License.  
 See the file COPYING for more details.
