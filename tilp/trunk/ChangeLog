@@ -13,7 +13,7 @@ To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
 - 08/04/2004, version 6.71 (3.8.1, 0.5.8, 4.5.3): roms
-	        redirection.
+        Redirection of stdout/stderr by callbacks and minor improvements.
 	
 - 24/03/2004, version 6.70 (3.8.0, 0.5.7, 4.5.2): roms
 	Added menu entry and mime types for KDE & Gnome.

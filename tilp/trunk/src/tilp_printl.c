@@ -61,11 +61,13 @@ static FILE *flog = NULL;
 
 int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 {
+	static int print_domain = !0;
 #ifdef __WIN32__
         char buffer[128];
         int cnt;
         DWORD nWritten;
 
+        // open console once
         if (alloc_console_called == FALSE) {
 	        AllocConsole();
 	        alloc_console_called = TRUE;
@@ -73,9 +75,14 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	        //freopen("CONOUT$", "w", stdout);
         }
 	
-	cnt = sprintf(buffer, domain);
-	WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
+	// if carriage return, print domain, else bufferize
+	if(print_domain) {
+		cnt = sprintf(buffer, domain);
+		WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
+		//print_domain = 0;
+	}	
 
+	// print warning/error if needed
 	switch(level) {
 	case 1: cnt = sprintf(buffer, _("wrn: ")); break;
 	case 2: cnt = sprintf(buffer, _("err: ")); break;
@@ -83,25 +90,48 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	}
 	WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
 
+	// print format/args
         cnt = _vsnprintf(buffer, 128, format, ap);
         WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
 #else
-	fprintf(stdout, domain);
+	//
+	if(print_domain) {
+		fprintf(stdout, domain);
+		//print_domain = 0;
+	}
+
+	//
 	switch(level) {
 	case 1: fprintf(stdout, _("wrn: ")); break;
 	case 2: fprintf(stdout, _("err: ")); break;
 	}
+	
+	//
 	vfprintf(stdout, format, ap);
 #endif
-
-        if (flog == NULL) {
+	if (flog == NULL) {
     		flog = fopen(LOG_FILE, "wt");
-        } else {
-		vfprintf(flog, format, ap);
-  	}
+	} else {
+	      	if(print_domain) {
+			fprintf(flog, domain);
+			print_domain = 0;
+		}
+		
+		//
+		switch(level) {
+		case 1: fprintf(flog, _("wrn: ")); break;
+		case 2: fprintf(flog, _("err: ")); break;
+		}
 
-	//turn vfprintf(stdout, format, ap);
-        return 0;
+		// print same stuffs in file
+		vfprintf(flog, format, ap);
+	}
+
+	// check for printing domain on next loop
+	if(strchr(format, '\n'))
+		print_domain = !0;
+	
+	return 0;
 }
 
 int printl_flush(void)
