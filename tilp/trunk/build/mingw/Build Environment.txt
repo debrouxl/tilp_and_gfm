@@ -80,6 +80,13 @@ List of packages for infos:
 Linux (cross)
 -------------
 
-Later...
+If your mingw is installed in '/usr/i586-mingw32msvc':
 
---host=i386-pc-mingw32
+   export PKG_CONFIG_PATH="/usr/i586-mingw32msvc/target/lib/pkgconfig"
+   export CPPFLAGS="-I/usr/i586-mingw32msvc/include \
+	  -I/usr/i586-mingw32msvc/target/include"
+   export LDFLAGS="-L/usr/i586-mingw32msvc/target/lib"
+   #export PATH="/target/bin:$PATH"
+
+
+./configure --build=i386-pc-mingw32
