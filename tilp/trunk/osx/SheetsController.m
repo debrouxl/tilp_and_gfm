@@ -108,12 +108,12 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
     
-    NSBeginAlertSheet(title, nil, nil, nil, mainWindow, nil, nil, nil, nil, message);
+    NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow] /* mainWindow */, nil, nil, nil, nil, message);
                       
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
-                   modalForWindow:mainWindow
+                   modalForWindow:[myBoxesController keyWindow]
                    modalDelegate:nil
                    didEndSelector:nil
                    contextInfo:nil];
@@ -135,7 +135,7 @@ extern struct ticalc_info_update info_update;
     [user1Window setExcludedFromWindowsMenu:YES];
     
     [NSApp beginSheet:user1Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -148,7 +148,7 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
-                   modalForWindow:mainWindow
+                   modalForWindow:[myBoxesController keyWindow]
                    modalDelegate:nil
                    didEndSelector:nil
                    contextInfo:nil];
@@ -171,7 +171,7 @@ extern struct ticalc_info_update info_update;
     [user2Window setExcludedFromWindowsMenu:YES];
     
     [NSApp beginSheet:user2Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -184,7 +184,7 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
-                   modalForWindow:mainWindow
+                   modalForWindow:[myBoxesController keyWindow]
                    modalDelegate:nil
                    didEndSelector:nil
                    contextInfo:nil];
@@ -208,7 +208,7 @@ extern struct ticalc_info_update info_update;
     [user3Window setExcludedFromWindowsMenu:YES];
     
     [NSApp beginSheet:user3Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -221,7 +221,7 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
-                   modalForWindow:mainWindow
+                   modalForWindow:[myBoxesController keyWindow]
                    modalDelegate:nil
                    didEndSelector:nil
                    contextInfo:nil];
@@ -236,7 +236,6 @@ extern struct ticalc_info_update info_update;
  
 - (NSString *)dlgboxEntry:(NSString *)message content:(NSString *)content
 {
-    // This sheet is modal for the main window
     if ([dlgboxentryWindow isVisible])
         return NULL;
           
@@ -247,7 +246,7 @@ extern struct ticalc_info_update info_update;
     [dlgboxentryWindow setExcludedFromWindowsMenu:YES];
           
     [NSApp beginSheet:dlgboxentryWindow
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -272,7 +271,7 @@ extern struct ticalc_info_update info_update;
     [pbar2Window setExcludedFromWindowsMenu:YES];
 
     [NSApp beginSheet:pbar2Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -282,7 +281,7 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         {
             [NSApp beginSheet:pbarWindow
-                   modalForWindow:mainWindow
+                   modalForWindow:[myBoxesController keyWindow]
                    modalDelegate:nil
                    didEndSelector:nil
                    contextInfo:nil];
@@ -304,15 +303,12 @@ extern struct ticalc_info_update info_update;
     [pbar1Window setExcludedFromWindowsMenu:YES];
         
     [NSApp beginSheet:pbar1Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
     
     [NSApp endSheet:pbar1Window];
-    
-    [pbar1Window makeKeyWindow];
-    [NSApp updateWindows];
 }
  
 - (void)pbarType3
@@ -329,7 +325,7 @@ extern struct ticalc_info_update info_update;
     [pbar3Window setExcludedFromWindowsMenu:YES];
 
     [NSApp beginSheet:pbar3Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -353,7 +349,7 @@ extern struct ticalc_info_update info_update;
     [pbar4Text setStringValue:message];
    
     [NSApp beginSheet:pbar4Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
@@ -378,7 +374,7 @@ extern struct ticalc_info_update info_update;
     [pbar5Window setExcludedFromWindowsMenu:YES];
 
     [NSApp beginSheet:pbar5Window
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];

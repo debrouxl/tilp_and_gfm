@@ -278,7 +278,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
         types:[calcDict objectForKey:@"extBackup"]
-        modalForWindow:mainWindow
+        modalForWindow:[myBoxesController keyWindow]
         modalDelegate:myBoxesController
         didEndSelector:@selector(doRestoreDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
@@ -312,7 +312,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
         types:[calcDict objectForKey:@"extFLASHApp"]
-        modalForWindow:mainWindow
+        modalForWindow:[myBoxesController keyWindow]
         modalDelegate:myBoxesController
         didEndSelector:@selector(sendFlashAppDidEnd:returnCode:contextInfo:)
         contextInfo:nil];
@@ -346,7 +346,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [op beginSheetForDirectory:NSHomeDirectory()
         file:nil
         types:[calcDict objectForKey:@"extAMS"]
-        modalForWindow:mainWindow
+        modalForWindow:[myBoxesController keyWindow]
         modalDelegate:myBoxesController
         didEndSelector:@selector(sendAMSDidEnd:returnCode:contextInfo:)
         contextInfo:nil];

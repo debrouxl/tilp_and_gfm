@@ -203,7 +203,11 @@
 	    => Call rc_save_user_prefs() after ticalc_set_calc(),
 	    as the former uses ticalc_get_calc() which will return
 	    the right calc type only after the latter is called
-	
+* 20020126 : v0.4.3
+	* Pop up sheets on the key window and not always on the
+	main window. If we have no key window, fallback to the
+	main window.
+
 
 
 

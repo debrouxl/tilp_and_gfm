@@ -61,6 +61,8 @@
     IBOutlet id screendumpImage;
     IBOutlet id screendumpWindow;
     
+    IBOutlet id mainWindow;
+    
     IBOutlet id myTilpController;
     IBOutlet id myPrefsController;
     IBOutlet id myMenuController;
@@ -69,6 +71,8 @@
     IBOutlet id myCalc89KeyboardController;
     IBOutlet id myCalc92KeyboardController;
 }
+
+- (id)keyWindow;
 
 - (void)user1ButtonPush:(id)sender;
 - (void)user2ButtonPush:(id)sender;

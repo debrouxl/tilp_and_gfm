@@ -373,7 +373,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
         [consoleModeMatrix setState:NSOnState atRow:0 column:1];
         
     [NSApp beginSheet:prefsWindow
-           modalForWindow:mainWindow
+           modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];

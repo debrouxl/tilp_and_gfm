@@ -54,6 +54,27 @@ extern int is_active;
     objects_ptr->myBoxesController = self;
 }
 
+- (id)keyWindow
+{
+    if ([NSApp keyWindow] != nil)
+        {
+            return [NSApp keyWindow];
+        }
+    else
+        {
+            if ([mainWindow isVisible])
+                {
+                    return mainWindow;
+                }
+            else
+                {
+                    [mainWindow makeKeyAndOrderFront:self];
+                    
+                    return mainWindow;
+                }
+        }
+}
+
 - (void)user1ButtonPush:(id)sender
 {
     objects_ptr->user1_return = BUTTON1;

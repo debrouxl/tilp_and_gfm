@@ -24,7 +24,6 @@
 @interface TilpController : NSObject
 {
     IBOutlet id dirlistTree;
-    IBOutlet id mainWindow;
 
     IBOutlet id currentFolder;
     IBOutlet id numberOfFolders;

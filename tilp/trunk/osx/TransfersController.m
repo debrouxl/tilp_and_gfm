@@ -227,7 +227,7 @@ extern int is_active;
                 
                     [sp beginSheetForDirectory:NSHomeDirectory()
                         file:tmpfile 
-                        modalForWindow:mainWindow
+                        modalForWindow:[myBoxesController keyWindow]
                         modalDelegate:myBoxesController
                         didEndSelector:@selector(getSingleVarDidEnd:returnCode:contextInfo:)
                         contextInfo:context];
@@ -243,7 +243,7 @@ extern int is_active;
                 
                     [sp beginSheetForDirectory:NSHomeDirectory()
                         file:[calcDict objectForKey:@"defaultGroupFilename"]
-                        modalForWindow:mainWindow
+                        modalForWindow:[myBoxesController keyWindow]
                         modalDelegate:myBoxesController
                         didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
                         contextInfo:context];
@@ -267,9 +267,7 @@ extern int is_active;
     char *file = NULL;
     
     localPool = [[NSAutoreleasePool alloc] init];
-    
-    [mainWindow display];
-    
+        
     nsfiles = (NSArray *)files;
     
     filesEnum = [files objectEnumerator];
@@ -516,7 +514,7 @@ extern int is_active;
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile
-                                    modalForWindow:mainWindow
+                                    modalForWindow:[myBoxesController keyWindow]
                                     modalDelegate:myBoxesController
                                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                     contextInfo:sp];
@@ -570,7 +568,7 @@ extern int is_active;
 
                                     [sp beginSheetForDirectory:NSHomeDirectory()
                                         file:proposedFile
-                                        modalForWindow:mainWindow
+                                        modalForWindow:[myBoxesController keyWindow]
                                         modalDelegate:myBoxesController
                                         didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                         contextInfo:sp];
@@ -618,7 +616,7 @@ extern int is_active;
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
                                 file:proposedFile
-                                modalForWindow:mainWindow
+                                modalForWindow:[myBoxesController keyWindow]
                                 modalDelegate:myBoxesController
                                 didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                 contextInfo:sp];
@@ -660,7 +658,7 @@ extern int is_active;
                 
                 [sp beginSheetForDirectory:NSHomeDirectory()
                     file:proposedFile
-                    modalForWindow:mainWindow
+                    modalForWindow:[myBoxesController keyWindow]
                     modalDelegate:myBoxesController
                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                     contextInfo:sp];
@@ -712,7 +710,7 @@ extern int is_active;
 
                                 [sp beginSheetForDirectory:NSHomeDirectory()
                                     file:proposedFile
-                                    modalForWindow:mainWindow
+                                    modalForWindow:[myBoxesController keyWindow]
                                     modalDelegate:myBoxesController
                                     didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
                                     contextInfo:sp];
@@ -745,7 +743,7 @@ extern int is_active;
     
     [sp beginSheetForDirectory:NSHomeDirectory()
         file:[calcDict objectForKey:@"defaultBackupFilename"]
-        modalForWindow:mainWindow
+        modalForWindow:[myBoxesController keyWindow]
         modalDelegate:myBoxesController
         didEndSelector:@selector(doBackupDidEnd:returnCode:contextInfo:)
         contextInfo:sp];

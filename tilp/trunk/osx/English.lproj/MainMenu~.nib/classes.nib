@@ -21,6 +21,7 @@
                 dlgboxentryEntry = id; 
                 dlgboxentryText = id; 
                 dlgboxentryWindow = id; 
+                mainWindow = id; 
                 myCalc89KeyboardController = id; 
                 myCalc92KeyboardController = id; 
                 myMenuController = id; 
@@ -161,7 +162,6 @@
                 linkTimeoutField = id; 
                 linkTimeoutValueStepper = id; 
                 linkTypeMatrix = id; 
-                mainWindow = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 mySheetsController = id; 
@@ -252,7 +252,6 @@
             OUTLETS = {
                 currentFolder = id; 
                 dirlistTree = id; 
-                mainWindow = id; 
                 memoryStats = id; 
                 myBoxesController = id; 
                 myMenuController = id; 

@@ -59,7 +59,6 @@
     IBOutlet id user3Button3;
     IBOutlet id user3Text;
     IBOutlet id user3Window;
-    IBOutlet id mainWindow;
     
     IBOutlet id myTilpController;
     IBOutlet id myBoxesController;

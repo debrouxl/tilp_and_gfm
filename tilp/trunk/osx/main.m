@@ -150,7 +150,7 @@ int main(int argc, const char *argv[], char **arge)
   /* Probing */
   DISPLAY("probing: %i\n", link_cable.probe());
     
-    return NSApplicationMain(argc, argv);
+  return NSApplicationMain(argc, argv);
 }
 
 

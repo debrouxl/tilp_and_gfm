@@ -45,7 +45,6 @@
     IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
-    IBOutlet id mainWindow;
     IBOutlet id orderDecreasing;
     IBOutlet id orderIncreasing;
     IBOutlet id pathModeFull;

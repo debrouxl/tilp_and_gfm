@@ -22,7 +22,6 @@
 
 @interface TransfersController : NSObject
 {
-    IBOutlet id mainWindow;
     IBOutlet id dirlistTree;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;
