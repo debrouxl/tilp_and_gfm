@@ -1,0 +1,283 @@
+* 20020602 : v5.11 (0.6.0)
+	* Merge up to 5.11.
+	* Fix separator in userX_box and dlgboxentry.
+	* Fix memory information wrt FLASH Apps with libticalcs >= 3.3.2.
+	* Accept FLASH Apps and ROM upgrades when dropped on the dirlist.
+	  Thanks Romain for this one, it comes with TiLP 5.11 :)
+	* Resize the screendump window wrt the size of the screen.
+* 20020602 : v5.08 (0.6.0)
+	* Set title on userX_box and dlgboxentry when not displayed as sheet.
+	* Fix userX_box and dlgboxentry so the text is displayed correctly. At last.
+	* Fix dirlist wrt FLASH apps with libticalcs >= 3.3.2.
+* 20020601 : v5.08 (0.5.5)
+	* Rewrote the remote control.
+	* Make the remote control window resizable.
+	* Merge Calc{89,92}KeyboardController into CalcKeyboardController.
+	* Skin loading uses the skinedit SkinController class.
+	* Use TiEmu v2.00 skins.	
+* 20020512 : v5.08 (0.5.4)
+ 	* Merge up to 5.08.
+	* Added BMP screen dump format.
+	* Removed "ROM Version" menu item and callback.
+	* Changed "ROM Dump" key combo for one that was not already used.
+* 20020511 : v5.01 (0.5.3)
+	* Converted to ProjectBuilder 2.0 Beta.
+	* Fixed double-confirmation bug when overwriting files.
+	* Fixed Modal session for userX_box.
+* 20020305 : v5.01 (0.5.2)
+	* Merge up to 5.01.
+	* Do not try to process the dirlist for FLASH Apps if the
+	calculator does not support FLASH Apps.
+* 20020302 : v5.00 (0.5.2)
+	* Fixed NSImageView size on the screendump window.
+	* Use ticalc_folder_type() to determine whether we have a var
+	or a folder when parsing the dirlist.
+	* FLASH apps must be > 1 in size.
+* 20020301 : v5.00 (0.5.1)
+	* Merge the Functions menus.
+	* Some calcs do not support the Ready function. Do not display
+	a possibly erroneous "calc is ready" message.
+	* Remove the Home and End key from RCTextView. Their keycodes are
+	greater than 8000, they are not honoured by the calcs.
+	* Map "pi" in the remote control (RCTextView) (alt + p).
+	* Clean up the RCTextView in case the window was used previously.
+	* Use sheets for pbars, save panels and open panels only.
+* 20020224 : v5.00 (0.5.0)
+	* Merge up to 5.00.
+* 20020216 : v4.96 (0.5.0)
+	* Merge up to 4.96.
+* 20020214 : v4.94 (0.5.0)
+	* Final merge, step1.
+* 20020214 : v0.5.0
+	* Title bar reads "TiLP v5.00", but it's a 4.92 modified.
+	* Added an indeterminate ProgressIndicator to pbarType2.
+* 20020213 : v0.4.9
+	* Merge up to 4.92.
+	* Receive FLASH Apps.
+	* Use TMPFILE_* in BoxesController.	
+* 20020208 : v0.4.5
+	* Fixed the glib build, so that g_warning and friends are
+	no longer functions defined in glib.h but macros. Cleaner build.
+	* Threaded vars upload.
+* 20020207 : v0.4.5
+	* Greek letters in remote control.
+	* Pop up a sheet when calc is ready.
+	* Reset pbars texts and values when "destroyed".
+	* Catch "Clear" key on the Mac keyboard.
+	* Keypad Enter is not Return !
+* 20020128 : v0.4.4
+	* Fixed a bug in the remote control keyboard handling. Use usigned
+	int instead of unsigned char.
+	* Fixed a typo in keys89.h, 'z' = 122, not 121.
+	     [both reported by Matthew Bryant]
+* 20020127 : v0.4.3
+	* Fixed TI-89 modes handling in remote control.
+* 20020126 : v0.4.3
+	* Pop up sheets on the key window and not always on the
+	main window. If we have no key window, fallback to the
+	main window.
+* 20020126 : v0.4.2
+	* Added 89y to the list of known vars for the TI-89 (reported
+	by: Benjamin Esham).
+	* Fixed coordinates problems on both keyboards.
+	* Cleaned up the Remote Control mess
+	    => Wiped out some methods
+	    => Wiped out some windows
+	    => Cleaned up some of the classes
+	* Fixed prefsClose: wrt calc type
+	    => Call rc_save_user_prefs() after ticalc_set_calc(),
+	    as the former uses ticalc_get_calc() which will return
+	    the right calc type only after the latter is called
+* 20020125 : v0.4.1
+	* Change my mind again wrt Remote control
+	    => new implementation using a subclass of NSImageView
+	    and the skins from GtkTiEmu. The keyboards are not yet
+	    usable, but the Remote control works as it did previously
+	    using the RCTextField.
+* 20020121 : v0.4.0
+	* Merge up to 4.85.
+	* Fixups regarding 4.85 messup with libticalcs 3.0.7.
+* 20020120 : v0.4.0
+	* Fixed the Information box.
+* 20020120 : v0.3.9
+	* Overriding -insertText: was _not_ a good idea.
+	* Overriding -keyDown: is a far better one :)
+	* So we have a mostly working remote control.
+* 20020118 : v0.3.8
+	* More *boring* remote control stuff.
+	     => TI92 keyboard.
+* 20020118 : v0.3.8
+	* More remote control.
+	* Finished TI89 keyboard.
+	     => Added a class to handle it.
+	* Properly handle the RCTextView into the NSScrollView.
+* 20020117 : v0.3.8
+	* Implementing Remote Control
+	     => Added RCTextView, subclassing NSTextView
+	     => Modified the Remote Control window to use
+	     a scrolled NSTextView
+* 20020116 : v0.3.7
+	* Do not use - [NSString getCString:buffer] when handling paths,
+	use - [NSString fileSystemRepresentation] instead.
+	* Do not malloc() then - [NSString getCString:buffer], it's better
+	to strdup(- [NSString cString]).
+	* Try to get all windows or sheets open by the same thread. We use
+	NSNotification to achieve that, did a test with pbarType1. Not
+	really what I expected...
+* 20020115 : v0.3.6
+	* All important transfers threaded (except dirlist).
+	      => working "Abort" buttons.
+	* Fixed Windows menu handling, wrt pbar sheets.
+* 20020115 : v0.3.5
+	* Fixed screen dump corruption in img_cnv.c.
+	* Display free mem (wrong atm, waiting for new libticalcs).
+	* Added TransfersController class.
+	* Threaded FLASH APPS upload.
+* 20020114 : v0.3.4
+	* Improved getVars.
+	* Dirlist now displays FLASH Apps too.
+	* Fixed sendFlashApp.
+* 20020113 : v0.3.3
+	* Fixed version in window title, about box.
+	* Fixed typos in GUI.
+	* When a folder is selected, transfer all the vars in the folder.
+* 20020112 : v0.3.2
+	* libticables/libticalcs fixes.
+* 20020106 : v0.3.1
+	* Happy new year !
+	   => Copyright 1999-2002, 2001-2002
+	* Merged in TiLP 4.82
+* 20011219 : v0.3.1
+	* Bugfixes in the preferences system, wrt Grey TIGL
+* 20011218 : v0.3.1
+	* Small fixes wrt pbar_type* windows sizing
+	* Grey TIGL support
+	* Modified Preferences system and panel for the Grey TIGL
+* 20011216 : v0.3.0
+	* Fixed paths in PB project files
+	* Grey TIGL support
+	* Timeout handling (back to tenth of seconds)
+	* Romdump
+* 20011209 : v0.3.0
+	* Merge up to 4.73
+	* CVS cleanup
+	* Legal stuff : GPL headers
+* 20011209 : v0.2.4
+	* Added osx/images/calc.tiff to CVS
+	* Do not open remote control if calc is not one of TI89/92/92+
+	* Updated for libticables 2.2.0
+	* CVS cleanup
+* 20011208 : v0.2.4
+	* Fixed proposed filenames and extensions in the various
+	NSOpenPanels/NSSavePanels
+	* Store calc-dependent infos in a dictionary, most notably
+	file types and some extensions, for use in NS{Save|Open}Panels
+	* Implemented receive vars. No DnD, Cocoa App ===> Finder is currently
+	not supported by Apple...
+	* Added a Varinfo class to hold the struct varinfo in dirlist items
+	* Registered files extensions
+* 20011207 : v0.2.3
+	* Code cleaning
+	      * New class SheetsController, handling sheets and pbars refresh
+	      * Got rid of the ugly cocoa_pbars_ptr struct
+	      * Got rid of cocoa_outline_refresh.[mh], integrated refresh_outline()
+	        and refresh_infos() into TilpController
+		  => new methods refreshOutline and refreshInfos
+	      * Got rid of most of the cocoa_objects_ptr struct
+	* Various fixes
+	      * pbar_type4 glitch when sending an existing var
+	      * Timeout now in range 0 - 1000 ms (was 0 - 300 ms before,
+	        in - [PrefsController showPrefsSheet])
+* 20011206 : v0.2.2
+	* Implementing Drag and Drop
+	      * Step 1 : Finder ===> TiLP
+	      * Step 2 : send vars
+	        => there's a bug affecting the pbar_type4 which is sometime
+		redisplayed at the end of the transfer. Dunno why.
+* 20011202 : v0.2.1
+	* Did a bit of optimization when rendering the screen, using memset()
+	      => took 3 seconds before, less than 1 second now
+	* Added a "Close Window" item to the Window menu
+* 20011201 : v0.2.1
+	* Got screendump to work this evening
+	* The refresh button now points to - [MenuController getScreen]
+* 20011130 : v0.2.1
+	* Train trip again...
+	     * Re-enabled sheets : found that I don't have to use
+	     [NSApp runModalForWindow] all the time. Great.
+* 20011129 : v0.2.0
+	* Fixed progress indicators windows (design and labels concerns)
+	* Fixed progress indicators refresh
+	* Fixed labels refresh
+* 20011128 : v0.1.9
+	* Fixed release problem in refresh_infos() causing an EXC_BAD_ACCESS
+	to be raised at runtime
+	* Fixed a typo in SimpleTreeNode.m : VarSize != Varsize !!!
+* 20011119 : v0.1.8
+	* Made user prefs available earlier
+	* Added a matrix in the "Adavanced" tab for the console verbosity
+	* Fixes wrt libticables config
+* 20011111 : v0.1.7
+	* legal stuff wrt Apple Sample Code
+	* found - [NSApp addWindowsItem:title:filename], so did the "Windows"
+	  menu management
+	* replaced the standard about panel with something more verbose
+* 20011110 : v0.1.6
+	* finished outlineview handling
+	* infos refresh (below the outlineview)
+* 20011109 : v0.1.5
+	* 8h train trip again, so coding...
+	      * added some files from an Apple Sample code to manage the OutlineView
+	      * coded refresh_ctree() which converts a GList into an NSDictionary suitable for use with our OutlineView handling code
+	      * added 2 vars to cocoa_objects_ptr
+* 20011101 : v0.1.4
+	* forgot to enter/leave terminal mode when switching mode
+	* get an NSSavePanel before using it in - [MenuController romDump:]
+	* code cleaning in - [MenuController romDump:]
+* 20011031 : v0.1.4	
+	* implemented ROM dump menu
+* 20011030 : v0.1.3
+	* more functional methods behind the menu and the toolbar
+	* NSSavePanels and NSOpenPanels displayed as sheets
+	* fixed some stuffs with pbars
+	* implemented remoteControlChangeMode
+* 20011030 : v0.1.3
+	* merged ToolbarController into MenuController
+* 20011029 : v0.1.2
+	* msg_box, userX_box and pbar_type2 are now alert panels (and
+	not sheets)
+	* finished the implementation of - [ToolbarController doRestore]
+* 20011029 : v0.1.1
+	* fixed - [TilpController awakeFromNib] : don't set some of the
+	pointers to nil, as TilpController is the last to be sent
+	awakeFromNib...
+* 20011026 : v0.1.1
+	* misc features completed during the week
+	* while in the train to home (8 hours) :
+	    * implemented pbars refresh system
+	    * small ameliorations in the previous cocoa code
+	    * renamed cocoa_msg_sheets.[ch] to cocoa_sheets.[ch]
+	    * modified the pbar*_window to contain determinate progress
+	    indicators
+	    * implemented save screendump
+	    * fixed - [BoxesController screendumpRefresh] to behave like
+	    the GTK version
+	    * removed the "Load" button from the screendump window. I can't
+	    see its interest.
+	    * removed - [BoxesController msgBoxOrUser2DidEnd] -- all we
+	    needed to do is to wait until the user stops the modal by clicking
+	    on the button, this is handled by Cocoa, so it was useless.
+	    * implemented remote control/terminal callback in the MainMenu
+	    * began to implement - [ToolbarController doRestore] but I'm too
+	    tired to finish it.
+* 20011021 : v0.1.0
+	* finished preferences system.
+	* began to hook the menu to the core.
+	* added a thanks panel
+* 20011020 : v0.0.8
+	* finished integration, step 1.
+* 20011020 : v0.0.7
+	* wiped out gtk_* files from CVS.
+	* core integration goes on...
+* 20011014 : v0.0.6
+	* wrote main.m, reusing gtk_main.c.
