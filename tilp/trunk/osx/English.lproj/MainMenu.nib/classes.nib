@@ -119,8 +119,6 @@
             OUTLETS = {
                 dirlistTree = id; 
                 mainWindow = id; 
-                msgSheetText = id; 
-                msgSheetWindow = id; 
                 myBoxesController = id; 
                 myCalc89KeyboardController = id; 
                 myCalc92KeyboardController = id; 

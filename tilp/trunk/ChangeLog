@@ -255,6 +255,10 @@
 	* Merge up to 5.01.
 	* Do not try to process the dirlist for FLASH Apps if the
 	calculator does not support FLASH Apps.
+* 20020511 : v5.01 (0.5.3)
+	* Converted to ProjectBuilder 2.0 Beta.
+	* Fixed double-confirmation bug when overwriting files.
+	* Fixed Modal session for userX_box.
 	
 
 

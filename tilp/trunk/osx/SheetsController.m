@@ -117,7 +117,11 @@ extern struct ticalc_info_update info_update;
     
     [user1Window makeKeyAndOrderFront:self];
     
-    [NSApp runModalSession:session];
+    for (;;)
+      {
+          if([NSApp runModalSession:session] != NSRunContinuesResponse)
+              break;
+      }
     
     [NSApp endModalSession:session];
 #endif
@@ -134,6 +138,8 @@ extern struct ticalc_info_update info_update;
 #ifndef TILP_USES_SHEETS
     NSModalSession session;
 #endif
+
+    objects_ptr->user2_return = 0;
 
     [self hideCurrentPBar];
     
@@ -158,8 +164,12 @@ extern struct ticalc_info_update info_update;
     
     [user2Window makeKeyAndOrderFront:self];
     
-    [NSApp runModalSession:session];
-    
+    for (;;)
+      {
+          if([NSApp runModalSession:session] != NSRunContinuesResponse)
+              break;
+      }
+
     [NSApp endModalSession:session];
 #endif
 
@@ -200,7 +210,11 @@ extern struct ticalc_info_update info_update;
     
     [user3Window makeKeyAndOrderFront:self];
     
-    [NSApp runModalSession:session];
+    for (;;)
+      {
+          if([NSApp runModalSession:session] != NSRunContinuesResponse)
+              break;
+      }
     
     [NSApp endModalSession:session];
 #endif
@@ -244,8 +258,12 @@ extern struct ticalc_info_update info_update;
     
     [dlgboxentryWindow makeKeyAndOrderFront:self];
     
-    [NSApp runModalSession:session];
-    
+    for (;;)
+      {
+          if([NSApp runModalSession:session] != NSRunContinuesResponse)
+              break;
+      }
+
     [NSApp endModalSession:session];
 #endif
 

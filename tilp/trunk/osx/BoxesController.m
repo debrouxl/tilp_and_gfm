@@ -267,10 +267,10 @@ extern int is_active;
                         [tiff writeToFile:[sp filename] atomically:YES];
                         break;
                     case PCX:
-                        cb_screen_save(file);
-                        break;
                     case XPM:
                         cb_screen_save(file);
+                        break;
+                    default:
                         break;
                 }
             free(file);
@@ -283,11 +283,7 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int ret;
     int skip = 0;
-    
-    gchar buffer[MAXCHARS];
-    gchar *dirname;
     
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.backup") + 1);
             
@@ -300,39 +296,6 @@ extern int is_active;
             sp = contextInfo;
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-
-            if(options.confirm == CONFIRM_YES)
-                {
-                    if(access(file, F_OK) == 0)
-                        {
-                            sprintf(buffer, _("The file %s already exists.\n\n"),
-                                            file);
-                            
-                            ret = gif->user3_box(_("Warning"), buffer,
-                                                 _("Overwrite"), _("Rename"),
-                                                 _("Skip"));
-                            switch(ret)	
-                                {
-                                    case BUTTON2:
-                                        dirname = gif->dlgbox_entry(_("Rename the file"),
-                                                                    _("New name : "), file);
-                                        if(dirname == NULL) return;
-                                        free(file);
-                                        file = (char *)malloc(strlen(dirname) + 1);
-                                        strcpy(file, dirname);
-                                        g_free(dirname);
-                                        break;
-                                    case BUTTON1:
-                                        skip=0;
-                                        break;
-                                    case BUTTON3:
-                                        skip=1;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                        }
-                }
                 
             if(skip == 0)
                 {
@@ -357,11 +320,7 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int ret;
     int skip = 0;
-    
-    gchar buffer[MAXCHARS];
-    gchar *dirname;
     
     tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
             
@@ -375,39 +334,6 @@ extern int is_active;
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
 
-            if(options.confirm == CONFIRM_YES)
-                {
-                    if(access(file, F_OK) == 0)
-                        {
-                            sprintf(buffer, _("The file %s already exists.\n\n"),
-                                            file);
-                            
-                            ret = gif->user3_box(_("Warning"), buffer,
-                                                 _("Overwrite"), _("Rename"),
-                                                 _("Skip"));
-                            switch(ret)	
-                                {
-                                    case BUTTON2:
-                                        dirname = gif->dlgbox_entry(_("Rename the file"),
-                                                                    _("New name : "), file);
-                                        if(dirname == NULL) return;
-                                        free(file);
-                                        file = (char *)malloc(strlen(dirname) + 1);
-                                        strcpy(file, dirname);
-                                        g_free(dirname);
-                                        break;
-                                    case BUTTON1:
-                                        skip=0;
-                                        break;
-                                    case BUTTON3:
-                                        skip=1;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                        }
-                }
-                
             if(skip == 0)
                 {
                     if(move_file(tmpfile, file))
@@ -433,11 +359,7 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int ret;
     int skip = 0;
-    
-    gchar buffer[MAXCHARS];
-    gchar *dirname;
     
     context = contextInfo;
     
@@ -454,42 +376,7 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
- 
-            if(options.confirm == CONFIRM_YES)
-                {
-                    if(access(file, F_OK) == 0)
-                        {
-                            sprintf(buffer, _("The file %s already exists.\n\n"),
-                                            file);
-                            
-                            ret = gif->user3_box(_("Warning"), buffer,
-                                                 _("Overwrite"), _("Rename"),
-                                                 _("Skip"));
-                            switch(ret)	
-                                {
-                                    case BUTTON2:
-                                        dirname = gif->dlgbox_entry(_("Rename the file"),
-                                                                    _("New name : "), file);
-                                        if (dirname == NULL)
-                                            return;
-                                        
-                                        free(file);
-                                        file = (char *)malloc(strlen(dirname) + 1);
-                                        strcpy(file, dirname);
-                                        g_free(dirname);
-                                        break;
-                                    case BUTTON1:
-                                        skip=0;
-                                        break;
-                                    case BUTTON3:
-                                        skip=1;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                        }
-                }
-                
+            
             if(skip == 0)
                 {
                     if(move_file(tmpfile, file))
@@ -514,11 +401,7 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int ret;
     int skip = 0;
-    
-    gchar buffer[MAXCHARS];
-    gchar *dirname;
     
     context = contextInfo;
 
@@ -533,41 +416,6 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
-
-            if(options.confirm == CONFIRM_YES)
-                {
-                    if(access(file, F_OK) == 0)
-                        {
-                            sprintf(buffer, _("The file %s already exists.\n\n"),
-                                            file);
-                            
-                            ret = gif->user3_box(_("Warning"), buffer,
-                                                 _("Overwrite"), _("Rename"),
-                                                 _("Skip"));
-                            switch(ret)	
-                                {
-                                    case BUTTON2:
-                                        dirname = gif->dlgbox_entry(_("Rename the file"),
-                                                                    _("New name : "), file);
-                                        if (dirname == NULL)
-                                            return;
-                                            
-                                        free(file);
-                                        file = (char *)malloc(strlen(dirname) + 1);
-                                        strcpy(file, dirname);
-                                        g_free(dirname);
-                                        break;
-                                    case BUTTON1:
-                                        skip=0;
-                                        break;
-                                    case BUTTON3:
-                                        skip=1;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                        }
-                }
                 
             if(skip == 0)
                 {
@@ -594,11 +442,7 @@ extern int is_active;
     
     char *file;
     char *tmpfile;
-    int ret;
     int skip = 0;
-    
-    gchar buffer[MAXCHARS];
-    gchar *dirname;
     
     context = contextInfo;
     
@@ -615,41 +459,6 @@ extern int is_active;
             sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
- 
-            if(options.confirm == CONFIRM_YES)
-                {
-                    if(access(file, F_OK) == 0)
-                        {
-                            sprintf(buffer, _("The file %s already exists.\n\n"),
-                                            file);
-                            
-                            ret = gif->user3_box(_("Warning"), buffer,
-                                                 _("Overwrite"), _("Rename"),
-                                                 _("Skip"));
-                            switch(ret)	
-                                {
-                                    case BUTTON2:
-                                        dirname = gif->dlgbox_entry(_("Rename the file"),
-                                                                    _("New name : "), file);
-                                        if (dirname == NULL)
-                                            return;
-                                        
-                                        free(file);
-                                        file = (char *)malloc(strlen(dirname) + 1);
-                                        strcpy(file, dirname);
-                                        g_free(dirname);
-                                        break;
-                                    case BUTTON1:
-                                        skip=0;
-                                        break;
-                                    case BUTTON3:
-                                        skip=1;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                        }
-                }
                 
             if(skip == 0)
                 {
