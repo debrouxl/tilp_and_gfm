@@ -28,6 +28,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 #import "TilpController.h"
 #import "ImageAndTextCell.h"
+#import "Varinfo.h"
 
 #define NODE(n)			((SimpleTreeNode*)n)
 #define NODE_DATA(n) 		((SimpleNodeData*)[NODE((n)) nodeData])
@@ -67,6 +68,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.73g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.73g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI73]];
     
@@ -88,6 +90,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
 
     [tmpMutDict setObject:@"backup.82g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.82g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI82]];
     
@@ -109,6 +112,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.83g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.83g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83]];
     
@@ -130,6 +134,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.8xg" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.8xg" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI83P]];
     
@@ -152,6 +157,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
   
     [tmpMutDict setObject:@"backup.85g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.85g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI85]];
     
@@ -174,6 +180,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.86g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.86g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI86]];
     
@@ -197,6 +204,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.89g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.89g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI89]];
     
@@ -219,6 +227,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.92g" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.92g" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92]];
     
@@ -242,6 +251,7 @@ struct gui_fncts gui_functions;
     [tmpMutDict setObject:tmpArray forKey:@"extBackup"];
     
     [tmpMutDict setObject:@"backup.9xg" forKey:@"defaultBackupFilename"];
+    [tmpMutDict setObject:@"group.9xg" forKey:@"defaultGroupFilename"];
     
     [tmpCalcProperties setObject:[NSDictionary dictionaryWithDictionary:tmpMutDict] forKey:[NSString stringWithFormat:@"CALC %i", CALC_TI92P]];
     
@@ -361,6 +371,7 @@ struct gui_fncts gui_functions;
     NSMutableArray *mainEntries;
     NSMutableArray *tiVarsArray;
     NSMutableArray *tmpArray;
+    Varinfo *varinfo;
   
     GList *p;
     
@@ -489,6 +500,9 @@ struct gui_fncts gui_functions;
                     [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
                     [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
                     [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+        
+                    varinfo = [[Varinfo alloc] initWithPointer:q];
+                    [tmpDict setObject:varinfo forKey:@"varinfo"];
         
                     [tmpArray insertObject:tmpDict atIndex:varPos];
                     varPos++;

@@ -448,4 +448,162 @@ extern int is_active;
         }
 }
 
+- (void)getSingleVarDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSSavePanel *sp;
+    NSString *mytmpfile;
+    NSMutableDictionary *context;
+    
+    char *file;
+    char *tmpfile;
+    int ret;
+    int skip = 0;
+    
+    gchar buffer[MAXCHARS];
+    gchar *dirname;
+    
+    context = contextInfo;
+    
+    mytmpfile = [context objectForKey:@"tmpfile"];
+    
+    tmpfile = (char *)malloc((strlen(g_get_tmp_dir()) + [mytmpfile cStringLength] + 2) * sizeof(char));
+            
+    strcpy(tmpfile, g_get_tmp_dir());
+    strcat(tmpfile, "/");
+    strcat(tmpfile, [mytmpfile cString]);
+    
+    if (returnCode == NSOKButton)
+        {
+            sp = [context objectForKey:@"savepanel"];
+                              
+            file = (char *)malloc([[sp filename] cStringLength] + 1);
+            [[sp filename] getCString:file];
+
+            if(options.confirm == CONFIRM_YES)
+                {
+                    if(access(file, F_OK) == 0)
+                        {
+                            sprintf(buffer, _("The file %s already exists.\n\n"),
+                                            file);
+                            
+                            ret = gif->user3_box(_("Warning"), buffer,
+                                                 _("Overwrite"), _("Rename"),
+                                                 _("Skip"));
+                            switch(ret)	
+                                {
+                                    case BUTTON2:
+                                        dirname = gif->dlgbox_entry(_("Rename the file"),
+                                                                    _("New name : "), file);
+                                        if(dirname == NULL) return;
+                                        free(file);
+                                        file = (char *)malloc(strlen(dirname) + 1);
+                                        strcpy(file, dirname);
+                                        g_free(dirname);
+                                        break;
+                                    case BUTTON1:
+                                        skip=0;
+                                        break;
+                                    case BUTTON3:
+                                        skip=1;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                        }
+                }
+                
+            if(skip == 0)
+                {
+                    if(move_file(tmpfile, file))
+                        {	
+                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
+                        }
+                }
+        }
+    else
+        {
+            if(unlink(tmpfile))
+                {
+                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
+                }
+        }
+        
+    //[mytmpfile release];
+    //[context release];
+}
+
+- (void)getVarsDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSSavePanel *sp;
+    
+    char *file;
+    char *tmpfile;
+    int ret;
+    int skip = 0;
+    
+    gchar buffer[MAXCHARS];
+    gchar *dirname;
+    
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.PAK") + 1);
+            
+    strcpy(tmpfile, g_get_tmp_dir());
+    strcat(tmpfile, "/tilp.PAK");
+    
+    if (returnCode == NSOKButton)
+        {
+            sp = contextInfo;
+                              
+            file = (char *)malloc([[sp filename] cStringLength] + 1);
+            [[sp filename] getCString:file];
+
+            if(options.confirm == CONFIRM_YES)
+                {
+                    if(access(file, F_OK) == 0)
+                        {
+                            sprintf(buffer, _("The file %s already exists.\n\n"),
+                                            file);
+                            
+                            ret = gif->user3_box(_("Warning"), buffer,
+                                                 _("Overwrite"), _("Rename"),
+                                                 _("Skip"));
+                            switch(ret)	
+                                {
+                                    case BUTTON2:
+                                        dirname = gif->dlgbox_entry(_("Rename the file"),
+                                                                    _("New name : "), file);
+                                        if(dirname == NULL) return;
+                                        free(file);
+                                        file = (char *)malloc(strlen(dirname) + 1);
+                                        strcpy(file, dirname);
+                                        g_free(dirname);
+                                        break;
+                                    case BUTTON1:
+                                        skip=0;
+                                        break;
+                                    case BUTTON3:
+                                        skip=1;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                        }
+                }
+                
+            if(skip == 0)
+                {
+                    if(move_file(tmpfile, file))
+                        {	
+                            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
+                        }
+                }
+        }
+    else
+        {
+            if(unlink(tmpfile))
+                {
+                    fprintf(stdout, _("Unable to remove the temporary file.\n"));
+                }
+        }
+}
+
 @end

@@ -42,6 +42,7 @@
     [myNode setAttribute:[dict objectForKey:@"Attribute"]];
     [myNode setVartype:[dict objectForKey:@"Vartype"]];
     [myNode setVarsize:[dict objectForKey:@"Varsize"]];
+    [myNode setVarinfo:[dict objectForKey:@"varinfo"]];
     [myNode setIsLeaf:YES];
     
     [myNode autorelease];
@@ -78,6 +79,11 @@
         [attribute release];
     
     attribute = nil;
+    
+    if (varinfo != nil)
+        [varinfo release];
+        
+    varinfo = nil;   
     
     [super dealloc];
 }
@@ -119,6 +125,20 @@
 - (NSString *)varsize
 {
     return varsize;
+}
+
+- (void)setVarinfo:(Varinfo *)data
+{
+    if (!varinfo)
+        {
+            [varinfo release];
+            varinfo = [data retain];
+        }
+}
+
+- (Varinfo *)varinfo
+{
+    return varinfo;
 }
 
 - (void)setIsLeaf:(BOOL)leaf { 

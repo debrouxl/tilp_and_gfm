@@ -27,6 +27,7 @@
 # include <libticalcs/calc_err.h>
 # include <libticalcs/calc_int.h>
 # include <glib/glib.h>
+# include <stdlib.h>
 #else
 # include "calc_err.h"
 #endif
@@ -458,7 +459,11 @@ int cb_receive_var(int *to_save)
   FILE *txt;
   struct varinfo *v;
   char var_n[20]; /* 8+1+8 characters max */
+#ifndef __MACOSX__
   char file_n[25];
+#else
+  char *file_n;
+#endif
   int i,l;
   char str[16];
   char tmp_filename[MAXCHARS];
@@ -507,7 +512,15 @@ int cb_receive_var(int *to_save)
 	    {
 	      strncpy(var_n, v->varname, 9);
 	    }
-	  strcpy(file_n, v->translate);
+#ifdef __MACOSX__                  
+          file_n = (char *)malloc((strlen(g_get_tmp_dir()) + strlen(v->translate) + 6) * sizeof(char));
+            
+          strcpy(file_n, g_get_tmp_dir());
+          strcat(file_n, "/");
+	  strcat(file_n, v->translate);
+#else
+          strcpy(file_n, v->translate);
+#endif
 	  strcat(file_n, ".");
 	  strcat(file_n, ti_calc.byte2fext(v->vartype));
 	  
@@ -579,6 +592,10 @@ int cb_receive_var(int *to_save)
 		}
 	    }
 	  gif->destroy_pbar();
+#ifdef __MACOSX__
+          // a single _v_ar
+          *to_save = 'v';
+#endif
 	}
       else
 	{
@@ -663,7 +680,12 @@ int cb_receive_var(int *to_save)
 	  //fclose(txt);
 	  ticalc_close_ti_file();
 	  gif->destroy_pbar();
+#ifndef __MACOSX__
 	  *to_save = 1;
+#else
+          // a _g_roup file
+          *to_save = 'g';
+#endif
 	}
       break;
     case CALC_TI82:
@@ -745,7 +767,12 @@ int cb_receive_var(int *to_save)
       else
 	{
 	  /* Group file */
+#ifndef __MACOSX__
 	  *to_save = 1;
+#else
+          // a _g_roup file
+          *to_save = 'g';
+#endif
 	}
       break;
     }

@@ -387,6 +387,7 @@
 				F5F1CF51019C3296010BF862,
 				F50B5A3301A922F501000102,
 				F50B140801C158DF01000102,
+				F510099A01C27E8A01000102,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -444,6 +445,7 @@
 				F5B2D59A01BFDE8401000102,
 				F50B140D01C16CE301000102,
 				F50B140E01C185B401000102,
+				F510099B01C27E8A01000102,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -953,6 +955,28 @@
 		};
 		F50FDBB30179D45601000102 = {
 			fileRef = F582708501762A8B01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F510099801C27E8A01000102 = {
+			isa = PBXFileReference;
+			path = Varinfo.h;
+			refType = 4;
+		};
+		F510099901C27E8A01000102 = {
+			isa = PBXFileReference;
+			path = Varinfo.m;
+			refType = 4;
+		};
+		F510099A01C27E8A01000102 = {
+			fileRef = F510099801C27E8A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F510099B01C27E8A01000102 = {
+			fileRef = F510099901C27E8A01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2564,6 +2588,7 @@
 				F5F1CF47019C3165010BF862,
 				F5F1CF48019C3165010BF862,
 				F5F1CF4F019C3296010BF862,
+				F510099801C27E8A01000102,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -2575,6 +2600,7 @@
 				F5F1CF43019C3131010BF862,
 				F5F1CF44019C3131010BF862,
 				F5F1CF50019C3296010BF862,
+				F510099901C27E8A01000102,
 			);
 			isa = PBXGroup;
 			name = Sources;

@@ -9,7 +9,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+
 #import "TreeNode.h"
+#import "Varinfo.h"
 
 @interface SimpleNodeData : TreeNodeData {
 @private
@@ -18,6 +20,7 @@
     NSString *varsize;
     NSImage *iconRep;
     NSImage *attribute;
+    Varinfo *varinfo;
     BOOL isLeaf;
     BOOL isExpandable;
 }
@@ -42,6 +45,9 @@
 - (void)setVarsize:(NSString *)str;
 - (NSString *)varsize;
     // Set and get the varsize.
+
+- (void)setVarinfo:(Varinfo *)data;
+- (Varinfo *)varinfo;
 
 - (void)setIsLeaf:(BOOL)isLeaf;
 - (BOOL)isLeaf;

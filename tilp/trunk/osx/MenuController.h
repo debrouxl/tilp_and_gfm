@@ -6,6 +6,7 @@
 
 @interface MenuController : NSObject
 {
+    IBOutlet id dirlistTree;
     IBOutlet id mainWindow;
     IBOutlet id screendumpWindow;
     IBOutlet id screendumpImage;

@@ -97,6 +97,8 @@
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
+                remoteControlTextArea = id; 
+                remoteControlWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
                 thanksPanel = id; 

@@ -25,6 +25,9 @@ extern int is_active;
 #import "MenuController.h"
 #import "TilpController.h"
 
+#define NODE(n)			((SimpleTreeNode*)n)
+#define NODE_DATA(n) 		((SimpleNodeData*)[NODE((n)) nodeData])
+
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
     NSToolbarItem *item;
@@ -62,9 +65,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
     addToolbarItem(toolbarItems, @"isReady", @"Ready ?", @"Ready ?", @"Test if the calculator is ready", self, @selector(setImage:), [NSImage imageNamed:@"ready.tiff"], @selector(isReady:));
 
+    addToolbarItem(toolbarItems, @"getDirlist", @"Dirlist", @"Dirlist", @"Obtain dirlist", self, @selector(setImage:), [NSImage imageNamed:@"dirlist.tiff"], @selector(getDirlist:));
+
     addToolbarItem(toolbarItems, @"getScreen", @"Screen", @"Screen", @"Request screendump", self, @selector(setImage:), [NSImage imageNamed:@"screen.tiff"], @selector(getScreen:));
     
-    addToolbarItem(toolbarItems, @"getDirlist", @"Dirlist", @"Dirlist",@"Obtain dirlist", self, @selector(setImage:), [NSImage imageNamed:@"dirlist.tiff"], @selector(getDirlist:));
+    addToolbarItem(toolbarItems, @"getVars", @"Get vars", @"Get vars", @"Retrieve selected variable(s)", self, @selector(setImage:), [NSImage imageNamed:@"calc.tiff"], @selector(getVars:));
 
     addToolbarItem(toolbarItems, @"doBackup", @"Backup", @"Backup", @"Perform a backup", self, @selector(setImage:), [NSImage imageNamed:@"memory.tiff"], @selector(doBackup:));
 
@@ -111,12 +116,108 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"doBackup", @"doRestore", nil];
+    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"getVars", @"doBackup", @"doRestore", nil];
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"doBackup", @"doRestore" ,nil];
+    return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"getVars", @"doBackup", @"doRestore" ,nil];
+}
+
+- (IBAction)getVars:(id)sender
+{
+    NSMutableArray *items;
+    NSEnumerator *itemsEnum;
+    NSEnumerator *selectedRows;
+    NSNumber *selRow;
+    NSDictionary *calcDict;
+    NSMutableDictionary *context;
+    NSString *tmpfile;
+    NSSavePanel *sp;
+    id item;
+    
+    GList *list = NULL;
+    
+    struct varinfo *v = NULL;
+    
+    int result;
+    
+    items = [NSMutableArray array];
+    
+    selectedRows = [dirlistTree selectedRowEnumerator];
+    selRow = nil;
+    
+    while ((selRow = [selectedRows nextObject]))
+        {
+            if ([selRow intValue] < 6)
+                break;
+        
+            if ([dirlistTree itemAtRow:[selRow intValue]]) 
+                [items addObject: [dirlistTree itemAtRow:[selRow intValue]]];
+        }
+    
+    itemsEnum = [items objectEnumerator];
+    
+    while ((item = [itemsEnum nextObject]) != nil)
+        {
+            if ([[NODE_DATA(item) varinfo] varinfo] == NULL)
+                break;
+        
+            v = (struct varinfo *)malloc(sizeof(struct varinfo));
+            memcpy(v, [[NODE_DATA(item) varinfo] varinfo], sizeof(struct varinfo));
+            
+            list = g_list_append(list, v);
+            
+            //free(v);
+            v = NULL;
+        }
+    
+    ctree_win.selection = list;
+ 
+    cb_receive_var(&result);
+      
+    if (result > 0)
+        {
+            calcDict = [myTilpController getCurrentCalcDict];
+        
+            sp = [NSSavePanel savePanel];
+        
+            if (result == 'v')
+                {
+                    v = (struct varinfo *)ctree_win.selection->data;
+                
+                    [sp setRequiredFileType:[NSString stringWithCString:ti_calc.byte2fext(v->vartype)]];
+                    [sp setTitle:@"Save variable as..."];
+                
+                    tmpfile = [NSString stringWithFormat:@"%s.%s", v->translate, ti_calc.byte2fext(v->vartype)];
+                
+                    context = [[NSMutableDictionary alloc] init];
+                
+                    [context setObject:sp forKey:@"savepanel"];
+                    [context setObject:tmpfile forKey:@"tmpfile"];
+                
+                    [sp beginSheetForDirectory:NSHomeDirectory()
+                        file:tmpfile 
+                        modalForWindow:mainWindow
+                        modalDelegate:myBoxesController
+                        didEndSelector:@selector(getSingleVarDidEnd:returnCode:contextInfo:)
+                        contextInfo:context];
+                }
+            else if (result == 'g')
+                {
+                    [sp setRequiredFileType:[[calcDict objectForKey:@"extBackup"] lastObject]];
+                    [sp setTitle:@"Save group file as..."];
+                
+                    [sp beginSheetForDirectory:NSHomeDirectory()
+                        file:[calcDict objectForKey:@"defaultGroupFilename"]
+                        modalForWindow:mainWindow
+                        modalDelegate:myBoxesController
+                        didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
+                        contextInfo:sp];
+                }
+        }
+    ctree_win.selection = NULL;
+    g_list_free(list);
 }
 
 // Application menu
@@ -453,7 +554,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
                             sp = [NSSavePanel savePanel];
 
-                            [sp setRequiredFileType:@"dunno"];
+                            [sp setRequiredFileType:@"rom"];
                             [sp setTitle:@"Save ROM dump as..."];
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
@@ -492,7 +593,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                         
                                     sp = [NSSavePanel savePanel];
                                         
-                                    [sp setRequiredFileType:@"dunno"];
+                                    [sp setRequiredFileType:@"rom"];
                                     [sp setTitle:@"Save ROM dump as..."];
 
                                     [sp beginSheetForDirectory:NSHomeDirectory()
@@ -524,7 +625,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                 
                             sp = [NSSavePanel savePanel];
                             
-                            [sp setRequiredFileType:@"dunno"];
+                            [sp setRequiredFileType:@"rom"];
                             [sp setTitle:@"Save ROM dump as..."];
 
                             [sp beginSheetForDirectory:NSHomeDirectory()
@@ -550,7 +651,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                     
                 sp = [NSSavePanel savePanel];
                 
-                [sp setRequiredFileType:@"dunno"];
+                [sp setRequiredFileType:@"rom"];
                 [sp setTitle:@"Save ROM dump as..."];
                 
                 [sp beginSheetForDirectory:NSHomeDirectory()
@@ -586,7 +687,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                     
                                 sp = [NSSavePanel savePanel];
                                     
-                                [sp setRequiredFileType:@"dunno"];
+                                [sp setRequiredFileType:@"rom"];
                                 [sp setTitle:@"Save ROM dump as..."];
 
                                 [sp beginSheetForDirectory:NSHomeDirectory()
