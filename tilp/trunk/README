@@ -19,29 +19,24 @@ platform for more informations.
 
 All physical link cables are supported by TiLP: parallel, serial, 
 BlackLink, GrayLink, AVRlink and SilverLink.
-Note: the SilverLink cable may not work fine with TI82/85.
 TiLP also support some virtual links: one for VirtualTI, the other one for
 GtkTiEmu.
 
+Note1: the SilverLink cable may not work fine TI82/85.
+Note2: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP 
+			 but supported	by our driver.
+
 Supported calculators are: 
-TI73, TI82, TI83, TI83+, TI85, TI86, TI89, TI92, TI92+ and V200.
+	TI73, TI82, TI83, TI83+/SE, TI84+/SE, TI85, TI86, 
+	TI89, TI89 Titanium, TI92, TI92+ and V200.
 
 
 FEATURES
 --------
 
-V200:
-  - remote control of the calculator
-  - screen dump
-  - directory list
-  - sending/receiving variable
-  - sending/receiving backup
-  - ROM dump
-  - sending/receiving of FLASH applications
-  - upgrading of Operating System (AMS)
-  - getting/setting time
+Note: some features depends on the OS version. Be sure to have the latest !
 
-TI92+:
+TI89/TI89 Titanium/TI92+/V200:
   - remote control of the calculator
   - screen dump
   - directory list
@@ -50,6 +45,7 @@ TI92+:
   - ROM dump
   - sending/receiving of FLASH applications
   - upgrading of Operating System (AMS)
+  - getting/setting time (need AMS >= 2.08)
 
 TI92:
   - remote control of the calculator
@@ -59,16 +55,6 @@ TI92:
   - sending/receiving backup
   - ROM version
   - ROM dump (FARGO II required)
-
-TI89:
-  - remote control of the calculator
-  - screen dump
-  - directory list
-  - sending/receiving variable
-  - sending/receiving backup
-  - ROM dump
-  - sending/receiving of FLASH applications
-  - upgrading of Operating System (AMS)
 
 TI86:
   - screen dump
@@ -84,15 +70,14 @@ TI85:
   - TIGL file support
   - ROM dump (Usgard or ZShell required)
 
-TI83+:
+TI83+/TI84+ (SE or not SE):
   - screen dump
   - directory list
   - sending/receiving backup (archived vars are not backed up !)
   - sending/receiving variable
   - sending/receiving of FLASH applications
-  - upgrading of Operating System (AMS) [may not work with SilverLink cable]
+  - upgrading of Operating System (GRAPH EXPLORER SOFTWARE)
   - ROM dump (any shell)
-  - free FLASH app signing (requires 'appsign-linux-i386-bin.zip')
 
 Note: the TI83+ is the only calc to have a GROUP variable. TiLP supports it in
 a specific way: this kind of var is saved as a single file as any other
@@ -133,7 +118,7 @@ AVAILABILITY
 COPYRIGHT
 ---------
 
-TiLP is Copyright (C) 1999-2004 by the TiLP team <tilp-users@lists.sf.net>.
+TiLP is Copyright (C) 1999-2005 by the TiLP team <tilp-users@lists.sf.net>.
 
 Copying is allowed under the terms of GNU General Public License.  
 See the file COPYING for more details.

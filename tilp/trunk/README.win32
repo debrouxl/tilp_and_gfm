@@ -11,11 +11,13 @@ REQUIREMENTS
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
  - the GTK+ 2.4.x libraries
-    Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.14-rc3.exe>
+   Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.14-rc3.exe>
  - the SilverLink driver v3.x if you have a SilverLink cable
-	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
+	 Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 	
-	Note: if you are using GiMP, you don't need to get this GTK+ package, they are compatible.
+	 Note1: if you are using 'The GiMP', you don't need to get this GTK+ package, they are compatible.
+	 Note2: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported
+					by our driver.
 
 
 NOTES

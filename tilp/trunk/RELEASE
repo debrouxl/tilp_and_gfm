@@ -16,6 +16,9 @@ a Linux/Win32/Mac OS-X driver on the Linux Programmer Group at
 
 For the other link cables, no driver is needed because it's provided.
 
+Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP 
+		  but supported by our driver.
+
 
 New capabilities:
 -----------------
