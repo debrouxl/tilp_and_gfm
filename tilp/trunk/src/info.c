@@ -18,8 +18,14 @@
 
 #include <stdio.h>
 #include <strings.h>
+#include <sys/stat.h>
 
-#include "includes.h"
+#ifdef __MACOSX__
+#include <glib/glib.h>
+#include <libticables/typedefs.h>
+#endif
+
+#include "struct.h"
 
 int number_of_folders_vars_and_mem(int *d, int *v, longword *m)
 {

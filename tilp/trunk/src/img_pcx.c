@@ -19,16 +19,22 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #else
 #include "win32/unistd.h"
 #endif
 
-#include "includes.h"
+#include <libticables/typedefs.h>
+#include <libticables/macros.h>
+#include <libticables/verbose.h>
+
+#include "img_fmt.h"
 
 
 /***********/

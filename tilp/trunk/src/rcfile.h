@@ -19,21 +19,18 @@
 #ifndef RCFILE_H
 #define RCFILE_H
 
-DLLEXPORT
 int check_access();
 
-DLLEXPORT
 void read_rc_file();
-DLLEXPORT
+
 void write_rc_file();
-DLLEXPORT
+
 int is_rcfile_exist();
 
-DLLEXPORT
 char* read_cwd_file(void);
-DLLEXPORT
+
 void write_cwd_file();
-DLLEXPORT
+
 int is_cwdfile_exist();
 
 #endif

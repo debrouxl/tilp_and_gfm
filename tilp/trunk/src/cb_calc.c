@@ -19,17 +19,28 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "includes.h"
+#include <unistd.h>
+
 #if defined(__LINUX__)
 # include <tilp/calc_err.h>
+#elif defined(__MACOSX__)
+# include <libticalcs/calc_err.h>
+# include <libticalcs/calc_int.h>
+# include <glib/glib.h>
 #else
 # include "calc_err.h"
 #endif
 
+#include "defs.h"
+#include "gui_indep.h"
+#include "main.h"
+#include "struct.h"
+#include "error.h"
+#include "files.h"
+
 /*
-  Check whether the calc is ready (with or without auto-detection)
-*/
-DLLEXPORT
+ * Check whether the calc is ready (with or without auto-detection)
+ */
 int cb_calc_is_ready(void)
 {
   int err;
@@ -55,9 +66,8 @@ int cb_calc_is_ready(void)
 }
 
 /*
-  Send a backup
-*/
-DLLEXPORT
+ * Send a backup
+ */
 int cb_send_backup(char *filename)
 {
   int err;
@@ -133,9 +143,8 @@ int cb_send_backup(char *filename)
 }
 
 /*
-  Receive a backup
-*/
-DLLEXPORT
+ * Receive a backup
+ */
 int cb_receive_backup(void)
 {
   FILE *bck;
@@ -214,9 +223,8 @@ int cb_receive_backup(void)
 }
 
 /*
-  Receive the IDlist
-*/
-DLLEXPORT
+ * Receive the IDlist
+ */
 int cb_id_list(void)
 {
   char buffer[MAXCHARS];
@@ -241,9 +249,8 @@ int cb_id_list(void)
 }
 
 /*
-  Do a ROM dump
-*/
-DLLEXPORT
+ * Do a ROM dump
+ */
 int cb_rom_dump(void)
 {
   if(is_active) 
@@ -253,9 +260,8 @@ int cb_rom_dump(void)
 }
 
 /*
-  Get the ROM version
-*/
-DLLEXPORT
+ * Get the ROM version
+ */
 int cb_rom_version(void)
 {
   int err;
@@ -277,9 +283,8 @@ int cb_rom_version(void)
 }
 
 /*
-  Send one or more selected variables
-*/
-DLLEXPORT
+ * Send one or more selected variables
+ */
 int cb_send_var(void)
 {
   GList *ptr;
@@ -443,9 +448,8 @@ int cb_send_var(void)
 }
 
 /*
-  Receive one or more selected variables
-*/
-DLLEXPORT
+ * Receive one or more selected variables
+ */
 int cb_receive_var(int *to_save)
 {
   int err=0;
@@ -748,8 +752,6 @@ int cb_receive_var(int *to_save)
   return 0;
 }
 
-
-DLLEXPORT
 int cb_dirlist(void)
 {
   int err=0;
@@ -766,9 +768,8 @@ int cb_dirlist(void)
 }
 
 /*
-  Send a FLASH app
-*/
-DLLEXPORT
+ * Send a FLASH app
+ */
 int cb_send_flash_app(char *filename)
 {
   int err;
@@ -823,9 +824,8 @@ int cb_send_flash_app(char *filename)
 }
 
 /*
-  Send a FLASH OS (AMS)
-*/
-DLLEXPORT
+ * Send a FLASH OS (AMS)
+ */
 int cb_send_flash_os(char *filename)
 {
   int err;
@@ -880,9 +880,8 @@ int cb_send_flash_os(char *filename)
 }
 
 /*
-  Convert a FLASH OS (AMS) into a ROM image
-*/
-DLLEXPORT
+ * Convert a FLASH OS (AMS) into a ROM image
+ */
 int cb_ams_to_rom(char *filename)
 {
   FILE *file, *fo;

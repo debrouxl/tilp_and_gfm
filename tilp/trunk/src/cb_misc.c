@@ -18,13 +18,24 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
-#ifdef __WIN32__
+#ifdef __MACOSX__
+#include <glib/glib.h>
+#include <libticables/cabl_int.h>
+#include <libticalcs/calc_int.h>
+#elif defined(__WIN32__)
 #include <windows.h>
 #include <process.h>
 #endif
 
-#include "includes.h"
+#include "defs.h"
+#include "gui_indep.h"
+#include "intl.h"
+#include "error.h"
+#include "rcfile.h"
+#include "struct.h"
+#include "cb_calc.h"
 
 /*
   Save the configuration file
@@ -86,6 +97,11 @@ int cb_default_config(void)
   strcpy(options.tar_location, "\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
   options.tar_options = g_malloc((strlen("") + 1) * sizeof(gchar));
   strcpy(options.tar_options, "");
+#else
+options.unzip_location = NULL;
+options.unzip_options = NULL;
+options.tar_location = NULL;
+options.tar_options = NULL;
 #endif
   
   /* Fill lp struct with default values */
@@ -201,6 +217,7 @@ int cb_probe_calc(void)
   return 0;
 }
 
+#ifndef __MACOSX__
 int cb_registry_register(void)
 {
 #if defined(__UNIX__)
@@ -234,6 +251,8 @@ int cb_registry_unregister(void)
 #endif
   return 0;
 }
+#endif /* !__MACOSX__ */
+
 
 #define INIT_LOCALE( domain )	G_STMT_START{	\
 	gtk_set_locale ();			\
@@ -242,6 +261,7 @@ int cb_registry_unregister(void)
 	textdomain (domain);			\
 				}G_STMT_END
 
+#ifndef __MACOSX__
 int initialize_paths(void)
 {
   char *home_dir;
@@ -275,18 +295,23 @@ int initialize_paths(void)
   /*
     Initialize share path
   */
+#if defined(__UNIX__)
   inst_paths.share_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				   G_DIR_SEPARATOR_S, NULL);
+#endif
 
   /*
     Initialize pixmaps path
   */
-#ifndef __WIN32__
+  
+#ifdef __UNIX__
   inst_paths.pixmap_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				    "/pixmaps/", NULL);
-#else
+#elif defined(__WIN32__)
   inst_paths.pixmap_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				    "\\pixmaps\\", NULL);
+#else
+  inst_paths.pixmap_dir = NULL;
 #endif
   fprintf(stderr, "inst_paths.pixmap_dir = <%s>\n", inst_paths.pixmap_dir);
 
@@ -310,24 +335,28 @@ int initialize_paths(void)
   /*
     Initialize help path
   */
-#ifndef __WIN32__
+#ifdef __UNIX__
   inst_paths.help_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				  "/help/", NULL);
-#else
+#elif defined(__WIN32__)
   inst_paths.help_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				  "\\help\\", NULL);
+#else
+  inst_paths.help_dir = NULL;
 #endif
   //fprintf(stderr, "inst_paths.help_dir = <%s>\n", inst_paths.help_dir);
   
   /*
     Initialize manpage path
   */
-#ifndef __WIN32__
+#ifdef __UNIX__
   inst_paths.manpage_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				       "/", NULL);
-#else
+#elif defined(__WIN32__)
   inst_paths.manpage_dir = g_strconcat(inst_paths.base_dir, SHARE_DIR,
 				       "\\", NULL);
+#else
+  inst_paths.manpage_dir = NULL;
 #endif
   //fprintf(stderr, "inst_paths.manpage_dir = <%s>\n", inst_paths.manpage_dir);
 
@@ -351,7 +380,7 @@ int initialize_paths(void)
       fprintf(stderr, "Can not get HOME directory.\n");
       exit(-1);
     }
-#else	// on WIN32 systems, the last used folder
+#elif defined(__WIN32__)	// on WIN32 systems, the last used folder
     home_dir = read_cwd_file();
 	if(home_dir != NULL)
     {
@@ -363,8 +392,6 @@ int initialize_paths(void)
   return 0;
 }
 
-
-DLLEXPORT
 int cb_change_drive(char drive_letter)
 {
 #ifdef __WIN32__
@@ -385,6 +412,7 @@ int cb_change_drive(char drive_letter)
 
   return 0;
 }
+#endif /* !__MACOSX__ */
 
 /* 
    Return the calc type corresponding to the file
@@ -426,7 +454,6 @@ static int which_calc_type_from_file(char *filename)
   the clist_win.selection selection
   Manage file type, calculator detection and some other things.
 */
-DLLEXPORT
 int cb_send_cmdline(void)
 {
   gchar *e;

@@ -22,13 +22,27 @@
   and glists.
  */
 
+/* FIXME OSX : this is not really needed, we use the finder... */
+
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <strings.h>
 #include <time.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <unistd.h>
 
-#include "includes.h"
+#ifdef __MACOSX__
+#include <glib/glib.h>
+#endif
+
+#include "defs.h"
+#include "struct.h"
+#include "intl.h"
+#include "gui_indep.h"
+#include "error.h"
+#include "select.h"
 
 /*******************************/
 /* File manipulation functions */

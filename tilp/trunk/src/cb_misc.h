@@ -19,29 +19,24 @@
 #ifndef CB_MISC_H
 #define CB_MISC_H
 
-DLLEXPORT
 int cb_save_config_file(void);
-DLLEXPORT
+
 int cb_load_config_file(void);
-DLLEXPORT
+
 int cb_default_config(void);
 
-DLLEXPORT
 int cb_probe_calc(void);
-DLLEXPORT
+
 int cb_probe_cable(void);
-DLLEXPORT
+
 int cb_probe_port(void);
 
-DLLEXPORT
 int cb_change_drive(char drive_letter);
 
-DLLEXPORT
 int cb_registry_register(void);
-DLLEXPORT
+
 int cb_registry_unregister(void);
 
-DLLEXPORT
 int cb_send_cmdline(void);
 
 #endif

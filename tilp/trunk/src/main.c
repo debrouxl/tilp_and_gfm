@@ -25,14 +25,34 @@
 #include <string.h>
 #include <fcntl.h> //open
 
+#ifdef __MACOSX__
+#include <glib/glib.h>
+#include <libticalcs/calc_int.h>
+#endif
+
 #ifdef __WIN32__
 # include <locale.h>
 # include <windows.h>
 #endif
 
-#include "includes.h"
+
+
+#include "main.h"
+#include "intl.h"
+#include "defs.h"
+#include "version.h"
+#include "error.h"
+#include "gui_indep.h"
+#include "cb_misc.h"
+#ifndef __MACOSX__
+#include "rcfile.h"
+#else
+#include "../osx/cocoa_config.h"
+#endif
+#include "struct.h"
 #include "version.h"
 #include "cmdinterface.h"
+
 
 /***************************************/
 /* Some tilink variables and functions */
@@ -76,13 +96,15 @@ gint registry_allowed = FALSE;
 //gint tiffep_enabled = FALSE;
 #endif
 
+#ifndef __MACOSX__
 int initialize_paths(void);
+#endif
 
 /*
   This function must be the first function to call in your function 'main'.
   It inits some variables and eventually, loads plugins.
 */
-DLLEXPORT
+
 int main_init(int argc, char *argv[], char **arge)
 {
   gint err;
@@ -98,8 +120,10 @@ int main_init(int argc, char *argv[], char **arge)
   /* Display program version */
   version();
 
+#ifndef __MACOSX__
   /* Initialize platform independant paths */
   initialize_paths();
+#endif
 
   /* 
      Do some initializations and load config 
@@ -107,6 +131,8 @@ int main_init(int argc, char *argv[], char **arge)
   // At first, initialize the GUI indep functions with some defaults values
   // for avoiding NULL accesses.
   // Initialization made with console mode functions
+
+#ifndef __MACOSX__
   indep_functions.msg_box = cmdline_msg_box;
   indep_functions.user1_box = cmdline_user1_box;
   indep_functions.user2_box = cmdline_user2_box;
@@ -120,20 +146,29 @@ int main_init(int argc, char *argv[], char **arge)
   indep_functions.destroy_pbar = cmdline_destroy_pbar;
   set_gui_fncts(&indep_functions);  // Init indep functions
   cmdline_init_refresh_functions(); // Init refresh functions
+#endif /* !__MACOSX__ */
 
   // Initialize options with default values
   cb_default_config();
 
+printf("DEBUG: default config done\n");
+
   // Parse the config file
   read_rc_file();
+
+printf("DEBUG: read rc done\n");  
+
   ticable_DISPLAY_settings(options.console_mode);
 
   // Scan the command line
   scan_cmdline(argc, argv);
   
+printf("DEBUG: scan cmdline done\n");
+  
   /* 
      Initialize i18n support 
   */
+#ifndef __MACOSX__
   // Init locale & internationalization
   fprintf(stderr, "Locale to set: <%s>\n", options.locale);
   fprintf(stderr, "Locale set: <%s>\n", setlocale(LC_ALL, options.locale));
@@ -144,10 +179,9 @@ int main_init(int argc, char *argv[], char **arge)
 #endif
   //gtk_set_locale ();
   //setlocale (LC_ALL, "C");
-#ifndef __MACOSX__
   bindtextdomain (/*PACKAGE*/"tilp", inst_paths.locale_dir); //bindtextdomain("tilp", inst_paths.locale_dir);
   textdomain ("tilp"/*PACKAGE*/);
-#endif  
+#endif /* !__MACOSX__ */
 
   /* 
      Dislay library version 
@@ -177,6 +211,8 @@ int main_init(int argc, char *argv[], char **arge)
       exit(-1);
     }
 
+printf("DEBUG: libs versions test done\n");
+
   /* Probe ports: bug under Win2k Pro */
   //ticable_detect_os(&os);
   //ticable_detect_port(&pi);
@@ -185,24 +221,34 @@ int main_init(int argc, char *argv[], char **arge)
   /* 
      Initialize the libTIcable library 
   */
+  
+ /* FIXME OS X */
+#ifndef __MACOSX__
   ticable_set_param(options.lp);
   ticable_set_cable(options.lp.link_type, &link_cable);
+
   if( (err=link_cable.init_port()) ) 
     {
       fprintf(stderr, _("link_cable.init_port: error code %i\n"), err);
       tilp_error(err);
     }
+#endif
+    
+printf("DEBUG: ticable INIT done\n");
+    
   /* 
      Initialize the libTIcalc library 
   */
   ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
 
+printf("DEBUG: ticalc INIT done\n");
+
   /* 
      List and load plugins 
   */
+#ifdef HAVE_TIFFEP
   if(options.plugins_loading == PLUGINS_AUTO)
     {
-#ifdef HAVE_TIFFEP
       err = tiffep_registry_get_pointer(&plugin_registry);
       if(!err)
 	registry_allowed = TRUE;
@@ -213,8 +259,8 @@ int main_init(int argc, char *argv[], char **arge)
 	fprintf(stderr, "TiFFEP error: %s\n", buffer);
 	  gif->msg_box(_("Error"), buffer);
 	}
-#endif
     } 
+#endif
 
   /*
     Display the working mode
@@ -242,6 +288,7 @@ int main_init(int argc, char *argv[], char **arge)
      If we are in command line mode, do the required operation
      and exit else go on to a graphic interface.
   */
+#ifndef __MACOSX__
   if(working_mode == MODE_CMD)
     {
       cb_send_cmdline();
@@ -256,6 +303,7 @@ int main_init(int argc, char *argv[], char **arge)
       enter_command();
       exit(0);
     }
+#endif /* !__MACOSX__ */
 
   return 0;
 }
@@ -295,7 +343,7 @@ int help(void)
 */
 int version(void)
 {
-  fprintf(stdout, _("TiLP - Version %s, (C) Romain Lievin 1999-2000\n"), 
+  fprintf(stdout, _("TiLP - Version %s, (C) Romain Lievin 1999-2001\n"), 
 	  TILP_VERSION);
 #ifdef __MACOSX__
   fprintf(stdout, _("Mac OS X port Version %s, (C) 2001 Julien BLACHE\n"),
@@ -335,9 +383,12 @@ int scan_cmdline(int argc, char **argv)
 	{
 	  gchar* filename_on_cmdline;
 	  // a filename to send
+#ifndef __MACOSX__  /* FIXME OS X */
+
 	  if(!g_path_is_absolute(p))
 	    filename_on_cmdline = g_strconcat(inst_paths.startup_dir, p, NULL);
 	  else
+#endif          
 	    filename_on_cmdline = g_strdup(p);
 	  //DISPLAY("Full filename to send: <%s>\n", filename_on_cmdline);
 	  fi = (struct file_info *)g_malloc(sizeof(struct file_info));

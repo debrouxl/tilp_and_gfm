@@ -56,6 +56,7 @@
 #define USE_TIDEV 1
 
 /* PCX or XPM image format */
+#define TIFF 3
 #define JPG 2
 #define PCX 1
 #define XPM 0
@@ -96,7 +97,8 @@
 #define FILE_CHECKING_MID 1
 #define FILE_CHECKING_ON  2
 
-
+/* Unused stuffs */
+#define UNUSED -1
 
 #endif
 

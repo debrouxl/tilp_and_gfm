@@ -17,10 +17,15 @@
  */
 
 #include <stdio.h>
-#include <malloc.h>
 #include <string.h>
 
-#include "includes.h"
+#include "struct.h"
+#include "main.h"
+#include "gui_indep.h"
+#include "intl.h"
+#include "error.h"
+#include "defs.h"
+#include "cb_calc.h"
 
 struct screenshot ti_screen = { { NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0 }, 
 				{ 0, 0, 0, 0 } };
@@ -95,9 +100,11 @@ int cb_screen_save(char *filename)
     case PCX:
       write_pcx_format(image, &(ti_screen.img));
       break;
+#ifndef __MACOSX__
     case JPG:
       write_jpg_format(image, &(ti_screen.img));
       break;
+#endif
     }
   fclose(image);  
   

@@ -19,38 +19,34 @@
 #ifndef CB_CALC_H
 #define CB_CALC_H
 
-#include "dep.h"
-
-DLLEXPORT
 int cb_calc_is_ready(void);
-DLLEXPORT
+
 int cb_send_backup(char *filename);
-DLLEXPORT
+
 int cb_receive_backup(void);
-DLLEXPORT
+
 int cb_id_list(void);
-DLLEXPORT
+
 int cb_rom_dump(void);
-DLLEXPORT
+
 int cb_rom_version(void);
-DLLEXPORT
+
 int cb_send_var(void);
-DLLEXPORT
+
 int cb_receive_var(int *to_save);
-DLLEXPORT
+
 int cb_dirlist(void);
-DLLEXPORT
+
 int cb_send_flash_app(char *filename);
-DLLEXPORT
+
 int cb_send_flash_os(char *filename);
 
 extern struct screenshot ti_screen;
 
-DLLEXPORT
 int cb_screen_capture(void);
-DLLEXPORT
+
 int cb_screen_save(char *filename);
-DLLEXPORT
+
 int cb_ams_to_rom(char *filename);
 
 #endif

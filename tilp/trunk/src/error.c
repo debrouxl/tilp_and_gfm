@@ -23,13 +23,18 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "includes.h"
+#ifdef __MACOSX__
+#include <libticalcs/calc_int.h>
+#endif
+
+#include "intl.h"
+#include "struct.h"
+#include "gui_indep.h"
 
 /*
   This function take as input parameter an error code and displays both
   in a message box and to stderr an error message.
  */
-DLLEXPORT
 int tilp_error(int err_num)
 {
   int err;

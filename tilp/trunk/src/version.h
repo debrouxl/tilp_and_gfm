@@ -26,6 +26,7 @@
 #else
 # define TILP_VERSION VERSION
 #endif
+
 #define LIB_CABLE_VERSION_REQUIRED "2.0.0"
 #define LIB_CALC_VERSION_REQUIRED "1.6.4"
 

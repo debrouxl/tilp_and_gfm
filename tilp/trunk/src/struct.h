@@ -19,7 +19,13 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
-#include "dep.h"
+#include <glib/glib.h>
+
+#ifdef __MACOSX__
+#include <libticables/cabl_int.h>
+#include <libticalcs/calc_def.h>
+#endif /* __MACOSX__ */
+
 #include "img_fmt.h"
 
 extern struct ticable_link        link_cable;
@@ -62,6 +68,7 @@ extern struct clist_window
   //char win_dir[4*MAXCHARS];
 } clist_win;
 
+#ifndef __MACOSX__
 extern struct installation_paths
 {
   gchar *base_dir;    // Windows directory (determined at startup)
@@ -73,6 +80,7 @@ extern struct installation_paths
   gchar *pixmap_dir;  // pixmaps
   gchar *startup_dir; // directory where the program has been launched
 } inst_paths;
+#endif
 
 /* This struct is used by the CTree window */
 extern struct ctree_window
@@ -106,7 +114,7 @@ extern struct goptions
   //char unzip_filter[40];
   char left_font_name[MAXCHARS];
   char right_font_name[MAXCHARS];
-  char transfer_mode;
+  int transfer_mode;
   char locale[MAXCHARS];
   int file_checking;
   int console_mode;
