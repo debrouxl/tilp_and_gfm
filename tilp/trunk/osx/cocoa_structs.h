@@ -30,6 +30,28 @@ struct cocoa_objects_ptr
     id numberOfVars;
     id memoryUsed;
     
+    // userX boxes and their return value...
+    id user1Window;
+    id user1Text;
+    id user1Button;
+    
+    int user1_return;
+    
+    id user2Window;
+    id user2Text;
+    id user2Button1;
+    id user2Button2;
+    
+    int user2_return;
+    
+    id user3Window;
+    id user3Text;
+    id user3Button1;
+    id user3Button2;
+    id user3Button3;
+    
+    int user3_return;
+    
     // the dlgbox (for pbars, see the following struct)
     id dlgboxentryWindow;
     id dlgboxentryEntry;
@@ -60,9 +82,6 @@ struct cocoa_objects_ptr
 // this struct replaces the progess_window p_win struct...
 struct cocoa_pbars_ptr
 {
-    // replaces the gtk event loop
-    int finished;
- 
     // the different windows
     id pbar1Window;
     id pbar2Window;

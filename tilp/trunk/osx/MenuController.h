@@ -15,6 +15,8 @@
     IBOutlet id screendumpImage;
     IBOutlet id thanksPanel;
     IBOutlet id thanksPanelText;
+    IBOutlet id msgSheetText;
+    IBOutlet id msgSheetWindow;
     
     NSMutableDictionary *toolbarItems;
 }

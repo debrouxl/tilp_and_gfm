@@ -52,6 +52,9 @@ gt_stop(void)
 static void
 refresh_pbar1(void)
 {
+    NSRunLoop *myRunLoop;
+    NSDate *limit;
+
     id pbar1;
     id pbar_rate;
     
@@ -95,6 +98,20 @@ refresh_pbar1(void)
   
             // FIXME OS X
             // HERE WE NEED TO PASS THE BALL TO COCOA AGAIN TO PROCESS ITS EVENTS !!!
+#if 0 /* Grmbl, can't get that to work, fsck ! */            
+            fprintf(stderr, "DEBUG: running RunLoop\n");
+            
+            myRunLoop = [NSRunLoop currentRunLoop];
+            
+            limit = [[NSDate date] addTimeInterval:10];
+            
+            [myRunLoop runUntilDate:limit]; // must test this
+            
+            //[myRunLoop acceptInputForMode:NSDefaultRunLoopMode
+            //           beforeDate:limit];
+            
+            fprintf(stderr, "DEBUG: RunLoop run\n");
+#endif /* 0 */
         }
     //fprintf(stderr, "DEBUG: REFRESH_PBAR1 ENDS%s\n", (pbar1 == NULL) ? "(PBAR1 IS NULL)" : "");
 }
@@ -108,8 +125,8 @@ refresh_pbar2(void)
 
     if(pbars_ptr->pbar2 != nil)
         {
-            // refresh only if necessary
-            if((info_update.main_percentage - info_update.prev_main_percentage) < 0.01) // was 0.05 originally
+            // refresh only if necessary, not too often (works well with 0.01, too, but consumes CPU I guess)
+            if((info_update.main_percentage - info_update.prev_main_percentage) < 0.05)
                 return;
             else
                 info_update.prev_main_percentage = info_update.main_percentage;

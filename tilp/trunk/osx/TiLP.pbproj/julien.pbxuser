@@ -38,20 +38,20 @@
 						ActiveTab = 1;
 						Frame = "{{226, 0}, {745, 569}}";
 						Split0 = {
-							Frame = "{{0, 173}, {745, 396}}";
+							Frame = "{{0, 146}, {745, 423}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
 								ActiveTab = 1;
-								Frame = "{{0, 0}, {745, 417}}";
+								Frame = "{{0, 0}, {745, 441}}";
 								Split0 = {
-									Frame = "{{0, 97}, {745, 320}}";
+									Frame = "{{0, 242}, {745, 199}}";
 									Split0 = {
-										Frame = "{{0, 0}, {364, 320}}";
+										Frame = "{{0, 0}, {364, 199}}";
 									};
 									Split1 = {
-										Frame = "{{373, 0}, {372, 320}}";
+										Frame = "{{373, 0}, {372, 199}}";
 									};
 									SplitCount = 2;
 								};
@@ -60,24 +60,24 @@
 									Frame = "{{0, 0}, {682, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {745, 72}}";
+									Frame = "{{0, 0}, {745, 217}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {745, 417}}";
+							Frame = "{{0, 0}, {745, 441}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {745, 148}}";
+							Frame = "{{0, 0}, {745, 121}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {745, 148}}";
+								Frame = "{{0, 0}, {745, 121}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {747, 75}}";
-							BuildTranscriptFrame = "{{0, 84}, {747, 52}}";
-							Frame = "{{0, 0}, {745, 134}}";
+							BuildMessageFrame = "{{0, 0}, {747, 97}}";
+							BuildTranscriptFrame = "{{0, 106}, {747, 91}}";
+							Frame = "{{0, 0}, {745, 195}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -98,17 +98,17 @@
 						Frame = "{{0, 0}, {200, 100}}";
 					};
 					Tab3 = {
-						Frame = "{{0, 0}, {200, 570}}";
+						Frame = "{{0, 0}, {200, 569}}";
 						Split0 = {
-							Frame = "{{0, 0}, {200, 276}}";
+							Frame = "{{0, 0}, {200, 275}}";
 						};
 						Split1 = {
-							Frame = "{{0, 285}, {200, 285}}";
+							Frame = "{{0, 284}, {200, 285}}";
 						};
 						SplitCount = 2;
 					};
 					Tab4 = {
-						Frame = "{{0, 0}, {250, 570}}";
+						Frame = "{{0, 0}, {250, 569}}";
 					};
 					TabCount = 5;
 				};
@@ -195,6 +195,11 @@
 			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
 		};
 	};
+	F582712D01762AFA01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
 	F582717301762CAD01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 81}, {745, 660}}";
@@ -203,6 +208,11 @@
 	F582717901762CAD01000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{16, 98}, {750, 502}}";
+		};
+	};
+	F582717E01762CAD01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
 	F582718301762CAD01000102 = {

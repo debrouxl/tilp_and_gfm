@@ -15,6 +15,7 @@
     IBOutlet id pbar1PBar;
     IBOutlet id pbar1Rate;
     IBOutlet id pbar1Window;
+    IBOutlet id pbar2Button;
     IBOutlet id pbar2Text;
     IBOutlet id pbar2Window;
     IBOutlet id pbar3PBar1;
@@ -30,6 +31,18 @@
     IBOutlet id pbar5Rate;
     IBOutlet id pbar5Text;
     IBOutlet id pbar5Window;
+    IBOutlet id user1Button;
+    IBOutlet id user1Text;
+    IBOutlet id user1Window;
+    IBOutlet id user2Button1;
+    IBOutlet id user2Button2;
+    IBOutlet id user2Text;
+    IBOutlet id user2Window;
+    IBOutlet id user3Button1;
+    IBOutlet id user3Button2;
+    IBOutlet id user3Button3;
+    IBOutlet id user3Text;
+    IBOutlet id user3Window;
     IBOutlet id PrefsController;
     IBOutlet id remoteControlRemoteMode;
     IBOutlet id remoteControlTerminalMode;
@@ -41,15 +54,18 @@
 }
 
 #if defined(USE_SHEETS)
-- (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+- (void)user1ButtonPush:(id)sender;
+- (void)user2ButtonPush:(id)sender;
+- (void)user3ButtonPush:(id)sender;
 #endif
 
 - (IBAction)dlgboxentryButton1Push:(id)sender;
 - (IBAction)dlgboxentryButton2Push:(id)sender;
 - (IBAction)pbarButtonPush:(id)sender;
+
+
 - (IBAction)remoteControlChangeMode:(id)sender;
 - (IBAction)remoteControlTextEntered:(id)sender;
-- (IBAction)screendumpRefresh:(id)sender;
 - (IBAction)screendumpSaveImage:(id)sender;
 
 // NSOpenPanels callbacks

@@ -142,6 +142,7 @@
 			children = (
 				29B97325FDCFA39411CA2CEA,
 				29B97324FDCFA39411CA2CEA,
+				F5216B0101B6E45B01000102,
 			);
 			isa = PBXGroup;
 			name = "Other Frameworks";
@@ -298,7 +299,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__";
+				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__ -DUSE_SHEETS";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = TiLP;
@@ -464,6 +465,7 @@
 				F51283E201797CFA01000102,
 				F51283E301797CFA01000102,
 				F51283E401797CFA01000102,
+				F5216B0201B6E45B01000102,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -1011,6 +1013,18 @@
 		};
 		F514E0E60178CA7001000102 = {
 			fileRef = F514E0E30178CA7001000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5216B0101B6E45B01000102 = {
+			isa = PBXFrameworkReference;
+			name = CoreFoundation.framework;
+			path = /System/Library/Frameworks/CoreFoundation.framework;
+			refType = 0;
+		};
+		F5216B0201B6E45B01000102 = {
+			fileRef = F5216B0101B6E45B01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -204,31 +204,74 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)getScreen:(id)sender
 {
-    NSData *bitmap;
-    NSImage *screen;
+    // Ol, a big THANK YOU for this one
 
+    NSImage *screen;
+    NSBitmapImageRep *bitmap;
+    NSSize size;
+    
+    int row;
+    int col;
+
+    unsigned char *pixels;
+    byte *data;
+    
     if (is_active)
         return;
 
     if (cb_screen_capture() != 0)
         return;
+        
+    if ([screendumpWindow isVisible] == NO)
+        {
+            [screendumpWindow makeKeyAndOrderFront:self];
+            [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
+        }
+        
+    convert_bitmap_to_bytemap(&(ti_screen.img));
     
-    [screendumpWindow makeKeyAndOrderFront:self];
+    bitmap = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+                                       pixelsWide:ti_screen.img.width
+                                       pixelsHigh:ti_screen.img.height
+                                       bitsPerSample:8
+                                       samplesPerPixel:4
+                                       hasAlpha:YES
+                                       isPlanar:NO
+                                       colorSpaceName:NSDeviceRGBColorSpace
+                                       bytesPerRow:0
+                                       bitsPerPixel:0];
     
-    [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
-  
-    bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
-    //[bitmap autorelease]; // needed ??
+    pixels = [bitmap bitmapData];
     
-    if (bitmap == nil)
-        fprintf(stderr, "DEBUG: BITMAP IS NULL !!!\n");
+    data = ti_screen.img.bytemap;
+
+    // speed-up things : set a white width * height area (* 4 => 4 bytes per pixel)
+    memset(pixels, 0xFF, (ti_screen.img.width * ti_screen.img.height * 4)); 
+
+    for(row = 0; row < ti_screen.img.height; row++)
+        {
+            for(col = 0; col < ti_screen.img.width; col++)
+                {
+                    if (*data == 0xFF) // black => set R/G/B to 0
+                        {
+                            *pixels++ = 0; // red
+                            *pixels++ = 0; // blue
+                            *pixels++ = 0; // green
+                            pixels++; // alpha, but already set to 0xFF
+                        }
+                    else // white, increment the pixels pointer
+                        {
+                            pixels = pixels + 4;
+                        }
+                    data++;
+                }
+        }
+
+    size = NSMakeSize(ti_screen.img.width, ti_screen.img.height);
+
+    screen = [[NSImage alloc] initWithSize:size];
     
-    // FIXME OS X
-    // maybe we need to tell the NSImage to render our bitmap...       
-    screen = [NSImage alloc];
-    if ([screen initWithData:bitmap] == nil)
-        fprintf(stderr, "DEBUG: NSIMAGE COULDN'T INITIALIZE WITH DATAS !!\n");
-    //[screen autorelease]; // needed ??
+    [screen addRepresentation:bitmap];
     
     [screendumpImage setImage:screen];
 }

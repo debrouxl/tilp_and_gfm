@@ -8,7 +8,7 @@
 void
 create_cocoa_msg_sheet		(const char *title,
                                  char *message);
- 
+
 int
 create_cocoa_user1_sheet	(const char *title,
                                  char *message,

@@ -74,6 +74,15 @@
 	* Fixed progress indicators windows (design and labels concerns)
 	* Fixed progress indicators refresh
 	* Fixed labels refresh
+* 20011130 : v0.2.1
+	* Train trip again...
+	     * Re-enabled sheets : found that I don't have to use
+	     [NSApp runModalForWindow] all the time. Great.
+* 20011201 : v0.2.1
+	* Got screendump to work yesterday evening
+	* Did a bit of optimization when rendering the screen, using memset()
+	      => took 3 seconds before, less than 1 second now
+	
 
 
 

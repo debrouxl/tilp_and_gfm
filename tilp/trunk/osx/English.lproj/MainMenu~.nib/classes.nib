@@ -7,8 +7,10 @@
                 pbarButtonPush = id; 
                 remoteControlChangeMode = id; 
                 remoteControlTextEntered = id; 
-                screendumpRefresh = id; 
                 screendumpSaveImage = id; 
+                user1ButtonPush = id; 
+                user2ButtonPush = id; 
+                user3ButtonPush = id; 
             }; 
             CLASS = BoxesController; 
             LANGUAGE = ObjC; 
@@ -24,6 +26,7 @@
                 pbar1PBar = id; 
                 pbar1Rate = id; 
                 pbar1Window = id; 
+                pbar2Button = id; 
                 pbar2Text = id; 
                 pbar2Window = id; 
                 pbar3PBar1 = id; 
@@ -45,6 +48,18 @@
                 remoteControlWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
+                user1Button = id; 
+                user1Text = id; 
+                user1Window = id; 
+                user2Button1 = id; 
+                user2Button2 = id; 
+                user2Text = id; 
+                user2Window = id; 
+                user3Button1 = id; 
+                user3Button2 = id; 
+                user3Button3 = id; 
+                user3Text = id; 
+                user3Window = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -77,6 +92,8 @@
                 PrefsController = id; 
                 TilpController = id; 
                 mainWindow = id; 
+                msgSheetText = id; 
+                msgSheetWindow = id; 
                 screendumpImage = id; 
                 screendumpWindow = id; 
                 thanksPanel = id; 

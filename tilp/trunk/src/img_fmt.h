@@ -24,7 +24,6 @@
 #endif
 
 #include <stdio.h>
-//#include <glib.h>
 
 #if defined(HAVE_TILP_TYPEDEFS_H) && !defined(__MACOSX__)
 # include <tilp/typedefs.h>

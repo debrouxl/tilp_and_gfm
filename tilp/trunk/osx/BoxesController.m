@@ -64,19 +64,54 @@ extern int is_active;
     
     pbars_ptr->pbar_text = nil;
     pbars_ptr->pbar_rate = nil;
+        
+    objects_ptr->user1Window = user1Window;
+    objects_ptr->user1Text = user1Text;
+    objects_ptr->user1Button = user1Button;
     
-    pbars_ptr->finished = 0;
-    
+    objects_ptr->user2Window = user2Window;
+    objects_ptr->user2Text = user2Text;
+    objects_ptr->user2Button1 = user2Button1;
+    objects_ptr->user2Button2 = user2Button2;
+
+    objects_ptr->user3Window = user3Window;
+    objects_ptr->user3Text = user3Text;
+    objects_ptr->user3Button1 = user3Button1;
+    objects_ptr->user3Button2 = user3Button2;
+    objects_ptr->user3Button3 = user3Button3;
+        
     objects_ptr->remoteControlWindow = remoteControlWindow;
     objects_ptr->remoteControlTextArea = remoteControlTextArea;
     objects_ptr->term_mode = REMOTE;
 }
 
 #if defined(USE_SHEETS)
-// will be used later, when returning to sheets for this type of message box
-- (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)user1ButtonPush:(id)sender
 {
-    info_update.cancel = 1;
+    objects_ptr->user1_return = BUTTON1;
+    
+    [NSApp stopModal];
+}
+
+- (void)user2ButtonPush:(id)sender
+{
+    if (sender == user2Button1)
+        objects_ptr->user2_return = BUTTON1;
+    else if (sender == user2Button2)
+        objects_ptr->user2_return = BUTTON2;
+        
+    [NSApp stopModal];
+}
+
+- (void)user3ButtonPush:(id)sender
+{
+    if (sender == user3Button1)
+        objects_ptr->user3_return = BUTTON1;
+    else if (sender == user3Button2)
+        objects_ptr->user3_return = BUTTON2;
+    else if (sender == user3Button3)
+        objects_ptr->user3_return = BUTTON3;
+        
     [NSApp stopModal];
 }
 #endif
@@ -102,8 +137,6 @@ extern int is_active;
     
     [dlgboxentryEntry setStringValue:nil];
     
-    [dlgboxentryWindow close];
-    
     [NSApp stopModal];
 }
 
@@ -116,24 +149,23 @@ extern int is_active;
             objects_ptr->dlgbox_data = NULL;
         }
     
-    [dlgboxentryEntry setStringValue:nil];
-    
     [dlgboxentryWindow close];
     
+    [dlgboxentryEntry setStringValue:nil];
+    
     [NSApp stopModal];
-
 }
 
 - (IBAction)pbarButtonPush:(id)sender
 {
     // the sheet will be closed by calling gif->destroy_pbar();
 
-    info_update.cancel = 1;
-    pbars_ptr->finished = 1;
+    fprintf(stderr, "*** ABORT BUTTON PUSHED !!! ***\n");
 
-#if defined(USE_SHEETS)    
-    [NSApp stopModal];
-#endif
+    info_update.cancel = 1;
+    
+    if (sender == pbar2Button)
+        [NSApp stopModal];
 }
 
 - (IBAction)remoteControlChangeMode:(id)sender
@@ -185,28 +217,7 @@ extern int is_active;
     // Oh, I just remembered we also need to match some keys
     // to access other TI functions (Apps, etc...)
     // It's gonna be funny...
-}
-
-- (IBAction)screendumpRefresh:(id)sender
-{
-    NSData *bitmap;
-    NSImage *screen;
-
-    if (is_active)
-        return;
-
-    if (cb_screen_capture() != 0)
-        return;
-    
-    [screendumpWindow makeKeyAndOrderFront:self];
-    
-    bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
-    [bitmap autorelease];
-    
-    screen = [[NSImage alloc] initWithData:bitmap];
-    [screen autorelease];
-    
-    [screendumpImage setImage:screen];
+    // See NSEvent keyDown.
 }
 
 - (IBAction)screendumpSaveImage:(id)sender
@@ -332,7 +343,7 @@ extern int is_active;
             
             switch (options.screen_format)
                 {
-                    case TIFF: // FIXME OS X : dunno if it's the right way...
+                    case TIFF:
                         tiff = [[screendumpImage image] TIFFRepresentation];
                         [tiff writeToFile:[sp filename] atomically:YES];
                         break;
