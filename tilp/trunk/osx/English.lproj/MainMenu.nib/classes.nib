@@ -86,15 +86,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {
-                prefsAdvanced = id; 
-                prefsCalc = id; 
-                prefsClose = id; 
-                prefsGeneral = id; 
-                prefsHardware = id; 
-                prefsScreendump = id; 
-                showPrefsSheet = id; 
-            }; 
+            ACTIONS = {prefsAdvanced = id; prefsClose = id; showPrefsSheet = id; }; 
             CLASS = PrefsController; 
             LANGUAGE = ObjC; 
             OUTLETS = {

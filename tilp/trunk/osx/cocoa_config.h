@@ -10,9 +10,9 @@
 #define __COCOA_CONFIG_H__
 
 void
-read_rc_file(void);
+rc_get_user_prefs(void);
 
 void
-write_rc_file(void);
+rc_save_user_prefs(void);
 
 #endif /* !__COCOA_CONFIG_H__ */

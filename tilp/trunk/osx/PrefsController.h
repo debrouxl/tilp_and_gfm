@@ -50,10 +50,6 @@
     IBOutlet id screenModeMatrix;
 }
 - (IBAction)prefsAdvanced:(id)sender;
-- (IBAction)prefsCalc:(id)sender;
 - (IBAction)prefsClose:(id)sender;
-- (IBAction)prefsGeneral:(id)sender;
-- (IBAction)prefsHardware:(id)sender;
-- (IBAction)prefsScreendump:(id)sender;
 - (IBAction)showPrefsSheet:(id)sender;
 @end

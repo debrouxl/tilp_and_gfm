@@ -309,16 +309,24 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>TiLP</string>
+	<key>CFBundleGetInfoString</key>
+	<string>TiLP is a Linking Program for TI calculators</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>net.sf.tilp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>TiLP</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.51-osx0.0.9</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.0.9</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

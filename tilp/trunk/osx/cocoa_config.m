@@ -98,7 +98,7 @@ rc_fill_dictionary(void)
 }
 
 void
-read_rc_file(void)
+rc_get_user_prefs(void)
 {
     NSUserDefaults *prefs;
     NSMutableDictionary *tilpConfig;
@@ -106,20 +106,24 @@ read_rc_file(void)
 
     prefs = [[NSUserDefaults standardUserDefaults] retain];
 
-    if ([prefs objectForKey:@"tilpConfig"] != nil)
+    if ([prefs objectForKey:@"Config"])
         {
-            tilpConfig = [[NSMutableDictionary alloc] initWithDictionary:[prefs objectForKey:@"tilpConfig"]];
+            printf("DEBUG: got user prefs\n");
+            tilpConfig = [[[NSMutableDictionary alloc] initWithDictionary:[prefs objectForKey:@"Config"]] retain];
         }	
     else
         {
             tilpConfig = [[NSMutableDictionary alloc] init];
+            [tilpConfig retain];
+            
+            objects_ptr->tilpConfig = tilpConfig;
+            objects_ptr->prefs = prefs;
+            
             rc_init_with_default();
             rc_fill_dictionary();
             return;
         }
-  
-    [tilpConfig retain];
-    
+      
     // init the pointers
     objects_ptr->tilpConfig = tilpConfig;
     objects_ptr->prefs = prefs;
@@ -179,7 +183,7 @@ read_rc_file(void)
     
     
 void
-write_rc_file(void)
+rc_save_user_prefs(void)
 {
     NSUserDefaults *prefs;
     NSMutableDictionary *tilpConfig;
@@ -187,7 +191,9 @@ write_rc_file(void)
     prefs = objects_ptr->prefs;
     tilpConfig = objects_ptr->tilpConfig;
   
-    [prefs setObject:tilpConfig forKey:@"tilpConfig"];
+    rc_fill_dictionary();
+    
+    [prefs setObject:tilpConfig forKey:@"Config"];
 }
     
     

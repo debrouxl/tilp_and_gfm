@@ -18,6 +18,26 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 struct gui_fncts gui_functions;
 
+- (void)dealloc
+{
+    NSUserDefaults *myPrefs;
+    NSMutableDictionary *myTilpConfig;
+    
+    myPrefs = objects_ptr->prefs;
+    myTilpConfig = objects_ptr->tilpConfig;
+    
+    [myPrefs synchronize];
+    [myPrefs release];
+    myPrefs = nil;
+    objects_ptr->prefs = NULL;
+    
+    [myTilpConfig release];
+    myTilpConfig = nil;
+    objects_ptr->tilpConfig = NULL;
+    
+    [super dealloc];
+}
+
 - (void)awakeFromNib
 {    
   /* Init the classes pointers */

@@ -30,10 +30,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {908, 570}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{226, 0}, {682, 570}}";
 						Split0 = {
-							Frame = "{{0, 149}, {682, 421}}";
+							Frame = "{{0, 75}, {682, 495}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -117,6 +117,11 @@
 			macosx = (
 				00FFA4B701706F217F000001,
 			);
+		};
+	};
+	F50D8E5E0181A22D01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{14, 227}, {750, 502}}";
 		};
 	};
 	F50E4E7A017F181501000103 = {
