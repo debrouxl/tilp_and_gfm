@@ -91,6 +91,10 @@
 	      * Step 2 : send vars
 	        => there's a bug affecting the pbar_type4 which is sometime
 		redisplayed at the end of the transfer. Dunno why.
+* 20011207 : v0.2.3
+	* Code cleaning
+	      * New class SheetsController, handling sheets and pbars refresh
+	      * Got rid of the ugly cocoa_pbars_ptr struct
 
 
 

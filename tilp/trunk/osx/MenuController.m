@@ -51,9 +51,12 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     NSToolbar *toolbar;
     
-    toolbar = [[[NSToolbar alloc] initWithIdentifier:@"myToolbar"] autorelease];
-    
     fprintf(stderr, "menu => got awakeFromNib\n");
+    
+    // Init the instance pointer
+    objects_ptr->myMenuController = self;
+    
+    toolbar = [[[NSToolbar alloc] initWithIdentifier:@"myToolbar"] autorelease];
     
     toolbarItems = [[NSMutableDictionary dictionary] retain];
 

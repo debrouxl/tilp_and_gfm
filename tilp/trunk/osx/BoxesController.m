@@ -18,7 +18,6 @@
 #import "BoxesController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-extern struct cocoa_pbars_ptr *pbars_ptr;
 
 extern struct screenshot ti_screen;
 extern struct ticalc_info_update info_update;
@@ -31,39 +30,12 @@ extern int is_active;
 {
     fprintf(stderr, "boxes => got awakeFromNib\n");
 
+    // Init the instance pointer
+    objects_ptr->myBoxesController = self;
+
     objects_ptr->dlgboxentryWindow = dlgboxentryWindow;
     objects_ptr->dlgboxentryEntry = dlgboxentryEntry;
     objects_ptr->dlgboxentryText = dlgboxentryText;
-
-    // that's ugly :-/
-
-    pbars_ptr->pbar1Window = pbar1Window;
-    pbars_ptr->pbar2Window = pbar2Window;
-    pbars_ptr->pbar3Window = pbar3Window;
-    pbars_ptr->pbar4Window = pbar4Window;
-    pbars_ptr->pbar5Window = pbar5Window;
-    
-    pbars_ptr->pbar1PBar = pbar1PBar;
-    pbars_ptr->pbar3PBar1 = pbar3PBar1;
-    pbars_ptr->pbar3PBar2 = pbar3PBar2;
-    pbars_ptr->pbar4PBar = pbar4PBar;
-    pbars_ptr->pbar5PBar1 = pbar5PBar1;
-    pbars_ptr->pbar5PBar2 = pbar5PBar2;
-    
-    pbars_ptr->pbar1Rate = pbar1Rate;
-    pbars_ptr->pbar3Rate = pbar3Rate;
-    pbars_ptr->pbar4Rate = pbar4Rate;
-    pbars_ptr->pbar5Rate = pbar5Rate;
-    
-    pbars_ptr->pbar2Text = pbar2Text;
-    pbars_ptr->pbar4Text = pbar4Text;
-    pbars_ptr->pbar5Text = pbar5Text;
-
-    pbars_ptr->pbar1 = nil;
-    pbars_ptr->pbar2 = nil;
-    
-    pbars_ptr->pbar_text = nil;
-    pbars_ptr->pbar_rate = nil;
         
     objects_ptr->user1Window = user1Window;
     objects_ptr->user1Text = user1Text;
@@ -85,7 +57,6 @@ extern int is_active;
     objects_ptr->term_mode = REMOTE;
 }
 
-#if defined(USE_SHEETS)
 - (void)user1ButtonPush:(id)sender
 {
     objects_ptr->user1_return = BUTTON1;
@@ -114,26 +85,21 @@ extern int is_active;
         
     [NSApp stopModal];
 }
-#endif
 
 - (IBAction)dlgboxentryButton1Push:(id)sender
 {
-    NSString *data;
+    id data;
     
-    data = [dlgboxentryEntry stringValue];
-    
-    if (objects_ptr->dlgbox_data != NULL)
+    if (objects_ptr->dlgbox_data != nil)
         {
-            free(objects_ptr->dlgbox_data);
-            
-            objects_ptr->dlgbox_data = NULL;
+            data = objects_ptr->dlgbox_data;
+            [data release];
         }
+
+    data = [dlgboxentryEntry stringValue];
+    [data retain];
     
-    objects_ptr->dlgbox_data = (char *)malloc([data cStringLength] + 1);
-    
-    [data getCString:objects_ptr->dlgbox_data];
-    
-    [data release];
+    objects_ptr->dlgbox_data = data;
     
     [dlgboxentryEntry setStringValue:nil];
     

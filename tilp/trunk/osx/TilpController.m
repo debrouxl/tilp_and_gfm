@@ -24,7 +24,6 @@
 #include "cocoa_outline_refresh.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
-extern struct cocoa_pbars_ptr *pbars_ptr;
 
 #import "TilpController.h"
 #import "ImageAndTextCell.h"
@@ -123,7 +122,6 @@ struct gui_fncts gui_functions;
     // at this time, nobody uses these structs anymore (hopefully...)
     // if you get any segfault/sigbus problem on exiting, rank this #1 :)
     free(objects_ptr);
-    free(pbars_ptr);
     
     [tiTypes73 release];
     [tiTypes82 release];
@@ -155,11 +153,8 @@ struct gui_fncts gui_functions;
 
     fprintf(stderr, "tilp => got awakeFromNib\n");
 
-    // Init the classes pointers
-    objects_ptr->BoxesController = BoxesController;
-    objects_ptr->MenuController = MenuController;
-    objects_ptr->PrefsController = PrefsController;
-    objects_ptr->TilpController = self;
+    // Init the instance pointer
+    objects_ptr->myTilpController = self;
   
     objects_ptr->mainWindow = mainWindow;
     

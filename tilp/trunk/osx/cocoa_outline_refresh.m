@@ -194,6 +194,14 @@ refresh_outline(void)
     [dirlistTree reloadData];
         
     // ball passed. blargh.
+    
+    // expand the "TI Variables" item if it has children
+    // NOTICE : the itemAtRow: argument will change if you add/remove items
+    // before the "TI Variables" item...
+    if (ctree_win.varlist != NULL)
+        [dirlistTree expandItem:[dirlistTree itemAtRow:5]];
+    else
+        [dirlistTree collapseItem:[dirlistTree itemAtRow:5]];
 }
 
 void

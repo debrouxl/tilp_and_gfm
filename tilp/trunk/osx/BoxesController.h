@@ -53,11 +53,9 @@
     IBOutlet id TilpController;
 }
 
-#if defined(USE_SHEETS)
 - (void)user1ButtonPush:(id)sender;
 - (void)user2ButtonPush:(id)sender;
 - (void)user3ButtonPush:(id)sender;
-#endif
 
 - (IBAction)dlgboxentryButton1Push:(id)sender;
 - (IBAction)dlgboxentryButton2Push:(id)sender;

@@ -6,6 +6,9 @@
 #include "../src/defs.h"
 
 #include "cocoa_config.h"
+#include "cocoa_structs.h"
+
+extern struct cocoa_objects_ptr *objects_ptr;
 
 #import "PrefsController.h"
 
@@ -14,6 +17,9 @@
 - (void)awakeFromNib
 {
     fprintf(stderr, "prefs => got awakeFromNib\n");
+    
+    // Init instance pointer
+    objects_ptr->myPrefsController = self;
 }
 
 - (IBAction)prefsAdvanced:(id)sender

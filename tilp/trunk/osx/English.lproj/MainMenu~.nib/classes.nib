@@ -158,6 +158,49 @@
             SUPERCLASS = NSObject; 
         }, 
         {
+            CLASS = SheetsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dlgboxentryButton1 = id; 
+                dlgboxentryButton2 = id; 
+                dlgboxentryEntry = id; 
+                dlgboxentryText = id; 
+                dlgboxentryWindow = id; 
+                pbar1PBar = id; 
+                pbar1Rate = id; 
+                pbar1Window = id; 
+                pbar2Button = id; 
+                pbar2Text = id; 
+                pbar2Window = id; 
+                pbar3PBar1 = id; 
+                pbar3PBar2 = id; 
+                pbar3Rate = id; 
+                pbar3Window = id; 
+                pbar4PBar = id; 
+                pbar4Rate = id; 
+                pbar4Text = id; 
+                pbar4Window = id; 
+                pbar5PBar1 = id; 
+                pbar5PBar2 = id; 
+                pbar5Rate = id; 
+                pbar5Text = id; 
+                pbar5Window = id; 
+                user1Button1 = id; 
+                user1Text = id; 
+                user1Window = id; 
+                user2Button1 = id; 
+                user2Button2 = id; 
+                user2Text = id; 
+                user2Window = id; 
+                user3Button1 = id; 
+                user3Button2 = id; 
+                user3Button3 = id; 
+                user3Text = id; 
+                user3Window = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             CLASS = TilpController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
