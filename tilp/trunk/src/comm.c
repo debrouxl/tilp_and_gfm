@@ -39,6 +39,9 @@
 static TicableLinkParam tmp_lp;
 static gint ad;
 static GtkWidget *button = NULL;
+static gint init = !0;
+static GtkWidget *port = NULL;
+
 
 gint display_comm_dbox()
 {
@@ -46,6 +49,8 @@ gint display_comm_dbox()
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
+
+	init = !0;
 
 	xml = glade_xml_new
 	    (tilp_paths_build_glade("comm-2.glade"), "comm_dbox", PACKAGE);
@@ -106,7 +111,7 @@ gint display_comm_dbox()
 	}
 
 	// Port
-	data = glade_xml_get_widget(xml, "optionmenu_comm_port");
+	port = data = glade_xml_get_widget(xml, "optionmenu_comm_port");
 	switch (options.lp.port) {
 	case PARALLEL_PORT_1:
 	case SERIAL_PORT_1:
@@ -204,6 +209,7 @@ gint display_comm_dbox()
 	// Loop
 	while (gtk_events_pending())
 		gtk_main_iteration();
+	init = 0;
  loop:
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
@@ -250,6 +256,10 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 6: tmp_lp.link_type = LINK_TIE; break;
 	case 7: tmp_lp.link_type = LINK_VTL; break;
 	}
+	
+	// force port 
+	 if(!init)
+		gtk_option_menu_set_history(GTK_OPTION_MENU(port), 1);
 }
 
 GLADE_CB void
