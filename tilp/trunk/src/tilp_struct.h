@@ -160,9 +160,9 @@ extern "C" {
 
 /* This struct is used by the CTree window */
   typedef struct {
-    GNode *dirlist;		// linked list of variables & folders
-    GNode *var_tree;		// future use: tree of vars
-    GNode *app_tree;		// future use: tree of apps
+    TNode *dirlist;		// linked list of variables & folders
+    TNode *var_tree;		// future use: tree of vars
+    TNode *app_tree;		// future use: tree of apps
     unsigned int memory;	// memory free or used by calc
     GList *selection;		// selection of variables
     GList *selection2;		// selection of applications

@@ -7,7 +7,7 @@ AC_PREREQ(2.52)
 AC_INIT(src/tilp_main.c)
 
 # set program version number
-VERSION=6.68
+VERSION=6.69
 PACKAGE=tilp
 AC_SUBST(VERSION)
 AC_SUBST(PACKAGE)
@@ -59,7 +59,7 @@ AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 
 # check for ticalcs presence
-PKG_CHECK_MODULES(TICALCS, ticalcs-4 >= 4.4.4)
+PKG_CHECK_MODULES(TICALCS, ticalcs >= 4.5.2)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 
@@ -212,7 +212,7 @@ AC_SUBST(locale_dir)
 
 # some extra flags
 CFLAGS="$CFLAGS $ARCH -Wall"
-LDFLAGS="$LDFLAGS $INTLLIBS"
+LDFLAGS="$LDFLAGS $INTLLIBS -g"
 
 # pass flags
 AC_SUBST(CFLAGS)

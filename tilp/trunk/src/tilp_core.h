@@ -44,7 +44,9 @@ extern "C" {
   /* Use new dirlist management */
   /******************************/
 
-  //#define DIRLIST_FORM2
+  //#define DIRLIST_FORM1 // lib: 1, tilp: 1
+  //#define DIRLIST_TRANS // lib: 1, tilp: 2
+  #define DIRLIST_FORM2 // lib: 2, tilp: 2
   
   /**********************/
   /* Exported variables */

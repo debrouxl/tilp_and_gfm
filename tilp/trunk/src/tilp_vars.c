@@ -26,13 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef __MACOSX__
-#include <glib.h>
-#else				/*  */
-#include <glib/glib.h>
-#include <libticalcs/calc_int.h>
-#endif				/*  */
-
+#include "tilibs.h"
 #include "tilp_core.h"
 
 /*********************/
@@ -40,27 +34,33 @@
 /*********************/
 
 /* Convert a dirlist v1 into two dirlists v2 */
-#ifdef DIRLIST_FORM2
+/* Beware: tree is no longer valid !!! */
+#ifdef DIRLIST_TRANS
 static void dirlist_v1_to_v2(TNode * tree, TNode ** vars, TNode ** apps)
 {
 	TNode *var_node, *app_node;
-	*vars = g_node_new("Variables");
-	*apps = g_node_new("Applications");
-	var_node = *vars = g_node_nth_child(tree, 0);
-	var_node->data = VAR_NODE_NAME;
-	app_node = *apps = g_node_nth_child(tree, 1);
-	app_node->data = APP_NODE_NAME;
-	g_node_unlink(var_node);
-	g_node_unlink(app_node);
-	g_node_destroy(tree);
+
+	var_node = t_node_nth_child(tree, 0);
+	var_node->data = strdup(VAR_NODE_NAME); // so that it can be freed !
+
+	app_node = t_node_nth_child(tree, 1);
+	app_node->data = strdup(APP_NODE_NAME);
+
+	t_node_unlink(var_node);
+	t_node_unlink(app_node);
+	t_node_destroy(tree);
+
+	*vars = var_node;
+	*apps = app_node;
 }
-#endif				/* DIRLIST_FORM2 */
+#endif				/* DIRLIST_TRANS */
 
 /* Get a dirlist (currently v1; should be switched soon) */
 int tilp_dirlist_remote(void)
 {
 	uint32_t mem;
 
+#if defined(DIRLIST_FORM1)
 	// delete old tree  
 	ticalc_dirlist_destroy(&ctree_win.dirlist);
 
@@ -71,18 +71,48 @@ int tilp_dirlist_remote(void)
 		gif->destroy_pbar();
 		return -1;
 	}
+#elif defined(DIRLIST_TRANS)    /* DIRLIST_FORM1 */
+	// delete old trees
+	ticalc_dirlist_destroy(&ctree_win.var_tree);
+	ticalc_dirlist_destroy(&ctree_win.app_tree);
+
+	// get new tree
+	gif->create_pbar_type2(_("Directory list"),
+			       _("Reading variables"));
+	if (tilp_error(ti_calc.directorylist(&ctree_win.dirlist, &mem))) {
+		gif->destroy_pbar();
+		return -1;
+	}
+#elif defined(DIRLIST_FORM2)    /* DIRLIST_TRANS */
+	// delete old trees
+	ticalc_dirlist_destroy(&ctree_win.var_tree);
+	ticalc_dirlist_destroy(&ctree_win.app_tree);
+	
+	// get new trees
+	gif->create_pbar_type2(_("Directory list"),
+			       _("Reading variables"));
+	if (tilp_error(ti_calc.directorylist2(&ctree_win.var_tree, 
+					      &ctree_win.app_tree,
+					      &mem))) {
+		gif->destroy_pbar();
+		return -1;
+	}
+
+#endif                          /* DIRLIST_FORM2 */
 	ctree_win.memory = mem;
 	gif->destroy_pbar();
 
-#ifndef DIRLIST_FORM2
+#if defined(DIRLIST_FORM1)
 	ticalc_dirlist_display(ctree_win.dirlist);
-
-#else				/* !DIRLIST_FORM2 */
-	dirlist_v1_to_v2(ctree_win.dirlist, &ctree_win.var_tree,
+#elif defined(DIRLIST_TRANS)    /* DIRLIST_FORM1 */
+	dirlist_v1_to_v2(ctree_win.dirlist, 
+			 &ctree_win.var_tree,
 			 &ctree_win.app_tree);
 	ticalc_dirlist_display(ctree_win.var_tree);
 	ticalc_dirlist_display(ctree_win.app_tree);
-
+#elif defined(DIRLIST_FORM2)    /* DIRLIST_TRANS */
+	ticalc_dirlist_display(ctree_win.var_tree);
+	ticalc_dirlist_display(ctree_win.app_tree);
 #endif				/* DIRLIST_FORM2 */
 	return 0;
 }

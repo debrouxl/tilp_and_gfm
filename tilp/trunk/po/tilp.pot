@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-27 14:23+0200\n"
+"POT-Creation-Date: 2004-03-21 09:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,39 +25,39 @@ msgstr ""
 msgid "* TILP version %s (cables=%s, files=%s, calcs=%s)"
 msgstr ""
 
-#: src/action.c:99
+#: src/action.c:100
 msgid "Varname"
 msgstr ""
 
-#: src/action.c:104
+#: src/action.c:105
 msgid "Attribute"
 msgstr ""
 
-#: src/action.c:109
+#: src/action.c:110
 msgid "Filename"
 msgstr ""
 
-#: src/action.c:114
+#: src/action.c:115
 msgid "Action"
 msgstr ""
 
-#: src/action.c:149 src/clock.c:131
+#: src/action.c:150 src/clock.c:131
 msgid "action.c: GUI loading failed !\n"
 msgstr ""
 
-#: src/action.c:213 src/action.c:330
+#: src/action.c:214 src/action.c:331
 msgid "skip"
 msgstr ""
 
-#: src/action.c:214 src/action.c:272 src/action.c:330
+#: src/action.c:215 src/action.c:273 src/action.c:331
 msgid "overwrite"
 msgstr ""
 
-#: src/action.c:298 src/tilp_files.c:693 src/tilp_slct.c:117
+#: src/action.c:299 src/tilp_files.c:693 src/tilp_slct.c:117
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:298 src/tilp_files.c:694
+#: src/action.c:299 src/tilp_files.c:694
 msgid "New name: "
 msgstr ""
 
@@ -226,29 +226,30 @@ msgid "Unable to remove the temporary file.\n"
 msgstr ""
 
 #: src/gtk_refresh.c:128
+#, c-format
 msgid "Initialized in GTK+ mode.\n"
 msgstr ""
 
-#: src/labels.c:59
+#: src/labels.c:66
 #, c-format
 msgid "Memory free: %u bytes"
 msgstr ""
 
-#: src/labels.c:63
+#: src/labels.c:70
 #, c-format
 msgid "Memory used: %u bytes"
 msgstr ""
 
-#: src/labels.c:67
+#: src/labels.c:74
 #, c-format
 msgid "Memory used: %s"
 msgstr ""
 
-#: src/labels.c:67
+#: src/labels.c:74
 msgid "N/A"
 msgstr ""
 
-#: src/labels.c:72
+#: src/labels.c:79
 #, c-format
 msgid "Current directory: %s"
 msgstr ""
@@ -772,6 +773,7 @@ msgid "Configuration file error at line %i.\n"
 msgstr ""
 
 #: src/tilp_rcfile.c:117 src/tilp_rcfile.c:119
+#, c-format
 msgid ""
 "Configuration file not found, use default values. You can create one by the "
 "'File|Save config' command menu.\n"
@@ -811,11 +813,12 @@ msgid "A variable must have been selected in the left window."
 msgstr ""
 
 #. get new tree
-#: src/tilp_vars.c:68
+#. get new trees
+#: src/tilp_vars.c:68 src/tilp_vars.c:80 src/tilp_vars.c:92
 msgid "Directory list"
 msgstr ""
 
-#: src/tilp_vars.c:69
+#: src/tilp_vars.c:69 src/tilp_vars.c:81 src/tilp_vars.c:93
 msgid "Reading variables"
 msgstr ""
 

@@ -20,9 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <glib.h>
 #include <pango/pango.h>
 
+#include <tilp/tnode.h>//#include "tilibs.h"
 #include "tilp_core.h"
 
 #include "gstruct.h"
@@ -195,8 +195,13 @@ void ctree_refresh(void)
 	int i, j;
 
 	// check for a valid tree
+#if defined(DIRLIST_FORM1)
 	if (ctree_win.dirlist == NULL)
 		return;
+#elif defined(DIRLIST_TRANS) || defined(DIRLIST_FORM2)
+	if (ctree_win.var_tree == NULL)
+		return;
+#endif
 
 	// sort variables
 	switch (options.ctree_sort) {
@@ -227,13 +232,13 @@ void ctree_refresh(void)
 	pix6 = create_pixbuf("TIicon4.ico");
 
 	// variables tree
-#ifndef DIRLIST_FORM2
-	vars = g_node_nth_child(ctree_win.dirlist, 0);
-#else				/* !DIRLIST_FORM2 */
+#if defined(DIRLIST_FORM1)
+	vars = t_node_nth_child(ctree_win.dirlist, 0);
+#elif defined(DIRLIST_TRANS) || defined(DIRLIST_FORM2) /* DIRLIST_FORM1 */
 	vars = ctree_win.var_tree;
-#endif				/* DIRLIST_FORM2 */
-	for (i = 0; i < g_node_n_children(vars); i++) {
-		GNode *parent = g_node_nth_child(vars, i);
+#endif				                       /* DIRLIST_FORM2 */
+	for (i = 0; i < t_node_n_children(vars); i++) {
+		TNode *parent = t_node_nth_child(vars, i);
 		TiVarEntry *fe = (TiVarEntry *) (parent->data);
 		if ((fe != NULL) || ti_calc.has_folder) {
 			gtk_tree_store_append(tree, &parent_node,
@@ -244,8 +249,8 @@ void ctree_refresh(void)
 					   CTREE_ICON, pix1, -1);
 		}
 
-		for (j = 0; j < g_node_n_children(parent); j++) {
-			GNode *node = g_node_nth_child(parent, j);
+		for (j = 0; j < t_node_n_children(parent); j++) {
+			TNode *node = t_node_nth_child(parent, j);
 			gchar **row_text =
 			    g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			TiVarEntry *ve = (TiVarEntry *) (node->data);
@@ -289,13 +294,13 @@ void ctree_refresh(void)
 	}
 
 	// Appplications tree
-#ifndef DIRLIST_FORM2
-	apps = g_node_nth_child(ctree_win.dirlist, 1);
-#else				/* !DIRLIST_FORM2 */
+#if defined(DIRLIST_FORM1)
+	apps = t_node_nth_child(ctree_win.dirlist, 1);
+#elif defined(DIRLIST_TRANS) || defined(DIRLIST_FORM2) /* DIRLIST_FORM1 */
 	apps = ctree_win.app_tree;
-#endif				/* DIRLIST_FORM2 */
-	for (i = 0; i < g_node_n_children(apps); i++) {
-		GNode *node = g_node_nth_child(apps, i);
+#endif				                       /* DIRLIST_FORM2 */
+	for (i = 0; i < t_node_n_children(apps); i++) {
+		TNode *node = t_node_nth_child(apps, i);
 		gchar **row_text =
 		    g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 		TiVarEntry *ve = (TiVarEntry *) (node->data);
