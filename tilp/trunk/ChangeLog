@@ -7,6 +7,9 @@ Some explanations about the version number:
 	whereas an odd number is an unstable/devel version.
 	New form #3: tilp (cables, calcs, tiffep) version.
 
+To do:
+      UTF8 encoding pbs with gtk_refresh (label) under Windows.
+	
 - 09/05/2003, version 6.68 (3.7.6, 0.5.6, 4.4.9):
 	Re-enabled mfc folder for SVN repository.
 	Rebuilt under Win32.

@@ -154,6 +154,20 @@ void clist_init(void)
 			 G_CALLBACK(tree_selection_changed), NULL);
 }
 
+/* Attempt to determine if string is Unicode (heuristic way) */
+static int detect_for_utf8(const char *s)
+{
+	int i;
+
+	for(i=0; i<strlen(s); i++)
+	{
+		if(((uint8_t)s[i] >= 0xC0) && ((uint8_t)s[i] <= 0xCF)) 
+			break;
+	}
+
+	return (i < strlen(s));
+}
+
 
 /**************/
 /* Management */
@@ -165,6 +179,7 @@ void clist_refresh(void)
 	GList *dirlist;
 	gsize br, bw;
 	gchar *utf8;
+	int i;
 
 	// reparse folders
 	tilp_clist_selection_destroy();
@@ -215,10 +230,23 @@ void clist_refresh(void)
 			pix = create_pixbuf(icon_name);
 		}
 
-		utf8 = g_filename_to_utf8(fi->name, -1, &br, &bw, NULL);
+		// Attempt to separate locale & UTF8 filenames in a heuristic fashion
+		if(tifiles_is_a_ti_file(fi->name) && detect_for_utf8(fi->name))
+			utf8 = fi->name;
+		else
+			utf8 = g_filename_to_utf8(fi->name, -1, &br, &bw, NULL);
+#if 0
+		DISPLAY("<%s> ", fi->name);
+		for (i = 0; i < 8; i++)
+		DISPLAY("%02X ", fi->name[i] & 0xff);
+		DISPLAY("<%s> ", utf8);
+		for (i = 0; i < 8; i++)
+		DISPLAY("%02X ", utf8[i] & 0xff);
+		DISPLAY("\n");
+#endif		
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, COLUMN_NAME,
-				   utf8 /*fi->name */ ,
+				   utf8,
 				   COLUMN_TYPE, tilp_file_get_type(fi),
 				   COLUMN_SIZE, tilp_file_get_size(fi),
 				   COLUMN_DATE, tilp_file_get_date(fi),
