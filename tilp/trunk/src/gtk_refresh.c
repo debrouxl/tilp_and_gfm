@@ -98,12 +98,15 @@ static void gtkgui_pbar()
 } 
 
 // note: info_update.label_text is encoded in UTF8 but variable names ('%s')
-// are encoded according to tifiles_translate_set_encoding()
+// are encoded according to tifiles_translate_set_encoding().
+// This should be treated here but given that encoding is set to UTF8, there
+// nothing to do...
 static void gtkgui_label()
 {
   if (p_win.label == NULL)
     return;
-    gtk_label_set(GTK_LABEL(p_win.label), info_update.label_text);
+
+  gtk_label_set(GTK_LABEL(p_win.label), info_update.label_text);
   while (gtk_events_pending()) 
     {
       gtk_main_iteration();
