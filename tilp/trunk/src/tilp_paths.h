@@ -32,11 +32,11 @@ FILE * tilp_open_log (const char *mode);
 #if defined(__LINUX__) || defined(__BSD__)
 # define INI_FILE  "/.tilp"
 # define REG_FILE "tilp.registry"
-# define LOG_FILE "tilp_get_logfile()"
+# define LOG_FILE tilp_get_logfile()
 #elif defined(__WIN32__)
 # define INI_FILE  "tilp.ini"
 # define REG_FILE "tilp.registry"
-# define LOG_FILE "tilp_get_logfile()"
+# define LOG_FILE tilp_get_logfile()
 #endif
 
 /* Temporary filenames (used by cb_calc.c) */
