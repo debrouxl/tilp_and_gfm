@@ -224,6 +224,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)
 
 AC_OUTPUT([Makefile
+build/Makefile
 desktop/Makefile
 glade/Makefile
 help/Makefile

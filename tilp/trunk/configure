@@ -29957,7 +29957,7 @@ LDFLAGS="$LDFLAGS $INTLLIBS -g"
 
 
 
-                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile desktop/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile misc/Makefile pixmaps/Makefile registry/Makefile src/Makefile plugins/Makefile plugins/test/Makefile plugins/nv82/Makefile plugins/gfv/Makefile tilp.lsm tilp.spec intl/Makefile po/Makefile.in"
+                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile build/Makefile desktop/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile misc/Makefile pixmaps/Makefile registry/Makefile src/Makefile plugins/Makefile plugins/test/Makefile plugins/nv82/Makefile plugins/gfv/Makefile tilp.lsm tilp.spec intl/Makefile po/Makefile.in"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -30501,6 +30501,7 @@ do
   case "$ac_config_target" in
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+  "build/Makefile" ) CONFIG_FILES="$CONFIG_FILES build/Makefile" ;;
   "desktop/Makefile" ) CONFIG_FILES="$CONFIG_FILES desktop/Makefile" ;;
   "glade/Makefile" ) CONFIG_FILES="$CONFIG_FILES glade/Makefile" ;;
   "help/Makefile" ) CONFIG_FILES="$CONFIG_FILES help/Makefile" ;;

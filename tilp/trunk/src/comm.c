@@ -257,9 +257,25 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 7: tmp_lp.link_type = LINK_VTL; break;
 	}
 	
-	// force port 
-	 if(!init)
-		gtk_option_menu_set_history(GTK_OPTION_MENU(port), 1);
+	// force port to avoid libticables bad argument 
+	if(!init) {
+		switch(tmp_lp.link_type) {
+		case LINK_TGL:
+		case LINK_SER:
+		case LINK_AVR:
+		case LINK_VTI:
+		case LINK_TIE:
+		case LINK_VTL:
+			gtk_option_menu_set_history(GTK_OPTION_MENU(port), 2);
+			break;
+		case LINK_PAR:
+		case LINK_SLV:
+			gtk_option_menu_set_history(GTK_OPTION_MENU(port), 1);
+                        break;
+		default:
+			break;
+		}
+	}
 }
 
 GLADE_CB void
