@@ -17,6 +17,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 #ifndef __MACOSX__
 #include "tilibs.h"

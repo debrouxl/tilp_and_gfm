@@ -1,3 +1,6 @@
+* Sometime in September, 2002 : v5.11-JAGUAR (0.6.0)
+	* Metal look on the main window and some other.
+	* Various very small fixes.
 * 20020602 : v5.11 (0.6.0)
 	* Merge up to 5.11.
 	* Fix separator in userX_box and dlgboxentry.

@@ -100,7 +100,7 @@ int initialize_paths(void);
   This function must be the first function to call in your function 'main'.
   It inits some variables and eventually, loads plugins.
 */
-int sub_main(int argc, char *argv[], char **arge)
+int sub_main(int argc, const char *argv[], char **arge)
 {
 #ifdef HAVE_TIFFEP
   gchar buffer[MAXCHARS];
@@ -369,10 +369,10 @@ static int strexact(char *p1, char *p2)
 /*
   Scan the command line, extract arguments and init variables
 */
-int scan_cmdline(int argc, char **argv)
+int scan_cmdline(int argc, const char **argv)
 {
   int cnt;
-  char *p;
+  const char *p;
   char *q;
   char msg[80];
   struct file_info *fi;

@@ -68,6 +68,7 @@
 			files = (
 			);
 			isa = PBXRezBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 //040
 //041
@@ -126,9 +127,9 @@
 		1058C7A0FEA54F0111CA2CBB = {
 			children = (
 				1058C7A1FEA54F0111CA2CBB,
-				F51283DF01797CFA01000102,
-				F51015FE01C3778201000102,
-				F51283E101797CFA01000102,
+				F760785C032A4AF001041594,
+				F760785D032A4AF001041594,
+				F760785E032A4AF001041594,
 			);
 			isa = PBXGroup;
 			name = "Linked Frameworks";
@@ -301,12 +302,11 @@
 				043355C9FE30361CC02AAC07,
 			);
 			buildSettings = {
-				DEBUGGING_SYMBOLS = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O3";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -323,8 +323,8 @@
 			productName = TiLP;
 			productReference = 17587328FF379C6511CA2CBB;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist SYSTEM \"file://localhost/System/Library/DTDs/PropertyList.dtd\">
-<plist version=\"0.9\">
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -1614,6 +1614,7 @@
 				F5027DD902A92C5C01C02345,
 			);
 			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		29B97328FDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
@@ -1640,6 +1641,7 @@
 				F5174F6A02016C1501000102,
 			);
 			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		29B9732BFDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
@@ -1681,6 +1683,7 @@
 				F5027DDA02A92C5C01C02345,
 			);
 			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		29B9732CFDCFA39411CA2CEA = {
 			fileRef = 29B97316FDCFA39411CA2CEA;
@@ -1696,13 +1699,14 @@
 				1058C7A3FEA54F0111CA2CBB,
 				F5090AF10178A61401000102,
 				F5090AF20178A61401000102,
-				F51283E201797CFA01000102,
-				F51283E401797CFA01000102,
 				F5216B0201B6E45B01000102,
-				F51015FF01C3778201000102,
 				F50A7EB901CFA70901000102,
+				F76078B6032A4AF101041594,
+				F76078B7032A4AF101041594,
+				F76078B8032A4AF101041594,
 			);
 			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 //290
 //291
@@ -2297,42 +2301,6 @@
 		};
 		F51015F401C3610A01000102 = {
 			fileRef = F51015F301C3610A01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F51015FE01C3778201000102 = {
-			isa = PBXFrameworkReference;
-			name = libticables.framework;
-			path = /System/Library/Frameworks/libticables.framework;
-			refType = 0;
-		};
-		F51015FF01C3778201000102 = {
-			fileRef = F51015FE01C3778201000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F51283DF01797CFA01000102 = {
-			isa = PBXFrameworkReference;
-			name = glib.framework;
-			path = /System/Library/Frameworks/glib.framework;
-			refType = 0;
-		};
-		F51283E101797CFA01000102 = {
-			isa = PBXFrameworkReference;
-			name = libticalcs.framework;
-			path = /System/Library/Frameworks/libticalcs.framework;
-			refType = 0;
-		};
-		F51283E201797CFA01000102 = {
-			fileRef = F51283DF01797CFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F51283E401797CFA01000102 = {
-			fileRef = F51283E101797CFA01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -3046,6 +3014,52 @@
 		};
 		F5F274FE019EE8CD01A9EF85 = {
 			fileRef = F5F274FD019EE8CD01A9EF85;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//F50
+//F51
+//F52
+//F53
+//F54
+//F70
+//F71
+//F72
+//F73
+//F74
+		F760785C032A4AF001041594 = {
+			isa = PBXFrameworkReference;
+			name = libticables.framework;
+			path = /Library/Frameworks/libticables.framework;
+			refType = 0;
+		};
+		F760785D032A4AF001041594 = {
+			isa = PBXFrameworkReference;
+			name = glib.framework;
+			path = /Library/Frameworks/glib.framework;
+			refType = 0;
+		};
+		F760785E032A4AF001041594 = {
+			isa = PBXFrameworkReference;
+			name = libticalcs.framework;
+			path = /Library/Frameworks/libticalcs.framework;
+			refType = 0;
+		};
+		F76078B6032A4AF101041594 = {
+			fileRef = F760785C032A4AF001041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F76078B7032A4AF101041594 = {
+			fileRef = F760785D032A4AF001041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F76078B8032A4AF101041594 = {
+			fileRef = F760785E032A4AF001041594;
 			isa = PBXBuildFile;
 			settings = {
 			};

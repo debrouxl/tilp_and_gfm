@@ -451,6 +451,8 @@ extern struct ticalc_info_update info_update;
 
 - (void)destroyPbar
 {
+  fprintf(stderr, "DEBUG: DESTROY PBAR !!\n");
+  
   if ([pbar1Window isVisible])
   {
     [pbar1Window orderOut:self];
@@ -522,7 +524,7 @@ extern TicableDataRate *dr;
 - (void)refreshPbar1
 {
   static gfloat rate;
-
+  
   if(pbar1 != nil)
   {
     // refresh only if necessary
@@ -541,6 +543,7 @@ extern TicableDataRate *dr;
     // set pbar value and textField text
 
     [pbar1 setDoubleValue:(double)(info_update.percentage * 100)];
+
     [pbar_rate setStringValue:[NSString stringWithFormat:@"Rate : %3.2f KBytes/s", (rate / 1000)]];
   }
 }

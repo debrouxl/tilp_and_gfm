@@ -34,9 +34,9 @@ extern int working_mode; // GUI working mode
 /******************/
 int help(void);
 int version(void);
-int scan_cmdline(int argc, char **argv);
+int scan_cmdline(int argc, const char **argv);
 
-int sub_main(int argc, char *argv[], char **arge);
+int sub_main(int argc, const char *argv[], char **arge);
 #define main_init sub_main // for compatibility
 
 #ifdef __cplusplus
