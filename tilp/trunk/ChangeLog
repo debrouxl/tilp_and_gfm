@@ -16,6 +16,7 @@ To do:
 	Added menu entry and mime types for KDE & Gnome.
 	Bug fix: creation of the '/usr/lib/tilp' directory.
 	Note: --enable-exit-homedir is on now !
+	Bug: gdk_pixbuf_save requires error to be set on NULL.
 	
 - 17/03/2004, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms
 	Use new libticalcs (removed GLib dependancies) thus libticalcs-4 is no 

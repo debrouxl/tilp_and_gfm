@@ -66,7 +66,7 @@ GLADE_CB void on_sc_load1_activate(GtkMenuItem * menuitem,
 {
 	const gchar *filename;
 	GdkPixbuf *pixbuf;
-	GError *error;
+	GError *error = NULL;
 
 	filename = create_fsel();
 	if (!filename)
@@ -90,12 +90,12 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 {
 	GdkPixbuf *pixbuf;
 	gboolean result = FALSE;
-	GError *error;
+	GError *error = NULL;
 	gchar *type;
 	const gchar *filename = NULL;
 
 	if(screen_success == FALSE)
-	return;
+		return;
 
 	switch (options.screen_format) {
 	case XPM:

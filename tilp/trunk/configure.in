@@ -69,6 +69,11 @@ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.0.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
+# check for gdk-pixbuf presence
+#PKG_CHECK_MODULES(GLIB, gdk_pixbuf-2.0 >= 2.0.0)
+#AC_SUBST(GLIB_CFLAGS)
+#AC_SUBST(GLIB_LIBS)
+
 # check for gtk presence
 PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.0.0)
 AC_SUBST(GTK_CFLAGS)
