@@ -10,16 +10,16 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
+ - the GTK+ 2.x libraries
+        Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.exe?download
  - the SilverLink driver v2.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf.zip
- - the GTK+ 2.x libraries 
-	Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.exe?download
 
 NOTES
 -----
 
 1°) This release is a no longer a native port of TiLP. You need some extra libraries (GTK+ 2.0).
-But, the MFC version is still provided within the package (TiLP v6.08) and takes advantages of the new releases of the base libraries.
+But, the MFC version is still provided within the package (TiLP v6.08) and takes advantages of the latest framework (libraries).
 
 2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 the Win32 driver on the Linux Programmer Group at http://lpg.ticalc.org/prj_usb.

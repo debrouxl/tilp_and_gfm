@@ -7,6 +7,12 @@ Some explanations about the version number:
 	whereas an odd number is an unstable/devel version.
 	New form #3: tilp (cables, calcs, tiffep) version.
 
+- 09/05/2003, version 6.68 (3.7.6, 0.5.6, 4.4.9):
+	Re-enabled mfc folder for SVN repository.
+	Rebuilt under Win32.
+	Fixed "Invalid UTF-8 ..." strings appearing in DOS box and some bug
+	fixes.
+	
 - 04/05/2003:
 	Beta release of the Linux version on ticalc.org.
 
