@@ -1,6 +1,4 @@
-The MSVC project (MFC) is not included within this archive because
-it's enlarge it (2.0MB).
+TiLP v6.08 (built in debug mode).
 
-You will find the source code in the Download section (TiLP web site).
+Removed starting at TiLP v6.58.
 
-mailto:roms@lpg.ticalc.org
