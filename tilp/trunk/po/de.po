@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-02 23:28+0200\n"
+"POT-Creation-Date: 2004-04-03 16:29+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -220,8 +220,8 @@ msgstr "Frage"
 #: src/tilp_calcs.c:576 src/tilp_calcs.c:582 src/tilp_calcs.c:588
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
-#: src/tilp_main.c:318 src/tilp_main.c:327 src/tilp_misc.c:167
-#: src/tilp_misc.c:292 src/tilp_rcfile.c:557
+#: src/tilp_main.c:340 src/tilp_main.c:349 src/tilp_misc.c:167
+#: src/tilp_misc.c:296 src/tilp_rcfile.c:557
 msgid "Error"
 msgstr "Fehler"
 
@@ -585,94 +585,101 @@ msgid "-link=...     give the link cable type\n"
 msgstr "-link=...     Verbindungskabeltyp angeben\n"
 
 #: src/tilp_main.c:84
-msgid "-dev_port=... give the device port\n"
+#, fuzzy
+msgid "-port=...     give the port number\n"
 msgstr "-dev_port=... Geräteport angeben\n"
 
 #: src/tilp_main.c:85
-msgid "-adr_port=... give the address of the port\n"
-msgstr "-adr_port=... Adresse des Ports angeben\n"
-
-#: src/tilp_main.c:86
 msgid "-timeout=...  give the time out in seconds\n"
 msgstr "-timeout=...  Zeitlimit in Sekunden angeben\n"
 
-#: src/tilp_main.c:87
+#: src/tilp_main.c:86
 msgid "-delay=...    give the delay in microseconds\n"
 msgstr "-delay=...    Verzögerung in Mikrosekunden angeben\n"
 
-#: src/tilp_main.c:89
+#: src/tilp_main.c:87
+#, fuzzy
+msgid "-dev_port=... give the device port (override 'port=')\n"
+msgstr "-dev_port=... Geräteport angeben\n"
+
+#: src/tilp_main.c:88
+#, fuzzy
+msgid "-adr_port=... give the address of the port (override 'port=')\n"
+msgstr "-adr_port=... Adresse des Ports angeben\n"
+
+#: src/tilp_main.c:90
 msgid "filename      a filename to send (console or GTK+)\n"
 msgstr ""
 "dateiname     ein Dateinname, der gesendet werden soll (Konsole oder GTK+)\n"
 
-#: src/tilp_main.c:91
+#: src/tilp_main.c:92
 msgid "See the manpage for more informations...\n"
 msgstr "Siehe Handbuch (man tilp) für mehr Informationen...\n"
 
-#: src/tilp_main.c:106
+#: src/tilp_main.c:107
 #, c-format
 msgid "TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:110
+#: src/tilp_main.c:111
 #, fuzzy
 msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 msgstr "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 
-#: src/tilp_main.c:115
+#: src/tilp_main.c:116
 #, c-format
 msgid ""
 "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:119
+#: src/tilp_main.c:120
 #, c-format
 msgid "Built on %s %s\n"
 msgstr "Kompilierdatum: %s %s\n"
 
-#: src/tilp_main.c:120
+#: src/tilp_main.c:121
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr "DIESES PROGRAMM GEWÄHRT KEINERLEI GARANTIEEN.\n"
 
-#: src/tilp_main.c:121
+#: src/tilp_main.c:122
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "BITTE LESEN SIE DIE DOKUMENTATION FÜR DETAILS\n"
 
-#: src/tilp_main.c:316
+#: src/tilp_main.c:338
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:319
+#: src/tilp_main.c:341
 msgid "Libticables: version mismatches."
 msgstr "Libticables: Versionskonflikt."
 
-#: src/tilp_main.c:325
+#: src/tilp_main.c:347
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:328
+#: src/tilp_main.c:350
 msgid "Libticalcs: version mismatches."
 msgstr "Libticalcs:-Versionskonflikt."
 
-#: src/tilp_main.c:352
+#: src/tilp_main.c:374
 msgid "Working mode: command line.\n"
 msgstr "Arbeitsmodus: Kommandozeile.\n"
 
-#: src/tilp_main.c:355
+#: src/tilp_main.c:377
 msgid "Working mode: console (prompt).\n"
 msgstr "Arbeitsmodus: Konsole (Prompt).\n"
 
-#: src/tilp_main.c:358
+#: src/tilp_main.c:380
 msgid "Working mode: GTK+.\n"
 msgstr "Arbeitsmodus: GTK+.\n"
 
-#: src/tilp_main.c:361
+#: src/tilp_main.c:383
 msgid "Working mode: MFC.\n"
 msgstr "Arbeitsmodus: MFC.\n"
 
-#: src/tilp_main.c:364
+#: src/tilp_main.c:386
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr "Arbeitsmodus: Cocoa OS X GUI.\n"
 
@@ -688,23 +695,27 @@ msgstr "Konfigurationsdatei geladen."
 msgid "This function is not available in the Win version."
 msgstr ""
 
-#: src/tilp_misc.c:198
+#: src/tilp_misc.c:199
 msgid "Invalid filename. There is no extension !\n"
 msgstr ""
 
-#: src/tilp_misc.c:251
+#: src/tilp_misc.c:227
+msgid "Unknown file type.\n"
+msgstr ""
+
+#: src/tilp_misc.c:255
 msgid "Create new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/tilp_misc.c:253
+#: src/tilp_misc.c:257
 msgid "Directory where files will be ungrouped: "
 msgstr ""
 
-#: src/tilp_misc.c:254
+#: src/tilp_misc.c:258
 msgid "ungrouped"
 msgstr "Gruppierung aufgehoben"
 
-#: src/tilp_misc.c:293
+#: src/tilp_misc.c:297
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
@@ -712,15 +723,15 @@ msgstr ""
 "Mindestens 2 Dateien müssen ausgewählt sein.\n"
 "\n"
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:301
 msgid "Group files"
 msgstr "Dateien gruppieren"
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:301
 msgid "Group name: "
 msgstr "Gruppenname: "
 
-#: src/tilp_misc.c:298
+#: src/tilp_misc.c:302
 msgid "group"
 msgstr "Gruppe"
 
