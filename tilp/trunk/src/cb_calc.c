@@ -299,7 +299,8 @@ int cb_send_var(void)
 
   if(is_active)
     return -1;
-  if(clist_win.selection == NULL) 
+
+  if (clist_win.selection == NULL) 
     return 0;
 
   err = cb_calc_is_ready();
@@ -331,9 +332,9 @@ int cb_send_var(void)
   if(options.force_dirlist == TRUE)
     file_mode |= MODE_DIRLIST;
 
-  ptr=clist_win.selection;
-  l=g_list_length(clist_win.selection);
-  
+  ptr = clist_win.selection;
+  l = g_list_length(clist_win.selection);
+
   /* Choose the appropriate dialog box */
   if(l == 1)
     { // a single file (single var or group)

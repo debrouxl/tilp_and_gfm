@@ -195,6 +195,11 @@ create_cocoa_user3_sheet(const char *title, char *message, const char *button1, 
     // should allow cocoa to catch and process events
     while ([user3Window isVisible]) { /* WAIT ! */}
     
+    [user3Text setStringValue:[NSString stringWithCString:message]];
+    [user3Button1 setTitle:[NSString stringWithCString:button1]];
+    [user3Button2 setTitle:[NSString stringWithCString:button2]];
+    [user3Button3 setTitle:[NSString stringWithCString:button3]];
+    
     [NSApp beginSheet:user3Window
            modalForWindow:mainWindow
            modalDelegate:nil

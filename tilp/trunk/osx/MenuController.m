@@ -261,7 +261,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                         }
                     else // white, increment the pixels pointer
                         {
-                            pixels = pixels + 4;
+                            pixels += 4;
                         }
                     data++;
                 }

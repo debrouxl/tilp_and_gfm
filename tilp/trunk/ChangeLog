@@ -88,6 +88,9 @@
 * 20011206 : v0.2.2
 	* Implementing Drag and Drop
 	      * Step 1 : Finder ===> TiLP
+	      * Step 2 : send vars
+	        => there's a bug affecting the pbar_type4 which is sometime
+		redisplayed at the end of the transfer. Dunno why.
 
 
 

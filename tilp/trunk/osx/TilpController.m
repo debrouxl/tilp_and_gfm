@@ -16,6 +16,7 @@
 #include "../src/defs.h"
 #include "../src/cb_misc.h"
 #include "../src/main.h"
+#include "../src/cb_calc.h"
 
 #include "cocoa_sheets.h"
 #include "cocoa_structs.h"
@@ -43,9 +44,10 @@ struct gui_fncts gui_functions;
     if (self == nil)
         return nil;
         
-    // FIXME OS X
-    tiTypes73 = nil;
-    //[tiTypes73 retain];
+    tiTypes73 = [NSArray arrayWithObjects:@"73c", @"73g", @"73i", @"73l",
+                                          @"73n", @"73p", @"73t", @"73v",
+                                          @"73w", @"73y", nil];
+    [tiTypes73 retain];
     
     tiTypes82 = [NSArray arrayWithObjects:@"82b", @"82d", @"82g", @"82i",
                                           @"82l", @"82m", @"82n", @"82p",
@@ -123,8 +125,7 @@ struct gui_fncts gui_functions;
     free(objects_ptr);
     free(pbars_ptr);
     
-    // FIXME OS X
-    //[tiTypes73 release];
+    [tiTypes73 release];
     [tiTypes82 release];
     [tiTypes83 release];
     [tiTypes8x release];
@@ -318,7 +319,7 @@ struct gui_fncts gui_functions;
                     switch (options.lp.calc_type)
                         {
                             case CALC_TI73:
-                                // FIXME OS X
+                                tiTypes = tiTypes73;
                                 break;
                             case CALC_TI83:
                                 tiTypes = tiTypes83;
@@ -353,7 +354,7 @@ struct gui_fncts gui_functions;
                             
                             while ((tiType = [tiTypesEnum nextObject]) != nil)
                                 {
-                                    if ([[file pathExtension] isEqualToString:tiType])
+                                    if ([[[file pathExtension] lowercaseString] isEqualToString:tiType])
                                         {
                                             fprintf(stderr, " should be a TI file\n");
                                             filenameIsValid = YES;
@@ -363,7 +364,7 @@ struct gui_fncts gui_functions;
                                 
                             if (filenameIsValid == NO)
                                 {
-                                    fprintf(stderr, " is probably not a TI file, rejecting DRAG\n");
+                                    fprintf(stderr, " is probably not a TI file, rejecting DROP\n");
                                     break;
                                 }
                         }
@@ -375,9 +376,51 @@ struct gui_fncts gui_functions;
 
 - (BOOL)outlineView:(NSOutlineView*)olv acceptDrop:(id <NSDraggingInfo>)info item:(id)targetItem childIndex:(int)childIndex
 {
-    fprintf(stderr, "CB_SEND_VAR BLABLABLABLABLABLABLABLA\n");
+    GList *filelist = NULL;
+    struct file_info *fi = NULL;
+
+    NSPasteboard *pboard;
+    NSArray *filenames;
+    NSEnumerator *filesEnum;
+    NSString *file;
+
+    // maybe we could thread cb_send_var() here...
+    fprintf(stderr, "Building filelist...\n");
     
-    // maybe thread cb_send_var() ?
+    // get a GList
+    //filelist = g_list_alloc();
+    
+    pboard = [info draggingPasteboard];
+    
+    if ([[pboard types] indexOfObject:@"NSFilenamesPboardType"] != NSNotFound)
+        {
+            filenames = [pboard propertyListForType:@"NSFilenamesPboardType"];
+    
+            if (filenames != nil)
+                {
+                    filesEnum = [filenames objectEnumerator];
+
+                    while ((file = [filesEnum nextObject]) != nil)
+                        {
+                            fi = (struct file_info *)malloc(sizeof(struct file_info));
+                            
+                            if (fi == NULL)
+                                {
+                                    fprintf(stderr, "DEBUG: fi is NULL !!\n");
+                                    return NO;
+                                }
+                            
+                            fi->filename = (char *)malloc([file cStringLength] + 1);
+                            [file getCString:fi->filename];
+                            
+                            filelist = g_list_append(filelist, fi);
+                        }
+                }
+        }
+    
+    clist_win.selection = filelist;
+    
+    cb_send_var();
     
     return YES;
 }
