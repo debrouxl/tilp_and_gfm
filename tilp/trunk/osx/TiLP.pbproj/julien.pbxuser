@@ -44,14 +44,14 @@
 			00FFA4B701706F217F000001,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 72881024;
+			PBXPerProjectTemplateStateSaveDate = 81867475;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F75F2446045446CA01000306;
+									bookmark = F770D5D40461299D01000306;
 									history = (
 										F5CAF4E202C8CEEC01041594,
 										F7918DF20449FF9001000306,
@@ -118,7 +118,7 @@
 										F75F242B045446CA01000306,
 										F75F242C045446CA01000306,
 										F75F242D045446CA01000306,
-										F75F242E045446CA01000306,
+										F75F2446045446CA01000306,
 									);
 									prevStack = (
 										F518BCE102C8C84C01041594,
@@ -818,7 +818,7 @@
 								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {767, 435}}";
+									Frame = "{{0, 0}, {767, 421}}";
 									NavBarVisible = YES;
 								};
 							};
@@ -856,11 +856,11 @@
 						Collapsed = NO;
 						Frame = "{{0, 23}, {1016, 550}}";
 						Split0 = {
-							ActiveTab = 2;
+							ActiveTab = 1;
 							Collapsed = NO;
 							Frame = "{{249, 0}, {767, 550}}";
 							Split0 = {
-								Frame = "{{0, 115}, {767, 435}}";
+								Frame = "{{0, 129}, {767, 421}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -971,10 +971,10 @@
 					StatusViewVisible = YES;
 					Template = F5F68CF101725D4C0D7A8F4C;
 					ToolbarVisible = YES;
-					WindowLocation = "{125, 101}";
+					WindowLocation = "{67, 100}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 72881024;
+			PBXWorkspaceStateSaveDate = 81867475;
 		};
 		perUserProjectItems = {
 			F504D2F202C9EA5A01E14247 = F504D2F202C9EA5A01E14247;
@@ -1130,7 +1130,6 @@
 			F75F242B045446CA01000306 = F75F242B045446CA01000306;
 			F75F242C045446CA01000306 = F75F242C045446CA01000306;
 			F75F242D045446CA01000306 = F75F242D045446CA01000306;
-			F75F242E045446CA01000306 = F75F242E045446CA01000306;
 			F75F242F045446CA01000306 = F75F242F045446CA01000306;
 			F75F2430045446CA01000306 = F75F2430045446CA01000306;
 			F75F2431045446CA01000306 = F75F2431045446CA01000306;
@@ -1628,6 +1627,7 @@
 			F768DA590451A2ED01000306 = F768DA590451A2ED01000306;
 			F768DA5A0451A2ED01000306 = F768DA5A0451A2ED01000306;
 			F768DA5B0451A2ED01000306 = F768DA5B0451A2ED01000306;
+			F770D5D40461299D01000306 = F770D5D40461299D01000306;
 			F7918DF20449FF9001000306 = F7918DF20449FF9001000306;
 			F7918DF50449FF9001000306 = F7918DF50449FF9001000306;
 			F7918DF60449FF9001000306 = F7918DF60449FF9001000306;
@@ -3372,16 +3372,6 @@
 		rType = 0;
 		vrLen = 850;
 		vrLoc = 5375;
-	};
-	F75F242E045446CA01000306 = {
-		fRef = F50C433401F4624B01000102;
-		isa = PBXTextBookmark;
-		name = "TransfersController.m: getScreen:";
-		rLen = 0;
-		rLoc = 12482;
-		rType = 0;
-		vrLen = 924;
-		vrLoc = 12113;
 	};
 	F75F242F045446CA01000306 = {
 		fRef = F50FDB8E0179C7F801000102;
@@ -8376,6 +8366,16 @@
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 968;
+	};
+	F770D5D40461299D01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13144;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 12371;
 	};
 	F7918DF20449FF9001000306 = {
 		fRef = F5F1CF4F019C3296010BF862;

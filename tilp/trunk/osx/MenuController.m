@@ -188,7 +188,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
     [aboutOptions setObject:[NSString stringWithFormat:@"%s - %s", TILP_OSX_VERSION, SVN_REV] forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2003 Romain LIÉVIN, Julien BLACHE   <roms@tilp.info>, <jb@tilp.info>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"6.62" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"6.67" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
@@ -248,7 +248,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)getDirlist:(id)sender
 {
     // Unicode, baby !
-    tifiles_translate_set_encoding(ENCODING_UTF8);
+    tifiles_translate_set_encoding(ENCODING_UNICODE);
 
     if (tilp_calc_dirlist() != 0)
         return;

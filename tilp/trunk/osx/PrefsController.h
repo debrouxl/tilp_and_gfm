@@ -38,6 +38,7 @@
     IBOutlet id consoleModeMatrix;
     IBOutlet id consoleSilent;
     IBOutlet id consoleVerbose;
+    IBOutlet id linkCableSER;
     IBOutlet id linkCableUGL;
     IBOutlet id linkCableTPU;
     IBOutlet id linkCableTIE;

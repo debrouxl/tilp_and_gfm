@@ -182,6 +182,7 @@
                 consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 
+                linkCableSER = id; 
                 linkCableTGL = id; 
                 linkCableTIE = id; 
                 linkCableTPU = id; 

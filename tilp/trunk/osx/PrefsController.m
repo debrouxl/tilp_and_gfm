@@ -135,9 +135,16 @@ extern struct cocoa_objects_ptr *objects_ptr;
             options.lp.port = OSX_SERIAL_PORT;
         
             portName = [portNameArray objectAtIndex:[portCombo indexOfSelectedItem]];
-
             [portName getCString:options.lp.device];
         }
+    else if (NSOnState == [linkCableSER state])
+       {
+            options.lp.link_type = LINK_SER;
+            options.lp.port = OSX_SERIAL_PORT;
+
+            portName = [portNameArray objectAtIndex:[portCombo indexOfSelectedItem]];
+            [portName getCString:options.lp.device];
+       }
 
 // calculator
 
@@ -303,32 +310,11 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 break;
             case LINK_TGL:
                 [linkTypeMatrix setState:NSOnState atRow:2 column:0];
-                
-                    if ((portNameArray == nil) || (gotListing != YES))
-                        {
-                            [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
-                            break;
-                        }
-                        
-                portEnumerator = [portNameArray objectEnumerator];
-                
-                [portWarning setStringValue:@""];
-                
-                while ((portName = [portEnumerator nextObject]) != nil)
-                    {
-                        if ((options.lp.device != NULL) && ([portName isEqualToString:[NSString stringWithCString:options.lp.device]]))
-                            {
-                                [portCombo selectItemAtIndex:[portNameArray indexOfObject:portName]];
-                                [portCombo setObjectValue:portName];
-                                
-                                deviceMatched = YES;
-                                
-                                break;
-                            }
-                    }
+                break;
+            case LINK_SER:
+                [linkTypeMatrix setState:NSOnState atRow:2 column:1];
                 break;
             case LINK_NONE:
-            case LINK_SER:
             case LINK_PAR:
             case LINK_AVR:
             case LINK_VTL:
@@ -336,12 +322,40 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 break;
         }
 
-        if ((gotListing == YES) && (portNameArray != nil) && (deviceMatched == NO))
-            {
-                [portCombo selectItemAtIndex:0];
-                [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
-            }
+    if ((options.lp.link_type == LINK_TGL) || (options.lp.link_type == LINK_SER))
+    {
+        if ((portNameArray == nil) || (gotListing != YES))
+        {
+            [portWarning setStringValue:@"Something wicked happened while listing your serial ports..."];
+        }
+        else
+        {
+            portEnumerator = [portNameArray objectEnumerator];
 
+            [portWarning setStringValue:@""];
+
+            while ((portName = [portEnumerator nextObject]) != nil)
+            {
+                if ((options.lp.device != NULL)
+                    && ([portName isEqualToString:[NSString stringWithCString:options.lp.device]]))
+                {
+                    [portCombo selectItemAtIndex:[portNameArray indexOfObject:portName]];
+                    [portCombo setObjectValue:portName];
+
+                    deviceMatched = YES;
+
+                    break;
+                }
+            }
+        }
+    }
+    
+    if ((gotListing == YES) && (portNameArray != nil) && (deviceMatched == NO))
+    {
+        [portCombo selectItemAtIndex:0];
+        [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
+    }
+    
 // calculator
     
     switch(ticalc_return_calc())
