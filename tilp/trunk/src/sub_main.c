@@ -63,10 +63,10 @@
 /* Some tilink variables and functions */
 /***************************************/
 
-LinkCable link_cable;
+TicableLinkCable link_cable;
 TicalcFncts ti_calc;
 
-InfoUpdate info_update;
+TicalcInfoUpdate info_update;
 GuiFncts indep_functions;
 
 struct goptions options; /* General options */
@@ -219,10 +219,10 @@ int sub_main(int argc, char *argv[], char **arge)
   /* 
      Initialize the libTIcable library 
   */
-	ticable_init();
-	ticable_set_param2(options.lp);
-	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
-	tilp_error(link_cable.init());
+  ticable_init();
+  ticable_set_param2(options.lp);
+  tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
+  tilp_error(link_cable.init());
 
 #ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: ticable init done.\n");
@@ -277,7 +277,7 @@ int sub_main(int argc, char *argv[], char **arge)
       DISPLAY(_("Working mode: interactive (prompt).\n"));
       break;
     case MODE_OSX:
-      DISPLAY(_("Working mode: Cocoa OS X GUI.\n"));
+      DISPLAY(_("Working mode: Cocoa (OS X GUI).\n"));
       break;
     }
 

@@ -493,49 +493,52 @@ struct gui_fncts gui_functions;
     // list of FLASH APPS and variables
     
     // FLASH APPS
-    
-    p = ctree_win.varlist;
 
-    while (p != NULL)
-      {
-          q = (struct varinfo *)(p->data);
+    if (ticalc_flash_type(ticalc_get_calc2()) != -1)
+        {
+            p = ctree_win.varlist;
+
+            while (p != NULL)
+                {
+                    q = (struct varinfo *)(p->data);
         
-          if ((q->vartype != ticalc_flash_type(ticalc_get_calc2())) || (q->varsize <= 1))
-              {
-                  // we're at the second folder (first folder _is_ ctree_win.varlist itself)
-                  if ((p != ctree_win.varlist) && (q->vartype == ticalc_folder_type(ticalc_get_calc2()))) 
-                      break;
+                    if ((q->vartype != ticalc_flash_type(ticalc_get_calc2())) || (q->varsize <= 1))
+                        {
+                            // we're at the second folder (first folder _is_ ctree_win.varlist itself)
+                            if ((p != ctree_win.varlist) && (q->vartype == ticalc_folder_type(ticalc_get_calc2()))) 
+                            break;
               
-                  p = p->next;
+                            p = p->next;
                   
-                  continue;
-              }
+                            continue;
+                  }
                           
-          // dictionary that will hold this app
-          tmpDict = [[NSMutableDictionary alloc] init];
+              // dictionary that will hold this app
+              tmpDict = [[NSMutableDictionary alloc] init];
                 
-          switch (q->varattr)
-              {
-                  case VARATTR_LOCK:
-                      [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
-                      break;
-                  case VARATTR_ARCH:
-                      [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
-                      break;
-              }
+              switch (q->varattr)
+                  {
+                      case VARATTR_LOCK:
+                          [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
+                          break;
+                      case VARATTR_ARCH:
+                          [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
+                          break;
+                  }
                     
-          [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-          [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
-          [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
-          [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
+              [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+              [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
+              [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
+              [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
         
-          varinfo = [[Varinfo alloc] initWithPointer:q];
-          [tmpDict setObject:varinfo forKey:@"varinfo"];
+              varinfo = [[Varinfo alloc] initWithPointer:q];
+              [tmpDict setObject:varinfo forKey:@"varinfo"];
         
-          [tiAppsArray insertObject:tmpDict atIndex:varPos];
-          varPos++;
+              [tiAppsArray insertObject:tmpDict atIndex:varPos];
+              varPos++;
 
-          p = p->next;
+              p = p->next;
+          }
       }
 
 

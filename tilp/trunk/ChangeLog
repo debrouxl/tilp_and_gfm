@@ -251,6 +251,10 @@
 	* Use ticalc_folder_type() to determine whether we have a var
 	or a folder when parsing the dirlist.
 	* FLASH apps must be > 1 in size.
+* 20020305 : v5.01 (0.5.2)
+	* Merge up to 5.01.
+	* Do not try to process the dirlist for FLASH Apps if the
+	calculator does not support FLASH Apps.
 	
 
 

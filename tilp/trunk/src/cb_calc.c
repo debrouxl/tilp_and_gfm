@@ -290,7 +290,7 @@ int cb_rom_dump(void)
 	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
               if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	      err=ti_calc.dump_rom(dump, ret);
-	      fclose(dump);
+	      ticalc_close_ti_file(dump);
 	    }
 	  while( ((err == ERR_RCV_BIT_TIMEOUT) || 
 		  (err == ERR_RCV_BYT_TIMEOUT)) );
@@ -333,7 +333,7 @@ int cb_rom_dump(void)
                   if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 		  err=ti_calc.dump_rom(dump, (ret == 1) ? 
 				       SHELL_ZSHELL : SHELL_USGARD);
-		  fclose(dump);
+		  ticalc_close_ti_file(dump);
 		}
 	      while( ((err == ERR_RCV_BIT_TIMEOUT) || 
 		      (err == ERR_RCV_BYT_TIMEOUT)) );
@@ -369,7 +369,7 @@ int cb_rom_dump(void)
 	      err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
               if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	      err=ti_calc.dump_rom(dump, ret);
-	      fclose(dump);
+	      ticalc_close_ti_file(dump);
 	    }
 	  while( (err == ERR_RCV_BYT_TIMEOUT) || 
 		 (err == ERR_RCV_BIT_TIMEOUT) );
@@ -397,7 +397,7 @@ int cb_rom_dump(void)
 	  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
           if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 	  err=ti_calc.dump_rom(dump, ret);
-	  fclose(dump);
+	  ticalc_close_ti_file(dump);
 	}
       while( (err == ERR_RCV_BYT_TIMEOUT) || 
 	     (err == ERR_RCV_BIT_TIMEOUT) );
@@ -436,7 +436,7 @@ int cb_rom_dump(void)
 		  err = ticalc_open_ti_file(tmp_filename, "wb", &dump);
                   if(tilp_error(err)) { gif->destroy_pbar(); return -1; }
 		  err=ti_calc.dump_rom(dump, ret);
-		  fclose(dump);
+		  ticalc_close_ti_file(dump);
 		}
 	      while( (err == ERR_RCV_BYT_TIMEOUT) || 
 		     (err == ERR_RCV_BIT_TIMEOUT) );

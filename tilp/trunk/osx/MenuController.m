@@ -167,7 +167,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
     [aboutOptions setObject:@"0.5.1" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"5.00" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"5.01" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
