@@ -7,6 +7,11 @@
 
 @implementation PrefsController
 
+- (void)awakeFromNib
+{
+    rc_get_user_prefs();
+}
+
 - (IBAction)prefsAdvanced:(id)sender
 {
     if (sender == linkTimeoutValueStepper)
@@ -51,11 +56,11 @@
 
     // hardware // FIXME OS X : cable designation
     
-    if (NSOnState == [linkCableTIGLUSB state])
+    if (NSOnState == [linkCableUGL state])
         options.lp.link_type = LINK_UGL;
-    else if (NSOnState == [linkCableTPC state])
+    else if (NSOnState == [linkCableTPU state])
         options.lp.link_type = LINK_TPU;
-    else if (NSOnState == [linkCableVTE state])
+    else if (NSOnState == [linkCableTIE state])
         options.lp.link_type = LINK_TIE;
     else if (NSOnState == [linkCableVTI state])
         options.lp.link_type = LINK_VTI;
@@ -130,12 +135,12 @@
                 break;
         }
         
-    if (options.ctree_sort_order == SORT_UP) // Ahem. FIXME OS X ?
+    if (options.ctree_sort_order == SORT_UP)
         [orderMatrix setState:NSOnState atRow:0 column:0];
     else
         [orderMatrix setState:NSOnState atRow:0 column:1];
 
-    switch(options.lp.link_type) // Ahem. Cable types etc... FIXME OS X ?
+    switch(options.lp.link_type)
         {
             case LINK_UGL:
                 [linkTypeMatrix setState:NSOnState atRow:0 column:0];
@@ -205,7 +210,7 @@
     else
         [screenModeMatrix setState:NSOnState atRow:1 column:0];
         
-    if (options.lp.timeout > 0)
+    if ((options.lp.timeout > 0) && (options.lp.timeout <= 300))
         [linkTimeoutField setIntValue:options.lp.timeout];
     else // defaults to 150
         [linkTimeoutField setIntValue:150];

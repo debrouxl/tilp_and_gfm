@@ -158,9 +158,6 @@ printf("DEBUG: default config done\n");
   // Parse the config file
 #ifndef __MACOSX__
   read_rc_file();
-#else
-  printf("DEBUG: getting user prefs\n");
-  rc_get_user_prefs();
 #endif
 
 printf("DEBUG: read rc done\n");  

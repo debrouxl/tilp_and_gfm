@@ -13,9 +13,9 @@
     IBOutlet id calcType92;
     IBOutlet id calcType92p;
     IBOutlet id calcTypeProbe;
-    IBOutlet id linkCableTIGLUSB;
-    IBOutlet id linkCableTPC;
-    IBOutlet id linkCableVTE;
+    IBOutlet id linkCableUGL;
+    IBOutlet id linkCableTPU;
+    IBOutlet id linkCableTIE;
     IBOutlet id linkCableVTI;
     IBOutlet id linkTimeoutField;
     IBOutlet id linkTimeoutValueStepper;
