@@ -85,8 +85,9 @@ int cb_default_config(void)
   options.show = HIDE;
   options.file_mode = EXTENDED_FORMAT;
   options.plugins_loading = PLUGINS_AUTO;
-  options.screen_format = PCX;
+  options.screen_format = PCX; // PCX is the best supported format
   options.screen_clipping = CLIPPED_SCREEN;
+  options.screen_blurry = 0;
 
 #if defined(__LINUX__)
   options.unzip_location = g_strdup("unzip");

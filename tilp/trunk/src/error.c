@@ -60,11 +60,10 @@ int tilp_error(int errcode)
   if(working_mode & MODE_GUI)
     {
       int i;
-      int err;
       
       for(i=0; i<g_list_length(stack); i++)
 	{
-	  err = GPOINTER_TO_INT((g_list_nth(stack, i))->data);
+	  int err = GPOINTER_TO_INT((g_list_nth(stack, i))->data);
  
 	  /* Retrieve the error message */
 	  err = ticable_get_error(err, s);

@@ -29,7 +29,7 @@
 
 struct screenshot ti_screen = 
 { 
-	{ NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0 }, 
+	{ NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0}, 
 	{ 0, 0, 0, 0 } 
 };
 
@@ -48,7 +48,7 @@ int cb_screen_capture(void)
   // We do not destroy the bitmap also because memory screen has been 
   // allocated by the libticables.
   // If we attempt to free it here, we will provoke a memory violation 
-  //under Windows.
+  // under Windows.
   delete_image(&(ti_screen.img));
   err = ti_calc.screendump(&(ti_screen.img.bitmap), 
 			   options.screen_clipping, 
@@ -85,7 +85,12 @@ int cb_screen_save(char *filename)
       DISPLAY(_("Unable to open this file: %s\n"), filename);
     }
 
-  ti_screen.img.depth = 2; // 2 colors: B&W
+  ti_screen.img.depth = 2; // 2 colors
+  ti_screen.img.encoding = IMG_BW_TYPE; // B&W
+
+  if(options.screen_blurry)
+    blurry_bitmap(&(ti_screen.img));
+
   switch(options.screen_format)
     {
     case XPM:
@@ -99,6 +104,9 @@ int cb_screen_save(char *filename)
       write_jpg_format(image, &(ti_screen.img));
       break;
 #endif
+      case BMP:
+      write_bmp_format(image, &(ti_screen.img));
+      break;
     }
   fclose(image);  
   

@@ -66,8 +66,6 @@ create_cocoa_user2_sheet(const char *title, char *message, const char *button1, 
     
     mySheetsController = objects_ptr->mySheetsController;
     
-    fprintf(stderr, "GRAAAAAAH\n");
-    
     ret = [mySheetsController user2Sheet:[NSString stringWithCString:message]
                               button1:[NSString stringWithCString:button1]
                               button2:[NSString stringWithCString:button2]];

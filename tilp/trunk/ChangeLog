@@ -259,7 +259,13 @@
 	* Converted to ProjectBuilder 2.0 Beta.
 	* Fixed double-confirmation bug when overwriting files.
 	* Fixed Modal session for userX_box.
+* 20020512 : v5.08 (0.5.4)
+ 	* Merge up to 5.08.
+	* Added BMP screen dump format.
+	* Removed "ROM Version" menu item and callback.
+	* Changed "ROM Dump" key combo for one that was not already used.
 	
+
 
 
 

@@ -173,6 +173,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
         options.screen_format = TIFF;
     else if (NSOnState == [screenFormatXPM state])
         options.screen_format = XPM;
+    else if (NSOnState == [screenFormatBMP state])
+        options.screen_format = BMP;
 
     if (NSOnState == [screenModeClipped state])
         options.screen_clipping = TRUE;
@@ -349,18 +351,21 @@ extern struct cocoa_objects_ptr *objects_ptr;
             case TIFF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:0];
                 break;
+            case BMP:
+                [screenFormatMatrix setState:NSOnState atRow:0 column:1];
+                break;
             case PCX:
                 [screenFormatMatrix setState:NSOnState atRow:1 column:0];
                 break;
             case XPM:
-                [screenFormatMatrix setState:NSOnState atRow:2 column:0];
+                [screenFormatMatrix setState:NSOnState atRow:1 column:1];
                 break;
         }
         
     if (options.screen_clipping == FULL_SCREEN)
         [screenModeMatrix setState:NSOnState atRow:0 column:0];
     else
-        [screenModeMatrix setState:NSOnState atRow:1 column:0];
+        [screenModeMatrix setState:NSOnState atRow:0 column:1];
         
     if ((options.lp.timeout > 0) && (options.lp.timeout <= 50))
         [linkTimeoutField setIntValue:options.lp.timeout];

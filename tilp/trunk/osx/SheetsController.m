@@ -144,6 +144,10 @@ extern struct ticalc_info_update info_update;
     [self hideCurrentPBar];
     
     [user2Text setStringValue:message];
+    
+    [user2Text sizeToFit];
+    [user2Text display];
+    
     [user2Button1 setTitle:button1];
     [user2Button2 setTitle:button2];
     

@@ -26,11 +26,11 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <time.h>
 #include <sys/stat.h>
 //#include <dirent.h>
-#include <unistd.h>
+//#include <unistd.h>
 
 #ifndef __MACOSX__
 #include <glib.h>

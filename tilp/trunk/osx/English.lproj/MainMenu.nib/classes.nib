@@ -107,7 +107,6 @@
                 probeCalc = id; 
                 remoteControl = id; 
                 romDump = id; 
-                romVersion = id; 
                 saveConfig = id; 
                 sendAMS = id; 
                 sendFLASHApp = id; 
@@ -175,6 +174,7 @@
                 portType = id; 
                 portWarning = id; 
                 prefsWindow = id; 
+                screenFormatBMP = id; 
                 screenFormatMatrix = id; 
                 screenFormatPCX = id; 
                 screenFormatTIFF = id; 

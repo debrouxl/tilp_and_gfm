@@ -25,7 +25,7 @@
 #include "tilibs.h"
 
 #include <sys/stat.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <ctype.h>
 #include <string.h>
 

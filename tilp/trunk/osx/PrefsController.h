@@ -53,6 +53,7 @@
     IBOutlet id screenFormatPCX;
     IBOutlet id screenFormatTIFF;
     IBOutlet id screenFormatXPM;
+    IBOutlet id screenFormatBMP;
     IBOutlet id screenModeClipped;
     IBOutlet id screenModeFull;
     IBOutlet id sortByInfo;

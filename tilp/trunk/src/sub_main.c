@@ -64,10 +64,10 @@
 /***************************************/
 
 TicableLinkCable link_cable;
-TicalcFncts ti_calc;
+TicalcFncts      ti_calc;
 
 TicalcInfoUpdate info_update;
-GuiFncts indep_functions;
+GuiFncts		 indep_functions;
 
 struct goptions options; /* General options */
 
@@ -243,7 +243,7 @@ int sub_main(int argc, char *argv[], char **arge)
 #ifdef HAVE_TIFFEP
   if(options.plugins_loading == PLUGINS_AUTO)
     {
-      err = tiffep_registry_get_pointer(&plugin_registry);
+      int err = tiffep_registry_get_pointer(&plugin_registry);
       if(!err)
 	registry_allowed = TRUE;
       else
@@ -277,7 +277,7 @@ int sub_main(int argc, char *argv[], char **arge)
       DISPLAY(_("Working mode: interactive (prompt).\n"));
       break;
     case MODE_OSX:
-      DISPLAY(_("Working mode: Cocoa (OS X GUI).\n"));
+      DISPLAY(_("Working mode: Cocoa OS X GUI.\n"));
       break;
     }
 
@@ -343,10 +343,11 @@ int help(void)
 */
 int version(void)
 {
+#ifndef __WIN32__
   ticable_DISPLAY_settings(DSP_ON);
+#endif
 
-  DISPLAY(_("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), 
-	  TILP_VERSION);
+  DISPLAY(_("TiLP - Version %s, (C) 1999-2002 Romain LIEVIN, Julien BLACHE\n"), TILP_VERSION);
 #ifdef __MACOSX__
   DISPLAY(_("Mac OS X port Version %s, (C) 2001-2002 Julien BLACHE\n"),
           TILP_OSX_VERSION);

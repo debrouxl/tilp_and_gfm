@@ -179,6 +179,10 @@ extern int is_active;
                 [sp setTitle:@"Save screen as XPM"];
                 proposedFile = @"screendump.xpm";
                 break;
+            case BMP:
+                [sp setRequiredFileType:@"bmp"];
+                [sp setTitle:@"Save screen as BMP"];
+                proposedFile = @"screendump.bmp";
             default: // just in case...
                 return;
         }
@@ -257,8 +261,6 @@ extern int is_active;
     if (returnCode == NSOKButton)
         {
             sp = contextInfo;
-        
-            file = strdup([[sp filename] fileSystemRepresentation]);
               
             switch (options.screen_format)
                 {
@@ -268,12 +270,14 @@ extern int is_active;
                         break;
                     case PCX:
                     case XPM:
+                    case BMP:
+                        file = strdup([[sp filename] fileSystemRepresentation]);
                         cb_screen_save(file);
+                        free(file);
                         break;
                     default:
                         break;
                 }
-            free(file);
         }
 }
 

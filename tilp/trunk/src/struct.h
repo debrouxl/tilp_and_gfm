@@ -29,7 +29,7 @@
 #include <libticalcs/calc_def.h>
 #endif /* !__MACOSX__ */
 
-#include "img_fmt.h"
+#include "img/fmt.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -89,6 +89,7 @@ extern struct goptions
   int show_gui;
   int single_or_group;
   int use_checksum;
+  int screen_blurry;
 
   struct ticable_param lp;
 } options;

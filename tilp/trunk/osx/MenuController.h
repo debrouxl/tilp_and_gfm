@@ -60,7 +60,7 @@
 
 - (IBAction)probeCalc:(id)sender;
 
-// functions 1
+// functions
 
 - (IBAction)isReady:(id)sender;
 - (IBAction)remoteControl:(id)sender;
@@ -68,14 +68,10 @@
 - (IBAction)getDirlist:(id)sender;
 - (IBAction)doRestore:(id)sender;
 - (IBAction)doBackup:(id)sender;
-
-// functions 2
-
 - (IBAction)sendFLASHApp:(id)sender;
 - (IBAction)sendAMS:(id)sender;
 - (IBAction)getIDList:(id)sender;
 - (IBAction)romDump:(id)sender;
-- (IBAction)romVersion:(id)sender;
 - (IBAction)installShell:(id)sender;
 
 // window

@@ -511,7 +511,7 @@ extern int is_active;
         {
             for(col = 0; col < ti_screen.img.width; col++)
                 {
-                    if (*data == 0xFF) // black => set R/G/B to 0
+                    if (*data == 1) // black => set R/G/B to 0
                         {
                             *pixels++ = 0; // red
                             *pixels++ = 0; // blue

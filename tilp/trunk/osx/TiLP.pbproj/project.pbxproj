@@ -1556,11 +1556,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.01</string>
+	<string>5.08</string>
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>5.01-osx0.5.1</string>
+	<string>5.08-osx0.5.5</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -1611,6 +1611,7 @@
 				F5D157760201A58501000102,
 				F5D157780201AA8701000102,
 				F548C26E0223DBFC01041594,
+				F5268CF1028FF63F01041594,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -1677,6 +1678,7 @@
 				F5D15773020192BA01000102,
 				F50CB3FC0201E50A01000102,
 				F548C2700223DC2601041594,
+				F5268CEF028FF63501041594,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -2421,6 +2423,30 @@
 			settings = {
 			};
 		};
+		F5268CEE028FF63501041594 = {
+			isa = PBXFileReference;
+			name = bmp.c;
+			path = ../src/img/bmp.c;
+			refType = 2;
+		};
+		F5268CEF028FF63501041594 = {
+			fileRef = F5268CEE028FF63501041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5268CF0028FF63F01041594 = {
+			isa = PBXFileReference;
+			name = bmpfile.h;
+			path = ../src/img/bmpfile.h;
+			refType = 2;
+		};
+		F5268CF1028FF63F01041594 = {
+			fileRef = F5268CF0028FF63F01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F536EFB80180C7CA01000103 = {
 			isa = PBXFileReference;
 			path = cocoa_structs.h;
@@ -2538,6 +2564,7 @@
 				F577769901E88FE101CCF140,
 				F582712B01762AFA01000102,
 				F582712D01762AFA01000102,
+				F5268CF0028FF63F01041594,
 				F582712F01762AFA01000102,
 				F582707601762A8B01000102,
 				F582707701762A8B01000102,
@@ -2561,6 +2588,7 @@
 				F577769B01E88FF201CCF140,
 				F58271E101762CF701000102,
 				F58271E201762CF701000102,
+				F5268CEE028FF63501041594,
 				F58271E301762CF701000102,
 				F58271E501762CF701000102,
 				F58271E701762CF701000102,
@@ -2653,8 +2681,8 @@
 		};
 		F582712D01762AFA01000102 = {
 			isa = PBXFileReference;
-			name = img_fmt.h;
-			path = ../src/img_fmt.h;
+			name = fmt.h;
+			path = ../src/img/fmt.h;
 			refType = 2;
 		};
 		F582712F01762AFA01000102 = {
@@ -2725,20 +2753,20 @@
 		};
 		F58271E201762CF701000102 = {
 			isa = PBXFileReference;
-			name = img_xpm.c;
-			path = ../src/img_xpm.c;
+			name = xpm.c;
+			path = ../src/img/xpm.c;
 			refType = 2;
 		};
 		F58271E301762CF701000102 = {
 			isa = PBXFileReference;
-			name = img_pcx.c;
-			path = ../src/img_pcx.c;
+			name = pcx.c;
+			path = ../src/img/pcx.c;
 			refType = 2;
 		};
 		F58271E501762CF701000102 = {
 			isa = PBXFileReference;
-			name = img_cnv.c;
-			path = ../src/img_cnv.c;
+			name = cnv.c;
+			path = ../src/img/cnv.c;
 			refType = 2;
 		};
 		F58271E701762CF701000102 = {

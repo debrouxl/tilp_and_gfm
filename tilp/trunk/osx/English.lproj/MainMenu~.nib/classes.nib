@@ -107,7 +107,6 @@
                 probeCalc = id; 
                 remoteControl = id; 
                 romDump = id; 
-                romVersion = id; 
                 saveConfig = id; 
                 sendAMS = id; 
                 sendFLASHApp = id; 
@@ -119,8 +118,6 @@
             OUTLETS = {
                 dirlistTree = id; 
                 mainWindow = id; 
-                msgSheetText = id; 
-                msgSheetWindow = id; 
                 myBoxesController = id; 
                 myCalc89KeyboardController = id; 
                 myCalc92KeyboardController = id; 
@@ -177,6 +174,7 @@
                 portType = id; 
                 portWarning = id; 
                 prefsWindow = id; 
+                screenFormatBMP = id; 
                 screenFormatMatrix = id; 
                 screenFormatPCX = id; 
                 screenFormatTIFF = id; 

@@ -165,9 +165,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.5.1" forKey:@"Version"];
+    [aboutOptions setObject:@"0.5.5" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"5.01" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"5.08" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
@@ -204,7 +204,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 }
 
 
-// functions 1
+// functions
 
 - (IBAction)isReady:(id)sender
 {
@@ -318,9 +318,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
               withObject:self];
 }
 
-
-// functions 2
-
 - (IBAction)sendFLASHApp:(id)sender
 {
     NSOpenPanel *op;
@@ -389,11 +386,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [NSThread detachNewThreadSelector:@selector(romDumpThreaded:)
               toTarget:myTransfersController
               withObject:self];
-}
-
-- (IBAction)romVersion:(id)sender
-{
-    cb_rom_version();
 }
 
 - (IBAction)installShell:(id)sender
