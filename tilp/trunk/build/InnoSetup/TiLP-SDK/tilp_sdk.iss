@@ -14,9 +14,9 @@ AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/tilp-developers.php
 DefaultDirName={pf}\TiLP-SDK
 DefaultGroupName=TiLP
 AllowNoIcons=yes
-LicenseFile=C:\devel\tilp_project\tilp\COPYING
-InfoBeforeFile=C:\devel\tilp_project\InnoSetup\TiLP-SDK\Informations.txt
-InfoAfterFile=C:\devel\tilp_project\InnoSetup\TiLP-SDK\Release.txt
+LicenseFile=C:\sources\roms\tilp\COPYING
+InfoBeforeFile=C:\sources\roms\TiLP\build\InnoSetup\TiLP-SDK\Informations.txt
+InfoAfterFile=C:\sources\roms\TiLP\build\InnoSetup\TiLP-SDK\Release.txt
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
@@ -31,11 +31,11 @@ Source: "C:\sources\roms\ticables\docs\html\*"; DestDir: "{app}\cables\docs"; Co
 Source: "C:\sources\roms\ticables\src\*.c"; DestDir: "{app}\cables\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticables\src\*.h"; DestDir: "{app}\cables\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticables\tests\*.c"; DestDir: "{app}\cables\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticables\win32\*.*"; DestDir: "{app}\cables\win32"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticables\tests\ticables.dll"; DestDir: "{app}\cables\win32\msvc\Release"; CopyMode: alwaysoverwrite;
-Source: "C:\sources\roms\ticables\win32\msvc\ticables.lib"; DestDir: "{app}\cables\win32\msvc\Release"; CopyMode: alwaysoverwrite;
-Source: "C:\msvc\tilp\ticables.dll"; DestDir: "{app}\cables\win32\msvc\Debug"; CopyMode: alwaysoverwrite;
-Source: "C:\msvc\tilp\ticables.lib"; DestDir: "{app}\cables\win32\msvc\Debug"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables\build\msvc\*.*"; DestDir: "{app}\cables\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticables\tests\ticables.dll"; DestDir: "{app}\cables\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables\build\msvc\ticables.lib"; DestDir: "{app}\cables\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\msvc\tilp\ticables.dll"; DestDir: "{app}\cables\build\msvc\Debug"; CopyMode: alwaysoverwrite;
+Source: "C:\msvc\tilp\ticables.lib"; DestDir: "{app}\cables\build\msvc\Debug"; CopyMode: alwaysoverwrite;
 
 ; TiCalcs library
 Source: "C:\sources\roms\ticalcs\ChangeLog"; DestDir: "{app}\calcs"; CopyMode: alwaysoverwrite;
@@ -45,11 +45,11 @@ Source: "C:\sources\roms\ticalcs\docs\html\*"; DestDir: "{app}\calcs\docs"; Copy
 Source: "C:\sources\roms\ticalcs\src\*.c"; DestDir: "{app}\calcs\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticalcs\src\*.h"; DestDir: "{app}\calcs\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticalcs\tests\*.c"; DestDir: "{app}\calcs\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticalcs\win32\*.*"; DestDir: "{app}\calcs\win32"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticalcs\tests\ticalcs.dll"; DestDir: "{app}\calcs\win32\msvc\Release"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticalcs\win32\msvc\ticalcs.lib"; DestDir: "{app}\calcs\win32\msvc\Release"; CopyMode: alwaysoverwrite;
-Source: "C:\msvc\tilp\ticalcs.dll"; DestDir: "{app}\calcs\win32\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\msvc\tilp\ticalcs.lib"; DestDir: "{app}\calcs\win32\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticalcs\build\msvc\*.*"; DestDir: "{app}\calcs\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticalcs\tests\ticalcs.dll"; DestDir: "{app}\calcs\build\msvc\Release"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticalcs\build\msvc\ticalcs.lib"; DestDir: "{app}\calcs\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\msvc\tilp\ticalcs.dll"; DestDir: "{app}\calcs\build\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\msvc\tilp\ticalcs.lib"; DestDir: "{app}\calcs\build\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 
 ; TiFiles library
 Source: "C:\sources\roms\tifiles\ChangeLog"; DestDir: "{app}\files"; CopyMode: alwaysoverwrite;
@@ -59,11 +59,11 @@ Source: "C:\sources\roms\tifiles\docs\html\*"; DestDir: "{app}\files\docs"; Copy
 Source: "C:\sources\roms\tifiles\src\*.c"; DestDir: "{app}\files\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\tifiles\src\*.h"; DestDir: "{app}\files\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\tifiles\tests\*.c"; DestDir: "{app}\files\tests"; CopyMode: alwaysoverwrite;
-Source: "C:\sources\roms\tifiles\win32\*.*"; DestDir: "{app}\files\win32"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\tifiles\tests\tifiles.dll"; DestDir: "{app}\files\win32\msvc\Release"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\tifiles\win32\msvc\tifiles.lib"; DestDir: "{app}\files\win32\msvc\Release"; CopyMode: alwaysoverwrite;
-Source: "C:\msvc\tilp\tifiles.dll"; DestDir: "{app}\files\win32\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\msvc\tilp\tifiles.lib"; DestDir: "{app}\files\win32\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\tifiles\build\msvc\*.*"; DestDir: "{app}\files\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\tifiles\tests\tifiles.dll"; DestDir: "{app}\files\build\msvc\Release"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\tifiles\build\msvc\tifiles.lib"; DestDir: "{app}\files\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\msvc\tilp\tifiles.dll"; DestDir: "{app}\files\build\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\msvc\tilp\tifiles.lib"; DestDir: "{app}\files\build\msvc\Debug"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 
 [INI]
 Filename: "{app}\tilp-sdk.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://tilp.info/tilp-devel.php"
