@@ -317,13 +317,10 @@ int tilp_main(int argc, const char *argv[], char **arge)
 
 	// Init locale & internationalization
 #ifdef ENABLE_NLS
-	setlocale(LC_ALL, "");
-	bindtextdomain(PACKAGE, inst_paths.locale_dir /*LOCALEDIR*/);
-	DISPLAY("%s: bindtextdomain to %s\n", PACKAGE,
-		inst_paths.locale_dir);
-	bind_textdomain_codeset(PACKAGE, "UTF-8");
-	textdomain(PACKAGE);
-
+	DISPLAY("tilp: setlocale: <%s>\n", setlocale(LC_ALL, ""));
+  	DISPLAY("tilp: bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+  	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
+  	DISPLAY("tilp: textdomain: <%s>\n", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
 	/* 
