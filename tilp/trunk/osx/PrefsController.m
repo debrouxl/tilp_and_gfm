@@ -61,7 +61,7 @@
     else if (NSOnState == [transferModeSilent state])
         options.transfer_mode = SILENT_MODE;
 
-    // hardware // FIXME OS X : cable designation
+    // hardware
     
     if (NSOnState == [linkCableUGL state])
         options.lp.link_type = LINK_UGL;

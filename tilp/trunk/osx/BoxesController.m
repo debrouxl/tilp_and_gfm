@@ -164,6 +164,7 @@ extern int is_active;
 
     info_update.cancel = 1;
     
+    // but if it's a pbar type 2, ...
     if (sender == pbar2Button)
         [NSApp stopModal];
 }
@@ -222,8 +223,6 @@ extern int is_active;
 
 - (IBAction)screendumpSaveImage:(id)sender
 {
-    // FIXME OS X : propose a default filename w/appropriate extension
-
     NSSavePanel *sp;
     NSString *proposedFile;
 

@@ -390,12 +390,17 @@ int scan_cmdline(int argc, char **argv)
 	{
 	  gchar* filename_on_cmdline;
 	  // a filename to send
-#ifndef __MACOSX__  /* FIXME OS X */
 
 	  if(!g_path_is_absolute(p))
+#ifndef __MACOSX__
 	    filename_on_cmdline = g_strconcat(inst_paths.startup_dir, p, NULL);
+#else
+            {
+                filename_on_cmdline = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, NULL);
+                filename_on_cmdline = g_strconcat(filename_on_cmdline, p, NULL);
+            }
+#endif
 	  else
-#endif          
 	    filename_on_cmdline = g_strdup(p);
 	  //DISPLAY("Full filename to send: <%s>\n", filename_on_cmdline);
 	  fi = (struct file_info *)g_malloc(sizeof(struct file_info));

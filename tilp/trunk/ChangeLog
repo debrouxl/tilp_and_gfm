@@ -79,10 +79,14 @@
 	     * Re-enabled sheets : found that I don't have to use
 	     [NSApp runModalForWindow] all the time. Great.
 * 20011201 : v0.2.1
-	* Got screendump to work yesterday evening
+	* Got screendump to work this evening
+	* The refresh button now points to - [MenuController getScreen]
+* 20011202 : v0.2.1
 	* Did a bit of optimization when rendering the screen, using memset()
 	      => took 3 seconds before, less than 1 second now
-	
+	* Added a "Close Window" item to the Window menu
+
+
 
 
 

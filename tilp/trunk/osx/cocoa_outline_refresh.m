@@ -63,7 +63,7 @@ refresh_outline(void)
     
     [content setObject:mainEntries forKey:@"Entries"];
     
-    // general items => screen, memory, keyboard
+    // general handlers => screen, ROM, keyboard, ID list, backup, ...
     
     tmpDict = [[NSMutableDictionary alloc] init];
     
@@ -76,12 +76,26 @@ refresh_outline(void)
     
     [mainEntries insertObject:tmpDict atIndex:1];
     
-    [tmpDict setObject:@"Memory" forKey:@"Varname"];
+    [tmpDict setObject:@"ROM (AMS)" forKey:@"Varname"];
     [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
    
     tmpDict = [[NSMutableDictionary alloc] init];
     
     [mainEntries insertObject:tmpDict atIndex:2];
+    
+    [tmpDict setObject:@"Memory" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:3];
+    
+    [tmpDict setObject:@"ID List" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+    
+    tmpDict = [[NSMutableDictionary alloc] init];
+    
+    [mainEntries insertObject:tmpDict atIndex:4];
     
     [tmpDict setObject:@"Keyboard" forKey:@"Varname"];
     [tmpDict setObject:[NSImage imageNamed:@"keyboard_mini.tiff"] forKey:@"Image"];
@@ -92,7 +106,7 @@ refresh_outline(void)
     
     tmpDict = [[NSMutableDictionary alloc] init];
     
-    [mainEntries insertObject:tmpDict atIndex:3];
+    [mainEntries insertObject:tmpDict atIndex:5];
     
     [tmpDict setObject:@"TI Variables" forKey:@"Group"];
     [tmpDict setObject:tiVarsArray forKey:@"Entries"];
@@ -159,6 +173,7 @@ refresh_outline(void)
     
      // get a tree from our big fscking dictionary...
     
+    // release the preceding dirlistData if it exists
     if (objects_ptr->dirlistData != nil)
         {
             dirlistData = objects_ptr->dirlistData;

@@ -98,20 +98,6 @@ refresh_pbar1(void)
   
             // FIXME OS X
             // HERE WE NEED TO PASS THE BALL TO COCOA AGAIN TO PROCESS ITS EVENTS !!!
-#if 0 /* Grmbl, can't get that to work, fsck ! */            
-            fprintf(stderr, "DEBUG: running RunLoop\n");
-            
-            myRunLoop = [NSRunLoop currentRunLoop];
-            
-            limit = [[NSDate date] addTimeInterval:10];
-            
-            [myRunLoop runUntilDate:limit]; // must test this
-            
-            //[myRunLoop acceptInputForMode:NSDefaultRunLoopMode
-            //           beforeDate:limit];
-            
-            fprintf(stderr, "DEBUG: RunLoop run\n");
-#endif /* 0 */
         }
     //fprintf(stderr, "DEBUG: REFRESH_PBAR1 ENDS%s\n", (pbar1 == NULL) ? "(PBAR1 IS NULL)" : "");
 }

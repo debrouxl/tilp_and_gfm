@@ -60,6 +60,7 @@
 // window
 
 - (IBAction)newWindow:(id)sender;
+- (IBAction)closeWindow:(id)sender;
 
 // help
 

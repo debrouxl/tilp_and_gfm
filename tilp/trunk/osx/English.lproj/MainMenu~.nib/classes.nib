@@ -66,6 +66,7 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
+                closeWindow = id; 
                 defaultConfig = id; 
                 doBackup = id; 
                 doRestore = id; 

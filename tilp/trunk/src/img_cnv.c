@@ -45,6 +45,9 @@ int convert_bitmap_to_bytemap(Image *img) // tested: OK (12/05)
     fprintf(stdout, "Malloc error.\n");
   dst = img->bytemap;
 
+  // could be greatly optimized using memset...
+  //memset(dts, 0, (img->width * img->heigth));
+
   for(row=0; row<img->height; row++)
     {
       for(col=0; col<(img->width)>>3; col++)
@@ -56,7 +59,7 @@ int convert_bitmap_to_bytemap(Image *img) // tested: OK (12/05)
 	      pixel = data & mask;
 	      if(!pixel)
 		dst[row*(img->width)+8*col+bit]=0xff;
-	      else
+	      else // not needed if we use memset
 		dst[row*(img->width)+8*col+bit]=0x00;
 	      mask>>=1;
 	    }

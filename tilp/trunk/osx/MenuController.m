@@ -635,6 +635,13 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         [mainWindow makeKeyAndOrderFront:self];
 }
 
+- (IBAction)closeWindow:(id)sender
+{
+    id window;
+    
+    if ((window = [NSApp keyWindow]) != nil)
+        [window orderOut:nil];
+}
 
 // used to enable/disable the "New Window" menu item
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem

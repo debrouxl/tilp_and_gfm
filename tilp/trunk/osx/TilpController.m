@@ -120,11 +120,9 @@ struct gui_fncts gui_functions;
     
     // init the content of the NSOutlineView
     refresh_outline();
-        
-    /* 
-     * If variables have been passed on the command line in GUI mode then
-     * send them 
-     */
+    
+    //If variables have been passed on the command line in GUI mode then
+    //send them
     if(working_mode == MODE_OSX)
         {
             cb_send_cmdline();
@@ -178,7 +176,8 @@ struct gui_fncts gui_functions;
             // so set the image to what it should be
             if (item && ![NODE_DATA(item) iconRep])
                 [NODE_DATA(item) setIconRep:[NSImage imageNamed:@"dir_c.tiff"]];
-            // Set the image here since the value returned from outlineView:objectValueForTableColumn:... didn't specify the image part...
+            // Set the image here since the value returned from outlineView:objectValueForTableColumn:...
+            // didn't specify the image part...
             [(ImageAndTextCell *)cell setImage:[NODE_DATA(item) iconRep]];
         }
     else if ([[tableColumn identifier] isEqualToString:@"Attributes"])
