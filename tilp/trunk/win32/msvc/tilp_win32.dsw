@@ -1,0 +1,128 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "TiLP"=..\mfc\TiLP.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name libtiffep
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticables
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticalcs
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "libtiffep"=..\..\ti_libs\tiffep\win32\libtiffep.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ticables"=..\..\ti_libs\cables\win32\ticables.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ticalcs"=..\..\TI_LIBS\CALCS\Win32\ticalcs.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "tilp_gtk_console"=.\tilp_gtk_console.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ticables
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticalcs
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libtiffep
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "tilp_gtk_win32"=.\tilp_gtk_win32.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ticables
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticalcs
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name libtiffep
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "tilp_win32"=.\tilp_win32.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
