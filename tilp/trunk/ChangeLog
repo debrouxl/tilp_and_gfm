@@ -16,6 +16,15 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+Bug: <<The problem is, when I right-clicked a group file (.89g) and choose the
+Group Files > Ungroup option, it asked me to specify a directory to
+ungroup to. I wanted the files to be stored in the same directory
+instead of a new one, so I tried entering the directory name ".".
+
+TiLP said "Error creating directory", then it made the group file a
+zero-byte file without storing the ungrouped contents anywhere that I
+could see.>>
+
 - 02/10/2004, version 6.76 (3.8.6, 0.6.1, 4.5.5): roms
 	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.
 

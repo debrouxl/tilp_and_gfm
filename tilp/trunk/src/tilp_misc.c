@@ -259,6 +259,11 @@ int tilp_tifiles_ungroup(void)
 				   _("ungrouped"));
 		if (dirname == NULL)
 			return -1;
+		if(!strcmp(dirname, ".") || !strcmp(dirname, ""))
+		{
+			gif->msg_box(_("Error"), _("You can't ungroup in this folder."));
+			return -1;
+		}
 		tilp_file_mkdir(dirname);
 
 		/*
