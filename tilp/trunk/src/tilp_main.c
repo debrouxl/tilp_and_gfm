@@ -276,10 +276,6 @@ int scan_cmdline(int argc, const char **argv)
 */
 int tilp_main(int argc, const char *argv[], char **arge)
 {
-
-	/* Change name of default logging file */
-	ticable_verbose_set_file(LOG_FILE);
-
 	/* Display program version */
 	version();
 
@@ -310,7 +306,6 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	rc_get_user_prefs();
 #endif /* !__MACOSX__ */
 	tilp_chdir(options.working_dir);
-	ticable_DISPLAY_settings(options.console_mode);
 
 	// Scan the command line (passed as an argument)
 	scan_cmdline(argc, argv);
@@ -348,14 +343,23 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	   Initialize the libticables library 
 	 */
 	ticable_init();
+	ticable_set_printl(ticable_printl);
 	ticable_set_param(&options.lp);
 	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
 	tilp_error(link_cable.init());
+	
+	/* 
+	   Initialize the libtifiles library 
+	 */
+	tifiles_init();
+	tifiles_set_printl(tifile_printl);
+	tifiles_set_calc(options.lp.calc_type);	 
 
 	/* 
 	   Initialize the libticalcs library 
 	 */
 	ticalc_init();
+	ticalc_set_printl(ticalc_printl);
 	ticalc_set_cable(&link_cable);
 	ticalc_set_calc(options.lp.calc_type, &ti_calc);
 

@@ -20,7 +20,11 @@
  */
 
 /*
-  This unit contains the interface of the libtifiles library.
+  	Logging system for the 4 domains:
+  	- ticables
+  	- tifiles
+  	- ticalcs 
+  	- tilp
 */
 
 #include <stdio.h>
@@ -51,12 +55,12 @@ int default_printl(int level, const char *format, ...)
 	return ret;
 }
 
-TIFILES_PRINT printl = default_printl;
+TILP_PRINT printl = default_printl;
 
 /*
 	Change print behaviour (callback).
 */
-TIEXPORT TILP_PRINT tilp_set_printl(TILP_PRINT new_printl)
+TIEXPORT TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
 {
   TILP_PRINT old_printl = printl;
 
@@ -68,3 +72,10 @@ TIEXPORT TILP_PRINT tilp_set_printl(TILP_PRINT new_printl)
 
   return old_printl;
 }
+
+/**************** printl muxer ********************/
+
+TICABLE_PRINTL ticable_printl;
+TIFILE_PRINTL  tifile_printl;
+TICALC_PRINTL  ticalc_printl;
+//TILP_PRINTL    tilp_printl;

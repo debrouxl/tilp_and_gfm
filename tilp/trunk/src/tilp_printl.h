@@ -27,9 +27,10 @@
 #define PRINT_ERR	2
 
 /* Definition */
-typedef int (*TILP_PRINT) (int level, const char *format, ...);
+typedef int (*TILP_PRINTL) (int level, const char *format, ...);
 
 /* Callback */
-extern TIFILES_PRINT printl;
+extern TIFILES_PRINTL printl;
+
 
 #endif
