@@ -84,6 +84,8 @@ FILE * tilp_open_log (const char *mode)
 			return NULL;
 
 		log = fdopen(logfd, "a");
+
+		fprintf(log, "*** TiLP logfile (%s) ***\n\n", logfile);
 	}
 
 	if (log == NULL)
