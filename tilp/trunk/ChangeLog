@@ -1,4 +1,7 @@
-* 20030421 : v6.62 / 0.6.5 ($Rev$)
+* 20030421 : v6.62 / 0.6.6 ($Rev$)
+	* Fixed clock wrt AM/PM handling.
+	* Fixed a small glitch in the screendump code.
+* 20030421 : v6.62 / 0.6.5 ($Rev: 255)
 	* Rework the preferences panel to make it smaller.
 	* Added basic scaling support for the screendump.
 	* Added preferences for the scaling.

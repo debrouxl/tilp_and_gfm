@@ -85,6 +85,8 @@
             CLASS = ClockController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                clockAM = id; 
+                clockAMPMMatrix = id; 
                 clockDateFormat = id; 
                 clockDay = id; 
                 clockDayStepper = id; 
@@ -97,6 +99,7 @@
                 clockMinutesStepper = id; 
                 clockMonth = id; 
                 clockMonthStepper = id; 
+                clockPM = id; 
                 clockSeconds = id; 
                 clockSecondsStepper = id; 
                 clockSetStatus = id; 

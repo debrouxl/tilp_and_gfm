@@ -44,14 +44,14 @@
 			00FFA4B701706F217F000001,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 72624548;
+			PBXPerProjectTemplateStateSaveDate = 72633044;
 			PBXWorkspaceContents = (
 				{
 					LeftSlideOut = {
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F76096670452D9D701000306;
+									bookmark = F75F2446045446CA01000306;
 									history = (
 										F5CAF4E202C8CEEC01041594,
 										F7918DF20449FF9001000306,
@@ -96,29 +96,29 @@
 										F768D9EE0451A2ED01000306,
 										F768D9EF0451A2ED01000306,
 										F768D9F00451A2ED01000306,
-										F768D9F30451A2ED01000306,
 										F768D9F40451A2ED01000306,
 										F7377EAF0451DEA201000306,
 										F7377EB10451DEA201000306,
 										F76096280452D9D701000306,
 										F76096290452D9D701000306,
 										F760962A0452D9D701000306,
-										F760962B0452D9D701000306,
-										F760962C0452D9D701000306,
-										F760962D0452D9D701000306,
-										F760962E0452D9D701000306,
 										F760962F0452D9D701000306,
 										F76096300452D9D701000306,
 										F76096310452D9D701000306,
 										F76096320452D9D701000306,
-										F76096330452D9D701000306,
 										F76096340452D9D701000306,
 										F76096350452D9D701000306,
 										F76096360452D9D701000306,
 										F76096370452D9D701000306,
-										F76096380452D9D701000306,
 										F76096390452D9D701000306,
-										F7377EB00451DEA201000306,
+										F75F2427045446CA01000306,
+										F75F2428045446CA01000306,
+										F75F2429045446CA01000306,
+										F75F242A045446CA01000306,
+										F75F242B045446CA01000306,
+										F75F242C045446CA01000306,
+										F75F242D045446CA01000306,
+										F75F242E045446CA01000306,
 									);
 									prevStack = (
 										F518BCE102C8C84C01041594,
@@ -791,11 +791,34 @@
 										F76096640452D9D701000306,
 										F76096650452D9D701000306,
 										F76096660452D9D701000306,
+										F75F242F045446CA01000306,
+										F75F2430045446CA01000306,
+										F75F2431045446CA01000306,
+										F75F2432045446CA01000306,
+										F75F2433045446CA01000306,
+										F75F2434045446CA01000306,
+										F75F2435045446CA01000306,
+										F75F2436045446CA01000306,
+										F75F2437045446CA01000306,
+										F75F2438045446CA01000306,
+										F75F2439045446CA01000306,
+										F75F243A045446CA01000306,
+										F75F243B045446CA01000306,
+										F75F243C045446CA01000306,
+										F75F243D045446CA01000306,
+										F75F243E045446CA01000306,
+										F75F243F045446CA01000306,
+										F75F2440045446CA01000306,
+										F75F2441045446CA01000306,
+										F75F2442045446CA01000306,
+										F75F2443045446CA01000306,
+										F75F2444045446CA01000306,
+										F75F2445045446CA01000306,
 									);
 								};
 								NavCount = 1;
 								NavGeometry0 = {
-									Frame = "{{0, 0}, {767, 421}}";
+									Frame = "{{0, 0}, {767, 435}}";
 									NavBarVisible = YES;
 								};
 							};
@@ -833,11 +856,11 @@
 						Collapsed = NO;
 						Frame = "{{0, 23}, {1016, 550}}";
 						Split0 = {
-							ActiveTab = 1;
+							ActiveTab = 2;
 							Collapsed = NO;
 							Frame = "{{249, 0}, {767, 550}}";
 							Split0 = {
-								Frame = "{{0, 129}, {767, 421}}";
+								Frame = "{{0, 115}, {767, 435}}";
 							};
 							SplitCount = 1;
 							Tab0 = {
@@ -948,10 +971,10 @@
 					StatusViewVisible = YES;
 					Template = F5F68CF101725D4C0D7A8F4C;
 					ToolbarVisible = YES;
-					WindowLocation = "{73, 99}";
+					WindowLocation = "{125, 101}";
 				},
 			);
-			PBXWorkspaceStateSaveDate = 72624548;
+			PBXWorkspaceStateSaveDate = 72633044;
 		};
 		perUserProjectItems = {
 			F504D2F202C9EA5A01E14247 = F504D2F202C9EA5A01E14247;
@@ -998,7 +1021,6 @@
 			F5CAF4E902C8CEEC01041594 = F5CAF4E902C8CEEC01041594;
 			F5CAF4EA02C8CEEC01041594 = F5CAF4EA02C8CEEC01041594;
 			F7377EAF0451DEA201000306 = F7377EAF0451DEA201000306;
-			F7377EB00451DEA201000306 = F7377EB00451DEA201000306;
 			F7377EB10451DEA201000306 = F7377EB10451DEA201000306;
 			F7377EB30451DEA201000306 = F7377EB30451DEA201000306;
 			F7377EB40451DEA201000306 = F7377EB40451DEA201000306;
@@ -1101,6 +1123,38 @@
 			F75E4614044AF29D01000306 = F75E4614044AF29D01000306;
 			F75E4615044AF29D01000306 = F75E4615044AF29D01000306;
 			F75E4616044AF29D01000306 = F75E4616044AF29D01000306;
+			F75F2427045446CA01000306 = F75F2427045446CA01000306;
+			F75F2428045446CA01000306 = F75F2428045446CA01000306;
+			F75F2429045446CA01000306 = F75F2429045446CA01000306;
+			F75F242A045446CA01000306 = F75F242A045446CA01000306;
+			F75F242B045446CA01000306 = F75F242B045446CA01000306;
+			F75F242C045446CA01000306 = F75F242C045446CA01000306;
+			F75F242D045446CA01000306 = F75F242D045446CA01000306;
+			F75F242E045446CA01000306 = F75F242E045446CA01000306;
+			F75F242F045446CA01000306 = F75F242F045446CA01000306;
+			F75F2430045446CA01000306 = F75F2430045446CA01000306;
+			F75F2431045446CA01000306 = F75F2431045446CA01000306;
+			F75F2432045446CA01000306 = F75F2432045446CA01000306;
+			F75F2433045446CA01000306 = F75F2433045446CA01000306;
+			F75F2434045446CA01000306 = F75F2434045446CA01000306;
+			F75F2435045446CA01000306 = F75F2435045446CA01000306;
+			F75F2436045446CA01000306 = F75F2436045446CA01000306;
+			F75F2437045446CA01000306 = F75F2437045446CA01000306;
+			F75F2438045446CA01000306 = F75F2438045446CA01000306;
+			F75F2439045446CA01000306 = F75F2439045446CA01000306;
+			F75F243A045446CA01000306 = F75F243A045446CA01000306;
+			F75F243B045446CA01000306 = F75F243B045446CA01000306;
+			F75F243C045446CA01000306 = F75F243C045446CA01000306;
+			F75F243D045446CA01000306 = F75F243D045446CA01000306;
+			F75F243E045446CA01000306 = F75F243E045446CA01000306;
+			F75F243F045446CA01000306 = F75F243F045446CA01000306;
+			F75F2440045446CA01000306 = F75F2440045446CA01000306;
+			F75F2441045446CA01000306 = F75F2441045446CA01000306;
+			F75F2442045446CA01000306 = F75F2442045446CA01000306;
+			F75F2443045446CA01000306 = F75F2443045446CA01000306;
+			F75F2444045446CA01000306 = F75F2444045446CA01000306;
+			F75F2445045446CA01000306 = F75F2445045446CA01000306;
+			F75F2446045446CA01000306 = F75F2446045446CA01000306;
 			F75F5D97044CAD8001000306 = F75F5D97044CAD8001000306;
 			F75F5D9A044CAD8001000306 = F75F5D9A044CAD8001000306;
 			F75F5D9B044CAD8001000306 = F75F5D9B044CAD8001000306;
@@ -1171,20 +1225,14 @@
 			F76096280452D9D701000306 = F76096280452D9D701000306;
 			F76096290452D9D701000306 = F76096290452D9D701000306;
 			F760962A0452D9D701000306 = F760962A0452D9D701000306;
-			F760962B0452D9D701000306 = F760962B0452D9D701000306;
-			F760962C0452D9D701000306 = F760962C0452D9D701000306;
-			F760962D0452D9D701000306 = F760962D0452D9D701000306;
-			F760962E0452D9D701000306 = F760962E0452D9D701000306;
 			F760962F0452D9D701000306 = F760962F0452D9D701000306;
 			F76096300452D9D701000306 = F76096300452D9D701000306;
 			F76096310452D9D701000306 = F76096310452D9D701000306;
 			F76096320452D9D701000306 = F76096320452D9D701000306;
-			F76096330452D9D701000306 = F76096330452D9D701000306;
 			F76096340452D9D701000306 = F76096340452D9D701000306;
 			F76096350452D9D701000306 = F76096350452D9D701000306;
 			F76096360452D9D701000306 = F76096360452D9D701000306;
 			F76096370452D9D701000306 = F76096370452D9D701000306;
-			F76096380452D9D701000306 = F76096380452D9D701000306;
 			F76096390452D9D701000306 = F76096390452D9D701000306;
 			F760963A0452D9D701000306 = F760963A0452D9D701000306;
 			F760963B0452D9D701000306 = F760963B0452D9D701000306;
@@ -1231,7 +1279,6 @@
 			F76096640452D9D701000306 = F76096640452D9D701000306;
 			F76096650452D9D701000306 = F76096650452D9D701000306;
 			F76096660452D9D701000306 = F76096660452D9D701000306;
-			F76096670452D9D701000306 = F76096670452D9D701000306;
 			F761CBF1044ED57C01000306 = F761CBF1044ED57C01000306;
 			F761CBF3044ED57C01000306 = F761CBF3044ED57C01000306;
 			F761CBF5044ED57C01000306 = F761CBF5044ED57C01000306;
@@ -1483,7 +1530,6 @@
 			F768D9EE0451A2ED01000306 = F768D9EE0451A2ED01000306;
 			F768D9EF0451A2ED01000306 = F768D9EF0451A2ED01000306;
 			F768D9F00451A2ED01000306 = F768D9F00451A2ED01000306;
-			F768D9F30451A2ED01000306 = F768D9F30451A2ED01000306;
 			F768D9F40451A2ED01000306 = F768D9F40451A2ED01000306;
 			F768D9FB0451A2ED01000306 = F768D9FB0451A2ED01000306;
 			F768D9FC0451A2ED01000306 = F768D9FC0451A2ED01000306;
@@ -1718,7 +1764,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 469";
 		rLen = 0;
-		rLoc = 10039;
+		rLoc = 10930;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -1808,7 +1854,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 469";
 		rLen = 0;
-		rLoc = 10039;
+		rLoc = 10930;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -1898,7 +1944,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 12573;
+		rLoc = 13950;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -2231,16 +2277,6 @@
 		vrLen = 564;
 		vrLoc = 1070;
 	};
-	F7377EB00451DEA201000306 = {
-		fRef = F50FDB8E0179C7F801000102;
-		isa = PBXTextBookmark;
-		name = "config.h: 18";
-		rLen = 0;
-		rLoc = 720;
-		rType = 0;
-		vrLen = 947;
-		vrLoc = 282;
-	};
 	F7377EB10451DEA201000306 = {
 		fRef = F7377EBC0451DEA201000306;
 		fallbackIsa = PBXBookmark;
@@ -2332,7 +2368,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 11023;
+		rLoc = 11968;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -2392,7 +2428,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 12573;
+		rLoc = 13950;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -2412,7 +2448,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: doBackup:";
 		rLen = 0;
-		rLoc = 12676;
+		rLoc = 14053;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -2432,7 +2468,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 12573;
+		rLoc = 13950;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -2662,7 +2698,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 177";
 		rLen = 0;
-		rLoc = 4390;
+		rLoc = 4414;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 3846;
@@ -2752,7 +2788,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7889;
+		rLoc = 8163;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 6770;
@@ -2772,7 +2808,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 131";
 		rLen = 0;
-		rLoc = 2997;
+		rLoc = 3021;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 2641;
@@ -2792,7 +2828,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 3804;
@@ -2882,7 +2918,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 3444;
@@ -2922,7 +2958,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 2801;
@@ -2942,7 +2978,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 618;
 		vrLoc = 2640;
@@ -2962,7 +2998,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 2785;
@@ -3012,7 +3048,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 614;
 		vrLoc = 2752;
@@ -3267,6 +3303,326 @@
 		vrLen = 666;
 		vrLoc = 3783;
 	};
+	F75F2427045446CA01000306 = {
+		fRef = F50FDB8E0179C7F801000102;
+		isa = PBXTextBookmark;
+		name = "config.h: SVN_REV";
+		rLen = 0;
+		rLoc = 1251;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 669;
+	};
+	F75F2428045446CA01000306 = {
+		fRef = F50C433301F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.h: 30";
+		rLen = 0;
+		rLoc = 1131;
+		rType = 0;
+		vrLen = 735;
+		vrLoc = 850;
+	};
+	F75F2429045446CA01000306 = {
+		fRef = F7918DBC0449F79301000306;
+		isa = PBXTextBookmark;
+		name = "tilp_struct.h: 89";
+		rLen = 0;
+		rLoc = 2183;
+		rType = 0;
+		vrLen = 556;
+		vrLoc = 1960;
+	};
+	F75F242A045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_fill_dictionary";
+		rLen = 0;
+		rLoc = 2951;
+		rType = 0;
+		vrLen = 1245;
+		vrLoc = 2328;
+	};
+	F75F242B045446CA01000306 = {
+		fRef = F514E0E40178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.h: 89";
+		rLen = 0;
+		rLoc = 2960;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 2489;
+	};
+	F75F242C045446CA01000306 = {
+		fRef = F51315FF0178382A01000102;
+		isa = PBXTextBookmark;
+		name = "MenuController.m: getScreen:";
+		rLen = 0;
+		rLoc = 7251;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 6856;
+	};
+	F75F242D045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: prefsClose:";
+		rLen = 0;
+		rLoc = 5949;
+		rType = 0;
+		vrLen = 850;
+		vrLoc = 5375;
+	};
+	F75F242E045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 12482;
+		rType = 0;
+		vrLen = 924;
+		vrLoc = 12113;
+	};
+	F75F242F045446CA01000306 = {
+		fRef = F50FDB8E0179C7F801000102;
+		isa = PBXTextBookmark;
+		name = "config.h: SVN_REV";
+		rLen = 0;
+		rLoc = 1251;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 669;
+	};
+	F75F2430045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_init_with_default";
+		rLen = 0;
+		rLoc = 1658;
+		rType = 0;
+		vrLen = 958;
+		vrLoc = 1150;
+	};
+	F75F2431045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 13376;
+		rType = 0;
+		vrLen = 1070;
+		vrLoc = 12520;
+	};
+	F75F2432045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: render_screen_bw";
+		rLen = 0;
+		rLoc = 9420;
+		rType = 0;
+		vrLen = 939;
+		vrLoc = 10916;
+	};
+	F75F2433045446CA01000306 = {
+		fRef = F7918DBC0449F79301000306;
+		isa = PBXTextBookmark;
+		name = "tilp_struct.h: 89";
+		rLen = 0;
+		rLoc = 2183;
+		rType = 0;
+		vrLen = 504;
+		vrLoc = 1985;
+	};
+	F75F2434045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_get_user_prefs";
+		rLen = 0;
+		rLoc = 6124;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 8217;
+	};
+	F75F2435045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 12221;
+		rType = 0;
+		vrLen = 883;
+		vrLoc = 12112;
+	};
+	F75F2436045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 13376;
+		rType = 0;
+		vrLen = 544;
+		vrLoc = 1156;
+	};
+	F75F2437045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13094;
+		rType = 0;
+		vrLen = 883;
+		vrLoc = 12325;
+	};
+	F75F2438045446CA01000306 = {
+		fRef = F50C433301F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.h: 30";
+		rLen = 0;
+		rLoc = 1131;
+		rType = 0;
+		vrLen = 735;
+		vrLoc = 850;
+	};
+	F75F2439045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13007;
+		rType = 0;
+		vrLen = 894;
+		vrLoc = 12325;
+	};
+	F75F243A045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 13318;
+		rType = 0;
+		vrLen = 961;
+		vrLoc = 12474;
+	};
+	F75F243B045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_fill_dictionary";
+		rLen = 0;
+		rLoc = 2951;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 2328;
+	};
+	F75F243C045446CA01000306 = {
+		fRef = F7918DBC0449F79301000306;
+		isa = PBXTextBookmark;
+		name = "tilp_struct.h: 89";
+		rLen = 0;
+		rLoc = 2183;
+		rType = 0;
+		vrLen = 556;
+		vrLoc = 1960;
+	};
+	F75F243D045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_get_user_prefs";
+		rLen = 0;
+		rLoc = 6052;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 5476;
+	};
+	F75F243E045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: prefsClose:";
+		rLen = 43;
+		rLoc = 5657;
+		rType = 0;
+		vrLen = 853;
+		vrLoc = 5243;
+	};
+	F75F243F045446CA01000306 = {
+		fRef = F50D8E5E0181A22D01000102;
+		isa = PBXTextBookmark;
+		name = "cocoa_config.m: rc_fill_dictionary";
+		rLen = 0;
+		rLoc = 2951;
+		rType = 0;
+		vrLen = 1245;
+		vrLoc = 2328;
+	};
+	F75F2440045446CA01000306 = {
+		fRef = F514E0E40178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.h: 89";
+		rLen = 0;
+		rLoc = 2960;
+		rType = 0;
+		vrLen = 873;
+		vrLoc = 2489;
+	};
+	F75F2441045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 12894;
+		rType = 0;
+		vrLen = 976;
+		vrLoc = 12353;
+	};
+	F75F2442045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13094;
+		rType = 0;
+		vrLen = 832;
+		vrLoc = 12576;
+	};
+	F75F2443045446CA01000306 = {
+		fRef = F51315FF0178382A01000102;
+		isa = PBXTextBookmark;
+		name = "MenuController.m: getScreen:";
+		rLen = 0;
+		rLoc = 7251;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 6856;
+	};
+	F75F2444045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 12482;
+		rType = 0;
+		vrLen = 924;
+		vrLoc = 12113;
+	};
+	F75F2445045446CA01000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: prefsClose:";
+		rLen = 0;
+		rLoc = 5949;
+		rType = 0;
+		vrLen = 850;
+		vrLoc = 5375;
+	};
+	F75F2446045446CA01000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13144;
+		rType = 0;
+		vrLen = 922;
+		vrLoc = 12481;
+	};
 	F75F5D97044CAD8001000306 = {
 		fRef = F7918DCB0449F7AB01000306;
 		isa = PBXTextBookmark;
@@ -3282,7 +3638,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 2032;
@@ -3362,7 +3718,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 7296;
+		rLoc = 7295;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 6512;
@@ -3412,7 +3768,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1860;
+		rLoc = 1892;
 		rType = 0;
 		vrLen = 778;
 		vrLoc = 1260;
@@ -3442,7 +3798,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1860;
+		rLoc = 1892;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 1259;
@@ -3462,7 +3818,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1860;
+		rLoc = 1892;
 		rType = 0;
 		vrLen = 792;
 		vrLoc = 1259;
@@ -3482,7 +3838,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7889;
+		rLoc = 8163;
 		rType = 0;
 		vrLen = 706;
 		vrLoc = 6665;
@@ -3502,7 +3858,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 2868;
+		rLoc = 2783;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 2295;
@@ -3522,7 +3878,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 8027;
+		rLoc = 8026;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 5613;
@@ -3552,7 +3908,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 8027;
+		rLoc = 8026;
 		rType = 0;
 		vrLen = 710;
 		vrLoc = 5613;
@@ -3562,7 +3918,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7889;
+		rLoc = 8163;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 1100;
@@ -3572,7 +3928,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12468;
+		rLoc = 12467;
 		rType = 0;
 		vrLen = 689;
 		vrLoc = 11839;
@@ -3582,7 +3938,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7889;
+		rLoc = 8163;
 		rType = 0;
 		vrLen = 816;
 		vrLoc = 1100;
@@ -3592,7 +3948,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12570;
+		rLoc = 12569;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 12337;
@@ -3642,7 +3998,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 10944;
+		rLoc = 11889;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -3792,7 +4148,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 614;
 		vrLoc = 2752;
@@ -3862,7 +4218,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 10944;
+		rLoc = 11889;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -3882,7 +4238,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 10257;
+		rLoc = 11148;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -3892,7 +4248,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 3854;
@@ -3964,46 +4320,6 @@
 		vrLen = 853;
 		vrLoc = 4789;
 	};
-	F760962B0452D9D701000306 = {
-		fRef = F7918DBC0449F79301000306;
-		isa = PBXTextBookmark;
-		name = "tilp_struct.h: 94";
-		rLen = 0;
-		rLoc = 2270;
-		rType = 0;
-		vrLen = 522;
-		vrLoc = 2006;
-	};
-	F760962C0452D9D701000306 = {
-		fRef = F50D8E5E0181A22D01000102;
-		isa = PBXTextBookmark;
-		name = "cocoa_config.m: rc_init_with_default";
-		rLen = 0;
-		rLoc = 1685;
-		rType = 0;
-		vrLen = 1023;
-		vrLoc = 2207;
-	};
-	F760962D0452D9D701000306 = {
-		fRef = F514E0E40178CA7001000102;
-		isa = PBXTextBookmark;
-		name = "PrefsController.h: 72";
-		rLen = 0;
-		rLoc = 2428;
-		rType = 0;
-		vrLen = 937;
-		vrLoc = 2009;
-	};
-	F760962E0452D9D701000306 = {
-		fRef = F514E0E30178CA7001000102;
-		isa = PBXTextBookmark;
-		name = "PrefsController.m: 587";
-		rLen = 0;
-		rLoc = 18795;
-		rType = 0;
-		vrLen = 569;
-		vrLoc = 18538;
-	};
 	F760962F0452D9D701000306 = {
 		fRef = F50E4E7B017F181501000103;
 		isa = PBXTextBookmark;
@@ -4044,16 +4360,6 @@
 		vrLen = 650;
 		vrLoc = 1402;
 	};
-	F76096330452D9D701000306 = {
-		fRef = F51315FF0178382A01000102;
-		isa = PBXTextBookmark;
-		name = "MenuController.m: 342";
-		rLen = 0;
-		rLoc = 10508;
-		rType = 0;
-		vrLen = 762;
-		vrLoc = 9967;
-	};
 	F76096340452D9D701000306 = {
 		fRef = F7918DC70449F7AB01000306;
 		isa = PBXTextBookmark;
@@ -4093,16 +4399,6 @@
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 1846;
-	};
-	F76096380452D9D701000306 = {
-		fRef = F50C433401F4624B01000102;
-		isa = PBXTextBookmark;
-		name = "TransfersController.m: 83";
-		rLen = 35;
-		rLoc = 2158;
-		rType = 0;
-		vrLen = 516;
-		vrLoc = 5638;
 	};
 	F76096390452D9D701000306 = {
 		fRef = F7918DC50449F7AB01000306;
@@ -4176,7 +4472,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 94";
 		rLen = 0;
-		rLoc = 2270;
+		rLoc = 2294;
 		rType = 0;
 		vrLen = 522;
 		vrLoc = 2006;
@@ -4186,7 +4482,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 6409;
+		rLoc = 6683;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 5507;
@@ -4206,7 +4502,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1685;
+		rLoc = 1717;
 		rType = 0;
 		vrLen = 1023;
 		vrLoc = 2207;
@@ -4246,7 +4542,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 6255;
+		rLoc = 6294;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 5731;
@@ -4266,7 +4562,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 13301;
+		rLoc = 13763;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 12788;
@@ -4296,7 +4592,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: 587";
 		rLen = 0;
-		rLoc = 18795;
+		rLoc = 19257;
 		rType = 0;
 		vrLen = 569;
 		vrLoc = 18538;
@@ -4561,16 +4857,6 @@
 		vrLen = 699;
 		vrLoc = 18645;
 	};
-	F76096670452D9D701000306 = {
-		fRef = F50FDB8E0179C7F801000102;
-		isa = PBXTextBookmark;
-		name = "config.h: 45";
-		rLen = 0;
-		rLoc = 1305;
-		rType = 0;
-		vrLen = 708;
-		vrLoc = 603;
-	};
 	F76096680452D9D801000306 = {
 		isa = PBXFileReference;
 		name = index.html;
@@ -4638,7 +4924,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 11182;
+		rLoc = 12229;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -4968,7 +5254,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 7889;
+		rLoc = 8163;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 1077;
@@ -5198,7 +5484,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_get_user_prefs";
 		rLen = 0;
-		rLoc = 5456;
+		rLoc = 5615;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 5076;
@@ -5248,7 +5534,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 6568;
+		rLoc = 6567;
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 5858;
@@ -5516,7 +5802,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: render_screen_blurry";
 		rLen = 0;
-		rLoc = 10039;
+		rLoc = 10930;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -5576,7 +5862,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12570;
+		rLoc = 12569;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 12228;
@@ -6346,7 +6632,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 12573;
+		rLoc = 13950;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6366,7 +6652,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: ret";
 		rLen = 0;
-		rLoc = 12084;
+		rLoc = 13461;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6386,7 +6672,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 12573;
+		rLoc = 13950;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 12492;
@@ -6406,7 +6692,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: romDump:";
 		rLen = 0;
-		rLoc = 13361;
+		rLoc = 14738;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6436,7 +6722,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 10257;
+		rLoc = 11148;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6446,7 +6732,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.h: sendChar:";
 		rLen = 0;
-		rLoc = 1660;
+		rLoc = 1693;
 		rType = 0;
 		vrLen = 595;
 		vrLoc = 1079;
@@ -6556,7 +6842,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 10428;
+		rLoc = 10427;
 		rType = 0;
 		vrLen = 891;
 		vrLoc = 6850;
@@ -6566,7 +6852,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 476;
 		vrLoc = 2209;
@@ -6586,7 +6872,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 806;
 		vrLoc = 1427;
@@ -6596,7 +6882,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 457;
 		vrLoc = 2228;
@@ -6606,7 +6892,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 1265;
@@ -6616,7 +6902,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 488;
 		vrLoc = 1914;
@@ -6626,7 +6912,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 1265;
@@ -6636,7 +6922,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 460;
 		vrLoc = 1914;
@@ -6646,7 +6932,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1904;
+		rLoc = 1936;
 		rType = 0;
 		vrLen = 850;
 		vrLoc = 1292;
@@ -6656,7 +6942,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: clist_win";
 		rLen = 0;
-		rLoc = 4338;
+		rLoc = 4362;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 2373;
@@ -6666,7 +6952,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 4431;
+		rLoc = 4304;
 		rType = 0;
 		vrLen = 773;
 		vrLoc = 6704;
@@ -6686,7 +6972,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 10814;
+		rLoc = 10813;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 8059;
@@ -6786,7 +7072,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: 118";
 		rLen = 17;
-		rLoc = 4487;
+		rLoc = 4646;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 994;
@@ -6936,7 +7222,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 524";
 		rLen = 0;
-		rLoc = 10039;
+		rLoc = 10930;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6956,7 +7242,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: 524";
 		rLen = 0;
-		rLoc = 10039;
+		rLoc = 10930;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 14076;
@@ -6976,7 +7262,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 5514;
+		rLoc = 5345;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5033;
@@ -7110,16 +7396,6 @@
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 7519;
-	};
-	F768D9F30451A2ED01000306 = {
-		fRef = F50C433301F4624B01000102;
-		isa = PBXTextBookmark;
-		name = "TransfersController.h: 1";
-		rLen = 933;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1100;
-		vrLoc = 0;
 	};
 	F768D9F40451A2ED01000306 = {
 		fRef = F51316000178382A01000102;
@@ -7286,7 +7562,7 @@
 		isa = PBXTextBookmark;
 		name = "cocoa_config.m: rc_init_with_default";
 		rLen = 0;
-		rLoc = 1960;
+		rLoc = 1992;
 		rType = 0;
 		vrLen = 881;
 		vrLoc = 1362;
@@ -7636,7 +7912,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 13076;
+		rLoc = 14453;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 12556;
@@ -7656,7 +7932,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 13076;
+		rLoc = 14453;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 12556;
@@ -7676,7 +7952,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 28;
-		rLoc = 12631;
+		rLoc = 14008;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 12746;
@@ -7696,7 +7972,7 @@
 		isa = PBXTextBookmark;
 		name = "TransfersController.m: getScreen:";
 		rLen = 0;
-		rLoc = 12994;
+		rLoc = 14371;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 12181;
@@ -7836,7 +8112,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 5514;
+		rLoc = 5345;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5033;
@@ -9046,7 +9322,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 173";
 		rLen = 35;
-		rLoc = 4391;
+		rLoc = 4415;
 		rType = 0;
 		vrLen = 687;
 		vrLoc = 3592;
@@ -9096,7 +9372,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 173";
 		rLen = 35;
-		rLoc = 4391;
+		rLoc = 4415;
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 3716;
@@ -9116,7 +9392,7 @@
 		isa = PBXTextBookmark;
 		name = "tilp_struct.h: 173";
 		rLen = 0;
-		rLoc = 4390;
+		rLoc = 4414;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 3716;

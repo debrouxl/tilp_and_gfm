@@ -74,16 +74,32 @@
     
     if (clk.time_format == 12)
     {
+        [clockAM setEnabled:YES];
+        [clockPM setEnabled:YES];
+        
         [clockFormatMatrix setState:NSOnState atRow:0 column:0];
         [clockHoursStepper setMaxValue:12];
+        if (clk.hours > 12)
+        {
+            [clockHoursStepper setIntValue:clk.hours - 12];
+            [clockAMPMMatrix setState:NSOnState atRow:1 column:0];
+        }
+        else
+        {
+            [clockHoursStepper setIntValue:clk.hours];
+            [clockAMPMMatrix setState:NSOnState atRow:0 column:0];
+        }
     }
     else
     {
+        [clockAM setEnabled:NO];
+        [clockPM setEnabled:NO];
+        
         [clockFormatMatrix setState:NSOnState atRow:0 column:1];
         [clockHoursStepper setMaxValue:24];
+        [clockHoursStepper setIntValue:clk.hours];
     }
 
-    [clockHoursStepper setIntValue:clk.hours];
     [self clockStep:clockHoursStepper];
 
     [clockDateFormat selectItemAtIndex:clk.date_format - 1];
@@ -96,13 +112,22 @@
 
 - (IBAction)clockSet:(id)sender
 {
+    clk.date_format = [clockDateFormat indexOfSelectedItem] + 1;
+    if (NSOnState == [clockFormat12 state])
+        clk.time_format = 12;
+    else
+        clk.time_format = 24;
+
     clk.day = [clockDayStepper intValue];
     clk.month = [clockMonthStepper intValue];
     clk.year = [clockYearStepper intValue] + 2000;
-    clk.hours = [clockHoursStepper intValue];
+
+    if ((clk.time_format == 12) && (NSOnState == [clockPM state]))
+        clk.hours = [clockHoursStepper intValue] + 12;
+    else
+        clk.hours = [clockHoursStepper intValue];
     clk.minutes = [clockMinutesStepper intValue];
     clk.seconds = [clockSecondsStepper intValue];
-    clk.date_format = [clockDateFormat indexOfSelectedItem] + 1;
 
     if (tilp_calc_isready() != 0)
         return;
@@ -131,11 +156,7 @@
     clk.day = [now dayOfMonth];
     clk.month = [now monthOfYear];
     clk.year = [now yearOfCommonEra];
-    if ((clk.time_format == 12) && ([now hourOfDay] > 12))
-        clk.hours = [now hourOfDay] - 12;
-    else
-        clk.hours = [now hourOfDay];
-
+    clk.hours = [now hourOfDay];
     clk.minutes = [now minuteOfHour];
     clk.seconds = [now secondOfMinute];
 
@@ -154,18 +175,19 @@
 
     now = [NSCalendarDate calendarDate];
 
+    clk.date_format = [clockDateFormat indexOfSelectedItem] + 1;
+    if (NSOnState == [clockFormat12 state])
+        clk.time_format = 12;
+    else
+        clk.time_format = 24;
+    
     clk.day = [now dayOfMonth];
     clk.month = [now monthOfYear];
     clk.year = [now yearOfCommonEra];
-    if ((clk.time_format == 12) && ([now hourOfDay] > 12))
-        clk.hours = [now hourOfDay] - 12;
-    else
-        clk.hours = [now hourOfDay];
-        
+
+    clk.hours = [now hourOfDay];
     clk.minutes = [now minuteOfHour];
     clk.seconds = [now secondOfMinute];
-
-    clk.date_format = [clockDateFormat indexOfSelectedItem] + 1;
 
     [self updateFields];
 
@@ -191,13 +213,25 @@
 {
     if (NSOnState == [clockFormat12 state])
     {
+        [clockAM setEnabled:YES];
+        [clockPM setEnabled:YES];
+        
         clk.time_format = 12;
         if ([clockHoursStepper intValue] > 12)
+        {
             [clockHoursStepper setIntValue:([clockHoursStepper intValue] - 12)];
+            [clockAMPMMatrix setState:NSOnState atRow:1 column:0];
+        }
+        else
+            [clockAMPMMatrix setState:NSOnState atRow:0 column:0];
+
         [clockHoursStepper setMaxValue:12];
     }
     else
     {
+        [clockAM setEnabled:NO];
+        [clockPM setEnabled:NO];
+        
         clk.time_format = 24;
         [clockHoursStepper setMaxValue:24];
     }

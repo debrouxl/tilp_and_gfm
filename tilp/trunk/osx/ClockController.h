@@ -47,6 +47,10 @@
     IBOutlet id clockDateFormat;
     IBOutlet id clockFormatMatrix;
 
+    IBOutlet id clockAM;
+    IBOutlet id clockPM;
+    IBOutlet id clockAMPMMatrix;
+    
     IBOutlet id clockStateOff;
     IBOutlet id clockStateOn;
     IBOutlet id clockStateMatrix;

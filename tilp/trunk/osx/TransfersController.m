@@ -447,8 +447,7 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
 
 // For now, always resize the window, until the resizing is handled
 // by the NSImageView -- if it happens one day.
-//    if ([screendumpWindow isVisible] == NO)
-    {
+
       // resize the window
       viewFrame = [screendumpImage frame];
 
@@ -467,7 +466,9 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
           [screendumpScale setStringValue:[NSString stringWithFormat:@"Screen scale : %d00%%", options.screen_scaling]];
       else
           [screendumpScale setStringValue:@""];
-      
+
+    if ([screendumpWindow isVisible] == NO)
+    {
       // show and add to the Windows menu
       [screendumpWindow makeKeyAndOrderFront:self];
       [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
