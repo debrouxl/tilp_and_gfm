@@ -24,6 +24,8 @@
                 pbar1PBar = id; 
                 pbar1Rate = id; 
                 pbar1Window = id; 
+                pbar2Text = id; 
+                pbar2Window = id; 
                 pbar3PBar1 = id; 
                 pbar3PBar2 = id; 
                 pbar3Rate = id; 

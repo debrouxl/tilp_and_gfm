@@ -162,7 +162,10 @@ struct gui_fncts gui_functions;
     else if ([[tableColumn identifier] isEqualToString:@"Type"])
         return [NODE_DATA(item) vartype];
     else if ([[tableColumn identifier] isEqualToString:@"Size"])
-        return [NODE_DATA(item) varsize];
+        {
+            printf("DEBUG: Setting varsize : %s\n", [[NODE_DATA(item) varsize] cString]);
+            return [NODE_DATA(item) varsize];
+        }
         
     return nil;
 }

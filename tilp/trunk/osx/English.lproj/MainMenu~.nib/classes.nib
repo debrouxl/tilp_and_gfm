@@ -4,6 +4,7 @@
             ACTIONS = {
                 dlgboxentryButton1Push = id; 
                 dlgboxentryButton2Push = id; 
+                pbar2Abort = id; 
                 pbarButtonPush = id; 
                 remoteControlChangeMode = id; 
                 remoteControlTextEntered = id; 
@@ -24,6 +25,8 @@
                 pbar1PBar = id; 
                 pbar1Rate = id; 
                 pbar1Window = id; 
+                pbar2Text = id; 
+                pbar2Window = id; 
                 pbar3PBar1 = id; 
                 pbar3PBar2 = id; 
                 pbar3Rate = id; 
@@ -101,6 +104,7 @@
                 calcType92p = id; 
                 calcTypeMatrix = id; 
                 calcTypeProbe = id; 
+                consoleModeMatrix = id; 
                 consoleSilent = id; 
                 consoleVerbose = id; 
                 linkCableTIE = id; 

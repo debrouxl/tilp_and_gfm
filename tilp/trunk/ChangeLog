@@ -66,7 +66,10 @@
 	* Made user prefs available earlier
 	* Added a matrix in the "Adavanced" tab for the console verbosity
 	* Fixes wrt libticables config
-	
+* 20011128 : vO.1.9
+	* Fixed release problem in refresh_infos() causing an EXC_BAD_ACCESS
+	to be raised at runtime
+	* Fixed a typo in SimpleTreeNode.m : VarSize != Varsize !!!
 
 
 

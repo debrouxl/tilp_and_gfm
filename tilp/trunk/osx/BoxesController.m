@@ -38,6 +38,7 @@ extern int is_active;
     // that's ugly :-/
 
     pbars_ptr->pbar1Window = pbar1Window;
+    pbars_ptr->pbar2Window = pbar2Window;
     pbars_ptr->pbar3Window = pbar3Window;
     pbars_ptr->pbar4Window = pbar4Window;
     pbars_ptr->pbar5Window = pbar5Window;
@@ -54,6 +55,7 @@ extern int is_active;
     pbars_ptr->pbar4Rate = pbar4Rate;
     pbars_ptr->pbar5Rate = pbar5Rate;
     
+    pbars_ptr->pbar2Text = pbar2Text;
     pbars_ptr->pbar4Text = pbar4Text;
     pbars_ptr->pbar5Text = pbar5Text;
 
@@ -70,12 +72,14 @@ extern int is_active;
     objects_ptr->term_mode = REMOTE;
 }
 
+#if defined(USE_SHEETS)
 // will be used later, when returning to sheets for this type of message box
 - (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     info_update.cancel = 1;
     [NSApp stopModal];
 }
+#endif
 
 - (IBAction)dlgboxentryButton1Push:(id)sender
 {
@@ -126,8 +130,10 @@ extern int is_active;
 
     info_update.cancel = 1;
     pbars_ptr->finished = 1;
-    
+
+#if defined(USE_SHEETS)    
     [NSApp stopModal];
+#endif
 }
 
 - (IBAction)remoteControlChangeMode:(id)sender

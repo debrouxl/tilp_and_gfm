@@ -15,6 +15,8 @@
     IBOutlet id pbar1PBar;
     IBOutlet id pbar1Rate;
     IBOutlet id pbar1Window;
+    IBOutlet id pbar2Text;
+    IBOutlet id pbar2Window;
     IBOutlet id pbar3PBar1;
     IBOutlet id pbar3PBar2;
     IBOutlet id pbar3Rate;
@@ -38,7 +40,9 @@
     IBOutlet id TilpController;
 }
 
+#if defined(USE_SHEETS)
 - (void)pbarType2DidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+#endif
 
 - (IBAction)dlgboxentryButton1Push:(id)sender;
 - (IBAction)dlgboxentryButton2Push:(id)sender;

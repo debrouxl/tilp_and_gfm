@@ -762,7 +762,8 @@ int cb_dirlist(void)
   err = cb_calc_is_ready();
   if(err) return 1;
 
-  c_directory_list();
+  if (c_directory_list() != 0)
+    return -1;
 
   return 0;
 }

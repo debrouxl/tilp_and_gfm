@@ -88,7 +88,7 @@ int main(int argc, const char *argv[], char **arge)
 	  msg_box(_("Error"), 
 		  _("The TiFFEP server can not be connected."));
 	}
-      /* this won't work on Mac OS X as is */
+      /* this won't work on Mac OS X as is */ // FIXME OS X
       id = gtk_idle_add(listen_tiffep, (gpointer)(&s));
       DISPLAY(_("The TiFFEP is running. Listening activated.\n"));
 

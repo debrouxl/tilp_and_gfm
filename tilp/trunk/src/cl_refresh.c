@@ -17,9 +17,13 @@
  */
 
 #include <stdio.h>
-#include <gtk/gtk.h>
 
-#include "includes.h"
+#ifdef __MACOSX__
+#include <libticalcs/calc_int.h>
+#endif
+
+#include "struct.h"
+#include "intl.h"
 
 void cmdline_start()
 {

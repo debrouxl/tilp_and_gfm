@@ -65,6 +65,7 @@ struct cocoa_pbars_ptr
  
     // the different windows
     id pbar1Window;
+    id pbar2Window;
     id pbar3Window;
     id pbar4Window;
     id pbar5Window;
@@ -84,6 +85,7 @@ struct cocoa_pbars_ptr
     id pbar5Rate;
     
     // the textField displaying a text message
+    id pbar2Text;
     id pbar4Text;    
     id pbar5Text;
  

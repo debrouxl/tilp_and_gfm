@@ -614,10 +614,12 @@ void l_directory_list()
     }
 }
 
-void c_directory_list(void)
+// MODIFIED OS X
+int c_directory_list(void)
 {
   struct varinfo varlist;
   int n;
+  int ret = 0;
 
   ctree_selection_destroy();
 
@@ -627,10 +629,13 @@ void c_directory_list(void)
     {
       varlist.next=NULL;
       n=0;
+      ret = -1;
     }
   gif->destroy_pbar();
 
   varlist_to_glist(varlist);
+  
+  return ret;
 }
 
 /*********************/

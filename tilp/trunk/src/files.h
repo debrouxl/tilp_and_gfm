@@ -45,7 +45,7 @@ void sort_lfiles_by_user(GList *list);
 void sort_lfiles_by_group(GList *list);
 void sort_lfiles_by_attrib(GList *list);
 
-void c_directory_list(void);
+int c_directory_list(void);
 
 void sort_cfiles_by_name(GList *list);
 void sort_cfiles_by_info(GList *list);

@@ -41,7 +41,7 @@
     [myNode setIconRep:[dict objectForKey:@"Image"]];
     [myNode setAttribute:[dict objectForKey:@"Attribute"]];
     [myNode setVartype:[dict objectForKey:@"Vartype"]];
-    [myNode setVarsize:[dict objectForKey:@"VarSize"]];
+    [myNode setVarsize:[dict objectForKey:@"Varsize"]];
     [myNode setIsLeaf:YES];
     
     [myNode autorelease];

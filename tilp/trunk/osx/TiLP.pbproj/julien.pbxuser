@@ -30,27 +30,28 @@
 		);
 		perUserDictionary = {
 			PBXWorkspaceConfiguration = {
-				ContentSize = "{908, 593}";
+				ContentSize = "{971, 592}";
 				LeftSlideOut = {
 					ActiveTab = 0;
-					Frame = "{{0, 23}, {908, 570}}";
+					Frame = "{{0, 23}, {971, 569}}";
 					Split0 = {
 						ActiveTab = 1;
-						Frame = "{{226, 0}, {682, 570}}";
+						Frame = "{{226, 0}, {745, 569}}";
 						Split0 = {
-							Frame = "{{0, 173}, {682, 397}}";
+							Frame = "{{0, 173}, {745, 396}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
 							Debugger = {
-								Frame = "{{0, 0}, {682, 208}}";
+								ActiveTab = 1;
+								Frame = "{{0, 0}, {745, 417}}";
 								Split0 = {
-									Frame = "{{0, 25}, {682, 183}}";
+									Frame = "{{0, 97}, {745, 320}}";
 									Split0 = {
-										Frame = "{{0, 0}, {333, 183}}";
+										Frame = "{{0, 0}, {364, 320}}";
 									};
 									Split1 = {
-										Frame = "{{342, 0}, {340, 183}}";
+										Frame = "{{373, 0}, {372, 320}}";
 									};
 									SplitCount = 2;
 								};
@@ -59,24 +60,24 @@
 									Frame = "{{0, 0}, {682, 50}}";
 								};
 								Tab1 = {
-									Frame = "{{0, 0}, {682, 123}}";
+									Frame = "{{0, 0}, {745, 72}}";
 								};
 								TabCount = 2;
 							};
-							Frame = "{{0, 0}, {682, 208}}";
+							Frame = "{{0, 0}, {745, 417}}";
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {682, 148}}";
+							Frame = "{{0, 0}, {745, 148}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {682, 148}}";
+								Frame = "{{0, 0}, {745, 148}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {684, 58}}";
-							BuildTranscriptFrame = "{{0, 67}, {684, 35}}";
-							Frame = "{{0, 0}, {682, 100}}";
+							BuildMessageFrame = "{{0, 0}, {747, 75}}";
+							BuildTranscriptFrame = "{{0, 84}, {747, 52}}";
+							Frame = "{{0, 0}, {745, 134}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -85,7 +86,7 @@
 					};
 					SplitCount = 1;
 					Tab0 = {
-						Frame = "{{0, 0}, {201, 570}}";
+						Frame = "{{0, 0}, {201, 569}}";
 					};
 					Tab1 = {
 						ClassesFrame = "{{0, 0}, {202, 56}}";

@@ -44,6 +44,8 @@
 #include "error.h"
 #include "gui_indep.h"
 #include "cb_misc.h"
+#include "cl_indep.h"
+#include "cl_refresh.h"
 
 #ifndef __MACOSX__
 #include "rcfile.h"
@@ -134,7 +136,7 @@ int main_init(int argc, char *argv[], char **arge)
   // for avoiding NULL accesses.
   // Initialization made with console mode functions
 
-#ifndef __MACOSX__
+//#ifndef __MACOSX__
   indep_functions.msg_box = cmdline_msg_box;
   indep_functions.user1_box = cmdline_user1_box;
   indep_functions.user2_box = cmdline_user2_box;
@@ -148,7 +150,7 @@ int main_init(int argc, char *argv[], char **arge)
   indep_functions.destroy_pbar = cmdline_destroy_pbar;
   set_gui_fncts(&indep_functions);  // Init indep functions
   cmdline_init_refresh_functions(); // Init refresh functions
-#endif /* !__MACOSX__ */
+//#endif /* !__MACOSX__ */
 
   // Initialize options with default values
   cb_default_config();
@@ -160,7 +162,6 @@ printf("DEBUG: default config done\n");
   read_rc_file();
 #else
   rc_get_user_prefs();
-  ticable_DISPLAY_settings(options.console_mode);
 #endif
 
 printf("DEBUG: read rc done\n");  
@@ -229,8 +230,6 @@ printf("DEBUG: libs versions test done\n");
      Initialize the libTIcable library 
   */
   
- /* FIXME OS X */
-#ifndef __MACOSX__
   ticable_set_param(options.lp);
   ticable_set_cable(options.lp.link_type, &link_cable);
 
@@ -239,7 +238,6 @@ printf("DEBUG: libs versions test done\n");
       fprintf(stderr, _("link_cable.init_port: error code %i\n"), err);
       tilp_error(err);
     }
-#endif
     
 printf("DEBUG: ticable INIT done\n");
     
@@ -295,6 +293,7 @@ printf("DEBUG: ticalc INIT done\n");
      If we are in command line mode, do the required operation
      and exit else go on to a graphic interface.
   */
+// FIXME OS X : try it out...
 #ifndef __MACOSX__
   if(working_mode == MODE_CMD)
     {
@@ -356,6 +355,7 @@ int version(void)
   fprintf(stdout, _("Mac OS X port Version %s, (C) 2001 Julien BLACHE\n"),
           TILP_OSX_VERSION);
 #endif
+  fprintf(stdout, _("Built on %s %s\n"), __DATE__, __TIME__);
   fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
   fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
 

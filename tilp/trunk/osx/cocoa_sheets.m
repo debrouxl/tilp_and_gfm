@@ -36,10 +36,23 @@ create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
                                                     
 void
 create_cocoa_pbar_type2_sheet(const char *title, char *message)
-{                      
+{
+#if defined(USE_SHEETS)                      
     NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], @"Abort", nil, nil);
     
     info_update.cancel = 1;
+#else
+    id pbar2Window;
+    id pbar2Text;
+
+    pbar2Window = pbars_ptr->pbar2Window;
+    pbar2Text = pbars_ptr->pbar2Text;
+
+    [pbar2Window setTitle:[NSString stringWithCString:title]];
+    [pbar2Text setStringValue:[NSString stringWithCString:message]];
+    
+    [pbar2Window makeKeyAndOrderFront:nil];
+#endif
 }
  
 /* user boxes */
@@ -138,7 +151,8 @@ create_cocoa_pbar_type1_sheet(const char *title)
     
     pbars_ptr->pbar1 = pbars_ptr->pbar1PBar;
     pbars_ptr->pbar_rate = pbars_ptr->pbar1Rate;
-    
+
+#if defined(USE_SHEETS)    
     [NSApp beginSheet:pbar1Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -148,7 +162,10 @@ create_cocoa_pbar_type1_sheet(const char *title)
     [NSApp runModalForWindow:pbar1Window];
     
     [NSApp endSheet:pbar1Window];
-    [pbar1Window orderOut:nil]; 
+    [pbar1Window orderOut:nil];
+#else
+    [pbar1Window makeKeyAndOrderFront:nil];
+#endif
 }
  
 void
@@ -166,7 +183,8 @@ create_cocoa_pbar_type3_sheet(const char *title)
     pbars_ptr->pbar1 = pbars_ptr->pbar3PBar1;
     pbars_ptr->pbar2 = pbars_ptr->pbar3PBar2;
     pbars_ptr->pbar_rate = pbars_ptr->pbar3Rate;
-    
+
+#if defined(USE_SHEETS)
     [NSApp beginSheet:pbar3Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -177,6 +195,9 @@ create_cocoa_pbar_type3_sheet(const char *title)
         
     [NSApp endSheet:pbar3Window];
     [pbar3Window orderOut:nil]; 
+#else
+    [pbar3Window makeKeyAndOrderFront:nil];
+#endif
 }
  
 void
@@ -198,7 +219,8 @@ create_cocoa_pbar_type4_sheet(const char *title, char *text)
     pbars_ptr->pbar_text = pbars_ptr->pbar4Text;
     
     [pbar4Text setStringValue:[NSString stringWithCString:text]];
-    
+
+#if defined(USE_SHEETS)    
     [NSApp beginSheet:pbar4Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -209,6 +231,9 @@ create_cocoa_pbar_type4_sheet(const char *title, char *text)
         
     [NSApp endSheet:pbar4Window];
     [pbar4Window orderOut:nil]; 
+#else
+    [pbar4Window makeKeyAndOrderFront:nil];
+#endif
 }
  
 void
@@ -232,6 +257,7 @@ create_cocoa_pbar_type5_sheet(const char *title, char *text)
 
     [pbar5Text setStringValue:[NSString stringWithCString:text]];
 
+#if defined(USE_SHEETS)
     [NSApp beginSheet:pbar5Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -242,6 +268,9 @@ create_cocoa_pbar_type5_sheet(const char *title, char *text)
         
     [NSApp endSheet:pbar5Window];
     [pbar5Window orderOut:nil]; 
+#else
+    [pbar5Window makeKeyAndOrderFront:nil];
+#endif
 }
  
 
@@ -250,11 +279,36 @@ create_cocoa_pbar_type5_sheet(const char *title, char *text)
 void
 destroy_pbar(void)
 {
-    if (pbars_ptr->pbar1 != nil)
-        [NSApp stopModal];
-    else
-        return;
+#if !defined(USE_SHEETS)
+    id window;
+#endif
+    
+#if defined(USE_SHEETS)
+    [NSApp stopModal];
+#else
+        window = pbars_ptr->pbar1Window;
+        if ([window isVisible])
+            [window orderOut:nil];
+            
+        window = pbars_ptr->pbar2Window;
+        if ([window isVisible])
+            [window orderOut:nil];
         
+        window = pbars_ptr->pbar3Window;
+        if ([window isVisible])
+            [window orderOut:nil];
+
+        window = pbars_ptr->pbar4Window;
+        if ([window isVisible])
+            [window orderOut:nil];
+
+        window = pbars_ptr->pbar5Window;
+        if ([window isVisible])
+            [window orderOut:nil];
+            
+        window = nil;
+#endif
+
     pbars_ptr->pbar1 = nil;
     pbars_ptr->pbar2 = nil;
     pbars_ptr->pbar_rate = nil;
