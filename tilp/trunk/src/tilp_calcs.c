@@ -539,7 +539,7 @@ int tilp_calc_ams2rom(char *filename)
 	info_update.start();
 
 	/* FLASH upgrade */
-	for (i = 0; i < ptr->data_length; i++) {
+	for (i = 0; i < (int)ptr->data_length; i++) {
 
 		//info_update.percentage = (float)i/ptr->data_length;
 		//info_update.pbar();

@@ -59,7 +59,7 @@ int tilp_error(int errcode)
 	/* Pop error messages */
 	if (working_mode & MODE_GUI) {
 		int i;
-		for (i = 0; i < g_list_length(stack); i++) {
+		for (i = 0; i < (int)g_list_length(stack); i++) {
 			int err =
 			    GPOINTER_TO_INT((g_list_nth(stack, i))->data);
 

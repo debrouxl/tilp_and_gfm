@@ -27,6 +27,9 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <glade/glade.h>
+#ifdef __WIN32__
+#include <direct.h>     // _getdrive
+#endif
 
 #include "tilp_core.h"
 
@@ -150,16 +153,13 @@ GLADE_CB void on_unzip1_activate(GtkMenuItem * menuitem,
 				 gpointer user_data)
 {
 	gchar *cmdline;
-	gchar *s;
 	gchar buffer[MAXCHARS];
 	FILE *p;
 	GList *ptr;
 	int ret;
-
-#ifdef __WIN32__
-	gint n;
-
-#endif				/*  */
+#ifndef __WIN32__
+    gchar *s;
+#endif
 
 //
 	if (clist_win.selection == NULL) {
@@ -236,9 +236,7 @@ GLADE_CB void on_untar1_activate(GtkMenuItem * menuitem,
 	int ret;
 
 #ifdef __WIN32__
-	gint n;
 	gchar buffer[MAXCHARS];
-
 #endif				/*  */
 
 //
@@ -570,7 +568,7 @@ static void on_clist_rbm_show2(GtkWidget * widget, gpointer user_data)
 	GtkWidget *change_drive;
 	GtkWidget *change_drive_menu;
 	GtkWidget *c_drive;
-	int ch, drive, curdrive;
+	int drive, curdrive;
 	gchar buffer[8];
 	gint available_drives[27];	// A..Z -> 26 letters
 	change_drive = gtk_menu_item_new_with_label(_("Change drive"));

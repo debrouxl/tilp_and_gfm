@@ -33,17 +33,17 @@
 
 #include "tilp_core.h"
 
-static void cmdline_start()
+static void cmdline_start(void)
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
 } 
 
-static void cmdline_stop()
+static void cmdline_stop(void)
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
 } 
 
-static void cmdline_pbar()
+static void cmdline_pbar(void)
 {
 
 	/*

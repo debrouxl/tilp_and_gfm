@@ -161,13 +161,13 @@ static int detect_for_utf8(const char *s)
 {
 	int i;
 
-	for(i=0; i<strlen(s); i++)
+	for(i = 0; i < (int)strlen(s); i++)
 	{
 		if(((uint8_t)s[i] >= 0xC0) && ((uint8_t)s[i] <= 0xCF)) 
 			break;
 	}
 
-	return (i < strlen(s));
+	return (i < (int)strlen(s));
 }
 
 #ifdef __WIN32__

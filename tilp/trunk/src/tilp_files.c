@@ -814,8 +814,8 @@ char *tilp_file_underscorize(char *s)
 {
 	int i, j;
 	char tokens[] = "/\\:*?\"<>|- ";
-	for (i = 0; i < strlen(s); i++) {
-		for (j = 0; j < strlen(tokens); j++) {
+	for (i = 0; i < (int)strlen(s); i++) {
+		for (j = 0; j < (int)strlen(tokens); j++) {
 			if (s[i] == tokens[j])
 				s[i] = '_';
 		}

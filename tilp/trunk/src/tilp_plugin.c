@@ -260,7 +260,7 @@ gchar *tilp_plugins_search_query(const gchar * extension)
 	GList *elt;
 	TilpPluginInfo *info;
 
-	if (counter == g_list_length(plugin_list))
+	if (counter == (int)g_list_length(plugin_list))
 		return NULL;
 
 	if (extension == NULL)

@@ -159,7 +159,6 @@ int tilp_drive_change(char drive_letter)
 {
 
 #ifdef __WIN32__
-	char buffer[MAXCHARS];
 	gchar *s;
 	snprintf(clist_win.current_dir, 8, "%c:\\", (char) drive_letter);
 

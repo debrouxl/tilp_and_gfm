@@ -240,7 +240,7 @@ void ctree_refresh(void)
 #elif defined(DIRLIST_TRANS) || defined(DIRLIST_FORM2) /* DIRLIST_FORM1 */
 	vars = ctree_win.var_tree;
 #endif				                       /* DIRLIST_FORM2 */
-	for (i = 0; i < t_node_n_children(vars); i++) {
+	for (i = 0; i < (int)t_node_n_children(vars); i++) {
 		TNode *parent = t_node_nth_child(vars, i);
 		TiVarEntry *fe = (TiVarEntry *) (parent->data);
 		if ((fe != NULL) || ti_calc.has_folder) {
@@ -252,7 +252,7 @@ void ctree_refresh(void)
 					   CTREE_ICON, pix1, -1);
 		}
 
-		for (j = 0; j < t_node_n_children(parent); j++) {
+		for (j = 0; j < (int)t_node_n_children(parent); j++) {
 			TNode *node = t_node_nth_child(parent, j);
 			gchar **row_text =
 			    g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
@@ -302,7 +302,7 @@ void ctree_refresh(void)
 #elif defined(DIRLIST_TRANS) || defined(DIRLIST_FORM2) /* DIRLIST_FORM1 */
 	apps = ctree_win.app_tree;
 #endif				                       /* DIRLIST_FORM2 */
-	for (i = 0; i < t_node_n_children(apps); i++) {
+	for (i = 0; i < (int)t_node_n_children(apps); i++) {
 		TNode *node = t_node_nth_child(apps, i);
 		gchar **row_text =
 		    g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
