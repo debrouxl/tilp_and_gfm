@@ -256,6 +256,7 @@
 				00FFA4BE01707B147F000001,
 				00FFA4C401707C907F000001,
 				F50F01000183725501000102,
+				F5F274FD019EE8CD01A9EF85,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -406,6 +407,7 @@
 				F50D0B18019DAC3B01041594,
 				F50D0B19019DAC3B01041594,
 				F50D0B1A019DAC3B01041594,
+				F5F274FE019EE8CD01A9EF85,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -2635,6 +2637,17 @@
 		};
 		F5F1CF56019C332C010BF862 = {
 			fileRef = F5F1CF54019C332C010BF862;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F274FD019EE8CD01A9EF85 = {
+			isa = PBXFileReference;
+			path = Credits.rtf;
+			refType = 2;
+		};
+		F5F274FE019EE8CD01A9EF85 = {
+			fileRef = F5F274FD019EE8CD01A9EF85;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -1,10 +1,6 @@
-//
-//  cocoa_config.m
-//  TiLP
-//
-//  Created by julien on Sat Oct 20 2001.
-//  Copyright (c) 2001 __MyCompanyName__. All rights reserved.
-//
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
 
 #include "cocoa_config.h"
 #include "cocoa_structs.h"

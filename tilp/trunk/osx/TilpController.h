@@ -1,3 +1,7 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+
 #import <Cocoa/Cocoa.h>
 #import "SimpleTreeNode.h"
 
@@ -14,7 +18,7 @@
     IBOutlet id numberOfFolders;
     IBOutlet id numberOfVars;
     IBOutlet id memoryUsed;
-
+ 
     SimpleTreeNode *dirlistData;
      
     NSMutableDictionary *tilpConfig;

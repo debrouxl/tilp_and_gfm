@@ -1,3 +1,12 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ *
+ * The code for the toolbar is derived from Apple Sample Code (ToolbarSample)
+ * Apple is not liable for anything regarding this code, according to
+ * the Apple Sample Code License.
+ *
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif

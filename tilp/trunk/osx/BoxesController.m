@@ -1,4 +1,7 @@
-
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+ 
 #include <unistd.h>
 
 #include <libticalcs/defs92.h>

@@ -65,6 +65,7 @@
                 saveConfig = id; 
                 sendAMS = id; 
                 sendFLASHApp = id; 
+                showAbout = id; 
                 showThanks = id; 
             }; 
             CLASS = MenuController; 

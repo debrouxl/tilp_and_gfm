@@ -1,3 +1,7 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+
 #import <Cocoa/Cocoa.h>
 
 @interface PrefsController : NSObject

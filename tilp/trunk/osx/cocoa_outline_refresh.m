@@ -22,12 +22,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 void
 refresh_outline(void)
 {
-    // FIXME OS X
-    // 1/ archived.tiff is for test only (ie replace with appropriate images)
-    // 2/ check how pixmaps are set in a gtk_ctree, I'm unsure. I believe we
-    // have 2 different pixmaps in this ctree in the GTK GUI
-    // 3/ should release dirlistData if it already exists
- 
     int folderPos = 0; // position in tiVarsArray
     int varPos = 0; // position in the array representing the folder
 
@@ -176,6 +170,7 @@ refresh_outline(void)
     dirlistData = [[SimpleTreeNode treeFromDictionary:content] retain];
     objects_ptr->dirlistData = dirlistData;
     
+    // release the big fscking dictionary. Feel better, eh ? :)
     [content release];
     content = nil;
     

@@ -57,8 +57,11 @@
 * 20011110 : v0.1.6
 	* finished outlineview handling
 	* infos refresh (below the outlineview)
-
-
+* 20011111 : v0.1.7
+	* legal stuff wrt Apple Sample Code
+	* found - [NSApp addWindowsItem:title:filename], so did the "Windows"
+	  menu management
+	* replaced the standard about panel with something more verbose
 
 
 	

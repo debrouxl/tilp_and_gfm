@@ -1,3 +1,7 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+
 #import <Cocoa/Cocoa.h>
 
 @interface MenuController : NSObject
@@ -20,6 +24,9 @@
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;    
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar;
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar;
+
+// Application menu
+- (IBAction)showAbout:(id)sender;
 
 // file
 

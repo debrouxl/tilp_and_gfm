@@ -1,3 +1,7 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+
 #include <glib/glib.h>
 
 #include "../src/cb_misc.h"
@@ -112,6 +116,23 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"doBackup", @"doRestore" ,nil];
 }
 
+// Application menu
+
+- (IBAction)showAbout:(id)sender
+{
+    NSMutableDictionary *aboutOptions;
+    
+    aboutOptions = [[NSMutableDictionary alloc] init];
+    
+    [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
+    [aboutOptions setObject:@"0.1.7" forKey:@"Version"];
+    [aboutOptions setObject:@"Copyright © 1999-2001 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
+    [aboutOptions setObject:@"4.51" forKey:@"ApplicationVersion"];
+
+    [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
+    
+    [aboutOptions release];
+}
 
 // file
 
@@ -156,6 +177,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     // fix the text (keys <=> TI ops)
     // need to find how to catch certain key combos...
     // maybe use the Command key...
+    // forget key combos, will make a keyboard...
 
     id remoteControlWindow;
     id remoteControlTextArea;
@@ -176,6 +198,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
     
     [remoteControlWindow makeKeyAndOrderFront:self];
+    
+    [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
 }
 
 - (IBAction)getScreen:(id)sender
@@ -190,6 +214,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         return;
     
     [screendumpWindow makeKeyAndOrderFront:self];
+    
+    [NSApp addWindowsItem:screendumpWindow title:@"Screendump" filename:NO];
     
     bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
     [bitmap autorelease];
@@ -557,12 +583,19 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)newWindow:(id)sender
 {
-    // FIXME OS X
-    // a bit of Cocoa coding is required here. Later.
-    // could be tricky... see Cocoa's docs.
-    // maybe NSWindowController... ?
+    if ([mainWindow isVisible] == NO)
+        [mainWindow makeKeyAndOrderFront:self];
 }
 
+
+// used to enable/disable the "New Window" menu item
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    if ([[menuItem title] isEqualToString:@"New Window"] && ([mainWindow isVisible] == YES))
+        return NO;
+    else
+        return YES;
+}
 
 // help
 
@@ -571,6 +604,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [thanksPanelText readRTFDFromFile:[[NSBundle mainBundle] pathForResource:@"Thanks" ofType:@"rtf"]];
     
     [thanksPanel makeKeyAndOrderFront:self];
+    
+    [NSApp addWindowsItem:thanksPanel title:@"Thanks" filename:NO];
 }
 
 @end

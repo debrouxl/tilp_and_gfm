@@ -1,3 +1,7 @@
+/*
+ * TiLP Cocoa GUI for Mac OS X
+ */
+
 #include "../src/struct.h"
 #include "../src/defs.h"
 
