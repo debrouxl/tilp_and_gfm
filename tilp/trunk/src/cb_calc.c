@@ -491,8 +491,8 @@ int cb_send_flash_app(char *filename)
   int err, ret;
   FILE *bck;
   gint old_timeout;
-  
-  char *msg = _("You are going to send a FLASH application on your calculator.\nHe is strongly recommended for Windows users to close any application and eventually turn off your screen saver (this makes the transfer rate decrease !).");
+
+  char *msg = _("You are going to send a FLASH application on your calculator.\nYou are advised to eventually turn off your screen saver,\nwhich could cause the transfer to crash.");
   
   ret=gif->user2_box(_("Warning"), msg,
 		     _("Continue"), _("Cancel"));

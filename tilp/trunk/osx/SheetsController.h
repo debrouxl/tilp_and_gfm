@@ -79,11 +79,11 @@
 
 - (void)msgSheet:(NSString *)message title:(NSString *)title;
 
-- (int)user1Sheet:(NSString *)message button1:(NSString *)button1;
-- (int)user2Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2;
-- (int)user3Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3;
+- (int)user1Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1;
+- (int)user2Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2;
+- (int)user3Sheet:(NSString *)title message:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3;
 
-- (NSString *)dlgboxEntry:(NSString *)message content:(NSString *)content;
+- (NSString *)dlgboxEntry:(NSString *)title message:(NSString *)message content:(NSString *)content;
 
 - (void)pbarType2:(NSString *)message;
 

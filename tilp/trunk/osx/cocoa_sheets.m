@@ -49,9 +49,10 @@ create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
     id mySheetsController;
     
     mySheetsController = objects_ptr->mySheetsController;
-    
-    ret = [mySheetsController user1Sheet:[NSString stringWithCString:message]
-                        button1:[NSString stringWithCString:button1]];
+
+    ret = [mySheetsController user1Sheet:[NSString stringWithCString:title]
+                              message:[NSString stringWithCString:message]
+                              button1:[NSString stringWithCString:button1]];
                         
     return ret;
 }
@@ -65,8 +66,9 @@ create_cocoa_user2_sheet(const char *title, char *message, const char *button1, 
     id mySheetsController;
     
     mySheetsController = objects_ptr->mySheetsController;
-    
-    ret = [mySheetsController user2Sheet:[NSString stringWithCString:message]
+
+    ret = [mySheetsController user2Sheet:[NSString stringWithCString:title]
+                              message:[NSString stringWithCString:message]
                               button1:[NSString stringWithCString:button1]
                               button2:[NSString stringWithCString:button2]];
 
@@ -81,8 +83,9 @@ create_cocoa_user3_sheet(const char *title, char *message, const char *button1, 
     id mySheetsController;
     
     mySheetsController = objects_ptr->mySheetsController;
-    
-    ret = [mySheetsController user3Sheet:[NSString stringWithCString:message]
+
+    ret = [mySheetsController user3Sheet:[NSString stringWithCString:title]
+                              message:[NSString stringWithCString:message]
                               button1:[NSString stringWithCString:button1]
                               button2:[NSString stringWithCString:button2]
                               button3:[NSString stringWithCString:button3]];
@@ -99,8 +102,9 @@ create_cocoa_dlgbox_entry(const char *title, const char *message, const char *co
     NSString *data;
     
     mySheetsController = objects_ptr->mySheetsController;
-    
-    data = [mySheetsController dlgboxEntry:[NSString stringWithCString:message]
+
+    data = [mySheetsController dlgboxEntry:[NSString stringWithCString:title]
+                               message:[NSString stringWithCString:message]
                                content:[NSString stringWithCString:content]];
                                
     ret = strdup([data cString]);
