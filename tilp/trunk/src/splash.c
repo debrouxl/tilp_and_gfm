@@ -30,6 +30,8 @@
 
 #include "support.h"
 #include "tilp_version.h"
+#include "tilp_core.h"
+
 typedef struct {
 	GtkWidget *window;
 	GtkWidget *label;
@@ -67,9 +69,7 @@ GtkWidget *splash_screen_start(void)
 	g_object_unref(pixbuf);
 	gtk_widget_show(image);
 	gtk_widget_show(splashscreen.window);
-	while (gtk_events_pending()) {
-		gtk_main_iteration();
-	}
+
 	return splashscreen.window;
 }
 void splash_screen_stop(void)
@@ -78,7 +78,5 @@ void splash_screen_stop(void)
 } void splash_screen_set_label(gchar * label)
 {
 	gtk_label_set_text(GTK_LABEL(splashscreen.label), label);
-	while (gtk_events_pending()) {
-		gtk_main_iteration();
-	}
+	GTK_REFRESH();
 }

@@ -233,8 +233,6 @@ gint display_action_dbox(gchar * dest)
 	}
 
 	// box running
-	while (gtk_events_pending())
-		gtk_main_iteration();
 	gtk_dialog_set_default_response(GTK_DIALOG(dbox),
 					GTK_RESPONSE_CANCEL);
 	result = gtk_dialog_run(GTK_DIALOG(dbox));

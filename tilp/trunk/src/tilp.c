@@ -279,8 +279,7 @@ GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
 				   G_CALLBACK(gtk_widget_destroy),
 					 GTK_OBJECT(dialog));
 	  gtk_widget_show_all(GTK_WIDGET(dialog));
-	  while (gtk_events_pending())
-	    gtk_main_iteration();
+	  
 	  timer = g_timer_new();
 	  while (g_timer_elapsed(timer, NULL) < 3.0);
 	  g_timer_destroy(timer);
@@ -324,8 +323,7 @@ static void go_to_bookmark(const char *link)
 					 G_CALLBACK(gtk_widget_destroy),
 					 GTK_OBJECT(dialog));
 		gtk_widget_show_all(GTK_WIDGET(dialog));
-		while (gtk_events_pending())
-			gtk_main_iteration();
+		
 		timer = g_timer_new();
 		while (g_timer_elapsed(timer, NULL) < 3.0);
 		g_timer_destroy(timer);
@@ -487,8 +485,8 @@ void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
 			g_free(dst_folder);
 		}
 		// needed: avoid box locking/flickering !
-		while (gtk_events_pending())
-			gtk_main_iteration();
+		GTK_REFRESH();
+		
 		if (tilp_calc_send_var(to_flash) != 0)
 			return;
 	}

@@ -73,8 +73,7 @@ gint display_release_dbox()
 	text = glade_xml_get_widget(xml, "textview1");
 	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 	gtk_text_buffer_set_text(txtbuf, buffer, len);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+	
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:

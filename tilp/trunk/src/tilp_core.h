@@ -216,6 +216,11 @@ extern "C" {
 # define GLADE_CB
 #endif
 
+#define GTK_REFRESH()	{ \
+	while (gtk_events_pending())	\
+	    gtk_main_iteration();	\
+	}
+
 #ifdef __cplusplus
 }
 #endif

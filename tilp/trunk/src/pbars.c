@@ -38,8 +38,7 @@ void create_pbar_type1(const gchar * title)
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar1");
 	p_win.label_rate = glade_xml_get_widget(xml, "label20");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -61,8 +60,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
 	p_win.label = glade_xml_get_widget(xml, "label3");
 	gtk_label_set_text(GTK_LABEL(p_win.label), text);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -87,8 +85,7 @@ void create_pbar_type3(const gchar * title)
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar3");
 	p_win.pbar2 = glade_xml_get_widget(xml, "progressbar2");
 	p_win.label_rate = glade_xml_get_widget(xml, "label21");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -111,8 +108,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 	gtk_label_set_text(GTK_LABEL(p_win.label), text);
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar4");
 	p_win.label_rate = glade_xml_get_widget(xml, "label22");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -139,8 +135,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar6");
 	p_win.pbar2 = glade_xml_get_widget(xml, "progressbar5");
 	p_win.label_rate = glade_xml_get_widget(xml, "label23");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -159,8 +154,7 @@ void create_pbar_type1(const gchar * title)
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar1");
 	p_win.label_rate =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label20");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -176,8 +170,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	p_win.label =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label3");
 	gtk_label_set_text(GTK_LABEL(p_win.label), text);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -198,8 +191,7 @@ void create_pbar_type3(const gchar * title)
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar2");
 	p_win.label_rate =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label21");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -218,8 +210,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar4");
 	p_win.label_rate =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label22");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 
@@ -243,8 +234,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "progressbar5");
 	p_win.label_rate =
 	    gtk_object_get_data(GTK_OBJECT(pbar_window), "label23");
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(pbar_window);
 }
 

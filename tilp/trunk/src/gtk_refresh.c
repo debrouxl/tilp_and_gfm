@@ -78,8 +78,7 @@ static void refresh_pbar1()
 		gtk_label_set_text(GTK_LABEL(p_win.label_rate), buffer);
 		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar1), info_update.percentage);
 
-		while (gtk_events_pending()) 
-			gtk_main_iteration();
+		GTK_REFRESH();
 	}
 }
 
@@ -97,8 +96,7 @@ static void refresh_pbar2()
 
 		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar2), info_update.main_percentage);
 
-		while (gtk_events_pending()) 
-			gtk_main_iteration();
+		GTK_REFRESH();
     }
 }
 
@@ -119,14 +117,12 @@ static void gtkgui_label()
 
 	gtk_label_set_text(GTK_LABEL(p_win.label), info_update.label_text);
 
-	while (gtk_events_pending()) 
-		gtk_main_iteration();
+	GTK_REFRESH();
 }
 
 static void gtkgui_refresh()
 {
-	while (gtk_events_pending()) 
-		gtk_main_iteration();
+	GTK_REFRESH();
 }
 
 void tilp_guigtk_set_refresh(void)

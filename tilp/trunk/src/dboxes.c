@@ -54,8 +54,6 @@ void msg_box(const gchar * title, gchar * message)
 		    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   msg_type, GTK_BUTTONS_CLOSE,
 					   message);
-		while (gtk_events_pending())
-			gtk_main_iteration();
 		gtk_dialog_run(GTK_DIALOG(dialog));
 	} else {
 		dialog =
@@ -70,8 +68,7 @@ void msg_box(const gchar * title, gchar * message)
 		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
 				  label);
 		gtk_widget_show(label);
-		while (gtk_events_pending())
-			gtk_main_iteration();
+
 		result = gtk_dialog_run(GTK_DIALOG(dialog));
 		switch (result) {
 		case GTK_RESPONSE_OK:
@@ -106,8 +103,7 @@ gint msg_box2(const char *title, char *message)
 				   GTK_BUTTONS_OK_CANCEL, message);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) {
 	case GTK_RESPONSE_OK:
@@ -141,8 +137,7 @@ gint msg_box3(const char *title, char *message, const char *button1,
 	label = gtk_label_new(message);
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
 	gtk_widget_show(label);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) {
 	case GTK_RESPONSE_YES:
@@ -177,8 +172,7 @@ gint msg_box4(const char *title, char *message)
 	label = gtk_label_new(message);
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
 	gtk_widget_show(label);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) {
 	case GTK_RESPONSE_OK:

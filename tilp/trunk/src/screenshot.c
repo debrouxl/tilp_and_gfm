@@ -254,11 +254,8 @@ static const gchar *create_fsel(void)
 
 	filename = NULL;
 	gtk_widget_show(fs);
-	while (filename == NULL) {
-		while (gtk_events_pending()) {
-			gtk_main_iteration();
-		}
-	}
+	while (filename == NULL)
+		GTK_REFRESH();
 
 	if (!strcmp(filename, ""))
 		return NULL;

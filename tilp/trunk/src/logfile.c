@@ -89,9 +89,6 @@ gint display_logfile_dbox()
 	gtk_widget_show(dbox);
 	//gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
 
-	while (gtk_events_pending())
-		gtk_main_iteration();
-
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:

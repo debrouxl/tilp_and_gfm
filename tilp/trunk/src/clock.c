@@ -100,8 +100,7 @@ gint display_clock_dbox()
 	dbox = glade_xml_get_widget(xml, "clock_dbox");
 	update_fields(&tmp_clk);
 	modified = FALSE;
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:

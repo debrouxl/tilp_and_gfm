@@ -181,8 +181,7 @@ gint display_fileselection_2(void)
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+	
 	gtk_widget_show(fs);
 	return 0;
 }
@@ -211,8 +210,7 @@ gint display_fileselection_3(void)
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+				 
 	gtk_widget_show(fs);
 	return 0;
 }
@@ -241,8 +239,7 @@ gint display_fileselection_4(void)
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show(fs);
 	return 0;
 }
@@ -278,8 +275,7 @@ gint display_fileselection_7(void)
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show(fs);
 	return 0;
 }

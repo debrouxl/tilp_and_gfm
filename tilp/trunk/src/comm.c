@@ -209,8 +209,6 @@ gint display_comm_dbox()
 	memcpy(&tmp_lp, &options.lp, sizeof(TicableLinkParam));
 	
 	// Loop
-	while (gtk_events_pending())
-		gtk_main_iteration();
 	init = 0;
  loop:
 	result = gtk_dialog_run(GTK_DIALOG(dbox));

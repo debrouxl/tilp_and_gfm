@@ -73,8 +73,7 @@ gint display_extprgms_dbox()
 	data = glade_xml_get_widget(xml, "entry8");
 	gtk_entry_set_text(GTK_ENTRY(data), options.web_options);
 	web_entry2 = GTK_WIDGET(data);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+
 	gtk_widget_show_all(dbox);
 	return 0;
 }

@@ -89,9 +89,6 @@ gint display_scroptions_dbox()
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
 					     FALSE);
 
-	while (gtk_events_pending())
-		gtk_main_iteration();
-
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:

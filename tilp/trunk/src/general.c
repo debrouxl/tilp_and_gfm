@@ -125,8 +125,7 @@ gint display_general_dbox()
 	if (options.clist_sort_order == SORT_DOWN)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
 					     TRUE);
-	while (gtk_events_pending())
-		gtk_main_iteration();
+	
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:
