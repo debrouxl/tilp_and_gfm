@@ -20,9 +20,7 @@
 #include <string.h>
 
 #include "tilp_core.h"
-TilpScreen ti_screen = {
-	0
-};
+TilpScreen ti_screen = { 0 };
 
 
 /*
@@ -57,43 +55,85 @@ int tilp_screen_capture(void)
 
 
 /*
-  Save the current screen in the right format according to
-  the current tilp options.
-  Returns 0 if successful
+  Convert the bitmap into a B&W bytemap.
+  The returned RRGGBB array must be freed when no longer used.
 */
-/*
-int tilp_screen_save(char *filename)
+uint8_t *tilp_screen_convert(void)
 {
-	FILE *image;
+	guchar *bitmap, *bytemap, data, mask;
+	gint w;
+	gint h;
+	int row, col, bit, pixel, pos;
 
-	if ((image = fopen(filename, "wb")) == NULL) {
-		DISPLAY(_("Unable to open this file: %s\n"), filename);
+	bitmap = ti_screen.bitmap;
+	w = ti_screen.width;
+	h = ti_screen.height;
+
+	bytemap = g_malloc(3 * w * h);
+
+	for (row = 0; row < h; row++) {
+		for (col = 0; col < (w >> 3); col++) {
+			data = bitmap[(w >> 3) * row + col];
+			mask = 0x80;
+
+			for (bit = 0; bit < 8; bit++) {
+				pixel = data & mask;
+				pos = row * w + 8 * col + bit;
+				if (pixel) {
+					bytemap[3 * pos + 0] = 0;
+					bytemap[3 * pos + 1] = 0;
+					bytemap[3 * pos + 2] = 0;
+				} else {
+					bytemap[3 * pos + 0] = 255;
+					bytemap[3 * pos + 1] = 255;
+					bytemap[3 * pos + 2] = 255;
+				}
+				mask >>= 1;
+			}
+		}
 	}
 
-	ti_screen.img.depth = 2;	// 2 colors
-	ti_screen.img.encoding = IMG_BW_TYPE;	// B&W
-
-	if (options.screen_blurry)
-		blurry_bitmap(&(ti_screen.img));
-
-	switch (options.screen_format) {
-	case XPM:
-		write_xpm_format(image, &(ti_screen.img));
-		break;
-	case PCX:
-		write_pcx_format(image, &(ti_screen.img));
-		break;
-#ifndef __MACOSX__
-	case JPG:
-		write_jpg_format(image, &(ti_screen.img));
-		break;
-#endif
-	case BMP:
-		write_bmp_format(image, &(ti_screen.img));
-		break;
-	}
-	fclose(image);
-
-	return 0;
+	return bytemap;
 }
+
+/*
+  Convert the bitmap into a 2-colors bytemap.
+  The returned RRGGBB array must be freed when no longer used.
 */
+uint8_t *tilp_screen_blurry(void)
+{
+	guchar *bitmap, *bytemap, data, mask;
+	gint w;
+	gint h;
+	int row, col, bit, pixel, pos;
+
+	bitmap = ti_screen.bitmap;
+	w = ti_screen.width;
+	h = ti_screen.height;
+
+	bytemap = g_malloc(3 * w * h);
+
+	for (row = 0; row < h; row++) {
+		for (col = 0; col < (w >> 3); col++) {
+			data = bitmap[(w >> 3) * row + col];
+			mask = 0x80;
+
+			for (bit = 0; bit < 8; bit++) {
+				pixel = data & mask;
+				pos = row * w + 8 * col + bit;
+				if (pixel) {
+					bytemap[3 * pos + 0] = 0x00;
+					bytemap[3 * pos + 1] = 0x00;
+					bytemap[3 * pos + 2] = 0x34;
+				} else {
+					bytemap[3 * pos + 0] = 0xa8;
+					bytemap[3 * pos + 1] = 0xb4;
+					bytemap[3 * pos + 2] = 0xa8;
+				}
+				mask >>= 1;
+			}
+		}
+	}
+
+	return bytemap;
+}

@@ -105,7 +105,7 @@ void version(void)
 		TILP_VERSION);
 
 #ifdef __BSD__
-	DISPLAY(_("FreeBSDP port, (c) 2003 Tijl Coosemans\n"));
+	DISPLAY(_("FreeBSD port, (c) 2003 Tijl Coosemans\n"));
 #endif
     
 #ifdef __MACOSX__

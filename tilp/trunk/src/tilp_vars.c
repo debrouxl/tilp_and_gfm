@@ -39,8 +39,7 @@
 /* Directory listing */
 /*********************/
 
-//#define DIRLIST_FORM2
-
+/* Convert a dirlist v1 into two dirlists v2 */
 #ifdef DIRLIST_FORM2
 static void dirlist_v1_to_v2(TNode * tree, TNode ** vars, TNode ** apps)
 {
@@ -55,7 +54,9 @@ static void dirlist_v1_to_v2(TNode * tree, TNode ** vars, TNode ** apps)
 	g_node_unlink(app_node);
 	g_node_destroy(tree);
 }
-#endif				/*  */
+#endif				/* DIRLIST_FORM2 */
+
+/* Get a dirlist (currently v1; should be switched soon) */
 int tilp_dirlist_remote(void)
 {
 	uint32_t mem;
@@ -76,13 +77,13 @@ int tilp_dirlist_remote(void)
 #ifndef DIRLIST_FORM2
 	ticalc_dirlist_display(ctree_win.dirlist);
 
-#else				/*  */
+#else				/* !DIRLIST_FORM2 */
 	dirlist_v1_to_v2(ctree_win.dirlist, &ctree_win.var_tree,
 			 &ctree_win.app_tree);
 	ticalc_dirlist_display(ctree_win.var_tree);
 	ticalc_dirlist_display(ctree_win.app_tree);
 
-#endif				/*  */
+#endif				/* DIRLIST_FORM2 */
 	return 0;
 }
 

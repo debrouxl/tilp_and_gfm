@@ -155,6 +155,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         op = [NSOpenPanel openPanel];
 
         [op setTitle:@"Save variables in directory..."];
+        [op setPrompt:@"Choose"];
         [op setAllowsMultipleSelection:NO];
 
         [op setCanChooseFiles:NO];
@@ -270,6 +271,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     calcDict = [myTilpController getCurrentCalcDict];
     
     [op setTitle:@"Choose the file to restore"];
+    [op setPrompt:@"Restore"];
     [op setAllowsMultipleSelection:NO];
     
     [op beginSheetForDirectory:NSHomeDirectory()
@@ -298,6 +300,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     calcDict = [myTilpController getCurrentCalcDict];
     
     [op setTitle:@"Choose the Flash Application to send"];
+    [op setPrompt:@"Choose"];
     [op setAllowsMultipleSelection:YES];
     
     [op beginSheetForDirectory:NSHomeDirectory()
@@ -327,6 +330,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     calcDict = [myTilpController getCurrentCalcDict];
     
     [op setTitle:@"Choose the file containing AMS"];
+    [op setPrompt:@"Choose"];
     [op setAllowsMultipleSelection:NO];
     
     [op beginSheetForDirectory:NSHomeDirectory()

@@ -21,7 +21,7 @@
 
 
 /* Paths */
-#if defined(__LINUX__)
+#if defined(__LINUX__) || defined(__BSD__)
 # define INI_FILE  "/.tilp"
 # define REG_FILE "tilp.registry"
 #elif defined(__WIN32__)

@@ -34,11 +34,11 @@
 
 #define ALLOW_EXIT_HOMEDIR
 
-#define TILP_OSX_VERSION "0.6.7"
+#define TILP_OSX_VERSION "0.6.8"
 
 // the line below must be modified at each revision !
 #define SVN_REV "$Rev$"
 
-#define VERSION "6.62"
+#define VERSION "6.66"
 
 #endif /* !__CONFIG_H__ */

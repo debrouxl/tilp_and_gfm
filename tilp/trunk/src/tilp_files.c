@@ -39,7 +39,7 @@
 #ifndef __WIN32__
 # include <pwd.h>
 # include <grp.h>
-#endif				/*  */
+#endif				/* __WIN32__ */
 
 #include "tilp_core.h"
 //#include "dboxes.h"
@@ -69,8 +69,6 @@ int tilp_file_copy(const char *src, const char *dst)
 	fclose(out);
 	return 0;
 }
-
-
 #else				/*  */
 int tilp_file_copy(const char *src, const char *dst)
 {
@@ -78,18 +76,15 @@ int tilp_file_copy(const char *src, const char *dst)
 		return -1;
 	return 0;
 }
-
-
 #endif				/*  */
+
 int tilp_file_move(const char *src, const char *dst)
 {
-
 #ifndef __WIN32__
 	int ret = tilp_file_copy(src, dst);
 	if (ret)
 		return ret;
 	unlink(src);
-
 #else				/*  */
 	if (!MoveFile(src, dst))
 		return -1;
@@ -109,8 +104,6 @@ int tilp_file_delete(const char *f)
 	}
 	return 0;
 }
-
-
 #else				/*  */
 int tilp_file_delete(const char *f)
 {
@@ -127,11 +120,9 @@ int tilp_file_delete(const char *f)
 	}
 	return 0;
 }
-
-
 #endif				/*  */
 
-#ifdef __LINUX__
+#if defined(__LINUX__) || defined(__BSD__)
 int tilp_file_mkdir(const char *pathname)
 {
 	uid_t effective;
@@ -145,21 +136,19 @@ int tilp_file_mkdir(const char *pathname)
 	seteuid(effective);
 	return 0;
 }
-
-
 #else				/*  */
 int tilp_file_mkdir(const char *pathname)
 {
 	mkdir(pathname, MAXCHARS);
 	return 0;
 }
-
-
 #endif				/*  */
+
 
 /*************************************/
 /* Extracting informations functions */
 /*************************************/
+
 
 #ifndef __WIN32__
 const char *tilp_file_get_attributes(TilpFileInfo * fi)
@@ -243,7 +232,7 @@ const char *tilp_file_get_attributes(TilpFileInfo * fi)
 void tilp_file_get_user_name(TilpFileInfo * fi, char **name)
 {
 
-#if defined(__LINUX__)
+#if defined(__LINUX__) || defined(__BSD__)
 	struct passwd *pwuid;
 	if ((pwuid = getpwuid(fi->user)) == NULL) {
 		*name = NULL;
@@ -260,7 +249,7 @@ void tilp_file_get_user_name(TilpFileInfo * fi, char **name)
 } void tilp_file_get_group_name(TilpFileInfo * fi, char **name)
 {
 
-#if defined(__LINUX__)
+#if defined(__LINUX__) || defined(__BSD__)
 	struct group *grpid;
 	if ((grpid = getgrgid(fi->group)) == NULL) {
 		*name = NULL;
@@ -321,6 +310,7 @@ const char *tilp_file_get_type(TilpFileInfo * fi)
 /****************************/
 /* Directory list functions */
 /****************************/
+
 #ifndef __MACOSX__
 static char *process_filename(char *filename)
 {
@@ -350,17 +340,20 @@ int tilp_dirlist_local(void)
 	G_CONST_RETURN gchar *dirname;
 	struct stat f_info;
 	TilpFileInfo *fi;
+
 	dir = g_dir_open(clist_win.current_dir, 0, &error);
 	if (dir == NULL) {
 		msg_box("Error", "Unable to open directory !");
 		return -1;
 	}
+
 	if (clist_win.dirlist != NULL) {
 		g_list_foreach(clist_win.dirlist,
 			       (GFunc) free_file_info_struct, NULL);
 		g_list_free(clist_win.dirlist);
 		clist_win.dirlist = NULL;
 	}
+
 	// add the ".." entry (b/c stripped by g_dir_read_name
 	fi = (TilpFileInfo *) g_malloc0(sizeof(TilpFileInfo));
 	fi->name = g_strdup("..");
@@ -371,8 +364,10 @@ int tilp_dirlist_local(void)
 		fi->group = f_info.st_gid;
 		fi->attrib = f_info.st_mode;
 	}
+
 	clist_win.dirlist =
 	    g_list_prepend(clist_win.dirlist, (gpointer) fi);
+
 	while ((dirname = g_dir_read_name(dir)) != NULL) {
 		if (dirname[0] == '.')
 			continue;
@@ -385,11 +380,13 @@ int tilp_dirlist_local(void)
 			fi->group = f_info.st_gid;
 			fi->attrib = f_info.st_mode;
 		}
-		process_filename(fi->name);
-		clist_win.dirlist =
-		    g_list_prepend(clist_win.dirlist, (gpointer) fi);
+		//process_filename(fi->name);
+		//printf("<<%s>>\n", fi->name);
+		clist_win.dirlist = g_list_prepend(clist_win.dirlist, (gpointer) fi);
 	}
+
 	g_dir_close(dir);
+
 	return 0;
 }
 #endif /* !__MACOSX__ */
@@ -425,6 +422,7 @@ void tilp_sort_files_by_type(void)
 		}
 	}
 }
+
 void tilp_sort_files_by_name(void)
 {
 	GList *list = clist_win.dirlist;
@@ -466,8 +464,6 @@ void tilp_sort_files_by_name(void)
 	}
 }
 
-
-/* Sort files by date (smallest to biggest size) */
 void tilp_sort_files_by_date(void)
 {
 	GList *list = clist_win.dirlist;
@@ -506,13 +502,16 @@ void tilp_sort_files_by_date(void)
 		}
 	}
 }
+
 void tilp_sort_files_by_size2(void);
 void tilp_sort_files_by_size(void)
 {
 	tilp_sort_files_by_size2();
 
 	//g_list_sort(list, GCompareComputerSizes);
-} void tilp_sort_files_by_size2(void)
+} 
+
+void tilp_sort_files_by_size2(void)
 {
 	GList *list = clist_win.dirlist;
 	GList *p, *q;
@@ -550,8 +549,6 @@ void tilp_sort_files_by_size(void)
 	}
 }
 
-
-/* Sort files by user (smallest to biggest size) */
 void tilp_sort_files_by_user(void)
 {
 	GList *list = clist_win.dirlist;
@@ -591,8 +588,6 @@ void tilp_sort_files_by_user(void)
 	}
 }
 
-
-/* Sort files by group (smallest to biggest size) */
 void tilp_sort_files_by_group(void)
 {
 	GList *list = clist_win.dirlist;
@@ -632,8 +627,6 @@ void tilp_sort_files_by_group(void)
 	}
 }
 
-
-/* Sort files by attributes (smallest to biggest size) */
 void tilp_sort_files_by_attrib(void)
 {
 	GList *list = clist_win.dirlist;
@@ -678,9 +671,11 @@ void tilp_sort_files_by_attrib(void)
 /* Miscelaneous */
 /****************/
 
-/* Check for file existence. If file already exists, ask for an
+/* 
+   Check for file existence. If file already exists, ask for an
    action (skip, overwrite or rename).
-   Return 0 if skipped. */
+   Return 0 if skipped. 
+*/
 int tilp_file_check(const char *src, char **dst)
 {
 	int ret;

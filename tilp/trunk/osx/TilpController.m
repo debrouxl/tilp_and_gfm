@@ -380,6 +380,9 @@ TilpGuiFncts gui_functions;
 
   cocoa_init_refresh_functions();
 
+  // set the title of the main window
+  [mainWindow setTitle:[NSString stringWithFormat:@"TiLP v%s (%s)", VERSION, TILP_OSX_VERSION]];
+  
   // init the outline view
   [dirlistTree setDelegate:self];
 

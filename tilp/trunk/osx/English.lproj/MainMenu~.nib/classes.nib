@@ -298,6 +298,7 @@
             OUTLETS = {
                 calcState = id; 
                 dirlistTree = id; 
+                mainWindow = id; 
                 memoryStats = id; 
                 myBoxesController = id; 
                 myMenuController = id; 

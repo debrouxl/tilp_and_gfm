@@ -197,6 +197,9 @@ add_item_to_selection_list(GList **list, id item)
         {
             sp = [NSSavePanel savePanel];
             calcDict = [myTilpController getCurrentCalcDict];
+
+            [sp setTitle:@"Save group as..."];
+            [sp setPrompt:@"Save"];
             
             [sp beginSheetForDirectory:NSHomeDirectory()
                                   file:[calcDict objectForKey:@"defaultGroupFilename"]
@@ -495,9 +498,6 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
 - (void)romDump:(id)sender
 {
     NSSavePanel *sp;
-    NSString *proposedFile;
-
-    proposedFile = @"romdump.rom";
 
     if (tilp_calc_rom_dump() != 0)
         return;
@@ -506,9 +506,10 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
 
     [sp setRequiredFileType:@"rom"];
     [sp setTitle:@"Save ROM dump as..."];
+    [sp setPrompt:@"Save"];
 
     [sp beginSheetForDirectory:NSHomeDirectory()
-                          file:proposedFile
+                          file:@"romdump.rom"
                 modalForWindow:[myBoxesController keyWindow]
                  modalDelegate:myBoxesController
                 didEndSelector:@selector(romDumpDidEnd:returnCode:contextInfo:)
@@ -524,6 +525,9 @@ render_screen_blurry(uint8_t *bitmap, unsigned char *pixels, int scale)
         return;
     
     sp = [NSSavePanel savePanel];
+
+    [sp setTitle:@"Save backup as..."];
+    [sp setPrompt:@"Save"];
     
     calcDict = [myTilpController getCurrentCalcDict];
 

@@ -25,6 +25,7 @@
 
 @interface TilpController : NSObject
 {
+    IBOutlet id mainWindow;
     IBOutlet id dirlistTree;
 
     IBOutlet id calcState;

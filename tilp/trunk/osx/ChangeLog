@@ -1,4 +1,8 @@
-* 20030421 : v6.62 / 0.6.7 ($Rev$)
+* 20030424 : v6.66 / 0.6.8 ($Rev$)
+	* Merge up to 6.66.
+	* Always set the prompt for NSSavePanel and NSOpenPanel.
+	* Set the main window title at startup.
+* 20030421 : v6.62 / 0.6.7 (Rev: 257)
 	* Fixed download of multiple vars as a group.
 	* Cleaned up BoxesController.m a bit.
 * 20030421 : v6.62 / 0.6.6 (Rev: 256)

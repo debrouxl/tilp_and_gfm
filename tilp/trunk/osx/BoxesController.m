@@ -169,7 +169,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
             default: // just in case...
                 return;
         }
-        
+
+    [sp setPrompt:@"Save"];
+    
     [sp beginSheetForDirectory:NSHomeDirectory()
         file:proposedFile
         modalForWindow:screendumpWindow

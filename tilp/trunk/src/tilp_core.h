@@ -33,13 +33,19 @@
 extern "C" {
 #endif
 
-#include "../src/tilp_defs.h"
-#include "../src/tilp_struct.h"
-#include "../src/tilp_paths.h"
-#include "../src/tilp_indep.h"
-#include "../src/tilp_version.h"
-#include "../src/intl.h"
+#include "tilp_defs.h"
+#include "tilp_struct.h"
+#include "tilp_paths.h"
+#include "tilp_indep.h"
+#include "tilp_version.h"
+#include "intl.h"
 
+  /******************************/
+  /* Use new dirlist management */
+  /******************************/
+
+  //#define DIRLIST_FORM2
+  
   /**********************/
   /* Exported variables */
   /**********************/
@@ -88,7 +94,8 @@ extern "C" {
   int tilp_calc_ams2rom(char *filename);
 
   int tilp_screen_capture(void);
-//  int tilp_screen_save(char *filename);
+  uint8_t *tilp_screen_convert(void);
+  uint8_t *tilp_screen_blurry(void);
 
   // tilp_misc.c
 #ifndef __MACOSX__

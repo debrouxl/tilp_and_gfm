@@ -62,7 +62,7 @@ int tilp_config_load(void)
 /*
   Fill the option structure with default values
 */
-#ifdef __LINUX__
+#if defined(__LINUX__) || defined(__BSD__)
 static void default_config_linux(void)	// linux specific options
 {
 	gchar *locale;
@@ -128,9 +128,8 @@ int tilp_config_default(void)
 	options.auto_detect = !0;
 	options.show_gui = TRUE;
 	options.single_or_group = RECV_AS_GROUP;
-	options.use_checksum = USE_CHECKSUM;
 
-#if defined(__LINUX__)
+#if defined(__LINUX__) || defined(__BSD__)
 	default_config_linux();
 
 #elif defined(__WIN32__)
@@ -284,6 +283,7 @@ int tilp_tifiles_group(void)
 	gchar *grpname;
 	gchar *dst_file;
 	gint i = 0;
+
 	if (!tilp_clist_selection_ready())
 		return -1;
 	if (g_list_length(clist_win.selection) < 2) {
