@@ -59,7 +59,6 @@
                 isReady = id; 
                 newWindow = id; 
                 probeCalc = id; 
-                receiveFLASHApp = id; 
                 remoteControl = id; 
                 romDump = id; 
                 romVersion = id; 
@@ -143,7 +142,6 @@
                 PrefsController = id; 
                 currentFolder = id; 
                 dirlistTree = id; 
-                dlgboxEntry = id; 
                 mainWindow = id; 
                 memoryUsed = id; 
                 numberOfFolders = id; 

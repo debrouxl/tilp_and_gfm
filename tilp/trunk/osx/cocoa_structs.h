@@ -19,7 +19,9 @@
     id mainWindow;
     
     // the dlgbox (for pbars, see the following struct)
-    id dlgboxEntry;
+    id dlgboxentryWindow;
+    id dlgboxentryEntry;
+    id dlgboxentryText;
     
     // the remote control/terminal window
     id remoteControlWindow;

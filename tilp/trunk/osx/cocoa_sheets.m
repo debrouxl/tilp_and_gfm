@@ -92,29 +92,32 @@ char *
 create_cocoa_dlgbox_entry(const char *title, const char *message, const char *content)
 {
     id mainWindow;
-    id dlgboxEntry;
-    
-    // FIXME OS X
-    // the button's method need to stop the modal
-    // AFTER retrieving the string...
-    // so cocoa will close the sheet.
+    id dlgboxentryWindow;
+    id dlgboxentryEntry;
+    id dlgboxentryText;
     
     mainWindow = objects_ptr->mainWindow;
-    dlgboxEntry = objects_ptr->dlgboxEntry;
+    dlgboxentryWindow = objects_ptr->dlgboxentryWindow;
+    dlgboxentryEntry = objects_ptr->dlgboxentryEntry;
+    dlgboxentryText = objects_ptr->dlgboxentryText;
  
-    if ([dlgboxEntry isVisible])
+    if ([dlgboxentryWindow isVisible])
         return NULL;
           
-    [NSApp beginSheet:dlgboxEntry
+    [dlgboxentryEntry setStringValue:[NSString stringWithCString:content]];
+    [dlgboxentryEntry selectText:nil];
+    [dlgboxentryText setStringValue:[NSString stringWithCString:message]];
+          
+    [NSApp beginSheet:dlgboxentryWindow
            modalForWindow:mainWindow
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
     
-    [NSApp runModalForWindow:dlgboxEntry];
+    [NSApp runModalForWindow:dlgboxentryWindow];
             
-    [NSApp endSheet:dlgboxEntry];
-    [dlgboxEntry orderOut:nil];
+    [NSApp endSheet:dlgboxentryWindow];
+    [dlgboxentryWindow orderOut:nil];
     
     return objects_ptr->dlgbox_data;
 }
@@ -142,10 +145,6 @@ create_cocoa_pbar_type1_sheet(const char *title)
            didEndSelector:nil
            contextInfo:nil];
   
-    // FIXME OS X : in the button's method
-    // stop the modal
-    // that will result in Cocoa closing the sheet
-          
     [NSApp runModalForWindow:pbar1Window];
     
     [NSApp endSheet:pbar1Window];
@@ -185,17 +184,20 @@ create_cocoa_pbar_type4_sheet(const char *title, char *text)
 {
     id mainWindow;
     id pbar4Window;
+    id pbar4Text;
     
     if (pbars_ptr->pbar1 != nil)
         return;
     
     mainWindow = objects_ptr->mainWindow;
     pbar4Window = pbars_ptr->pbar4Window;
+    pbar4Text = pbars_ptr->pbar4Text;
     
     pbars_ptr->pbar1 = pbars_ptr->pbar4PBar;
     pbars_ptr->pbar_rate = pbars_ptr->pbar4Rate;
     pbars_ptr->pbar_text = pbars_ptr->pbar4Text;
     
+    [pbar4Text setStringValue:[NSString stringWithCString:text]];
     
     [NSApp beginSheet:pbar4Window
            modalForWindow:mainWindow
@@ -214,17 +216,21 @@ create_cocoa_pbar_type5_sheet(const char *title, char *text)
 {
     id mainWindow;
     id pbar5Window;
+    id pbar5Text;
     
     if (pbars_ptr->pbar1 != nil)
         return;
     
     mainWindow = objects_ptr->mainWindow;
     pbar5Window = pbars_ptr->pbar5Window;
+    pbar5Text = pbars_ptr->pbar5Text;
 
     pbars_ptr->pbar1 = pbars_ptr->pbar5PBar1;
     pbars_ptr->pbar2 = pbars_ptr->pbar5PBar2;
     pbars_ptr->pbar_rate = pbars_ptr->pbar5Rate;
     pbars_ptr->pbar_text = pbars_ptr->pbar5Text;
+
+    [pbar5Text setStringValue:[NSString stringWithCString:text]];
 
     [NSApp beginSheet:pbar5Window
            modalForWindow:mainWindow

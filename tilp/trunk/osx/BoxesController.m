@@ -26,6 +26,10 @@ extern int is_active;
 {
     fprintf(stderr, "boxes => got awakeFromNib\n");
 
+    objects_ptr->dlgboxentryWindow = dlgboxentryWindow;
+    objects_ptr->dlgboxentryEntry = dlgboxentryEntry;
+    objects_ptr->dlgboxentryText = dlgboxentryText;
+
     // that's ugly :-/
 
     pbars_ptr->pbar1Window = pbar1Window;
@@ -121,10 +125,24 @@ extern int is_active;
 - (IBAction)remoteControlChangeMode:(id)sender
 {
     // FIXME OS X
-    // set an 'int mode;' variable
-    // then print the help text corresponding to the mode...
-    // BEWARE OF THESE FSCINK RADIO BUTTONS !@# !!
-    // see gtk_term_cb.c
+    // fix the help text wrt the special key combos
+      
+    if ((sender == remoteControlRemoteMode) && (objects_ptr->term_mode != REMOTE))
+        {
+            [remoteControlTerminalMode setState:NSOffState];
+            
+            objects_ptr->term_mode = REMOTE;
+            
+            [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
+        }
+    else if ((sender == remoteControlTerminalMode) && (objects_ptr->term_mode != TERM))
+        {
+            [remoteControlRemoteMode setState:NSOffState];
+            
+            objects_ptr->term_mode = TERM;
+            
+            [remoteControlTextArea setStringValue:@"\nYou are in terminal mode.\nPress any key but for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
+        }
 }
 
 - (IBAction)remoteControlTextEntered:(id)sender

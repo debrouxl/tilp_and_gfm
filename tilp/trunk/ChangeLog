@@ -41,7 +41,9 @@
 * 20011030 : V0.1.3
 	* more functional methods behind the menu and the toolbar
 	* NSSavePanels and NSOpenPanels displayed as sheets
-
+	* fixed some stuffs with pbars
+	* implemented remoteControlChangeMode
+	
 
 
 

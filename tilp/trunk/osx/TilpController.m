@@ -56,8 +56,7 @@ struct gui_fncts gui_functions;
     objects_ptr->TilpController = self;
   
     objects_ptr->mainWindow = mainWindow;
-    objects_ptr->dlgboxEntry = dlgboxEntry;
-  
+      
     objects_ptr->dlgbox_data = NULL;
     objects_ptr->box_button = -1;
     
