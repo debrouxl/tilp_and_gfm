@@ -25,7 +25,9 @@
 #import <SimpleTreeNode.h>
  
 #include <stdint.h>
- 
+
+#define SKIN_KEYS 80
+
 struct cocoa_objects_ptr
 {
     // our classes
@@ -36,8 +38,7 @@ struct cocoa_objects_ptr
     id mySheetsController;
     id myTransfersController;
 
-    id myCalc89KeyboardController;
-    id myCalc92KeyboardController;
+    id myCalcKeyboardController;
 
     // return values for some dialog sheets
     // this is a quick hack to workaround the C way-of-life ;-)

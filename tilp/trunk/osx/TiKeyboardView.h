@@ -22,8 +22,6 @@
 
 @interface TiKeyboardView : NSImageView
 {
-
-    // Nothing new here :)
-
+  IBOutlet id myCalcKeyboardController;
 }
 @end

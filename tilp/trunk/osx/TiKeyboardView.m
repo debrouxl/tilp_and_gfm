@@ -26,8 +26,7 @@
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
-#import "Calc89KeyboardController.h"
-#import "Calc92KeyboardController.h"
+#import "CalcKeyboardController.h"
 
 #import "TiKeyboardView.h"
 
@@ -36,8 +35,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 - (void)mouseDown:(NSEvent *)event
 {
   NSPoint mouseClick;
-  id myCalc89KeyboardController = objects_ptr->myCalc89KeyboardController;
-  id myCalc92KeyboardController = objects_ptr->myCalc92KeyboardController;
 
 #ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: mouseDown event on Imageview\n");
@@ -53,11 +50,11 @@ extern struct cocoa_objects_ptr *objects_ptr;
               {
                   if (ticalc_get_calc2() == CALC_TI89)
                       {
-                          [myCalc89KeyboardController sendKey:mouseClick];
+                          [myCalcKeyboardController sendKey89:mouseClick];
                       }
                   else
                       {
-                          [myCalc92KeyboardController sendKey:mouseClick];
+                          [myCalcKeyboardController sendKey92:mouseClick];
                       }
               }
       }

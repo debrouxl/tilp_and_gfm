@@ -45,8 +45,8 @@ extern int is_active;
 #import "SheetsController.h"
 #import "BoxesController.h"
 #import "RCTextView.h"
-#import "Calc89KeyboardController.h"
-#import "Calc92KeyboardController.h"
+#import "CalcKeyboardController.h"
+
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
 {
@@ -243,13 +243,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     if (is_active)
         return;
 
-    if (ticalc_get_calc2() == CALC_TI89)
+    if ((ticalc_get_calc2() == CALC_TI89) ||(ticalc_get_calc2() == CALC_TI92) || (ticalc_get_calc2() == CALC_TI92P))
         {
-            [myCalc89KeyboardController showKeyboard89:self];
-        }
-    else if ((ticalc_get_calc2() == CALC_TI92) || (ticalc_get_calc2() == CALC_TI92P))
-        {
-            [myCalc92KeyboardController showKeyboard92:self];
+            [myCalcKeyboardController loadKeyboard];
         }
     else
         {

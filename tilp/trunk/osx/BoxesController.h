@@ -68,8 +68,6 @@
     IBOutlet id myMenuController;
     IBOutlet id mySheetsController;
     IBOutlet id myTransfersController;
-    IBOutlet id myCalc89KeyboardController;
-    IBOutlet id myCalc92KeyboardController;
 }
 
 - (id)keyWindow;

@@ -1605,13 +1605,13 @@
 				F50C433501F4624B01000102,
 				F50C433801F4701301000102,
 				F50D800701F72CCC01000102,
-				F50B125E01F78BE101000102,
-				F50FB28801F84CF101000102,
 				F5D15772020192BA01000102,
 				F5D157760201A58501000102,
 				F5D157780201AA8701000102,
 				F548C26E0223DBFC01041594,
 				F5268CF1028FF63F01041594,
+				F5027DD502A9245D01C02345,
+				F5027DD902A92C5C01C02345,
 			);
 			isa = PBXHeadersBuildPhase;
 		};
@@ -1673,12 +1673,12 @@
 				F577769E01E89C7201CCF140,
 				F50C433601F4624B01000102,
 				F50C433701F4648501000102,
-				F50B125F01F78BE101000102,
-				F50FB28901F84CF101000102,
 				F5D15773020192BA01000102,
 				F50CB3FC0201E50A01000102,
 				F548C2700223DC2601041594,
 				F5268CEF028FF63501041594,
+				F5027DD602A9245D01C02345,
+				F5027DDA02A92C5C01C02345,
 			);
 			isa = PBXSourcesBuildPhase;
 		};
@@ -1743,6 +1743,50 @@
 //F52
 //F53
 //F54
+		F5027DD302A9245D01C02345 = {
+			isa = PBXFileReference;
+			path = CalcKeyboardController.h;
+			refType = 4;
+		};
+		F5027DD402A9245D01C02345 = {
+			isa = PBXFileReference;
+			path = CalcKeyboardController.m;
+			refType = 4;
+		};
+		F5027DD502A9245D01C02345 = {
+			fileRef = F5027DD302A9245D01C02345;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5027DD602A9245D01C02345 = {
+			fileRef = F5027DD402A9245D01C02345;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5027DD702A92C5C01C02345 = {
+			isa = PBXFileReference;
+			path = SkinController.h;
+			refType = 2;
+		};
+		F5027DD802A92C5C01C02345 = {
+			isa = PBXFileReference;
+			path = SkinController.m;
+			refType = 2;
+		};
+		F5027DD902A92C5C01C02345 = {
+			fileRef = F5027DD702A92C5C01C02345;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5027DDA02A92C5C01C02345 = {
+			fileRef = F5027DD802A92C5C01C02345;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F50751D8019C0A370140747F = {
 			isa = PBXFileReference;
 			name = archived.tiff;
@@ -1807,28 +1851,6 @@
 		};
 		F50A7EB901CFA70901000102 = {
 			fileRef = F50A7EB801CFA70801000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50B125C01F78BE001000102 = {
-			isa = PBXFileReference;
-			path = Calc89KeyboardController.h;
-			refType = 2;
-		};
-		F50B125D01F78BE001000102 = {
-			isa = PBXFileReference;
-			path = Calc89KeyboardController.m;
-			refType = 2;
-		};
-		F50B125E01F78BE101000102 = {
-			fileRef = F50B125C01F78BE001000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50B125F01F78BE101000102 = {
-			fileRef = F50B125D01F78BE001000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2008,9 +2030,9 @@
 		F50D800501F72A5A01000102 = {
 			children = (
 				F5D157740201A58501000102,
-				F50B125C01F78BE001000102,
-				F50FB28601F84CF101000102,
+				F5027DD302A9245D01C02345,
 				F5D15770020192BA01000102,
+				F5027DD702A92C5C01C02345,
 				F50D800001F729B301000102,
 			);
 			isa = PBXGroup;
@@ -2019,9 +2041,9 @@
 		};
 		F50D800601F72A5A01000102 = {
 			children = (
-				F50B125D01F78BE001000102,
-				F50FB28701F84CF101000102,
+				F5027DD402A9245D01C02345,
 				F5D15771020192BA01000102,
+				F5027DD802A92C5C01C02345,
 				F50D800101F729B301000102,
 			);
 			isa = PBXGroup;
@@ -2140,28 +2162,6 @@
 		};
 		F50F01010183725501000102 = {
 			fileRef = F50F01000183725501000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FB28601F84CF101000102 = {
-			isa = PBXFileReference;
-			path = Calc92KeyboardController.h;
-			refType = 2;
-		};
-		F50FB28701F84CF101000102 = {
-			isa = PBXFileReference;
-			path = Calc92KeyboardController.m;
-			refType = 2;
-		};
-		F50FB28801F84CF101000102 = {
-			fileRef = F50FB28601F84CF101000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FB28901F84CF101000102 = {
-			fileRef = F50FB28701F84CF101000102;
 			isa = PBXBuildFile;
 			settings = {
 			};

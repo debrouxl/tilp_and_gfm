@@ -33,8 +33,6 @@
 
 #import "BoxesController.h"
 #import "TransfersController.h"
-#import "Calc89KeyboardController.h"
-#import "Calc92KeyboardController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 

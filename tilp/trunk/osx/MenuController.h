@@ -34,9 +34,8 @@
     IBOutlet id myTilpController;
     IBOutlet id mySheetsController;
     IBOutlet id myTransfersController;
-    IBOutlet id myCalc89KeyboardController;
-    IBOutlet id myCalc92KeyboardController;
-
+    IBOutlet id myCalcKeyboardController;
+    
     NSMutableDictionary *toolbarItems;
 }
 

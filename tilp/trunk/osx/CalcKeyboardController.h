@@ -1,5 +1,5 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -22,24 +22,35 @@
 
 #include "cocoa_structs.h"
 
-@interface Calc92KeyboardController : NSObject
-{    
+@interface CalcKeyboardController : NSObject
+{
     IBOutlet id keyboardWindow;
+    IBOutlet id scrollView;
     IBOutlet id skinView;
     IBOutlet id textArea;
-    IBOutlet id scrollView;
-    
-    IBOutlet id myTransfersController;
 
-    RECT_ rcKeys92[80];
+    IBOutlet id myTransfersController;
+    IBOutlet id mySkinController;
+
+    NSSize skinSize;
+    NSRect viewFrame;
+    float xRatio;
+    float yRatio;
     
+    RECT_ lcd;
+    RECT_ keys[80];
+
     int mode;
 }
 
-- (void)sendKey:(NSPoint)point;
+- (void)skinViewResizes:(NSNotification *)notification;
 
-- (void)showKeyboard92:(id)sender;
+- (void)loadKeyboard;
 
-- (IBAction)clearText:(id)sender;
+// TI 89
+- (void)sendKey89:(NSPoint)point;
+
+// TI 92
+- (void)sendKey92:(NSPoint)point;
 
 @end

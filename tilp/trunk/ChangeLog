@@ -264,6 +264,11 @@
 	* Added BMP screen dump format.
 	* Removed "ROM Version" menu item and callback.
 	* Changed "ROM Dump" key combo for one that was not already used.
+* 20020601 : v5.08 (0.5.5)
+	* Rewrote the remote control.
+	* Make the remote control window resizable.
+	* Merge Calc{89,92}KeyboardController into CalcKeyboardController.
+	* Skin loading uses the skinedit SkinController class.
 	
 
 

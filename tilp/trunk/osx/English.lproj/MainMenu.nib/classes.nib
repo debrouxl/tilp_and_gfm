@@ -22,8 +22,6 @@
                 dlgboxentryText = id; 
                 dlgboxentryWindow = id; 
                 mainWindow = id; 
-                myCalc89KeyboardController = id; 
-                myCalc92KeyboardController = id; 
                 myMenuController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
@@ -66,24 +64,11 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {clearText = id; }; 
-            CLASS = Calc89KeyboardController; 
+            CLASS = CalcKeyboardController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
                 keyboardWindow = id; 
-                myTransfersController = id; 
-                scrollView = id; 
-                skinView = id; 
-                textArea = id; 
-            }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
-            ACTIONS = {clearText = id; }; 
-            CLASS = Calc92KeyboardController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                keyboardWindow = id; 
+                mySkinController = id; 
                 myTransfersController = id; 
                 scrollView = id; 
                 skinView = id; 
@@ -119,8 +104,7 @@
                 dirlistTree = id; 
                 mainWindow = id; 
                 myBoxesController = id; 
-                myCalc89KeyboardController = id; 
-                myCalc92KeyboardController = id; 
+                myCalcKeyboardController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 
@@ -243,7 +227,18 @@
             }; 
             SUPERCLASS = NSObject; 
         }, 
-        {CLASS = TiKeyboardView; LANGUAGE = ObjC; SUPERCLASS = NSImageView; }, 
+        {
+            CLASS = SkinController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {keyboardWindow = id; skinView = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TiKeyboardView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myCalcKeyboardController = id; }; 
+            SUPERCLASS = NSImageView; 
+        }, 
         {
             CLASS = TilpController; 
             LANGUAGE = ObjC; 

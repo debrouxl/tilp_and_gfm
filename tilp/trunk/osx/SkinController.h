@@ -1,5 +1,8 @@
 /*  TiLP - Linking program for TI calculators
- *  Copyright (C) 2001-2002 Julien BLACHE <jb@technologeek.org>
+ *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
+ *
+ *  skinedit - a skin editor for TiEmu v2.00
+ *  Copyright (C) 2002 Julien BLACHE <jb@technologeek.org>
  *
  *  Cocoa GUI for Mac OS X
  *
@@ -20,26 +23,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+#include <stdint.h>
+
 #include "cocoa_structs.h"
 
-@interface Calc89KeyboardController : NSObject
-{    
-    IBOutlet id keyboardWindow;
+@interface SkinController : NSObject
+{
     IBOutlet id skinView;
-    IBOutlet id textArea;
-    IBOutlet id scrollView;
-    
-    IBOutlet id myTransfersController;
-    
-    RECT_ rcKeys89[80];
-    
-    int mode;
+    IBOutlet id keyboardWindow;
 }
 
-- (void)sendKey:(NSPoint)point;
-
-- (void)showKeyboard89:(id)sender;
-
-- (IBAction)clearText:(id)sender;
+// skin loading methods
+- (int)loadSkin:(NSString *)path skinSize:(NSSize *)skinSize lcd:(RECT_ *)lcd keys:(RECT_ *)keys;
+- (int)loadSkinVTi:(NSData *)skin skinSize:(NSSize *)skinSize lcd:(RECT_ *)lcd keys:(RECT_ *)keys;
+- (int)loadSkinOldVTi:(NSData *)skin skinSize:(NSSize *)skinSize lcd:(RECT_ *)lcd keys:(RECT_ *)keys;
+- (int)loadSkinTiEmu:(NSData *)skin skinSize:(NSSize *)skinSize lcd:(RECT_ *)lcd keys:(RECT_ *)keys;
+- (int)loadJPEG:(NSData *)skin atOffset:(uint32_t)jpeg_offset skinSize:(NSSize *)skinSize lcd:(RECT_ *)lcd keys:(RECT_ *)keys;
 
 @end
