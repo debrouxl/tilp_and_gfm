@@ -116,8 +116,7 @@
 	* Added osx/images/calc.tiff to CVS
 	* Do not open remote control if calc is not one of TI89/92/92+
 	* Updated for libticables 2.2.0
-	
-
+	* cvs cleanup
 
 
 
