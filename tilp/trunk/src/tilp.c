@@ -54,13 +54,21 @@
 static GtkWidget *statbar = NULL;
 void dnd_init(void);
 
-static int ready_callback(char *info)
+static void ready_callback(int status)
 {
 	gint id;
+	gchar *str;
 
-	id = gtk_statusbar_get_context_id(GTK_STATUSBAR(statbar), info);
-	gtk_statusbar_push(GTK_STATUSBAR(statbar), id, info);
-	return 0;
+	if(status == READY_NOK)
+		str = g_strdup(_("Status: not connected."));
+	else
+		str = g_strdup_printf("Status: connected (%s).",
+					 tifiles_calctype_to_string(options.lp.
+						  calc_type));
+
+	id = gtk_statusbar_get_context_id(GTK_STATUSBAR(statbar), str);
+	gtk_statusbar_push(GTK_STATUSBAR(statbar), id, str);
+	g_free(str);
 }
 
 /*
@@ -108,7 +116,7 @@ GtkWidget *display_tilp_dbox()
 	toolbar_win.button21 = glade_xml_get_widget(xml, "button11");
 	toolbar_win.button22 = glade_xml_get_widget(xml, "button12");
 	statbar = sb = glade_xml_get_widget(xml, "statusbar1");
-	ready_callback(_("Status: not connected."));
+	ready_callback(READY_NOK);
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 	clist_init();
@@ -655,7 +663,6 @@ on_treeview1_drag_data_get(GtkWidget * widget,
 			   guint info, guint time, gpointer user_data)
 {
 	if (info == TARGET_ROOTWIN) {
-
 		//g_print("I was dropped on the rootwin\n");
 	} else
 		gtk_selection_data_set(data, data->target, 8,

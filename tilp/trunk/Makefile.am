@@ -8,7 +8,7 @@ SUBDIRS = \
 
 EXTRA_DIST = \
 	ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL* NEWS 	\
-	README README* TODO RELEASE
+	README README* TODO RELEASE ./po/TRANSLATORS
 
 INCLUDES = -I$(top_srcdir) -I$(includedir) 		\
 	-I../intl -I$(top_srcdir)/intl 			\

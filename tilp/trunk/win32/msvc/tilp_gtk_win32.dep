@@ -1,0 +1,6 @@
+# Microsoft Developer Studio Generated Dependency File, included by tilp_gtk_win32.mak
+
+.\Tilp.rc : \
+	".\tilp.ico"\
+	".\tilp2.ico"\
+	

@@ -1,8 +1,9 @@
 SHELL=/bin/sh
 INSTALL=@INSTALL@
 
-GLADE_FILES = *-2.glade
-EXTRA_DIST = $(GLADE_FILES)
+GLADE_FILES = *-2.glade *-2.gladep
+STR_FILES = *-2.str
+EXTRA_DIST = $(GLADE_FILES) $(STR_FILES)
 
 install: $(GLADE-FILES)
 	@echo Installing glade files...

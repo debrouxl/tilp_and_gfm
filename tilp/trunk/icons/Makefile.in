@@ -226,7 +226,7 @@ distclean-generic clean-generic maintainer-clean-generic clean \
 mostlyclean distclean maintainer-clean
 
 
-install: $(ICONS)
+install: $(ICONS) links
 	@echo Installing icons...
 	@$(INSTALL) -m755 -d $(DESTDIR)$(tilp_icon_dir)
 	@for I in *.ico ; do \

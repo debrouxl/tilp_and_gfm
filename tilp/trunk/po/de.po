@@ -6,7 +6,7 @@
 # instead of "couldn't do foo".
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2003-04-23 22:11+0200\n"
+"POT-Creation-Date: 2003-05-03 10:50+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -52,11 +52,11 @@ msgstr "überspringen"
 msgid "overwrite"
 msgstr "überschreiben"
 
-#: src/action.c:298 src/tilp_files.c:697 src/tilp_slct.c:117
+#: src/action.c:298 src/tilp_files.c:702 src/tilp_slct.c:117
 msgid "Rename the file"
 msgstr "Datei umbenennen"
 
-#: src/action.c:298 src/tilp_files.c:698
+#: src/action.c:298 src/tilp_files.c:703
 msgid "New name: "
 msgstr "Neuer Name: "
 
@@ -193,17 +193,17 @@ msgid "Any Folder"
 msgstr ""
 
 #: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:150 src/popup.c:229
-#: src/popup.c:314 src/tilp_calcs.c:246 src/tilp_calcs.c:255
-#: src/tilp_calcs.c:264 src/tilp_calcs.c:284 src/tilp_calcs.c:298
-#: src/tilp_files.c:96 src/tilp_files.c:110 src/tilp_files.c:128
-#: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:171
-#: src/tilp_rcfile.c:118 src/tilp_slct.c:122 src/tilp_slct.c:136
-#: src/tilp_slct.c:145 src/tilp_slct.c:154
+#: src/popup.c:314 src/tilp_calcs.c:242 src/tilp_calcs.c:251
+#: src/tilp_calcs.c:260 src/tilp_calcs.c:280 src/tilp_calcs.c:294
+#: src/tilp_files.c:101 src/tilp_files.c:115 src/tilp_files.c:133
+#: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:170
+#: src/tilp_rcfile.c:118 src/tilp_slct.c:122 src/tilp_slct.c:137
+#: src/tilp_slct.c:148 src/tilp_slct.c:159
 msgid "Information"
 msgstr "Information"
 
-#: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:114 src/tilp_calcs.c:239
-#: src/tilp_calcs.c:387 src/tilp_files.c:687 src/tilp_slct.c:87
+#: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:110 src/tilp_calcs.c:235
+#: src/tilp_calcs.c:383 src/tilp_files.c:692 src/tilp_slct.c:87
 #: src/tilp_slct.c:90
 msgid "Warning"
 msgstr "Warnung"
@@ -214,12 +214,12 @@ msgstr "Frage"
 
 #. gif->destroy_pbar();
 #: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:157 src/popup.c:236
-#: src/popup.c:369 src/tilp.c:237 src/tilp_calcs.c:336 src/tilp_calcs.c:382
-#: src/tilp_calcs.c:586 src/tilp_calcs.c:592 src/tilp_calcs.c:598
-#: src/tilp_error.c:74 src/tilp_files.c:734 src/tilp_files.c:764
-#: src/tilp_files.c:783 src/tilp_files.c:802 src/tilp_main.c:325
-#: src/tilp_main.c:333 src/tilp_misc.c:166 src/tilp_misc.c:292
-#: src/tilp_rcfile.c:555
+#: src/popup.c:369 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
+#: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
+#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:739
+#: src/tilp_files.c:771 src/tilp_files.c:790 src/tilp_files.c:809
+#: src/tilp_main.c:316 src/tilp_main.c:325 src/tilp_misc.c:165
+#: src/tilp_misc.c:290 src/tilp_rcfile.c:555
 msgid "Error"
 msgstr "Fehler"
 
@@ -273,7 +273,7 @@ msgstr "TiLP"
 msgid "Scanning plugins..."
 msgstr "Scanne Plugins..."
 
-#: src/popup.c:151 src/popup.c:230 src/tilp_slct.c:137
+#: src/popup.c:151 src/popup.c:230 src/tilp_slct.c:138
 msgid "A file must have been selected in the right window."
 msgstr ""
 
@@ -297,15 +297,15 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr "Pluginmechanismus: System noch nicht definiert!"
 
-#: src/popup.c:336 src/tilp.c:499 glade/clist_rbm-2.str:19
+#: src/popup.c:336 src/tilp.c:507 glade/clist_rbm-2.str:19
 msgid "Make a new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/popup.c:336 src/tilp.c:499 src/tilp_slct.c:117
+#: src/popup.c:336 src/tilp.c:507 src/tilp_slct.c:117
 msgid "Name: "
 msgstr "Name: "
 
-#: src/popup.c:337 src/tilp.c:500
+#: src/popup.c:337 src/tilp.c:508
 msgid "new_directory"
 msgstr "neues_verzeichnis"
 
@@ -329,18 +329,18 @@ msgstr "Wechsle Laufwerk"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmapdatei nicht gefunden: %s"
 
-#: src/tilp.c:111 src/tilp_calcs.c:65 src/tilp_calcs.c:75
+#: src/tilp.c:63
 #, fuzzy
 msgid "Status: not connected."
 msgstr " Status: nicht verbunden."
 
-#: src/tilp.c:238
+#: src/tilp.c:246
 msgid ""
 "It's not a FLASH upgrade or this FLASH file is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:115
+#: src/tilp_calcs.c:111
 msgid ""
 "You are going to restore the content\n"
 "of your calculator with a backup.\n"
@@ -348,41 +348,41 @@ msgid ""
 "Are you sure you want to do that ?"
 msgstr ""
 
-#: src/tilp_calcs.c:124 src/tilp_calcs.c:131 src/tilp_calcs.c:136
-#: src/tilp_calcs.c:159 src/tilp_calcs.c:165 src/tilp_calcs.c:170
-#: src/tilp_calcs.c:173 glade/tilp-2.str:64
+#: src/tilp_calcs.c:120 src/tilp_calcs.c:127 src/tilp_calcs.c:132
+#: src/tilp_calcs.c:155 src/tilp_calcs.c:161 src/tilp_calcs.c:166
+#: src/tilp_calcs.c:169 glade/tilp-2.str:64
 msgid "Backup"
 msgstr "Sicherung"
 
-#: src/tilp_calcs.c:125
+#: src/tilp_calcs.c:121
 msgid "Waiting for confirmation on calc..."
 msgstr ""
 
-#: src/tilp_calcs.c:160
+#: src/tilp_calcs.c:156
 msgid "Waiting for backup from calc..."
 msgstr ""
 
-#: src/tilp_calcs.c:173
+#: src/tilp_calcs.c:169
 msgid "Receiving blocks"
 msgstr "Empfange Blöcke"
 
-#: src/tilp_calcs.c:207
+#: src/tilp_calcs.c:203
 msgid "ID-LIST : "
 msgstr "ID-Liste: "
 
-#: src/tilp_calcs.c:214
+#: src/tilp_calcs.c:210
 msgid "IDlist"
 msgstr "IDlist"
 
-#: src/tilp_calcs.c:226
+#: src/tilp_calcs.c:222
 msgid "ROM dump"
 msgstr "ROM-Abbild"
 
-#: src/tilp_calcs.c:226
+#: src/tilp_calcs.c:222
 msgid "Receiving bytes"
 msgstr "Empfange Bytes"
 
-#: src/tilp_calcs.c:240
+#: src/tilp_calcs.c:236
 msgid ""
 "An assembly program is about to be\n"
 "sent on your calculator. If you have not made\n"
@@ -390,14 +390,14 @@ msgid ""
 "proceeding with ROM dumping..."
 msgstr ""
 
-#: src/tilp_calcs.c:247
+#: src/tilp_calcs.c:243
 msgid ""
 "1: you must have AShell installed on your calculator\n"
 "2: TiLP will automatically transfer the ROM dump program\n"
 "3: but, it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:256
+#: src/tilp_calcs.c:252
 msgid ""
 "1: you must have ASh installed on your calculator\n"
 "2: you must be in receive mode (LINK menu)\n"
@@ -405,7 +405,7 @@ msgid ""
 "4: it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:265
+#: src/tilp_calcs.c:261
 msgid ""
 "1: you must have Zshell or Usgard installed on your calculator\n"
 "2: you must be in receive mode (LINK menu)\n"
@@ -413,32 +413,32 @@ msgid ""
 "4: it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:285
+#: src/tilp_calcs.c:281
 msgid ""
 "1: TiLP will automatically transfer the ROM dumping program\n"
 "2: but, it will wait for you to manually launch it from the calculator "
 "(either by the shell, either by typing 'asm(rom86)'."
 msgstr ""
 
-#: src/tilp_calcs.c:299
+#: src/tilp_calcs.c:295
 msgid ""
 "1: you must have the FargoII shell installed on your calculator\n"
 "2: TiLP will automatically transfer the ROM dumping program\n"
 "3: TiLP will automatically launch the program (if you are in HOME).\n"
 msgstr ""
 
-#: src/tilp_calcs.c:338
+#: src/tilp_calcs.c:334
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:350 src/tilp_calcs.c:355 src/tilp_calcs.c:399
-#: src/tilp_calcs.c:404
+#: src/tilp_calcs.c:346 src/tilp_calcs.c:351 src/tilp_calcs.c:395
+#: src/tilp_calcs.c:400
 msgid "Flash"
 msgstr "Flash"
 
-#: src/tilp_calcs.c:378
+#: src/tilp_calcs.c:374
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -450,57 +450,57 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:384
+#: src/tilp_calcs.c:380
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:437
+#: src/tilp_calcs.c:433
 msgid "Receiving application(s)"
 msgstr "Empfange Anwendung(en)"
 
-#: src/tilp_calcs.c:534
+#: src/tilp_calcs.c:522
 msgid "Converting..."
 msgstr "Konvertiere..."
 
-#: src/tilp_calcs.c:587
+#: src/tilp_calcs.c:575
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:594
+#: src/tilp_calcs.c:582
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:599
+#: src/tilp_calcs.c:587
 msgid "There is an unknown file type in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:613
+#: src/tilp_calcs.c:601
 msgid "Sending group file"
 msgstr "Sende Gruppendatei"
 
-#: src/tilp_calcs.c:617
+#: src/tilp_calcs.c:605
 msgid "Sending variable"
 msgstr "Sende Variable"
 
-#: src/tilp_calcs.c:619
+#: src/tilp_calcs.c:607
 msgid "Sending variables"
 msgstr "Sende Variablen"
 
-#: src/tilp_calcs.c:686 src/tilp_calcs.c:824
+#: src/tilp_calcs.c:674 src/tilp_calcs.c:795
 msgid "Receiving variable(s)"
 msgstr "Empfange Variable(n)"
 
-#: src/tilp_calcs.c:825
+#: src/tilp_calcs.c:796
 msgid "Waiting..."
 msgstr "Warte..."
 
-#: src/tilp_files.c:97 src/tilp_files.c:111
+#: src/tilp_files.c:102 src/tilp_files.c:116
 msgid "Unable to remove the file. You can not delete non empty folders !"
 msgstr ""
 
-#: src/tilp_files.c:129
+#: src/tilp_files.c:134
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -508,158 +508,159 @@ msgstr ""
 "Verzeichnis konnte nicht angelegt werden.\n"
 "\n"
 
-#: src/tilp_files.c:684
+#: src/tilp_files.c:689
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:688
+#: src/tilp_files.c:693
 msgid "Overwrite "
 msgstr "Überschreiben "
 
-#: src/tilp_files.c:688
+#: src/tilp_files.c:693
 msgid "Rename "
 msgstr "Umbenennen "
 
-#: src/tilp_files.c:689
+#: src/tilp_files.c:694
 msgid "Skip "
 msgstr "Überspringen "
 
-#: src/tilp_files.c:736
+#: src/tilp_files.c:741
 #, fuzzy
 msgid "Unable to move the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/tilp_files.c:763 src/tilp_files.c:800
+#: src/tilp_files.c:770 src/tilp_files.c:807
 msgid "Chdir error.\n"
 msgstr "Verzeichnis konnte nicht gewechselt werden.\n"
 
-#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:166
+#: src/tilp_files.c:771 src/tilp_files.c:810 src/tilp_misc.c:165
 msgid "Unable to change directory."
 msgstr "Verzeichnis konnte nicht gewechselt werden."
 
-#: src/tilp_files.c:784
+#: src/tilp_files.c:791
 msgid "You can not go outside of your HOME directory."
 msgstr ""
 
-#: src/tilp_main.c:76
+#: src/tilp_main.c:72
 msgid "Usage: tilp [-options] [filename]\n"
 msgstr "Benutzung: tilp [-Optionen] [Dateiname]\n"
 
-#: src/tilp_main.c:79
+#: src/tilp_main.c:75
 msgid "-h, --help    display this information page and exit\n"
 msgstr ""
 
-#: src/tilp_main.c:81
+#: src/tilp_main.c:77
 msgid "-v, --version display the version information and exit\n"
 msgstr ""
 
-#: src/tilp_main.c:82
+#: src/tilp_main.c:78
 msgid "-cmdline      use command line and stop\n"
 msgstr "-cmdline      benutze Kommandozeile und stoppe\n"
 
-#: src/tilp_main.c:83
+#: src/tilp_main.c:79
 msgid "-gui=...      use the specified GUI (console, gtk)\n"
 msgstr "-gui=...      GUI spezifizieren (console, gtk)\n"
 
-#: src/tilp_main.c:84
+#: src/tilp_main.c:80
 msgid "-calc=...     give the calculator type\n"
 msgstr "-calc=...     Rechnertyp angeben\n"
 
-#: src/tilp_main.c:85
+#: src/tilp_main.c:81
 msgid "-link=...     give the link cable type\n"
 msgstr "-link=...     Verbindungskabeltyp angeben\n"
 
-#: src/tilp_main.c:86
+#: src/tilp_main.c:82
 msgid "-dev_port=... give the device port\n"
 msgstr "-dev_port=... Geräteport angeben\n"
 
-#: src/tilp_main.c:87
+#: src/tilp_main.c:83
 msgid "-adr_port=... give the address of the port\n"
 msgstr "-adr_port=... Adresse des Ports angeben\n"
 
-#: src/tilp_main.c:88
+#: src/tilp_main.c:84
 msgid "-timeout=...  give the time out in seconds\n"
 msgstr "-timeout=...  Zeitlimit in Sekunden angeben\n"
 
-#: src/tilp_main.c:89
+#: src/tilp_main.c:85
 msgid "-delay=...    give the delay in microseconds\n"
 msgstr "-delay=...    Verzögerung in Mikrosekunden angeben\n"
 
-#: src/tilp_main.c:91
+#: src/tilp_main.c:87
 msgid "filename      a filename to send (console or GTK+)\n"
 msgstr ""
 "dateiname     ein Dateinname, der gesendet werden soll (Konsole oder GTK+)\n"
 
-#: src/tilp_main.c:93
+#: src/tilp_main.c:89
 msgid "See the manpage for more informations...\n"
 msgstr "Siehe Handbuch (man tilp) für mehr Informationen...\n"
 
-#: src/tilp_main.c:109
+#: src/tilp_main.c:104
 #, c-format
-msgid "TiLP - Version %s, (C) 1999-2003 Romain Livin\n"
+msgid "TiLP - Version %s, (C) 1999-2003 Romain Livin <roms@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:113
+#: src/tilp_main.c:108
 #, fuzzy
 msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 msgstr "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 
-#: src/tilp_main.c:118
+#: src/tilp_main.c:113
 #, c-format
-msgid "Mac OS X port Version %s, (C) 2001-2002 Julien Blache\n"
+msgid ""
+"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:122
+#: src/tilp_main.c:117
 #, c-format
 msgid "Built on %s %s\n"
 msgstr "Kompilierdatum: %s %s\n"
 
-#: src/tilp_main.c:123
+#: src/tilp_main.c:118
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr "DIESES PROGRAMM GEWÄHRT KEINERLEI GARANTIEEN.\n"
 
-#: src/tilp_main.c:124
+#: src/tilp_main.c:119
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "BITTE LESEN SIE DIE DOKUMENTATION FÜR DETAILS\n"
 
-#: src/tilp_main.c:323
+#: src/tilp_main.c:314
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:326
+#: src/tilp_main.c:317
 msgid "Libticables: version mismatches."
 msgstr "Libticables: Versionskonflikt."
 
-#: src/tilp_main.c:331
+#: src/tilp_main.c:323
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:334
+#: src/tilp_main.c:326
 msgid "Libticalcs: version mismatches."
 msgstr "Libticalcs:-Versionskonflikt."
 
-#: src/tilp_main.c:358
+#: src/tilp_main.c:350
 msgid "Working mode: command line.\n"
 msgstr "Arbeitsmodus: Kommandozeile.\n"
 
-#: src/tilp_main.c:361
+#: src/tilp_main.c:353
 msgid "Working mode: console (prompt).\n"
 msgstr "Arbeitsmodus: Konsole (Prompt).\n"
 
-#: src/tilp_main.c:364
+#: src/tilp_main.c:356
 msgid "Working mode: GTK+.\n"
 msgstr "Arbeitsmodus: GTK+.\n"
 
-#: src/tilp_main.c:367
+#: src/tilp_main.c:359
 msgid "Working mode: MFC.\n"
 msgstr "Arbeitsmodus: MFC.\n"
 
-#: src/tilp_main.c:370
+#: src/tilp_main.c:362
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr "Arbeitsmodus: Cocoa OS X GUI.\n"
 
@@ -671,27 +672,27 @@ msgstr "Konfigurationsdatei gespeichert."
 msgid "Configuration file loaded."
 msgstr "Konfigurationsdatei geladen."
 
-#: src/tilp_misc.c:172
+#: src/tilp_misc.c:171
 msgid "This function is not available in the Win version."
 msgstr ""
 
-#: src/tilp_misc.c:199
+#: src/tilp_misc.c:196
 msgid "Invalid filename. There is no extension !\n"
 msgstr ""
 
-#: src/tilp_misc.c:252
+#: src/tilp_misc.c:249
 msgid "Create new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/tilp_misc.c:254
+#: src/tilp_misc.c:251
 msgid "Directory where files will be ungrouped: "
 msgstr ""
 
-#: src/tilp_misc.c:255
+#: src/tilp_misc.c:252
 msgid "ungrouped"
 msgstr "Gruppierung aufgehoben"
 
-#: src/tilp_misc.c:293
+#: src/tilp_misc.c:291
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
@@ -699,15 +700,15 @@ msgstr ""
 "Mindestens 2 Dateien müssen ausgewählt sein.\n"
 "\n"
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:295
 msgid "Group files"
 msgstr "Dateien gruppieren"
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:295
 msgid "Group name: "
 msgstr "Gruppenname: "
 
-#: src/tilp_misc.c:298
+#: src/tilp_misc.c:296
 msgid "group"
 msgstr "Gruppe"
 
@@ -731,21 +732,21 @@ msgstr "Fertig.\n"
 msgid "Scanning registry... "
 msgstr "Scanne Plugins..."
 
-#: src/tilp_prompt.c:59
+#: src/tilp_prompt.c:65
 msgid ""
 "Currently recognized commands: ls, cd, help, quit, exit, ready, screen "
 "[filename], dirlist [filename], backup [filename], restore [filename], send "
 "[filename], receive [filename] and dump [filename]\n"
 msgstr ""
 
-#: src/tilp_prompt.c:90
+#: src/tilp_prompt.c:96
 #, fuzzy
 msgid ""
 "\n"
 "Illegal directory!\n"
 msgstr "neues_verzeichnis"
 
-#: src/tilp_prompt.c:94
+#: src/tilp_prompt.c:100
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -756,7 +757,7 @@ msgstr ""
 "Aktuelles Verzeichnis:\n"
 "%s\n"
 
-#: src/tilp_prompt.c:98
+#: src/tilp_prompt.c:104
 #, c-format
 msgid ""
 "\n"
@@ -767,7 +768,7 @@ msgstr ""
 "Aktuelles Verzeichnis:\n"
 "%s\n"
 
-#: src/tilp_prompt.c:154
+#: src/tilp_prompt.c:160
 msgid ""
 "\n"
 "cmd> "
@@ -775,7 +776,7 @@ msgstr ""
 "\n"
 "cmd> "
 
-#: src/tilp_prompt.c:171
+#: src/tilp_prompt.c:177
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
 msgstr ""
 
@@ -822,16 +823,16 @@ msgstr ""
 "Verzeichnis konnte nicht angelegt werden.\n"
 "\n"
 
-#: src/tilp_slct.c:146 src/tilp_slct.c:155
+#: src/tilp_slct.c:149 src/tilp_slct.c:160
 msgid "A variable must have been selected in the left window."
 msgstr ""
 
 #. get new tree
-#: src/tilp_vars.c:67
+#: src/tilp_vars.c:68
 msgid "Directory list"
 msgstr "Verzeichnisliste"
 
-#: src/tilp_vars.c:68
+#: src/tilp_vars.c:69
 msgid "Reading variables"
 msgstr "Lese Variablen"
 

@@ -7,12 +7,11 @@ Some explanations about the version number:
 	whereas an odd number is an unstable/devel version.
 	New form #3: tilp (cables, calcs, tiffep) version.
 
-To do:
-	- fix screenshot pbs (save file box when connection crashed).
 
 - 03/05/2003, version 6.67 (3.7.5, 0.5.5, 4.4.9):
 	Bug fix in the screenshot box (fsel box displayed while connection
 	failed).
+	Statusbar updated to new callback.
 	
 - 23/04/2003, version 6.66 (3.7.5, 0.5.5, 4.4.9):
 	Bug fixes with g_strfreev thanks to Tijl.
