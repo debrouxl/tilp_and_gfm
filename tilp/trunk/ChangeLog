@@ -8,10 +8,12 @@ Some explanations about the version number:
 	New form #3: tilp (cables, calcs, tiffep) version.
 
 
-- 03/05/2003, version 6.67 (3.7.5, 0.5.5, 4.4.9):
+- 03/05/2003, version 6.67 (3.7.6, 0.5.6, 4.4.9):
 	Bug fix in the screenshot box (fsel box displayed while connection
 	failed).
 	Statusbar updated to new callback.
+	mkdir: utf8 to locale conversion (the GLib function seems not to
+	work correctly) -> pending
 	
 - 23/04/2003, version 6.66 (3.7.5, 0.5.5, 4.4.9):
 	Bug fixes with g_strfreev thanks to Tijl.

@@ -121,7 +121,7 @@ INSTALL = @INSTALL@
 
 FILES = ../RELEASE ../COPYING  ../man/Manpage.txt
 APPSIGN = appsign-linux-i386-bin.zip
-EXTRA_DIST = $(FILES) #$(APPSIGN)
+EXTRA_DIST = $(FILES) $(APPSIGN)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h
 CONFIG_CLEAN_FILES = 

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-05-03 16:20+0200\n"
+"POT-Creation-Date: 2003-05-04 10:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,8 +188,8 @@ msgstr ""
 msgid "Any Folder"
 msgstr ""
 
-#: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:150 src/popup.c:229
-#: src/popup.c:314 src/tilp_calcs.c:242 src/tilp_calcs.c:251
+#: src/dboxes.c:39 src/dboxes.c:88 src/popup.c:164 src/popup.c:244
+#: src/popup.c:336 src/tilp_calcs.c:242 src/tilp_calcs.c:251
 #: src/tilp_calcs.c:260 src/tilp_calcs.c:280 src/tilp_calcs.c:294
 #: src/tilp_files.c:101 src/tilp_files.c:115 src/tilp_files.c:133
 #: src/tilp_misc.c:46 src/tilp_misc.c:57 src/tilp_misc.c:170
@@ -209,8 +209,8 @@ msgid "Question"
 msgstr ""
 
 #. gif->destroy_pbar();
-#: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:157 src/popup.c:236
-#: src/popup.c:369 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
+#: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:171 src/popup.c:251
+#: src/popup.c:408 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
 #: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
 #: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:739
 #: src/tilp_files.c:771 src/tilp_files.c:790 src/tilp_files.c:809
@@ -269,11 +269,11 @@ msgstr ""
 msgid "Scanning plugins..."
 msgstr ""
 
-#: src/popup.c:151 src/popup.c:230 src/tilp_slct.c:138
+#: src/popup.c:165 src/popup.c:245 src/tilp_slct.c:138
 msgid "A file must have been selected in the right window."
 msgstr ""
 
-#: src/popup.c:158
+#: src/popup.c:172
 msgid ""
 "It seems that the 'unzip' program is unavailable.\n"
 "Windows users: you must have the 'WinZip Command Line Support Add-On' (233 "
@@ -281,7 +281,7 @@ msgid ""
 "you can download it at www.winzip.com."
 msgstr ""
 
-#: src/popup.c:237
+#: src/popup.c:252
 msgid ""
 "It seems that the 'unzip' program is unavailable.\n"
 "Windows users: you must have the 'WinZip Command Line Support Add-On' (233 "
@@ -289,34 +289,34 @@ msgid ""
 "you can download it at www.wintar.com."
 msgstr ""
 
-#: src/popup.c:315
+#: src/popup.c:337
 msgid "Plugin mechanism: system not defined yet !"
 msgstr ""
 
-#: src/popup.c:336 src/tilp.c:507 glade/clist_rbm-2.str:19
+#: src/popup.c:366 src/tilp.c:509 glade/clist_rbm-2.str:19
 msgid "Make a new directory"
 msgstr ""
 
-#: src/popup.c:336 src/tilp.c:507 src/tilp_slct.c:117
+#: src/popup.c:366 src/tilp.c:509 src/tilp_slct.c:117
 msgid "Name: "
 msgstr ""
 
-#: src/popup.c:337 src/tilp.c:508
+#: src/popup.c:367 src/tilp.c:510
 msgid "new_directory"
 msgstr ""
 
-#: src/popup.c:370
+#: src/popup.c:409
 msgid ""
 "It seems that the 'appsign' program is not available.\n"
 "You can download it on http://education.ti.com."
 msgstr ""
 
-#: src/popup.c:469
+#: src/popup.c:512
 msgid "Open with"
 msgstr ""
 
 #. A..Z -> 26 letters
-#: src/popup.c:533
+#: src/popup.c:576
 msgid "Change drive"
 msgstr ""
 

@@ -32,7 +32,7 @@ links:
 	ln -sf List.ico Complex_List.ico
 	ln -sf Matrix.ico Complex_Matrix.ico
 	ln -sf Vector.ico Complex_Vector.ico
-	ln -sf Equation.ico Diff_Eq.ico
+	ln -sf Equation.ico Diff_Equ.ico
 	ln -sf Equation.ico Function.ico
 	ln -sf Equation.ico Parametric.ico
 	ln -sf Equation.ico Polar.ico
