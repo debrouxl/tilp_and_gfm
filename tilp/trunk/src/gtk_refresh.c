@@ -34,13 +34,13 @@
 
 static TicableDataRate *dr;
 
-static void gtkgui_start()
+static void gtkgui_start(void)
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
 	ticable_get_datarate(&dr);
 } 
 
-static void gtkgui_stop()
+static void gtkgui_stop(void)
 {
 	info_update.prev_percentage = info_update.percentage = 0.0;
 } 
@@ -49,7 +49,7 @@ static void gtkgui_stop()
 static void filter_shift(void);
 static gfloat filter_compute(gfloat input);
 
-static void refresh_pbar1()
+static void refresh_pbar1(void)
 {
 	gchar buffer[32];
 	gfloat rate, avg;
@@ -83,7 +83,7 @@ static void refresh_pbar1()
 	}
 }
 
-static void refresh_pbar2()
+static void refresh_pbar2(void)
 {
 	if (p_win.pbar2 != NULL) 
     {
@@ -101,7 +101,7 @@ static void refresh_pbar2()
     }
 }
 
-static void gtkgui_pbar()
+static void gtkgui_pbar(void)
 {
 	refresh_pbar1();
 	refresh_pbar2();
@@ -111,7 +111,7 @@ static void gtkgui_pbar()
 // are encoded according to tifiles_translate_set_encoding().
 // This should be treated here but given that encoding is set to UTF8, there
 // nothing to do...
-static void gtkgui_label()
+static void gtkgui_label(void)
 {
 	if (p_win.label == NULL)
 		return;
@@ -121,7 +121,7 @@ static void gtkgui_label()
 	GTK_REFRESH();
 }
 
-static void gtkgui_refresh()
+static void gtkgui_refresh(void)
 {
 	GTK_REFRESH();
 }
