@@ -51,7 +51,7 @@
 						Split0 = {
 							Split0 = {
 								NavContent0 = {
-									bookmark = F770D5D40461299D01000306;
+									bookmark = F7366F6504E13C6301000306;
 									history = (
 										F5CAF4E202C8CEEC01041594,
 										F7918DF20449FF9001000306,
@@ -94,7 +94,6 @@
 										F768D9EB0451A2ED01000306,
 										F768D9EC0451A2ED01000306,
 										F768D9EE0451A2ED01000306,
-										F768D9EF0451A2ED01000306,
 										F768D9F00451A2ED01000306,
 										F768D9F40451A2ED01000306,
 										F7377EAF0451DEA201000306,
@@ -102,7 +101,6 @@
 										F76096280452D9D701000306,
 										F76096290452D9D701000306,
 										F760962A0452D9D701000306,
-										F760962F0452D9D701000306,
 										F76096300452D9D701000306,
 										F76096310452D9D701000306,
 										F76096320452D9D701000306,
@@ -111,14 +109,16 @@
 										F76096360452D9D701000306,
 										F76096370452D9D701000306,
 										F76096390452D9D701000306,
-										F75F2427045446CA01000306,
 										F75F2428045446CA01000306,
 										F75F2429045446CA01000306,
 										F75F242A045446CA01000306,
-										F75F242B045446CA01000306,
-										F75F242C045446CA01000306,
-										F75F242D045446CA01000306,
-										F75F2446045446CA01000306,
+										F7366F5704E13C6301000306,
+										F7366F5804E13C6301000306,
+										F7366F5904E13C6301000306,
+										F7366F5A04E13C6301000306,
+										F7366F5B04E13C6301000306,
+										F7366F5C04E13C6301000306,
+										F7366F5D04E13C6301000306,
 									);
 									prevStack = (
 										F518BCE102C8C84C01041594,
@@ -814,6 +814,13 @@
 										F75F2443045446CA01000306,
 										F75F2444045446CA01000306,
 										F75F2445045446CA01000306,
+										F7366F5E04E13C6301000306,
+										F7366F5F04E13C6301000306,
+										F7366F6004E13C6301000306,
+										F7366F6104E13C6301000306,
+										F7366F6204E13C6301000306,
+										F7366F6304E13C6301000306,
+										F7366F6404E13C6301000306,
 									);
 								};
 								NavCount = 1;
@@ -856,7 +863,7 @@
 						Collapsed = NO;
 						Frame = "{{0, 23}, {1016, 550}}";
 						Split0 = {
-							ActiveTab = 1;
+							ActiveTab = 2;
 							Collapsed = NO;
 							Frame = "{{249, 0}, {767, 550}}";
 							Split0 = {
@@ -907,9 +914,9 @@
 								};
 							};
 							Tab2 = {
-								BuildMessageFrame = "{{0, 0}, {769, 56}}";
-								BuildTranscriptFrame = "{{0, 65}, {769, 28}}";
-								Frame = "{{0, 0}, {767, 91}}";
+								BuildMessageFrame = "{{0, 0}, {769, 58}}";
+								BuildTranscriptFrame = "{{0, 67}, {769, 40}}";
+								Frame = "{{0, 0}, {767, 105}}";
 							};
 							Tab3 = {
 								Frame = "{{0, 0}, {757, 265}}";
@@ -1020,6 +1027,21 @@
 			F5CAF4E802C8CEEC01041594 = F5CAF4E802C8CEEC01041594;
 			F5CAF4E902C8CEEC01041594 = F5CAF4E902C8CEEC01041594;
 			F5CAF4EA02C8CEEC01041594 = F5CAF4EA02C8CEEC01041594;
+			F7366F5704E13C6301000306 = F7366F5704E13C6301000306;
+			F7366F5804E13C6301000306 = F7366F5804E13C6301000306;
+			F7366F5904E13C6301000306 = F7366F5904E13C6301000306;
+			F7366F5A04E13C6301000306 = F7366F5A04E13C6301000306;
+			F7366F5B04E13C6301000306 = F7366F5B04E13C6301000306;
+			F7366F5C04E13C6301000306 = F7366F5C04E13C6301000306;
+			F7366F5D04E13C6301000306 = F7366F5D04E13C6301000306;
+			F7366F5E04E13C6301000306 = F7366F5E04E13C6301000306;
+			F7366F5F04E13C6301000306 = F7366F5F04E13C6301000306;
+			F7366F6004E13C6301000306 = F7366F6004E13C6301000306;
+			F7366F6104E13C6301000306 = F7366F6104E13C6301000306;
+			F7366F6204E13C6301000306 = F7366F6204E13C6301000306;
+			F7366F6304E13C6301000306 = F7366F6304E13C6301000306;
+			F7366F6404E13C6301000306 = F7366F6404E13C6301000306;
+			F7366F6504E13C6301000306 = F7366F6504E13C6301000306;
 			F7377EAF0451DEA201000306 = F7377EAF0451DEA201000306;
 			F7377EB10451DEA201000306 = F7377EB10451DEA201000306;
 			F7377EB30451DEA201000306 = F7377EB30451DEA201000306;
@@ -1123,13 +1145,9 @@
 			F75E4614044AF29D01000306 = F75E4614044AF29D01000306;
 			F75E4615044AF29D01000306 = F75E4615044AF29D01000306;
 			F75E4616044AF29D01000306 = F75E4616044AF29D01000306;
-			F75F2427045446CA01000306 = F75F2427045446CA01000306;
 			F75F2428045446CA01000306 = F75F2428045446CA01000306;
 			F75F2429045446CA01000306 = F75F2429045446CA01000306;
 			F75F242A045446CA01000306 = F75F242A045446CA01000306;
-			F75F242B045446CA01000306 = F75F242B045446CA01000306;
-			F75F242C045446CA01000306 = F75F242C045446CA01000306;
-			F75F242D045446CA01000306 = F75F242D045446CA01000306;
 			F75F242F045446CA01000306 = F75F242F045446CA01000306;
 			F75F2430045446CA01000306 = F75F2430045446CA01000306;
 			F75F2431045446CA01000306 = F75F2431045446CA01000306;
@@ -1153,7 +1171,6 @@
 			F75F2443045446CA01000306 = F75F2443045446CA01000306;
 			F75F2444045446CA01000306 = F75F2444045446CA01000306;
 			F75F2445045446CA01000306 = F75F2445045446CA01000306;
-			F75F2446045446CA01000306 = F75F2446045446CA01000306;
 			F75F5D97044CAD8001000306 = F75F5D97044CAD8001000306;
 			F75F5D9A044CAD8001000306 = F75F5D9A044CAD8001000306;
 			F75F5D9B044CAD8001000306 = F75F5D9B044CAD8001000306;
@@ -1224,7 +1241,6 @@
 			F76096280452D9D701000306 = F76096280452D9D701000306;
 			F76096290452D9D701000306 = F76096290452D9D701000306;
 			F760962A0452D9D701000306 = F760962A0452D9D701000306;
-			F760962F0452D9D701000306 = F760962F0452D9D701000306;
 			F76096300452D9D701000306 = F76096300452D9D701000306;
 			F76096310452D9D701000306 = F76096310452D9D701000306;
 			F76096320452D9D701000306 = F76096320452D9D701000306;
@@ -1527,7 +1543,6 @@
 			F768D9EB0451A2ED01000306 = F768D9EB0451A2ED01000306;
 			F768D9EC0451A2ED01000306 = F768D9EC0451A2ED01000306;
 			F768D9EE0451A2ED01000306 = F768D9EE0451A2ED01000306;
-			F768D9EF0451A2ED01000306 = F768D9EF0451A2ED01000306;
 			F768D9F00451A2ED01000306 = F768D9F00451A2ED01000306;
 			F768D9F40451A2ED01000306 = F768D9F40451A2ED01000306;
 			F768D9FB0451A2ED01000306 = F768D9FB0451A2ED01000306;
@@ -1627,7 +1642,6 @@
 			F768DA590451A2ED01000306 = F768DA590451A2ED01000306;
 			F768DA5A0451A2ED01000306 = F768DA5A0451A2ED01000306;
 			F768DA5B0451A2ED01000306 = F768DA5B0451A2ED01000306;
-			F770D5D40461299D01000306 = F770D5D40461299D01000306;
 			F7918DF20449FF9001000306 = F7918DF20449FF9001000306;
 			F7918DF50449FF9001000306 = F7918DF50449FF9001000306;
 			F7918DF60449FF9001000306 = F7918DF60449FF9001000306;
@@ -1934,7 +1948,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: sendAMS:";
 		rLen = 0;
-		rLoc = 9585;
+		rLoc = 9588;
 		rType = 0;
 		vrLen = 968;
 		vrLoc = 10462;
@@ -2266,6 +2280,156 @@
 		uiCtxt = {
 			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
+	};
+	F7366F5704E13C6301000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13144;
+		rType = 0;
+		vrLen = 1053;
+		vrLoc = 12371;
+	};
+	F7366F5804E13C6301000306 = {
+		fRef = F514E0E40178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.h: 41";
+		rLen = 0;
+		rLoc = 1437;
+		rType = 0;
+		vrLen = 815;
+		vrLoc = 930;
+	};
+	F7366F5904E13C6301000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 10987;
+		rType = 0;
+		vrLen = 970;
+		vrLoc = 9849;
+	};
+	F7366F5A04E13C6301000306 = {
+		fRef = F50E4E7B017F181501000103;
+		isa = PBXTextBookmark;
+		name = "TilpController.m: refreshOutline";
+		rLen = 0;
+		rLoc = 17326;
+		rType = 0;
+		vrLen = 1140;
+		vrLoc = 0;
+	};
+	F7366F5B04E13C6301000306 = {
+		fRef = F50FDB8E0179C7F801000102;
+		isa = PBXTextBookmark;
+		name = "config.h: VERSION";
+		rLen = 0;
+		rLoc = 1275;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 669;
+	};
+	F7366F5C04E13C6301000306 = {
+		fRef = 089C165DFE840E0CC02AAC07;
+		isa = PBXTextBookmark;
+		name = "English: 5";
+		rLen = 0;
+		rLoc = 160;
+		rType = 0;
+		vrLen = 292;
+		vrLoc = 0;
+	};
+	F7366F5D04E13C6301000306 = {
+		fRef = F51315FF0178382A01000102;
+		isa = PBXTextBookmark;
+		name = "MenuController.m: getDirlist:";
+		rLen = 0;
+		rLoc = 7906;
+		rType = 0;
+		vrLen = 766;
+		vrLoc = 7613;
+	};
+	F7366F5E04E13C6301000306 = {
+		fRef = F50C433401F4624B01000102;
+		isa = PBXTextBookmark;
+		name = "TransfersController.m: getScreen:";
+		rLen = 0;
+		rLoc = 13144;
+		rType = 0;
+		vrLen = 1053;
+		vrLoc = 12371;
+	};
+	F7366F5F04E13C6301000306 = {
+		fRef = F51315FF0178382A01000102;
+		isa = PBXTextBookmark;
+		name = "MenuController.m: getDirlist:";
+		rLen = 0;
+		rLoc = 7906;
+		rType = 0;
+		vrLen = 766;
+		vrLoc = 7613;
+	};
+	F7366F6004E13C6301000306 = {
+		fRef = F514E0E40178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.h: 41";
+		rLen = 0;
+		rLoc = 1437;
+		rType = 0;
+		vrLen = 815;
+		vrLoc = 930;
+	};
+	F7366F6104E13C6301000306 = {
+		fRef = F514E0E30178CA7001000102;
+		isa = PBXTextBookmark;
+		name = "PrefsController.m: showPrefsSheet:";
+		rLen = 0;
+		rLoc = 10987;
+		rType = 0;
+		vrLen = 970;
+		vrLoc = 9849;
+	};
+	F7366F6204E13C6301000306 = {
+		fRef = F50E4E7B017F181501000103;
+		isa = PBXTextBookmark;
+		name = "TilpController.m: refreshOutline";
+		rLen = 0;
+		rLoc = 17326;
+		rType = 0;
+		vrLen = 1140;
+		vrLoc = 0;
+	};
+	F7366F6304E13C6301000306 = {
+		fRef = F50FDB8E0179C7F801000102;
+		isa = PBXTextBookmark;
+		name = "config.h: VERSION";
+		rLen = 0;
+		rLoc = 1275;
+		rType = 0;
+		vrLen = 636;
+		vrLoc = 669;
+	};
+	F7366F6404E13C6301000306 = {
+		fRef = 089C165DFE840E0CC02AAC07;
+		isa = PBXTextBookmark;
+		name = "English: 5";
+		rLen = 0;
+		rLoc = 160;
+		rType = 0;
+		vrLen = 292;
+		vrLoc = 0;
+	};
+	F7366F6504E13C6301000306 = {
+		fRef = F51315FF0178382A01000102;
+		isa = PBXTextBookmark;
+		name = "MenuController.m: 412";
+		rLen = 0;
+		rLoc = 12199;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 6156;
 	};
 	F7377EAF0451DEA201000306 = {
 		fRef = 29B97316FDCFA39411CA2CEA;
@@ -3303,16 +3467,6 @@
 		vrLen = 666;
 		vrLoc = 3783;
 	};
-	F75F2427045446CA01000306 = {
-		fRef = F50FDB8E0179C7F801000102;
-		isa = PBXTextBookmark;
-		name = "config.h: SVN_REV";
-		rLen = 0;
-		rLoc = 1251;
-		rType = 0;
-		vrLen = 636;
-		vrLoc = 669;
-	};
 	F75F2428045446CA01000306 = {
 		fRef = F50C433301F4624B01000102;
 		isa = PBXTextBookmark;
@@ -3343,42 +3497,12 @@
 		vrLen = 1245;
 		vrLoc = 2328;
 	};
-	F75F242B045446CA01000306 = {
-		fRef = F514E0E40178CA7001000102;
-		isa = PBXTextBookmark;
-		name = "PrefsController.h: 89";
-		rLen = 0;
-		rLoc = 2960;
-		rType = 0;
-		vrLen = 873;
-		vrLoc = 2489;
-	};
-	F75F242C045446CA01000306 = {
-		fRef = F51315FF0178382A01000102;
-		isa = PBXTextBookmark;
-		name = "MenuController.m: getScreen:";
-		rLen = 0;
-		rLoc = 7251;
-		rType = 0;
-		vrLen = 708;
-		vrLoc = 6856;
-	};
-	F75F242D045446CA01000306 = {
-		fRef = F514E0E30178CA7001000102;
-		isa = PBXTextBookmark;
-		name = "PrefsController.m: prefsClose:";
-		rLen = 0;
-		rLoc = 5949;
-		rType = 0;
-		vrLen = 850;
-		vrLoc = 5375;
-	};
 	F75F242F045446CA01000306 = {
 		fRef = F50FDB8E0179C7F801000102;
 		isa = PBXTextBookmark;
 		name = "config.h: SVN_REV";
 		rLen = 0;
-		rLoc = 1251;
+		rLoc = 1250;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 669;
@@ -3398,7 +3522,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 13376;
+		rLoc = 13545;
 		rType = 0;
 		vrLen = 1070;
 		vrLoc = 12520;
@@ -3448,7 +3572,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 13376;
+		rLoc = 13545;
 		rType = 0;
 		vrLen = 544;
 		vrLoc = 1156;
@@ -3488,7 +3612,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 13318;
+		rLoc = 13487;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 12474;
@@ -3528,7 +3652,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 43;
-		rLoc = 5657;
+		rLoc = 5954;
 		rType = 0;
 		vrLen = 853;
 		vrLoc = 5243;
@@ -3548,7 +3672,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 89";
 		rLen = 0;
-		rLoc = 2960;
+		rLoc = 2990;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 2489;
@@ -3558,7 +3682,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12894;
+		rLoc = 13063;
 		rType = 0;
 		vrLen = 976;
 		vrLoc = 12353;
@@ -3598,20 +3722,10 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 5949;
+		rLoc = 6246;
 		rType = 0;
 		vrLen = 850;
 		vrLoc = 5375;
-	};
-	F75F2446045446CA01000306 = {
-		fRef = F50C433401F4624B01000102;
-		isa = PBXTextBookmark;
-		name = "TransfersController.m: getScreen:";
-		rLen = 0;
-		rLoc = 13144;
-		rType = 0;
-		vrLen = 922;
-		vrLoc = 12481;
 	};
 	F75F5D97044CAD8001000306 = {
 		fRef = F7918DCB0449F7AB01000306;
@@ -3698,7 +3812,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 58";
 		rLen = 0;
-		rLoc = 1957;
+		rLoc = 1987;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 1559;
@@ -3708,7 +3822,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 7295;
+		rLoc = 7592;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 6512;
@@ -3728,7 +3842,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 64";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 2240;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 2009;
@@ -3748,7 +3862,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 52";
 		rLen = 0;
-		rLoc = 1733;
+		rLoc = 1763;
 		rType = 0;
 		vrLen = 818;
 		vrLoc = 1446;
@@ -3838,7 +3952,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 52";
 		rLen = 0;
-		rLoc = 1733;
+		rLoc = 1763;
 		rType = 0;
 		vrLen = 788;
 		vrLoc = 1446;
@@ -3868,7 +3982,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8323;
 		rType = 0;
 		vrLen = 720;
 		vrLoc = 5613;
@@ -3888,7 +4002,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 62";
 		rLen = 0;
-		rLoc = 2061;
+		rLoc = 2091;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 1663;
@@ -3898,7 +4012,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 8026;
+		rLoc = 8323;
 		rType = 0;
 		vrLen = 710;
 		vrLoc = 5613;
@@ -3918,7 +4032,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12467;
+		rLoc = 12636;
 		rType = 0;
 		vrLen = 689;
 		vrLoc = 11839;
@@ -3938,7 +4052,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12569;
+		rLoc = 12738;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 12337;
@@ -4310,16 +4424,6 @@
 		vrLen = 853;
 		vrLoc = 4789;
 	};
-	F760962F0452D9D701000306 = {
-		fRef = F50E4E7B017F181501000103;
-		isa = PBXTextBookmark;
-		name = "TilpController.m: refreshOutline";
-		rLen = 0;
-		rLoc = 17326;
-		rType = 0;
-		vrLen = 628;
-		vrLoc = 14184;
-	};
 	F76096300452D9D701000306 = {
 		fRef = F50B140701C158DF01000102;
 		isa = PBXTextBookmark;
@@ -4522,7 +4626,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 72";
 		rLen = 0;
-		rLoc = 2428;
+		rLoc = 2458;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 2009;
@@ -4532,7 +4636,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 6294;
+		rLoc = 6591;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 5731;
@@ -4552,7 +4656,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 13763;
+		rLoc = 13932;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 12788;
@@ -4582,7 +4686,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: 587";
 		rLen = 0;
-		rLoc = 19257;
+		rLoc = 19426;
 		rType = 0;
 		vrLen = 569;
 		vrLoc = 18538;
@@ -4592,7 +4696,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 342";
 		rLen = 0;
-		rLoc = 10510;
+		rLoc = 10513;
 		rType = 0;
 		vrLen = 568;
 		vrLoc = 10279;
@@ -4692,7 +4796,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 342";
 		rLen = 0;
-		rLoc = 10508;
+		rLoc = 10511;
 		rType = 0;
 		vrLen = 762;
 		vrLoc = 9967;
@@ -5264,7 +5368,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 294";
 		rLen = 36;
-		rLoc = 8580;
+		rLoc = 8583;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 9303;
@@ -5524,7 +5628,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 6567;
+		rLoc = 6864;
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 5858;
@@ -5852,7 +5956,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 12569;
+		rLoc = 12738;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 12228;
@@ -6832,7 +6936,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 10427;
+		rLoc = 9703;
 		rType = 0;
 		vrLen = 891;
 		vrLoc = 6850;
@@ -6942,7 +7046,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 4304;
+		rLoc = 4601;
 		rType = 0;
 		vrLen = 773;
 		vrLoc = 6704;
@@ -6952,7 +7056,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.h: 42";
 		rLen = 0;
-		rLoc = 1415;
+		rLoc = 1445;
 		rType = 0;
 		vrLen = 851;
 		vrLoc = 1168;
@@ -6962,7 +7066,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: showPrefsSheet:";
 		rLen = 0;
-		rLoc = 10813;
+		rLoc = 10982;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 8059;
@@ -7252,7 +7356,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 5345;
+		rLoc = 5642;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5033;
@@ -7366,16 +7470,6 @@
 		rType = 0;
 		vrLen = 716;
 		vrLoc = 2717;
-	};
-	F768D9EF0451A2ED01000306 = {
-		fRef = 089C165DFE840E0CC02AAC07;
-		isa = PBXTextBookmark;
-		name = "English: 6";
-		rLen = 0;
-		rLoc = 260;
-		rType = 0;
-		vrLen = 292;
-		vrLoc = 0;
 	};
 	F768D9F00451A2ED01000306 = {
 		fRef = F50E4E77017F17D701000103;
@@ -8072,7 +8166,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 414";
 		rLen = 0;
-		rLoc = 11616;
+		rLoc = 11619;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 5503;
@@ -8102,7 +8196,7 @@
 		isa = PBXTextBookmark;
 		name = "PrefsController.m: prefsClose:";
 		rLen = 0;
-		rLoc = 5345;
+		rLoc = 5642;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5033;
@@ -8112,7 +8206,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: 414";
 		rLen = 0;
-		rLoc = 11616;
+		rLoc = 11619;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 5503;
@@ -8262,7 +8356,7 @@
 		isa = PBXTextBookmark;
 		name = "MenuController.m: romDump:";
 		rLen = 0;
-		rLoc = 10440;
+		rLoc = 10443;
 		rType = 0;
 		vrLen = 303;
 		vrLoc = 11231;
@@ -8366,16 +8460,6 @@
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 968;
-	};
-	F770D5D40461299D01000306 = {
-		fRef = F50C433401F4624B01000102;
-		isa = PBXTextBookmark;
-		name = "TransfersController.m: getScreen:";
-		rLen = 0;
-		rLoc = 13144;
-		rType = 0;
-		vrLen = 1046;
-		vrLoc = 12371;
 	};
 	F7918DF20449FF9001000306 = {
 		fRef = F5F1CF4F019C3296010BF862;
