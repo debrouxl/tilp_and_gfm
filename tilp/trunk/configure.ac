@@ -23,6 +23,7 @@ AC_CONFIG_FILES([
   intl/Makefile
   man/Makefile
   pixmaps/Makefile
+  plugins/Makefile
   po/Makefile.in
   registry/Makefile
   src/Makefile

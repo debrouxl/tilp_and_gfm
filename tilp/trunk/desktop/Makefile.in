@@ -360,18 +360,18 @@ install: $(FILES)
 
 	@echo "---";
 
-	@echo Installing KMimeMagic local data...
-	@if ! grep "\*\*TI85" /usr/share/mimelnk/magic; then    \
-		cat kde/magic >> /usr/share/mimelnk/magic;      \
-	fi;
+#	@echo Installing KMimeMagic local data...
+#	@if ! grep "\*\*TI85" /usr/share/mimelnk/magic; then    \
+#		cat kde/magic >> /usr/share/mimelnk/magic;      \
+#	fi;
 
-	@echo Installing TiLP menu entry in KDE...
-	@$(INSTALL) -d /usr/share/applnk/Edutainment/Mathematics
-	@$(INSTALL) -m644 kde/tilp.desktop /usr/share/applnk/Edutainment/Mathematics/
+#	@echo Installing TiLP menu entry in KDE...
+#	@$(INSTALL) -d /usr/share/applnk/Edutainment/Mathematics
+#	@$(INSTALL) -m644 kde/tilp.desktop /usr/share/applnk/Edutainment/Mathematics/
 
-	@echo Installing file and icons handling in KDE...
-	@$(INSTALL) -m644 kde/x-tilp.desktop /usr/share/mimelnk/application
-	@echo Done.
+#	@echo Installing file and icons handling in KDE...
+#	@$(INSTALL) -m644 kde/x-tilp.desktop /usr/share/mimelnk/application
+#	@echo Done.
 
 uninstall: $(FILES)
 	@echo Removing desktop files...
