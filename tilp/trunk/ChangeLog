@@ -54,7 +54,11 @@
 	      * added some files from an Apple Sample code to manage the OutlineView
 	      * coded refresh_ctree() which converts a GList into an NSDictionary suitable for use with our OutlineView handling code
 	      * added 2 vars to cocoa_objects_ptr
-	
+* 20011110 : v0.1.6
+	* finished outlineview handling
+	* infos refresh (below the outlineview)
+
+
 
 
 	

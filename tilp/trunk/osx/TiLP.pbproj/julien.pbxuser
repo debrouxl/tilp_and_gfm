@@ -15,6 +15,11 @@
 		sourceDirectories = (
 		);
 	};
+	00FFA4C401707C907F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
 	29B97313FDCFA39411CA2CEA = {
 		activeBuildStyle = 4A9504CCFFE6A4B311CA0CBA;
 		activeTarget = 29B97326FDCFA39411CA2CEA;
@@ -69,8 +74,8 @@
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {684, 64}}";
-							BuildTranscriptFrame = "{{0, 73}, {684, 29}}";
+							BuildMessageFrame = "{{0, 0}, {684, 58}}";
+							BuildTranscriptFrame = "{{0, 67}, {684, 35}}";
 							Frame = "{{0, 0}, {682, 100}}";
 						};
 						Tab3 = {
@@ -117,6 +122,11 @@
 			macosx = (
 				00FFA4B701706F217F000001,
 			);
+		};
+	};
+	F50751D8019C0A370140747F = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
 	F50D8E5E0181A22D01000102 = {
@@ -209,6 +219,11 @@
 			sepNavWindowFrame = "{{6, 232}, {750, 502}}";
 		};
 	};
+	F58271E101762CF701000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{11, 134}, {750, 502}}";
+		};
+	};
 	F58271E801762CF701000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{-2, 211}, {750, 502}}";
@@ -217,6 +232,11 @@
 	F58271E901762CF701000102 = {
 		uiCtxt = {
 			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	F5F1CF43019C3131010BF862 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
 		};
 	};
 }

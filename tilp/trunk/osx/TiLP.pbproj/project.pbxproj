@@ -245,8 +245,13 @@
 				F5090AF30178A67A01000102,
 				089C165CFE840E0CC02AAC07,
 				00FFA4BA01707A727F000001,
+				F50D0B0F019DAC3B01041594,
+				F50D0B10019DAC3B01041594,
+				F50D0B11019DAC3B01041594,
+				F50D0B12019DAC3B01041594,
+				F50D0B13019DAC3B01041594,
+				F50D0B14019DAC3B01041594,
 				F50751D8019C0A370140747F,
-				F50751D9019C0A370140747F,
 				00FFA4BC01707AE57F000001,
 				00FFA4BE01707B147F000001,
 				00FFA4C401707C907F000001,
@@ -328,11 +333,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.51-osx0.1.4</string>
+	<string>4.51-osx0.1.6</string>
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>4.51-osx0.1.4</string>
+	<string>4.51-osx0.1.6</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -394,8 +399,13 @@
 				F5090AF50178A67A01000102,
 				F50F01010183725501000102,
 				F50751DA019C0A370140747F,
-				F50751DB019C0A370140747F,
 				F50751E1019C12DA0140747F,
+				F50D0B15019DAC3B01041594,
+				F50D0B16019DAC3B01041594,
+				F50D0B17019DAC3B01041594,
+				F50D0B18019DAC3B01041594,
+				F50D0B19019DAC3B01041594,
+				F50D0B1A019DAC3B01041594,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -499,20 +509,8 @@
 			path = images/archived.tiff;
 			refType = 2;
 		};
-		F50751D9019C0A370140747F = {
-			isa = PBXFileReference;
-			name = dir.tiff;
-			path = images/dir.tiff;
-			refType = 2;
-		};
 		F50751DA019C0A370140747F = {
 			fileRef = F50751D8019C0A370140747F;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50751DB019C0A370140747F = {
-			fileRef = F50751D9019C0A370140747F;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -557,6 +555,78 @@
 		};
 		F5090AF50178A67A01000102 = {
 			fileRef = F5090AF30178A67A01000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B0F019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = locked.tiff;
+			path = images/locked.tiff;
+			refType = 2;
+		};
+		F50D0B10019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = doc.tiff;
+			path = images/doc.tiff;
+			refType = 2;
+		};
+		F50D0B11019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = keyboard_mini.tiff;
+			path = images/keyboard_mini.tiff;
+			refType = 2;
+		};
+		F50D0B12019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = screen_mini.tiff;
+			path = images/screen_mini.tiff;
+			refType = 2;
+		};
+		F50D0B13019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = dir_c.tiff;
+			path = images/dir_c.tiff;
+			refType = 2;
+		};
+		F50D0B14019DAC3B01041594 = {
+			isa = PBXFileReference;
+			name = dir_o.tiff;
+			path = images/dir_o.tiff;
+			refType = 2;
+		};
+		F50D0B15019DAC3B01041594 = {
+			fileRef = F50D0B0F019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B16019DAC3B01041594 = {
+			fileRef = F50D0B10019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B17019DAC3B01041594 = {
+			fileRef = F50D0B11019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B18019DAC3B01041594 = {
+			fileRef = F50D0B12019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B19019DAC3B01041594 = {
+			fileRef = F50D0B13019DAC3B01041594;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D0B1A019DAC3B01041594 = {
+			fileRef = F50D0B14019DAC3B01041594;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -24,6 +24,12 @@ struct cocoa_objects_ptr
     // and its content
     SimpleTreeNode *dirlistData;
     
+    // info labels
+    id currentFolder;
+    id numberOfFolders;
+    id numberOfVars;
+    id memoryUsed;
+    
     // the dlgbox (for pbars, see the following struct)
     id dlgboxentryWindow;
     id dlgboxentryEntry;

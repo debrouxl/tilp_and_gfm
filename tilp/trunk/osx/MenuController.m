@@ -211,6 +211,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
         return;
         
     refresh_outline();
+    refresh_infos();
 }
 
 - (IBAction)doRestore:(id)sender

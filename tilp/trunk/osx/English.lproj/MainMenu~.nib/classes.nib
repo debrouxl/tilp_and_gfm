@@ -146,9 +146,6 @@
                 memoryUsed = id; 
                 numberOfFolders = id; 
                 numberOfVars = id; 
-                outlineItem = id; 
-                outlineItemImage = id; 
-                outlineItemText = id; 
             }; 
             SUPERCLASS = NSObject; 
         }

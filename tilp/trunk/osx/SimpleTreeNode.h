@@ -1,9 +1,3 @@
-//
-//  SimpleTreeNode.h
-//
-//  Copyright (c) 2001 Apple. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 #import "TreeNode.h"
@@ -14,6 +8,7 @@
     NSString *vartype;
     NSString *varsize;
     NSImage *iconRep;
+    NSImage *attribute;
     BOOL isLeaf;
     BOOL isExpandable;
 }
@@ -47,6 +42,10 @@
 - (void)setIconRep:(NSImage*)iconRep;
 - (NSImage*)iconRep;
     // Set and get the icon displayed next to the 
+
+- (void)setAttribute:(NSImage*)attr;
+- (NSImage*)attribute;
+    // Set and get the NSImage corresponding to the attribute
 
 - (void)setIsExpandable: (BOOL)checked;
 - (BOOL)isExpandable;

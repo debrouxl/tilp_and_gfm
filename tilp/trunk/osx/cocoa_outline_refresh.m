@@ -7,6 +7,7 @@
 #include "../src/defs.h"
 #include "../src/struct.h"
 #include "../src/files.h"
+#include "../src/info.h"
  
 #include "cocoa_structs.h"
  
@@ -14,6 +15,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "SimpleTreeNode.h"
+#import "TilpController.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
 
@@ -25,8 +27,7 @@ refresh_outline(void)
     // 2/ check how pixmaps are set in a gtk_ctree, I'm unsure. I believe we
     // have 2 different pixmaps in this ctree in the GTK GUI
     // 3/ should release dirlistData if it already exists
-    // 4/ ahem... bug :-/
-
+ 
     int folderPos = 0; // position in tiVarsArray
     int varPos = 0; // position in the array representing the folder
 
@@ -38,7 +39,7 @@ refresh_outline(void)
     NSMutableArray *tiVarsArray;
     NSMutableArray *tmpArray;
     SimpleTreeNode *dirlistData;
-    id TilpController;
+    id dirlistTree;
 
     GList *p;
     
@@ -74,22 +75,22 @@ refresh_outline(void)
     
     [mainEntries insertObject:tmpDict atIndex:0];
     
-    [tmpDict setObject:@"Screen" forKey:@"Label"];
-    [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+    [tmpDict setObject:@"Screen" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"screen_mini.tiff"] forKey:@"Image"];
     
     tmpDict = [[NSMutableDictionary alloc] init];
     
     [mainEntries insertObject:tmpDict atIndex:1];
     
-    [tmpDict setObject:@"Memory" forKey:@"Label"];
+    [tmpDict setObject:@"Memory" forKey:@"Varname"];
     [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
-    
+   
     tmpDict = [[NSMutableDictionary alloc] init];
     
     [mainEntries insertObject:tmpDict atIndex:2];
     
-    [tmpDict setObject:@"Keyboard" forKey:@"Label"];
-    [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+    [tmpDict setObject:@"Keyboard" forKey:@"Varname"];
+    [tmpDict setObject:[NSImage imageNamed:@"keyboard_mini.tiff"] forKey:@"Image"];
     
     // now the real fun is about to begin
     
@@ -142,14 +143,15 @@ refresh_outline(void)
                     switch (q->varlocked)  // Uh, you'd better #define'd this type of things, Romain
                         {
                             case 1:
-                                [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Image"];
+                                [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
                                 break;
                             case 3:
-                                [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Image"];
+                                [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
                                 break;
                         }
                     
-                    [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Label"];
+                    [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+                    [tmpDict setObject:[NSString stringWithCString:q->translate] forKey:@"Varname"];
                     [tmpDict setObject:[NSString stringWithCString:ti_calc.byte2type(q->vartype)] forKey:@"Vartype"];
                     [tmpDict setObject:[NSString stringWithFormat:@"%u", q->varsize] forKey:@"Varsize"];
         
@@ -163,16 +165,64 @@ refresh_outline(void)
     
     // get a tree from our big fscking dictionary...
     
+    if (objects_ptr->dirlistData != nil)
+        {
+            dirlistData = objects_ptr->dirlistData;
+            objects_ptr->dirlistData = nil;
+            [dirlistData release];
+            dirlistData = nil;
+        }
+    
     dirlistData = [[SimpleTreeNode treeFromDictionary:content] retain];
     objects_ptr->dirlistData = dirlistData;
     
+    [content release];
+    content = nil;
+    
     // ... then *HUMPFFF* pass the BAAAAAAALLLLLLLLLLLLLLLLLLLLLLL !!!
     
-    //dirlistTree = objects_ptr->dirlistTree;
-    //[dirlistTree reloadData];
+    dirlistTree = objects_ptr->dirlistTree;
+    [dirlistTree reloadData];
+        
+    // ball passed. blargh.
+}
+
+void
+refresh_infos(void)
+{
+    NSString *strCurrentFolder;
+    NSString *strNumberOfFolders;
+    NSString *strNumberOfVars;
+    NSString *strMemoryUsed;
     
-    TilpController = objects_ptr->TilpController;
-    [TilpController initiateOutlineReload];
+    id currentFolder;
+    id numberOfFolders;
+    id numberOfVars;
+    id memoryUsed;
     
-    // ball passed. blargh. Now modifying SimpleTree :P
+    int vars = 0;
+    int folders = 0;
+    int mem = 0;
+
+    number_of_folders_vars_and_mem(&folders, &vars, &mem);
+    
+    strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
+    strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
+    strMemoryUsed = [NSString stringWithFormat:@"%u", mem];
+    strCurrentFolder = [NSString stringWithCString:ctree_win.cur_folder];
+
+    currentFolder = objects_ptr->currentFolder;
+    numberOfFolders = objects_ptr->numberOfFolders;
+    numberOfVars = objects_ptr->numberOfVars;
+    memoryUsed = objects_ptr->memoryUsed;
+    
+    [currentFolder setStringValue:strCurrentFolder];
+    [numberOfFolders setStringValue:strNumberOfFolders];
+    [numberOfVars setStringValue:strNumberOfVars];
+    [memoryUsed setStringValue:strMemoryUsed];
+    
+    [strCurrentFolder release];
+    [strNumberOfFolders release];
+    [strNumberOfVars release];
+    [strMemoryUsed release];
 }

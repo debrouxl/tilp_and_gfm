@@ -1,46 +1,6 @@
 /*
-	SimpleTreeNode.m
-	Copyright (c) 2001 by Apple Computer, Inc., all rights reserved.
-	Author: Chuck Pisula
-
-	Milestones:
-	Initially created 3/1/01
-
-        Tree node data structure carrying simple data (SimpleTreeNode, and SimpleNodeData).
-*/
-
-/*
- IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc. ("Apple") in
- consideration of your agreement to the following terms, and your use, installation, 
- modification or redistribution of this Apple software constitutes acceptance of these 
- terms.  If you do not agree with these terms, please do not use, install, modify or 
- redistribute this Apple software.
- 
- In consideration of your agreement to abide by the following terms, and subject to these 
- terms, Apple grants you a personal, non-exclusive license, under Apple’s copyrights in 
- this original Apple software (the "Apple Software"), to use, reproduce, modify and 
- redistribute the Apple Software, with or without modifications, in source and/or binary 
- forms; provided that if you redistribute the Apple Software in its entirety and without 
- modifications, you must retain this notice and the following text and disclaimers in all 
- such redistributions of the Apple Software.  Neither the name, trademarks, service marks 
- or logos of Apple Computer, Inc. may be used to endorse or promote products derived from 
- the Apple Software without specific prior written permission from Apple. Except as expressly
- stated in this notice, no other rights or licenses, express or implied, are granted by Apple
- herein, including but not limited to any patent rights that may be infringed by your 
- derivative works or by other works in which the Apple Software may be incorporated.
- 
- The Apple Software is provided by Apple on an "AS IS" basis.  APPLE MAKES NO WARRANTIES, 
- EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES OF NON-INFRINGEMENT, 
- MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, REGARDING THE APPLE SOFTWARE OR ITS 
- USE AND OPERATION ALONE OR IN COMBINATION WITH YOUR PRODUCTS.
- 
- IN NO EVENT SHALL APPLE BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL 
- DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
- OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, 
- REPRODUCTION, MODIFICATION AND/OR DISTRIBUTION OF THE APPLE SOFTWARE, HOWEVER CAUSED AND 
- WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR 
- OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ * TiLP Cocoa GUI for Mac OS X
+ */
 
 #import "SimpleTreeNode.h"
 
@@ -55,6 +15,7 @@
     name = [str retain];
     isLeaf = leaf;
     iconRep = nil;
+    attribute = nil;
     vartype = nil;
     varsize = nil;
     isExpandable = !isLeaf;
@@ -63,7 +24,7 @@
 }
 
 // the dataNode holds all the infos about a variable
-// this includes : image, label, vartype, varsize
+// this includes : image, varname, vartype, varsize
 
 + (id)leafDataWithDict:(NSDictionary *)dict
 {
@@ -71,8 +32,9 @@
     
     myNode = [[SimpleNodeData alloc] init];
     
-    [myNode setName:[dict objectForKey:@"Label"]];
+    [myNode setName:[dict objectForKey:@"Varname"]];
     [myNode setIconRep:[dict objectForKey:@"Image"]];
+    [myNode setAttribute:[dict objectForKey:@"Attribute"]];
     [myNode setVartype:[dict objectForKey:@"Vartype"]];
     [myNode setVarsize:[dict objectForKey:@"VarSize"]];
     [myNode setIsLeaf:YES];
@@ -106,6 +68,11 @@
         
     vartype = nil;
     varsize = nil;
+    
+    if (attribute != nil)
+        [attribute release];
+    
+    attribute = nil;
     
     [super dealloc];
 }
@@ -171,6 +138,18 @@
     return iconRep;
 }
 
+- (void)setAttribute:(NSImage*)attr
+{
+    if (!attribute || ![attribute isEqual: attr]) {
+	[attribute release];
+	attribute = [attr retain];
+    }
+}
+- (NSImage*)attribute
+{
+    return attribute;
+}
+
 - (void)setIsExpandable: (BOOL)expandable {
     isExpandable = expandable;
 }
@@ -207,8 +186,10 @@
     while ((entry=[entryEnum nextObject])) {
         if ([entry isKindOfClass: [NSDictionary class]])
             {
-                if (nil == [entry objectForKey:@"Vartype"]) // it's _NOT_ a variable
+                if (nil == [entry objectForKey:@"Varname"]) // it's _NOT_ a variable
                     child = [SimpleTreeNode treeFromDictionary: entry];
+                else // it's a variable, do something with it :P
+                    child = [[[SimpleTreeNode alloc] initWithData:[SimpleNodeData leafDataWithDict:entry] parent:nil children:[NSArray array]] autorelease];
             }
         else 
             child = [[[SimpleTreeNode alloc] initWithData:[SimpleNodeData leafDataWithName:entry] parent:nil children: [NSArray array]] autorelease];

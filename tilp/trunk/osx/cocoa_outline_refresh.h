@@ -8,4 +8,7 @@
 void
 refresh_outline(void);
 
+void
+refresh_infos(void);
+
 #endif /* !__COCOA_OUTLINE_REFRESH_H__ */
