@@ -19,7 +19,15 @@
 #ifndef ERROR_H
 #define ERROR_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int tilp_error(int err_num);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

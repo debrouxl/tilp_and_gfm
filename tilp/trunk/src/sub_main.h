@@ -19,6 +19,10 @@
 #ifndef __SUB_MAIN_H__
 #define __SUB_MAIN_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /********************/
 /* Global variables */
 /********************/
@@ -34,6 +38,10 @@ int scan_cmdline(int argc, char **argv);
 
 int sub_main(int argc, char *argv[], char **arge);
 #define main_init sub_main // for compatibility
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -19,6 +19,10 @@
 #ifndef CB_CALC_H
 #define CB_CALC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int cb_calc_is_ready(void);
 int cb_send_backup(char *filename);
 int cb_receive_backup(void);
@@ -37,6 +41,10 @@ extern struct screenshot ti_screen;
 int cb_screen_capture(void);
 int cb_screen_save(char *filename);
 int cb_ams_to_rom(char *filename);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -21,6 +21,10 @@
 
 #include "struct.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void process_buffer(gchar *buf);
 int copy_file(char *src, char *dst);
 int move_file(char *src, char *dst);
@@ -56,6 +60,10 @@ void sort_cfiles_by_type(GList *list);
 void sort_cfiles_by_size(GList *list);
 
 char *file_extension(char *filename);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -51,6 +51,8 @@ int tilp_error(int err_num)
   if(!err_num)
     return 0;
 
+  //strcpy(s, "Error code not found. This is a bug. Please report it.\n");
+
   /* Close the link cable port */
   link_cable.close();
   if(err_num)

@@ -24,8 +24,6 @@
 #include <stdio.h>
 #include <string.h>
 
-//#include "indep.h"
-
 /*
   Pre-initialization functions.
   Avoid the gif structure to be NULL.

@@ -77,7 +77,7 @@ gint   working_mode = MODE_GTK;
 #endif
 
 struct clist_window clist_win = { NULL, NULL, NULL, NULL, 0 };
-struct ctree_window ctree_win = { NULL, "", NULL };
+struct ctree_window ctree_win = { NULL, "", 0, NULL, NULL, NULL };
 
 // Default relative path for Windows
 #ifdef __WIN32__
@@ -201,7 +201,7 @@ int sub_main(int argc, char *argv[], char **arge)
       DISPLAY(_("Library version <%s> mini required.\n"),
               LIB_CALC_VERSION_REQUIRED);
       gif->msg_box(_("Error"), _("Libticalcs: version mismatches."));      
-      //exit(-1);
+      exit(-1);
     }
 #ifdef HAVE_TIFFEP
   if(strcmp(tiffep_get_version(), LIB_TIFFEP_VERSION_REQUIRED) < 0)

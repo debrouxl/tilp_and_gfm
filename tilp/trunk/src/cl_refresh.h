@@ -23,9 +23,9 @@
   GUI independant functions for the libTIcalc refresh functions
 */
 
-void cmdline_refresh_pbar();
-void cmdline_refresh_label();
-void cmdline_refresh_gui();
+//void cmdline_refresh_pbar();
+//void cmdline_refresh_label();
+//void cmdline_refresh_gui();
 void cmdline_init_refresh_functions(void);
 
 #endif

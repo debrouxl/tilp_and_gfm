@@ -18,7 +18,13 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <libticalcs/calc_def.h>
+
+// built in libticalcs
+extern const struct ti_key TI92_KEYS[];
+
 #import "Calc92KeyboardController.h"
+#import "TransfersController.h"
 
 #define K_MODE_NONE 			0
 #define K_MODE_SECOND 			1
@@ -36,9 +42,16 @@
 
 @implementation Calc92KeyboardController
 
-- (void)awakeFromNib
+- (id)init
 {
+    self = [super init];
+    
+    if (self == nil)
+        return nil;
+
     mode = K_MODE_NONE;
+    
+    return self;
 }
 
 - (IBAction)key92Alpha:(id)sender

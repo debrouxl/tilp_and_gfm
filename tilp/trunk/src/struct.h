@@ -28,6 +28,10 @@
 
 #include "img_fmt.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern LinkCable   link_cable;
 extern TicalcFncts ti_calc;
 extern InfoUpdate  info_update;
@@ -132,6 +136,7 @@ extern struct ctree_window
 {
   GList *varlist;
   char cur_folder[9];
+  int memory;			// memory free or used by calc
   GList *selection;  // selection of vars
   GList *selection2; // selection of apps
   gpointer node;     // parent node of vars tree
@@ -143,5 +148,9 @@ struct screenshot
   Image img;
   ScrCoord sc;
 };
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

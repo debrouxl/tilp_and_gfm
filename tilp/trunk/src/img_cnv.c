@@ -271,7 +271,7 @@ void delete_bitmap(Image *img)
   //DISPLAY("delete_bitmap\n");
   if(img->bitmap)
     {
-      free(img->bitmap);
+      //free(img->bitmap);
       img->bitmap = NULL;
     }
 }

@@ -39,14 +39,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (void)insertStatusText:(NSString *)aString
 {
-#if 0
-    [self setString:[[self string] stringByAppendingString:aString]];
-
-    [self didChangeText];
-    
-    [self display];
-#endif
-
     [self insertText:aString]; // we should not override insertText
     
     [self setTextColor:[NSColor redColor] range:NSMakeRange([[self string] length] - [aString length], [[self string] length])];
@@ -115,7 +107,60 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
                     send = YES;
                 }
-            
+            else if (uchar == NSUpArrowFunctionKey)
+                {
+                    toSend = 337;
+                    
+                    process = NO;
+                    send = YES;
+                }
+            else if (uchar == NSDownArrowFunctionKey)
+                {
+                    toSend = 340;
+                    
+                    process = NO;
+                    send = YES;
+                }
+            else if (uchar == NSRightArrowFunctionKey)
+                {
+                    toSend = 344;
+                    
+                    send = YES;
+                }
+            else if (uchar == NSLeftArrowFunctionKey)
+                {
+                    toSend = 338;
+                    
+                    send = YES;
+                }
+            else if (uchar == NSHomeFunctionKey)
+                {
+                    toSend = 8530;
+                    
+                    process = NO;
+                    send = YES;
+                }
+            else if (uchar == NSEndFunctionKey)
+                {
+                    toSend = 8536;
+                    
+                    process = NO;
+                    send = YES;
+                }
+            else if (uchar == NSPageUpFunctionKey)
+                {
+                    toSend = 4434;
+                    
+                    process = NO;
+                    send = YES;
+                }
+            else if (uchar == NSPageDownFunctionKey)
+                {
+                    toSend = 4440;
+                    
+                    process = NO;
+                    send = YES;
+                }
         
             if (send == YES)
                 {

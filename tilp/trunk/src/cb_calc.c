@@ -52,10 +52,12 @@ int cb_calc_is_ready(void)
   if(is_active) 
     return -1;
 
+	//DISPLAY("tilp: ti_calc=%p, isready=%p, set_calc=%p, init=%p\n", &ti_calc, ti_calc.isready, ticalc_set_calc, ticalc_init);
+
   if(options.auto_detect)
     {
-      if(tilp_error(ti89_92_92p_isready(&(options.lp.calc_type))))
-	return -1;
+      if(tilp_error(ticalc_83p_89_92p_isready(&(options.lp.calc_type))))
+		return -1;
       ticalc_set_calc(options.lp.calc_type, &ti_calc, &link_cable);
     }
   else
@@ -795,8 +797,6 @@ int cb_dirlist(void)
 
   if(cb_calc_is_ready())
     return -1;
-
-  ctree_selection_destroy();
   
   if (c_directory_list() != 0)
     return -1;
@@ -962,7 +962,6 @@ int cb_receive_app(void)
   while(ptr != NULL)
     {
       v=(struct varinfo *)ptr->data;
-      printf(_("AppName: %s\n"), v->varname);
 
       /* If the LAST element is just a folder, skip it */
       if( (v->is_folder == FOLDER) && (ptr->next == NULL) )
@@ -975,6 +974,7 @@ int cb_receive_app(void)
       strcpy(filename, v->translate);
       strcat(filename, ".");
       strcat(filename, ti_calc.byte2fext(v->vartype));
+      //strcpy(filename, "test.8Xk");
 
       if(options.confirm == CONFIRM_YES)
 	{
@@ -1007,9 +1007,12 @@ int cb_receive_app(void)
 	}
       if(skip == 0)
 	{
-	  ticalc_open_ti_file("/root/test.89k", "wb", &txt);
-	  err = ti_calc.recv_flash(txt, MODE_NORMAL, v->translate);
-	  ticalc_close_ti_file();
+	  err = ticalc_open_ti_file(filename, "wb", &txt);	
+	  if(!err)
+	  {
+		err = ti_calc.recv_flash(txt, MODE_NORMAL, v->translate, v->varsize);
+		ticalc_close_ti_file();
+	  }
 	  if(tilp_error(err)) 
 	    {
 	      gif->destroy_pbar();

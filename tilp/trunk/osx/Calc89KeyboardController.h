@@ -75,6 +75,8 @@
     
     IBOutlet id keyboardWindow;
     
+    IBOutlet id myTransfersController;
+    
     int mode;
 }
 

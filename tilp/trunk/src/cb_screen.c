@@ -27,8 +27,11 @@
 #include "cb_calc.h"
 #include "error.h"
 
-struct screenshot ti_screen = { { NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0 }, 
-				{ 0, 0, 0, 0 } };
+struct screenshot ti_screen = 
+{ 
+	{ NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0 }, 
+	{ 0, 0, 0, 0 } 
+};
 
 /*
   Do a screen capture
@@ -37,11 +40,10 @@ int cb_screen_capture(void)
 {
   int err;
 
-  if(is_active) 
-    return -1;
-
-  err = cb_calc_is_ready();
-  if(err) return err;
+  /*
+  if(tilp_error(cb_calc_is_ready()))
+	  return -1;
+  */
   
   /* Place a progress bar */
   gif->create_pbar_type1(_("Screendump"));
@@ -67,12 +69,9 @@ int cb_screen_capture(void)
       ti_screen.img.width = ti_screen.sc.clipped_width;
       ti_screen.img.height = ti_screen.sc.clipped_height;
     }
-
   gif->destroy_pbar();
   if(tilp_error(err)) 
-    {
-      return 1;
-    }
+      return -1;
   
   return 0;
 }
@@ -88,7 +87,7 @@ int cb_screen_save(char *filename)
 
   if((image=fopen(filename, "wt")) == NULL)
     {
-      fprintf(stderr, _("Unable to open this file: %s\n"), filename);
+      DISPLAY(_("Unable to open this file: %s\n"), filename);
     }
 
   ti_screen.img.depth = 2; // 2 colors: B&W

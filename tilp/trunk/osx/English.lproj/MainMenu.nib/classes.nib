@@ -124,6 +124,7 @@
                 Key89Z = id; 
                 Key89Zero = id; 
                 keyboardWindow = id; 
+                myTransfersController = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
@@ -213,6 +214,7 @@
                 Key92Z = id; 
                 Key92Zero = id; 
                 keyboardWindow = id; 
+                myTransfersController = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

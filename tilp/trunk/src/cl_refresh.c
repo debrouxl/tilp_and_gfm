@@ -25,19 +25,19 @@
 #include "struct.h"
 #include "intl.h"
 
-void cmdline_start()
+static void cmdline_start()
 {
   info_update.prev_percentage = info_update.percentage = 0.0;
   info_update.start_time = clock();
 }
 
-void cmdline_stop()
+static void cmdline_stop()
 {
   info_update.prev_percentage = info_update.percentage = 0.0;
   //fprintf(stdout, "\n");
 }
 
-void cmdline_pbar()
+static void cmdline_pbar()
 {
   /*
   static int i;
@@ -71,19 +71,19 @@ void cmdline_pbar()
   */
 }
 
-void cmdline_label()
+static void cmdline_label(void)
 {
 }
 
-void cmdline_refresh()
+static void cmdline_refresh(void)
 {
 }
 
-void cmdline_msgbox(const char *t, char *s)
+static void cmdline_msgbox(const char *t, char *s)
 {
 }
 
-int cmdline_choose(char *cur_varname, char *new_varname)
+static int cmdline_choose(char *cur_varname, char *new_varname)
 {
   strcpy(new_varname, "");
   return 0;

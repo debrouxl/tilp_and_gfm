@@ -337,6 +337,7 @@ void varlist_to_glist(struct varinfo varlist)
       ctree_win.varlist=NULL;
     }
   strcpy(ctree_win.cur_folder, varlist.varname);
+  ctree_win.memory = varlist.varsize;
 #ifdef VDIR
   fprintf(stdout, _("Name    |Name bin        |Name tr |Lk|Ty|Size     |Parent\n"));
 #endif

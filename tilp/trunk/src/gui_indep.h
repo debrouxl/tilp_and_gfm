@@ -19,6 +19,10 @@
 #ifndef GUI_INDEP_H
 #define GUI_INDEP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
   This structure holds the GUI independant functions
 */
@@ -72,6 +76,10 @@ typedef struct gui_fncts GuiFncts;
 extern GuiFncts *gif;
 
 void set_gui_fncts(GuiFncts *gf);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -144,7 +144,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"getVars", @"doBackup", @"doRestore" ,nil];
 }
 
-
+// FIXME OS X
 // THIS WILL BE REMOVED WHEN APPLE WILL IMPLEMENT
 // A WORKING DRAG'N'DROP WITH NSContentOfFilePBoardType
 - (IBAction)getVars:(id)sender
@@ -165,7 +165,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
     [aboutOptions setObject:@"0.4.0" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"4.82" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"4.85" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
@@ -232,9 +232,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
             
             return;
         }
-        
-    //[remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
-    
+
     scrollSize = [remoteControlScrollView contentSize];
     
     remoteControlTextArea = [[RCTextView alloc] initWithFrame:NSMakeRect(0, 0, scrollSize.width, scrollSize.height)
@@ -250,7 +248,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     [remoteControlTextArea setEditable:YES]; 
        
-    [remoteControlTextArea insertStatusText:@"NOT IMPLEMENTED\n\n"];
+    [remoteControlTextArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
     
     [remoteControlScrollView display];
     
@@ -258,7 +256,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     
     [NSApp addWindowsItem:remoteControlWindow title:@"Terminal - Remote Control" filename:NO];
     
-    //[myBoxesController showKeyboard:self];
+    [myBoxesController showKeyboard:self];
 }
 
 - (IBAction)getScreen:(id)sender
