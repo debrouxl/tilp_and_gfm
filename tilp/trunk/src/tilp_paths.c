@@ -87,7 +87,7 @@ static void init_win32_paths(void)
 	DISPLAY_ERROR("Current path: <%s>\n", dirname);
 	inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
 	g_free(dirname);
-	free(sBuffer);
+	free(sBuffer);  // malloc -> free
 	inst_paths.pixmap_dir =
 	    g_strconcat(inst_paths.base_dir, "pixmaps\\", NULL);
 	inst_paths.icon_dir =
