@@ -165,23 +165,6 @@ extern int is_active;
         }
 }
 
-- (IBAction)remoteControlTextEntered:(id)sender
-{
-    // FIXME OS X : fscking GTK-dependant code detected...
-    // this is not a tricky one... hmm... maybe it is.
-    // according to gtk_term_cb.c, we must send each key pressed
-    // to the calc... I wonder how I'm going to reimplement this.
-    // maybe it's tricky, maybe it's not...
-    
-    // this method would in fact be a delegate of the NSTextField
-    // ==>> textDidChange I believe
-    
-    // Oh, I just remembered we also need to match some keys
-    // to access other TI functions (Apps, etc...)
-    // It's gonna be funny...
-    // See NSEvent keyDown.
-}
-
 - (IBAction)screendumpSaveImage:(id)sender
 {
     NSSavePanel *sp;
@@ -214,6 +197,11 @@ extern int is_active;
         modalDelegate:self
         didEndSelector:@selector(screendumpSaveImageDidEnd:returnCode:contextInfo:)
         contextInfo:sp];
+}
+
+- (IBAction)showKeyboard:(id)sender
+{
+
 }
 
 

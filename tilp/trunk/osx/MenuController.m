@@ -210,12 +210,6 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)remoteControl:(id)sender
 {
-    // FIXME OS X
-    // fix the text (keys <=> TI ops)
-    // need to find how to catch certain key combos...
-    // maybe use the Command key...
-    // forget key combos, will make a keyboard...
-
     NSSize scrollSize;
 
     if ((options.lp.calc_type != CALC_TI89) && (options.lp.calc_type != CALC_TI92) && (options.lp.calc_type != CALC_TI92P))
@@ -247,10 +241,15 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                                                 textContainer:[[remoteControlScrollView documentView] textContainer]];
         
     [remoteControlTextArea setEditable:YES];
+    [remoteControlTextArea setMinSize:NSMakeSize(0.0, scrollSize.height)];
+    [remoteControlTextArea setMaxSize:NSMakeSize(1e7, 1e7)];
+    [remoteControlTextArea setVerticallyResizable:YES];
+    [remoteControlTextArea setHorizontallyResizable:NO];
+    [remoteControlTextArea setAutoresizingMask:NSViewWidthSizable];
     
     [remoteControlScrollView setDocumentView:remoteControlTextArea];
     
-    [remoteControlTextArea insertText:@"NOT IMPLEMENTED"];
+    [remoteControlTextArea insertTextStatus:@"NOT IMPLEMENTED"];
     
     [remoteControlScrollView display];
     

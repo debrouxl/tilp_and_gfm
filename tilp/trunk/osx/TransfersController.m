@@ -765,4 +765,11 @@ extern int is_active;
     fprintf(stderr, "**** ReceiveFlashApp: not implemented ****\n");
 }
 
+- (int)sendChar:(NSString *)aString
+{
+    fprintf(stderr, "DEBUG: sending %s\n", [aString cString]);
+  
+    return 0;
+}
+
 @end

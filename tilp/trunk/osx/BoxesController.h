@@ -70,6 +70,8 @@
     IBOutlet id myMenuController;
     IBOutlet id mySheetsController;
     IBOutlet id myTransfersController;
+    IBOutlet id myCalc89KeyboardController;
+    IBOutlet id myCalc92KeyboardController;
     
     int term_mode;
 }
@@ -82,10 +84,10 @@
 - (IBAction)dlgboxentryButton2Push:(id)sender;
 - (IBAction)pbarButtonPush:(id)sender;
 
-
 - (IBAction)remoteControlChangeMode:(id)sender;
-- (IBAction)remoteControlTextEntered:(id)sender;
 - (IBAction)screendumpSaveImage:(id)sender;
+
+- (IBAction)showKeyboard:(id)sender;
 
 // NSOpenPanels callbacks
 - (void)doRestoreDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;

@@ -20,13 +20,33 @@
 
 #import "RCTextView.h"
 
-#warning Compiling RCTextView
+#import "TransfersController.h"
+
+#include "cocoa_structs.h"
+
+extern struct cocoa_objects_ptr *objects_ptr;
+
 
 @implementation NSTextView (MyExtensions)
 
+- (void)insertTextFromCalc:(NSString *)aString
+{
+    // FIXME OS X
+    // The terminal mode is not implemented in libticalcs at the moment.
+    // This method will be written when the libticalcs will support terminal mode.
+
+}
+
+- (void)insertTextStatus:(NSString *)aString
+{
+    [self setString:[[self string] stringByAppendingString:aString]];
+    
+    [self didChangeText];
+    
+    [self display];
+}
+
 @end
-
-
 
 
 @implementation RCTextView
@@ -35,10 +55,13 @@
 {
     NSString *string;
     unichar c;
+    id myTransfersController;
 
     unsigned int i;
+    int ret;
 
     string = (NSString *)aString;
+    myTransfersController = objects_ptr->myTransfersController;
 
     fprintf(stderr, "DEBUG: insert text (length : %d, %d) %s\n", [string cStringLength], [string length], [string cString]);
 
@@ -59,8 +82,21 @@
             
             // Try to send to the calc, then display.
         
-            [self setString:[[self string] stringByAppendingString:string]];
+            ret = [myTransfersController sendChar:string];
+            
+            if (ret)
+                {
+                    [self setString:[[self string] stringByAppendingString:[NSString stringWithCString:"\n\nCommunication Error. Aborted.\n"]]];
+                }
+            else
+                {
+                    [self setString:[[self string] stringByAppendingString:string]];
+                }
         }
+        
+    [self setTextColor:[NSColor blueColor]];
+    
+    [self didChangeText];
     
     [self display];
 }

@@ -22,6 +22,9 @@
 
 @interface NSTextView (MyExtensions)
 
+- (void)insertTextFromCalc:(NSString *)aString;
+- (void)insertTextStatus:(NSString *)aString;
+
 @end
 
 @interface RCTextView : NSTextView
@@ -29,3 +32,4 @@
 
 }
 @end
+

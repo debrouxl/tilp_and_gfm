@@ -168,6 +168,11 @@
 	     => Added RCTextView, subclassing NSTextView
 	     => Modified the Remote Control window to use
 	     a scrolled NSTextView
+* 20020118 : v0.3.8
+	* More remote control.
+	* Finished TI89 keyboard.
+	     => Added a class to handle it.
+	* Properly handle the RCTextView into the NSScrollView.
 
 
 
