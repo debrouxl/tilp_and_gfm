@@ -1,0 +1,274 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                dlgboxentryButton1Push = id; 
+                dlgboxentryButton2Push = id; 
+                pbarButtonPush = id; 
+                remoteControlChangeMode = id; 
+                remoteControlTextEntered = id; 
+                screendumpSaveImage = id; 
+                showKeyboard = id; 
+                user1ButtonPush = id; 
+                user2ButtonPush = id; 
+                user3ButtonPush = id; 
+            }; 
+            CLASS = BoxesController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dlgboxentryButton1 = id; 
+                dlgboxentryButton2 = id; 
+                dlgboxentryEntry = id; 
+                dlgboxentryText = id; 
+                dlgboxentryWindow = id; 
+                mainWindow = id; 
+                myMenuController = id; 
+                myPrefsController = id; 
+                mySheetsController = id; 
+                myTilpController = id; 
+                myTransfersController = id; 
+                pbar1PBar = id; 
+                pbar1Rate = id; 
+                pbar1Window = id; 
+                pbar2Button = id; 
+                pbar2Text = id; 
+                pbar2Window = id; 
+                pbar3PBar1 = id; 
+                pbar3PBar2 = id; 
+                pbar3Rate = id; 
+                pbar3Window = id; 
+                pbar4PBar = id; 
+                pbar4Rate = id; 
+                pbar4Text = id; 
+                pbar4Window = id; 
+                pbar5PBar1 = id; 
+                pbar5PBar2 = id; 
+                pbar5Rate = id; 
+                pbar5Text = id; 
+                pbar5Window = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
+                user1Button = id; 
+                user1Text = id; 
+                user1Window = id; 
+                user2Button1 = id; 
+                user2Button2 = id; 
+                user2Text = id; 
+                user2Window = id; 
+                user3Button1 = id; 
+                user3Button2 = id; 
+                user3Button3 = id; 
+                user3Text = id; 
+                user3Window = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = CalcKeyboardController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                keyboardWindow = id; 
+                mySkinController = id; 
+                myTransfersController = id; 
+                skinView = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                closeWindow = id; 
+                defaultConfig = id; 
+                doBackup = id; 
+                doRestore = id; 
+                getDirlist = id; 
+                getIDList = id; 
+                getScreen = id; 
+                installShell = id; 
+                isReady = id; 
+                newWindow = id; 
+                probeCalc = id; 
+                remoteControl = id; 
+                romDump = id; 
+                saveConfig = id; 
+                sendAMS = id; 
+                sendFLASHApp = id; 
+                showAbout = id; 
+                showThanks = id; 
+            }; 
+            CLASS = MenuController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dirlistTree = id; 
+                mainWindow = id; 
+                myBoxesController = id; 
+                myCalcKeyboardController = id; 
+                myPrefsController = id; 
+                mySheetsController = id; 
+                myTilpController = id; 
+                myTransfersController = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
+                thanksPanel = id; 
+                thanksPanelText = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {prefsAdvanced = id; prefsClose = id; showPrefsSheet = id; }; 
+            CLASS = PrefsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                calcType73 = id; 
+                calcType82 = id; 
+                calcType83 = id; 
+                calcType83p = id; 
+                calcType85 = id; 
+                calcType86 = id; 
+                calcType89 = id; 
+                calcType92 = id; 
+                calcType92p = id; 
+                calcTypeMatrix = id; 
+                calcTypeProbe = id; 
+                consoleModeMatrix = id; 
+                consoleSilent = id; 
+                consoleVerbose = id; 
+                linkCableTGL = id; 
+                linkCableTIE = id; 
+                linkCableTPU = id; 
+                linkCableUGL = id; 
+                linkCableVTI = id; 
+                linkTimeoutField = id; 
+                linkTimeoutValueStepper = id; 
+                linkTypeMatrix = id; 
+                myBoxesController = id; 
+                myMenuController = id; 
+                mySheetsController = id; 
+                myTilpController = id; 
+                myTransfersController = id; 
+                orderDecreasing = id; 
+                orderIncreasing = id; 
+                orderMatrix = id; 
+                pathModeFull = id; 
+                pathModeLocal = id; 
+                pathModeMatrix = id; 
+                portCombo = id; 
+                portType = id; 
+                portWarning = id; 
+                prefsWindow = id; 
+                screenFormatBMP = id; 
+                screenFormatMatrix = id; 
+                screenFormatPCX = id; 
+                screenFormatTIFF = id; 
+                screenFormatXPM = id; 
+                screenModeClipped = id; 
+                screenModeFull = id; 
+                screenModeMatrix = id; 
+                sortByInfo = id; 
+                sortByMatrix = id; 
+                sortByName = id; 
+                sortBySize = id; 
+                sortByType = id; 
+                transferModeManual = id; 
+                transferModeMatrix = id; 
+                transferModeSilent = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = RCTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }, 
+        {
+            CLASS = SheetsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dlgboxentryButton1 = id; 
+                dlgboxentryButton2 = id; 
+                dlgboxentryEntry = id; 
+                dlgboxentryText = id; 
+                dlgboxentryWindow = id; 
+                myBoxesController = id; 
+                myMenuController = id; 
+                myPrefsController = id; 
+                myTilpController = id; 
+                myTransfersController = id; 
+                pbar1PBar = id; 
+                pbar1Rate = id; 
+                pbar1Window = id; 
+                pbar2Button = id; 
+                pbar2PBar = id; 
+                pbar2Text = id; 
+                pbar2Window = id; 
+                pbar3PBar1 = id; 
+                pbar3PBar2 = id; 
+                pbar3Rate = id; 
+                pbar3Window = id; 
+                pbar4PBar = id; 
+                pbar4Rate = id; 
+                pbar4Text = id; 
+                pbar4Window = id; 
+                pbar5PBar1 = id; 
+                pbar5PBar2 = id; 
+                pbar5Rate = id; 
+                pbar5Text = id; 
+                pbar5Window = id; 
+                user1Button1 = id; 
+                user1Text = id; 
+                user1Window = id; 
+                user2Button1 = id; 
+                user2Button2 = id; 
+                user2Text = id; 
+                user2Window = id; 
+                user3Button1 = id; 
+                user3Button2 = id; 
+                user3Button3 = id; 
+                user3Text = id; 
+                user3Window = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = SkinController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {keyboardWindow = id; skinView = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TiKeyboardView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {myCalcKeyboardController = id; }; 
+            SUPERCLASS = NSImageView; 
+        }, 
+        {
+            CLASS = TilpController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                currentFolder = id; 
+                dirlistTree = id; 
+                memoryStats = id; 
+                myBoxesController = id; 
+                myMenuController = id; 
+                myPrefsController = id; 
+                mySheetsController = id; 
+                myTransfersController = id; 
+                numberOfFolders = id; 
+                varsStats = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TransfersController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                dirlistTree = id; 
+                myBoxesController = id; 
+                myMenuController = id; 
+                myPrefsController = id; 
+                mySheetsController = id; 
+                myTilpController = id; 
+                screendumpImage = id; 
+                screendumpWindow = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
