@@ -32,18 +32,12 @@
 #include "ctree.h"
 #include "tilp_core.h"
 
-/*
-  Trick: button_xxx is an unused button so that toggling a cable button
-  make the right port appear.
- */
-
 // uncomment it to get more than 1 USB port
 //#define MORE_USB_PORTS
 
 static TicableLinkParam tmp_lp;
 static gint ad;
 static GtkWidget *button = NULL;
-static GtkWidget *rb1, *rb2, *rb3, *rb4;
 
 gint display_comm_dbox()
 {
@@ -59,48 +53,134 @@ gint display_comm_dbox()
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "comm_dbox");
-	memcpy(&tmp_lp, &options.lp, sizeof(TicableLinkParam));
 	ad = options.auto_detect;
 
-	// Port
-	rb1 = glade_xml_get_widget(xml, "radiobutton_port_1");
-	rb2 = glade_xml_get_widget(xml, "radiobutton_port_2");
-	rb3 = glade_xml_get_widget(xml, "radiobutton_port_3");
-	rb4 = glade_xml_get_widget(xml, "radiobutton_port_4");
-
 	// Cable  
-	data = glade_xml_get_widget(xml, "radiobutton_cable_xxx");
-	gtk_widget_hide(data);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_tgl");
-	if (tmp_lp.link_type == LINK_TGL)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_par");
-	if (tmp_lp.link_type == LINK_PAR)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_tie");
-	if (tmp_lp.link_type == LINK_TIE)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_ser");
-	if (tmp_lp.link_type == LINK_SER)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_avr");
-	if (tmp_lp.link_type == LINK_AVR)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_vti");
-	if (tmp_lp.link_type == LINK_VTI)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_cable_ugl");
-	if (tmp_lp.link_type == LINK_UGL)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+	data = glade_xml_get_widget(xml, "entry_comm_cable");
+	switch (options.lp.link_type) {
+	case LINK_TGL:
+	  gtk_entry_set_text(GTK_ENTRY(data), "GrayLink");
+	  break;
+		
+	case LINK_SER:
+	  gtk_entry_set_text(GTK_ENTRY(data), "BlackLink");
+	  break;
+
+	case LINK_PAR:
+	  gtk_entry_set_text(GTK_ENTRY(data), "ParallelLink");
+	  break;
+
+	case LINK_AVR:
+	  gtk_entry_set_text(GTK_ENTRY(data), "AvrLink");
+	  break;
+
+	case LINK_VTL:
+	  gtk_entry_set_text(GTK_ENTRY(data), "virtual");
+	  break;
+
+	case LINK_TIE:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TiEmu");
+	  break;
+
+	case LINK_VTI:
+	  gtk_entry_set_text(GTK_ENTRY(data), "VTi");
+	  break;
+
+	case LINK_SLV:
+	  gtk_entry_set_text(GTK_ENTRY(data), "SilverLink");
+	  break;
+	
+	default:
+	  gtk_entry_set_text(GTK_ENTRY(data), "GrayLink");
+	  break;
+	}
+
+	// Port
+	data = glade_xml_get_widget(xml, "entry_comm_port");
+	switch (options.lp.port) {
+	case PARALLEL_PORT_1:
+	case SERIAL_PORT_1:
+	case USB_PORT_1:
+	case VIRTUAL_PORT_1:
+	  gtk_entry_set_text(GTK_ENTRY(data), "#1");
+	  break;
+	 
+	case PARALLEL_PORT_2:
+	case SERIAL_PORT_2:
+	case USB_PORT_2:
+	case VIRTUAL_PORT_2:
+	  gtk_entry_set_text(GTK_ENTRY(data), "#2");
+	  break;
+
+	case PARALLEL_PORT_3:
+	case SERIAL_PORT_3:
+	case USB_PORT_3:
+	  gtk_entry_set_text(GTK_ENTRY(data), "#3");
+	  break;
+
+	case SERIAL_PORT_4:
+	case USB_PORT_4:
+	  gtk_entry_set_text(GTK_ENTRY(data), "#4");
+	  break;
+	  
+	case USER_PORT:
+	  gtk_entry_set_text(GTK_ENTRY(data), "custom");
+	  break;
+
+	default:
+	  gtk_entry_set_text(GTK_ENTRY(data), "#2");
+	  break;
+	}
 
 	// Calc
+	data = glade_xml_get_widget(xml, "entry_comm_calc");
+	switch (options.lp.calc_type) {
+	case CALC_TI73:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI73");
+	  break;
+	  
+	case CALC_TI82:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI82");
+	  break;
+
+	case CALC_TI83:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI83");
+	  break;
+	  
+	case CALC_TI83P:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI83+");
+	  break;
+	  
+	case CALC_TI85:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI85");
+	  break;
+	  
+	case CALC_TI86:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI86");
+	  break;
+	  
+	case CALC_TI89:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI89");
+	  break;
+	  
+	case CALC_TI92:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI92");
+	  break;
+	  
+	case CALC_TI92P:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI92+");
+	  break;
+	  
+	case CALC_V200:
+	  gtk_entry_set_text(GTK_ENTRY(data), "V200PLT");
+	  break;
+	
+	default:
+	  gtk_entry_set_text(GTK_ENTRY(data), "TI89");
+	  break;
+	}
+
+	// Auto-detect
 	button = glade_xml_get_widget(xml, "checkbutton_calc_auto");
 	if (ad)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
@@ -108,84 +188,27 @@ gint display_comm_dbox()
 	else
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
 					     FALSE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti73");
-	if (tmp_lp.calc_type == CALC_TI73)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti82");
-	if (tmp_lp.calc_type == CALC_TI82)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti83");
-	if (tmp_lp.calc_type == CALC_TI83)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti83p");
-	if (tmp_lp.calc_type == CALC_TI83P)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti85");
-	if (tmp_lp.calc_type == CALC_TI85)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti86");
-	if (tmp_lp.calc_type == CALC_TI86)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti89");
-	if (tmp_lp.calc_type == CALC_TI89)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti92");
-	if (tmp_lp.calc_type == CALC_TI92)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_ti92p");
-	if (tmp_lp.calc_type == CALC_TI92P)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton_calc_v200");
-	if (tmp_lp.calc_type == CALC_V200)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
 
-	// Misc
+	// Timeout
 	data = glade_xml_get_widget(xml, "spinbutton_comm_timeout");
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), tmp_lp.timeout);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.lp.timeout);
+	
+	// Delay
 	data = glade_xml_get_widget(xml, "spinbutton_comm_delay");
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), tmp_lp.delay);
-	data = glade_xml_get_widget(xml, "entry_comm_speed");
-	switch (tmp_lp.baud_rate) {
-	case BR9600:
-		gtk_entry_set_text(GTK_ENTRY(data), "9600");
-		break;
-	case BR19200:
-		gtk_entry_set_text(GTK_ENTRY(data), "19200");
-		break;
-	case BR38400:
-		gtk_entry_set_text(GTK_ENTRY(data), "38400");
-		break;
-	case BR57600:
-		gtk_entry_set_text(GTK_ENTRY(data), "57600");
-		break;
-	default:
-		gtk_entry_set_text(GTK_ENTRY(data), "9600");
-		break;
-	}
-	data = glade_xml_get_widget(xml, "checkbutton_comm_hfc");
-	if (tmp_lp.hfc == HFC_ON)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
-	else
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     FALSE);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.lp.delay);
+
+	// Avoid callbacks
+	memcpy(&tmp_lp, &options.lp, sizeof(TicableLinkParam));
+	
+	// Loop
 	while (gtk_events_pending())
 		gtk_main_iteration();
+ loop:
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) {
 	case GTK_RESPONSE_OK:
 		if (tilp_error(link_cable.exit()))
-			break;	//return;
+		  goto loop;//break;	//return;
 		memcpy(&options.lp, &tmp_lp, sizeof(TicableLinkParam));
 		ticable_set_param(&options.lp);
 		tilp_error(ticable_set_cable
@@ -206,525 +229,173 @@ gint display_comm_dbox()
 	gtk_widget_destroy(dbox);
 	return 0;
 }
-GLADE_CB void on_comm_dbox_show_port_1(GtkWidget * widget,
-				       gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Parallel port #1"));
-		if (tmp_lp.port == PARALLEL_PORT_1)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(GTK_WIDGET(GTK_BIN(user_data)->child));
-		gtk_widget_show(user_data);
-		break;
-	case LINK_AVR:
-	case LINK_TGL:
-	case LINK_SER:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Serial port #1"));
-		if (tmp_lp.port == SERIAL_PORT_1)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_TIE:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Virtual port #1 (emu)"));
-		if (tmp_lp.port == VIRTUAL_PORT_1)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_VTI:
 
-#ifdef __WIN32__
-		gtk_widget_hide(user_data);
-		break;
 
-#endif				/*  */
-	case LINK_VTL:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Virtual port #1 (emu)"));
-		if (tmp_lp.port == VIRTUAL_PORT_1)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_UGL:
-		gtk_button_set_label(GTK_BUTTON(user_data), "USB port #1");
-		if (tmp_lp.port == USB_PORT_1)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(GTK_WIDGET(GTK_BIN(user_data)->child));
-		gtk_widget_show(user_data);
-		break;
-	default:
-		break;
-	}
-}
-GLADE_CB void on_comm_dbox_show_port_2(GtkWidget * widget,
-				       gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Parallel port #2"));
-		if (tmp_lp.port == PARALLEL_PORT_2)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_AVR:
-	case LINK_TGL:
-	case LINK_SER:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Serial port #2"));
-		if (tmp_lp.port == SERIAL_PORT_2)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_TIE:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Virtual port #2 (tilp)"));
-		if (tmp_lp.port == VIRTUAL_PORT_2)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_VTI:
 
-#ifdef __WIN32__
-		gtk_widget_hide(user_data);
-		break;
+void
+comm_combo_cable_changed               (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+  gchar *ed = "";
+  ed = gtk_editable_get_chars(editable, 0, -1);
 
-#endif				/*  */
-	case LINK_VTL:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Virtual port #2 (tilp)"));
-		if (tmp_lp.port == VIRTUAL_PORT_2)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_UGL:
+  if(!strcmp(ed, "GrayLink"))
+    tmp_lp.calc_type = LINK_TGL;
+  else if(!strcmp(ed, "BlackLink"))
+    tmp_lp.calc_type = LINK_SER;
+  else if(!strcmp(ed, "SilverLink"))
+    tmp_lp.calc_type = LINK_SLV;
+  else if(!strcmp(ed, "parallel"))
+    tmp_lp.calc_type = LINK_PAR;
+  else if(!strcmp(ed, "AVRlink"))
+    tmp_lp.calc_type = LINK_AVR;
+  else if(!strcmp(ed, "VTi"))
+    tmp_lp.calc_type = LINK_VTI;
+  else if(!strcmp(ed, "TiEmu"))
+    tmp_lp.calc_type = LINK_TIE;
+  else if(!strcmp(ed, "virtual"))
+    tmp_lp.calc_type = LINK_VTL;
+  else {
+    DISPLAY("Warning: value not in list: '%s' (combo_cable_changed).\n", ed);
+  }
+}
 
-#ifdef MORE_USB_PORTS
-		gtk_button_set_label(GTK_BUTTON(user_data), "USB port #2");
-		if (tmp_lp.port == USB_PORT_2)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(GTK_WIDGET(GTK_BIN(user_data)->child));
-		gtk_widget_show(user_data);
 
-#else				/*  */
-		gtk_widget_hide(user_data);
+void
+comm_combo_port_changed                (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+  gchar *ed = "";
+  ed = gtk_editable_get_chars(editable, 0, -1);
+  
+  if(!strcmp(ed, "custom"))
+    tmp_lp.calc_type = USER_PORT;
+  else {
+    switch(tmp_lp.link_type)
+      {
+      case LINK_TGL:
+      case LINK_SER:
+      case LINK_AVR:
+	if(!strcmp(ed, "custom"))
+	  tmp_lp.port = USER_PORT;
+	else if(!strcmp(ed, "#1"))
+	  tmp_lp.port = SERIAL_PORT_1;
+	else if(!strcmp(ed, "#2"))
+	  tmp_lp.port = SERIAL_PORT_2;
+	else if(!strcmp(ed, "#3"))
+	  tmp_lp.port = SERIAL_PORT_3;
+	else if(!strcmp(ed, "#4"))
+	  tmp_lp.port = SERIAL_PORT_4;
+	break;
 
-#endif				/*  */
-		break;
-	default:
-		break;
-	}
-}
-GLADE_CB void on_comm_dbox_show_port_3(GtkWidget * widget,
-				       gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Parallel port #3"));
-		if (tmp_lp.port == PARALLEL_PORT_3)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_AVR:
-	case LINK_TGL:
-	case LINK_SER:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Serial port #3"));
-		if (tmp_lp.port == SERIAL_PORT_3)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_TIE:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_VTI:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_VTL:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_UGL:
+      case LINK_SLV:
+	if(!strcmp(ed, "custom"))
+	  tmp_lp.port = USER_PORT;
+	else if(!strcmp(ed, "#1"))
+	  tmp_lp.port = USB_PORT_1;
+	else if(!strcmp(ed, "#2"))
+	  tmp_lp.port = USB_PORT_2;
+	else if(!strcmp(ed, "#3"))
+	  tmp_lp.port = USB_PORT_3;
+	else if(!strcmp(ed, "#4"))
+	  tmp_lp.port = USB_PORT_4;
+	break;
 
-#ifdef MORE_USB_PORTS
-		gtk_button_set_label(GTK_BUTTON(user_data), "USB port #3");
-		if (tmp_lp.port == USB_PORT_3)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(GTK_WIDGET(GTK_BIN(user_data)->child));
-		gtk_widget_show(user_data);
+      case LINK_PAR:
+	if(!strcmp(ed, "custom"))
+	  tmp_lp.port = USER_PORT;
+	else if(!strcmp(ed, "#1"))
+	  tmp_lp.port = PARALLEL_PORT_1;
+	else if(!strcmp(ed, "#2"))
+	  tmp_lp.port = PARALLEL_PORT_2;
+	else if(!strcmp(ed, "#3"))
+	  tmp_lp.port = PARALLEL_PORT_3;
+	break;
+	
+      case LINK_VTL:
+      case LINK_TIE:
+      case LINK_VTI:
+	if(!strcmp(ed, "#1"))
+	  tmp_lp.port = VIRTUAL_PORT_1;
+	else if(!strcmp(ed, "#2"))
+	  tmp_lp.port = VIRTUAL_PORT_2;
+	break;
 
-#else				/*  */
-		gtk_widget_hide(user_data);
+      default: 
+	break;
+      }
+  }
+}
 
-#endif				/*  */
-		break;
-	default:
-		break;
-	}
-}
-GLADE_CB void on_comm_dbox_show_port_4(GtkWidget * widget,
-				       gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_AVR:
-	case LINK_TGL:
-	case LINK_SER:
-		gtk_button_set_label(GTK_BUTTON(user_data),
-				     _("Serial port #4"));
-		if (tmp_lp.port == SERIAL_PORT_4)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(user_data);
-		break;
-	case LINK_TIE:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_VTI:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_VTL:
-		gtk_widget_hide(user_data);
-		break;
-	case LINK_UGL:
 
-#ifdef MORE_USB_PORTS
-		gtk_button_set_label(GTK_BUTTON(user_data), "USB port #4");
-		if (tmp_lp.port == USB_PORT_4)
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON
-						     (user_data), TRUE);
-		gtk_widget_show(GTK_WIDGET(GTK_BIN(user_data)->child));
-		gtk_widget_show(user_data);
+void
+comm_entry_calc_changed                (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+  gchar *ed = "";
+  ed = gtk_editable_get_chars(editable, 0, -1);
 
-#else				/*  */
-		gtk_widget_hide(user_data);
+  if(!strcmp(ed, "TI73")) {
+    tmp_lp.calc_type = CALC_TI73;
+    gtk_widget_set_sensitive(button, TRUE);
+  } else if(!strcmp(ed, "TI82")) {
+    tmp_lp.calc_type = CALC_TI82;
+    gtk_widget_set_sensitive(button, FALSE);
+  } else if(!strcmp(ed, "TI83")) {
+    tmp_lp.calc_type = CALC_TI83;
+    gtk_widget_set_sensitive(button, FALSE);
+  } else if(!strcmp(ed, "TI83+")) {
+    tmp_lp.calc_type = CALC_TI83P;
+    gtk_widget_set_sensitive(button, TRUE);
+  } else if(!strcmp(ed, "TI85")) {
+    tmp_lp.calc_type = CALC_TI85;
+    gtk_widget_set_sensitive(button, FALSE);
+  } else if(!strcmp(ed, "TI86")) {
+    tmp_lp.calc_type = CALC_TI86;
+    gtk_widget_set_sensitive(button, FALSE);
+  } else if(!strcmp(ed, "TI89")) {
+    tmp_lp.calc_type = CALC_TI89;
+    gtk_widget_set_sensitive(button, TRUE);
+  } else if(!strcmp(ed, "TI92")) {
+    tmp_lp.calc_type = CALC_TI92;
+    gtk_widget_set_sensitive(button, FALSE);
+  } else if(!strcmp(ed, "TI92+")) {
+    tmp_lp.calc_type = CALC_TI92P;
+    gtk_widget_set_sensitive(button, TRUE);
+  } else if(!strcmp(ed, "V200PLT")) {
+    tmp_lp.calc_type = CALC_V200;
+    gtk_widget_set_sensitive(button, TRUE);
+  } else {
+    tmp_lp.calc_type = CALC_TI89;
+    DISPLAY("Warning: value not in list: '%s' (entry_calc_changed).\n", ed);
+  }
+}
 
-#endif				/*  */
-		break;
-	default:
-		break;
-	}
-}
-void comm_dbox_update_ports(void)
-{
-	on_comm_dbox_show_port_1(NULL, rb1);
-	on_comm_dbox_show_port_2(NULL, rb2);
-	on_comm_dbox_show_port_3(NULL, rb3);
-	on_comm_dbox_show_port_4(NULL, rb4);
-} GLADE_CB void
-comm_radiobutton_cable_xxx_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-} GLADE_CB void
-comm_radiobutton_cable_tie_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_TIE;
-	if ((tmp_lp.port != VIRTUAL_PORT_1)
-	    && (tmp_lp.port != VIRTUAL_PORT_2))
-		tmp_lp.port = VIRTUAL_PORT_2;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_ser_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_SER;
-	if ((tmp_lp.port != SERIAL_PORT_1)
-	    && (tmp_lp.port != SERIAL_PORT_2)
-	    && (tmp_lp.port != SERIAL_PORT_3)
-	    && (tmp_lp.port != SERIAL_PORT_4))
-		tmp_lp.port = SERIAL_PORT_2;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_vti_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_VTI;
-	if ((tmp_lp.port != VIRTUAL_PORT_1)
-	    && (tmp_lp.port != VIRTUAL_PORT_2))
-		tmp_lp.port = VIRTUAL_PORT_2;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_tgl_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_TGL;
-	if ((tmp_lp.port != SERIAL_PORT_1)
-	    && (tmp_lp.port != SERIAL_PORT_2)
-	    && (tmp_lp.port != SERIAL_PORT_3)
-	    && (tmp_lp.port != SERIAL_PORT_4))
-		tmp_lp.port = SERIAL_PORT_2;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_avr_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_AVR;
-	if ((tmp_lp.port != SERIAL_PORT_1)
-	    && (tmp_lp.port != SERIAL_PORT_2)
-	    && (tmp_lp.port != SERIAL_PORT_3)
-	    && (tmp_lp.port != SERIAL_PORT_4))
-		tmp_lp.port = SERIAL_PORT_2;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_ugl_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_UGL;
-	if ((tmp_lp.port != USB_PORT_1) && (tmp_lp.port != USB_PORT_2)
-	    && (tmp_lp.port != USB_PORT_3)
-	    && (tmp_lp.port != USB_PORT_4))
-		tmp_lp.port = USB_PORT_1;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_cable_par_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.link_type = LINK_PAR;
-	if ((tmp_lp.port != PARALLEL_PORT_1) &&
-	    (tmp_lp.port != PARALLEL_PORT_2)
-	    && (tmp_lp.port != PARALLEL_PORT_3))
-		tmp_lp.port = PARALLEL_PORT_1;
-	if (gtk_toggle_button_get_active(togglebutton))
-		comm_dbox_update_ports();
-}
-GLADE_CB void
-comm_radiobutton_port_1_toggled(GtkToggleButton * togglebutton,
-				gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		tmp_lp.port = PARALLEL_PORT_1;
-		break;
-	case LINK_SER:
-	case LINK_AVR:
-	case LINK_TGL:
-		tmp_lp.port = SERIAL_PORT_1;
-		break;
-	case LINK_VTL:
-		tmp_lp.port = VIRTUAL_PORT_1;
-		break;
-	case LINK_VTI:
-		tmp_lp.port = VIRTUAL_PORT_1;
-		break;
-	case LINK_TIE:
-		tmp_lp.port = VIRTUAL_PORT_1;
-		break;
-	case LINK_UGL:
-		tmp_lp.port = USB_PORT_1;
-		break;
-	default:
-		tmp_lp.port = -1;
-		break;
-	}
-}
-GLADE_CB void
-comm_radiobutton_port_2_toggled(GtkToggleButton * togglebutton,
-				gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		tmp_lp.port = PARALLEL_PORT_2;
-		break;
-	case LINK_SER:
-	case LINK_AVR:
-	case LINK_TGL:
-		tmp_lp.port = SERIAL_PORT_2;
-		break;
-	case LINK_VTL:
-		tmp_lp.port = VIRTUAL_PORT_2;
-		break;
-	case LINK_VTI:
-		tmp_lp.port = VIRTUAL_PORT_2;
-		break;
-	case LINK_TIE:
-		tmp_lp.port = VIRTUAL_PORT_2;
-		break;
-	case LINK_UGL:
-		tmp_lp.port = USB_PORT_2;
-		break;
-	default:
-		tmp_lp.port = -1;
-		break;
-	}
-}
-GLADE_CB void
-cable_radiobutton_port_3_toggled(GtkToggleButton * togglebutton,
-				 gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		tmp_lp.port = PARALLEL_PORT_3;
-		break;
-	case LINK_AVR:
-	case LINK_TGL:
-	case LINK_SER:
-		tmp_lp.port = SERIAL_PORT_3;
-		break;
-	case LINK_VTL:
-		break;
-	case LINK_VTI:
-		break;
-	case LINK_TIE:
-		break;
-	case LINK_UGL:
-		tmp_lp.port = USB_PORT_3;
-		break;
-	default:
-		tmp_lp.port = -1;
-		break;
-	}
-}
-GLADE_CB void
-comm_radiobutton_port_4_toggled(GtkToggleButton * togglebutton,
-				gpointer user_data)
-{
-	switch (tmp_lp.link_type) {
-	case LINK_PAR:
-		break;
-	case LINK_SER:
-	case LINK_AVR:
-	case LINK_TGL:
-		tmp_lp.port = SERIAL_PORT_4;
-		break;
-	case LINK_VTL:
-		break;
-	case LINK_VTI:
-		break;
-	case LINK_TIE:
-		break;
-	case LINK_UGL:
-		tmp_lp.port = USB_PORT_4;
-		break;
-	default:
-		tmp_lp.port = -1;
-		break;
-	}
-}
-GLADE_CB void
-comm_radiobutton_calc_ti86_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI86;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_radiobutton_calc_ti73_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI73;
-	gtk_widget_set_sensitive(button, TRUE);
-} GLADE_CB void
-comm_radiobutton_calc_ti92_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI92;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_radiobutton_calc_ti82_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI82;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_radiobutton_calc_ti83_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI83;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_radiobutton_calc_ti83__toggled(GtkToggleButton * togglebutton,
-				    gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI83P;
-	gtk_widget_set_sensitive(button, TRUE);
-} GLADE_CB void
-comm_radiobutton_calc_ti85_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI85;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_radiobutton_calc_ti89_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI89;
-	gtk_widget_set_sensitive(button, TRUE);
-} GLADE_CB void
-comm_radiobutton_calc_ti92__toggled(GtkToggleButton * togglebutton,
-				    gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_TI92P;
-	gtk_widget_set_sensitive(button, TRUE);
-} GLADE_CB void
-comm_radiobutton_calc_v200_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	tmp_lp.calc_type = CALC_V200;
-	gtk_widget_set_sensitive(button, FALSE);
-} GLADE_CB void
-comm_checkbutton_calc_auto_toggled(GtkToggleButton * togglebutton,
-				   gpointer user_data)
-{
-	if (togglebutton->active == TRUE)
-		ad = TRUE;
 
-	else
-		ad = FALSE;
+void
+comm_checkbutton_calc_auto_toggled     (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+  if (togglebutton->active == TRUE)
+    ad = TRUE;
+  else
+    ad = FALSE;
 }
-GLADE_CB void comm_combo_speed_changed(GtkEditable * editable,
-				       gpointer user_data)
-{
-	gchar *ed = "????";
-	ed = gtk_editable_get_chars(editable, 0, -1);
-	sscanf(ed, "%i", (int *) &tmp_lp.baud_rate);
-} GLADE_CB void
-comm_checkbutton_hfc_toggled(GtkToggleButton * togglebutton,
-			     gpointer user_data)
-{
-	if (togglebutton->active == TRUE)
-		tmp_lp.hfc = HFC_ON;
 
-	else
-		tmp_lp.hfc = HFC_OFF;
+
+void
+comm_spinbutton_delay_changed          (GtkEditable     *editable,
+                                        gpointer         user_data)
+{
+  tmp_lp.delay =
+    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
-GLADE_CB void
-comm_spinbutton_timeout_changed(GtkEditable * editable, gpointer user_data)
+
+
+void
+comm_spinbutton_timeout_changed        (GtkEditable     *editable,
+                                        gpointer         user_data)
 {
-	tmp_lp.timeout =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
-} GLADE_CB void comm_spinbutton_delay_changed(GtkEditable * editable,
-					      gpointer user_data)
-{
-	tmp_lp.delay =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+  tmp_lp.timeout =
+    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
