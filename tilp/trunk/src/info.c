@@ -35,13 +35,7 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
   
   p = ctree_win.varlist;
 
-  cmi->vars = 0;
-  cmi->folders = 0;
-  cmi->mem = 0;
-  cmi->archivemem = 0;
-  
-  cmi->flash = 0;
-  cmi->flashmem = 0;
+  memset(cmi, 0, sizeof(struct calc_mem_info));
   
   // FIXME OS X : still not implemented as announced... !@#
   cmi->freemem = 0;
@@ -70,7 +64,7 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
                               }
                       }
                   // remember the FLASH apps are listed in all folders... so cmi->folders must not be > 1
-                  else if ((vi->vartype == ti_calc.tixx_flash(ticalc_get_calc())) && (cmi->folders == 1))
+                  else if ((cmi->folders == 1) && (vi->vartype == ti_calc.tixx_flash(ticalc_get_calc())))
                       {
                           cmi->flash++;
                       

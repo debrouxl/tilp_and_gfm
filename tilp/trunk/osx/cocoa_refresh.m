@@ -36,9 +36,6 @@ extern struct ticalc_info_update info_update;
 
 #import <Cocoa/Cocoa.h>
 
-// FIXME OS X
-// find a mean to allow cocoa to process its events between pbar refresh...
-
 void
 gt_start(void)
 {
@@ -92,8 +89,7 @@ gt_label(void)
 void
 gt_refresh(void)
 {
-    // FIXME OS X
-    // HERE WE JUST NEED TO PASS THE BALL TO COCOA TO PERFORM EVENTS !
+  // Nothing to do
 }
 
 int

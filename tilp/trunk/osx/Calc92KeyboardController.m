@@ -58,6 +58,8 @@ unsigned short sknKey92[] =
 #define K_MODE_DIAMOND 			2
 #define K_MODE_SHIFT 			3
 #define K_MODE_GRAB			4
+#define K_MODE_GREEK			5
+#define K_MODE_GREEK_CAPS		6
 
 // in main.m
 uint32_t swap_bytes(uint32_t a);
@@ -114,7 +116,10 @@ uint32_t swap_bytes(uint32_t a);
               mode = K_MODE_GRAB;
               break;
           case TIKEY92_SHIFT:
-              mode = K_MODE_SHIFT;
+              if (mode != K_MODE_GREEK)
+                  mode = K_MODE_SHIFT;
+              else
+                  mode = K_MODE_GREEK_CAPS;
               break;
           case TIKEY92_2ND:
               mode = K_MODE_SECOND;
@@ -122,6 +127,13 @@ uint32_t swap_bytes(uint32_t a);
           case TIKEY92_DIAMOND:
               mode = K_MODE_DIAMOND;
               break;
+          case TIKEY92_G:
+              if (mode == K_MODE_SECOND)
+                  {
+                      mode = K_MODE_GREEK;
+                      
+                      break;
+                  }
           default:
               switch(mode)
                   {
@@ -143,6 +155,89 @@ uint32_t swap_bytes(uint32_t a);
                       case K_MODE_SHIFT:
                           key = TI92KEYS[key].shift;
                           
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_GREEK:
+                          switch(key)
+                              {
+                                  case TIKEY92_A:
+                                      key = 128;
+                                      break;
+                                  case TIKEY92_B:
+                                      key = 129;
+                                      break;
+                                  case TIKEY92_D:
+                                      key = 133;
+                                      break;
+                                  case TIKEY92_E:
+                                      key = 134;
+                                      break;
+                                  case TIKEY92_F:
+                                      key = 145;
+                                      break;
+                                  case TIKEY92_G:
+                                      key = 131;
+                                      break;
+                                  case TIKEY92_L:
+                                      key = 137;
+                                      break;
+                                  case TIKEY92_M:
+                                      key = 181;
+                                      break;
+                                  case TIKEY92_P:
+                                      key = 140;
+                                      break;
+                                  case TIKEY92_R:
+                                      key = 141;
+                                      break;
+                                  case TIKEY92_S:
+                                      key = 143;
+                                      break;
+                                  case TIKEY92_T:
+                                      key = 144;
+                                      break;
+                                  case TIKEY92_W:
+                                      key = 148;
+                                      break;
+                                  case TIKEY92_X:
+                                      key = 138;
+                                      break;
+                                  case TIKEY92_Y:
+                                      key = 146;
+                                      break;
+                                  case TIKEY92_Z:
+                                      key = 135;
+                                      break;
+                                  default:
+                                      key = 0;
+                                      break;
+                              }
+                      
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_GREEK_CAPS:
+                          switch(key)
+                              {
+                                  case TIKEY92_D:
+                                      key = 132;
+                                      break;
+                                  case TIKEY92_G:
+                                      key = 130;
+                                      break;
+                                  case TIKEY92_P:
+                                      key = 139;
+                                      break;
+                                  case TIKEY92_S:
+                                      key = 142;
+                                      break;
+                                  case TIKEY92_W:
+                                      key = 147;
+                                      break;
+                                  default:
+                                      key = 0;
+                                      break;
+                              }
+                      
                           mode = K_MODE_NONE;
                           break;
                       default:

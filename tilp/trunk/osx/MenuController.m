@@ -146,7 +146,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     return [NSArray arrayWithObjects:@"isReady", @"getDirlist", @"getScreen", @"getVars", @"doBackup", @"doRestore" ,nil];
 }
 
-// FIXME OS X
+// FIXME OS X : Waiting for Apple to produce some code...
 // THIS WILL BE REMOVED WHEN APPLE WILL IMPLEMENT
 // A WORKING DRAG'N'DROP WITH NSContentOfFilePBoardType
 - (IBAction)getVars:(id)sender
@@ -208,7 +208,42 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)isReady:(id)sender
 {
-    cb_calc_is_ready();
+    if (cb_calc_is_ready() == 0)
+        {
+            switch(ticalc_get_calc())
+                {
+                    case CALC_TI73:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-73 Ready !"];
+                        break;
+                    case CALC_TI82:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-82 Ready !"];
+                        break;
+                    case CALC_TI83:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-83 Ready !"];
+                        break;
+                    case CALC_TI83P:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-83 Plus Ready !"];
+                        break;
+                    case CALC_TI85:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-85 Ready !"];
+                        break;
+                    case CALC_TI86:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-86 Ready !"];
+                        break;
+                    case CALC_TI89:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-89 Ready !"];
+                        break;
+                    case CALC_TI92:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-92 Ready !"];
+                        break;
+                    case CALC_TI92P:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-92 Plus Ready !"];
+                        break;
+                    default:
+                        [mySheetsController msgSheet:@"The calculator is ready." title:@"Ready !"];
+                        break;
+                }
+        }
 }
 
 - (IBAction)remoteControl:(id)sender
@@ -371,8 +406,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)installShell:(id)sender
 {
-    // FIXME OS X
-    // Implemented in Tiffep.
+    // FIXME OS X : Implemented in Tiffep.
     // So, wait until the Tiffep is ported to Mac OS X :)
 }
 

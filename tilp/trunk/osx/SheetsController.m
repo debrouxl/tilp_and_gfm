@@ -108,7 +108,7 @@ extern struct ticalc_info_update info_update;
     if (pbarWindow != nil)
         [pbarWindow orderOut:nil];
     
-    NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow] /* mainWindow */, nil, nil, nil, nil, message);
+    NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow], nil, nil, nil, nil, message);
                       
     if (pbarWindow != nil)
         {
@@ -425,6 +425,16 @@ extern struct ticalc_info_update info_update;
         {
             [pbar2 setDoubleValue:0.0];
             [pbar2 displayIfNeeded];
+        }
+        
+    if (pbar_rate != nil)
+        {
+            [pbar_rate setStringValue:@"Rate : 0.00 KB/s"];
+        }
+        
+    if (pbar_text != nil)
+        {
+            [pbar_text setStringValue:@""];
         }
 
     pbar1 = nil;

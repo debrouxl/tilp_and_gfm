@@ -20,6 +20,8 @@
 
 #include <stdint.h>
 
+#include <libticables/typedefs.h>
+
 #include "cocoa_structs.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
@@ -55,6 +57,8 @@ uint32_t swap_bytes(uint32_t a);
 #define K_MODE_ALPHA 			4
 #define K_MODE_A_LOCK 			5
 #define K_MODE_A_S_LOCK 		6
+#define K_MODE_GREEK			7
+#define K_MODE_GREEK_CAPS		8
 
 @implementation Calc89KeyboardController
 
@@ -84,7 +88,7 @@ uint32_t swap_bytes(uint32_t a);
 {
   int i;
   int ret;
-  unsigned int key = 0;
+  word key = 0;
   
   // we have a _little_ coordinates problem :)
   // our ImageView is 222 * 503
@@ -95,9 +99,9 @@ uint32_t swap_bytes(uint32_t a);
           if ((point.x >= rcKeys89[i].left) && (point.x < rcKeys89[i].right) && (point.y >= rcKeys89[i].top) && (point.y < rcKeys89[i].bottom))
               {
                   key = sknKey89[i];
-#ifdef OSX_DEBUG
+//#ifdef OSX_DEBUG
                   fprintf(stderr, "DEBUG: matched key %d\n", key);
-#endif
+//#endif
                   break;
               }
       }
@@ -105,7 +109,10 @@ uint32_t swap_bytes(uint32_t a);
   switch(key)
       {
           case TIKEY89_SHIFT:
-              mode = K_MODE_SHIFT;
+              if (mode != K_MODE_GREEK)
+                  mode = K_MODE_SHIFT;
+              else
+                  mode = K_MODE_GREEK_CAPS;
               break;
           case TIKEY89_2ND:
               mode = K_MODE_SECOND;
@@ -120,9 +127,15 @@ uint32_t swap_bytes(uint32_t a);
                   mode = K_MODE_NONE;
               else if (mode == K_MODE_SHIFT)
                   mode = K_MODE_A_S_LOCK;
-              else
+              else if (mode != K_MODE_GREEK)
                   mode = K_MODE_ALPHA;
               break;
+          case TIKEY89_PALEFT:
+              if (mode == K_MODE_DIAMOND)
+                  {
+                      mode = K_MODE_GREEK;
+                      break;
+                  }
           default:
               switch(mode)
                   {
@@ -151,6 +164,89 @@ uint32_t swap_bytes(uint32_t a);
                           break;
                       case K_MODE_A_S_LOCK:
                           key = TI89KEYS[key].shift;
+                          break;
+                      case K_MODE_GREEK:
+                          switch(key)
+                              {
+                                  case TIKEY89_EQUALS:
+                                      key = 128;
+                                      break;
+                                  case TIKEY89_PALEFT:
+                                      key = 129;
+                                      break;
+                                  case TIKEY89_COMMA:
+                                      key = 133;
+                                      break;
+                                  case TIKEY89_DIVIDE:
+                                      key = 134;
+                                      break;
+                                  case TIKEY89_PIPE:
+                                      key = 145;
+                                      break;
+                                  case TIKEY89_7:
+                                      key = 131;
+                                      break;
+                                  case TIKEY89_4:
+                                      key = 137;
+                                      break;
+                                  case TIKEY89_5:
+                                      key = 181;
+                                      break;
+                                  case TIKEY89_STORE:
+                                      key = 140;
+                                      break;
+                                  case TIKEY89_2:
+                                      key = 141;
+                                      break;
+                                  case TIKEY89_3:
+                                      key = 143;
+                                      break;
+                                  case TIKEY89_T:
+                                      key = 144;
+                                      break;
+                                  case TIKEY89_PERIOD:
+                                      key = 148;
+                                      break;
+                                  case TIKEY89_X:
+                                      key = 138;
+                                      break;
+                                  case TIKEY89_Y:
+                                      key = 146;
+                                      break;
+                                  case TIKEY89_Z:
+                                      key = 135;
+                                      break;
+                                  default:
+                                      key = 0;
+                                      break;
+                              }
+                          
+                          mode = K_MODE_NONE;
+                          break;
+                      case K_MODE_GREEK_CAPS:
+                          switch(key)
+                              {
+                                  case TIKEY89_COMMA:
+                                      key = 132;
+                                      break;
+                                  case TIKEY89_7:
+                                      key = 130;
+                                      break;
+                                  case TIKEY89_STORE:
+                                      key = 139;
+                                      break;
+                                  case TIKEY89_3:
+                                      key = 142;
+                                      break;
+                                  case TIKEY89_PERIOD:
+                                      key = 147;
+                                      break;
+                                  default:
+                                      key = 0;
+                                      break;
+                              }
+                          
+                          mode = K_MODE_NONE;
                           break;
                       default:
                           key = TI89KEYS[key].none;

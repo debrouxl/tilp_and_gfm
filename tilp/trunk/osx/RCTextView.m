@@ -94,10 +94,24 @@ extern struct cocoa_objects_ptr *objects_ptr;
                     
                     send = YES;
                 }
+            else if (uchar == 3) // KeyPad enter key
+                {
+                    toSend = 13;
+                    
+                    process = YES;
+                    send = YES;
+                }
             else if ((uchar > 0) && (uchar < 256)) // the calc seems to be using UNICODE in this range
                 {
                     toSend = uchar;
 
+                    send = YES;
+                }
+            else if (uchar == NSClearLineFunctionKey) // Clear
+                {
+                    toSend = 263;
+                    
+                    process = YES;
                     send = YES;
                 }
             else if (uchar == NSUpArrowFunctionKey)

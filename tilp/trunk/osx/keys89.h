@@ -18,6 +18,7 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <libticables/typedefs.h>
 
 #define TIKEY89_F1		1
 #define TIKEY89_F2		2
@@ -73,11 +74,11 @@
 
 struct ti89key
 {
-  unsigned int none;
-  unsigned int shift;
-  unsigned int second;
-  unsigned int diamond;
-  unsigned int alpha;
+  word none;
+  word shift;
+  word second;
+  word diamond;
+  word alpha;
 };
 
 

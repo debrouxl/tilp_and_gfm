@@ -62,6 +62,7 @@ int tilp_error(int err_num)
 
   /* Retrieve the error message */
   err = ticable_get_error(err_num, s);
+  
   if(err)
     {
       err = ticalc_get_error(err_num, s);
@@ -70,9 +71,9 @@ int tilp_error(int err_num)
 	  // nothing
 	}
     }
-  
+
   //err_code[i++] = err;
-  fprintf(stderr, "%s\n", s);
+  DISPLAY("%s\n", s);
   gif->msg_box(_("Error"), s);
   
   return err_num;

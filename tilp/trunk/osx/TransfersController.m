@@ -57,6 +57,20 @@ extern int is_active;
 
 
 // THREADED
+
+- (void)sendVarsThreaded:(id)sender
+{
+  NSAutoreleasePool *localPool;
+  
+  localPool = [[NSAutoreleasePool alloc] init];
+  
+  cb_send_var();
+  
+  [localPool release];
+  [NSThread exit];
+}
+
+
 - (void)getVarsThreaded:(id)sender
 {
     NSAutoreleasePool *localPool;
@@ -76,7 +90,7 @@ extern int is_active;
     
     struct varinfo *v = NULL;
     
-    int result;
+    int result = 0;
     int tiVarsRow;
     int i, j, row;
     int indexes[256]; // I don't know if 256 vars can be fitted on the TI, but :-)
@@ -203,7 +217,8 @@ extern int is_active;
         
     ctree_win.selection = list;
  
-    cb_receive_var(&result);
+    if (list != NULL)
+        cb_receive_var(&result);
       
     if (result > 0)
         {
@@ -757,9 +772,9 @@ extern int is_active;
 
 - (int)sendChar:(unsigned int)tikey
 {
-#ifdef OSX_DEBUG
+//#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);
-#endif
+//#endif
 
     if (tilp_error(ti_calc.send_key(tikey)))
         return -1;

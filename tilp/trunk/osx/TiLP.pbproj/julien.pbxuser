@@ -40,10 +40,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {1002, 528}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{238, 0}, {764, 528}}";
 						Split0 = {
-							Frame = "{{0, 167}, {764, 361}}";
+							Frame = "{{0, 97}, {764, 431}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -73,16 +73,16 @@
 							LauncherConfigVersion = 4;
 						};
 						Tab1 = {
-							Frame = "{{0, 0}, {764, 94}}";
+							Frame = "{{0, 0}, {764, 73}}";
 							LauncherConfigVersion = 3;
 							Runner = {
-								Frame = "{{0, 0}, {764, 94}}";
+								Frame = "{{0, 0}, {764, 73}}";
 							};
 						};
 						Tab2 = {
-							BuildMessageFrame = "{{0, 0}, {766, 73}}";
-							BuildTranscriptFrame = "{{0, 82}, {766, 63}}";
-							Frame = "{{0, 0}, {764, 143}}";
+							BuildMessageFrame = "{{0, 0}, {766, 60}}";
+							BuildTranscriptFrame = "{{0, 69}, {766, 38}}";
+							Frame = "{{0, 0}, {764, 105}}";
 						};
 						Tab3 = {
 							Frame = "{{0, 0}, {678, 295}}";
@@ -94,9 +94,9 @@
 						Frame = "{{0, 0}, {214, 528}}";
 					};
 					Tab1 = {
-						ClassesFrame = "{{0, 0}, {202, 56}}";
-						Frame = "{{0, 0}, {200, 100}}";
-						MembersFrame = "{{0, 65}, {202, 35}}";
+						ClassesFrame = "{{0, 0}, {202, 319}}";
+						Frame = "{{0, 0}, {200, 528}}";
+						MembersFrame = "{{0, 328}, {202, 200}}";
 						OptionsSetName = "Hierarchy, all classes";
 					};
 					Tab2 = {

@@ -39,6 +39,7 @@
 - (void)doBackupThreaded:(id)sender;
 - (void)romDumpThreaded:(id)sender;
 
+- (void)sendVarsThreaded:(id)sender;
 - (void)doRestoreThreaded:(id)files;
 - (void)sendFlashAppThreaded:(id)files;
 - (void)sendAMSThreaded:(id)files;

@@ -214,6 +214,19 @@
 	int instead of unsigned char.
 	* Fixed a typo in keys89.h, 'z' = 122, not 121.
 	     [both reported by Matthew Bryant]
+* 20020207 : v0.4.5
+	* Greek letters in remote control.
+	* Pop up a sheet when calc is ready.
+	* Reset pbars texts and values when "destroyed".
+	* Catch "Clear" key on the Mac keyboard.
+	* Keypad Enter is not Return !
+* 20020208 : v0.4.5
+	* Fixed the glib build, so that g_warning and friends are
+	no longer functions defined in glib.h but macros. Cleaner build.
+	* Threaded vars upload.
+	
+
+
 
 
 

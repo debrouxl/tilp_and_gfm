@@ -464,6 +464,8 @@ struct gui_fncts gui_functions;
     
     // now the real fun is about to begin
     
+    tmpArray = nil; // GCC, please, just shut the f*ck up about this one.
+    
     // FLASH APPS
     
     tiAppsArray = [[NSMutableArray alloc] init];
@@ -858,7 +860,12 @@ struct gui_fncts gui_functions;
     clist_win.selection = filelist;
     
     // FIXME OS X : thread it ?
-    cb_send_var();
+    //cb_send_var();
+    
+    // FIXME OS X : need some tests !
+    [NSThread detachNewThreadSelector:@selector(sendVarsThreaded:)
+              toTarget:myTransfersController
+              withObject:self];
     
     return YES;
 }
