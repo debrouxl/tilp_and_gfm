@@ -72,10 +72,25 @@ int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 	        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	        //freopen("CONOUT$", "w", stdout);
         }
+	
+	cnt = sprintf(buffer, domain);
+	WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
+
+	switch(level) {
+	case 1: cnt = sprintf(buffer, _("wrn: ")); break;
+	case 2: cnt = sprintf(buffer, _("err: ")); break;
+	default: cnt = 0; break:
+	}
+	WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
 
         cnt = _vsnprintf(buffer, 128, format, ap);
         WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
 #else
+	fprintf(stdout, domain);
+	switch(level) {
+	case 1: fprintf(stdout, _("wrn: ")); break;
+	case 2: fprintf(stdout, _("err: ")); break;
+	}
 	vfprintf(stdout, format, ap);
 #endif
 
@@ -103,14 +118,7 @@ int ticables_printl(int level, const char *format, ...)
 {
         va_list ap;
 	int ret = 0;
-#ifndef NO_STDOUT
-	fprintf(stdout, DOMAIN_TICABLES);
 
-	switch(level) {
-		case 1: fprintf(stdout, _("wrn: ")); break;
-		case 2: fprintf(stdout, _("err: ")); break;
-	}
-#endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICABLES, level, format, ap);
         va_end(ap);
@@ -122,14 +130,7 @@ int tifiles_printl(int level, const char *format, ...)
 {
         va_list ap;
 	int ret = 0;
-#ifndef NO_STDOUT
-	fprintf(stdout, DOMAIN_TIFILES);
 
-	switch(level) {
-		case 1: fprintf(stdout, _("wrn: ")); break;
-		case 2: fprintf(stdout, _("err: ")); break;
-	}
-#endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TIFILES, level, format, ap);
         va_end(ap);
@@ -141,14 +142,7 @@ int ticalcs_printl(int level, const char *format, ...)
 {
         va_list ap;
 	int ret = 0;
-#ifndef NO_STDOUT
-	fprintf(stdout, DOMAIN_TICALCS);
-	
-	switch(level) {
-		case 1: fprintf(stdout, _("wrn: ")); break;
-		case 2: fprintf(stdout, _("err: ")); break;
-	}
-#endif
+
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICALCS, level, format, ap);
         va_end(ap);
@@ -156,18 +150,11 @@ int ticalcs_printl(int level, const char *format, ...)
 	return ret;
 }
 
-int default_printl(int level, const char *format, ...)
+int tilp_printl(int level, const char *format, ...)
 {
 	va_list ap;
 	int ret = 0;
-#ifndef NO_STDOUT
-	fprintf(stdout, DOMAIN_TILP);
-	
-	switch(level) {
-		case 1: fprintf(stdout, _("wrn: ")); break;
-		case 2: fprintf(stdout, _("err: ")); break;
-	}
-#endif
+
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TILP, level, format, ap);
         va_end(ap);
@@ -175,7 +162,7 @@ int default_printl(int level, const char *format, ...)
 	return ret;
 }
 
-TILP_PRINTL printl = default_printl;
+TILP_PRINTL printl = tilp_printl;
 
 /*
 	Change print behaviour (callback).

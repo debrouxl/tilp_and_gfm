@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-03 23:42+0200\n"
+"POT-Creation-Date: 2004-04-10 09:58+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -41,15 +41,15 @@ msgstr "Dateiname"
 msgid "Action"
 msgstr "Aktion"
 
-#: src/action.c:152 src/clock.c:133
+#: src/action.c:152 src/clock.c:96
 msgid "action.c: GUI loading failed !\n"
 msgstr "action.c: Laden des GUIs fehlgeschlagen!\n"
 
-#: src/action.c:216 src/action.c:333
+#: src/action.c:215 src/action.c:333
 msgid "skip"
 msgstr "überspringen"
 
-#: src/action.c:217 src/action.c:275 src/action.c:333
+#: src/action.c:216 src/action.c:275 src/action.c:333
 msgid "overwrite"
 msgstr "überschreiben"
 
@@ -77,55 +77,7 @@ msgstr "Größe"
 msgid "Date"
 msgstr "Datum"
 
-#: src/clock.c:47 src/clock.c:208 glade/clock-2.str:25
-msgid "Jan"
-msgstr "Jan"
-
-#: src/clock.c:50 src/clock.c:211 glade/clock-2.str:26
-msgid "Feb"
-msgstr "Feb"
-
-#: src/clock.c:53 src/clock.c:214 glade/clock-2.str:27
-msgid "Mar"
-msgstr "Mär"
-
-#: src/clock.c:56 src/clock.c:217 glade/clock-2.str:28
-msgid "Apr"
-msgstr "Apr"
-
-#: src/clock.c:59 src/clock.c:220 glade/clock-2.str:29
-msgid "May"
-msgstr "Mai"
-
-#: src/clock.c:62 src/clock.c:223 glade/clock-2.str:30
-msgid "Jun"
-msgstr "Jun"
-
-#: src/clock.c:65 src/clock.c:226 glade/clock-2.str:31
-msgid "Jul"
-msgstr "Jul"
-
-#: src/clock.c:68 src/clock.c:229
-msgid "Aug"
-msgstr "Aug"
-
-#: src/clock.c:71 src/clock.c:232 glade/clock-2.str:33
-msgid "Sep"
-msgstr "Sep"
-
-#: src/clock.c:74 src/clock.c:235 glade/clock-2.str:34
-msgid "Oct"
-msgstr "Okt"
-
-#: src/clock.c:77 src/clock.c:238 glade/clock-2.str:35
-msgid "Nov"
-msgstr "Nov"
-
-#: src/clock.c:80 src/clock.c:241 glade/clock-2.str:36
-msgid "Dec"
-msgstr "Dez"
-
-#: src/comm.c:52
+#: src/comm.c:53
 msgid "comm.c: GUI loading failed !\n"
 msgstr "comm.c: GUI konnte nicht geladen werden!\n"
 
@@ -159,17 +111,17 @@ msgstr ""
 
 #. RemoveDirectory(f)
 #: src/dboxes.c:41 src/dboxes.c:90 src/popup.c:166 src/popup.c:246
-#: src/popup.c:338 src/tilp_calcs.c:244 src/tilp_calcs.c:253
-#: src/tilp_calcs.c:262 src/tilp_calcs.c:282 src/tilp_calcs.c:296
-#: src/tilp_files.c:105 src/tilp_files.c:119 src/tilp_files.c:137
-#: src/tilp_misc.c:48 src/tilp_misc.c:59 src/tilp_misc.c:172
-#: src/tilp_rcfile.c:120 src/tilp_slct.c:124 src/tilp_slct.c:139
-#: src/tilp_slct.c:150 src/tilp_slct.c:161
+#: src/popup.c:338 src/tilp_calcs.c:216 src/tilp_calcs.c:249
+#: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
+#: src/tilp_calcs.c:301 src/tilp_files.c:105 src/tilp_files.c:119
+#: src/tilp_files.c:137 src/tilp_misc.c:48 src/tilp_misc.c:59
+#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:124
+#: src/tilp_slct.c:139 src/tilp_slct.c:150 src/tilp_slct.c:161
 msgid "Information"
 msgstr "Information"
 
-#: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:237
-#: src/tilp_calcs.c:385 src/tilp_files.c:684 src/tilp_slct.c:89
+#: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
+#: src/tilp_calcs.c:390 src/tilp_files.c:684 src/tilp_slct.c:89
 #: src/tilp_slct.c:92
 msgid "Warning"
 msgstr "Warnung"
@@ -180,12 +132,13 @@ msgstr "Frage"
 
 #. gif->destroy_pbar();
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
-#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:334 src/tilp_calcs.c:380
-#: src/tilp_calcs.c:576 src/tilp_calcs.c:582 src/tilp_calcs.c:588
+#: src/popup.c:410 src/tilp.c:246 src/tilp_calcs.c:339 src/tilp_calcs.c:385
+#: src/tilp_calcs.c:581 src/tilp_calcs.c:587 src/tilp_calcs.c:593
 #: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
 #: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
-#: src/tilp_main.c:336 src/tilp_main.c:345 src/tilp_misc.c:167
-#: src/tilp_misc.c:296 src/tilp_rcfile.c:557
+#: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
+#: src/tilp_misc.c:169 src/tilp_misc.c:298 src/tilp_rcfile.c:51
+#: src/tilp_rcfile.c:566
 msgid "Error"
 msgstr "Fehler"
 
@@ -194,8 +147,8 @@ msgid "Unable to remove the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
 #: src/gtk_refresh.c:131
-#, c-format
-msgid "Initialized in GTK+ mode.\n"
+#, fuzzy
+msgid "initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
 
 #: src/labels.c:69
@@ -239,6 +192,10 @@ msgstr "TiLP"
 #: src/main.c:160
 msgid "Scanning plugins..."
 msgstr "Scanne Plugins..."
+
+#: src/main.c:168
+msgid "Command line..."
+msgstr ""
 
 #: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:140
 msgid "A file must have been selected in the right window."
@@ -291,7 +248,7 @@ msgstr "Öffnen mit"
 msgid "Change drive"
 msgstr "Wechsle Laufwerk"
 
-#: src/support.c:82 src/support.c:101
+#: src/support.c:83 src/support.c:102
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmapdatei nicht gefunden: %s"
@@ -337,23 +294,19 @@ msgstr ""
 msgid "Receiving blocks"
 msgstr "Empfange Blöcke"
 
-#: src/tilp_calcs.c:205
+#: src/tilp_calcs.c:208
 msgid "ID-LIST : "
 msgstr "ID-Liste: "
 
-#: src/tilp_calcs.c:212
-msgid "IDlist"
-msgstr "IDlist"
-
-#: src/tilp_calcs.c:224
+#: src/tilp_calcs.c:229
 msgid "ROM dump"
 msgstr "ROM-Abbild"
 
-#: src/tilp_calcs.c:224
+#: src/tilp_calcs.c:229
 msgid "Receiving bytes"
 msgstr "Empfange Bytes"
 
-#: src/tilp_calcs.c:238
+#: src/tilp_calcs.c:243
 msgid ""
 "An assembly program is about to be\n"
 "sent on your calculator. If you have not made\n"
@@ -361,14 +314,14 @@ msgid ""
 "proceeding with ROM dumping..."
 msgstr ""
 
-#: src/tilp_calcs.c:245
+#: src/tilp_calcs.c:250
 msgid ""
 "1: you must have AShell installed on your calculator\n"
 "2: TiLP will automatically transfer the ROM dump program\n"
 "3: but, it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:254
+#: src/tilp_calcs.c:259
 msgid ""
 "1: you must have ASh installed on your calculator\n"
 "2: you must be in receive mode (LINK menu)\n"
@@ -376,7 +329,7 @@ msgid ""
 "4: it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:263
+#: src/tilp_calcs.c:268
 msgid ""
 "1: you must have Zshell or Usgard installed on your calculator\n"
 "2: you must be in receive mode (LINK menu)\n"
@@ -384,32 +337,32 @@ msgid ""
 "4: it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:283
+#: src/tilp_calcs.c:288
 msgid ""
 "1: TiLP will automatically transfer the ROM dumping program\n"
 "2: but, it will wait for you to manually launch it from the calculator "
 "(either by the shell, either by typing 'asm(rom86)'."
 msgstr ""
 
-#: src/tilp_calcs.c:297
+#: src/tilp_calcs.c:302
 msgid ""
 "1: you must have the FargoII shell installed on your calculator\n"
 "2: TiLP will automatically transfer the ROM dumping program\n"
 "3: TiLP will automatically launch the program (if you are in HOME).\n"
 msgstr ""
 
-#: src/tilp_calcs.c:336
+#: src/tilp_calcs.c:341
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:348 src/tilp_calcs.c:353 src/tilp_calcs.c:397
-#: src/tilp_calcs.c:402
+#: src/tilp_calcs.c:353 src/tilp_calcs.c:358 src/tilp_calcs.c:402
+#: src/tilp_calcs.c:407
 msgid "Flash"
 msgstr "Flash"
 
-#: src/tilp_calcs.c:376
+#: src/tilp_calcs.c:381
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -421,49 +374,49 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:382
+#: src/tilp_calcs.c:387
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:435
+#: src/tilp_calcs.c:440
 msgid "Receiving application(s)"
 msgstr "Empfange Anwendung(en)"
 
-#: src/tilp_calcs.c:524
+#: src/tilp_calcs.c:529
 msgid "Converting..."
 msgstr "Konvertiere..."
 
-#: src/tilp_calcs.c:577
+#: src/tilp_calcs.c:582
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:584
+#: src/tilp_calcs.c:589
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:589
+#: src/tilp_calcs.c:594
 msgid "There is an unknown file type in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:603
+#: src/tilp_calcs.c:608
 msgid "Sending group file"
 msgstr "Sende Gruppendatei"
 
-#: src/tilp_calcs.c:607
+#: src/tilp_calcs.c:612
 msgid "Sending variable"
 msgstr "Sende Variable"
 
-#: src/tilp_calcs.c:609
+#: src/tilp_calcs.c:614
 msgid "Sending variables"
 msgstr "Sende Variablen"
 
-#: src/tilp_calcs.c:676 src/tilp_calcs.c:797
+#: src/tilp_calcs.c:681 src/tilp_calcs.c:802
 msgid "Receiving variable(s)"
 msgstr "Empfange Variable(n)"
 
-#: src/tilp_calcs.c:798
+#: src/tilp_calcs.c:803
 msgid "Waiting..."
 msgstr "Warte..."
 
@@ -512,7 +465,7 @@ msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 msgid "Chdir error.\n"
 msgstr "Verzeichnis konnte nicht gewechselt werden.\n"
 
-#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:167
+#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:169
 msgid "Unable to change directory."
 msgstr "Verzeichnis konnte nicht gewechselt werden."
 
@@ -580,70 +533,80 @@ msgstr ""
 msgid "See the manpage for more informations...\n"
 msgstr "Siehe Handbuch (man tilp) für mehr Informationen...\n"
 
-#: src/tilp_main.c:107
+#: src/tilp_main.c:103
 #, c-format
-msgid "TiLP - Version %s, (C) 1999-2003 Romain Lievin <roms@tilp.info>\n"
+msgid "TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:111
+#: src/tilp_main.c:107
 #, fuzzy
-msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
+msgid "FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"
 msgstr "FreeBSD port, (c) 2003 Tijl Coosemans\n"
 
-#: src/tilp_main.c:116
+#: src/tilp_main.c:112
 #, c-format
 msgid ""
 "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
 msgstr ""
 
-#: src/tilp_main.c:120
-#, c-format
-msgid "Built on %s %s\n"
-msgstr "Kompilierdatum: %s %s\n"
-
-#: src/tilp_main.c:121
+#: src/tilp_main.c:116
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr "DIESES PROGRAMM GEWÄHRT KEINERLEI GARANTIEEN.\n"
 
-#: src/tilp_main.c:122
+#: src/tilp_main.c:117
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "BITTE LESEN SIE DIE DOKUMENTATION FÜR DETAILS\n"
 
-#: src/tilp_main.c:334
+#: src/tilp_main.c:118
+#, fuzzy, c-format
+msgid "built on %s %s\n"
+msgstr "Kompilierdatum: %s %s\n"
+
+#: src/tilp_main.c:321
+#, c-format
+msgid "libtifiles library version <%s> mini required.\n"
+msgstr ""
+
+#: src/tilp_main.c:324
+#, fuzzy
+msgid "Libtifiles: version mismatches."
+msgstr "Libticables: Versionskonflikt."
+
+#: src/tilp_main.c:330
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:337
+#: src/tilp_main.c:333
 msgid "Libticables: version mismatches."
 msgstr "Libticables: Versionskonflikt."
 
-#: src/tilp_main.c:343
+#: src/tilp_main.c:339
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:346
+#: src/tilp_main.c:342
 msgid "Libticalcs: version mismatches."
 msgstr "Libticalcs:-Versionskonflikt."
 
-#: src/tilp_main.c:370
+#: src/tilp_main.c:375
 msgid "Working mode: command line.\n"
 msgstr "Arbeitsmodus: Kommandozeile.\n"
 
-#: src/tilp_main.c:373
+#: src/tilp_main.c:378
 msgid "Working mode: console (prompt).\n"
 msgstr "Arbeitsmodus: Konsole (Prompt).\n"
 
-#: src/tilp_main.c:376
+#: src/tilp_main.c:381
 msgid "Working mode: GTK+.\n"
 msgstr "Arbeitsmodus: GTK+.\n"
 
-#: src/tilp_main.c:379
+#: src/tilp_main.c:384
 msgid "Working mode: MFC.\n"
 msgstr "Arbeitsmodus: MFC.\n"
 
-#: src/tilp_main.c:382
+#: src/tilp_main.c:387
 msgid "Working mode: Cocoa OS X GUI.\n"
 msgstr "Arbeitsmodus: Cocoa OS X GUI.\n"
 
@@ -655,31 +618,31 @@ msgstr "Konfigurationsdatei gespeichert."
 msgid "Configuration file loaded."
 msgstr "Konfigurationsdatei geladen."
 
-#: src/tilp_misc.c:173
+#: src/tilp_misc.c:175
 msgid "This function is not available in the Win version."
 msgstr ""
 
-#: src/tilp_misc.c:199
+#: src/tilp_misc.c:201
 msgid "Invalid filename. There is no extension !\n"
 msgstr ""
 
-#: src/tilp_misc.c:227
+#: src/tilp_misc.c:229
 msgid "Unknown file type.\n"
 msgstr ""
 
-#: src/tilp_misc.c:255
+#: src/tilp_misc.c:257
 msgid "Create new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/tilp_misc.c:257
+#: src/tilp_misc.c:259
 msgid "Directory where files will be ungrouped: "
 msgstr ""
 
-#: src/tilp_misc.c:258
+#: src/tilp_misc.c:260
 msgid "ungrouped"
 msgstr "Gruppierung aufgehoben"
 
-#: src/tilp_misc.c:297
+#: src/tilp_misc.c:299
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
@@ -687,21 +650,21 @@ msgstr ""
 "Mindestens 2 Dateien müssen ausgewählt sein.\n"
 "\n"
 
-#: src/tilp_misc.c:301
+#: src/tilp_misc.c:303
 msgid "Group files"
 msgstr "Dateien gruppieren"
 
-#: src/tilp_misc.c:301
+#: src/tilp_misc.c:303
 msgid "Group name: "
 msgstr "Gruppenname: "
 
-#: src/tilp_misc.c:302
+#: src/tilp_misc.c:304
 msgid "group"
 msgstr "Gruppe"
 
 #: src/tilp_plugin.c:150
 #, fuzzy
-msgid "Scanning plug-ins... "
+msgid "scanning plug-ins... "
 msgstr "Scanne Plugins..."
 
 #: src/tilp_plugin.c:153
@@ -716,7 +679,7 @@ msgstr "Fertig.\n"
 #. Scan registry
 #: src/tilp_plugin.c:174
 #, fuzzy
-msgid "Scanning registry... "
+msgid "scanning registry... "
 msgstr "Scanne Plugins..."
 
 #: src/tilp_prompt.c:68
@@ -763,28 +726,28 @@ msgstr ""
 "\n"
 "cmd> "
 
-#: src/tilp_prompt.c:180
+#: src/tilp_prompt.c:179
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:48
+#: src/tilp_rcfile.c:50
 #, c-format
 msgid "Configuration file error at line %i.\n"
 msgstr "Fehler in Konfigurationsdatei, Zeile %i.\n"
 
-#: src/tilp_rcfile.c:119 src/tilp_rcfile.c:121
-#, c-format
+#: src/tilp_rcfile.c:123 src/tilp_rcfile.c:125
 msgid ""
 "Configuration file not found, use default values. You can create one by the "
 "'File|Save config' command menu.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:558
+#: src/tilp_rcfile.c:567
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
 msgstr ""
 
-#: src/tilp_refresh.c:89
-msgid "Initialized in command line mode.\n"
+#: src/tilp_refresh.c:95
+#, fuzzy
+msgid "initialized in command line mode.\n"
 msgstr "Initialisiert im Kommandozeilenmodus.\n"
 
 #. Place a progress bar
@@ -1119,89 +1082,123 @@ msgid "_Console"
 msgstr ""
 
 #.
-#. * Chaînes de caractères à traduire générées par
-#. * Glade. Ajouter ce fichier au fichier POTFILE.in
-#. * de votre projet. NE PAS compiler ce fichier
-#. * avec le reste de votre application.
+#. * Translatable strings file generated by Glade.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
 #.
-#: glade/clock-2.str:8
+#: glade/clock-2.str:7
 msgid "Clock Management"
 msgstr ""
 
-#: glade/clock-2.str:9
+#: glade/clock-2.str:8
 msgid "_on"
 msgstr ""
 
-#: glade/clock-2.str:10
+#: glade/clock-2.str:9
 msgid "of_f"
 msgstr ""
 
-#: glade/clock-2.str:11
+#: glade/clock-2.str:10
 msgid "Clock is..."
 msgstr ""
 
-#: glade/clock-2.str:12
+#: glade/clock-2.str:11
 msgid "_AM/PM"
 msgstr ""
 
-#: glade/clock-2.str:13
+#: glade/clock-2.str:12
 msgid "_24h"
 msgstr ""
 
-#: glade/clock-2.str:14 glade/clock-2.str:24 glade/comm-2.str:11
-#: glade/comm-2.str:27 glade/comm-2.str:37 glade/extprgms-2.str:11
-#: glade/extprgms-2.str:15 glade/extprgms-2.str:20 glade/extprgms-2.str:24
-#: glade/extprgms-2.str:29 glade/extprgms-2.str:32 glade/extprgms-2.str:37
-#: glade/extprgms-2.str:40 glade/user_boxes-2.str:9
-msgid "*"
-msgstr ""
-
-#: glade/clock-2.str:15
+#: glade/clock-2.str:13
 msgid "MM/DD/YY"
 msgstr ""
 
-#: glade/clock-2.str:16
+#: glade/clock-2.str:14
 msgid "DD/MM/YY"
 msgstr ""
 
-#: glade/clock-2.str:17
+#: glade/clock-2.str:15
 msgid "MM.DD.YY"
 msgstr ""
 
-#: glade/clock-2.str:18
+#: glade/clock-2.str:16
 msgid "DD.MM.YY"
 msgstr ""
 
-#: glade/clock-2.str:19
+#: glade/clock-2.str:17
 msgid "YY.MM.DD"
 msgstr ""
 
-#: glade/clock-2.str:20
+#: glade/clock-2.str:18
 msgid "MM-DD-YY"
 msgstr ""
 
-#: glade/clock-2.str:21
+#: glade/clock-2.str:19
 msgid "DD-MM-YY"
 msgstr ""
 
-#: glade/clock-2.str:22
+#: glade/clock-2.str:20
 msgid "YY-MM-DD"
 msgstr ""
 
-#: glade/clock-2.str:23
+#: glade/clock-2.str:21
 msgid "Format"
 msgstr ""
 
-#: glade/clock-2.str:32
-#, fuzzy
-msgid "AUg"
+#: glade/clock-2.str:22
+msgid "Jan"
+msgstr "Jan"
+
+#: glade/clock-2.str:23
+msgid "Feb"
+msgstr "Feb"
+
+#: glade/clock-2.str:24
+msgid "Mar"
+msgstr "Mär"
+
+#: glade/clock-2.str:25
+msgid "Apr"
+msgstr "Apr"
+
+#: glade/clock-2.str:26
+msgid "May"
+msgstr "Mai"
+
+#: glade/clock-2.str:27
+msgid "Jun"
+msgstr "Jun"
+
+#: glade/clock-2.str:28
+msgid "Jul"
+msgstr "Jul"
+
+#: glade/clock-2.str:29
+msgid "Aug"
 msgstr "Aug"
 
-#: glade/clock-2.str:37
+#: glade/clock-2.str:30
+msgid "Sep"
+msgstr "Sep"
+
+#: glade/clock-2.str:31
+msgid "Oct"
+msgstr "Okt"
+
+#: glade/clock-2.str:32
+msgid "Nov"
+msgstr "Nov"
+
+#: glade/clock-2.str:33
+msgid "Dec"
+msgstr "Dez"
+
+#: glade/clock-2.str:34
 msgid "Date & Time"
 msgstr ""
 
-#: glade/clock-2.str:38
+#: glade/clock-2.str:35
 msgid " _Sync with PC "
 msgstr ""
 
@@ -1215,147 +1212,123 @@ msgid "Communication Settings"
 msgstr ""
 
 #: glade/comm-2.str:8
-msgid "Cable:"
-msgstr ""
-
-#: glade/comm-2.str:9
-msgid "Link cable model."
-msgstr ""
-
-#: glade/comm-2.str:10 glade/comm-2.str:12
-msgid "GrayLink"
-msgstr ""
-
-#: glade/comm-2.str:13
-msgid "BlackLink"
-msgstr ""
-
-#: glade/comm-2.str:14
-msgid "SilverLink"
-msgstr ""
-
-#: glade/comm-2.str:15
-msgid "ParallelLink"
-msgstr ""
-
-#: glade/comm-2.str:16
-msgid "AvrLink"
-msgstr ""
-
-#: glade/comm-2.str:17
-msgid "VTi"
-msgstr ""
-
-#: glade/comm-2.str:18
-msgid "TiEmu"
-msgstr ""
-
-#: glade/comm-2.str:19
-msgid "virtual"
-msgstr ""
-
-#: glade/comm-2.str:20
-msgid "Delay:    "
-msgstr ""
-
-#: glade/comm-2.str:21
-msgid "in micro-seconds"
-msgstr ""
-
-#: glade/comm-2.str:22
-msgid "Timeout:"
-msgstr ""
-
-#: glade/comm-2.str:23
-msgid "in deci-seconds"
-msgstr ""
-
-#: glade/comm-2.str:24
-msgid "Port:"
-msgstr ""
-
-#: glade/comm-2.str:25
-msgid "A port number."
-msgstr ""
-
-#: glade/comm-2.str:26 glade/comm-2.str:28
-msgid "custom"
-msgstr ""
-
-#: glade/comm-2.str:29
-msgid "#1"
-msgstr ""
-
-#: glade/comm-2.str:30
-msgid "#2"
-msgstr ""
-
-#: glade/comm-2.str:31
-msgid "#3"
-msgstr ""
-
-#: glade/comm-2.str:32
-msgid "#4"
-msgstr ""
-
-#: glade/comm-2.str:33
-msgid "Attemp to automatically determine the hand-held model."
-msgstr ""
-
-#: glade/comm-2.str:34
 msgid "_Auto-detect"
 msgstr ""
 
-#: glade/comm-2.str:35
+#: glade/comm-2.str:9
+msgid "Cable:"
+msgstr ""
+
+#: glade/comm-2.str:10
+msgid "Port:"
+msgstr ""
+
+#: glade/comm-2.str:11
 msgid "Calc:"
 msgstr ""
 
-#: glade/comm-2.str:36
-msgid "Hand-held model"
+#: glade/comm-2.str:12
+msgid "Timeout:"
 msgstr ""
 
-#: glade/comm-2.str:38
+#: glade/comm-2.str:13
+msgid "Delay:"
+msgstr ""
+
+#: glade/comm-2.str:14
+msgid "GrayLink"
+msgstr ""
+
+#: glade/comm-2.str:15
+msgid "BlackLink"
+msgstr ""
+
+#: glade/comm-2.str:16
+msgid "SilverLink"
+msgstr ""
+
+#: glade/comm-2.str:17
+msgid "ParallelLink"
+msgstr ""
+
+#: glade/comm-2.str:18
+msgid "VTi"
+msgstr ""
+
+#: glade/comm-2.str:19
+msgid "TiEmu"
+msgstr ""
+
+#: glade/comm-2.str:20
+msgid "virtual"
+msgstr ""
+
+#: glade/comm-2.str:21
+msgid "custom"
+msgstr ""
+
+#: glade/comm-2.str:22
+msgid "#1"
+msgstr ""
+
+#: glade/comm-2.str:23
+msgid "#2"
+msgstr ""
+
+#: glade/comm-2.str:24
+msgid "#3"
+msgstr ""
+
+#: glade/comm-2.str:25
+msgid "#4"
+msgstr ""
+
+#: glade/comm-2.str:26
 msgid "TI73"
 msgstr ""
 
-#: glade/comm-2.str:39
+#: glade/comm-2.str:27
 msgid "TI82"
 msgstr ""
 
-#: glade/comm-2.str:40
+#: glade/comm-2.str:28
 msgid "TI83"
 msgstr ""
 
-#: glade/comm-2.str:41
+#: glade/comm-2.str:29
 msgid "TI83+"
 msgstr ""
 
-#: glade/comm-2.str:42
+#: glade/comm-2.str:30
 msgid "TI85"
 msgstr ""
 
-#: glade/comm-2.str:43
+#: glade/comm-2.str:31
 msgid "TI86"
 msgstr ""
 
-#: glade/comm-2.str:44
+#: glade/comm-2.str:32
 msgid "TI89"
 msgstr ""
 
-#: glade/comm-2.str:45
+#: glade/comm-2.str:33
 msgid "TI92"
 msgstr ""
 
-#: glade/comm-2.str:46
+#: glade/comm-2.str:34
 msgid "TI92+"
 msgstr ""
 
-#: glade/comm-2.str:47
+#: glade/comm-2.str:35
 msgid "V200PLT"
 msgstr ""
 
-#: glade/comm-2.str:48
+#: glade/comm-2.str:36
 msgid "Settings"
+msgstr ""
+
+#: glade/comm-2.str:37
+msgid "Have a problem ? Check out the log:"
 msgstr ""
 
 #.
@@ -1376,6 +1349,12 @@ msgstr "Aktion"
 
 #: glade/extprgms-2.str:10
 msgid "wzunzip.exe"
+msgstr ""
+
+#: glade/extprgms-2.str:11 glade/extprgms-2.str:15 glade/extprgms-2.str:20
+#: glade/extprgms-2.str:24 glade/extprgms-2.str:29 glade/extprgms-2.str:32
+#: glade/extprgms-2.str:37 glade/extprgms-2.str:40 glade/user_boxes-2.str:9
+msgid "*"
 msgstr ""
 
 #: glade/extprgms-2.str:12 glade/extprgms-2.str:21 glade/extprgms-2.str:30
@@ -2047,6 +2026,13 @@ msgstr "Titel 1"
 #, fuzzy
 msgid "Name:"
 msgstr "Name: "
+
+#~ msgid "IDlist"
+#~ msgstr "IDlist"
+
+#, fuzzy
+#~ msgid "AUg"
+#~ msgstr "Aug"
 
 #~ msgid "Parallel port #1"
 #~ msgstr "Paralleler Port 1"

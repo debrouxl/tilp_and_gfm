@@ -147,7 +147,7 @@ noinst_HEADERS = *.h
 EXTRA_DIST = win32
 
 # libtool stuff: set export symbols for resolving
-tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
+tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) --print-map #-lefence
 tilp_CFLAGS = $(CLFAGS) -DGTK_DISABLE_DEPRECATED
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = ../config.h

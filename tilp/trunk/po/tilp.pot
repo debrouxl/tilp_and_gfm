@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-09 22:22+0200\n"
+"POT-Creation-Date: 2004-04-10 09:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -535,16 +535,16 @@ msgid ""
 msgstr ""
 
 #: src/tilp_main.c:116
-#, c-format
-msgid "built on %s %s\n"
-msgstr ""
-
-#: src/tilp_main.c:117
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr ""
 
-#: src/tilp_main.c:118
+#: src/tilp_main.c:117
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
+msgstr ""
+
+#: src/tilp_main.c:118
+#, c-format
+msgid "built on %s %s\n"
 msgstr ""
 
 #: src/tilp_main.c:321
