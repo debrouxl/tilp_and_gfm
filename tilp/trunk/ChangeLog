@@ -18,6 +18,7 @@ To do:
 
 - 18/09/2004, version 6.75 ((3.8.6, 0.6.1, 4.5.4): roms
 	Added TI84+ and TI89 Titanium support thru std I/O port (linkport).
+	OS upgrade does not work on both models !
 	Need to add new ROM dumper.
 
 - 22/08/2004, version 6.74c (3.8.6, 0.6.0, 4.5.3): roms 

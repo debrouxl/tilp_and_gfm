@@ -213,7 +213,10 @@ void clist_refresh(void)
 		TilpFileInfo *fi = (TilpFileInfo *) dirlist->data;
 		if ((options.file_disp == SHOW_ALL) || S_ISDIR(fi->attrib) || 
 			(tifiles_is_a_ti_file(fi->name) && 
-			((tifiles_which_calc_type(fi->name) == options.lp.calc_type) || tifiles_is_a_tib_file(fi->name)))) {
+			((tifiles_which_calc_type(fi->name) == options.lp.calc_type) || tifiles_is_a_tib_file(fi->name))) ||
+			((tifiles_which_calc_type(fi->name) == CALC_TI89) && (options.lp.calc_type == CALC_TI89T)) ||
+			((tifiles_which_calc_type(fi->name) == CALC_TI83P) && (options.lp.calc_type == CALC_TI84P))
+			) {
 		} else
 			continue;
 		if (S_ISDIR(fi->attrib)) {
