@@ -6,6 +6,7 @@
     IBOutlet id currentFolder;
     IBOutlet id dirlistTree;
     IBOutlet id mainWindow;
+    IBOutlet id dlgboxEntry;
     IBOutlet id memoryUsed;
     IBOutlet id MenuController;
     IBOutlet id numberOfFolders;

@@ -150,6 +150,7 @@
                 ToolbarController = id; 
                 currentFolder = id; 
                 dirlistTree = id; 
+                dlgboxEntry = id; 
                 mainWindow = id; 
                 memoryUsed = id; 
                 numberOfFolders = id; 

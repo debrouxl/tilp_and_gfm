@@ -1,11 +1,22 @@
 #include "../src/cb_calc.h"
 #include "../src/struct.h"
 
+#include "cocoa_structs.h"
+
 #import "BoxesController.h"
 
+extern struct cocoa_objects_ptr *objects_ptr;
 extern struct screenshot ti_screen;
 
 @implementation BoxesController
+
+- (void)awakeFromNib
+{
+    objects_ptr->pbar1Window = pbar1Window;
+    objects_ptr->pbar3Window = pbar3Window;
+    objects_ptr->pbar4Window = pbar4Window;
+    objects_ptr->pbar5Window = pbar5Window;
+}
 
 - (IBAction)dlgboxentryButton1Push:(id)sender
 {
