@@ -415,13 +415,14 @@ TilpGuiFncts gui_functions;
 {
     if (status != -1)
     {
-        [linkStatus setTextColor:[NSColor greenColor]];
-        [linkStatus setStringValue:[NSString stringWithCString:tifiles_calctype_to_string(options.lp.calc_type)]];
+        [calcState setTextColor:[NSColor greenColor]];
+        [calcState setStringValue:[NSString stringWithFormat:@"OK - %s",
+            tifiles_calctype_to_string(options.lp.calc_type)]];
     }
     else
     {
-        [linkStatus setTextColor:[NSColor redColor]];
-        [linkStatus setStringValue:@"Not connected"];
+        [calcState setTextColor:[NSColor redColor]];
+        [calcState setStringValue:@"Not connected"];
     }
 }
 
@@ -431,9 +432,15 @@ TilpGuiFncts gui_functions;
 {
   int folderPos = 0; // position in tiVarsArray
   int varPos = 0; // position in the array representing the folder
-  TicalcType calc;
-  uint8_t calc_flash;
-  uint8_t calc_folder;
+  int i, j;
+  TilpCalcMemInfo cmi;
+
+  memset(&cmi, 0, sizeof(TilpCalcMemInfo));
+  
+  TNode *vars;
+  TNode *apps;
+  TNode *p;
+  TNode *q;
   
   TiVarEntry *v;
   
@@ -444,25 +451,7 @@ TilpGuiFncts gui_functions;
   NSMutableArray *tiAppsArray;
   NSMutableArray *tmpArray;
   Varinfo *varinfo;
-
-  GNode *p;
-
-  switch(options.ctree_sort)
-  {
-    case SORT_BY_NAME:
-      //sort_cfiles_by_name(ctree_win.varlist);
-      break;
-    case SORT_BY_INFO:
-      tilp_sort_vars_by_info();
-      break;
-    case SORT_BY_TYPE:
-      tilp_sort_vars_by_type();
-      break;
-    case SORT_BY_SIZE:
-      tilp_sort_vars_by_size();
-      break;
-  }
-
+  
   // init our big fscking dictionary of the d34th
 
   content = [[NSMutableDictionary alloc] init];
@@ -535,121 +524,128 @@ TilpGuiFncts gui_functions;
 
   [tmpDict setObject:@"TI Variables" forKey:@"Group"];
   [tmpDict setObject:tiVarsArray forKey:@"Entries"];
-
-  ticalc_get_calc(&calc);
-  calc_flash = tifiles_flash_type();
-  calc_folder = tifiles_folder_type();
   
   // ok, we must now populate our big fscking dictionary with the
   // list of FLASH APPS and variables
 
-  // FLASH APPS
-
-  if (calc_flash != -1)
+  // ctree_win.dirlist is NULL when the app is launched
+  if (ctree_win.dirlist != NULL)
   {
-    p = ctree_win.dirlist;
-
-    while (p != NULL)
-    {
-      v = (TiVarEntry *)(p->data);
-
-      if (v->type != calc_flash)
+      // sort the dirlist
+      switch(options.ctree_sort)
       {
-        p = p->next;
-        continue;
-      }
-        
-      // dictionary that will hold this app
-      tmpDict = [[NSMutableDictionary alloc] init];
+          case SORT_BY_NAME:
+              //sort_cfiles_by_name();
+              break;
+          case SORT_BY_INFO:
+              tilp_sort_vars_by_info();
+              break;
+          case SORT_BY_TYPE:
+              tilp_sort_vars_by_type();
+              break;
+          case SORT_BY_SIZE:
+              tilp_sort_vars_by_size();
+              break;
+      }      
 
-      switch (v->attr)
+      // FLASH APPS
+
+      apps = g_node_nth_child(ctree_win.dirlist, 1);
+
+      for (i = 0; i < g_node_n_children(apps); i++)
       {
-        case ATTRB_LOCKED:
-          [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
-          break;
-        case ATTRB_ARCHIVED:
-          [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
-          break;
+          p = g_node_nth_child(apps, i);
+          v = (TiVarEntry *) (p->data);
+
+          // dictionary that will hold this app
+          tmpDict = [[NSMutableDictionary alloc] init];
+          [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+          [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+          [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
+          [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
+
+          varinfo = [[Varinfo alloc] initWithPointer:v];
+          [tmpDict setObject:varinfo forKey:@"varinfo"];
+
+          [tiAppsArray insertObject:tmpDict atIndex:varPos];
+          varPos++;
+          // keep some stats
+          cmi.flash++;
+          cmi.flashmem += v->size >> 10;
       }
 
-      [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
-      [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
-      [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
+      // Variables
 
-      varinfo = [[Varinfo alloc] initWithPointer:v];
-      [tmpDict setObject:varinfo forKey:@"varinfo"];
+      vars = g_node_nth_child(ctree_win.dirlist, 0);
 
-      [tiAppsArray insertObject:tmpDict atIndex:varPos];
-      varPos++;
+      // folders first
+      for (i = 0; i < g_node_n_children(vars); i++)
+      {
+          p = g_node_nth_child(vars, i);
+          v = (TiVarEntry *) (p->data);
 
-      p = p->next;
-    }
+          if ((v != NULL) || ti_calc.has_folder)
+          {
+              // dictionary that will hold the stuff
+              tmpDict = [[NSMutableDictionary alloc] init];
+
+              [tiVarsArray insertObject:tmpDict atIndex:folderPos];
+              folderPos++;
+
+              // array that will hold all the vars for this folder
+              tmpArray = [[NSMutableArray alloc] init];
+
+              [tmpDict setObject:tmpArray forKey:@"Entries"];
+              [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Group"];
+
+              // we're in a new folder, so...
+              varPos = 0;
+              cmi.folders++;
+          }
+          else
+          {
+              // the calc has no folder, the vars will go under the "TI Variables" item
+              tmpArray = tiVarsArray;
+              varPos = (varPos > folderPos) ? varPos : folderPos;
+          }
+
+          for (j = 0; j < g_node_n_children(p); j++)
+          {
+              q = g_node_nth_child(p, j);
+              v = (TiVarEntry *) (q->data);
+
+              // dictionary that will hold this var
+              tmpDict = [[NSMutableDictionary alloc] init];
+
+              switch (v->attr)
+              {
+                  case ATTRB_LOCKED:
+                      [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
+                      break;
+                  case ATTRB_ARCHIVED:
+                      [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
+                      cmi.archivemem += v->size >> 10;
+                      break;
+                  default:
+                      cmi.mem += v->size >> 10;
+                      break;
+              }
+
+              [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
+              [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+              [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
+              [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
+
+              varinfo = [[Varinfo alloc] initWithPointer:v];
+              [tmpDict setObject:varinfo forKey:@"varinfo"];
+
+              [tmpArray insertObject:tmpDict atIndex:varPos];
+              varPos++;
+              cmi.vars++;
+          }
+      }
   }
-
-
-  // Variables
-
-  p = ctree_win.dirlist;
-
-  while (p != NULL)
-  {
-    v = (TiVarEntry *)(p->data);
-
-    if(v->type == calc_flash)
-    {
-      p = p->next;
-      continue;
-    }
-
-    if (v->type == calc_folder)
-    {
-      // dictionary that will hold the stuff
-      tmpDict = [[NSMutableDictionary alloc] init];
-
-      [tiVarsArray insertObject:tmpDict atIndex:folderPos];
-      folderPos++;
-
-      // array that will hold all the vars for this folder
-      tmpArray = [[NSMutableArray alloc] init];
-
-      [tmpDict setObject:tmpArray forKey:@"Entries"];
-      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Group"];
-
-      // we're in a new folder, so...
-      varPos = 0;
-    }
-    else
-    {
-      // dictionary that will hold this var
-      tmpDict = [[NSMutableDictionary alloc] init];
-
-      switch (v->attr)
-      {
-        case ATTRB_LOCKED:
-          [tmpDict setObject:[NSImage imageNamed:@"locked.tiff"] forKey:@"Attribute"];
-          break;
-        case ATTRB_ARCHIVED:
-          [tmpDict setObject:[NSImage imageNamed:@"archived.tiff"] forKey:@"Attribute"];
-          break;
-      }
-
-      [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-      [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
-      [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
-      [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
-
-      varinfo = [[Varinfo alloc] initWithPointer:v];
-      [tmpDict setObject:varinfo forKey:@"varinfo"];
-
-      [tmpArray insertObject:tmpDict atIndex:varPos];
-      varPos++;
-    }
-
-    // next one
-    p = p->next;
-  }
-
+  
   // get a tree from our big fscking dictionary...
 
   // release the preceding dirlistData if it exists
@@ -660,7 +656,7 @@ TilpGuiFncts gui_functions;
   }
 
   dirlistData = [[SimpleTreeNode treeFromDictionary:content] retain];
-
+  
   // release the big fscking dictionary. Feel better, eh ? :)
   [content release];
   content = nil;
@@ -677,22 +673,16 @@ TilpGuiFncts gui_functions;
     [dirlistTree expandItem:[dirlistTree itemAtRow:6]];
   else
     [dirlistTree collapseItem:[dirlistTree itemAtRow:6]];
-}
 
-- (void)refreshInfos
-{
-  TilpCalcMemInfo cmi;
-
-  tilp_get_calc_mem_info(&cmi);
-
-  [numberOfFolders setStringValue:[NSString stringWithFormat:@"Number of folders : %u", cmi.folders]];
+  // Update the memory information
+  [numberOfFolders setStringValue:[NSString stringWithFormat:@"Number of folders : %d", cmi.folders]];
 
   if (cmi.flash == 0)
-    [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %u", cmi.vars]];
+    [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %d", cmi.vars]];
   else
-    [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %u, FLASH Apps : %u", cmi.vars, cmi.flash]];
+    [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %d, FLASH Apps : %d", cmi.vars, cmi.flash]];
 
-  [memoryStats setStringValue:[NSString stringWithFormat:@"Memory used : %u KB (archive %u KB, FLASH %u KB)", (cmi.mem + cmi.archivemem + cmi.flashmem), cmi.archivemem, cmi.flashmem]];
+  [memoryStats setStringValue:[NSString stringWithFormat:@"Memory used : %d KB (archive %d KB, FLASH %d KB)", (cmi.mem + cmi.archivemem + cmi.flashmem), cmi.archivemem, cmi.flashmem]];
 }
 
 

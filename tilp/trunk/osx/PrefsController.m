@@ -172,8 +172,8 @@ extern struct cocoa_objects_ptr *objects_ptr;
     
     if (NSOnState == [screenFormatTIFF state])
         options.screen_format = TIFF;
-//    else if (NSOnState == [screenFormatPDF state])
-//        options.screen_format = PDF;
+    else if (NSOnState == [screenFormatPDF state])
+        options.screen_format = PDF;
 
     if (NSOnState == [screenRenderingBlurry state])
         options.screen_blurry = TRUE;
@@ -371,11 +371,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
             case TIFF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:0];
                 break;
-#if 0
             case PDF:
                 [screenFormatMatrix setState:NSOnState atRow:0 column:1];
                 break;
-#endif /* 0 */
         }
 
     if (options.screen_blurry == FALSE)

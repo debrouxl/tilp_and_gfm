@@ -175,10 +175,6 @@ extern "C" {
   void tilp_sort_vars_by_type(void);
   void tilp_sort_vars_by_size(void);
 
-#ifdef __MACOSX__
-  void tilp_get_calc_mem_info(TilpCalcMemInfo *cmi);
-#endif /* __MACOSX__ */
-
   void tilp_var_get_size(TiVarEntry * vi, char **buf);
 
 #ifndef __MACOSX__

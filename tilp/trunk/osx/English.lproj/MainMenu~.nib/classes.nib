@@ -242,6 +242,7 @@
             CLASS = TilpController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                calcState = id; 
                 dirlistTree = id; 
                 memoryStats = id; 
                 myBoxesController = id; 

@@ -36,7 +36,7 @@ cocoa_set_link_status(int status)
     id myTilpController;
 
     myTilpController = objects_ptr->myTilpController;
-
+    
     [myTilpController setLinkStatus:status];
 }
 

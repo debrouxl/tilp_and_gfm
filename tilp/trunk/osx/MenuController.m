@@ -147,9 +147,29 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 // A WORKING DRAG'N'DROP WITH NSContentOfFilePBoardType
 - (IBAction)getVars:(id)sender
 {
+    NSOpenPanel *op;
+    
+    op = [NSOpenPanel openPanel];
+
+    [op setTitle:@"Save variables in directory..."];
+    [op setAllowsMultipleSelection:NO];
+
+    [op setCanChooseFiles:NO];
+    [op setCanChooseDirectories:YES];
+    
+    [op beginSheetForDirectory:NSHomeDirectory()
+                          file:nil
+                         types:nil
+                modalForWindow:[myBoxesController keyWindow]
+                 modalDelegate:myBoxesController
+                didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
+                   contextInfo:nil];
+
+#if 0    
     [NSThread detachNewThreadSelector:@selector(getVarsThreaded:)
               toTarget:myTransfersController
               withObject:self];
+#endif /* 0 */
 }
 
 // Application menu
@@ -251,9 +271,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     if (tilp_calc_dirlist() != 0)
         return;
-        
+
     [myTilpController refreshOutline];
-    [myTilpController refreshInfos];
 }
 
 - (IBAction)doRestore:(id)sender

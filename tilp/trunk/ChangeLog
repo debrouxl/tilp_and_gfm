@@ -1,4 +1,9 @@
-* 20030416 : v0.6.1 ($Rev$)
+* 20030419 : v6.62 ($Rev$)
+	* Fixed dirlist.
+	* Fixed screendump rendering.
+	* Screendumps can now be saved in PDF.
+	* Fixed variables download.
+* 20030416 : v0.6.1 (Rev: 247)
 	* Merge up to 6.62.
 	* Code cleanup in some areas.
 	* Some little things added.

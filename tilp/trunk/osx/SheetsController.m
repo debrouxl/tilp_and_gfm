@@ -456,8 +456,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 - (void)destroyPbar
 {
-  fprintf(stderr, "DEBUG: DESTROY PBAR !!\n");
-  
   if ([pbar1Window isVisible])
   {
     [pbar1Window orderOut:self];

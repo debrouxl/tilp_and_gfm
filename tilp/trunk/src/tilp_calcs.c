@@ -78,7 +78,7 @@ int tilp_calc_isready(void)
 			}
 			return -1;
 		}
-	}
+    }
 	if (ready_cb != NULL) {
       ready_cb(options.lp.calc_type);
 	}
@@ -440,15 +440,7 @@ int tilp_calc_recv_app(void)
 	while (ptr != NULL) {
 		TiVarEntry *ve = (TiVarEntry *) ptr->data;
 
-#ifndef __MACOSX__
 		strcpy(filename, ve->trans);
-
-#else				/*  */
-		strcpy(filename, g_get_tmp_dir());
-		strcat(filename, G_DIR_SEPARATOR_S);
-		strcat(filename, ve->trans);
-
-#endif				/*  */
 		strcat(filename, ".");
 		strcat(filename, tifiles_vartype2file(ve->type));
 		if (!tilp_file_check(filename, &dst)) {

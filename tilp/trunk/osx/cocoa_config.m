@@ -52,7 +52,7 @@ rc_init_with_default(void)
     options.show_gui = TRUE;
     options.confirm = TRUE;
     options.single_or_group = RECV_AS_GROUP;
-    options.working_dir = g_get_home_dir();
+    options.working_dir = strdup(g_get_home_dir());
     
     options.lp.link_type = LINK_UGL;
     options.lp.timeout = 15;

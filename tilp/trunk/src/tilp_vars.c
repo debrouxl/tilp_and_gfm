@@ -200,62 +200,6 @@ void tilp_sort_vars_by_size(void)
 /* Misc */
 /********/
 
-#ifdef __MACOSX__
-void tilp_get_calc_mem_info(TilpCalcMemInfo *cmi)
-{
-  GNode *p;
-  TiVarEntry *vi;
-  uint8_t calc_flash;
-  uint8_t calc_folder;
-
-  p = ctree_win.dirlist;
-
-  memset(cmi, 0, sizeof(TilpCalcMemInfo));
-
-  // FIXME OS X : still not implemented as announced... !@#
-  cmi->freemem = 0;
-
-  while (p != NULL)
-  {
-    vi = (TiVarEntry *)(p->data);
-
-    if (vi->type == calc_folder)
-    {
-      cmi->folders++;
-    }
-    else
-    {
-      if (vi->type != calc_flash)
-      {
-        cmi->vars++;
-
-        if (vi->attr == ATTRB_ARCHIVED) // variable is archived
-        {
-          cmi->archivemem += vi->size;
-        }
-        else
-        {
-          cmi->mem += vi->size;
-        }
-      }
-      else if (vi->type == calc_flash)
-      {
-        cmi->flash++;
-
-        cmi->flashmem += vi->size;
-      }
-    }
-    p = p->next;
-  }
-
-  // return mem stats in KiloBytes
-  cmi->mem = cmi->mem / 1024;
-  cmi->archivemem = cmi->archivemem / 1024;
-  cmi->flashmem = cmi->flashmem / 1024;
-  cmi->freemem = cmi->freemem / 1024;
-}
-#endif /* __MACOSX__ */
-
 /*
   Returns the var size
 */

@@ -27,7 +27,7 @@
 {
     IBOutlet id dirlistTree;
 
-    IBOutlet id linkStatus;
+    IBOutlet id calcState;
     IBOutlet id numberOfFolders;
     IBOutlet id memoryStats;
     IBOutlet id varsStats;
@@ -51,6 +51,5 @@
 - (void)setLinkStatus:(int)status;
 
 - (void)refreshOutline;
-- (void)refreshInfos;
 
 @end

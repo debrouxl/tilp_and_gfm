@@ -77,20 +77,14 @@ extern struct cocoa_objects_ptr *objects_ptr;
     NSEnumerator *itemsEnum;
     NSEnumerator *selectedRows;
     NSNumber *selRow;
-    NSDictionary *calcDict;
-    NSMutableDictionary *context;
-    NSString *tmpfile;
-    NSSavePanel *sp;
     id item;
     id foldItem;
     
     GList *vars_list = NULL;
     GList *flash_list = NULL;
-    GList *l = NULL;
     
     TiVarEntry *v = NULL;
     
-    int result = -1;
     int tiVarsRow;
     int i, j, row;
     int vars_indexes[128]; // I don't know if 128 vars can be fitted on the TI, but :-)
@@ -131,7 +125,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
                         fprintf(stderr, "DEBUG: GET VARS => KEYBOARD ITEM, UNUSED\n");
                         break;
                     case 5: // FLASH Applications item => get each FLASH App
-#if 0 // problems with savepanel and transfer
                         item = [dirlistTree itemAtRow:5];
                         
                         [dirlistTree expandItem:item];
@@ -140,9 +133,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
                   
                         while ([NODE_DATA(foldItem) isGroup] == NO)
                             {
-                                v = (struct varinfo *)malloc(sizeof(struct varinfo));
+                                v = (TiVarEntry *)malloc(sizeof(TiVarEntry));
                           
-                                memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(struct varinfo));
+                                memcpy(v, [[NODE_DATA(foldItem) varinfo] varinfo], sizeof(TiVarEntry));
                         
                                 flash_list = g_list_append(flash_list, v);
                                                         
@@ -150,7 +143,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
                             }
                             
                             ctree_win.selection2 = flash_list;
-#endif
                         break;
                     default:
                         if ([selRow intValue] == tiVarsRow)
@@ -162,7 +154,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
                             [items addObject:[dirlistTree itemAtRow:[selRow intValue]]];
                 }
         }
-    
+
     itemsEnum = [items objectEnumerator];
     
     i = 0;
@@ -249,100 +241,25 @@ extern struct cocoa_objects_ptr *objects_ptr;
   
     // Retrieve vars
     if (ctree_win.selection != NULL)
-        result = tilp_calc_recv_var();
-  
-    if (result >= 0)
-        {
-            calcDict = [myTilpController getCurrentCalcDict];
+    {
+        tilp_calc_recv_var();
 
-            sp = [NSSavePanel savePanel];
+        ctree_win.selection = NULL;
+        g_list_free(vars_list);
+    }
 
-            if (result == 0)
-                {
-                    v = (TiVarEntry *)ctree_win.selection->data;
-
-                    [sp setRequiredFileType:[NSString stringWithCString:tifiles_vartype2file(v->type)]];
-                    [sp setTitle:@"Save variable as..."];
-
-                    tmpfile = [NSString stringWithFormat:@"%s.%s", v->trans, tifiles_vartype2file(v->type)];
-                
-                    context = [[NSMutableDictionary alloc] init];
-                
-                    [context setObject:sp forKey:@"savepanel"];
-                    [context setObject:tmpfile forKey:@"tmpfile"];
-                
-                    [sp beginSheetForDirectory:NSHomeDirectory()
-                        file:tmpfile 
-                        modalForWindow:[myBoxesController keyWindow]
-                        modalDelegate:myBoxesController
-                        didEndSelector:@selector(getSingleVarDidEnd:returnCode:contextInfo:)
-                        contextInfo:context];
-                }
-            else if (result > 0)
-                {
-                    [sp setRequiredFileType:[[calcDict objectForKey:@"extBackup"] lastObject]];
-                    [sp setTitle:@"Save group file as..."];
-                
-                    context = [[NSMutableDictionary alloc] init];
-                
-                    [context setObject:sp forKey:@"savepanel"];
-                
-                    [sp beginSheetForDirectory:NSHomeDirectory()
-                        file:[calcDict objectForKey:@"defaultGroupFilename"]
-                        modalForWindow:[myBoxesController keyWindow]
-                        modalDelegate:myBoxesController
-                        didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
-                        contextInfo:context];
-                }
-        }
-    ctree_win.selection = NULL;
-    g_list_free(vars_list);
-    
     // FLASH APPS HERE !
         
     if (flash_list != NULL)
-        {
-            l = flash_list;
-        
-            while (l != NULL)
-                {
-                    ctree_win.selection2 = g_list_alloc();
-                    
-                    ctree_win.selection2->data = l->data;
-                    
-                    if (tilp_calc_recv_app() == 0)
-                        {
-                            calcDict = [myTilpController getCurrentCalcDict];
-        
-                            sp = [NSSavePanel savePanel];
-                        
-                            v = (TiVarEntry *)ctree_win.selection2->data;
-                
-                            [sp setRequiredFileType:[NSString stringWithCString:tifiles_vartype2file(v->type)]];
-                            [sp setTitle:@"Save FLASH Application as..."];
-                
-                            tmpfile = [NSString stringWithFormat:@"%s.%s", v->trans, tifiles_vartype2file(v->type)];
-                
-                            context = [[NSMutableDictionary alloc] init];
-                
-                            [context setObject:sp forKey:@"savepanel"];
-                            [context setObject:tmpfile forKey:@"tmpfile"];
-                
-                            [sp beginSheetForDirectory:NSHomeDirectory()
-                                file:tmpfile 
-                                modalForWindow:[myBoxesController keyWindow]
-                                modalDelegate:myBoxesController
-                                didEndSelector:@selector(getFlashAppDidEnd:returnCode:contextInfo:)
-                                contextInfo:context];
+    {
+        ctree_win.selection2 = flash_list;
 
-                            l = l->next;
-                        }
-                }
-                
-            g_list_free(ctree_win.selection2);
-            g_list_free(flash_list);
-        }
-    
+        tilp_calc_recv_app();
+
+        g_list_free(ctree_win.selection2);
+        g_list_free(flash_list);
+    }
+
     [localPool release];
     [NSThread exit];
 }
@@ -463,75 +380,71 @@ extern struct cocoa_objects_ptr *objects_ptr;
 // NOT THREADED
 
 static void
-render_screen_bw(uint8_t *data, unsigned char *pixels)
+render_screen_bw(uint8_t *bitmap, unsigned char *pixels)
 {
     int row;
     int col;
-    int shift;
+    uint8_t data;
+    int mask;
+    int bit;
     
     // speed things up : set a white width * height area (* 4 => 4 bytes per pixel)
     memset(pixels, 0xFF, (ti_screen.width * ti_screen.height * 4));
 
-    shift = 0;
-    for(row = 0; row < ti_screen.height; row++)
-    {
-        for(col = 0; col < ti_screen.width; col++)
+    for (row = 0; row < ti_screen.height; row++)
+        for (col = 0; col < (ti_screen.width >> 3); col++)
         {
-            if ((*data >> shift) & 1) // black => set R/G/B to 0
+            data = bitmap[(ti_screen.width >> 3) * row + col];
+            mask = 0x80;
+            for (bit = 0; bit < 8; bit++)
             {
-                *pixels++ = 0; // red
-                *pixels++ = 0; // blue
-                *pixels++ = 0; // green
-                pixels++; // alpha, but already set to 0xFF
-            }
-            else // white, increment the pixels pointer
-            {
-                pixels += 4;
-            }
+                if (data & mask) // black => set R/G/B/alpha to 0/0/0/0xFF
+                {
+                    *pixels++ = 0; // red
+                    *pixels++ = 0; // blue
+                    *pixels++ = 0; // green
+                    pixels++; // alpha, but already set to 0xFF
+                }
+                else // white => increment the pixels pointer
+                    pixels += 4;
 
-            if (shift++ > 7)
-            {
-                shift = 0;
-                data++;
+                mask >>= 1;
             }
         }
-    }    
 }
 
 static void
-render_screen_blurry(uint8_t *data, unsigned char *pixels)
+render_screen_blurry(uint8_t *bitmap, unsigned char *pixels)
 {
     int row;
     int col;
-    int shift;
+    uint8_t data;
+    int mask;
+    int bit;
 
-    shift = 0;
-    for(row = 0; row < ti_screen.height; row++)
-    {
-        for(col = 0; col < ti_screen.width; col++)
+    for (row = 0; row < ti_screen.height; row++)
+        for (col = 0; col < (ti_screen.width >> 3); col++)
         {
-            if ((*data >> shift) & 1) // black => set R/G/B to 0x00/0x00/0x34
+            data = bitmap[(ti_screen.width >> 3) * row + col];
+            mask = 0x80;
+            for (bit = 0; bit < 8; bit++)
             {
-                *pixels++ = 0x00; // red
-                *pixels++ = 0x00; // blue
-                *pixels++ = 0x34; // green
+                if (data & mask) // black => set R/G/B to 0x00/0x00/0x34
+                {
+                    *pixels++ = 0x00; // red
+                    *pixels++ = 0x00; // blue
+                    *pixels++ = 0x34; // green
+                }
+                else // white => set R/G/B to 0xA8/0xB4/0xA8
+                {
+                    *pixels++ = 0xA8; // red
+                    *pixels++ = 0xB4; // blue
+                    *pixels++ = 0xA8; // green
+                }
                 *pixels++ = 0xFF; // alpha
-            }
-            else // white => set R/G/B to A8/B4/A8
-            {
-                *pixels++ = 0xA8; // red
-                *pixels++ = 0xB4; // blue
-                *pixels++ = 0xA8; // green
-                *pixels++ = 0xFF; // alpha
-            }
-
-            if (shift++ > 7)
-            {
-                shift = 0;
-                data++;
+                mask >>= 1;
             }
         }
-    }    
 }
 
 - (void)getScreen:(id)sender
@@ -543,9 +456,6 @@ render_screen_blurry(uint8_t *data, unsigned char *pixels)
     NSSize size;
     NSRect viewFrame;
     NSSize newSize;
-    
-    unsigned char *pixels;
-    uint8_t *data;
     
     if ((tilp_screen_capture() != 0) || (ti_screen.bitmap == NULL))
         return;
@@ -560,15 +470,12 @@ render_screen_blurry(uint8_t *data, unsigned char *pixels)
                                        colorSpaceName:NSDeviceRGBColorSpace
                                        bytesPerRow:0
                                        bitsPerPixel:0];
-    
-    pixels = [bitmap bitmapData];
-    
-    data = ti_screen.bitmap;
 
+    // render the bitmap
     if (options.screen_blurry)
-        render_screen_blurry(data, pixels);
+        render_screen_blurry(ti_screen.bitmap, [bitmap bitmapData]);
     else
-        render_screen_bw(data, pixels);
+        render_screen_bw(ti_screen.bitmap, [bitmap bitmapData]);
 
     size = NSMakeSize(ti_screen.width, ti_screen.height);
     

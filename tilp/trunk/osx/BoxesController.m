@@ -162,9 +162,9 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 proposedFile = @"screendump.tiff";
                 break;
             case PDF:
-                //[sp setRequiredFileType:@"pdf"];
-                //[sp setTitle:@"Save screen as PDF"];
-                //proposedFile = @"screendump.pdf";
+                [sp setRequiredFileType:@"pdf"];
+                [sp setTitle:@"Save screen as PDF"];
+                proposedFile = @"screendump.pdf";
                 break;
             default: // just in case...
                 return;
@@ -230,12 +230,34 @@ extern struct cocoa_objects_ptr *objects_ptr;
         }
 }
 
+- (void)getVarsDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSArray *files;
+
+    [sheet orderOut:self];
+
+    if (returnCode == NSOKButton)
+    {
+        files = [[NSArray arrayWithArray:[sheet filenames]] retain];
+
+        if (options.working_dir != NULL)
+            free(options.working_dir);
+
+        options.working_dir = strdup([[files objectAtIndex:0] fileSystemRepresentation]);
+        tilp_chdir(options.working_dir);
+
+        [NSThread detachNewThreadSelector:@selector(getVarsThreaded:)
+                                 toTarget:myTransfersController
+                               withObject:self];
+    }
+}
+
 
 // NSSavePanels callbacks
 
 - (void)screendumpSaveImageDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    NSData *tiff;
+    NSData *imageData;
     NSSavePanel *sp; // sheet is an NSWindow, which does not sound very logical
                      // compared to the NSOpenPanel, so I'm passing sp as the contextInfo
     if (returnCode == NSOKButton)
@@ -245,14 +267,15 @@ extern struct cocoa_objects_ptr *objects_ptr;
             switch (options.screen_format)
                 {
                     case TIFF:
-                        tiff = [[screendumpImage image] TIFFRepresentation];
-                        [tiff writeToFile:[sp filename] atomically:YES];
+                        imageData = [[screendumpImage image] TIFFRepresentation];
                         break;
-                    case PDF:
+                    case PDF: // Quartz roulaize (tm)
+                        imageData = [screendumpImage dataWithPDFInsideRect:[screendumpImage visibleRect]];
                         break;
                     default:
                         break;
                 }
+            [imageData writeToFile:[sp filename] atomically:YES];
         }
 }
 
@@ -299,69 +322,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
     if (returnCode == NSOKButton)
         {
             sp = contextInfo;
-                              
-            file = strdup([[sp filename] fileSystemRepresentation]);
-
-            if(tilp_file_move(tmpfile, file))
-                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-        }
-    else
-        if(unlink(tmpfile))
-            fprintf(stdout, _("Unable to remove the temporary file.\n"));
-}
-
-- (void)getSingleVarDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    NSSavePanel *sp;
-    NSString *mytmpfile;
-    NSMutableDictionary *context;
-    
-    char *file;
-    char *tmpfile;
-    
-    context = contextInfo;
-    
-    mytmpfile = [context objectForKey:@"tmpfile"];
-    
-    tmpfile = (char *)malloc((strlen(g_get_tmp_dir()) + [mytmpfile cStringLength] + 2) * sizeof(char));
-            
-    strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, "/");
-    strcat(tmpfile, [mytmpfile cString]);
-    
-    if (returnCode == NSOKButton)
-        {
-            sp = [context objectForKey:@"savepanel"];
-                              
-            file = strdup([[sp filename] fileSystemRepresentation]);
-
-            if(tilp_file_move(tmpfile, file))
-                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-        }
-    else
-        if(unlink(tmpfile))
-            fprintf(stdout, _("Unable to remove the temporary file.\n"));
-}
-
-- (void)getVarsDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    NSSavePanel *sp;
-    NSMutableDictionary *context;
-    
-    char *file;
-    char *tmpfile;
-    
-    context = contextInfo;
-
-    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_GROUP) + 2);
-            
-    strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, G_DIR_SEPARATOR_S);
-    strcat(tmpfile, TMPFILE_GROUP);
-    
-    if (returnCode == NSOKButton)
-        {
-            sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
 
