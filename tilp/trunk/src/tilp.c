@@ -233,9 +233,8 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 	selection = clist_win.selection;
 	while (selection != NULL) {
 		TilpFileInfo *f = (TilpFileInfo *) selection->data;
-		if (!strcasecmp
-		    (tifiles_get_extension(f->name),
-		     tifiles_flash_os_file_ext())) {
+		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext()) ||
+			tifiles_is_a_tib_file(f->name)) {
 
 			//gif->destroy_pbar();
 			tilp_calc_send_flash_os(f->name);
@@ -461,11 +460,14 @@ void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
 	if (clist_win.selection == NULL)
 		return;
 	f = (TilpFileInfo *) clist_win.selection->data;
-	if (tifiles_is_a_flash_file(f->name)) {
+	if (tifiles_is_a_flash_file(f->name) || tifiles_is_a_tib_file(f->name)) {
 		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_app_file_ext())) {
 			if (tilp_calc_send_flash_app(f->name) != 0)
 				return;
 		} else if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext())) {
+			if (tilp_calc_send_flash_os(f->name) != 0)
+				return;
+		} else if (tifiles_is_a_tib_file(f->name)) {
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;
 		}

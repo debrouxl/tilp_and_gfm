@@ -386,9 +386,8 @@ int tilp_calc_send_flash_os(char *filename)
 	gint old_timeout;
 	char *msg = _
 	    ("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
-	if (strcasecmp
-	    (tifiles_get_extension(filename),
-	     tifiles_flash_os_file_ext())) {
+	if (strcasecmp(tifiles_get_extension(filename), tifiles_flash_os_file_ext()) &&
+		!tifiles_is_a_tib_file(filename)) {
 		gif->msg_box(_("Error"),
 			     _
 			     ("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));

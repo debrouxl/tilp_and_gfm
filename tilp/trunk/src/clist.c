@@ -170,6 +170,9 @@ static int detect_for_utf8(const char *s)
 	return (i < strlen(s));
 }
 
+#ifdef __WIN32__
+#define strcasecmp	_stricmp
+#endif
 
 /**************/
 /* Management */
@@ -208,11 +211,9 @@ void clist_refresh(void)
 	for (dirlist = clist_win.dirlist; dirlist != NULL;
 	     dirlist = dirlist->next) {
 		TilpFileInfo *fi = (TilpFileInfo *) dirlist->data;
-		if ((options.file_disp == SHOW_ALL)
-		    || S_ISDIR(fi->attrib)
-		    || (tifiles_is_a_ti_file(fi->name)
-			&& (tifiles_which_calc_type(fi->name) ==
-			    options.lp.calc_type))) {
+		if ((options.file_disp == SHOW_ALL) || S_ISDIR(fi->attrib) || 
+			(tifiles_is_a_ti_file(fi->name) && 
+			((tifiles_which_calc_type(fi->name) == options.lp.calc_type) || tifiles_is_a_tib_file(fi->name)))) {
 		} else
 			continue;
 		if (S_ISDIR(fi->attrib)) {

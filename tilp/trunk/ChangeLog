@@ -25,6 +25,8 @@ To do:
 	Added access to log file from menu.
 	GUI clean-up.
 	configure.in requires latest versions for _all_ libs. To be sure !
+	Bug: formatting of path in labels.c
+	Bug: wrong handling of TIB files.
 	
 - 17/03/2004, version 6.69 (3.7.6, 0.5.6, 4.5.2): roms
 	Use new libticalcs (removed GLib dependancies) thus libticalcs-4 is no 
