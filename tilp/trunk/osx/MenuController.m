@@ -149,22 +149,31 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)getVars:(id)sender
 {
     NSOpenPanel *op;
-    
-    op = [NSOpenPanel openPanel];
 
-    [op setTitle:@"Save variables in directory..."];
-    [op setAllowsMultipleSelection:NO];
+    if ((options.single_or_group == RECV_AS_SINGLE) || ([dirlistTree numberOfSelectedRows] == 1))
+    {
+        op = [NSOpenPanel openPanel];
 
-    [op setCanChooseFiles:NO];
-    [op setCanChooseDirectories:YES];
-    
-    [op beginSheetForDirectory:NSHomeDirectory()
-                          file:nil
-                         types:nil
-                modalForWindow:[myBoxesController keyWindow]
-                 modalDelegate:myBoxesController
-                didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
-                   contextInfo:nil];
+        [op setTitle:@"Save variables in directory..."];
+        [op setAllowsMultipleSelection:NO];
+
+        [op setCanChooseFiles:NO];
+        [op setCanChooseDirectories:YES];
+
+        [op beginSheetForDirectory:NSHomeDirectory()
+                              file:nil
+                             types:nil
+                    modalForWindow:[myBoxesController keyWindow]
+                     modalDelegate:myBoxesController
+                    didEndSelector:@selector(getVarsDidEnd:returnCode:contextInfo:)
+                       contextInfo:nil];
+    }
+    else
+    {
+        [NSThread detachNewThreadSelector:@selector(getVarsThreaded:)
+                                 toTarget:myTransfersController
+                               withObject:self];        
+    }
 }
 
 // Application menu

@@ -729,9 +729,6 @@ int tilp_calc_recv_var(void)
 				// Several files, saved as  a group file
 				//
 				char *old_path = g_get_current_dir();
-				char *src_path = NULL;
-				char *dst_path = NULL;
-				char *str;
 				GList *sel;
 				int err = 0;
 				char tmp_filename[MAXCHARS], *tmpf;
@@ -774,18 +771,6 @@ int tilp_calc_recv_var(void)
 				} gif->destroy_pbar();
 				if (tilp_error(err))
 					return -1;
-
-				// Check for existence and move
-				src_path =
-				    g_strconcat(g_get_tmp_dir(),
-						G_DIR_SEPARATOR_S,
-						tmp_filename, NULL);
-				str = dst_path =
-				    g_strconcat(g_get_current_dir(),
-						G_DIR_SEPARATOR_S,
-						tmp_filename, NULL);
-				tilp_file_move_with_check(src_path,
-							  dst_path);
 
                 return +1;
 			}

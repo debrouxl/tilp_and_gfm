@@ -84,6 +84,9 @@ add_item_to_selection_list(GList **list, id item)
 {
     NSAutoreleasePool *localPool;
 
+    NSSavePanel *sp;
+    NSDictionary *calcDict;
+
     NSEnumerator *selectedRows;
     NSEnumerator *varsEnum;
     NSNumber *selRow;
@@ -189,7 +192,19 @@ add_item_to_selection_list(GList **list, id item)
     // Retrieve vars
     if (vars_list != NULL)
     {
-        tilp_calc_recv_var();
+        // Check if the vars have been saved as a group
+        if (tilp_calc_recv_var() == 1)
+        {
+            sp = [NSSavePanel savePanel];
+            calcDict = [myTilpController getCurrentCalcDict];
+            
+            [sp beginSheetForDirectory:NSHomeDirectory()
+                                  file:[calcDict objectForKey:@"defaultGroupFilename"]
+                        modalForWindow:[myBoxesController keyWindow]
+                         modalDelegate:myBoxesController
+                        didEndSelector:@selector(getVarsGroupDidEnd:returnCode:contextInfo:)
+                           contextInfo:sp];
+        }
 
         ctree_win.selection = NULL;
         g_list_free(vars_list);

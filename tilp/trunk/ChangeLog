@@ -1,7 +1,10 @@
-* 20030421 : v6.62 / 0.6.6 ($Rev$)
+* 20030421 : v6.62 / 0.6.7 ($Rev$)
+	* Fixed download of multiple vars as a group.
+	* Cleaned up BoxesController.m a bit.
+* 20030421 : v6.62 / 0.6.6 (Rev: 256)
 	* Fixed clock wrt AM/PM handling.
 	* Fixed a small glitch in the screendump code.
-* 20030421 : v6.62 / 0.6.5 ($Rev: 255)
+* 20030421 : v6.62 / 0.6.5 (Rev: 255)
 	* Rework the preferences panel to make it smaller.
 	* Added basic scaling support for the screendump.
 	* Added preferences for the scaling.

@@ -279,6 +279,33 @@ extern struct cocoa_objects_ptr *objects_ptr;
         }
 }
 
+- (void)getVarsGroupDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+    NSSavePanel *sp;
+
+    char *file;
+    char *tmpfile;
+
+    tmpfile = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_GROUP) + 2);
+
+    strcpy(tmpfile, g_get_tmp_dir());
+    strcat(tmpfile, G_DIR_SEPARATOR_S);
+    strcat(tmpfile, TMPFILE_GROUP);
+
+    if (returnCode == NSOKButton)
+    {
+        sp = contextInfo;
+
+        file = strdup([[sp filename] fileSystemRepresentation]);
+
+        if(tilp_file_move(tmpfile, file))
+            gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));
+    }
+    else
+        if(unlink(tmpfile))
+            fprintf(stdout, _("Unable to remove the temporary file.\n"));
+}
+
 - (void)doBackupDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
     NSSavePanel *sp;
@@ -322,39 +349,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
     if (returnCode == NSOKButton)
         {
             sp = contextInfo;
-                              
-            file = strdup([[sp filename] fileSystemRepresentation]);
-
-            if(tilp_file_move(tmpfile, file))
-                gif->msg_box(_("Error"), _("Unable to move the temporary file.\n"));  
-        }
-    else
-        if(unlink(tmpfile))
-            fprintf(stdout, _("Unable to remove the temporary file.\n"));
-}
-
-- (void)getFlashAppDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    NSSavePanel *sp;
-    NSString *mytmpfile;
-    NSMutableDictionary *context;
-    
-    char *file;
-    char *tmpfile;
-    
-    context = contextInfo;
-    
-    mytmpfile = [context objectForKey:@"tmpfile"];
-    
-    tmpfile = (char *)malloc((strlen(g_get_tmp_dir()) + [mytmpfile cStringLength] + 2) * sizeof(char));
-            
-    strcpy(tmpfile, g_get_tmp_dir());
-    strcat(tmpfile, "/");
-    strcat(tmpfile, [mytmpfile cString]);
-        
-    if (returnCode == NSOKButton)
-        {
-            sp = [context objectForKey:@"savepanel"];
                               
             file = strdup([[sp filename] fileSystemRepresentation]);
 
