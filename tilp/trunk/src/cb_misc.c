@@ -37,6 +37,7 @@
 #include "struct.h"
 #include "cb_calc.h"
 
+#ifndef __MACOSX__ /* we use a general preferences system from Mac OS X */
 /*
   Save the configuration file
 */
@@ -60,6 +61,7 @@ int cb_load_config_file(void)
 
   return 0;
 }
+#endif /* !__MACOSX__ */
 
 int cb_default_config(void)
 {
