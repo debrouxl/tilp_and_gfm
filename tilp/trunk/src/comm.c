@@ -47,9 +47,6 @@ gint display_comm_dbox()
 	GtkWidget *data;
 	gint result;
 
-	GtkWidget *optionmenu;
-	GtkWidget *menu;
-	GtkWidget *item;
 	gint i;
 
 	xml = glade_xml_new

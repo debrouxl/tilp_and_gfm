@@ -21,7 +21,7 @@ tilp_SOURCES = \
 	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c \
 	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c \
 	tilp_slct.c tilp_vars.c tilp_paths.c \
-	tilp_plugin.c main.c \
+	tilp_plugin.c tilp_printl.c main.c \
 	\
 	support.c toolbar.c gtk_refresh.c \
 	\

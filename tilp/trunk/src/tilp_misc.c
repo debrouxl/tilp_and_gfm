@@ -305,7 +305,7 @@ int tilp_tifiles_group(void)
 	if (grpname == NULL)
 		return -1;
 	array =
-	    (char **) g_malloc0(g_list_length(clist_win.selection) + 1,
+		(char **) g_malloc0((g_list_length(clist_win.selection) + 1) *
 			     sizeof(char *));
 	sel = clist_win.selection;
 	while (sel != NULL) {

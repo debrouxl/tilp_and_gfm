@@ -358,7 +358,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Initialize the libticalcs library 
 	 */
-        //ticalc_set_printl(ticalcs_printl);
+        ticalc_set_printl(ticalcs_printl);
 	ticalc_init();
 	ticalc_set_cable(&link_cable);
 	ticalc_set_calc(options.lp.calc_type, &ti_calc);

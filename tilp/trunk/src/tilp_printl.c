@@ -20,14 +20,15 @@
  */
 
 /*
-  	Logging system for the 4 domains:
-  	- ticables
-  	- tifiles
-  	- ticalcs 
-  	- tilp
+  Logging system for the 4 domains:
+  - ticables
+  - tifiles
+  - ticalcs 
+  - tilp
 */
 
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -38,8 +39,8 @@
 #include "tilp_printl.h"
 
 /* 
-	Print to stdout as default behaviour unless changed by tifiles_set_print 
-	Level: such as "warning", "error", "information", etc. "" = nothing.
+   Print to stdout as default behaviour unless changed by tifiles_set_print 
+   Level: such as "warning", "error", "information", etc. "" = nothing.
 */
 
 #define DOMAIN_TICABLES         "ticables"
@@ -49,21 +50,9 @@
 
 /**************** printl muxer ************************/
 
-int printl_muxer(const char *domain, int level, const char *format, ...)
+int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 {
-       /*
-	va_list ap;
-	int ret = 0;
-
-	fprintf(stdout, "tilp ");
-	if(level != 0)
-		fprintf(stdout, "(%s): ", (level == 2) ? _("error") : _("warning"));
-	va_start(ap, format);
-        ret = vfprintf(stdout, format, ap);
-        va_end(ap);
-*/
-
-        return 0;
+	return vfprintf(stdout, format, ap);
 }
 
 /**************** printl callbacks ********************/
@@ -72,6 +61,12 @@ int ticables_printl(int level, const char *format, ...)
 {
         va_list ap;
 	int ret = 0;
+
+	fprintf(stdout, "cables ");
+	if(level != 0)
+		fprintf(stdout, "(%s)", 
+			(level == 2) ? _("error") : _("warning"));
+        fprintf(stdout, ": ");
 
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICABLES, level, format, ap);
@@ -85,6 +80,12 @@ int tifiles_printl(int level, const char *format, ...)
         va_list ap;
 	int ret = 0;
 
+	fprintf(stdout, "files ");
+	if(level != 0)
+		fprintf(stdout, "(%s)", 
+			(level == 2) ? _("error") : _("warning"));
+        fprintf(stdout, ": ");
+
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TIFILES, level, format, ap);
         va_end(ap);
@@ -96,6 +97,12 @@ int ticalcs_printl(int level, const char *format, ...)
 {
         va_list ap;
 	int ret = 0;
+
+	fprintf(stdout, "calcs ");
+	if(level != 0)
+		fprintf(stdout, "(%s)", 
+			(level == 2) ? _("error") : _("warning"));
+        fprintf(stdout, ": ");
 
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TICALCS, level, format, ap);
@@ -112,7 +119,7 @@ int default_printl(int level, const char *format, ...)
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TILP, level, format, ap);
         va_end(ap);
- 
+
 	return ret;
 }
 
@@ -121,13 +128,13 @@ TILP_PRINTL printl = default_printl;
 /*
 	Change print behaviour (callback).
 */
-static TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
+TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
 {
   TILP_PRINTL old_printl = printl;
 
-  printf("printl = %p\n", printl);
-  printf("old_printl = %p\n", old_printl);
-  printf("new_printl = %p\n", new_printl);
+  //printf("printl = %p\n", printl);
+  //printf("old_printl = %p\n", old_printl);
+  //printf("new_printl = %p\n", new_printl);
 
   printl = new_printl;
 

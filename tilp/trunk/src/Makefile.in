@@ -139,7 +139,7 @@ INCLUDES = -I$(top_srcdir) -I$(includedir) 	-I../intl -I$(top_srcdir)/intl 	-DPR
 # program to compile and install 
 bin_PROGRAMS = tilp
 
-tilp_SOURCES =  	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c 	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c 	tilp_slct.c tilp_vars.c tilp_paths.c 	tilp_plugin.c main.c 		support.c toolbar.c gtk_refresh.c 		tilp.c dboxes.c pbars.c clist.c ctree.c labels.c popup.c 	general.c extprgms.c comm.c clock.c filesel.c logfile.c manpage.c 	about.c release.c scroptions.c screenshot.c splash.c wizard.c 	shell.c action.c dnd.c
+tilp_SOURCES =  	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c 	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c 	tilp_slct.c tilp_vars.c tilp_paths.c 	tilp_plugin.c tilp_printl.c main.c 		support.c toolbar.c gtk_refresh.c 		tilp.c dboxes.c pbars.c clist.c ctree.c labels.c popup.c 	general.c extprgms.c comm.c clock.c filesel.c logfile.c manpage.c 	about.c release.c scroptions.c screenshot.c splash.c wizard.c 	shell.c action.c dnd.c
 
 
 noinst_HEADERS = *.h
@@ -162,14 +162,14 @@ tilp_files.$(OBJEXT) tilp_indep.$(OBJEXT) tilp_main.$(OBJEXT) \
 tilp_misc.$(OBJEXT) tilp_prompt.$(OBJEXT) tilp_rcfile.$(OBJEXT) \
 tilp_refresh.$(OBJEXT) tilp_screen.$(OBJEXT) tilp_slct.$(OBJEXT) \
 tilp_vars.$(OBJEXT) tilp_paths.$(OBJEXT) tilp_plugin.$(OBJEXT) \
-main.$(OBJEXT) support.$(OBJEXT) toolbar.$(OBJEXT) \
-gtk_refresh.$(OBJEXT) tilp.$(OBJEXT) dboxes.$(OBJEXT) pbars.$(OBJEXT) \
-clist.$(OBJEXT) ctree.$(OBJEXT) labels.$(OBJEXT) popup.$(OBJEXT) \
-general.$(OBJEXT) extprgms.$(OBJEXT) comm.$(OBJEXT) clock.$(OBJEXT) \
-filesel.$(OBJEXT) logfile.$(OBJEXT) manpage.$(OBJEXT) about.$(OBJEXT) \
-release.$(OBJEXT) scroptions.$(OBJEXT) screenshot.$(OBJEXT) \
-splash.$(OBJEXT) wizard.$(OBJEXT) shell.$(OBJEXT) action.$(OBJEXT) \
-dnd.$(OBJEXT)
+tilp_printl.$(OBJEXT) main.$(OBJEXT) support.$(OBJEXT) \
+toolbar.$(OBJEXT) gtk_refresh.$(OBJEXT) tilp.$(OBJEXT) dboxes.$(OBJEXT) \
+pbars.$(OBJEXT) clist.$(OBJEXT) ctree.$(OBJEXT) labels.$(OBJEXT) \
+popup.$(OBJEXT) general.$(OBJEXT) extprgms.$(OBJEXT) comm.$(OBJEXT) \
+clock.$(OBJEXT) filesel.$(OBJEXT) logfile.$(OBJEXT) manpage.$(OBJEXT) \
+about.$(OBJEXT) release.$(OBJEXT) scroptions.$(OBJEXT) \
+screenshot.$(OBJEXT) splash.$(OBJEXT) wizard.$(OBJEXT) shell.$(OBJEXT) \
+action.$(OBJEXT) dnd.$(OBJEXT)
 tilp_LDADD = $(LDADD)
 tilp_DEPENDENCIES = 
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -193,9 +193,10 @@ DEP_FILES =  .deps/about.P .deps/action.P .deps/clist.P .deps/clock.P \
 .deps/shell.P .deps/splash.P .deps/support.P .deps/tilp.P \
 .deps/tilp_calcs.P .deps/tilp_error.P .deps/tilp_files.P \
 .deps/tilp_indep.P .deps/tilp_main.P .deps/tilp_misc.P \
-.deps/tilp_paths.P .deps/tilp_plugin.P .deps/tilp_prompt.P \
-.deps/tilp_rcfile.P .deps/tilp_refresh.P .deps/tilp_screen.P \
-.deps/tilp_slct.P .deps/tilp_vars.P .deps/toolbar.P .deps/wizard.P
+.deps/tilp_paths.P .deps/tilp_plugin.P .deps/tilp_printl.P \
+.deps/tilp_prompt.P .deps/tilp_rcfile.P .deps/tilp_refresh.P \
+.deps/tilp_screen.P .deps/tilp_slct.P .deps/tilp_vars.P .deps/toolbar.P \
+.deps/wizard.P
 SOURCES = $(tilp_SOURCES)
 OBJECTS = $(tilp_OBJECTS)
 
