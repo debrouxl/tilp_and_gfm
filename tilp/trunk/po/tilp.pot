@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-05-04 11:06+0200\n"
+"POT-Creation-Date: 2003-05-04 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,11 +52,11 @@ msgstr ""
 msgid "overwrite"
 msgstr ""
 
-#: src/action.c:298 src/tilp_files.c:702 src/tilp_slct.c:117
+#: src/action.c:298 src/tilp_files.c:691 src/tilp_slct.c:117
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:298 src/tilp_files.c:703
+#: src/action.c:298 src/tilp_files.c:692
 msgid "New name: "
 msgstr ""
 
@@ -199,7 +199,7 @@ msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:110 src/tilp_calcs.c:235
-#: src/tilp_calcs.c:383 src/tilp_files.c:692 src/tilp_slct.c:87
+#: src/tilp_calcs.c:383 src/tilp_files.c:681 src/tilp_slct.c:87
 #: src/tilp_slct.c:90
 msgid "Warning"
 msgstr ""
@@ -212,8 +212,8 @@ msgstr ""
 #: src/dboxes.c:48 src/dboxes.c:97 src/popup.c:171 src/popup.c:251
 #: src/popup.c:408 src/tilp.c:245 src/tilp_calcs.c:332 src/tilp_calcs.c:378
 #: src/tilp_calcs.c:574 src/tilp_calcs.c:580 src/tilp_calcs.c:586
-#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:739
-#: src/tilp_files.c:771 src/tilp_files.c:790 src/tilp_files.c:809
+#: src/tilp_error.c:79 src/tilp_error.c:81 src/tilp_files.c:728
+#: src/tilp_files.c:760 src/tilp_files.c:779 src/tilp_files.c:798
 #: src/tilp_main.c:316 src/tilp_main.c:325 src/tilp_misc.c:165
 #: src/tilp_misc.c:290 src/tilp_rcfile.c:555
 msgid "Error"
@@ -501,38 +501,38 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/tilp_files.c:689
+#: src/tilp_files.c:678
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:693
+#: src/tilp_files.c:682
 msgid "Overwrite "
 msgstr ""
 
-#: src/tilp_files.c:693
+#: src/tilp_files.c:682
 msgid "Rename "
 msgstr ""
 
-#: src/tilp_files.c:694
+#: src/tilp_files.c:683
 msgid "Skip "
 msgstr ""
 
-#: src/tilp_files.c:741
+#: src/tilp_files.c:730
 msgid "Unable to move the temporary file.\n"
 msgstr ""
 
-#: src/tilp_files.c:770 src/tilp_files.c:807
+#: src/tilp_files.c:759 src/tilp_files.c:796
 msgid "Chdir error.\n"
 msgstr ""
 
-#: src/tilp_files.c:771 src/tilp_files.c:810 src/tilp_misc.c:165
+#: src/tilp_files.c:760 src/tilp_files.c:799 src/tilp_misc.c:165
 msgid "Unable to change directory."
 msgstr ""
 
-#: src/tilp_files.c:791
+#: src/tilp_files.c:780
 msgid "You can not go outside of your HOME directory."
 msgstr ""
 

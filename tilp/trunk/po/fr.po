@@ -2,17 +2,18 @@
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # GARSAULT Sylvain <sylvain.garsault@freesbee.fr>, 2003.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 6.61\n"
 "POT-Creation-Date: 2003-05-04 11:06+0200\n"
-"PO-Revision-Date: 2003-04-09 21:08+0200\n"
+"PO-Revision-Date: 2003-05-04 21:16GMT\n"
 "Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: FRENCH <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
 
 #: src/about.c:71
 msgid "about.c: GUI loading failed !\n"
@@ -511,8 +512,7 @@ msgstr "Conversion..."
 
 #: src/tilp_calcs.c:575
 msgid "You can not send both variables and applications simultaneously."
-msgstr ""
-"Vous ne pouvez pas envoyer à la fois des variables et des applications."
+msgstr "Vous ne pouvez pas envoyer à la fois des variables et des applications."
 
 #: src/tilp_calcs.c:582
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
@@ -648,20 +648,18 @@ msgid "See the manpage for more informations...\n"
 msgstr "Reportez-vous aux pages de man pour plus d'informations...\n"
 
 #: src/tilp_main.c:104
-#, fuzzy, c-format
+#, c-format
 msgid "TiLP - Version %s, (C) 1999-2003 Romain Livin <roms@tilp.info>\n"
-msgstr "TiLP - Version %s, (C) 1999-2003 Romain Livin\n"
+msgstr "TiLP - Version %s, (C) 1999-2003 Romain Liévin <roms@tilp.info>\n"
 
 #: src/tilp_main.c:108
-#, fuzzy
 msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
-msgstr "Support FreeBSDP, (c) 2003 Tijl Coosemans\n"
+msgstr "Portage FreeBSDP, (c) 2003 Tijl Coosemans\n"
 
 #: src/tilp_main.c:113
-#, fuzzy, c-format
-msgid ""
-"Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
-msgstr "Support Mac OS X Version %s, (C) 2001-2002 Julien Blache\n"
+#, c-format
+msgid "Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"
+msgstr "Portage Mac OS X Version %s ,(%s), (C) 2001-2002 Julien Blache <jb@tilp.info>\n"
 
 #: src/tilp_main.c:117
 #, c-format
@@ -763,24 +761,21 @@ msgid "group"
 msgstr "grouper"
 
 #: src/tilp_plugin.c:148
-#, fuzzy
 msgid "Scanning plug-ins... "
-msgstr "Détection des greffons..."
+msgstr "Détection des greffons... "
 
 #: src/tilp_plugin.c:151
 msgid "tilp_plugins_scan: opendir error\n"
 msgstr "tilp_plugins_scan: erreur à l'ouverture d'un dossier\n"
 
 #: src/tilp_plugin.c:169 src/tilp_plugin.c:231
-#, fuzzy
 msgid "Done !\n"
-msgstr "Fait.\n"
+msgstr "Fait !\n"
 
 #. Scan registry
 #: src/tilp_plugin.c:172
-#, fuzzy
 msgid "Scanning registry... "
-msgstr "Détection des greffons..."
+msgstr "Recherche dans le registre... "
 
 #: src/tilp_prompt.c:65
 msgid ""
@@ -833,8 +828,7 @@ msgstr ""
 
 #: src/tilp_prompt.c:177
 msgid "Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"
-msgstr ""
-"Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
+msgstr "Entré en mode ligne de commande. Tapez  \"quit\" ou \"exit\" pour quitter.\n"
 
 #: src/tilp_rcfile.c:46
 #, c-format
@@ -852,8 +846,7 @@ msgstr ""
 
 #: src/tilp_rcfile.c:556
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
-msgstr ""
-"Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
+msgstr "Impossible d'enregistrer le fichier de configuration (~/.tilp ou tilp.ini).\n"
 
 #: src/tilp_refresh.c:87
 msgid "Initialized in command line mode.\n"
@@ -1122,8 +1115,7 @@ msgstr "Aller au dossier parent"
 
 #: glade/clist_rbm-2.str:33
 msgid "Set the current directory as working directory whenever TiLP starts."
-msgstr ""
-"Définit le dossier courant comme dossier de travail au démarrage de TiLP."
+msgstr "Définit le dossier courant comme dossier de travail au démarrage de TiLP."
 
 #: glade/clist_rbm-2.str:34
 msgid "_Set as working folder"
@@ -1984,8 +1976,7 @@ msgstr "Le site Web de TI"
 
 #: glade/tilp-2.str:45
 msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
-msgstr ""
-"http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
+msgstr "http://eps.ti.com, vente de mises à jour et d'applications FLASH pour TI."
 
 #: glade/tilp-2.str:46
 msgid "Calculator software"
@@ -2041,8 +2032,7 @@ msgstr "Prêt ?"
 
 #: glade/tilp-2.str:61
 msgid "List calculator content (folders, variables and applications)."
-msgstr ""
-"Liste le contenu de la calculatrice (dossiers, variables et applications)."
+msgstr "Liste le contenu de la calculatrice (dossiers, variables et applications)."
 
 #: glade/tilp-2.str:62
 msgid "Dirlist"
@@ -2121,3 +2111,4 @@ msgstr "Titre"
 #: glade/user_boxes-2.str:10
 msgid "Name:"
 msgstr "Nom:"
+

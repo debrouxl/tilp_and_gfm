@@ -3,7 +3,7 @@
 
 
 Previous version: 6.08-stable (17/12/2002)
-Current version:  6.65-devel  (20/04/2003)
+Current version:  6.67-beta1  (04/05/2003)
 
 
 TiLP is available for 4 platforms:
@@ -22,11 +22,12 @@ New capabilities:
 -----------------
 
 	- Drag & Drop
-        - plug-in support (not finalized yet)
+        - plug-in support
 	- send TI83+ vars directly to FLASH
 	- TI82 ROM dumping
 	- i18n (internationalization) support: french, deutsch (partial)
 	- greek & latin characters are displayed fine in both frames
+	- Group File Manager moved as 'Group File Viewer' plugin
 
 Improvements:
 -------------
@@ -69,4 +70,4 @@ The TiLP project by the TiLP team <http://lpg.ticalc.org/prj_tilp>.
 Getting involved ?:
 -------------------
 
-See the JOBS file.
+See the Jobs section of the TiLP web site.
