@@ -9,6 +9,7 @@ EXTRA_DIST = $(FILES) $(APPSIGN)
 
 install: $(FILES) extract
 	@echo Installing miscellaneous files...
+	@$(INSTALL) -d $(SHARE_DIR)
 	@$(INSTALL) -m644 ../RELEASE $(SHARE_DIR)
 	@$(INSTALL) -m644 ../COPYING $(SHARE_DIR)
 	@$(INSTALL) -m644 ../man/Manpage.txt $(SHARE_DIR)

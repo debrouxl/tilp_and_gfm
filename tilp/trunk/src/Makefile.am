@@ -36,7 +36,7 @@ EXTRA_DIST = win32
 # libtool stuff: set export symbols for resolving
 tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
 
-install:
+install-data-local:
 	$(INSTALL) -m755 -d $(DESTDIR)$(includedir)/tilp
 	$(INSTALL) -m644 tilp_plugin.h $(DESTDIR)$(includedir)/tilp
 
