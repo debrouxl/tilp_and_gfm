@@ -229,6 +229,7 @@
                 pbar5Rate = id; 
                 pbar5Text = id; 
                 pbar5Window = id; 
+                pbarType2PBar = id; 
                 user1Button1 = id; 
                 user1Text = id; 
                 user1Window = id; 

@@ -19,6 +19,8 @@
  */
 
 #include <libticalcs/calc_int.h>
+#include <libticables/cabl_int.h>
+#include <libticables/cabl_def.h>
 
 #include "../src/struct.h"
 #include "../src/defs.h"
@@ -36,11 +38,13 @@ extern struct ticalc_info_update info_update;
 
 #import <Cocoa/Cocoa.h>
 
+TicableDataRate *dr;
+
 void
 gt_start(void)
 {
     info_update.prev_percentage = info_update.percentage = 0.0;
-    info_update.start_time = clock();
+    ticable_get_datarate(&dr);
 }
 
 void

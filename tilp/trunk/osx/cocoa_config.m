@@ -121,7 +121,7 @@ rc_fill_dictionary(void)
             [tilpConfig setObject:value forKey:@"link_port"];
         }
     
-    value = [[NSNumber alloc] initWithInt:ticalc_get_calc()];
+    value = [[NSNumber alloc] initWithInt:ticalc_get_calc2()];
     [tilpConfig setObject:value forKey:@"calc_type"];
     
     value = [[NSNumber alloc] initWithInt:options.lp.timeout];

@@ -228,6 +228,9 @@
 	* Merge up to 4.92.
 	* Receive FLASH Apps.
 	* Use TMPFILE_* in BoxesController.	
+* 20020214 : v0.5.0
+	* Title bar reads "TiLP v5.00", but it's a 4.92 modified.
+	* Added an indeterminate ProgressIndicator to pbarType2.
 
 
 

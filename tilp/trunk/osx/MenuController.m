@@ -165,9 +165,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.4.9" forKey:@"Version"];
+    [aboutOptions setObject:@"0.5.0" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
-    [aboutOptions setObject:@"4.92" forKey:@"ApplicationVersion"];
+    [aboutOptions setObject:@"5.00" forKey:@"ApplicationVersion"];
 
     [NSApp orderFrontStandardAboutPanelWithOptions:aboutOptions];
     
@@ -210,7 +210,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 {
     if (cb_calc_is_ready() == 0)
         {
-            switch(ticalc_get_calc())
+            switch(ticalc_get_calc2())
                 {
                     case CALC_TI73:
                         [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-73 Ready !"];
@@ -251,11 +251,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     if (is_active)
         return;
 
-    if (ticalc_get_calc() == CALC_TI89)
+    if (ticalc_get_calc2() == CALC_TI89)
         {
             [myCalc89KeyboardController showKeyboard89:self];
         }
-    else if ((ticalc_get_calc() == CALC_TI92) || (ticalc_get_calc() == CALC_TI92P))
+    else if ((ticalc_get_calc2() == CALC_TI92) || (ticalc_get_calc2() == CALC_TI92P))
         {
             [myCalc92KeyboardController showKeyboard92:self];
         }

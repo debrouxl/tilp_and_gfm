@@ -48,7 +48,6 @@
 - (void)getScreen:(id)sender;
 - (void)romDump:(id)sender;
 - (void)doBackup:(id)sender;
-- (void)receiveFlashApp:(id)sender;
 - (int)sendChar:(unsigned int)tikey;
 
 @end

@@ -51,7 +51,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 #endif
           if ([self mouse:mouseClick inRect:[self bounds]])
               {
-                  if (ticalc_get_calc() == CALC_TI89)
+                  if (ticalc_get_calc2() == CALC_TI89)
                       {
                           [myCalc89KeyboardController sendKey:mouseClick];
                       }

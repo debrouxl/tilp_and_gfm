@@ -18,6 +18,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include <libticables/cabl_def.h>
+
 #include "cocoa_structs.h"
  
 #include "../src/struct.h"
@@ -260,14 +262,17 @@ extern struct ticalc_info_update info_update;
 
     [pbar2Window setExcludedFromWindowsMenu:YES];
 
+    [pbar2PBar setUsesThreadedAnimation:YES];
+    [pbar2PBar startAnimation:self];
+
     [NSApp beginSheet:pbar2Window
            modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
-   
+              
     [NSApp endSheet:pbar2Window];
-    
+        
     [self showCurrentSheet];
 }
 
@@ -351,7 +356,10 @@ extern struct ticalc_info_update info_update;
         }
         
     if ([pbar2Window isVisible])
-        [pbar2Window orderOut:nil];
+        {
+            [pbar2Window orderOut:nil];
+            [pbar2PBar stopAnimation:self];
+        }
 
     if ([pbar3Window isVisible])
         {
@@ -406,6 +414,9 @@ extern struct ticalc_info_update info_update;
 
 // this is the refresh part of the stuff :-)
 
+// in cocoa_refresh.m
+extern TicableDataRate *dr;
+
 - (void)refreshPbar1
 {
     static gfloat rate;
@@ -422,8 +433,11 @@ extern struct ticalc_info_update info_update;
                 }
             else
                 info_update.prev_percentage = info_update.percentage;
-
-            rate = info_update.count / ((float)(clock() - info_update.start_time)/CLOCKS_PER_SEC);
+            
+            // old code
+            //rate = info_update.count / ((float)(clock() - info_update.start_time)/CLOCKS_PER_SEC);
+     
+            rate = dr->count/toCURRENT(dr->start);
      
             // set pbar value and textField text
                         

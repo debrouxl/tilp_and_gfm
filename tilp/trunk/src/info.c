@@ -50,7 +50,7 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
               }
           else
               {
-                  if (vi->vartype != ticalc_flash_type(ticalc_get_calc()))
+                  if (vi->vartype != ticalc_flash_type(ticalc_get_calc2()))
                       {
                           cmi->vars++;
                                             
@@ -64,7 +64,7 @@ void get_calc_mem_info(struct calc_mem_info *cmi)
                               }
                       }
                   // remember the FLASH apps are listed in all folders... so cmi->folders must not be > 1
-                  else if ((cmi->folders == 1) && (vi->vartype == ticalc_flash_type(ticalc_get_calc())))
+                  else if ((cmi->folders == 1) && (vi->vartype == ticalc_flash_type(ticalc_get_calc2())))
                       {
                           cmi->flash++;
                       

@@ -20,6 +20,7 @@
 
 #include <glib/glib.h>
 #include <libticalcs/calc_int.h>
+#include <libticables/cabl_err.h>
 
 #include "cocoa_structs.h"
 #include "cocoa_sheets.h"
@@ -554,11 +555,11 @@ extern int is_active;
  
     proposedFile = @"romdump.rom";
  
-    tmp_filename = (char *)malloc(strlen(g_get_tmp_dir()) + strlen("/tilp.ROMdump") + 1);
+    tmp_filename = (char *)malloc(strlen(g_get_tmp_dir()) + strlen(TMPFILE_ROMDUMP) + 2);
  
     strcpy(tmp_filename, g_get_tmp_dir());
-    strcat(tmp_filename, DIR_SEPARATOR);
-    strcat(tmp_filename, "tilp.ROMdump");
+    strcat(tmp_filename, G_DIR_SEPARATOR_S);
+    strcat(tmp_filename, TMPFILE_ROMDUMP);
  
     ret = gif->user2_box(_("Warning"), 
                          _("An assembly program will be sent to your calc if you decide to continue. Consider doing a backup before."),
@@ -594,7 +595,7 @@ extern int is_active;
                                     err = ti_calc.dump_rom(dump, ret);
                                     fclose(dump);
                                 }
-                            while((err == 35) || (err == 3));
+                            while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
                                                    
                             destroy_pbar();
                             if(tilp_error(err))
@@ -648,7 +649,7 @@ extern int is_active;
                                             err = ti_calc.dump_rom(dump, (ret == 1) ? SHELL_ZSHELL : SHELL_USGARD);
                                             fclose(dump);
                                         }
-                                    while((err == 35) || (err == 3));
+                                    while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
 	      
                                     destroy_pbar();
                                     if(tilp_error(err))
@@ -696,7 +697,7 @@ extern int is_active;
                                     
                                     fclose(dump);
                                 }
-                            while((err == 35) || (err == 3));
+                            while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
 
                             destroy_pbar();
                             if(tilp_error(err))
@@ -738,7 +739,7 @@ extern int is_active;
                         
                         fclose(dump);
                     }
-                while( ((err == 35) || (err == 3)) );
+                while( ((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT)) );
 
                 destroy_pbar();
                 if(tilp_error(err))
@@ -790,7 +791,7 @@ extern int is_active;
                                         
                                         fclose(dump);
                                     }
-                                while((err == 35) || (err == 3));
+                                while((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT));
 
                                 destroy_pbar();
                                 if(tilp_error(err))
@@ -842,17 +843,11 @@ extern int is_active;
         contextInfo:sp];
 }
 
-- (void)receiveFlashApp:(id)sender
-{
-    // FIXME OS X : receiveFlashApp
-    fprintf(stderr, "**** ReceiveFlashApp: not implemented ****\n");
-}
-
 - (int)sendChar:(unsigned int)tikey
 {
-//#ifdef OSX_DEBUG
+#ifdef OSX_DEBUG
     fprintf(stderr, "DEBUG: sending '%c' (%d)\n", tikey, tikey);
-//#endif
+#endif
 
     if (tilp_error(ti_calc.send_key(tikey)))
         return -1;

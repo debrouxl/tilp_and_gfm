@@ -214,6 +214,7 @@
                 pbar1Rate = id; 
                 pbar1Window = id; 
                 pbar2Button = id; 
+                pbar2PBar = id; 
                 pbar2Text = id; 
                 pbar2Window = id; 
                 pbar3PBar1 = id; 

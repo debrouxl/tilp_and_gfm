@@ -28,7 +28,6 @@
 static void cmdline_start()
 {
   info_update.prev_percentage = info_update.percentage = 0.0;
-  info_update.start_time = clock();
 }
 
 static void cmdline_stop()

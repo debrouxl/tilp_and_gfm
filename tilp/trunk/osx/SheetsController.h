@@ -31,6 +31,7 @@
     IBOutlet id pbar1PBar;
     IBOutlet id pbar1Rate;
     IBOutlet id pbar1Window;
+    IBOutlet id pbar2PBar;
     IBOutlet id pbar2Button;
     IBOutlet id pbar2Text;
     IBOutlet id pbar2Window;

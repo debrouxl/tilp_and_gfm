@@ -308,7 +308,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 [portCombo setObjectValue:[portNameArray objectAtIndex:0]];
             }
 
-    switch(ticalc_get_calc())
+    switch(ticalc_get_calc2())
         {
             case CALC_TI92P:
                 [calcTypeMatrix setState:NSOnState atRow:0 column:0];

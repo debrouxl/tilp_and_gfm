@@ -499,7 +499,7 @@ struct gui_fncts gui_functions;
       {
           q = (struct varinfo *)(p->data);
         
-          if (q->vartype != ticalc_flash_type(ticalc_get_calc()))
+          if (q->vartype != ticalc_flash_type(ticalc_get_calc2()))
               {
                   if ((p != ctree_win.varlist) && q->is_folder) // we're at the second folder (first folder _is_ ctree_win.varlist itself)
                       break;
@@ -545,7 +545,7 @@ struct gui_fncts gui_functions;
         {
             q = (struct varinfo *)(p->data);
             
-            if(q->vartype == ticalc_flash_type(ticalc_get_calc()))
+            if(q->vartype == ticalc_flash_type(ticalc_get_calc2()))
                 {
                     p = p->next;
                     continue;
