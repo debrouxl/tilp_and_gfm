@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 6.61\n"
 "POT-Creation-Date: 2003-05-04 11:06+0200\n"
-"PO-Revision-Date: 2003-05-04 21:16GMT\n"
+"PO-Revision-Date: 2003-05-07 13:35GMT\n"
 "Last-Translator: GARSAULT Sylvain <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: FRENCH <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -170,11 +170,11 @@ msgstr "Attribut"
 
 #: src/ctree.h:30
 msgid "Screen"
-msgstr "Ecran"
+msgstr "Écran"
 
 #: src/ctree.h:31
 msgid "Operating System"
-msgstr "Systeme d'exploitation"
+msgstr "Système d'exploitation"
 
 #: src/ctree.h:32
 msgid "Variables"
@@ -337,7 +337,7 @@ msgstr "Impossible de trouver le fichier pixmap: %s"
 
 #: src/tilp.c:63
 msgid "Status: not connected."
-msgstr "Etat: déconnecté."
+msgstr "État: déconnecté."
 
 #: src/tilp.c:246
 msgid ""
@@ -357,7 +357,7 @@ msgstr ""
 "Vous allez restaurer le contenu de\n"
 "votre calculatrice avec une sauvegarde.\n"
 "Toute la mémoire sera effacée.\n"
-"Etes-vous sûr de vouloir continuer ?"
+"Êtes-vous sûr de vouloir continuer ?"
 
 #: src/tilp_calcs.c:120 src/tilp_calcs.c:127 src/tilp_calcs.c:132
 #: src/tilp_calcs.c:155 src/tilp_calcs.c:161 src/tilp_calcs.c:166
@@ -654,7 +654,7 @@ msgstr "TiLP - Version %s, (C) 1999-2003 Romain Liévin <roms@tilp.info>\n"
 
 #: src/tilp_main.c:108
 msgid "FreeBSD port, (c) 2003 Tijl Coosemans\n"
-msgstr "Portage FreeBSDP, (c) 2003 Tijl Coosemans\n"
+msgstr "Portage FreeBSD, (c) 2003 Tijl Coosemans\n"
 
 #: src/tilp_main.c:113
 #, c-format
@@ -672,7 +672,7 @@ msgstr "CE PROGRAMME N'OFFRE ABSOLUMENT AUCUNE GARANTIE\n"
 
 #: src/tilp_main.c:119
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
-msgstr "LISEZ S'IL VOUS PLAIT LA DOCUMENTATION POUR PLUS DE DETAILS\n"
+msgstr "LISEZ S'IL VOUS PLAÎT LA DOCUMENTATION POUR PLUS DE DÉTAILS\n"
 
 #: src/tilp_main.c:314
 #, c-format
@@ -862,7 +862,7 @@ msgid ""
 "Are you sure you want to remove this file ?\n"
 "\n"
 msgstr ""
-"Etes-vous sûr(e) de vouloir supprimer ce fichier ?\n"
+"Êtes-vous sûr(e) de vouloir supprimer ce fichier ?\n"
 "\n"
 
 #: src/tilp_slct.c:91
@@ -870,7 +870,7 @@ msgid ""
 "Are you sure you want to remove these files ?\n"
 "\n"
 msgstr ""
-"Etes-vous sûr(e) de vouloir supprimer ces fichiers ?\n"
+"Êtes-vous sûr(e) de vouloir supprimer ces fichiers ?\n"
 "\n"
 
 #: src/tilp_slct.c:123
@@ -955,8 +955,8 @@ msgid ""
 "* Program placed under GPL license. \n"
 "Libraries placed under LPGL."
 msgstr ""
-"* Programme placé sous license GPL. \n"
-"Librairies placées sous license LGPL"
+"* Programme placé sous licence GPL. \n"
+"Librairies placées sous licence LGPL"
 
 #: glade/about-2.str:22
 msgid "* Program developed by the TiLP team <tilp-users@lists.sf.net>"
@@ -968,11 +968,11 @@ msgstr "_A propos de"
 
 #: glade/about-2.str:24
 msgid "Cannot find the license file."
-msgstr "Impossible de trouver le fichier de license."
+msgstr "Impossible de trouver le fichier de licence."
 
 #: glade/about-2.str:25
 msgid "Li_cense"
-msgstr "Li_cense"
+msgstr "Li_cence"
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -1023,7 +1023,7 @@ msgstr "Tout _désélectionner"
 #.
 #: glade/clist_rbm-2.str:8
 msgid "_Edit"
-msgstr "_Editer"
+msgstr "_Éditer"
 
 #: glade/clist_rbm-2.str:9
 msgid "Cut selected files"
@@ -1099,11 +1099,11 @@ msgstr "Tout _sélectionner"
 
 #: glade/clist_rbm-2.str:29
 msgid "Unselect all files"
-msgstr "Déselectionner tous les fichiers"
+msgstr "Désélectionner tous les fichiers"
 
 #: glade/clist_rbm-2.str:30
 msgid "_Unselect all"
-msgstr "To_ut déselectionner"
+msgstr "To_ut désélectionner"
 
 #: glade/clist_rbm-2.str:31
 msgid "Goes up into the parent folder"
@@ -1654,7 +1654,7 @@ msgstr "Titre 1"
 
 #: glade/pbars-2.str:9
 msgid "Transfer status:"
-msgstr "Etat du transfert:"
+msgstr "État du transfert:"
 
 #: glade/pbars-2.str:10
 msgid "Rate: 0.00 Kb/s"
@@ -1711,7 +1711,7 @@ msgid ""
 "This box appears only 1 time or whenever a new version is installed.\n"
 "You will find in the box below some news about TiLP (the RELEASE file):"
 msgstr ""
-"Cette fenêtre apparaît la première fois ou lorsque une nouvele version est "
+"Cette fenêtre apparaît la première fois ou lorsque une nouvelle version est "
 "installée.\n"
 "Vous trouverez ci-dessous les dernières nouvelles à propos de TiLP (fichier "
 "RELEASE):"
@@ -1738,7 +1738,7 @@ msgstr ""
 #.
 #: glade/screen_options-2.str:8
 msgid "Screen Capture Options"
-msgstr "Options de Capture d'Ecran"
+msgstr "Options de Capture d'Écran"
 
 #: glade/screen_options-2.str:10
 msgid "_clipped (TI89)"
@@ -1828,7 +1828,7 @@ msgstr "Aide"
 
 #: glade/screenshot-2.str:18
 msgid "Calculator screen"
-msgstr "Ecran de la calculatrice"
+msgstr "Écran de la calculatrice"
 
 #.
 #. * Chaînes de caractères à traduire générées par
@@ -2084,7 +2084,7 @@ msgstr "Fichiers de la calculatrice"
 
 #: glade/tilp-2.str:76
 msgid "Computer files"
-msgstr "Fichiers de l'orinateur"
+msgstr "Fichiers de l'ordinateur"
 
 #: glade/tilp-2.str:77
 msgid "Memory free: 0 bytes"
