@@ -1,8 +1,13 @@
 
 #include "../src/cb_calc.h"
 #include "../src/struct.h"
+#include "../src/gui_indep.h"
+#include "../src/intl.h"
+#include "../src/defs.h"
 
 extern struct screenshot ti_screen;
+
+extern int is_active;
 
 #import "ToolbarController.h"
 
@@ -122,13 +127,26 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
 - (IBAction)doRestore:(id)sender
 {
     NSOpenPanel *op;
+    NSString *nsfile;
     
     int result;
+    char *file;
 
     // FIXME OS X
-    // see the gtk code => message box before filesel !!
     // find the extension of the file to pass as an argument to the NSOpenPanel
-    // cb_send_backup(char *filename);
+    
+    if (is_active)
+        return;
+    
+    result = gif->user2_box(_("Warning"), 
+                            _("You are going to restore the calculator content with your backup. The whole memory will be erased. Are you sure you want to do that ?"),
+		            _("Proceed"), 
+		            _("Cancel"));
+                            
+    if(result != BUTTON1)
+        return;
+
+    result = -1; // neutral value
     
     op = [NSOpenPanel openPanel];
     
@@ -140,8 +158,20 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
                                       
     if (result == NSOKButton)
         {
-                // FIXME OS X : see NSOpenPanel help to finish
+            nsfile = [[op filenames] objectAtIndex:0];
+            
+            file = (char *)malloc([nsfile cStringLength] + 1);
+            
+            [nsfile getCString:file];
+            
+            cb_send_backup(file);
+            
+            [nsfile release];
+            
+            free(file);
         }
+    
+    [op release];
 }
 
 - (IBAction)getDirlist:(id)sender

@@ -15,18 +15,28 @@
 	    * implemented pbars refresh system
 	    * small ameliorations in the previous cocoa code
 	    * renamed cocoa_msg_sheets.[ch] to cocoa_sheets.[ch]
-	    * modified the pbar*_window to contain determinate progressIndicators
+	    * modified the pbar*_window to contain determinate progress
+	    indicators
 	    * implemented save screendump
-	    * fixed - [BoxesController screendumpRefresh] to behave like the GTK version
-	    * removed the "Load" button from the screendump window. I can't see its interest.
-	    * removed - [BoxesController msgBoxOrUser2DidEnd] -- all we needed to do is to close
-	      close the sheet and stop the modal, this is handled by Cocoa, so it was useless.
+	    * fixed - [BoxesController screendumpRefresh] to behave like
+	    the GTK version
+	    * removed the "Load" button from the screendump window. I can't
+	    see its interest.
+	    * removed - [BoxesController msgBoxOrUser2DidEnd] -- all we
+	    needed to do is to wait until the user stops the modal by clicking
+	    on the button, this is handled by Cocoa, so it was useless.
 	    * implemented remote control/terminal callback in the MainMenu
-	    * began to implement - [ToolbarController doRestore] but I'm too tired to finish it.
+	    * began to implement - [ToolbarController doRestore] but I'm too
+	    tired to finish it.
 * 20011029 : v0.1.1
-	* fixed - [TilpController awakeFromNib] : don't set some of the pointers to nil, as TilpController is the last to be sent awakeFromNib...
+	* fixed - [TilpController awakeFromNib] : don't set some of the
+	pointers to nil, as TilpController is the last to be sent
+	awakeFromNib...
+* 20011029 : v0.1.2
+	* msg_box, userX_box and pbar_type2 are now alert panels (and
+	not sheets)
+	* finished the implementation of - [ToolbarController doRestore]
 	
-
 
 
 

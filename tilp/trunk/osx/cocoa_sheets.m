@@ -14,47 +14,27 @@
  #import <Cocoa/Cocoa.h>
  
  // we could use NSbeep(); on some boxes (dlgboxEntry maybe ?)
- 
- // FIXME OS X : orderOut: closes the sheet !!! is it what we want ?
+ // and also request the user attention (ie. the app's icon will jump on the screen)
+
  
  void
  create_cocoa_msg_sheet(const char *title, char *message)
  {
-    id BoxesController;
-    
-    BoxesController = objects_ptr->BoxesController;
- 
-    NSBeginAlertSheet([NSString stringWithCString:title], @"Ok", nil, nil, objects_ptr->mainWindow,
-                      BoxesController, @selector(msgBoxOrUser2DidEnd:returnCode:contextInfo:),
-                      nil, nil, [NSString stringWithCString:message]);
+    NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], nil, nil, nil);
  }
  
  int
  create_cocoa_user1_sheet(const char *title, char *message, const char *button1)
  {
-    id BoxesController;
-    
-    BoxesController = objects_ptr->BoxesController;
- 
-     NSBeginAlertSheet([NSString stringWithCString:title], [NSString stringWithCString:button1], nil,
-                      nil, objects_ptr->mainWindow,
-                      BoxesController, @selector(msgBoxOrUser2DidEnd:returnCode:contextInfo:),
-                      nil, nil, [NSString stringWithCString:message]);
+      NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], [NSString stringWithCString:button1], nil, nil);
                  
      return BUTTON1;
  }
                                                     
  void
  create_cocoa_pbar_type2_sheet(const char *title, char *message)
- {
-    id BoxesController;
-    
-    BoxesController = objects_ptr->BoxesController;
-    
-    NSBeginAlertSheet([NSString stringWithCString:title], [NSString stringWithCString:_("Abort")], nil,
-                      nil, objects_ptr->mainWindow, BoxesController, nil,
-                      @selector(pbarType2DidEnd:returnCode:contextInfo:),
-                      nil, [NSString stringWithCString:message]);
+ {                      
+    NSRunAlertPanel([NSString stringWithCString:title], [NSString stringWithCString:message], @"Abort", nil, nil);
  }
  
  /* user boxes */
@@ -63,42 +43,14 @@
  create_cocoa_user2_sheet(const char *title, char *message, const char *button1, const char *button2)
  {
     int ret;
- 
-    id alertPanel;
-    NSModalSession session;
     
-    if (objects_ptr->alertPanel != nil)
-        return -1;
-    
-    alertPanel = NSGetAlertPanel([NSString stringWithCString:title],
-                                 [NSString stringWithCString:message],
-                                 [NSString stringWithCString:button1],
-                                 [NSString stringWithCString:button2],
-                                 nil);
+    ret = NSRunAlertPanel([NSString stringWithCString:title],
+                          [NSString stringWithCString:message],
+                          [NSString stringWithCString:button1],
+                          [NSString stringWithCString:button2],
+                          nil);
                                 
-    objects_ptr->alertPanel = alertPanel;
-                                 
-    session = [NSApp beginModalSessionForWindow:alertPanel];
-    
-    [alertPanel orderOut:nil];
-    
-    for (;;)
-        {
-            if ([NSApp runModalSession:session] != NSRunContinuesResponse)
-                break;
-        }
-    
-    [NSApp endModalSession:session];
-    
-    [alertPanel close];
-    [alertPanel release];
-
-    objects_ptr->alertPanel = nil;
-
-    ret = objects_ptr->box_button;
-    objects_ptr->box_button = -1;
-
-    return ((ret > 0) ? ret : BUTTON1);
+    return ((ret == NSAlertDefaultReturn) ? BUTTON1 : BUTTON2);
  }
  
  int
@@ -106,41 +58,27 @@
  {
     int ret;
  
-    id alertPanel;
-    NSModalSession session;
+    ret = NSRunAlertPanel([NSString stringWithCString:title],
+                          [NSString stringWithCString:message],
+                          [NSString stringWithCString:button1],
+                          [NSString stringWithCString:button2],
+                          [NSString stringWithCString:button3]);
     
-    if (objects_ptr->alertPanel != nil)
-        return -1;
-    
-    alertPanel = NSGetAlertPanel([NSString stringWithCString:title],
-                                 [NSString stringWithCString:message],
-                                 [NSString stringWithCString:button1],
-                                 [NSString stringWithCString:button2],
-                                 [NSString stringWithCString:button3]);
-                                 
-    objects_ptr->alertPanel = alertPanel;
-                                
-    session = [NSApp beginModalSessionForWindow:alertPanel];
-    
-    [alertPanel orderOut:nil];
-    
-    for (;;)
+    switch (ret)
         {
-            if ([NSApp runModalSession:session] != NSRunContinuesResponse)
+            case NSAlertDefaultReturn:
+                ret = BUTTON1;
+                break;
+            case NSAlertAlternateReturn:
+                ret = BUTTON2;
+                break;
+            case NSAlertOtherReturn:
+                ret = BUTTON3;
                 break;
         }
-    
-    [NSApp endModalSession:session];
-    
-    [alertPanel close];
-    [alertPanel release];
-    
-    objects_ptr->alertPanel = nil;
 
-    ret = objects_ptr->box_button;
-    objects_ptr->box_button = -1;
 
-    return ((ret > 0) ? ret : BUTTON1);
+    return ret;
  }
  
  /* dialog box w/entry field */
@@ -148,13 +86,13 @@
  char *
  create_cocoa_dlgbox_entry(const char *title, const char *message, const char *content)
  {
-    // called twice in cb_calc.c
     id mainWindow;
     id dlgboxEntry;
     
-    NSModalSession session;
-    
-    // FIXME OS X : close the sheet in the button's attached method
+    // FIXME OS X
+    // the button's method need to stop the modal
+    // AFTER retrieving the string...
+    // so cocoa will close the sheet.
     
     mainWindow = objects_ptr->mainWindow;
     dlgboxEntry = objects_ptr->dlgboxEntry;
@@ -167,20 +105,12 @@
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
-           
-    session = [NSApp beginModalSessionForWindow:dlgboxEntry];
     
+    [NSApp runModalForWindow:dlgboxEntry];
+            
     [NSApp endSheet:dlgboxEntry];
     [dlgboxEntry orderOut:nil];
     
-    for (;;)
-        {
-            if ([NSApp runModalSession:session] != NSRunContinuesResponse)
-                break;
-        }
-    
-    [NSApp endModalSession:session];
-                    
     return objects_ptr->dlgbox_data;
  }
  
@@ -206,12 +136,11 @@
            modalDelegate:nil
            didEndSelector:nil
            contextInfo:nil];
-           
-    // FIXME OS X : for each pbar
-    // Use a modalsession here...
-    // the loop would also be used in the refresh code
-    // OR we could use a variable... and rely on it in the refresh code.    
-    
+  
+    // FIXME OS X : in the button's method
+    // stop the modal
+    // that will result in Cocoa closing the sheet
+          
     [NSApp runModalForWindow:pbar1Window];
     
     [NSApp endSheet:pbar1Window];
