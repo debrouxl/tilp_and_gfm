@@ -3,12 +3,12 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP, 6.77, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP, 6.78, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
-AC_PREFIX_DEFAULT(/usr)
+AC_PREFIX_DEFAULT(/usr/local)
 
 # Files to configure.
 AC_CONFIG_SRCDIR([src/main.c])

@@ -16,15 +16,6 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
-Bug: <<The problem is, when I right-clicked a group file (.89g) and choose the
-Group Files > Ungroup option, it asked me to specify a directory to
-ungroup to. I wanted the files to be stored in the same directory
-instead of a new one, so I tried entering the directory name ".".
-
-TiLP said "Error creating directory", then it made the group file a
-zero-byte file without storing the ungrouped contents anywhere that I
-could see.>>
-
 - 28/02/2005, version 6.78 (3.8.8, 0.6.2, 4.5.7): roms
 	Fixed creation of /usr/lib/tilp directory.
 	Fixed 'Help->User's manual item'.
@@ -32,7 +23,8 @@ could see.>>
 
 - 29/01/2005, version 6.77 (3.8.7, 0.6.1, 4.5.6): roms
 	Added full FLASH support for TI89 Titanium.
-	Added full FLASH support for TI84+. This might have broken TI83+ support.
+	Added full FLASH support for TI84+. This might have broken TI83+ 
+	support.
 
 - 02/10/2004, version 6.76 (3.8.7, 0.6.1, 4.5.5): roms
 	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.
