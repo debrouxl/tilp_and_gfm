@@ -107,7 +107,7 @@ static void default_config_win32(void)
 	options.console_mode = 0;
 	locale = g_win32_getlocale();
 	
-	DISPLAY("current locale: <%s>\n", locale);
+	printl(0, "current locale: <%s>\n", locale);
 	
 	g_free(locale);
 	options.working_dir = g_get_current_dir();
@@ -197,7 +197,7 @@ int tilp_cmdline_send(void)
 	fi = (TilpFileInfo *) (g_list_first(clist_win.selection))->data;
 	ext = tifiles_get_extension(fi->name);
 	if (ext == NULL) {
-		DISPLAY_ERROR(_
+		printl(2, _
 			      ("Invalid filename. There is no extension !\n"));
 		exit(-1);
 	}
@@ -226,7 +226,7 @@ int tilp_cmdline_send(void)
 		} else if (tifiles_is_a_backup_file(fi->name)) {
 			tilp_calc_send_backup(fi->name);
 		} else {
-			DISPLAY(_("Unknown file type.\n"));
+			printl(0, _("Unknown file type.\n"));
 		}
 	} else {
 

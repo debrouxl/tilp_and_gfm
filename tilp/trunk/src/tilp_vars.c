@@ -106,16 +106,16 @@ int tilp_dirlist_remote(void)
 	gif->destroy_pbar();
 
 #if defined(DIRLIST_FORM1)
-	ticalc_dirlist_display(ctree_win.dirlist);
+	ticalc_dirlist_printl(0, ctree_win.dirlist);
 #elif defined(DIRLIST_TRANS)    /* DIRLIST_FORM1 */
 	dirlist_v1_to_v2(ctree_win.dirlist, 
 			 &ctree_win.var_tree,
 			 &ctree_win.app_tree);
-	ticalc_dirlist_display(ctree_win.var_tree);
-	ticalc_dirlist_display(ctree_win.app_tree);
+	ticalc_dirlist_printl(0, ctree_win.var_tree);
+	ticalc_dirlist_printl(0, ctree_win.app_tree);
 #elif defined(DIRLIST_FORM2)    /* DIRLIST_TRANS */
-	ticalc_dirlist_display(ctree_win.var_tree);
-	ticalc_dirlist_display(ctree_win.app_tree);
+	ticalc_dirlist_printl(0, ctree_win.var_tree);
+	ticalc_dirlist_printl(0, ctree_win.app_tree);
 #endif				/* DIRLIST_FORM2 */
 	return 0;
 }

@@ -83,7 +83,7 @@ gint display_clock_dbox()
 		return -1;
 	if (tilp_error(ti_calc.get_clock(&tmp_clk, 0)))
 		return -1;
-	DISPLAY("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n", tmp_clk.day,
+	printl(0, "%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n", tmp_clk.day,
 		tmp_clk.month, tmp_clk.year, tmp_clk.hours,
 		tmp_clk.minutes, tmp_clk.seconds,
 		(tmp_clk.time_format == 12) ? "12" : "24",
@@ -104,7 +104,7 @@ gint display_clock_dbox()
 	case GTK_RESPONSE_OK:
 		if (modified == FALSE)
 			break;
-		DISPLAY("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n",
+		printl(0, "%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n",
 			tmp_clk.day, tmp_clk.month, tmp_clk.year,
 			tmp_clk.hours, tmp_clk.minutes, tmp_clk.seconds,
 			(tmp_clk.time_format == 12) ? "12" : "24",

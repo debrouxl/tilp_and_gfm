@@ -80,7 +80,7 @@ static void on_cancel_fsel3(GtkFileSelection * file_selector,
 	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
 			TMPFILE_BACKUP, NULL);
 	if (unlink(tmp_filename))
-		DISPLAY_ERROR(_("Unable to remove the temporary file.\n"));
+		printl(2, _("Unable to remove the temporary file.\n"));
 }
 
 
@@ -117,7 +117,7 @@ static void on_cancel_fsel4(GtkFileSelection * file_selector,
 	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
 			TMPFILE_GROUP, NULL);
 	if (unlink(tmp_filename))
-		DISPLAY_ERROR(_("Unable to remove the temporary file.\n"));
+		printl(2, _("Unable to remove the temporary file.\n"));
 }
 
 
@@ -153,7 +153,7 @@ static void on_cancel_fsel7(GtkFileSelection * file_selector,
 	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
 			TMPFILE_ROMDUMP, NULL);
 	if (unlink(tmp_filename))
-		DISPLAY_ERROR(_("Unable to remove the temporary file.\n"));
+		printl(2, _("Unable to remove the temporary file.\n"));
 }
 gint display_fileselection_1(void)
 {

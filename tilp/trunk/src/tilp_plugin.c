@@ -110,7 +110,7 @@ static TilpPluginInfo *query_plugin(const gchar * path,
     info->path = g_strdup(fn);
     info->type = PLUGIN_LIB;
 #ifdef DEBUG
-    DISPLAY("%s: %s | %s | %s | %s\n", info->path,
+    printl(0, "%s: %s | %s | %s | %s\n", info->path,
 	    info->name, info->version, info->author,
 	    info->extensions);
 #endif				/*  */
@@ -147,7 +147,7 @@ int tilp_plugins_scan(void)
 		return -1;
 	}
 
-	DISPLAY(_("Scanning plug-ins... "));
+	printl(0, _("Scanning plug-ins... "));
 	dir = g_dir_open(inst_paths.plugin_dir, 0, &error);
 	if (dir == NULL) {
 		g_error(_("tilp_plugins_scan: opendir error\n"));
@@ -168,10 +168,10 @@ int tilp_plugins_scan(void)
 		    g_list_append(plugin_list, (gpointer) plugin_info);
 	}
 	g_dir_close(dir);
-	DISPLAY(_("Done !\n"));
+	printl(0, _("Done !\n"));
 
 	// Scan registry 
-	DISPLAY(_("Scanning registry... "));
+	printl(0, _("Scanning registry... "));
 #ifdef __WIN32__
 	reg_fn = g_strconcat(inst_paths.base_dir, REG_FILE, NULL);
 #else				/*  */
@@ -223,14 +223,14 @@ int tilp_plugins_scan(void)
 		    g_list_append(plugin_list, (gpointer) plugin_info);
 
 #ifdef DEBUG
-		DISPLAY("%s: %s | %s | %s | %s\n", plugin_info->path,
+		printl(0, "%s: %s | %s | %s | %s\n", plugin_info->path,
 			plugin_info->name, plugin_info->version,
 			plugin_info->author, plugin_info->extensions);
 
 #endif				/*  */
 	}
 	fclose(reg);
-	DISPLAY(_("Done !\n"));
+	printl(0, _("Done !\n"));
 
 	return 0;
 }
@@ -272,7 +272,7 @@ gchar *tilp_plugins_search_query(const gchar * extension)
 			break;
 		info = (TilpPluginInfo *) elt->data;
 		if (strstr(info->extensions, extension)) {
-			//DISPLAY("Plug-in found: <%s> <%s> <%s>\n", info->name, extension, info->extensions);
+			//printl(0, "Plug-in found: <%s> <%s> <%s>\n", info->name, extension, info->extensions);
 			return info->name;
 		}
 	}

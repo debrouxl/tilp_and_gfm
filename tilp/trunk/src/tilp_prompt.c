@@ -64,7 +64,7 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
 			getOut = 1;
 		}
 		if (!(strcmp(cmd, "help"))) {
-			DISPLAY(_
+			printl(0, _
 				("Currently recognized commands: ls, cd, help, quit, exit, ready, screen [filename], dirlist [filename], backup [filename], restore [filename], send [filename], receive [filename] and dump [filename]\n"));
 		}
 		if (!(strcmp(cmd, "ls"))) {
@@ -78,39 +78,39 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
 				DISPLAY_ERROR
 				    ("Unable to open directory !");
 			}
-			DISPLAY("%s\n", currDir);
+			printl(0, "%s\n", currDir);
 			while ((dirname = g_dir_read_name(dir)) != NULL) {
 				strcpy(ext, &dirname[strlen(dirname) - 3]);
 				ext[2] = toupper(ext[2]);
 				stat(dirname, &aStat);
 				if (S_ISDIR(aStat.st_mode))
-					DISPLAY("  [%s]\n", dirname);
+					printl(0, "  [%s]\n", dirname);
 
 				else if (!strcmp(ext, "92P")
 					 || !strcmp(ext, "92B"))
-					DISPLAY("  %-32s %d\n", dirname,
+					printl(0, "  %-32s %d\n", dirname,
 						(int) (aStat.st_size));
 			} g_dir_close(dir);
 		}
 		if (!(strcmp(cmd, "cd"))) {
 			if (arg1) {
 				if (tilp_chdir(arg1))
-					DISPLAY(_
+					printl(0, _
 						("\nIllegal directory!\n"));
 
 				else
-					DISPLAY(_
+					printl(0, _
 						("\nCurrent directory changed to:\n%s\n"),
 						getcwd(currDir,
 						       sizeof(currDir)));
 			} else
-				DISPLAY(_("\nCurrent directory is:\n%s\n"),
+				printl(0, _("\nCurrent directory is:\n%s\n"),
 					currDir);
 		}
 		if (!(strcmp(cmd, "ready"))) {
 			tilp_calc_isready();
 
-			//DISPLAY("%s\n", cb_calc_is_ready() ? "ok" : "nok");
+			//printl(0, "%s\n", cb_calc_is_ready() ? "ok" : "nok");
 		}
 		if (!(strcmp(cmd, "screen"))) {
 			tilp_screen_capture();
@@ -122,7 +122,7 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
 		if (!strcmp(cmd, "dirlist")) {
 			tilp_dirlist_remote();
 
-			//tilp_dirlist_display();
+			//tilp_dirlist_printl(0, );
 		}
 		if (!strcmp(cmd, "backup")) {
 			tilp_calc_recv_backup();
@@ -160,7 +160,7 @@ static void prompt_commands(void)
 	char line[80];
 	getOut = 0;
 	while (!getOut) {
-		DISPLAY(_("\ncmd> "));
+		printl(0, _("\ncmd> "));
 		fgets(line, 80, stdin);
 		line[strlen(line) - 1] = '\0';	//strap LF
 		cmd = strtok(line, " ");
@@ -176,7 +176,7 @@ int tilp_prompt(void)
 {
 	if (!strlen(currDir))
 		getcwd(currDir, sizeof(currDir));
-	DISPLAY(_
+	printl(0, _
 		("Commandstate entered. Type \"quit\" or \"exit\" to quit.\n"));
 	cmdState = 1;
 	prompt_commands();

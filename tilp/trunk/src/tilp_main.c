@@ -70,27 +70,27 @@ TilpInstPaths inst_paths = {
 #endif				/*  */
 void help(void)
 {
-	DISPLAY("\n");
-	DISPLAY(_("Usage: tilp [-options] [filename]\n"));
-	DISPLAY("\n");
-	DISPLAY(_
+	printl(0, "\n");
+	printl(0, _("Usage: tilp [-options] [filename]\n"));
+	printl(0, "\n");
+	printl(0, _
 		("-h, --help    display this information page and exit\n"));
-	DISPLAY(_
+	printl(0, _
 		("-v, --version display the version information and exit\n"));
-	DISPLAY(_("-cmdline      use command line and stop\n"));
-	DISPLAY(_("-gui=...      use the specified GUI (console, gtk)\n"));
-	DISPLAY(_("-calc=...     give the calculator type\n"));
-	DISPLAY(_("-link=...     give the link cable type\n"));
-	DISPLAY(_("-port=...     give the port number\n"));
-	DISPLAY(_("-timeout=...  give the time out in seconds\n"));
-	DISPLAY(_("-delay=...    give the delay in microseconds\n"));
-        DISPLAY(_("-dev_port=... give the device port (override 'port=')\n"));
-        DISPLAY(_("-adr_port=... give the address of the port (override 'port=')\n"));
-	DISPLAY("\n");
-	DISPLAY(_("filename      a filename to send (console or GTK+)\n"));
-	DISPLAY("\n");
-	DISPLAY(_("See the manpage for more informations...\n"));
-	DISPLAY("\n");
+	printl(0, _("-cmdline      use command line and stop\n"));
+	printl(0, _("-gui=...      use the specified GUI (console, gtk)\n"));
+	printl(0, _("-calc=...     give the calculator type\n"));
+	printl(0, _("-link=...     give the link cable type\n"));
+	printl(0, _("-port=...     give the port number\n"));
+	printl(0, _("-timeout=...  give the time out in seconds\n"));
+	printl(0, _("-delay=...    give the delay in microseconds\n"));
+        printl(0, _("-dev_port=... give the device port (override 'port=')\n"));
+        printl(0, _("-adr_port=... give the address of the port (override 'port=')\n"));
+	printl(0, "\n");
+	printl(0, _("filename      a filename to send (console or GTK+)\n"));
+	printl(0, "\n");
+	printl(0, _("See the manpage for more informations...\n"));
+	printl(0, "\n");
 	exit(0);
 }
 
@@ -103,23 +103,23 @@ void version(void)
 #ifndef __WIN32__
 	ticable_DISPLAY_settings(DSP_ON);
 #endif
-	DISPLAY(_
+	printl(0, _
 		("TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"),
 		TILP_VERSION);
 
 #ifdef __BSD__
-	DISPLAY(_("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
+	printl(0, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif
     
 #ifdef __MACOSX__
-	DISPLAY(_
+	printl(0, _
 		("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"),
 		TILP_OSX_VERSION, SVN_REV);
 #endif
 
-	DISPLAY(_("Built on %s %s\n"), __DATE__, __TIME__);
-	DISPLAY(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-	DISPLAY(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+	printl(0, _("Built on %s %s\n"), __DATE__, __TIME__);
+	printl(0, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+	printl(0, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
 	ticable_DISPLAY_settings(options.console_mode);
 }
 
@@ -317,17 +317,17 @@ int tilp_main(int argc, const char *argv[], char **arge)
 
 	// Init locale & internationalization
 #ifdef ENABLE_NLS
-	DISPLAY("tilp: setlocale: <%s>\n", setlocale(LC_ALL, ""));
-  	DISPLAY("tilp: bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	printl(0, "tilp: setlocale: <%s>\n", setlocale(LC_ALL, ""));
+  	printl(0, "tilp: bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
   	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	DISPLAY("tilp: textdomain: <%s>\n", textdomain(PACKAGE));
+  	printl(0, "tilp: textdomain: <%s>\n", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
 	/* 
 	   Check the version of libraries 
 	 */
 	if (strcmp(ticable_get_version(), LIB_CABLE_VERSION_REQUIRED) < 0) {
-		DISPLAY(_
+		printl(0, _
 			("libticables library version <%s> mini required.\n"),
 			LIB_CABLE_VERSION_REQUIRED);
 		gif->msg_box(_("Error"),
@@ -336,7 +336,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 		exit(-1);
 	}
 	if (strcmp(ticalc_get_version(), LIB_CALC_VERSION_REQUIRED) < 0) {
-		DISPLAY(_
+		printl(0, _
 			("libticalcs library version <%s> mini required.\n"),
 			LIB_CALC_VERSION_REQUIRED);
 		gif->msg_box(_("Error"),
@@ -364,19 +364,19 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	 */
 	switch (working_mode & ~MODE_GUI) {
 	case MODE_CMD:
-		DISPLAY(_("Working mode: command line.\n"));
+		printl(0, _("Working mode: command line.\n"));
 		break;
 	case MODE_CON:
-		DISPLAY(_("Working mode: console (prompt).\n"));
+		printl(0, _("Working mode: console (prompt).\n"));
 		break;
 	case MODE_GTK:
-		DISPLAY(_("Working mode: GTK+.\n"));
+		printl(0, _("Working mode: GTK+.\n"));
 		break;
 	case MODE_MFC:
-		DISPLAY(_("Working mode: MFC.\n"));
+		printl(0, _("Working mode: MFC.\n"));
 		break;
 	case MODE_OSX:
-		DISPLAY(_("Working mode: Cocoa OS X GUI.\n"));
+		printl(0, _("Working mode: Cocoa OS X GUI.\n"));
 		break;
 	}
 

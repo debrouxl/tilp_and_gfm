@@ -40,6 +40,7 @@ extern "C" {
 #include "tilp_paths.h"
 #include "tilp_indep.h"
 #include "tilp_version.h"
+#include "tilp_printl.h"
 #include "intl.h"
 
   /******************************/

@@ -237,13 +237,13 @@ void clist_refresh(void)
 		else
 			utf8 = g_filename_to_utf8(fi->name, -1, &br, &bw, NULL);
 #if 0
-		DISPLAY("<%s> ", fi->name);
+		printl(0, "<%s> ", fi->name);
 		for (i = 0; i < 8; i++)
-		DISPLAY("%02X ", fi->name[i] & 0xff);
-		DISPLAY("<%s> ", utf8);
+		printl(0, "%02X ", fi->name[i] & 0xff);
+		printl(0, "<%s> ", utf8);
 		for (i = 0; i < 8; i++)
-		DISPLAY("%02X ", utf8[i] & 0xff);
-		DISPLAY("\n");
+		printl(0, "%02X ", utf8[i] & 0xff);
+		printl(0, "\n");
 #endif		
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, COLUMN_NAME,

@@ -760,7 +760,7 @@ int tilp_chdir(const char *path)
 	effective = geteuid();
 	seteuid(getuid());
 	if (chdir(path)) {
-		DISPLAY_ERROR(_("Chdir error.\n"));
+		printl(2, _("Chdir error.\n"));
 		gif->msg_box(_("Error"), _("Unable to change directory."));
 		return -1;
 	}
@@ -797,7 +797,7 @@ int tilp_chdir(const char *path)
 int tilp_chdir(const char *path)
 {
 	if (chdir(path)) {
-		DISPLAY_ERROR(_("Chdir error.\n"));
+		printl(2, _("Chdir error.\n"));
 		if (gif)
 			gif->msg_box(_("Error"),
 				     _("Unable to change directory."));

@@ -98,7 +98,7 @@ int tilp_error(int errcode)
 			if (!err)
 				return 0;
 		}
-		DISPLAY_ERROR("%s\n", s);
+		printl(2, "%s\n", s);
 	}
 	return errcode;
 }

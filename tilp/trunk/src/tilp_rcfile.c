@@ -116,7 +116,7 @@ void tilp_rcfile_read(void)
 	get_rcfile_path(&rc_file);
 	txt = fopen(rc_file, "rt");
 	if (txt == NULL) {
-		DISPLAY(_("Configuration file not found, use default values. You can create one by the 'File|Save config' command menu.\n"));
+		printl(0, _("Configuration file not found, use default values. You can create one by the 'File|Save config' command menu.\n"));
 		gif->msg_box(_("Information"), _
 			     ("Configuration file not found, use default values. You can create one by the 'File|Save config' command menu.\n"));
 		return;

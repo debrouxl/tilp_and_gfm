@@ -314,7 +314,7 @@ int tilp_calc_rom_dump(void)
 			return -1;
 		break;
 	default:
-		DISPLAY("Unsupported ROM dump.\n");
+		printl(0, "Unsupported ROM dump.\n");
 		break;
 	}
 	return 0;
@@ -497,7 +497,7 @@ int tilp_calc_ams2rom(char *filename)
 	strcat(filename2, ".rom");
 	f = fopen(filename2, "wb");
 	if (f == NULL) {
-		DISPLAY_ERROR("Unable to open this file: <%s>\n",
+		printl(2, "Unable to open this file: <%s>\n",
 			      filename2);
 		return -1;
 	}
@@ -511,8 +511,8 @@ int tilp_calc_ams2rom(char *filename)
 	// keep the last one (data)
 	for (i = 0, ptr = &content; i < nheaders - 1; i++)
 		ptr = ptr->next;
-	DISPLAY("FLASH app/os name: \"%s\"\n", ptr->name);
-	DISPLAY("FLASH app/os size: %i bytes.\n", ptr->data_length);
+	printl(0, "FLASH app/os name: \"%s\"\n", ptr->name);
+	printl(0, "FLASH app/os size: %i bytes.\n", ptr->data_length);
 
 	// boot block
 	for (i = 0; i < 0x05; i++)

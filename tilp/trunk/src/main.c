@@ -69,12 +69,12 @@ TilpGuiFncts gui_functions = {
 /******************/
 void signal_handler(int sig_no)
 {
-	DISPLAY("Signal SIGINT (Ctrl+C) caught...\n");
-	DISPLAY("Trying to destroy ressources... ");
+	printl(0, "Signal SIGINT (Ctrl+C) caught...\n");
+	printl(0, "Trying to destroy ressources... ");
 	link_cable.exit();
 	ticalc_exit();
 	ticable_exit();
-	DISPLAY(_("Done.\n"));
+	printl(0, _("Done.\n"));
 	exit(0);
 }
 
