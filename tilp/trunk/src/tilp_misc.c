@@ -76,7 +76,7 @@ static void default_config_linux(void)	// linux specific options
 	options.web_options = g_strdup("");
 	strcpy(options.left_font_name, "");
 	strcpy(options.right_font_name,
-	       "-adobe-courier-medium-r-*-*-*-125-*-*-*-*-*-*");
+	       "-adobe-courier-medium-r-*-*-*-120-*-*-*-*-*-*");
 	options.console_mode = !0;
 	locale = setlocale(LC_ALL, NULL);
 	strcpy(options.locale, locale);
