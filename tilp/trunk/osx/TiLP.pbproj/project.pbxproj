@@ -125,7 +125,7 @@
 			children = (
 				1058C7A1FEA54F0111CA2CBB,
 				F51283DF01797CFA01000102,
-				F51283E001797CFA01000102,
+				F51015FE01C3778201000102,
 				F51283E101797CFA01000102,
 			);
 			isa = PBXGroup;
@@ -298,8 +298,9 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "-DHAVE_CONFIG_H -D__MACOSX__";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -312,7 +313,7 @@
 			);
 			isa = PBXApplicationTarget;
 			name = TiLP;
-			productInstallPath = "$(HOME)/Applications";
+			productInstallPath = /Applications;
 			productName = TiLP;
 			productReference = 17587328FF379C6511CA2CBB;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -1680,9 +1681,9 @@
 				F5090AF10178A61401000102,
 				F5090AF20178A61401000102,
 				F51283E201797CFA01000102,
-				F51283E301797CFA01000102,
 				F51283E401797CFA01000102,
 				F5216B0201B6E45B01000102,
+				F51015FF01C3778201000102,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -2208,16 +2209,22 @@
 			settings = {
 			};
 		};
+		F51015FE01C3778201000102 = {
+			isa = PBXFrameworkReference;
+			name = libticables.framework;
+			path = /System/Library/Frameworks/libticables.framework;
+			refType = 0;
+		};
+		F51015FF01C3778201000102 = {
+			fileRef = F51015FE01C3778201000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F51283DF01797CFA01000102 = {
 			isa = PBXFrameworkReference;
 			name = glib.framework;
 			path = /System/Library/Frameworks/glib.framework;
-			refType = 0;
-		};
-		F51283E001797CFA01000102 = {
-			isa = PBXFrameworkReference;
-			name = libticables.framework;
-			path = /System/Library/Frameworks/libticables.framework;
 			refType = 0;
 		};
 		F51283E101797CFA01000102 = {
@@ -2228,12 +2235,6 @@
 		};
 		F51283E201797CFA01000102 = {
 			fileRef = F51283DF01797CFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F51283E301797CFA01000102 = {
-			fileRef = F51283E001797CFA01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};

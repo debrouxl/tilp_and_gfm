@@ -230,7 +230,7 @@ printf("DEBUG: libs versions test done\n");
      Initialize the libTIcable library 
   */
   
-  ticable_set_param(options.lp);
+  ticable_set_param(&(options.lp));
   ticable_set_cable(options.lp.link_type, &link_cable);
 
   if( (err=link_cable.init_port()) ) 
