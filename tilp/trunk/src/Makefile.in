@@ -1,0 +1,503 @@
+# Makefile.in generated automatically by automake 1.4-p4 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+ALLOW_EXIT_HOMEDIR = @ALLOW_EXIT_HOMEDIR@
+AS = @AS@
+AWK = @AWK@
+BUILD_INCLUDED_LIBINTL = @BUILD_INCLUDED_LIBINTL@
+CATOBJEXT = @CATOBJEXT@
+CC = @CC@
+CFLAGS = @CFLAGS@
+CXX = @CXX@
+DATADIRNAME = @DATADIRNAME@
+DLLTOOL = @DLLTOOL@
+ECHO = @ECHO@
+EXEEXT = @EXEEXT@
+GENCAT = @GENCAT@
+GLIBC21 = @GLIBC21@
+GLIB_CFLAGS = @GLIB_CFLAGS@
+GLIB_LIBS = @GLIB_LIBS@
+GMSGFMT = @GMSGFMT@
+GTK_CFLAGS = @GTK_CFLAGS@
+GTK_LIBS = @GTK_LIBS@
+HAVE_LIB = @HAVE_LIB@
+INSTOBJEXT = @INSTOBJEXT@
+INTLBISON = @INTLBISON@
+INTLLIBS = @INTLLIBS@
+INTLOBJS = @INTLOBJS@
+INTL_LIBTOOL_SUFFIX_PREFIX = @INTL_LIBTOOL_SUFFIX_PREFIX@
+LDFLAGS = @LDFLAGS@
+LIB = @LIB@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
+LIBTOOL = @LIBTOOL@
+LN_S = @LN_S@
+LTLIB = @LTLIB@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
+MAKEINFO = @MAKEINFO@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+OBJDUMP = @OBJDUMP@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
+RANLIB = @RANLIB@
+STRIP = @STRIP@
+TICABLES_CFLAGS = @TICABLES_CFLAGS@
+TICABLES_LIBS = @TICABLES_LIBS@
+TICALCS_CFLAGS = @TICALCS_CFLAGS@
+TICALCS_LIBS = @TICALCS_LIBS@
+TIFILES_CFLAGS = @TIFILES_CFLAGS@
+TIFILES_LIBS = @TIFILES_LIBS@
+USE_INCLUDED_LIBINTL = @USE_INCLUDED_LIBINTL@
+USE_NLS = @USE_NLS@
+VERSION = @VERSION@
+locale_dir = @locale_dir@
+tilp_glade_dir = @tilp_glade_dir@
+tilp_help_dir = @tilp_help_dir@
+tilp_icon_dir = @tilp_icon_dir@
+tilp_pixmap_dir = @tilp_pixmap_dir@
+tilp_plugin_dir = @tilp_plugin_dir@
+
+DEFS = @DEFS@ 	-DSHARE_DIR=\"${prefix}/share/tilp\" 		-DLOCALEDIR=\"$(locale_dir)\" 			-DPLUGIN_DIR=\"${tilp_plugin_dir}\"
+
+
+INCLUDES = -I$(top_srcdir) -I$(includedir) 	-I../intl -I$(top_srcdir)/intl 	-DPREFIX=\"${prefix}\" -I. -I../ -I../../
+
+
+# program to compile and install 
+bin_PROGRAMS = tilp
+
+tilp_SOURCES =  	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c 	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c 	tilp_slct.c tilp_vars.c tilp_paths.c 	tilp_plugin.c main.c 		support.c toolbar.c gtk_refresh.c 		tilp.c dboxes.c pbars.c clist.c ctree.c labels.c popup.c 	general.c extprgms.c comm.c clock.c filesel.c manpage.c 	about.c release.c scroptions.c screenshot.c splash.c wizard.c 	shell.c action.c
+
+
+noinst_HEADERS = *.h
+
+EXTRA_DIST = win32
+
+# libtool stuff: set export symbols for resolving
+tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../config.h
+CONFIG_CLEAN_FILES = 
+bin_PROGRAMS =  tilp$(EXEEXT)
+PROGRAMS =  $(bin_PROGRAMS)
+
+CPPFLAGS = @CPPFLAGS@
+LIBS = @LIBS@
+tilp_OBJECTS =  tilp_calcs.$(OBJEXT) tilp_error.$(OBJEXT) \
+tilp_files.$(OBJEXT) tilp_indep.$(OBJEXT) tilp_main.$(OBJEXT) \
+tilp_misc.$(OBJEXT) tilp_prompt.$(OBJEXT) tilp_rcfile.$(OBJEXT) \
+tilp_refresh.$(OBJEXT) tilp_screen.$(OBJEXT) tilp_slct.$(OBJEXT) \
+tilp_vars.$(OBJEXT) tilp_paths.$(OBJEXT) tilp_plugin.$(OBJEXT) \
+main.$(OBJEXT) support.$(OBJEXT) toolbar.$(OBJEXT) \
+gtk_refresh.$(OBJEXT) tilp.$(OBJEXT) dboxes.$(OBJEXT) pbars.$(OBJEXT) \
+clist.$(OBJEXT) ctree.$(OBJEXT) labels.$(OBJEXT) popup.$(OBJEXT) \
+general.$(OBJEXT) extprgms.$(OBJEXT) comm.$(OBJEXT) clock.$(OBJEXT) \
+filesel.$(OBJEXT) manpage.$(OBJEXT) about.$(OBJEXT) release.$(OBJEXT) \
+scroptions.$(OBJEXT) screenshot.$(OBJEXT) splash.$(OBJEXT) \
+wizard.$(OBJEXT) shell.$(OBJEXT) action.$(OBJEXT)
+tilp_LDADD = $(LDADD)
+tilp_DEPENDENCIES = 
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+HEADERS =  $(noinst_HEADERS)
+
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+SOURCES = $(tilp_SOURCES)
+OBJECTS = $(tilp_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .obj .s
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps src/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-binPROGRAMS:
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+distclean-binPROGRAMS:
+
+maintainer-clean-binPROGRAMS:
+
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	done
+
+.c.o:
+	$(COMPILE) -c $<
+
+# FIXME: We should only use cygpath when building on Windows,
+# and only if it is available.
+.c.obj:
+	$(COMPILE) -c `cygpath -w $<`
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+	-rm -f *.$(OBJEXT)
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+tilp$(EXEEXT): $(tilp_OBJECTS) $(tilp_DEPENDENCIES)
+	@rm -f tilp$(EXEEXT)
+	$(LINK) $(tilp_LDFLAGS) $(tilp_OBJECTS) $(tilp_LDADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags $(ETAGS_ARGS) $$tags  $$unique $(LISP) -o $$here/TAGS)
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = src
+
+distdir: $(DISTFILES)
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+about.o: about.c ../config.h about.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+action.o: action.c ../config.h action.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+clist.o: clist.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h support.h labels.h popup.h
+clock.o: clock.c ../config.h clock.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+comm.o: comm.c ../config.h comm.h toolbar.h ctree.h tilp_core.h \
+	tilp_defs.h tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h \
+	tilp_version.h intl.h
+ctree.o: ctree.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h support.h labels.h popup.h screenshot.h tilp.h \
+	ctree.h
+dboxes.o: dboxes.c ../config.h dboxes.h support.h tilp_defs.h \
+	tilp_core.h tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h \
+	tilp_version.h intl.h
+extprgms.o: extprgms.c ../config.h extprgms.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+filesel.o: filesel.c ../config.h tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	dboxes.h clist.h labels.h
+general.o: general.c ../config.h general.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h clist.h
+gtk_refresh.o: gtk_refresh.c tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h ../config.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h gstruct.h
+labels.o: labels.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h
+main.o: main.c ../config.h tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h support.h toolbar.h tilp.h gtk_refresh.h pbars.h \
+	dboxes.h ctree.h clist.h labels.h release.h splash.h wizard.h
+manpage.o: manpage.c ../config.h manpage.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+pbars.o: pbars.c ../config.h gstruct.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h pbars.h
+popup.o: popup.c ../config.h tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h ctree.h clist.h labels.h dboxes.h tilp.h shell.h
+release.o: release.c ../config.h release.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+screenshot.o: screenshot.c ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h screenshot.h support.h dboxes.h scroptions.h
+scroptions.o: scroptions.c ../config.h scroptions.h tilp_core.h \
+	tilp_defs.h tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h \
+	tilp_version.h intl.h
+shell.o: shell.c ../config.h tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	dboxes.h
+splash.o: splash.c ../config.h support.h tilp_version.h
+support.o: support.c ../config.h support.h intl.h
+tilp.o: tilp.c ../config.h support.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h gstruct.h dboxes.h toolbar.h labels.h clist.h ctree.h \
+	general.h extprgms.h comm.h clock.h filesel.h manpage.h about.h \
+	screenshot.h action.h
+tilp_calcs.o: tilp_calcs.c tilibs.h ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+tilp_error.o: tilp_error.c tilibs.h ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+tilp_files.o: tilp_files.c tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h ../config.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h dboxes.h
+tilp_indep.o: tilp_indep.c tilp_indep.h
+tilp_main.o: tilp_main.c ../config.h tilibs.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	tilp_prompt.h
+tilp_misc.o: tilp_misc.c tilibs.h ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+tilp_paths.o: tilp_paths.c tilibs.h ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+tilp_plugin.o: tilp_plugin.c ../config.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h tilp_plugin.h
+tilp_prompt.o: tilp_prompt.c tilibs.h ../config.h tilp_core.h \
+	tilp_defs.h tilp_struct.h tilp_paths.h tilp_indep.h \
+	tilp_version.h intl.h
+tilp_rcfile.o: tilp_rcfile.c tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h ../config.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+tilp_refresh.o: tilp_refresh.c tilibs.h ../config.h tilp_core.h \
+	tilp_defs.h tilp_struct.h tilp_paths.h tilp_indep.h \
+	tilp_version.h intl.h
+tilp_screen.o: tilp_screen.c tilp_core.h tilp_defs.h tilp_struct.h \
+	tilibs.h ../config.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+tilp_slct.o: tilp_slct.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+tilp_vars.o: tilp_vars.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h
+toolbar.o: toolbar.c tilp_core.h tilp_defs.h tilp_struct.h tilibs.h \
+	../config.h tilp_paths.h tilp_indep.h tilp_version.h intl.h \
+	gstruct.h support.h
+wizard.o: wizard.c ../config.h support.h tilp_core.h tilp_defs.h \
+	tilp_struct.h tilibs.h tilp_paths.h tilp_indep.h tilp_version.h \
+	intl.h
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-binPROGRAMS
+install-exec: install-exec-am
+
+install-data-am:
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-binPROGRAMS
+uninstall: uninstall-am
+all-am: Makefile $(PROGRAMS) $(HEADERS)
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir)
+
+
+mostlyclean-generic:
+
+clean-generic:
+
+distclean-generic:
+	-rm -f Makefile $(CONFIG_CLEAN_FILES)
+	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-binPROGRAMS mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-binPROGRAMS clean-compile clean-libtool clean-tags \
+		clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-binPROGRAMS distclean-compile distclean-libtool \
+		distclean-tags distclean-generic clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-binPROGRAMS \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-binPROGRAMS distclean-binPROGRAMS clean-binPROGRAMS \
+maintainer-clean-binPROGRAMS uninstall-binPROGRAMS install-binPROGRAMS \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile mostlyclean-libtool distclean-libtool \
+clean-libtool maintainer-clean-libtool tags mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
+dvi-am dvi check check-am installcheck-am installcheck install-exec-am \
+install-exec install-data-am install-data install-am install \
+uninstall-am uninstall all-redirect all-am all installdirs \
+mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+
+@OS_WIN32_TRUE@ no_undefined = -no-undefined
+
+install:
+	$(INSTALL) -m755 -d $(DESTDIR)$(includedir)/tilp
+	$(INSTALL) -m644 tilp_plugin.h $(DESTDIR)$(includedir)/tilp
+
+dos2unix:
+	dos2unix
+	lowercase
+	uppercase
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

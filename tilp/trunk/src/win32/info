@@ -1,0 +1,14 @@
+*********************************************************
+* TiLT - link program for TI calculators           *
+* Copyright (C) 1999-2000, Romain Lievin                *
+*                                                       *
+* Informations about the source code of the /win_port	*
+* directory						*
+* Last update: 20/02/2000				*
+*********************************************************
+
+This directory contains some C files that are not on Windows platform in order
+to compile TiLT on Windows.
+
+
+Romain Lievin <roms@TiLT.ticalc.org> 

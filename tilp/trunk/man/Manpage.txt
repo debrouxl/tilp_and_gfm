@@ -1,0 +1,286 @@
+TILP(1)                                                                TILP(1)
+
+
+
+NAME
+       TiLP - a communication program for TI calculators ('Ti Linking Program'
+       or 'Tilp is a Linking Program')
+
+SYNOPSYS
+       tilp [--help] [--version]  [-h]  [-v]  [-calc=]  [-link=]  [-adr_port=]
+       [-dev_port=] [-timeout=] [-delay=] [-cmdline] [-gui=] [filename]
+
+DESCRIPTION
+       The TiLP program allows you to backup, restore and archive variables of
+       your Texas Intruments calculator on your computer. It  has  also  addi-
+       tional  features  such as screen dump, remote control, ROM dump, FLASH-
+       ing. TiLP is a very complete program. Moreover, you have the same  pro-
+       gram for all calculator types.
+
+OPTIONS
+       The  command  line  of  tilp  can  be used for sending or opening files
+       (variables, backup, FLASH apps, OS, ...). For sending one or more file,
+       simply  pass  the  filename(s)  on  the  command line with the -cmdline
+       option. If you don't use the -cmdline option, the  file  will  be  open
+       within the GUI by the Group File Manager.
+
+       It  is  possible  to send one or more files (single/group file only) or
+       one file which can be a single/group var as well as a backup,  a  FLASH
+       app  or  an Operating System even. You can not do any other operations.
+       If  you  want  more  operations,  you  can  use  the  interactive  mode
+       (-gui=console).
+
+       Note: options must be passed before the filename !
+
+       tilp accepts the following options:
+
+       -h, --help
+              Display a list of all command line options.
+
+       -v, --version
+              Output the version info.
+
+       -cmdline
+              Send  file(s)  without  launching  any  Graphic  User Interface.
+              Informations are displayed in the terminal.
+
+       -gui=  Use a specific  graphic  interface.  You  can  choose  'console'
+              (prompt),  or 'gtk' (GTK+).  In console mode, you can enter some
+              commands. There are several commands which allow you to  do  the
+              same  things  that you could do in GUI mode. These commands are:
+              ready, screen [filename], dirlist [filename], backup [filename],
+              restore  [filename],  send  [filename] (variable, FLASHapp, OS),
+              receive [filename] and dump [filename] (ROM).
+
+       -calc= Select a calculator type: v200, ti92+, ti92, ti89,  ti86,  ti85,
+              ti83+, ti83, ti82 or ti73.
+
+       -link= Select  a  link  cable  type:  Grey TIGraphLink (tgl), home-made
+              serial or  Black  TIGraphLink  (ser),  home-made  parallel  link
+              (par), fastAVRlink (avr), generic virtual link (vtl), TIEmulator
+              virtual link (tie), VTi virtual link (vti), TI/PC USB link (tpu)
+              or USB TIGraphLink also known as SilverLink (slv).
+
+       -adr_port=
+              This  value can represent either a direct address, either a link
+              number, according to the link type. It will override the address
+              associated with the port specified in the config file.  Give the
+              direct address of the parallel port (0x3BC, 0x378 or  0x278)  or
+              serial  port  (0x3F8,  0x2F8,  0x3E8 or 0x2E8), depending of the
+              link cable type.  Give the link number of the virtual link (1 ->
+              #0,  2  ->  #1).  Give the link mode of the TI/PC USB link (1 ->
+              'raw' mode, 2 -> 'cooked' mode).
+
+       -dev_port=
+              It will override the device associated with the  port  specified
+              in   the   config   file.    Give   the   serial   port   device
+              (/dev/ttyS[0..3]) for the Grey TIGraphLink or  the  fastAVRlink.
+              Give the USB device (/dev/tiglusb[0..3]).
+
+       -timeout=
+              in  tenth of seconds (0.1 s). This is the time while the program
+              wait a response of the calculator. Once this delay elapsed,  the
+              program send a time out error. The default value is 1 seconds.
+
+       -delay=
+              in  microseconds.  This is the time which separate the transmis-
+              sion of 2 bytes.  The default value is 5 microseconds.  Decrease
+              this  value  increase the transfer speed but decrease the relia-
+              bility of the transmission.
+
+SEE ALSO
+       tilp-reg(1)
+
+CONFIG FILE FORMAT
+       This section describes the format of the .tilp config file which is  in
+       the  home  directory  of the user (Linux) or the tilp.ini file (Win32).
+       The file is separated  into  several  sections  (hardware,  gui,  calc,
+       external  programs,  fonts,  screen, misc). But, there is no order, you
+       can write lines as you want.  A line preceded by the '#'  symbol  is  a
+       comment.  Each  line  has  the following format: option=something.  The
+       config file must have the 'RC_END' string at end.  Every  line  can  be
+       put  in  any order. Beware: any comment added to the file will be over-
+       written !  Below is described each option and the possible values:
+
+       version= Which version of TiLP has written the  config  file.  Used  to
+       display the Release the file and to keep compatibility.
+
+       calctype=  Defines  the  calculator  type.  Choose one of the following
+       value: ti82, ti83, ti83+, ti85, ti86, ti89, ti92, ti92+, v200.
+
+       linktype= Define the link cable  type.  Choose  one  of  the  following
+       value:  TIGraphLink,  parallel,  serial, AVRlink, fastAVRlink, virtual,
+       TiEmulator, VTi, UsbGraphLink, TiPcUsbLink.
+
+       port= Define the port to use. You have to choose one of  the  following
+       value depending on your link cable type and the port you want use: par-
+       allel port #[1-3], serial port #[1-4], virtual port  #[1-2],  USB  port
+       #[1-4].
+
+       method=  You  can specify here an I/O management method to use. You can
+       choose: automatic, asm, api and driver. Non-expert users should  choose
+       automatic.  The  libticables  library  will automatically determine the
+       best method.
+
+       adr_port= If you specify a value, this will override the  default  set-
+       tings  associated  with  the port value.  Define the I/O address of the
+       I/O port to use. It can be 0x3F8 for a serial port or 0x378 for a  par-
+       allel port for instance.
+
+       serial_device=  If  you specify a value, this will override the default
+       settings associated with the port value.  Define  the  device  name  to
+       use.
+
+       baudrate=  If  you  have  a fastAVRlink cable, you may have to pass the
+       link cable speed. This value must be the same than the cable one.
+
+       timeout= with the timeout value to use in  tenth  of  seconds.  Default
+       value: 20.
+
+       delay=  with  the  delay  value  to  use in micro-seconds for home-made
+       cables. Default value: 10
+
+       rts_cts= Enable  (on)  or  disable  (off)  the  hardware  flow  control
+       (RTS/CTS method) for the fastAVRlink cable. Disable it can decrease the
+       reliability of transfers unless you decrease the link speed. Above 9600
+       bauds, flow control is recommended.
+
+
+       xsize= and ysize= Gives the X and Y values of the size of the left win-
+       dow. Default values: 300 and 400.
+
+       clist_sort= Define the sorting method for the right window. Choose  one
+       of the following value: name, date, size, user, group, attrib
+
+       clist_order=  Define  the  sorting  order  for the right window. Choose
+       either 'up' or 'down'.
+
+       ctree_sort= Define the sorting method for the left window.  Choose  one
+       of the following value: name, info, type, size
+
+       ctree_order=  Define  the  sorting  order  for  the left window. Choose
+       either 'up' or 'down'.
+
+       file_display= Define whether tilp shows only TI  files  or  all  files.
+       Possible values are 'ti' or 'all'.
+
+       confirm=  Define whether tilp ask you confirmation when you delete some
+       files. Use carefully !!! You can choose 'yes' or 'no'
+
+       console= Define whether tilp will display some verbose informations  or
+       not. Under Win32, this will display a background console. Values: 'yes'
+       or 'no'.
+
+       show_gui= Display the Graphic User Interface in command line mode. Val-
+       ues: 'yes' or 'no'.
+
+       single_or_group=  Receive set of files as a single file or as a grouped
+       file. Values: 'single' or 'group'.
+
+       use_checksum= Unimplemented yet.
+
+       path= Define whether tilp sends the variable in its original folder  or
+       in  the  locurrent  folder. Choose either 'full' or 'local'. Works only
+       for TI89/92/92+.
+
+       probe_ti= Define whether tilp will try  and  determine  the  calculator
+       automagically.  Works only for TI73, TI83+, TI89 and TI92+ calculators.
+       Values: 'yes' or 'no'.
+
+       unzip_location= Define the location of the program to use for unzipping
+       archives. Most of the time, the 'unzip' string is enough.
+
+       unzip_options=  Define  the  options to pass on the command line of the
+       'unzip' program. By default, all files of the ZIP archive are  deflated
+       in  a  directory such as 'archive_name/'. An option such as 'unzip_fil-
+       ter=*.89* -d tidir/' can be useful too.
+
+       tar_location=  Define  the  location  of  the  program  for   untarring
+       archives. Most of the time, the 'tar' string is enough.
+
+       tar_options=  Define  the  options  to  pass on the command line of the
+       'tar' program. By default, this option is equal to  'tar_options=xvzf'.
+
+       web_location=  Define  the  location of the browser. Mozilla is used by
+       default: /usr/bin/mozilla.
+
+       web_options= Define the options to pass on  the  command  line  of  the
+       'browser' program. By default, there is no option.
+
+       left_font_name= Define the font to use in the left window (calc files).
+       The font is described by its XFLD (X-Font Logical Description) name.
+
+       right_font_name= Define the font to use in the right  window  (computer
+       files).  The  font  is  described  by  its  XFLD name, such as: -adobe-
+       courier-medium-r-*-*-*-125-*-*-*-*-*-*
+
+       screen_mode= Define whether tilp display the entire screen of the  cal-
+       culator  or  only the visible part. This option is only useful for TI89
+       calculators because they have a screen which has the same size  than  a
+       TI92  one  but only a part is displayed. The other part is only useable
+       via ASM programming.
+
+       screen_format= Define the image format to use for  saving  screen  cap-
+       tures.  It  can be 'jpg' or 'png'. Previous format such as 'xpm', 'pcx'
+       or 'bmp' are not supported any longer.
+
+       screen_blurry= Define whether the image is saved in B&W or saved like a
+       VTi image (dark & light gray). Values: 'yes' or 'no'.
+
+       locale=  Override  the default locale ("C" most of the time). Must be a
+       string such as 'fr_FR' or 'en _US' for instance.
+
+       working_dir= Contains the directory that TiLP will list at startup. Can
+       be changed from the popup menu.
+
+       Think to terminate your config script with the 'RC_END' word !!!
+
+
+COPYRIGHT
+       Copyright  (C) 1999-2003, Romain Lievin.  Permission to use, copy, mod-
+       ify, and distribute this software and its documentation for any purpose
+       and  without  fee  is hereby granted, provided that the above copyright
+       notice appear in all copies and that both  that  copyright  notice  and
+       this permission notice appear in supporting documentation.
+
+       This  program and its source code is distributed under the terms of the
+       terms of the GNU General Public License as published by the Free  Soft-
+       ware  Foundation;  either version 2 of the License, or (at your option)
+       any later version.
+
+       This program is distributed in the hope that it  will  be  useful,  but
+       WITHOUT  ANY  WARRANTY;  without  even  the  implied  warranty  of MER-
+       CHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  General
+       Public License for more details.
+
+       You should have received a copy of the GNU General Public License along
+       with this program; if not, write to the Free Software Foundation, Inc.,
+       59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+
+SUGGESTIONS AND BUG REPORTS
+       The   canonical  place to find tilp and some miscellenaous informations
+       is        at        http://www.tilp.info         (redirected         on
+       http://lpg.ticalc.org/prj_tilp/index.php)   You   can   also   look  at
+       http://lpg.ticalc.org and http://www.ticalc.org for others  TI  related
+       programs  for  Linux.  French  people  can  also look at http://www.ti-
+       fr.org.
+
+AUTHOR
+       Original author (Linux & Win32): Romain Lievin.
+
+       Mac OS-X port by Julien Blache.
+
+       FreeBSD port by Tijl Coosemans.
+
+THANKS
+       Thanks to these persons to have lent me their  calculator:  Jean-Pierre
+       and Thomas (TI92+), Benoit, Philippe and Florence (TI89), Louis (TI86),
+       Luc (TI85), Nicolas (TI83), Jean-Philippe and Francois (TI82).  Special
+       thanks  to Guillaume for her Grey/Gray TIGL link cable.  Thanks to many
+       others (patches, suggestions, ...)
+
+
+
+                                 March 3, 2003                         TILP(1)
+ÿÿ
