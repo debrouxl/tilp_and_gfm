@@ -32,7 +32,7 @@ tilp_SOURCES = \
 
 noinst_HEADERS = *.h
 
-EXTRA_DIST = win32
+EXTRA_DIST =
 
 # libtool stuff: set export symbols for resolving
 tilp_LDFLAGS = $(LDFLAGS) $(no_undefined) #-lefence
