@@ -1,4 +1,4 @@
-REGEDIT
+REGEDIT4
 ;****************************************************************
 ;* RegEdit file for tilp (devel)				*
 ;* 								*
@@ -10,7 +10,11 @@ REGEDIT
 ;****************************************************************
 
 
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe = c:\msvc\tilp\tilp.exe
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe\Path = C:\msvc\tilp;C:\Program Files\Fichiers communs\GTK\2.0\lib
+;HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe = c:\msvc\tilp\tilp.exe
+;HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe\Path = C:\msvc\tilp;C:\Program Files\Fichiers communs\GTK\2.0\lib
 
 
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\TiLP.exe]
+@="C:\\msvc\\tilp\\tilp.exe"
+"Path"="C:\\msvc\\tilp\\TiLP;C:\\Program Files\\Common Files\\GTK\\2.0\\lib"
