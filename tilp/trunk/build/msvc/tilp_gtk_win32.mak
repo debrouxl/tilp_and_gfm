@@ -97,7 +97,7 @@ CLEAN :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../src/win32" /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -190,9 +190,9 @@ LINK32_OBJS= \
 	"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib" \
-	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
 	"..\..\..\ticables\build\msvc\ticables.lib" \
 	"..\..\..\ticalcs\build\msvc\ticalcs.lib" \
 	"..\..\..\tifiles\build\msvc\tifiles.lib"
@@ -280,7 +280,7 @@ CLEAN :
     if not exist "$(INTDIR)/$(NULL)" mkdir "$(INTDIR)"
 
 CPP=cl.exe
-CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../src/win32" /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "GTK" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "WIN32" /D "ENABLE_NLS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
+CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ /c 
 
 .c{$(INTDIR)}.obj::
    $(CPP) @<<
@@ -373,9 +373,9 @@ LINK32_OBJS= \
 	"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib" \
-	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib" \
+	"..\..\..\..\..\Gtk2Dev\lib\intl.lib" \
 	"$(OUTDIR)\ticables.lib" \
 	"$(OUTDIR)\ticalcs.lib" \
 	"$(OUTDIR)\tifiles.lib"

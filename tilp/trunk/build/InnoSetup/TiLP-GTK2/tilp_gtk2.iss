@@ -89,7 +89,8 @@ Source: "C:\home\devel\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ignor
 Source: "C:\home\devel\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; Flags: ignoreversion; Attribs: hidden; MinVersion: 4,0;
 
 ; Fix Gtk-Wimp installation problem (file is not at the right location)
-Source: "C:\Program Files\Fichiers Communs\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
+;Source: "C:\Program Files\Fichiers Communs\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
+Source: "C:\Program Files\Common Files\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;

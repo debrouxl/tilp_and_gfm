@@ -6,9 +6,9 @@
 --------------------Configuration: tilp_gtk_win32 - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP22F.tmp" with contents
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP65.tmp" with contents
 [
-/nologo /ML /w /W0 /GX /O2 /I "../../../libs/cables/src" /I "../../../libs/files/src" /I "../../../libs/calcs/src" /I "../../src/win32" /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /c 
+/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "NDEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /c 
 "C:\home\devel\tilp\src\about.c"
 "C:\home\devel\tilp\src\action.c"
 "C:\home\devel\tilp\src\clist.c"
@@ -31,15 +31,12 @@ Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP22F.tmp" with cont
 "C:\home\devel\tilp\src\screenshot.c"
 "C:\home\devel\tilp\src\scroptions.c"
 "C:\home\devel\tilp\src\shell.c"
-"C:\home\devel\tilp\src\splash.c"
-"C:\home\devel\tilp\src\support.c"
 "C:\home\devel\tilp\src\tilp.c"
 "C:\home\devel\tilp\src\toolbar.c"
 "C:\home\devel\tilp\src\wizard.c"
 "C:\home\devel\tilp\src\tilp_calcs.c"
 "C:\home\devel\tilp\src\tilp_error.c"
 "C:\home\devel\tilp\src\tilp_files.c"
-"C:\home\devel\tilp\src\tilp_indep.c"
 "C:\home\devel\tilp\src\tilp_main.c"
 "C:\home\devel\tilp\src\tilp_misc.c"
 "C:\home\devel\tilp\src\tilp_paths.c"
@@ -51,8 +48,8 @@ Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP22F.tmp" with cont
 "C:\home\devel\tilp\src\tilp_slct.c"
 "C:\home\devel\tilp\src\tilp_vars.c"
 ]
-Creating command line "cl.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP22F.tmp" 
-Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP230.tmp" with contents
+Creating command line "cl.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP65.tmp" 
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP66.tmp" with contents
 [
 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"TiLP.pdb" /machine:I386 /out:"TiLP.exe" 
 \msvc\Output\tilp_gtk\about.obj
@@ -105,14 +102,14 @@ kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32
 "..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
 "..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
 "..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
-..\..\..\..\..\Gtk2Dev\lib\intl.lib
 "..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
 "..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
+..\..\..\..\..\Gtk2Dev\lib\intl.lib
 \home\devel\ticables\build\msvc\ticables.lib
 \home\devel\ticalcs\build\msvc\ticalcs.lib
 \home\devel\tifiles\build\msvc\tifiles.lib
 ]
-Creating command line "link.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP230.tmp"
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP66.tmp"
 <h3>Output Window</h3>
 Compiling...
 about.c
@@ -139,15 +136,12 @@ Generating Code...
 Compiling...
 scroptions.c
 shell.c
-splash.c
-support.c
 tilp.c
 toolbar.c
 wizard.c
 tilp_calcs.c
 tilp_error.c
 tilp_files.c
-tilp_indep.c
 tilp_main.c
 tilp_misc.c
 tilp_paths.c
@@ -157,8 +151,6 @@ tilp_rcfile.c
 tilp_refresh.c
 tilp_screen.c
 tilp_slct.c
-Generating Code...
-Compiling...
 tilp_vars.c
 Generating Code...
 Linking...
