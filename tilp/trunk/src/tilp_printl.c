@@ -58,12 +58,48 @@ static HANDLE hConsole = (HANDLE)-1;
 #endif
 
 static FILE *flog = NULL;
+gchar *logfile = NULL;
+
+const gchar * tilp_get_logfile (void)
+{
+	if (logfile == NULL) {
+		fclose(tilp_open_log("a"));
+	}
+
+	return logfile;
+}
+
+FILE * tilp_open_log (const char *mode)
+{
+#ifdef __WIN32__
+	return fopen("C:\\tilp.log", mode);
+#else
+	int logfd;
+	FILE *log = NULL;
+
+	if (logfile == NULL) {
+		logfd = g_file_open_tmp("tilp_log.XXXXXX", &logfile, NULL);
+
+		if (logfd < 0)
+			return NULL;
+
+		log = fdopen(logfd, "a");
+	}
+
+	if (log == NULL)
+		log = fopen(logfile, mode);
+	else
+		log = freopen(logfile, mode, log);
+
+	return log;
+#endif /* __WIN32__ */
+}
 
 static int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 {
 	static int print_domain = !0;
-	// We cannot use the va_list twice without copying it or calling
-        // va_start() again (which we cannot do here, as we're getting a va_list)
+       // We cannot use the va_list twice without copying it or calling
+       // va_start() again (which we cannot do here, as we're getting a va_list)
 	va_list log_ap;
 	va_copy(log_ap, ap);
 #ifdef __WIN32__
@@ -122,8 +158,7 @@ skip_console:
 #endif
 
 	if (flog == NULL) {
-    		flog = fopen(LOG_FILE, "wt");
-                //flog = fopen(inst_paths.base_dir, "wt");
+    		flog = tilp_open_log("a");
 	}
 	
 	if(print_domain) {

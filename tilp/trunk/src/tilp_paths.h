@@ -22,18 +22,22 @@
 #ifndef PATHS_H
 #define PATHS_H
 
+#include <stdio.h>
+
+/* in tilp_printl.c */
+const gchar * tilp_get_logfile (void);
+FILE * tilp_open_log (const char *mode);
 
 /* Paths */
 #if defined(__LINUX__) || defined(__BSD__)
 # define INI_FILE  "/.tilp"
 # define REG_FILE "tilp.registry"
-# define LOG_FILE "/tmp/tilp.log"
+# define LOG_FILE "tilp_get_logfile()"
 #elif defined(__WIN32__)
 # define INI_FILE  "tilp.ini"
 # define REG_FILE "tilp.registry"
-# define LOG_FILE "C:\\tilp.log"
+# define LOG_FILE "tilp_get_logfile()"
 #endif
-
 
 /* Temporary filenames (used by cb_calc.c) */
 #define TMPFILE_BACKUP   "tilp.backup"

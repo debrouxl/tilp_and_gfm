@@ -62,7 +62,7 @@ gint display_logfile_dbox()
 			len = stbuf.st_size;
 			len -= 2;
 		}
-		if ((fd = fopen(filename, "r")) != NULL) {
+		if ((fd = tilp_open_log("r")) != NULL) {
 			memset(buffer, 0, sizeof(buffer));
 			len = fread(buffer, 1, len, fd);
 			fclose(fd);
