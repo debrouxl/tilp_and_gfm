@@ -57,7 +57,27 @@ extern struct screenshot ti_screen;
 
 - (IBAction)remoteControl:(id)sender
 {
-    // FIXME OS X : I didn't find this one yet...
+    // FIXME OS X
+    // fix the text (keys <=> TI ops)
+    // need to find how to catch certain key combos...
+    // maybe use the Command key...
+
+    id remoteControlWindow;
+    id remoteControlTextArea;
+    
+    remoteControlWindow = objects_ptr->remoteControlWindow;
+    
+    if ([remoteControlWindow isVisible])
+        {
+            [remoteControlWindow orderFront:self];
+            return;
+        }
+    
+    remoteControlTextArea = objects_ptr->remoteControlTextArea;
+    
+    [remoteControlTextArea setStringValue:@"\nYou are in remote control mode.\nPress any key, but, for:\n- Shift, press the left Shift key\n- diamond, press the left Ctrl key\n- 2nd, press the right Alt key\n- APPS, press the F9 key\n- STO, press the F10 key\n- MODE, press the F11 key\n- CLEAR, press the F12 key\n- (-) negative, press the right enter key\nPlease click the text window to focus it.\n\n"];
+    
+    [remoteControlWindow makeKeyAndOrderFront:self];
 }
 
 - (IBAction)getScreen:(id)sender
@@ -87,7 +107,7 @@ extern struct screenshot ti_screen;
 - (IBAction)doRestore:(id)sender
 {
     // FIXME OS X
-    // we need a fileselection here
+    // we need a fileselection here (NSOpenPanel)
     // then call cb_send_backup(char *filename) from cb_calc.c
 }
 
@@ -95,6 +115,7 @@ extern struct screenshot ti_screen;
 {
     // FIXME OS X : hmmm... there should be a fileselection
     // at some point inside cb_receive_backup()...
+    // that would be NSSavePanel
     cb_receive_backup();
 }
 
@@ -119,6 +140,7 @@ extern struct screenshot ti_screen;
 {
     // FIXME OS X
     // I didn't find this one yet...
+    // OK it's not implemented... ROMAIN !! I'm gonna LART you !
 }
 
 - (IBAction)getIDList:(id)sender
@@ -151,6 +173,7 @@ extern struct screenshot ti_screen;
 {
     // FIXME OS X
     // a bit of Cocoa coding is required here. Later.
+    // could be tricky... see Cocoa's docs.
 }
 
 

@@ -97,6 +97,10 @@
 #define FILE_CHECKING_MID 1
 #define FILE_CHECKING_ON  2
 
+/* Terminal/remote control operating mode */
+#define REMOTE 1
+#define TERM 2
+
 /* Unused stuffs */
 #define UNUSED -1
 

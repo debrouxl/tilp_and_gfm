@@ -106,7 +106,7 @@ int cb_screen_save(char *filename)
       break;
 #endif
     }
-  fclose(image);  
+  fclose(image);
   
   return 0;
 }

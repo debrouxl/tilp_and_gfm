@@ -119,9 +119,27 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
 
 - (IBAction)doRestore:(id)sender
 {
+    NSOpenPanel *op;
+    
+    int result;
+
     // FIXME OS X
-    // pop-up a fileselection then call
+    // see the gtk code => message box before filesel !!
+    // find the extension of the file to pass as an argument to the NSOpenPanel
     // cb_send_backup(char *filename);
+    
+    op = [NSOpenPanel openPanel];
+    
+    [op setTitle:@"Choose the file to restore"];
+    [op setAllowMultipleFileSelection:NO];
+    
+    result = [op runModalForDirectory:NSHomeDirectory() file:nil
+                                      types:[NSArray arrayWithObject:@"fixmecuzidontknowtheextension"]];
+                                      
+    if (result == NSOKButton)
+        {
+                // FIXME OS X : see NSOpenPanel help to finish
+        }
 }
 
 - (IBAction)getDirlist:(id)sender
@@ -141,7 +159,9 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     
     bitmap = [[NSData alloc] initWithBytes:ti_screen.img.bitmap length:strlen(ti_screen.img.bitmap)];
     [bitmap autorelease];
-    
+ 
+    // FIXME OS X
+    // maybe we need to tell the NSImage to render our bitmap...   
     screen = [[NSImage alloc] initWithData:bitmap];
     [screen autorelease];
     

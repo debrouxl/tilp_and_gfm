@@ -365,10 +365,11 @@
 				F50FDBB30179D45601000102,
 				F50E4E78017F17D801000103,
 				F50E4E7C017F181501000103,
-				F50E4E8A017F249701000103,
 				F5D45989017F4A2001000103,
 				F536EFB90180C7CB01000103,
 				F50D8E5D0181A1D501000102,
+				F5F18AE10189B5F001BE4DDB,
+				F5F18AE20189B5F001BE4DDB,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -401,7 +402,6 @@
 				F50FDB940179D3E101000102,
 				F50E4E79017F17D801000103,
 				F50E4E7D017F181601000103,
-				F50E4E8B017F249701000103,
 				F5D45984017F491C01000103,
 				F5D45985017F491C01000103,
 				F5D45986017F491C01000103,
@@ -411,6 +411,8 @@
 				F50D8E570181721101000102,
 				F50D8E5A018175BC01000102,
 				F50D8E5F0181A22D01000102,
+				F5F18AE40189B60F01BE4DDB,
+				F5F18AE60189B62501BE4DDB,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -609,9 +611,10 @@
 		};
 		F50E4E82017F224201000103 = {
 			children = (
-				F50E4E89017F249701000103,
-				F536EFB80180C7CA01000103,
 				F50D8E5C0181A1D401000102,
+				F536EFB80180C7CA01000103,
+				F5F18ADF0189B5F001BE4DDB,
+				F5F18AE00189B5F001BE4DDB,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -619,34 +622,13 @@
 		};
 		F50E4E83017F224201000103 = {
 			children = (
-				F50E4E88017F249701000103,
 				F50D8E5E0181A22D01000102,
+				F5F18AE30189B60F01BE4DDB,
+				F5F18AE50189B62501BE4DDB,
 			);
 			isa = PBXGroup;
 			name = Sources;
 			refType = 4;
-		};
-		F50E4E88017F249701000103 = {
-			isa = PBXFileReference;
-			path = cocoa_msg_sheets.m;
-			refType = 2;
-		};
-		F50E4E89017F249701000103 = {
-			isa = PBXFileReference;
-			path = cocoa_msg_sheets.h;
-			refType = 2;
-		};
-		F50E4E8A017F249701000103 = {
-			fileRef = F50E4E89017F249701000103;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50E4E8B017F249701000103 = {
-			fileRef = F50E4E88017F249701000103;
-			isa = PBXBuildFile;
-			settings = {
-			};
 		};
 		F50F01000183725501000102 = {
 			isa = PBXFileReference;
@@ -2368,6 +2350,50 @@
 		};
 		F5D45989017F4A2001000103 = {
 			fileRef = F5D45988017F4A1F01000103;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F18ADF0189B5F001BE4DDB = {
+			isa = PBXFileReference;
+			path = cocoa_sheets.h;
+			refType = 2;
+		};
+		F5F18AE00189B5F001BE4DDB = {
+			isa = PBXFileReference;
+			path = cocoa_refresh.h;
+			refType = 2;
+		};
+		F5F18AE10189B5F001BE4DDB = {
+			fileRef = F5F18AE00189B5F001BE4DDB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F18AE20189B5F001BE4DDB = {
+			fileRef = F5F18ADF0189B5F001BE4DDB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F18AE30189B60F01BE4DDB = {
+			isa = PBXFileReference;
+			path = cocoa_sheets.m;
+			refType = 2;
+		};
+		F5F18AE40189B60F01BE4DDB = {
+			fileRef = F5F18AE30189B60F01BE4DDB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F5F18AE50189B62501BE4DDB = {
+			isa = PBXFileReference;
+			path = cocoa_refresh.m;
+			refType = 2;
+		};
+		F5F18AE60189B62501BE4DDB = {
+			fileRef = F5F18AE50189B62501BE4DDB;
 			isa = PBXBuildFile;
 			settings = {
 			};

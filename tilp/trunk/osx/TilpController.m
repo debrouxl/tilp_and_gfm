@@ -7,10 +7,12 @@
 #include "../src/cb_misc.h"
 #include "../src/main.h"
 
-#include "cocoa_msg_sheets.h"
+#include "cocoa_sheets.h"
 #include "cocoa_structs.h"
+#include "cocoa_refresh.h"
 
 extern struct cocoa_objects_ptr *objects_ptr;
+extern struct cocoa_pbars_ptr *pbars_ptr;
 
 #import "TilpController.h"
 
@@ -35,49 +37,66 @@ struct gui_fncts gui_functions;
     myTilpConfig = nil;
     objects_ptr->tilpConfig = NULL;
     
+    // at this time, nobody uses these structs anymore (hopefully...)
+    // if you get any segfault/sigbus problem on exiting, rank this #1 :)
+    free(objects_ptr);
+    free(pbars_ptr);
+    
     [super dealloc];
 }
 
 - (void)awakeFromNib
-{    
-  /* Init the classes pointers */
-  objects_ptr->BoxesController = BoxesController;
-  objects_ptr->MenuController = MenuController;
-  objects_ptr->PrefsController = PrefsController;
-  objects_ptr->ToolbarController = ToolbarController;
-  objects_ptr->TilpController = self;
-  objects_ptr->mainWindow = mainWindow;
-  objects_ptr->dlgboxEntry = dlgboxEntry;
+{   
+    // FIXME OS X
+    // I suspect I'm setting to nil some variables that are already
+    // set to the correct value by others awakeFromNib.
+    // I *REALLY* need to check that.
+ 
+    // Init the classes pointers
+    objects_ptr->BoxesController = BoxesController;
+    objects_ptr->MenuController = MenuController;
+    objects_ptr->PrefsController = PrefsController;
+    objects_ptr->ToolbarController = ToolbarController;
+    objects_ptr->TilpController = self;
   
-  objects_ptr->alertPanel = nil;
+    objects_ptr->mainWindow = mainWindow;
+    objects_ptr->dlgboxEntry = dlgboxEntry;
   
-  objects_ptr->dlgbox_data = NULL;
-  objects_ptr->box_button = -1;
+    objects_ptr->alertPanel = nil;
+  
+    objects_ptr->dlgboxEntry = nil;
+  
+    objects_ptr->remoteControlWindow = nil;
+    objects_ptr->remoteControlTextArea = nil;
+    objects_ptr->term_mode = REMOTE;
+  
+    objects_ptr->dlgbox_data = NULL;
+    objects_ptr->box_button = -1;
     
-  /* Init the GUI independant functions */
-  gui_functions.msg_box = create_cocoa_msg_sheet;
-  gui_functions.user1_box = create_cocoa_user1_sheet;
-  gui_functions.user2_box = create_cocoa_user2_sheet;
-  gui_functions.user3_box = create_cocoa_user3_sheet;
-  gui_functions.dlgbox_entry = create_cocoa_dlgbox_entry;
-  gui_functions.create_pbar_type1 = create_cocoa_pbar_type1_sheet;
-  gui_functions.create_pbar_type2 = create_cocoa_pbar_type2_sheet;
-  gui_functions.create_pbar_type3 = create_cocoa_pbar_type3_sheet;
-  gui_functions.create_pbar_type4 = create_cocoa_pbar_type4_sheet;
-  gui_functions.create_pbar_type5 = create_cocoa_pbar_type5_sheet;
-  gui_functions.destroy_pbar = destroy_pbar;
-  set_gui_fncts(&gui_functions);
+    // Init the GUI independant functions
+    gui_functions.msg_box = create_cocoa_msg_sheet;
+    gui_functions.user1_box = create_cocoa_user1_sheet;
+    gui_functions.user2_box = create_cocoa_user2_sheet;
+    gui_functions.user3_box = create_cocoa_user3_sheet;
+    gui_functions.dlgbox_entry = create_cocoa_dlgbox_entry;
+    gui_functions.create_pbar_type1 = create_cocoa_pbar_type1_sheet;
+    gui_functions.create_pbar_type2 = create_cocoa_pbar_type2_sheet;
+    gui_functions.create_pbar_type3 = create_cocoa_pbar_type3_sheet;
+    gui_functions.create_pbar_type4 = create_cocoa_pbar_type4_sheet;
+    gui_functions.create_pbar_type5 = create_cocoa_pbar_type5_sheet;
+    gui_functions.destroy_pbar = destroy_pbar;
+    set_gui_fncts(&gui_functions);
   
-  //gt_init_refresh_functions();  //depends on GTK, needs to be reimplemented.
+    gt_init_refresh_functions();
     
-  /* 
-     If variables have been passed on the command line in GUI mode then
-     send them 
-  */
-  if(working_mode == MODE_OSX)
-    {
-      cb_send_cmdline();
-    }
+    /* 
+     * If variables have been passed on the command line in GUI mode then
+     * send them 
+     */
+    if(working_mode == MODE_OSX)
+        {
+            cb_send_cmdline();
+        }
 }
 
 // required to be a valid dataSource for NSOutlineView

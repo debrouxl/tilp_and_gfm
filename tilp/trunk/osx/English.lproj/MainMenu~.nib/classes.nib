@@ -4,11 +4,9 @@
             ACTIONS = {
                 dlgboxentryButton1Push = id; 
                 dlgboxentryButton2Push = id; 
-                msgboxButtonPush = id; 
                 pbarButtonPush = id; 
                 remoteControlChangeMode = id; 
                 remoteControlTextEntered = id; 
-                screendumpLoadImage = id; 
                 screendumpRefresh = id; 
                 screendumpSaveImage = id; 
             }; 
@@ -150,6 +148,7 @@
                 ToolbarController = id; 
                 currentFolder = id; 
                 dirlistTree = id; 
+                dlgboxEntry = id; 
                 mainWindow = id; 
                 memoryUsed = id; 
                 numberOfFolders = id; 

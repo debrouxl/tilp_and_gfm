@@ -22,6 +22,7 @@
 #include "cocoa_structs.h"
 
 struct cocoa_objects_ptr *objects_ptr;
+struct cocoa_pbars_ptr *pbars_ptr;
 
 #ifdef HAVE_TIFFEP
 Shm s;
@@ -49,6 +50,7 @@ int main(int argc, const char *argv[], char **arge)
 #endif
     
   objects_ptr = (struct cocoa_objects_ptr *)malloc(sizeof(struct cocoa_objects_ptr));
+  pbars_ptr = (struct cocoa_pbars_ptr *)malloc(sizeof(struct cocoa_pbars_ptr));
     
   /* Init the classes pointers */
   objects_ptr->BoxesController = nil;
