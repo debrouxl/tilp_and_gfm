@@ -140,6 +140,7 @@ gint display_action_dbox(gchar * dest)
 	TiRegular content;
 	int i, button = 0;
 	gint result;
+	gboolean empty = TRUE;
 
 	if (!ti_calc.is_silent)
 		return BUTTON1;
@@ -161,12 +162,16 @@ gint display_action_dbox(gchar * dest)
 	// fill model
 	for (sel = clist_win.selection; sel != NULL; sel = sel->next) {
 		TilpFileInfo *f = (TilpFileInfo *) sel->data;
-		if (tifiles_is_a_flash_file(f->name))
-			return BUTTON1;	// skip box
+		if (tifiles_is_a_flash_file(f->name)) {
+			button = BUTTON1; // skib box
+			goto out_clean;
+		}
 		else if (tifiles_is_a_regular_file(f->name)) {
 			if (tilp_error
-			    (tifiles_read_regular_file(f->name, &content)))
-				return BUTTON2;	// abort operation
+			    (tifiles_read_regular_file(f->name, &content))) {
+				button = BUTTON2; // abort operation
+				goto out_clean;
+			}
 			f->actions =
 			    ticalc_create_action_array(content.
 						       num_entries);
@@ -193,6 +198,7 @@ gint display_action_dbox(gchar * dest)
 					continue;
 
 				// file contain an already existing var...
+				empty = FALSE; // the list isn't empty
 				strcpy(ta->varname, full_name);
 				ta->varattr = ve_dst->attr;
 				ta->filename = g_strdup(f->name);
@@ -232,6 +238,11 @@ gint display_action_dbox(gchar * dest)
 		}
 	}
 
+	if (empty == TRUE) {
+		button = BUTTON1; // skip box
+		goto out_clean;
+	}
+
 	// box running
 	gtk_dialog_set_default_response(GTK_DIALOG(dbox),
 					GTK_RESPONSE_CANCEL);
@@ -247,6 +258,7 @@ gint display_action_dbox(gchar * dest)
 		break;
 	}
 
+out_clean:
 	// free memory...
 	free_actions();
 	gtk_widget_destroy(dbox);
