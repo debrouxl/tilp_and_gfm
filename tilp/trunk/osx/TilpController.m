@@ -526,7 +526,7 @@ TilpGuiFncts gui_functions;
           // dictionary that will hold this app
           tmpDict = [[NSMutableDictionary alloc] init];
           [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-          [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+          [tmpDict setObject:[NSString stringWithUTF8String:v->trans] forKey:@"Varname"];
           [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
           [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
 
@@ -562,7 +562,7 @@ TilpGuiFncts gui_functions;
               tmpArray = [[NSMutableArray alloc] init];
 
               [tmpDict setObject:tmpArray forKey:@"Entries"];
-              [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Group"];
+              [tmpDict setObject:[NSString stringWithUTF8String:v->trans] forKey:@"Group"];
 
               // we're in a new folder, so...
               varPos = 0;
@@ -598,7 +598,7 @@ TilpGuiFncts gui_functions;
               }
 
               [tmpDict setObject:[NSImage imageNamed:@"doc.tiff"] forKey:@"Image"];
-              [tmpDict setObject:[NSString stringWithCString:v->trans] forKey:@"Varname"];
+              [tmpDict setObject:[NSString stringWithUTF8String:v->trans] forKey:@"Varname"];
               [tmpDict setObject:[NSString stringWithCString:tifiles_vartype2string(v->type)] forKey:@"Vartype"];
               [tmpDict setObject:[NSString stringWithFormat:@"%u", v->size] forKey:@"Varsize"];
 

@@ -247,6 +247,9 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)getDirlist:(id)sender
 {
+    // Unicode, baby !
+    tifiles_translate_set_encoding(ENCODING_UTF8);
+
     if (tilp_calc_dirlist() != 0)
         return;
 

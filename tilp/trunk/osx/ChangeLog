@@ -1,4 +1,6 @@
-* 20030424 : v6.66 / 0.6.8 ($Rev$)
+* 20030724 : v6.67 / 0.6.9 ($Rev$)
+	* Let's use UTF8 in the dirlist.
+* 20030424 : v6.66 / 0.6.8 (Rev: 337)
 	* Merge up to 6.66.
 	* Always set the prompt for NSSavePanel and NSOpenPanel.
 	* Set the main window title at startup.
