@@ -717,14 +717,13 @@ void sort_lfiles_by_attrib(GList *list)
 /* Return the filename or its extension if it has one */
 char *file_extension(char *filename)
 {
-  int i;
-  char *p;
-  
-  for(i=strlen(filename); i > 0; i--)
-    {
-      if(filename[i] == '.') break;
-    }
-  p=filename+i+1;
-  
-  return p;
+  char *e;
+
+  e = strrchr(filename, '.');
+  if(e == NULL)
+    e ="";
+  else
+    e++;
+
+  return e;
 }

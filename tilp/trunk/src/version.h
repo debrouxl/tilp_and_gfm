@@ -25,12 +25,12 @@
 */
 
 #ifdef __WIN32__
-# define TILP_VERSION "5.08" // For Win32
+# define TILP_VERSION "5.11" // For Win32
 #else
 # define TILP_VERSION VERSION
 #endif
 #define LIB_CABLE_VERSION_REQUIRED  "3.1.6"
-#define LIB_CALC_VERSION_REQUIRED   "3.2.0"
+#define LIB_CALC_VERSION_REQUIRED   "3.3.2"
 #define LIB_TIFFEP_VERSION_REQUIRED "1.2.0"
 
 #endif

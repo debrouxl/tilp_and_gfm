@@ -18,17 +18,18 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 
 #ifndef __MACOSX__
 # include "platform.h"
 # include "tilibs.h"
+# include "str.h"
 #else
 # include <libticables/cabl_err.h>
 # include <libticalcs/calc_err.h>
 # include <libticalcs/calc_int.h>
 # include <glib/glib.h>
 # include <stdlib.h>
+# include <unistd.h>
 #endif
 
 #include "sub_main.h"
@@ -902,6 +903,10 @@ int cb_ams_to_rom(char *filename)
   return 0;
 }
 
+#ifdef __WIN32__
+# define strcasecmp _stricmp
+#endif
+
 /*
   Send one or more selected variables
 */
@@ -967,7 +972,9 @@ int cb_send_var(void)
     {
       f=(struct file_info *)ptr->data;
       
-      if(strstr(f->filename, ticalc_group_file_ext(options.lp.calc_type)))
+      //if(strstr(f->filename, ticalc_group_file_ext(options.lp.calc_type)))
+      if(!strcasecmp(file_extension(f->filename), 
+		     ticalc_group_file_ext(options.lp.calc_type)))
 	{ 
 	  /****************/
 	  /* A group file */
@@ -1006,24 +1013,29 @@ int cb_send_var(void)
 	  /*****************/
 	  /* A single file */
 	  /*****************/
-	  
-	  if(strstr(f->filename, ticalc_backup_file_ext(options.lp.calc_type)))
-	    {/*
-	      gif->destroy_pbar();
-	      cb_send_backup(f->filename);
-	      return 0;*/
+
+	  if(!strcasecmp(file_extension(f->filename), 
+			 ticalc_backup_file_ext(options.lp.calc_type)))
+	    {
+	      /*
+		gif->destroy_pbar();
+		cb_send_backup(f->filename);
+		return 0;
+	      */
 	      gif->destroy_pbar();
 	      gif->msg_box(_("Error"), 
 			   _("Use the 'Restore' button instead."));
 	      return -1;
 	    }
-	  else if(strstr(f->filename, ticalc_flash_app_file_ext(options.lp.calc_type)))
+	  else if(!strcasecmp(file_extension(f->filename), 
+			      ticalc_flash_app_file_ext(options.lp.calc_type)))
 	    {
 	      gif->destroy_pbar();
 	      cb_send_flash_app(f->filename);
 	      return 0;
 	    }
-	  else if(strstr(f->filename, ticalc_flash_os_file_ext(options.lp.calc_type)))
+	  else if(!strcasecmp(file_extension(f->filename), 
+			      ticalc_flash_os_file_ext(options.lp.calc_type)))
 	    {
 	      gif->destroy_pbar();
 	      cb_send_flash_os(f->filename);

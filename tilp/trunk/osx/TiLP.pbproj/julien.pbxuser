@@ -1061,7 +1061,7 @@
 		isa = PBXTextBookmark;
 		name = "cb_calc.c: cb_send_flash_app";
 		rLen = 0;
-		rLoc = 12309;
+		rLoc = 12328;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 12027;
@@ -2191,7 +2191,7 @@
 		isa = PBXTextBookmark;
 		name = "cb_calc.c: cb_send_flash_app";
 		rLen = 0;
-		rLoc = 12309;
+		rLoc = 12328;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 12027;
@@ -2393,7 +2393,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: 321";
 		rLen = 21;
-		rLoc = 12473;
+		rLoc = 10922;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 14045;
@@ -2413,7 +2413,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: 61";
 		rLen = 11;
-		rLoc = 1828;
+		rLoc = 1810;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 3710;
@@ -2493,7 +2493,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: 61";
 		rLen = 11;
-		rLoc = 1828;
+		rLoc = 1810;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 6364;
@@ -2656,7 +2656,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: 61";
 		rLen = 11;
-		rLoc = 1828;
+		rLoc = 1810;
 		rType = 0;
 		vrLen = 777;
 		vrLoc = 11425;
@@ -2676,7 +2676,7 @@
 		isa = PBXTextBookmark;
 		name = "TilpController.m: 61";
 		rLen = 11;
-		rLoc = 1828;
+		rLoc = 1810;
 		rType = 0;
 		vrLen = 777;
 		vrLoc = 11425;
@@ -2846,7 +2846,7 @@
 		isa = PBXTextBookmark;
 		name = "cb_calc.c: 21";
 		rLen = 0;
-		rLoc = 872;
+		rLoc = 871;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 833;
@@ -3016,7 +3016,7 @@
 		isa = PBXTextBookmark;
 		name = "cb_calc.c: cb_send_flash_app";
 		rLen = 0;
-		rLoc = 12984;
+		rLoc = 13003;
 		rType = 0;
 		vrLen = 692;
 		vrLoc = 12681;
@@ -3086,7 +3086,7 @@
 		isa = PBXTextBookmark;
 		name = "cb_calc.c: cb_recv_app";
 		rLen = 11;
-		rLoc = 26689;
+		rLoc = 26708;
 		rType = 0;
 		vrLen = 621;
 		vrLoc = 24981;

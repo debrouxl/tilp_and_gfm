@@ -32,6 +32,6 @@
 
 #define TILP_OSX_VERSION "0.6.0"
 
-#define VERSION "5.08"
+#define VERSION "5.11"
 
 #endif /* !__CONFIG_H__ */

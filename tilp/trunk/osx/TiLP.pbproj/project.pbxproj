@@ -244,8 +244,8 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
-				F516701C01E1037501041594,
 				F50751E0019C12DA0140747F,
+				F516701C01E1037501041594,
 				F5090AF30178A67A01000102,
 				089C165CFE840E0CC02AAC07,
 				00FFA4BA01707A727F000001,
@@ -1556,11 +1556,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.08</string>
+	<string>5.11</string>
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>5.08-osx0.6.0</string>
+	<string>5.11-osx0.6.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

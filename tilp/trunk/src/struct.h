@@ -79,6 +79,8 @@ extern struct goptions
   char *unzip_options;
   char *tar_location;
   char *tar_options;
+  char *appsign_location;
+  char *appsign_options;
   char left_font_name[MAXCHARS];
   char right_font_name[MAXCHARS];
   int transfer_mode;

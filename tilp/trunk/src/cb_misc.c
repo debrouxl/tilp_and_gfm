@@ -94,11 +94,15 @@ int cb_default_config(void)
   options.unzip_options = g_strdup("");
   options.tar_location = g_strdup("tar");
   options.tar_options = g_strdup("");
+  options.appsign_location = g_strdup("/usr/bin/appsign");
+  options.appsign_options = g_strdup("-k /usr/bin/0104.key");
 #elif defined(__WIN32__)
   options.unzip_location = g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
   options.unzip_options = g_strdup("");
   options.tar_location = g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
   options.tar_options = g_strdup("");
+  options.appsign_location = g_strdup("");
+  options.appsign_options = g_strdup("");
 #else
 options.unzip_location = NULL;
 options.unzip_options = NULL;
