@@ -27,7 +27,7 @@ could see.>>
 
 - 29/01/2005, version 6.77 (3.8.6, 0.6.1, 4.5.6): roms
 	Added full FLASH support for TI89 Titanium.
-	To add: full FLASH support for TI84+.
+	Added full FLASH support for TI84+. This might have broken TI83+ support.
 
 - 02/10/2004, version 6.76 (3.8.6, 0.6.1, 4.5.5): roms
 	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.

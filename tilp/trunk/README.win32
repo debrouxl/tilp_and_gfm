@@ -10,10 +10,13 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.x libraries (!!! new package !!!)
-    Location: <<http://www2.arnes.si/~sopjsimo/gimp/stable.html>
+ - the GTK+ 2.4.x libraries
+    Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.14-rc3.exe>
  - the SilverLink driver v3.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
+	
+	Note: if you are using GiMP, you don't need to get this GTK+ package, they are compatible.
+
 
 NOTES
 -----
@@ -40,11 +43,7 @@ This step may require an administrator account (at least for NT4).
 You will need to REBOOT your machine after installation (if you plan to 
 use a parallel or serial link cable).
 
-4°) This setup will modify your AUTOEXEC.BAT (Windows 9x/Me) to speed-up 
-GTK+ 2.0 rendering. It should be better to REBOOT your machine after the first
-installation...
-
-5°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP use the
+4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP use the
 Courier New font. Nevertheless, if you have installed the TI-Connect software, 
 TiLP will use the TI's fonts.
 

@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP
-AppVerName=TiLP 6.76
+AppVerName=TiLP 6.77
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -554,32 +554,16 @@ begin
   // Retrieve GTK path
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the "GTK+ 2.x Runtime Environment" (2.4.3). You can obtain GTK+ from <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
+    MsgBox ('Please install the "GTK+ 2.4.x Runtime Environment" (2.4.14 mini). You can obtain GTK+ from <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.14-rc3.exe>.', mbError, MB_OK);
   end;
 
-  // Retrieve GTK version (2.4.3 for GiMP package or aio-2.4-rc16/2.4.6-c2 for libglade package)
+  // Retrieve GTK version
   if Result then begin
     Result := GetGtkVersionInstalled ();
 
-    if (Length(GtkVersion) > 0) then begin
-      if StrGet(GtkVersion, 1) = 'a' then begin
-        if CompareStr(GtkVersion, 'aio-2.4-rc16') < 0 then begin
-          MsgBox ('Wrong package version. You need version aio-2.4-rc16 mini from <http://gladewin32.sourceforge.net/>.', mbError, MB_OK);
-        end;
-      end
-      else begin
-        if CompareStr(GtkVersion, '2.2.4') = 0 then begin
-           MsgBox('A GTK+ package is present but it is now abandonned. Please uninstall it and download a new one at <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
-        end
-        else begin
-          if CompareStr(GtkVersion, '2.4.3') < 0 then begin
-            MsgBox ('Wrong package version. You need at least version 2.4.3 from <http://www2.arnes.si/~sopjsimo/gimp/stable.html>.', mbError, MB_OK);
-          end;
-        end
-      end
-    end
-    else begin
-      MsgBox ('GTK+ 2.0 package seems to be mis-installed or corrupted.', mbError, MB_OK);
+    // and check
+    if CompareStr(GtkVersion, '2.4.14') < 0 then begin
+      MsgBox ('Wrong package version. You need at least version 2.4.14 from <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.4.14-rc3.exe>.', mbError, MB_OK);
     end;
   end;
 
@@ -587,10 +571,10 @@ begin
   if IsTiglUsbVersion3Mini() then begin
     MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
   end;
-  
+
   // Check for non-NT and WiMP theme
   WimpPath := GtkPath + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
-        MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP', mbError, MB_OK);
+        MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
   end;
 end;

@@ -2,8 +2,8 @@
 
 
 
-Previous version: 6.75		(18/09/2004)
-Current version:  6.76		(28/10/2004)
+Previous version: 6.76		(28/10/2004)
+Current version:  6.77		(30/01/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -20,18 +20,18 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- new ROM dumper for TI83+(SE)/TI84+(SE) thanks to "Benjamin Moody" <bmoody@WPI.EDU>.
+	- FLASH transfers (os & apps) are now supported on TI84+ and TI89 Titanium.
+	Remark: this might have broken TI83+ FLASH support. In this case, fire me a mail !
 
 Improvements:
 -------------
 
-	- none.
+	- switched to a new GTK+ package (the same one used by TiEmu II and compatible with 'The GiMP'.
 
 Bug fixes:
 ----------
 
-	- avoid overwrite of group file when ungrouping in the same folder as the group file.
-	- action box (overwrite/rename variable).
+	- none.
 
 Known problems:
 ---------------
