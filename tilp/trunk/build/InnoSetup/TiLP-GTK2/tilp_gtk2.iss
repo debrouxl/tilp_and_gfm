@@ -507,6 +507,7 @@ Type: files; Name: "{app}\tilp.url"
 var
   Exists: Boolean;
   GtkPath: String;
+  WimpPath: String;
 
 function GetGtkInstalled (): Boolean;
 begin
@@ -541,5 +542,12 @@ begin
   Result := GetGtkInstalled ();
   if not Result then begin
     MsgBox ('Please install the "GTK+ 2.0 Runtime Environment" of DropLine Systems. You can obtain GTK+ from <http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download>.', mbError, MB_OK);
+  end;
+  
+  if Result then begin
+      WimpPath := GtkPath + '\lib\gtk-2.0\2.2.0\engines\libwimp.dll';
+      if FileExists(WimpPath) and not UsingWinNT() then begin
+        DeleteFile(WimpPath);
+      end;
   end;
 end;

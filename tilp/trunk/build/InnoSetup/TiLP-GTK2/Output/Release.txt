@@ -5,7 +5,7 @@
 Previous version: 6.71	     (16/04/2004)
 Current version:  6.72	     (24/04/2004)
 
-SubVersion (CVS) revision: $Id: RELEASE 644 2004-04-24 16:43:28Z roms $
+SubVersion (CVS) revision: $Id: RELEASE 655 2004-04-26 18:12:16Z roms $
 
 TiLP is available for 4 platforms:
 Linux (GTK), Windows (GTK), Mac OS-X (Cocoa) and FreeBSD (GTK).
@@ -34,8 +34,10 @@ Improvements:
 Known problems:
 ---------------
 
+	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
+		It has been currelty disabled.
 	- [Linux]: the timeout value can not be changed with kernel modules.
-	Consequently, OS upgrades will fail...
+		Consequently, OS upgrades will fail...
 		=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b or Linux kernel >= 2.4.27 or 2.6.7.
 
 

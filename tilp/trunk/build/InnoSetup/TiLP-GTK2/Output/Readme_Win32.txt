@@ -10,15 +10,18 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.x libraries (provided by Dropline Systems)
-        Location: http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download
- - the SilverLink driver v2.x if you have a SilverLink cable
+ - the GTK+ 2.x libraries (new package)
+    Location: http://prdownloads.sourceforge.net/gtk-win/GTK-Runtime-Environment-2.2.4-2.exe?download
+ - the SilverLink driver v3.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf.zip
 
 NOTES
 -----
 
-1°) This release is a no longer a native port of TiLP. You need some extra libraries (GTK+ 2.0).
+1°) This release is a no longer a native port of TiLP. You need some extra libraries 
+(GTK+ 2.0). The GTK+ package includes the Wimp (Windows IMPersonator) theme 
+engine which gives Windows look & feel (includes XP theming). Note: disabled on 
+non-NT systems.
 
 2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 the Win32 driver on the Linux Programmer Group at http://lpg.ticalc.org/prj_usb.
@@ -30,10 +33,6 @@ You can install driver at any time (that is to say before or after TiLP installa
 
 Given that the LPG SilverLink driver has a Release date more recent than the Texas
 Instruments OEM driver, this driver will be used prior to the TI one.
-
-Note: if you are running into troubles with the SilverLink cable, please don't mail me !
-This driver works (almost) perfectly but work so so for few people. I can't make this driver work 
-better with hardware and skills I have. Thus, don't sue me!
 
 3°) This setup will install the PortTalk driver (Windows NT4/2000/XP machines).
 This step may require an administrator account (at least for NT4).
@@ -73,7 +72,7 @@ AVAILABILITY
 COPYRIGHT
 ---------
 
-TiLP is Copyright (C) 1999-2003 by the TiLP team <tilp-users@lists.sf.net>
+TiLP is Copyright (C) 1999-2004 by the TiLP team <tilp-users@lists.sf.net>
 
 Copying is allowed under the terms of GNU General Public License.  
 See the file COPYING for more details.
