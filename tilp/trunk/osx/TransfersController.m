@@ -278,10 +278,8 @@ extern int is_active;
     
     while ((nsfile = [filesEnum nextObject]) != nil)
         {
-            file = (char *)malloc([nsfile cStringLength] + 1);
-            
-            [nsfile getCString:file];
-            
+            file = strdup([nsfile fileSystemRepresentation]);
+
             cb_send_flash_app(file);
             
             free(file);
@@ -297,25 +295,20 @@ extern int is_active;
 {
     NSAutoreleasePool *localPool;
     NSArray *nsfiles;
-    NSString *nsfile;
 
     char *file;
 
     localPool = [[NSAutoreleasePool alloc] init];
 
     nsfiles = (NSArray *)files;
+            
+    file = strdup([[nsfiles lastObject] fileSystemRepresentation]);
 
-    nsfile = [nsfiles lastObject];
-            
-    file = (char *)malloc([nsfile cStringLength] + 1);
-            
-    [nsfile getCString:file];
-            
     cb_send_flash_os(file);
             
-    [nsfile release];
-            
     free(file);
+    
+    [nsfiles release];
     
     [localPool release];
     [NSThread exit];
@@ -325,25 +318,20 @@ extern int is_active;
 {
     NSAutoreleasePool *localPool;
     NSArray *nsfiles;
-    NSString *nsfile;
 
     char *file;
 
     localPool = [[NSAutoreleasePool alloc] init];
 
     nsfiles = (NSArray *)files;
-
-    nsfile = [nsfiles lastObject];
             
-    file = (char *)malloc([nsfile cStringLength] + 1);
-            
-    [nsfile getCString:file];
-            
+    file = strdup([[nsfiles lastObject] fileSystemRepresentation]);
+    
     cb_send_backup(file);
-                    
-    [nsfile release];
             
     free(file);
+    
+    [nsfiles release];
     
     [localPool release];
     [NSThread exit];

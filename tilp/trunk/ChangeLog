@@ -155,8 +155,15 @@
 	* All important transfers threaded (except dirlist).
 	      => working "Abort" buttons.
 	* Fixed Windows menu handling, wrt pbar sheets.
+* 20020116 : v0.3.7
+	* Do not use - [NSString getCString:buffer] when handling paths,
+	use - [NSString fileSystemRepresentation] instead.
+	* Do not malloc() then - [NSString getCString:buffer], it's better
+	to strdup(- [NSString cString]).
+	* Try to get all windows or sheets open by the same thread. We use
+	NSNotification to achieve that, did a test with pbarType1. Not
+	really what I expected...
 	
-
 
 
 

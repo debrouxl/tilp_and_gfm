@@ -103,9 +103,7 @@ create_cocoa_dlgbox_entry(const char *title, const char *message, const char *co
     data = [mySheetsController dlgboxEntry:[NSString stringWithCString:message]
                                content:[NSString stringWithCString:content]];
                                
-    ret = (char *)malloc(([data cStringLength] + 1) * sizeof(char));
-    
-    [data getCString:ret];
+    ret = strdup([data cString]);
     
     [data release];
     objects_ptr->dlgbox_data = nil;
@@ -131,7 +129,19 @@ create_cocoa_pbar_type1_sheet(const char *title)
     
     mySheetsController = objects_ptr->mySheetsController;
     
-    [mySheetsController pbarType1];
+    if ([NSThread isMultiThreaded])
+      {
+          fprintf(stderr, "DEBUG: MULTITHREAD, issuing notification\n");
+      
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"TilpThreadNeedsSheet"
+                                                object:@"pbarType1"];
+      }
+    else
+      {
+          fprintf(stderr, "DEBUG: NOT THREADED, spawning sheet\n");
+      
+          [mySheetsController pbarType1];
+      }
 }
  
 void

@@ -47,6 +47,50 @@ extern struct ticalc_info_update info_update;
     // Init instance pointer
     objects_ptr->mySheetsController = self;
 }
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self == nil)
+        return nil;
+    
+    fprintf(stderr, "DEBUG: registering for TilpThreadNeedsSheet notification\n");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(threadNeedsSheet:)
+                                          name:@"TilpThreadNeedsSheet"
+                                          object:nil];
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    fprintf(stderr, "DEBUG: unregistering for TilpThreadNeedsSheet notification\n");
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super dealloc];
+}
+ 
+
+- (void)threadNeedsSheet:(NSNotification *)notification
+{
+    NSString *sheet;
+    
+    sheet = (NSString *)[notification object];
+    
+    fprintf(stderr, "DEBUG: THREAD issued a request\n");
+    
+    if ([sheet isEqualToString:@"pbarType1"])
+        {
+            fprintf(stderr, "DEBUG: THREAD requested PBAR TYPE 1\n");
+        
+            [self pbarType1];
+        }
+}
+
  
 - (void)msgSheet:(NSString *)message title:(NSString *)title
 {
@@ -250,7 +294,7 @@ extern struct ticalc_info_update info_update;
     pbarWindow = pbar1Window;
   
     [pbar1Window setExcludedFromWindowsMenu:YES];
-    
+        
     [NSApp beginSheet:pbar1Window
            modalForWindow:mainWindow
            modalDelegate:nil
@@ -258,6 +302,9 @@ extern struct ticalc_info_update info_update;
            contextInfo:nil];
     
     [NSApp endSheet:pbar1Window];
+    
+    [pbar1Window makeKeyWindow];
+    [NSApp updateWindows];
 }
  
 - (void)pbarType3

@@ -824,8 +824,7 @@ struct gui_fncts gui_functions;
                                     return NO;
                                 }
                             
-                            fi->filename = (char *)malloc([file cStringLength] + 1);
-                            [file getCString:fi->filename];
+                            fi->filename = strdup([file fileSystemRepresentation]);
                             
                             filelist = g_list_append(filelist, fi);
                         }

@@ -283,9 +283,8 @@ extern int is_active;
         {
             sp = contextInfo;
         
-            file = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:file];
-            
+            file = strdup([[sp filename] fileSystemRepresentation]);
+              
             switch (options.screen_format)
                 {
                     case TIFF:
@@ -324,8 +323,7 @@ extern int is_active;
         {
             sp = contextInfo;
                               
-            file = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:file];
+            file = strdup([[sp filename] fileSystemRepresentation]);
 
             if(options.confirm == CONFIRM_YES)
                 {
@@ -398,8 +396,7 @@ extern int is_active;
         {
             sp = contextInfo;
                               
-            file = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:file];
+            file = strdup([[sp filename] fileSystemRepresentation]);
 
             if(options.confirm == CONFIRM_YES)
                 {
@@ -479,9 +476,8 @@ extern int is_active;
         {
             sp = [context objectForKey:@"savepanel"];
                               
-            file = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:file];
-
+            file = strdup([[sp filename] fileSystemRepresentation]);
+ 
             if(options.confirm == CONFIRM_YES)
                 {
                     if(access(file, F_OK) == 0)
@@ -558,8 +554,7 @@ extern int is_active;
         {
             sp = [context objectForKey:@"savepanel"];
                               
-            file = (char *)malloc([[sp filename] cStringLength] + 1);
-            [[sp filename] getCString:file];
+            file = strdup([[sp filename] fileSystemRepresentation]);
 
             if(options.confirm == CONFIRM_YES)
                 {
