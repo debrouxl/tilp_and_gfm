@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP
-AppVerName=TiLP 6.68
+AppVerName=TiLP 6.70
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -27,48 +27,48 @@ Name: "tifiles"; Description: "Register file types"; GroupDescription: "File ass
 
 [Files]
 ; Glade files
-Source: "C:\home\devel\tilp\glade\*.glade"; DestDir: "{app}\glade"; CopyMode: alwaysoverwrite;
+Source: "C:\home\devel\tilp\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
 ; Help files
-Source: "C:\home\devel\tilp\help\*.png"; DestDir: "{app}\help"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\help\*.htm?"; DestDir: "{app}\help"; CopyMode: alwaysoverwrite;
+Source: "C:\home\devel\tilp\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\help\*.htm?"; DestDir: "{app}\help"; Flags: ignoreversion;
 ; Icons files
-Source: "C:\home\devel\tilp\icons\*.ico"; DestDir: "{app}\icons"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; CopyMode: alwaysoverwrite;
-Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; CopyMode: alwaysoverwrite;
+Source: "C:\home\devel\tilp\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
+Source: "C:\home\devel\tilp\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
 ; Pixmaps files
-Source: "C:\home\devel\tilp\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; CopyMode: alwaysoverwrite;
+Source: "C:\home\devel\tilp\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 ; i18n files
-;Source: "C:\home\devel\libs\files\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tifiles.mo"; CopyMode: alwaysoverwrite;
-;Source: "C:\home\devel\libs\cables\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticables.mo"; CopyMode: alwaysoverwrite;
-;Source: "C:\home\devel\libs\calcs\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticalcs.mo"; CopyMode: alwaysoverwrite;
-;Source: "C:\home\devel\tilp\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp.mo"; CopyMode: alwaysoverwrite;
+;Source: "C:\home\devel\libs\files\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tifiles.mo"; Flags: ignoreversion;
+;Source: "C:\home\devel\libs\cables\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticables.mo"; Flags: ignoreversion;
+;Source: "C:\home\devel\libs\calcs\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticalcs.mo"; Flags: ignoreversion;
+;Source: "C:\home\devel\tilp\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp.mo"; Flags: ignoreversion;
 ; Misc files
-Source: "C:\home\devel\tilp\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\COPYING"; DestDir: "{app}"; DestName: "License.txt"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\man\ManPage.txt"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; CopyMode: alwaysoverwrite; Flags: isreadme
-Source: "C:\home\devel\tilp\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\registry\TiLP.registry"; DestDir: "{app}"; CopyMode: alwaysoverwrite
+Source: "C:\home\devel\tilp\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\COPYING"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
+Source: "C:\home\devel\tilp\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\registry\TiLP.registry"; DestDir: "{app}"; Flags: ignoreversion
 ; TiLP/GTK
-Source: "C:\home\devel\tifiles\tests\tifiles.dll"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\ticables\tests\ticables.dll"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\ticalcs\tests\ticalcs.dll"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\tilp\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; CopyMode: alwaysoverwrite
+Source: "C:\home\devel\tifiles\tests\tifiles.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\ticables\tests\ticables.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\ticalcs\tests\ticalcs.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\tilp\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 ; Copy PortTalk driver for Windows NT4/2000/XP
-Source: "C:\home\devel\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\Porttalk22\PortTalk.sys"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\Porttalk22\AllowIO.exe"; DestDir: "{app}"; CopyMode: alwaysoverwrite
-Source: "C:\home\devel\Porttalk22\Uninstall.exe"; DestDir: "{app}"; CopyMode: alwaysoverwrite
+Source: "C:\home\devel\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion
+Source: "C:\home\devel\Porttalk22\PortTalk.sys"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\Porttalk22\AllowIO.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\home\devel\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; TI fonts
 ;Source: "C:\home\devel\tilp\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\home\devel\tilp\fonts\tilp.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
@@ -86,7 +86,10 @@ Source: "C:\home\devel\Porttalk22\Uninstall.exe"; DestDir: "{app}"; CopyMode: al
 ;Source: "C:\home\devel\tilp\fonts\TI-92P.TTF";   DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ; Script to modify AUTOEXEC.bat
 ; Install helper
-Source: "C:\home\devel\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; CopyMode: alwaysoverwrite; Attribs: hidden; MinVersion: 4,0;
+Source: "C:\home\devel\tilp\build\InnoSetup\AddEntry\AddEntry.exe"; DestDir: "{app}"; Flags: ignoreversion; Attribs: hidden; MinVersion: 4,0;
+
+; Fix Gtk-Wimp installation problem (file is not at the right location)
+Source: "C:\Program Files\Fichiers Communs\GTK\2.0\lib\libwimp.dll"; DestDir: "{code:GetGtkPath}\lib\gtk-2.0\2.2.0\engines"; Flags: onlyifdoesntexist uninsneveruninstall;
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;

@@ -112,6 +112,7 @@ void tilp_rcfile_read(void)
 	char buffer[256];
 	char *p;
 	int l = 0;
+
 	get_rcfile_path(&rc_file);
 	txt = fopen(rc_file, "rt");
 	if (txt == NULL) {
@@ -120,9 +121,14 @@ void tilp_rcfile_read(void)
 			     ("Configuration file not found, use default values. You can create one by the 'File|Save config' command menu.\n"));
 		return;
 	}
+
 	while (!feof(txt)) {
 		fgets(buffer, 256, txt);
 		l++;
+
+		if(feof(txt))
+			break;
+
 		buffer[strlen(buffer) - 1] = '\0';
 		if (!strcmp(buffer, "RC_END")) {
 			fclose(txt);
