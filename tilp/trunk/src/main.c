@@ -196,7 +196,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	/* Check whether a TiLP session is already running */
 	hMutex = CreateMutex(NULL, TRUE, "TiLP");
 	if (GetLastError() == ERROR_ALREADY_EXISTS) {
-		g_error("WinMain: TiLP is already running.");
+		MessageBox(NULL, _("An TiLP session is already running. Check the task list."), _("Error"), MB_OK);
 	}
 
 	return main(__argc, __argv, NULL);
