@@ -33,25 +33,25 @@ TilpGuiFncts *gif;		// completely public
 
 void cmdline_msg_box(const char *title, char *message)
 {
-	lprintf(2, "msg_box: %s, %s\n", title, message);
+	printl(2, "msg_box: %s, %s\n", title, message);
 }
 
 int cmdline_msg_box2(const char *title, char *message)
 {
-	lprintf(2, "user1_box: %s, %s\n", title, message);
+	printl(2, "user1_box: %s, %s\n", title, message);
 	return 0;
 }
 
 int cmdline_msg_box3(const char *title, char *message, const char *b1,
 		     const char *b2, const char *b3)
 {
-	lprintf(2, "user1_box: %s, %s\n", title, message);
+	printl(2, "user1_box: %s, %s\n", title, message);
 	return 0;
 }
 
 int cmdline_msg_box4(const char *title, char *message)
 {
-	lprintf(2, "user1_box: %s, %s\n", title, message);
+	printl(2, "user1_box: %s, %s\n", title, message);
 	return 0;
 }
 char *cmdline_msg_entry(const char *title, const char *message,
@@ -61,32 +61,32 @@ char *cmdline_msg_entry(const char *title, const char *message,
 }
 void cmdline_create_pbar_type1(const char *title)
 {
-	lprintf(0, "%s: ", title);
+	printl(0, "%s: ", title);
 }
 
 void cmdline_create_pbar_type2(const char *title, char *text)
 {
-	lprintf(0, "%s: ", title);
+	printl(0, "%s: ", title);
 }
 
 void cmdline_create_pbar_type3(const char *title)
 {
-	lprintf(0, "%s: ", title);
+	printl(0, "%s: ", title);
 }
 
 void cmdline_create_pbar_type4(const char *title, char *text)
 {
-	lprintf(0, "%s: ", title);
+	printl(0, "%s: ", title);
 }
 
 void cmdline_create_pbar_type5(const char *title, char *text)
 {
-	lprintf(0, "%s: ", title);
+	printl(0, "%s: ", title);
 }
 
 void cmdline_destroy_pbar(void)
 {
-	lprintf(0, "\n");
+	printl(0, "\n");
 }
 
 /*

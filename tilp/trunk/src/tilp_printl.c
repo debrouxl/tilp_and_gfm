@@ -34,8 +34,8 @@
 
 #include "intl.h"
 
-#include "export.h"
 #include "tilibs.h"
+#include "tilp_core.h"
 #include "tilp_printl.h"
 
 /* 
@@ -44,11 +44,11 @@
 */
 
 #define DOMAIN_TICABLES         "ticables"
-#define DOMAIN_TIFILES          "tifiles"
-#define DOMAIN_TICALCS          "ticalcs"
-#define DOMAIN_TILP             "tilp"
+#define DOMAIN_TIFILES          "tifiles "
+#define DOMAIN_TICALCS          "ticalcs "
+#define DOMAIN_TILP             "tilp    "
 
-#define NO_STDOUT
+//#define NO_STDOUT
 
 /**************** printl muxer ************************/
 
@@ -57,26 +57,42 @@ static BOOL alloc_console_called = FALSE;
 HANDLE hConsole;
 #endif
 
+static FILE *flog = NULL;
+
 int printl_muxer(const char *domain, int level, const char *format, va_list ap)
 {
-                char buffer[128];
-                int cnt;
-                DWORD nWritten;
-/*
-    	        if (alloc_console_called == FALSE) {
-      		        AllocConsole();
-      		        alloc_console_called = TRUE;
-      		        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-      		        //freopen("CONOUT$", "w", stdout);
-    	        }
+#ifdef __WIN32__
+        char buffer[128];
+        int cnt;
+        DWORD nWritten;
 
-                va_start(ap, format);
-                cnt = _vsnprintf(buffer, 128, format, ap);
-                WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
-                va_end(ap);
-*/
-	//return vfprintf(stdout, format, ap);
+        if (alloc_console_called == FALSE) {
+	        AllocConsole();
+	        alloc_console_called = TRUE;
+	        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	        //freopen("CONOUT$", "w", stdout);
+        }
+
+        cnt = _vsnprintf(buffer, 128, format, ap);
+        WriteConsole(hConsole, buffer, cnt, &nWritten, NULL);
+#endif
+
+        if (flog == NULL) {
+    		flog = fopen(LOG_FILE, "wt");
+        } else {
+		vfprintf(flog, format, ap);
+  	}
+
+	//turn vfprintf(stdout, format, ap);
         return 0;
+}
+
+int printl_flush(void)
+{
+	fflush(flog);
+	//Flush console...
+
+	return 0;
 }
 
 /**************** printl callbacks ********************/
@@ -86,7 +102,7 @@ int ticables_printl(int level, const char *format, ...)
         va_list ap;
 	int ret = 0;
 #ifndef NO_STDOUT
-	fprintf(stdout, "cables ");
+	fprintf(stdout, DOMAIN_TICABLES);
 	if(level != 0)
 		fprintf(stdout, "(%s)", 
 			(level == 2) ? _("error") : _("warning"));
@@ -104,7 +120,7 @@ int tifiles_printl(int level, const char *format, ...)
         va_list ap;
 	int ret = 0;
 #ifndef NO_STDOUT
-	fprintf(stdout, "files ");
+	fprintf(stdout, DOMAIN_TIFILES);
 	if(level != 0)
 		fprintf(stdout, "(%s)", 
 			(level == 2) ? _("error") : _("warning"));
@@ -122,7 +138,7 @@ int ticalcs_printl(int level, const char *format, ...)
         va_list ap;
 	int ret = 0;
 #ifndef NO_STDOUT
-	fprintf(stdout, "calcs ");
+	fprintf(stdout, DOMAIN_TICALCS);
 	if(level != 0)
 		fprintf(stdout, "(%s)", 
 			(level == 2) ? _("error") : _("warning"));
@@ -139,7 +155,13 @@ int default_printl(int level, const char *format, ...)
 {
 	va_list ap;
 	int ret = 0;
-
+#ifndef NO_STDOUT
+	fprintf(stdout, DOMAIN_TILP);
+	if(level != 0)
+		fprintf(stdout, "(%s)", 
+			(level == 2) ? _("error") : _("warning"));
+        fprintf(stdout, ": ");
+#endif
 	va_start(ap, format);
         ret = printl_muxer(DOMAIN_TILP, level, format, ap);
         va_end(ap);

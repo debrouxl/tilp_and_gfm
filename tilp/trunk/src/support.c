@@ -103,7 +103,7 @@ GdkPixbuf *create_pixbuf(const gchar * filename)
 	}
 	pixbuf = gdk_pixbuf_new_from_file(pathname, &error);
 	if (!pixbuf) {
-		lprint(2, "Failed to load pixbuf file: %s: %s\n",
+		printl(2, "Failed to load pixbuf file: %s: %s\n",
 			pathname, error->message);
 		g_error_free(error);
 	}

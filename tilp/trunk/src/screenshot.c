@@ -75,7 +75,7 @@ GLADE_CB void on_sc_load1_activate(GtkMenuItem * menuitem,
 	pixbuf = gdk_pixbuf_new_from_file(filename, &error);
 	if (!pixbuf) 
 	{
-		lprint(2, "Failed to load pixbuf file: %s: %s\n",
+		printl(2, "Failed to load pixbuf file: %s: %s\n",
 			filename, error->message);
 		g_error_free(error);
 	}
@@ -130,7 +130,7 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 	}
 	
 	if (result == FALSE) {
-		lprint(2, "Failed to save pixbuf file: %s: %s\n",
+		printl(2, "Failed to save pixbuf file: %s: %s\n",
 			filename, error->message);
 		g_error_free(error);
 	}

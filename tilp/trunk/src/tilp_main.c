@@ -302,7 +302,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	// Parse the config file
 	tilp_rcfile_read();
 #else
-    rc_init_with_default();
+    	rc_init_with_default();
 	rc_get_user_prefs();
 #endif /* !__MACOSX__ */
 	tilp_chdir(options.working_dir);
@@ -321,19 +321,28 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Check the version of libraries 
 	 */
-	if (strcmp(ticable_get_version(), LIB_CABLE_VERSION_REQUIRED) < 0) {
+	if (strcmp(tifiles_get_version(), TILP_REQUIRES_LIBFILES_VERSION) < 0) {
+		printl(0, _
+			("libtifiles library version <%s> mini required.\n"),
+			TILP_REQUIRES_LIBFILES_VERSION);
+		gif->msg_box(_("Error"),
+			     _("Libtifiles: version mismatches."));
+		exit(-1);
+	}
+	
+	if (strcmp(ticable_get_version(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) {
 		printl(0, _
 			("libticables library version <%s> mini required.\n"),
-			LIB_CABLE_VERSION_REQUIRED);
+			TILP_REQUIRES_LIBCABLES_VERSION);
 		gif->msg_box(_("Error"),
 			     _("Libticables: version mismatches."));
 		exit(-1);
 	}
 	
-	if (strcmp(ticalc_get_version(), LIB_CALC_VERSION_REQUIRED) < 0) {
+	if (strcmp(ticalc_get_version(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) {
 		printl(0, _
 			("libticalcs library version <%s> mini required.\n"),
-			LIB_CALC_VERSION_REQUIRED);
+			TILP_REQUIRES_LIBCALCS_VERSION);
 		gif->msg_box(_("Error"),
 			     _("Libticalcs: version mismatches."));
 		exit(-1);
@@ -342,7 +351,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Initialize the libticables library 
 	 */
-        //ticable_set_printl(ticables_printl);
+        ticable_set_printl(ticables_printl);
 	ticable_init();
 	ticable_set_param(&options.lp);
 	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
@@ -351,14 +360,14 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	/* 
 	   Initialize the libtifiles library 
 	 */
-        //tifiles_set_printl(tifiles_printl);
+        tifiles_set_printl(tifiles_printl);
 	tifiles_init();
-	tifiles_set_calc(options.lp.calc_type);	 
+	tifiles_set_calc(options.lp.calc_type);
 
 	/* 
 	   Initialize the libticalcs library 
 	 */
-        //ticalc_set_printl(ticalcs_printl);
+        ticalc_set_printl(ticalcs_printl);
 	ticalc_init();
 	ticalc_set_cable(&link_cable);
 	ticalc_set_calc(options.lp.calc_type, &ti_calc);

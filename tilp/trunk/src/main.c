@@ -85,7 +85,6 @@ int main(int argc, char *argv[], char **arge)
 {
 	char rc_version[32];
 	GdkPixbuf *icon;
-	//uint8_t varname[20], utf8[35];
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
@@ -165,12 +164,10 @@ int main(int argc, char *argv[], char **arge)
 	   If variables have been passed on the command line in GUI mode then
 	   open them 
 	 */
-	/*
 	   if ((working_mode & ~MODE_GUI) == MODE_GTK) {
 	   splash_screen_set_label(_("Command line..."));
 	   tilp_cmdline_send();
 	   }
-	 */
 
 	/* GTK main loop */
 	splash_screen_stop();

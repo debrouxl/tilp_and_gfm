@@ -6,6 +6,78 @@
 --------------------Configuration: tilp_gtk_win32 - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP938.tmp" with contents
+[
+/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /D "_DEBUG" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /Fo"C:\msvc\Output\tilp_gtk/" /Fd"C:\msvc\Output\tilp_gtk/" /FD /GZ /c 
+"C:\home\devel\tilp\src\tilp_printl.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP938.tmp" 
+Creating temporary file "C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP939.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"C:\msvc\tilp\TiLP.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib" 
+\msvc\Output\tilp_gtk\about.obj
+\msvc\Output\tilp_gtk\action.obj
+\msvc\Output\tilp_gtk\clist.obj
+\msvc\Output\tilp_gtk\clock.obj
+\msvc\Output\tilp_gtk\comm.obj
+\msvc\Output\tilp_gtk\ctree.obj
+\msvc\Output\tilp_gtk\dboxes.obj
+\msvc\Output\tilp_gtk\dnd.obj
+\msvc\Output\tilp_gtk\extprgms.obj
+\msvc\Output\tilp_gtk\filesel.obj
+\msvc\Output\tilp_gtk\general.obj
+\msvc\Output\tilp_gtk\gtk_refresh.obj
+\msvc\Output\tilp_gtk\labels.obj
+\msvc\Output\tilp_gtk\logfile.obj
+\msvc\Output\tilp_gtk\main.obj
+\msvc\Output\tilp_gtk\manpage.obj
+\msvc\Output\tilp_gtk\pbars.obj
+\msvc\Output\tilp_gtk\popup.obj
+\msvc\Output\tilp_gtk\release.obj
+\msvc\Output\tilp_gtk\screenshot.obj
+\msvc\Output\tilp_gtk\scroptions.obj
+\msvc\Output\tilp_gtk\shell.obj
+\msvc\Output\tilp_gtk\splash.obj
+\msvc\Output\tilp_gtk\support.obj
+\msvc\Output\tilp_gtk\tilp.obj
+\msvc\Output\tilp_gtk\toolbar.obj
+\msvc\Output\tilp_gtk\wizard.obj
+\msvc\Output\tilp_gtk\tilp_calcs.obj
+\msvc\Output\tilp_gtk\tilp_error.obj
+\msvc\Output\tilp_gtk\tilp_files.obj
+\msvc\Output\tilp_gtk\tilp_indep.obj
+\msvc\Output\tilp_gtk\tilp_main.obj
+\msvc\Output\tilp_gtk\tilp_misc.obj
+\msvc\Output\tilp_gtk\tilp_paths.obj
+\msvc\Output\tilp_gtk\tilp_plugin.obj
+\msvc\Output\tilp_gtk\tilp_printl.obj
+\msvc\Output\tilp_gtk\tilp_prompt.obj
+\msvc\Output\tilp_gtk\tilp_rcfile.obj
+\msvc\Output\tilp_gtk\tilp_refresh.obj
+\msvc\Output\tilp_gtk\tilp_screen.obj
+\msvc\Output\tilp_gtk\tilp_slct.obj
+\msvc\Output\tilp_gtk\tilp_vars.obj
+\msvc\Output\tilp_gtk\Tilp.res
+"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
+..\..\..\..\..\Gtk2Dev\lib\intl.lib
+\msvc\tilp\ticables.lib
+\msvc\tilp\ticalcs.lib
+\msvc\tilp\tifiles.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\rlievin\LOCALS~1\Temp\RSP939.tmp"
+<h3>Output Window</h3>
+Compiling...
+tilp_printl.c
+Linking...
 
 
 

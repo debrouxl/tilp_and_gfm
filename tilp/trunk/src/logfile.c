@@ -33,6 +33,8 @@
 #include "logfile.h"
 #include "tilp_core.h"
 
+extern int printl_flush(void);
+
 gint display_logfile_dbox()
 {
 	GladeXML *xml;
@@ -50,7 +52,8 @@ gint display_logfile_dbox()
 #endif
 
 	// Flush file to disk
-	ticable_verbose_flush_file();
+	printl_flush();
+	printl_flush();
 
 	// Read it
 	filename = g_strdup(LOG_FILE);
