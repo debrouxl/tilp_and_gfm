@@ -73,11 +73,11 @@
 
 struct ti89key
 {
-    int none;
-    int shift;
-    int second;
-    int diamond;
-    int alpha;
+  unsigned int none;
+  unsigned int shift;
+  unsigned int second;
+  unsigned int diamond;
+  unsigned int alpha;
 };
 
 
@@ -106,7 +106,7 @@ const struct ti89key TI89KEYS[] =
   { 263, 263, 263, 8455, 263 }, /* CLEAR */
   { 120, 88, 4184, 8280, 120 }, /* X */
   { 121, 89, 4185, 8281, 121 }, /* Y */
-  { 121, 90, 4186, 8282, 122 }, /* Z */
+  { 122, 90, 4186, 8282, 122 }, /* Z */
   { 116, 84, 4180, 8276, 116 }, /* T */
   { 94, 94, 140, 136, 94 }, /* ^ */
   { 61, 65, 39, 157, 97 }, /* = */

@@ -177,6 +177,8 @@ extern int is_active;
                 [sp setTitle:@"Save screen as XPM"];
                 proposedFile = @"screendump.xpm";
                 break;
+            default: // just in case...
+                return;
         }
         
     [sp beginSheetForDirectory:NSHomeDirectory()

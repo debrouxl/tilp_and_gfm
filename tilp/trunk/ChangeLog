@@ -209,7 +209,12 @@
 	main window.
 * 20020127 : v0.4.3
 	* Fixed TI-89 modes handling in remote control.
-	
+* 20020128 : v0.4.4
+	* Fixed a bug in the remote control keyboard handling. Use usigned
+	int instead of unsigned char.
+	* Fixed a typo in keys89.h, 'z' = 122, not 121.
+	     [both reported by Matthew Bryant]
+
 
 
 

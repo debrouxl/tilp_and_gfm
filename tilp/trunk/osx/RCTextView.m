@@ -34,7 +34,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 {
     [self insertText:aString]; // we should not override insertText
     
-    [self setTextColor:[NSColor redColor] range:NSMakeRange([[self string] length] - [aString length], [[self string] length])];
+    [self setTextColor:[NSColor redColor] range:NSMakeRange([[self string] length] - [aString length], [aString length])];
 }
 
 @end
@@ -56,7 +56,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 // The calc seems to be using UNICODE, hopefully we won't have to remap
 // a whole bunch of chars, only backspace and some others.
 
-    unsigned int toSend;
+    unsigned int toSend = 0;
     int ret;
     int i;
     

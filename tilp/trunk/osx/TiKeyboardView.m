@@ -39,14 +39,16 @@ extern struct cocoa_objects_ptr *objects_ptr;
   id myCalc89KeyboardController = objects_ptr->myCalc89KeyboardController;
   id myCalc92KeyboardController = objects_ptr->myCalc92KeyboardController;
 
+#ifdef OSX_DEBUG
   fprintf(stderr, "DEBUG: mouseDown event on Imageview\n");
-  
+#endif
+
   if ([event type] == NSLeftMouseDown)
       {
           mouseClick = [self convertPoint:[event locationInWindow] fromView:nil];
-          
+#ifdef OSX_DEBUG
           fprintf(stderr, "Coordinates : x %f, y %f\n", mouseClick.x, mouseClick.y);
-          
+#endif
           if ([self mouse:mouseClick inRect:[self bounds]])
               {
                   if (ticalc_get_calc() == CALC_TI89)

@@ -27,7 +27,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 #include "keys92.h"
 
 
-unsigned char sknKey92[] = 
+unsigned short sknKey92[] = 
 {
   TIKEY92_GRAB,
   TIKEY92_F1,TIKEY92_F2,TIKEY92_F3,TIKEY92_F4,TIKEY92_F5,TIKEY92_F6,TIKEY92_F7,TIKEY92_F8,
@@ -90,7 +90,7 @@ uint32_t swap_bytes(uint32_t a);
 {
   int i;
   int ret;
-  unsigned char key = 0;
+  unsigned int key = 0;
   
   // we have a _little_ coordinates problem :)
   // our ImageView is 571 * 329
@@ -101,7 +101,9 @@ uint32_t swap_bytes(uint32_t a);
           if ((point.x >= rcKeys92[i].left) && (point.x < rcKeys92[i].right) && (point.y >= rcKeys92[i].top) && (point.y < rcKeys92[i].bottom))
               {
                   key = sknKey92[i];
-              
+#ifdef OSX_DEBUG
+                  fprintf(stderr, "DEBUG: matched key %d\n", key);
+#endif
                   break;
               }
       }

@@ -101,11 +101,11 @@
 
 struct ti92key
 {
-  int none;
-  int shift;
-  int second;
-  int diamond;
-  int grab;
+  unsigned int none;
+  unsigned int shift;
+  unsigned int second;
+  unsigned int diamond;
+  unsigned int grab;
 };
 
 
