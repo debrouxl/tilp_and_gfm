@@ -250,74 +250,28 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 	}
 }
 
-
-GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
-				  gpointer user_data)
+static void go_to_bookmark(const char *link)
 {
 	gboolean result;
 	gchar **argv = g_malloc0(3 * sizeof(gchar *));
 
 	argv[0] = g_strdup(options.web_location);
-	argv[1] = g_strconcat(options.web_options, inst_paths.help_dir,
-			      _("Manual_en.html"), NULL);
-
-	result = g_spawn_async(inst_paths.help_dir, argv, NULL, 0, NULL, NULL,
-			       NULL, NULL);
-	g_strfreev(argv);
-	if (result == FALSE) {
-	  msg_box("Error",
-		  "Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
-	} else {
-	  GtkWidget *dialog;
-	  GTimer *timer;
-	  const gchar *message =
-	    "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
-	  dialog =
-	    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
-				   GTK_MESSAGE_INFO,
-				   GTK_BUTTONS_CLOSE, message);
-	  g_signal_connect_swapped(GTK_OBJECT(dialog), "response",
-				   G_CALLBACK(gtk_widget_destroy),
-					 GTK_OBJECT(dialog));
-	  gtk_widget_show_all(GTK_WIDGET(dialog));
-	  
-	  timer = g_timer_new();
-	  while (g_timer_elapsed(timer, NULL) < 3.0);
-	  g_timer_destroy(timer);
-	  gtk_widget_destroy(GTK_WIDGET(dialog));
-	}
-}
-
-
-GLADE_CB void on_manpage1_activate(GtkMenuItem * menuitem,
-				   gpointer user_data)
-{
-	display_manpage_dbox();
-}
-
-static void go_to_bookmark(const char *link)
-{
-	gboolean result;
-	gchar *argv[3] = {
-		0
-	};
-	argv[0] = g_strdup(options.web_location);
 	argv[1] = g_strdup(link);
 	argv[2] = NULL;
-	result =
-	    g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
-	g_free(argv[0]);
-	g_free(argv[1]);
-	if (result == FALSE) {
-		msg_box("Error",
-			"Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
-	} else {
+
+	result = g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
+	g_strfreev(argv);
+
+	if (result == FALSE) 
+	{
+		msg_box("Error", "Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
+	} 
+	else 
+	{
 		GtkWidget *dialog;
 		GTimer *timer;
-		const gchar *message =
-		    "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
-		dialog =
-		    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+		const gchar *message = "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_INFO,
 					   GTK_BUTTONS_CLOSE, message);
 		g_signal_connect_swapped(GTK_OBJECT(dialog), "response",
@@ -325,13 +279,28 @@ static void go_to_bookmark(const char *link)
 					 GTK_OBJECT(dialog));
 		gtk_widget_show_all(GTK_WIDGET(dialog));
 		
-		timer = g_timer_new();
-		while (g_timer_elapsed(timer, NULL) < 3.0);
+		while(gtk_events_pending()) gtk_main_iteration();
+		for(timer = g_timer_new(); g_timer_elapsed(timer, NULL) < 3.0;);
+
 		g_timer_destroy(timer);
 		gtk_widget_destroy(GTK_WIDGET(dialog));
 	}
 }
 
+GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
+				  gpointer user_data)
+{
+	gchar *path = g_strconcat(inst_paths.help_dir, _("Manual_en.html"), NULL);
+
+	go_to_bookmark(path);
+	g_free(path);
+}
+
+GLADE_CB void on_manpage1_activate(GtkMenuItem * menuitem,
+				   gpointer user_data)
+{
+	display_manpage_dbox();
+}
 
 GLADE_CB void on_ti_s_web_site1_activate(GtkMenuItem * menuitem,
 					 gpointer user_data)
