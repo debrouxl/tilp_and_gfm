@@ -120,11 +120,13 @@ extern "C" {
     char *name;
     time_t date;
     off_t size;
-    //uid_t user;
-    //gid_t group;
 #ifdef __WIN32__
-		int attrib;
+    int user;
+    int group;
+    int attrib;
 #else
+    uid_t user;
+    gid_t group;
     mode_t attrib;
 #endif
 

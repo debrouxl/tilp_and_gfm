@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 23:05+0200\n"
+"POT-Creation-Date: 2004-05-08 10:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,11 +53,11 @@ msgstr ""
 msgid "overwrite"
 msgstr ""
 
-#: src/action.c:301 src/tilp_files.c:694 src/tilp_slct.c:119
+#: src/action.c:301 src/tilp_files.c:696 src/tilp_slct.c:124
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:301 src/tilp_files.c:695
+#: src/action.c:301 src/tilp_files.c:697
 msgid "New name: "
 msgstr ""
 
@@ -111,14 +111,14 @@ msgstr ""
 #: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
 #: src/tilp_calcs.c:301 src/tilp_files.c:105 src/tilp_files.c:119
 #: src/tilp_files.c:137 src/tilp_misc.c:48 src/tilp_misc.c:59
-#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:124
-#: src/tilp_slct.c:139 src/tilp_slct.c:150 src/tilp_slct.c:161
+#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:129
+#: src/tilp_slct.c:144 src/tilp_slct.c:155 src/tilp_slct.c:166
 msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:89
-#: src/tilp_slct.c:92
+#: src/tilp_calcs.c:396 src/tilp_files.c:686 src/tilp_slct.c:91
+#: src/tilp_slct.c:94
 msgid "Warning"
 msgstr ""
 
@@ -130,8 +130,8 @@ msgstr ""
 #: src/dboxes.c:50 src/dboxes.c:99 src/popup.c:173 src/popup.c:253
 #: src/popup.c:410 src/tilp.c:245 src/tilp_calcs.c:341 src/tilp_calcs.c:391
 #: src/tilp_calcs.c:590 src/tilp_calcs.c:596 src/tilp_calcs.c:602
-#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:732
-#: src/tilp_files.c:764 src/tilp_files.c:783 src/tilp_files.c:802
+#: src/tilp_error.c:81 src/tilp_error.c:83 src/tilp_files.c:734
+#: src/tilp_files.c:766 src/tilp_files.c:785 src/tilp_files.c:804
 #: src/tilp_main.c:323 src/tilp_main.c:332 src/tilp_main.c:341
 #: src/tilp_misc.c:169 src/tilp_misc.c:298 src/tilp_rcfile.c:51
 #: src/tilp_rcfile.c:566
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Unable to remove the temporary file.\n"
 msgstr ""
 
-#: src/gtk_refresh.c:131
+#: src/gtk_refresh.c:136
 msgid "initialized in GTK+ mode.\n"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Command line..."
 msgstr ""
 
-#: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:140
+#: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:145
 msgid "A file must have been selected in the right window."
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 msgid "Make a new directory"
 msgstr ""
 
-#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:119
+#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:124
 msgid "Name: "
 msgstr ""
 
@@ -428,38 +428,38 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/tilp_files.c:681
+#: src/tilp_files.c:683
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:685
+#: src/tilp_files.c:687
 msgid "Overwrite "
 msgstr ""
 
-#: src/tilp_files.c:685
+#: src/tilp_files.c:687
 msgid "Rename "
 msgstr ""
 
-#: src/tilp_files.c:686
+#: src/tilp_files.c:688
 msgid "Skip "
 msgstr ""
 
-#: src/tilp_files.c:734
+#: src/tilp_files.c:736
 msgid "Unable to move the temporary file.\n"
 msgstr ""
 
-#: src/tilp_files.c:763 src/tilp_files.c:800
+#: src/tilp_files.c:765 src/tilp_files.c:802
 msgid "Chdir error.\n"
 msgstr ""
 
-#: src/tilp_files.c:764 src/tilp_files.c:803 src/tilp_misc.c:169
+#: src/tilp_files.c:766 src/tilp_files.c:805 src/tilp_misc.c:169
 msgid "Unable to change directory."
 msgstr ""
 
-#: src/tilp_files.c:784
+#: src/tilp_files.c:786
 msgid "You can not go outside of your HOME directory."
 msgstr ""
 
@@ -724,23 +724,23 @@ msgstr ""
 msgid "Screendump"
 msgstr ""
 
-#: src/tilp_slct.c:90
+#: src/tilp_slct.c:92
 msgid ""
 "Are you sure you want to remove this file ?\n"
 "\n"
 msgstr ""
 
-#: src/tilp_slct.c:93
+#: src/tilp_slct.c:95
 msgid ""
 "Are you sure you want to remove these files ?\n"
 "\n"
 msgstr ""
 
-#: src/tilp_slct.c:125
+#: src/tilp_slct.c:130
 msgid "Unable to rename the file or directory."
 msgstr ""
 
-#: src/tilp_slct.c:151 src/tilp_slct.c:162
+#: src/tilp_slct.c:156 src/tilp_slct.c:167
 msgid "A variable must have been selected in the left window."
 msgstr ""
 

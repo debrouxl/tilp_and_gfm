@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-17 16:28+0200\n"
+"POT-Creation-Date: 2004-04-26 17:36+0200\n"
 "PO-Revision-Date: 2003-04-05 16:09+0200\n"
 "Last-Translator: Thomas Otto <3.1415926535897932384626433832 at gmx.net>\n"
 "Language-Team:  <de@li.org>\n"
@@ -53,7 +53,7 @@ msgstr "überspringen"
 msgid "overwrite"
 msgstr "überschreiben"
 
-#: src/action.c:301 src/tilp_files.c:694 src/tilp_slct.c:119
+#: src/action.c:301 src/tilp_files.c:694 src/tilp_slct.c:124
 msgid "Rename the file"
 msgstr "Datei umbenennen"
 
@@ -77,7 +77,7 @@ msgstr "Größe"
 msgid "Date"
 msgstr "Datum"
 
-#: src/comm.c:53
+#: src/comm.c:58
 msgid "comm.c: GUI loading failed !\n"
 msgstr "comm.c: GUI konnte nicht geladen werden!\n"
 
@@ -115,14 +115,14 @@ msgstr ""
 #: src/tilp_calcs.c:258 src/tilp_calcs.c:267 src/tilp_calcs.c:287
 #: src/tilp_calcs.c:301 src/tilp_files.c:105 src/tilp_files.c:119
 #: src/tilp_files.c:137 src/tilp_misc.c:48 src/tilp_misc.c:59
-#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:124
-#: src/tilp_slct.c:139 src/tilp_slct.c:150 src/tilp_slct.c:161
+#: src/tilp_misc.c:174 src/tilp_rcfile.c:124 src/tilp_slct.c:129
+#: src/tilp_slct.c:144 src/tilp_slct.c:155 src/tilp_slct.c:166
 msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:112 src/tilp_calcs.c:242
-#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:89
-#: src/tilp_slct.c:92
+#: src/tilp_calcs.c:396 src/tilp_files.c:684 src/tilp_slct.c:91
+#: src/tilp_slct.c:94
 msgid "Warning"
 msgstr "Warnung"
 
@@ -146,7 +146,7 @@ msgstr "Fehler"
 msgid "Unable to remove the temporary file.\n"
 msgstr "Temporäre Datei kann nicht entfernt werden.\n"
 
-#: src/gtk_refresh.c:131
+#: src/gtk_refresh.c:136
 #, fuzzy
 msgid "initialized in GTK+ mode.\n"
 msgstr "Initialized in GTK+ Modus.\n"
@@ -197,7 +197,7 @@ msgstr "Scanne Plugins..."
 msgid "Command line..."
 msgstr ""
 
-#: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:140
+#: src/popup.c:167 src/popup.c:247 src/tilp_slct.c:145
 msgid "A file must have been selected in the right window."
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr "Pluginmechanismus: System noch nicht definiert!"
 msgid "Make a new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:119
+#: src/popup.c:368 src/tilp.c:542 src/tilp_slct.c:124
 msgid "Name: "
 msgstr "Name: "
 
@@ -755,26 +755,26 @@ msgstr "Initialisiert im Kommandozeilenmodus.\n"
 msgid "Screendump"
 msgstr "Bildschirmfoto"
 
-#: src/tilp_slct.c:90
+#: src/tilp_slct.c:92
 msgid ""
 "Are you sure you want to remove this file ?\n"
 "\n"
 msgstr ""
 
-#: src/tilp_slct.c:93
+#: src/tilp_slct.c:95
 msgid ""
 "Are you sure you want to remove these files ?\n"
 "\n"
 msgstr ""
 
-#: src/tilp_slct.c:125
+#: src/tilp_slct.c:130
 #, fuzzy
 msgid "Unable to rename the file or directory."
 msgstr ""
 "Verzeichnis konnte nicht angelegt werden.\n"
 "\n"
 
-#: src/tilp_slct.c:151 src/tilp_slct.c:162
+#: src/tilp_slct.c:156 src/tilp_slct.c:167
 msgid "A variable must have been selected in the left window."
 msgstr ""
 
