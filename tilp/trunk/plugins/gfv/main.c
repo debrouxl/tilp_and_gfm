@@ -240,8 +240,8 @@ int plugin_load(const char *filename)
 	  char icon_name[256];
 
 	  row_text[0] = g_strdup(entry->trans);
-	  printf("<<%s>>\n", row_text[0]);
-	  hexdump(row_text[0], 9);
+	  //printf("<<%s>>\n", row_text[0]);
+	  //hexdump(row_text[0], 9);
 	  row_text[2] = g_strdup_printf("%s", 
 					tifiles_vartype2string(entry->type));
 	  row_text[3] = g_strdup_printf("%u", entry->size);
