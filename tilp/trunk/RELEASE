@@ -3,7 +3,7 @@
 
 
 Previous version: 6.72	    (24/04/2004)
-Current version:  6.74		(29/06/2004)
+Current version:  6.74b		(02/07/2004)
 
 SubVersion (CVS) revision: $Id$
 
@@ -26,6 +26,7 @@ Improvements:
 -------------
 
 	- VTi and TiEmu cables were swapped
+	- 6.74b: fixes a crash when parsing a folder with dots (such as a1.2).
 	
 
 Known problems:

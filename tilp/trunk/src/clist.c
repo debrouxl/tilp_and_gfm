@@ -177,6 +177,7 @@ static int detect_for_utf8(const char *s)
 /**************/
 /* Management */
 /**************/
+
 void clist_refresh(void)
 {
 	GtkTreeIter iter;
@@ -206,7 +207,6 @@ void clist_refresh(void)
 	}
 
 	pix1 = create_pixbuf("up.ico");
-	//pix1 = create_pixbuf("clist_dotdot.xpm");
 	pix2 = create_pixbuf("clist_dir.xpm");
 	for (dirlist = clist_win.dirlist; dirlist != NULL;
 	     dirlist = dirlist->next) {
@@ -252,8 +252,9 @@ void clist_refresh(void)
 				   COLUMN_TYPE, tilp_file_get_type(fi),
 				   COLUMN_SIZE, tilp_file_get_size(fi),
 				   COLUMN_DATE, tilp_file_get_date(fi),
-				   COLUMN_DATA, (gpointer) fi, COLUMN_ICON,
-				   pix, -1);
+				   COLUMN_DATA, (gpointer) fi, 
+                   COLUMN_ICON, pix, 
+                   -1);
 		//g_object_unref(pix);
 	}
 }

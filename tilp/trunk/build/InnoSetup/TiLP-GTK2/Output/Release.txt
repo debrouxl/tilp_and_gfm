@@ -2,10 +2,10 @@
 
 
 
-Previous version: 6.71	     (16/04/2004)
-Current version:  6.72	     (24/04/2004)
+Previous version: 6.72	    (24/04/2004)
+Current version:  6.74		(29/06/2004)
 
-SubVersion (CVS) revision: $Id: RELEASE 655 2004-04-26 18:12:16Z roms $
+SubVersion (CVS) revision: $Id: RELEASE 767 2004-06-29 15:47:34Z roms $
 
 TiLP is available for 4 platforms:
 Linux (GTK), Windows (GTK), Mac OS-X (Cocoa) and FreeBSD (GTK).
@@ -20,22 +20,19 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- none
+	- added NULL cable support
 
 Improvements:
 -------------
 
-	- communication box (reset port when changing cable) to avoid 'invalid port' error.
-	- [LINUX] SilverLink data-rate improved when sending variables/apps.
-	- [WIN32] idem, need new driver v3.0
-	- [LINUX] wrong timeout passed to SilverLink (libusb) => transfer interruptions.
+	- VTi and TiEmu cables were swapped
 	
 
 Known problems:
 ---------------
 
 	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
-		It has been currelty disabled.
+		It has been currently disabled.
 	- [Linux]: the timeout value can not be changed with kernel modules.
 		Consequently, OS upgrades will fail...
 		=> fixed by tipar v1.19, tiser v1.20, tiusb v1.07b or Linux kernel >= 2.4.27 or 2.6.7.

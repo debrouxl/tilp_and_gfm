@@ -43,6 +43,10 @@
 # include <grp.h>
 #endif				/* __WIN32__ */
 
+#ifdef __WIN32__
+#include "dirent.h"	// S_ISDIR
+#endif
+
 #include "tilp_core.h"
 //#include "dboxes.h"
 
@@ -303,8 +307,10 @@ const char *tilp_file_get_size(TilpFileInfo * fi)
 const char *tilp_file_get_type(TilpFileInfo * fi)
 {
 	static char buffer[32];
-	if (!strcmp(fi->name, ".."))
-		return "";
+
+    if (S_ISDIR(fi->attrib))
+        return "";
+
 	strncpy(buffer, tifiles_file_descriptive(fi->name), 32);
 	return buffer;
 }
