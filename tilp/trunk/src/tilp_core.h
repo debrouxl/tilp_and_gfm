@@ -204,10 +204,10 @@ extern "C" {
 #endif /* !__MACOSX__ */
 
   // tilp_printl.c
-  int ticable_printl(int level, const char *format, ...);
-  int tifile_printl(int level, const char *format, ...);
-  int ticalc_printl(int level, const char *format, ...);
-//  int tilp_printl(int level, const char *format, ...);		// extern TILP_PRINT tilp_printl
+  int ticables_printl(int level, const char *format, ...);
+  int tifiles_printl(int level, const char *format, ...);
+  int ticalcs_printl(int level, const char *format, ...);
+  int tilp_printl(int level, const char *format, ...);
 
   // GTK+ only (export callbacks for Glade linking at runtime)
 #ifdef __WIN32__

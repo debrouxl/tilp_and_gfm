@@ -406,6 +406,10 @@ SOURCE=..\..\src\tilp_plugin.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_printl.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_prompt.c
 # End Source File
 # Begin Source File

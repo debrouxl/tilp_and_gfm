@@ -34,16 +34,26 @@
 #include "intl.h"
 
 #include "export.h"
-#include "printl.h"
+#include "tilibs.h"
+#include "tilp_printl.h"
 
 /* 
 	Print to stdout as default behaviour unless changed by tifiles_set_print 
 	Level: such as "warning", "error", "information", etc. "" = nothing.
 */
-int default_printl(int level, const char *format, ...)
+
+#define DOMAIN_TICABLES         "ticables"
+#define DOMAIN_TIFILES          "tifiles"
+#define DOMAIN_TICALCS          "ticalcs"
+#define DOMAIN_TILP             "tilp"
+
+/**************** printl muxer ************************/
+
+int printl_muxer(const char *domain, int level, const char *format, ...)
 {
+       /*
 	va_list ap;
-	int ret;
+	int ret = 0;
 
 	fprintf(stdout, "tilp ");
 	if(level != 0)
@@ -51,18 +61,69 @@ int default_printl(int level, const char *format, ...)
 	va_start(ap, format);
         ret = vfprintf(stdout, format, ap);
         va_end(ap);
+*/
 
+        return 0;
+}
+
+/**************** printl callbacks ********************/
+
+int ticables_printl(int level, const char *format, ...)
+{
+        va_list ap;
+	int ret = 0;
+
+	va_start(ap, format);
+        ret = printl_muxer(DOMAIN_TICABLES, level, format, ap);
+        va_end(ap);
+ 
 	return ret;
 }
 
-TILP_PRINT printl = default_printl;
+int tifiles_printl(int level, const char *format, ...)
+{
+        va_list ap;
+	int ret = 0;
+
+	va_start(ap, format);
+        ret = printl_muxer(DOMAIN_TIFILES, level, format, ap);
+        va_end(ap);
+ 
+	return ret;
+}
+
+int ticalcs_printl(int level, const char *format, ...)
+{
+        va_list ap;
+	int ret = 0;
+
+	va_start(ap, format);
+        ret = printl_muxer(DOMAIN_TICALCS, level, format, ap);
+        va_end(ap);
+ 
+	return ret;
+}
+
+int default_printl(int level, const char *format, ...)
+{
+	va_list ap;
+	int ret = 0;
+
+	va_start(ap, format);
+        ret = printl_muxer(DOMAIN_TILP, level, format, ap);
+        va_end(ap);
+ 
+	return ret;
+}
+
+TILP_PRINTL printl = default_printl;
 
 /*
 	Change print behaviour (callback).
 */
-TIEXPORT TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
+static TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
 {
-  TILP_PRINT old_printl = printl;
+  TILP_PRINTL old_printl = printl;
 
   printf("printl = %p\n", printl);
   printf("old_printl = %p\n", old_printl);
@@ -72,10 +133,3 @@ TIEXPORT TILP_PRINTL tilp_set_printl(TILP_PRINTL new_printl)
 
   return old_printl;
 }
-
-/**************** printl muxer ********************/
-
-TICABLE_PRINTL ticable_printl;
-TIFILE_PRINTL  tifile_printl;
-TICALC_PRINTL  ticalc_printl;
-//TILP_PRINTL    tilp_printl;

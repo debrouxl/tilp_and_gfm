@@ -167,7 +167,7 @@ int tilp_ctree_selection2_ready(void)
 }
 
 #ifndef __MACOSX__
-void tilp_clist_selection_printl(0, void)
+void tilp_clist_selection_display(void)
 {
 	GList *ptr = clist_win.selection;
 	if (clist_win.selection == NULL)

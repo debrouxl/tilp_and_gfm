@@ -3,14 +3,214 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
+--------------------Configuration: ticables - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1AE.tmp" with contents
+[
+/nologo /MTd /W3 /GX /ZI /Od /I "C:\Gtk2Dev\include" /D "_DEBUG" /D "TICABLES_EXPORTS" /D "__WIN32__" /D "_CONSOLE" /D "__I386__" /Fo"C:\msvc\Output\ticables/" /Fd"C:\msvc\Output\ticables/" /FD /c 
+"C:\home\devel\ticables\src\link_avr.c"
+"C:\home\devel\ticables\src\link_dev.c"
+"C:\home\devel\ticables\src\link_dfl.c"
+"C:\home\devel\ticables\src\link_par.c"
+"C:\home\devel\ticables\src\link_ser.c"
+"C:\home\devel\ticables\src\link_slv.c"
+"C:\home\devel\ticables\src\link_tie.c"
+"C:\home\devel\ticables\src\link_tig.c"
+"C:\home\devel\ticables\src\link_vti.c"
+"C:\home\devel\ticables\src\link_vtl.c"
+"C:\home\devel\ticables\src\win32\porttalk.c"
+"C:\home\devel\ticables\src\detect.c"
+"C:\home\devel\ticables\src\direct.c"
+"C:\home\devel\ticables\src\error.c"
+"C:\home\devel\ticables\src\intrface.c"
+"C:\home\devel\ticables\src\logging.c"
+"C:\home\devel\ticables\src\mapping.c"
+"C:\home\devel\ticables\src\printl.c"
+"C:\home\devel\ticables\src\type2str.c"
+"C:\home\devel\ticables\src\verbose.c"
+"C:\home\devel\ticables\src\win32\win32_detect.c"
+"C:\home\devel\ticables\src\win32\win32_ioports.c"
+"C:\home\devel\ticables\src\win32\win32_mapping.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1AE.tmp" 
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1AF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"C:\msvc\tilp/ticables.pdb" /debug /debugtype:both /machine:I386 /out:"C:\msvc\tilp/ticables.dll" /implib:"C:\msvc\tilp/ticables.lib" /pdbtype:sept 
+\msvc\Output\ticables\link_avr.obj
+\msvc\Output\ticables\link_dev.obj
+\msvc\Output\ticables\link_dfl.obj
+\msvc\Output\ticables\link_par.obj
+\msvc\Output\ticables\link_ser.obj
+\msvc\Output\ticables\link_slv.obj
+\msvc\Output\ticables\link_tie.obj
+\msvc\Output\ticables\link_tig.obj
+\msvc\Output\ticables\link_vti.obj
+\msvc\Output\ticables\link_vtl.obj
+\msvc\Output\ticables\porttalk.obj
+\msvc\Output\ticables\detect.obj
+\msvc\Output\ticables\direct.obj
+\msvc\Output\ticables\error.obj
+\msvc\Output\ticables\intrface.obj
+\msvc\Output\ticables\logging.obj
+\msvc\Output\ticables\mapping.obj
+\msvc\Output\ticables\printl.obj
+\msvc\Output\ticables\type2str.obj
+\msvc\Output\ticables\verbose.obj
+\msvc\Output\ticables\win32_detect.obj
+\msvc\Output\ticables\win32_ioports.obj
+\msvc\Output\ticables\win32_mapping.obj
+\msvc\Output\ticables\ticables.res
+.\intl.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1AF.tmp"
+<h3>Output Window</h3>
+Compiling...
+link_avr.c
+link_dev.c
+link_dfl.c
+link_par.c
+link_ser.c
+link_slv.c
+link_tie.c
+link_tig.c
+link_vti.c
+link_vtl.c
+porttalk.c
+detect.c
+direct.c
+error.c
+intrface.c
+logging.c
+mapping.c
+printl.c
+type2str.c
+verbose.c
+Generating Code...
+Compiling...
+win32_detect.c
+win32_ioports.c
+win32_mapping.c
+Generating Code...
+Linking...
+LINK : warning LNK4075: ignoring /INCREMENTAL due to /DEBUGTYPE specification
+   Creating library C:\msvc\tilp/ticables.lib and object C:\msvc\tilp/ticables.exp
+<h3>
+--------------------Configuration: ticalcs - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1B3.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib intl.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"C:\msvc\tilp\ticalcs.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\ticalcs.dll" /implib:"C:\msvc\tilp\ticalcs.lib" /pdbtype:sept 
+\msvc\Output\ticalcs\cmd73.obj
+\msvc\Output\ticalcs\cmd82.obj
+\msvc\Output\ticalcs\cmd85.obj
+\msvc\Output\ticalcs\cmd89.obj
+\msvc\Output\ticalcs\cmd92.obj
+\msvc\Output\ticalcs\ti73.obj
+\msvc\Output\ticalcs\Ti82.obj
+\msvc\Output\ticalcs\Ti83.obj
+\msvc\Output\ticalcs\Ti85.obj
+\msvc\Output\ticalcs\Ti86.obj
+\msvc\Output\ticalcs\Ti89.obj
+\msvc\Output\ticalcs\Ti92.obj
+\msvc\Output\ticalcs\keys73.obj
+\msvc\Output\ticalcs\keys83p.obj
+\msvc\Output\ticalcs\keys89.obj
+\msvc\Output\ticalcs\keys92p.obj
+\msvc\Output\ticalcs\tikeys.obj
+\msvc\Output\ticalcs\packets.obj
+\msvc\Output\ticalcs\clock.obj
+\msvc\Output\ticalcs\dirlist.obj
+\msvc\Output\ticalcs\Error.obj
+\msvc\Output\ticalcs\Intrface.obj
+\msvc\Output\ticalcs\printl.obj
+\msvc\Output\ticalcs\Probe.obj
+\msvc\Output\ticalcs\tnode.obj
+\msvc\Output\ticalcs\type2str.obj
+\msvc\Output\ticalcs\ticalcs.res
+.\intl.lib
+\msvc\tilp\ticables.lib
+\msvc\tilp\tifiles.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1B3.tmp"
+<h3>Output Window</h3>
+Linking...
+   Creating library C:\msvc\tilp\ticalcs.lib and object C:\msvc\tilp\ticalcs.exp
+<h3>
 --------------------Configuration: tilp_gtk_console - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1B7.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"C:\msvc\tilp\TiLP.pdb" /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib" 
+\msvc\Output\tilp_gtk\about.obj
+\msvc\Output\tilp_gtk\action.obj
+\msvc\Output\tilp_gtk\clist.obj
+\msvc\Output\tilp_gtk\clock.obj
+\msvc\Output\tilp_gtk\comm.obj
+\msvc\Output\tilp_gtk\ctree.obj
+\msvc\Output\tilp_gtk\dboxes.obj
+\msvc\Output\tilp_gtk\dnd.obj
+\msvc\Output\tilp_gtk\extprgms.obj
+\msvc\Output\tilp_gtk\filesel.obj
+\msvc\Output\tilp_gtk\general.obj
+\msvc\Output\tilp_gtk\gtk_refresh.obj
+\msvc\Output\tilp_gtk\labels.obj
+\msvc\Output\tilp_gtk\logfile.obj
+\msvc\Output\tilp_gtk\main.obj
+\msvc\Output\tilp_gtk\manpage.obj
+\msvc\Output\tilp_gtk\pbars.obj
+\msvc\Output\tilp_gtk\popup.obj
+\msvc\Output\tilp_gtk\release.obj
+\msvc\Output\tilp_gtk\screenshot.obj
+\msvc\Output\tilp_gtk\scroptions.obj
+\msvc\Output\tilp_gtk\shell.obj
+\msvc\Output\tilp_gtk\splash.obj
+\msvc\Output\tilp_gtk\support.obj
+\msvc\Output\tilp_gtk\tilp.obj
+\msvc\Output\tilp_gtk\toolbar.obj
+\msvc\Output\tilp_gtk\wizard.obj
+\msvc\Output\tilp_gtk\tilp_calcs.obj
+\msvc\Output\tilp_gtk\tilp_error.obj
+\msvc\Output\tilp_gtk\tilp_files.obj
+\msvc\Output\tilp_gtk\tilp_indep.obj
+\msvc\Output\tilp_gtk\tilp_main.obj
+\msvc\Output\tilp_gtk\tilp_misc.obj
+\msvc\Output\tilp_gtk\tilp_paths.obj
+\msvc\Output\tilp_gtk\tilp_plugin.obj
+\msvc\Output\tilp_gtk\tilp_prompt.obj
+\msvc\Output\tilp_gtk\tilp_rcfile.obj
+\msvc\Output\tilp_gtk\tilp_refresh.obj
+\msvc\Output\tilp_gtk\tilp_screen.obj
+\msvc\Output\tilp_gtk\tilp_slct.obj
+\msvc\Output\tilp_gtk\tilp_vars.obj
+\msvc\Output\tilp_gtk\Tilp.res
+"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
+"..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
+..\..\..\..\..\Gtk2Dev\lib\intl.lib
+\msvc\Output\tilp_gtk\tilp_printl.obj
+\msvc\tilp\ticables.lib
+\msvc\tilp\ticalcs.lib
+\msvc\tilp\tifiles.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\Romain\LOCALS~1\Temp\RSP1B7.tmp"
+<h3>Output Window</h3>
+Linking...
+   Creating library C:\msvc\tilp\TiLP.lib and object C:\msvc\tilp\TiLP.exp
 
 
 
 <h3>Results</h3>
-TiLP.exe - 0 error(s), 0 warning(s)
+TiLP.exe - 0 error(s), 1 warning(s)
 </pre>
 </body>
 </html>

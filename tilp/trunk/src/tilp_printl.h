@@ -30,7 +30,7 @@
 typedef int (*TILP_PRINTL) (int level, const char *format, ...);
 
 /* Callback */
-extern TIFILES_PRINTL printl;
+extern TILP_PRINTL printl;
 
 
 #endif
