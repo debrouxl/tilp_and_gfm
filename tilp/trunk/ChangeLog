@@ -8,13 +8,17 @@ Some explanations about the version number:
 	New form #3: tilp (cables, calcs, tiffep) version.
 
 To do:
-	- GFM/GFV -> plugin
+	- fix screenshot pbs (save file box when connection crashed).
 
+- 03/05/2003, version 6.67 (3.7.5, 0.5.5, 4.4.9):
+	Bug fix in the screenshot box (fsel box displayed while connection
+	failed).
+	
 - 23/04/2003, version 6.66 (3.7.5, 0.5.5, 4.4.9):
 	Bug fixes with g_strfreev thanks to Tijl.
 	Small fixes in the plugin support.
 	Execution order changed: run, and next: load/save
-	Added Group File Views plugin.
+	Added Group File Viewer plugin.
 	
 - 20/04/2003, version 6.65 (3.7.5, 0.5.5, 4.4.9):
 	Fixed problems of font by using Unicode translation.
