@@ -29,13 +29,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 @implementation NSTextView (MyExtensions)
 
-- (void)insertCalcText:(NSString *)aString
-{
-    // FIXME OS X
-    // The terminal mode is not implemented in libticalcs at the moment.
-    // This method will be written when the libticalcs will support terminal mode.
-
-}
 
 - (void)insertStatusText:(NSString *)aString
 {
@@ -57,7 +50,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
 // get the key pressed
 // then process it
-// finally pass it to super if we don't handle it (?)
+// finally pass it to super if we don't handle it
 - (void)keyDown:(NSEvent *)event
 {
 // The calc seems to be using UNICODE, hopefully we won't have to remap

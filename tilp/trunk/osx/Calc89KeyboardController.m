@@ -83,6 +83,7 @@ uint32_t swap_bytes(uint32_t a);
 - (void)sendKey:(NSPoint)point
 {
   int i;
+  int ret;
   unsigned char key = 0;
   
   // we have a _little_ coordinates problem :)
@@ -99,8 +100,6 @@ uint32_t swap_bytes(uint32_t a);
               }
       }
 
-  // FIXME OS X : modes
-
   switch(key)
       {
           case TIKEY89_SHIFT:
@@ -113,7 +112,14 @@ uint32_t swap_bytes(uint32_t a);
               mode = K_MODE_DIAMOND;
               break;
           case TIKEY89_ALPHA:
-              mode = K_MODE_ALPHA;
+              if ((mode == K_MODE_SECOND) || (mode == K_MODE_ALPHA))
+                  mode = K_MODE_A_LOCK;
+              else if ((mode == K_MODE_ALPHA) || (mode == K_MODE_A_LOCK) || (mode == K_MODE_A_S_LOCK))
+                  mode = K_MODE_NONE;
+              else if (mode == K_MODE_SHIFT)
+                  mode = K_MODE_A_S_LOCK;
+              else
+                  mode = K_MODE_ALPHA;
               break;
           default:
               switch(mode)
@@ -150,8 +156,14 @@ uint32_t swap_bytes(uint32_t a);
                   }
           
               if (key > 0)
-                  [myTransfersController sendChar:key];
-                  
+                  {
+                      ret = [myTransfersController sendChar:key];
+                      
+                      if (ret < 0)
+                          {
+                              [textArea insertStatusText:@"*** Communication Error. Aborted. ***\n"];
+                          }
+                  }
               break;
       }
 }

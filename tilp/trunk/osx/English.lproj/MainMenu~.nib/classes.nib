@@ -205,7 +205,6 @@
                 dlgboxentryEntry = id; 
                 dlgboxentryText = id; 
                 dlgboxentryWindow = id; 
-                mainWindow = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 myPrefsController = id; 
@@ -268,7 +267,6 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 dirlistTree = id; 
-                mainWindow = id; 
                 myBoxesController = id; 
                 myMenuController = id; 
                 myPrefsController = id; 

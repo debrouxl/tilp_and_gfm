@@ -764,7 +764,7 @@ extern int is_active;
     if (tilp_error(ti_calc.send_key(tikey)))
         return -1;
         
-    return 0;
+    return tikey;
 }
 
 @end

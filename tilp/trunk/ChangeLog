@@ -207,6 +207,9 @@
 	* Pop up sheets on the key window and not always on the
 	main window. If we have no key window, fallback to the
 	main window.
+* 20020127 : v0.4.3
+	* Fixed TI-89 modes handling in remote control.
+	
 
 
 
