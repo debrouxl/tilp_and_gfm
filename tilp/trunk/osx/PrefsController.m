@@ -14,9 +14,6 @@
 - (void)awakeFromNib
 {
     fprintf(stderr, "prefs => got awakeFromNib\n");
-    
-    // called in main_init(), can't remember why I did it here...
-    //rc_get_user_prefs();
 }
 
 - (IBAction)prefsAdvanced:(id)sender
