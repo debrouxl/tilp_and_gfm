@@ -99,9 +99,9 @@ uint32_t swap_bytes(uint32_t a);
           if ((point.x >= rcKeys89[i].left) && (point.x < rcKeys89[i].right) && (point.y >= rcKeys89[i].top) && (point.y < rcKeys89[i].bottom))
               {
                   key = sknKey89[i];
-//#ifdef OSX_DEBUG
+#ifdef OSX_DEBUG
                   fprintf(stderr, "DEBUG: matched key %d\n", key);
-//#endif
+#endif
                   break;
               }
       }
@@ -326,7 +326,8 @@ uint32_t swap_bytes(uint32_t a);
     [scrollView setDocumentView:textArea];
     
     [textArea setEditable:YES]; 
-       
+    
+    [textArea setString:@""];
     [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
     
     // finally show the window and add an entry to the Windows menu

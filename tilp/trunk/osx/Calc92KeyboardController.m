@@ -319,7 +319,8 @@ uint32_t swap_bytes(uint32_t a);
     [scrollView setDocumentView:textArea];
     
     [textArea setEditable:YES]; 
-       
+    
+    [textArea setString:@""];
     [textArea insertStatusText:@"Insert your text below.\nBeware, not all the keys are mapped.\n\n"];
     
     // finally show the window and add an entry to the Windows menu

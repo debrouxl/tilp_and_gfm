@@ -165,7 +165,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     aboutOptions = [[NSMutableDictionary alloc] init];
     
     [aboutOptions setObject:@"TiLP for Mac OS X" forKey:@"ApplicationName"];
-    [aboutOptions setObject:@"0.5.0" forKey:@"Version"];
+    [aboutOptions setObject:@"0.5.1" forKey:@"Version"];
     [aboutOptions setObject:@"Copyright © 1999-2002 Romain LIÉVIN, Julien BLACHE\n<rlievin@mail.com>, <jb@technologeek.org>" forKey:@"Copyright"];
     [aboutOptions setObject:@"5.00" forKey:@"ApplicationVersion"];
 
@@ -215,20 +215,8 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                     case CALC_TI73:
                         [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-73 Ready !"];
                         break;
-                    case CALC_TI82:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-82 Ready !"];
-                        break;
-                    case CALC_TI83:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-83 Ready !"];
-                        break;
                     case CALC_TI83P:
                         [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-83 Plus Ready !"];
-                        break;
-                    case CALC_TI85:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-85 Ready !"];
-                        break;
-                    case CALC_TI86:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-86 Ready !"];
                         break;
                     case CALC_TI89:
                         [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-89 Ready !"];
@@ -239,8 +227,12 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
                     case CALC_TI92P:
                         [mySheetsController msgSheet:@"The calculator is ready." title:@"TI-92 Plus Ready !"];
                         break;
+                    case CALC_TI82:
+                    case CALC_TI83:
+                    case CALC_TI85:
+                    case CALC_TI86:
                     default:
-                        [mySheetsController msgSheet:@"The calculator is ready." title:@"Ready !"];
+                        [mySheetsController msgSheet:@"Your calculator does not support the \"Ready\" function." title:@"Ready ?"];
                         break;
                 }
         }

@@ -32,6 +32,7 @@
 #include "cocoa_structs.h"
 
 #import "BoxesController.h"
+#import "TransfersController.h"
 #import "Calc89KeyboardController.h"
 #import "Calc92KeyboardController.h"
 
@@ -53,6 +54,7 @@ extern int is_active;
     // Init the instance pointer
     objects_ptr->myBoxesController = self;
 }
+
 
 - (id)keyWindow
 {

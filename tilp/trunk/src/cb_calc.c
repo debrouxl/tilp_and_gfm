@@ -189,7 +189,7 @@ int cb_recv_backup(void)
     case CALC_TI86:
       gif->create_pbar_type5(_("Backup"), _("Waiting for backup from calc..."));
       break;
-	  case CALC_TI73:
+    case CALC_TI73:
     case CALC_TI83:
     case CALC_TI83P:
       gif->create_pbar_type3(_("Backup"));
@@ -219,9 +219,10 @@ int cb_recv_backup(void)
   while( ((err == ERR_RCV_BYT_TIMEOUT) || (err == ERR_RCV_BIT_TIMEOUT)) && 
 	 ((options.lp.calc_type == CALC_TI82) || 
 	  (options.lp.calc_type == CALC_TI85) ||
-	  (options.lp.calc_type == CALC_TI86)) );
+	  (options.lp.calc_type == CALC_TI86)));
   
   gif->destroy_pbar();
+  
   if(tilp_error(err)) 
     return -1;
 

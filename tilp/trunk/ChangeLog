@@ -237,8 +237,21 @@
 	* Merge up to 4.96.
 * 20020224 : v5.00 (0.5.0)
 	* Merge up to 5.00.
+* 20020301 : v5.00 (0.5.1)
+	* Merge the Functions menus.
+	* Some calcs do not support the Ready function. Do not display
+	a possibly erroneous "calc is ready" message.
+	* Remove the Home and End key from RCTextView. Their keycodes are
+	greater than 8000, they are not honoured by the calcs.
+	* Map "pi" in the remote control (RCTextView) (alt + p).
+	* Clean up the RCTextView in case the window was used previously.
+	* Use sheets for pbars, save panels and open panels only.
+* 20020302 : v5.00 (0.5.2)
+	* Fixed NSImageView size on the screendump window.
+	* Use ticalc_folder_type() to determine whether we have a var
+	or a folder when parsing the dirlist.
+	* FLASH apps must be > 1 in size.
 	
-
 
 
 

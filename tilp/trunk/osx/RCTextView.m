@@ -107,18 +107,23 @@ extern struct cocoa_objects_ptr *objects_ptr;
 
                     send = YES;
                 }
+            else if (uchar == 960) // greek letter "pi"
+                {
+                    toSend = 140;
+                    
+                    send = YES;
+                }
             else if (uchar == NSClearLineFunctionKey) // Clear
                 {
                     toSend = 263;
                     
-                    process = YES;
                     send = YES;
                 }
             else if (uchar == NSUpArrowFunctionKey)
                 {
                     toSend = 337;
                     
-                    process = NO;
+                    process = YES;
                     send = YES;
                 }
             else if (uchar == NSDownArrowFunctionKey)
@@ -138,20 +143,6 @@ extern struct cocoa_objects_ptr *objects_ptr;
                 {
                     toSend = 338;
                     
-                    send = YES;
-                }
-            else if (uchar == NSHomeFunctionKey)
-                {
-                    toSend = 8530;
-                    
-                    process = NO;
-                    send = YES;
-                }
-            else if (uchar == NSEndFunctionKey)
-                {
-                    toSend = 8536;
-                    
-                    process = NO;
                     send = YES;
                 }
             else if (uchar == NSPageUpFunctionKey)

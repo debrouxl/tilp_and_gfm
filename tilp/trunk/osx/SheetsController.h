@@ -74,8 +74,8 @@
     id pbarWindow;
 }
 
-- (void)showCurrentSheet;
-- (void)hideCurrentSheet;
+- (void)showCurrentPBar;
+- (void)hideCurrentPBar;
 
 - (void)msgSheet:(NSString *)message title:(NSString *)title;
 

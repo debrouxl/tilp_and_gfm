@@ -50,60 +50,8 @@ extern struct ticalc_info_update info_update;
     objects_ptr->mySheetsController = self;
 }
 
-- (id)init
-{
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
 
-#ifdef OSX_DEBUG
-    fprintf(stderr, "DEBUG: registering for TilpThreadNeedsSheet notification\n");
-#endif
-
-#if 0
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                          selector:@selector(threadNeedsSheet:)
-                                          name:@"TilpThreadNeedsSheet"
-                                          object:nil];
-#endif
-    return self;
-}
-
-- (void)dealloc
-{
-#ifdef OSX_DEBUG
-    fprintf(stderr, "DEBUG: unregistering for TilpThreadNeedsSheet notification\n");
-#endif
-
-#if 0
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-#endif
-
-    [super dealloc];
-}
- 
-#if 0
-- (void)threadNeedsSheet:(NSNotification *)notification
-{
-    NSString *sheet;
-    
-    sheet = (NSString *)[notification object];
-#ifdef OSX_DEBUG
-    fprintf(stderr, "DEBUG: THREAD issued a request\n");
-#endif
-    if ([sheet isEqualToString:@"pbarType1"])
-        {
-#ifdef OSX_DEBUG
-            fprintf(stderr, "DEBUG: THREAD requested PBAR TYPE 1\n");
-#endif
-            [self pbarType1];
-        }
-}
-#endif
- 
-
-- (void)showCurrentSheet
+- (void)showCurrentPBar
 {
     if (pbarWindow != nil)
         {
@@ -117,7 +65,7 @@ extern struct ticalc_info_update info_update;
         }
 }
 
-- (void)hideCurrentSheet
+- (void)hideCurrentPBar
 {
     if (pbarWindow != nil)
         {
@@ -128,29 +76,33 @@ extern struct ticalc_info_update info_update;
  
 - (void)msgSheet:(NSString *)message title:(NSString *)title
 {
-    // No delegate for this one, we don't care.
-    // keep NSBeginAlertSheet here for the moment ; I think we'll have to use a modal sheet, too.
-    
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
-    
+    [self hideCurrentPBar];
+
+#ifdef TILP_USES_SHEETS
     NSBeginAlertSheet(title, nil, nil, nil, [myBoxesController keyWindow], nil, nil, nil, nil, message);
+#else
+    NSRunAlertPanel(title, message, @"OK", nil, nil);
+#endif
                       
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
  
 /* user boxes */
  
 - (int)user1Sheet:(NSString *)message button1:(NSString *)button1
 {
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
-    
+#ifndef TILP_USES_SHEETS
+    NSModalSession session;
+#endif
+
+    [self hideCurrentPBar];
+      
     [user1Text setStringValue:message];
     [user1Button setTitle:button1];
     
     [user1Window setExcludedFromWindowsMenu:YES];
-    
+
+#ifdef TILP_USES_SHEETS    
     [NSApp beginSheet:user1Window
            modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
@@ -160,24 +112,38 @@ extern struct ticalc_info_update info_update;
     [NSApp runModalForWindow:user1Window];
     
     [NSApp endSheet:user1Window];
-    [user1Window orderOut:nil];
+#else
+    session = [NSApp beginModalSessionForWindow:user1Window];
+    
+    [user1Window makeKeyAndOrderFront:self];
+    
+    [NSApp runModalSession:session];
+    
+    [NSApp endModalSession:session];
+#endif
 
-    [self showCurrentSheet];
+    [user1Window orderOut:self];
+
+    [self showCurrentPBar];
     
     return objects_ptr->user1_return;
 }
                                                       
 - (int)user2Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2
 {        
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
+#ifndef TILP_USES_SHEETS
+    NSModalSession session;
+#endif
+
+    [self hideCurrentPBar];
     
     [user2Text setStringValue:message];
     [user2Button1 setTitle:button1];
     [user2Button2 setTitle:button2];
     
     [user2Window setExcludedFromWindowsMenu:YES];
-    
+
+#ifdef TILP_USES_SHEETS
     [NSApp beginSheet:user2Window
            modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
@@ -187,17 +153,30 @@ extern struct ticalc_info_update info_update;
     [NSApp runModalForWindow:user2Window];
     
     [NSApp endSheet:user2Window];
-    [user2Window orderOut:nil];
+#else
+    session = [NSApp beginModalSessionForWindow:user2Window];
     
-    [self showCurrentSheet];
+    [user2Window makeKeyAndOrderFront:self];
+    
+    [NSApp runModalSession:session];
+    
+    [NSApp endModalSession:session];
+#endif
+
+    [user2Window orderOut:self];
+    
+    [self showCurrentPBar];
 
     return objects_ptr->user2_return;
 }
  
 - (int)user3Sheet:(NSString *)message button1:(NSString *)button1 button2:(NSString *)button2 button3:(NSString *)button3
 {
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
+#ifndef TILP_USES_SHEETS
+    NSModalSession session;
+#endif
+
+    [self hideCurrentPBar];
     
     [user3Text setStringValue:message];
     [user3Button1 setTitle:button1];
@@ -206,6 +185,7 @@ extern struct ticalc_info_update info_update;
     
     [user3Window setExcludedFromWindowsMenu:YES];
     
+#ifdef TILP_USES_SHEETS
     [NSApp beginSheet:user3Window
            modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
@@ -215,9 +195,19 @@ extern struct ticalc_info_update info_update;
     [NSApp runModalForWindow:user3Window];
     
     [NSApp endSheet:user3Window];
-    [user3Window orderOut:nil];
+#else
+    session = [NSApp beginModalSessionForWindow:user3Window];
+    
+    [user3Window makeKeyAndOrderFront:self];
+    
+    [NSApp runModalSession:session];
+    
+    [NSApp endModalSession:session];
+#endif
 
-    [self showCurrentSheet];
+    [user3Window orderOut:self];
+
+    [self showCurrentPBar];
 
     return objects_ptr->user3_return;
 }
@@ -226,6 +216,10 @@ extern struct ticalc_info_update info_update;
  
 - (NSString *)dlgboxEntry:(NSString *)message content:(NSString *)content
 {
+#ifndef TILP_USES_SHEETS
+    NSModalSession session;
+#endif
+
     if ([dlgboxentryWindow isVisible])
         return NULL;
           
@@ -234,7 +228,8 @@ extern struct ticalc_info_update info_update;
     [dlgboxentryText setStringValue:message];
           
     [dlgboxentryWindow setExcludedFromWindowsMenu:YES];
-          
+
+#ifdef TILP_USES_SHEETS
     [NSApp beginSheet:dlgboxentryWindow
            modalForWindow:[myBoxesController keyWindow]
            modalDelegate:nil
@@ -244,7 +239,17 @@ extern struct ticalc_info_update info_update;
     [NSApp runModalForWindow:dlgboxentryWindow];
             
     [NSApp endSheet:dlgboxentryWindow];
-    [dlgboxentryWindow orderOut:nil];
+#else
+    session = [NSApp beginModalSessionForWindow:dlgboxentryWindow];
+    
+    [dlgboxentryWindow makeKeyAndOrderFront:self];
+    
+    [NSApp runModalSession:session];
+    
+    [NSApp endModalSession:session];
+#endif
+
+    [dlgboxentryWindow orderOut:self];
     
     return objects_ptr->dlgbox_data;
 }
@@ -253,8 +258,7 @@ extern struct ticalc_info_update info_update;
 
 - (void)pbarType2:(NSString *)message
 {
-    if (pbarWindow != nil)
-        [pbarWindow orderOut:nil];
+    [self hideCurrentPBar];
 
     pbar_text = pbar2Text;
 
@@ -273,7 +277,7 @@ extern struct ticalc_info_update info_update;
               
     [NSApp endSheet:pbar2Window];
         
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
 
 - (void)pbarType1
@@ -288,7 +292,7 @@ extern struct ticalc_info_update info_update;
   
     [pbar1Window setExcludedFromWindowsMenu:YES];
         
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
  
 - (void)pbarType3
@@ -304,7 +308,7 @@ extern struct ticalc_info_update info_update;
 
     [pbar3Window setExcludedFromWindowsMenu:YES];
 
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
  
 - (void)pbarType4:(NSString *)message
@@ -322,7 +326,7 @@ extern struct ticalc_info_update info_update;
     
     [pbar4Text setStringValue:message];
    
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
  
 - (void)pbarType5:(NSString *)message
@@ -341,7 +345,7 @@ extern struct ticalc_info_update info_update;
 
     [pbar5Window setExcludedFromWindowsMenu:YES];
 
-    [self showCurrentSheet];
+    [self showCurrentPBar];
 }
  
 
@@ -351,31 +355,31 @@ extern struct ticalc_info_update info_update;
 {
     if ([pbar1Window isVisible])
         {
-            [pbar1Window orderOut:nil];
+            [pbar1Window orderOut:self];
             pbarWindow = nil;
         }
         
     if ([pbar2Window isVisible])
         {
-            [pbar2Window orderOut:nil];
+            [pbar2Window orderOut:self];
             [pbar2PBar stopAnimation:self];
         }
 
     if ([pbar3Window isVisible])
         {
-            [pbar3Window orderOut:nil];
+            [pbar3Window orderOut:self];
             pbarWindow = nil;
         }
         
     if ([pbar4Window isVisible])
         {
-            [pbar4Window orderOut:nil];
+            [pbar4Window orderOut:self];
             pbarWindow = nil;
         }
         
     if ([pbar5Window isVisible])
         {
-            [pbar5Window orderOut:nil];
+            [pbar5Window orderOut:self];
             pbarWindow = nil;
         }
 

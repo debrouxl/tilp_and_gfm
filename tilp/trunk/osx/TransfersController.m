@@ -478,12 +478,9 @@ extern int is_active;
     unsigned char *pixels;
     byte *data;
     
-    if (is_active)
+    if ((is_active) || (cb_screen_capture() != 0) || (ti_screen.img.bitmap == NULL))
         return;
 
-    if (cb_screen_capture() != 0)
-        return;
-        
     if ([screendumpWindow isVisible] == NO)
         {
             [screendumpWindow makeKeyAndOrderFront:self];
@@ -530,13 +527,14 @@ extern int is_active;
         }
 
     size = NSMakeSize(ti_screen.img.width, ti_screen.img.height);
-
+    
     screen = [[NSImage alloc] initWithSize:size];
     
     [screen addRepresentation:bitmap];
     
-    [screendumpImage setImage:screen];
+    [screendumpImage setImageFrameStyle:NSImageFrameGroove];
 
+    [screendumpImage setImage:screen];
 }
 
 - (void)romDump:(id)sender

@@ -500,9 +500,10 @@ struct gui_fncts gui_functions;
       {
           q = (struct varinfo *)(p->data);
         
-          if (q->vartype != ticalc_flash_type(ticalc_get_calc2()))
+          if ((q->vartype != ticalc_flash_type(ticalc_get_calc2())) || (q->varsize <= 1))
               {
-                  if ((p != ctree_win.varlist) && q->is_folder) // we're at the second folder (first folder _is_ ctree_win.varlist itself)
+                  // we're at the second folder (first folder _is_ ctree_win.varlist itself)
+                  if ((p != ctree_win.varlist) && (q->vartype == ticalc_folder_type(ticalc_get_calc2()))) 
                       break;
               
                   p = p->next;
@@ -552,7 +553,7 @@ struct gui_fncts gui_functions;
                     continue;
                 }
             
-            if (q->is_folder)
+            if (q->vartype == ticalc_folder_type(ticalc_get_calc2()))
                 {
                     // dictionary that will hold the stuff
                     tmpDict = [[NSMutableDictionary alloc] init];
@@ -644,44 +645,9 @@ struct gui_fncts gui_functions;
     else
         [varsStats setStringValue:[NSString stringWithFormat:@"Number of variables : %u, FLASH Apps : %u", cmi.vars, cmi.flash]];
     
-    [memoryStats setStringValue:[NSString stringWithFormat:@"Memory used : %u KB (archive %u KB, FLASH %u KB, free %u KB)", (cmi.mem + cmi.archivemem + cmi.flashmem), cmi.archivemem, cmi.flashmem, cmi.freemem]];
+    [memoryStats setStringValue:[NSString stringWithFormat:@"Memory used : %u KB (archive %u KB, FLASH %u KB)", (cmi.mem + cmi.archivemem + cmi.flashmem), cmi.archivemem, cmi.flashmem]];
 }
 
-#if 0
-- (void)refreshInfos
-{
-    NSString *strCurrentFolder;
-    NSString *strNumberOfFolders;
-    NSString *strNumberOfVars;
-    NSString *strMemoryUsed;
-    
-    int vars = 0;
-    int folders = 0;
-    int mem = 0;
-    
-    int flash = 0;
-    int flashmem = 0;
-
-    struct varinfo *q;
-    GList *p;
-
-    p = ctree_win.varlist;
-
-    q = (struct varinfo *)(p->data);
-
-    number_of_folders_vars_and_mem(&folders, &vars, &flash, &mem, &flashmem);
-  
-    strNumberOfVars = [NSString stringWithFormat:@"%u", vars];
-    strNumberOfFolders = [NSString stringWithFormat:@"%u", folders];
-    strMemoryUsed = [NSString stringWithFormat:@"%u (Free : %u)", mem, q->varsize];
-    strCurrentFolder = [NSString stringWithCString:ctree_win.cur_folder];
-
-    [currentFolder setStringValue:strCurrentFolder];
-    [numberOfFolders setStringValue:strNumberOfFolders];
-    [numberOfVars setStringValue:strNumberOfVars];
-    [memoryUsed setStringValue:strMemoryUsed];
-}
-#endif
 
 // required to be a valid dataSource for NSOutlineView
 // more methods are available, see the docs...

@@ -33,6 +33,7 @@
     IBOutlet id myTilpController;
 }
 
+
 // THREADED
 - (void)getVarsThreaded:(id)sender;
 - (void)getScreenThreaded:(id)sender;
