@@ -16,7 +16,10 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
-- 18/09/2004, version 6.75 ((3.8.6, 0.6.1, 4.5.4): roms
+- 02/10/2004, version 6.76 (3.8.6, 0.6.1, 4.5.5): roms
+	Thanks to "Benjamin Moody" <bmoody@WPI.EDU> for his new TI83+/TI84+ ROM dumper.
+
+- 18/09/2004, version 6.75 (3.8.6, 0.6.1, 4.5.4): roms
 	Added TI84+ and TI89 Titanium support thru std I/O port (linkport).
 	OS upgrade does not work on both models !
 	Need to add new ROM dumper.

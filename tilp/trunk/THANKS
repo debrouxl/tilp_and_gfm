@@ -5,6 +5,7 @@ program which allow you to create GTK applications quickly and efficiently.
 Special thanks to:
 ------------------
 
+- Benjamin Moody <bmoody@WPI.EDU> for his TI83+/TI84+ ROM dumper
 - K. Kofler <kofler@tigcc.ticalc.org> which has extensively tested TiLP v5.00
 (Linux & Windows) with a TI89.
 - X. LaRue <paxl@videotron.ca> which has tested TiLP v5.00 (Linux) with a 

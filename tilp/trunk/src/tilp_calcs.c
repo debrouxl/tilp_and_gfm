@@ -290,9 +290,17 @@ int tilp_calc_rom_dump(void)
 		break;
 	case CALC_TI83P:
 	case CALC_TI84P:
+		ret = gif->msg_box4(_("Information"), _
+				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(DUMPROM)'.\nThanks to Benjamin Moody for the ROM dumper !"));
+		if (ret == BUTTON1)
+			return do_rom_dump(0);
+
+		else
+			return -1;
+		break;
 	case CALC_TI86:
 		ret = gif->msg_box4(_("Information"), _
-				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'asm(rom86)'."));
+				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(DUMPROM)'."));
 		if (ret == BUTTON1)
 			return do_rom_dump(0);
 
