@@ -9,3 +9,6 @@ tilpreg_SOURCES = main.c main.h
 
 registrydir = $(sysconfdir)/tilp
 dist_registry_DATA = tilp.registry
+
+install:
+	@$(INSTALL) -d $(tilp_plugin_dir)

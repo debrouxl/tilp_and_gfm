@@ -25,6 +25,9 @@ TiLP said "Error creating directory", then it made the group file a
 zero-byte file without storing the ungrouped contents anywhere that I
 could see.>>
 
+- 21/02/2005:
+	Fixed /usr/lib/tilp creation.
+	
 - 29/01/2005, version 6.77 (3.8.6, 0.6.1, 4.5.6): roms
 	Added full FLASH support for TI89 Titanium.
 	Added full FLASH support for TI84+. This might have broken TI83+ support.
