@@ -10,8 +10,8 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.x libraries
-        Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.zip?download
+ - the GTK+ 2.x libraries (new package)
+    Location: http://prdownloads.sourceforge.net/tilp/gtk-win32-runtime.zip?download
  - the SilverLink driver v2.x if you have a SilverLink cable
 	Location: http://www.ticalc.org/pub/win/link/tiglusbinf.zip
 
@@ -32,10 +32,6 @@ You can install driver at any time (that is to say before or after TiLP installa
 
 Given that the LPG SilverLink driver has a Release date more recent than the Texas
 Instruments OEM driver, this driver will be used prior to the TI one.
-
-Note: if you are running into troubles with the SilverLink cable, please don't mail me !
-This driver works (almost) perfectly but work so so for few people. I can't make this driver work 
-better with hardware and skills I have. Thus, don't sue me!
 
 3°) This setup will install the PortTalk driver (Windows NT4/2000/XP machines).
 This step may require an administrator account (at least for NT4).
