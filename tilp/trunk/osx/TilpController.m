@@ -10,7 +10,7 @@
 #include "cocoa_msg_sheets.h"
 #include "cocoa_structs.h"
 
-extern struct cocoa_classes_ptr *classes_ptr;
+extern struct cocoa_objects_ptr *objects_ptr;
 
 #import "TilpController.h"
 
@@ -21,12 +21,12 @@ struct gui_fncts gui_functions;
 - (void)awakeFromNib
 {    
   /* Init the classes pointers */
-  classes_ptr->BoxesController = BoxesController;
-  classes_ptr->MenuController = MenuController;
-  classes_ptr->PrefsController = PrefsController;
-  classes_ptr->ToolbarController = ToolbarController;
-  classes_ptr->TilpController = self;
-
+  objects_ptr->BoxesController = BoxesController;
+  objects_ptr->MenuController = MenuController;
+  objects_ptr->PrefsController = PrefsController;
+  objects_ptr->ToolbarController = ToolbarController;
+  objects_ptr->TilpController = self;
+    
   /* Init the GUI independant functions */
   gui_functions.msg_box = create_cocoa_msg_sheet;
   gui_functions.user1_box = create_cocoa_user1_sheet;

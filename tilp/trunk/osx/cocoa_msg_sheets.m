@@ -5,7 +5,7 @@
  #include "cocoa_msg_sheets.h"
  #include "cocoa_structs.h"
  
- extern struct cocoa_classes_ptr *classes_ptr;
+ extern struct cocoa_objects_ptr *objects_ptr;
  
  #import <Cocoa/Cocoa.h>
  

@@ -21,7 +21,7 @@
 
 #include "cocoa_structs.h"
 
-struct cocoa_classes_ptr *classes_ptr;
+struct cocoa_objects_ptr *objects_ptr;
 
 #ifdef HAVE_TIFFEP
 Shm s;
@@ -48,15 +48,17 @@ int main(int argc, const char *argv[], char **arge)
   TiffepMsg msg;
 #endif
     
-  classes_ptr = (struct cocoa_classes_ptr *)malloc(sizeof(struct cocoa_classes_ptr));
+  objects_ptr = (struct cocoa_objects_ptr *)malloc(sizeof(struct cocoa_objects_ptr));
     
   /* Init the classes pointers */
-  classes_ptr->BoxesController = nil;
-  classes_ptr->MenuController = nil;
-  classes_ptr->PrefsController = nil;
-  classes_ptr->ToolbarController = nil;
-  classes_ptr->TilpController = nil;
-    
+  objects_ptr->BoxesController = nil;
+  objects_ptr->MenuController = nil;
+  objects_ptr->PrefsController = nil;
+  objects_ptr->ToolbarController = nil;
+  objects_ptr->TilpController = nil;
+  objects_ptr->tilpConfig = nil;
+  objects_ptr->prefs = nil;
+     
   /* Install a signal handler */
   signal(SIGINT, signal_handler);
 

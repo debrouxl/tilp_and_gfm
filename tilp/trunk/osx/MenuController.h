@@ -22,7 +22,6 @@
 - (IBAction)probeLink:(id)sender;
 - (IBAction)receiveFLASHApp:(id)sender;
 - (IBAction)receiveVar:(id)sender;
-- (IBAction)reloadConfig:(id)sender;
 - (IBAction)remoteControl:(id)sender;
 - (IBAction)romDump:(id)sender;
 - (IBAction)romVersion:(id)sender;
@@ -30,5 +29,6 @@
 - (IBAction)sendAMS:(id)sender;
 - (IBAction)sendFLASHApp:(id)sender;
 - (IBAction)sendVar:(id)sender;
+- (IBAction)showPrefsSheet:(id)sender;
 - (IBAction)showThanks:(id)sender;
 @end

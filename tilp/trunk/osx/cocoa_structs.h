@@ -7,13 +7,15 @@
  
  #import <Cocoa/Cocoa.h>
  
- struct cocoa_classes_ptr
+ struct cocoa_objects_ptr
  {
     IBOutlet id BoxesController;
     IBOutlet id MenuController;
     IBOutlet id PrefsController;
     IBOutlet id ToolbarController;
     IBOutlet id TilpController;
+    NSMutableDictionary *tilpConfig;
+    NSUserDefaults *prefs;
  };
 
  

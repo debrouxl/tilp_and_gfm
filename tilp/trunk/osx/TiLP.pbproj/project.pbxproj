@@ -209,10 +209,10 @@
 		};
 		29B97314FDCFA39411CA2CEA = {
 			children = (
+				29B97315FDCFA39411CA2CEA,
 				F50E4E81017F224201000103,
 				080E96DDFE201D6D7F000001,
 				F582706C0176297F01000102,
-				29B97315FDCFA39411CA2CEA,
 				F582709D01762ABB01000102,
 				29B97317FDCFA39411CA2CEA,
 				29B97323FDCFA39411CA2CEA,
@@ -229,9 +229,9 @@
 				F50FDB8E0179C7F801000102,
 			);
 			isa = PBXGroup;
-			name = "Other Sources";
+			name = "OS X dep";
 			path = "";
-			refType = 4;
+			refType = 2;
 		};
 		29B97316FDCFA39411CA2CEA = {
 			isa = PBXFileReference;
@@ -339,7 +339,6 @@
 				F50FDB990179D45601000102,
 				F50FDB9A0179D45601000102,
 				F50FDB9C0179D45601000102,
-				F50FDB9D0179D45601000102,
 				F50FDB9E0179D45601000102,
 				F50FDBA00179D45601000102,
 				F50FDBA10179D45601000102,
@@ -366,6 +365,7 @@
 				F50E4E8A017F249701000103,
 				F5D45989017F4A2001000103,
 				F536EFB90180C7CB01000103,
+				F50D8E5D0181A1D501000102,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -406,7 +406,7 @@
 				F50D8E560181707F01000102,
 				F50D8E570181721101000102,
 				F50D8E5A018175BC01000102,
-				F50D8E5B0181763101000102,
+				F50D8E5F0181A22D01000102,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -528,8 +528,24 @@
 			settings = {
 			};
 		};
-		F50D8E5B0181763101000102 = {
-			fileRef = F58271DE01762CF701000102;
+		F50D8E5C0181A1D401000102 = {
+			isa = PBXFileReference;
+			path = cocoa_config.h;
+			refType = 4;
+		};
+		F50D8E5D0181A1D501000102 = {
+			fileRef = F50D8E5C0181A1D401000102;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F50D8E5E0181A22D01000102 = {
+			isa = PBXFileReference;
+			path = cocoa_config.m;
+			refType = 4;
+		};
+		F50D8E5F0181A22D01000102 = {
+			fileRef = F50D8E5E0181A22D01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -591,6 +607,7 @@
 			children = (
 				F50E4E89017F249701000103,
 				F536EFB80180C7CA01000103,
+				F50D8E5C0181A1D401000102,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -599,6 +616,7 @@
 		F50E4E83017F224201000103 = {
 			children = (
 				F50E4E88017F249701000103,
+				F50D8E5E0181A22D01000102,
 			);
 			isa = PBXGroup;
 			name = Sources;
@@ -687,12 +705,6 @@
 		};
 		F50FDB9C0179D45601000102 = {
 			fileRef = F582712301762AFA01000102;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		F50FDB9D0179D45601000102 = {
-			fileRef = F582712401762AFA01000102;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -923,8 +935,8 @@
 			children = (
 				F50E4E76017F17D701000103,
 				F514E0E40178CA7001000102,
-				F58270650176284A01000102,
 				F51316000178382A01000102,
+				F58270650176284A01000102,
 				F50E4E7A017F181501000103,
 			);
 			isa = PBXGroup;
@@ -977,7 +989,6 @@
 				F582712101762AFA01000102,
 				F582712201762AFA01000102,
 				F582712301762AFA01000102,
-				F582712401762AFA01000102,
 				F582712601762AFA01000102,
 				F582712701762AFA01000102,
 				F582712801762AFA01000102,
@@ -1012,7 +1023,6 @@
 		F582706E0176297F01000102 = {
 			children = (
 				F58271DD01762CF701000102,
-				F58271DE01762CF701000102,
 				F58271DF01762CF701000102,
 				F58271E001762CF701000102,
 				F58271E101762CF701000102,
@@ -1753,12 +1763,6 @@
 			path = ../src/select.h;
 			refType = 2;
 		};
-		F582712401762AFA01000102 = {
-			isa = PBXFileReference;
-			name = rcfile.h;
-			path = ../src/rcfile.h;
-			refType = 2;
-		};
 		F582712601762AFA01000102 = {
 			isa = PBXFileReference;
 			name = paths.h;
@@ -2285,12 +2289,6 @@
 			isa = PBXFileReference;
 			name = select.c;
 			path = ../src/select.c;
-			refType = 2;
-		};
-		F58271DE01762CF701000102 = {
-			isa = PBXFileReference;
-			name = rcfile.c;
-			path = ../src/rcfile.c;
 			refType = 2;
 		};
 		F58271DF01762CF701000102 = {

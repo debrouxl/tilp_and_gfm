@@ -54,10 +54,6 @@
 {
 }
 
-- (IBAction)reloadConfig:(id)sender
-{
-}
-
 - (IBAction)remoteControl:(id)sender
 {
 }
@@ -84,6 +80,20 @@
 
 - (IBAction)sendVar:(id)sender
 {
+}
+
+- (IBAction)showPrefsSheet:(id)sender
+{
+    [NSApp beginSheet:prefsWindow
+           modalForWindow:mainWindow
+           modalDelegate:nil
+           didEndSelector:nil
+           contextInfo:nil];
+           
+    [NSApp runModalForWindow:prefsWindow];
+    
+    [NSApp endSheet:prefsWindow];
+    [prefsWindow orderOut:self];
 }
 
 - (IBAction)showThanks:(id)sender

@@ -12,6 +12,7 @@
 
 - (IBAction)prefsClose:(id)sender
 {
+    [NSApp stopModal];
 }
 
 - (IBAction)prefsGeneral:(id)sender
