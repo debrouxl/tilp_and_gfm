@@ -81,6 +81,8 @@ GLADE_CB void on_sc_load1_activate(GtkMenuItem * menuitem,
 	g_object_unref(pixbuf);
 }
 
+static gboolean screen_success = FALSE;
+
 GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
@@ -89,6 +91,9 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 	GError *error;
 	gchar *type;
 	const gchar *filename = NULL;
+
+	if(screen_success == FALSE)
+	return;
 
 	switch (options.screen_format) {
 	case XPM:
@@ -154,9 +159,12 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 	guchar *bytemap;
 	gint w, h;
 
-	if (tilp_screen_capture())
+	if (tilp_screen_capture()) {
+		screen_success = FALSE;	
 		return;
-
+	} else
+		screen_success = TRUE;
+	
 	w = ti_screen.width;
 	h = ti_screen.height;
 
