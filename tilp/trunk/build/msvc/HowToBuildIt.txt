@@ -5,7 +5,7 @@ C:\base_folder\ticalcs
 C:\base_folder\tifiles
 C:\base_folder\tilp
 
-Get GTK+ development package at 'http://www.dropline.net/gtk/download.php' and
-install it to C:\Gtk2Dev.
+Get GTK+ development package at <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-devel-2.4-rc26.exe> 
+and install it to C:\Gtk2Dev.
 
 Use MSVC 5.0 mini, 6.0 is better.
