@@ -28,10 +28,10 @@
 					ActiveTab = 0;
 					Frame = "{{0, 23}, {904, 565}}";
 					Split0 = {
-						ActiveTab = 2;
+						ActiveTab = 1;
 						Frame = "{{225, 0}, {679, 565}}";
 						Split0 = {
-							Frame = "{{0, 102}, {679, 463}}";
+							Frame = "{{0, 75}, {679, 490}}";
 						};
 						SplitCount = 1;
 						Tab0 = {
@@ -115,6 +115,16 @@
 			macosx = (
 				00FFA4B701706F217F000001,
 			);
+		};
+	};
+	F51315FF0178382A01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F58270650176284A01000102 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
 		};
 	};
 	F58271E901762CF701000102 = {

@@ -56,7 +56,7 @@ static void addToolbarItem(NSMutableDictionary *theDict,NSString *identifier,NSS
     [toolbar setAutosavesConfiguration: YES]; 
     
     // tell the toolbar to show icons only by default
-    [toolbar setDisplayMode: NSToolbarDisplayModeIconOnly];
+    [toolbar setDisplayMode: NSToolbarDisplayModeIconAndLabel];
     // install the toolbar.
     [mainWindow setToolbar:toolbar];
 }

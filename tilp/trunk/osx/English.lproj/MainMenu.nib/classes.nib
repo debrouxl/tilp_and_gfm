@@ -3,6 +3,85 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
+                defaultConfig = id; 
+                doBackup = id; 
+                doRestore = id; 
+                getDirlist = id; 
+                getIDList = id; 
+                getScreen = id; 
+                installShell = id; 
+                isReady = id; 
+                newWindow = id; 
+                probeCalc = id; 
+                probeLink = id; 
+                receiveFLASHApp = id; 
+                receiveVar = id; 
+                reloadConfig = id; 
+                remoteControl = id; 
+                romDump = id; 
+                romVersion = id; 
+                saveConfig = id; 
+                sendAMS = id; 
+                sendFLASHApp = id; 
+                sendVar = id; 
+                showThanks = id; 
+            }; 
+            CLASS = MenuController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prefWindow = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {changeTimeout = id; closePrefs = id; }; 
+            CLASS = PrefsController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                calcType73 = id; 
+                calcType82 = id; 
+                calcType83 = id; 
+                calcType83p = id; 
+                calcType85 = id; 
+                calcType86 = id; 
+                calcType89 = id; 
+                calcType92 = id; 
+                calcType92p = id; 
+                calcTypeAutoDetect = id; 
+                linkCableTypeTIEMU = id; 
+                linkCableTypeTIGLUSB = id; 
+                linkCableTypeTPC = id; 
+                linkCableTypeVTI = id; 
+                linkTimeout = id; 
+                orderDecreasing = id; 
+                orderIncreasing = id; 
+                pathModeFull = id; 
+                pathModeLocal = id; 
+                screenModeClipped = id; 
+                screenModeFull = id; 
+                screendumpPCX = id; 
+                screendumpXPM = id; 
+                sortByInfo = id; 
+                sortByName = id; 
+                sortBySize = id; 
+                sortByType = id; 
+                transferModeManual = id; 
+                transferModeSilent = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TilpController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                currentFolder = id; 
+                dirlistTree = id; 
+                memoryUsed = id; 
+                numberOfFolders = id; 
+                numberOfVars = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
                 doBackup = id; 
                 doRestore = id; 
                 getDirlist = id; 
