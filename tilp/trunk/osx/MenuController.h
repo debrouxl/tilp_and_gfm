@@ -37,6 +37,7 @@
     IBOutlet id mySheetsController;
     IBOutlet id myTransfersController;
     IBOutlet id myCalcKeyboardController;
+    IBOutlet id myClockController;
     
     NSMutableDictionary *toolbarItems;
 }
@@ -68,6 +69,7 @@
 - (IBAction)sendFLASHApp:(id)sender;
 - (IBAction)sendAMS:(id)sender;
 - (IBAction)getIDList:(id)sender;
+- (IBAction)setClock:(id)sender;
 - (IBAction)romDump:(id)sender;
 - (IBAction)installShell:(id)sender;
 

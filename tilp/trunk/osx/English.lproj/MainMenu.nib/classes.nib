@@ -74,6 +74,41 @@
             }; 
             SUPERCLASS = NSObject; 
         }, 
+        {
+            ACTIONS = {
+                clockCancel = id; 
+                clockSet = id; 
+                clockStep = id; 
+                clockSync = id; 
+                clockTimeFormat = id; 
+            }; 
+            CLASS = ClockController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                clockDateFormat = id; 
+                clockDay = id; 
+                clockDayStepper = id; 
+                clockFormat12 = id; 
+                clockFormat24 = id; 
+                clockFormatMatrix = id; 
+                clockHours = id; 
+                clockHoursStepper = id; 
+                clockMinutes = id; 
+                clockMinutesStepper = id; 
+                clockMonth = id; 
+                clockMonthStepper = id; 
+                clockSeconds = id; 
+                clockSecondsStepper = id; 
+                clockStateMatrix = id; 
+                clockStateOff = id; 
+                clockStateOn = id; 
+                clockWindow = id; 
+                clockYear = id; 
+                clockYearStepper = id; 
+                myBoxesController = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
@@ -92,6 +127,7 @@
                 saveConfig = id; 
                 sendAMS = id; 
                 sendFLASHApp = id; 
+                setClock = id; 
                 showAbout = id; 
                 showThanks = id; 
             }; 
@@ -102,6 +138,7 @@
                 mainWindow = id; 
                 myBoxesController = id; 
                 myCalcKeyboardController = id; 
+                myClockController = id; 
                 myPrefsController = id; 
                 mySheetsController = id; 
                 myTilpController = id; 

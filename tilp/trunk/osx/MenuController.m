@@ -42,6 +42,7 @@ extern struct cocoa_objects_ptr *objects_ptr;
 #import "BoxesController.h"
 #import "RCTextView.h"
 #import "CalcKeyboardController.h"
+#import "ClockController.h"
 
 
 static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, NSString *label, NSString *paletteLabel, NSString *toolTip, id target, SEL settingSelector, id itemContent, SEL action)
@@ -207,34 +208,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 
 - (IBAction)isReady:(id)sender
 {
-    if (tilp_calc_isready() == 0)
-        {
-            switch(ticalc_return_calc())
-                {
-                    case CALC_TI73:
-                        [mySheetsController msgSheet:@"TI-73 Ready !" message:@"The calculator is ready."];
-                        break;
-                    case CALC_TI83P:
-                        [mySheetsController msgSheet:@"TI-83 Plus Ready !" message:@"The calculator is ready."];
-                        break;
-                    case CALC_TI89:
-                        [mySheetsController msgSheet:@"TI-89 Ready !" message:@"The calculator is ready."];
-                        break;
-                    case CALC_TI92:
-                        [mySheetsController msgSheet:@"TI-92 Ready !" message:@"The calculator is ready."];
-                        break;
-                    case CALC_TI92P:
-                        [mySheetsController msgSheet:@"TI-92 Plus Ready !" message:@"The calculator is ready."];
-                        break;
-                    case CALC_TI82:
-                    case CALC_TI83:
-                    case CALC_TI85:
-                    case CALC_TI86:
-                    default:
-                        [mySheetsController msgSheet:@"Ready ?" message:@"Your calculator does not support the \"Ready\" function."];
-                        break;
-                }
-        }
+    tilp_calc_isready();
 }
 
 - (IBAction)remoteControl:(id)sender
@@ -334,7 +308,7 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
     int result;
     
     result = gif->msg_box2(_("Warning"),
-                           _("You're going to install a new Operating System on your calculator. This process can take up to 45 minutes. Make sure your batteries are OK before continuing. If, for any reason, the transfer must be interrupted, wait until the calc displays \"Wainting to receive...\" then retart the transfer."));
+                           _("You're going to install a new Operating System on your calculator. This process can take up to 45 minutes. Make sure your batteries are OK before continuing. If, for any reason, the transfer must be interrupted, wait until the calc displays \"Waiting to receive...\" then retart the transfer."));
                             
     if (result != BUTTON1)
         return;
@@ -358,6 +332,11 @@ static void addToolbarItem(NSMutableDictionary *theDict, NSString *identifier, N
 - (IBAction)getIDList:(id)sender
 {
     tilp_calc_idlist();
+}
+
+- (IBAction)setClock:(id)sender
+{
+    [myClockController showClock];
 }
 
 - (IBAction)romDump:(id)sender

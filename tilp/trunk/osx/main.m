@@ -41,12 +41,6 @@
 #include "../src/tilp_indep.h"
 #include "../src/tilp_struct.h"
 
-// a utility function
-uint32_t swap_bytes(uint32_t a)
-{
-  return (a >> 24) | ((a & 0xff0000) >> 16) << 8 | ((a & 0xff00) >> 8) << 16 | (a & 0xff) << 8;
-}
-
 #include "cocoa_structs.h"
 
 struct cocoa_objects_ptr *objects_ptr;
@@ -64,7 +58,6 @@ void signal_handler(int sig_no)
   exit(0);
 }
 
-// FIXME OS X : need to resync'ed with tilp v6.62 main.c
 int main(int argc, const char *argv[], char **arge)
 {
   NSAutoreleasePool *prefsPool;

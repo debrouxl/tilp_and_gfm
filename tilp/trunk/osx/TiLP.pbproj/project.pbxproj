@@ -1561,7 +1561,7 @@
 	<key>CFBundleSignature</key>
 	<string>JBRL</string>
 	<key>CFBundleVersion</key>
-	<string>6.62-osx0.6.1</string>
+	<string>6.62-osx0.6.3</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -1603,6 +1603,7 @@
 				F7918DC20449F79301000306,
 				F7918DC30449F79301000306,
 				F7918DC40449F79301000306,
+				F768D9E804518ACC01000306,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1664,6 +1665,7 @@
 				F75B3BDC044C10FD01098EFA,
 				F75B3BDD044C110601098EFA,
 				F764B76E044C22CA01000306,
+				F768D9E704518ACC01000306,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2268,6 +2270,7 @@
 				F50E4E7A017F181501000103,
 				F50B140601C158DF01000102,
 				F50C433301F4624B01000102,
+				F768D9E604518ACA01000306,
 			);
 			isa = PBXGroup;
 			name = Headers;
@@ -2282,6 +2285,7 @@
 				F50E4E7B017F181501000103,
 				F50B140701C158DF01000102,
 				F50C433401F4624B01000102,
+				F768D9E504518ACA01000306,
 			);
 			isa = PBXGroup;
 			name = Sources;
@@ -2681,6 +2685,32 @@
 		};
 		F764B76E044C22CA01000306 = {
 			fileRef = F5F18AE50189B62501BE4DDB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F768D9E504518ACA01000306 = {
+			indentWidth = 4;
+			isa = PBXFileReference;
+			path = ClockController.m;
+			refType = 2;
+			tabWidth = 8;
+		};
+		F768D9E604518ACA01000306 = {
+			indentWidth = 4;
+			isa = PBXFileReference;
+			path = ClockController.h;
+			refType = 2;
+			tabWidth = 8;
+		};
+		F768D9E704518ACC01000306 = {
+			fileRef = F768D9E504518ACA01000306;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F768D9E804518ACC01000306 = {
+			fileRef = F768D9E604518ACA01000306;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -1,4 +1,6 @@
-* 20030419 : v6.62 / 0.6.2 ($Rev$)
+* 20030419 : v6.62 / 0.6.3 ($Rev$)
+	* Added clock support.
+* 20030419 : v6.62 / 0.6.2 (Rev: 252)
 	* Rewrote getVarsThreaded.
 	* Got rid of the special items in the dirlistTree.
 * 20030419 : v6.62 / 0.6.1 (Rev: 251)
