@@ -328,6 +328,8 @@ int tilp_calc_rom_dump(void)
 /*
   Send a FLASH application
   Note: the timeout is increased to 10 seconds during the operation.
+  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attemp
+	(TI83+ only, bug #738486)
 */
 int tilp_calc_send_flash_app(char *filename)
 {
@@ -359,7 +361,10 @@ int tilp_calc_send_flash_app(char *filename)
 		break;
 	}
 	old_timeout = ticable_get_timeout();
-	ticable_set_timeout(100);
+	if(options.lp.calc_type == CALC_TI83P)
+		ticable_set_timeout(300);
+	else
+		ticable_set_timeout(100);
 	err = ti_calc.send_flash(filename, MODE_APPS);
 	ticable_set_timeout(old_timeout);
 	gif->destroy_pbar();
@@ -372,6 +377,8 @@ int tilp_calc_send_flash_app(char *filename)
 /*
   Send a FLASH Operating System (AMS).
   Note: the timeout is increased to 10 seconds during the operation.
+  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attemp
+	(TI83+ only, bug #738486)
 */
 int tilp_calc_send_flash_os(char *filename)
 {
@@ -409,7 +416,10 @@ int tilp_calc_send_flash_os(char *filename)
 		break;
 	}
 	old_timeout = ticable_get_timeout();
-	ticable_set_timeout(100);	// 10 seconds
+	if(options.lp.calc_type == CALC_TI83P)
+		ticable_set_timeout(300);
+	else
+		ticable_set_timeout(100);
 	err = ti_calc.send_flash(filename, MODE_AMS);
 	ticable_set_timeout(old_timeout);
 	gif->destroy_pbar();
