@@ -40,6 +40,7 @@
 #include "comm.h"
 #include "clock.h"
 #include "filesel.h"
+#include "logfile.h"
 #include "manpage.h"
 #include "about.h"
 #include "screenshot.h"
@@ -371,7 +372,32 @@ GLADE_CB void on_ti_frorg1_activate(GtkMenuItem * menuitem,
 					     gpointer user_data)
 {
 	go_to_bookmark("http://tilp.info");
-} GLADE_CB void on_about1_activate(GtkMenuItem * menuitem,
+} 
+
+GLADE_CB void
+on_log1_activate                       (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+  display_logfile_dbox();
+}
+
+
+GLADE_CB void
+on_bug_report1_activate                (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+  GtkWidget *dialog;
+  const gchar *message =
+    "There are several ways to get in touch if you encounter a problem with TiLP or if you have questions, suggestions, bug reports, etc:\n- if you have general questions or problems, please consider the users' mailing list first (http://tilp-users@list.sf.net).\n- if you want to discuss about TiLP, you can use the TiLP forum (http://sourceforge.net/forum/?group_id=18378).\n- for bug reports, use the 'Bug Tracking System' (http://sourceforge.net/tracker/?group_id=18378).\n\nBefore e-mailing the TiLP team, make sure you have read the FAQ....";
+  
+  dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+				  GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE,
+				  message);
+  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_widget_destroy(dialog);
+}
+
+GLADE_CB void on_about1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
 	display_about_dbox();

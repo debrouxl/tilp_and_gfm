@@ -15,6 +15,7 @@ src/general.c
 src/gtk_refresh.c
 src/labels.c
 src/main.c
+src/logfile.c
 src/manpage.c
 src/pbars.c
 src/popup.c

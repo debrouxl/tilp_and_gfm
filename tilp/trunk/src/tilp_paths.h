@@ -27,9 +27,11 @@
 #if defined(__LINUX__) || defined(__BSD__)
 # define INI_FILE  "/.tilp"
 # define REG_FILE "tilp.registry"
+# define LOG_FILE "/tmp/tilp.log"
 #elif defined(__WIN32__)
 # define INI_FILE  "tilp.ini"
 # define REG_FILE "tilp.registry"
+# define LOG_FILE "C:\\tilp.log"
 #endif
 
 

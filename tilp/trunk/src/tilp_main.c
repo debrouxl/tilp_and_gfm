@@ -278,11 +278,7 @@ int tilp_main(int argc, const char *argv[], char **arge)
 {
 
 	/* Change name of default logging file */
-#ifdef __WIN32__
-	ticable_verbose_set_file("C:\\tilp.log");
-#else
-	ticable_verbose_set_file("/tmp/tilp.log");
-#endif
+	ticable_verbose_set_file(LOG_FILE);
 
 	/* Display program version */
 	version();

@@ -59,6 +59,14 @@ void on_the_lpg1_activate(GtkMenuItem * menuitem, gpointer user_data);
 void
 on_tilp_s_web_site1_activate(GtkMenuItem * menuitem, gpointer user_data);
 
+
+void
+on_log1_activate                       (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+void
+on_bug_report1_activate                (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
 void on_about1_activate(GtkMenuItem * menuitem, gpointer user_data);
 
 void on_tilp_button4_clicked(GtkButton * button, gpointer user_data);

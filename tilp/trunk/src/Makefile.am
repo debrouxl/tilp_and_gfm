@@ -26,7 +26,7 @@ tilp_SOURCES = \
 	support.c toolbar.c gtk_refresh.c \
 	\
 	tilp.c dboxes.c pbars.c clist.c ctree.c labels.c popup.c \
-	general.c extprgms.c comm.c clock.c filesel.c manpage.c \
+	general.c extprgms.c comm.c clock.c filesel.c logfile.c manpage.c \
 	about.c release.c scroptions.c screenshot.c splash.c wizard.c \
 	shell.c action.c
 
