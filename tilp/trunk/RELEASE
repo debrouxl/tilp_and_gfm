@@ -3,7 +3,7 @@
 
 
 Previous version: 6.77		(30/01/2005)
-Current version:  6.78		(28/02/2005)
+Current version:  6.78		(22/04/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -23,12 +23,14 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- ROM dumping is now working with SilverEdition models (TI83+/TI84+).
+	- 
 
 Improvements:
 -------------
 
-	- none.
+	- ROM dumping is now working better with SilverEdition models (TI83+/TI84+).
+	- no need to specify browser location
+	- updated some obsoleted bookmarks
 
 Bug fixes:
 ----------

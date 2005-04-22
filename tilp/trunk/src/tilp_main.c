@@ -100,7 +100,7 @@ void help(void)
 void version(void)
 {
 	printl(0, _
-		("TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"),
+		("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"),
 		TILP_VERSION);
 
 #ifdef __BSD__

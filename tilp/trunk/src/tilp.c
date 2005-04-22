@@ -252,25 +252,64 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 
 static void go_to_bookmark(const char *link)
 {
-	gboolean result;
-	gchar **argv = g_malloc0(3 * sizeof(gchar *));
+#ifdef __WIN32__
+	HINSTANCE hInst;
 
-	argv[0] = g_strdup(options.web_location);
-	argv[1] = g_strdup(link);
-	argv[2] = NULL;
-
-	result = g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
-	g_strfreev(argv);
-
-	if (result == FALSE) 
+	// Windows do the whole work for us, let's go...
+	hInst = ShellExecute(NULL, "open", link, NULL, NULL, SW_SHOWNORMAL);
+	if((int)hInst <= 32)
 	{
-		msg_box("Error", "Spawn error: do you have Mozilla/IE installed ? If you are using another web browser, please set-up it in 'Setup->External Programs'.");
+		msg_box("Error", "Unable to run ShellExecture extension.");
+	}
+#else
+	// Kevin's list:
+	// * /usr/bin/gnome-open (GNOME 2.6+ default browser, this really should be
+	// first on the list to try, as this will honor the user's choice rather than
+	// guessing an arbitrary one)
+	// * /usr/bin/sensible-browser (Debian's browser script)
+	// * /usr/bin/htmlview (old RHL/Fedora default browser script)
+	// * /usr/bin/firefox (Mozilla Firefox)
+	// * /usr/bin/mozilla (Mozilla Seamonkey)
+	// * /usr/bin/konqueror (Konqueror)
+	//
+	gboolean result;
+	char *apps[] = { 
+			"/usr/bin/gnome-open",
+			"/usr/bin/sensible-browser",
+			"/usr/bin/htmlview",
+			"/usr/bin/firefox",
+			"/usr/bin/mozilla",
+			"/usr/bin/konqueror",
+	};
+	gint i, n;
+
+	n = sizeof(apps) / sizeof(char *);
+	for(i = 0; i < n; i++)
+	{
+		gchar **argv = g_malloc0(3 * sizeof(gchar *));
+
+		argv[0] = g_strdup(apps[i]);
+		argv[1] = g_strdup(link);
+		argv[2] = NULL;
+
+		result = g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
+		g_strfreev(argv);
+
+		if(result != FALSE)
+			break;
+	}
+
+	if (i == n) 
+	{
+		msg_box("Error", "Spawn error: do you have Mozilla installed ?");
 	} 
+#endif
 	else 
 	{
 		GtkWidget *dialog;
 		GTimer *timer;
 		const gchar *message = "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_INFO,
 					   GTK_BUTTONS_CLOSE, message);
@@ -324,13 +363,13 @@ GLADE_CB void on_ticalcorg1_activate(GtkMenuItem * menuitem,
 GLADE_CB void on_tinewsnet1_activate(GtkMenuItem * menuitem,
 				     gpointer user_data)
 {
-	go_to_bookmark("http://www.tinews.net");
+	go_to_bookmark("http://www.tigen.org");
 }
 
 GLADE_CB void on_ti_frorg1_activate(GtkMenuItem * menuitem,
 				    gpointer user_data)
 {
-	go_to_bookmark("http://www.ti-fr.org");
+	go_to_bookmark("http://www.ti-fr.com");
 } GLADE_CB void on_the_lpg1_activate(GtkMenuItem * menuitem,
 				     gpointer user_data)
 {

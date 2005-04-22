@@ -10,7 +10,7 @@ Some explanations about the version number:
 	New form #3: tilp (cables, calcs, tiffep) version.
 
 Tips:
-     cd working-copy
+    cd working-copy
 	svn export . ../tiemu-x.y
 	
 To do:
@@ -19,7 +19,9 @@ To do:
 - 28/02/2005, version 6.78 (3.8.8, 0.6.2, 4.5.7): roms
 	Fixed creation of /usr/lib/tilp directory.
 	Fixed 'Help->User's manual item'.
-	ROM dump for TI83+/84+ SilverEdition is now complete.
+	ROM dump for TI83+/84+ SilverEdition is now complete but may not work.
+	Improved go_to_bookmark.
+	Updated obsoleted bookmarks.
 
 - 29/01/2005, version 6.77 (3.8.7, 0.6.1, 4.5.6): roms
 	Added full FLASH support for TI89 Titanium.

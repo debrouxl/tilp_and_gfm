@@ -77,7 +77,7 @@ static gint execute_win32_command(gchar * cmdline)
 	else
 		argv[1] = g_strconcat("-e ", cmdline, NULL);
 
-	result = g_spawn_async(clist_win.current_dir, argv, NULL, 0, NULL,
+	result = g_spawn_async(NULL/*clist_win.current_dir*/, argv, NULL, 0, NULL,
 			       NULL, NULL, &error);
 	if (result == FALSE) {
 		msg_box("Error",
