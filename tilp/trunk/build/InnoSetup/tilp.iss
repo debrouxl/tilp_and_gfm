@@ -65,10 +65,10 @@ Source: "C:\sources\roms\ticables\tests\ticables.dll"; DestDir: "{app}"; Flags: 
 Source: "C:\sources\roms\ticalcs\tests\ticalcs.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 ; Copy PortTalk driver for Windows NT4/2000/XP
-Source: "C:\sources\roms\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion
-Source: "C:\sources\roms\Porttalk22\PortTalk.sys"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\Porttalk22\AllowIO.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion
+Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\misc\Porttalk22\AllowIO.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; TiLP fonts
 ;Source: "C:\sources\roms\tilp\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp\fonts\tilp.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
