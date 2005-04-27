@@ -1,0 +1,21 @@
+Begin3
+Title:		tilp
+Version:	@VERSION@
+Entered-date:	@ISODATE@
+Description:	TiLP is a linking program for TI graphing calculators
+		@configure_input@
+		Please edit tilp.lsm.in to fix the Keywords and
+		Primary-site entries, add several more lines of
+		description here if appropriate, and to delete these
+		instructions.
+Keywords:	Texas Instruments, graphing calculators, handhelds
+Author: 	roms@tilp.info (Romain Lievin)
+Maintained-by:	roms@tilp.info (Romain Lievin)
+Primary-site:	http://tilp.info
+		31k tilp-@VERSION@.tar.gz
+		500  tilp.lsm
+Alternate-site: http://tilp.sourceforge.net
+Original-site:  http://lpg.ticalc.org/prj_tilp/
+Platforms:      Linux, Windows, Mac OS-X, FreeBSD
+Copying-policy:	GNU copyleft
+End
