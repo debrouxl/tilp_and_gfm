@@ -436,6 +436,12 @@ void tilp_rcfile_read(void)
 			else if (!strcmp(p, "png"))
 				options.screen_format = PNG;
 
+			else if (!strcmp(p, "pdf"))
+				options.screen_format = PDF;
+
+			else if (!strcmp(p, "eps"))
+				options.screen_format = EPS;
+
 			else
 				stop(l);
 			continue;
@@ -940,6 +946,12 @@ void tilp_rcfile_write(void)
 		break;
 	case PNG:
 		fprintf(txt, "png\n");
+		break;
+	case PDF:
+		fprintf(txt, "pdf\n");
+		break;
+	case EPS:
+		fprintf(txt, "eps\n");
 		break;
 	}
 	fprintf(txt, "\n");

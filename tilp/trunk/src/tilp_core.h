@@ -101,6 +101,8 @@ extern "C" {
   int tilp_screen_capture(void);
   uint8_t *tilp_screen_convert(void);
   uint8_t *tilp_screen_blurry(void);
+  gboolean tilp_screen_write_eps(const gchar *filename, GError **error);
+  gboolean tilp_screen_write_pdf(const gchar *filename, GError **error);
 
   // tilp_misc.c
 #ifndef __MACOSX__

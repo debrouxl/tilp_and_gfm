@@ -54,14 +54,15 @@
 #define LOCK   (!0)
 
 
-/* PCX or XPM image format */
-#define PDF  6
-#define PNG  5
-#define TIFF 4
-#define BMP  3
-#define JPG  2
-#define PCX  1
-#define XPM  0
+/* Image format */
+#define EPS  7   /* Encapsulated PostScript */
+#define PDF  6   /* Portable Document Format */
+#define PNG  5   /* Portable Network Graphics */
+#define TIFF 4   /* Tagged Image File Format */
+#define BMP  3   /* Bitmap */
+#define JPG  2   /* JPEG format */
+#define PCX  1   /* PCX */
+#define XPM  0   /* pixmap */
 
 
 /* Cut or copy selected file */

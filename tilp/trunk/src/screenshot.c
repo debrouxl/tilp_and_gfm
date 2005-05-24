@@ -105,7 +105,6 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 		msg_box("Information",
 			"Sorry, these formats are not supported any longer.");
 		return;
-		break;
 	case JPG:
 		type = "jpeg";
 		filename = create_fsel();
@@ -124,6 +123,20 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 		pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
 		result =
 		    gdk_pixbuf_save(pixbuf, filename, type, &error, NULL);
+		break;
+	case PDF:
+		type = "pdf";
+		filename = create_fsel();
+		if (!filename)
+			return;
+		result = tilp_screen_write_pdf(filename, &error);
+		break;
+	case EPS:
+		type = "eps";
+		filename = create_fsel();
+		if (!filename)
+			return;
+		result = tilp_screen_write_eps(filename, &error);
 		break;
 	default:
 		type = "";
@@ -230,6 +243,12 @@ static const gchar *create_fsel(void)
 		break;
 	case PNG:
 		ext = "*.png";
+		break;
+	case PDF:
+		ext = "*.pdf";
+		break;
+	case EPS:
+		ext = "*.eps";
 		break;
 	default:
 		ext = "";
