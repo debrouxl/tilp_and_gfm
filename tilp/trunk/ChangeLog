@@ -16,6 +16,9 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 24/05/2005, version 6.79 (3.9.2, 0.6.4, 4.5.9): jb
+	Added PDF/EPS image support for screenshots.
+
 - 28/02/2005, version 6.78 (3.8.8, 0.6.2, 4.5.7): roms
 	Fixed creation of /usr/lib/tilp directory.
 	Fixed 'Help->User's manual item'.

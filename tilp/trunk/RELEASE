@@ -2,8 +2,8 @@
 
 
 
-Previous version: 6.77		(30/01/2005)
-Current version:  6.78		(22/04/2005)
+Previous version: 6.78b		(29/04/2005)
+Current version:  6.79		(24/05/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -23,20 +23,17 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- 
+	- PDF/EPS image support for screenshots
 
 Improvements:
 -------------
 
-	- ROM dumping is now working better with SilverEdition models (TI83+/TI84+).
-	- no need to specify browser location
-	- updated some obsoleted bookmarks
+	- none
 
 Bug fixes:
 ----------
 
-	- 'Help->User's manual item'
-	- [Linux] creation of /usr/lib/tilp directory 
+	- none
 
 Known problems:
 ---------------
