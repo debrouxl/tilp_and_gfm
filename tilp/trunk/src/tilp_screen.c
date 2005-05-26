@@ -1,4 +1,3 @@
-
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
@@ -22,12 +21,16 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <time.h>
 
 #include "tilp_core.h"
 TilpScreen ti_screen = { 0 };
 
+#ifdef HAVE_LIBZ
+# include <zlib.h>
+#endif
 
 /*
   Do a screen capture
@@ -144,6 +147,142 @@ uint8_t *tilp_screen_blurry(void)
 	return bytemap;
 }
 
+/*
+ * Utility function for the EPS and PDF output
+ */
+static gboolean write_compressed_a85_screen(FILE *fp, GError *err, guchar *data, unsigned long len, gboolean inv)
+{
+	guchar *ubuf, *cbuf;
+	unsigned long cbuflen;
+	int i, j;
+#ifdef HAVE_LIBZ
+	int ret;
+#endif
+	int a85count;
+	unsigned long a85tuple;
+	guchar a85block[6];
+
+	if (inv) {
+		ubuf = g_malloc(len);
+		if (ubuf == NULL) {
+			err->message = _("Couldn't allocate memory!");
+			return FALSE;
+		}
+
+		for (i = 0; i < len; i++) {
+			ubuf[i] = data[i] ^ 0xff;
+		}
+	}
+	else {
+		ubuf = data;
+	}
+
+#ifdef HAVE_LIBZ
+	/* buffer length = length + 0.1 * length + 12 (mandatory) */
+	cbuflen = len + len / 10 + 12;
+	cbuf = g_malloc(cbuflen);
+
+	if (cbuf == NULL) {
+		err->message = _("Couldn't allocate memory!");
+		if (inv) {
+			g_free(ubuf);
+		}
+		return FALSE;
+	}
+
+	ret = compress(cbuf, &cbuflen, ubuf, len);
+
+	if (inv) {
+		g_free(ubuf);
+		ubuf = NULL;
+	}
+
+	if (ret != Z_OK) {
+		err->message = _("zlib error");
+		g_free(cbuf);
+		return FALSE;
+	}
+#else
+	cbuf = ubuf;
+	cbuflen = len;
+#endif /* HAVE_LIBZ */
+
+	/* ASCII85 (base 85) encoding */
+	a85count = 0;
+	a85tuple = 0;
+	a85block[5] = '\0';
+
+	for (i = 0; i < cbuflen; i++) {
+		switch (a85count) {
+		case 0:
+			a85tuple |= (cbuf[i] << 24);
+			a85count++;
+			break;
+		case 1:
+			a85tuple |= (cbuf[i] << 16);
+			a85count++;
+			break;
+		case 2:
+			a85tuple |= (cbuf[i] << 8);
+			a85count++;
+			break;
+		case 3:
+			a85tuple |= (cbuf[i] << 0);
+
+			if (a85tuple == 0) {
+				a85block[0] = 'z';
+				a85block[1] = '\0';
+			}
+			else {
+				/* The ASCII chars must be written in reverse order,
+				 * hence -> a85block[4-j]
+				 */
+				for (j = 0; j < 5; j++) {
+					a85block[4-j] = a85tuple % 85 + '!';
+					a85tuple /= 85;
+				}
+			}
+			fprintf(fp, "%s", a85block);
+
+			a85count = 0;
+			a85tuple = 0;
+			break;
+		default:
+			break;
+		}
+
+		if ((i > 0) && (i % 32 == 0)) {
+			fprintf(fp, "\n");
+		}
+	}
+
+	if (a85count > 0) {
+		a85count++;
+		for (j = 0; j <= a85count; j++) {
+			a85block[j] = a85tuple % 85 + '!';
+			a85tuple /= 85;
+		}
+                /* Reverse order */
+		for (j--; j > 0; j--) {
+			fprintf(fp, "%c", a85block[j]);
+		}
+	}
+
+        /* ASCII85 EOD marker + newline*/
+	fprintf(fp, "~>\n");
+
+#ifdef HAVE_LIBZ
+	g_free(cbuf);
+#else
+	/* ubuf == cbuf in this case, can't be freed earlier */
+	if (inv) {
+		g_free(ubuf);
+	}
+#endif
+
+	return TRUE;
+}
+
 
 /*
  * Write out an Encapsulated PostScript file.
@@ -151,10 +290,9 @@ uint8_t *tilp_screen_blurry(void)
 gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 {
 	int h, w;
-	int i;
-	int row, col, bit, pixel, pos;
-	guchar data, mask;
 	FILE *fp;
+	guchar *buf;
+	gboolean ret;
 	GError e;
 	time_t t;
 
@@ -167,6 +305,7 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 
 	h = ti_screen.height;
 	w = ti_screen.width;
+
 	time(&t);
 
 	fprintf(fp, "%%!PS-Adobe-3.0 EPSF-3.0\n");
@@ -177,41 +316,45 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 	fprintf(fp, "%%%%LanguageLevel: 3\n");
 	fprintf(fp, "%%%%BoundingBox: 0 0 %d %d\n", w, h);
 	fprintf(fp, "\n");
-	fprintf(fp, "/pix 4 string def\n");
 	fprintf(fp, "%d %d scale\n", w, h);
 
 	if (options.screen_blurry) {
-		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] {currentfile pix readhexstring pop} false 3 colorimage\n", w, h, w, h, h);
-		for (row = 0; row < h; row++) {
-			for (col = 0; col < (w >> 3); col++) {
-				data = ti_screen.bitmap[(w >> 3) * row + col];
-				mask = 0x80;
+#ifdef HAVE_LIBZ
+		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter false 3 colorimage\n", w, h, w, h, h);
+#else
+		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter false 3 colorimage\n", w, h, w, h, h);
+#endif
 
-				for (bit = 0; bit < 8; bit++) {
-					pixel = data & mask;
-					pos = row * w + 8 * col + bit;
-					if (pixel)
-						fprintf(fp, "000034");
-					else
-						fprintf(fp, "a8b4a8");
-					mask >>= 1;
-				}
-				fprintf(fp, "\n");
-			}
-			fprintf(fp, "\n");
+		buf = tilp_screen_blurry();
+
+		ret = write_compressed_a85_screen(fp, &e, buf, (h * w * 3), FALSE);
+
+		g_free(buf);
+
+		if (!ret) {
+			*error = &e;
+			fclose(fp);
+			unlink(filename);
+			return FALSE;
 		}
 	}
 	else {
-		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] {currentfile pix readhexstring pop} image", w, h, w, h, h);
-		for (i = 0; (i * 8) < (w * h); i++) {
-			if (i % 20 == 0)
-				fprintf(fp, "\n");
+#ifdef HAVE_LIBZ
+		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter image\n", w, h, w, h, h);
+#else
+		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter image\n", w, h, w, h, h);
+#endif
 
-			fprintf(fp, "%02x", (ti_screen.bitmap[i] ^ 0xff));
+		ret = write_compressed_a85_screen(fp, &e, ti_screen.bitmap, (h * w) / 8, TRUE);
+
+		if (!ret) {
+			*error = &e;
+			fclose(fp);
+			unlink(filename);
+			return FALSE;
 		}
 	}
 
-	fprintf(fp, "\n");
 	fprintf(fp, "%%%%EOF\n");
 	fclose(fp);
 
@@ -224,13 +367,12 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 {
 	int h, w;
-	int i;
-	int row, col, bit, pixel, pos;
-	guchar data, mask;
 	FILE *fp;
 	long obj5, obj6, obj7, xref, slen, slenp;
 	struct tm *t;
 	time_t tt;
+	guchar *buf;
+	gboolean ret;
 	GError e;
 
 	fp = fopen(filename, "wb");
@@ -293,7 +435,6 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 	slen = ftell(fp);
 
 	fprintf(fp, "q\n");
-/* FIXME to be defined according to screen size and scaling */
 	fprintf(fp, "%d 0 0 %d 0 0 cm\n", w, h);
 	fprintf(fp, "BI\n");
 	fprintf(fp, "  /W %d\n", w);
@@ -303,42 +444,47 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 		/* RGB, 8 bits per component, ASCIIHex encoding */
 		fprintf(fp, "  /CS /RGB\n");
 		fprintf(fp, "  /BPC 8\n");
-		fprintf(fp, "  /F /AHx\n");
+#ifdef HAVE_LIBZ
+		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
+#else
+		fprintf(fp, "  /F /A85\n");
+#endif
 		fprintf(fp, "ID\n");
-		for (row = 0; row < h; row++) {
-			for (col = 0; col < (w >> 3); col++) {
-				data = ti_screen.bitmap[(w >> 3) * row + col];
-				mask = 0x80;
 
-				for (bit = 0; bit < 8; bit++) {
-					pixel = data & mask;
-					pos = row * w + 8 * col + bit;
-					if (pixel)
-						fprintf(fp, "000034");
-					else
-						fprintf(fp, "a8b4a8");
-					mask >>= 1;
-				}
-				fprintf(fp, "\n");
-			}
-			fprintf(fp, "\n");
+		buf = tilp_screen_blurry();
+
+		ret = write_compressed_a85_screen(fp, &e, buf, (h * w * 3), FALSE);
+
+		g_free(buf);
+
+		if (!ret) {
+			*error = &e;
+			fclose(fp);
+			unlink(filename);
+			return FALSE;
 		}
 	}
 	else {
 		/* GrayLevel, 1 bit per component, ASCIIHex encoding */
 		fprintf(fp, "  /CS /G\n");
 		fprintf(fp, "  /BPC 1\n");
-		fprintf(fp, "  /F /AHx\n");
-		fprintf(fp, "ID");
-		for (i = 0; (i * 8) < (w * h); i++) {
-			if (i % 20 == 0)
-				fprintf(fp, "\n");
+#ifdef HAVE_LIBZ
+		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
+#else
+		fprintf(fp, "  /F /A85\n");
+#endif
+		fprintf(fp, "ID\n");
 
-			fprintf(fp, "%02x", (ti_screen.bitmap[i] ^ 0xff));
+		ret = write_compressed_a85_screen(fp, &e, ti_screen.bitmap, (h * w) / 8, TRUE);
+
+		if (!ret) {
+			*error = &e;
+			fclose(fp);
+			unlink(filename);
+			return FALSE;
 		}
 	}
 
-	fprintf(fp, "\n");
 	fprintf(fp, "EI\n");
 	fprintf(fp, "Q\n");
 

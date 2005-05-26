@@ -17,7 +17,7 @@ tilp_CPPFLAGS = @TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
 	-DGTK_DISABLE_DEPRECATED
 tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
-	@LTLIBINTL@
+	@LTLIBINTL@ @LIBZ@
 tilp_SOURCES = *.h \
 	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c \
 	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c \

@@ -16,6 +16,11 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 26/05/2005, version 6.79 (3.9.2, 0.6.4, 4.5.9): jb
+	Images in EPS/PDF files now compressed if zlib is available and
+	ASCII85-encoded.
+	Updated version in configure.ac to 6.79.
+
 - 24/05/2005, version 6.79 (3.9.2, 0.6.4, 4.5.9): jb
 	Added PDF/EPS image support for screenshots.
 

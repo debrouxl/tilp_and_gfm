@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP, 6.78, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP, 6.79, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -76,6 +76,14 @@ AC_SUBST(GTK_LIBS)
 PKG_CHECK_MODULES(GLADE, libglade-2.0 >= 1.99.0)
 AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
+
+# Check for zlib
+AC_CHECK_HEADER(zlib.h,[
+	AC_CHECK_LIB(z, compress,,)
+],)
+LIBZ="$LIBS"
+LIBS=""
+AC_SUBST(LIBZ)
 
 # Checks for header files.
 AC_HEADER_STDC
