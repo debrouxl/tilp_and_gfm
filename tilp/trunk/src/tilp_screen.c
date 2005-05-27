@@ -150,7 +150,7 @@ uint8_t *tilp_screen_blurry(void)
 /*
  * Utility function for the EPS and PDF output
  */
-static gboolean write_compressed_a85_screen(FILE *fp, GError *err, guchar *data, unsigned long len, gboolean inv)
+static gboolean write_compressed_a85_screen(FILE *fp, GError **err, guchar *data, unsigned long len, gboolean inv)
 {
 	guchar *ubuf, *cbuf;
 	unsigned long cbuflen;
@@ -165,7 +165,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, GError *err, guchar *data,
 	if (inv) {
 		ubuf = g_malloc(len);
 		if (ubuf == NULL) {
-			err->message = _("Couldn't allocate memory!");
+			*err = g_error_new(0, 0, _("Couldn't allocate memory!"));
 			return FALSE;
 		}
 
@@ -183,7 +183,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, GError *err, guchar *data,
 	cbuf = g_malloc(cbuflen);
 
 	if (cbuf == NULL) {
-		err->message = _("Couldn't allocate memory!");
+		*err = g_error_new(0, 0, _("Couldn't allocate memory!"));
 		if (inv) {
 			g_free(ubuf);
 		}
@@ -198,7 +198,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, GError *err, guchar *data,
 	}
 
 	if (ret != Z_OK) {
-		err->message = _("zlib error");
+		*err = g_error_new(0, 0, _("zlib error"));
 		g_free(cbuf);
 		return FALSE;
 	}
@@ -293,13 +293,11 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 	FILE *fp;
 	guchar *buf;
 	gboolean ret;
-	GError e;
 	time_t t;
 
 	fp = fopen(filename, "wb");
 	if (fp == NULL) {
-		e.message = _("Couldn't open destination file for writing!");
-		*error = &e;
+		*error = g_error_new(0, 0, _("Couldn't open destination file for writing!"));
 		return FALSE;
 	}
 
@@ -327,12 +325,11 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 
 		buf = tilp_screen_blurry();
 
-		ret = write_compressed_a85_screen(fp, &e, buf, (h * w * 3), FALSE);
+		ret = write_compressed_a85_screen(fp, error, buf, (h * w * 3), FALSE);
 
 		g_free(buf);
 
 		if (!ret) {
-			*error = &e;
 			fclose(fp);
 			unlink(filename);
 			return FALSE;
@@ -345,10 +342,9 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter image\n", w, h, w, h, h);
 #endif
 
-		ret = write_compressed_a85_screen(fp, &e, ti_screen.bitmap, (h * w) / 8, TRUE);
+		ret = write_compressed_a85_screen(fp, error, ti_screen.bitmap, (h * w) / 8, TRUE);
 
 		if (!ret) {
-			*error = &e;
 			fclose(fp);
 			unlink(filename);
 			return FALSE;
@@ -373,12 +369,10 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 	time_t tt;
 	guchar *buf;
 	gboolean ret;
-	GError e;
 
 	fp = fopen(filename, "wb");
 	if (fp == NULL) {
-		e.message = _("Couldn't open destination file for writing!");
-		*error = &e;
+		*error = g_error_new(0, 0, _("Couldn't open destination file for writing!"));
 		return FALSE;
 	}
 
@@ -453,12 +447,11 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 
 		buf = tilp_screen_blurry();
 
-		ret = write_compressed_a85_screen(fp, &e, buf, (h * w * 3), FALSE);
+		ret = write_compressed_a85_screen(fp, error, buf, (h * w * 3), FALSE);
 
 		g_free(buf);
 
 		if (!ret) {
-			*error = &e;
 			fclose(fp);
 			unlink(filename);
 			return FALSE;
@@ -475,10 +468,9 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 #endif
 		fprintf(fp, "ID\n");
 
-		ret = write_compressed_a85_screen(fp, &e, ti_screen.bitmap, (h * w) / 8, TRUE);
+		ret = write_compressed_a85_screen(fp, error, ti_screen.bitmap, (h * w) / 8, TRUE);
 
 		if (!ret) {
-			*error = &e;
 			fclose(fp);
 			unlink(filename);
 			return FALSE;
