@@ -1,0 +1,149 @@
+Win32
+-----
+
+1°) Below, you will find a methodology which is common to:
+- libtifiles, libticables, libticalcs,
+- tilp,
+- tiemu.
+
+You should strictly follow it else you will encounter some (very) weird stuffs !
+Creating this methodology takes me a lot of time and experimentations.
+
+You will find exact package names and locations in §3.
+
+2°) Well, let get's us:
+
+- get MinGW & MSys from http://www.mingw.org and install them. You can merge both
+folders if you want but this is strongly discouraged by MinGW team. This was my 
+way until I discover Tor Lillqvist' method (GiMP for Win32) with a separate /target 
+folder.
+I assume you installed MinGW as C:\MinGW and MSys as C:\MSys (without 1.0 path).
+
+- create a MSys\target folder. To install packages later, simply uncompress your
+	downloaded archive which contains 'lib', 'bin', ... folders
+	and copy them into the /target folder (overwrite = yes).
+	Example:
+
+	pkgconfig-0.15		=>	C:\MSys\target
+		+- bin				+- bin
+		+- man				+- man
+		+- share			+- share
+
+	Easy, isn't it ?!
+
+- edit your MSys\etc\profile and add the following lines:
+	export PKG_CONFIG_PATH="/target/lib/pkgconfig"
+	export CPPFLAGS="-I/target/include"
+	export LDFLAGS="-L/target/lib"
+	export PATH="/target/bin:$PATH"
+
+	I encountered problems (no gcc found) by putting $PATH _before_ new path.
+
+- pkg-config: get it as	well as glib (binary), libiconv (binary) and gettext-runtime (binary).
+	Copy folders (bin, lib, ...) into MSys/target.
+
+	Check good installation by a 'pkg-config.exe --help'.
+
+- gtk+ 2.4: get glib-dev, gtk+-dev, atk-dev, pango-dev from the same location. You
+	can get binaries if you want (not mandatory but should be better).
+
+	You can check installation by a 'pkg-config.exe --cflags glib-2.0'.
+
+	====== needed for TiLP / TiEmu ======
+
+- libxml2 (pre-built): get it and think to add the libxml2.pc provided.
+	You may need to remove target/lib/libxml2.la if libglade linkage fails (FIXME !).
+	You will need zlib binary as dependancy.
+
+- libglade (pre-built): get it as devel package.
+
+- or libxml2 (rebuild): download it and do:
+	./configure --prefix=/target --without-ftp --without-http
+	You will need zlib devel as dependancy.
+
+- or libglade (rebuild): download it and do:
+	./configure --prefix=/target
+
+	====== needed for TiLP / TiEmu ======
+
+- libSDL: download it and:
+	rename i386-mingw32msvc-sdl-config into sdl-config
+	change prefix into /target in sdl-config.
+
+	====== needed for TiEmu ======
+
+- ticables, tifiles, ticalcs:
+	./configure --prefix=/target --disable-nls
+
+- tilp:
+	./configure --prefix=/target --disable-nls
+
+- tiemu:
+	./configure --prefix=/target --disable-nls
+
+3°) List of packages (10MB) for infos:
+
+- pkgconfig-0.15: 		<http://www.gimp.org/~tml/gimp/win32/pkgconfig-0.15.zip>
+- GNU libiconv: 		<http://www.gimp.org/~tml/gimp/win32/libiconv-1.9.1.bin.woe32.zip>
+- gettext-runtime-0.13.1: 	<http://www.gimp.org/~tml/gimp/win32/gettext-runtime-0.13.1.zip>
+- glib-dev-2.4.2:		<http://www.gimp.org/~tml/gimp/win32/glib-dev-2.4.2.zip>
+- glib-2.4.2:			<http://www.gimp.org/~tml/gimp/win32/glib-2.4.2.zip>
+- gtk+-dev-2.4.3:		<http://www.gimp.org/~tml/gimp/win32/gtk+-dev-2.4.3.zip> 
+- gtk+-2.4.3:			<http://www.gimp.org/~tml/gimp/win32/gtk+-2.4.3.zip>
+- pango-dev-1.4.0:		<http://www.gimp.org/~tml/gimp/win32/pango-dev-1.4.0.zip>
+- pango-1.4.0:			<http://www.gimp.org/~tml/gimp/win32/pango-1.4.0.zip>
+- atk-dev-1.6.0:		<http://www.gimp.org/~tml/gimp/win32/atk-dev-1.6.0.zip>
+- atk-1.6.0:			<http://www.gimp.org/~tml/gimp/win32/atk-1.6.0.zip>
+
+- zlib-1.2.1-1-lib:		<http://gnuwin32.sourceforge.net/packages/zlib.htm>
+- libxml2-2.4.12-1-lib:		<http://gnuwin32.sourceforge.net/packages/libxml2.htm>
+- liglade-2.0.1-lib: 		<http://gladewin32.sourceforge.net/> => <http://gladewin32.sourceforge.net/modules.php?name=Downloads&d_op=getit&lid=15>
+
+- zlib-1.2.1-1-lib:		<http://gnuwin32.sourceforge.net/packages/zlib.htm>
+- libxml2-2.5.10:		<http://xmlsoft.org/sources/old/libxml-2.5.10.tar.gz>
+- libglade-2.0.1:	 	<http://ftp.linux.org.uk/pub/linux/GNOME/sources/libglade/2.0/libglade-2.0.1.tar.bz2>
+- libglade-2.3.6:		<http://ftp.gnome.org/pub/GNOME/desktop/2.6/2.6.0/sources/libglade-2.3.6.tar.gz>
+
+- jpeg-6b-3-lib:		<http://gnuwin32.sourceforge.net/packages/jpeg.htm>
+- SDL-devel-1.2.7-mingw32:	<http://www.libsdl.org/download-1.2.php>
+
+
+The wget_list.txt file contains the full URL list of the files above. It can be used
+by wget (wget --input-file=wget_list.txt) to automatically download the files.
+
+Tested with TiLP & TiEmu, 24/06/04.
+
+Linux (cross)
+-------------
+
+Read carefully the Win32 section above before !
+
+Take a look at <http://www.mingw.org/mingwfaq.shtml#faq-cross>.
+Download MinGW cross-tools from 
+<http://www.libsdl.org/extras/win32/cross/mingw32-linux-x86-glibc-2.2.tar.gz>
+As explained in cross-README.txt, uncompress it into /usr/local.
+
+About packages, you will have to uncompress them into /target unless you modify each
+/target/lib/pkgconfig/*.pc files with the right path.
+
+Get some scripts and install them in package top dir: 
+	<http://www.libsdl.org/extras/win32/cross/cross-configure.sh>
+	<http://www.libsdl.org/extras/win32/cross/cross-make.sh>
+
+Like Windows, run:
+	export PKG_CONFIG_PATH="/target/lib/pkgconfig"
+	export CPPFLAGS="-I/target/include"
+	export LDFLAGS="-L/target/lib"
+
+	./cross-configure --prefix=/target --disable-nls
+		edit config.h and comment the rpl_malloc & rpl_realloc entries
+	./cross-make
+
+Please note you shouldn't have the Linux-like packages installed in /usr/include or 
+/usr/lib else configure will use these ones instead of those located in /target.
+
+Tested with TiLP, 24/06/04.
+
+---
+
+Romain Liévin (The TiLP Team leader).

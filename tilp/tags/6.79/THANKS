@@ -1,0 +1,48 @@
+Thanks to the author of Glade for its wonderful program. Glade is a RAD 
+program which allow you to create GTK applications quickly and efficiently.
+
+
+Special thanks to:
+------------------
+
+- Benjamin Moody <bmoody@WPI.EDU> for his TI83+/TI84+ ROM dumper
+- K. Kofler <kofler@tigcc.ticalc.org> which has extensively tested TiLP v5.00
+(Linux & Windows) with a TI89.
+- X. LaRue <paxl@videotron.ca> which has tested TiLP v5.00 (Linux) with a 
+	TI83+ & TI86.
+- Benjamin Esham for the new TiLP logo & icon
+- Benjamin Gordon (ben) <bgordon@users.sourceforge.net> or <ben@bxg.org> for creating RedHat packages (.rpm)
+- Julien Blache (jb) <jblache@users.sourceforge.net> or <jb@jblache.org> for creating Debian packages (.deb)
+- Mikael Magnusson <mikma@users.sourceforge.net> or <mikma@hem.passagen.se> for providing me the first TI83+ support which has been rewritten now.
+- James Lancaster <pantherace@users.sourceforge.net> or <??> for the port of TiLP on Alpha architecture.
+
+- Russel G. Howe (rhowe) <rhowe@wiss.co.uk> for the design of the web site
+- Matthew Mundy (matt) for programming TIGL/PAK file format conversion routines for the TI89,92 and 92+
+- David Kuder for writing the ti86.c module (PAK file format) and for providing a TIGL/PAK file format conversion module for the TI82,83,85 and 86 (group files)
+- Laurent Goujon <laurent_goujon@mail.dotcom.fr> for providing me some informations about the use of serial ports under Windows9x, more particularly the support of the Grey TIGraphLink.
+- Leonard Stiles <ljs@uk2.net> for implementing the support of the 'tidev' kernel module (this module is available on ticalc.org, unix directory) and sending
+some bug fixes.
+- Jonathan Derque <jderque@caramail.com> for providing me some patchs about Makefile (uninstall), lib-config script and an unzip patch.
+
+
+Thanks to:
+----------
+
+- Guillaume to have find the hardware protocol starting at the chronodiagrams
+and for lending me his TIGraphLink
+- Jean-Pierre for lending me his TI92+ and his TIGraphLink
+- Thomas for his TI92+
+- Benoit, Florence, and Philippe for their TI89
+- Yves for his TI86
+- Luc for his TI85
+- Nicolas for his TI83
+- Jean-Philippe and Francois for their TI82
+- Laminoir for the logo of TiLT
+- Gabriel for some ideas about Linux.
+- and some others...
+
+
+Internationalization:
+---------------------
+
+See the I18N file...
