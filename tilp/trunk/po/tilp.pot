@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-09-19 17:02+0200\n"
+"POT-Creation-Date: 2005-06-01 13:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,23 +41,23 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: src/action.c:152 src/clock.c:98
+#: src/action.c:153 src/clock.c:98
 msgid "action.c: GUI loading failed !\n"
 msgstr ""
 
-#: src/action.c:215 src/action.c:331
+#: src/action.c:221 src/action.c:343
 msgid "skip"
 msgstr ""
 
-#: src/action.c:216 src/action.c:273 src/action.c:331
+#: src/action.c:222 src/action.c:285 src/action.c:343
 msgid "overwrite"
 msgstr ""
 
-#: src/action.c:299 src/tilp_files.c:702 src/tilp_slct.c:124
+#: src/action.c:311 src/tilp_files.c:702 src/tilp_slct.c:124
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:299 src/tilp_files.c:703
+#: src/action.c:311 src/tilp_files.c:703
 msgid "New name: "
 msgstr ""
 
@@ -107,32 +107,33 @@ msgstr ""
 
 #: src/dboxes.c:41 src/dboxes.c:87 src/popup.c:166 src/popup.c:244
 #: src/popup.c:336 src/tilp_calcs.c:222 src/tilp_calcs.c:255
-#: src/tilp_calcs.c:264 src/tilp_calcs.c:273 src/tilp_calcs.c:294
-#: src/tilp_calcs.c:309 src/tilp_files.c:109 src/tilp_files.c:123
-#: src/tilp_files.c:141 src/tilp_misc.c:48 src/tilp_misc.c:59
-#: src/tilp_misc.c:173 src/tilp_rcfile.c:124 src/tilp_slct.c:129
-#: src/tilp_slct.c:144 src/tilp_slct.c:155 src/tilp_slct.c:166
+#: src/tilp_calcs.c:264 src/tilp_calcs.c:273 src/tilp_calcs.c:293
+#: src/tilp_calcs.c:307 src/tilp_calcs.c:322 src/tilp_files.c:109
+#: src/tilp_files.c:123 src/tilp_files.c:141 src/tilp_misc.c:48
+#: src/tilp_misc.c:59 src/tilp_misc.c:173 src/tilp_rcfile.c:124
+#: src/tilp_slct.c:129 src/tilp_slct.c:144 src/tilp_slct.c:155
+#: src/tilp_slct.c:166
 msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:44 src/dboxes.c:90 src/tilp_calcs.c:114 src/tilp_calcs.c:248
-#: src/tilp_calcs.c:406 src/tilp_files.c:692 src/tilp_slct.c:91
+#: src/tilp_calcs.c:419 src/tilp_files.c:692 src/tilp_slct.c:91
 #: src/tilp_slct.c:94
 msgid "Warning"
 msgstr ""
 
-#: src/dboxes.c:47 src/dboxes.c:93
+#: src/dboxes.c:47 src/dboxes.c:93 src/tilp_calcs.c:297
 msgid "Question"
 msgstr ""
 
 #: src/dboxes.c:50 src/dboxes.c:96 src/main.c:199 src/popup.c:173
-#: src/popup.c:251 src/popup.c:408 src/tilp.c:246 src/tilp_calcs.c:349
-#: src/tilp_calcs.c:401 src/tilp_calcs.c:603 src/tilp_calcs.c:609
-#: src/tilp_calcs.c:615 src/tilp_error.c:81 src/tilp_error.c:83
+#: src/popup.c:251 src/popup.c:408 src/tilp.c:246 src/tilp_calcs.c:362
+#: src/tilp_calcs.c:414 src/tilp_calcs.c:618 src/tilp_calcs.c:624
+#: src/tilp_calcs.c:630 src/tilp_error.c:81 src/tilp_error.c:83
 #: src/tilp_files.c:740 src/tilp_files.c:772 src/tilp_files.c:791
 #: src/tilp_files.c:810 src/tilp_main.c:327 src/tilp_main.c:336
-#: src/tilp_main.c:345 src/tilp_misc.c:168 src/tilp_misc.c:297
-#: src/tilp_rcfile.c:51 src/tilp_rcfile.c:578
+#: src/tilp_main.c:345 src/tilp_misc.c:168 src/tilp_misc.c:264
+#: src/tilp_misc.c:302 src/tilp_rcfile.c:51 src/tilp_rcfile.c:584
 msgid "Error"
 msgstr ""
 
@@ -216,15 +217,15 @@ msgstr ""
 msgid "Plugin mechanism: system not defined yet !"
 msgstr ""
 
-#: src/popup.c:366 src/tilp.c:541 glade/clist_rbm-2.str:18
+#: src/popup.c:366 src/tilp.c:549 glade/clist_rbm-2.str:18
 msgid "Make a new directory"
 msgstr ""
 
-#: src/popup.c:366 src/tilp.c:541 src/tilp_slct.c:124
+#: src/popup.c:366 src/tilp.c:549 src/tilp_slct.c:124
 msgid "Name: "
 msgstr ""
 
-#: src/popup.c:367 src/tilp.c:542
+#: src/popup.c:367 src/tilp.c:550
 msgid "new_directory"
 msgstr ""
 
@@ -257,7 +258,7 @@ msgid ""
 "calculator type."
 msgstr ""
 
-#: src/tilp.c:262
+#: src/tilp.c:332
 msgid "Manual_en.html"
 msgstr ""
 
@@ -271,7 +272,7 @@ msgstr ""
 
 #: src/tilp_calcs.c:124 src/tilp_calcs.c:132 src/tilp_calcs.c:138
 #: src/tilp_calcs.c:161 src/tilp_calcs.c:168 src/tilp_calcs.c:174
-#: src/tilp_calcs.c:177 glade/tilp-2.str:67
+#: src/tilp_calcs.c:177 glade/tilp-2.str:61
 msgid "Backup"
 msgstr ""
 
@@ -330,32 +331,56 @@ msgid ""
 "4: it will wait for you to manually launch it from the calculator."
 msgstr ""
 
-#: src/tilp_calcs.c:295
+#: src/tilp_calcs.c:294
 msgid ""
 "1: TiLP will automatically transfer the ROM dumping program\n"
 "2: but, it will wait for you to manually launch it from the calculator "
-"(either by the shell, either by typing 'asm(rom86)'."
+"(either by the shell, either by typing 'Asm(prgmROMDUMP)'.\n"
+"Thanks to Benjamin Moody for the ROM dumper !"
 msgstr ""
 
-#: src/tilp_calcs.c:310
+#: src/tilp_calcs.c:297
+msgid "Is your calculator model a SilverEdition ?"
+msgstr ""
+
+#: src/tilp_calcs.c:297
+msgid "Yes"
+msgstr ""
+
+#: src/tilp_calcs.c:297
+msgid "No"
+msgstr ""
+
+#: src/tilp_calcs.c:297
+msgid "Cancel"
+msgstr ""
+
+#: src/tilp_calcs.c:308
+msgid ""
+"1: TiLP will automatically transfer the ROM dumping program\n"
+"2: but, it will wait for you to manually launch it from the calculator "
+"(either by the shell, either by typing 'Asm(DUMPROM)'."
+msgstr ""
+
+#: src/tilp_calcs.c:323
 msgid ""
 "1: you must have the FargoII shell installed on your calculator\n"
 "2: TiLP will automatically transfer the ROM dumping program\n"
 "3: TiLP will automatically launch the program (if you are in HOME).\n"
 msgstr ""
 
-#: src/tilp_calcs.c:351
+#: src/tilp_calcs.c:364
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:364 src/tilp_calcs.c:370 src/tilp_calcs.c:418
-#: src/tilp_calcs.c:423
+#: src/tilp_calcs.c:377 src/tilp_calcs.c:383 src/tilp_calcs.c:432
+#: src/tilp_calcs.c:438
 msgid "Flash"
 msgstr ""
 
-#: src/tilp_calcs.c:398
+#: src/tilp_calcs.c:411
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -367,49 +392,49 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:403
+#: src/tilp_calcs.c:416
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:461
+#: src/tilp_calcs.c:476
 msgid "Receiving application(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:550
+#: src/tilp_calcs.c:565
 msgid "Converting..."
 msgstr ""
 
-#: src/tilp_calcs.c:604
+#: src/tilp_calcs.c:619
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:611
+#: src/tilp_calcs.c:626
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:616
+#: src/tilp_calcs.c:631
 msgid "There is an unknown file type in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:630
+#: src/tilp_calcs.c:645
 msgid "Sending group file"
 msgstr ""
 
-#: src/tilp_calcs.c:634
+#: src/tilp_calcs.c:649
 msgid "Sending variable"
 msgstr ""
 
-#: src/tilp_calcs.c:636
+#: src/tilp_calcs.c:651
 msgid "Sending variables"
 msgstr ""
 
-#: src/tilp_calcs.c:705 src/tilp_calcs.c:826
+#: src/tilp_calcs.c:720 src/tilp_calcs.c:841
 msgid "Receiving variable(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:827
+#: src/tilp_calcs.c:842
 msgid "Waiting..."
 msgstr ""
 
@@ -520,7 +545,7 @@ msgstr ""
 
 #: src/tilp_main.c:103
 #, c-format
-msgid "TiLP - Version %s, (C) 1999-2004 Romain Lievin <roms@tilp.info>\n"
+msgid "TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"
 msgstr ""
 
 #: src/tilp_main.c:107
@@ -625,21 +650,25 @@ msgstr ""
 msgid "ungrouped"
 msgstr ""
 
-#: src/tilp_misc.c:298
+#: src/tilp_misc.c:264
+msgid "You can't ungroup in this folder."
+msgstr ""
+
+#: src/tilp_misc.c:303
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
 msgstr ""
 
-#: src/tilp_misc.c:302
+#: src/tilp_misc.c:307
 msgid "Group files"
 msgstr ""
 
-#: src/tilp_misc.c:302
+#: src/tilp_misc.c:307
 msgid "Group name: "
 msgstr ""
 
-#: src/tilp_misc.c:303
+#: src/tilp_misc.c:308
 msgid "group"
 msgstr ""
 
@@ -651,7 +680,7 @@ msgstr ""
 msgid "tilp_plugins_scan: opendir error\n"
 msgstr ""
 
-#: src/tilp_plugin.c:171 src/tilp_plugin.c:233
+#: src/tilp_plugin.c:171 src/tilp_plugin.c:234
 msgid "Done !\n"
 msgstr ""
 
@@ -709,7 +738,7 @@ msgid ""
 "'File|Save config' command menu.\n"
 msgstr ""
 
-#: src/tilp_rcfile.c:579
+#: src/tilp_rcfile.c:585
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
 msgstr ""
 
@@ -717,8 +746,20 @@ msgstr ""
 msgid "initialized in command line mode.\n"
 msgstr ""
 
-#: src/tilp_screen.c:38
+#: src/tilp_screen.c:44
 msgid "Screendump"
+msgstr ""
+
+#: src/tilp_screen.c:168 src/tilp_screen.c:186
+msgid "Couldn't allocate memory!"
+msgstr ""
+
+#: src/tilp_screen.c:201
+msgid "zlib error"
+msgstr ""
+
+#: src/tilp_screen.c:301 src/tilp_screen.c:379
+msgid "Couldn't open destination file for writing!"
 msgstr ""
 
 #: src/tilp_slct.c:92
@@ -832,7 +873,7 @@ msgstr ""
 msgid "New _folder"
 msgstr ""
 
-#: glade/clist_rbm-2.str:20 glade/screenshot-2.str:8 glade/tilp-2.str:8
+#: glade/clist_rbm-2.str:20 glade/screenshot-2.str:8 glade/tilp-2.str:2
 msgid "_File"
 msgstr ""
 
@@ -916,7 +957,7 @@ msgstr ""
 msgid "_Group"
 msgstr ""
 
-#: glade/clist_rbm-2.str:41 glade/tilp-2.str:25
+#: glade/clist_rbm-2.str:41 glade/tilp-2.str:19
 msgid "_Misc"
 msgstr ""
 
@@ -1204,84 +1245,78 @@ msgstr ""
 msgid "Have a problem ? Check out the log:"
 msgstr ""
 
-#: glade/extprgms-2.str:3
+#: glade/extprgms-2.str:2
 msgid "External programs location"
 msgstr ""
 
-#: glade/extprgms-2.str:4 glade/extprgms-2.str:13 glade/extprgms-2.str:22
-#: glade/extprgms-2.str:30
+#: glade/extprgms-2.str:3 glade/extprgms-2.str:10 glade/extprgms-2.str:17
+#: glade/extprgms-2.str:23
 msgid "Location:"
 msgstr ""
 
-#: glade/extprgms-2.str:5
+#: glade/extprgms-2.str:4
 msgid "wzunzip.exe"
 msgstr ""
 
-#: glade/extprgms-2.str:6 glade/extprgms-2.str:10 glade/extprgms-2.str:15
-#: glade/extprgms-2.str:19 glade/extprgms-2.str:24 glade/extprgms-2.str:27
-#: glade/extprgms-2.str:32 glade/extprgms-2.str:35 glade/user_boxes-2.str:4
-msgid "*"
-msgstr ""
-
-#: glade/extprgms-2.str:7 glade/extprgms-2.str:16 glade/extprgms-2.str:25
-#: glade/extprgms-2.str:33
+#: glade/extprgms-2.str:5 glade/extprgms-2.str:12 glade/extprgms-2.str:19
+#: glade/extprgms-2.str:25
 msgid "..."
 msgstr ""
 
-#: glade/extprgms-2.str:8 glade/extprgms-2.str:17 glade/extprgms-2.str:26
-#: glade/extprgms-2.str:34
+#: glade/extprgms-2.str:6 glade/extprgms-2.str:13 glade/extprgms-2.str:20
+#: glade/extprgms-2.str:26
 msgid "Options:"
 msgstr ""
 
-#: glade/extprgms-2.str:9
+#: glade/extprgms-2.str:7
 msgid "-d"
 msgstr ""
 
-#: glade/extprgms-2.str:11
+#: glade/extprgms-2.str:8
 msgid "ZIP program:"
 msgstr ""
 
-#: glade/extprgms-2.str:12
+#: glade/extprgms-2.str:9
 msgid "_ZIP"
 msgstr ""
 
-#: glade/extprgms-2.str:14
+#: glade/extprgms-2.str:11
 msgid "tar"
 msgstr ""
 
-#: glade/extprgms-2.str:18
+#: glade/extprgms-2.str:14
 msgid "xvzf"
 msgstr ""
 
-#: glade/extprgms-2.str:20
+#: glade/extprgms-2.str:15
 msgid "TAR.GZ/TGZ program:"
 msgstr ""
 
-#: glade/extprgms-2.str:21
+#: glade/extprgms-2.str:16
 msgid "_TGZ"
 msgstr ""
 
-#: glade/extprgms-2.str:23
+#: glade/extprgms-2.str:18
 msgid "appsign"
 msgstr ""
 
-#: glade/extprgms-2.str:28
+#: glade/extprgms-2.str:21
 msgid "APPSIGN 83+ program:"
 msgstr ""
 
-#: glade/extprgms-2.str:29
+#: glade/extprgms-2.str:22
 msgid "_AppSign"
 msgstr ""
 
-#: glade/extprgms-2.str:31
+#: glade/extprgms-2.str:24
 msgid "/usr/bin/mozilla"
 msgstr ""
 
-#: glade/extprgms-2.str:36
+#: glade/extprgms-2.str:27
 msgid "Web Browser:"
 msgstr ""
 
-#: glade/extprgms-2.str:37
+#: glade/extprgms-2.str:28
 msgid "_Browser"
 msgstr ""
 
@@ -1349,7 +1384,7 @@ msgstr ""
 msgid "_info"
 msgstr ""
 
-#: glade/general-2.str:26 glade/screen_options-2.str:4
+#: glade/general-2.str:26 glade/screen_options-2.str:8
 msgid "_full"
 msgstr ""
 
@@ -1453,51 +1488,59 @@ msgid ""
 "Please report any bugs to the TiLP team: <tilp-users@lists.sf.net>."
 msgstr ""
 
-#: glade/screen_options-2.str:3
+#: glade/screen_options-2.str:7
 msgid "Screen Capture Options"
 msgstr ""
 
-#: glade/screen_options-2.str:5
+#: glade/screen_options-2.str:9
 msgid "_clipped (TI89)"
 msgstr ""
 
-#: glade/screen_options-2.str:6
+#: glade/screen_options-2.str:10
 msgid "Screen mode:"
 msgstr ""
 
-#: glade/screen_options-2.str:7
+#: glade/screen_options-2.str:11
 msgid "_emulate"
 msgstr ""
 
-#: glade/screen_options-2.str:8
+#: glade/screen_options-2.str:12
 msgid "Gray-scale:"
 msgstr ""
 
-#: glade/screen_options-2.str:9
+#: glade/screen_options-2.str:13
 msgid "Screen Format"
 msgstr ""
 
-#: glade/screen_options-2.str:10
+#: glade/screen_options-2.str:14
 msgid "_PNG"
 msgstr ""
 
-#: glade/screen_options-2.str:11
+#: glade/screen_options-2.str:15
 msgid "_XPM (Unix format)"
 msgstr ""
 
-#: glade/screen_options-2.str:12
+#: glade/screen_options-2.str:16
 msgid "_JPEG (non interlaced)"
 msgstr ""
 
-#: glade/screen_options-2.str:13
+#: glade/screen_options-2.str:17
 msgid "_BMP (Windows)"
 msgstr ""
 
-#: glade/screen_options-2.str:14
+#: glade/screen_options-2.str:18
+msgid "PDF"
+msgstr ""
+
+#: glade/screen_options-2.str:19
+msgid "EPS (PostScript)"
+msgstr ""
+
+#: glade/screen_options-2.str:20
 msgid "Image type:"
 msgstr ""
 
-#: glade/screen_options-2.str:15
+#: glade/screen_options-2.str:21
 msgid "File Format"
 msgstr ""
 
@@ -1513,7 +1556,7 @@ msgstr ""
 msgid "_Save"
 msgstr ""
 
-#: glade/screenshot-2.str:11 glade/tilp-2.str:17
+#: glade/screenshot-2.str:11 glade/tilp-2.str:11
 msgid "_Quit"
 msgstr ""
 
@@ -1521,7 +1564,7 @@ msgstr ""
 msgid "_Options"
 msgstr ""
 
-#: glade/screenshot-2.str:13 glade/tilp-2.str:77
+#: glade/screenshot-2.str:13 glade/tilp-2.str:71
 msgid "Refresh"
 msgstr ""
 
@@ -1541,292 +1584,296 @@ msgstr ""
 msgid "Calculator screen"
 msgstr ""
 
-#: glade/tilp-2.str:7
+#: glade/tilp-2.str:1
 msgid "TiLP ('Ti Linking Program')"
 msgstr ""
 
-#: glade/tilp-2.str:9
+#: glade/tilp-2.str:3
 msgid "_Open"
 msgstr ""
 
-#: glade/tilp-2.str:10
+#: glade/tilp-2.str:4
 msgid "Save current settings (in the configuration file '~/.tilp')."
 msgstr ""
 
-#: glade/tilp-2.str:11
+#: glade/tilp-2.str:5
 msgid "Save _config"
 msgstr ""
 
-#: glade/tilp-2.str:12
+#: glade/tilp-2.str:6
 msgid "Load the previously saved settings."
 msgstr ""
 
-#: glade/tilp-2.str:13
+#: glade/tilp-2.str:7
 msgid "_Reload config"
 msgstr ""
 
-#: glade/tilp-2.str:14
+#: glade/tilp-2.str:8
 msgid "Load default settings."
 msgstr ""
 
-#: glade/tilp-2.str:15
+#: glade/tilp-2.str:9
 msgid "_Default config"
 msgstr ""
 
-#: glade/tilp-2.str:16
+#: glade/tilp-2.str:10
 msgid "Exit from TiLP."
 msgstr ""
 
-#: glade/tilp-2.str:18
+#: glade/tilp-2.str:12
 msgid "_Setup"
 msgstr ""
 
-#: glade/tilp-2.str:19
+#: glade/tilp-2.str:13
 msgid "General options."
 msgstr ""
 
-#: glade/tilp-2.str:20
+#: glade/tilp-2.str:14
 msgid "_General"
 msgstr ""
 
-#: glade/tilp-2.str:21
+#: glade/tilp-2.str:15
 msgid "Location of external programs."
 msgstr ""
 
-#: glade/tilp-2.str:22
+#: glade/tilp-2.str:16
 msgid "_External programs"
 msgstr ""
 
-#: glade/tilp-2.str:23
+#: glade/tilp-2.str:17
 msgid "Communication settings."
 msgstr ""
 
-#: glade/tilp-2.str:24
+#: glade/tilp-2.str:18
 msgid "_Communication"
 msgstr ""
 
-#: glade/tilp-2.str:26
+#: glade/tilp-2.str:20
 msgid "Clock management (AMS2.08 mini)."
 msgstr ""
 
-#: glade/tilp-2.str:27
+#: glade/tilp-2.str:21
 msgid "_Clock"
 msgstr ""
 
-#: glade/tilp-2.str:28
+#: glade/tilp-2.str:22
 msgid "Get the ID-LIST of an FLASH calculator."
 msgstr ""
 
-#: glade/tilp-2.str:29
+#: glade/tilp-2.str:23
 msgid "Get _IDlist"
 msgstr ""
 
-#: glade/tilp-2.str:30
+#: glade/tilp-2.str:24
 msgid "Teminal box and remote control."
 msgstr ""
 
-#: glade/tilp-2.str:31
+#: glade/tilp-2.str:25
 msgid "Remote _control"
 msgstr ""
 
-#: glade/tilp-2.str:32
+#: glade/tilp-2.str:26
 msgid "Get a ROM image for an emulator.."
 msgstr ""
 
-#: glade/tilp-2.str:33
+#: glade/tilp-2.str:27
 msgid "ROM _dump..."
 msgstr ""
 
-#: glade/tilp-2.str:34
+#: glade/tilp-2.str:28
 msgid "Send an OS upgrade to the calculator"
 msgstr ""
 
-#: glade/tilp-2.str:35
+#: glade/tilp-2.str:29
 msgid "_Upgrade OS"
 msgstr ""
 
-#: glade/tilp-2.str:36
+#: glade/tilp-2.str:30
 msgid "_Help"
 msgstr ""
 
-#: glade/tilp-2.str:37
+#: glade/tilp-2.str:31
 msgid "The TiLP User's Manual in html format."
 msgstr ""
 
-#: glade/tilp-2.str:38
+#: glade/tilp-2.str:32
 msgid "_User's Manual"
 msgstr ""
 
-#: glade/tilp-2.str:39
+#: glade/tilp-2.str:33
 msgid "The Linux manual page."
 msgstr ""
 
-#: glade/tilp-2.str:40
+#: glade/tilp-2.str:34
 msgid "_Manpage"
 msgstr ""
 
-#: glade/tilp-2.str:41
+#: glade/tilp-2.str:35
 msgid "_Bookmarks"
 msgstr ""
 
-#: glade/tilp-2.str:42
+#: glade/tilp-2.str:36
 msgid "http://education.ti.com, the Texas Instruments web site"
 msgstr ""
 
-#: glade/tilp-2.str:43
+#: glade/tilp-2.str:37
 msgid "TI's web site"
 msgstr ""
 
-#: glade/tilp-2.str:44
+#: glade/tilp-2.str:38
 msgid "http://eps.ti.com, TI's store for OS upgrades and FLASH applications."
 msgstr ""
 
-#: glade/tilp-2.str:45
+#: glade/tilp-2.str:39
 msgid "Calculator software"
 msgstr ""
 
-#: glade/tilp-2.str:46
+#: glade/tilp-2.str:40
 msgid "A great web site on TI related stuffs."
 msgstr ""
 
-#: glade/tilp-2.str:47
+#: glade/tilp-2.str:41
 msgid "ticalc.org"
 msgstr ""
 
-#: glade/tilp-2.str:48
+#: glade/tilp-2.str:42
 msgid "Some news on the TI world."
 msgstr ""
 
-#: glade/tilp-2.str:49
+#: glade/tilp-2.str:43
 msgid "tinews.net"
 msgstr ""
 
-#: glade/tilp-2.str:50
+#: glade/tilp-2.str:44
 msgid "A French calculator web site."
 msgstr ""
 
-#: glade/tilp-2.str:51
+#: glade/tilp-2.str:45
 msgid "ti-fr.org"
 msgstr ""
 
-#: glade/tilp-2.str:52
+#: glade/tilp-2.str:46
 msgid "http://lpg.ticalc.org, the Linux Programmer Group"
 msgstr ""
 
-#: glade/tilp-2.str:53
+#: glade/tilp-2.str:47
 msgid "The LPG"
 msgstr ""
 
-#: glade/tilp-2.str:54
+#: glade/tilp-2.str:48
 msgid "http://tilp.info, the TiLP web site."
 msgstr ""
 
-#: glade/tilp-2.str:55
+#: glade/tilp-2.str:49
 msgid "TiLP's web site"
 msgstr ""
 
-#: glade/tilp-2.str:56
+#: glade/tilp-2.str:50
 msgid "Display the log file generated by TiLP. Useful for debugging problems."
 msgstr ""
 
-#: glade/tilp-2.str:57
+#: glade/tilp-2.str:51
 msgid "_Log"
 msgstr ""
 
-#: glade/tilp-2.str:58
+#: glade/tilp-2.str:52
 msgid "How to send a bug report..."
 msgstr ""
 
-#: glade/tilp-2.str:59
+#: glade/tilp-2.str:53
 msgid "_Bug report"
 msgstr ""
 
-#: glade/tilp-2.str:60
+#: glade/tilp-2.str:54
 msgid "About TiLP..."
 msgstr ""
 
-#: glade/tilp-2.str:61
+#: glade/tilp-2.str:55
 msgid "_About"
 msgstr ""
 
-#: glade/tilp-2.str:62
+#: glade/tilp-2.str:56
 msgid "Check whether calculator is ready..."
 msgstr ""
 
-#: glade/tilp-2.str:63
+#: glade/tilp-2.str:57
 msgid "Ready ?"
 msgstr ""
 
-#: glade/tilp-2.str:64
+#: glade/tilp-2.str:58
 msgid "List calculator content (folders, variables and applications)."
 msgstr ""
 
-#: glade/tilp-2.str:65
+#: glade/tilp-2.str:59
 msgid "Dirlist"
 msgstr ""
 
-#: glade/tilp-2.str:66
+#: glade/tilp-2.str:60
 msgid "Backup the calculator content."
 msgstr ""
 
-#: glade/tilp-2.str:68
+#: glade/tilp-2.str:62
 msgid "Restore the calculator content."
 msgstr ""
 
-#: glade/tilp-2.str:69
+#: glade/tilp-2.str:63
 msgid "Restore"
 msgstr ""
 
-#: glade/tilp-2.str:70
+#: glade/tilp-2.str:64
 msgid "Receive variables from non-silent calculators."
 msgstr ""
 
-#: glade/tilp-2.str:71
+#: glade/tilp-2.str:65
 msgid "Receive"
 msgstr ""
 
-#: glade/tilp-2.str:72
+#: glade/tilp-2.str:66
 msgid "Create a new directory."
 msgstr ""
 
-#: glade/tilp-2.str:73
+#: glade/tilp-2.str:67
 msgid "MkDir"
 msgstr ""
 
-#: glade/tilp-2.str:74
+#: glade/tilp-2.str:68
 msgid "Delete selected files."
 msgstr ""
 
-#: glade/tilp-2.str:75
+#: glade/tilp-2.str:69
 msgid "Delete"
 msgstr ""
 
-#: glade/tilp-2.str:76
+#: glade/tilp-2.str:70
 msgid "Refresh right frame."
 msgstr ""
 
-#: glade/tilp-2.str:78
+#: glade/tilp-2.str:72
 msgid "Calculator files"
 msgstr ""
 
-#: glade/tilp-2.str:79
+#: glade/tilp-2.str:73
 msgid "Computer files"
 msgstr ""
 
-#: glade/tilp-2.str:80
+#: glade/tilp-2.str:74
 msgid "Memory free: 0 bytes"
 msgstr ""
 
-#: glade/tilp-2.str:81
+#: glade/tilp-2.str:75
 msgid "Current dir: none"
 msgstr ""
 
-#: glade/tilp-2.str:82
+#: glade/tilp-2.str:76
 msgid "Informations"
 msgstr ""
 
 #: glade/user_boxes-2.str:3
 msgid "Title"
+msgstr ""
+
+#: glade/user_boxes-2.str:4
+msgid "*"
 msgstr ""
 
 #: glade/user_boxes-2.str:5

@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 SUBDIRS = #test nv82 gfv
-PLUGINS = test nv82 gfv
+PLUGINS = #test nv82 gfv
 
 .PHONY: files
 

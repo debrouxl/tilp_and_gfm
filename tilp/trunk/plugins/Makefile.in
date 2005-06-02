@@ -188,7 +188,7 @@ tilp_pixmap_dir = @tilp_pixmap_dir@
 tilp_plugin_dir = @tilp_plugin_dir@
 
 SUBDIRS = #test nv82 gfv
-PLUGINS = test nv82 gfv
+PLUGINS = #test nv82 gfv
 subdir = plugins
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
