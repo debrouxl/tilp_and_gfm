@@ -1,20 +1,13 @@
 SubVersion: $Id$
 
-Some explanations about the version number: 
-	Form #0: the version number is like X.XX-Y.YY where X.XX shows the 
-	version of the GTK interface and Y.YY shows the version of the TI link
-	routines.
-	New form #1: after the libTIcalc: X.XX is the version of GtkTiLink
-	New form #2: after the 3.14, an even number is a stable version 
-	whereas an odd number is an unstable/devel version.
-	New form #3: tilp (cables, calcs, tiffep) version.
-
-Tips:
-    cd working-copy
-	svn export . ../tiemu-x.y
-	
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
+
+- 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
+	Use new TiLP-II framework (libti*2)
+
+
+=============[ TiLP II starts here ]==============
 
 - 26/05/2005, version 6.79 (3.9.2, 0.6.5, 4.5.9): jb
 	Images in EPS/PDF files now compressed if zlib is available and

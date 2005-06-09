@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP, 6.79, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP, 0.01, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -16,16 +16,13 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
   Makefile
   build/Makefile
-  desktop/Makefile
   glade/Makefile
   help/Makefile
   icons/Makefile
   intl/Makefile
   man/Makefile
   pixmaps/Makefile
-  plugins/Makefile
   po/Makefile.in
-  registry/Makefile
   src/Makefile
   tilp.lsm
   tilp.spec
@@ -53,15 +50,15 @@ AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 AM_GNU_GETTEXT
 AM_GNU_GETTEXT_VERSION(0.13.1)
 
-PKG_CHECK_MODULES(TICABLES, ticables >= 3.8.0)
+PKG_CHECK_MODULES(TICABLES, ticables2 >= 0.0.1)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles >= 0.6.1)
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.0.1)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 
-PKG_CHECK_MODULES(TICALCS, ticalcs >= 4.5.4)
+PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 0.0.1)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 
@@ -88,7 +85,7 @@ AC_SUBST(LIBZ)
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
-AC_CHECK_HEADERS([tilp/ticables.h tilp/ticalcs.h tilp/tifiles.h tilp/macros.h])
+AC_CHECK_HEADERS([tilp2/ticables.h tilp2/ticalcs.h tilp2/tifiles.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -100,10 +97,8 @@ AC_STRUCT_TM
 
 # Checks for library functions.
 AC_PROG_GCC_TRADITIONAL
-AC_FUNC_MALLOC
 AC_TYPE_SIGNAL
 AC_FUNC_STAT
-AC_FUNC_VPRINTF
 AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr strtol])
 
 # pass some variables to  plugins
@@ -168,6 +163,9 @@ case $host_os in
   fi
   ;;
 esac
+
+AC_SUBST(CFLAGS)
+AC_SUBST(LDFLAGS)
 
 # Output.
 AC_OUTPUT
