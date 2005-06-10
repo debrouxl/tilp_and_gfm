@@ -19,8 +19,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef GUI_INDEP_H
-#define GUI_INDEP_H
+/*
+
+*/
+
+#ifndef __TILP_INDEP__
+#define __TILP_INDEP__
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,7 +33,8 @@ extern "C" {
 /*
   This structure holds the GUI independant functions
 */
-  typedef struct {
+typedef struct 
+{
     // Display a modal OK dialog box with a title and a message
     void (*msg_box) (const char *title, char *message);
 
@@ -67,9 +72,9 @@ extern "C" {
     // Destroy one of the previous pbar dboxes.
     void (*destroy_pbar) (void);
 
-  } TilpGuiFncts;
+} TilpGuiFncts;
 
-  extern TilpGuiFncts *gif;
+extern TilpGuiFncts *gif;
 
 #ifdef __cplusplus
 }

@@ -19,6 +19,11 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*
+	This file contains utility functions about hand-helds functions.
+	These functions are mainly used by the left window.
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -34,6 +39,8 @@
 #endif				/*  */
 
 #include "tilp_core.h"
+
+#if 0
 
 /*
   Register a callback to use whenever the calculator is (not) ready.
@@ -868,3 +875,5 @@ int tilp_calc_recv_var(void)
 	}
 	return 0;
 }
+
+#endif

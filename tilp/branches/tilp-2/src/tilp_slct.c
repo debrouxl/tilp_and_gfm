@@ -19,10 +19,16 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/*
+	Selections
+*/
+
 #include <stdio.h>
 #include <string.h>
 
 #include "tilp_core.h"
+
+#if 0
 
 /* Destroy the selection of the clist window */
 void tilp_clist_selection_destroy(void)
@@ -184,3 +190,5 @@ void tilp_clist_selection_display(void)
 	}
 }
 #endif /* !__MACOSX__ */
+
+#endif

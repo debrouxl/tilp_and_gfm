@@ -12,13 +12,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name ticalcs
+    Project_Dep_Name ticalcs2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name tifiles
+    Project_Dep_Name tifiles2
     End Project Dependency
 }}}
 
@@ -45,10 +45,10 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name tifiles
+    Project_Dep_Name tifiles2
     End Project Dependency
 }}}
 
@@ -75,13 +75,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name ticalcs
+    Project_Dep_Name ticalcs2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name tifiles
+    Project_Dep_Name tifiles2
     End Project Dependency
 }}}
 
@@ -96,13 +96,13 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name ticalcs
+    Project_Dep_Name ticalcs2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name tifiles
+    Project_Dep_Name tifiles2
     End Project Dependency
 }}}
 

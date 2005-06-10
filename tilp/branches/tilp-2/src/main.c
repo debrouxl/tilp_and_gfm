@@ -36,61 +36,53 @@
 # include <windows.h>
 #endif				/*  */
 
+#include "tilibs.h"
 #include "tilp_core.h"
-
-#include "gstruct.h"
 #include "support.h"
-#include "toolbar.h"
-#include "tilp.h"
-#include "gtk_refresh.h"
-#include "pbars.h"
-#include "dboxes.h"
-#include "ctree.h"
-#include "clist.h"
-#include "labels.h"
-#include "release.h"
 #include "splash.h"
-#include "wizard.h"
 
 /**************/
 /* My widgets */
 /**************/
+
+/*
 GtkWidget *main_wnd = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
-struct gfm_window gfm_win = { 0 };
-TilpGuiFncts gui_functions = {
-	0
-};
 
+struct gfm_window gfm_win = { 0 };
+TilpGuiFncts gui_functions = { 0 };
+*/
 
 /******************/
 /* Ctrl+C handler */
 /******************/
+
 void signal_handler(int sig_no)
 {
-	printl(0, "Signal SIGINT (Ctrl+C) caught...\n");
-	printl(0, "Trying to destroy ressources... ");
-	link_cable.exit();
-	ticalc_exit();
-	ticable_exit();
-	printl(0, _("Done.\n"));
+	tilp_info(_("Signal SIGINT (Ctrl+C) caught...\n"));
+	tilp_info(_("Trying to destroy ressources... "));
+
+	ticalcs_library_exit();
+	ticables_library_exit();
+
+	tilp_info(_("Done.\n"));
 	exit(0);
 }
 
 /*****************/
 /* Main function */
 /*****************/
+
 int main(int argc, char *argv[], char **arge)
 {
-	char rc_version[32];
 	GdkPixbuf *icon;
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
 
 	/* Init the tilp core */
-	tilp_main(argc, (const char **)argv, arge);
+	//tilp_main(argc, (const char **)argv, arge);
 
 	/* Init GTK+ */
 	//gtk_set_locale();
@@ -100,6 +92,7 @@ int main(int argc, char *argv[], char **arge)
 	splash_screen_start();
 
 	/* Init the GUI independant functions */
+	/*
 	gui_functions.msg_box = msg_box;
 	gui_functions.msg_box2 = msg_box2;
 	gui_functions.msg_box3 = msg_box3;
@@ -113,14 +106,18 @@ int main(int argc, char *argv[], char **arge)
 	gui_functions.destroy_pbar = destroy_pbar;
 	tilp_gui_set_fncts(&gui_functions);
 	tilp_guigtk_set_refresh();
+	*/
 
 	/* Create the main window */
+	/*
 	splash_screen_set_label(_("Loading GUI..."));
 	main_wnd = display_tilp_dbox();
 	working_mode = MODE_GUI | MODE_GTK;
 	tilp_error(0);		// display console mode errors
+	*/
 
 	/* In cmdline, does not display the entire window, only the pbar */
+	/*
 	if (options.show_gui) {
 		gtk_widget_show_all(main_wnd);
 		toolbar_refresh_buttons();
@@ -128,10 +125,13 @@ int main(int argc, char *argv[], char **arge)
 		gtk_window_set_icon(GTK_WINDOW(main_wnd), icon);
 		gdk_window_set_icon_name(main_wnd->window, _("TiLP"));
 	}
+	*/
 
 	/* Do a local directory list */
+	/*
 	g_free(clist_win.current_dir);
 	clist_win.current_dir = g_get_current_dir();
+	*/
 
 	/* 
 	   If variables have been passed on the command line in GUI mode then
@@ -145,29 +145,22 @@ int main(int argc, char *argv[], char **arge)
 	 */
 
 	/* Update right list */
+	/*
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
-
-	/* Display an informational dbox at startup */
-	tilp_rcfile_get_version(rc_version);
-	if (!strcmp(rc_version, "")
-	    || (strcmp(rc_version, TILP_VERSION) > 0)) {
-		display_release_dbox();
-	}
-
-	/* Scan plug-ins */
-	splash_screen_set_label(_("Scanning plugins..."));
-	tilp_plugins_scan();
+	*/
 
 	/* 
 	   If variables have been passed on the command line in GUI mode then
 	   open them 
 	 */
+	/*
 	   if ((working_mode & ~MODE_GUI) == MODE_GTK) {
 	   splash_screen_set_label(_("Command line..."));
 	   tilp_cmdline_send();
 	   }
+	   */
 
 	/* GTK main loop */
 	splash_screen_stop();
@@ -176,6 +169,8 @@ int main(int argc, char *argv[], char **arge)
 	//tifiles_translate_varname(varname, utf8, 0);
 
 	gtk_main();
+
+
 	return 0;
 }
 

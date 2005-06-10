@@ -11,6 +11,7 @@ del *.pch
 del *.exe
 del *.*~
 del *.dep
+del *.bak
 deltree /y output
 deltree /y debug
 deltree /y release

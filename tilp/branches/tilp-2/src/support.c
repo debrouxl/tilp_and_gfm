@@ -16,7 +16,7 @@
 
 #include "support.h"
 #include "intl.h"
-#include "tilp_printl.h"
+#include "tilp_log.h"
 
 GtkWidget *lookup_widget(GtkWidget * widget, const gchar * widget_name)
 {
@@ -104,7 +104,7 @@ GdkPixbuf *create_pixbuf(const gchar * filename)
 	}
 	pixbuf = gdk_pixbuf_new_from_file(pathname, &error);
 	if (!pixbuf) {
-		printl(2, "Failed to load pixbuf file: %s: %s\n",
+		tilp_warning("Failed to load pixbuf file: %s: %s\n",
 			pathname, error->message);
 		g_error_free(error);
 	}

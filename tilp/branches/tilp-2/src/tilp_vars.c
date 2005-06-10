@@ -32,6 +32,8 @@
 #include "tilibs.h"
 #include "tilp_core.h"
 
+#if 0
+
 /*********************/
 /* Directory listing */
 /*********************/
@@ -250,3 +252,5 @@ void tilp_var_get_size(TiVarEntry * vi, char **buf)
 		sprintf(buffer, "%i MB", (int) vi->size >> 20);
 	*buf = g_strdup(buffer);
 }
+
+#endif

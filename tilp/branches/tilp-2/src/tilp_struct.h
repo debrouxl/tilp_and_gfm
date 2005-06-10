@@ -19,8 +19,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef STRUCT_H
-#define STRUCT_H
+/*
+	Structure definitions.
+*/
+
+#ifndef __TILP_STRUCT__
+#define __TILP_STRUCT__
 
 #ifndef __MACOSX__
 # include <glib.h>
@@ -40,84 +44,52 @@ extern "C" {
 
 #define MAXCHARS 256
 
-  extern TicableLinkCable link_cable;
-  extern TicalcFncts ti_calc;
-  extern TicalcInfoUpdate info_update;
-
-
-#ifndef __MACOSX__
-  typedef struct {
-    gchar *base_dir;		// base directory
-    gchar *locale_dir;		// locale
-    gchar *manpage_dir;		// manpages
-    gchar *help_dir;		// help files
-    gchar *pixmap_dir;		// pixmaps
-    gchar *icon_dir;		// icons
-    gchar *plugin_dir;		// plug-ins
-    gchar *glade_dir;		// directory of files for Glade
-    gchar *home_dir;		// $HOME
-  } TilpInstPaths;
-#endif
-
+extern CableHandle* cable_handle;
+extern CalcHandle*  calc_handle;
 
 /* This struct contains the general options to configure the program */
-  typedef struct {
-#ifndef __MACOSX__
-    int xsize;
-    int ysize;
+typedef struct 
+{
+	DeviceOptions	device;
 
-    int clist_sort;
-    int clist_sort_order;
+#ifndef __MACOSX__
+    int		xsize;
+    int		ysize;
+
+    int		clist_sort;
+    int		clist_sort_order;
 #endif /* !__MACOSX__ */
+    int		ctree_sort;
+    int		ctree_sort_order;
 
-    int ctree_sort;
-    int ctree_sort_order;
+    int		path_mode;
+    int		file_disp;
+	int		confirm;
+    int		single_or_group;
 
-    int path_mode;
-    int file_disp;
-
-    int use_checksum;
-    int single_or_group;
-    int confirm;
-
-    int screen_format;
-    int screen_scaling;
-    int screen_clipping;
-    int screen_blurry;
-
-    int clock_mode;
-    int date_format;
-    int time_format;
+    int		screen_format;
+    int		screen_scaling;
+    int		screen_clipping;
+    int		screen_blurry;
 
 #ifndef __MACOSX__
-    char *unzip_location;
-    char *unzip_options;
-    char *tar_location;
-    char *tar_options;
-    char *web_location;
-    char *web_options;
-
-    char *appsign_location;
-    char *appsign_options;
-
-    char left_font_name[MAXCHARS];
-    char right_font_name[MAXCHARS];
+    char	left_font_name[MAXCHARS];
+    char	right_font_name[MAXCHARS];
 
     char locale[MAXCHARS];
 #endif /* !__MACOSX__ */
 
-    int console_mode;
-    int auto_detect;
-    int show_gui;
+    int		console_mode;
+    int		auto_detect;
+    int		show_gui;
 
-    char *working_dir;
-
-    TicableLinkParam lp;
-  } TilpOptions;
+    char*	working_dir;
+} TilpOptions;
 
 
 /* Used by the local directory list function */
-  typedef struct {
+typedef struct 
+{
     char *name;
     time_t date;
     off_t size;
@@ -132,11 +104,12 @@ extern "C" {
 #endif
 
     char **actions;		// Ticalc action associated w/ the file
-  } TilpFileInfo;
+} TilpFileInfo;
 
 
 /* Used to retrieve stats on the on-calc memory usage */
-  typedef struct {
+typedef struct 
+{
     int vars;			// number of vars
     int folders;		// number of folders
     int mem;			// memory used (not archive memory)
@@ -146,43 +119,43 @@ extern "C" {
     int flashmem;		// FLASH mem used
 
     int freemem;		// remaining memory
-  } TilpCalcMemInfo;
+} TilpCalcMemInfo;
 
 
 /* This struct is used by the CList window */
-  typedef struct {
-    GList *dirlist;		// linked list of files & directories
+typedef struct 
+{
+    GList *dirlist;			// linked list of files & directories
     gchar *current_dir;		// current active directory
     GList *selection;		// selection of files (send, view, ...)
     GList *file_selection;	// selection of files (cut/copy/paste)
-    int copy_cut;		// action type
-  } TilpClistWin;
+    int copy_cut;			// action type
+} TilpClistWin;
 
 
 /* This struct is used by the CTree window */
-  typedef struct {
-    TNode *dirlist;		// linked list of variables & folders
+typedef struct 
+{
+    TNode *dirlist;			// linked list of variables & folders
     TNode *var_tree;		// future use: tree of vars
     TNode *app_tree;		// future use: tree of apps
     unsigned int memory;	// memory free or used by calc
     GList *selection;		// selection of variables
     GList *selection2;		// selection of applications
-  } TilpCtreeWin;
+} TilpCtreeWin;
 
 
 /* Used by the screendump related boxes */
-  typedef struct {
-    uint8_t *bitmap;
-    int width;
-    int height;
-  } TilpScreen;
+typedef struct 
+{
+    uint8_t*	bitmap;
+    int			width;
+    int			height;
+} TilpScreen;
 
-  extern TilpOptions options;
-  extern TilpClistWin clist_win;
-  extern TilpCtreeWin ctree_win;
-#ifndef __MACOSX__
-  extern TilpInstPaths inst_paths;
-#endif /* !__MACOSX__ */
+  extern TilpOptions	options;
+  extern TilpClistWin	clist_win;
+  extern TilpCtreeWin	ctree_win;
 
 #ifdef __cplusplus
 }

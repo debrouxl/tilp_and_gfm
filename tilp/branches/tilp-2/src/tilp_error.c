@@ -30,46 +30,48 @@
 
 #include "tilp_core.h"
 
-extern int working_mode;
+/*extern*/ int working_mode;
 static GList *stack = NULL;
 
 /*
   This function take as input parameter an error code and displays it
   in a message box.
 
-  This function is 'buffered': if error messages appear during startup
-  (console or terminal), they will be displayed in the GUI.
+  This function is 'buffered': if one or more error messages appear 
+  during startup (console or terminal), they will be displayed in the GUI.
  */
 int tilp_error(int errcode)
 {
-	char s[512] = "code not found. This is a bug. Please report it.\n";
+	char *s = NULL;	
 #ifndef __MACOSX__
 	char *utf;
 	gsize bw;
 #endif /* !__MACOSX__ */
+
 	if (!errcode)
 		return 0;
-
-	/* Close the link cable port */
-	link_cable.close();
 
 	/* Push error messages */
 	stack = g_list_append(stack, GINT_TO_POINTER(errcode));
 
 	/* Pop error messages */
-	if (working_mode & MODE_GUI) {
+	if (working_mode & MODE_GUI) 
+	{
 		int i;
-		for (i = 0; i < (int)g_list_length(stack); i++) {
-			int err =
-			    GPOINTER_TO_INT((g_list_nth(stack, i))->data);
+		for (i = 0; i < (int)g_list_length(stack); i++) 
+		{
+			int err = GPOINTER_TO_INT((g_list_nth(stack, i))->data);
 
 			/* Retrieve the error message */
-			err = ticable_get_error(err, s);
-			if (err) {
-				err = tifiles_get_error(err, s);
-				if (err) {
-					err = ticalc_get_error(err, s);
-					if (err) {
+			err = ticables_error_get(err, &s);
+			if (err) 
+			{
+				err = tifiles_error_get(err, &s);
+				if (err) 
+				{
+					err = ticalcs_error_get(err, &s);
+					if (err) 
+					{
 
 						// next level: error for TiLP
 					}
@@ -80,25 +82,37 @@ int tilp_error(int errcode)
 			utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
 			gif->msg_box(_("Error"), utf);
 #else
-            gif->msg_box(_("Error"), s);
+			if(s)
+				gif->msg_box(_("Error"), s);
 #endif /* !__MACOSX__ */
 		}
 		g_list_free(stack);
 		stack = NULL;
-	} else {
+	} 
+	else 
+	{
 		int err = errcode;
 
 		/* Retrieve the error message */
-		err = ticable_get_error(err, s);
+		err = ticables_error_get(err, &s);
 		if (!err)
+		{
 			return 0;
-
-		else {
-			err = ticalc_get_error(err, s);
-			if (!err)
-				return 0;
 		}
-		printl(2, "%s\n", s);
+		else 
+		{
+			err = ticalcs_error_get(err, &s);
+			if (!err)
+			{
+				return 0;
+			}
+		}
+
+		if(s)
+			tilp_info("%s\n", s);
 	}
+
+	free(s);
 	return errcode;
 }
+

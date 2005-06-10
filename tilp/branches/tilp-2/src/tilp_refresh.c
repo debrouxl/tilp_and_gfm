@@ -20,27 +20,23 @@
  */
 
 /*
-  libticables update functions in command line mode
+	Default command line mode callbacks for ticalcs library.
 */
 
 #include <stdio.h>
 
-#ifndef __MACOSX__
-#include "tilibs.h"
-#else				/*  */
-#include <libticalcs/calc_int.h>
-#endif				/*  */
-
 #include "tilp_core.h"
+
+extern CalcUpdate cmdline_update;
 
 static void cmdline_start(void)
 {
-	info_update.prev_percentage = info_update.percentage = 0.0;
+	cmdline_update.cnt1 = cmdline_update.max1 = 0;
 } 
 
 static void cmdline_stop(void)
 {
-	info_update.prev_percentage = info_update.percentage = 0.0;
+	cmdline_update.cnt1 = cmdline_update.max1 = 0;
 } 
 
 static void cmdline_pbar(void)
@@ -53,28 +49,30 @@ static void cmdline_pbar(void)
 	   strcpy(bargraph, "[                   ] 100%");
 	   for(i=0; i<20; i++)
 	   fprintf(stdout, "\b");
-	   for(i=1; i<20*info_update.percentage; i++)
+	   for(i=1; i<20*cmdline_update.percentage; i++)
 	   bargraph[i] = '=';
 	   fprintf(stdout, "%s", bargraph);
 	 */
 	/*
-	   if(info_update.percentage == 0.0)
+	   if(cmdline_update.percentage == 0.0)
 	   fprintf(stdout, "[");
 	 */
-	if ((info_update.percentage - info_update.prev_percentage) < 0.05) {
-		if ((info_update.percentage -
-		     info_update.prev_percentage) < 0)
-			info_update.prev_percentage =
-			    info_update.percentage;
+	/*
+	if ((cmdline_update.percentage - cmdline_update.prev_percentage) < 0.05) {
+		if ((cmdline_update.percentage -
+		     cmdline_update.prev_percentage) < 0)
+			cmdline_update.prev_percentage =
+			    cmdline_update.percentage;
 	} else {
-		info_update.prev_percentage = info_update.percentage;
+		cmdline_update.prev_percentage = cmdline_update.percentage;
 		fprintf(stdout, ".");
 		fflush(stdout);
 	}
+	*/
 
 	/*
-	   if(info_update.percentage > 0.99)
-	   fprintf(stdout, "]\n", info_update.percentage);
+	   if(cmdline_update.percentage > 0.99)
+	   fprintf(stdout, "]\n", cmdline_update.percentage);
 	 */
 }
 
@@ -88,10 +86,21 @@ static void cmdline_refresh(void)
 	return;
 }
 
+CalcUpdate cmdline_update =
+{
+	"", 0,
+	0.0, 0, 0, 0, 0,
+	cmdline_start,
+	cmdline_stop,
+	cmdline_refresh,
+	cmdline_pbar,
+	cmdline_label,
+};
+
 void tilp_cmdline_set_refresh(void)
 {
-	ticalc_set_update(&info_update, cmdline_start, cmdline_stop,
-			  cmdline_refresh, cmdline_pbar, cmdline_label);
-	printl(0, _("initialized in command line mode.\n"));
+	ticalcs_update_set(calc_handle, &cmdline_update);
+	tilp_info(_("initialized in command line mode.\n"));
+
 	return;
 }

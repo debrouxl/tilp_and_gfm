@@ -42,7 +42,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /G3 /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "NDEBUG" /D "WIN32" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /FD /c
+# ADD CPP /nologo /G3 /w /W0 /GX /O2 /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "NDEBUG" /D "WIN32" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
@@ -67,7 +67,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../../../tifiles/src" /I "../../../ticalcs/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /FD /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "_DEBUG" /D "WIN32" /D "_CONSOLE" /D "__WIN32__" /D "_MBCS" /FD /c
 # SUBTRACT CPP /Fr /YX
 # ADD BASE RSC /l 0x40c /d "_DEBUG"
 # ADD RSC /l 0x809 /d "_DEBUG"
@@ -76,7 +76,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /out:"C:\msvc\tilp2\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
 # SUBTRACT LINK32 /map
 
 !ENDIF 
@@ -134,91 +134,7 @@ SOURCE="..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\src\about.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\action.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clist.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clock.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\comm.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ctree.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dboxes.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dnd.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\extprgms.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\filesel.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\general.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gtk_refresh.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\labels.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\logfile.c
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\main.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\manpage.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\pbars.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\popup.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\release.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\screenshot.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\scroptions.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\shell.c
 # End Source File
 # Begin Source File
 
@@ -227,18 +143,6 @@ SOURCE=..\..\src\splash.c
 # Begin Source File
 
 SOURCE=..\..\src\support.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\toolbar.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\wizard.c
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -414,63 +318,11 @@ SOURCE=.\tilp2.ico
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\src\tilp_calcs.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_error.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_files.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_indep.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_main.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_misc.c
+SOURCE=..\..\src\tilp_log.c
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\src\tilp_paths.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_plugin.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_printl.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_prompt.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_rcfile.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_refresh.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_screen.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_slct.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_vars.c
 # End Source File
 # End Group
 # Begin Source File

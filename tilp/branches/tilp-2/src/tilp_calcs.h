@@ -1,5 +1,5 @@
 /* Hey EMACS -*- linux-c -*- */
-/* $Id$ */
+/* $Id: tilp_core.h 1125 2005-05-24 18:09:19Z julien $ */
 
 /*  TiLP - Ti Linking Program
  *  Copyright (C) 1999-2005  Romain Lievin
@@ -19,18 +19,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __CMDINTERFACE__
-#define __CMDINTERFACE__
+#ifndef __TILP_CALCS__
+#define __TILP_CALCS__
 
 
-extern int cmdState;
-extern int progBar;
-
-
-extern void cmd_update_progbar(int size);
-extern void cmd_link_progress(int type, char *name, int size);
-extern void enter_command(void);
-
-int tilp_prompt(void);
 
 #endif

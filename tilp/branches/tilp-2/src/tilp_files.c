@@ -20,10 +20,10 @@
  */
 
 /*
-  This file contains utility functions about files, attributes,
-  sorting routines for selection, ...
-  These functions are mainly used by the right window.
- */
+	This file contains utility functions about files, attributes,
+	sorting routines for selection, ...
+	These functions are mainly used by the right window.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,11 +48,12 @@
 #endif
 
 #include "tilp_core.h"
-//#include "dboxes.h"
 
 /*******************************/
 /* File manipulation functions */
 /*******************************/
+
+#if 0
 
 #ifndef __WIN32__
 int tilp_file_copy(const char *src, const char *dst)
@@ -828,3 +829,5 @@ char *tilp_file_underscorize(char *s)
 	}
 	return s;
 }
+
+#endif

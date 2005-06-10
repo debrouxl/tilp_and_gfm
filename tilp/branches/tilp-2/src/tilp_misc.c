@@ -24,15 +24,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifndef __MACOSX__
-#include "tilibs.h"
-#else				/*  */
-#include <glib/glib.h>
-#include <libticables/cabl_int.h>
-#include <libticalcs/calc_int.h>
-#endif				/*  */
-
 #include "tilp_core.h"
+
+#if 0
 
 /*********************/
 /* Config management */
@@ -328,3 +322,6 @@ int tilp_tifiles_group(void)
 	g_strfreev(array);
 	return 0;
 }
+
+
+#endif
