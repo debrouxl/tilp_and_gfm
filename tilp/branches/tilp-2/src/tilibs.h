@@ -1,8 +1,8 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
-/*  tilp - Ti Linking Program
- *  Copyright (C) 1999-2004  Romain Lievin
+/*  TiLP - Ti Linking Program
+ *  Copyright (C) 1999-2005  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 #endif
 
 #if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp/ticables.h>
+# include <tilp2/ticables.h>
 #elif defined(__MACOSX__)
 # include <libticables/ticables.h>
 #else
@@ -40,20 +40,20 @@
 #endif
 
 #if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp/tifiles.h>
-# include <tilp/macros.h>
+# include <tilp2/tifiles.h>
+# include <tilp2/macros.h>
 #elif defined(__MACOSX__)
-# include <libtifiles/tifiles.h>
-# include <libtifiles/macros.h>
+# include <libtifiles2/tifiles.h>
+# include <libtifiles2/macros.h>
 #else
 # include "tifiles.h"
 # include "macros.h"
 #endif
 
 #if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp/ticalcs.h>
+# include <tilp2/ticalcs.h>
 #elif defined(__MACOSX__)
-# include <libticalcs/ticalcs.h>
+# include <libticalcs2/ticalcs.h>
 #else
 # include "ticalcs.h"
 #endif

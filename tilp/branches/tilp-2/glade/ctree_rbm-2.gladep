@@ -11,8 +11,8 @@
   <output_build_files>FALSE</output_build_files>
   <main_source_file>null</main_source_file>
   <main_header_file>null</main_header_file>
-  <handler_source_file>general.c</handler_source_file>
-  <handler_header_file>general.h</handler_header_file>
+  <handler_source_file>popup.c</handler_source_file>
+  <handler_header_file>popup.h</handler_header_file>
   <output_translatable_strings>TRUE</output_translatable_strings>
-  <translatable_strings_file>general-2.str</translatable_strings_file>
+  <translatable_strings_file>ctree_rbm-2.str</translatable_strings_file>
 </glade-project>

@@ -24,7 +24,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ticables"=..\..\libs\cables\win32\ticables.dsp - Package Owner=<4>
+Project: "ticables2"=..\..\..\ticables2\build\msvc\ticables2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -36,7 +36,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ticalcs"=..\..\libs\calcs\win32\ticalcs.dsp - Package Owner=<4>
+Project: "ticalcs2"=..\..\..\ticalcs2\build\msvc\ticalcs2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -54,7 +54,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "tifiles"=..\..\libs\files\win32\tifiles.dsp - Package Owner=<4>
+Project: "tifiles2"=..\..\..\tifiles2\build\msvc\tifiles2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -88,27 +88,6 @@ Package=<4>
 ###############################################################################
 
 Project: "tilp_gtk_win32"=.\tilp_gtk_win32.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name ticables
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name ticalcs
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name tifiles
-    End Project Dependency
-}}}
-
-###############################################################################
-
-Project: "tilp_mfc"=..\mfc\tilp_mfc.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

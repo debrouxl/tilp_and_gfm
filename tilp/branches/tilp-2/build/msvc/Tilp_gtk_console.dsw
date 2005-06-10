@@ -12,16 +12,16 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
     Begin Project Dependency
-    Project_Dep_Name ticalcs
+    Project_Dep_Name ticalcs2
     End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "ticables"=..\..\TI_LIBS\CABLES\Win32\ticables.dsp - Package Owner=<4>
+Project: "ticables2"=..\..\TI_LIBS\CABLES\Win32\ticables2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -33,7 +33,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "ticalcs"=..\..\TI_LIBS\CALCS\Win32\ticalcs.dsp - Package Owner=<4>
+Project: "ticalcs2"=..\..\TI_LIBS\CALCS\Win32\ticalcs2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -42,7 +42,7 @@ Package=<5>
 Package=<4>
 {{{
     Begin Project Dependency
-    Project_Dep_Name ticables
+    Project_Dep_Name ticables2
     End Project Dependency
 }}}
 
