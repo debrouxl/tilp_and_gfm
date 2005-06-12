@@ -76,8 +76,8 @@ typedef struct
 
 extern TilpGuiFncts *gif;
 
-void tilp_indep_set_gui_cmdline(void);
-void tilp_refresh_set_update_cmdline(void);
+void tilp_gif_set_default(void);
+void tilp_update_set_default(void);
 
 #ifdef __cplusplus
 }

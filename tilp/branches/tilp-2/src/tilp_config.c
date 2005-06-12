@@ -60,10 +60,10 @@ int tilp_config_default(void)
 	options.xsize = 640 / 2;
 	options.ysize = 480 / 2;
 
-	options.clist_sort = SORT_BY_NAME;
-	options.clist_sort_order = SORT_DOWN;
-	options.ctree_sort = SORT_BY_NAME;
-	options.ctree_sort_order = SORT_DOWN;
+	options.local_sort = SORT_BY_NAME;
+	options.local_sort_order = SORT_DOWN;
+	options.remote_sort = SORT_BY_NAME;
+	options.remote_sort_order = SORT_DOWN;
 
 	options.overwrite = CONFIRM_YES;
 	options.full_path = PATH_FULL;
@@ -209,17 +209,17 @@ int tilp_config_write(void)
 	g_key_file_set_comment(kf, SECTION_GUI, "ysize", "Hand-helds type", &error);
 	g_key_file_set_integer(kf, SECTION_GUI, "ysize", options.ysize);
 
-	g_key_file_set_comment(kf, SECTION_GUI, "clist_sort", "Hand-helds type", &error);
-	g_key_file_set_integer(kf, SECTION_GUI, "clist_sort", options.clist_sort);
+	g_key_file_set_comment(kf, SECTION_GUI, "local_sort", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "local_sort", options.local_sort);
 
-	g_key_file_set_comment(kf, SECTION_GUI, "clist_sort_order", "Hand-helds type", &error);
-	g_key_file_set_integer(kf, SECTION_GUI, "clist_sort_order", options.clist_sort_order);
+	g_key_file_set_comment(kf, SECTION_GUI, "local_sort_order", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "local_sort_order", options.local_sort_order);
 
-	g_key_file_set_comment(kf, SECTION_GUI, "ctree_sort", "Hand-helds type", &error);
-	g_key_file_set_integer(kf, SECTION_GUI, "ctree_sort", options.ctree_sort);
+	g_key_file_set_comment(kf, SECTION_GUI, "remote_sort", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "remote_sort", options.remote_sort);
 
-	g_key_file_set_comment(kf, SECTION_GUI, "ctree_sort_order", "Hand-helds type", &error);
-	g_key_file_set_integer(kf, SECTION_GUI, "ctree_sort_order", options.ctree_sort_order);
+	g_key_file_set_comment(kf, SECTION_GUI, "remote_sort_order", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "remote_sort_order", options.remote_sort_order);
 
 	// Section [OPTIONS]
 	g_key_file_set_comment(kf, SECTION_OPTIONS, NULL, "GUI section", &error);
@@ -341,15 +341,15 @@ int tilp_config_read(void)
 	options.xsize = g_key_file_get_integer(kf, SECTION_GUI, "xsize", &error);
 	options.ysize = g_key_file_get_integer(kf, SECTION_GUI, "ysize", &error);
 
-	options.clist_sort = 
-		g_key_file_get_integer(kf, SECTION_GUI, "clist_sort", &error);
-	options.clist_sort_order = 
-		g_key_file_get_integer(kf, SECTION_GUI, "clist_sort_order", &error);
+	options.local_sort = 
+		g_key_file_get_integer(kf, SECTION_GUI, "local_sort", &error);
+	options.local_sort_order = 
+		g_key_file_get_integer(kf, SECTION_GUI, "local_sort_order", &error);
 
-	options.ctree_sort = 
-		g_key_file_get_integer(kf, SECTION_GUI, "ctree_sort", &error);
-	options.ctree_sort_order = 
-		g_key_file_get_integer(kf, SECTION_GUI, "ctree_sort_order", &error);
+	options.remote_sort = 
+		g_key_file_get_integer(kf, SECTION_GUI, "remote_sort", &error);
+	options.remote_sort_order = 
+		g_key_file_get_integer(kf, SECTION_GUI, "remote_sort_order", &error);
 
 	// Section [OPTIONS]
 	options.full_path = 
@@ -620,63 +620,63 @@ void tilp_config_read(void)
 			sscanf(p, "%i", &(options.ysize));
 			continue;
 		}
-		if ((p = find_str(buffer, "clist_sort="))) {
+		if ((p = find_str(buffer, "local_sort="))) {
 			if (!strcmp(p, "name"))
-				options.clist_sort = SORT_BY_NAME;
+				options.local_sort = SORT_BY_NAME;
 
 			else if (!strcmp(p, "date"))
-				options.clist_sort = SORT_BY_DATE;
+				options.local_sort = SORT_BY_DATE;
 
 			else if (!strcmp(p, "size"))
-				options.clist_sort = SORT_Bysize;
+				options.local_sort = SORT_Bysize;
 
 			else if (!strcmp(p, "user"))
-				options.clist_sort = SORT_BY_USER;
+				options.local_sort = SORT_BY_USER;
 
 			else if (!strcmp(p, "group"))
-				options.clist_sort = SORT_BY_GROUP;
+				options.local_sort = SORT_BY_GROUP;
 
 			else if (!strcmp(p, "attrib"))
-				options.clist_sort = SORT_BY_ATTRB;
+				options.local_sort = SORT_BY_ATTRB;
 
 			else
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "clist_order="))) {
+		if ((p = find_str(buffer, "local_order="))) {
 			if (!strcmp(p, "up"))
-				options.clist_sort_order = SORT_UP;
+				options.local_sort_order = SORT_UP;
 
 			else if (!strcmp(p, "down"))
-				options.clist_sort_order = SORT_DOWN;
+				options.local_sort_order = SORT_DOWN;
 
 			else
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "ctree_sort="))) {
+		if ((p = find_str(buffer, "remote_sort="))) {
 			if (!strcmp(p, "name"))
-				options.ctree_sort = SORT_BY_NAME;
+				options.remote_sort = SORT_BY_NAME;
 
 			else if (!strcmp(p, "info"))
-				options.ctree_sort = SORT_BY_INFO;
+				options.remote_sort = SORT_BY_INFO;
 
 			else if (!strcmp(p, "type"))
-				options.ctree_sort = SORT_BY_TYPE;
+				options.remote_sort = SORT_BY_TYPE;
 
 			else if (!strcmp(p, "size"))
-				options.ctree_sort = SORT_Bysize;
+				options.remote_sort = SORT_Bysize;
 
 			else
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "ctree_order="))) {
+		if ((p = find_str(buffer, "remote_order="))) {
 			if (!strcmp(p, "up"))
-				options.ctree_sort_order = SORT_UP;
+				options.remote_sort_order = SORT_UP;
 
 			else if (!strcmp(p, "down"))
-				options.ctree_sort_order = SORT_DOWN;
+				options.remote_sort_order = SORT_DOWN;
 
 			else
 				stop(l);
@@ -1069,8 +1069,8 @@ void tilp_config_write(void)
 	fprintf(txt, "\n");
 	fprintf(txt,
 		"# Right window sort order: name, date, size, user, group, attrib\n");
-	fprintf(txt, "clist_sort=");
-	switch (options.clist_sort) {
+	fprintf(txt, "local_sort=");
+	switch (options.local_sort) {
 	case SORT_BY_NAME:
 		fprintf(txt, "name\n");
 		break;
@@ -1090,8 +1090,8 @@ void tilp_config_write(void)
 		fprintf(txt, "attrib\n");
 		break;
 	}
-	fprintf(txt, "clist_order=");
-	switch (options.clist_sort_order) {
+	fprintf(txt, "local_order=");
+	switch (options.local_sort_order) {
 	case SORT_UP:
 		fprintf(txt, "up\n");
 		break;
@@ -1101,8 +1101,8 @@ void tilp_config_write(void)
 	}
 	fprintf(txt, "\n");
 	fprintf(txt, "# Left window sort order: name, info, type, size\n");
-	fprintf(txt, "ctree_sort=");
-	switch (options.ctree_sort) {
+	fprintf(txt, "remote_sort=");
+	switch (options.remote_sort) {
 	case SORT_BY_NAME:
 		fprintf(txt, "name\n");
 		break;
@@ -1116,8 +1116,8 @@ void tilp_config_write(void)
 		fprintf(txt, "size\n");
 		break;
 	}
-	fprintf(txt, "ctree_order=");
-	switch (options.ctree_sort_order) {
+	fprintf(txt, "remote_order=");
+	switch (options.remote_sort_order) {
 	case SORT_UP:
 		fprintf(txt, "up\n");
 		break;

@@ -37,24 +37,24 @@ int tilp_dirlist_remote(void)
 	int err;
 
 	// delete old trees
-	ticalcs_dirlist_destroy(&ctree_win.var_tree);
-	ticalcs_dirlist_destroy(&ctree_win.app_tree);
+	ticalcs_dirlist_destroy(&remote_win.var_tree);
+	ticalcs_dirlist_destroy(&remote_win.app_tree);
 	
 	// get new trees
 	gif->create_pbar_type2(_("Directory list"), _("Reading variables"));
-	err = ticalcs_calc_get_dirlist(calc_handle, &ctree_win.var_tree, &ctree_win.app_tree);
+	err = ticalcs_calc_get_dirlist(calc_handle, &remote_win.var_tree, &remote_win.app_tree);
 
-	if(tilp_error(err))
+	if(tilp_err(err))
 	{
 		gif->destroy_pbar();
 		return -1;
 	}
 	gif->destroy_pbar();
 
-	ticalcs_calc_get_memfree(calc_handle, &(ctree_win.memory));
+	ticalcs_calc_get_memfree(calc_handle, &(remote_win.memory));
 
-	ticalcs_dirlist_display(ctree_win.var_tree);
-	ticalcs_dirlist_display(ctree_win.app_tree);
+	ticalcs_dirlist_display(remote_win.var_tree);
+	ticalcs_dirlist_display(remote_win.app_tree);
 
 	return 0;
 }
@@ -84,7 +84,7 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_name(void)
 {
-	//g_list_sort(ctree_win., sort_by_name);
+	//g_list_sort(remote_win., sort_by_name);
 }
 
 /* Sort variables by attribute */
@@ -111,7 +111,7 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_info(void)
 {
-	g_list_sort(clist_win.dirlist, sort_by_attrib);
+	g_list_sort(local_win.dirlist, sort_by_attrib);
 }
 
 /* Sort variables by type */
@@ -138,7 +138,7 @@ static gint sort_by_type(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_type(void)
 {
-	g_list_sort(clist_win.dirlist, sort_by_type);
+	g_list_sort(local_win.dirlist, sort_by_type);
 }
 
 /* Sort variables by size */
@@ -165,7 +165,7 @@ static gint sort_by_size(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_size(void)
 {
-	g_list_sort(clist_win.dirlist, sort_by_size);
+	g_list_sort(local_win.dirlist, sort_by_size);
 }
 
 /********/

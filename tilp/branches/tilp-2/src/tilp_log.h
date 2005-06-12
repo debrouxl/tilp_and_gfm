@@ -35,7 +35,7 @@ void tilp_info(const gchar *format, ...);
 void tilp_message(const gchar *format, ...);
 void tilp_warning(const gchar *format, ...);
 void tilp_critical(const gchar *format, ...);
-//void tilp_error(const gchar *format, ...);
+void tilp_error(const gchar *format, ...);
 
 #define TRYC(x) { int aaa_; if((aaa_ = (x))) return aaa_; }
 

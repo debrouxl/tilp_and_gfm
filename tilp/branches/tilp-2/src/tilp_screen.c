@@ -65,7 +65,7 @@ int tilp_screen_capture(void)
 
 	gif->destroy_pbar();
 
-	if (tilp_error(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;

@@ -20,26 +20,26 @@
  */
 
 /*
-	Default command line mode callbacks for ticalcs library.
+	Default callbacks for ticalcs library (console)
 */
 
 #include <stdio.h>
 
 #include "tilp_core.h"
 
-extern CalcUpdate cmdline_update;
+extern CalcUpdate default_update;
 
-static void cmdline_start(void)
+static void default_start(void)
 {
-	cmdline_update.cnt1 = cmdline_update.max1 = 0;
+	default_update.cnt1 = default_update.max1 = 0;
 } 
 
-static void cmdline_stop(void)
+static void default_stop(void)
 {
-	cmdline_update.cnt1 = cmdline_update.max1 = 0;
+	default_update.cnt1 = default_update.max1 = 0;
 } 
 
-static void cmdline_pbar(void)
+static void default_pbar(void)
 {
 
 	/*
@@ -49,55 +49,55 @@ static void cmdline_pbar(void)
 	   strcpy(bargraph, "[                   ] 100%");
 	   for(i=0; i<20; i++)
 	   fprintf(stdout, "\b");
-	   for(i=1; i<20*cmdline_update.percentage; i++)
+	   for(i=1; i<20*default_update.percentage; i++)
 	   bargraph[i] = '=';
 	   fprintf(stdout, "%s", bargraph);
 	 */
 	/*
-	   if(cmdline_update.percentage == 0.0)
+	   if(default_update.percentage == 0.0)
 	   fprintf(stdout, "[");
 	 */
 	/*
-	if ((cmdline_update.percentage - cmdline_update.prev_percentage) < 0.05) {
-		if ((cmdline_update.percentage -
-		     cmdline_update.prev_percentage) < 0)
-			cmdline_update.prev_percentage =
-			    cmdline_update.percentage;
+	if ((default_update.percentage - default_update.prev_percentage) < 0.05) {
+		if ((default_update.percentage -
+		     default_update.prev_percentage) < 0)
+			default_update.prev_percentage =
+			    default_update.percentage;
 	} else {
-		cmdline_update.prev_percentage = cmdline_update.percentage;
+		default_update.prev_percentage = default_update.percentage;
 		fprintf(stdout, ".");
 		fflush(stdout);
 	}
 	*/
 
 	/*
-	   if(cmdline_update.percentage > 0.99)
-	   fprintf(stdout, "]\n", cmdline_update.percentage);
+	   if(default_update.percentage > 0.99)
+	   fprintf(stdout, "]\n", default_update.percentage);
 	 */
 }
 
-static void cmdline_label(void)
+static void default_label(void)
 {
 	return;
 }
 
-static void cmdline_refresh(void)
+static void default_refresh(void)
 {
 	return;
 }
 
-CalcUpdate cmdline_update =
+CalcUpdate default_update =
 {
 	"", 0,
 	0.0, 0, 0, 0, 0,
-	cmdline_start,
-	cmdline_stop,
-	cmdline_refresh,
-	cmdline_pbar,
-	cmdline_label,
+	default_start,
+	default_stop,
+	default_refresh,
+	default_pbar,
+	default_label,
 };
 
-void tilp_refresh_set_update_cmdline(void)
+void tilp_update_set_default(void)
 {
-	ticalcs_update_set(calc_handle, &cmdline_update);
+	ticalcs_update_set(calc_handle, &default_update);
 }

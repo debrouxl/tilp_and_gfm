@@ -39,9 +39,9 @@ CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
 //TicalcInfoUpdate info_update;
-TilpOptions options = { 0 };
-TilpLocal clist_win = { 0 };
-TilpRemote ctree_win = { 0 };
+TilpOptions options   = { 0 };
+TilpLocal local_win   = { 0 };
+TilpRemote remote_win = { 0 };
 
 gint working_mode = MODE_INI;
 
@@ -49,7 +49,7 @@ gint working_mode = MODE_INI;
   This function must be the first function to call in your function 'main'.
   It initializes the TiLP core engine.
 */
-int tilp_main(int argc, char *argv[], char **arge)
+int tilp_init(int argc, char *argv[], char **arge)
 {
 	int err;
 
@@ -61,33 +61,27 @@ int tilp_main(int argc, char *argv[], char **arge)
 	tilp_paths_init();
 #endif
 
-	/* 
-	   Do some initializations and load config 
-	 */
-	// At first, initialize the GUI independant functions with some 
-	// defaults values to avoid NULL pointers.
-	// Initialization made with console mode functions.
-	tilp_indep_set_gui_cmdline();
+	/* Initialize callbacks with default functions */ 
+	tilp_gif_set_default();
+	tilp_update_set_default();
 
-	// Init refresh functions (libticalcs)
-	tilp_refresh_set_update_cmdline();
-
+	/* Initialize/reload config */
 #ifndef __MACOSX__
-	// Initialize options with default values
 	tilp_config_default();
-
-	// Parse the config file
 	tilp_config_read();
 #else
     rc_init_with_default();
 	rc_get_user_prefs();
-#endif /* !__MACOSX__ */
+#endif
+
+	/* Change to workign folder */
 	tilp_file_chdir(options.working_dir);
 
-	// Scan the command line (passed as an argument)
+	/* Scan and modify command line */
+	working_mode = MODE_CMD;
 	tilp_cmdline_scan(argc, argv);
 
-	// Init locale & internationalization
+	/* Init locale & internationalization */
 #ifdef ENABLE_NLS
 	tilp_info( "setlocale: <%s>\n", setlocale(LC_ALL, ""));
   	tilp_info( "bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
@@ -95,29 +89,15 @@ int tilp_main(int argc, char *argv[], char **arge)
   	tilp_info( "textdomain: <%s>\n", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
-	/* 
-	   Check the version of libraries and init
-	 */
+	/* Check the version of libraries and init framework */
 	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0) 
-	{
-		tilp_info(_("libtifiles library version <%s> mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
-		gif->msg_box(_("Error"), _("Libtifiles: version mismatches."));
-		exit(-1);
-	}
+		tilp_error(_("libtifiles library version <%s> mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
 	
 	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) 
-	{
-		tilp_info(_("libticables library version <%s> mini required.\n"), TILP_REQUIRES_LIBCABLES_VERSION);
-		gif->msg_box(_("Error"), _("Libticables: version mismatches."));
-		exit(-1);
-	}
+		tilp_error(_("libticables library version <%s> mini required.\n"), TILP_REQUIRES_LIBCABLES_VERSION);
 	
 	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) 
-	{
-		tilp_info(_("libticalcs library version <%s> mini required.\n"), TILP_REQUIRES_LIBCALCS_VERSION);
-		gif->msg_box(_("Error"), _("Libticalcs: version mismatches."));
-		exit(-1);
-	}
+		tilp_error(_("libticalcs library version <%s> mini required.\n"), TILP_REQUIRES_LIBCALCS_VERSION);
 
 	ticables_library_init();
 	tifiles_library_init();
@@ -132,36 +112,18 @@ int tilp_main(int argc, char *argv[], char **arge)
 	{
 		gif->msg_box("Error", "Can't set cable");
 	}
-
-	calc_handle = ticalcs_handle_new(options.device.calc_model);
-	if(cable_handle == NULL)
+	else
 	{
-		gif->msg_box("Error", "Can't set cable");
-	}
-
-	err = ticalcs_cable_attach(calc_handle, cable_handle);
-	tilp_error(err);
-
-	/*
-	   Display the working mode
-	 */
-	switch (working_mode & ~MODE_GUI) 
-	{
-	case MODE_CMD:
-		tilp_info( _("Working mode: command line.\n"));
-		break;
-	case MODE_CON:
-		tilp_info( _("Working mode: console (prompt).\n"));
-		break;
-	case MODE_GTK:
-		tilp_info( _("Working mode: GTK+.\n"));
-		break;
-	case MODE_MFC:
-		tilp_info( _("Working mode: MFC.\n"));
-		break;
-	case MODE_OSX:
-		tilp_info( _("Working mode: Cocoa OS X GUI.\n"));
-		break;
+		calc_handle = ticalcs_handle_new(options.device.calc_model);
+		if(cable_handle == NULL)
+		{
+			gif->msg_box("Error", "Can't set cable");
+		}
+		else
+		{
+			err = ticalcs_cable_attach(calc_handle, cable_handle);
+			tilp_err(err);
+		}
 	}
 
 	/* 
@@ -175,6 +137,21 @@ int tilp_main(int argc, char *argv[], char **arge)
 		exit(0);
 	}
 #endif				/* !__MACOSX__ */
+
+	return 0;
+}
+
+int tilp_exit(void)
+{
+	int err;
+
+	// detach cable (made by handle_del, too)
+	err = ticalcs_cable_detach(calc_handle);
+	tilp_err(err);
+
+	// remove calc & cable
+	ticalcs_handle_del(calc_handle);
+	ticables_handle_del(cable_handle);
 
 	return 0;
 }

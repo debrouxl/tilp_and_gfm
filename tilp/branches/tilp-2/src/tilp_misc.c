@@ -36,10 +36,10 @@ int tilp_drive_change(char drive_letter)
 {
 #ifdef __WIN32__
 	gchar *s;
-	snprintf(clist_win.current_dir, 8, "%c:\\", (char) drive_letter);
+	snprintf(local_win.cwdir, 8, "%c:\\", (char) drive_letter);
 
-	//s = g_filename_from_utf8(clist_win.cur_dir, NULL);
-	s = g_strdup(clist_win.current_dir);
+	//s = g_filename_from_utf8(local_win.cur_dir, NULL);
+	s = g_strdup(local_win.cwdir);
 	if (tilp_chdir(s) == -1) 
 	{
 		gif->msg_box(_("Error"), _("Unable to change directory."));
@@ -59,7 +59,7 @@ int tilp_tifiles_ungroup(void)
 	gchar *src_file, *dst_file;
 	if (!tilp_clist_selection_ready())
 		return -1;
-	sel = clist_win.selection;
+	sel = local_win.selection;
 	while (sel != NULL) {
 		gchar *dirname;
 		FileEntry *f = (FileEntry *) sel->data;
@@ -104,6 +104,7 @@ int tilp_tifiles_ungroup(void)
 
 int tilp_tifiles_group(void)
 {
+#if 0
 	GList *sel;
 	char **array;
 	gchar *grpname;
@@ -112,7 +113,7 @@ int tilp_tifiles_group(void)
 
 	if (!tilp_clist_selection_ready())
 		return -1;
-	if (g_list_length(clist_win.selection) < 2) {
+	if (g_list_length(local_win.selection) < 2) {
 		gif->msg_box(_("Error"),
 			     _("You must select at least 2 files.\n\n"));
 		return -1;
@@ -123,9 +124,9 @@ int tilp_tifiles_group(void)
 	if (grpname == NULL)
 		return -1;
 	array =
-		(char **) g_malloc0((g_list_length(clist_win.selection) + 1) *
+		(char **) g_malloc0((g_list_length(local_win.selection) + 1) *
 			     sizeof(char *));
-	sel = clist_win.selection;
+	sel = local_win.selection;
 	while (sel != NULL) {
 		FileEntry *f = (FileEntry *) sel->data;
 		array[i++] =
@@ -134,13 +135,15 @@ int tilp_tifiles_group(void)
 		array[i] = NULL;
 		sel = sel->next;
 	}
-	/*
+	
 	dst_file =
 	    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
 			".", tifiles_group_file_ext(), NULL);
-			*/
+		
 	g_free(grpname);
 	tifiles_group_files(array, dst_file);
 	g_strfreev(array);
+#endif
+
 	return 0;
 }

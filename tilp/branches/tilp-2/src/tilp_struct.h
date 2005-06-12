@@ -53,11 +53,11 @@ typedef struct
     int		xsize;
     int		ysize;
 
-    int		clist_sort;
-    int		clist_sort_order;
-#endif /* !__MACOSX__ */
-    int		ctree_sort;
-    int		ctree_sort_order;
+    int		local_sort;
+    int		local_sort_order;
+#endif
+    int		remote_sort;
+    int		remote_sort_order;
 
 	int		auto_detect;
     int		full_path;
@@ -73,9 +73,9 @@ typedef struct
     int		screen_blurry;
 
 #ifndef __MACOSX__
-    char	*remote_font_name;
-    char	*local_font_name;
-#endif /* !__MACOSX__ */
+    char*	remote_font_name;
+    char*	local_font_name;
+#endif
 
 } TilpOptions;
 
@@ -105,13 +105,12 @@ typedef VarEntry	TilpVarEntry;
 /* Used to retrieve stats on the on-calc memory usage */
 typedef struct 
 {
-    int vars;			// number of vars
-    int folders;		// number of folders
-    int mem;			// memory used (not archive memory)
-    int archivemem;		// archive memory used
+    int n_vars;			// number of vars
+    int n_folders;		// number of folders
+	int n_apps;			// number of FLASH apps
 
-    int flash;			// number of FLASH apps
-    int flashmem;		// FLASH mem used
+	int	mem_vars;		// memory used in RAM
+	int mem_flash;		// memory used in FLASH
 
     int freemem;		// remaining memory
 } TilpMem;
@@ -120,10 +119,12 @@ typedef struct
 /* This struct is used by the CList window */
 typedef struct 
 {
-    GList *dirlist;			// linked list of files & directories
-    gchar *current_dir;		// current active directory
-    GList *selection;		// selection of files (send, view, ...)
-    GList *file_selection;	// selection of files (cut/copy/paste)
+    GList* dirlist;			// linked list of files & directories
+    gchar* cwdir;			// current active directory
+
+    GList* selection;		// selection of files (send, view, ...)
+    GList* file_selection;	// selection of files (cut/copy/paste)
+
     int copy_cut;			// action type
 } TilpLocal;
 
@@ -131,12 +132,13 @@ typedef struct
 /* This struct is used by the CTree window */
 typedef struct 
 {
-    TNode *dirlist;			// linked list of variables & folders
-    TNode *var_tree;		// future use: tree of vars
-    TNode *app_tree;		// future use: tree of apps
-    unsigned int memory;	// memory free or used by calc
-    GList *selection;		// selection of variables
-    GList *selection2;		// selection of applications
+    TNode*	var_tree;		// future use: tree of vars
+    TNode*	app_tree;		// future use: tree of apps
+
+    int		memory;			// memory free or used by calc
+
+    GList*	selection;		// selection of variables
+    GList*	selection2;		// selection of applications
 } TilpRemote;
 
 /* Global variables */
@@ -145,8 +147,8 @@ extern CableHandle* cable_handle;
 extern CalcHandle*  calc_handle;
 
 extern TilpOptions	options;
-extern TilpLocal	clist_win;
-extern TilpRemote	ctree_win;
+extern TilpLocal	local_win;
+extern TilpRemote	remote_win;
 
 #ifdef __cplusplus
 }

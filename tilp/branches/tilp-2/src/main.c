@@ -63,8 +63,7 @@ void signal_handler(int sig_no)
 	tilp_info(_("Signal SIGINT (Ctrl+C) caught...\n"));
 	tilp_info(_("Trying to destroy ressources... "));
 
-	ticalcs_library_exit();
-	ticables_library_exit();
+	tilp_exit();
 
 	tilp_info(_("Done.\n"));
 	exit(0);

@@ -31,44 +31,44 @@
 /* Destroy the selection of the clist window */
 void tilp_clist_selection_destroy(void)
 {
-	if (clist_win.selection != NULL) 
+	if (local_win.selection != NULL) 
 	{
-		g_list_free(clist_win.selection);
-		clist_win.selection = NULL;
+		g_list_free(local_win.selection);
+		local_win.selection = NULL;
 	}
 }
 
 /* Destroy the selection of the ctree window */
 void tilp_ctree_selection_destroy(void)
 {
-	if (ctree_win.selection != NULL) 
+	if (remote_win.selection != NULL) 
 	{
-		g_list_free(ctree_win.selection);
-		ctree_win.selection = NULL;
+		g_list_free(remote_win.selection);
+		remote_win.selection = NULL;
 	}
 
-	if (ctree_win.selection2 != NULL) 
+	if (remote_win.selection2 != NULL) 
 	{
-		g_list_free(ctree_win.selection2);
-		ctree_win.selection2 = NULL;
+		g_list_free(remote_win.selection2);
+		remote_win.selection2 = NULL;
 	}
 }
 
 /* Destroy the selection of the clist window */
 void tilp_clist_file_selection_destroy(void)
 {
-	if (clist_win.file_selection != NULL) 
+	if (local_win.file_selection != NULL) 
 	{
-		g_list_foreach(clist_win.file_selection, (GFunc) g_free, NULL);
-		g_list_free(clist_win.file_selection);
-		clist_win.file_selection = NULL;
+		g_list_foreach(local_win.file_selection, (GFunc) g_free, NULL);
+		g_list_free(local_win.file_selection);
+		local_win.file_selection = NULL;
 	}
 }
 
 /* Add a file to the file_selection (if it does not exist in the list) */
 void tilp_add_file_to_file_selection(const char *filename)
 {
-	GList *ptr = clist_win.file_selection;
+	GList *ptr = local_win.file_selection;
 
 	while (ptr != NULL) 
 	{
@@ -76,20 +76,20 @@ void tilp_add_file_to_file_selection(const char *filename)
 			return;
 		ptr = g_list_next(ptr);
 	}
-	clist_win.file_selection = g_list_append(clist_win.file_selection, (gpointer) filename);
+	local_win.file_selection = g_list_append(local_win.file_selection, (gpointer) filename);
 }
 
 #ifndef __MACOSX__
-/* Delete files which are in clist_win.file_selection */
+/* Delete files which are in local_win.file_selection */
 void tilp_delete_selected_files()
 {
-	GList *ptr = clist_win.selection;
+	GList *ptr = local_win.selection;
 	gint ret;
 
-	if (clist_win.selection == NULL)
+	if (local_win.selection == NULL)
 		return;
 
-	if (g_list_length(clist_win.selection) == 1) 
+	if (g_list_length(local_win.selection) == 1) 
 	{
 		ret = gif->msg_box2(_("Warning"), _
 				    ("Are you sure you want to remove this file ?\n\n"));
@@ -113,13 +113,13 @@ void tilp_delete_selected_files()
 	tilp_dirlist_local();
 }
 
-/* Rename files which are in clist_win.file_selection */
+/* Rename files which are in local_win.file_selection */
 void tilp_rename_selected_files()
 {
 	gchar *filename;
-	GList *ptr = clist_win.selection;
+	GList *ptr = local_win.selection;
 
-	if (clist_win.selection == NULL)
+	if (local_win.selection == NULL)
 		return;
 
 	while (ptr != NULL) 
@@ -148,7 +148,7 @@ void tilp_rename_selected_files()
 /* Check for files in the list */
 int tilp_clist_selection_ready(void)
 {
-	if (clist_win.selection == NULL) 
+	if (local_win.selection == NULL) 
 	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
@@ -161,7 +161,7 @@ int tilp_clist_selection_ready(void)
 
 int tilp_ctree_selection_ready(void)
 {
-	if (ctree_win.selection == NULL) 
+	if (remote_win.selection == NULL) 
 	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
@@ -174,7 +174,7 @@ int tilp_ctree_selection_ready(void)
 
 int tilp_ctree_selection2_ready(void)
 {
-	if (ctree_win.selection2 == NULL) 
+	if (remote_win.selection2 == NULL) 
 	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
@@ -188,9 +188,9 @@ int tilp_ctree_selection2_ready(void)
 #ifndef __MACOSX__
 void tilp_clist_selection_display(void)
 {
-	GList *ptr = clist_win.selection;
+	GList *ptr = local_win.selection;
 
-	if (clist_win.selection == NULL)
+	if (local_win.selection == NULL)
 		return;
 
 	while (ptr != NULL) 

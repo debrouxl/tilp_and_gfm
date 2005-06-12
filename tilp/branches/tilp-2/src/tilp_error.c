@@ -40,7 +40,7 @@ static GList *stack = NULL;
   This function is 'buffered': if one or more error messages appear 
   during startup (console or terminal), they will be displayed in the GUI.
  */
-int tilp_error(int errcode)
+int tilp_err(int errcode)
 {
 	char *s = NULL;	
 #ifndef __MACOSX__

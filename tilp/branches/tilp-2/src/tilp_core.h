@@ -50,7 +50,7 @@ extern "C" {
 #include "tilp_config.h"
 #include "tilp_defs.h"
 #include "tilp_files.h"
-#include "tilp_indep.h"
+#include "tilp_gif.h"
 #include "tilp_log.h"
 #include "tilp_main.h"
 #include "tilp_misc.h"
@@ -62,7 +62,7 @@ extern "C" {
 #include "tilp_vars.h"
 #include "tilp_version.h"
 
-int tilp_error(int errcode);
+int tilp_err(int errcode);
 
 #ifdef __cplusplus
 }

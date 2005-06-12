@@ -288,7 +288,7 @@ int tilp_file_chdir(const char *path)
 		return -1;
 	}
 	seteuid(effective);
-	curr_dir = g_get_current_dir();
+	curr_dir = g_get_cwdir();
 
 #ifndef ALLOW_EXIT_HOMEDIR
 	home_dir = g_get_home_dir();
@@ -539,7 +539,7 @@ static void free_file_info_struct(gpointer data)
 
 /* 
 Make a directory listing of the current directory and place the result 
-   in the clist_win.dirlist GList 
+   in the local_win.dirlist GList 
 */
 int tilp_file_dirlist(void)
 {
@@ -549,19 +549,19 @@ int tilp_file_dirlist(void)
 	struct stat f_info;
 	FileEntry *fi;
 
-	dir = g_dir_open(clist_win.current_dir, 0, &error);
+	dir = g_dir_open(local_win.cwdir, 0, &error);
 	if (dir == NULL) 
 	{
 		gif->msg_box("Error", "Unable to open directory !");
 		return -1;
 	}
 
-	if (clist_win.dirlist != NULL) 
+	if (local_win.dirlist != NULL) 
 	{
-		g_list_foreach(clist_win.dirlist,
+		g_list_foreach(local_win.dirlist,
 			       (GFunc) free_file_info_struct, NULL);
-		g_list_free(clist_win.dirlist);
-		clist_win.dirlist = NULL;
+		g_list_free(local_win.dirlist);
+		local_win.dirlist = NULL;
 	}
 
 	// add the ".." entry (b/c stripped by g_dir_read_name
@@ -574,7 +574,7 @@ int tilp_file_dirlist(void)
 		fi->attrib = f_info.st_mode;
 	}
 
-	clist_win.dirlist = g_list_prepend(clist_win.dirlist, (gpointer) fi);
+	local_win.dirlist = g_list_prepend(local_win.dirlist, (gpointer) fi);
 
 	while ((dirname = g_dir_read_name(dir)) != NULL) 
 	{
@@ -591,7 +591,7 @@ int tilp_file_dirlist(void)
 		}
 		//process_filename(fi->name);
 		//printf("<<%s>>\n", fi->name);
-		clist_win.dirlist = g_list_prepend(clist_win.dirlist, (gpointer) fi);
+		local_win.dirlist = g_list_prepend(local_win.dirlist, (gpointer) fi);
 	}
 
 	g_dir_close(dir);
@@ -617,7 +617,7 @@ static gint sort_by_type(gconstpointer a, gconstpointer b)
 
 void tilp_file_sort_by_type(void)
 {
-	GList *list = clist_win.dirlist;
+	GList *list = local_win.dirlist;
 	list = g_list_sort(list, sort_by_type);
 }
 
@@ -643,7 +643,7 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 
 void tilp_sort_files_by_name(void)
 {
-	GList *list = clist_win.dirlist;
+	GList *list = local_win.dirlist;
 	list = g_list_sort(list, sort_by_name);
 }
 
@@ -669,7 +669,7 @@ static gint sort_by_date(gconstpointer a, gconstpointer b)
 
 void tilp_sort_files_by_date(void)
 {
-	GList *list = clist_win.dirlist;
+	GList *list = local_win.dirlist;
 	list = g_list_sort(list, sort_by_date);
 }
 
@@ -698,7 +698,7 @@ static gint sort_by_size(gconstpointer a, gconstpointer b)
 
 void tilp_sort_files_by_size(void)
 {
-	GList *list = clist_win.dirlist;
+	GList *list = local_win.dirlist;
 	list = g_list_sort(list, sort_by_size);
 }
 
@@ -724,7 +724,7 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 
 void tilp_sort_files_by_attrib(void)
 {
-	GList *list = clist_win.dirlist;
+	GList *list = local_win.dirlist;
 	list = g_list_sort(list, sort_by_attrib);
 }
 

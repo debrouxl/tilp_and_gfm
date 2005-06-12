@@ -66,7 +66,6 @@ void tilp_critical (const gchar *format, ...)
   va_end (args);
 }
 
-/*
 void tilp_error (const gchar *format, ...)
 {
   va_list args;
@@ -74,4 +73,4 @@ void tilp_error (const gchar *format, ...)
   g_logv (LOG_DOMAIN, G_LOG_LEVEL_ERROR, format, args);
   va_end (args);
 }
-*/
+
