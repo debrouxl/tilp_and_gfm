@@ -23,61 +23,57 @@
 #define __TILP_CALCS__
 
 #include <stdio.h>
+#include <glib.h>
 
 #include "tilp_core.h"
 
-static void help(void)
+static gchar* calc;
+static gchar* cable;
+static gchar** array;
+static gint use_gui;
+
+static GOptionEntry entries[] = 
 {
-	fprintf(stdout, "\n");
-	fprintf(stdout, _("Usage: tilp [-options] [filename]\n"));
-	fprintf(stdout, "\n");
-	fprintf(stdout, _("-h, --help    display this information page and exit\n"));
-	fprintf(stdout, _("-v, --version display the version information and exit\n"));
-	fprintf(stdout, _("-cmdline      use command line and stop\n"));
-	fprintf(stdout, _("-gui=...      use the specified GUI (console, gtk)\n"));
-	fprintf(stdout, _("-calc=...     give the calculator type\n"));
-	fprintf(stdout, _("-link=...     give the link cable type\n"));
-	fprintf(stdout, _("-port=...     give the port number\n"));
-	fprintf(stdout, _("-timeout=...  give the time out in seconds\n"));
-	fprintf(stdout, _("-delay=...    give the delay in microseconds\n"));
-    fprintf(stdout, _("-dev_port=... give the device port (override 'port=')\n"));
-    fprintf(stdout, _("-adr_port=... give the address of the port (override 'port=')\n"));
-	fprintf(stdout, "\n");
-	fprintf(stdout, _("filename      a filename to send (console or GTK+)\n"));
-	fprintf(stdout, "\n");
-	fprintf(stdout, _("See the manpage for more informations...\n"));
-	fprintf(stdout, "\n");
+	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, "Hand-held model", NULL },
+	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, "Link cable model", NULL },
+	{ "port", 0, 0, G_OPTION_ARG_INT, &options.device.cable_port, "Link cable port", NULL },
+	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.device.cable_timeout, "Link cable timeout", NULL },
+	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.device.cable_delay, "Link cable delay", NULL },
+	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &use_gui, "Does not use GUI", NULL },
+	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, "filename(s)", NULL },
+	{ NULL }
+};
 
-	exit(0);
-}
-
-/*
-  Display the program version
-*/
 static void version(void)
 {
-	fprintf(stdout, _
-		("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"),
-		TILP_VERSION);
-
+	fprintf(stdout, _("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"), TILP_VERSION);
 #ifdef __BSD__
 	fprintf(stdout, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif
-    
 #ifdef __MACOSX__
-	fprintf(stdout, _
-		("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"),
-		TILP_OSX_VERSION, SVN_REV);
+	fprintf(stdout, _("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"), TILP_OSX_VERSION, SVN_REV);
 #endif
-
 	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
         fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
-static int strexact(char *p1, char *p2)
+int tilp_cmdline_scan(int argc, char **argv)
 {
-	return (strstr(p1, p2) && strstr(p2, p1));
+	GOptionContext* context;
+	GError *error = NULL;
+
+	context = g_option_context_new ("- Ti Linking Program");
+	g_option_context_add_main_entries(context, entries, ""/*GETTEXT_PACKAGE*/);
+	g_option_context_set_help_enabled(context, TRUE);
+	g_option_context_set_ignore_unknown_options(context, FALSE);
+	g_option_context_parse(context, &argc, &argv, &error);
+	g_option_context_free(context);
+
+	options.device.calc_model = ticalcs_string_to_model(calc);
+	options.device.cable_model = ticalcs_string_to_model(cable);
+
+	return 0;
 }
 
 #if 0

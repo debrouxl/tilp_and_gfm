@@ -150,119 +150,7 @@ SOURCE=..\..\src\support.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\src\about.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\action.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clist.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clock.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\comm.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ctree.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dboxes.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dnd.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\extprgms.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\filesel.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\general.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gstruct.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gtk_refresh.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\intl.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\labels.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\logfile.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\manpage.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\pbars.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\pbars_db.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\popup.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\release.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\screenshot.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\scroptions.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\shell.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\splash.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\support.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilibs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_core.h
+SOURCE=..\..\src\tilp_calcs.h
 # End Source File
 # Begin Source File
 
@@ -270,7 +158,15 @@ SOURCE=..\..\src\tilp_defs.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_files.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_indep.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_log.h
 # End Source File
 # Begin Source File
 
@@ -278,23 +174,7 @@ SOURCE=..\..\src\tilp_paths.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp_plugin.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_prompt.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\tilp_struct.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\toolbar.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\wizard.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
@@ -318,11 +198,63 @@ SOURCE=.\tilp2.ico
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\src\tilp_calcs.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_cmdline.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_config.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_core.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_error.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_files.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_indep.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_log.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_main.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_misc.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_paths.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_refresh.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_screen.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_slct.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_vars.c
 # End Source File
 # End Group
 # Begin Source File
