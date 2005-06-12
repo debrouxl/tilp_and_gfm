@@ -44,9 +44,6 @@ extern "C" {
 
 #define MAXCHARS 256
 
-extern CableHandle* cable_handle;
-extern CalcHandle*  calc_handle;
-
 /* This struct contains the general options to configure the program */
 typedef struct 
 {
@@ -62,10 +59,13 @@ typedef struct
     int		ctree_sort;
     int		ctree_sort_order;
 
-    int		path_mode;
-    int		file_disp;
-	int		confirm;
-    int		single_or_group;
+	int		auto_detect;
+    int		full_path;
+    int		show_hidden;
+	int		overwrite;
+    int		recv_as_group;
+	
+	char*	working_dir;
 
     int		screen_format;
     int		screen_scaling;
@@ -73,17 +73,10 @@ typedef struct
     int		screen_blurry;
 
 #ifndef __MACOSX__
-    char	left_font_name[MAXCHARS];
-    char	right_font_name[MAXCHARS];
-
-    char locale[MAXCHARS];
+    char	*remote_font_name;
+    char	*local_font_name;
 #endif /* !__MACOSX__ */
 
-    int		console_mode;
-    int		auto_detect;
-    int		show_gui;
-
-    char*	working_dir;
 } TilpOptions;
 
 
@@ -104,8 +97,10 @@ typedef struct
 #endif
 
     char **actions;		// Ticalc action associated w/ the file
-} TilpFileInfo;
+} FileEntry;
 
+typedef FileEntry	TilpFileEntry;
+typedef VarEntry	TilpVarEntry;
 
 /* Used to retrieve stats on the on-calc memory usage */
 typedef struct 
@@ -119,7 +114,7 @@ typedef struct
     int flashmem;		// FLASH mem used
 
     int freemem;		// remaining memory
-} TilpCalcMemInfo;
+} TilpMem;
 
 
 /* This struct is used by the CList window */
@@ -130,7 +125,7 @@ typedef struct
     GList *selection;		// selection of files (send, view, ...)
     GList *file_selection;	// selection of files (cut/copy/paste)
     int copy_cut;			// action type
-} TilpClistWin;
+} TilpLocal;
 
 
 /* This struct is used by the CTree window */
@@ -142,20 +137,16 @@ typedef struct
     unsigned int memory;	// memory free or used by calc
     GList *selection;		// selection of variables
     GList *selection2;		// selection of applications
-} TilpCtreeWin;
+} TilpRemote;
 
+/* Global variables */
 
-/* Used by the screendump related boxes */
-typedef struct 
-{
-    uint8_t*	bitmap;
-    int			width;
-    int			height;
-} TilpScreen;
+extern CableHandle* cable_handle;
+extern CalcHandle*  calc_handle;
 
-  extern TilpOptions	options;
-  extern TilpClistWin	clist_win;
-  extern TilpCtreeWin	ctree_win;
+extern TilpOptions	options;
+extern TilpLocal	clist_win;
+extern TilpRemote	ctree_win;
 
 #ifdef __cplusplus
 }

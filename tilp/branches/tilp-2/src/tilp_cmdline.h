@@ -22,6 +22,6 @@
 #ifndef __TILP_CMDLINE__
 #define __TILP_CMDLINE__
 
-
+int tilp_cmdline_scan(int argc, const char **argv);
 
 #endif

@@ -97,10 +97,7 @@ CalcUpdate cmdline_update =
 	cmdline_label,
 };
 
-void tilp_cmdline_set_refresh(void)
+void tilp_refresh_set_update_cmdline(void)
 {
 	ticalcs_update_set(calc_handle, &cmdline_update);
-	tilp_info(_("initialized in command line mode.\n"));
-
-	return;
 }

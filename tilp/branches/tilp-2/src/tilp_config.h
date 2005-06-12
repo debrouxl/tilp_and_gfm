@@ -19,22 +19,15 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TILP_SLCT__
-#define __TILP_SLCT__
+#ifndef __TILP_CONFIG__
+#define __TILP_CONFIG__
 
-void tilp_clist_selection_destroy(void);
-void tilp_ctree_selection_destroy(void);
-void tilp_clist_file_selection_destroy(void);
+int tilp_config_default(void);
 
-void tilp_add_file_to_file_selection(const char *filename);
-
-void tilp_delete_selected_files(void);
-void tilp_rename_selected_files(void);
-
-int  tilp_clist_selection_ready(void);
-int  tilp_ctree_selection_ready(void);
-int  tilp_ctree_selection2_ready(void);
-
-void tilp_clist_selection_display(void);
+int tilp_config_exist(void);
+int tilp_config_get_version(char *version);
+int tilp_config_write(void);
+int tilp_config_read(void);
+int tilp_config_delete(void);
 
 #endif

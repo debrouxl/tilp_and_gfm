@@ -174,11 +174,11 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 {
 	guchar *ubuf, *cbuf;
 	unsigned long cbuflen;
-	int i, j;
+	unsigned int i, j;
 #ifdef HAVE_LIBZ
 	int ret;
 #endif
-	int a85count;
+	unsigned int a85count;
 	unsigned long a85tuple;
 	guchar a85block[6];
 
@@ -258,7 +258,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 				 * hence -> a85block[4-j]
 				 */
 				for (j = 0; j < 5; j++) {
-					a85block[4-j] = a85tuple % 85 + '!';
+					a85block[4-j] = (guchar)(a85tuple % 85 + '!');
 					a85tuple /= 85;
 				}
 			}
@@ -279,7 +279,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 	if (a85count > 0) {
 		a85count++;
 		for (j = 0; j <= a85count; j++) {
-			a85block[j] = a85tuple % 85 + '!';
+			a85block[j] = (guchar)(a85tuple % 85 + '!'); 
 			a85tuple /= 85;
 		}
                 /* Reverse order */

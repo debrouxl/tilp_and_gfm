@@ -24,20 +24,15 @@
 
 #include <stdio.h>
 
-#if 0
+#include "tilp_core.h"
 
-/* 
-	Display info about cmdline
-	*/
 static void help(void)
 {
 	fprintf(stdout, "\n");
 	fprintf(stdout, _("Usage: tilp [-options] [filename]\n"));
 	fprintf(stdout, "\n");
-	fprintf(stdout, _
-		("-h, --help    display this information page and exit\n"));
-	fprintf(stdout, _
-		("-v, --version display the version information and exit\n"));
+	fprintf(stdout, _("-h, --help    display this information page and exit\n"));
+	fprintf(stdout, _("-v, --version display the version information and exit\n"));
 	fprintf(stdout, _("-cmdline      use command line and stop\n"));
 	fprintf(stdout, _("-gui=...      use the specified GUI (console, gtk)\n"));
 	fprintf(stdout, _("-calc=...     give the calculator type\n"));
@@ -45,13 +40,14 @@ static void help(void)
 	fprintf(stdout, _("-port=...     give the port number\n"));
 	fprintf(stdout, _("-timeout=...  give the time out in seconds\n"));
 	fprintf(stdout, _("-delay=...    give the delay in microseconds\n"));
-        fprintf(stdout, _("-dev_port=... give the device port (override 'port=')\n"));
-        fprintf(stdout, _("-adr_port=... give the address of the port (override 'port=')\n"));
+    fprintf(stdout, _("-dev_port=... give the device port (override 'port=')\n"));
+    fprintf(stdout, _("-adr_port=... give the address of the port (override 'port=')\n"));
 	fprintf(stdout, "\n");
 	fprintf(stdout, _("filename      a filename to send (console or GTK+)\n"));
 	fprintf(stdout, "\n");
 	fprintf(stdout, _("See the manpage for more informations...\n"));
 	fprintf(stdout, "\n");
+
 	exit(0);
 }
 
@@ -84,6 +80,7 @@ static int strexact(char *p1, char *p2)
 	return (strstr(p1, p2) && strstr(p2, p1));
 }
 
+#if 0
 
 /*
   Scan the command line, extract arguments and init variables

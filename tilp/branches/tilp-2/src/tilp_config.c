@@ -26,101 +26,61 @@
 
 #include "tilp_core.h"
 
-#if 0
-#ifndef __MACOSX__		/* we use a general preferences system from Mac OS X */
-/*
-  Save the configuration file
-*/
-int tilp_config_save(void)
-{
-	tilp_rcfile_write();
-	gif->msg_box(_("Information"), _("Configuration file saved."));
-	return 0;
-}
+#define SECTION_DEVICE	"DEVICE"
+#define SECTION_GUI		"GUI"
+#define SECTION_OPTIONS	"OPTIONS"
+#define SECTION_FONTS	"FONTS"
+#define SECTION_SCREEN	"SCREEN"
 
 
-/*
-  Load the configuration file
-*/
-int tilp_config_load(void)
-{
-	tilp_rcfile_read();
-	gif->msg_box(_("Information"), _("Configuration file loaded."));
-	return 0;
-}
-#endif				/* !__MACOSX__ */
-
-/*
-  Fill the option structure with default values
-*/
+/* Fill the option structure with default values */
 #if defined(__LINUX__) || defined(__BSD__)
 static void default_config_linux(void)	// linux specific options
 {
-	gchar *locale;
-	options.unzip_location = g_strdup("unzip");
-	options.unzip_options = g_strdup("");
-	options.tar_location = g_strdup("tar");
-	options.tar_options = g_strdup("");
-	options.appsign_location = g_strdup("/usr/bin/appsign");
-	options.appsign_options = g_strdup("-k /usr/bin/0104.key");
-	options.web_location = g_strdup("/usr/bin/mozilla");
-	options.web_options = g_strdup("");
-	strcpy(options.left_font_name, "");
-	strcpy(options.right_font_name,
+	strcpy(options.remote_font_name, "");
+	strcpy(options.local_font_name,
 	       "-adobe-courier-medium-r-*-*-*-120-*-*-*-*-*-*");
 	options.console_mode = !0;
-	locale = setlocale(LC_ALL, NULL);
-	strcpy(options.locale, locale);
 	options.working_dir = g_strdup(g_get_home_dir());
 }
-#endif				/*  */
+#endif				
 
 #ifdef __WIN32__
 static void default_config_win32(void)
 {
-	gchar *locale;
-	options.unzip_location =
-	    g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
-	options.unzip_options = g_strdup("");
-	options.tar_location =
-	    g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
-	options.tar_options = g_strdup("");
-	options.appsign_location = g_strdup("");
-	options.appsign_options = g_strdup("");
-	options.web_location =
-	    g_strdup("C:\\Program Files\\Internet Explorer\\IExplore.exe");
-	options.web_options = g_strdup("");
-	strcpy(options.left_font_name, "");
-	strcpy(options.right_font_name,
+	strcpy(options.remote_font_name, "");
+	strcpy(options.local_font_name,
 	       "-adobe-courier-medium-r-normal--12-120-75-75-p-70-iso8859-1");
-	options.console_mode = 0;
-	locale = g_win32_getlocale();
-	
-	printl(0, "current locale: <%s>\n", locale);
-	
-	g_free(locale);
 	options.working_dir = g_get_current_dir();
 }
-#endif				/*  */
+#endif				
 #ifndef __MACOSX__
 int tilp_config_default(void)
 {
 	options.xsize = 640 / 2;
 	options.ysize = 480 / 2;
+
 	options.clist_sort = SORT_BY_NAME;
 	options.clist_sort_order = SORT_DOWN;
 	options.ctree_sort = SORT_BY_NAME;
 	options.ctree_sort_order = SORT_DOWN;
-	options.confirm = CONFIRM_YES;
-	options.path_mode = FULL_PATH;
-	options.file_disp = SHOW_TIF;
+
+	options.overwrite = CONFIRM_YES;
+	options.full_path = PATH_FULL;
+	options.show_hidden = SHOW_TIF;
+
 	options.screen_format = PNG;
-	options.screen_clipping = CLIPPED_SCREEN;
+	options.screen_clipping = SCREEN_CLIPPED;
 	options.screen_blurry = 0;
-	ticable_get_default_param(&options.lp);
+
 	options.auto_detect = !0;
-	options.show_gui = TRUE;
-	options.single_or_group = RECV_AS_GROUP;
+	options.recv_as_group = RECV_AS_GROUP;
+
+	options.device.cable_model = CABLE_NUL;
+	options.device.cable_port = PORT_0;
+	options.device.calc_model = CALC_NONE;
+	options.device.cable_delay = DFLT_DELAY;
+	options.device.cable_timeout = DFLT_TIMEOUT;
 
 #if defined(__LINUX__) || defined(__BSD__)
 	default_config_linux();
@@ -128,111 +88,332 @@ int tilp_config_default(void)
 #elif defined(__WIN32__)
 	default_config_win32();
 
-#else				/*  */
+#else				
 	return 0;
 
-#endif				/*  */
+#endif				
 	return 0;
 }
 #endif /* !__MACOSX__ */
-#endif
 
-#if 0
-
-static char *rc_file;
-static int get_rcfile_path(char **path)
+static int get_config_path(char **path)
 {
-
 #if defined(__LINUX__) || defined(__BSD__)
 	*path = g_strconcat(g_get_home_dir(), INI_FILE, NULL);
-
 #elif defined(__WIN32__)
-	*path =
-	    g_strconcat(inst_paths.base_dir, DIR_SEPARATOR, INI_FILE,
-			NULL);
-
-#endif				/*  */
+	*path = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);
+#endif				
 	return 0;
 }
 
-
-/* Print an error msg */
-static void stop(int line)
-{
-	char buffer[256];
-
-	sprintf(buffer, _("Configuration file error at line %i.\n"), line);
-	gif->msg_box(_("Error"), buffer);
-} 
-
-static char *find_str(char *s, const char *t)
-{
-	char *p = strstr(s, t);
-	if (p == NULL)
-		return NULL;
-
-	else
-		return p + strlen(t);
-}
-
-
 /* Chech whether a RC file exists */
-int tilp_rcfile_exist(void)
+int tilp_config_exist(void)
 {
-	get_rcfile_path(&rc_file);
-	return !access(rc_file, F_OK);
+	char* ini_file;
+
+	get_config_path(&ini_file);
+
+	return !access(ini_file, F_OK);
 }
 
 
 /* Delete the RC file */
-int tilp_rcfile_delete(void)
+int tilp_config_delete(void)
 {
-	get_rcfile_path(&rc_file);
-	return unlink(rc_file);
+	char* ini_file;
+
+	get_config_path(&ini_file);
+
+	return unlink(ini_file);
 }
 
-
 /* Return TiLP version number */
-int tilp_rcfile_get_version(char *version)
+int tilp_config_get_version(char *version)
 {
+	char *ini_file;
 	FILE *txt;
 	char buffer[256];
 	int i = 0;
 	char *p;
+
 	strcpy(version, "");
-	if (tilp_rcfile_exist() == 0) {
+	if (tilp_config_exist() == 0) 
 		return -1;
-	}
-	get_rcfile_path(&rc_file);
-	txt = fopen(rc_file, "rt");
+	get_config_path(&ini_file);
+
+	txt = fopen(ini_file, "rt");
 	if (txt == NULL)
 		return -1;
+
 	for (i = 0; i < 5; i++)
 		fgets(buffer, 256, txt);
+
 	p = strchr(buffer, '=');
 	if (p == NULL)
 		return -1;
+
 	strcpy(version, ++p);
 	p = strchr(version, '\r');
 	if (p)
 		*p = '\0';
+
 	p = strchr(version, '\n');
 	if (p)
 		*p = '\0';
+
+	return 0;
+}
+
+int tilp_config_write(void)
+{
+	char* ini_file;
+	GKeyFile* kf;
+	GError* error;
+	gchar *content;
+	FILE* f;
+
+	// get file location
+	get_config_path(&ini_file);
+
+	kf = g_key_file_new();
+
+	g_key_file_set_comment(kf, NULL, NULL, 
+		"# Config file for TiLP\n" \
+		"# Copyright (C) 1999-2005 The TiLP Team <tilp-devel@lists.sf.net>\n" \
+		"# Warning: any comments that you add to this file WILL be overwritten", &error);
+
+	// Section [DEVICE]
+	g_key_file_set_comment(kf, SECTION_DEVICE, NULL, "Device section", &error);
+
+	g_key_file_set_comment(kf, SECTION_DEVICE, "calc_model", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_DEVICE, "calc_model", ticalcs_model_to_string(calc_handle->model));
+
+	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_model", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_DEVICE, "cable_model", ticables_model_to_string(cable_handle->model));
+
+	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_port", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_DEVICE, "cable_port", ticables_port_to_string(cable_handle->port));
+
+	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_timeout", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_timeout", cable_handle->timeout);	
+
+	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", cable_handle->delay);	
+
+	// Section [GUI]
+	g_key_file_set_comment(kf, SECTION_GUI, NULL, "GUI section", &error);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "xsize", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "xsize", options.xsize);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "ysize", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "ysize", options.ysize);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "clist_sort", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "clist_sort", options.clist_sort);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "clist_sort_order", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "clist_sort_order", options.clist_sort_order);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "ctree_sort", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "ctree_sort", options.ctree_sort);
+
+	g_key_file_set_comment(kf, SECTION_GUI, "ctree_sort_order", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "ctree_sort_order", options.ctree_sort_order);
+
+	// Section [OPTIONS]
+	g_key_file_set_comment(kf, SECTION_OPTIONS, NULL, "GUI section", &error);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "full_path", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "full_path", options.full_path);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_hidden", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_hidden", options.show_hidden);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "overwrite", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "overwrite", options.overwrite);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "recv_as_group", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "recv_as_group", options.recv_as_group);
+
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "working_dir", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_OPTIONS, "working_dir", options.working_dir);
+
+	// Section [FONTS]
+	g_key_file_set_comment(kf, SECTION_FONTS, NULL, "Screenshot section", &error);
+
+	g_key_file_set_comment(kf, SECTION_FONTS, "remote_font_name", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_FONTS, "remote_font_name", options.remote_font_name);
+
+	g_key_file_set_comment(kf, SECTION_FONTS, "local_font_name", "Hand-helds type", &error);
+	g_key_file_set_string (kf, SECTION_FONTS, "local_font_name", options.local_font_name);
+
+	// Section [SCREEN]
+	g_key_file_set_comment(kf, SECTION_SCREEN, NULL, "Screenshot section", &error);
+
+	g_key_file_set_comment(kf, SECTION_SCREEN, "screen_format", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_format", options.screen_format);
+
+	g_key_file_set_comment(kf, SECTION_SCREEN, "screen_scaling", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_scaling", options.screen_scaling);
+
+	g_key_file_set_comment(kf, SECTION_SCREEN, "screen_clipping", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_clipping", options.screen_clipping);
+
+	g_key_file_set_comment(kf, SECTION_SCREEN, "screen_blurry", "Hand-helds type", &error);
+	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_blurry", options.screen_blurry);
+
+	// export file as string
+	content = g_key_file_to_data(kf, NULL, &error);
+	if(error != NULL)
+	{
+		fprintf (stderr, "Unable to read file: %s\n", error->message);
+		g_error_free(error);
+		return -1;
+	} 
+	
+	// write content
+	f = fopen(ini_file, "wt");
+	if (f == NULL) 
+	{
+		gif->msg_box(_("Error"), _
+			     ("Unable to write the config file (~/.tilp or tilp.ini).\n"));
+		return -1;
+	}
+	fwrite(content, strlen(content), 1, f);
+	fclose(f);
+
+	// free structures
+	g_free(content);
+	g_key_file_free(kf);
+	g_free(ini_file);
+
+	return 0;
+}
+
+int tilp_config_read(void)
+{
+	char* ini_file;
+	gboolean result;
+	GKeyFile* kf;
+	GError* error;
+	gchar* s;
+
+	// get file location
+	get_config_path(&ini_file);
+	kf = g_key_file_new();
+
+	// and read
+	result = g_key_file_load_from_file(kf, ini_file, G_KEY_FILE_NONE, &error);
+	if(result == FALSE)
+	{
+		fprintf (stderr, "Unable to read file: %s\n", error->message);
+		g_error_free(error);
+		return -1;
+	}
+
+	// Section [DEVICE]
+	s = g_key_file_get_string(kf, SECTION_DEVICE, "calc_model", &error);
+	if(s != NULL)
+		options.device.calc_model = ticalcs_string_to_model(s);
+	g_free(s);
+
+	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_model", &error);
+	if(s != NULL)
+		options.device.calc_model = ticables_string_to_model(s);
+	g_free(s);
+
+	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_port", &error);
+	if(s != NULL)
+		options.device.calc_model = ticables_string_to_port(s);
+	g_free(s);
+
+	options.device.cable_timeout = 
+		g_key_file_get_integer(kf, SECTION_DEVICE, "cable_timeout", &error);
+
+	options.device.cable_delay = 
+		g_key_file_get_integer(kf, SECTION_DEVICE, "cable_delay", &error);
+
+	// Section GUI
+	options.xsize = g_key_file_get_integer(kf, SECTION_GUI, "xsize", &error);
+	options.ysize = g_key_file_get_integer(kf, SECTION_GUI, "ysize", &error);
+
+	options.clist_sort = 
+		g_key_file_get_integer(kf, SECTION_GUI, "clist_sort", &error);
+	options.clist_sort_order = 
+		g_key_file_get_integer(kf, SECTION_GUI, "clist_sort_order", &error);
+
+	options.ctree_sort = 
+		g_key_file_get_integer(kf, SECTION_GUI, "ctree_sort", &error);
+	options.ctree_sort_order = 
+		g_key_file_get_integer(kf, SECTION_GUI, "ctree_sort_order", &error);
+
+	// Section [OPTIONS]
+	options.full_path = 
+		g_key_file_get_integer(kf, SECTION_GUI, "auto_detect", &error);
+	options.auto_detect = 
+		g_key_file_get_integer(kf, SECTION_GUI, "auto_detect", &error);
+	options.show_hidden = 
+		g_key_file_get_integer(kf, SECTION_GUI, "show_hidden", &error);
+	options.overwrite = 
+		g_key_file_get_integer(kf, SECTION_GUI, "overwrite", &error);
+	options.recv_as_group = 
+		g_key_file_get_integer(kf, SECTION_GUI, "recv_as_group", &error);
+	s = 
+		g_key_file_get_string(kf, SECTION_GUI, "working_dir", &error);
+	if(s != NULL)
+	{
+		g_free(options.working_dir);
+		options.working_dir = s;
+	}
+
+	// Section FONTS
+	s = g_key_file_get_string(kf, SECTION_FONTS, "local_font_name", &error);
+	if(s != NULL)
+	{
+		g_free(options.local_font_name);
+		options.local_font_name = s;
+	}
+
+	s = g_key_file_get_string(kf, SECTION_FONTS, "remote_font_name", &error);
+	if(s != NULL)
+	{
+		g_free(options.remote_font_name);
+		options.remote_font_name = s;
+	}
+
+	// Section [SCREEN]
+	options.screen_format = 
+		g_key_file_get_integer(kf, SECTION_GUI, "screen_format", &error);
+	options.screen_scaling = 
+		g_key_file_get_integer(kf, SECTION_GUI, "screen_scaling", &error);
+	options.screen_clipping = 
+		g_key_file_get_integer(kf, SECTION_GUI, "screen_clipping", &error);
+	options.screen_blurry = 
+		g_key_file_get_integer(kf, SECTION_GUI, "screen_blurry", &error);
+
+	// free structures
+	g_key_file_free(kf);
+	g_free(ini_file);
+
 	return 0;
 }
 
 
+#if 0
 /* Read the RC file and set up variables */
-void tilp_rcfile_read(void)
+void tilp_config_read(void)
 {
 	FILE *txt;
 	char buffer[256];
 	char *p;
 	int l = 0;
 
-	get_rcfile_path(&rc_file);
-	txt = fopen(rc_file, "rt");
+	get_config_path(&ini_file);
+	txt = fopen(ini_file, "rt");
 	if (txt == NULL) {
 		printl(0, _("Configuration file not found, use default values. You can create one by the 'File|Save config' command menu.\n"));
 		gif->msg_box(_("Information"), _
@@ -447,7 +628,7 @@ void tilp_rcfile_read(void)
 				options.clist_sort = SORT_BY_DATE;
 
 			else if (!strcmp(p, "size"))
-				options.clist_sort = SORT_BY_SIZE;
+				options.clist_sort = SORT_Bysize;
 
 			else if (!strcmp(p, "user"))
 				options.clist_sort = SORT_BY_USER;
@@ -484,7 +665,7 @@ void tilp_rcfile_read(void)
 				options.ctree_sort = SORT_BY_TYPE;
 
 			else if (!strcmp(p, "size"))
-				options.ctree_sort = SORT_BY_SIZE;
+				options.ctree_sort = SORT_Bysize;
 
 			else
 				stop(l);
@@ -501,12 +682,12 @@ void tilp_rcfile_read(void)
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "confirm="))) {
+		if ((p = find_str(buffer, "overwrite="))) {
 			if (!strcmp(p, "yes"))
-				options.confirm = CONFIRM_YES;
+				options.overwrite = overwrite_YES;
 
 			else if (!strcmp(p, "no"))
-				options.confirm = CONFIRM_NO;
+				options.overwrite = overwrite_NO;
 
 			else
 				stop(l);
@@ -514,21 +695,21 @@ void tilp_rcfile_read(void)
 		}
 		if ((p = find_str(buffer, "path="))) {
 			if (!strcmp(p, "full"))
-				options.path_mode = FULL_PATH;
+				options.full_path = FULL_PATH;
 
 			else if (!strcmp(p, "local"))
-				options.path_mode = LOCAL_PATH;
+				options.full_path = LOCAL_PATH;
 
 			else
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "file_display="))) {
+		if ((p = find_str(buffer, "show_hiddenlay="))) {
 			if (!strcmp(p, "all"))
-				options.file_disp = SHOW_ALL;
+				options.show_hidden = SHOW_ALL;
 
 			else if (!strcmp(p, "ti"))
-				options.file_disp = SHOW_TIF;
+				options.show_hidden = SHOW_TIF;
 
 			else
 				stop(l);
@@ -622,12 +803,12 @@ void tilp_rcfile_read(void)
 			options.web_options = g_strdup(p);
 			continue;
 		}
-		if ((p = find_str(buffer, "right_font_name="))) {
-			strcpy(options.right_font_name, p);
+		if ((p = find_str(buffer, "local_font_name="))) {
+			strcpy(options.local_font_name, p);
 			continue;
 		}
-		if ((p = find_str(buffer, "left_font_name="))) {
-			strcpy(options.left_font_name, p);
+		if ((p = find_str(buffer, "remote_font_name="))) {
+			strcpy(options.remote_font_name, p);
 			continue;
 		}
 		if ((p = find_str(buffer, "locale="))) {
@@ -668,12 +849,12 @@ void tilp_rcfile_read(void)
 				stop(l);
 			continue;
 		}
-		if ((p = find_str(buffer, "single_or_group="))) {
+		if ((p = find_str(buffer, "recv_as_group="))) {
 			if (!strcmp(p, "single"))
-				options.single_or_group = RECV_AS_SINGLE;
+				options.recv_as_group = RECV_AS_SINGLE;
 
 			else if (!strcmp(p, "group"))
-				options.single_or_group = RECV_AS_GROUP;
+				options.recv_as_group = RECV_AS_GROUP;
 
 			else
 				stop(l);
@@ -689,11 +870,11 @@ void tilp_rcfile_read(void)
 	printl(2, "rcfile, 0x%03x\n", options.lp.io_addr);
 	return;
 }
-void tilp_rcfile_write(void)
+void tilp_config_write(void)
 {
 	FILE *txt;
-	get_rcfile_path(&rc_file);
-	txt = fopen(rc_file, "wt");
+	get_config_path(&ini_file);
+	txt = fopen(ini_file, "wt");
 	if (txt == NULL) {
 		gif->msg_box(_("Error"), _
 			     ("Unable to write the config file (~/.tilp or tilp.ini).\n"));
@@ -896,7 +1077,7 @@ void tilp_rcfile_write(void)
 	case SORT_BY_DATE:
 		fprintf(txt, "date\n");
 		break;
-	case SORT_BY_SIZE:
+	case SORT_Bysize:
 		fprintf(txt, "size\n");
 		break;
 	case SORT_BY_USER:
@@ -931,7 +1112,7 @@ void tilp_rcfile_write(void)
 	case SORT_BY_TYPE:
 		fprintf(txt, "type\n");
 		break;
-	case SORT_BY_SIZE:
+	case SORT_Bysize:
 		fprintf(txt, "size\n");
 		break;
 	}
@@ -946,11 +1127,11 @@ void tilp_rcfile_write(void)
 	}
 	fprintf(txt, "\n");
 	fprintf(txt, "# Show all/TI files\n");
-	fprintf(txt, "file_display=%s\n",
-		options.file_disp ? "all" : "ti");
+	fprintf(txt, "show_hiddenlay=%s\n",
+		options.show_hidden ? "all" : "ti");
 	fprintf(txt, "\n");
 	fprintf(txt, "# Delete files\n");
-	fprintf(txt, "confirm=%s\n", options.confirm ? "yes" : "no");
+	fprintf(txt, "overwrite=%s\n", options.overwrite ? "yes" : "no");
 	fprintf(txt, "\n");
 	fprintf(txt, "# Display console.\n");
 	fprintf(txt, "console=%s\n",
@@ -961,8 +1142,8 @@ void tilp_rcfile_write(void)
 	fprintf(txt, "\n");
 	fprintf(txt,
 		"# Receive multiple file as single files or group file\n");
-	fprintf(txt, "single_or_group=");
-	switch (options.single_or_group) {
+	fprintf(txt, "recv_as_group=");
+	switch (options.recv_as_group) {
 	case RECV_AS_SINGLE:
 		fprintf(txt, "single\n");
 		break;
@@ -976,7 +1157,7 @@ void tilp_rcfile_write(void)
 	fprintf(txt, "#\n");
 	fprintf(txt, "\n");
 	fprintf(txt, "# Full or local path for sending variables\n");
-	fprintf(txt, "path=%s\n", options.path_mode ? "local" : "full");
+	fprintf(txt, "path=%s\n", options.full_path ? "local" : "full");
 	fprintf(txt, "\n");
 	fprintf(txt,
 		"# Auto-detection of FLASH calculator (73/83+/89/92+).\n");
@@ -1028,10 +1209,10 @@ void tilp_rcfile_write(void)
 	fprintf(txt, "#\n");
 	fprintf(txt, "\n");
 	fprintf(txt, "# Font used in the leftt window.\n");
-	fprintf(txt, "left_font_name=%s\n", options.left_font_name);
+	fprintf(txt, "remote_font_name=%s\n", options.remote_font_name);
 	fprintf(txt, "\n");
 	fprintf(txt, "# Font used in the right window.\n");
-	fprintf(txt, "right_font_name=%s\n", options.right_font_name);
+	fprintf(txt, "local_font_name=%s\n", options.local_font_name);
 	fprintf(txt, "\n");
 	fprintf(txt, "#\n");
 	fprintf(txt, "# SCREEN SECTION\n");
@@ -1088,3 +1269,21 @@ void tilp_rcfile_write(void)
 }
 
 #endif
+
+/* GUI wrapper */
+
+int tilp_config_save(void)
+{
+	tilp_config_write();
+	gif->msg_box(_("Information"), _("Configuration file saved."));
+
+	return 0;
+}
+
+int tilp_config_load(void)
+{
+	tilp_config_read();
+	gif->msg_box(_("Information"), _("Configuration file loaded."));
+
+	return 0;
+}

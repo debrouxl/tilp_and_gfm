@@ -39,10 +39,10 @@ CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
 //TicalcInfoUpdate info_update;
-TilpOptions options;
+TilpOptions options = { 0 };
+TilpLocal clist_win = { 0 };
+TilpRemote ctree_win = { 0 };
 gint working_mode = MODE_INI;
-TilpClistWin clist_win = { 0 };
-TilpCtreeWin ctree_win = { 0 };
 
 #if 0
 

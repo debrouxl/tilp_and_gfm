@@ -22,6 +22,10 @@
 #ifndef __TILP_CALCS__
 #define __TILP_CALCS__
 
+int tilp_drive_change(char drive_letter);
 
+
+int tilp_tifiles_ungroup(void);
+int tilp_tifiles_group(void);
 
 #endif

@@ -22,6 +22,13 @@
 #ifndef __TILP_VARS__
 #define __TILP_VARS__
 
+int tilp_dirlist_remote(void);
 
+void tilp_vars_sort_by_name(void);
+void tilp_vars_sort_by_info(void);
+void tilp_vars_sort_by_type(void);
+void tilp_vars_sort_by_size(void);
+
+void tilp_var_get_size(VarEntry* vi, char **buf);
 
 #endif

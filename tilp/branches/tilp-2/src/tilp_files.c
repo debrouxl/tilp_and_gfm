@@ -183,7 +183,7 @@ int tilp_file_check(const char *src, char **dst)
 	char *dirname;
 	*dst = NULL;
 
-	if (options.confirm == CONFIRM_YES) 
+	if (options.overwrite == CONFIRM_YES) 
 	{
 		if (access(src, F_OK) == 0) 
 		{
@@ -355,7 +355,7 @@ char *tilp_file_underscorize(char *s)
 /* Attributes */
 
 #ifndef __WIN32__
-const char *tilp_file_get_attributes(TilpFileInfo * fi)
+const char *tilp_file_get_attributes(FileEntry * fi)
 {
 	static char buffer[16];
 	char *s;
@@ -432,7 +432,7 @@ const char *tilp_file_get_attributes(TilpFileInfo * fi)
 
 
 #endif				
-void tilp_file_get_user_name(TilpFileInfo * fi, char **name)
+void tilp_file_get_user_name(FileEntry * fi, char **name)
 {
 #if defined(__LINUX__) || defined(__BSD__)
 	struct passwd *pwuid;
@@ -451,7 +451,7 @@ void tilp_file_get_user_name(TilpFileInfo * fi, char **name)
 #endif				
 } 
 
-void tilp_file_get_group_name(TilpFileInfo * fi, char **name)
+void tilp_file_get_group_name(FileEntry * fi, char **name)
 {
 #if defined(__LINUX__) || defined(__BSD__)
 	struct group *grpid;
@@ -470,7 +470,7 @@ void tilp_file_get_group_name(TilpFileInfo * fi, char **name)
 #endif				
 } 
 
-const char *tilp_file_get_date(TilpFileInfo * fi)
+const char *tilp_file_get_date(FileEntry * fi)
 {
 	static char buffer[32];
 	int i;
@@ -497,7 +497,7 @@ const char *tilp_file_get_date(TilpFileInfo * fi)
 #define snprintf _snprintf
 #endif
 
-const char *tilp_file_get_size(TilpFileInfo * fi)
+const char *tilp_file_get_size(FileEntry * fi)
 {
 	static char buffer[32];
 
@@ -513,7 +513,7 @@ const char *tilp_file_get_size(TilpFileInfo * fi)
 	return buffer;
 }
 
-const char *tilp_file_get_type(TilpFileInfo * fi)
+const char *tilp_file_get_type(FileEntry * fi)
 {
 	static char buffer[32];
 
@@ -530,7 +530,7 @@ const char *tilp_file_get_type(TilpFileInfo * fi)
 #ifndef __MACOSX__
 static void free_file_info_struct(gpointer data)
 {
-	TilpFileInfo *fi = data;
+	FileEntry *fi = data;
 
 	g_free(fi->name);
 	//ticalc_destroy_action_array(fi->actions);
@@ -547,7 +547,7 @@ int tilp_file_dirlist(void)
 	GError *error;
 	G_CONST_RETURN gchar *dirname;
 	struct stat f_info;
-	TilpFileInfo *fi;
+	FileEntry *fi;
 
 	dir = g_dir_open(clist_win.current_dir, 0, &error);
 	if (dir == NULL) 
@@ -565,7 +565,7 @@ int tilp_file_dirlist(void)
 	}
 
 	// add the ".." entry (b/c stripped by g_dir_read_name
-	fi = (TilpFileInfo *) g_malloc0(sizeof(TilpFileInfo));
+	fi = (FileEntry *) g_malloc0(sizeof(FileEntry));
 	fi->name = g_strdup("..");
 	if (!stat(fi->name, &f_info)) 
 	{
@@ -581,7 +581,7 @@ int tilp_file_dirlist(void)
 		if (dirname[0] == '.')
 			continue;
 
-		fi = (TilpFileInfo *) g_malloc0(sizeof(TilpFileInfo));
+		fi = (FileEntry *) g_malloc0(sizeof(FileEntry));
 		fi->name = g_strdup(dirname);
 		if (!stat(fi->name, &f_info)) 
 		{
@@ -609,8 +609,8 @@ int tilp_dirlist_local(void)
 
 static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
-	TilpFileInfo* fi_a = (TilpFileInfo *)a;
-	TilpFileInfo* fi_b = (TilpFileInfo *)b;
+	FileEntry* fi_a = (FileEntry *)a;
+	FileEntry* fi_b = (FileEntry *)b;
 	
 	return ((fi_b->attrib & S_IFMT) == S_IFDIR);
 }
@@ -623,8 +623,8 @@ void tilp_file_sort_by_type(void)
 
 static gint sort_by_name(gconstpointer a, gconstpointer b)
 {
-	TilpFileInfo* fi_p = (TilpFileInfo *)a;
-	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+	FileEntry* fi_p = (FileEntry *)a;
+	FileEntry* fi_q = (FileEntry *)b;
 	
 	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
 		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
@@ -649,8 +649,8 @@ void tilp_sort_files_by_name(void)
 
 static gint sort_by_date(gconstpointer a, gconstpointer b)
 {
-	TilpFileInfo* fi_p = (TilpFileInfo *)a;
-	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+	FileEntry* fi_p = (FileEntry *)a;
+	FileEntry* fi_q = (FileEntry *)b;
 
 	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
 		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR)))
@@ -675,8 +675,8 @@ void tilp_sort_files_by_date(void)
 
 static gint sort_by_size(gconstpointer a, gconstpointer b)
 {
-	TilpFileInfo* fi_p = (TilpFileInfo *)a;
-	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+	FileEntry* fi_p = (FileEntry *)a;
+	FileEntry* fi_q = (FileEntry *)b;
 
 	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
 		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
@@ -704,8 +704,8 @@ void tilp_sort_files_by_size(void)
 
 static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 {
-	TilpFileInfo* fi_p = (TilpFileInfo *)a;
-	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+	FileEntry* fi_p = (FileEntry *)a;
+	FileEntry* fi_q = (FileEntry *)b;
 
 	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
 		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 

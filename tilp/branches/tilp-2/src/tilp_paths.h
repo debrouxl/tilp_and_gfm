@@ -60,4 +60,7 @@ typedef struct
 extern TilpInstPaths	inst_paths;
 #endif /* !__MACOSX__ */
 
+int tilp_paths_init(void);
+const char *tilp_paths_build_glade(const char *name);
+
 #endif

@@ -45,9 +45,10 @@ extern "C" {
 #include "tilibs.h"
 #include "intl.h"
 
-#include "tilp_defs.h"
 #include "tilp_calcs.h"
 #include "tilp_cmdline.h"
+#include "tilp_config.h"
+#include "tilp_defs.h"
 #include "tilp_files.h"
 #include "tilp_indep.h"
 #include "tilp_log.h"
@@ -55,6 +56,10 @@ extern "C" {
 #include "tilp_misc.h"
 #include "tilp_struct.h"
 #include "tilp_paths.h"
+#include "tilp_screen.h"
+#include "tilp_slct.h"
+#include "tilp_struct.h"
+#include "tilp_vars.h"
 #include "tilp_version.h"
 
 int tilp_error(int errcode);

@@ -76,6 +76,7 @@ void signal_handler(int sig_no)
 
 int main(int argc, char *argv[], char **arge)
 {
+#if 0
 	GdkPixbuf *icon;
 
 	/* Catch 'Ctrl-C' */
@@ -169,8 +170,7 @@ int main(int argc, char *argv[], char **arge)
 	//tifiles_translate_varname(varname, utf8, 0);
 
 	gtk_main();
-
-
+#endif
 	return 0;
 }
 

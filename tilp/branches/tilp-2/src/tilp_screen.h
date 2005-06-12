@@ -19,22 +19,23 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TILP_SLCT__
-#define __TILP_SLCT__
+#ifndef __TILP_SCREEN__
+#define __TILP_SCREEN__
 
-void tilp_clist_selection_destroy(void);
-void tilp_ctree_selection_destroy(void);
-void tilp_clist_file_selection_destroy(void);
+typedef struct 
+{
+    uint8_t*	bitmap;
+    int			width;
+    int			height;
+} TilpScreen;
 
-void tilp_add_file_to_file_selection(const char *filename);
+extern TilpScreen tilp_screen;
 
-void tilp_delete_selected_files(void);
-void tilp_rename_selected_files(void);
+int tilp_screen_capture(void);
+uint8_t* tilp_screen_convert(void);
+uint8_t* tilp_screen_blurry(void);
 
-int  tilp_clist_selection_ready(void);
-int  tilp_ctree_selection_ready(void);
-int  tilp_ctree_selection2_ready(void);
-
-void tilp_clist_selection_display(void);
+gboolean tilp_screen_write_eps(const gchar *filename, GError **error);
+gboolean tilp_screen_write_pdf(const gchar *filename, GError **error);
 
 #endif

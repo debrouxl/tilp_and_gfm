@@ -20,7 +20,7 @@
  */
 
 /*
-	Selections
+	Manage vars/files selections
 */
 
 #include <stdio.h>
@@ -28,75 +28,74 @@
 
 #include "tilp_core.h"
 
-#if 0
-
 /* Destroy the selection of the clist window */
 void tilp_clist_selection_destroy(void)
 {
-	if (clist_win.selection != NULL) {
+	if (clist_win.selection != NULL) 
+	{
 		g_list_free(clist_win.selection);
 		clist_win.selection = NULL;
 	}
-	return;
 }
-
 
 /* Destroy the selection of the ctree window */
 void tilp_ctree_selection_destroy(void)
 {
-	if (ctree_win.selection != NULL) {
+	if (ctree_win.selection != NULL) 
+	{
 		g_list_free(ctree_win.selection);
 		ctree_win.selection = NULL;
 	}
-	if (ctree_win.selection2 != NULL) {
+
+	if (ctree_win.selection2 != NULL) 
+	{
 		g_list_free(ctree_win.selection2);
 		ctree_win.selection2 = NULL;
 	}
-	return;
 }
-
 
 /* Destroy the selection of the clist window */
 void tilp_clist_file_selection_destroy(void)
 {
-	if (clist_win.file_selection != NULL) {
-		g_list_foreach(clist_win.file_selection, (GFunc) g_free,
-			       NULL);
+	if (clist_win.file_selection != NULL) 
+	{
+		g_list_foreach(clist_win.file_selection, (GFunc) g_free, NULL);
 		g_list_free(clist_win.file_selection);
 		clist_win.file_selection = NULL;
 	}
-	return;
 }
-
 
 /* Add a file to the file_selection (if it does not exist in the list) */
 void tilp_add_file_to_file_selection(const char *filename)
 {
-	GList *ptr;
-	ptr = clist_win.file_selection;
-	while (ptr != NULL) {
+	GList *ptr = clist_win.file_selection;
+
+	while (ptr != NULL) 
+	{
 		if (!strcmp((char *) ptr->data, filename))
 			return;
 		ptr = g_list_next(ptr);
 	}
-	clist_win.file_selection =
-	    g_list_append(clist_win.file_selection, (gpointer) filename);
+	clist_win.file_selection = g_list_append(clist_win.file_selection, (gpointer) filename);
 }
 
 #ifndef __MACOSX__
 /* Delete files which are in clist_win.file_selection */
 void tilp_delete_selected_files()
 {
-	GList *ptr;
+	GList *ptr = clist_win.selection;
 	gint ret;
 
 	if (clist_win.selection == NULL)
 		return;
 
-	if (g_list_length(clist_win.selection) == 1) {
+	if (g_list_length(clist_win.selection) == 1) 
+	{
 		ret = gif->msg_box2(_("Warning"), _
 				    ("Are you sure you want to remove this file ?\n\n"));
-	} else {
+	} 
+	else 
+	{
 		ret = gif->msg_box2(_("Warning"), _
 				    ("Are you sure you want to remove these files ?\n\n"));
 	}
@@ -104,9 +103,9 @@ void tilp_delete_selected_files()
 	if (ret == BUTTON2)
 		return;
 
-	ptr = clist_win.selection;
-	while (ptr != NULL) {
-		TilpFileInfo *fi = ptr->data;
+	while (ptr != NULL) 
+	{
+		FileEntry *fi = ptr->data;
 		tilp_file_delete(fi->name);
 		ptr = ptr->next;
 	}
@@ -114,24 +113,28 @@ void tilp_delete_selected_files()
 	tilp_dirlist_local();
 }
 
-
 /* Rename files which are in clist_win.file_selection */
 void tilp_rename_selected_files()
 {
 	gchar *filename;
-	GList *ptr;
+	GList *ptr = clist_win.selection;
+
 	if (clist_win.selection == NULL)
 		return;
-	ptr = clist_win.selection;
-	while (ptr != NULL) {
-		TilpFileInfo *fi = ptr->data;
+
+	while (ptr != NULL) 
+	{
+		FileEntry *fi = ptr->data;
 		printf("<<%s>>\n", fi->name);
 		filename =
 		    gif->msg_entry(_("Rename the file"), _("Name: "),
 				   fi->name);
+
 		if (filename == NULL)
 			return;
-		if (tilp_file_move(fi->name, filename) < 0) {
+
+		if (tilp_file_move(fi->name, filename) < 0) 
+		{
 			gif->msg_box(_("Information"), _
 				     ("Unable to rename the file or directory."));
 			g_free(filename);
@@ -145,7 +148,8 @@ void tilp_rename_selected_files()
 /* Check for files in the list */
 int tilp_clist_selection_ready(void)
 {
-	if (clist_win.selection == NULL) {
+	if (clist_win.selection == NULL) 
+	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
 			     ("A file must have been selected in the right window."));
@@ -154,9 +158,11 @@ int tilp_clist_selection_ready(void)
 	}
 	return !0;
 }
+
 int tilp_ctree_selection_ready(void)
 {
-	if (ctree_win.selection == NULL) {
+	if (ctree_win.selection == NULL) 
+	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
 			     ("A variable must have been selected in the left window."));
@@ -165,9 +171,11 @@ int tilp_ctree_selection_ready(void)
 	}
 	return !0;
 }
+
 int tilp_ctree_selection2_ready(void)
 {
-	if (ctree_win.selection2 == NULL) {
+	if (ctree_win.selection2 == NULL) 
+	{
 #ifndef __MACOSX__
 		gif->msg_box(_("Information"), _
 			     ("A variable must have been selected in the left window."));
@@ -181,14 +189,15 @@ int tilp_ctree_selection2_ready(void)
 void tilp_clist_selection_display(void)
 {
 	GList *ptr = clist_win.selection;
+
 	if (clist_win.selection == NULL)
 		return;
-	while (ptr != NULL) {
-		TilpFileInfo *fi = ptr->data;
+
+	while (ptr != NULL) 
+	{
+		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
 		ptr = ptr->next;
 	}
 }
 #endif /* !__MACOSX__ */
-
-#endif

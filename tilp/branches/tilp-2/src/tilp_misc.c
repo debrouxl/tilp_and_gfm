@@ -62,7 +62,7 @@ int tilp_tifiles_ungroup(void)
 	sel = clist_win.selection;
 	while (sel != NULL) {
 		gchar *dirname;
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
+		FileEntry *f = (FileEntry *) sel->data;
 		src_file =
 		    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S,
 				f->name, NULL);
@@ -127,16 +127,18 @@ int tilp_tifiles_group(void)
 			     sizeof(char *));
 	sel = clist_win.selection;
 	while (sel != NULL) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
+		FileEntry *f = (FileEntry *) sel->data;
 		array[i++] =
 		    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S,
 				f->name, NULL);
 		array[i] = NULL;
 		sel = sel->next;
 	}
+	/*
 	dst_file =
 	    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
 			".", tifiles_group_file_ext(), NULL);
+			*/
 	g_free(grpname);
 	tifiles_group_files(array, dst_file);
 	g_strfreev(array);
