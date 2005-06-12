@@ -22,6 +22,7 @@
 #ifndef __TILP_CMDLINE__
 #define __TILP_CMDLINE__
 
-int tilp_cmdline_scan(int argc, char **argv);
+void tilp_cmdline_version(void);
+int  tilp_cmdline_scan(int argc, char **argv);
 
 #endif

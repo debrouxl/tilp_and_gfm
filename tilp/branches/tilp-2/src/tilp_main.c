@@ -42,18 +42,19 @@ CalcHandle*  calc_handle  = NULL;
 TilpOptions options = { 0 };
 TilpLocal clist_win = { 0 };
 TilpRemote ctree_win = { 0 };
-gint working_mode = MODE_INI;
 
-#if 0
+gint working_mode = MODE_INI;
 
 /*
   This function must be the first function to call in your function 'main'.
   It initializes the TiLP core engine.
 */
-int tilp_main(int argc, const char *argv[], char **arge)
+int tilp_main(int argc, char *argv[], char **arge)
 {
+	int err;
+
 	/* Display program version */
-	version();
+	tilp_cmdline_version();
 
 #ifndef __MACOSX__
 	/* Initialize platform independant paths */
@@ -66,106 +67,100 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	// At first, initialize the GUI independant functions with some 
 	// defaults values to avoid NULL pointers.
 	// Initialization made with console mode functions.
-	tilp_gui_set_default_fncts();
+	tilp_indep_set_gui_cmdline();
 
 	// Init refresh functions (libticalcs)
-	tilp_cmdline_set_refresh();
+	tilp_refresh_set_update_cmdline();
 
 #ifndef __MACOSX__
 	// Initialize options with default values
 	tilp_config_default();
 
 	// Parse the config file
-	tilp_rcfile_read();
+	tilp_config_read();
 #else
-    	rc_init_with_default();
+    rc_init_with_default();
 	rc_get_user_prefs();
 #endif /* !__MACOSX__ */
-	tilp_chdir(options.working_dir);
+	tilp_file_chdir(options.working_dir);
 
 	// Scan the command line (passed as an argument)
-	scan_cmdline(argc, argv);
+	tilp_cmdline_scan(argc, argv);
 
 	// Init locale & internationalization
 #ifdef ENABLE_NLS
-	printl(0, "setlocale: <%s>\n", setlocale(LC_ALL, ""));
-  	printl(0, "bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	tilp_info( "setlocale: <%s>\n", setlocale(LC_ALL, ""));
+  	tilp_info( "bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
   	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	printl(0, "textdomain: <%s>\n", textdomain(PACKAGE));
+  	tilp_info( "textdomain: <%s>\n", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
 	/* 
-	   Check the version of libraries 
+	   Check the version of libraries and init
 	 */
-	if (strcmp(tifiles_get_version(), TILP_REQUIRES_LIBFILES_VERSION) < 0) {
-		printl(0, _
-			("libtifiles library version <%s> mini required.\n"),
-			TILP_REQUIRES_LIBFILES_VERSION);
-		gif->msg_box(_("Error"),
-			     _("Libtifiles: version mismatches."));
+	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0) 
+	{
+		tilp_info(_("libtifiles library version <%s> mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
+		gif->msg_box(_("Error"), _("Libtifiles: version mismatches."));
 		exit(-1);
 	}
 	
-	if (strcmp(ticable_get_version(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) {
-		printl(0, _
-			("libticables library version <%s> mini required.\n"),
-			TILP_REQUIRES_LIBCABLES_VERSION);
-		gif->msg_box(_("Error"),
-			     _("Libticables: version mismatches."));
+	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) 
+	{
+		tilp_info(_("libticables library version <%s> mini required.\n"), TILP_REQUIRES_LIBCABLES_VERSION);
+		gif->msg_box(_("Error"), _("Libticables: version mismatches."));
 		exit(-1);
 	}
 	
-	if (strcmp(ticalc_get_version(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) {
-		printl(0, _
-			("libticalcs library version <%s> mini required.\n"),
-			TILP_REQUIRES_LIBCALCS_VERSION);
-		gif->msg_box(_("Error"),
-			     _("Libticalcs: version mismatches."));
+	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) 
+	{
+		tilp_info(_("libticalcs library version <%s> mini required.\n"), TILP_REQUIRES_LIBCALCS_VERSION);
+		gif->msg_box(_("Error"), _("Libticalcs: version mismatches."));
 		exit(-1);
 	}
 
-	/* 
-	   Initialize the libticables library 
-	 */
-        ticable_set_printl(ticables_printl);
-	ticable_init();
-	ticable_set_param(&options.lp);
-	tilp_error(ticable_set_cable(options.lp.link_type, &link_cable));
-	tilp_error(link_cable.init());
-	
-	/* 
-	   Initialize the libtifiles library 
-	 */
-        tifiles_set_printl(tifiles_printl);
-	tifiles_init();
-	tifiles_set_calc(options.lp.calc_type);
+	ticables_library_init();
+	tifiles_library_init();
+	ticalcs_library_init();
 
 	/* 
-	   Initialize the libticalcs library 
-	 */
-        ticalc_set_printl(ticalcs_printl);
-	ticalc_init();
-	ticalc_set_cable(&link_cable);
-	ticalc_set_calc(options.lp.calc_type, &ti_calc);
+	   Set cable & calc
+	*/	
+	cable_handle = ticables_handle_new(options.device.cable_model, 
+		options.device.cable_port);
+	if(cable_handle == NULL)
+	{
+		gif->msg_box("Error", "Can't set cable");
+	}
+
+	calc_handle = ticalcs_handle_new(options.device.calc_model);
+	if(cable_handle == NULL)
+	{
+		gif->msg_box("Error", "Can't set cable");
+	}
+
+	err = ticalcs_cable_attach(calc_handle, cable_handle);
+	tilp_error(err);
 
 	/*
 	   Display the working mode
 	 */
-	switch (working_mode & ~MODE_GUI) {
+	switch (working_mode & ~MODE_GUI) 
+	{
 	case MODE_CMD:
-		printl(0, _("Working mode: command line.\n"));
+		tilp_info( _("Working mode: command line.\n"));
 		break;
 	case MODE_CON:
-		printl(0, _("Working mode: console (prompt).\n"));
+		tilp_info( _("Working mode: console (prompt).\n"));
 		break;
 	case MODE_GTK:
-		printl(0, _("Working mode: GTK+.\n"));
+		tilp_info( _("Working mode: GTK+.\n"));
 		break;
 	case MODE_MFC:
-		printl(0, _("Working mode: MFC.\n"));
+		tilp_info( _("Working mode: MFC.\n"));
 		break;
 	case MODE_OSX:
-		printl(0, _("Working mode: Cocoa OS X GUI.\n"));
+		tilp_info( _("Working mode: Cocoa OS X GUI.\n"));
 		break;
 	}
 
@@ -174,20 +169,12 @@ int tilp_main(int argc, const char *argv[], char **arge)
 	   and exit else fallback on a graphic interface.
 	 */
 #ifndef __MACOSX__
-	if (working_mode & MODE_CMD) {
-		tilp_cmdline_send();
-		exit(0);
-	}
-
-	/*
-	   Enter in console mode (prompt)
-	 */
-	if (working_mode & MODE_CON) {
-		tilp_prompt();
+	if (working_mode & MODE_CMD) 
+	{
+		//tilp_cmdline_send();
 		exit(0);
 	}
 #endif				/* !__MACOSX__ */
+
 	return 0;
 }
-
-#endif

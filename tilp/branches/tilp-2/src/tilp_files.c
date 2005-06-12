@@ -270,7 +270,7 @@ int tilp_file_move_with_check(const char *src, const char *dst)
   HOME directory
 */
 #if defined(__LINUX__) || defined(__MACOSX__)
-int tilp_chdir(const char *path)
+int tilp_file_chdir(const char *path)
 {
 #ifndef ALLOW_EXIT_HOMEDIR
 	const gchar *home_dir;
@@ -325,7 +325,7 @@ int tilp_chdir(const char *path)
 
 #else
 
-int tilp_chdir(const char *path)
+int tilp_file_chdir(const char *path)
 {
 	if (chdir(path)) 
 	{

@@ -44,7 +44,7 @@ static GOptionEntry entries[] =
 	{ NULL }
 };
 
-static void version(void)
+void tilp_cmdline_version(void)
 {
 	fprintf(stdout, _("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"), TILP_VERSION);
 #ifdef __BSD__

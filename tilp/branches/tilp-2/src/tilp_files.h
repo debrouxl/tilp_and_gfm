@@ -30,7 +30,8 @@ int tilp_file_delete(const char *f);
 int tilp_file_mkdir(const char *pathname);
 int tilp_file_check(const char *src, char **dst);
 int tilp_file_move_with_check(const char *src, const char *dst);
-int tilp_chdir(const char *path);
+int tilp_file_chdir(const char *path);
+#define tilp_chdir	tilp_file_chdir
 
 char *tilp_file_underscorize(char *s);
 
