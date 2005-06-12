@@ -21,253 +21,30 @@
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif				/*  */
+#endif
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef __MACOSX__
-#include <glib.h>
-#include "tilibs.h"
-#else				/*  */
-#include <glib/glib.h>
-#include <libticalcs/calc_int.h>
-#include "../osx/cocoa_config.h"
-#endif				/*  */
-
 #ifdef __WIN32__
 # include <locale.h>
 # include <windows.h>
-#endif				/*  */
+#endif
 
 #include "tilp_core.h"
-#include "tilp_prompt.h"
 
-/***************************************/
-/* Some tilink variables and functions */
-/***************************************/
-TicableLinkCable link_cable;
-TicalcFncts ti_calc;
-TicalcInfoUpdate info_update;
+/* Global variables */
+CableHandle* cable_handle = NULL;
+CalcHandle*  calc_handle  = NULL;
+
+//TicalcInfoUpdate info_update;
 TilpOptions options;
 gint working_mode = MODE_INI;
-TilpClistWin clist_win = {
-	0
-};
+TilpClistWin clist_win = { 0 };
+TilpCtreeWin ctree_win = { 0 };
 
-TilpCtreeWin ctree_win = {
-	0
-};
-
-
-#ifndef __MACOSX__
-TilpInstPaths inst_paths = {
-	"", "\\locale", "\\manpages", "\\help", "\\pixmaps"
-};
-
-
-#endif				/*  */
-void help(void)
-{
-	printl(0, "\n");
-	printl(0, _("Usage: tilp [-options] [filename]\n"));
-	printl(0, "\n");
-	printl(0, _
-		("-h, --help    display this information page and exit\n"));
-	printl(0, _
-		("-v, --version display the version information and exit\n"));
-	printl(0, _("-cmdline      use command line and stop\n"));
-	printl(0, _("-gui=...      use the specified GUI (console, gtk)\n"));
-	printl(0, _("-calc=...     give the calculator type\n"));
-	printl(0, _("-link=...     give the link cable type\n"));
-	printl(0, _("-port=...     give the port number\n"));
-	printl(0, _("-timeout=...  give the time out in seconds\n"));
-	printl(0, _("-delay=...    give the delay in microseconds\n"));
-        printl(0, _("-dev_port=... give the device port (override 'port=')\n"));
-        printl(0, _("-adr_port=... give the address of the port (override 'port=')\n"));
-	printl(0, "\n");
-	printl(0, _("filename      a filename to send (console or GTK+)\n"));
-	printl(0, "\n");
-	printl(0, _("See the manpage for more informations...\n"));
-	printl(0, "\n");
-	exit(0);
-}
-
-/*
-  Display the program version
-*/
-void version(void)
-{
-	printl(0, _
-		("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"),
-		TILP_VERSION);
-
-#ifdef __BSD__
-	printl(0, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
-#endif
-    
-#ifdef __MACOSX__
-	printl(0, _
-		("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"),
-		TILP_OSX_VERSION, SVN_REV);
-#endif
-
-	printl(0, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-	printl(0, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-        printl(0, _("built on %s %s\n"), __DATE__, __TIME__);
-}
-
-static int strexact(char *p1, char *p2)
-{
-	return (strstr(p1, p2) && strstr(p2, p1));
-}
-
-
-/*
-  Scan the command line, extract arguments and init variables
-*/
-int scan_cmdline(int argc, const char **argv)
-{
-	int cnt;
-	const char *p;
-	char *q;
-	char arg[80];
-	TilpFileInfo *fi;
-	for (cnt = 1; cnt < argc; cnt++) {
-		p = argv[cnt];
-		if (*p == '-') {
-
-			// an option
-			p++;
-		} else {
-
-			// a filename to send/open
-			gchar *filename_on_cmdline = NULL;
-
-			// check whether path is local or absolute
-			if (!g_path_is_absolute(p)) {
-				filename_on_cmdline =
-				    g_strconcat(g_get_current_dir(),
-						G_DIR_SEPARATOR_S, p, NULL);
-			} else {
-				filename_on_cmdline = g_strdup(p);
-			}
-
-			//printf("<<%s>\n", filename_on_cmdline);
-
-			// build a pseudo-selection for the TiLP core
-			fi = (TilpFileInfo *)
-			    g_malloc0(sizeof(TilpFileInfo));
-			fi->name = g_strdup(filename_on_cmdline);
-			clist_win.selection =
-			    g_list_prepend(clist_win.selection,
-					   (gpointer) fi);
-			options.show_gui = FALSE;
-		}
-		strcpy(arg, p);
-		if (strstr(arg, "cmdline")) {
-			working_mode = MODE_CMD;
-		}
-		if (strstr(arg, "gui=")) {
-			q = arg + 4;
-			if (!strcmp(q, "console"))
-				working_mode = MODE_CON;
-
-			else if (!strcmp(q, "gtk"))
-				working_mode = MODE_GTK;
-
-			else if (!strcmp(q, "mfc"))
-				working_mode = MODE_MFC;
-
-			else
-				exit(0);
-		}
-		if (strstr(arg, "calc=")) {
-			q = arg + 5;
-			if (!strcmp(q, "v200"))
-				options.lp.calc_type = CALC_V200;
-			if (!strcmp(q, "ti92+"))
-				options.lp.calc_type = CALC_TI92P;
-			if (!strcmp(q, "ti92"))
-				options.lp.calc_type = CALC_TI92;
-			if (!strcmp(q, "ti89t"))
-				options.lp.calc_type = CALC_TI89T;
-			if (!strcmp(q, "ti89"))
-				options.lp.calc_type = CALC_TI89;
-			if (!strcmp(q, "ti86"))
-				options.lp.calc_type = CALC_TI86;
-			if (!strcmp(q, "ti85"))
-				options.lp.calc_type = CALC_TI85;
-			if (!strcmp(q, "ti84+"))
-				options.lp.calc_type = CALC_TI84P;
-			if (!strcmp(q, "ti83+"))
-				options.lp.calc_type = CALC_TI83P;
-			if (!strcmp(q, "ti83"))
-				options.lp.calc_type = CALC_TI83;
-			if (!strcmp(q, "ti82"))
-				options.lp.calc_type = CALC_TI82;
-			if (!strcmp(q, "ti73"))
-				options.lp.calc_type = CALC_TI73;
-		}
-		if (strstr(arg, "link=")) {
-			q = arg + 5;
-			if (!strcmp(q, "par"))
-				options.lp.link_type = LINK_PAR;
-			if (!strcmp(q, "ser"))
-				options.lp.link_type = LINK_SER;
-			if (!strcmp(q, "tgl"))
-				options.lp.link_type = LINK_TGL;
-			if (!strcmp(q, "avr"))
-				options.lp.link_type = LINK_AVR;
-			if (!strcmp(q, "tie"))
-				options.lp.link_type = LINK_TIE;
-			if (!strcmp(q, "vti"))
-				options.lp.link_type = LINK_VTI;
-			if (!strcmp(q, "ugl"))
-				options.lp.link_type = LINK_UGL;
-			if (!strcmp(q, "slv"))
-				options.lp.link_type = LINK_SLV;
-		}
-		if (strstr(arg, "port=")) {
-			int port = USER_PORT;
-			port = (int) atol(&arg[5]) - 1;
-			switch(options.lp.link_type)
-			{
-			case LINK_PAR: 
-				options.lp.port = PARALLEL_PORT_1 + port;
-				break;
-			case LINK_SER:
-			case LINK_TGL: 
-				options.lp.port = SERIAL_PORT_1 + port;
-				break;
-			case LINK_SLV: 
-				options.lp.port = USB_PORT_1 + port;
-				break;
-			case LINK_TIE:
-			case LINK_VTI:
-				options.lp.port = VIRTUAL_PORT_1 + port;
-				break;
-			default:
-				break;
-			}
-		}
-		if (strstr(arg, "dev_port="))
-			strcpy(options.lp.device, arg + 9);
-		if (strstr(arg, "adr_port="))
-			options.lp.io_addr = (int) strtol(arg + 9, &q, 16);
-		if (strstr(arg, "timeout="))
-			options.lp.timeout = (int) atol(&arg[8]);
-		if (strstr(arg, "delay="))
-			options.lp.delay = (int) atol(&arg[6]);
-		if (strexact(arg, "-help") || strexact(arg, "h"))
-			help();
-		if (strexact(arg, "-version") || strexact(arg, "v"))
-			exit(0);
-	}
-	return 0;
-}
-
+#if 0
 
 /*
   This function must be the first function to call in your function 'main'.
@@ -412,3 +189,5 @@ int tilp_main(int argc, const char *argv[], char **arge)
 #endif				/* !__MACOSX__ */
 	return 0;
 }
+
+#endif

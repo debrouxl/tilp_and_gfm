@@ -42,8 +42,7 @@ int cmdline_msg_box2(const char *title, char *message)
 	return 0;
 }
 
-int cmdline_msg_box3(const char *title, char *message, const char *b1,
-		     const char *b2, const char *b3)
+int cmdline_msg_box3(const char *title, char *message, const char *b1, const char *b2, const char *b3)
 {
 	tilp_info("user1_box: %s, %s", title, message);
 	return 0;
@@ -54,8 +53,7 @@ int cmdline_msg_box4(const char *title, char *message)
 	tilp_info("user1_box: %s, %s", title, message);
 	return 0;
 }
-char *cmdline_msg_entry(const char *title, const char *message,
-			const char *content)
+char *cmdline_msg_entry(const char *title, const char *message, const char *content)
 {
 	return NULL;
 }
@@ -97,7 +95,7 @@ void tilp_gui_set_fncts(TilpGuiFncts * gf)
 	gif = gf;
 }
 
-void tilp_gui_set_default_fncts(void)
+void tilp_indep_set_gui_cmdline(void)
 {
 	static TilpGuiFncts indep_functions;
 

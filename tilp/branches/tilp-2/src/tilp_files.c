@@ -28,62 +28,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#include <time.h>
 
 #ifndef __MACOSX__
 # include <glib.h>
 #else
 # include <glib/glib.h>
-#endif /* !__MACOSX__ */
+#endif
 
 #ifndef __WIN32__
 # include <pwd.h>
 # include <grp.h>
-#endif				/* __WIN32__ */
+#endif
 
 #ifdef __WIN32__
-#include "dirent.h"	// S_ISDIR
+#include "dirent.h"	// for S_ISDIR use
 #endif
 
 #include "tilp_core.h"
 
-/*******************************/
-/* File manipulation functions */
-/*******************************/
-
-#if 0
+/* File operations */
 
 #ifndef __WIN32__
 int tilp_file_copy(const char *src, const char *dst)
 {
 	FILE *in, *out;
 	int c;
-	if ((in = fopen(src, "rb")) == NULL) {
+
+	if ((in = fopen(src, "rb")) == NULL) 
+	{
 		return -1;
 	}
-	if ((out = fopen(dst, "wb")) == NULL) {
+
+	if ((out = fopen(dst, "wb")) == NULL) 
+	{
 		return -2;
 	}
-	while (!feof(in)) {
+
+	while (!feof(in)) 
+	{
 		c = fgetc(in);
 		if (feof(in))
 			break;
 		fputc(c, out);
 	}
+
 	fclose(in);
 	fclose(out);
+
 	return 0;
 }
-#else				/*  */
+
+#else				
+
 int tilp_file_copy(const char *src, const char *dst)
 {
 	if (!CopyFile(src, dst, FALSE))
 		return -1;
+
 	return 0;
 }
-#endif				/*  */
+#endif				
 
 int tilp_file_move(const char *src, const char *dst)
 {
@@ -92,7 +100,7 @@ int tilp_file_move(const char *src, const char *dst)
 	if (ret)
 		return ret;
 	unlink(src);
-#else				/*  */
+#else				
 	//if (!MoveFile(src, dst))
 	if(!CopyFile(src, dst, FALSE))
 		return -1;
@@ -106,58 +114,245 @@ int tilp_file_move(const char *src, const char *dst)
 #ifdef __WIN32__
 int tilp_file_delete(const char *f)
 {
-	if (!DeleteFile(f)/*RemoveDirectory(f)*/) {
+	if (!DeleteFile(f)/*RemoveDirectory(f)*/) 
+	{
 		gif->msg_box(_("Information"), _
 			     ("Unable to remove the file !"));
 		return -1;
 	}
+
 	return 0;
 }
-#else				/*  */
+
+#else	
+			
 int tilp_file_delete(const char *f)
 {
-	if (unlink(f) == -1) {
-		uid_t effective;
-		effective = geteuid();
+	if (unlink(f) == -1) 
+	{
+		uid_t effective = geteuid();
 		seteuid(getuid());
-		if (remove(f) == -1) {
+
+		if (remove(f) == -1) 
+		{
 			gif->msg_box(_("Information"), _
 				     ("Unable to remove the file. You can not delete non empty folders !"));
 			return -1;
 		}
+
 		seteuid(effective);
 	}
+
 	return 0;
 }
-#endif				/*  */
+#endif				
 
 #if defined(__LINUX__) || defined(__BSD__)
 int tilp_file_mkdir(const char *pathname)
 {
-	uid_t effective;
-	effective = geteuid();
+	uid_t effective = geteuid();
 	seteuid(getuid());
-	if (mkdir
-	    (pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)) {
-		gif->msg_box(_("Information"),
-			     _("Unable to create the directory.\n\n"));
+
+	if (mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)) 
+	{
+		gif->msg_box(_("Information"), _("Unable to create the directory.\n\n"));
 	}
 	seteuid(effective);
+
 	return 0;
 }
-#else				/*  */
+
+#else
+
 int tilp_file_mkdir(const char *pathname)
 {
 	_mkdir(pathname);
 	return 0;
 }
-#endif				/*  */
+#endif				
+
+/* 
+   Check for file existence. If file already exists, ask for an
+   action (skip, overwrite or rename).
+   Return 0 if skipped. 
+*/
+int tilp_file_check(const char *src, char **dst)
+{
+	int ret;
+	char buffer[256];
+	char *dirname;
+	*dst = NULL;
+
+	if (options.confirm == CONFIRM_YES) 
+	{
+		if (access(src, F_OK) == 0) 
+		{
+			sprintf(buffer, _("The file %s already exists.\nOverwrite ?"), src);
+			ret =
+			    gif->msg_box3(_("Warning"), buffer,
+					  _("Overwrite "), _("Rename "),
+					  _("Skip "));
+
+			switch (ret) 
+			{
+			case BUTTON1:
+				*dst = g_strdup(src);
+				return !0;
+				break;
+			case BUTTON2:
+				dirname =
+				    gif->msg_entry(_("Rename the file"),
+						   _("New name: "), src);
+					if (dirname == NULL)
+						return 0;
+					*dst = g_strdup(dirname);
+					g_free(dirname);
+				return !0;
+				break;
+			case BUTTON3:
+				return 0;
+				break;
+			default:
+				return 0;
+				break;
+			}
+		} 
+		else 
+		{
+			*dst = g_strdup(src);
+			return !0;
+		}
+	} 
+	else 
+	{
+		*dst = g_strdup(src);
+		return !0;
+	}
+
+	return !0;
+}
 
 
-/*************************************/
-/* Extracting informations functions */
-/*************************************/
+/*
+  Try and move a file. If file already exists, ask for an action
+  (skip, overwrite or rename)
+  Return 0 if skipped. 
+*/
+int tilp_file_move_with_check(const char *src, const char *dst)
+{
+	char *dst2;
 
+	if (tilp_file_check(dst, &dst2)) 
+	{
+		if (tilp_file_move(src, dst2)) 
+		{
+			gif->msg_box(_("Error"),
+				     _
+				     ("Unable to move the temporary file.\n"));
+			g_free(dst2);
+			return 0;
+		}
+	} 
+	else 
+	{
+		g_free(dst2);
+		return 0;
+	}
+	g_free(dst2);
+
+	return !0;
+}
+
+
+/*
+  Change directory. This functions is a wrapper for chdir.
+  It manages privileges and ensure that the user can not exit from the
+  HOME directory
+*/
+#if defined(__LINUX__) || defined(__MACOSX__)
+int tilp_chdir(const char *path)
+{
+#ifndef ALLOW_EXIT_HOMEDIR
+	const gchar *home_dir;
+#endif /* !ALLOW_EXIT_HOMEDIR */
+	gchar *curr_dir;
+	uid_t effective;
+
+	effective = geteuid();
+	seteuid(getuid());
+
+	if (chdir(path)) 
+	{
+		tilp_warning(_("Chdir error.\n"));
+		gif->msg_box(_("Error"), _("Unable to change directory."));
+		return -1;
+	}
+	seteuid(effective);
+	curr_dir = g_get_current_dir();
+
+#ifndef ALLOW_EXIT_HOMEDIR
+	home_dir = g_get_home_dir();
+
+	/* If curr_dir does not begin with "home_dir"
+	 * or strlen(curr_dir) < strlen(home_dir)
+	 * then the user is trying to escape its home directory.
+	 */
+	if ((strlen(curr_dir) < strlen(home_dir)) ||
+	    (strncmp(curr_dir, home_dir, strlen(home_dir)) != 0)) 
+	{
+		if (strcmp(curr_dir, g_get_tmp_dir())) 
+		{
+			chdir(home_dir);
+			g_free(curr_dir);
+
+			if (gif != NULL) 
+			{
+				gif->msg_box(_("Error"), _
+					     ("You can not go outside of your HOME directory."));
+			} 
+			else 
+			{
+				DISPLAY_ERROR
+				    ("You can not go outside of your HOME directory.");
+			}
+
+			return -1;
+		}
+	}
+#endif /* !ALLOW_EXIT_HOMEDIR */
+	return 0;
+}
+
+#else
+
+int tilp_chdir(const char *path)
+{
+	if (chdir(path)) 
+	{
+		tilp_warning(_("Chdir error.\n"));
+		if (gif)
+			gif->msg_box(_("Error"), _("Unable to change directory."));
+		return -1;
+	}
+	return 0;
+}
+#endif /* __LINUX__ || __MACOSX__ */
+
+/* Replace any invalid chars in the filename by an underscore '_' */
+char *tilp_file_underscorize(char *s)
+{
+	int i, j;
+	char tokens[] = "/\\:*?\"<>|- ";
+	for (i = 0; i < (int)strlen(s); i++) {
+		for (j = 0; j < (int)strlen(tokens); j++) {
+			if (s[i] == tokens[j])
+				s[i] = '_';
+		}
+	}
+	return s;
+}
+
+/* Attributes */
 
 #ifndef __WIN32__
 const char *tilp_file_get_attributes(TilpFileInfo * fi)
@@ -213,7 +408,7 @@ const char *tilp_file_get_attributes(TilpFileInfo * fi)
 		strncpy(buffer, s, 16);
 		return buffer;
 	}
-#endif				/*  */
+#endif				
 	switch (S_IFMT & fi->attrib) {
 	case S_IFBLK:
 		s[1] = 'b';
@@ -236,64 +431,76 @@ const char *tilp_file_get_attributes(TilpFileInfo * fi)
 }
 
 
-#endif				/*  */
+#endif				
 void tilp_file_get_user_name(TilpFileInfo * fi, char **name)
 {
-
 #if defined(__LINUX__) || defined(__BSD__)
 	struct passwd *pwuid;
-	if ((pwuid = getpwuid(fi->user)) == NULL) {
+
+	if ((pwuid = getpwuid(fi->user)) == NULL) 
+	{
 		*name = NULL;
 	}
-
-	else {
+	else 
+	{
 		*name = g_strdup(pwuid->pw_name);
 	}
-
-#else				/*  */
+#else				
 	*name = NULL;
 
-#endif				/*  */
-} void tilp_file_get_group_name(TilpFileInfo * fi, char **name)
-{
+#endif				
+} 
 
+void tilp_file_get_group_name(TilpFileInfo * fi, char **name)
+{
 #if defined(__LINUX__) || defined(__BSD__)
 	struct group *grpid;
-	if ((grpid = getgrgid(fi->group)) == NULL) {
+
+	if ((grpid = getgrgid(fi->group)) == NULL) 
+	{
 		*name = NULL;
 	}
-
-	else {
+	else 
+	{
 		*name = g_strdup(grpid->gr_name);
 	}
 
-#else				/*  */
+#else				
 	*name = NULL;
+#endif				
+} 
 
-#endif				/*  */
-} const char *tilp_file_get_date(TilpFileInfo * fi)
+const char *tilp_file_get_date(TilpFileInfo * fi)
 {
 	static char buffer[32];
 	int i;
 	char *p;
+
 	p = ctime(&(fi->date));
-	for (i = 4; i < 11; i++) {
+
+	for (i = 4; i < 11; i++) 
+	{
 		buffer[i - 4] = *(p + i);
 	}
-	for (i = 20; i < 24; i++) {
+
+	for (i = 20; i < 24; i++) 
+	{
 		buffer[i - 13] = *(p + i);
 	}
 	buffer[i - 13] = '\0';
+
 	return buffer;
 }
 
 
 #ifdef __WIN32__
 #define snprintf _snprintf
-#endif				/*  */
+#endif
+
 const char *tilp_file_get_size(TilpFileInfo * fi)
 {
 	static char buffer[32];
+
 	if (fi->size < 1024)
 		snprintf(buffer, 32, "  %i", (int) fi->size);
 
@@ -302,6 +509,7 @@ const char *tilp_file_get_size(TilpFileInfo * fi)
 
 	else if (fi->size > 1024 * 1024)
 		snprintf(buffer, 32, "%i MB", (int) fi->size >> 20);
+
 	return buffer;
 }
 
@@ -312,27 +520,28 @@ const char *tilp_file_get_type(TilpFileInfo * fi)
     if (S_ISDIR(fi->attrib))
         return "";
 
-	strncpy(buffer, tifiles_file_descriptive(fi->name), 32);
+	strncpy(buffer, tifiles_file_get_type(fi->name), 32);
+
 	return buffer;
 }
 
-
-/****************************/
-/* Directory list functions */
-/****************************/
+/* Directory listing */
 
 #ifndef __MACOSX__
 static void free_file_info_struct(gpointer data)
 {
 	TilpFileInfo *fi = data;
+
 	g_free(fi->name);
-	ticalc_destroy_action_array(fi->actions);
+	//ticalc_destroy_action_array(fi->actions);
 	g_free(fi);
 }
 
-/* Make a directory listing of the current directory and place the result 
-   in the clist_win.dirlist GList */
-int tilp_dirlist_local(void)
+/* 
+Make a directory listing of the current directory and place the result 
+   in the clist_win.dirlist GList 
+*/
+int tilp_file_dirlist(void)
 {
 	GDir *dir;
 	GError *error;
@@ -341,12 +550,14 @@ int tilp_dirlist_local(void)
 	TilpFileInfo *fi;
 
 	dir = g_dir_open(clist_win.current_dir, 0, &error);
-	if (dir == NULL) {
+	if (dir == NULL) 
+	{
 		gif->msg_box("Error", "Unable to open directory !");
 		return -1;
 	}
 
-	if (clist_win.dirlist != NULL) {
+	if (clist_win.dirlist != NULL) 
+	{
 		g_list_foreach(clist_win.dirlist,
 			       (GFunc) free_file_info_struct, NULL);
 		g_list_free(clist_win.dirlist);
@@ -356,27 +567,26 @@ int tilp_dirlist_local(void)
 	// add the ".." entry (b/c stripped by g_dir_read_name
 	fi = (TilpFileInfo *) g_malloc0(sizeof(TilpFileInfo));
 	fi->name = g_strdup("..");
-	if (!stat(fi->name, &f_info)) {
+	if (!stat(fi->name, &f_info)) 
+	{
 		fi->date = f_info.st_mtime;
 		fi->size = f_info.st_size;
-		//fi->user = f_info.st_uid;
-		//fi->group = f_info.st_gid;
 		fi->attrib = f_info.st_mode;
 	}
 
-	clist_win.dirlist =
-	    g_list_prepend(clist_win.dirlist, (gpointer) fi);
+	clist_win.dirlist = g_list_prepend(clist_win.dirlist, (gpointer) fi);
 
-	while ((dirname = g_dir_read_name(dir)) != NULL) {
+	while ((dirname = g_dir_read_name(dir)) != NULL) 
+	{
 		if (dirname[0] == '.')
 			continue;
+
 		fi = (TilpFileInfo *) g_malloc0(sizeof(TilpFileInfo));
 		fi->name = g_strdup(dirname);
-		if (!stat(fi->name, &f_info)) {
+		if (!stat(fi->name, &f_info)) 
+		{
 			fi->date = f_info.st_mtime;
 			fi->size = f_info.st_size;
-			//fi->user = f_info.st_uid;
-			//fi->group = f_info.st_gid;
 			fi->attrib = f_info.st_mode;
 		}
 		//process_filename(fi->name);
@@ -390,444 +600,132 @@ int tilp_dirlist_local(void)
 }
 #endif /* !__MACOSX__ */
 
-/*********************/
-/* Sorting functions */
-/*********************/
+int tilp_dirlist_local(void)
+{
+	return tilp_file_dirlist();
+}
 
-/* 
-   For these routines I have used the worst sorting method but the easiest: 
-   the bubble sort algorithm !!! 
-*/
-void tilp_sort_files_by_type(void)
+/* Sorting */
+
+static gint sort_by_type(gconstpointer a, gconstpointer b)
+{
+	TilpFileInfo* fi_a = (TilpFileInfo *)a;
+	TilpFileInfo* fi_b = (TilpFileInfo *)b;
+	
+	return ((fi_b->attrib & S_IFMT) == S_IFDIR);
+}
+
+void tilp_file_sort_by_type(void)
 {
 	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((fi_q->attrib & S_IFMT) == S_IFDIR) {
-				end = j;
-				tmp = p->data;
-				p->data = q->data;
-				q->data = tmp;
-			}
-		}
+	list = g_list_sort(list, sort_by_type);
+}
+
+static gint sort_by_name(gconstpointer a, gconstpointer b)
+{
+	TilpFileInfo* fi_p = (TilpFileInfo *)a;
+	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+	
+	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
+	{
+		if (strcmp(fi_p->name, fi_q->name) > 0)
+			return !0;
 	}
+	else 
+	{
+			if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (strcmp(fi_p->name, fi_q->name) > 0)) 
+				return !0;
+	}
+
+	return 0;
 }
 
 void tilp_sort_files_by_name(void)
 {
 	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	tilp_sort_files_by_type();
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (strcmp(fi_p->name, fi_q->name) > 0) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
+	list = g_list_sort(list, sort_by_name);
+}
 
-			else {
-				if (((fi_q->attrib & S_IFMT) == S_IFDIR)
-				    && (strcmp(fi_p->name, fi_q->name) >
-					0)) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
+static gint sort_by_date(gconstpointer a, gconstpointer b)
+{
+	TilpFileInfo* fi_p = (TilpFileInfo *)a;
+	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+
+	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR)))
+	{
+		if (fi_p->date > fi_q->date)
+			return !0;
 	}
+	else
+	{
+		if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (fi_p->date > fi_q->date)) 
+			return !0;
+	}
+
+	return 0;
 }
 
 void tilp_sort_files_by_date(void)
 {
 	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (fi_p->date > fi_q->date) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-
-			else {
-				if (((fi_q->attrib & S_IFMT) == S_IFDIR)
-				    && (fi_p->date > fi_q->date)) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
-	}
+	list = g_list_sort(list, sort_by_date);
 }
 
-void tilp_sort_files_by_size2(void);
+static gint sort_by_size(gconstpointer a, gconstpointer b)
+{
+	TilpFileInfo* fi_p = (TilpFileInfo *)a;
+	TilpFileInfo* fi_q = (TilpFileInfo *)b;
+
+	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
+	{
+		if (fi_p->size > fi_q->size)
+			return !0;
+	}
+	else
+	{
+		if (((fi_q->attrib & S_IFMT) == S_IFDIR))
+		{
+			if (fi_p->size > fi_q->size)
+				return !0;
+		}
+	}
+
+	return 0;
+}
+
 void tilp_sort_files_by_size(void)
 {
-	tilp_sort_files_by_size2();
-
-	//g_list_sort(list, GCompareComputerSizes);
-} 
-
-void tilp_sort_files_by_size2(void)
-{
 	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (fi_p->size > fi_q->size) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-
-			else if (((fi_q->attrib & S_IFMT) == S_IFDIR)) {
-				if (fi_p->size > fi_q->size) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
-	}
+	list = g_list_sort(list, sort_by_size);
 }
 
-#if 0
-void tilp_sort_files_by_user(void)
+static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 {
-	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (fi_p->user > fi_q->user) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
+	TilpFileInfo* fi_p = (TilpFileInfo *)a;
+	TilpFileInfo* fi_q = (TilpFileInfo *)b;
 
-			else {
-				if (((fi_q->attrib & S_IFMT) == S_IFDIR)
-				    && (fi_p->user > fi_q->user)) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
+	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
+	{
+		if (fi_p->attrib > fi_q->attrib)
+			return !0;
 	}
-}
-
-void tilp_sort_files_by_group(void)
-{
-	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (fi_p->group > fi_q->group) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-
-			else {
-				if (((fi_q->attrib & S_IFMT) == S_IFDIR)
-				    && (fi_p->group > fi_q->group)) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
+	else 
+	{
+		if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (fi_p->attrib > fi_q->attrib)) 
+			return !0;
 	}
+
+	return 0;
 }
-#endif
 
 void tilp_sort_files_by_attrib(void)
 {
 	GList *list = clist_win.dirlist;
-	GList *p, *q;
-	int i, j, end, max;
-	gpointer tmp;
-	TilpFileInfo *fi_p, *fi_q;
-	max = g_list_length(list);
-	for (i = max - 1; i > 0; i = end) {
-		end = 0;
-		for (j = 0, p = list; j < i; j++, p = p->next) {
-			q = p->next;
-			fi_p = p->data;
-			fi_q = q->data;
-			if ((((fi_p->attrib & S_IFMT) == S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-			    (((fi_p->attrib & S_IFMT) != S_IFDIR) &&
-			     ((fi_q->attrib & S_IFMT) != S_IFDIR))) {
-				if (fi_p->attrib > fi_q->attrib) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-
-			else {
-				if (((fi_q->attrib & S_IFMT) == S_IFDIR)
-				    && (fi_p->attrib > fi_q->attrib)) {
-					end = j;
-					tmp = p->data;
-					p->data = q->data;
-					q->data = tmp;
-				}
-			}
-		}
-	}
+	list = g_list_sort(list, sort_by_attrib);
 }
 
 
-/****************/
-/* Miscelaneous */
-/****************/
-
-/* 
-   Check for file existence. If file already exists, ask for an
-   action (skip, overwrite or rename).
-   Return 0 if skipped. 
-*/
-int tilp_file_check(const char *src, char **dst)
-{
-	int ret;
-	char buffer[256];
-	char *dirname;
-	*dst = NULL;
-	if (options.confirm == CONFIRM_YES) {
-		if (access(src, F_OK) == 0) {
-			sprintf(buffer,
-				_
-				("The file %s already exists.\nOverwrite ?"),
-				src);
-			ret =
-			    gif->msg_box3(_("Warning"), buffer,
-					  _("Overwrite "), _("Rename "),
-					  _("Skip "));
-			switch (ret) {
-			case BUTTON1:
-				*dst = g_strdup(src);
-				return !0;
-				break;
-			case BUTTON2:
-				dirname =
-				    gif->msg_entry(_("Rename the file"),
-						   _("New name: "), src);
-				if (dirname == NULL)
-					return 0;
-				*dst = g_strdup(dirname);
-				g_free(dirname);
-				return !0;
-				break;
-			case BUTTON3:
-				return 0;
-				break;
-			default:
-				return 0;
-				break;
-			}
-		} else {
-			*dst = g_strdup(src);
-			return !0;
-		}
-	} else {
-		*dst = g_strdup(src);
-		return !0;
-	}
-	return !0;
-}
-
-
-/*
-  Try and move a file. If file already exists, ask for an action
-  (skip, overwrite or rename)
-  Return 0 if skipped. 
-*/
-int tilp_file_move_with_check(const char *src, const char *dst)
-{
-	char *dst2;
-
-	if (tilp_file_check(dst, &dst2)) {
-		if (tilp_file_move(src, dst2)) {
-			gif->msg_box(_("Error"),
-				     _
-				     ("Unable to move the temporary file.\n"));
-			g_free(dst2);
-			return 0;
-		}
-	} else {
-		g_free(dst2);
-		return 0;
-	}
-	g_free(dst2);
-	return !0;
-}
-
-
-/*
-  Change directory. This functions is a wrapper for chdir.
-  It manage privileges and ensure that the user can not exit from the
-  HOME directory
-*/
-#if defined(__LINUX__) || defined(__MACOSX__)
-int tilp_chdir(const char *path)
-{
-#ifndef ALLOW_EXIT_HOMEDIR
-	const gchar *home_dir;
-#endif /* !ALLOW_EXIT_HOMEDIR */
-	gchar *curr_dir;
-	uid_t effective;
-	effective = geteuid();
-	seteuid(getuid());
-	if (chdir(path)) {
-		printl(2, _("Chdir error.\n"));
-		gif->msg_box(_("Error"), _("Unable to change directory."));
-		return -1;
-	}
-	seteuid(effective);
-	curr_dir = g_get_current_dir();
-
-#ifndef ALLOW_EXIT_HOMEDIR
-	home_dir = g_get_home_dir();
-
-	/* If curr_dir does not begin with "home_dir"
-	 * or strlen(curr_dir) < strlen(home_dir)
-	 * then the user is trying to escape its home directory.
-	 */
-	if ((strlen(curr_dir) < strlen(home_dir)) ||
-	    (strncmp(curr_dir, home_dir, strlen(home_dir)) != 0)) {
-		if (strcmp(curr_dir, g_get_tmp_dir())) {
-			chdir(home_dir);
-			g_free(curr_dir);
-			if (gif != NULL) {
-				gif->msg_box(_("Error"), _
-					     ("You can not go outside of your HOME directory."));
-			} else {
-				DISPLAY_ERROR
-				    ("You can not go outside of your HOME directory.");
-			}
-			return -1;
-		}
-	}
-#endif /* !ALLOW_EXIT_HOMEDIR */
-	return 0;
-}
-
-#else
-int tilp_chdir(const char *path)
-{
-	if (chdir(path)) {
-		printl(2, _("Chdir error.\n"));
-		if (gif)
-			gif->msg_box(_("Error"),
-				     _("Unable to change directory."));
-		return -1;
-	}
-	return 0;
-}
-#endif /* __LINUX__ || __MACOSX__ */
-
-/* Replace any invalid chars in the filename by an underscore '_' */
-char *tilp_file_underscorize(char *s)
-{
-	int i, j;
-	char tokens[] = "/\\:*?\"<>|- ";
-	for (i = 0; i < (int)strlen(s); i++) {
-		for (j = 0; j < (int)strlen(tokens); j++) {
-			if (s[i] == tokens[j])
-				s[i] = '_';
-		}
-	}
-	return s;
-}
-
-#endif

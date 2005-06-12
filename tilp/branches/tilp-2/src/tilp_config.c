@@ -25,6 +25,120 @@
 #include <unistd.h>
 
 #include "tilp_core.h"
+
+#if 0
+#ifndef __MACOSX__		/* we use a general preferences system from Mac OS X */
+/*
+  Save the configuration file
+*/
+int tilp_config_save(void)
+{
+	tilp_rcfile_write();
+	gif->msg_box(_("Information"), _("Configuration file saved."));
+	return 0;
+}
+
+
+/*
+  Load the configuration file
+*/
+int tilp_config_load(void)
+{
+	tilp_rcfile_read();
+	gif->msg_box(_("Information"), _("Configuration file loaded."));
+	return 0;
+}
+#endif				/* !__MACOSX__ */
+
+/*
+  Fill the option structure with default values
+*/
+#if defined(__LINUX__) || defined(__BSD__)
+static void default_config_linux(void)	// linux specific options
+{
+	gchar *locale;
+	options.unzip_location = g_strdup("unzip");
+	options.unzip_options = g_strdup("");
+	options.tar_location = g_strdup("tar");
+	options.tar_options = g_strdup("");
+	options.appsign_location = g_strdup("/usr/bin/appsign");
+	options.appsign_options = g_strdup("-k /usr/bin/0104.key");
+	options.web_location = g_strdup("/usr/bin/mozilla");
+	options.web_options = g_strdup("");
+	strcpy(options.left_font_name, "");
+	strcpy(options.right_font_name,
+	       "-adobe-courier-medium-r-*-*-*-120-*-*-*-*-*-*");
+	options.console_mode = !0;
+	locale = setlocale(LC_ALL, NULL);
+	strcpy(options.locale, locale);
+	options.working_dir = g_strdup(g_get_home_dir());
+}
+#endif				/*  */
+
+#ifdef __WIN32__
+static void default_config_win32(void)
+{
+	gchar *locale;
+	options.unzip_location =
+	    g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
+	options.unzip_options = g_strdup("");
+	options.tar_location =
+	    g_strdup("\"C:\\Program Files\\WinZip\\wzunzip.exe\"");
+	options.tar_options = g_strdup("");
+	options.appsign_location = g_strdup("");
+	options.appsign_options = g_strdup("");
+	options.web_location =
+	    g_strdup("C:\\Program Files\\Internet Explorer\\IExplore.exe");
+	options.web_options = g_strdup("");
+	strcpy(options.left_font_name, "");
+	strcpy(options.right_font_name,
+	       "-adobe-courier-medium-r-normal--12-120-75-75-p-70-iso8859-1");
+	options.console_mode = 0;
+	locale = g_win32_getlocale();
+	
+	printl(0, "current locale: <%s>\n", locale);
+	
+	g_free(locale);
+	options.working_dir = g_get_current_dir();
+}
+#endif				/*  */
+#ifndef __MACOSX__
+int tilp_config_default(void)
+{
+	options.xsize = 640 / 2;
+	options.ysize = 480 / 2;
+	options.clist_sort = SORT_BY_NAME;
+	options.clist_sort_order = SORT_DOWN;
+	options.ctree_sort = SORT_BY_NAME;
+	options.ctree_sort_order = SORT_DOWN;
+	options.confirm = CONFIRM_YES;
+	options.path_mode = FULL_PATH;
+	options.file_disp = SHOW_TIF;
+	options.screen_format = PNG;
+	options.screen_clipping = CLIPPED_SCREEN;
+	options.screen_blurry = 0;
+	ticable_get_default_param(&options.lp);
+	options.auto_detect = !0;
+	options.show_gui = TRUE;
+	options.single_or_group = RECV_AS_GROUP;
+
+#if defined(__LINUX__) || defined(__BSD__)
+	default_config_linux();
+
+#elif defined(__WIN32__)
+	default_config_win32();
+
+#else				/*  */
+	return 0;
+
+#endif				/*  */
+	return 0;
+}
+#endif /* !__MACOSX__ */
+#endif
+
+#if 0
+
 static char *rc_file;
 static int get_rcfile_path(char **path)
 {
@@ -972,3 +1086,5 @@ void tilp_rcfile_write(void)
 	fprintf(txt, "RC_END\n");
 	fclose(txt);
 }
+
+#endif

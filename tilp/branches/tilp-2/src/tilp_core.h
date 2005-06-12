@@ -47,9 +47,11 @@ extern "C" {
 
 #include "tilp_defs.h"
 #include "tilp_calcs.h"
+#include "tilp_cmdline.h"
 #include "tilp_files.h"
 #include "tilp_indep.h"
 #include "tilp_log.h"
+#include "tilp_main.h"
 #include "tilp_misc.h"
 #include "tilp_struct.h"
 #include "tilp_paths.h"

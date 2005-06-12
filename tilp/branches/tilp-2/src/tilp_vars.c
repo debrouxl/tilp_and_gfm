@@ -29,106 +29,39 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tilibs.h"
 #include "tilp_core.h"
 
-#if 0
-
-/*********************/
-/* Directory listing */
-/*********************/
-
-/* Convert a dirlist v1 into two dirlists v2 */
-/* Beware: tree is no longer valid !!! */
-#ifdef DIRLIST_TRANS
-static void dirlist_v1_to_v2(TNode * tree, TNode ** vars, TNode ** apps)
-{
-	TNode *var_node, *app_node;
-
-	var_node = t_node_nth_child(tree, 0);
-	var_node->data = strdup(VAR_NODE_NAME); // so that it can be freed !
-
-	app_node = t_node_nth_child(tree, 1);
-	app_node->data = strdup(APP_NODE_NAME);
-
-	t_node_unlink(var_node);
-	t_node_unlink(app_node);
-	t_node_destroy(tree);
-
-	*vars = var_node;
-	*apps = app_node;
-}
-#endif				/* DIRLIST_TRANS */
-
-/* Get a dirlist (currently v1; should be switched soon) */
+/* Get a dirlist  */
 int tilp_dirlist_remote(void)
 {
-	uint32_t mem;
+	int err;
 
-#if defined(DIRLIST_FORM1)
-	// delete old tree  
-	ticalc_dirlist_destroy(&ctree_win.dirlist);
-
-	// get new tree
-	gif->create_pbar_type2(_("Directory list"),
-			       _("Reading variables"));
-	if (tilp_error(ti_calc.directorylist(&ctree_win.dirlist, &mem))) {
-		gif->destroy_pbar();
-		return -1;
-	}
-#elif defined(DIRLIST_TRANS)    /* DIRLIST_FORM1 */
 	// delete old trees
-	ticalc_dirlist_destroy(&ctree_win.var_tree);
-	ticalc_dirlist_destroy(&ctree_win.app_tree);
-
-	// get new tree
-	gif->create_pbar_type2(_("Directory list"),
-			       _("Reading variables"));
-	if (tilp_error(ti_calc.directorylist(&ctree_win.dirlist, &mem))) {
-		gif->destroy_pbar();
-		return -1;
-	}
-#elif defined(DIRLIST_FORM2)    /* DIRLIST_TRANS */
-	// delete old trees
-	ticalc_dirlist_destroy(&ctree_win.var_tree);
-	ticalc_dirlist_destroy(&ctree_win.app_tree);
+	ticalcs_dirlist_destroy(&ctree_win.var_tree);
+	ticalcs_dirlist_destroy(&ctree_win.app_tree);
 	
 	// get new trees
-	gif->create_pbar_type2(_("Directory list"),
-			       _("Reading variables"));
-	if (tilp_error(ti_calc.directorylist2(&ctree_win.var_tree, 
-					      &ctree_win.app_tree,
-					      &mem))) {
+	gif->create_pbar_type2(_("Directory list"), _("Reading variables"));
+	err = ticalcs_calc_get_dirlist(calc_handle, &ctree_win.var_tree, &ctree_win.app_tree);
+
+	if(tilp_error(err))
+	{
 		gif->destroy_pbar();
 		return -1;
 	}
-
-#endif                          /* DIRLIST_FORM2 */
-	ctree_win.memory = mem;
 	gif->destroy_pbar();
 
-#if defined(DIRLIST_FORM1)
-	ticalc_dirlist_display(ctree_win.dirlist);
-#elif defined(DIRLIST_TRANS)    /* DIRLIST_FORM1 */
-	dirlist_v1_to_v2(ctree_win.dirlist, 
-			 &ctree_win.var_tree,
-			 &ctree_win.app_tree);
-	ticalc_dirlist_display(ctree_win.var_tree);
-	ticalc_dirlist_display(ctree_win.app_tree);
-#elif defined(DIRLIST_FORM2)    /* DIRLIST_TRANS */
-	ticalc_dirlist_display(ctree_win.var_tree);
-	ticalc_dirlist_display(ctree_win.app_tree);
-#endif				/* DIRLIST_FORM2 */
+	ticalcs_calc_get_memfree(calc_handle, &(ctree_win.memory));
+
+	ticalcs_dirlist_display(ctree_win.var_tree);
+	ticalcs_dirlist_display(ctree_win.app_tree);
+
 	return 0;
 }
 
-
-/*********************/
 /* Sorting functions */
-/*********************/
 
-/* Sort variables by name */
-gint GCompareCalculatorNames(gconstpointer a, gconstpointer b)
+static gint sort_by_name(gconstpointer a, gconstpointer b)
 {
 
 	/*
@@ -148,14 +81,14 @@ gint GCompareCalculatorNames(gconstpointer a, gconstpointer b)
 	 */
 	return 0;
 }
-void tilp_sort_vars_by_name(void)
-{
 
-	//g_list_sort(ctree_win., GCompareCalculatorNames);
+void tilp_vars_sort_by_name(void)
+{
+	//g_list_sort(ctree_win., sort_by_name);
 }
 
 /* Sort variables by attribute */
-gint GCompareCalculatorAttributes(gconstpointer a, gconstpointer b)
+static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 {
 
 	/*
@@ -175,15 +108,15 @@ gint GCompareCalculatorAttributes(gconstpointer a, gconstpointer b)
 	 */
 	return 0;
 }
-void tilp_sort_vars_by_info(void)
+
+void tilp_vars_sort_by_info(void)
 {
-	g_list_sort(clist_win.dirlist, GCompareCalculatorAttributes);
+	g_list_sort(clist_win.dirlist, sort_by_attrib);
 }
 
 /* Sort variables by type */
-static gint GCompareCalculatorTypes(gconstpointer a, gconstpointer b)
+static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
-
 	/*
 	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
 	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
@@ -199,17 +132,18 @@ static gint GCompareCalculatorTypes(gconstpointer a, gconstpointer b)
 	   else
 	   return -1;
 	 */
+
 	return 0;
 }
-void tilp_sort_vars_by_type(void)
+
+void tilp_vars_sort_by_type(void)
 {
-	g_list_sort(clist_win.dirlist, GCompareCalculatorTypes);
+	g_list_sort(clist_win.dirlist, sort_by_type);
 }
 
 /* Sort variables by size */
-static gint GCompareCalculatorSizes(gconstpointer a, gconstpointer b)
+static gint sort_by_size(gconstpointer a, gconstpointer b)
 {
-
 	/*
 	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
 	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
@@ -225,23 +159,23 @@ static gint GCompareCalculatorSizes(gconstpointer a, gconstpointer b)
 	   else
 	   return -1;
 	 */
+
 	return 0;
 }
-void tilp_sort_vars_by_size(void)
+
+void tilp_vars_sort_by_size(void)
 {
-	g_list_sort(clist_win.dirlist, GCompareCalculatorSizes);
+	g_list_sort(clist_win.dirlist, sort_by_size);
 }
 
 /********/
 /* Misc */
 /********/
 
-/*
-  Returns the var size
-*/
-void tilp_var_get_size(TiVarEntry * vi, char **buf)
+void tilp_var_get_size(VarEntry* vi, char **buf)
 {
 	char buffer[256];
+
 	if (vi->size < 1024)
 		sprintf(buffer, "  %i", (int) vi->size);
 
@@ -250,7 +184,6 @@ void tilp_var_get_size(TiVarEntry * vi, char **buf)
 
 	else if (vi->size > 1024 * 1024)
 		sprintf(buffer, "%i MB", (int) vi->size >> 20);
+
 	*buf = g_strdup(buffer);
 }
-
-#endif
