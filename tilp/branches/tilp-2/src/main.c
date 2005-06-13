@@ -36,7 +36,6 @@
 # include <windows.h>
 #endif				/*  */
 
-#include "tilibs.h"
 #include "tilp_core.h"
 #include "support.h"
 #include "splash.h"
@@ -54,38 +53,18 @@ struct gfm_window gfm_win = { 0 };
 TilpGuiFncts gui_functions = { 0 };
 */
 
-/******************/
-/* Ctrl+C handler */
-/******************/
-
-void signal_handler(int sig_no)
-{
-	tilp_info(_("Signal SIGINT (Ctrl+C) caught...\n"));
-	tilp_info(_("Trying to destroy ressources... "));
-
-	tilp_exit();
-
-	tilp_info(_("Done.\n"));
-	exit(0);
-}
-
 /*****************/
 /* Main function */
 /*****************/
 
 int main(int argc, char *argv[], char **arge)
 {
-#if 0
-	GdkPixbuf *icon;
-
-	/* Catch 'Ctrl-C' */
-	signal(SIGINT, signal_handler);
+	//GdkPixbuf *icon;
 
 	/* Init the tilp core */
-	//tilp_main(argc, (const char **)argv, arge);
+	tilp_init(argc, argv, arge);
 
 	/* Init GTK+ */
-	//gtk_set_locale();
 	gtk_init(&argc, &argv);
 	add_pixmap_directory(inst_paths.pixmap_dir);
 	add_pixmap_directory(inst_paths.icon_dir);
@@ -165,11 +144,10 @@ int main(int argc, char *argv[], char **arge)
 	/* GTK main loop */
 	splash_screen_stop();
 
-	//strcpy(varname, "group/");
-	//tifiles_translate_varname(varname, utf8, 0);
-
 	gtk_main();
-#endif
+
+	tilp_exit();
+
 	return 0;
 }
 

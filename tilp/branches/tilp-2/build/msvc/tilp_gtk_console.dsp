@@ -222,7 +222,7 @@ SOURCE=..\..\src\tilp_files.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp_indep.c
+SOURCE=..\..\src\tilp_gif.c
 # End Source File
 # Begin Source File
 
@@ -242,15 +242,15 @@ SOURCE=..\..\src\tilp_paths.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp_refresh.c
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\tilp_screen.c
 # End Source File
 # Begin Source File
 
 SOURCE=..\..\src\tilp_slct.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_update.c
 # End Source File
 # Begin Source File
 

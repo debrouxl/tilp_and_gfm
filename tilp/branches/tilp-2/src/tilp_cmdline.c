@@ -31,6 +31,7 @@ static gchar* calc;
 static gchar* cable;
 static gchar** array;
 static gint use_gui;
+extern int working_mode;
 
 static GOptionEntry entries[] = 
 {
@@ -70,8 +71,18 @@ int tilp_cmdline_scan(int argc, char **argv)
 	g_option_context_parse(context, &argc, &argv, &error);
 	g_option_context_free(context);
 
-	options.device.calc_model = ticalcs_string_to_model(calc);
-	options.device.cable_model = ticalcs_string_to_model(cable);
+	if(calc != NULL)
+	{
+		options.device.calc_model = ticalcs_string_to_model(calc);
+		g_free(cable);
+	}
+	if(cable != NULL)
+	{
+		options.device.cable_model = ticalcs_string_to_model(cable);
+		g_free(calc);
+	}
+	if(!use_gui)
+		working_mode |= MODE_CMD;
 
 	return 0;
 }

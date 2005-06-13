@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #ifdef __WIN32__
 # include <locale.h>
@@ -45,6 +46,18 @@ TilpRemote remote_win = { 0 };
 
 gint working_mode = MODE_INI;
 
+/* Ctrl+C signal handler */
+static void signal_handler(int sig_no)
+{
+	tilp_info(_("Signal SIGINT (Ctrl+C) caught...\n"));
+	tilp_info(_("Trying to destroy ressources... "));
+
+	tilp_exit();
+
+	tilp_info(_("Done.\n"));
+	exit(0);
+}
+
 /*
   This function must be the first function to call in your function 'main'.
   It initializes the TiLP core engine.
@@ -63,7 +76,6 @@ int tilp_init(int argc, char *argv[], char **arge)
 
 	/* Initialize callbacks with default functions */ 
 	tilp_gif_set_default();
-	tilp_update_set_default();
 
 	/* Initialize/reload config */
 #ifndef __MACOSX__
@@ -80,6 +92,9 @@ int tilp_init(int argc, char *argv[], char **arge)
 	/* Scan and modify command line */
 	working_mode = MODE_CMD;
 	tilp_cmdline_scan(argc, argv);
+
+	/* Catch 'Ctrl-C' */
+	signal(SIGINT, signal_handler);
 
 	/* Init locale & internationalization */
 #ifdef ENABLE_NLS
@@ -124,6 +139,9 @@ int tilp_init(int argc, char *argv[], char **arge)
 			err = ticalcs_cable_attach(calc_handle, cable_handle);
 			tilp_err(err);
 		}
+
+		// Initialize callbacks with default functions
+		tilp_update_set_default();
 	}
 
 	/* 
@@ -152,6 +170,10 @@ int tilp_exit(void)
 	// remove calc & cable
 	ticalcs_handle_del(calc_handle);
 	ticables_handle_del(cable_handle);
+
+	ticables_library_exit();
+	tifiles_library_exit();
+	ticalcs_library_exit();
 
 	return 0;
 }

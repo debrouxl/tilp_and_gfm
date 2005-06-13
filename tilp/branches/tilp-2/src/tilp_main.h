@@ -22,7 +22,7 @@
 #ifndef __TILP_MAIN__
 #define __TILP_MAIN__
 
-int tilp_main(int argc, char *argv[], char **arge);
+int tilp_init(int argc, char *argv[], char **arge);
 int tilp_exit(void);
 
 #endif
