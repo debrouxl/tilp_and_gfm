@@ -19,9 +19,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TILP_CALCS__
-#define __TILP_CALCS__
-
 #include <stdio.h>
 #include <glib.h>
 
@@ -60,6 +57,7 @@ void tilp_cmdline_version(void)
     fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
+/* Search for command line options */
 int tilp_cmdline_scan(int argc, char **argv)
 {
 	GOptionContext* context;
@@ -131,68 +129,68 @@ int tilp_cmdline_scan(int argc, char **argv)
 	return 0;
 }
 
-/*
-  This function send files passed on the command line and place them in
-  the ClistWin linked list.
-  Manage file type, calculator detection and some other things...
-*/
+/* Send files passed on the command line */
 int tilp_cmdline_send(void)
 {
-	TilpFileInfo *fi;
-	int last = options.confirm;
+	TilpFileEntry *fe;
+	int over = options.overwrite;
 	gchar *ext = NULL;
 	
-	if (clist_win.selection == NULL)
+	// Check for valid selection
+	if (local_win.selection == NULL)
 		return -1;
 
 	// Check for a valid file
-	fi = (TilpFileInfo *) (g_list_first(clist_win.selection))->data;
-	ext = tifiles_get_extension(fi->name);
-	if (ext == NULL) {
-		printl(2, _
-			      ("Invalid filename. There is no extension !\n"));
+	fe = (TilpFileEntry *)(g_list_first(local_win.selection))->data;
+	ext = tifiles_fext_get(fe->name);
+	if(ext == NULL) 
+	{
+		tilp_error(_("Invalid filename. There is no extension !\n"));
 		exit(-1);
 	}
 
-	// Determine calculator type and override current settings
-	options.lp.calc_type = tifiles_which_calc_type(fi->name);
-	ticalc_set_calc(options.lp.calc_type, &ti_calc);
-
 	// Send file(s)
-	if (g_list_length(clist_win.selection) == 1) {
-
+	if (g_list_length(local_win.selection) == 1) 
+	{
 		// One file
-		if (tifiles_is_a_flash_file(fi->name)) {
-			if (!g_strcasecmp
-			    (ext, tifiles_flash_app_file_ext()))
-				tilp_calc_send_flash_app(fi->name);
-
-			else if (!g_strcasecmp
-				 (ext, tifiles_flash_os_file_ext()))
-				tilp_calc_send_flash_os(fi->name);
-		} else if (tifiles_is_a_regular_file(fi->name)) {
-			options.confirm = FALSE;	// remove dirlist
-			tilp_calc_send_var(0);
-			options.confirm = last;
+		if (tifiles_file_is_flash(fe->name)) 
+		{
+			if (!g_strcasecmp(ext, tifiles_fext_of_flash_app(options.calc_model)))
+			{
+				//tilp_calc_send_flash_app(fe->name);
+			}
+			else if (!g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model)))
+			{
+				//tilp_calc_send_flash_os(fe->name);
+			}
+		} 
+		else if (tifiles_file_is_regular(fe->name)) 
+		{
+			options.overwrite = FALSE;	// remove dirlist
+			//tilp_calc_send_var(0);
+			options.overwrite = over;
 			return 0;
-		} else if (tifiles_is_a_backup_file(fi->name)) {
-			tilp_calc_send_backup(fi->name);
-		} else {
-			fprintf(stdout, _("Unknown file type.\n"));
+		} 
+		else if (tifiles_file_is_backup(fe->name)) 
+		{
+			//tilp_calc_send_backup(fe->name);
+		} 
+		else 
+		{
+			tilp_warning(_("Unknown file type.\n"));
 		}
-	} else {
-
+	} 
+	else 
+	{
 		// More than one file
-		if (clist_win.selection != NULL) {
-			options.confirm = FALSE;
-			tilp_calc_send_var(0);
-			options.confirm = last;
+		if (local_win.selection != NULL) 
+		{
+			options.overwrite = FALSE;
+			//tilp_calc_send_var(0);
+			options.overwrite = over;
 			return 0;
 		}
 	}
+
 	return 0;
 }
-
-#endif
-
-#endif
