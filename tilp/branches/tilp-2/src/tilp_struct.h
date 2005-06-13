@@ -47,8 +47,14 @@ extern "C" {
 /* This struct contains the general options to configure the program */
 typedef struct 
 {
-	DeviceOptions	device;
+	// device
+	int		cable_model;
+	int		cable_port;
+	int		cable_timeout;
+	int		cable_delay;
+	int		calc_model;
 
+	// gui
 #ifndef __MACOSX__
     int		xsize;
     int		ysize;
@@ -59,6 +65,7 @@ typedef struct
     int		remote_sort;
     int		remote_sort_order;
 
+	// options
 	int		auto_detect;
     int		full_path;
     int		show_hidden;
@@ -67,11 +74,13 @@ typedef struct
 	
 	char*	working_dir;
 
+	// screen
     int		screen_format;
     int		screen_scaling;
     int		screen_clipping;
     int		screen_blurry;
 
+	// fonts
 #ifndef __MACOSX__
     char*	remote_font_name;
     char*	local_font_name;

@@ -330,7 +330,7 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 	fprintf(fp, "%%!PS-Adobe-3.0 EPSF-3.0\n");
 	fprintf(fp, "%%%%Creator: TiLP %s / PostScript output Copyright (C) 2005 Julien BLACHE\n", TILP_VERSION);
 	fprintf(fp, "%%%%Title: TiLP %s screenshot\n",
-		tifiles_model_to_string(options.device.calc_model));
+		tifiles_model_to_string(options.calc_model));
 	fprintf(fp, "%%%%CreationDate: %s", ctime(&t));
 	fprintf(fp, "%%%%LanguageLevel: 3\n");
 	fprintf(fp, "%%%%BoundingBox: 0 0 %d %d\n", w, h);
@@ -529,7 +529,7 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 
 	fprintf(fp, "7 0 obj\n");
 	fprintf(fp, "   << /Title (TiLP %s screenshot)\n",
-		tifiles_model_to_string(options.device.calc_model));
+		tifiles_model_to_string(options.calc_model));
 	fprintf(fp, "      /Creator (TiLP / PDF output Copyright (C) 2005 Julien BLACHE)\n");
 	fprintf(fp, "      /Producer (TiLP %s)\n", TILP_VERSION);
 	fprintf(fp, "      /CreationDate (D:%04d%02d%02d%02d%02d%02d+00'00')\n",

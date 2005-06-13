@@ -30,6 +30,7 @@
 static gchar* calc;
 static gchar* cable;
 static gchar** array;
+static gchar** flist;
 static gint use_gui;
 extern int working_mode;
 
@@ -37,9 +38,9 @@ static GOptionEntry entries[] =
 {
 	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, "Hand-held model", NULL },
 	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, "Link cable model", NULL },
-	{ "port", 0, 0, G_OPTION_ARG_INT, &options.device.cable_port, "Link cable port", NULL },
-	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.device.cable_timeout, "Link cable timeout", NULL },
-	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.device.cable_delay, "Link cable delay", NULL },
+	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, "Link cable port", NULL },
+	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.cable_timeout, "Link cable timeout", NULL },
+	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.cable_delay, "Link cable delay", NULL },
 	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &use_gui, "Does not use GUI", NULL },
 	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, "filename(s)", NULL },
 	{ NULL }
@@ -56,7 +57,7 @@ void tilp_cmdline_version(void)
 #endif
 	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-        fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+    fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
 int tilp_cmdline_scan(int argc, char **argv)
@@ -64,6 +65,7 @@ int tilp_cmdline_scan(int argc, char **argv)
 	GOptionContext* context;
 	GError *error = NULL;
 
+	// parse command line
 	context = g_option_context_new ("- Ti Linking Program");
 	g_option_context_add_main_entries(context, entries, ""/*GETTEXT_PACKAGE*/);
 	g_option_context_set_help_enabled(context, TRUE);
@@ -71,165 +73,61 @@ int tilp_cmdline_scan(int argc, char **argv)
 	g_option_context_parse(context, &argc, &argv, &error);
 	g_option_context_free(context);
 
+	// convert name to value
 	if(calc != NULL)
 	{
-		options.device.calc_model = ticalcs_string_to_model(calc);
+		options.calc_model = ticalcs_string_to_model(calc);
 		g_free(cable);
 	}
+
+	// convert name to value
 	if(cable != NULL)
 	{
-		options.device.cable_model = ticalcs_string_to_model(cable);
+		options.cable_model = ticalcs_string_to_model(cable);
 		g_free(calc);
 	}
-	if(!use_gui)
-		working_mode |= MODE_CMD;
 
-	return 0;
-}
+	// are files passed ?
+	if(array != NULL)
+	{
+		gchar **p, **q;
+		gint len;
 
-#if 0
+		working_mode = MODE_CMD;
 
-/*
-  Scan the command line, extract arguments and init variables
-*/
-int scan_cmdline(int argc, const char **argv)
-{
-	int cnt;
-	const char *p;
-	char *q;
-	char arg[80];
-	TilpFileInfo *fi;
-	for (cnt = 1; cnt < argc; cnt++) {
-		p = argv[cnt];
-		if (*p == '-') {
+		// check whether path is local or absolute
+		for(p = array, len = 0; *p != NULL; p++, len++);
 
-			// an option
-			p++;
-		} else {
+		flist = g_malloc0((len + 1) * sizeof(gchar *));
 
-			// a filename to send/open
-			gchar *filename_on_cmdline = NULL;
-
-			// check whether path is local or absolute
-			if (!g_path_is_absolute(p)) {
-				filename_on_cmdline =
-				    g_strconcat(g_get_current_dir(),
-						G_DIR_SEPARATOR_S, p, NULL);
-			} else {
-				filename_on_cmdline = g_strdup(p);
-			}
-
-			//printf("<<%s>\n", filename_on_cmdline);
-
-			// build a pseudo-selection for the TiLP core
-			fi = (TilpFileInfo *)
-			    g_malloc0(sizeof(TilpFileInfo));
-			fi->name = g_strdup(filename_on_cmdline);
-			clist_win.selection =
-			    g_list_prepend(clist_win.selection,
-					   (gpointer) fi);
-			options.show_gui = FALSE;
-		}
-		strcpy(arg, p);
-		if (strstr(arg, "cmdline")) {
-			working_mode = MODE_CMD;
-		}
-		if (strstr(arg, "gui=")) {
-			q = arg + 4;
-			if (!strcmp(q, "console"))
-				working_mode = MODE_CON;
-
-			else if (!strcmp(q, "gtk"))
-				working_mode = MODE_GTK;
-
-			else if (!strcmp(q, "mfc"))
-				working_mode = MODE_MFC;
-
+		// rebuild a list of file with full path
+		for(p = array, q = flist; *p != NULL; p++, q++)
+		{
+			if (!g_path_is_absolute(*p))
+				*q = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, *p, NULL);
 			else
-				exit(0);
+				*q = g_strdup(*p);
 		}
-		if (strstr(arg, "calc=")) {
-			q = arg + 5;
-			if (!strcmp(q, "v200"))
-				options.lp.calc_type = CALC_V200;
-			if (!strcmp(q, "ti92+"))
-				options.lp.calc_type = CALC_TI92P;
-			if (!strcmp(q, "ti92"))
-				options.lp.calc_type = CALC_TI92;
-			if (!strcmp(q, "ti89t"))
-				options.lp.calc_type = CALC_TI89T;
-			if (!strcmp(q, "ti89"))
-				options.lp.calc_type = CALC_TI89;
-			if (!strcmp(q, "ti86"))
-				options.lp.calc_type = CALC_TI86;
-			if (!strcmp(q, "ti85"))
-				options.lp.calc_type = CALC_TI85;
-			if (!strcmp(q, "ti84+"))
-				options.lp.calc_type = CALC_TI84P;
-			if (!strcmp(q, "ti83+"))
-				options.lp.calc_type = CALC_TI83P;
-			if (!strcmp(q, "ti83"))
-				options.lp.calc_type = CALC_TI83;
-			if (!strcmp(q, "ti82"))
-				options.lp.calc_type = CALC_TI82;
-			if (!strcmp(q, "ti73"))
-				options.lp.calc_type = CALC_TI73;
+
+		// build a pseudo file selection for TiLP
+		for(q = flist; *q != NULL; q++)
+		{
+			TilpFileEntry* fe = g_malloc0(sizeof(TilpFileEntry));
+
+			fe->name = g_strdup(*q);
+			local_win.selection = g_list_prepend(local_win.selection, fe);
 		}
-		if (strstr(arg, "link=")) {
-			q = arg + 5;
-			if (!strcmp(q, "par"))
-				options.lp.link_type = LINK_PAR;
-			if (!strcmp(q, "ser"))
-				options.lp.link_type = LINK_SER;
-			if (!strcmp(q, "tgl"))
-				options.lp.link_type = LINK_TGL;
-			if (!strcmp(q, "avr"))
-				options.lp.link_type = LINK_AVR;
-			if (!strcmp(q, "tie"))
-				options.lp.link_type = LINK_TIE;
-			if (!strcmp(q, "vti"))
-				options.lp.link_type = LINK_VTI;
-			if (!strcmp(q, "ugl"))
-				options.lp.link_type = LINK_UGL;
-			if (!strcmp(q, "slv"))
-				options.lp.link_type = LINK_SLV;
-		}
-		if (strstr(arg, "port=")) {
-			int port = USER_PORT;
-			port = (int) atol(&arg[5]) - 1;
-			switch(options.lp.link_type)
-			{
-			case LINK_PAR: 
-				options.lp.port = PARALLEL_PORT_1 + port;
-				break;
-			case LINK_SER:
-			case LINK_TGL: 
-				options.lp.port = SERIAL_PORT_1 + port;
-				break;
-			case LINK_SLV: 
-				options.lp.port = USB_PORT_1 + port;
-				break;
-			case LINK_TIE:
-			case LINK_VTI:
-				options.lp.port = VIRTUAL_PORT_1 + port;
-				break;
-			default:
-				break;
-			}
-		}
-		if (strstr(arg, "dev_port="))
-			strcpy(options.lp.device, arg + 9);
-		if (strstr(arg, "adr_port="))
-			options.lp.io_addr = (int) strtol(arg + 9, &q, 16);
-		if (strstr(arg, "timeout="))
-			options.lp.timeout = (int) atol(&arg[8]);
-		if (strstr(arg, "delay="))
-			options.lp.delay = (int) atol(&arg[6]);
-		if (strexact(arg, "-help") || strexact(arg, "h"))
-			help();
-		if (strexact(arg, "-version") || strexact(arg, "v"))
-			exit(0);
+
+		g_strfreev(array);
+		g_strfreev(flist);
 	}
+
+	// use GUI ?
+	if(use_gui)
+		working_mode |= MODE_GUI;
+	else
+		working_mode &= ~MODE_GUI;
+
 	return 0;
 }
 

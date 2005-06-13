@@ -39,10 +39,9 @@
 CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
-//TicalcInfoUpdate info_update;
-TilpOptions options   = { 0 };
-TilpLocal local_win   = { 0 };
-TilpRemote remote_win = { 0 };
+TilpOptions options    = { 0 };
+TilpLocal   local_win  = { 0 };
+TilpRemote  remote_win = { 0 };
 
 gint working_mode = MODE_INI;
 
@@ -50,11 +49,9 @@ gint working_mode = MODE_INI;
 static void signal_handler(int sig_no)
 {
 	tilp_info(_("Signal SIGINT (Ctrl+C) caught...\n"));
-	tilp_info(_("Trying to destroy ressources... "));
-
 	tilp_exit();
-
 	tilp_info(_("Done.\n"));
+
 	exit(0);
 }
 
@@ -90,7 +87,6 @@ int tilp_init(int argc, char *argv[], char **arge)
 	tilp_file_chdir(options.working_dir);
 
 	/* Scan and modify command line */
-	working_mode = MODE_CMD;
 	tilp_cmdline_scan(argc, argv);
 
 	/* Catch 'Ctrl-C' */
@@ -121,15 +117,15 @@ int tilp_init(int argc, char *argv[], char **arge)
 	/* 
 	   Set cable & calc
 	*/	
-	cable_handle = ticables_handle_new(options.device.cable_model, 
-		options.device.cable_port);
+	cable_handle = ticables_handle_new(options.cable_model, 
+		options.cable_port);
 	if(cable_handle == NULL)
 	{
 		gif->msg_box("Error", "Can't set cable");
 	}
 	else
 	{
-		calc_handle = ticalcs_handle_new(options.device.calc_model);
+		calc_handle = ticalcs_handle_new(options.calc_model);
 		if(cable_handle == NULL)
 		{
 			gif->msg_box("Error", "Can't set cable");

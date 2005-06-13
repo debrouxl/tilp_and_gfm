@@ -74,11 +74,11 @@ int tilp_config_default(void)
 	options.auto_detect = !0;
 	options.recv_as_group = RECV_AS_GROUP;
 
-	options.device.cable_model = CABLE_NUL;
-	options.device.cable_port = PORT_0;
-	options.device.calc_model = CALC_NONE;
-	options.device.cable_delay = DFLT_DELAY;
-	options.device.cable_timeout = DFLT_TIMEOUT;
+	options.cable_model = CABLE_NUL;
+	options.cable_port = PORT_0;
+	options.calc_model = CALC_NONE;
+	options.cable_delay = DFLT_DELAY;
+	options.cable_timeout = DFLT_TIMEOUT;
 
 #if defined(__LINUX__) || defined(__BSD__)
 	default_config_linux();
@@ -179,19 +179,19 @@ int tilp_config_write(void)
 		"# Warning: any comments that you add to this file WILL be overwritten", &error);
 
 	// Section [DEVICE]
-	g_key_file_set_string (kf, SECTION_DEVICE, "calc_model", ticalcs_model_to_string(options.device.calc_model));
+	g_key_file_set_string (kf, SECTION_DEVICE, "calc_model", ticalcs_model_to_string(options.calc_model));
 	g_key_file_set_comment(kf, SECTION_DEVICE, "calc_model", "Calculator model", &error);
 
-	g_key_file_set_string (kf, SECTION_DEVICE, "cable_model", ticables_model_to_string(options.device.cable_model));
+	g_key_file_set_string (kf, SECTION_DEVICE, "cable_model", ticables_model_to_string(options.cable_model));
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_model", "Cable model", &error);
 
-	g_key_file_set_string (kf, SECTION_DEVICE, "cable_port", ticables_port_to_string(options.device.cable_port));
+	g_key_file_set_string (kf, SECTION_DEVICE, "cable_port", ticables_port_to_string(options.cable_port));
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_port", "Port", &error);
 
-	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_timeout", options.device.cable_timeout);	
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_timeout", options.cable_timeout);	
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_timeout", "Timeout in tenth of seconds", &error);
 
-	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.device.cable_delay);	
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.cable_delay);	
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Inter-bit delay in µs", &error);
 
 	g_key_file_set_comment(kf, SECTION_DEVICE, NULL, "Device section", &error);
@@ -321,23 +321,23 @@ int tilp_config_read(void)
 	// Section [DEVICE]
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "calc_model", &error);
 	if(s != NULL)
-		options.device.calc_model = ticalcs_string_to_model(s);
+		options.calc_model = ticalcs_string_to_model(s);
 	g_free(s);
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_model", &error);
 	if(s != NULL)
-		options.device.calc_model = ticables_string_to_model(s);
+		options.calc_model = ticables_string_to_model(s);
 	g_free(s);
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_port", &error);
 	if(s != NULL)
-		options.device.calc_model = ticables_string_to_port(s);
+		options.calc_model = ticables_string_to_port(s);
 	g_free(s);
 
-	options.device.cable_timeout = 
+	options.cable_timeout = 
 		g_key_file_get_integer(kf, SECTION_DEVICE, "cable_timeout", &error);
 
-	options.device.cable_delay = 
+	options.cable_delay = 
 		g_key_file_get_integer(kf, SECTION_DEVICE, "cable_delay", &error);
 
 	// Section GUI
