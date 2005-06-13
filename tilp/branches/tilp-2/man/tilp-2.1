@@ -17,7 +17,7 @@
 .SH NAME
 TiLP - a communication program for TI calculators ('Ti Linking Program' or 'Tilp is a Linking Program')
 .SH SYNOPSYS
-\fBtilp\fP [--help] [--version] [-h] [-v] [-calc=] [-link=] [-port= ] [-adr_port=] [-dev_port=] [-timeout=] [-delay=] [-cmdline] [-gui=] [filename]  
+\fBtilp-2\fP [--help] [--version] [-h] [-v] [--calc=] [--cable=] [--port= ] [--timeout=] [--delay=] [--no-gui] [filename]
 .SH DESCRIPTION
 The \fBTiLP\fP program allows you to backup, restore and archive variables of your Texas Intruments calculator on your computer. It has also additional features such as screen dump, remote control, ROM dump, FLASHing. TiLP is a very complete program. Moreover, you have the same program for all calculator types.
 .SH OPTIONS
@@ -35,53 +35,34 @@ Display a list of all command line options.
 \fB-v, --version\fP
 Output the version info.
 .TP
-\fB-cmdline\fP
-Send file(s) without launching any Graphic User Interface. Informations are displayed in the terminal.
+\fB--no-gui\fP
+Send file(s) without launching any Graphic User Interface. Informations are displayed in the console.
 .TP
-\fB-gui=\fP
-Use a specific graphic interface. You can choose 'console' (prompt), or 'gtk' (GTK+).
-In console mode, you can enter some commands. There are several commands which allow you to do the same things that you could do in GUI mode. These commands are: ready, screen [filename], dirlist [filename], backup [filename], restore [filename], send [filename] (variable, FLASHapp, OS), receive [filename] and dump [filename] (ROM).
-.TP
-\fB-calc=\fP
+\fB--calc=\fP
 Select a calculator type: v200, ti92+, ti92, ti89, ti86, ti85, ti83+, ti83, ti82 or ti73.
 .TP
-\fB-link=\fP
+\fB--cable=\fP
 Select a link cable type: Grey TIGraphLink (tgl), home-made serial or Black TIGraphLink (ser), home-made parallel link (par), fastAVRlink (avr), generic virtual link (vtl), TIEmulator virtual link (tie), VTi virtual link (vti), TI/PC USB link (tpu) or USB TIGraphLink also known as SilverLink (slv).
 .TP
-\fB-port=\fP
+\fB--port=\fP
 Specify on which port the link cable is plugged on. Can be any value between 1 and 2, 3 or 4 (depending on link cable).
 .TP
-\fB-adr_port=\fP
-Optionnal. Override value passed with -port.
-This value can represent either a direct address, either a link number, according to the link type. It will override the address associated with the port specified in the config file.
-Give the direct address of the parallel port (0x3BC, 0x378 or 0x278) or serial
-port (0x3F8, 0x2F8, 0x3E8 or 0x2E8), depending of the link cable type.
-Give the link number of the virtual link (1 -> #0, 2 -> #1).
-Give the link mode of the TI/PC USB link (1 -> 'raw' mode, 2 -> 'cooked' mode).
-.TP
-\fB-dev_port=\fP
-Optionnal. Override value passed with -port.
-It will override the device associated with the port specified in the config file.
-Give the serial port device (/dev/ttyS[0..3]) for the Grey TIGraphLink or the fastAVRlink.
-Give the USB device (/dev/tiglusb[0..3]).
-.TP
-\fB-timeout=\fP
+\fB--timeout=\fP
 in tenth of seconds (0.1 s). This is the time while the program wait a response of the 
 calculator. Once this delay elapsed, the program send a time out error. The 
 default value is 1 seconds.
 .TP
-\fB-delay=\fP
+\fB--delay=\fP
 in microseconds. This is the time which separate the transmission of 2 bytes.
 The default value is 5 microseconds. Decrease this value increase the 
 transfer speed but decrease the reliability of the transmission.
 .SH EXAMPLE
 Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
-tilp -cmdline -calc=ti89 -link=serial -port=2 -timeout=20   group.89g
+tilp --calc=ti89 --cable=serial --port=2 --timeout=20 --no-gui group.89g
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.
-The config file must have the 'RC_END' string at end.
 Every line can be put in any order. Beware: any comment added to the file will be overwritten !
 Below is described each option and the possible values:
 
@@ -203,7 +184,7 @@ Contains the directory that TiLP will list at startup. Can be changed from the p
 Think to terminate your config script with the 'RC_END' word !!!
 
 .SH COPYRIGHT
-Copyright (C) 1999-2004, Romain Lievin. 
+Copyright (C) 1999-2005, Romain Lievin. 
 Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation.
 
 This program and its source code is distributed under the terms of the 

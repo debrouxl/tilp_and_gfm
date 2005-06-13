@@ -1,4 +1,4 @@
-man_MANS = tilp.1
+man_MANS = tilp-2.1
 pkgdata_DATA = Manpage.txt
 
 EXTRA_DIST = $(man_MANS) cleaner.c dos2unix.c Manpage.txt
