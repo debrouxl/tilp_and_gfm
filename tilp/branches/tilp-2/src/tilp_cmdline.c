@@ -58,7 +58,7 @@ void tilp_cmdline_version(void)
 }
 
 /* Search for command line options */
-int tilp_cmdline_scan(int argc, char **argv)
+int tilp_cmdline_scan(int *argc, char ***argv)
 {
 	GOptionContext* context;
 	GError *error = NULL;
@@ -68,7 +68,7 @@ int tilp_cmdline_scan(int argc, char **argv)
 	g_option_context_add_main_entries(context, entries, ""/*GETTEXT_PACKAGE*/);
 	g_option_context_set_help_enabled(context, TRUE);
 	g_option_context_set_ignore_unknown_options(context, FALSE);
-	g_option_context_parse(context, &argc, &argv, &error);
+	g_option_context_parse(context, argc, argv, &error);
 	g_option_context_free(context);
 
 	// convert name to value

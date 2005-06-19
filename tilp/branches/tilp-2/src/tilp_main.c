@@ -40,7 +40,7 @@ CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
 TilpOptions options    = { 0 };
-TilpLocal   local_win  = { 0 };
+TilpLocal   local_win  = { 0 };	// I will change these names into local & remote
 TilpRemote  remote_win = { 0 };
 
 int working_mode = MODE_INI;
@@ -59,7 +59,7 @@ static void signal_handler(int sig_no)
   This function must be the first function to call in your function 'main'.
   It initializes the TiLP core engine.
 */
-int tilp_init(int argc, char *argv[], char **arge)
+int tilp_init(int *argc, char ***argv)
 {
 	int err;
 

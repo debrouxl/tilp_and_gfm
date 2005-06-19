@@ -30,4 +30,7 @@ int tilp_config_write(void);
 int tilp_config_read(void);
 int tilp_config_delete(void);
 
+int tilp_config_save(void);
+int tilp_config_load(void);
+
 #endif

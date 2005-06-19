@@ -40,27 +40,17 @@
 #include "support.h"
 #include "splash.h"
 #include "gtk_update.h"
+#include "tilp.h"
+#include "toolbar.h"
+#include "labels.h"
 
-/**************/
-/* My widgets */
-/**************/
 
-/*
-GtkWidget *main_wnd = NULL;
-GtkWidget *clist_wnd = NULL;
-GtkWidget *ctree_wnd = NULL;
-*/
-
-/*****************/
-/* Main function */
-/*****************/
-
-int main(int argc, char *argv[], char **arge)
+int main(int argc, char *argv[])
 {
-	//GdkPixbuf *icon;
+	GdkPixbuf *icon;
 
 	/* Init the tilp core */
-	tilp_init(argc, argv, arge);
+	tilp_init(&argc, &argv);
 
 	/* Init GTK+ */
 	gtk_init(&argc, &argv);
@@ -76,12 +66,11 @@ int main(int argc, char *argv[], char **arge)
 	if(working_mode & MODE_GUI)
 	{
 		splash_screen_set_label(_("Loading GUI..."));
-		//main_wnd = display_tilp_dbox();
-		tilp_error(0);		// display console mode errors
+		main_wnd = display_tilp_dbox();
+		tilp_err(0);		// display console mode errors
 	}
 
 	/* In cmdline, does not display the entire window, only the pbar */
-	/*
 	if(working_mode & MODE_GUI) 
 	{
 		gtk_widget_show_all(main_wnd);
@@ -90,7 +79,6 @@ int main(int argc, char *argv[], char **arge)
 		gtk_window_set_icon(GTK_WINDOW(main_wnd), icon);
 		gdk_window_set_icon_name(main_wnd->window, _("TiLP"));
 	}
-	*/
 
 	/* Do a local directory list */
 	g_free(local_win.cwdir);
@@ -109,7 +97,7 @@ int main(int argc, char *argv[], char **arge)
 	/* Update right list */
 	tilp_dirlist_local();
 	//clist_refresh();
-	//labels_refresh();
+	labels_refresh();
 
 	/* GTK main loop */
 	splash_screen_stop();

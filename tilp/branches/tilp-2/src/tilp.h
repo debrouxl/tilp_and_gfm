@@ -1,5 +1,8 @@
 #include <gtk/gtk.h>
 
+extern GtkWidget *main_wnd;
+extern GtkWidget *clist_wnd;
+extern GtkWidget *ctree_wnd;
 
 GtkWidget *display_tilp_dbox();
 

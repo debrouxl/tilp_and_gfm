@@ -1,20 +1,20 @@
 /* Hey EMACS -*- linux-c -*- */
 /*  tilp - a linking program for TI graphing calculators
- *  Copyright (C) 1999-2003  Romain Lievin
+*  Copyright (C) 1999-2003  Romain Lievin
  *
- *  This program is free software you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 2 of the License, or
- *  (at your option) any later version.
+*  This program is free software you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation either version 2 of the License, or
+*  (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+*  You should have received a copy of the GNU General Public License
+*  along with this program if not, write to the Free Software
+*  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -32,7 +32,21 @@
 #include "tilp_core.h"
 #include "dboxes.h"
 #include "pbars.h"
+#include "about.h"
+#include "manpage.h"
+#include "labels.h"
+#include "clock.h"
+#include "release.h"
 
+#ifdef __WIN32__
+#define strcasecmp _stricmp
+#endif				/* __WIN32__ */
+
+GtkWidget *main_wnd = NULL;
+GtkWidget *clist_wnd = NULL;
+GtkWidget *ctree_wnd = NULL;
+
+/* Main window */
 
 GtkWidget *display_tilp_dbox()
 {
@@ -48,8 +62,8 @@ GtkWidget *display_tilp_dbox()
 	dbox = glade_xml_get_widget(xml, "tilp_dbox");
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
-	label_wnd.label21 = glade_xml_get_widget(xml, "label21");
-	label_wnd.label22 = glade_xml_get_widget(xml, "label22");
+	label_wnd.label21 = glade_xml_get_widget(xml, "label26");
+	label_wnd.label22 = glade_xml_get_widget(xml, "label24");
 	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 
 	//toolbar_set_images();
@@ -73,63 +87,67 @@ GtkWidget *display_tilp_dbox()
 	return dbox;
 }
 
-GLADE_CB void on_hpaned1_size_request(GtkPaned * paned, gpointer user_data)
+GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
 {
 	options.xsize = gtk_paned_get_position(paned);
 }
 
-GLADE_CB void on_tilp_dbox_destroy(GtkObject * object, gpointer user_data)
+GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 {
 	gtk_main_quit();
 }
 
-GLADE_CB void on_save_config1_activate(GtkMenuItem * menuitem,
-				       gpointer user_data)
+/* File menu */
+
+GLADE_CB void on_save_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_config_save();
 }
 
-GLADE_CB void on_reload_config1_activate(GtkMenuItem * menuitem,
-					 gpointer user_data)
+GLADE_CB void on_reload_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_config_load();
 }
 
-GLADE_CB void on_default_config1_activate(GtkMenuItem * menuitem,
-					  gpointer user_data)
+GLADE_CB void on_default_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_config_default();
 }
 
-GLADE_CB void on_quit1_activate(GtkMenuItem * menuitem, gpointer user_data)
+GLADE_CB void on_quit1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	gtk_widget_destroy(GTK_WIDGET(main_wnd));
 }
 
-GLADE_CB void on_general1_activate(GtkMenuItem * menuitem,
-				   gpointer user_data)
+/* Setup menu */
+
+GLADE_CB void on_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	//display_options_dbox();
 }
 
-GLADE_CB void on_communication1_activate(GtkMenuItem * menuitem,
-					 gpointer user_data)
+GLADE_CB void on_devices1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	//display_device_dbox();
 }
 
-GLADE_CB void on_clock1_activate(GtkMenuItem * menuitem,
-				 gpointer user_data)
+/* Misc menu */
+
+GLADE_CB void on_infos1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	//display_clock_dbox();
 }
 
-GLADE_CB void on_get_idlist1_activate(GtkMenuItem * menuitem, gpointer user_data)
+GLADE_CB void on_clock1_activate(GtkMenuItem* menuitem, gpointer user_data)
+{
+	display_clock_dbox();
+}
+
+GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	//tilp_calc_idlist();
 }
 
-GLADE_CB void on_rom_dump1_activate(GtkMenuItem * menuitem,
+GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)
 {
 	/*
@@ -141,12 +159,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem * menuitem,
 	*/
 }
 
-
-#ifdef __WIN32__
-#define strcasecmp _stricmp
-#endif				/* __WIN32__ */
-
-GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
+GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem,
 				      gpointer user_data)
 {
 	/*
@@ -173,160 +186,81 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 	*/
 }
 
-static void go_to_bookmark(const char *link)
-{
-#ifdef __WIN32__
-	HINSTANCE hInst;
+/* Help menu */
 
-	// Windows do the whole work for us, let's go...
-	hInst = ShellExecute(NULL, "open", link, NULL, NULL, SW_SHOWNORMAL);
-	if((int)hInst <= 32)
-	{
-		msg_box("Error", "Unable to run ShellExecture extension.");
-	}
-#else
-	// Kevin's list:
-	// * /usr/bin/gnome-open (GNOME 2.6+ default browser, this really should be
-	// first on the list to try, as this will honor the user's choice rather than
-	// guessing an arbitrary one)
-	// * /usr/bin/sensible-browser (Debian's browser script)
-	// * /usr/bin/htmlview (old RHL/Fedora default browser script)
-	// * /usr/bin/firefox (Mozilla Firefox)
-	// * /usr/bin/mozilla (Mozilla Seamonkey)
-	// * /usr/bin/konqueror (Konqueror)
-	//
-	gboolean result;
-	char *apps[] = { 
-			"/usr/bin/gnome-open",
-			"/usr/bin/sensible-browser",
-			"/usr/bin/htmlview",
-			"/usr/bin/firefox",
-			"/usr/bin/mozilla",
-			"/usr/bin/konqueror",
-	};
-	gint i, n;
+extern int go_to_bookmark(const char *link);
 
-	n = sizeof(apps) / sizeof(char *);
-	for(i = 0; i < n; i++)
-	{
-		gchar **argv = g_malloc0(3 * sizeof(gchar *));
-
-		argv[0] = g_strdup(apps[i]);
-		argv[1] = g_strdup(link);
-		argv[2] = NULL;
-
-		result = g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
-		g_strfreev(argv);
-
-		if(result != FALSE)
-			break;
-	}
-
-	if (i == n) 
-	{
-		msg_box("Error", "Spawn error: do you have Mozilla installed ?");
-	} 
-#endif
-	else 
-	{
-		GtkWidget *dialog;
-		GTimer *timer;
-		const gchar *message = "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
-
-		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
-					   GTK_MESSAGE_INFO,
-					   GTK_BUTTONS_CLOSE, message);
-		g_signal_connect_swapped(GTK_OBJECT(dialog), "response",
-					 G_CALLBACK(gtk_widget_destroy),
-					 GTK_OBJECT(dialog));
-		gtk_widget_show_all(GTK_WIDGET(dialog));
-		
-		while(gtk_events_pending()) gtk_main_iteration();
-		for(timer = g_timer_new(); g_timer_elapsed(timer, NULL) < 3.0;);
-
-		g_timer_destroy(timer);
-		gtk_widget_destroy(GTK_WIDGET(dialog));
-	}
-}
-
-GLADE_CB void on_manual1_activate(GtkMenuItem * menuitem,
-				  gpointer user_data)
+GLADE_CB void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	gchar *path = g_strconcat(inst_paths.help_dir, _("Manual_en.html"), NULL);
 
-	go_to_bookmark(path);
+	if(go_to_bookmark(path) < 0)
+		msg_box1("Error", "Failed to run browser.");
 	g_free(path);
 }
 
-GLADE_CB void on_manpage1_activate(GtkMenuItem * menuitem,
-				   gpointer user_data)
+GLADE_CB void on_manpage1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_manpage_dbox();
 }
 
-GLADE_CB void on_ti_s_web_site1_activate(GtkMenuItem * menuitem,
-					 gpointer user_data)
+GLADE_CB void on_ti_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://education.ti.com");
 }
 
-GLADE_CB void on_calculator_software1_activate(GtkMenuItem *
-					       menuitem,
-					       gpointer user_data)
+GLADE_CB void on_calculator_software1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://epsstore.ti.com");
 }
 
-GLADE_CB void on_ticalcorg1_activate(GtkMenuItem * menuitem,
-				     gpointer user_data)
+GLADE_CB void on_ticalcorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://www.ticalc.org");
 }
 
-GLADE_CB void on_tinewsnet1_activate(GtkMenuItem * menuitem,
-				     gpointer user_data)
+GLADE_CB void on_tinewsnet1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://www.tigen.org");
 }
 
-GLADE_CB void on_ti_frorg1_activate(GtkMenuItem * menuitem,
-				    gpointer user_data)
+GLADE_CB void on_ti_frorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://www.ti-fr.com");
-} GLADE_CB void on_the_lpg1_activate(GtkMenuItem * menuitem,
-				     gpointer user_data)
+} 
+
+GLADE_CB void on_the_lpg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://lpg.ticalc.org");
-} GLADE_CB void on_tilp_s_web_site1_activate(GtkMenuItem * menuitem,
-					     gpointer user_data)
+} 
+
+GLADE_CB void on_tilp_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://tilp.info");
 } 
 
 GLADE_CB void
-on_log1_activate                       (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-  display_logfile_dbox();
-}
-
-
-GLADE_CB void
 on_bug_report1_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-  GtkWidget *dialog;
-  const gchar *message =
+	GtkWidget *dialog;
+	const gchar *message =
     "There are several ways to get in touch if you encounter a problem with TiLP or if you have questions, suggestions, bug reports, etc:\n- if you have general questions or problems, please consider the users' mailing list first (http://tilp-users@list.sf.net).\n- if you want to discuss about TiLP, you can use the TiLP forum (http://sourceforge.net/forum/?group_id=18378).\n- for bug reports, use the 'Bug Tracking System' (http://sourceforge.net/tracker/?group_id=18378).\n\nBefore e-mailing the TiLP team, make sure you have read the FAQ....";
   
-  dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 				  GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE,
 				  message);
-  gtk_dialog_run(GTK_DIALOG(dialog));
-  gtk_widget_destroy(dialog);
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
 }
 
-GLADE_CB void on_about1_activate(GtkMenuItem * menuitem,
+GLADE_CB void on_changelog1_activate(GtkMenuItem* menuitem,
+				   gpointer user_data)
+{
+	display_release_dbox();
+}
+
+GLADE_CB void on_about1_activate(GtkMenuItem* menuitem,
 				   gpointer user_data)
 {
 	display_about_dbox();
@@ -335,41 +269,45 @@ GLADE_CB void on_about1_activate(GtkMenuItem * menuitem,
 /*****************************/
 /* Toolbar buttons callbacks */
 /*****************************/
-GLADE_CB void on_tilp_button4_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button4_clicked(GtkButton* button,
 				      gpointer user_data)
 {
-	tilp_calc_isready();
+	//tilp_calc_isready();
 }
 
-GLADE_CB void on_tilp_button5_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button5_clicked(GtkButton* button,
 				      gpointer user_data)
 {
-	display_screenshot_dbox();
+	//display_screenshot_dbox();
 }
 
-GLADE_CB void on_tilp_button6_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button6_clicked(GtkButton* button,
 				      gpointer user_data)
 {
+	/*
 	if (tilp_calc_dirlist() != 0)
 		return;
 	ctree_refresh();
 	labels_refresh();
+	*/
 }
 
 
-GLADE_CB void on_tilp_button7_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button7_clicked(GtkButton* button,
 				      gpointer user_data)
 {
+	/*
 	if (tilp_calc_recv_backup() != 0)
 		return;
 	display_fileselection_3();
+	*/
 }
 
 
-GLADE_CB void on_tilp_button8_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button8_clicked(GtkButton* button,
 				      gpointer user_data)
 {
-	display_fileselection_2();
+	//display_fileselection_2();
 }
 
 // Note: user_data is a string:
@@ -377,8 +315,9 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton * button,
 // - such as "" for sending var in the default folder
 // - such as "foo" for sending var in the 'foo' folder
 // - unused for sending FLASH files
-void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
+void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 {
+	/*
 	int to_flash = 0;
 	gchar *dst_folder;
 	TilpFileInfo *f;
@@ -422,13 +361,15 @@ void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
 		if (tilp_calc_send_var(to_flash) != 0)
 			return;
 	}
+	*/
 }
 
 
 // used for receiving vars
-GLADE_CB void on_tilp_button9_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button9_clicked(GtkButton* button,
 				      gpointer user_data)
 {
+	/*
 	int ret;
 	if ((ctree_wnd.selection != NULL)
 	    || (ctree_wnd.selection2 != NULL)) {
@@ -458,11 +399,12 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton * button,
 			labels_refresh();
 		}
 	}
+	*/
 }
 
 
 // make new dir
-GLADE_CB void on_tilp_button10_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button10_clicked(GtkButton* button,
 				       gpointer user_data)
 {
 	gchar *utf8 = NULL;
@@ -479,26 +421,28 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton * button,
 	tilp_file_mkdir(dirname);
 	g_free(dirname);
 
-	clist_refresh();
+	//clist_refresh();
 	labels_refresh();
 }
 
 
 // trash
-GLADE_CB void on_tilp_button11_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button11_clicked(GtkButton* button,
 				       gpointer user_data)
 {
 	tilp_delete_selected_files();
-	clist_refresh();
+
+	//clist_refresh();
 	labels_refresh();
 }
 
 // refresh
-GLADE_CB void on_tilp_button12_clicked(GtkButton * button,
+GLADE_CB void on_tilp_button12_clicked(GtkButton* button,
 				       gpointer user_data)
 {
-	if (!clist_wnd.copy_cut)
+	if (!local_win.copy_cut)
 		tilp_clist_file_selection_destroy();
-	clist_refresh();
+
+	//clist_refresh();
 	labels_refresh();
 }
