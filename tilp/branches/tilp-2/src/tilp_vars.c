@@ -51,7 +51,15 @@ int tilp_dirlist_remote(void)
 	}
 	gif->destroy_pbar();
 
-	ticalcs_calc_get_memfree(calc_handle, &(remote_win.memory));
+	remote_win.memory.n_vars = ticalcs_dirlist_num_vars(remote_win.var_tree);
+	remote_win.memory.n_apps = ticalcs_dirlist_num_vars(remote_win.app_tree);
+	
+	remote_win.memory.mem_vars = ticalcs_dirlist_mem_used(remote_win.var_tree);
+	remote_win.memory.mem_apps = ticalcs_dirlist_mem_used(remote_win.app_tree);
+
+	err = ticalcs_calc_get_memfree(calc_handle, &(remote_win.memory.mem_free));
+	if(err)
+		remote_win.memory.mem_free = -1;
 
 	ticalcs_dirlist_display(remote_win.var_tree);
 	ticalcs_dirlist_display(remote_win.app_tree);

@@ -28,24 +28,10 @@
 
 #include "support.h"
 
-#include "tilp_core.h"
 #include "gstruct.h"
+#include "tilp_core.h"
 #include "dboxes.h"
-#include "toolbar.h"
-#include "labels.h"
-#include "clist.h"
-#include "ctree.h"
-#include "general.h"
-#include "extprgms.h"
-#include "comm.h"
-#include "clock.h"
-#include "filesel.h"
-#include "logfile.h"
-#include "manpage.h"
-#include "about.h"
-#include "screenshot.h"
-#include "action.h"
-#include "gtk_refresh.h"
+#include "pbars.h"
 
 
 /******************/

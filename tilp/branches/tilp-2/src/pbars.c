@@ -31,9 +31,9 @@
 #include "pbars.h"
 #include "gtk_update.h"
 
-struct progress_window p_win = { 0 };
+struct pbar_window pbar_wnd = { 0 };
 
-static GtkWidget *pbar_window = NULL;
+static GtkWidget *window = NULL;
 
 /* Create a window with 1 progress bar */
 void create_pbar_type1(const gchar * title)
@@ -49,13 +49,13 @@ void create_pbar_type1(const gchar * title)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
 
-	pbar_window = glade_xml_get_widget(xml, "pbar1_dbox");
-	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
+	window = glade_xml_get_widget(xml, "pbar1_dbox");
+	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar1");
-	p_win.label_rate = glade_xml_get_widget(xml, "label20");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar1");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label20");
 
-	gtk_widget_show_all(pbar_window);
+	gtk_widget_show_all(window);
 }
 
 
@@ -73,13 +73,13 @@ void create_pbar_type2(const gchar * title, gchar * text)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
 
-	pbar_window = glade_xml_get_widget(xml, "pbar2_dbox");
-	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
+	window = glade_xml_get_widget(xml, "pbar2_dbox");
+	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	p_win.label = glade_xml_get_widget(xml, "label3");
-	gtk_label_set_text(GTK_LABEL(p_win.label), text);
+	pbar_wnd.label = glade_xml_get_widget(xml, "label3");
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
 
-	gtk_widget_show_all(pbar_window);
+	gtk_widget_show_all(window);
 }
 
 
@@ -99,14 +99,14 @@ void create_pbar_type3(const gchar * title)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
 
-	pbar_window = glade_xml_get_widget(xml, "pbar3_dbox");
-	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
+	window = glade_xml_get_widget(xml, "pbar3_dbox");
+	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar3");
-	p_win.pbar2 = glade_xml_get_widget(xml, "progressbar2");
-	p_win.label_rate = glade_xml_get_widget(xml, "label21");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar3");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar2");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label21");
 
-	gtk_widget_show_all(pbar_window);
+	gtk_widget_show_all(window);
 }
 
 
@@ -124,15 +124,15 @@ void create_pbar_type4(const gchar * title, gchar * text)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
 
-	pbar_window = glade_xml_get_widget(xml, "pbar4_dbox");
-	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
+	window = glade_xml_get_widget(xml, "pbar4_dbox");
+	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	p_win.label = glade_xml_get_widget(xml, "label15");
-	gtk_label_set_text(GTK_LABEL(p_win.label), text);
-	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar4");
-	p_win.label_rate = glade_xml_get_widget(xml, "label22");
+	pbar_wnd.label = glade_xml_get_widget(xml, "label15");
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar4");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label22");
 
-	gtk_widget_show_all(pbar_window);
+	gtk_widget_show_all(window);
 }
 
 
@@ -152,30 +152,30 @@ void create_pbar_type5(const gchar * title, gchar * text)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
 
-	pbar_window = glade_xml_get_widget(xml, "pbar5_dbox");
-	gtk_window_set_title(GTK_WINDOW(pbar_window), title);
+	window = glade_xml_get_widget(xml, "pbar5_dbox");
+	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	p_win.label = glade_xml_get_widget(xml, "label19");
-	gtk_label_set_text(GTK_LABEL(p_win.label), text);
-	p_win.pbar1 = glade_xml_get_widget(xml, "progressbar6");
-	p_win.pbar2 = glade_xml_get_widget(xml, "progressbar5");
-	p_win.label_rate = glade_xml_get_widget(xml, "label23");
+	pbar_wnd.label = glade_xml_get_widget(xml, "label19");
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar6");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar5");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label23");
 
-	gtk_widget_show_all(pbar_window);
+	gtk_widget_show_all(window);
 }
 
 
 /* Destroy a pbar window */
 void destroy_pbar(void)
 {
-	p_win.pbar1 = NULL;
-	p_win.pbar2 = NULL;
-	p_win.label = NULL;
+	pbar_wnd.pbar1 = NULL;
+	pbar_wnd.pbar2 = NULL;
+	pbar_wnd.label = NULL;
 
-	if (pbar_window != NULL)
+	if (window != NULL)
 	{
-		gtk_widget_destroy(pbar_window);
-		pbar_window = NULL;
+		gtk_widget_destroy(window);
+		window = NULL;
 	}
 }
 

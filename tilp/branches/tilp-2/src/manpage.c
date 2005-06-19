@@ -21,7 +21,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
@@ -49,23 +49,28 @@ gint display_manpage_dbox()
 	GtkTextIter start, end;
 #endif
 
-	filename =
-	    g_strconcat(inst_paths.manpage_dir, "Manpage.txt", NULL);
-	if (access(filename, F_OK) == 0) {
-		if (stat(filename, &stbuf) != -1) {
+#ifdef __WIN32__
+	filename = g_strconcat(inst_paths.manpage_dir, "Manpage.txt", NULL);
+#else
+	filename = g_strconcat(inst_paths.manpage_dir, "tilp.1", NULL);
+#endif	
+
+	if (access(filename, F_OK) == 0) 
+	{
+		if (stat(filename, &stbuf) != -1) 
+		{
 			len = stbuf.st_size;
 			len -= 2;
 		}
-		if ((fd = fopen(filename, "r")) != NULL) {
+		if ((fd = fopen(filename, "r")) != NULL) 
+		{
 			memset(buffer, 0, sizeof(buffer));
 			len = fread(buffer, 1, len, fd);
 			fclose(fd);
 		}
 	}
 
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("manpage-2.glade"), "manpage_dbox",
-	     PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("manpage-2.glade"), "manpage_dbox", PACKAGE);
 	if (!xml)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
@@ -84,7 +89,8 @@ gint display_manpage_dbox()
 	//gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
 
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) {
+	switch (result) 
+	{
 	case GTK_RESPONSE_OK:
 		break;
 	default:

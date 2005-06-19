@@ -28,7 +28,7 @@
 extern GtkWidget *main_wnd;
 extern GtkWidget *clist_wnd;
 extern GtkWidget *ctree_wnd;
-extern GtkWidget *scrn_wnd;
+extern GtkWidget *screen_wnd;
 extern GtkWidget *status;
 
 /* This struct is used by the toolbar */
@@ -43,10 +43,10 @@ extern struct toolbar_window
 	GtkWidget *button20;
 	GtkWidget *button21;
 	GtkWidget *button22;
-} toolbar_win;
+} toolbar_wnd;
 
 /* This struct is used by the CLabel window */
-extern struct clabel_window 
+extern struct label_window 
 {
 	GtkWidget *widget;
 	GtkWidget *label11;
@@ -59,32 +59,16 @@ extern struct clabel_window
 	GtkWidget *label23;
 	GtkWidget *label24;
 	GtkWidget *label25;
-} clabel_win;
+} label_wnd;
 
 /* This struct is used to display and manage the progress bar dialog box */
-extern struct progress_window 
+extern struct pbar_window 
 {
 	GtkWidget *window;
 	GtkWidget *pbar1;
 	GtkWidget *pbar2;
 	GtkWidget *label;
 	GtkWidget *label_rate;
-} p_win;
-
-/* This struct is used by the Group File Manager */
-extern struct gfm_window 
-{
-	GtkWidget *widget;
-	GtkWidget *label11;
-	GtkWidget *label12;
-	GtkWidget *label13;
-	GtkWidget *label14;
-	GtkWidget *label15;
-	GtkWidget *label21;
-	GtkWidget *label22;
-	GtkWidget *label23;
-	GtkWidget *label24;
-	GtkWidget *label25;
-} gfm_win;
+} pbar_wnd;
 
 #endif

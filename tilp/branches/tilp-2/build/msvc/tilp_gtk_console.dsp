@@ -137,6 +137,14 @@ SOURCE="..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=..\..\src\about.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\dboxes.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\gtk_gif.c
 # End Source File
 # Begin Source File
@@ -145,7 +153,15 @@ SOURCE=..\..\src\gtk_update.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\manpage.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\pbars.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\release.c
 # End Source File
 # Begin Source File
 

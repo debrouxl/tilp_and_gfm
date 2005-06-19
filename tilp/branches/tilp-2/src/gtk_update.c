@@ -50,9 +50,9 @@ static void refresh_pbar1(void)
 	gchar buffer[32];
 	gfloat rate, avg;
   
-	if (p_win.pbar1 != NULL) 
+	if (pbar_wnd.pbar1 != NULL) 
     {
-		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar1), 
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar_wnd.pbar1), 
 			(float)gtk_update.cnt1 / gtk_update.max1);
 
 		rate = gtk_update.rate;
@@ -60,7 +60,7 @@ static void refresh_pbar1(void)
 		avg = filter_compute(rate);
 
 		g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", avg / 1000);
-		gtk_label_set_text(GTK_LABEL(p_win.label_rate), buffer);
+		gtk_label_set_text(GTK_LABEL(pbar_wnd.label_rate), buffer);
 
 		GTK_REFRESH();
 	}
@@ -68,9 +68,9 @@ static void refresh_pbar1(void)
 
 static void refresh_pbar2(void)
 {
-	if (p_win.pbar2 != NULL) 
+	if (pbar_wnd.pbar2 != NULL) 
     {
-		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar2), 
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar_wnd.pbar2), 
 			(float)gtk_update.cnt2 / gtk_update.max2);
 
 		GTK_REFRESH();
@@ -89,10 +89,10 @@ static void gtk_pbar(void)
 // is nothing to do...
 static void gtk_label(void)
 {
-	if (p_win.label == NULL)
+	if (pbar_wnd.label == NULL)
 		return;
 
-	gtk_label_set_text(GTK_LABEL(p_win.label), gtk_update.text);
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), gtk_update.text);
 
 	GTK_REFRESH();
 }

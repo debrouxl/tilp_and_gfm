@@ -20,16 +20,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif				/* HAVE_CONFIG_H */
+# include <config.h>
+#endif
 
-#include <stdio.h>
+#include <gtk/gtk.h>
+#include <glade/glade.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include "about.h"
 #include "tilp_core.h"
@@ -54,31 +53,31 @@ gint display_about_dbox()
 	filename = g_strconcat(inst_paths.base_dir, "COPYING", NULL);
 #endif				/*  */
 
-	if (access(filename, F_OK) == 0) {
-		if (stat(filename, &stbuf) != -1) {
+	if (access(filename, F_OK) == 0) 
+	{
+		if (stat(filename, &stbuf) != -1) 
+		{
 			len = stbuf.st_size;
 			len -= 2;
 		}
-		if ((fd = fopen(filename, "r")) != NULL) {
+		if ((fd = fopen(filename, "r")) != NULL) 
+		{
 			memset(buffer, 0, sizeof(buffer));
 			len = fread(buffer, 1, len, fd);
 			fclose(fd);
 		}
 	}
 
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("about-2.glade"), "about_dbox",
-	     PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("about-2.glade"), "about_dbox", PACKAGE);
 	if (!xml)
 		g_error(_("about.c: GUI loading failed !\n"));
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "about_dbox");
 	label = glade_xml_get_widget(xml, "label5");
-	version = g_strdup_printf
-	    (_("* TILP version %s (cables=%s, files=%s, calcs=%s)"),
-	     TILP_VERSION, ticable_get_version(), tifiles_get_version(),
-	     ticalc_get_version());
+	version = g_strdup_printf(_("* TILP version %s (cables=%s, files=%s, calcs=%s)"),
+	     TILP_VERSION, ticables_version_get(), tifiles_version_get(),
+	     ticalcs_version_get());
 	gtk_label_set_text(GTK_LABEL(label), version);
 	g_free(version);
 
@@ -87,10 +86,11 @@ gint display_about_dbox()
 	gtk_text_buffer_set_text(txtbuf, buffer, len);
 	gtk_widget_realize(dbox);
 	gtk_widget_show(dbox);
-	gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
+	//gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
 
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) {
+	switch (result) 
+	{
 	case GTK_RESPONSE_OK:
 		break;
 	default:

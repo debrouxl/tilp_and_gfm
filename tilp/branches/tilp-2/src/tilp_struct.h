@@ -119,9 +119,9 @@ typedef struct
 	int n_apps;			// number of FLASH apps
 
 	int	mem_vars;		// memory used in RAM
-	int mem_flash;		// memory used in FLASH
+	int mem_apps;		// memory used in FLASH
 
-    int freemem;		// remaining memory
+    int mem_free;		// remaining memory
 } TilpMem;
 
 
@@ -144,7 +144,7 @@ typedef struct
     TNode*	var_tree;		// future use: tree of vars
     TNode*	app_tree;		// future use: tree of apps
 
-    int		memory;			// memory free or used by calc
+    TilpMem	memory;			// memory free or used by calc
 
     GList*	selection;		// selection of variables
     GList*	selection2;		// selection of applications
