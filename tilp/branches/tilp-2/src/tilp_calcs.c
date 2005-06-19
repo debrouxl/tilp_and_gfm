@@ -43,20 +43,6 @@
 #if 0
 
 /*
-  Register a callback to use whenever the calculator is (not) ready.
-  Used for dislaying calculator status.
-  The string passed to the callback must be neither modified, nor freed.
-*/
-static READY_CALLBACK ready_cb = NULL;
-READY_CALLBACK tilp_calc_register(READY_CALLBACK new_cb)
-{
-	READY_CALLBACK old_cb = ready_cb;
-	ready_cb = new_cb;
-	return old_cb;
-}
-
-
-/*
   Check whether the calc is ready (with or without auto-detection)
 */
 int tilp_calc_isready(void)
@@ -90,8 +76,6 @@ int tilp_calc_isready(void)
 			return -1;
 		}
     }
-	if (ready_cb != NULL) {
-      ready_cb(options.lp.calc_type);
 	}
 	return 0;
 }

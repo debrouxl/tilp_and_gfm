@@ -19,7 +19,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
@@ -34,47 +34,6 @@
 #include "pbars.h"
 
 
-/******************/
-/* Initialization */
-/******************/
-
-
-static GtkWidget *statbar = NULL;
-void dnd_init(void);
-
-static void ready_callback(int status)
-{
-	gint id;
-	gchar *str;
-
-	if(status == READY_NOK)
-		str = g_strdup(_("Status: not connected."));
-	else
-		str = g_strdup_printf("Status: connected (%s).",
-					 tifiles_calctype_to_string(options.lp.
-						  calc_type));
-
-	id = gtk_statusbar_get_context_id(GTK_STATUSBAR(statbar), str);
-	gtk_statusbar_push(GTK_STATUSBAR(statbar), id, str);
-	g_free(str);
-}
-
-/*
-	char s[256] = "é";
-	char *utf;
-	int8_t utf8[16];
-	gsize bw;
-	uint16_t c;
-
-	c = 'é';
-	printf("$%02X\n", c & 0xff);
-	c = 0x3A0;
-	utf8[0] = (0xC0 | ((uint16_t)c >> 6)) & 0xff;
-	utf8[1] = (0x80 | ((uint16_t)c & 0x3f)) & 0xff;
-	utf8[2] = 0;
-	ready_callback(utf8);
-*/
-
 GtkWidget *display_tilp_dbox()
 {
 	GladeXML *xml;
@@ -82,35 +41,32 @@ GtkWidget *display_tilp_dbox()
 	GtkWidget *sb;
 	GtkWidget *paned;
 
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
 	if (!xml)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
+
 	dbox = glade_xml_get_widget(xml, "tilp_dbox");
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
-	clabel_win.label21 = glade_xml_get_widget(xml, "label21");
-	clabel_win.label22 = glade_xml_get_widget(xml, "label22");
-	toolbar_win.toolbar = glade_xml_get_widget(xml, "toolbar2");
+	clabel_wnd.label21 = glade_xml_get_widget(xml, "label21");
+	clabel_wnd.label22 = glade_xml_get_widget(xml, "label22");
+	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 
 	//toolbar_set_images();
-	toolbar_win.button10 = glade_xml_get_widget(xml, "button4");
-	toolbar_win.button11 = glade_xml_get_widget(xml, "button6");
-	toolbar_win.button12 = glade_xml_get_widget(xml, "button7");
-	toolbar_win.button13 = glade_xml_get_widget(xml, "button8");
-	toolbar_win.button14 = glade_xml_get_widget(xml, "button9");
-	toolbar_win.button20 = glade_xml_get_widget(xml, "button10");
-	toolbar_win.button21 = glade_xml_get_widget(xml, "button11");
-	toolbar_win.button22 = glade_xml_get_widget(xml, "button12");
-	statbar = sb = glade_xml_get_widget(xml, "statusbar1");
-	ready_callback(READY_NOK);
+	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button4");
+	toolbar_wnd.button11 = glade_xml_get_widget(xml, "button6");
+	toolbar_wnd.button12 = glade_xml_get_widget(xml, "button7");
+	toolbar_wnd.button13 = glade_xml_get_widget(xml, "button8");
+	toolbar_wnd.button14 = glade_xml_get_widget(xml, "button9");
+	toolbar_wnd.button20 = glade_xml_get_widget(xml, "button10");
+	toolbar_wnd.button21 = glade_xml_get_widget(xml, "button11");
+	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 	clist_init();
 	ctree_init();
 	dnd_init();
-	tilp_calc_register(ready_callback);
 
 	return dbox;
 }
@@ -119,12 +75,6 @@ GLADE_CB void on_hpaned1_size_request(GtkPaned * paned, gpointer user_data)
 {
 	options.xsize = gtk_paned_get_position(paned);
 }
-
-
-/******************/
-/* Menu callbacks */
-/******************/
-
 
 GLADE_CB void on_tilp_dbox_destroy(GtkObject * object, gpointer user_data)
 {
@@ -217,7 +167,7 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 	GList *selection;
 	if (!tilp_clist_selection_ready())
 		return;
-	selection = clist_win.selection;
+	selection = clist_wnd.selection;
 	while (selection != NULL) {
 		TilpFileInfo *f = (TilpFileInfo *) selection->data;
 		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext()) ||
@@ -450,9 +400,9 @@ void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data)
 	dst_folder = g_strdup((gchar *) user_data);
 	if (dst_folder != NULL)
 		to_flash = !strcmp(dst_folder, "FLASH");
-	if (clist_win.selection == NULL)
+	if (clist_wnd.selection == NULL)
 		return;
-	f = (TilpFileInfo *) clist_win.selection->data;
+	f = (TilpFileInfo *) clist_wnd.selection->data;
 	if (tifiles_is_a_flash_file(f->name) || tifiles_is_a_tib_file(f->name)) {
 		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_app_file_ext())) {
 			if (tilp_calc_send_flash_app(f->name) != 0)
@@ -493,9 +443,9 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton * button,
 				      gpointer user_data)
 {
 	int ret;
-	if ((ctree_win.selection != NULL)
-	    || (ctree_win.selection2 != NULL)) {
-		if (ctree_win.selection != NULL) {
+	if ((ctree_wnd.selection != NULL)
+	    || (ctree_wnd.selection2 != NULL)) {
+		if (ctree_wnd.selection != NULL) {
 			ret = tilp_calc_recv_var();
 			if (ret < 0)
 				return;
@@ -503,7 +453,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton * button,
 			else if (ret > 0)
 				display_fileselection_4();
 		}
-		if (ctree_win.selection2 != NULL) {
+		if (ctree_wnd.selection2 != NULL) {
 			ret = tilp_calc_recv_app();
 			if (ret != 0)
 				return;
@@ -560,7 +510,7 @@ GLADE_CB void on_tilp_button11_clicked(GtkButton * button,
 GLADE_CB void on_tilp_button12_clicked(GtkButton * button,
 				       gpointer user_data)
 {
-	if (!clist_win.copy_cut)
+	if (!clist_wnd.copy_cut)
 		tilp_clist_file_selection_destroy();
 	clist_refresh();
 	labels_refresh();

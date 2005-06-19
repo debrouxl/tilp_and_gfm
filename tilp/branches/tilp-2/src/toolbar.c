@@ -19,8 +19,6 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#undef GTK_DISABLE_DEPRECATED
-
 #include <gtk/gtk.h>
 
 #include "tilp_core.h"
@@ -28,87 +26,87 @@
 #include "gstruct.h"
 #include "support.h"
 
-struct toolbar_window toolbar_win = { 0 };
+struct toolbar_window toolbar_wnd = { 0 };
 
 void toolbar_set_images(void)
 {
-	GtkToolbar *tb = GTK_TOOLBAR(toolbar_win.toolbar);
+	GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
 	GtkToolbarChild *child;
 	GtkWidget *old_icon, *new_icon;
 	GdkPixbuf *pixbuf;
 
 	//gdk_pixbuf_new_from_xpm_data    (const char **data);
-	if (toolbar_win.toolbar == NULL)
+	if (toolbar_wnd.toolbar == NULL)
 		return;
 		
 	child = g_list_nth(tb->children, 0)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_ready.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_ready.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 1)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_calc_screen.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_screen.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 2)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_calc_dirlist.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_dirlist.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 3)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_calc_backup.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_backup.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 4)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_calc_restore.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_restore.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 5)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_calc_send.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_send.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 6)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_mkdir.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_mkdir.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 7)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_trash.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_trash.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 8)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_win.toolbar, "tb_refresh.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.xpm");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 }
 
-#undef GTK_DISABLE_DEPRECATED
-
-
 /* Put sensitive some buttons of the toolbar according to some options */
 void toolbar_refresh_buttons(void)
 {
-	if (toolbar_win.toolbar == NULL)
+	CalcFeatures features;
+
+	if (toolbar_wnd.toolbar == NULL)
 		return;
 
-	/* Enable or disable some buttons */
-	gtk_widget_set_sensitive(toolbar_win.button10, (ti_calc.supported_operations() & OPS_ISREADY));
-	gtk_widget_set_sensitive(toolbar_win.button11, (ti_calc.supported_operations() & OPS_DIRLIST));
-	gtk_widget_set_sensitive(toolbar_win.button12, (ti_calc.supported_operations() & OPS_RECV_BACKUP));
-	gtk_widget_set_sensitive(toolbar_win.button13, (ti_calc.supported_operations() & OPS_SEND_BACKUP));
-	gtk_widget_set_sensitive(toolbar_win.button14, !ti_calc.is_silent);
+	features = ticalcs_calc_features(calc_handle);
+
+	gtk_widget_set_sensitive(toolbar_wnd.button10, features & OPS_ISREADY);
+	gtk_widget_set_sensitive(toolbar_wnd.button11, features & OPS_DIRLIST);
+	gtk_widget_set_sensitive(toolbar_wnd.button12, features & OPS_BACKUP);
+	gtk_widget_set_sensitive(toolbar_wnd.button13, features & OPS_BACKUP);
+	gtk_widget_set_sensitive(toolbar_wnd.button14, !(features & FTS_SILENT));
 }
