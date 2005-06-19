@@ -49,9 +49,6 @@
 GtkWidget *main_wnd = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
-
-struct gfm_window gfm_win = { 0 };
-TilpGuiFncts gui_functions = { 0 };
 */
 
 /*****************/
@@ -76,16 +73,16 @@ int main(int argc, char *argv[], char **arge)
 	tilp_update_set_gtk();
 
 	/* Create the main window */
-	/*
-	splash_screen_set_label(_("Loading GUI..."));
-	main_wnd = display_tilp_dbox();
-	working_mode = MODE_GUI | MODE_GTK;
-	tilp_error(0);		// display console mode errors
-	*/
+	if(working_mode & MODE_GUI)
+	{
+		splash_screen_set_label(_("Loading GUI..."));
+		//main_wnd = display_tilp_dbox();
+		tilp_error(0);		// display console mode errors
+	}
 
 	/* In cmdline, does not display the entire window, only the pbar */
 	/*
-	if (options.show_gui) 
+	if(working_mode & MODE_GUI) 
 	{
 		gtk_widget_show_all(main_wnd);
 		toolbar_refresh_buttons();
@@ -96,45 +93,27 @@ int main(int argc, char *argv[], char **arge)
 	*/
 
 	/* Do a local directory list */
-	/*
-	g_free(clist_win.current_dir);
-	clist_win.current_dir = g_get_current_dir();
-	*/
+	g_free(local_win.cwdir);
+	local_win.cwdir = g_get_current_dir();
 
 	/* 
 	   If variables have been passed on the command line in GUI mode then
 	   send them 
 	 */
-	/*
-	   if ((working_mode & ~MODE_GUI) == MODE_GTK) {
-	   splash_screen_set_label(_("Command line..."));
-	   tilp_cmdline_send();
-	   }
-	 */
+	if((working_mode & MODE_GUI) && (working_mode & MODE_CMD)) 
+	{
+		splash_screen_set_label(_("Command line..."));
+		tilp_cmdline_send();
+	}
 
 	/* Update right list */
-	/*
 	tilp_dirlist_local();
-	clist_refresh();
-	labels_refresh();
-	*/
-
-	/* 
-	   If variables have been passed on the command line in GUI mode then
-	   open them 
-	 */
-	/*
-	   if ((working_mode & ~MODE_GUI) == MODE_GTK) {
-	   splash_screen_set_label(_("Command line..."));
-	   tilp_cmdline_send();
-	   }
-	   */
+	//clist_refresh();
+	//labels_refresh();
 
 	/* GTK main loop */
 	splash_screen_stop();
-
 	gtk_main();
-
 	tilp_exit();
 
 	return 0;

@@ -35,7 +35,7 @@ struct progress_window p_win = { 0 };
 
 static GtkWidget *pbar_window = NULL;
 
-/* Create a window with one progress bar */
+/* Create a window with 1 progress bar */
 void create_pbar_type1(const gchar * title)
 {
 	GladeXML *xml;
@@ -59,7 +59,7 @@ void create_pbar_type1(const gchar * title)
 }
 
 
-/* Create a window with one label */
+/* Create a window with 1 label */
 void create_pbar_type2(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
@@ -83,7 +83,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 }
 
 
-/* Create a window with two progress bars */
+/* Create a window with 2 progress bars */
 void create_pbar_type3(const gchar * title)
 {
 	GladeXML *xml;
@@ -110,7 +110,7 @@ void create_pbar_type3(const gchar * title)
 }
 
 
-/* Create a window with a one progress bar and one label */
+/* Create a window with a 1 progress bar and 1 label */
 void create_pbar_type4(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
@@ -136,7 +136,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 }
 
 
-/* Create a window with two progress bars and one label */
+/* Create a window with 2 progress bars and 1 label */
 void create_pbar_type5(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
@@ -165,9 +165,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 }
 
 
-/* 
-   Destroy a pbar window
-*/
+/* Destroy a pbar window */
 void destroy_pbar(void)
 {
 	p_win.pbar1 = NULL;

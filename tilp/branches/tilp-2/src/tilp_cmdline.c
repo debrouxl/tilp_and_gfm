@@ -120,7 +120,7 @@ int tilp_cmdline_scan(int argc, char **argv)
 		g_strfreev(flist);
 	}
 
-	// use GUI ?
+	// don't use GUI ?
 	if(use_gui)
 		working_mode |= MODE_GUI;
 	else

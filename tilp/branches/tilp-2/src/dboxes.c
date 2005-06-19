@@ -21,7 +21,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif				
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
@@ -72,7 +72,8 @@ int msg_box1(const gchar * title, gchar * message)
 		gtk_widget_show(label);
 
 		result = gtk_dialog_run(GTK_DIALOG(dialog));
-		switch (result) {
+		switch (result) 
+		{
 		case GTK_RESPONSE_OK:
 			break;
 		default:

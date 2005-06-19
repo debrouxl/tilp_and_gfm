@@ -43,7 +43,7 @@ TilpOptions options    = { 0 };
 TilpLocal   local_win  = { 0 };
 TilpRemote  remote_win = { 0 };
 
-gint working_mode = MODE_INI;
+int working_mode = MODE_INI;
 
 /* Ctrl+C signal handler */
 static void signal_handler(int sig_no)
@@ -145,7 +145,7 @@ int tilp_init(int argc, char *argv[], char **arge)
 	   and exit else fallback on a graphic interface.
 	 */
 #ifndef __MACOSX__
-	if (working_mode & MODE_CMD) 
+	if((working_mode & MODE_CMD) && !(working_mode & MODE_GUI))
 	{
 		//tilp_cmdline_send();
 		exit(0);

@@ -159,6 +159,8 @@ extern TilpOptions	options;
 extern TilpLocal	local_win;
 extern TilpRemote	remote_win;
 
+extern int			working_mode;
+
 #ifdef __cplusplus
 }
 #endif

@@ -24,5 +24,6 @@
 
 void tilp_cmdline_version(void);
 int  tilp_cmdline_scan(int argc, char **argv);
+int  tilp_cmdline_send(void);
 
 #endif
