@@ -135,7 +135,7 @@ void tilp_rename_selected_files()
 
 		if (tilp_file_move(fi->name, filename) < 0) 
 		{
-			gif->msg_box(_("Information"), _
+			gif->msg_box1(_("Information"), _
 				     ("Unable to rename the file or directory."));
 			g_free(filename);
 		}
@@ -151,7 +151,7 @@ int tilp_clist_selection_ready(void)
 	if (local_win.selection == NULL) 
 	{
 #ifndef __MACOSX__
-		gif->msg_box(_("Information"), _
+		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
 #endif /* !__MACOSX__ */
 		return 0;
@@ -164,7 +164,7 @@ int tilp_ctree_selection_ready(void)
 	if (remote_win.selection == NULL) 
 	{
 #ifndef __MACOSX__
-		gif->msg_box(_("Information"), _
+		gif->msg_box1(_("Information"), _
 			     ("A variable must have been selected in the left window."));
 #endif /* !__MACOSX__ */
 		return 0;
@@ -177,7 +177,7 @@ int tilp_ctree_selection2_ready(void)
 	if (remote_win.selection2 == NULL) 
 	{
 #ifndef __MACOSX__
-		gif->msg_box(_("Information"), _
+		gif->msg_box1(_("Information"), _
 			     ("A variable must have been selected in the left window."));
 #endif /* !__MACOSX__ */
 		return 0;

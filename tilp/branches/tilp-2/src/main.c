@@ -39,6 +39,7 @@
 #include "tilp_core.h"
 #include "support.h"
 #include "splash.h"
+#include "gtk_update.h"
 
 /**************/
 /* My widgets */
@@ -71,21 +72,8 @@ int main(int argc, char *argv[], char **arge)
 	splash_screen_start();
 
 	/* Init the GUI independant functions */
-	/*
-	gui_functions.msg_box = msg_box;
-	gui_functions.msg_box2 = msg_box2;
-	gui_functions.msg_box3 = msg_box3;
-	gui_functions.msg_box4 = msg_box4;
-	gui_functions.msg_entry = msg_entry;
-	gui_functions.create_pbar_type1 = create_pbar_type1;
-	gui_functions.create_pbar_type2 = create_pbar_type2;
-	gui_functions.create_pbar_type3 = create_pbar_type3;
-	gui_functions.create_pbar_type4 = create_pbar_type4;
-	gui_functions.create_pbar_type5 = create_pbar_type5;
-	gui_functions.destroy_pbar = destroy_pbar;
-	tilp_gui_set_fncts(&gui_functions);
-	tilp_guigtk_set_refresh();
-	*/
+	tilp_gif_set_gtk();
+	tilp_update_set_gtk();
 
 	/* Create the main window */
 	/*
@@ -97,7 +85,8 @@ int main(int argc, char *argv[], char **arge)
 
 	/* In cmdline, does not display the entire window, only the pbar */
 	/*
-	if (options.show_gui) {
+	if (options.show_gui) 
+	{
 		gtk_widget_show_all(main_wnd);
 		toolbar_refresh_buttons();
 		icon = create_pixbuf("icon.xpm");

@@ -132,9 +132,20 @@ SOURCE="..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # Begin Group "Source Files"
 
 # PROP Default_Filter ""
+# Begin Group "gui"
+
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\src\main.c
+SOURCE=..\..\src\gtk_gif.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\gtk_update.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\pbars.c
 # End Source File
 # Begin Source File
 
@@ -145,55 +156,7 @@ SOURCE=..\..\src\splash.c
 SOURCE=..\..\src\support.c
 # End Source File
 # End Group
-# Begin Group "Header Files"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\src\tilp_calcs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_defs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_files.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_indep.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_log.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_paths.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_struct.h
-# End Source File
-# End Group
-# Begin Group "Resource Files"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\tilp.ico
-# End Source File
-# Begin Source File
-
-SOURCE=.\Tilp.rc
-# End Source File
-# Begin Source File
-
-SOURCE=.\tilp2.ico
-# End Source File
-# End Group
-# Begin Group "TiLP core"
+# Begin Group "core"
 
 # PROP Default_Filter ""
 # Begin Source File
@@ -255,6 +218,59 @@ SOURCE=..\..\src\tilp_update.c
 # Begin Source File
 
 SOURCE=..\..\src\tilp_vars.c
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\..\src\main.c
+# End Source File
+# End Group
+# Begin Group "Header Files"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\src\tilp_calcs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_defs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_files.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_indep.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_log.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_paths.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_struct.h
+# End Source File
+# End Group
+# Begin Group "Resource Files"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\tilp.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\Tilp.rc
+# End Source File
+# Begin Source File
+
+SOURCE=.\tilp2.ico
 # End Source File
 # End Group
 # Begin Source File

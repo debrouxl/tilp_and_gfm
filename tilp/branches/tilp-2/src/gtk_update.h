@@ -22,7 +22,10 @@
 #ifndef GTK_REFRESH_H
 #define GTK_REFRESH_H
 
-void tilp_guigtk_set_refresh(void);
+extern CalcUpdate	gtk_update;
+
+void tilp_gif_set_gtk(void);
+void tilp_update_set_gtk(void);
 
 #define GTK_REFRESH() { while( gtk_events_pending() ) { gtk_main_iteration(); }}
 

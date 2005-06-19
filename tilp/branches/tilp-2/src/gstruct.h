@@ -24,7 +24,6 @@
 
 #include <gtk/gtk.h>
 
-
 /* The main window */
 extern GtkWidget *main_wnd;
 extern GtkWidget *clist_wnd;
@@ -33,7 +32,8 @@ extern GtkWidget *scrn_wnd;
 extern GtkWidget *status;
 
 /* This struct is used by the toolbar */
-extern struct toolbar_window {
+extern struct toolbar_window 
+{
 	GtkWidget *toolbar;
 	GtkWidget *button10;
 	GtkWidget *button11;
@@ -46,7 +46,8 @@ extern struct toolbar_window {
 } toolbar_win;
 
 /* This struct is used by the CLabel window */
-extern struct clabel_window {
+extern struct clabel_window 
+{
 	GtkWidget *widget;
 	GtkWidget *label11;
 	GtkWidget *label12;
@@ -61,7 +62,8 @@ extern struct clabel_window {
 } clabel_win;
 
 /* This struct is used to display and manage the progress bar dialog box */
-extern struct progress_window {
+extern struct progress_window 
+{
 	GtkWidget *window;
 	GtkWidget *pbar1;
 	GtkWidget *pbar2;
@@ -70,7 +72,8 @@ extern struct progress_window {
 } p_win;
 
 /* This struct is used by the Group File Manager */
-extern struct gfm_window {
+extern struct gfm_window 
+{
 	GtkWidget *widget;
 	GtkWidget *label11;
 	GtkWidget *label12;

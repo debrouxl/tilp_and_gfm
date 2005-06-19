@@ -42,11 +42,11 @@ int tilp_drive_change(char drive_letter)
 	s = g_strdup(local_win.cwdir);
 	if (tilp_chdir(s) == -1) 
 	{
-		gif->msg_box(_("Error"), _("Unable to change directory."));
+		gif->msg_box1(_("Error"), _("Unable to change directory."));
 	}
 	g_free(s);
 #else				
-	gif->msg_box(_("Information"), _("This function is not available in the Win version."));
+	gif->msg_box1(_("Information"), _("This function is not available in the Win version."));
 
 #endif				
 	return 0;
@@ -75,7 +75,7 @@ int tilp_tifiles_ungroup(void)
 			return -1;
 		if(!strcmp(dirname, ".") || !strcmp(dirname, ""))
 		{
-			gif->msg_box(_("Error"), _("You can't ungroup in this folder."));
+			gif->msg_box1(_("Error"), _("You can't ungroup in this folder."));
 			return -1;
 		}
 		tilp_file_mkdir(dirname);
@@ -83,7 +83,7 @@ int tilp_tifiles_ungroup(void)
 		/*
 		   if(mkdir(dirname))
 		   {
-		   gif->msg_box(_("Information"), 
+		   gif->msg_box1(_("Information"), 
 		   _("Unable to create the directory.\n\n"));
 		   g_free(dirname);
 		   } */
@@ -114,7 +114,7 @@ int tilp_tifiles_group(void)
 	if (!tilp_clist_selection_ready())
 		return -1;
 	if (g_list_length(local_win.selection) < 2) {
-		gif->msg_box(_("Error"),
+		gif->msg_box1(_("Error"),
 			     _("You must select at least 2 files.\n\n"));
 		return -1;
 	}

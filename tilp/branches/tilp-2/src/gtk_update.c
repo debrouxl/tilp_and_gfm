@@ -20,7 +20,7 @@
  */
 
 /*
-  libticalcs update functions in GTK mode
+	GTK callbacks for ticalcs library (gui)
 */
 
 #include <stdio.h>
@@ -28,23 +28,19 @@
 
 #include "tilp_core.h"
 #include "gstruct.h"
-#include "gtk_refresh.h"
+#include "gtk_update.h"
 
-#define SPEED_UP	// do'nt do too many pbar refresh
-
-static TicableDataRate *dr;
-
-static void gtkgui_start(void)
+static void gtk_start(void)
 {
-	info_update.prev_percentage = info_update.percentage = 0.0;
-	ticable_get_datarate(&dr);
+	gtk_update.cnt1 = gtk_update.max1 = 0;
+	gtk_update.cnt2 = gtk_update.max2 = 0;
 } 
 
-static void gtkgui_stop(void)
+static void gtk_stop(void)
 {
-	info_update.prev_percentage = info_update.percentage = 0.0;
+	gtk_update.cnt1 = gtk_update.max1 = 0;
+	gtk_update.cnt2 = gtk_update.max2 = 0;
 } 
-
 
 static void filter_shift(void);
 static gfloat filter_compute(gfloat input);
@@ -54,30 +50,17 @@ static void refresh_pbar1(void)
 	gchar buffer[32];
 	gfloat rate, avg;
   
-	info_update.percentage = (float) info_update.count / info_update.total;
-
 	if (p_win.pbar1 != NULL) 
     {
-#ifdef SPEED_UP
-		/* Refresh if necessary (for speeding up !) */
-		if ((info_update.percentage - info_update.prev_percentage) < 0.05) 
-		{
-			if ((info_update.percentage - info_update.prev_percentage) < 0)
-				info_update.prev_percentage = info_update.percentage;
-			else
-				return;
-		} 
-		else
-			info_update.prev_percentage = info_update.percentage;
-#endif
-		rate = dr->count / toCURRENT(dr->start);
-		
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar1), 
+			(float)gtk_update.cnt1 / gtk_update.max1);
+
+		rate = gtk_update.rate;
 		filter_shift();
 		avg = filter_compute(rate);
 
 		g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", avg / 1000);
 		gtk_label_set_text(GTK_LABEL(p_win.label_rate), buffer);
-		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar1), info_update.percentage);
 
 		GTK_REFRESH();
 	}
@@ -87,21 +70,14 @@ static void refresh_pbar2(void)
 {
 	if (p_win.pbar2 != NULL) 
     {
-#ifdef SPEED_UP
-		/* Refresh if necessary (for speeding up !) */
-		if ((info_update.main_percentage - info_update.prev_main_percentage) < 0.05)
-			return;
-		else
-			info_update.prev_main_percentage = info_update.main_percentage;
-#endif
-
-		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar2), info_update.main_percentage);
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(p_win.pbar2), 
+			(float)gtk_update.cnt2 / gtk_update.max2);
 
 		GTK_REFRESH();
     }
 }
 
-static void gtkgui_pbar(void)
+static void gtk_pbar(void)
 {
 	refresh_pbar1();
 	refresh_pbar2();
@@ -110,28 +86,36 @@ static void gtkgui_pbar(void)
 // note: info_update.label_text is encoded in UTF8 but variable names ('%s')
 // are encoded according to tifiles_translate_set_encoding().
 // This should be treated here but given that encoding is set to UTF8, there
-// nothing to do...
-static void gtkgui_label(void)
+// is nothing to do...
+static void gtk_label(void)
 {
 	if (p_win.label == NULL)
 		return;
 
-	gtk_label_set_text(GTK_LABEL(p_win.label), info_update.label_text);
+	gtk_label_set_text(GTK_LABEL(p_win.label), gtk_update.text);
 
 	GTK_REFRESH();
 }
 
-static void gtkgui_refresh(void)
+static void gtk_refresh(void)
 {
 	GTK_REFRESH();
 }
 
-void tilp_guigtk_set_refresh(void)
+CalcUpdate gtk_update =
 {
-	ticalc_set_update(&info_update, gtkgui_start, gtkgui_stop,
-		    gtkgui_refresh, gtkgui_pbar, gtkgui_label);
-	printl(0, _("initialized in GTK+ mode.\n"));
-	return;
+	"", 0,
+	0.0, 0, 0, 0, 0,
+	gtk_start,
+	gtk_stop,
+	gtk_refresh,
+	gtk_pbar,
+	gtk_label,
+};
+
+void tilp_update_set_gtk(void)
+{
+	ticalcs_update_set(calc_handle, &gtk_update);
 }
 
 

@@ -80,10 +80,10 @@ int tilp_err(int errcode)
             // FIXME OS X : we'll need to go full-UTF8 at some point
 #ifndef __MACOSX__
 			utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
-			gif->msg_box(_("Error"), utf);
+			gif->msg_box1(_("Error"), utf);
 #else
 			if(s)
-				gif->msg_box(_("Error"), s);
+				gif->msg_box1(_("Error"), s);
 #endif /* !__MACOSX__ */
 		}
 		g_list_free(stack);

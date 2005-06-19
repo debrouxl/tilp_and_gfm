@@ -121,14 +121,14 @@ int tilp_init(int argc, char *argv[], char **arge)
 		options.cable_port);
 	if(cable_handle == NULL)
 	{
-		gif->msg_box("Error", "Can't set cable");
+		gif->msg_box1("Error", "Can't set cable");
 	}
 	else
 	{
 		calc_handle = ticalcs_handle_new(options.calc_model);
 		if(cable_handle == NULL)
 		{
-			gif->msg_box("Error", "Can't set cable");
+			gif->msg_box1("Error", "Can't set cable");
 		}
 		else
 		{

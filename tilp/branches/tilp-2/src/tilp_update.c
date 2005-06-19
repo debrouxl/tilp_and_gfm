@@ -27,16 +27,14 @@
 
 #include "tilp_core.h"
 
-extern CalcUpdate default_update;
+extern CalcUpdate	default_update;
 
 static void default_start(void)
 {
-	default_update.cnt1 = default_update.max1 = 0;
 } 
 
 static void default_stop(void)
 {
-	default_update.cnt1 = default_update.max1 = 0;
 } 
 
 static void default_pbar(void)
@@ -78,12 +76,10 @@ static void default_pbar(void)
 
 static void default_label(void)
 {
-	return;
 }
 
 static void default_refresh(void)
 {
-	return;
 }
 
 CalcUpdate default_update =

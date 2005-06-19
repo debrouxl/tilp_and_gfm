@@ -36,7 +36,8 @@ extern "C" {
 typedef struct 
 {
     // Display a modal OK dialog box with a title and a message
-    void (*msg_box) (const char *title, char *message);
+	int (*msg_box ) (const char *title, char *message);
+    int (*msg_box1) (const char *title, char *message);
 
     // Display a modal OK/Cancel dialog box
     int (*msg_box2) (const char *title, char *message);
@@ -76,6 +77,7 @@ typedef struct
 
 extern TilpGuiFncts *gif;
 
+void tilp_gui_set_fncts(TilpGuiFncts*);
 void tilp_gif_set_default(void);
 void tilp_update_set_default(void);
 

@@ -276,7 +276,7 @@ int tilp_config_write(void)
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
-		gif->msg_box(_("Error"), _
+		gif->msg_box1(_("Error"), _
 			     ("Unable to write the config file (~/.tilp or tilp.ini).\n"));
 		return -1;
 	}
@@ -410,7 +410,7 @@ int tilp_config_read(void)
 int tilp_config_save(void)
 {
 	tilp_config_write();
-	gif->msg_box(_("Information"), _("Configuration file saved."));
+	gif->msg_box1(_("Information"), _("Configuration file saved."));
 
 	return 0;
 }
@@ -418,7 +418,7 @@ int tilp_config_save(void)
 int tilp_config_load(void)
 {
 	tilp_config_read();
-	gif->msg_box(_("Information"), _("Configuration file loaded."));
+	gif->msg_box1(_("Information"), _("Configuration file loaded."));
 
 	return 0;
 }

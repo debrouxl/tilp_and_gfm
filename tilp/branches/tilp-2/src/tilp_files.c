@@ -116,7 +116,7 @@ int tilp_file_delete(const char *f)
 {
 	if (!DeleteFile(f)/*RemoveDirectory(f)*/) 
 	{
-		gif->msg_box(_("Information"), _
+		gif->msg_box1(_("Information"), _
 			     ("Unable to remove the file !"));
 		return -1;
 	}
@@ -135,7 +135,7 @@ int tilp_file_delete(const char *f)
 
 		if (remove(f) == -1) 
 		{
-			gif->msg_box(_("Information"), _
+			gif->msg_box1(_("Information"), _
 				     ("Unable to remove the file. You can not delete non empty folders !"));
 			return -1;
 		}
@@ -155,7 +155,7 @@ int tilp_file_mkdir(const char *pathname)
 
 	if (mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)) 
 	{
-		gif->msg_box(_("Information"), _("Unable to create the directory.\n\n"));
+		gif->msg_box1(_("Information"), _("Unable to create the directory.\n\n"));
 	}
 	seteuid(effective);
 
@@ -246,7 +246,7 @@ int tilp_file_move_with_check(const char *src, const char *dst)
 	{
 		if (tilp_file_move(src, dst2)) 
 		{
-			gif->msg_box(_("Error"),
+			gif->msg_box1(_("Error"),
 				     _
 				     ("Unable to move the temporary file.\n"));
 			g_free(dst2);
@@ -284,7 +284,7 @@ int tilp_file_chdir(const char *path)
 	if (chdir(path)) 
 	{
 		tilp_warning(_("Chdir error.\n"));
-		gif->msg_box(_("Error"), _("Unable to change directory."));
+		gif->msg_box1(_("Error"), _("Unable to change directory."));
 		return -1;
 	}
 	seteuid(effective);
@@ -307,7 +307,7 @@ int tilp_file_chdir(const char *path)
 
 			if (gif != NULL) 
 			{
-				gif->msg_box(_("Error"), _
+				gif->msg_box1(_("Error"), _
 					     ("You can not go outside of your HOME directory."));
 			} 
 			else 
@@ -331,7 +331,7 @@ int tilp_file_chdir(const char *path)
 	{
 		tilp_warning(_("Chdir error.\n"));
 		if (gif)
-			gif->msg_box(_("Error"), _("Unable to change directory."));
+			gif->msg_box1(_("Error"), _("Unable to change directory."));
 		return -1;
 	}
 	return 0;
@@ -552,7 +552,7 @@ int tilp_file_dirlist(void)
 	dir = g_dir_open(local_win.cwdir, 0, &error);
 	if (dir == NULL) 
 	{
-		gif->msg_box("Error", "Unable to open directory !");
+		gif->msg_box1("Error", "Unable to open directory !");
 		return -1;
 	}
 
