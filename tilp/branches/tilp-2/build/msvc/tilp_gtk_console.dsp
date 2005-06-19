@@ -153,6 +153,10 @@ SOURCE=..\..\src\gtk_update.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\labels.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\manpage.c
 # End Source File
 # Begin Source File
@@ -170,6 +174,14 @@ SOURCE=..\..\src\splash.c
 # Begin Source File
 
 SOURCE=..\..\src\support.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\toolbar.c
 # End Source File
 # End Group
 # Begin Group "core"

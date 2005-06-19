@@ -38,7 +38,6 @@ GtkWidget *display_tilp_dbox()
 {
 	GladeXML *xml;
 	GtkWidget *dbox;
-	GtkWidget *sb;
 	GtkWidget *paned;
 
 	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
@@ -49,8 +48,8 @@ GtkWidget *display_tilp_dbox()
 	dbox = glade_xml_get_widget(xml, "tilp_dbox");
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
-	clabel_wnd.label21 = glade_xml_get_widget(xml, "label21");
-	clabel_wnd.label22 = glade_xml_get_widget(xml, "label22");
+	label_wnd.label21 = glade_xml_get_widget(xml, "label21");
+	label_wnd.label22 = glade_xml_get_widget(xml, "label22");
 	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 
 	//toolbar_set_images();
@@ -64,9 +63,12 @@ GtkWidget *display_tilp_dbox()
 	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
+	
+	/*
 	clist_init();
 	ctree_init();
 	dnd_init();
+	*/
 
 	return dbox;
 }
@@ -78,12 +80,7 @@ GLADE_CB void on_hpaned1_size_request(GtkPaned * paned, gpointer user_data)
 
 GLADE_CB void on_tilp_dbox_destroy(GtkObject * object, gpointer user_data)
 {
-	tilp_error(link_cable.exit());
 	gtk_main_quit();
-}
-
-GLADE_CB void on_open1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
 }
 
 GLADE_CB void on_save_config1_activate(GtkMenuItem * menuitem,
@@ -112,48 +109,36 @@ GLADE_CB void on_quit1_activate(GtkMenuItem * menuitem, gpointer user_data)
 GLADE_CB void on_general1_activate(GtkMenuItem * menuitem,
 				   gpointer user_data)
 {
-	display_general_dbox();
-}
-
-GLADE_CB void on_external_programs1_activate(GtkMenuItem * menuitem,
-					     gpointer user_data)
-{
-	display_extprgms_dbox();
+	//display_options_dbox();
 }
 
 GLADE_CB void on_communication1_activate(GtkMenuItem * menuitem,
 					 gpointer user_data)
 {
-	display_comm_dbox();
+	//display_device_dbox();
 }
 
 GLADE_CB void on_clock1_activate(GtkMenuItem * menuitem,
 				 gpointer user_data)
 {
-	display_clock_dbox();
+	//display_clock_dbox();
 }
 
-GLADE_CB void on_get_idlist1_activate(GtkMenuItem * menuitem,
-				      gpointer user_data)
+GLADE_CB void on_get_idlist1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
-	tilp_calc_idlist();
-}
-
-GLADE_CB void on_remote1_activate(GtkMenuItem * menuitem,
-				  gpointer user_data)
-{
-	msg_box("Information",
-		"This function is no longer available...\nPlease use TiEmu (http://lpg.ticalc.org/prj_tiemu) as a better replacement.");
+	//tilp_calc_idlist();
 }
 
 GLADE_CB void on_rom_dump1_activate(GtkMenuItem * menuitem,
 				    gpointer user_data)
 {
+	/*
 	if (tilp_calc_rom_dump())
 		return;
 	display_fileselection_7();
 	clist_refresh();
 	labels_refresh();
+	*/
 }
 
 
@@ -164,6 +149,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem * menuitem,
 GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 				      gpointer user_data)
 {
+	/*
 	GList *selection;
 	if (!tilp_clist_selection_ready())
 		return;
@@ -184,6 +170,7 @@ GLADE_CB void on_upgrade_os1_activate(GtkMenuItem * menuitem,
 			return;
 		}
 	}
+	*/
 }
 
 static void go_to_bookmark(const char *link)
