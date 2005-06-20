@@ -29566,6 +29566,12 @@ echo "${ECHO_T}${msnative_struct}" >&6
   ;;
 esac
 
+case "$host" in
+  *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
+  *)          EXFL="" ;;
+esac
+LDFLAGS="$LDFLAGS $EXFL"
+
 # Output.
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure

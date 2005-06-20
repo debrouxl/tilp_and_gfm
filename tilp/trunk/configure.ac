@@ -169,6 +169,12 @@ case $host_os in
   ;;
 esac
 
+case "$host" in
+  *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
+  *)          EXFL="" ;;
+esac
+LDFLAGS="$LDFLAGS $EXFL"
+
 # Output.
 AC_OUTPUT
 
