@@ -237,7 +237,7 @@
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="history">0</property>
-		      <signal name="changed" handler="comm_optionmenu2_changed" last_modification_time="Tue, 06 Apr 2004 16:54:20 GMT"/>
+		      <signal name="changed" handler="clock_optionmenu2_changed" last_modification_time="Mon, 20 Jun 2005 08:26:47 GMT"/>
 
 		      <child>
 			<widget class="GtkMenu" id="menu2">
@@ -483,7 +483,7 @@
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="history">0</property>
-		      <signal name="changed" handler="comm_optionmenu1_changed" last_modification_time="Tue, 06 Apr 2004 16:54:09 GMT"/>
+		      <signal name="changed" handler="clock_optionmenu1_changed" last_modification_time="Mon, 20 Jun 2005 08:26:26 GMT"/>
 
 		      <child>
 			<widget class="GtkMenu" id="menu1">

@@ -188,7 +188,7 @@ GLADE_CB void clock_entry2_changed(GtkEditable * editable,
 }
 */
 
-GLADE_CB void comm_optionmenu2_changed     (GtkOptionMenu   *optionmenu,
+GLADE_CB void clock_optionmenu2_changed     (GtkOptionMenu   *optionmenu,
                                             gpointer         user_data)
 {
 	gint nitem = gtk_option_menu_get_history(optionmenu);
@@ -196,7 +196,7 @@ GLADE_CB void comm_optionmenu2_changed     (GtkOptionMenu   *optionmenu,
 	tmp_clk.date_format = nitem + 1;
 }
 
-GLADE_CB void comm_optionmenu1_changed     (GtkOptionMenu   *optionmenu,
+GLADE_CB void clock_optionmenu1_changed     (GtkOptionMenu   *optionmenu,
                                             gpointer         user_data)
 {
 	gint nitem = gtk_option_menu_get_history(optionmenu);

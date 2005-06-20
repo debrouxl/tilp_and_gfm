@@ -141,6 +141,14 @@ SOURCE=..\..\src\about.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\bookmark.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\clock.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\dboxes.c
 # End Source File
 # Begin Source File

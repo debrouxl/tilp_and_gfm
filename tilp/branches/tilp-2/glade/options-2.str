@@ -4,7 +4,7 @@
  * DO NOT compile it as part of your application.
  */
 
-gchar *s = N_("General options");
+gchar *s = N_("Options");
 gchar *s = N_("sin_gle");
 gchar *s = N_("_group");
 gchar *s = N_("Receiving files");

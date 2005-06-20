@@ -1,3 +1,3 @@
 #include <gtk/gtk.h>
 
-gint display_general_dbox();
+gint display_options_dbox();

@@ -123,7 +123,7 @@ GLADE_CB void on_quit1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	//display_options_dbox();
+	display_options_dbox();
 }
 
 GLADE_CB void on_devices1_activate(GtkMenuItem* menuitem, gpointer user_data)
