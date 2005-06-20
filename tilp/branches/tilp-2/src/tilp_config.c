@@ -64,15 +64,15 @@ int tilp_config_default(void)
 	options.remote_sort_order = SORT_DOWN;
 
 	options.overwrite = CONFIRM_YES;
-	options.full_path = PATH_FULL;
-	options.show_hidden = SHOW_TIF;
+	options.local_path = 0;
+	options.show_hidden = 0;
 
 	options.screen_format = PNG;
 	options.screen_clipping = SCREEN_CLIPPED;
 	options.screen_blurry = 0;
 
-	options.auto_detect = !0;
-	options.recv_as_group = RECV_AS_GROUP;
+	options.auto_detect = 1;
+	options.recv_as_group = 1;
 
 	options.cable_model = CABLE_NUL;
 	options.cable_port = PORT_0;
@@ -222,8 +222,8 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect hand-held model", &error);
 
-	g_key_file_set_integer(kf, SECTION_OPTIONS, "full_path", options.full_path);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "full_path", "Use full path when sending variables", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "local_path", options.local_path);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "local_path", "Use full path when sending variables", &error);
 
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_hidden", options.show_hidden);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_hidden", "Show hidden files in local view", &error);
@@ -357,8 +357,8 @@ int tilp_config_read(void)
 	// Section [OPTIONS]
 	options.auto_detect = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "auto_detect", &error);
-	options.full_path = 
-		g_key_file_get_integer(kf, SECTION_OPTIONS, "full_path", &error);
+	options.local_path = 
+		g_key_file_get_integer(kf, SECTION_OPTIONS, "local_path", &error);
 	options.show_hidden = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "show_hidden", &error);
 	options.overwrite = 

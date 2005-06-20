@@ -22,15 +22,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gtk/gtk.h>
 #include <glib.h>
-
-#include "tilp_core.h"
+#include <gtk/gtk.h>
 
 #include "gstruct.h"
 #include "support.h"
 #include "labels.h"
-#include "popup.h"
+//#include "popup.h"
+#include "tilp_core.h"
 
 #ifdef __WIN32__
 #include "dirent.h"	// S_ISDIR
@@ -38,11 +37,14 @@
 
 static GtkListStore *list;
 
-enum { COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, COLUMN_DATA,
-	COLUMN_ICON, COLUMN_NUMBER
+enum 
+{ 
+	COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, 
+	COLUMN_DATA, COLUMN_ICON, COLUMN_NUMBER
 };
 
-#define CLIST_NCOLS COLUMN_DATA
+#define CLIST_NVCOLS	(4)		// 4 visible columns
+#define CLIST_NCOLS		(7)		// 7 real columns
 
 
 /******************/
@@ -50,23 +52,25 @@ enum { COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, COLUMN_DATA,
 /******************/
 
 
-static gboolean select_func(GtkTreeSelection * selection,
-			    GtkTreeModel * model,
-			    GtkTreePath * path,
+static gboolean select_func(
+				GtkTreeSelection* selection,
+			    GtkTreeModel* model,
+			    GtkTreePath* path,
 			    gboolean path_currently_selected,
 			    gpointer data)
 {
 	GtkTreeIter iter;
-	TilpFileInfo *fi;
+	FileEntry *fi;
+
 	gtk_tree_model_get_iter(model, &iter, path);
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &fi, -1);
 	if (S_ISDIR(fi->attrib))
 		return FALSE;
+
 	return TRUE;
 }
 
-static void tree_selection_changed(GtkTreeSelection * selection,
-				   gpointer user_data)
+static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_data)
 {
 	GList *list;
 	GtkTreeIter iter;
@@ -82,21 +86,22 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 
 	// create a new selection
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
-	while (list != NULL) {
+	while (list != NULL) 
+	{
 		GtkTreePath *path = list->data;
-		TilpFileInfo *fi;
+		FileEntry *fi;
 		gchar *full_path;
 
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fi, -1);
 
-		clist_win.selection =
-		    g_list_append(clist_win.selection, fi);
+		local_win.selection =
+		    g_list_append(local_win.selection, fi);
 		full_path =
-		    g_strconcat(clist_win.current_dir, DIR_SEPARATOR,
+		    g_strconcat(local_win.cwdir, G_DIR_SEPARATOR_S,
 				fi->name, NULL);
-		clist_win.file_selection =
-		    g_list_append(clist_win.file_selection, full_path);
+		local_win.file_selection =
+		    g_list_append(local_win.file_selection, full_path);
 		list = g_list_next(list);
 	}
 }
@@ -192,7 +197,7 @@ void clist_refresh(void)
 	gtk_list_store_clear(list);
 
 	// sort files
-	switch (options.clist_sort) {
+	switch (options.local_sort) {
 	case SORT_BY_NAME:
 		tilp_sort_files_by_name();
 		break;
@@ -208,10 +213,10 @@ void clist_refresh(void)
 
 	pix1 = create_pixbuf("up.ico");
 	pix2 = create_pixbuf("clist_dir.xpm");
-	for (dirlist = clist_win.dirlist; dirlist != NULL;
+	for (dirlist = local_win.dirlist; dirlist != NULL;
 	     dirlist = dirlist->next) {
-		TilpFileInfo *fi = (TilpFileInfo *) dirlist->data;
-		if ((options.file_disp == SHOW_ALL) || S_ISDIR(fi->attrib) || 
+		FileEntry *fi = (FileEntry *) dirlist->data;
+		if ((options.show_hidden) || S_ISDIR(fi->attrib) || 
 			(tifiles_is_a_ti_file(fi->name) && 
 			((tifiles_which_calc_type(fi->name) == options.lp.calc_type) || tifiles_is_a_tib_file(fi->name))) ||
 			((tifiles_which_calc_type(fi->name) == CALC_TI89) && (options.lp.calc_type == CALC_TI89T)) ||
@@ -269,8 +274,8 @@ void clist_refresh(void)
 
 
 GLADE_CB gboolean
-on_treeview2_button_press_event(GtkWidget * widget,
-				GdkEventButton * event, gpointer user_data)
+on_treeview2_button_press_event(GtkWidget* widget,
+				GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
@@ -281,7 +286,7 @@ on_treeview2_button_press_event(GtkWidget * widget,
 	gint tx = (gint) event->x;
 	gint ty = (gint) event->y;
 	gint cx, cy;
-	TilpFileInfo *fi;
+	FileEntry *fi;
 
 	gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx,
 				      &cy);
@@ -305,8 +310,8 @@ on_treeview2_button_press_event(GtkWidget * widget,
 
 			// go into folder
 			tilp_chdir(fi->name);
-			g_free(clist_win.current_dir);
-			clist_win.current_dir = g_get_current_dir();
+			g_free(local_win.cwdir);
+			local_win.cwdir = g_get_current_dir();
 			clist_refresh();
 			labels_refresh();
 		} else {
@@ -333,7 +338,7 @@ on_treeview2_button_press_event(GtkWidget * widget,
 
 /* Key pressed */
 GLADE_CB gboolean
-on_treeview2_key_press_event(GtkWidget * widget, GdkEventKey * event,
+on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
 			     gpointer user_data)
 {
 	if (event->keyval == GDK_Delete) {

@@ -67,7 +67,7 @@ typedef struct
 
 	// options
 	int		auto_detect;
-    int		full_path;
+    int		local_path;
     int		show_hidden;
 	int		overwrite;
     int		recv_as_group;

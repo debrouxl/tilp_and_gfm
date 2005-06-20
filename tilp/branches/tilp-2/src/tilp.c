@@ -37,12 +37,13 @@
 #include "labels.h"
 #include "clock.h"
 #include "release.h"
+#include "options.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
 #endif				/* __WIN32__ */
 
-GtkWidget *main_wnd = NULL;
+GtkWidget *main_wnd  = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
 
@@ -60,13 +61,14 @@ GtkWidget *display_tilp_dbox()
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "tilp_dbox");
+
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
+
 	label_wnd.label21 = glade_xml_get_widget(xml, "label26");
 	label_wnd.label22 = glade_xml_get_widget(xml, "label24");
-	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 
-	//toolbar_set_images();
+	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button4");
 	toolbar_wnd.button11 = glade_xml_get_widget(xml, "button6");
 	toolbar_wnd.button12 = glade_xml_get_widget(xml, "button7");
@@ -75,6 +77,7 @@ GtkWidget *display_tilp_dbox()
 	toolbar_wnd.button20 = glade_xml_get_widget(xml, "button10");
 	toolbar_wnd.button21 = glade_xml_get_widget(xml, "button11");
 	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
+
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 	
@@ -147,8 +150,7 @@ GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	//tilp_calc_idlist();
 }
 
-GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem,
-				    gpointer user_data)
+GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	/*
 	if (tilp_calc_rom_dump())
@@ -159,8 +161,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem,
 	*/
 }
 
-GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem,
-				      gpointer user_data)
+GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	/*
 	GList *selection;
@@ -240,8 +241,7 @@ GLADE_CB void on_tilp_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_
 } 
 
 GLADE_CB void
-on_bug_report1_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_bug_report1_activate                (GtkMenuItem     *menuitem, gpointer         user_data)
 {
 	GtkWidget *dialog;
 	const gchar *message =
@@ -254,35 +254,29 @@ on_bug_report1_activate                (GtkMenuItem     *menuitem,
 	gtk_widget_destroy(dialog);
 }
 
-GLADE_CB void on_changelog1_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
+GLADE_CB void on_changelog1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_release_dbox();
 }
 
-GLADE_CB void on_about1_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
+GLADE_CB void on_about1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_about_dbox();
 }
 
-/*****************************/
 /* Toolbar buttons callbacks */
-/*****************************/
-GLADE_CB void on_tilp_button4_clicked(GtkButton* button,
-				      gpointer user_data)
+
+GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	//tilp_calc_isready();
 }
 
-GLADE_CB void on_tilp_button5_clicked(GtkButton* button,
-				      gpointer user_data)
+GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
 {
 	//display_screenshot_dbox();
 }
 
-GLADE_CB void on_tilp_button6_clicked(GtkButton* button,
-				      gpointer user_data)
+GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 {
 	/*
 	if (tilp_calc_dirlist() != 0)
@@ -293,8 +287,7 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button,
 }
 
 
-GLADE_CB void on_tilp_button7_clicked(GtkButton* button,
-				      gpointer user_data)
+GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
 	/*
 	if (tilp_calc_recv_backup() != 0)
@@ -304,8 +297,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button,
 }
 
 
-GLADE_CB void on_tilp_button8_clicked(GtkButton* button,
-				      gpointer user_data)
+GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
 	//display_fileselection_2();
 }
@@ -366,8 +358,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 
 
 // used for receiving vars
-GLADE_CB void on_tilp_button9_clicked(GtkButton* button,
-				      gpointer user_data)
+GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 {
 	/*
 	int ret;
@@ -404,8 +395,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button,
 
 
 // make new dir
-GLADE_CB void on_tilp_button10_clicked(GtkButton* button,
-				       gpointer user_data)
+GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 {
 	gchar *utf8 = NULL;
 	gsize br, bw;
@@ -427,8 +417,7 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton* button,
 
 
 // trash
-GLADE_CB void on_tilp_button11_clicked(GtkButton* button,
-				       gpointer user_data)
+GLADE_CB void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_delete_selected_files();
 
@@ -437,8 +426,7 @@ GLADE_CB void on_tilp_button11_clicked(GtkButton* button,
 }
 
 // refresh
-GLADE_CB void on_tilp_button12_clicked(GtkButton* button,
-				       gpointer user_data)
+GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 {
 	if (!local_win.copy_cut)
 		tilp_clist_file_selection_destroy();

@@ -49,28 +49,28 @@ gint display_options_dbox()
 	memcpy(&tmp_options, &options, sizeof(options));
 
 	data = glade_xml_get_widget(xml, "radiobutton21");
-	if (options.full_path == PATH_FULL)
+	if (!options.local_path)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
 	data = glade_xml_get_widget(xml, "radiobutton22");
-	if (options.full_path == PATH_LOCAL)
+	if (options.local_path)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	data = glade_xml_get_widget(xml, "radiobutton31");
 
 	data = glade_xml_get_widget(xml, "radiobutton81");
-	if (options.recv_as_group == RECV_AS_SINGLE)
+	if (!options.recv_as_group)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
 	data = glade_xml_get_widget(xml, "radiobutton82");
-	if (options.recv_as_group == RECV_AS_GROUP)
+	if (options.recv_as_group)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
 	data = glade_xml_get_widget(xml, "radiobutton51");
-	if (options.show_hidden == SHOW_ALL)
+	if (options.show_hidden)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	
 	data = glade_xml_get_widget(xml, "radiobutton52");
-	if (options.show_hidden == SHOW_TIF)
+	if (!options.show_hidden)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	
 	data = glade_xml_get_widget(xml, "checkbutton2");
@@ -98,13 +98,13 @@ gint display_options_dbox()
 GLADE_CB void
 options_radiobutton51_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.show_hidden = SHOW_ALL;
+	tmp_options.show_hidden = 1;
 } 
 
 GLADE_CB void
 options_radiobutton52_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.show_hidden = SHOW_TIF;
+	tmp_options.show_hidden = 0;
 } 
 
 GLADE_CB void
@@ -119,23 +119,23 @@ options_checkbutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 GLADE_CB void
 options_radiobutton21_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.full_path = PATH_FULL;
+	tmp_options.local_path = PATH_FULL;
 } 
 
 GLADE_CB void
 options_radiobutton22_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.full_path = PATH_LOCAL;
+	tmp_options.local_path = PATH_LOCAL;
 } 
 
 GLADE_CB void
 options_radiobutton81_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.recv_as_group = RECV_AS_SINGLE;
+	tmp_options.recv_as_group = 0;
 } 
 
 GLADE_CB void
 options_radiobutton82_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.recv_as_group = RECV_AS_GROUP;
+	tmp_options.recv_as_group = 1;
 }

@@ -31,7 +31,7 @@ typedef struct
 
 extern TilpScreen tilp_screen;
 
-int tilp_screen_capture(void);
+int      tilp_screen_capture(void);
 uint8_t* tilp_screen_convert(void);
 uint8_t* tilp_screen_blurry(void);
 

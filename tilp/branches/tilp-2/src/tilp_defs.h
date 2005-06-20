@@ -47,6 +47,14 @@
 #define SHOW (!0)
 #define HIDE   0
 
+/* File receiving */
+#define RECV_AS_SINGLE   0
+#define RECV_AS_GROUP  (!0)
+
+/* File displaying */
+#define SHOW_ALL (!0)
+#define SHOW_TIF   0
+
 /* Transfer in progress (mutex locking) */
 #define UNLOCK   0
 #define LOCK   (!0)
@@ -85,14 +93,6 @@
 
 /* Calculator state */
 #define READY_NOK -1
-
-/* File receiving */
-#define RECV_AS_SINGLE   0
-#define RECV_AS_GROUP  (!0)
-
-/* File displaying */
-#define SHOW_ALL (!0)
-#define SHOW_TIF   0
 
 /* Transfer way */
 #define CALC_TO_COMP 1

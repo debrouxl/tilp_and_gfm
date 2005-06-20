@@ -169,6 +169,10 @@ SOURCE=..\..\src\manpage.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\options.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\pbars.c
 # End Source File
 # Begin Source File
