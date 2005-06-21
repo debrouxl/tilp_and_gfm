@@ -94,9 +94,9 @@ int main(int argc, char *argv[])
 		tilp_cmdline_send();
 	}
 
-	/* Update right list */
+	/* Update the local view */
 	tilp_dirlist_local();
-	//clist_refresh();
+	clist_refresh();
 	labels_refresh();
 
 	/* GTK main loop */

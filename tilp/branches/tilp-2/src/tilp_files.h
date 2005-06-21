@@ -47,10 +47,10 @@ int tilp_file_dirlist(void);
 int tilp_dirlist_local(void);
 
 void tilp_file_sort_by_type(void);
-void tilp_sort_files_by_name(void);
-void tilp_sort_files_by_date(void);
-void tilp_sort_files_by_size(void);
-void tilp_sort_files_by_attrib(void);
+void tilp_file_sort_by_name(void);
+void tilp_file_sort_by_date(void);
+void tilp_file_sort_by_size(void);
+void tilp_file_sort_by_attrib(void);
 
 
 #endif

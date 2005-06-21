@@ -38,6 +38,7 @@
 #include "clock.h"
 #include "release.h"
 #include "options.h"
+#include "clist.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -81,8 +82,8 @@ GtkWidget *display_tilp_dbox()
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 	
-	/*
 	clist_init();
+	/*
 	ctree_init();
 	dnd_init();
 	*/
@@ -411,7 +412,7 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 	tilp_file_mkdir(dirname);
 	g_free(dirname);
 
-	//clist_refresh();
+	clist_refresh();
 	labels_refresh();
 }
 
@@ -421,7 +422,7 @@ GLADE_CB void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_delete_selected_files();
 
-	//clist_refresh();
+	clist_refresh();
 	labels_refresh();
 }
 
@@ -431,6 +432,6 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 	if (!local_win.copy_cut)
 		tilp_clist_file_selection_destroy();
 
-	//clist_refresh();
+	clist_refresh();
 	labels_refresh();
 }

@@ -51,7 +51,6 @@ enum
 /* Initialization */
 /******************/
 
-
 static gboolean select_func(
 				GtkTreeSelection* selection,
 			    GtkTreeModel* model,
@@ -60,11 +59,12 @@ static gboolean select_func(
 			    gpointer data)
 {
 	GtkTreeIter iter;
-	FileEntry *fi;
+	FileEntry *fe;
 
 	gtk_tree_model_get_iter(model, &iter, path);
-	gtk_tree_model_get(model, &iter, COLUMN_DATA, &fi, -1);
-	if (S_ISDIR(fi->attrib))
+	gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
+
+	if (S_ISDIR(fe->attrib))
 		return FALSE;
 
 	return TRUE;
@@ -89,19 +89,15 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	while (list != NULL) 
 	{
 		GtkTreePath *path = list->data;
-		FileEntry *fi;
+		FileEntry *fe;
 		gchar *full_path;
 
 		gtk_tree_model_get_iter(model, &iter, path);
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fi, -1);
+		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
 
-		local_win.selection =
-		    g_list_append(local_win.selection, fi);
-		full_path =
-		    g_strconcat(local_win.cwdir, G_DIR_SEPARATOR_S,
-				fi->name, NULL);
-		local_win.file_selection =
-		    g_list_append(local_win.file_selection, full_path);
+		local_win.selection = g_list_append(local_win.selection, fe);
+		full_path = g_strconcat(local_win.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
+		local_win.file_selection = g_list_append(local_win.file_selection, full_path);
 		list = g_list_next(list);
 	}
 }
@@ -114,8 +110,7 @@ void clist_init(void)
 	GtkTreeSelection *selection;
 
 	gint i;
-	list =
-	    gtk_list_store_new(COLUMN_NUMBER, G_TYPE_STRING,
+	list = gtk_list_store_new(COLUMN_NUMBER, G_TYPE_STRING,
 			       G_TYPE_STRING, G_TYPE_STRING,
 			       G_TYPE_STRING, G_TYPE_POINTER,
 			       GDK_TYPE_PIXBUF);
@@ -130,24 +125,29 @@ void clist_init(void)
 	gtk_tree_view_insert_column_with_attributes(view, -1, "",
 						    renderer, "pixbuf",
 						    COLUMN_ICON, NULL);
+
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Name"),
 						    renderer, "text",
 						    COLUMN_NAME, NULL);
+
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Type"),
 						    renderer, "text",
 						    COLUMN_TYPE, NULL);
+
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Size"),
 						    renderer, "text",
 						    COLUMN_SIZE, NULL);
+
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Date"),
 						    renderer, "text",
 						    COLUMN_DATE, NULL);
 
-	for (i = 0; i < CLIST_NCOLS; i++) {
+	for (i = 0; i < CLIST_NVCOLS; i++) 
+	{
 		GtkTreeViewColumn *col;
 		col = gtk_tree_view_get_column(view, i);
 		gtk_tree_view_column_set_resizable(col, TRUE);
@@ -155,8 +155,7 @@ void clist_init(void)
 
 	selection = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_MULTIPLE);
-	gtk_tree_selection_set_select_function(selection, select_func,
-					       NULL, NULL);
+	gtk_tree_selection_set_select_function(selection, select_func, NULL, NULL);
 	g_signal_connect(G_OBJECT(selection), "changed",
 			 G_CALLBACK(tree_selection_changed), NULL);
 }
@@ -197,73 +196,75 @@ void clist_refresh(void)
 	gtk_list_store_clear(list);
 
 	// sort files
-	switch (options.local_sort) {
+	switch (options.local_sort) 
+	{
 	case SORT_BY_NAME:
-		tilp_sort_files_by_name();
+		tilp_file_sort_by_name();
 		break;
 	case SORT_BY_TYPE:
-		//tilp_sort_files_by_type();
+		tilp_file_sort_by_type();
+		break;
 	case SORT_BY_DATE:
-		tilp_sort_files_by_date();
+		tilp_file_sort_by_date();
 		break;
 	case SORT_BY_SIZE:
-		tilp_sort_files_by_size();
+		tilp_file_sort_by_size();
 		break;
 	}
 
 	pix1 = create_pixbuf("up.ico");
 	pix2 = create_pixbuf("clist_dir.xpm");
-	for (dirlist = local_win.dirlist; dirlist != NULL;
-	     dirlist = dirlist->next) {
-		FileEntry *fi = (FileEntry *) dirlist->data;
-		if ((options.show_hidden) || S_ISDIR(fi->attrib) || 
-			(tifiles_is_a_ti_file(fi->name) && 
-			((tifiles_which_calc_type(fi->name) == options.lp.calc_type) || tifiles_is_a_tib_file(fi->name))) ||
-			((tifiles_which_calc_type(fi->name) == CALC_TI89) && (options.lp.calc_type == CALC_TI89T)) ||
-			((tifiles_which_calc_type(fi->name) == CALC_TI83P) && (options.lp.calc_type == CALC_TI84P))
-			) {
-		} else
+
+	for (dirlist = local_win.dirlist; dirlist != NULL; dirlist = dirlist->next) 
+	{
+		FileEntry *fe = (FileEntry *) dirlist->data;
+		gboolean b;
+
+		b = options.show_hidden || S_ISDIR(fe->attrib) ||
+			tifiles_file_is_ti(fe->name) ||
+			tifiles_file_is_tib(fe->name) ||
+			(tifiles_file_get_model(fe->name) == options.calc_model);
+		if(!b)
 			continue;
-		if (S_ISDIR(fi->attrib)) {
-			if (!strcmp(fi->name, "..")) {
+
+		if (S_ISDIR(fe->attrib)) 
+		{
+			if (!strcmp(fe->name, "..")) 
+			{
 				pix = pix1;
-			} else {
+			} 
+			else 
+			{
 				pix = pix2;
 			}
-		} else {
+		} 
+		else 
+		{
 			char icon_name[256];
-			strcpy(icon_name, tifiles_file_icon(fi->name));
+
+			strcpy(icon_name, tifiles_file_get_icon(fe->name));
+
 			if (!strcmp(icon_name, ""))
 				strcpy(icon_name, "TIicon1");
+
 			strcat(icon_name, ".ico");
 			tilp_file_underscorize(icon_name);
 			pix = create_pixbuf(icon_name);
 		}
 
-		// Attempt to separate locale & UTF8 filenames in a heuristic fashion
-		if(tifiles_is_a_ti_file(fi->name) && detect_for_utf8(fi->name))
-			utf8 = fi->name;
-		else
-			utf8 = g_filename_to_utf8(fi->name, -1, &br, &bw, NULL);
-#if 0
-		printl(0, "<%s> ", fi->name);
-		for (i = 0; i < 8; i++)
-		printl(0, "%02X ", fi->name[i] & 0xff);
-		printl(0, "<%s> ", utf8);
-		for (i = 0; i < 8; i++)
-		printl(0, "%02X ", utf8[i] & 0xff);
-		printl(0, "\n");
-#endif		
+		// utf8
+		utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
+
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, COLUMN_NAME,
 				   utf8,
-				   COLUMN_TYPE, tilp_file_get_type(fi),
-				   COLUMN_SIZE, tilp_file_get_size(fi),
-				   COLUMN_DATE, tilp_file_get_date(fi),
-				   COLUMN_DATA, (gpointer) fi, 
+				   COLUMN_TYPE, tilp_file_get_type(fe),
+				   COLUMN_SIZE, tilp_file_get_size(fe),
+				   COLUMN_DATE, tilp_file_get_date(fe),
+				   COLUMN_DATA, (gpointer) fe, 
                    COLUMN_ICON, pix, 
                    -1);
-		//g_object_unref(pix);
+		g_object_unref(pix);
 	}
 }
 
@@ -274,8 +275,7 @@ void clist_refresh(void)
 
 
 GLADE_CB gboolean
-on_treeview2_button_press_event(GtkWidget* widget,
-				GdkEventButton* event, gpointer user_data)
+on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
@@ -286,44 +286,42 @@ on_treeview2_button_press_event(GtkWidget* widget,
 	gint tx = (gint) event->x;
 	gint ty = (gint) event->y;
 	gint cx, cy;
-	FileEntry *fi;
+	FileEntry *fe;
 
-	gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx,
-				      &cy);
+	gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx, &cy);
 
-	switch (event->type) {
-	case GDK_BUTTON_PRESS:	// third button clicked
-		if (event->button == 3) {
+	switch (event->type) 
+	{
+	case GDK_BUTTON_PRESS:
+		if (event->button == 3) 
+		{
 			bevent = (GdkEventButton *) (event);
+			/*
 			gtk_menu_popup(GTK_MENU(create_clist_rbm()),
 				       NULL, NULL, NULL, NULL,
 				       bevent->button, bevent->time);
+					   */
 			return TRUE;
 		}
 		break;
-	case GDK_2BUTTON_PRESS:	// double click
+
+	case GDK_2BUTTON_PRESS:
 		if (path == NULL)
 			return FALSE;
-		gtk_tree_model_get_iter(model, &iter, path);
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fi, -1);
-		if (S_ISDIR(fi->attrib)) {
 
+		gtk_tree_model_get_iter(model, &iter, path);
+		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
+
+		if (S_ISDIR(fe->attrib)) 
+		{
 			// go into folder
-			tilp_chdir(fi->name);
+			tilp_chdir(fe->name);
 			g_free(local_win.cwdir);
 			local_win.cwdir = g_get_current_dir();
+
 			clist_refresh();
 			labels_refresh();
-		} else {
-			// open file with plugin
-/*		
-		bevent = (GdkEventButton *) (event);		
-		gtk_menu_popup(GTK_MENU(create_clist_rbm()),
-		NULL, NULL, NULL, NULL,
-		bevent->button, bevent->time);
-		return TRUE;
-*/
-		}
+		} 
 		break;
 	default:
 		break;
@@ -341,23 +339,30 @@ GLADE_CB gboolean
 on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
 			     gpointer user_data)
 {
-	if (event->keyval == GDK_Delete) {
-		on_delete_file1_activate(NULL, NULL);
+	if (event->keyval == GDK_Delete) 
+	{
+		//on_delete_file1_activate(NULL, NULL);
 		return TRUE;
 	}
+
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_X) || (event->keyval == GDK_x))) {
-		on_cut1_activate(NULL, NULL);
+	    ((event->keyval == GDK_X) || (event->keyval == GDK_x))) 
+	{
+		//on_cut1_activate(NULL, NULL);
 		return TRUE;
 	}
+
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_c) || (event->keyval == GDK_C))) {
-		on_copy1_activate(NULL, NULL);
+	    ((event->keyval == GDK_c) || (event->keyval == GDK_C))) 
+	{
+		//on_copy1_activate(NULL, NULL);
 		return TRUE;
 	}
+
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_V) || (event->keyval == GDK_v))) {
-		on_paste1_activate(NULL, NULL);
+	    ((event->keyval == GDK_V) || (event->keyval == GDK_v))) 
+	{
+		//on_paste1_activate(NULL, NULL);
 		return TRUE;
 	}
 	return FALSE;

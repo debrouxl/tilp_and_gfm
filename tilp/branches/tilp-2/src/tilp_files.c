@@ -607,6 +607,25 @@ int tilp_dirlist_local(void)
 
 /* Sorting */
 
+static gint sort_by_name(gconstpointer a, gconstpointer b)
+{
+	FileEntry* fa = (FileEntry *)a;
+	FileEntry* fb = (FileEntry *)b;
+
+	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		return strcmp(fa->name, fb->name);
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && strcmp(fa->name, fb->name)) 
+		return !0;
+
+	return 0;
+}
+
+void tilp_file_sort_by_name(void)
+{
+	local_win.dirlist = g_list_sort(local_win.dirlist, sort_by_name);
+}
+
 static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
 	FileEntry* fi_a = (FileEntry *)a;
@@ -621,111 +640,67 @@ void tilp_file_sort_by_type(void)
 	list = g_list_sort(list, sort_by_type);
 }
 
-static gint sort_by_name(gconstpointer a, gconstpointer b)
-{
-	FileEntry* fi_p = (FileEntry *)a;
-	FileEntry* fi_q = (FileEntry *)b;
-	
-	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
-	{
-		if (strcmp(fi_p->name, fi_q->name) > 0)
-			return !0;
-	}
-	else 
-	{
-			if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (strcmp(fi_p->name, fi_q->name) > 0)) 
-				return !0;
-	}
-
-	return 0;
-}
-
-void tilp_sort_files_by_name(void)
-{
-	GList *list = local_win.dirlist;
-	list = g_list_sort(list, sort_by_name);
-}
-
 static gint sort_by_date(gconstpointer a, gconstpointer b)
 {
-	FileEntry* fi_p = (FileEntry *)a;
-	FileEntry* fi_q = (FileEntry *)b;
+	FileEntry* fa = (FileEntry *)a;
+	FileEntry* fb = (FileEntry *)b;
 
-	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR)))
-	{
-		if (fi_p->date > fi_q->date)
-			return !0;
-	}
-	else
-	{
-		if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (fi_p->date > fi_q->date)) 
-			return !0;
-	}
+	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		return (fa->date > fb->date);
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->date > fb->date)) 
+		return !0;
 
 	return 0;
 }
 
-void tilp_sort_files_by_date(void)
+void tilp_file_sort_by_date(void)
 {
-	GList *list = local_win.dirlist;
-	list = g_list_sort(list, sort_by_date);
+	local_win.dirlist = g_list_sort(local_win.dirlist, sort_by_date);
 }
 
 static gint sort_by_size(gconstpointer a, gconstpointer b)
 {
-	FileEntry* fi_p = (FileEntry *)a;
-	FileEntry* fi_q = (FileEntry *)b;
+	FileEntry* fa = (FileEntry *)a;
+	FileEntry* fb = (FileEntry *)b;
 
-	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
-	{
-		if (fi_p->size > fi_q->size)
-			return !0;
-	}
-	else
-	{
-		if (((fi_q->attrib & S_IFMT) == S_IFDIR))
-		{
-			if (fi_p->size > fi_q->size)
-				return !0;
-		}
-	}
+	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		return (fa->size > fb->size);
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->size > fb->size)) 
+		return !0;
 
 	return 0;
 }
 
-void tilp_sort_files_by_size(void)
+void tilp_file_sort_by_size(void)
 {
-	GList *list = local_win.dirlist;
-	list = g_list_sort(list, sort_by_size);
+	local_win.dirlist = g_list_sort(local_win.dirlist, sort_by_size);
 }
 
 static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 {
-	FileEntry* fi_p = (FileEntry *)a;
-	FileEntry* fi_q = (FileEntry *)b;
+	FileEntry* fa = (FileEntry *)a;
+	FileEntry* fb = (FileEntry *)b;
 
-	if ((((fi_p->attrib & S_IFMT) == S_IFDIR) && ((fi_q->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fi_p->attrib & S_IFMT) != S_IFDIR) && ((fi_q->attrib & S_IFMT) != S_IFDIR))) 
+	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
 	{
-		if (fi_p->attrib > fi_q->attrib)
+		if (fa->attrib > fb->attrib)
 			return !0;
 	}
 	else 
 	{
-		if (((fi_q->attrib & S_IFMT) == S_IFDIR) && (fi_p->attrib > fi_q->attrib)) 
+		if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->attrib > fb->attrib)) 
 			return !0;
 	}
 
 	return 0;
 }
 
-void tilp_sort_files_by_attrib(void)
+void tilp_file_sort_by_attrib(void)
 {
-	GList *list = local_win.dirlist;
-	list = g_list_sort(list, sort_by_attrib);
+	local_win.dirlist = g_list_sort(local_win.dirlist, sort_by_attrib);
 }
 
 
