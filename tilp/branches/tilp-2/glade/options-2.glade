@@ -136,7 +136,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label10">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Receiving files</property>
+		  <property name="label" translatable="yes">Receive as</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -220,7 +220,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label9">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Path mode</property>
+		  <property name="label" translatable="yes">Path</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -257,7 +257,7 @@
 		<widget class="GtkCheckButton" id="checkbutton2">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">confirm deleting/overwriting</property>
+		  <property name="label" translatable="yes">files &amp; vars</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
 		  <property name="focus_on_click">True</property>
@@ -271,7 +271,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label6">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Files/Variables</property>
+		  <property name="label" translatable="yes">Confirm delete/overwrite</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -335,7 +335,7 @@
 		    <widget class="GtkRadioButton" id="radiobutton52">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">T_I files only</property>
+		      <property name="label" translatable="yes">T_I only</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -357,7 +357,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label4">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">File displaying</property>
+		  <property name="label" translatable="yes">Display</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>

@@ -160,20 +160,6 @@ void clist_init(void)
 			 G_CALLBACK(tree_selection_changed), NULL);
 }
 
-/* Attempt to determine if string is Unicode (heuristic way) */
-static int detect_for_utf8(const char *s)
-{
-	int i;
-
-	for(i = 0; i < (int)strlen(s); i++)
-	{
-		if(((uint8_t)s[i] >= 0xC0) && ((uint8_t)s[i] <= 0xCF)) 
-			break;
-	}
-
-	return (i < (int)strlen(s));
-}
-
 #ifdef __WIN32__
 #define strcasecmp	_stricmp
 #endif
@@ -220,7 +206,7 @@ void clist_refresh(void)
 		FileEntry *fe = (FileEntry *) dirlist->data;
 		gboolean b;
 
-		b = options.show_hidden || S_ISDIR(fe->attrib) ||
+		b = options.show_all || S_ISDIR(fe->attrib) ||
 			tifiles_file_is_ti(fe->name) ||
 			tifiles_file_is_tib(fe->name) ||
 			(tifiles_file_get_model(fe->name) == options.calc_model);
@@ -229,14 +215,7 @@ void clist_refresh(void)
 
 		if (S_ISDIR(fe->attrib)) 
 		{
-			if (!strcmp(fe->name, "..")) 
-			{
-				pix = pix1;
-			} 
-			else 
-			{
-				pix = pix2;
-			}
+			pix = strcmp(fe->name, "..") ? pix2 : pix1; 
 		} 
 		else 
 		{

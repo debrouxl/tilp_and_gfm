@@ -48,7 +48,8 @@ static void default_config_win32(void)
 {
 	options.remote_font_name = g_strdup("");
 	options.local_font_name = g_strdup("-adobe-courier-medium-r-normal--12-120-75-75-p-70-iso8859-1");
-	options.working_dir = g_get_current_dir();
+	//options.working_dir = g_get_current_dir();
+	options.working_dir = g_strdup("C:\\msvc\\tilp");
 }
 #endif
 
@@ -65,7 +66,7 @@ int tilp_config_default(void)
 
 	options.overwrite = CONFIRM_YES;
 	options.local_path = 0;
-	options.show_hidden = 0;
+	options.show_all = 0;
 
 	options.screen_format = PNG;
 	options.screen_clipping = SCREEN_CLIPPED;
@@ -225,8 +226,8 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "local_path", options.local_path);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "local_path", "Use full path when sending variables", &error);
 
-	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_hidden", options.show_hidden);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_hidden", "Show hidden files in local view", &error);
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_all", options.show_all);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_all", "Show hidden files in local view", &error);
 
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "overwrite", options.overwrite);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "overwrite", "Ask for overwriting", &error);
@@ -359,8 +360,8 @@ int tilp_config_read(void)
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "auto_detect", &error);
 	options.local_path = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "local_path", &error);
-	options.show_hidden = 
-		g_key_file_get_integer(kf, SECTION_OPTIONS, "show_hidden", &error);
+	options.show_all = 
+		g_key_file_get_integer(kf, SECTION_OPTIONS, "show_all", &error);
 	options.overwrite = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "overwrite", &error);
 	options.recv_as_group = 

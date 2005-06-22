@@ -66,11 +66,11 @@ gint display_options_dbox()
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
 	data = glade_xml_get_widget(xml, "radiobutton51");
-	if (options.show_hidden)
+	if (options.show_all)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	
 	data = glade_xml_get_widget(xml, "radiobutton52");
-	if (!options.show_hidden)
+	if (!options.show_all)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	
 	data = glade_xml_get_widget(xml, "checkbutton2");
@@ -98,13 +98,13 @@ gint display_options_dbox()
 GLADE_CB void
 options_radiobutton51_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.show_hidden = 1;
+	tmp_options.show_all = 1;
 } 
 
 GLADE_CB void
 options_radiobutton52_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	tmp_options.show_hidden = 0;
+	tmp_options.show_all = 0;
 } 
 
 GLADE_CB void
