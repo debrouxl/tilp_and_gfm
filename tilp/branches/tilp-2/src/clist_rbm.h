@@ -19,8 +19,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __POPUP_H__
-#define __POPUP_H__
+#ifndef __CLIST_RBM__
+#define __CLIST_RBM__
 
 GtkWidget *create_clist_rbm(void);
 

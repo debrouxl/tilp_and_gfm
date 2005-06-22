@@ -27,20 +27,28 @@
 #include <string.h>
 
 #include "support.h"
-
-#include "tilp_core.h"
 #include "gstruct.h"
 #include "ctree.h"
 #include "tilp.h"
 #include "screenshot.h"
+#include "tilp_core.h"
+#include "gtk_update.h"
 
+// MUST be the same in ctree.c
+enum 
+{ 
+	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
+	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
+};
 
 /*****************************/
 /* Drag & Drop support (DnD) */
 /*****************************/
 
 
-enum { TARGET_STRING, TARGET_ROOTWIN, TARGET_LEFT, TARGET_RIGHT,
+enum 
+{ 
+	TARGET_STRING, TARGET_ROOTWIN, TARGET_LEFT, TARGET_RIGHT,
 };
 
 /*static GtkTargetEntry target_table[] = {
@@ -49,12 +57,14 @@ enum { TARGET_STRING, TARGET_ROOTWIN, TARGET_LEFT, TARGET_RIGHT,
   { "application/x-rootwin-drop", 0, TARGET_ROOTWIN },
   };*/
 
-static GtkTargetEntry target_table_1[] = {
+static GtkTargetEntry target_table_1[] = 
+{
 	{"clist", 0, TARGET_STRING},
 	{"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
 
-static GtkTargetEntry target_table_2[] = {
+static GtkTargetEntry target_table_2[] = 
+{
 	{"ctree", 0, TARGET_STRING},
 	{"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
@@ -63,7 +73,6 @@ static guint n_targets = 1;
 
 void dnd_init(void)
 {
-
 	// from list to tree
 	gtk_drag_source_set(clist_wnd, GDK_BUTTON1_MASK,
 			    target_table_1, n_targets,
@@ -113,26 +122,34 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 	GtkTreePath *path;
 	GtkTreeViewDropPosition pos;
 	GtkTreeIter iter;
-	TiVarEntry *ve;
+	VarEntry *ve;
 	gchar *name;
-	if ((data->length >= 0) && (data->format == 8)) {
+
+	if ((data->length >= 0) && (data->format == 8)) 
+	{
 		gtk_tree_view_get_dest_row_at_pos(view, x, y, &path, &pos);
-		if (path == NULL) {
+		if (path == NULL) 
+		{
 			gtk_drag_finish(drag_context, FALSE, FALSE, time);
 			return;
 		}
 		gtk_tree_model_get_iter(model, &iter, path);
-		gtk_tree_model_get(model, &iter, CTREE_DATA, &ve, -1);
-		gtk_tree_model_get(model, &iter, CTREE_NAME, &name, -1);
-		if (ve && (ve->type == tifiles_folder_type())) {
+
+		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
+		gtk_tree_model_get(model, &iter, COLUMN_NAME, &name, -1);
+
+		if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
+		{
 			on_tilp_button9b_clicked(NULL, ve->name);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
+
 		on_tilp_button9b_clicked(NULL, "");
 		gtk_drag_finish(drag_context, TRUE, FALSE, time);
 		return;
 	}
+
 	gtk_drag_finish(drag_context, FALSE, FALSE, time);
 	return;
 }
@@ -147,10 +164,10 @@ GLADE_CB void
 on_treeview1_drag_begin(GtkWidget * widget,
 			GdkDragContext * drag_context, gpointer user_data)
 {
-	if (!strcmp(name_to_drag, NODEx) && ti_calc.has_folder)
+	if (!strcmp(name_to_drag, NODEx) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
 
-	else if (!strcmp(name_to_drag, NODE3) && !ti_calc.has_folder)
+	else if (!strcmp(name_to_drag, NODE3) && !(ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
 }
 
@@ -160,11 +177,15 @@ on_treeview1_drag_data_get(GtkWidget * widget,
 			   GtkSelectionData * data,
 			   guint info, guint time, gpointer user_data)
 {
-	if (info == TARGET_ROOTWIN) {
+	if (info == TARGET_ROOTWIN) 
+	{
 		//g_print("I was dropped on the rootwin\n");
-	} else
+	} 
+	else
+	{
 		gtk_selection_data_set(data, data->target, 8,
 				       name_to_drag, strlen(name_to_drag));
+	}
 }
 
 GLADE_CB void
@@ -175,45 +196,55 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 				GtkSelectionData * data,
 				guint info, guint time, gpointer user_data)
 {
-	if ((data->length >= 0) && (data->format == 8)) {
+	if ((data->length >= 0) && (data->format == 8)) 
+	{
 		gchar *name = (gchar *) data->data;
 
 		//g_print("Received \"%s\" as selection information.\n", name);
-		if (!strcmp(name, NODE1)) {
-
+		if (!strcmp(name, NODE1)) 
+		{
 			// screenshot
-			display_screenshot_dbox();
-			on_scdbox_button1_clicked(NULL, NULL);
-			if (info_update.cancel == 0) {
-				on_sc_save1_activate(NULL, NULL);
-				on_sc_quit1_activate(NULL, NULL);
-			}
-		} else if (!strcmp(name, NODE2)) {
+			//display_screenshot_dbox();
+			//on_scdbox_button1_clicked(NULL, NULL);
 
+			if (gtk_update.cancel == 0) 
+			{
+				//on_sc_save1_activate(NULL, NULL);
+				//on_sc_quit1_activate(NULL, NULL);
+			}
+		} 
+		else if (!strcmp(name, NODE2)) 
+		{
 			// ROM dumping
 			on_rom_dump1_activate(NULL, NULL);
-		} else if (!strcmp(name, NODE3)) {
-
+		} 
+		else if (!strcmp(name, NODE3)) 
+		{
 			// all variables to get
-//if(ti_calc.has_folder)
+			//if(ti_calc.has_folder)
 			on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
-		} else if (!strcmp(name, NODE4)) {
-
+		} 
+		else if (!strcmp(name, NODE4)) 
+		{
 			// nothing to do
-		} else if (!strcmp(name, NODEx)) {
-
+		} 
+		else if (!strcmp(name, NODEx)) 
+		{
 			// folder to get
 			on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
-		} else {
-
+		} 
+		else 
+		{
 			// single/group to get
 			on_tilp_button9_clicked(NULL, NULL);
 		}
+
 		gtk_drag_finish(drag_context, TRUE, FALSE, time);
 		return;
 	}
+
 	gtk_drag_finish(drag_context, FALSE, FALSE, time);
 	return;
 }
@@ -229,28 +260,27 @@ static void select_vars_under_folder(gint action)
 
 	// select var beneath a folder
 	gtk_tree_model_get_iter(model, &parent, path);
-	if (gtk_tree_model_iter_has_child(model, &parent)) {
+	if (gtk_tree_model_iter_has_child(model, &parent)) 
+	{
 		GtkTreeSelection *sel;
 		GtkTreePath *start_path, *end_path;
 		gint n;
 		gboolean valid;
-		sel =
-		    gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
+
+		sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
+
 		n = gtk_tree_model_iter_n_children(model, &parent);
-		valid =
-		    gtk_tree_model_iter_children(model, &iter, &parent);
+		valid = gtk_tree_model_iter_children(model, &iter, &parent);
+
 		start_path = gtk_tree_model_get_path(model, &iter);
-		valid =
-		    gtk_tree_model_iter_nth_child(model, &iter, &parent,
-						  n - 1);
+		valid = gtk_tree_model_iter_nth_child(model, &iter, &parent, n - 1);
+
 		end_path = gtk_tree_model_get_path(model, &iter);
 		if (!action)
-			gtk_tree_selection_unselect_range(sel, start_path,
-							  end_path);
-
+			gtk_tree_selection_unselect_range(sel, start_path, end_path);
 		else
-			gtk_tree_selection_select_range(sel, start_path,
-							end_path);
+			gtk_tree_selection_select_range(sel, start_path, end_path);
+
 		gtk_tree_path_free(start_path);
 		gtk_tree_path_free(end_path);
 	}

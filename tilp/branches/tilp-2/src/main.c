@@ -36,14 +36,14 @@
 # include <windows.h>
 #endif				/*  */
 
-#include "tilp_core.h"
 #include "support.h"
 #include "splash.h"
-#include "gtk_update.h"
 #include "tilp.h"
 #include "toolbar.h"
 #include "labels.h"
-
+#include "clist.h"
+#include "tilp_core.h"
+#include "gtk_update.h"
 
 int main(int argc, char *argv[])
 {

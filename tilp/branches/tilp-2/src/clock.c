@@ -28,6 +28,7 @@
 #include <string.h>
 #include <time.h>
 
+#include "support.h"
 #include "clock.h"
 #include "tilp_core.h"
 

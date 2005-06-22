@@ -27,6 +27,7 @@
 #include <glade/glade.h>
 #include <string.h>
 
+#include "support.h"
 #include "options.h"
 //#include "clist.h"
 #include "tilp_core.h"

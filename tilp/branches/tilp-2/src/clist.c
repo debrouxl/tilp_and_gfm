@@ -28,7 +28,7 @@
 #include "gstruct.h"
 #include "support.h"
 #include "labels.h"
-//#include "popup.h"
+#include "clist_rbm.h"
 #include "tilp_core.h"
 
 #ifdef __WIN32__
@@ -40,16 +40,14 @@ static GtkListStore *list;
 enum 
 { 
 	COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, 
-	COLUMN_DATA, COLUMN_ICON, COLUMN_NUMBER
+	COLUMN_DATA, COLUMN_ICON,
 };
 
 #define CLIST_NVCOLS	(4)		// 4 visible columns
-#define CLIST_NCOLS		(7)		// 7 real columns
+#define CLIST_NCOLS		(6)		// 7 real columns
 
 
-/******************/
 /* Initialization */
-/******************/
 
 static gboolean select_func(
 				GtkTreeSelection* selection,
@@ -108,9 +106,9 @@ void clist_init(void)
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkCellRenderer *renderer;
 	GtkTreeSelection *selection;
-
 	gint i;
-	list = gtk_list_store_new(COLUMN_NUMBER, G_TYPE_STRING,
+
+	list = gtk_list_store_new(CLIST_NCOLS, G_TYPE_STRING,
 			       G_TYPE_STRING, G_TYPE_STRING,
 			       G_TYPE_STRING, G_TYPE_POINTER,
 			       GDK_TYPE_PIXBUF);
@@ -164,9 +162,7 @@ void clist_init(void)
 #define strcasecmp	_stricmp
 #endif
 
-/**************/
 /* Management */
-/**************/
 
 void clist_refresh(void)
 {
@@ -248,10 +244,7 @@ void clist_refresh(void)
 }
 
 
-/*******************/
-/* CList callbacks */
-/*******************/
-
+/* Callbacks */
 
 GLADE_CB gboolean
 on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
@@ -275,11 +268,11 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 		if (event->button == 3) 
 		{
 			bevent = (GdkEventButton *) (event);
-			/*
+
 			gtk_menu_popup(GTK_MENU(create_clist_rbm()),
 				       NULL, NULL, NULL, NULL,
 				       bevent->button, bevent->time);
-					   */
+
 			return TRUE;
 		}
 		break;

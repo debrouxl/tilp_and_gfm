@@ -39,6 +39,7 @@
 #include "release.h"
 #include "options.h"
 #include "clist.h"
+#include "ctree.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -83,8 +84,8 @@ GtkWidget *display_tilp_dbox()
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 	
 	clist_init();
-	/*
 	ctree_init();
+	/*
 	dnd_init();
 	*/
 
@@ -137,7 +138,7 @@ GLADE_CB void on_devices1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 /* Misc menu */
 
-GLADE_CB void on_infos1_activate(GtkMenuItem* menuitem, gpointer user_data)
+GLADE_CB void on_get_infos1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 }
 

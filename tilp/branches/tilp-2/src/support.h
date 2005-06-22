@@ -62,3 +62,10 @@ GdkPixbuf *create_pixbuf(const gchar * filename);
 void glade_set_atk_action_description(AtkAction * action,
 				      const gchar * action_name,
 				      const gchar * description);
+
+ // GTK+ only (export callbacks for Glade linking at runtime)
+#ifdef __WIN32__
+# define GLADE_CB __declspec(dllexport)
+#else
+# define GLADE_CB
+#endif

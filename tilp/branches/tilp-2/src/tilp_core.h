@@ -35,13 +35,6 @@
 extern "C" {
 #endif
 
-  // GTK+ only (export callbacks for Glade linking at runtime)
-#ifdef __WIN32__
-# define GLADE_CB __declspec(dllexport)
-#else
-# define GLADE_CB
-#endif
-
 #include "tilibs.h"
 #include "intl.h"
 

@@ -19,8 +19,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef GTK_REFRESH_H
-#define GTK_REFRESH_H
+#ifndef __GTK_UPDATE__
+#define __GTK_UPDATE__
 
 extern CalcUpdate	gtk_update;
 

@@ -19,8 +19,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TILP_CALCS__
-#define __TILP_CALCS__
+#ifndef __TILP_MISC__
+#define __TILP_MISC__
 
 int tilp_drive_change(char drive_letter);
 

@@ -149,6 +149,10 @@ SOURCE=..\..\src\clist.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\clist_rbm.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\clock.c
 # End Source File
 # Begin Source File
