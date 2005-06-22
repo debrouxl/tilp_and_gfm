@@ -21,7 +21,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif
 
 #undef GTK_DISABLE_DEPRECATED
 
@@ -29,81 +29,71 @@
 #include <glade/glade.h>
 #include <string.h>
 
-#include "comm.h"
+#include "support.h"
+#include "device.h"
 #include "toolbar.h"
 #include "ctree.h"
 #include "tilp_core.h"
-#include "logfile.h"
 
-// uncomment it to get more than 1 USB port
-//#define MORE_USB_PORTS
+DeviceOptions	tmp;
 
-static TicableLinkParam tmp_lp;
-static gint ad;
-static GtkWidget *button = NULL;
-static gint init = !0;
-static GtkWidget *port = NULL;
-
-
-gint display_comm_dbox()
+gint display_device_dbox()
 {
 	GladeXML *xml;
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
+	int err;
 
-	init = !0;
-
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("comm-2.glade"), "comm_dbox", PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("device-2.glade"), "device_dbox", PACKAGE);
 	if (!xml)
 		g_error(_("comm.c: GUI loading failed !\n"));
 	glade_xml_signal_autoconnect(xml);
 
-	dbox = glade_xml_get_widget(xml, "comm_dbox");
-	ad = options.auto_detect;
+	dbox = glade_xml_get_widget(xml, "device_dbox");
 
 	// Auto-detect
+	/*
 	button = glade_xml_get_widget(xml, "checkbutton_calc_auto");
 	if (ad)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
 	else
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button),
-					     FALSE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), FALSE);
+						 */
 
 	// Cable  
 	data = glade_xml_get_widget(xml, "optionmenu_comm_cable");
-	switch (options.lp.link_type) {
-	case LINK_TGL:
+	switch (options.cable_model) 
+	{
+	case CABLE_GRY:
 		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
 		break;
 		
-	case LINK_SER:
+	case CABLE_BLK:
 		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
 		break;
 
-	case LINK_SLV:
+	case CABLE_SLV:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
 
-	case LINK_PAR:
+	case CABLE_PAR:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 
-	case LINK_VTI:
+	case CABLE_VTI:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 
-    case LINK_TIE:
+    case CABLE_TIE:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	
-	case LINK_VTL:
+	case CABLE_VTL:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	  break;
 
-    case LINK_NUL:
+    case CABLE_NUL:
       gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 
@@ -113,49 +103,30 @@ gint display_comm_dbox()
 	}
 
 	// Port
-	port = data = glade_xml_get_widget(xml, "optionmenu_comm_port");
-	switch (options.lp.port) {
-	case PARALLEL_PORT_1:
-	case SERIAL_PORT_1:
-	case USB_PORT_1:
-	case VIRTUAL_PORT_1:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
-	  break;
-	 
-	case PARALLEL_PORT_2:
-	case SERIAL_PORT_2:
-	case USB_PORT_2:
-	case VIRTUAL_PORT_2:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
-	  break;
-
-	case PARALLEL_PORT_3:
-	case SERIAL_PORT_3:
-	case USB_PORT_3:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
-	  break;
-
-	case SERIAL_PORT_4:
-	case USB_PORT_4:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
-	  break;
-
-    case NULL_PORT:
-      gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
-	  break;
-	  
-	case USER_PORT:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
-	  break;
-
-	default:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
-	  break;
+	data = glade_xml_get_widget(xml, "optionmenu_comm_port");
+	switch (options.cable_port) 
+	{
+	case PORT_0:
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+	break;
+	case PORT_1:
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
+	break;
+	case PORT_2:
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
+	break;
+	case PORT_3:
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
+	break;
+	case PORT_4:
+	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+	break;
 	}
 
 	// Calc
 	data = glade_xml_get_widget(xml, "optionmenu_comm_calc");
-	switch (options.lp.calc_type) {
+	switch (options.calc_model) 
+	{
 	case CALC_TI73:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
 	  break;
@@ -207,33 +178,64 @@ gint display_comm_dbox()
 
 	// Timeout
 	data = glade_xml_get_widget(xml, "spinbutton_comm_timeout");
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.lp.timeout);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.cable_timeout);
 	
 	// Delay
 	data = glade_xml_get_widget(xml, "spinbutton_comm_delay");
-	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.lp.delay);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.cable_delay);
 
 	// Avoid early callbacks
-	memcpy(&tmp_lp, &options.lp, sizeof(TicableLinkParam));
+	tmp.cable_delay = options.cable_delay;
+	tmp.cable_model = options.cable_model;
+	tmp.cable_port = options.cable_port;
+	tmp.cable_timeout = options.cable_timeout;
+	tmp.calc_model = options.calc_model;
 	
 	// Loop
-	init = 0;
  loop:
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) {
+	switch (result) 
+	{
 	case GTK_RESPONSE_OK:
-	  	if (tilp_error(link_cable.exit()))
-		  goto loop;
-		memcpy(&options.lp, &tmp_lp, sizeof(TicableLinkParam));
-		ticable_set_param(&options.lp);
-		if(tilp_error(ticable_set_cable
-			      (options.lp.link_type, &link_cable)))
-		  goto loop;
-		ticalc_set_cable(&link_cable);
-		ticalc_set_calc(options.lp.calc_type, &ti_calc);
-		if(tilp_error(link_cable.init()))
-		  goto loop;
-		options.auto_detect = ad;
+		// detach cable (made by handle_del, too)
+		err = ticalcs_cable_detach(calc_handle);
+		if(tilp_err(err))
+			goto loop;
+
+		// remove calc & cable
+		ticalcs_handle_del(calc_handle);
+		ticables_handle_del(cable_handle);
+
+		// copy options
+		cable_handle = ticables_handle_new(tmp.cable_model, tmp.cable_port);
+		if(cable_handle == NULL)
+		{
+			gif->msg_box1("Error", "Can't set cable");
+			goto loop;
+		}
+		else
+		{
+			calc_handle = ticalcs_handle_new(tmp.calc_model);
+			if(calc_handle == NULL)
+			{
+				gif->msg_box1("Error", "Can't set cable");
+				goto loop;
+			}
+			else
+			{
+				err = ticalcs_cable_attach(calc_handle, cable_handle);
+				tilp_err(err);
+			}
+			ticables_options_set_timeout(cable_handle, tmp.cable_timeout);
+			ticables_options_set_delay(cable_handle, tmp.cable_delay);
+		}
+
+		options.cable_delay = tmp.cable_delay;
+		options.cable_model = tmp.cable_model;
+		options.cable_port = tmp.cable_port;
+		options.cable_timeout = tmp.cable_timeout;
+		options.calc_model = tmp.calc_model;
+
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
 		break;
@@ -255,37 +257,14 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 
 	switch(nitem)
 	{
-	case 0: tmp_lp.link_type = LINK_TGL; break;
-	case 1: tmp_lp.link_type = LINK_SER; break;
-	case 2: tmp_lp.link_type = LINK_SLV; break;
-	case 3:	tmp_lp.link_type = LINK_PAR; break;
-	case 4: tmp_lp.link_type = LINK_VTI; break;
-	case 5: tmp_lp.link_type = LINK_TIE; break;
-	case 6: tmp_lp.link_type = LINK_VTL; break;
-    case 7: tmp_lp.link_type = LINK_NUL; break;
-	}
-	
-	// force port to avoid libticables bad argument 
-	if(!init) {
-		switch(tmp_lp.link_type) {
-		case LINK_TGL:
-		case LINK_SER:
-		case LINK_AVR:
-		case LINK_VTI:
-		case LINK_TIE:
-		case LINK_VTL:
-			gtk_option_menu_set_history(GTK_OPTION_MENU(port), 2);
-			break;
-		case LINK_PAR:
-		case LINK_SLV:
-			gtk_option_menu_set_history(GTK_OPTION_MENU(port), 1);
-                        break;
-        case LINK_NUL:
-            gtk_option_menu_set_history(GTK_OPTION_MENU(port), 5);
-                        break;
-		default:
-			break;
-		}
+	case 0: tmp.cable_model = CABLE_GRY; break;
+	case 1: tmp.cable_model = CABLE_BLK; break;
+	case 2: tmp.cable_model = CABLE_SLV; break;
+	case 3:	tmp.cable_model = CABLE_PAR; break;
+	case 4: tmp.cable_model = CABLE_VTI; break;
+	case 5: tmp.cable_model = CABLE_TIE; break;
+	case 6: tmp.cable_model = CABLE_VTL; break;
+    case 7: tmp.cable_model = CABLE_NUL; break;
 	}
 }
 
@@ -302,67 +281,17 @@ comm_port_changed                      (GtkOptionMenu   *optionmenu,
 {
 	GtkWidget *menu_item = optionmenu->menu_item;
 	gchar *ed = menu_item->name;
-	
-	if(!strcmp(ed, "custom1"))
-    		tmp_lp.calc_type = USER_PORT;
-  	else {
-    		switch(tmp_lp.link_type)
-      		{
-      		case LINK_TGL:
-      		case LINK_SER:
-      		case LINK_AVR:
-			if(!strcmp(ed, "custom1"))
-			  	tmp_lp.port = USER_PORT;
-			else if(!strcmp(ed, "number1"))
-			  	tmp_lp.port = SERIAL_PORT_1;
-			else if(!strcmp(ed, "number2"))
-			  	tmp_lp.port = SERIAL_PORT_2;
-			else if(!strcmp(ed, "number3"))
-			  	tmp_lp.port = SERIAL_PORT_3;
-			else if(!strcmp(ed, "number4"))
-			  	tmp_lp.port = SERIAL_PORT_4;
-		break;
 
-      		case LINK_SLV:
-			if(!strcmp(ed, "custom1"))
-			  tmp_lp.port = USER_PORT;
-			else if(!strcmp(ed, "number1"))
-			  tmp_lp.port = USB_PORT_1;
-			else if(!strcmp(ed, "number2"))
-			  tmp_lp.port = USB_PORT_2;
-			else if(!strcmp(ed, "number3"))
-			  tmp_lp.port = USB_PORT_3;
-			else if(!strcmp(ed, "number4"))
-			  tmp_lp.port = USB_PORT_4;
-		break;
-
-	      	case LINK_PAR:
-			if(!strcmp(ed, "custom1"))
-			  tmp_lp.port = USER_PORT;
-			else if(!strcmp(ed, "number1"))
-			  tmp_lp.port = PARALLEL_PORT_1;
-			else if(!strcmp(ed, "number2"))
-			  tmp_lp.port = PARALLEL_PORT_2;
-			else if(!strcmp(ed, "number3"))
-			  tmp_lp.port = PARALLEL_PORT_3;
-		break;
-	
-	      	case LINK_VTL:
-	      	case LINK_TIE:
-	      	case LINK_VTI:
-			if(!strcmp(ed, "number1"))
-			  tmp_lp.port = VIRTUAL_PORT_1;
-			else if(!strcmp(ed, "number2"))
-			  tmp_lp.port = VIRTUAL_PORT_2;
-		break;
-
-            case LINK_NUL:
-                tmp_lp.port = NULL_PORT;
-
-      		default: 
-		break;
-      		}
-  	}
+	if(!strcmp(ed, "number0"))
+		tmp.cable_port = PORT_0;
+	else if(!strcmp(ed, "number1"))
+		tmp.cable_port = PORT_1;
+	else if(!strcmp(ed, "number2"))
+		tmp.cable_port = PORT_2;
+	else if(!strcmp(ed, "number3"))
+		tmp.cable_port = PORT_3;
+	else if(!strcmp(ed, "number4"))
+		tmp.cable_port = PORT_4;
 }
 
 GLADE_CB void
@@ -380,65 +309,18 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
 
 	switch(nitem)
 	{
-	case 0: 
-			tmp_lp.calc_type = CALC_TI73;
-    		gtk_widget_set_sensitive(button, TRUE);
-	break;
-
-	case 1:
-    		tmp_lp.calc_type = CALC_TI82;
-    		gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
-	case 2:
-	    	tmp_lp.calc_type = CALC_TI83;
-	    	gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
-	case 3:
-    		tmp_lp.calc_type = CALC_TI83P;
-    		gtk_widget_set_sensitive(button, TRUE);
-  	break;
-
-	case 4:
-    		tmp_lp.calc_type = CALC_TI84P;
-    		gtk_widget_set_sensitive(button, TRUE);
-  	break;
-
-	case 5:
-    		tmp_lp.calc_type = CALC_TI85;
-    		gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
-	case 6:
-    		tmp_lp.calc_type = CALC_TI86;
-    		gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
-	case 7:
-    		tmp_lp.calc_type = CALC_TI89;
-    		gtk_widget_set_sensitive(button, TRUE);
-  	break;
-
-	case 8:
-    		tmp_lp.calc_type = CALC_TI89T;
-    		gtk_widget_set_sensitive(button, TRUE);
-  	break;
-
-	case 9:
-    		tmp_lp.calc_type = CALC_TI92;
-    		gtk_widget_set_sensitive(button, FALSE);
-  	break;
-
-	case 10:
-    		tmp_lp.calc_type = CALC_TI92P;
-    		gtk_widget_set_sensitive(button, TRUE);
-  	break;
-
-	case 11:
-    		tmp_lp.calc_type = CALC_V200;
-    		gtk_widget_set_sensitive(button, TRUE);
-	break;
+	case 0: tmp.calc_model = CALC_TI73;	break;
+	case 1:	tmp.calc_model = CALC_TI82; break;
+	case 2: tmp.calc_model = CALC_TI83; break;
+	case 3: tmp.calc_model = CALC_TI83P; break;
+	case 4: tmp.calc_model = CALC_TI84P; break;
+	case 5:tmp.calc_model = CALC_TI85; break;
+	case 6:tmp.calc_model = CALC_TI86; break;
+	case 7:tmp.calc_model = CALC_TI89; break;
+	case 8:tmp.calc_model = CALC_TI89T; break;
+	case 9:tmp.calc_model = CALC_TI92; break;
+	case 10:tmp.calc_model = CALC_TI92P; break;
+	case 11:tmp.calc_model = CALC_V200; break;
   	}	
 }
 
@@ -453,10 +335,7 @@ GLADE_CB void
 comm_checkbutton_calc_auto_toggled     (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-  	if (togglebutton->active == TRUE)
-    		ad = TRUE;
-  	else
-    		ad = FALSE;
+  	//if (togglebutton->active == TRUE)
 }
 
 
@@ -464,7 +343,7 @@ GLADE_CB void
 comm_spinbutton_delay_changed          (GtkEditable     *editable,
                                         gpointer         user_data)
 {
-  	tmp_lp.delay =
+  	tmp.cable_delay =
     		gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
@@ -473,14 +352,15 @@ GLADE_CB void
 comm_spinbutton_timeout_changed        (GtkEditable     *editable,
                                         gpointer         user_data)
 {
-  	tmp_lp.timeout =
+  	tmp.cable_timeout =
     		gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
 
 GLADE_CB void
-comm_button_log_clicked                (GtkButton       *button,
+comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
-  	display_logfile_dbox();
+  	// search for devices
+	printf("search...\n");
 }

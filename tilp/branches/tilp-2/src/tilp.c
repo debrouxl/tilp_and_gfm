@@ -38,6 +38,7 @@
 #include "clock.h"
 #include "release.h"
 #include "options.h"
+#include "device.h"
 #include "clist.h"
 #include "ctree.h"
 
@@ -133,7 +134,7 @@ GLADE_CB void on_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_devices1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	//display_device_dbox();
+	display_device_dbox();
 }
 
 /* Misc menu */

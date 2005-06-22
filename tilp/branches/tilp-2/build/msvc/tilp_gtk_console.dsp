@@ -157,7 +157,15 @@ SOURCE=..\..\src\clock.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\ctree.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\dboxes.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\dnd.c
 # End Source File
 # Begin Source File
 

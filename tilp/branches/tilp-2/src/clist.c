@@ -194,8 +194,8 @@ void clist_init(void)
 
 		col = gtk_tree_view_get_column(view, i);
 		gtk_tree_view_column_set_resizable(col, TRUE);
-		gtk_tree_view_column_set_clickable(col, TRUE);
 
+		gtk_tree_view_column_set_clickable(col, TRUE);
 		g_signal_connect(G_OBJECT(col), "clicked", G_CALLBACK(column_clicked), view);
 	}
 
