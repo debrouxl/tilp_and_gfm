@@ -161,7 +161,15 @@ SOURCE=..\..\src\ctree.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\ctree_rbm.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\dboxes.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\device.c
 # End Source File
 # Begin Source File
 

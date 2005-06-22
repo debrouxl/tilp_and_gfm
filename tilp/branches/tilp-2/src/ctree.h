@@ -35,6 +35,7 @@ enum {
 #define NODE2 _("Operating System")
 #define NODE3 _("Variables")
 #define NODE4 _("Applications")
+#define NODE5 _("ID-LIST")
 #define NODEx _("Any Folder")
 
 void ctree_init(void);

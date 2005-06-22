@@ -36,6 +36,7 @@
 #include "tilp_core.h"
 
 DeviceOptions	tmp;
+GtkWidget* lbl;
 
 gint display_device_dbox()
 {
@@ -60,6 +61,7 @@ gint display_device_dbox()
 	else
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), FALSE);
 						 */
+	lbl = glade_xml_get_widget(xml, "label7");
 
 	// Cable  
 	data = glade_xml_get_widget(xml, "optionmenu_comm_cable");
@@ -362,5 +364,5 @@ comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
   	// search for devices
-	printf("search...\n");
+	gtk_label_set_text(GTK_LABEL(lbl), "foobar");
 }
