@@ -39,15 +39,31 @@ static GtkListStore *list;
 
 enum 
 { 
-	COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, 
-	COLUMN_DATA, COLUMN_ICON,
+	COLUMN_ICON, COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, 
+	COLUMN_DATA,
 };
 
-#define CLIST_NVCOLS	(4)		// 4 visible columns
+#define CLIST_NVCOLS	(5)		// 4 visible columns
 #define CLIST_NCOLS		(6)		// 7 real columns
 
 
 /* Initialization */
+
+static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
+{
+	gint i;
+
+	for (i = 0; i < CLIST_NVCOLS; i++) 
+	{
+		GtkTreeViewColumn *col;
+
+		col = gtk_tree_view_get_column(GTK_TREE_VIEW(list), i);
+		if (col == column)
+			return i;
+	}
+
+	return -1;
+}
 
 static gboolean select_func(
 				GtkTreeSelection* selection,
@@ -100,6 +116,33 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	}
 }
 
+void clist_refresh(void);
+static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
+{
+	int col = column2index(user_data, column);
+	
+	switch(col)
+	{
+	case COLUMN_NAME:
+		options.local_sort = SORT_BY_NAME;
+		clist_refresh();
+		break;
+	case COLUMN_TYPE:
+		options.local_sort = SORT_BY_TYPE;
+		clist_refresh();
+		break;
+	case COLUMN_SIZE:
+		options.local_sort = SORT_BY_SIZE;
+		clist_refresh();
+		break;
+	case COLUMN_DATE:
+		options.local_sort = SORT_BY_DATE;
+		clist_refresh();
+		break;
+	default: break;
+	}
+}
+
 void clist_init(void)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
@@ -108,10 +151,11 @@ void clist_init(void)
 	GtkTreeSelection *selection;
 	gint i;
 
-	list = gtk_list_store_new(CLIST_NCOLS, G_TYPE_STRING,
-			       G_TYPE_STRING, G_TYPE_STRING,
-			       G_TYPE_STRING, G_TYPE_POINTER,
-			       GDK_TYPE_PIXBUF);
+	list = gtk_list_store_new(CLIST_NCOLS, GDK_TYPE_PIXBUF,
+					G_TYPE_STRING, G_TYPE_STRING, 
+					G_TYPE_STRING, G_TYPE_STRING, 
+				   G_TYPE_POINTER
+			       );
 	model = GTK_TREE_MODEL(list);
 
 	gtk_tree_view_set_model(view, model);
@@ -147,8 +191,12 @@ void clist_init(void)
 	for (i = 0; i < CLIST_NVCOLS; i++) 
 	{
 		GtkTreeViewColumn *col;
+
 		col = gtk_tree_view_get_column(view, i);
 		gtk_tree_view_column_set_resizable(col, TRUE);
+		gtk_tree_view_column_set_clickable(col, TRUE);
+
+		g_signal_connect(G_OBJECT(col), "clicked", G_CALLBACK(column_clicked), view);
 	}
 
 	selection = gtk_tree_view_get_selection(view);
@@ -166,6 +214,8 @@ void clist_init(void)
 
 void clist_refresh(void)
 {
+	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
+	GtkTreeViewColumn *col;
 	GtkTreeIter iter;
 	GdkPixbuf *pix1, *pix2, *pix;
 	GList *dirlist;
@@ -182,15 +232,28 @@ void clist_refresh(void)
 	{
 	case SORT_BY_NAME:
 		tilp_file_sort_by_name();
+		
+		col = gtk_tree_view_get_column(view, COLUMN_NAME);
+		gtk_tree_view_column_set_sort_indicator(col, TRUE);
+		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_TYPE:
 		tilp_file_sort_by_type();
+		col = gtk_tree_view_get_column(view, COLUMN_TYPE);
+		gtk_tree_view_column_set_sort_indicator(col, TRUE);
+		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_DATE:
 		tilp_file_sort_by_date();
+		col = gtk_tree_view_get_column(view, COLUMN_DATE);
+		gtk_tree_view_column_set_sort_indicator(col, TRUE);
+		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_SIZE:
 		tilp_file_sort_by_size();
+		col = gtk_tree_view_get_column(view, COLUMN_SIZE);
+		gtk_tree_view_column_set_sort_indicator(col, TRUE);
+		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	}
 
