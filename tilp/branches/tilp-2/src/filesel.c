@@ -1,299 +1,493 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
-/*  TiLP - Ti Linking Program
- *  Copyright (C) 1999-2005  Romain Lievin
+/*  TiEmu - an TI emulator
  *
- *  This program is free software you can redistribute it and/or modify
+ *  Copyright (c) 2000-2001, Thomas Corvazier, Romain Lievin
+ *  Copyright (c) 2001-2003, Romain Lievin
+ *  Copyright (c) 2003, Julien Blache
+ *  Copyright (c) 2004, Romain Liévin
+ *  Copyright (c) 2005, Romain Liévin, Kevin Kofler
+ *
+ *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation either version 2 of the License, or
+ *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- *
  *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY without even the implied warranty of
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
+ *  GNU General Public License for more details. *
  *  You should have received a copy of the GNU General Public License
- *  along with this program if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif				/*  */
 
+#include <stdio.h>
 #include <gtk/gtk.h>
 #include <string.h>
-#include <unistd.h>
 
-#include "tilp_core.h"
-#include "dboxes.h"
-#include "clist.h"
-#include "labels.h"
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 
-/* 
-   Open a backup to send 
-*/
-static void on_ok_fsel2(GtkFileSelection * file_selector,
-			gpointer user_data)
+#if WITH_KDE
+#include "kde.h"
+#endif
+
+#include "intl.h"
+#include "filesel.h"
+#include "tilp_struct.h"
+
+#define GTK_REFRESH() { while( gtk_events_pending() ) { gtk_main_iteration(); }}
+
+/* Single file selectors */
+
+static gchar *fname = NULL;
+static gint action = 0;
+
+static void store_filename(GtkFileSelection * file_selector,
+			   gpointer user_data)
 {
-	const gchar *filename;
-	filename = (gchar *)
-	    gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data));
-	gtk_widget_destroy(user_data);
-	if (tilp_calc_send_backup((char *) filename) != 0)
-		return;
-}
+	fname = g_strdup((gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data)));
+	action = 1;
+} 
 
-
-/* 
-   Save the received backup 
-*/
-static void on_ok_fsel3(GtkFileSelection * file_selector,
-			gpointer user_data)
+static void cancel_filename(GtkButton * button, gpointer user_data)
 {
-	gchar *tmp_filename;
-	G_CONST_RETURN gchar *s;
-	gchar *dst_filename;
-	s = gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data));
-	if (tifiles_get_extension(s) == NULL)
-		dst_filename =
-		    g_strconcat(s, ".", tifiles_backup_file_ext(), NULL);
+	fname = NULL;
+	action = 2;
+} 
 
-	else
-		dst_filename = g_strdup(s);
-	tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_BACKUP, NULL);
-	tilp_file_move_with_check(tmp_filename, dst_filename);
-	g_free(dst_filename);
-
-	/*tilp_dirlist_local();
-	   clist_refresh();
-	   labels_refresh(); */
-}
-static void on_cancel_fsel3(GtkFileSelection * file_selector,
-			    gpointer user_data)
-{
-	gchar *tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_BACKUP, NULL);
-	if (unlink(tmp_filename))
-		printl(2, _("Unable to remove the temporary file.\n"));
-}
-
-
-/* 
-   Save received var(s) 
-*/
-static void on_ok_fsel4(GtkFileSelection * file_selector,
-			gpointer user_data)
-{
-	gchar *tmp_filename;
-	G_CONST_RETURN gchar *s;
-	gchar *dst_filename;
-	s = gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data));
-	if (tifiles_get_extension(s) == NULL)
-		dst_filename =
-		    g_strconcat(s, ".", tifiles_group_file_ext(), NULL);
-
-	else
-		dst_filename = g_strdup(s);
-	tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP,
-			NULL);
-	tilp_file_move_with_check(tmp_filename, dst_filename);
-	g_free(dst_filename);
-
-	/*tilp_dirlist_local();
-	   clist_refresh();
-	   labels_refresh(); */
-}
-static void on_cancel_fsel4(GtkFileSelection * file_selector,
-			    gpointer user_data)
-{
-	char *tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_GROUP, NULL);
-	if (unlink(tmp_filename))
-		printl(2, _("Unable to remove the temporary file.\n"));
-}
-
-
-/* 
-   Save the received ROM dump 
-*/
-static void on_ok_fsel7(GtkFileSelection * file_selector,
-			gpointer user_data)
-{
-	gchar *tmp_filename;
-	G_CONST_RETURN gchar *s;
-	gchar *dst_filename;
-	s = gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data));
-	if (tifiles_get_extension(s) == NULL)
-		dst_filename = g_strconcat(s, ".rom", NULL);
-
-	else
-		dst_filename = g_strdup(s);
-	tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_ROMDUMP, NULL);
-	tilp_file_move_with_check(tmp_filename, dst_filename);
-	g_free(dst_filename);
-
-	/*tilp_dirlist_local();
-	   clist_refresh();
-	   labels_refresh(); */
-}
-static void on_cancel_fsel7(GtkFileSelection * file_selector,
-			    gpointer user_data)
-{
-	char *tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_ROMDUMP, NULL);
-	if (unlink(tmp_filename))
-		printl(2, _("Unable to remove the temporary file.\n"));
-}
-gint display_fileselection_1(void)
-{
-	return 0;
-}
-
-
-/* Send backup */
-gint display_fileselection_2(void)
+// GTK 1.x/2.x (x < 4)
+static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
 {
 	GtkWidget *fs;
-	gchar *mask;
-	fs = gtk_file_selection_new("Select a File.");
-	mask = g_strconcat("*.", tifiles_backup_file_ext(), NULL);
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), mask);
-	g_free(mask);
-	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
-			 "clicked", G_CALLBACK(on_ok_fsel2), fs);
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->ok_button),
-				 "clicked",
-				 G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->cancel_button),
-				 "clicked", G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
-	
-	gtk_widget_show(fs);
-	return 0;
-}
+    
+	fs = gtk_file_selection_new("Select a file...");
 
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), filename ? filename : ext);
 
-/* Receive backup */
-gint display_fileselection_3(void)
-{
-	GtkWidget *fs;
-	gchar *mask;
-	fs = gtk_file_selection_new("Select a File.");
-	mask = g_strconcat("*.", tifiles_backup_file_ext(), NULL);
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), mask);
-	g_free(mask);
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
-			 "clicked", G_CALLBACK(on_ok_fsel3), fs);
+			 "clicked", G_CALLBACK(store_filename), fs);
+
 	g_signal_connect(GTK_OBJECT
 			 (GTK_FILE_SELECTION(fs)->cancel_button),
-			 "clicked", G_CALLBACK(on_cancel_fsel3), fs);
+			 "clicked", G_CALLBACK(cancel_filename), fs);
+
 	g_signal_connect_swapped(GTK_OBJECT
 				 (GTK_FILE_SELECTION(fs)->ok_button),
 				 "clicked",
 				 G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
+
 	g_signal_connect_swapped(GTK_OBJECT
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
-				 
+
 	gtk_widget_show(fs);
-	return 0;
+
+	g_free(fname);
+	for(action = 0; !action; )
+		GTK_REFRESH();
+
+	return fname;
 }
 
+// GTK >= 2.4
+static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+{
+	GtkWidget *dialog;
+	GtkFileFilter *filter;
+	gchar *path;
+	gchar **sarray;
+	gint i;
+    
+	// create box
+	dialog = gtk_file_chooser_dialog_new (
+					  save ? "Save File" : "Open File",
+				      NULL,
+					  save ? GTK_FILE_CHOOSER_ACTION_SAVE : GTK_FILE_CHOOSER_ACTION_OPEN,
+				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+				      NULL);
 
-/* Group */
-gint display_fileselection_4(void)
+	// set default folder
+	path = g_path_get_dirname(dirname);
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
+	g_free(path);
+
+	// set default name
+	if(filename)
+		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), filename);
+
+	// set wildcards
+	filter = gtk_file_filter_new();
+	sarray = g_strsplit(ext, ";", -1);
+	for(i = 0; sarray[i] != NULL; i++)
+		gtk_file_filter_add_pattern (filter, sarray[i]);
+	g_strfreev(sarray);
+	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), filter);
+
+	// get result
+	g_free(fname);
+	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+		fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+	else
+		fname = NULL;
+	gtk_widget_destroy (dialog);
+
+	return fname;
+}
+
+// WIN32
+static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+{
+#ifdef WIN32
+	OPENFILENAME o;
+	char lpstrFile[1024] = "\0";
+	char lpstrFilter[256];
+	char *p;
+	gchar **sarray;
+	int i, n;
+
+	// clear structure
+	memset (&o, 0, sizeof(OPENFILENAME));
+
+	// set default filename
+	if(filename)
+		strcpy(lpstrFile, filename);
+
+	// format filter
+	sarray = g_strsplit(ext, "|", -1);
+	for(n = 0; sarray[n] != NULL; n++);
+
+	for(i = 0, p = lpstrFilter; i < n; i++)
+	{
+		strcpy(p, sarray[i]);
+		p += strlen(sarray[i]);
+		*p++ = '\0';
+
+		strcpy(p, sarray[i]);
+		p += strlen(sarray[i]);
+		*p++ = '\0';
+	}
+	*p++ = '\0';
+	g_strfreev(sarray);
+
+	// set structure
+	o.lStructSize = sizeof (o);	
+	o.lpstrFilter = lpstrFilter;	//"All\0*.*\0Text\0*.TXT\0";
+	o.lpstrFile = lpstrFile;
+	o.nMaxFile = sizeof(lpstrFile);
+	o.lpstrInitialDir = dirname;
+	o.Flags = 0x02000000 | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY |
+				 OFN_NOCHANGEDIR | OFN_EXPLORER | OFN_LONGNAMES | OFN_NONETWORKBUTTON;
+
+	// open/close
+	if(save)
+	{
+		if(!GetSaveFileName(&o))
+			return filename = NULL;
+	}
+	else
+	{
+		if(!GetOpenFileName(&o))
+			return filename = NULL;
+	}
+
+	return fname = g_strdup(lpstrFile);
+#endif
+
+	return NULL;
+}
+
+// KDE
+static const gchar* create_fsel_4(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+{
+#if WITH_KDE
+	gchar *p;
+	gchar *extspaces = g_strdup(ext);
+
+	p = extspaces;
+	while ((p = strchr(p, ';'))) *p = ' ';
+
+	if(save)
+	{
+		if (filename)
+			dirname = g_strconcat(dirname, filename, NULL);
+		fname = sp_kde_get_write_filename(dirname, extspaces, _("Save file"));
+	}
+	else
+		fname = sp_kde_get_open_filename(dirname, extspaces, _("Open file"));
+
+	g_free(extspaces);
+	return fname;
+#endif
+
+	return NULL;
+}
+
+// Front-end
+const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+{
+#ifndef __WIN32__
+	if(options.fs_type == 2)
+		options.fs_type = 1;
+#endif
+#if !WITH_KDE
+	if(options.fs_type == 3)
+		options.fs_type = 1;
+#endif
+	//printf("%i: <%s> <%s> <%s> %i\n", options.fs_type, dirname, filename, ext, save);
+
+	switch(options.fs_type)
+	{
+	case 0:	return create_fsel_1(dirname, filename, ext, save);
+	case 1:	return create_fsel_2(dirname, filename, ext, save);
+	case 2: return create_fsel_3(dirname, filename, ext, save);
+	case 3: return create_fsel_4(dirname, filename, ext, save);
+	default: return NULL;
+	}
+
+	return NULL;
+}
+
+/* Multiple files selectors */
+
+static gchar** filenames = NULL;
+static gint actions = 0;
+
+static void store_filenames(GtkFileSelection * file_selector,
+			   gpointer user_data)
+{
+	filenames = gtk_file_selection_get_selections(GTK_FILE_SELECTION(user_data));
+	actions = 1;
+} 
+
+static void cancel_filenames(GtkButton * button, gpointer user_data)
+{
+	filenames = NULL;
+	actions = 2;
+} 
+
+// GTK 1.x/2.x (x < 4)
+static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 {
 	GtkWidget *fs;
-	gchar *mask;
-	fs = gtk_file_selection_new("Select a File.");
-	mask = g_strconcat("*.", tifiles_group_file_ext(), NULL);
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), mask);
-	g_free(mask);
+    
+	fs = gtk_file_selection_new("Select a file...");
+
+	gtk_file_selection_set_select_multiple(GTK_FILE_SELECTION(fs), TRUE);
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), filename ? filename : ext);
+
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
-			 "clicked", G_CALLBACK(on_ok_fsel4), fs);
+			 "clicked", G_CALLBACK(store_filenames), fs);
+
 	g_signal_connect(GTK_OBJECT
 			 (GTK_FILE_SELECTION(fs)->cancel_button),
-			 "clicked", G_CALLBACK(on_cancel_fsel4), fs);
+			 "clicked", G_CALLBACK(cancel_filenames), fs);
+
 	g_signal_connect_swapped(GTK_OBJECT
 				 (GTK_FILE_SELECTION(fs)->ok_button),
 				 "clicked",
 				 G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
+
 	g_signal_connect_swapped(GTK_OBJECT
 				 (GTK_FILE_SELECTION(fs)->cancel_button),
 				 "clicked", G_CALLBACK(gtk_widget_destroy),
 				 (gpointer) fs);
 
 	gtk_widget_show(fs);
-	return 0;
+	for(actions = 0; !actions; )
+		GTK_REFRESH();
+
+	return filenames;
 }
 
-gint display_fileselection_5(void)
+// GTK >= 2.4
+static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 {
-	return 0;
+	GtkWidget *dialog;
+	GtkFileFilter *filter;
+	gchar *path;
+	gchar **sarray;
+	gint i;
+    
+	// create box
+	dialog = gtk_file_chooser_dialog_new ("Open File",
+				      NULL,
+					  GTK_FILE_CHOOSER_ACTION_OPEN,
+				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+				      NULL);
+
+	// set default folder
+	path = g_path_get_dirname(dirname);
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
+	g_free(path);
+
+	// set multiple selection
+	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(dialog), TRUE);
+
+	// set default name
+	if(filename)
+		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), filename);
+
+	// set wildcards
+	filter = gtk_file_filter_new();
+	sarray = g_strsplit(ext, ";", -1);
+	for(i = 0; sarray[i] != NULL; i++)
+		gtk_file_filter_add_pattern (filter, sarray[i]);
+	g_strfreev(sarray);
+	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), filter);
+
+	// get result
+	g_free(filename);
+	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	{
+		GSList *list, *p;
+		gchar **q;
+		
+		// convert list into string array
+		list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+		filenames = g_malloc0(g_slist_length(list)+1);
+
+		for(p = list, q = filenames; p; p = g_slist_next(p), q++)
+		{
+			*q = g_malloc0(strlen(p->data) + 1);
+			strcpy(*q, p->data);
+		}
+		*q = NULL;
+	}
+	else
+		filenames = NULL;
+	gtk_widget_destroy (dialog);
+
+	return filenames;
 }
 
-gint display_fileselection_6(void)
+// WIN32
+static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 {
-	return 0;
+#ifdef WIN32
+	OPENFILENAME o;
+	char lpstrFile[1024] = "\0";
+	char lpstrFilter[256];
+	char *p;
+	gchar **sarray;
+	int i, n;
+
+	// clear structure
+	memset (&o, 0, sizeof(OPENFILENAME));
+
+	// set default filename
+	if(filename)
+		strncpy(lpstrFile, filename, sizeof(lpstrFile));
+
+	// format filter
+	sarray = g_strsplit(ext, "|", -1);
+	for(n = 0; sarray[n] != NULL; n++);
+
+	for(i = 0, p = lpstrFilter; i < n; i++)
+	{
+		strcpy(p, sarray[i]);
+		p += strlen(sarray[i]);
+		*p++ = '\0';
+
+		strcpy(p, sarray[i]);
+		p += strlen(sarray[i]);
+		*p++ = '\0';
+	}
+	*p++ = '\0';
+	g_strfreev(sarray);
+
+	// set structure
+	o.lStructSize = sizeof (o);	
+	o.lpstrFilter = lpstrFilter;	//"All\0*.*\0Text\0*.TXT\0";
+	o.lpstrFile = lpstrFile;		//"C:\msvc\tilp\0foo.txt\0bar.txt"
+	o.nMaxFile = sizeof(lpstrFile);
+	o.lpstrInitialDir = dirname;
+	o.Flags = 0x02000000 | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY |
+				 OFN_NOCHANGEDIR | OFN_EXPLORER | OFN_LONGNAMES | OFN_NONETWORKBUTTON |
+				 OFN_ALLOWMULTISELECT;
+
+	// open selector
+	if(!GetOpenFileName(&o))
+		return NULL;
+	filenames = NULL;
+
+	// converts resulting string
+	for(p = lpstrFile, i=0; *p; p += strlen(p)+1, i++)
+	{
+		if(i)	// skip directory
+		{
+			filenames = g_realloc(filenames, (i+1) * sizeof(gchar *));
+			filenames[i-1] = g_strconcat(lpstrFile, G_DIR_SEPARATOR_S, p, NULL);
+		}
+	}
+
+	// one file selected ?
+	if(i == 1)
+	{
+		filenames = g_malloc(2 * sizeof(gchar *));
+		filenames[0] = g_strdup(lpstrFile);
+		filenames[1] = NULL;
+	}
+	else
+		filenames[i-1] = NULL;
+
+	return filenames;
+#endif
+
+	return NULL;
 }
 
-
-/* ROM dumping */
-gint display_fileselection_7(void)
+static gchar** create_fsels_4(gchar *dirname, gchar *filename, gchar *ext)
 {
-	GtkWidget *fs;
-	fs = gtk_file_selection_new("Select a File.");
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), "*.rom");
-	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
-			 "clicked", G_CALLBACK(on_ok_fsel7), fs);
-	g_signal_connect(GTK_OBJECT
-			 (GTK_FILE_SELECTION(fs)->cancel_button),
-			 "clicked", G_CALLBACK(on_cancel_fsel7), fs);
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->ok_button),
-				 "clicked",
-				 G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->cancel_button),
-				 "clicked", G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
+#if WITH_KDE
+	gchar *p;
+	gchar *extspaces = g_strdup(ext);
+	p = extspaces;
+	while ((p = strchr(p, ';'))) *p = ' ';
+	filenames = sp_kde_get_open_filenames(dirname, extspaces, _("Open file"));
+	g_free(extspaces);
+	return filenames;
+#endif
 
-	gtk_widget_show(fs);
-	return 0;
+	return NULL;
 }
 
-gint display_fileselection_8(void)
+// Front-end
+gchar** create_fsels(gchar *dirname, gchar *filename, gchar *ext)
 {
-	return 0;
+#ifndef __WIN32__
+	if(options.fs_type == 2)
+		options.fs_type = 1;
+#endif
+#if !WITH_KDE
+	if(options.fs_type == 3)
+		options.fs_type = 1;
+#endif
+	//printf("%i: <%s> <%s> <%s>\n", options.fs_type, dirname, filename, ext);
+
+	switch(options.fs_type)
+	{
+	case 0:	return create_fsels_1(dirname, filename, ext);
+	case 1:	return create_fsels_2(dirname, filename, ext);
+	case 2: return create_fsels_3(dirname, filename, ext);
+	case 3: return create_fsels_4(dirname, filename, ext);
+	default: return NULL;
+	}
+
+	return NULL;
 }
 
-gint display_fileselection_9(void)
-{
-	return 0;
-}
 
-gint display_fileselection_10(void)
-{
-	return 0;
-}
-
-
-/* */

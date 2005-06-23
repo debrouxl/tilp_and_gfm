@@ -65,6 +65,8 @@ typedef struct
     int		remote_sort;
     int		remote_sort_order;
 
+	int		fs_type;
+
 	// options
 	int		auto_detect;
     int		local_path;

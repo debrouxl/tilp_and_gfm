@@ -64,6 +64,16 @@ int tilp_config_default(void)
 	options.remote_sort = SORT_BY_NAME;
 	options.remote_sort_order = SORT_DOWN;
 
+#ifdef __WIN32__
+	options.fs_type = 2;
+#else
+#if WITH_KDE
+	options.fs_type = 3;
+#else
+	options.fs_type = 1;
+#endif
+#endif
+
 	options.overwrite = CONFIRM_YES;
 	options.local_path = 0;
 	options.show_all = 0;
