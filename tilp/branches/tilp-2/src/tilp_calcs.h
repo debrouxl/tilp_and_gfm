@@ -25,8 +25,9 @@
 int tilp_calc_isready(void);
 int tilp_calc_dirlist(void);
 int tilp_calc_idlist(void);
-int tilp_calc_recv_backup(void);
+int tilp_calc_send_var(int);
 int tilp_calc_send_backup(const char* filename);
+int tilp_calc_recv_backup(void);
 int tilp_calc_send_flash_app(char *filename);
 int tilp_calc_send_flash_os(char *filename);
 int tilp_calc_recv_app(void);

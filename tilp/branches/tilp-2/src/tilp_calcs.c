@@ -41,6 +41,10 @@
 #include "gtk_update.h"
 #include "tilp_core.h"
 
+#ifdef __WIN32__
+# define strcasecmp _stricmp
+#endif
+
 /*
   Check whether the calc is ready (with or without auto-detection)
 */
@@ -66,10 +70,10 @@ int tilp_calc_isready(void)
 */
 int tilp_calc_dirlist(void)
 {
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
-	if (tilp_dirlist_remote())
+	if(tilp_dirlist_remote())
 		return -1;
 
 	return 0;
@@ -86,10 +90,10 @@ int tilp_calc_send_backup(const char *filename)
 	int err;
 
 	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
-	if (ret != BUTTON1)
+	if(ret != BUTTON1)
 		return -1;
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
 	switch (calc_handle->model) 
@@ -133,7 +137,7 @@ int tilp_calc_recv_backup(void)
 	int err = 0;
 	char *filename;
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
 	switch (calc_handle->model) 
@@ -165,7 +169,7 @@ int tilp_calc_recv_backup(void)
 	do 
 	{
 		gtk_update.refresh();
-		if (gtk_update.cancel)
+		if(gtk_update.cancel)
 			break;
 
 		err = ticalcs_calc_recv_backup2(calc_handle, filename);
@@ -177,7 +181,7 @@ int tilp_calc_recv_backup(void)
 	g_free(filename);
 	gif->destroy_pbar();
 
-	if (tilp_err(err))
+	if(tilp_err(err))
 		return -1;
 
 	return 0;
@@ -192,7 +196,7 @@ int tilp_calc_idlist(void)
 	char buffer[MAXCHARS];
 	char idlist[32];
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
 	err = ticalcs_calc_recv_idlist(calc_handle, idlist);
@@ -231,7 +235,7 @@ static int do_rom_dump(int mode)
 	err = ticalcs_calc_dump_rom(calc_handle, ROMSIZE_AUTO, tmp_filename);
 	gif->destroy_pbar();
 
-	if (tilp_err(err))
+	if(tilp_err(err))
 		return -1;
 
 	return 0;
@@ -242,7 +246,7 @@ int tilp_calc_rom_dump(void)
 	gint ret;
 
 	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be\nsent on your calculator. If you have not made\na backup yet, you should do one before\nproceeding with ROM dumping..."));
-	if (ret != BUTTON1)
+	if(ret != BUTTON1)
 		return -1;
 
 	switch (calc_handle->model) 
@@ -264,9 +268,6 @@ int tilp_calc_rom_dump(void)
 	return 0;
 }
 
-#ifdef __WIN32__
-# define strcasecmp _stricmp
-#endif				/*  */
 
 /*
   Send a FLASH application
@@ -279,7 +280,7 @@ int tilp_calc_send_flash_app(char *filename)
 	int err;
 	gint old_timeout;
 
-	if (strcasecmp(tifiles_fext_get(filename), 
+	if(strcasecmp(tifiles_fext_get(filename), 
 					tifiles_fext_of_flash_app(calc_handle->model))) 
 	{
 		gif->msg_box(_("Error"),
@@ -287,7 +288,7 @@ int tilp_calc_send_flash_app(char *filename)
 		return -1;
 	}
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 	
 	old_timeout = calc_handle->cable->timeout;
@@ -302,7 +303,7 @@ int tilp_calc_send_flash_app(char *filename)
 
 	ticables_options_set_timeout(cable_handle, old_timeout);
 	
-	if (tilp_err(err))
+	if(tilp_err(err))
 		return -1;
 
 	return 0;
@@ -321,7 +322,7 @@ int tilp_calc_send_flash_os(char *filename)
 	gint old_timeout;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
 
-	if (strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(calc_handle->model)) &&
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(calc_handle->model)) &&
 		!tifiles_file_is_tib(filename)) 
 	{
 		gif->msg_box(_("Error"),
@@ -330,10 +331,10 @@ int tilp_calc_send_flash_os(char *filename)
 	}
 
 	ret = gif->msg_box4(_("Warning"), msg);
-	if (ret == BUTTON2)
+	if(ret == BUTTON2)
 		return -1;
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
 	old_timeout = calc_handle->cable->timeout;
@@ -348,7 +349,7 @@ int tilp_calc_send_flash_os(char *filename)
 
 	ticables_options_set_timeout(cable_handle, old_timeout);
 
-	if (tilp_err(err))
+	if(tilp_err(err))
 		return -1;
 
 	return 0;
@@ -364,10 +365,10 @@ int tilp_calc_recv_app(void)
 	char filename[256];
 	char *dst;
 
-	if (!tilp_ctree_selection2_ready())
+	if(!tilp_ctree_selection2_ready())
 		return 0;
 
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 
 	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
@@ -385,7 +386,7 @@ int tilp_calc_recv_app(void)
 		strcat(filename, ".");
 		strcat(filename, tifiles_vartype2fext(calc_handle->model, ve->type));
 
-		if (!tilp_file_check(filename, &dst)) 
+		if(!tilp_file_check(filename, &dst)) 
 		{
 			gif->destroy_pbar();
 			return 0;
@@ -410,111 +411,115 @@ int tilp_calc_recv_app(void)
 	return 0;
 }
 
-#if 0
-
-#ifdef __WIN32__
-# define strcasecmp _stricmp
-#endif				/*  */
-
 /*
   Send one or more selected variables
 */
 int tilp_calc_send_var(gint to_flash)
 {
 	GList *sel;
-	gint i = 0;
-	gint l = 0;
 	int mode = MODE_NORMAL;
-	if (to_flash) {
-		if (options.lp.calc_type == CALC_TI83P)
-			mode |= MODE_SEND_TO_FLASH;
+	gint i, l = 0;
 
-		else if (options.lp.calc_type == CALC_TI89
-			 || options.lp.calc_type == CALC_TI89T
-			 || options.lp.calc_type == CALC_TI92P
-			 || options.lp.calc_type == CALC_V200)
-			mode |= MODE_BACKUP;
-	}
-	if (!tilp_clist_selection_ready())
+	if(to_flash && tifiles_is_flash(calc_handle->model))
+		mode |= MODE_SEND_TO_FLASH;
+
+	if(!tilp_clist_selection_ready())
 		return 0;
 
 	// Check for selection consistence
-	for (sel = clist_win.selection; sel; sel = sel->next) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
-		if (tifiles_is_a_flash_file(f->name)) {
-			gif->msg_box(_("Error"), _
-				     ("You can not send both variables and applications simultaneously."));
-			return 0;
-		}
-		if (tifiles_is_a_backup_file(f->name)
-		    && !tifiles_is_a_group_file(f->name)) {
+	for (sel = local_win.selection; sel; sel = sel->next) 
+	{
+		FileEntry *f = (FileEntry *)sel->data;
+
+		if(tifiles_file_is_flash(f->name)) 
+		{
 			gif->msg_box(_("Error"),
-				     _
-				     ("You can not send backups in this way. Use the 'Restore' button instead."));
+				_("You can not send both variables and applications simultaneously."));
 			return 0;
 		}
-		if (!tifiles_is_a_regular_file(f->name)) {
-			gif->msg_box(_("Error"), _
-				     ("There is an unknown file type in the selection."));
+
+		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		{
+			gif->msg_box(_("Error"),
+				     _("You can not send backups in this way. Use the 'Restore' button instead."));
+			return 0;
+		}
+
+		if(!tifiles_file_is_regular(f->name)) 
+		{
+			gif->msg_box(_("Error"), _("There is an unknown file type in the selection."));
 			return 0;
 		}
 	}
-	if (tilp_calc_isready())
+
+	if(tilp_calc_isready())
 		return -1;
-	if (options.path_mode == LOCAL_PATH)
+
+	if(options.local_path == PATH_LOCAL)
 		mode |= MODE_LOCAL_PATH;
 
 	// Display the appropriate dialog box
-	l = g_list_length(sel = clist_win.selection);
-	if (l == 1) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
-		if (tifiles_is_a_group_file(f->name))
-			gif->create_pbar_type5(_("Sending group file"),
-					       "");
+	l = g_list_length(sel = local_win.selection);
+	if(l == 1) 
+	{
+		FileEntry *f = (FileEntry *) sel->data;
 
+		if(tifiles_file_is_group(f->name))
+			gif->create_pbar_type5(_("Sending group file"), "");
 		else
 			gif->create_pbar_type4(_("Sending variable"), "");
-	} else
+	} 
+	else
+	{
 		gif->create_pbar_type5(_("Sending variables"), "");
+	}
 
 	// Now, send files
-	sel = clist_win.selection;
-	while (sel != NULL) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
+	for(sel = local_win.selection; sel != NULL; sel = sel->next, i++)
+	{
+		FileEntry *f = (FileEntry *) sel->data;
+		int err;
 
 		// It is not the last file to send
-		if (((sel->next) != NULL) && (l > 1)) {
-
+		if(((sel->next) != NULL) && (l > 1)) 
+		{
 			// More than one file to send
-			if (tilp_error
-			    (ti_calc.
-			     send_var(f->name, mode | MODE_SEND_VARS,
-				      f->actions))) {
+			err = ticalcs_calc_send_var2(calc_handle, mode, f->name);
+			if(err) 
+			{
+				tilp_err(err);
 				gif->destroy_pbar();
-				return -1;
-			}
-		} else {
 
-			// It is the last one
-			if (tilp_error
-			    (ti_calc.
-			     send_var(f->name, mode | MODE_SEND_LAST_VAR,
-				      f->actions))) {
+				return -1;
+			}
+		} 
+		else 
+		{
+			// It is the first or the last one
+			err = ticalcs_calc_send_var2(calc_handle, mode | MODE_SEND_LAST_VAR, f->name);
+			{
+				tilp_err(err);
 				gif->destroy_pbar();
+
 				return -1;
 			}
 		}
-		i++;
-		if (l > 1) {
-			info_update.main_percentage = (float) i / l;
-			info_update.pbar();
-			info_update.refresh();
+
+		if(l > 1) 
+		{
+			gtk_update.cnt2 = i;
+			gtk_update.max2 = l;
+
+			gtk_update.pbar();
+			gtk_update.refresh();
 		}
-		sel = sel->next;
-	} gif->destroy_pbar();
+	} 
+	gif->destroy_pbar();
+
 	return 0;
 }
 
+#if 0
 
 /*
   Receive one or more selected variables.
@@ -528,7 +533,7 @@ int tilp_calc_recv_var(void)
 	int l, nvars;
 	l = g_list_length(remote_win.selection);
 	nvars = 0;
-	if (tilp_calc_isready())
+	if(tilp_calc_isready())
 		return -1;
 	switch (options.lp.calc_type) {
 	case CALC_TI73:
@@ -542,11 +547,11 @@ int tilp_calc_recv_var(void)
 	case CALC_TI92P:
 	case CALC_V200:
 		{
-			if (!tilp_ctree_selection_ready())
+			if(!tilp_ctree_selection_ready())
 				return -1;
 			gif->create_pbar_type5(_("Receiving variable(s)"),
 					       "");
-			if ((g_list_length(remote_win.selection) == 1)
+			if((g_list_length(remote_win.selection) == 1)
 			    || (options.single_or_group == RECV_AS_SINGLE)) {
 
 				//
@@ -571,7 +576,7 @@ int tilp_calc_recv_var(void)
 							     MODE_RECEIVE_SINGLE_VAR,
 							     ve);
 					chdir(old_path);
-					if (tilp_error(err)) {
+					if(tilp_error(err)) {
 						gif->destroy_pbar();
 						return -1;
 					}
@@ -613,13 +618,13 @@ int tilp_calc_recv_var(void)
 					       tmp_filename,
 					       TMPFILE_GROUP);
 					chdir(g_get_tmp_dir());
-					if (nvars == 0)
+					if(nvars == 0)
 						err =
 						    ti_calc.recv_var(tmpf,
 								     MODE_RECEIVE_FIRST_VAR,
 								     ve);
 
-					else if (nvars == l - 1)
+					else if(nvars == l - 1)
 						err =
 						    ti_calc.recv_var(tmpf,
 								     MODE_RECEIVE_LAST_VAR,
@@ -631,7 +636,7 @@ int tilp_calc_recv_var(void)
 								     MODE_NORMAL,
 								     ve);
 					chdir(old_path);
-					if (tilp_error(err)) {
+					if(tilp_error(err)) {
 						gif->destroy_pbar();
 						return -1;
 					}
@@ -642,7 +647,7 @@ int tilp_calc_recv_var(void)
 					info_update.refresh();
 					sel = sel->next;
 				} gif->destroy_pbar();
-				if (tilp_error(err))
+				if(tilp_error(err))
 					return -1;
 
                 return +1;
@@ -673,11 +678,11 @@ int tilp_calc_recv_var(void)
 					     NULL);
 			chdir(old_path);
 			gif->destroy_pbar();
-			if (tilp_error(err))
+			if(tilp_error(err))
 				return -1;
 
 			// Detect for single/group file
-			if (!strcmp(tmp_filename, TMPFILE_GROUP))
+			if(!strcmp(tmp_filename, TMPFILE_GROUP))
 				return +1;
 
 			// Check for existence and move
