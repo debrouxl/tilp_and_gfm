@@ -21,12 +21,13 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <string.h>
 
+#include "support.h"
 #include "scroptions.h"
 #include "tilp_core.h"
 
@@ -41,66 +42,62 @@ gint display_scroptions_dbox()
 	GtkWidget *data;
 	gint result;
 
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("screen_options-2.glade"),
-	     "scropt_dbox", PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("screenopts-2.glade"), "screenopts_dbox", PACKAGE);
 	if (!xml)
 		g_error("GUI loading failed !\n");
-
 	glade_xml_signal_autoconnect(xml);
-	dbox = glade_xml_get_widget(xml, "scropt_dbox");
-	data = glade_xml_get_widget(xml, "radiobutton10");
 
+	dbox = glade_xml_get_widget(xml, "screenopts_dbox");
+
+	data = glade_xml_get_widget(xml, "radiobutton10");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == PNG)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton11");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == XPM)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton12");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == JPG)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),  TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton13");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == BMP)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	data = glade_xml_get_widget(xml, "radiobutton23");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == PDF)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton24");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == EPS)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton21");
 	tmp_screen_mode = options.screen_clipping;
-	if (options.screen_clipping == FULL_SCREEN)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+	if (options.screen_clipping == SCREEN_FULL)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton22");
 	tmp_screen_mode = options.screen_clipping;
-	if (options.screen_clipping == CLIPPED_SCREEN)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+	if (options.screen_clipping == SCREEN_CLIPPED)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "checkbutton1");
 	tmp_grayscales = options.screen_blurry;
 	if (tmp_grayscales != 0)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     TRUE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 	else
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),
-					     FALSE);
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), FALSE);
 
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) {
+	switch (result) 
+	{
 	case GTK_RESPONSE_OK:
 		options.screen_format = tmp_image_format;
 		options.screen_clipping = tmp_screen_mode;
@@ -166,7 +163,7 @@ on_radiobutton21_toggled(GtkToggleButton * togglebutton,
 			 gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
-		tmp_screen_mode = FULL_SCREEN;
+		tmp_screen_mode = SCREEN_FULL;
 }
 
 GLADE_CB void
@@ -174,7 +171,7 @@ on_radiobutton22_toggled(GtkToggleButton * togglebutton,
 			 gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
-		tmp_screen_mode = CLIPPED_SCREEN;
+		tmp_screen_mode = SCREEN_CLIPPED;
 }
 
 GLADE_CB void

@@ -28,7 +28,7 @@ static gchar* calc;
 static gchar* cable;
 static gchar** array;
 static gchar** flist;
-static gint use_gui;
+static gint dont_use_gui;
 extern int working_mode;
 
 static GOptionEntry entries[] = 
@@ -38,7 +38,7 @@ static GOptionEntry entries[] =
 	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, "Link cable port", NULL },
 	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.cable_timeout, "Link cable timeout", NULL },
 	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.cable_delay, "Link cable delay", NULL },
-	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &use_gui, "Does not use GUI", NULL },
+	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &dont_use_gui, "Does not use GUI", NULL },
 	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, "filename(s)", NULL },
 	{ NULL }
 };
@@ -121,10 +121,10 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	}
 
 	// don't use GUI ?
-	if(use_gui)
-		working_mode |= MODE_GUI;
-	else
+	if(dont_use_gui)
 		working_mode &= ~MODE_GUI;
+	else
+		working_mode |= MODE_GUI;
 
 	return 0;
 }

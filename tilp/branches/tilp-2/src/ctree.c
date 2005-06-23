@@ -384,7 +384,7 @@ void ctree_refresh(void)
 		VarEntry *ve = (VarEntry *) (node->data);
 		char icon_name[256];
 
-		row_text[0] = g_strdup(tifiles_transcode_varname (options.calc_model, ve->name, ve->type));
+		row_text[0] = g_strdup(tifiles_transcode_varname_static (options.calc_model, ve->name, ve->type));
 		row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 		row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 

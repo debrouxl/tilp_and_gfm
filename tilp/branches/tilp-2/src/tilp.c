@@ -41,6 +41,7 @@
 #include "device.h"
 #include "clist.h"
 #include "ctree.h"
+#include "dnd.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -86,9 +87,7 @@ GtkWidget *display_tilp_dbox()
 	
 	clist_init();
 	ctree_init();
-	/*
 	dnd_init();
-	*/
 
 	return dbox;
 }
@@ -150,7 +149,7 @@ GLADE_CB void on_clock1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	//tilp_calc_idlist();
+	tilp_calc_idlist();
 }
 
 GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
@@ -271,7 +270,7 @@ GLADE_CB void on_about1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
-	//tilp_calc_isready();
+	tilp_calc_isready();
 }
 
 GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
@@ -281,12 +280,11 @@ GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 {
-	/*
 	if (tilp_calc_dirlist() != 0)
 		return;
+
 	ctree_refresh();
 	labels_refresh();
-	*/
 }
 
 

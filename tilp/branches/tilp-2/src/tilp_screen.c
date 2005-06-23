@@ -34,7 +34,7 @@
 
 #include "tilp_core.h"
 
-TilpScreen tilp_screen = { 0 };
+TilpScreen tilp_screen = { 0 };	// change to screen (like local/remote)
 
 /*
   Do a screen capture

@@ -327,12 +327,12 @@ int tilp_config_read(void)
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_model", &error);
 	if(s != NULL)
-		options.calc_model = ticables_string_to_model(s);
+		options.cable_model = ticables_string_to_model(s);
 	g_free(s);
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_port", &error);
 	if(s != NULL)
-		options.calc_model = ticables_string_to_port(s);
+		options.cable_port = ticables_string_to_port(s);
 	g_free(s);
 
 	options.cable_timeout = 

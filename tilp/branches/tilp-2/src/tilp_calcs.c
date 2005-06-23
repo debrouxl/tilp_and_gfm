@@ -40,46 +40,25 @@
 
 #include "tilp_core.h"
 
-#if 0
-
 /*
   Check whether the calc is ready (with or without auto-detection)
 */
 int tilp_calc_isready(void)
 {
-	int err = 0;
-	TicalcType c = 0;
-	ticalc_get_calc(&c);
-	if (options.auto_detect && 
-		tifiles_is_flash(options.lp.calc_type) && 
-		(options.lp.calc_type != CALC_TI84P) &&
-		(options.lp.calc_type != CALC_TI89T) &&
-		(options.lp.calc_type != CALC_V200)) 
+	int err = ticalcs_calc_isready(calc_handle);
+
+	if(err) 
 	{
-		err =
-		    ticalc_flash_isready((TicalcType *) &
-					 (options.lp.calc_type));
-		if (tilp_error(err)) {
-			if (ready_cb != NULL) {
-				ready_cb(READY_NOK);
-			}
+		err = ticalcs_calc_isready(calc_handle);
+		if(err)
+		{
+			tilp_err(err);
 			return -1;
 		}
-		ticalc_set_calc(options.lp.calc_type, &ti_calc);
-	} else {
-		err = ti_calc.isready();
-		if (err && (err != ERR_VOID_FUNCTION)) {
-			tilp_error(err);
-			if (ready_cb != NULL) {
-				ready_cb(READY_NOK);
-			}
-			return -1;
-		}
-    }
 	}
+
 	return 0;
 }
-
 
 /*
   Do a directory listing
@@ -88,11 +67,14 @@ int tilp_calc_dirlist(void)
 {
 	if (tilp_calc_isready())
 		return -1;
+
 	if (tilp_dirlist_remote())
 		return -1;
+
 	return 0;
 }
 
+#if 0
 
 /*
   Send a backup from the specified filename
@@ -187,34 +169,41 @@ int tilp_calc_recv_backup(void)
 	return 0;
 }
 
+#endif
 
 /*
   Receive the IDlist
 */
 int tilp_calc_idlist(void)
 {
+	int err;
 	char buffer[MAXCHARS];
 	char idlist[32];
 
 	if (tilp_calc_isready())
 		return -1;
 
-	if (tilp_error(ti_calc.get_idlist(idlist)))
+	err = ticalcs_calc_recv_idlist(calc_handle, idlist);
+	if(err)
+	{
+		tilp_err(err);
 		return -1;
-
+	}
+	
 	strcpy(buffer, _("ID-LIST : "));
-	strncat(buffer, idlist + 8, 5);
+	strncat(buffer, idlist, 5);
 	strcat(buffer, "-");
-	strncat(buffer, idlist + 8 + 5, 5);
+	strncat(buffer, idlist + 5, 5);
 	strcat(buffer, "-");
-	strncat(buffer, idlist + 8 + 5 + 5, 4);
+	strncat(buffer, idlist + 5 + 5, 4);
 	strcat(buffer, "\0");
 
-	gif->msg_box(_("Information"), buffer);
+	gif->msg_box1(_("Information"), buffer);
 
 	return 0;
 }
 
+#if 0
 
 /*
   Dump the ROM (get a ROM image)

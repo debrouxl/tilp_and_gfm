@@ -3,6 +3,8 @@
 
 #include <gtk/gtk.h>
 
+void dnd_init(void);
+
 void
 on_treeview1_drag_begin(GtkWidget * widget,
 			GdkDragContext * drag_context, gpointer user_data);

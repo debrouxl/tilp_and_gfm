@@ -176,9 +176,7 @@ void tilp_vars_sort_by_size(void)
 	g_list_sort(local_win.dirlist, sort_by_size);
 }
 
-/********/
 /* Misc */
-/********/
 
 void tilp_var_get_size(VarEntry* vi, char **buf)
 {

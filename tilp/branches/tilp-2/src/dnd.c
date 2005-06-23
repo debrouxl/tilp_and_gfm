@@ -204,13 +204,13 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		if (!strcmp(name, NODE1)) 
 		{
 			// screenshot
-			//display_screenshot_dbox();
-			//on_scdbox_button1_clicked(NULL, NULL);
+			display_screenshot_dbox();
+			on_scdbox_button1_clicked(NULL, NULL);
 
 			if (gtk_update.cancel == 0) 
 			{
-				//on_sc_save1_activate(NULL, NULL);
-				//on_sc_quit1_activate(NULL, NULL);
+				on_sc_save1_activate(NULL, NULL);
+				on_sc_quit1_activate(NULL, NULL);
 			}
 		} 
 		else if (!strcmp(name, NODE2)) 
