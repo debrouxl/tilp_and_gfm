@@ -154,13 +154,12 @@ GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	/*
 	if (tilp_calc_rom_dump())
 		return;
-	display_fileselection_7();
+
+	//display_fileselection_7();
 	clist_refresh();
 	labels_refresh();
-	*/
 }
 
 GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem, gpointer user_data)

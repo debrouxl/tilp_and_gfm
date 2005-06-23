@@ -203,8 +203,6 @@ int tilp_calc_idlist(void)
 	return 0;
 }
 
-#if 0
-
 /*
   Dump the ROM (get a ROM image)
 */
@@ -212,115 +210,49 @@ static int do_rom_dump(int mode)
 {
 	gchar tmp_filename[MAXCHARS];
 	int err;
-	gif->create_pbar_type5(_("ROM dump"), _("Receiving bytes"));
+
 	strcpy(tmp_filename, g_get_tmp_dir());
-	strcat(tmp_filename, DIR_SEPARATOR);
+	strcat(tmp_filename, G_DIR_SEPARATOR_S);
 	strcat(tmp_filename, TMPFILE_ROMDUMP);
-	err = ti_calc.dump_rom(tmp_filename, mode);
+
+	gif->create_pbar_type5(_("ROM dump"), _("Receiving data"));
+	err = ticalcs_calc_dump_rom(calc_handle, ROMSIZE_AUTO, tmp_filename);
 	gif->destroy_pbar();
-	if (tilp_error(err))
+
+	if (tilp_err(err))
 		return -1;
+
 	return 0;
 }
+
 int tilp_calc_rom_dump(void)
 {
 	gint ret;
-	ret = gif->msg_box4(_("Warning"), _
-			    ("An assembly program is about to be\nsent on your calculator. If you have not made\na backup yet, you should do one before\nproceeding with ROM dumping..."));
+
+	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be\nsent on your calculator. If you have not made\na backup yet, you should do one before\nproceeding with ROM dumping..."));
 	if (ret != BUTTON1)
 		return -1;
-	switch (options.lp.calc_type) {
+
+	switch (calc_handle->model) 
+	{
 	case CALC_TI73:
-	case CALC_TI83:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: you must have AShell installed on your calculator\n2: TiLP will automatically transfer the ROM dump program\n3: but, it will wait for you to manually launch it from the calculator."));
-		if (ret == BUTTON1)
-			return do_rom_dump(0);
-
-		else
-			return -1;
-		break;
-	case CALC_TI82:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: you must have ASh installed on your calculator\n2: you must be in receive mode (LINK menu)\n3: TiLP will transfer the ROM dumping program\n4: it will wait for you to manually launch it from the calculator."));
-		if (ret == BUTTON1)
-			return do_rom_dump(0);
-
-		else
-			return -1;
-		break;
-	case CALC_TI85:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: you must have Zshell or Usgard installed on your calculator\n2: you must be in receive mode (LINK menu)\n3: TiLP will transfer the ROM dumping program\n4: it will wait for you to manually launch it from the calculator."));
-		if (ret == BUTTON1) {
-
-			/* Ask for the shell type */
-			ret =
-			    gif->msg_box3("Question", "Select a shell",
-					  "Zshell", "Usgard", "Cancel");
-			if (ret == 3)
-				return -1;
-
-			else
-				return do_rom_dump((ret == 1) ?
-						   SHELL_ZSHELL :
-						   SHELL_USGARD);
-		} else
-			return -1;
-		break;
 	case CALC_TI83P:
 	case CALC_TI84P:
-		ret = gif->msg_box4(_("Information"), 
-				    _("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(prgmROMDUMP)'.\nThanks to Benjamin Moody for the ROM dumper !"));
-		if (ret == BUTTON1)
-		{
-			ret = gif->msg_box3(_("Question"), _("Is your calculator model a SilverEdition ?"), _("Yes"), _("No"), _("Cancel"));
-			if(ret == 3)
-				return -1;
-			else
-				return do_rom_dump((ret == BUTTON1) ? ROM_SE : 0);
-		}
-		else
-			return -1;
-		break;
-	case CALC_TI86:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: TiLP will automatically transfer the ROM dumping program\n2: but, it will wait for you to manually launch it from the calculator (either by the shell, either by typing 'Asm(DUMPROM)'."));
-		if (ret == BUTTON1)
-			return do_rom_dump(0);
-
-		else
-			return -1;
-		break;
 	case CALC_TI89:
-	case CALC_TI89T:
+	case CALC_TI92:
 	case CALC_TI92P:
 	case CALC_V200:
 		return do_rom_dump(0);
-		break;
-	case CALC_TI92:
-		ret = gif->msg_box4(_("Information"), _
-				    ("1: you must have the FargoII shell installed on your calculator\n2: TiLP will automatically transfer the ROM dumping program\n3: TiLP will automatically launch the program (if you are in HOME).\n"));
-		if (ret == BUTTON1) {	// ask for ROM size
-			ret =
-			    gif->msg_box3("ROM size",
-					  "Select the size of your ROM or cancel",
-					  "1Mb", "2 Mb", "Cancel");
-			if (ret == 3)
-				return -1;
-
-			else
-				return do_rom_dump(ret);
-		} else
-			return -1;
-		break;
+	break;
 	default:
-		printl(0, "Unsupported ROM dump.\n");
+		gif->msg_box(_("Information"), _("Currently unsupported !"));
 		break;
 	}
+
 	return 0;
 }
 
+#if 0
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp
@@ -481,89 +413,6 @@ int tilp_calc_recv_app(void)
 	gif->destroy_pbar();
 	return 0;
 }
-
-
-/*
-  Convert a FLASH OS (AMS) into a ROM image
-  Buggy !
-  Should be removed !
-*/
-int tilp_calc_ams2rom(char *filename)
-{
-	Ti9xFlash content = {
-		0
-	};
-	Ti9xFlash *ptr;
-	int i;
-	int nheaders = 0;
-	FILE *f;
-	char filename2[MAXCHARS];
-	char *ext;
-	if (!tifiles_is_a_flash_file(filename)) {
-		gif->msg_box("Error", "It's not a FLASH file !\n");
-		return -1;
-	}
-	ext = strrchr(filename, '.');
-	if (ext != NULL) {
-		strncpy(filename2, filename,
-			strlen(filename) - strlen(ext));
-		filename2[strlen(filename) - strlen(ext)] = '\0';
-	} else
-		strcpy(filename2, filename);
-	strcat(filename2, ".rom");
-	f = fopen(filename2, "wb");
-	if (f == NULL) {
-		printl(2, "Unable to open this file: <%s>\n",
-			      filename2);
-		return -1;
-	}
-	if (tilp_error(ti9x_read_flash_file(filename, &content)))
-		return -1;
-
-	// count headers
-	for (ptr = &content; ptr != NULL; ptr = ptr->next)
-		nheaders++;
-
-	// keep the last one (data)
-	for (i = 0, ptr = &content; i < nheaders - 1; i++)
-		ptr = ptr->next;
-	printl(0, "FLASH app/os name: \"%s\"\n", ptr->name);
-	printl(0, "FLASH app/os size: %i bytes.\n", ptr->data_length);
-
-	// boot block
-	for (i = 0; i < 0x05; i++)
-		fputc(0xff, f);
-	if (content.calc_type == CALC_TI89)
-		fputc(0x20, f);	// internal
-	else
-		fputc(0x40, f);	// external
-	for (i = 0x06; i < 0x65; i++)
-		fputc(0xff, f);
-	fputc(0xf0, f);		// FLASH ROM
-	for (i = 0x66; i < 0x12000; i++)
-		fputc(0xff, f);
-	gif->create_pbar_type1(_("Converting..."));
-	info_update.start();
-
-	/* FLASH upgrade */
-	for (i = 0; i < (int)ptr->data_length; i++) {
-
-		//info_update.percentage = (float)i/ptr->data_length;
-		//info_update.pbar();
-		if (info_update.cancel) {
-			gif->destroy_pbar();
-			fclose(f);
-			return -1;
-		}
-		fputc(ptr->data_part[i], f);
-	}
-	for (i = 0x12000 + ptr->data_length; i < 2 * 1024 * 1024; i++)
-		fputc(0xff, f);
-	gif->destroy_pbar();
-	fclose(f);
-	return 0;
-}
-
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp

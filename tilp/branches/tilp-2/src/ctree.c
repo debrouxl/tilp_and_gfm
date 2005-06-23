@@ -229,7 +229,7 @@ static GtkTreeIter apps_node;
 
 void ctree_set_basetree(void)
 {
-	GtkTreeIter lcd_node, rom_node;
+	GtkTreeIter lcd_node, rom_node, idl_node;
 
 	// clear tree
 	gtk_tree_store_clear(tree);
@@ -251,6 +251,10 @@ void ctree_set_basetree(void)
 	{
 		gtk_tree_store_append(tree, &apps_node, NULL);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
+				   COLUMN_DATA, (gpointer) NULL, -1);
+
+		gtk_tree_store_append(tree, &idl_node, NULL);
+		gtk_tree_store_set(tree, &idl_node, COLUMN_NAME, NODE5,
 				   COLUMN_DATA, (gpointer) NULL, -1);
 	}
 }
@@ -474,6 +478,9 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 		else if (!strcmp(name, NODE3))
 			on_tilp_button7_clicked(NULL, NULL);
+
+		else if(!strcmp(name, NODE5))
+			tilp_calc_idlist();
 
 		return TRUE;
 	}

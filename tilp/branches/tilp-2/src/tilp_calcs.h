@@ -22,6 +22,9 @@
 #ifndef __TILP_CALCS__
 #define __TILP_CALCS__
 
-
+int tilp_calc_isready(void);
+int tilp_calc_dirlist(void);
+int tilp_calc_idlist(void);
+int tilp_calc_rom_dump(void);
 
 #endif

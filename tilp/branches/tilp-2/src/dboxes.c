@@ -50,16 +50,14 @@ int msg_box1(const gchar * title, gchar * message)
 
 	if (msg_type != -1) 
 	{
-		dialog =
-		    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   msg_type, GTK_BUTTONS_CLOSE,
 					   message);
 		gtk_dialog_run(GTK_DIALOG(dialog));
 	} 
 	else 
 	{
-		dialog =
-		    gtk_dialog_new_with_buttons(title, GTK_WINDOW(NULL),
+		dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(NULL),
 						(GtkDialogFlags)
 						(GTK_DIALOG_MODAL),
 						GTK_STOCK_OK,
