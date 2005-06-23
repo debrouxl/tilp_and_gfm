@@ -70,6 +70,14 @@ int main(int argc, char *argv[])
 		tilp_err(0);		// display console mode errors
 	}
 
+	/* Do a local directory list */
+	g_free(local.cwdir);
+	local.cwdir = g_get_current_dir();
+
+	/* Update the local view (not visible yet) */
+	clist_refresh();
+	labels_refresh();
+
 	/* In cmdline, does not display the entire window, only the pbar */
 	if(working_mode & MODE_GUI) 
 	{
@@ -80,10 +88,6 @@ int main(int argc, char *argv[])
 		gdk_window_set_icon_name(main_wnd->window, _("TiLP"));
 	}
 
-	/* Do a local directory list */
-	g_free(local.cwdir);
-	local.cwdir = g_get_current_dir();
-
 	/* 
 	   If variables have been passed on the command line in GUI mode then
 	   send them 
@@ -93,11 +97,6 @@ int main(int argc, char *argv[])
 		splash_screen_set_label(_("Command line..."));
 		tilp_cmdline_send();
 	}
-
-	/* Update the local view */
-	tilp_dirlist_local();
-	clist_refresh();
-	labels_refresh();
 
 	/* GTK main loop */
 	splash_screen_stop();

@@ -35,6 +35,7 @@
 
 #ifndef __MACOSX__
 # include <glib.h>
+# include <glib/gstdio.h>
 #else
 # include <glib/glib.h>
 #endif
@@ -95,81 +96,39 @@ int tilp_file_copy(const char *src, const char *dst)
 
 int tilp_file_move(const char *src, const char *dst)
 {
-#ifndef __WIN32__
-	int ret = tilp_file_copy(src, dst);
-	if (ret)
-		return ret;
-	unlink(src);
-#else				
-	//if (!MoveFile(src, dst))
-	if(!CopyFile(src, dst, FALSE))
-		return -1;
-	if(!DeleteFile(src))
-		return -1;
-#endif				/*  %USERPROFILE%\Local Settings\Temp */
-	return 0;
-}
-
-
-#ifdef __WIN32__
-int tilp_file_delete(const char *f)
-{
-	if (!DeleteFile(f)/*RemoveDirectory(f)*/) 
+	if(g_rename(src, dst) < 0)
 	{
-		gif->msg_box1(_("Information"), _
-			     ("Unable to remove the file !"));
+		gif->msg_box1(_("Information"), _("Unable to move file.\n\n"));
 		return -1;
 	}
 
 	return 0;
 }
 
-#else	
-			
+
 int tilp_file_delete(const char *f)
 {
-	if (unlink(f) == -1) 
+	if(g_unlink(f) < 0)
 	{
-		uid_t effective = geteuid();
-		seteuid(getuid());
-
-		if (remove(f) == -1) 
-		{
-			gif->msg_box1(_("Information"), _
-				     ("Unable to remove the file. You can not delete non empty folders !"));
-			return -1;
-		}
-
-		seteuid(effective);
+		gif->msg_box1(_("Information"), _("Unable to remove the file !"));
+		return -1;
 	}
 
 	return 0;
 }
-#endif				
 
-#if defined(__LINUX__) || defined(__BSD__)
+
 int tilp_file_mkdir(const char *pathname)
 {
-	uid_t effective = geteuid();
-	seteuid(getuid());
-
-	if (mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)) 
+	if(g_mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) < 0)
 	{
 		gif->msg_box1(_("Information"), _("Unable to create the directory.\n\n"));
+		return -1;
 	}
-	seteuid(effective);
 
 	return 0;
 }
 
-#else
-
-int tilp_file_mkdir(const char *pathname)
-{
-	_mkdir(pathname);
-	return 0;
-}
-#endif				
 
 /* 
    Check for file existence. If file already exists, ask for an
@@ -583,14 +542,14 @@ int tilp_file_dirlist(void)
 
 		fi = (FileEntry *) g_malloc0(sizeof(FileEntry));
 		fi->name = g_strdup(dirname);
-		if (!stat(fi->name, &f_info)) 
+
+		if (!g_stat(fi->name, &f_info)) 
 		{
 			fi->date = f_info.st_mtime;
 			fi->size = f_info.st_size;
 			fi->attrib = f_info.st_mode;
 		}
-		//process_filename(fi->name);
-		//printf("<<%s>>\n", fi->name);
+
 		local.dirlist = g_list_prepend(local.dirlist, (gpointer) fi);
 	}
 
