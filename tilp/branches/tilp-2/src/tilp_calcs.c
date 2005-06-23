@@ -376,7 +376,7 @@ int tilp_calc_recv_app(void)
 
 	gif->create_pbar_type5(_("Receiving application(s)"), "");
 
-	ptr = remote_win.selection2;
+	ptr = remote.selection2;
 	while (ptr != NULL) 
 	{
 		VarEntry *ve = (VarEntry *) ptr->data;
@@ -427,7 +427,7 @@ int tilp_calc_send_var(gint to_flash)
 		return 0;
 
 	// Check for selection consistence
-	for (sel = local_win.selection; sel; sel = sel->next) 
+	for (sel = local.selection; sel; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
@@ -459,7 +459,7 @@ int tilp_calc_send_var(gint to_flash)
 		mode |= MODE_LOCAL_PATH;
 
 	// Display the appropriate dialog box
-	l = g_list_length(sel = local_win.selection);
+	l = g_list_length(sel = local.selection);
 	if(l == 1) 
 	{
 		FileEntry *f = (FileEntry *) sel->data;
@@ -475,7 +475,7 @@ int tilp_calc_send_var(gint to_flash)
 	}
 
 	// Now, send files
-	for(sel = local_win.selection; sel != NULL; sel = sel->next, i++)
+	for(sel = local.selection; sel != NULL; sel = sel->next, i++)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
 		int err;
@@ -531,7 +531,7 @@ int tilp_calc_send_var(gint to_flash)
 int tilp_calc_recv_var(void)
 {
 	int l, nvars;
-	l = g_list_length(remote_win.selection);
+	l = g_list_length(remote.selection);
 	nvars = 0;
 	if(tilp_calc_isready())
 		return -1;
@@ -551,14 +551,14 @@ int tilp_calc_recv_var(void)
 				return -1;
 			gif->create_pbar_type5(_("Receiving variable(s)"),
 					       "");
-			if((g_list_length(remote_win.selection) == 1)
+			if((g_list_length(remote.selection) == 1)
 			    || (options.single_or_group == RECV_AS_SINGLE)) {
 
 				//
 				// One file or single: filename is returned by recv_var
 				//
 				GList *sel;
-				sel = remote_win.selection;
+				sel = remote.selection;
 				while (sel != NULL) {
 					VarEntry *ve =
 					    (VarEntry *) sel->data;
@@ -610,7 +610,7 @@ int tilp_calc_recv_var(void)
 				GList *sel;
 				int err = 0;
 				char tmp_filename[MAXCHARS], *tmpf;
-				sel = remote_win.selection;
+				sel = remote.selection;
 				while (sel != NULL) {
 					VarEntry *ve =
 					    (VarEntry *) sel->data;

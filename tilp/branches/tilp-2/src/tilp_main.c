@@ -40,8 +40,8 @@ CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
 TilpOptions options    = { 0 };
-TilpLocal   local_win  = { 0 };	// I will change these names into local & remote
-TilpRemote  remote_win = { 0 };
+TilpLocal   local  = { 0 };	// I will change these names into local & remote
+TilpRemote  remote = { 0 };
 
 int working_mode = MODE_INI;
 

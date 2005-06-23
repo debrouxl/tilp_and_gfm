@@ -58,6 +58,7 @@ GtkWidget *display_tilp_dbox()
 	GladeXML *xml;
 	GtkWidget *dbox;
 	GtkWidget *paned;
+	gpointer data;
 
 	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
 	if (!xml)
@@ -84,6 +85,9 @@ GtkWidget *display_tilp_dbox()
 
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
+
+	data = glade_xml_get_widget(xml, "handlebox1");
+	gtk_widget_hide_all(data);
 	
 	clist_init();
 	ctree_init();
@@ -99,6 +103,7 @@ GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
 
 GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 {
+	tilp_config_write();
 	gtk_main_quit();
 }
 
@@ -422,7 +427,7 @@ GLADE_CB void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
 // refresh
 GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 {
-	if (!local_win.copy_cut)
+	if (!local.copy_cut)
 		tilp_clist_file_selection_destroy();
 
 	clist_refresh();

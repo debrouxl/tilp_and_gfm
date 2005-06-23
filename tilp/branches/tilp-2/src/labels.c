@@ -99,15 +99,15 @@ void labels_refresh(void)
 	gchar *utf8;
 	gchar path[256];
 
-	if(remote_win.memory.mem_free == -1)
-		snprintf(str, sizeof(str), _("Memory used: %u bytes"), remote_win.memory.mem_vars);
+	if(remote.memory.mem_free == -1)
+		snprintf(str, sizeof(str), _("Memory used: %u bytes"), remote.memory.mem_vars);
 	else
 		snprintf(str, sizeof(str), _("Memory free/used: %u/%u bytes"),
-			remote_win.memory.mem_free, remote_win.memory.mem_vars);
+			remote.memory.mem_free, remote.memory.mem_vars);
 
 	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
 	
-	utf8 = g_filename_to_utf8(local_win.cwdir, -1, &br, &bw, NULL);
+	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
 	format(utf8, path);
 	snprintf(str, sizeof(str), _("Folder: %s"), path);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label22), str);

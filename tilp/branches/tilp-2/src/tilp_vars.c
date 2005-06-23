@@ -37,12 +37,12 @@ int tilp_dirlist_remote(void)
 	int err;
 
 	// delete old trees
-	ticalcs_dirlist_destroy(&remote_win.var_tree);
-	ticalcs_dirlist_destroy(&remote_win.app_tree);
+	ticalcs_dirlist_destroy(&remote.var_tree);
+	ticalcs_dirlist_destroy(&remote.app_tree);
 	
 	// get new trees
 	gif->create_pbar_type2(_("Directory list"), _("Reading variables"));
-	err = ticalcs_calc_get_dirlist(calc_handle, &remote_win.var_tree, &remote_win.app_tree);
+	err = ticalcs_calc_get_dirlist(calc_handle, &remote.var_tree, &remote.app_tree);
 
 	if(tilp_err(err))
 	{
@@ -51,18 +51,18 @@ int tilp_dirlist_remote(void)
 	}
 	gif->destroy_pbar();
 
-	remote_win.memory.n_vars = ticalcs_dirlist_num_vars(remote_win.var_tree);
-	remote_win.memory.n_apps = ticalcs_dirlist_num_vars(remote_win.app_tree);
+	remote.memory.n_vars = ticalcs_dirlist_num_vars(remote.var_tree);
+	remote.memory.n_apps = ticalcs_dirlist_num_vars(remote.app_tree);
 	
-	remote_win.memory.mem_vars = ticalcs_dirlist_mem_used(remote_win.var_tree);
-	remote_win.memory.mem_apps = ticalcs_dirlist_mem_used(remote_win.app_tree);
+	remote.memory.mem_vars = ticalcs_dirlist_mem_used(remote.var_tree);
+	remote.memory.mem_apps = ticalcs_dirlist_mem_used(remote.app_tree);
 
-	err = ticalcs_calc_get_memfree(calc_handle, &(remote_win.memory.mem_free));
+	err = ticalcs_calc_get_memfree(calc_handle, &(remote.memory.mem_free));
 	if(err)
-		remote_win.memory.mem_free = -1;
+		remote.memory.mem_free = -1;
 
-	ticalcs_dirlist_display(remote_win.var_tree);
-	ticalcs_dirlist_display(remote_win.app_tree);
+	ticalcs_dirlist_display(remote.var_tree);
+	ticalcs_dirlist_display(remote.app_tree);
 
 	return 0;
 }
@@ -92,7 +92,7 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_name(void)
 {
-	//g_list_sort(remote_win., sort_by_name);
+	//g_list_sort(remote., sort_by_name);
 }
 
 /* Sort variables by attribute */
@@ -119,7 +119,7 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_info(void)
 {
-	g_list_sort(local_win.dirlist, sort_by_attrib);
+	g_list_sort(local.dirlist, sort_by_attrib);
 }
 
 /* Sort variables by type */
@@ -146,7 +146,7 @@ static gint sort_by_type(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_type(void)
 {
-	g_list_sort(local_win.dirlist, sort_by_type);
+	g_list_sort(local.dirlist, sort_by_type);
 }
 
 /* Sort variables by size */
@@ -173,7 +173,7 @@ static gint sort_by_size(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_size(void)
 {
-	g_list_sort(local_win.dirlist, sort_by_size);
+	g_list_sort(local.dirlist, sort_by_size);
 }
 
 /* Misc */

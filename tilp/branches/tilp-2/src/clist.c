@@ -109,9 +109,9 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
 
-		local_win.selection = g_list_append(local_win.selection, fe);
-		full_path = g_strconcat(local_win.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
-		local_win.file_selection = g_list_append(local_win.file_selection, full_path);
+		local.selection = g_list_append(local.selection, fe);
+		full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
+		local.file_selection = g_list_append(local.file_selection, full_path);
 		list = g_list_next(list);
 	}
 }
@@ -260,7 +260,7 @@ void clist_refresh(void)
 	pix1 = create_pixbuf("up.ico");
 	pix2 = create_pixbuf("clist_dir.xpm");
 
-	for (dirlist = local_win.dirlist; dirlist != NULL; dirlist = dirlist->next) 
+	for (dirlist = local.dirlist; dirlist != NULL; dirlist = dirlist->next) 
 	{
 		FileEntry *fe = (FileEntry *) dirlist->data;
 		gboolean b;
@@ -351,8 +351,8 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 		{
 			// go into folder
 			tilp_chdir(fe->name);
-			g_free(local_win.cwdir);
-			local_win.cwdir = g_get_current_dir();
+			g_free(local.cwdir);
+			local.cwdir = g_get_current_dir();
 
 			clist_refresh();
 			labels_refresh();

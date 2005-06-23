@@ -115,11 +115,11 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 
 		if (ve->type != tifiles_flash_type(options.calc_model)) 
 		{
-			remote_win.selection = g_list_append(remote_win.selection, ve);
+			remote.selection = g_list_append(remote.selection, ve);
 		} 
 		else 
 		{
-			remote_win.selection2 = g_list_append(remote_win.selection2, ve);
+			remote.selection2 = g_list_append(remote.selection2, ve);
 		}
 	}
 }
@@ -277,7 +277,7 @@ void ctree_refresh(void)
 	TNode *vars, *apps;
 	int i, j;
 
-	if (remote_win.var_tree == NULL)
+	if (remote.var_tree == NULL)
 		return;
 
 	// sort variables
@@ -326,7 +326,7 @@ void ctree_refresh(void)
 	pix6 = create_pixbuf("TIicon4.ico");
 
 	// variables tree
-	vars = remote_win.var_tree;
+	vars = remote.var_tree;
 	for (i = 0; i < (int)t_node_n_children(vars); i++) 
 	{
 		TNode *parent = t_node_nth_child(vars, i);
@@ -385,7 +385,7 @@ void ctree_refresh(void)
 	}
 
 	// Appplications tree
-	apps = remote_win.app_tree;
+	apps = remote.app_tree;
 	for (i = 0; i < (int)t_node_n_children(apps); i++) 
 	{
 		TNode *node = t_node_nth_child(apps, i);

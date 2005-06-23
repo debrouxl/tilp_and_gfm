@@ -125,14 +125,14 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 		filename = create_fsel();
 		if (!filename)
 			return;
-		result = tilp_screen_write_pdf(filename, &error);
+		result = screen_write_pdf(filename, &error);
 		break;
 	case EPS:
 		type = "eps";
 		filename = create_fsel();
 		if (!filename)
 			return;
-		result = tilp_screen_write_eps(filename, &error);
+		result = screen_write_eps(filename, &error);
 		break;
 	default:
 		type = "";
@@ -172,7 +172,7 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 	guchar *bytemap;
 	gint w, h;
 
-	if (tilp_screen_capture()) 
+	if (screen_capture()) 
 	{
 		screen_success = FALSE;	
 		return;
@@ -182,13 +182,13 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 		screen_success = TRUE;
 	}
 	
-	w = tilp_screen.width;
-	h = tilp_screen.height;
+	w = screen.width;
+	h = screen.height;
 
 	if (options.screen_blurry)
-		bytemap = tilp_screen_blurry();
+		bytemap = screen_blurry();
 	else
-		bytemap = tilp_screen_convert();
+		bytemap = screen_convert();
 
 	pixbuf = gdk_pixbuf_new_from_data(bytemap, GDK_COLORSPACE_RGB, FALSE,
 				     8, w, h, 3 * w, destroy_pixbuf, NULL);

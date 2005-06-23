@@ -113,7 +113,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 			TilpFileEntry* fe = g_malloc0(sizeof(TilpFileEntry));
 
 			fe->name = g_strdup(*q);
-			local_win.selection = g_list_prepend(local_win.selection, fe);
+			local.selection = g_list_prepend(local.selection, fe);
 		}
 
 		g_strfreev(array);
@@ -137,11 +137,11 @@ int tilp_cmdline_send(void)
 	gchar *ext = NULL;
 	
 	// Check for valid selection
-	if (local_win.selection == NULL)
+	if (local.selection == NULL)
 		return -1;
 
 	// Check for a valid file
-	fe = (TilpFileEntry *)(g_list_first(local_win.selection))->data;
+	fe = (TilpFileEntry *)(g_list_first(local.selection))->data;
 	ext = tifiles_fext_get(fe->name);
 	if(ext == NULL) 
 	{
@@ -150,7 +150,7 @@ int tilp_cmdline_send(void)
 	}
 
 	// Send file(s)
-	if (g_list_length(local_win.selection) == 1) 
+	if (g_list_length(local.selection) == 1) 
 	{
 		// One file
 		if (tifiles_file_is_flash(fe->name)) 
@@ -183,7 +183,7 @@ int tilp_cmdline_send(void)
 	else 
 	{
 		// More than one file
-		if (local_win.selection != NULL) 
+		if (local.selection != NULL) 
 		{
 			options.overwrite = FALSE;
 			tilp_calc_send_var(0);

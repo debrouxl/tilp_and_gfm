@@ -131,13 +131,13 @@ GtkWidget *create_clist_rbm(void)
 
 GLADE_CB void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	local_win.copy_cut = CUT_FILE;
+	local.copy_cut = CUT_FILE;
 } 
 
 GLADE_CB void rbm_copy1_activate(GtkMenuItem* menuitem,
 				  gpointer user_data)
 {
-	local_win.copy_cut = COPY_FILE;
+	local.copy_cut = COPY_FILE;
 } 
 
 GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
@@ -147,16 +147,16 @@ GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	gchar *dst;
 
 	/* If no selection, quits */
-	if (local_win.file_selection == NULL)
+	if (local.file_selection == NULL)
 		return;
 
 	/* Move every file */
-	ptr = local_win.file_selection;
+	ptr = local.file_selection;
 	while (ptr != NULL) 
 	{
 		src = (gchar *) (ptr->data);
-		dst = g_strconcat(local_win.cwdir, G_DIR_SEPARATOR_S, g_basename(src), NULL);
-		if (local_win.copy_cut == COPY_FILE) 
+		dst = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, g_basename(src), NULL);
+		if (local.copy_cut == COPY_FILE) 
 		{
 			tilp_file_copy(src, dst);
 			g_free(dst);
@@ -170,7 +170,7 @@ GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	}
 
 	/* No action */
-	local_win.copy_cut = 0;
+	local.copy_cut = 0;
 
 	/* Destroy the file selection and refresh */
 	tilp_clist_file_selection_destroy();
@@ -183,8 +183,8 @@ rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_chdir("..");
 
-	g_free(local_win.cwdir);
-	local_win.cwdir = g_get_current_dir();
+	g_free(local.cwdir);
+	local.cwdir = g_get_current_dir();
 
 	clist_refresh();
 	labels_refresh();
@@ -235,7 +235,7 @@ GLADE_CB void rbm_open2_activate(GtkMenuItem* menuitem,
 /*
 	GList *sel;
 
-	if ((sel = local_win.selection) == NULL)
+	if ((sel = local.selection) == NULL)
 		return;
 
 	while (sel != NULL) {

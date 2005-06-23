@@ -157,8 +157,8 @@ extern CableHandle* cable_handle;
 extern CalcHandle*  calc_handle;
 
 extern TilpOptions	options;
-extern TilpLocal	local_win;
-extern TilpRemote	remote_win;
+extern TilpLocal	local;
+extern TilpRemote	remote;
 
 extern int			working_mode;
 

@@ -81,8 +81,8 @@ int main(int argc, char *argv[])
 	}
 
 	/* Do a local directory list */
-	g_free(local_win.cwdir);
-	local_win.cwdir = g_get_current_dir();
+	g_free(local.cwdir);
+	local.cwdir = g_get_current_dir();
 
 	/* 
 	   If variables have been passed on the command line in GUI mode then

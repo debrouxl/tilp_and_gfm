@@ -19,8 +19,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __TILP_SCREEN__
-#define __TILP_SCREEN__
+#ifndef __screen__
+#define __screen__
 
 typedef struct 
 {
@@ -29,13 +29,13 @@ typedef struct
     int			height;
 } TilpScreen;
 
-extern TilpScreen tilp_screen;
+extern TilpScreen screen;
 
-int      tilp_screen_capture(void);
-uint8_t* tilp_screen_convert(void);
-uint8_t* tilp_screen_blurry(void);
+int      screen_capture(void);
+uint8_t* screen_convert(void);
+uint8_t* screen_blurry(void);
 
-gboolean tilp_screen_write_eps(const gchar *filename, GError **error);
-gboolean tilp_screen_write_pdf(const gchar *filename, GError **error);
+gboolean screen_write_eps(const gchar *filename, GError **error);
+gboolean screen_write_pdf(const gchar *filename, GError **error);
 
 #endif

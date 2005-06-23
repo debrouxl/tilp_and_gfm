@@ -34,12 +34,12 @@
 
 #include "tilp_core.h"
 
-TilpScreen tilp_screen = { 0 };	// change to screen (like local/remote)
+TilpScreen screen = { 0 };	// change to screen (like local/remote)
 
 /*
   Do a screen capture
 */
-int tilp_screen_capture(void)
+int screen_capture(void)
 {
 	CalcScreenCoord sc;
 	int err;
@@ -51,16 +51,16 @@ int tilp_screen_capture(void)
 	   Get a screen capture
 	 */
 	sc.format = options.screen_clipping;
-	err = ticalcs_calc_recv_screen(calc_handle, &sc, &tilp_screen.bitmap);
+	err = ticalcs_calc_recv_screen(calc_handle, &sc, &screen.bitmap);
 
 	if (options.screen_clipping == SCREEN_FULL) 
 	{
-		tilp_screen.width = sc.width;
-		tilp_screen.height = sc.height;
+		screen.width = sc.width;
+		screen.height = sc.height;
 	} else 
 	{
-		tilp_screen.width = sc.clipped_width;
-		tilp_screen.height = sc.clipped_height;
+		screen.width = sc.clipped_width;
+		screen.height = sc.clipped_height;
 	}
 
 	gif->destroy_pbar();
@@ -76,16 +76,16 @@ int tilp_screen_capture(void)
   Convert the bitmap into a B&W bytemap.
   The returned RRGGBB array must be freed when no longer used.
 */
-uint8_t *tilp_screen_convert(void)
+uint8_t *screen_convert(void)
 {
 	guchar *bitmap, *bytemap, data, mask;
 	gint w;
 	gint h;
 	int row, col, bit, pixel, pos;
 
-	bitmap = tilp_screen.bitmap;
-	w = tilp_screen.width;
-	h = tilp_screen.height;
+	bitmap = screen.bitmap;
+	w = screen.width;
+	h = screen.height;
 
 	bytemap = g_malloc(3 * w * h);
 
@@ -124,16 +124,16 @@ uint8_t *tilp_screen_convert(void)
   Convert the bitmap into a 2-colors bytemap.
   The returned RRGGBB array must be freed when no longer used.
 */
-uint8_t *tilp_screen_blurry(void)
+uint8_t *screen_blurry(void)
 {
 	guchar *bitmap, *bytemap, data, mask;
 	gint w;
 	gint h;
 	int row, col, bit, pixel, pos;
 
-	bitmap = tilp_screen.bitmap;
-	w = tilp_screen.width;
-	h = tilp_screen.height;
+	bitmap = screen.bitmap;
+	w = screen.width;
+	h = screen.height;
 
 	bytemap = g_malloc(3 * w * h);
 
@@ -307,7 +307,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 /*
  * Write out an Encapsulated PostScript file.
  */
-gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
+gboolean screen_write_eps(const gchar *filename, GError **error)
 {
 	int h, w;
 	FILE *fp;
@@ -322,8 +322,8 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 		return FALSE;
 	}
 
-	h = tilp_screen.height;
-	w = tilp_screen.width;
+	h = screen.height;
+	w = screen.width;
 
 	time(&t);
 
@@ -344,7 +344,7 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter false 3 colorimage\n", w, h, w, h, h);
 #endif
 
-		buf = tilp_screen_blurry();
+		buf = screen_blurry();
 
 		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
 
@@ -364,7 +364,7 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter image\n", w, h, w, h, h);
 #endif
 
-		ret = write_compressed_a85_screen(fp, tilp_screen.bitmap, (h * w) / 8, TRUE, &err);
+		ret = write_compressed_a85_screen(fp, screen.bitmap, (h * w) / 8, TRUE, &err);
 
 		if (!ret) {
 			g_propagate_error(error, err);
@@ -383,7 +383,7 @@ gboolean tilp_screen_write_eps(const gchar *filename, GError **error)
 /*
  * Write out a PDF file.
  */
-gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
+gboolean screen_write_pdf(const gchar *filename, GError **error)
 {
 	int h, w;
 	FILE *fp;
@@ -400,8 +400,8 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 		return FALSE;
 	}
 
-	h = tilp_screen.height;
-	w = tilp_screen.width;
+	h = screen.height;
+	w = screen.width;
 
 	tt = time(NULL);
 	t = gmtime(&tt);
@@ -469,7 +469,7 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 #endif
 		fprintf(fp, "ID\n");
 
-		buf = tilp_screen_blurry();
+		buf = screen_blurry();
 
 		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
 
@@ -493,7 +493,7 @@ gboolean tilp_screen_write_pdf(const gchar *filename, GError **error)
 #endif
 		fprintf(fp, "ID\n");
 
-		ret = write_compressed_a85_screen(fp, tilp_screen.bitmap, (h * w) / 8, TRUE, &err);
+		ret = write_compressed_a85_screen(fp, screen.bitmap, (h * w) / 8, TRUE, &err);
 
 		if (!ret) {
 			g_propagate_error(error, err);
