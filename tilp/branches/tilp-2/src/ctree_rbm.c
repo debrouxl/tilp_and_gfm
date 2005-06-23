@@ -30,6 +30,7 @@
 
 #include "support.h"
 #include "gstruct.h"
+#include "device.h"
 #include "tilp_core.h"
 
 /* Create/update menu */

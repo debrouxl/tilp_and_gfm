@@ -205,6 +205,14 @@ SOURCE=..\..\src\release.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\screenshot.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\scroptions.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\splash.c
 # End Source File
 # Begin Source File

@@ -80,7 +80,7 @@ int tilp_calc_dirlist(void)
   - [in] filename: the file to use
   - [out]
 */
-int tilp_calc_send_backup(char *filename)
+int tilp_calc_send_backup(const char *filename)
 {
 	int ret;
 	int err;
@@ -264,8 +264,6 @@ int tilp_calc_rom_dump(void)
 	return 0;
 }
 
-#if 0
-
 #ifdef __WIN32__
 # define strcasecmp _stricmp
 #endif				/*  */
@@ -273,50 +271,40 @@ int tilp_calc_rom_dump(void)
 /*
   Send a FLASH application
   Note: the timeout is increased to 10 seconds during the operation.
-  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attemp
+  Note2: the timeout is set to 30 seconds during operation due to garbage collection attempt
 	(TI83+ only, bug #738486)
 */
 int tilp_calc_send_flash_app(char *filename)
 {
 	int err;
 	gint old_timeout;
-	if (strcasecmp
-	    (tifiles_get_extension(filename),
-	     tifiles_flash_app_file_ext())) {
+
+	if (strcasecmp(tifiles_fext_get(filename), 
+					tifiles_fext_of_flash_app(calc_handle->model))) 
+	{
 		gif->msg_box(_("Error"),
-			     _
-			     ("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
+			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
 		return -1;
 	}
+
 	if (tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
-	case CALC_TI73:
-	case CALC_TI82:
-	case CALC_TI83:
-	case CALC_TI83P:
-	case CALC_TI84P:
-	case CALC_TI85:
-	case CALC_TI92:
-		gif->create_pbar_type3(_("Flash"));
-		break;
-	case CALC_TI89:
-	case CALC_TI89T:
-	case CALC_TI92P:
-	case CALC_V200:
-		gif->create_pbar_type3(_("Flash"));
-		break;
-	}
-	old_timeout = ticable_get_timeout();
-	if(options.lp.calc_type == CALC_TI83P)
-		ticable_set_timeout(300);
+	
+	old_timeout = calc_handle->cable->timeout;
+	if(calc_handle->model == CALC_TI83P)
+		ticables_options_set_timeout(cable_handle, 300);
 	else
-		ticable_set_timeout(100);
-	err = ti_calc.send_flash(filename, MODE_APPS);
-	ticable_set_timeout(old_timeout);
+		ticables_options_set_timeout(cable_handle, 100);
+
+	gif->create_pbar_type3(_("Flash"));
+	err = ticalcs_calc_send_flash2(calc_handle, filename);
 	gif->destroy_pbar();
-	if (tilp_error(err))
+
+	ticables_options_set_timeout(cable_handle, old_timeout);
+	
+	if (tilp_err(err))
 		return -1;
+
 	return 0;
 }
 
@@ -331,48 +319,38 @@ int tilp_calc_send_flash_os(char *filename)
 {
 	int err, ret;
 	gint old_timeout;
-	char *msg = _
-	    ("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
-	if (strcasecmp(tifiles_get_extension(filename), tifiles_flash_os_file_ext()) &&
-		!tifiles_is_a_tib_file(filename)) {
+	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
+
+	if (strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(calc_handle->model)) &&
+		!tifiles_file_is_tib(filename)) 
+	{
 		gif->msg_box(_("Error"),
-			     _
-			     ("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));
+			     _("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));
 		return -1;
 	}
+
 	ret = gif->msg_box4(_("Warning"), msg);
 	if (ret == BUTTON2)
 		return -1;
+
 	if (tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
-	case CALC_TI73:
-	case CALC_TI82:
-	case CALC_TI83:
-	case CALC_TI83P:
-	case CALC_TI84P:
-	case CALC_TI85:
-	case CALC_TI92:
-		gif->create_pbar_type3(_("Flash"));
-		break;
-	case CALC_TI89:
-	case CALC_TI89T:
-	case CALC_TI92P:
-	case CALC_V200:
-		gif->create_pbar_type5(_("Flash"), "");
-		break;
-		break;
-	}
-	old_timeout = ticable_get_timeout();
-	if((options.lp.calc_type == CALC_TI83P) || (options.lp.calc_type == CALC_TI84P))
-		ticable_set_timeout(300);
+
+	old_timeout = calc_handle->cable->timeout;
+	if(calc_handle->model == CALC_TI83P || calc_handle->model == CALC_TI84P)
+		ticables_options_set_timeout(cable_handle, 300);
 	else
-		ticable_set_timeout(100);
-	err = ti_calc.send_flash(filename, MODE_AMS);
-	ticable_set_timeout(old_timeout);
+		ticables_options_set_timeout(cable_handle, 100);
+
+	gif->create_pbar_type3(_("Flash"));
+	err = ticalcs_calc_send_flash2(calc_handle, filename);
 	gif->destroy_pbar();
-	if (tilp_error(err))
+
+	ticables_options_set_timeout(cable_handle, old_timeout);
+
+	if (tilp_err(err))
 		return -1;
+
 	return 0;
 }
 
@@ -385,46 +363,54 @@ int tilp_calc_recv_app(void)
 	GList *ptr;
 	char filename[256];
 	char *dst;
+
 	if (!tilp_ctree_selection2_ready())
 		return 0;
+
 	if (tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
-	case CALC_TI73:
-	case CALC_TI83P:
-	case CALC_TI84P:
-	case CALC_TI89:
-	case CALC_TI89T:
-	case CALC_TI92P:
-	case CALC_V200:
-		gif->create_pbar_type5(_("Receiving application(s)"), "");
-		break;
-	default:
-		return -1;
-		break;
-	}
-	ptr = ctree_win.selection2;
-	while (ptr != NULL) {
-		TiVarEntry *ve = (TiVarEntry *) ptr->data;
 
-		strcpy(filename, ve->trans);
+	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
+		return -1;
+
+	gif->create_pbar_type5(_("Receiving application(s)"), "");
+
+	ptr = remote_win.selection2;
+	while (ptr != NULL) 
+	{
+		VarEntry *ve = (VarEntry *) ptr->data;
+		int err;
+
+		strcpy(filename, ve->name);
 		strcat(filename, ".");
-		strcat(filename, tifiles_vartype2file(ve->type));
-		if (!tilp_file_check(filename, &dst)) {
+		strcat(filename, tifiles_vartype2fext(calc_handle->model, ve->type));
+
+		if (!tilp_file_check(filename, &dst)) 
+		{
 			gif->destroy_pbar();
 			return 0;
 		}
-		if (tilp_error(ti_calc.recv_flash(dst, MODE_NORMAL, ve))) {
+
+		err = ticalcs_calc_recv_flash2(calc_handle, dst, ve);
+		if(err) 
+		{
+			tilp_err(err);
+
 			g_free(dst);
 			gif->destroy_pbar();
+
 			return -1;
 		}
 		ptr = ptr->next;
 	}
+
 	g_free(dst);
 	gif->destroy_pbar();
+
 	return 0;
 }
+
+#if 0
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp
@@ -540,7 +526,7 @@ int tilp_calc_send_var(gint to_flash)
 int tilp_calc_recv_var(void)
 {
 	int l, nvars;
-	l = g_list_length(ctree_win.selection);
+	l = g_list_length(remote_win.selection);
 	nvars = 0;
 	if (tilp_calc_isready())
 		return -1;
@@ -560,17 +546,17 @@ int tilp_calc_recv_var(void)
 				return -1;
 			gif->create_pbar_type5(_("Receiving variable(s)"),
 					       "");
-			if ((g_list_length(ctree_win.selection) == 1)
+			if ((g_list_length(remote_win.selection) == 1)
 			    || (options.single_or_group == RECV_AS_SINGLE)) {
 
 				//
 				// One file or single: filename is returned by recv_var
 				//
 				GList *sel;
-				sel = ctree_win.selection;
+				sel = remote_win.selection;
 				while (sel != NULL) {
-					TiVarEntry *ve =
-					    (TiVarEntry *) sel->data;
+					VarEntry *ve =
+					    (VarEntry *) sel->data;
 					char *old_path =
 					    g_get_current_dir();
 					char *src_path = NULL;
@@ -619,10 +605,10 @@ int tilp_calc_recv_var(void)
 				GList *sel;
 				int err = 0;
 				char tmp_filename[MAXCHARS], *tmpf;
-				sel = ctree_win.selection;
+				sel = remote_win.selection;
 				while (sel != NULL) {
-					TiVarEntry *ve =
-					    (TiVarEntry *) sel->data;
+					VarEntry *ve =
+					    (VarEntry *) sel->data;
 					strcpy(tmpf =
 					       tmp_filename,
 					       TMPFILE_GROUP);
