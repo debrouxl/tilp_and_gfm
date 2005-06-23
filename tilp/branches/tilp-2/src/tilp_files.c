@@ -286,13 +286,12 @@ int tilp_file_chdir(const char *path)
 
 int tilp_file_chdir(const char *path)
 {
-	if (chdir(path)) 
+	if (_chdir(path)) 
 	{
-		tilp_warning(_("Chdir error.\n"));
-		if (gif)
-			gif->msg_box1(_("Error"), _("Unable to change directory."));
+		gif->msg_box1(_("Error"), _("Unable to change directory."));
 		return -1;
 	}
+
 	return 0;
 }
 #endif /* __LINUX__ || __MACOSX__ */

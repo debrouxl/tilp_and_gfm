@@ -294,16 +294,18 @@ void clist_refresh(void)
 		utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
 
 		gtk_list_store_append(list, &iter);
-		gtk_list_store_set(list, &iter, COLUMN_NAME,
-				   utf8,
+		gtk_list_store_set(list, &iter, 
+				   COLUMN_NAME, utf8,
 				   COLUMN_TYPE, tilp_file_get_type(fe),
 				   COLUMN_SIZE, tilp_file_get_size(fe),
 				   COLUMN_DATE, tilp_file_get_date(fe),
 				   COLUMN_DATA, (gpointer) fe, 
                    COLUMN_ICON, pix, 
                    -1);
-		g_object_unref(pix);
 	}
+
+	g_object_unref(pix1);
+	g_object_unref(pix2);
 }
 
 
