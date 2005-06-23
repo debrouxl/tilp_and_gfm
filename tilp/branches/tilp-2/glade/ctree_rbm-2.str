@@ -6,3 +6,4 @@
 
 gchar *s = N_("Full _path");
 gchar *s = N_("Send to _flash");
+gchar *s = N_("Change _device");

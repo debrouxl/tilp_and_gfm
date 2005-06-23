@@ -778,6 +778,24 @@
 			  <property name="homogeneous">True</property>
 			</packing>
 		      </child>
+
+		      <child>
+			<widget class="GtkToolButton" id="button13">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Refresh right frame.</property>
+			  <property name="label" translatable="yes">Help</property>
+			  <property name="use_underline">True</property>
+			  <property name="stock_id">gtk-help</property>
+			  <property name="visible_horizontal">True</property>
+			  <property name="visible_vertical">True</property>
+			  <property name="is_important">True</property>
+			  <signal name="clicked" handler="on_tilp_button13_clicked" last_modification_time="Thu, 23 Jun 2005 14:16:55 GMT"/>
+			</widget>
+			<packing>
+			  <property name="expand">False</property>
+			  <property name="homogeneous">True</property>
+			</packing>
+		      </child>
 		    </widget>
 		  </child>
 		</widget>

@@ -272,11 +272,6 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 	tilp_calc_isready();
 }
 
-GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
-{
-	//display_screenshot_dbox();
-}
-
 GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 {
 	if (tilp_calc_dirlist() != 0)
@@ -289,11 +284,10 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
-	/*
 	if (tilp_calc_recv_backup() != 0)
 		return;
-	display_fileselection_3();
-	*/
+
+	//display_fileselection_3();
 }
 
 
@@ -433,4 +427,8 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 
 	clist_refresh();
 	labels_refresh();
+}
+
+GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
+{
 }

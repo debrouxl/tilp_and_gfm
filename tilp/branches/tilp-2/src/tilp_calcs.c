@@ -38,6 +38,7 @@
 # include <stdlib.h>
 #endif				/*  */
 
+#include "gtk_update.h"
 #include "tilp_core.h"
 
 /*
@@ -74,8 +75,6 @@ int tilp_calc_dirlist(void)
 	return 0;
 }
 
-#if 0
-
 /*
   Send a backup from the specified filename
   - [in] filename: the file to use
@@ -84,18 +83,21 @@ int tilp_calc_dirlist(void)
 int tilp_calc_send_backup(char *filename)
 {
 	int ret;
-	ret = gif->msg_box4(_("Warning"), _
-			    ("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
+	int err;
+
+	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
 	if (ret != BUTTON1)
 		return -1;
+
 	if (tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
+
+	switch (calc_handle->model) 
+	{
 	case CALC_TI82:
 	case CALC_TI85:
 	case CALC_TI86:
-		gif->create_pbar_type5(_("Backup"), _
-				       ("Waiting for confirmation on calc..."));
+		gif->create_pbar_type5(_("Backup"), _("Waiting for confirmation on calc..."));
 		break;
 	case CALC_TI73:
 	case CALC_TI83:
@@ -112,8 +114,13 @@ int tilp_calc_send_backup(char *filename)
 		break;
 		break;
 	}
-	tilp_error(ti_calc.send_backup(filename, MODE_BACKUP));
+
+	err = ticalcs_calc_send_backup2(calc_handle, filename);
+	if(err)
+		tilp_err(err);
+
 	gif->destroy_pbar();
+
 	return 0;
 }
 
@@ -124,15 +131,17 @@ int tilp_calc_send_backup(char *filename)
 int tilp_calc_recv_backup(void)
 {
 	int err = 0;
-	char *tmp_filename;
+	char *filename;
+
 	if (tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
+
+	switch (calc_handle->model) 
+	{
 	case CALC_TI82:
 	case CALC_TI85:
 	case CALC_TI86:
-		gif->create_pbar_type5(_("Backup"), _
-				       ("Waiting for backup from calc..."));
+		gif->create_pbar_type5(_("Backup"), _("Waiting for backup from calc..."));
 		break;
 	case CALC_TI73:
 	case CALC_TI83:
@@ -150,26 +159,29 @@ int tilp_calc_recv_backup(void)
 		gif->create_pbar_type2(_("Backup"), _("Receiving blocks"));
 		break;
 	}
-	tmp_filename =
-	    g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-			TMPFILE_BACKUP, NULL);
 
-	do {
-		info_update.refresh();
-		if (info_update.cancel)
+	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
+
+	do 
+	{
+		gtk_update.refresh();
+		if (gtk_update.cancel)
 			break;
-		err = ti_calc.recv_backup(tmp_filename, MODE_BACKUP);
-	} while ((err == ERR_READ_TIMEOUT) && ((!ti_calc.is_silent)
-					       || (options.lp.calc_type ==
-						   CALC_TI86)));
-	g_free(tmp_filename);
+
+		err = ticalcs_calc_recv_backup2(calc_handle, filename);
+	} 
+	while ((err == ERROR_READ_TIMEOUT) && 
+		((!(ticalcs_calc_features(calc_handle) & FTS_SILENT)) || 
+		(calc_handle->model == CALC_TI86)));
+
+	g_free(filename);
 	gif->destroy_pbar();
-	if (tilp_error(err))
+
+	if (tilp_err(err))
 		return -1;
+
 	return 0;
 }
-
-#endif
 
 /*
   Receive the IDlist

@@ -71,3 +71,10 @@ rbm_send_to_flash1_activate             (GtkMenuItem     *menuitem,
 {
 	options.send_to_flash = GTK_CHECK_MENU_ITEM(menuitem)->active;
 }
+
+GLADE_CB void
+rbm_change_device1_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+	display_device_dbox();
+}

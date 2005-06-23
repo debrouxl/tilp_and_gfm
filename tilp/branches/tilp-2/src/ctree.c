@@ -32,6 +32,7 @@
 #include "tilp.h"
 #include "ctree.h"
 #include "ctree_rbm.h"
+#include "clock.h"
 #include "tilp_core.h"
 
 static GtkTreeStore *tree;
@@ -229,7 +230,7 @@ static GtkTreeIter apps_node;
 
 void ctree_set_basetree(void)
 {
-	GtkTreeIter lcd_node, rom_node, idl_node;
+	GtkTreeIter lcd_node, rom_node, idl_node, clk_node;
 
 	// clear tree
 	gtk_tree_store_clear(tree);
@@ -255,6 +256,10 @@ void ctree_set_basetree(void)
 
 		gtk_tree_store_append(tree, &idl_node, NULL);
 		gtk_tree_store_set(tree, &idl_node, COLUMN_NAME, NODE5,
+				   COLUMN_DATA, (gpointer) NULL, -1);
+
+		gtk_tree_store_append(tree, &clk_node, NULL);
+		gtk_tree_store_set(tree, &clk_node, COLUMN_NAME, NODE6,
 				   COLUMN_DATA, (gpointer) NULL, -1);
 	}
 }
@@ -481,6 +486,9 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 		else if(!strcmp(name, NODE5))
 			tilp_calc_idlist();
+
+		else if(!strcmp(name, NODE6))
+			display_clock_dbox();
 
 		return TRUE;
 	}

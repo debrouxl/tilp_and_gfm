@@ -25,6 +25,8 @@
 int tilp_calc_isready(void);
 int tilp_calc_dirlist(void);
 int tilp_calc_idlist(void);
+int tilp_calc_recv_backup(void);
+int tilp_calc_send_backup(void);
 int tilp_calc_rom_dump(void);
 
 #endif
