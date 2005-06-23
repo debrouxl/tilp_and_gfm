@@ -109,9 +109,6 @@ typedef struct
     char **actions;		// Ticalc action associated w/ the file
 } FileEntry;
 
-typedef FileEntry	TilpFileEntry;
-typedef VarEntry	TilpVarEntry;
-
 /* Used to retrieve stats on the on-calc memory usage */
 typedef struct 
 {

@@ -110,7 +110,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
 		{
-			TilpFileEntry* fe = g_malloc0(sizeof(TilpFileEntry));
+			FileEntry* fe = g_malloc0(sizeof(FileEntry));
 
 			fe->name = g_strdup(*q);
 			local.selection = g_list_prepend(local.selection, fe);
@@ -132,7 +132,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 /* Send files passed on the command line */
 int tilp_cmdline_send(void)
 {
-	TilpFileEntry *fe;
+	FileEntry *fe;
 	int over = options.overwrite;
 	gchar *ext = NULL;
 	
@@ -141,7 +141,7 @@ int tilp_cmdline_send(void)
 		return -1;
 
 	// Check for a valid file
-	fe = (TilpFileEntry *)(g_list_first(local.selection))->data;
+	fe = (FileEntry *)(g_list_first(local.selection))->data;
 	ext = tifiles_fext_get(fe->name);
 	if(ext == NULL) 
 	{

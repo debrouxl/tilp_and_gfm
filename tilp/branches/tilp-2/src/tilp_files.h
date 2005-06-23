@@ -35,12 +35,12 @@ int tilp_file_chdir(const char *path);
 
 char *tilp_file_underscorize(char *s);
 
-const char *tilp_file_get_attributes(TilpFileEntry* fi);
-void tilp_file_get_user_name(TilpFileEntry* fi, char **name);
-void tilp_file_get_group_name(TilpFileEntry* fi, char **name);
-const char *tilp_file_get_date(TilpFileEntry* fi);
-const char *tilp_file_get_size(TilpFileEntry* fi);
-const char *tilp_file_get_type(TilpFileEntry* fi);
+const char* tilp_file_get_attributes(FileEntry* fi);
+void        tilp_file_get_user_name(FileEntry* fi, char **name);
+void        tilp_file_get_group_name(FileEntry* fi, char **name);
+const char* tilp_file_get_date(FileEntry* fi);
+const char* tilp_file_get_size(FileEntry* fi);
+const char* tilp_file_get_type(FileEntry* fi);
 
 
 int tilp_file_dirlist(void);
