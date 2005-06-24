@@ -374,7 +374,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 
 		if (remote.selection2 != NULL) 
 		{
-			ret = tilp_calc_recv_app();
+			ret = tilp_calc_recv_flash_app();
 			if (ret != 0)
 				return;
 		}

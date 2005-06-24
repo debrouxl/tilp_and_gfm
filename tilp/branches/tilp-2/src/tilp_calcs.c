@@ -375,7 +375,7 @@ int tilp_calc_send_flash_os(char *filename)
 /*
   Receive an FLASH application
 */
-int tilp_calc_recv_app(void)
+int tilp_calc_recv_flash_app(void)
 {
 	GList *ptr;
 	char filename[256];
@@ -468,6 +468,7 @@ int tilp_calc_send_var(gint to_flash)
 	if(tilp_calc_isready())
 		return -1;
 
+	// Set options
 	if(to_flash && tifiles_is_flash(calc_handle->model))
 		mode |= MODE_SEND_TO_FLASH;
 
@@ -493,7 +494,7 @@ int tilp_calc_send_var(gint to_flash)
 	// Now, send files
 	for(sel = local.selection, i =0; sel != NULL; sel = sel->next, i++)
 	{
-		FileEntry *f = (FileEntry *) sel->data;
+		FileEntry *f = (FileEntry *)sel->data;
 		int err;
 
 		// It is not the last file to send
@@ -537,7 +538,6 @@ int tilp_calc_send_var(gint to_flash)
 	return 0;
 }
 
-
 /*
   Receive one or more selected variables.
   Returned value:
@@ -545,10 +545,11 @@ int tilp_calc_send_var(gint to_flash)
   - zero if successful (single file)
   - positive if successful (group file named TMPFILE_GROUP)
 */
-int tilp_calc_recv_var(void)
+
+static int tilp_calc_recv_var1(void)
 {
-#if 0
 	int l, nvars;
+	int err;
 
 	l = g_list_length(remote.selection);
 	nvars = 0;
@@ -556,29 +557,45 @@ int tilp_calc_recv_var(void)
 	if(tilp_calc_isready())
 		return -1;
 
-	switch (options.lp.calc_type) 
+	if(!tilp_ctree_selection_ready())
+		return -1;
+	
+	if(g_list_length(remote.selection) == 1) 
 	{
-	case CALC_TI73:
-	case CALC_TI83:
-	case CALC_TI83P:
-	case CALC_TI84P:
-	case CALC_TI86:
-	case CALC_TI89:
-	case CALC_TI89T:
-	case CALC_TI92:
-	case CALC_TI92P:
-	case CALC_V200:
-		{
-			if(!tilp_ctree_selection_ready())
-				return -1;
-			gif->create_pbar_type5(_("Receiving variable(s)"),
-					       "");
-			if((g_list_length(remote.selection) == 1)
-			    || (options.single_or_group == RECV_AS_SINGLE)) {
+		// One file
+		VarEntry *ve = (VarEntry *)remote.selection->data;
+		gchar *tmp_filename;
+		gchar *dst_filename;
 
+		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
+
+		gif->create_pbar_type4(_("Receiving variable(s)"), "");
+		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
+		gif->destroy_pbar();
+
+		if(err)
+		{
+			tilp_err(err);
+			return -1;
+		}
+
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, ve->name, 
+			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
+		tilp_file_move_with_check(tmp_filename, dst_filename);
+
+		g_free(tmp_filename);
+		g_free(dst_filename);
+	}
+	else
+	{
+		// Multiple files (single or group depending on global option)
+
+	}
+#if 0
 				//
 				// One file or single: filename is returned by recv_var
 				//
+
 				GList *sel;
 				sel = remote.selection;
 				while (sel != NULL) {
@@ -676,6 +693,14 @@ int tilp_calc_recv_var(void)
 			}
 		}
 		break;
+
+#endif
+	return 0;
+}
+
+static int tilp_calc_recv_var2(void)
+{
+	/*
 	case CALC_TI82:
 	case CALC_TI85:
 		{
@@ -720,7 +745,31 @@ int tilp_calc_recv_var(void)
 		}
 		break;
 	}
+*/
+	return 0;
+}
 
-#endif
+int tilp_calc_recv_var(void)
+{
+	switch (calc_handle->model) 
+	{
+	case CALC_TI73:
+	case CALC_TI83:
+	case CALC_TI83P:
+	case CALC_TI84P:
+	case CALC_TI86:
+	case CALC_TI89:
+	case CALC_TI89T:
+	case CALC_TI92:
+	case CALC_TI92P:
+	case CALC_V200:
+		return tilp_calc_recv_var1();
+		break;
+	case CALC_TI82:
+	case CALC_TI85:
+		return tilp_calc_recv_var2();
+		break;
+	}
+
 	return 0;
 }

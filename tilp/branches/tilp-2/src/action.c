@@ -34,11 +34,13 @@
 static GtkWidget *clist;
 static GtkListStore *list;
 
-enum { COLUMN_VAR, COLUMN_ATTR, COLUMN_FILE, COLUMN_ACTION,
+enum { 
+	COLUMN_VAR, COLUMN_ATTR, COLUMN_FILE, COLUMN_ACTION,
 	COLUMN_DATA, COLUMN_NUMBER
 };
 
-typedef struct {
+typedef struct 
+{
 	char varname[18];
 	int varattr;
 	char *filename;
