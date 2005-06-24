@@ -537,7 +537,6 @@ int tilp_calc_send_var(gint to_flash)
 	return 0;
 }
 
-#if 0
 
 /*
   Receive one or more selected variables.
@@ -548,12 +547,17 @@ int tilp_calc_send_var(gint to_flash)
 */
 int tilp_calc_recv_var(void)
 {
+#if 0
 	int l, nvars;
+
 	l = g_list_length(remote.selection);
 	nvars = 0;
+
 	if(tilp_calc_isready())
 		return -1;
-	switch (options.lp.calc_type) {
+
+	switch (options.lp.calc_type) 
+	{
 	case CALC_TI73:
 	case CALC_TI83:
 	case CALC_TI83P:
@@ -716,7 +720,7 @@ int tilp_calc_recv_var(void)
 		}
 		break;
 	}
-	return 0;
-}
 
 #endif
+	return 0;
+}

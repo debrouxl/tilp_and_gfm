@@ -164,10 +164,25 @@ GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
+	char* src_filename;
+	const char *dst_filename;
+
 	if (tilp_calc_rom_dump())
 		return;
 
-	//display_fileselection_7();
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
+
+	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
+
+	if (!strcmp(tifiles_fext_get(dst_filename), ""))
+		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(calc_handle->model), NULL);
+	else
+		dst_filename = g_strdup(dst_filename);
+	
+	tilp_file_move_with_check(src_filename, dst_filename);
+	g_free(src_filename);
+	
+	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
 }
@@ -296,10 +311,30 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
+	char* src_filename;
+	const char *dst_filename;
+	char *ext;
+
 	if (tilp_calc_recv_backup() != 0)
 		return;
 
-	//display_fileselection_3();
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
+
+	ext = g_strconcat("*.", tifiles_fext_of_backup(calc_handle->model), NULL);
+	dst_filename = create_fsel(local.cwdir, NULL, ext, TRUE);
+	g_free(ext);
+
+	if (!strcmp(tifiles_fext_get(dst_filename), ""))
+		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(calc_handle->model), NULL);
+	else
+		dst_filename = g_strdup(dst_filename);
+	
+	tilp_file_move_with_check(src_filename, dst_filename);
+	g_free(src_filename);
+	
+	tilp_dirlist_local();
+	clist_refresh();
+	labels_refresh();
 }
 
 
@@ -312,13 +347,8 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
 	g_free(ext);
 
-	if (!filename)
-	{
-		g_free(ext);
-		return;
-	}
-
-	tilp_calc_send_backup(filename);
+	if(filename)
+		tilp_calc_send_backup(filename);
 
 	return;
 }
@@ -332,8 +362,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 	{
 		if (remote.selection != NULL) 
 		{
-			//ret = tilp_calc_recv_var();
-			ret = -1;
+			ret = tilp_calc_recv_var();
 			if (ret < 0)
 				return;
 
@@ -352,8 +381,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 	} 
 	else if ((calc_handle->model == CALC_TI82) || (calc_handle->model == CALC_TI85)) 
 	{
-		//ret = tilp_calc_recv_var();
-		ret = -1;
+		ret = tilp_calc_recv_var();
 		if (ret < 0)
 			return;
 
