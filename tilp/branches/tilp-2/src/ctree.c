@@ -37,7 +37,7 @@
 
 static GtkTreeStore *tree;
 
-#define FONT_NAME ""	//"courier"
+#define FONT_NAME ""	//"courier"	// use my or TI font ?
 
 // MUST be the same in dnd.c
 enum 

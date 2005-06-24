@@ -32,12 +32,11 @@
 #include "support.h"
 #include "dboxes.h"
 #include "scroptions.h"
+#include "filesel.h"
 #include "tilp_core.h"
-//#include "gtk_update.h"
 
 GtkWidget *scrn_win;
 static GtkWidget *scrn_img;
-static const gchar *create_fsel(void);
 
 gint display_screenshot_dbox()
 {
@@ -67,7 +66,7 @@ GLADE_CB void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data)
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
 
-	filename = create_fsel();
+	filename = create_fsel(local.cwdir, NULL, "*.jpg;*.png;*.eps;*.pdf;*.xpm;*.bmp", FALSE);
 	if (!filename)
 		return;
 
@@ -106,32 +105,36 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 		return;
 	case JPG:
 		type = "jpeg";
-		filename = create_fsel();
+		filename = create_fsel(local.cwdir, "screenshot.jpg", "*.jpg", TRUE);
 		if (!filename)
 			return;
+
 		pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
 		result = gdk_pixbuf_save(pixbuf, filename, type, &error, "quality", "100", NULL);
 		break;
 	case PNG:
 		type = "png";
-		filename = create_fsel();
+		filename = create_fsel(local.cwdir, "screenshot.png", "*.png", TRUE);
 		if (!filename)
 			return;
+
 		pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
 		result = gdk_pixbuf_save(pixbuf, filename, type, &error, NULL);
 		break;
 	case PDF:
 		type = "pdf";
-		filename = create_fsel();
+		filename = create_fsel(local.cwdir, "screenshot.pdf", "*.pdf", TRUE);
 		if (!filename)
 			return;
+
 		result = screen_write_pdf(filename, &error);
 		break;
 	case EPS:
 		type = "eps";
-		filename = create_fsel();
+		filename = create_fsel(local.cwdir, "screenshot.eps", "*.eps", TRUE);
 		if (!filename)
 			return;
+
 		result = screen_write_eps(filename, &error);
 		break;
 	default:
@@ -141,8 +144,7 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 	
 	if (result == FALSE) 
 	{
-		tilp_warning("Failed to save pixbuf file: %s: %s\n",
-			filename, error->message);
+		tilp_warning("Failed to save pixbuf file: %s: %s\n", filename, error->message);
 		g_error_free(error);
 	}
 	filename = NULL;
@@ -215,79 +217,3 @@ GLADE_CB void on_scdbox_button4_clicked(GtkButton * button, gpointer user_data)
 {
 	on_manual1_activate(NULL, NULL);
 } 
-
-static gchar *filename = NULL;
-
-static void store_filename(GtkFileSelection * file_selector,
-			   gpointer user_data)
-{
-	filename = (gchar *)
-	    gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data));
-} 
-
-static void cancel_filename(GtkButton * button, gpointer user_data)
-{
-	filename = "";
-} 
-
-static const gchar *create_fsel(void)
-{
-	GtkWidget *fs;
-	gchar *ext;
-
-	switch (options.screen_format) 
-	{
-	case JPG:
-		ext = "*.jpg";
-		break;
-	case PNG:
-		ext = "*.png";
-		break;
-	case PDF:
-		ext = "*.pdf";
-		break;
-	case EPS:
-		ext = "*.eps";
-		break;
-	default:
-		ext = "";
-		break;
-	}
-
-	fs = gtk_file_selection_new("Select a File.");
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), ext);
-
-	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
-			 "clicked", G_CALLBACK(store_filename), fs);
-
-	g_signal_connect(GTK_OBJECT
-			 (GTK_FILE_SELECTION(fs)->cancel_button),
-			 "clicked", G_CALLBACK(cancel_filename), fs);
-
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->ok_button),
-				 "clicked",
-				 G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
-
-	g_signal_connect_swapped(GTK_OBJECT
-				 (GTK_FILE_SELECTION(fs)->cancel_button),
-				 "clicked", G_CALLBACK(gtk_widget_destroy),
-				 (gpointer) fs);
-
-	filename = NULL;
-	gtk_widget_show(fs);
-	while (filename == NULL)
-		while(!gtk_events_pending()) 
-			gtk_main_iteration_do(FALSE);
-
-	if (!strcmp(filename, ""))
-		return NULL;
-	else
-		return filename;
-}
-
-
-
-
-

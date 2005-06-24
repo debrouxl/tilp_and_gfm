@@ -44,6 +44,9 @@ int screen_capture(void)
 	CalcScreenCoord sc;
 	int err;
 
+	if(tilp_calc_isready())
+		return -1;
+
 	/* Place a progress bar */
 	gif->create_pbar_type1(_("Screendump"));
 

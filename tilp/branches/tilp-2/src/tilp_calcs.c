@@ -255,6 +255,7 @@ int tilp_calc_rom_dump(void)
 	case CALC_TI83P:
 	case CALC_TI84P:
 	case CALC_TI89:
+	case CALC_TI89T:
 	case CALC_TI92:
 	case CALC_TI92P:
 	case CALC_V200:

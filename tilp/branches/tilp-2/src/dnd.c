@@ -221,8 +221,8 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else if (!strcmp(name, NODE3)) 
 		{
 			// all variables to get
-			//if(ti_calc.has_folder)
-			on_tilp_button9_clicked(NULL, NULL);
+			if(ticalcs_calc_features(calc_handle) & FTS_FOLDER)
+				on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		} 
 		else if (!strcmp(name, NODE4)) 

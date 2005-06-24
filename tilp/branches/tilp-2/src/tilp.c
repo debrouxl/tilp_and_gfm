@@ -42,6 +42,7 @@
 #include "clist.h"
 #include "ctree.h"
 #include "dnd.h"
+#include "gtk_update.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -172,28 +173,30 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	/*
-	GList *selection;
+	GList *sel;
+
 	if (!tilp_clist_selection_ready())
 		return;
-	selection = clist_wnd.selection;
-	while (selection != NULL) {
-		TilpFileInfo *f = (TilpFileInfo *) selection->data;
-		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext()) ||
-			tifiles_is_a_tib_file(f->name)) {
 
-			//gif->destroy_pbar();
+	for(sel = local.selection; sel != NULL; sel = sel->next)
+	{
+		FileEntry *f = (FileEntry *)sel->data;
+
+		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(calc_handle->model)) ||
+			tifiles_file_is_tib(f->name)) 
+		{
 			tilp_calc_send_flash_os(f->name);
 			return;
-		} else {
+		} 
+		else 
+		{
 
 			//gif->destroy_pbar();
-			gif->msg_box(_("Error"), _
-				     ("It's not a FLASH upgrade or this FLASH file is not intended for this calculator type."));
+			gif->msg_box(_("Error"), 
+				_("It's not a FLASH upgrade or this FLASH file is not intended for this calculator type."));
 			return;
 		}
 	}
-	*/
 }
 
 /* Help menu */
@@ -304,6 +307,52 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 	//display_fileselection_2();
 }
 
+// used for receiving vars
+GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
+{
+	int ret;
+
+	if ((remote.selection != NULL) || (remote.selection2 != NULL)) 
+	{
+		if (remote.selection != NULL) 
+		{
+			//ret = tilp_calc_recv_var();
+			ret = -1;
+			if (ret < 0)
+				return;
+
+			else if (ret > 0)
+			{
+				//display_fileselection_4();
+			}
+		}
+
+		if (remote.selection2 != NULL) 
+		{
+			ret = tilp_calc_recv_app();
+			if (ret != 0)
+				return;
+		}
+	} 
+	else if ((calc_handle->model == CALC_TI82) || (calc_handle->model == CALC_TI85)) 
+	{
+		//ret = tilp_calc_recv_var();
+		ret = -1;
+		if (ret < 0)
+			return;
+
+		if (ret > 0)
+		{
+			//display_fileselection_4();
+		}
+		else 
+		{
+			clist_refresh();
+			labels_refresh();
+		}
+	}
+}
+
 // Note: user_data is a string:
 // - such as "FLASH" for sending var into FLASH (ti83+/89/92+/v200)
 // - such as "" for sending var in the default folder
@@ -311,42 +360,54 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 // - unused for sending FLASH files
 void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 {
-	/*
 	int to_flash = 0;
 	gchar *dst_folder;
-	TilpFileInfo *f;
+	FileEntry *f;
 
-	printf("<%p>\n", user_data);
 	dst_folder = g_strdup((gchar *) user_data);
 	if (dst_folder != NULL)
 		to_flash = !strcmp(dst_folder, "FLASH");
-	if (clist_wnd.selection == NULL)
+
+	if (local.selection == NULL)
 		return;
-	f = (TilpFileInfo *) clist_wnd.selection->data;
-	if (tifiles_is_a_flash_file(f->name) || tifiles_is_a_tib_file(f->name)) {
-		if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_app_file_ext())) {
+
+	f = (FileEntry *) local.selection->data;
+	if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
+	{
+		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(calc_handle->model))) 
+		{
 			if (tilp_calc_send_flash_app(f->name) != 0)
 				return;
-		} else if (!strcasecmp(tifiles_get_extension(f->name), tifiles_flash_os_file_ext())) {
+		} 
+		else if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(calc_handle->model))) 
+		{
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;
-		} else if (tifiles_is_a_tib_file(f->name)) {
+		} else if (tifiles_file_is_tib(f->name)) 
+		{
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;
 		}
-	} else {
-		if (options.confirm == CONFIRM_YES) {
+	} 
+	else 
+	{
+		if (options.overwrite == CONFIRM_YES) 
+		{
 
 			// note: dst_folder must be a copy b/c the user_data
 			// pointer is no longer valid after dirlist_remote
-			if (ti_calc.is_silent) {
+			if (ticalcs_calc_features(calc_handle) & FTS_SILENT) 
+			{
 				if (tilp_dirlist_remote())
 					return;
 			}
-			if (display_action_dbox(dst_folder) == BUTTON2) {
+			/*
+			if (display_action_dbox(dst_folder) == BUTTON2) 
+			{
 				g_free(dst_folder);
 				return;
 			}
+			*/
 			g_free(dst_folder);
 		}
 		// needed: avoid box locking/flickering !
@@ -355,44 +416,6 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 		if (tilp_calc_send_var(to_flash) != 0)
 			return;
 	}
-	*/
-}
-
-
-// used for receiving vars
-GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
-{
-	/*
-	int ret;
-	if ((ctree_wnd.selection != NULL)
-	    || (ctree_wnd.selection2 != NULL)) {
-		if (ctree_wnd.selection != NULL) {
-			ret = tilp_calc_recv_var();
-			if (ret < 0)
-				return;
-
-			else if (ret > 0)
-				display_fileselection_4();
-		}
-		if (ctree_wnd.selection2 != NULL) {
-			ret = tilp_calc_recv_app();
-			if (ret != 0)
-				return;
-		}
-	} else if ((options.lp.calc_type == CALC_TI82) |
-		   (options.lp.calc_type == CALC_TI85)) {
-		ret = tilp_calc_recv_var();
-		if (ret < 0)
-			return;
-		if (ret > 0)
-			display_fileselection_4();
-
-		else {
-			clist_refresh();
-			labels_refresh();
-		}
-	}
-	*/
 }
 
 
@@ -403,8 +426,7 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 	gsize br, bw;
 	gchar *dirname;
 
-	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "),
-				 _("new_directory"));
+	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "), _("new_directory"));
 	if (utf8 == NULL)
 		return;
 
@@ -441,7 +463,6 @@ GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 {
 	GtkWidget *menu = gtk_menu_new ();
 
-	gtk_menu_popup(GTK_MENU(help_menu),
-				       NULL, NULL, NULL, NULL,
+	gtk_menu_popup(GTK_MENU(help_menu), NULL, NULL, NULL, NULL,
 				       0, gtk_get_current_event_time ());
 }
