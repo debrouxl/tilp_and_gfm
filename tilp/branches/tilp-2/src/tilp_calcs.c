@@ -190,7 +190,7 @@ int tilp_calc_recv_backup(void)
 /*
   Receive the IDlist
 */
-int tilp_calc_idlist(void)
+int tilp_calc_idlist(int to_file)
 {
 	int err;
 	char buffer[MAXCHARS];
@@ -214,7 +214,22 @@ int tilp_calc_idlist(void)
 	strncat(buffer, idlist + 5 + 5, 4);
 	strcat(buffer, "\0");
 
-	gif->msg_box1(_("Information"), buffer);
+	if(to_file)
+	{
+		gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, "IDLIST.txt", NULL);
+		FILE *f;
+
+		f = fopen(filename, "wt");
+		g_free(filename);
+
+		if(f == NULL)
+			return -1;
+
+		fwrite(buffer, strlen(buffer), 1, f);
+		fclose(f);
+	}
+	else
+		gif->msg_box1(_("Information"), buffer);
 
 	return 0;
 }
@@ -375,7 +390,7 @@ int tilp_calc_recv_app(void)
 	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	gif->create_pbar_type5(_("Receiving application(s)"), "");
+	gif->create_pbar_type4(_("Receiving application(s)"), "");
 
 	ptr = remote.selection2;
 	while (ptr != NULL) 
@@ -421,9 +436,6 @@ int tilp_calc_send_var(gint to_flash)
 	int mode = MODE_NORMAL;
 	gint i, l = 0;
 
-	if(to_flash && tifiles_is_flash(calc_handle->model))
-		mode |= MODE_SEND_TO_FLASH;
-
 	if(!tilp_clist_selection_ready())
 		return 0;
 
@@ -456,6 +468,9 @@ int tilp_calc_send_var(gint to_flash)
 	if(tilp_calc_isready())
 		return -1;
 
+	if(to_flash && tifiles_is_flash(calc_handle->model))
+		mode |= MODE_SEND_TO_FLASH;
+
 	if(options.local_path == PATH_LOCAL)
 		mode |= MODE_LOCAL_PATH;
 
@@ -468,7 +483,7 @@ int tilp_calc_send_var(gint to_flash)
 		if(tifiles_file_is_group(f->name))
 			gif->create_pbar_type5(_("Sending group file"), "");
 		else
-			gif->create_pbar_type4(_("Sending variable"), "");
+			gif->create_pbar_type4(_("Sending variables"), "");
 	} 
 	else
 	{
@@ -476,7 +491,7 @@ int tilp_calc_send_var(gint to_flash)
 	}
 
 	// Now, send files
-	for(sel = local.selection; sel != NULL; sel = sel->next, i++)
+	for(sel = local.selection, i =0; sel != NULL; sel = sel->next, i++)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
 		int err;
@@ -508,6 +523,8 @@ int tilp_calc_send_var(gint to_flash)
 
 		if(l > 1) 
 		{
+			printf("\n<%i %i>\n", i, l);
+
 			gtk_update.cnt2 = i;
 			gtk_update.max2 = l;
 

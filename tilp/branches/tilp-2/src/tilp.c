@@ -42,6 +42,7 @@
 #include "clist.h"
 #include "ctree.h"
 #include "dnd.h"
+#include "filesel.h"
 #include "gtk_update.h"
 
 #ifdef __WIN32__
@@ -158,7 +159,7 @@ GLADE_CB void on_clock1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	tilp_calc_idlist();
+	tilp_calc_idlist(0);
 }
 
 GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
@@ -304,7 +305,22 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
-	//display_fileselection_2();
+	const char *filename;
+	char *ext;
+
+	ext = g_strconcat("*.", tifiles_fext_of_backup(calc_handle->model), NULL);
+	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
+	g_free(ext);
+
+	if (!filename)
+	{
+		g_free(ext);
+		return;
+	}
+
+	tilp_calc_send_backup(filename);
+
+	return;
 }
 
 // used for receiving vars

@@ -484,7 +484,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 			on_tilp_button7_clicked(NULL, NULL);
 
 		else if(!strcmp(name, NODE5))
-			tilp_calc_idlist();
+			tilp_calc_idlist(0);
 
 		else if(!strcmp(name, NODE6))
 			display_clock_dbox();
