@@ -50,6 +50,7 @@
 GtkWidget *main_wnd  = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
+GtkWidget *help_menu = NULL;
 
 /* Main window */
 
@@ -86,8 +87,10 @@ GtkWidget *display_tilp_dbox()
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 
-	data = glade_xml_get_widget(xml, "handlebox1");
+	data = glade_xml_get_widget(xml, "menubar1");
 	gtk_widget_hide_all(data);
+
+	help_menu = glade_xml_get_widget(xml, "help2_menu");
 	
 	clist_init();
 	ctree_init();
@@ -436,4 +439,9 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 {
+	GtkWidget *menu = gtk_menu_new ();
+
+	gtk_menu_popup(GTK_MENU(help_menu),
+				       NULL, NULL, NULL, NULL,
+				       0, gtk_get_current_event_time ());
 }

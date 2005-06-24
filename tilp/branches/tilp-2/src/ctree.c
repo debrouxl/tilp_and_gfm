@@ -460,7 +460,6 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		if (event->button == 3) 
 		{
 			GdkEventButton *bevent = (GdkEventButton *) (event);
-			printf("popup !\n");
 
 			gtk_menu_popup(GTK_MENU(create_ctree_rbm()),
 				       NULL, NULL, NULL, NULL,

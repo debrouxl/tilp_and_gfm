@@ -177,6 +177,10 @@ SOURCE=..\..\src\dnd.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\filesel.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\gtk_gif.c
 # End Source File
 # Begin Source File
