@@ -542,17 +542,17 @@ int tilp_calc_send_var(gint to_flash)
   Receive one or more selected variables.
   Returned value:
   - negative if error
-  - zero if successful (single file)
-  - positive if successful (group file named TMPFILE_GROUP)
+  - zero if successful (single)
+  - positive if successful (group to save)
 */
 
 static int tilp_calc_recv_var1(void)
 {
-	int l, nvars;
-	int err;
+	int i, l;
+	int err, ret=0;
+	FileContent **array;
 
 	l = g_list_length(remote.selection);
-	nvars = 0;
 
 	if(tilp_calc_isready())
 		return -1;
@@ -560,7 +560,7 @@ static int tilp_calc_recv_var1(void)
 	if(!tilp_ctree_selection_ready())
 		return -1;
 	
-	if(g_list_length(remote.selection) == 1) 
+	if(l == 1) 
 	{
 		// One file
 		VarEntry *ve = (VarEntry *)remote.selection->data;
@@ -589,113 +589,82 @@ static int tilp_calc_recv_var1(void)
 	else
 	{
 		// Multiple files (single or group depending on global option)
+		GList *sel;
+		gchar *src_filename;
+		gchar *tmp_filename;
+		gchar *dst_filename;
 
-	}
-#if 0
-				//
-				// One file or single: filename is returned by recv_var
-				//
+		gif->create_pbar_type5(_("Receiving variable(s)"), "");
 
-				GList *sel;
-				sel = remote.selection;
-				while (sel != NULL) {
-					VarEntry *ve =
-					    (VarEntry *) sel->data;
-					char *old_path =
-					    g_get_current_dir();
-					char *src_path = NULL;
-					char *dst_path = NULL;
-					char tmp_filename[MAXCHARS];
-					int err;
-					strcpy(tmp_filename,
-					       TMPFILE_GROUP);
-					chdir(g_get_tmp_dir());
-					err =
-					    ti_calc.recv_var(tmp_filename,
-							     MODE_RECEIVE_SINGLE_VAR,
-							     ve);
-					chdir(old_path);
-					if(tilp_error(err)) {
-						gif->destroy_pbar();
-						return -1;
-					}
-					// Check for existence and move
-					src_path =
-					    g_strconcat(g_get_tmp_dir(),
-							G_DIR_SEPARATOR_S,
-							tmp_filename,
-							NULL);
-					dst_path =
-					    g_strconcat(g_get_current_dir
-							(),
-							G_DIR_SEPARATOR_S,
-							tmp_filename,
-							NULL);
-					tilp_file_move_with_check(src_path,
-								  dst_path);
-					nvars++;
-					info_update.main_percentage =
-					    (float) nvars / l;
-					info_update.pbar();
-					info_update.refresh();
-					sel = sel->next;
-				} gif->destroy_pbar();
-			} else {
+		array = (FileContent **)calloc((l+1), sizeof(FileContent *));
+		if(!array)
+			return -1;
 
-				//
-				// Several files, saved as  a group file
-				//
-				char *old_path = g_get_current_dir();
-				GList *sel;
-				int err = 0;
-				char tmp_filename[MAXCHARS], *tmpf;
-				sel = remote.selection;
-				while (sel != NULL) {
-					VarEntry *ve =
-					    (VarEntry *) sel->data;
-					strcpy(tmpf =
-					       tmp_filename,
-					       TMPFILE_GROUP);
-					chdir(g_get_tmp_dir());
-					if(nvars == 0)
-						err =
-						    ti_calc.recv_var(tmpf,
-								     MODE_RECEIVE_FIRST_VAR,
-								     ve);
+		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)
+		{
+			VarEntry *ve = (VarEntry *)sel->data;
+			
+			array[i] = tifiles_content_create_regular();
 
-					else if(nvars == l - 1)
-						err =
-						    ti_calc.recv_var(tmpf,
-								     MODE_RECEIVE_LAST_VAR,
-								     ve);
-
-					else
-						err =
-						    ti_calc.recv_var(tmpf,
-								     MODE_NORMAL,
-								     ve);
-					chdir(old_path);
-					if(tilp_error(err)) {
-						gif->destroy_pbar();
-						return -1;
-					}
-					nvars++;
-					info_update.main_percentage =
-					    (float) nvars / l;
-					info_update.pbar();
-					info_update.refresh();
-					sel = sel->next;
-				} gif->destroy_pbar();
-				if(tilp_error(err))
-					return -1;
-
-                return +1;
+			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
+			if(err)
+			{
+				tilp_err(err);
+				break;
 			}
-		}
-		break;
 
-#endif
-	return 0;
+			gtk_update.cnt2 = i;
+			gtk_update.max2 = l;
+			gtk_update.pbar();
+			gtk_update.refresh();
+		}
+
+		if(options.recv_as_group)
+		{
+			FileContent* content;
+
+			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+
+			tifiles_group_contents(array, &content);
+			tifiles_file_write_regular(tmp_filename, content, NULL);
+			tifiles_content_free_regular(content);
+
+			g_free(tmp_filename);
+			ret = 1;
+		}
+		else
+		{
+			tilp_file_chdir(g_get_tmp_dir());
+
+			for(i = 0; i < l; i++)
+			{
+				err = tifiles_file_write_regular(NULL, array[i], &tmp_filename);
+				if(err)
+				{
+					tilp_err(err);
+					break;
+				}
+
+				src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, 
+					g_basename(tmp_filename), NULL);
+				dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
+					g_basename(tmp_filename), NULL);
+
+				tilp_file_move_with_check(src_filename, dst_filename);
+
+				g_free(src_filename);
+				//free(tmp_filename);
+				g_free(dst_filename);
+			}
+
+			tilp_file_chdir(local.cwdir);
+		}
+
+		gif->destroy_pbar();
+		//tifiles_content_free_group(array);
+	}
+
+	return ret;
 }
 
 static int tilp_calc_recv_var2(void)
