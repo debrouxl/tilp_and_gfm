@@ -204,3 +204,18 @@ void tilp_clist_selection_display(void)
 	}
 }
 #endif /* !__MACOSX__ */
+
+void tilp_ctree_selection_display(void)
+{
+	GList *ptr;
+
+	if (remote.selection == NULL)
+		return;
+
+	for(ptr = remote.selection; ptr; ptr = ptr->next)
+	{
+		VarEntry *ve = ptr->data;
+
+		printf("<%s>\n", ve->name);
+	}
+}

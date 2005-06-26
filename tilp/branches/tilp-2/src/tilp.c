@@ -173,6 +173,11 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
 
 	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
+	if(!dst_filename)
+	{
+		g_free(src_filename);
+		return;
+	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
 		dst_filename = g_strconcat(dst_filename, ".", "rom", NULL);
@@ -324,6 +329,12 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	dst_filename = create_fsel(local.cwdir, "backup", ext, TRUE);
 	g_free(ext);
 
+	if(!dst_filename)
+	{
+		g_free(src_filename);
+		return;
+	}
+
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
 		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(calc_handle->model), NULL);
 	else
@@ -353,6 +364,40 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 	return;
 }
 
+static int save_group(void)
+{
+	char* src_filename;
+	const char *dst_filename;
+	char *ext;
+
+
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+
+	ext = g_strconcat("*.", tifiles_fext_of_group(calc_handle->model), NULL);
+	dst_filename = create_fsel(local.cwdir, "group", ext, TRUE);
+	g_free(ext);
+
+	if(!dst_filename)
+	{
+		g_free(src_filename);
+		return -1;
+	}
+
+	if (!strcmp(tifiles_fext_get(dst_filename), ""))
+		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_group(calc_handle->model), NULL);
+	else
+		dst_filename = g_strdup(dst_filename);
+	
+	tilp_file_move_with_check(src_filename, dst_filename);
+	g_free(src_filename);
+	
+	tilp_dirlist_local();
+	clist_refresh();
+	labels_refresh();
+
+	return 0;
+}
+
 // used for receiving vars
 GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 {
@@ -368,7 +413,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 
 			else if (ret > 0)
 			{
-				//display_fileselection_4();
+				save_group();
 			}
 		}
 
@@ -387,7 +432,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 
 		if (ret > 0)
 		{
-			//display_fileselection_4();
+			save_group();
 		}
 		else 
 		{

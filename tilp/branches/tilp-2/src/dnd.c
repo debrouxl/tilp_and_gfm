@@ -41,10 +41,7 @@ enum
 	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
 };
 
-/*****************************/
 /* Drag & Drop support (DnD) */
-/*****************************/
-
 
 enum 
 { 
@@ -91,6 +88,7 @@ void dnd_init(void)
 }
 
 /* CList -> CTree */
+
 GLADE_CB void
 on_treeview2_drag_begin(GtkWidget * widget,
 			GdkDragContext * drag_context, gpointer user_data)
@@ -156,6 +154,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 
 
 /* CTree -> CList */
+
 extern gchar *name_to_drag;
 extern GtkTreePath *path_to_drag;
 static void select_vars_under_folder(gint action);
@@ -200,7 +199,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 	{
 		gchar *name = (gchar *) data->data;
 
-		//g_print("Received \"%s\" as selection information.\n", name);
+		g_print("Received \"%s\" as selection information.\n", name);
 		if (!strcmp(name, NODE1)) 
 		{
 			// screenshot
@@ -233,6 +232,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else if (!strcmp(name, NODEx)) 
 		{
 			// folder to get
+			tilp_ctree_selection_display();
 			on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		} 

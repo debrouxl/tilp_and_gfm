@@ -36,10 +36,22 @@
 static const char* authors[] =  
 {
 	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
-		"Julien Blache (Mac OS-X) <jb@jblache.org>", 
-		"Tijl Coosemans (*BSD) <tijl@ulyssis.org>", 
-		NULL 
+	"Julien Blache (Mac OS-X) <jb@jblache.org>", 
+	"Tijl Coosemans (*BSD) <tijl@ulyssis.org>", 
+	NULL 
 };	
+
+static const char* documenters[] = 
+{
+	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
+	NULL
+};
+
+static const char* artists[] = 
+{
+	"Jesse Palmer (icon design) <jp@jp3d.net>",
+	NULL
+};
 
 gint display_about_dbox(void)
 {
@@ -91,6 +103,8 @@ gint display_about_dbox(void)
 	gtk_about_dialog_set_license(dlg, buffer);
 	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
 	gtk_about_dialog_set_authors(dlg, authors);
+	gtk_about_dialog_set_documenters(dlg, documenters);
+	gtk_about_dialog_set_artists(dlg, artists);
 	gtk_about_dialog_set_logo(dlg, pix);
 
 	//gtk_show_about_dialog(NULL, "");
