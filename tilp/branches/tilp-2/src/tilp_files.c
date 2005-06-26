@@ -96,11 +96,13 @@ int tilp_file_copy(const char *src, const char *dst)
 
 int tilp_file_move(const char *src, const char *dst)
 {
-	if(g_rename(src, dst) < 0)
+	if(tilp_file_copy(src, dst) < 0)
+	//if(g_rename(src, dst) < 0)
 	{
 		gif->msg_box1(_("Information"), _("Unable to move file.\n\n"));
 		return -1;
 	}
+	tilp_file_delete(src);
 
 	return 0;
 }
@@ -149,8 +151,7 @@ int tilp_file_check(const char *src, char **dst)
 			sprintf(buffer, _("The file %s already exists.\nOverwrite ?"), src);
 			ret =
 			    gif->msg_box3(_("Warning"), buffer,
-					  _("Overwrite "), _("Rename "),
-					  _("Skip "));
+					_("Overwrite "), _("Rename "), _("Skip "));
 
 			switch (ret) 
 			{
@@ -205,9 +206,7 @@ int tilp_file_move_with_check(const char *src, const char *dst)
 	{
 		if (tilp_file_move(src, dst2)) 
 		{
-			gif->msg_box1(_("Error"),
-				     _
-				     ("Unable to move the temporary file.\n"));
+			gif->msg_box1(_("Error"), _("Unable to move the temporary file.\n"));
 			g_free(dst2);
 			return 0;
 		}

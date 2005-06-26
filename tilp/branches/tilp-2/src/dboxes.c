@@ -131,14 +131,11 @@ gint msg_box3(const char *title, char *message, const char *button1,
 	dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(NULL),
 					     (GtkDialogFlags)
 					     (GTK_DIALOG_MODAL),
-					     GTK_STOCK_YES,
-					     GTK_RESPONSE_YES,
-					     GTK_STOCK_NO,
-					     GTK_RESPONSE_NO,
-					     GTK_STOCK_CANCEL,
-					     GTK_RESPONSE_CANCEL, NULL);
-	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-					GTK_RESPONSE_CANCEL);
+					     button1, GTK_RESPONSE_YES,
+					     button2, GTK_RESPONSE_NO,
+					     button3, GTK_RESPONSE_CANCEL, 
+						 NULL);
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
 	label = gtk_label_new(message);
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
 	gtk_widget_show(label);
@@ -199,8 +196,7 @@ gint msg_box4(const char *title, char *message)
 
 
 /* Create the dialog box entry and wait */
-char *msg_entry(const char *title, const char *message,
-		const char *content)
+char *msg_entry(const char *title, const char *message, const char *content)
 {
 	GladeXML *xml;
 	GtkWidget *data;

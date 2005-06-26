@@ -33,21 +33,28 @@
 #include "about.h"
 #include "tilp_core.h"
 
-gint display_about_dbox()
+static const char* authors[] =  
 {
-	GladeXML *xml;
-	GtkWidget *dbox, *label;
-	GtkTextBuffer *txtbuf;
-	GtkWidget *text;
+	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
+		"Julien Blache (Mac OS-X) <jb@jblache.org>", 
+		"Tijl Coosemans (*BSD) <tijl@ulyssis.org>", 
+		NULL 
+};	
+
+gint display_about_dbox(void)
+{
+	GtkWidget* widget;
+	GtkAboutDialog* dlg;
+	GdkPixbuf *pix;
+
+	struct stat stbuf;
 	FILE *fd;
 	gchar *filename;
+	int len = 0;
 	gchar buffer[32768];
-	gint len = 0;
-	struct stat stbuf;
 	gchar *version;
-	gint result;
 
-#ifdef __WIN32__
+	#ifdef __WIN32__
 	filename = g_strconcat(inst_paths.base_dir, "License.txt", NULL);
 #else				/*  */
 	filename = g_strconcat(inst_paths.base_dir, "COPYING", NULL);
@@ -68,38 +75,24 @@ gint display_about_dbox()
 		}
 	}
 
-	xml = glade_xml_new(tilp_paths_build_glade("about-2.glade"), "about_dbox", PACKAGE);
-	if (!xml)
-		g_error(_("about.c: GUI loading failed !\n"));
-	glade_xml_signal_autoconnect(xml);
+	version = g_strdup_printf(_("Framework version (cables=%s, files=%s, calcs=%s)"),
+	     ticables_version_get(), tifiles_version_get(), ticalcs_version_get());
 
-	dbox = glade_xml_get_widget(xml, "about_dbox");
-	label = glade_xml_get_widget(xml, "label5");
-	version = g_strdup_printf(_("* TILP version %s (cables=%s, files=%s, calcs=%s)"),
-	     TILP_VERSION, ticables_version_get(), tifiles_version_get(),
-	     ticalcs_version_get());
-	gtk_label_set_text(GTK_LABEL(label), version);
-	g_free(version);
+	//---
 
-	text = glade_xml_get_widget(xml, "textview1");
-	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
-	gtk_text_buffer_set_text(txtbuf, buffer, len);
-	gtk_widget_realize(dbox);
-	gtk_widget_show(dbox);
-	//gtk_window_resize(GTK_WINDOW(dbox), 640, 480);
+	widget = gtk_about_dialog_new();
+	dlg = GTK_ABOUT_DIALOG(widget);
+	pix = create_pixbuf("logo.xpm");
 
-	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) 
-	{
-	case GTK_RESPONSE_OK:
-		break;
-	default:
-		break;
-	}
+	gtk_about_dialog_set_name(dlg, "TiLP - Ti Linking Program - ");
+	gtk_about_dialog_set_version(dlg, TILP_VERSION);
+	gtk_about_dialog_set_comments(dlg, version);
+	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2005 The TiLP Team");
+	gtk_about_dialog_set_license(dlg, buffer);
+	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
+	gtk_about_dialog_set_authors(dlg, authors);
+	gtk_about_dialog_set_logo(dlg, pix);
 
-	gtk_widget_destroy(dbox);
-
-	return 0;
+	//gtk_show_about_dialog(NULL, "");
+	gtk_widget_show_all(widget);
 }
-
-

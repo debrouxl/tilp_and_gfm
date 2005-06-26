@@ -175,7 +175,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(calc_handle->model), NULL);
+		dst_filename = g_strconcat(dst_filename, ".", "rom", NULL);
 	else
 		dst_filename = g_strdup(dst_filename);
 	
@@ -321,7 +321,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
 
 	ext = g_strconcat("*.", tifiles_fext_of_backup(calc_handle->model), NULL);
-	dst_filename = create_fsel(local.cwdir, NULL, ext, TRUE);
+	dst_filename = create_fsel(local.cwdir, "backup", ext, TRUE);
 	g_free(ext);
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
