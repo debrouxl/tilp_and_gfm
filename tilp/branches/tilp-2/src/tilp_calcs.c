@@ -524,8 +524,6 @@ int tilp_calc_send_var(gint to_flash)
 
 		if(l > 1) 
 		{
-			printf("\n<%i %i>\n", i, l);
-
 			gtk_update.cnt2 = i;
 			gtk_update.max2 = l;
 
@@ -615,6 +613,7 @@ static int tilp_calc_recv_var1(void)
 
 			gtk_update.cnt2 = i;
 			gtk_update.max2 = l;
+			printf("%i %i\n", i, l);
 			gtk_update.pbar();
 			gtk_update.refresh();
 		}

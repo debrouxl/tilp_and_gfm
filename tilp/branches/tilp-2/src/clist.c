@@ -120,6 +120,15 @@ void clist_refresh(void);
 static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
 {
 	int col = column2index(user_data, column);
+	GtkSortType sort1 = gtk_tree_view_column_get_sort_order(column);
+	GtkSortType sort2 = (options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
+
+	printf("%i %i\n", sort1, sort2);
+	if(sort1 == sort2)
+	{
+		options.local_sort_order = !options.local_sort_order;
+		clist_refresh();
+	}
 	
 	switch(col)
 	{
@@ -221,6 +230,7 @@ void clist_refresh(void)
 	GList *dirlist;
 	gsize br, bw;
 	gchar *utf8;
+	int i;
 
 	// reparse folders
 	tilp_clist_selection_destroy();
@@ -228,6 +238,11 @@ void clist_refresh(void)
 	gtk_list_store_clear(list);
 
 	// sort files
+	for(i = 0; i < CLIST_NVCOLS; i++)
+	{
+		col = gtk_tree_view_get_column(view, i);
+		gtk_tree_view_column_set_sort_indicator(col, FALSE);
+	}
 	switch (options.local_sort) 
 	{
 	case SORT_BY_NAME:

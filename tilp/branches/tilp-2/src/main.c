@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 	/* In cmdline, does not display the entire window, only the pbar */
 	if(working_mode & MODE_GUI) 
 	{
-		gtk_widget_show_all(main_wnd);
+		gtk_widget_show(main_wnd);
 		toolbar_refresh_buttons();
 		icon = create_pixbuf("icon.xpm");
 		gtk_window_set_icon(GTK_WINDOW(main_wnd), icon);

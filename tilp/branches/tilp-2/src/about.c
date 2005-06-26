@@ -31,6 +31,7 @@
 #include <sys/stat.h>
 
 #include "about.h"
+#include "support.h"
 #include "tilp_core.h"
 
 static const char* authors[] =  
@@ -109,4 +110,6 @@ gint display_about_dbox(void)
 
 	//gtk_show_about_dialog(NULL, "");
 	gtk_widget_show_all(widget);
+
+	return 0;
 }

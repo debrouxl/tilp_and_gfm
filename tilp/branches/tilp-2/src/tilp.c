@@ -49,6 +49,7 @@
 #define strcasecmp _stricmp
 #endif				/* __WIN32__ */
 
+GladeXML *xml = NULL;
 GtkWidget *main_wnd  = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
@@ -56,9 +57,31 @@ GtkWidget *help_menu = NULL;
 
 /* Main window */
 
+void show_right_view(int view)
+{
+	gpointer data;
+
+	if(view)
+	{
+		data = glade_xml_get_widget(xml, "menubar1");
+		gtk_widget_show_all(data);
+		data = glade_xml_get_widget(xml, "vbox2");
+		gtk_widget_show_all(data);
+	}
+	else
+	{
+		data = glade_xml_get_widget(xml, "menubar1");
+		gtk_widget_hide_all(data);
+		data = glade_xml_get_widget(xml, "vbox2");
+		gtk_widget_hide_all(data);
+
+		//gtk_window_resize(dbox, options.xsize, options.ysize);
+	}
+}
+
 GtkWidget *display_tilp_dbox()
 {
-	GladeXML *xml;
+	//GladeXML *xml;
 	GtkWidget *dbox;
 	GtkWidget *paned;
 	gpointer data;
@@ -89,9 +112,7 @@ GtkWidget *display_tilp_dbox()
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 
-	data = glade_xml_get_widget(xml, "menubar1");
-	gtk_widget_hide_all(data);
-
+	show_right_view(options.full_gui);
 	help_menu = glade_xml_get_widget(xml, "help2_menu");
 	
 	clist_init();

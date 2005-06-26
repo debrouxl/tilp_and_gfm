@@ -581,6 +581,8 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 void tilp_file_sort_by_name(void)
 {
 	local.dirlist = g_list_sort(local.dirlist, sort_by_name);
+	if(!options.local_sort_order)
+		local.dirlist = g_list_reverse(local.dirlist);
 }
 
 static gint sort_by_type(gconstpointer a, gconstpointer b)
@@ -593,8 +595,10 @@ static gint sort_by_type(gconstpointer a, gconstpointer b)
 
 void tilp_file_sort_by_type(void)
 {
-	GList *list = local.dirlist;
-	list = g_list_sort(list, sort_by_type);
+	local.dirlist = g_list_sort(local.dirlist, sort_by_type);
+
+	if(!options.local_sort_order)
+		local.dirlist = g_list_reverse(local.dirlist);
 }
 
 static gint sort_by_date(gconstpointer a, gconstpointer b)
@@ -614,6 +618,8 @@ static gint sort_by_date(gconstpointer a, gconstpointer b)
 void tilp_file_sort_by_date(void)
 {
 	local.dirlist = g_list_sort(local.dirlist, sort_by_date);
+	if(!options.local_sort_order)
+		local.dirlist = g_list_reverse(local.dirlist);
 }
 
 static gint sort_by_size(gconstpointer a, gconstpointer b)
@@ -633,6 +639,8 @@ static gint sort_by_size(gconstpointer a, gconstpointer b)
 void tilp_file_sort_by_size(void)
 {
 	local.dirlist = g_list_sort(local.dirlist, sort_by_size);
+	if(!options.local_sort_order)
+		local.dirlist = g_list_reverse(local.dirlist);
 }
 
 static gint sort_by_attrib(gconstpointer a, gconstpointer b)
@@ -658,6 +666,8 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 void tilp_file_sort_by_attrib(void)
 {
 	local.dirlist = g_list_sort(local.dirlist, sort_by_attrib);
+	if(!options.local_sort_order)
+		local.dirlist = g_list_reverse(local.dirlist);
 }
 
 

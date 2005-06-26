@@ -66,6 +66,7 @@ typedef struct
     int		remote_sort_order;
 
 	int		fs_type;
+	int		full_gui;
 
 	// options
 	int		auto_detect;

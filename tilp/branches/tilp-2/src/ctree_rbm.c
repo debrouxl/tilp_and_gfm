@@ -52,6 +52,9 @@ GtkWidget *create_ctree_rbm(void)
 	data = glade_xml_get_widget(xml, "send_to_flash1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.send_to_flash);
 
+	data = glade_xml_get_widget(xml, "local_view1");
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.full_gui);
+
 	menu = glade_xml_get_widget(xml, "ctree_rbm");
 	return menu;
 }
@@ -78,4 +81,14 @@ rbm_change_device1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	display_device_dbox();
+}
+
+extern void show_right_view(int view);
+
+GLADE_CB void
+rbm_local_view1_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+	options.full_gui = GTK_CHECK_MENU_ITEM(menuitem)->active;
+	show_right_view(options.full_gui);
 }

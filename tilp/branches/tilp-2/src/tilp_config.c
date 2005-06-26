@@ -73,6 +73,7 @@ int tilp_config_default(void)
 	options.fs_type = 1;
 #endif
 #endif
+	options.full_gui = !0;
 
 	options.overwrite = CONFIRM_YES;
 	options.local_path = 0;
@@ -227,6 +228,12 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_GUI, "remote_sort_order", options.remote_sort_order);
 	g_key_file_set_comment(kf, SECTION_GUI, "remote_sort_order", "Sorting order for remote view", &error);
 
+	g_key_file_set_integer(kf, SECTION_GUI, "fs_type", options.fs_type);
+	g_key_file_set_comment(kf, SECTION_GUI, "fs_type", "File Selector type", &error);
+
+	g_key_file_set_integer(kf, SECTION_GUI, "full_gui", options.full_gui);
+	g_key_file_set_comment(kf, SECTION_GUI, "full_gui", "Use full gui (TiLP-I) or just remote view", &error);
+
 	g_key_file_set_comment(kf, SECTION_GUI, NULL, "GUI section", &error);
 
 	// Section [OPTIONS]
@@ -364,6 +371,11 @@ int tilp_config_read(void)
 		g_key_file_get_integer(kf, SECTION_GUI, "remote_sort", &error);
 	options.remote_sort_order = 
 		g_key_file_get_integer(kf, SECTION_GUI, "remote_sort_order", &error);
+
+	options.fs_type = 
+		g_key_file_get_integer(kf, SECTION_GUI, "fs_type", &error);
+	options.full_gui = 
+		g_key_file_get_integer(kf, SECTION_GUI, "full_gui", &error);
 
 	// Section [OPTIONS]
 	options.auto_detect = 

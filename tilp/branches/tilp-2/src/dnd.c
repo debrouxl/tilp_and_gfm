@@ -232,7 +232,6 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else if (!strcmp(name, NODEx)) 
 		{
 			// folder to get
-			tilp_ctree_selection_display();
 			on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		} 
