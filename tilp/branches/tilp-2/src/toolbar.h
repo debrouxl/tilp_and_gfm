@@ -22,7 +22,7 @@
 #ifndef GTOOLBAR_H
 #define GTOOLBAR_H
 
-void toolbar_set_images(void);
 void toolbar_refresh_buttons(void);
+void toolbar_set_button(int sr);
 
 #endif

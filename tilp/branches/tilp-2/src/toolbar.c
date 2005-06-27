@@ -108,5 +108,25 @@ void toolbar_refresh_buttons(void)
 	gtk_widget_set_sensitive(toolbar_wnd.button11, features & OPS_DIRLIST);
 	gtk_widget_set_sensitive(toolbar_wnd.button12, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(toolbar_wnd.button13, features & OPS_BACKUP);
-	gtk_widget_set_sensitive(toolbar_wnd.button14, !(features & FTS_SILENT));
+	gtk_widget_set_sensitive(toolbar_wnd.button14, !options.full_gui);
+}
+
+// 0: disabled
+// 1: send
+// 2: receive
+void toolbar_set_button(int sr)
+{
+	GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
+	GtkToolItem *item = gtk_toolbar_get_nth_item(tb, 5);
+	GtkToolButton *btn = GTK_TOOL_BUTTON(item);
+	GtkWidget *icon;
+
+	icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.xpm");
+	//gtk_tool_button_set_icon_widget((GtkToolButton *)item, icon);
+	//gtk_tool_button_set_label       (btn, "foobar");
+
+	if(options.full_gui)
+		gtk_widget_set_sensitive(toolbar_wnd.button14, FALSE);
+	else
+		gtk_widget_set_sensitive(toolbar_wnd.button14, sr);
 }
