@@ -396,7 +396,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	GTK_REFRESH();
 	
 	handle = ticables_handle_new(cable_model, cable_port);
-	ticables_options_set_timeout(handle, 5);
+	ticables_options_set_timeout(handle, 10);
 
 	err = ticables_cable_open(handle);
 	if(err)

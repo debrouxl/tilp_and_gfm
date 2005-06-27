@@ -37,4 +37,7 @@ int  tilp_ctree_selection2_ready(void);
 
 void tilp_clist_selection_display(void);
 
+void tilp_slct_load_contents(void);
+void tilp_slct_unload_contents(void);
+
 #endif

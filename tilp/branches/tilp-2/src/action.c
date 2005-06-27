@@ -29,39 +29,20 @@
 #include <string.h>
 
 #include "action.h"
+#include "support.h"
 #include "tilp_core.h"
 
 static GtkWidget *clist;
 static GtkListStore *list;
 
-enum { 
+enum 
+{ 
 	COLUMN_VAR, COLUMN_ATTR, COLUMN_FILE, COLUMN_ACTION,
-	COLUMN_DATA, COLUMN_NUMBER
+	COLUMN_DATA1, COLUMN_DATA2, COLUMN_NUMBER
 };
 
-typedef struct 
-{
-	char varname[18];
-	int varattr;
-	char *filename;
-	char *action;
-	int selected;
-} TilpAction;
-
-static void free_actions(void)
-{
-	GtkTreeModel *model = GTK_TREE_MODEL(list);
-	GtkTreeIter iter;
-	gboolean valid;
-	TilpAction *ta;
-
-	valid = gtk_tree_model_get_iter_first(model, &iter);
-	while (valid) {
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
-		g_free(ta);
-		valid = gtk_tree_model_iter_next(model, &iter);
-	}
-}
+#define CLIST_NVCOLS	(4)		// 4 visible columns
+#define CLIST_NCOLS		(7)		// 6 real columns
 
 static gboolean select_function(GtkTreeSelection * selection,
 				GtkTreeModel * model,
@@ -70,14 +51,15 @@ static gboolean select_function(GtkTreeSelection * selection,
 				gpointer data)
 {
 	GtkTreeIter iter;
-	TilpAction *ta;
+	FileEntry *fe;
 
 	gtk_tree_model_get_iter(model, &iter, path);
-	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
+	gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, -1);
+
 	if (gtk_tree_selection_path_is_selected(selection, path))
-		ta->selected = 0;
+		fe->selected = 0;
 	else
-		ta->selected = !0;
+		fe->selected = !0;
 
 	return TRUE;
 }
@@ -90,15 +72,17 @@ static void create_clist(GtkWidget * clist_wnd)
 	GtkTreeSelection *sel;
 	gint i;
 
-	list = gtk_list_store_new(COLUMN_NUMBER, G_TYPE_STRING,
-				  G_TYPE_STRING, G_TYPE_STRING,
-				  G_TYPE_STRING, G_TYPE_POINTER);
+	list = gtk_list_store_new(COLUMN_NUMBER, 
+				G_TYPE_STRING, G_TYPE_STRING, 
+				G_TYPE_STRING, G_TYPE_STRING, 
+				G_TYPE_POINTER, G_TYPE_POINTER);
 	model = GTK_TREE_MODEL(list);
 	
 	gtk_tree_view_set_model(view, model);
 	gtk_tree_view_set_headers_visible(view, TRUE);
 	gtk_tree_view_set_headers_clickable(view, TRUE);
 	gtk_tree_view_set_rules_hint(view, FALSE);
+
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1,
 						    _("Varname"),
@@ -120,7 +104,8 @@ static void create_clist(GtkWidget * clist_wnd)
 						    renderer, "text",
 						    COLUMN_ACTION, NULL);
 
-	for (i = 0; i < COLUMN_NUMBER - 1; i++) {
+	for (i = 0; i < CLIST_NVCOLS - 1; i++) 
+	{
 	  GtkTreeViewColumn *col;
 	  col = gtk_tree_view_get_column(view, i);
 	  gtk_tree_view_column_set_resizable(col, TRUE);
@@ -128,8 +113,20 @@ static void create_clist(GtkWidget * clist_wnd)
 	
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
-	gtk_tree_selection_set_select_function(sel, select_function, NULL,
-					       NULL);
+	gtk_tree_selection_set_select_function(sel, select_function, NULL, NULL);
+}
+
+static const char* action2string(int action)
+{
+	switch(action)
+	{
+	case ACT_NONE:   return _("none"); break;
+	case ACT_RENAME: return _("rename"); break;
+	case ACT_OVER:   return _("overwrite"); break;
+	case ACT_SKIP:   return _("skip"); break;
+	}
+
+	return "";
 }
 
 gint display_action_dbox(gchar * dest)
@@ -139,18 +136,15 @@ gint display_action_dbox(gchar * dest)
 	GtkWidget *data;
 	GtkTreeIter iter;
 	GList *sel;
-	TiRegular content;
 	int i, button = 0;
 	gint result;
 	gboolean empty = TRUE;
 
-	if (!ti_calc.is_silent)
+	if (!(ticalcs_calc_features(calc_handle) & FTS_SILENT) )
 		return BUTTON1;
 
 	// box creation
-	xml = glade_xml_new
-	    (tilp_paths_build_glade("action-2.glade"), "action_dbox",
-	     PACKAGE);
+	xml = glade_xml_new(tilp_paths_build_glade("action-2.glade"), "action_dbox", PACKAGE);
 	if (!xml)
 		g_error(_("action.c: GUI loading failed !\n"));
 	glade_xml_signal_autoconnect(xml);
@@ -162,129 +156,98 @@ gint display_action_dbox(gchar * dest)
 	create_clist(data);
 
 	// fill model
-	for (sel = clist_win.selection; sel != NULL; sel = sel->next) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
-		if (tifiles_is_a_flash_file(f->name)) {
-			button = BUTTON1; // skib box
-			goto out_clean;
+	for (sel = local.selection; sel != NULL; sel = sel->next) 
+	{
+		FileEntry *f = (FileEntry *)sel->data;
+		FileContent *c = (FileContent *)f->content;
+
+		// parse each VarEntry in FileEntry
+		for (i = 0; i < c->num_entries; i++) 
+		{
+			VarEntry *v = &(c->entries[i]);
+			VarEntry *w;
+			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
+			char *trans;
+			char full_name[19];
+
+			// search for matching var
+			trans = tifiles_transcode_varname_static(c->model, v->name, v->type);
+			tifiles_build_fullname(c->model, full_name, v->folder, v->name);
+
+			w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
+			if (w == NULL)
+				continue;
+
+			// file contains an already existing var: add it to the window
+			row_text[0] = g_strdup(trans);
+			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
+			row_text[2] = g_strdup(f->name);
+			row_text[3] = g_strdup(action2string(f->action));
+
+			gtk_list_store_append(list, &iter);
+			gtk_list_store_set(list, &iter,
+					   COLUMN_VAR,  row_text[0],
+					   COLUMN_ATTR, row_text[1],
+					   COLUMN_FILE, row_text[2],
+					   COLUMN_ACTION, row_text[3],
+					   COLUMN_DATA1, (gpointer)f, 
+					   COLUMN_DATA2, (gpointer)v, 
+					   -1);
+			g_strfreev(row_text);
+
+			empty = FALSE;
 		}
-		else if (tifiles_is_a_regular_file(f->name)) {
-			if (tilp_error
-			    (tifiles_read_regular_file(f->name, &content))) {
-				button = BUTTON2; // abort operation
-				goto out_clean;
-			}
-			f->actions =
-			    ticalc_create_action_array(content.
-						       num_entries);
+	}		
 
-			// parse each file for existing vars in dirlist
-			for (i = 0; i < content.num_entries; i++) {
-				TiVarEntry *ve_src = &(content.entries[i]);
-				TiVarEntry *ve_dst = NULL;
-				TilpAction *ta =
-				    g_malloc0(1 * sizeof(TilpAction));
-				gchar **row_text =
-				    g_malloc0(5 * sizeof(gchar *));
-				char trans[18];
-				gchar full_name[19];
-
-				strcpy(f->actions[i] + 1, ve_src->name);
-				tifiles_build_fullname(full_name,
-						       ve_src->folder,
-						       ve_src->name);
-				ve_dst =
-				    ticalc_check_if_var_exists(ctree_win.var_tree /* ctree_win.dirlist*/,
-							       full_name);
-				if (ve_dst == NULL)
-					continue;
-
-				// file contain an already existing var...
-				empty = FALSE; // the list isn't empty
-				strcpy(ta->varname, full_name);
-				ta->varattr = ve_dst->attr;
-				ta->filename = g_strdup(f->name);
-				ta->action = f->actions[i];
-				ta->action[0] =
-				    (ta->varattr !=
-				     ATTRB_NONE) ? ACT_SKIP : ACT_OVER;
-				tifiles_translate_varname(ta->varname,
-							  trans,
-							  ve_dst->type);
-
-				// add it to the window
-				row_text[0] = g_strdup(trans);
-				row_text[1] =
-				    g_strdup(tifiles_attribute_to_string
-					     (ta->varattr));
-				row_text[2] = g_strdup(ta->filename);
-				row_text[3] =
-				    g_strdup((ta->action[0] ==
-					      ACT_SKIP) ? _("skip") :
-					     _("overwrite"));
-				gtk_list_store_append(list, &iter);
-				gtk_list_store_set(list, &iter,
-						   COLUMN_VAR,
-						   row_text[0],
-						   COLUMN_ATTR,
-						   row_text[1],
-						   COLUMN_FILE,
-						   row_text[2],
-						   COLUMN_ACTION,
-						   row_text[3],
-						   COLUMN_DATA,
-						   (gpointer) ta, -1);
-				g_strfreev(row_text);
-			}
-			tifiles_free_regular_content(&content);
-		}
-	}
-
-	if (empty == TRUE) {
+	if (empty == TRUE) 
+	{
 		button = BUTTON1; // skip box
 		goto out_clean;
 	}
 
 	// box running
-	gtk_dialog_set_default_response(GTK_DIALOG(dbox),
-					GTK_RESPONSE_CANCEL);
+	gtk_dialog_set_default_response(GTK_DIALOG(dbox), GTK_RESPONSE_CANCEL);
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) {
+	switch (result) 
+	{
 	case GTK_RESPONSE_OK:
 		button = BUTTON1;
 		break;
 	case GTK_RESPONSE_CANCEL:
 		button = BUTTON2;
 	default:
-                button = BUTTON2;
+         button = BUTTON2;
 		break;
 	}
 
 out_clean:
-	// free memory...
-	free_actions();
 	gtk_widget_destroy(dbox);
 
 	return button;
 }
 
-GLADE_CB void action_overwrite_clicked(GtkButton * button,
-				       gpointer user_data)
+GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
 	gboolean valid;
-	TilpAction *ta;
+
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid;
-	     valid = gtk_tree_model_iter_next(model, &iter)) {
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
-		if (!ta->selected)
+	     valid = gtk_tree_model_iter_next(model, &iter)) 
+	{
+		FileEntry *fe;
+		VarEntry *ve;
+
+		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, COLUMN_DATA2, &ve, -1);
+		
+		if (!fe->selected)
 			continue;
-		if (ta->varattr != ATTRB_NONE)
+
+		if (ve->attr != ATTRB_NONE)
 			continue;
-		ta->action[0] = ACT_OVER;
-		gtk_list_store_set(list, &iter, COLUMN_ACTION,
-				   _("overwrite"), -1);
+
+		fe->action = ACT_OVER;
+		gtk_list_store_set(list, &iter, COLUMN_ACTION, _("overwrite"), -1);
 	}
 }
 
@@ -295,57 +258,54 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 	gboolean valid;
 
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid;
-	     valid = gtk_tree_model_iter_next(model, &iter)) {
-		TilpAction *ta;
-		TiVarEntry *ve_dst;
+	     valid = gtk_tree_model_iter_next(model, &iter)) 
+	{
+		FileEntry *f;
+		VarEntry *v;
+		VarEntry *w;
+	
 		gchar *new_name = NULL;
 		gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 		char trans[18];
 		char full_name[19];
 
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
-		if (!ta->selected)
+		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &f, COLUMN_DATA2, &v, -1);
+
+		if (!f->selected)
 			continue;
-		ta->action[0] = ACT_OVER;
+		f->action = ACT_OVER;
 
 		// get new name
-		new_name =
-		    gif->msg_entry(_("Rename the file"), _("New name: "),
-				   tifiles_get_varname(ta->varname));
+		new_name = gif->msg_entry(_("Rename the file"), _("New name: "), tifiles_get_varname(v->name));
 		if (new_name == NULL)
 			continue;
-		tifiles_build_fullname(full_name,
-				       tifiles_get_fldname(ta->varname),
-				       new_name);
+		tifiles_build_fullname(calc_handle->model, full_name, tifiles_get_fldname(v->name), new_name);
 
 		// check that new varname does not exist
-		ve_dst =
-		    ticalc_check_if_var_exists(ctree_win.var_tree /*ctree_win.dirlist*/,
-					       full_name);
-		strcpy(ta->varname, full_name);
+		w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
+		strcpy(v->name, full_name);
 		g_free(new_name);
 
 		// update action
-		ta->varattr = (ve_dst != NULL) ? ve_dst->attr : ATTRB_NONE;
-		ta->action[0] =
-		    (ta->varattr != ATTRB_NONE) ? ACT_SKIP : ACT_OVER;
+		v->attr = (w != NULL) ? w->attr : ATTRB_NONE;
+		f->action = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_OVER;
+		/*
 		strcpy(ta->action + 1, tifiles_get_varname(full_name));
 		if (ve_dst != NULL)
 			tifiles_translate_varname(ta->varname, trans,
 						  ve_dst->type);
 		else
 			strcpy(trans, ta->varname);
+			*/
 
 		// update entry
 		row_text[0] = g_strdup(trans);
-		row_text[1] =
-		    g_strdup(tifiles_attribute_to_string(ta->varattr));
-		row_text[3] =
-		    g_strdup((ta->action[0] ==
-			      ACT_SKIP) ? _("skip") : _("overwrite"));
-		gtk_list_store_set(list, &iter, COLUMN_VAR, row_text[0],
-				   COLUMN_ATTR, row_text[1], COLUMN_ACTION,
-				   row_text[3], -1);
+		row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
+		row_text[3] = g_strdup(action2string(f->action));
+		gtk_list_store_set(list, &iter, 
+					COLUMN_VAR, row_text[0],
+				   COLUMN_ATTR, row_text[1], 
+				   COLUMN_ACTION, row_text[3], -1);
 		g_strfreev(row_text);   //bug
 	}
 }
@@ -355,20 +315,24 @@ GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
 	gboolean valid;
-	TilpAction *ta;
 
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid;
-	     valid = gtk_tree_model_iter_next(model, &iter)) {
-		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ta, -1);
-		if (!ta->selected)
+	     valid = gtk_tree_model_iter_next(model, &iter)) 
+	{
+		FileEntry *fe;
+		VarEntry *ve;
+
+		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, COLUMN_DATA2, &ve, -1);
+		
+		if (!fe->selected)
 			continue;
-		ta->action[0] = ACT_SKIP;
+
+		fe->action = ACT_SKIP;
 		gtk_list_store_set(list, &iter, COLUMN_ACTION, "skip", -1);
 	}
 }
 
-GLADE_CB void action_select_all_clicked(GtkButton * button,
-					gpointer user_data)
+GLADE_CB void action_select_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
@@ -377,8 +341,7 @@ GLADE_CB void action_select_all_clicked(GtkButton * button,
 	gtk_tree_selection_select_all(sel);
 } 
 
-GLADE_CB void action_deselect_all_clicked(GtkButton * button,
-					  gpointer user_data)
+GLADE_CB void action_deselect_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;

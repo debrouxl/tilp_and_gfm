@@ -109,7 +109,12 @@ typedef struct
     mode_t attrib;
 #endif
 
-    char **actions;		// Ticalc action associated w/ the file
+	// used for actions
+	FileContent* content;	// file content to send
+	int			 action;	// action (skip/rename/overwrite)
+	int*		 actions;	// array of actions for each vars
+
+	int			 selected;	// entry is selected
 } FileEntry;
 
 /* Used to retrieve stats on the on-calc memory usage */

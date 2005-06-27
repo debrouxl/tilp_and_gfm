@@ -141,6 +141,10 @@ SOURCE=..\..\src\about.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\action.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\bookmark.c
 # End Source File
 # Begin Source File

@@ -85,21 +85,11 @@
 #define MODE_OSX (1<<3)		/* Cocoa GUI mode (Mac OS X)     */
 #define MODE_GUI (1<<4)		/* GUI mode (GTK, MFC, Cocoa)    */
 
-/* Cmd line operation to perform */
-#define OP_BACKUP    1
-#define OP_FLASH_APP 2
-#define OP_FLASH_OS  3
-#define OP_FILE      4
+/* Action */
 
-/* Calculator state */
-#define READY_NOK -1
-
-/* Transfer way */
-#define CALC_TO_COMP 1
-#define COMP_TO_CALC 2
-
-/* Clock update mode */
-#define CLOCK_MANUAL 1
-#define CLOCK_SYNC   2
+#define ACT_NONE	0
+#define ACT_RENAME	1
+#define ACT_OVER	2
+#define ACT_SKIP	3
 
 #endif

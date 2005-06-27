@@ -31,7 +31,7 @@
 
 #include "tilp_core.h"
 
-/* Destroy the selection of the clist window */
+/* Destroy the selection of the local window */
 void tilp_clist_selection_destroy(void)
 {
 	if (local.selection != NULL) 
@@ -41,21 +41,36 @@ void tilp_clist_selection_destroy(void)
 	}
 }
 
-/* Destroy the selection of the ctree window */
-void tilp_ctree_selection_destroy(void)
+/* Check for files in the list */
+int tilp_clist_selection_ready(void)
 {
-	if (remote.selection != NULL) 
+	if (local.selection == NULL) 
 	{
-		g_list_free(remote.selection);
-		remote.selection = NULL;
+#ifndef __MACOSX__
+		gif->msg_box1(_("Information"), _
+			     ("A file must have been selected in the right window."));
+#endif /* !__MACOSX__ */
+		return 0;
 	}
+	return !0;
+}
 
-	if (remote.selection2 != NULL) 
+#ifndef __MACOSX__
+void tilp_clist_selection_display(void)
+{
+	GList *ptr = local.selection;
+
+	if (local.selection == NULL)
+		return;
+
+	while (ptr != NULL) 
 	{
-		g_list_free(remote.selection2);
-		remote.selection2 = NULL;
+		FileEntry *fi = ptr->data;
+		printf("<%s>\n", fi->name);
+		ptr = ptr->next;
 	}
 }
+#endif /* !__MACOSX__ */
 
 /* Destroy the selection of the clist window */
 void tilp_clist_file_selection_destroy(void)
@@ -148,18 +163,65 @@ void tilp_rename_selected_files()
 }
 #endif /* !__MACOSX__ */
 
-/* Check for files in the list */
-int tilp_clist_selection_ready(void)
+/* Preload TI variables belonging with the selection */
+void tilp_slct_load_contents(void)
 {
-	if (local.selection == NULL) 
+	GList *ptr;
+	int err;
+
+	if (local.selection == NULL)
+		return;
+
+	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
-#ifndef __MACOSX__
-		gif->msg_box1(_("Information"), _
-			     ("A file must have been selected in the right window."));
-#endif /* !__MACOSX__ */
-		return 0;
+		FileEntry *fe = ptr->data;
+
+		if(tifiles_file_is_regular(fe->name))
+		{
+			fe->content = tifiles_content_create_regular();
+			err = tifiles_file_read_regular(fe->name, fe->content);
+			if(err)
+			{
+				tifiles_content_free_regular(fe->content);
+				fe->content = NULL;
+			}
+		}
+		else
+			fe->content = NULL;
 	}
-	return !0;
+}
+
+void tilp_slct_unload_contents(void)
+{
+	GList *ptr;
+
+	if (local.selection == NULL)
+		return;
+
+	for(ptr = local.selection; ptr; ptr = ptr->next)
+	{
+		FileEntry *fe = ptr->data;
+
+		tifiles_content_free_regular(fe->content);
+	}
+}
+
+//-----------
+
+/* Destroy the selection of the remote window */
+void tilp_ctree_selection_destroy(void)
+{
+	if (remote.selection != NULL) 
+	{
+		g_list_free(remote.selection);
+		remote.selection = NULL;
+	}
+
+	if (remote.selection2 != NULL) 
+	{
+		g_list_free(remote.selection2);
+		remote.selection2 = NULL;
+	}
 }
 
 int tilp_ctree_selection_ready(void)
@@ -187,23 +249,6 @@ int tilp_ctree_selection2_ready(void)
 	}
 	return !0;
 }
-
-#ifndef __MACOSX__
-void tilp_clist_selection_display(void)
-{
-	GList *ptr = local.selection;
-
-	if (local.selection == NULL)
-		return;
-
-	while (ptr != NULL) 
-	{
-		FileEntry *fi = ptr->data;
-		printf("<%s>\n", fi->name);
-		ptr = ptr->next;
-	}
-}
-#endif /* !__MACOSX__ */
 
 void tilp_ctree_selection_display(void)
 {

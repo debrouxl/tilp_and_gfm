@@ -43,6 +43,7 @@
 #include "ctree.h"
 #include "dnd.h"
 #include "filesel.h"
+#include "action.h"
 #include "gtk_update.h"
 
 #ifdef __WIN32__
@@ -499,7 +500,10 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	gchar *dst_folder;
 	FileEntry *f;
 
+	// note: dst_folder must be a copy b/c the user_data
+	// pointer is no longer valid after dirlist_remote
 	dst_folder = g_strdup((gchar *) user_data);
+
 	if (dst_folder != NULL)
 		to_flash = !strcmp(dst_folder, "FLASH");
 
@@ -526,31 +530,28 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	} 
 	else 
 	{
+		tilp_slct_load_contents();			
+
 		if (options.overwrite == CONFIRM_YES) 
 		{
-
-			// note: dst_folder must be a copy b/c the user_data
-			// pointer is no longer valid after dirlist_remote
 			if (ticalcs_calc_features(calc_handle) & FTS_SILENT) 
-			{
 				if (tilp_dirlist_remote())
 					return;
-			}
-			/*
+
 			if (display_action_dbox(dst_folder) == BUTTON2) 
 			{
 				g_free(dst_folder);
 				return;
 			}
-			*/
-			g_free(dst_folder);
 		}
 		// needed: avoid box locking/flickering !
-		GTK_REFRESH();
+		//GTK_REFRESH();
 		
-		if (tilp_calc_send_var(to_flash) != 0)
-			return;
+		tilp_calc_send_var(to_flash);
+		tilp_slct_unload_contents();
 	}
+
+	g_free(dst_folder);
 }
 
 
