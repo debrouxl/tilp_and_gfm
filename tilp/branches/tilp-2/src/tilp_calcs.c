@@ -652,7 +652,7 @@ static int tilp_calc_recv_var1(void)
 				tilp_file_move_with_check(src_filename, dst_filename);
 
 				g_free(src_filename);
-				//free(tmp_filename);
+				  free(tmp_filename);
 				g_free(dst_filename);
 			}
 
@@ -660,7 +660,7 @@ static int tilp_calc_recv_var1(void)
 		}
 
 		gif->destroy_pbar();
-		//tifiles_content_free_group(array);
+		tifiles_content_free_group(array);
 	}
 
 	return ret;

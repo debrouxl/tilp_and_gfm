@@ -84,7 +84,6 @@ GtkWidget *display_tilp_dbox()
 	//GladeXML *xml;
 	GtkWidget *dbox;
 	GtkWidget *paned;
-	gpointer data;
 
 	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
 	if (!xml)
@@ -419,10 +418,35 @@ static int save_group(void)
 	return 0;
 }
 
-// used for receiving vars
+void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data);
+void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data);
+
 GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 {
+	if(!options.full_gui)
+	{
+		// Local view only
+		if(!remote.selection)
+		{
+			// Ask for a file if no selection
+			printf("Open file !\n");
+		}
+		else
+		{
+			// If selection, send it
+			on_tilp_button9a_clicked(button, user_data);
+		}
+	}
+	else
+		on_tilp_button9a_clicked(button, user_data);
+}
+
+// Used for receiving vars
+void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
+{
 	int ret;
+
+	printf("hello !\n ");
 
 	if ((remote.selection != NULL) || (remote.selection2 != NULL)) 
 	{
@@ -463,6 +487,7 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 	}
 }
 
+// Used for sending vars
 // Note: user_data is a string:
 // - such as "FLASH" for sending var into FLASH (ti83+/89/92+/v200)
 // - such as "" for sending var in the default folder
