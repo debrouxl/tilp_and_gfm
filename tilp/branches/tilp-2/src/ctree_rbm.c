@@ -31,6 +31,7 @@
 #include "support.h"
 #include "gstruct.h"
 #include "device.h"
+#include "toolbar.h"
 #include "tilp_core.h"
 
 /* Create/update menu */
@@ -91,4 +92,5 @@ rbm_local_view1_activate             (GtkMenuItem     *menuitem,
 {
 	options.full_gui = GTK_CHECK_MENU_ITEM(menuitem)->active;
 	show_right_view(options.full_gui);
+	toolbar_refresh_buttons();
 }

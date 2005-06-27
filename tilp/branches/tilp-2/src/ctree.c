@@ -33,6 +33,7 @@
 #include "ctree.h"
 #include "ctree_rbm.h"
 #include "clock.h"
+#include "toolbar.h"
 #include "tilp_core.h"
 
 static GtkTreeStore *tree;
@@ -102,6 +103,11 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 	// clear clist selection(one selection active at a time)
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(clist_wnd));
 	gtk_tree_selection_unselect_all(sel);
+
+	if(gtk_tree_selection_count_selected_rows(selection) > 0)
+		toolbar_set_button(2);
+	else
+		toolbar_set_button(1);
 
 	// create a new selection
 	for (list = gtk_tree_selection_get_selected_rows(selection, &model);
