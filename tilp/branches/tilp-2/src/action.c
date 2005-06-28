@@ -35,14 +35,16 @@
 static GtkWidget *clist;
 static GtkListStore *list;
 
+// be able to modify var attribute
+
 enum 
 { 
 	COLUMN_VAR, COLUMN_ATTR, COLUMN_FILE, COLUMN_ACTION,
-	COLUMN_DATA1, COLUMN_DATA2, COLUMN_NUMBER
+	COLUMN_DATA_F, COLUMN_DATA_V, COLUMN_DATA_N, COLUMN_NUMBER
 };
 
 #define CLIST_NVCOLS	(4)		// 4 visible columns
-#define CLIST_NCOLS		(7)		// 6 real columns
+#define CLIST_NCOLS		(8)		// 6 real columns
 
 static gboolean select_function(GtkTreeSelection * selection,
 				GtkTreeModel * model,
@@ -54,7 +56,7 @@ static gboolean select_function(GtkTreeSelection * selection,
 	FileEntry *fe;
 
 	gtk_tree_model_get_iter(model, &iter, path);
-	gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, -1);
+	gtk_tree_model_get(model, &iter, COLUMN_DATA_F, &fe, -1);
 
 	if (gtk_tree_selection_path_is_selected(selection, path))
 		fe->selected = 0;
@@ -75,7 +77,7 @@ static void create_clist(GtkWidget * clist_wnd)
 	list = gtk_list_store_new(COLUMN_NUMBER, 
 				G_TYPE_STRING, G_TYPE_STRING, 
 				G_TYPE_STRING, G_TYPE_STRING, 
-				G_TYPE_POINTER, G_TYPE_POINTER);
+				G_TYPE_POINTER, G_TYPE_POINTER, G_TYPE_INT);
 	model = GTK_TREE_MODEL(list);
 	
 	gtk_tree_view_set_model(view, model);
@@ -178,11 +180,16 @@ gint display_action_dbox(gchar * dest)
 			if (w == NULL)
 				continue;
 
+			if(w->attr == ATTRB_LOCKED || w->attr == ATTRB_ARCHIVED)
+				f->actions[i] = ACT_SKIP;
+			else
+				f->actions[i] = ACT_OVER;
+
 			// file contains an already existing var: add it to the window
 			row_text[0] = g_strdup(trans);
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
-			row_text[3] = g_strdup(action2string(f->action));
+			row_text[3] = g_strdup(action2string(f->actions[i]));
 
 			gtk_list_store_append(list, &iter);
 			gtk_list_store_set(list, &iter,
@@ -190,8 +197,9 @@ gint display_action_dbox(gchar * dest)
 					   COLUMN_ATTR, row_text[1],
 					   COLUMN_FILE, row_text[2],
 					   COLUMN_ACTION, row_text[3],
-					   COLUMN_DATA1, (gpointer)f, 
-					   COLUMN_DATA2, (gpointer)v, 
+					   COLUMN_DATA_F, (gpointer)f, 
+					   COLUMN_DATA_V, (gpointer)v, 
+					   COLUMN_DATA_N, i,
 					   -1);
 			g_strfreev(row_text);
 
@@ -235,18 +243,21 @@ GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid;
 	     valid = gtk_tree_model_iter_next(model, &iter)) 
 	{
-		FileEntry *fe;
-		VarEntry *ve;
+		FileEntry *f;
+		VarEntry *v;
+		int n;
 
-		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, COLUMN_DATA2, &ve, -1);
+		gtk_tree_model_get(model, &iter, 
+			COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
+			-1);
 		
-		if (!fe->selected)
+		if (!f->selected)
 			continue;
 
-		if (ve->attr != ATTRB_NONE)
+		if (v->attr != ATTRB_NONE)
 			continue;
 
-		fe->action = ACT_OVER;
+		f->actions[n] = ACT_OVER;
 		gtk_list_store_set(list, &iter, COLUMN_ACTION, _("overwrite"), -1);
 	}
 }
@@ -261,47 +272,47 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 	     valid = gtk_tree_model_iter_next(model, &iter)) 
 	{
 		FileEntry *f;
+		FileContent *c;
 		VarEntry *v;
 		VarEntry *w;
+		int n;
 	
 		gchar *new_name = NULL;
 		gchar **row_text = g_malloc0(5 * sizeof(gchar *));
-		char trans[18];
+		char *trans;
 		char full_name[19];
 
-		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &f, COLUMN_DATA2, &v, -1);
+		gtk_tree_model_get(model, &iter, 
+				COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
+				-1);
 
 		if (!f->selected)
 			continue;
-		f->action = ACT_OVER;
 
 		// get new name
+		c = f->content;
 		new_name = gif->msg_entry(_("Rename the file"), _("New name: "), tifiles_get_varname(v->name));
 		if (new_name == NULL)
 			continue;
-		tifiles_build_fullname(calc_handle->model, full_name, tifiles_get_fldname(v->name), new_name);
 
 		// check that new varname does not exist
-		w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
-		strcpy(v->name, full_name);
+		tifiles_build_fullname(c->model, full_name, v->folder, new_name);
 		g_free(new_name);
+		w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
 
 		// update action
 		v->attr = (w != NULL) ? w->attr : ATTRB_NONE;
-		f->action = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_OVER;
-		/*
-		strcpy(ta->action + 1, tifiles_get_varname(full_name));
-		if (ve_dst != NULL)
-			tifiles_translate_varname(ta->varname, trans,
-						  ve_dst->type);
-		else
-			strcpy(trans, ta->varname);
-			*/
+		f->actions[n] = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_RENAME;
+
+		// update var entry
+		strcpy(v->folder, tifiles_get_fldname(full_name));
+		strcpy(v->name,   tifiles_get_varname(full_name));
+		trans = tifiles_transcode_varname_static(c->model, v->name, v->type);
 
 		// update entry
 		row_text[0] = g_strdup(trans);
 		row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
-		row_text[3] = g_strdup(action2string(f->action));
+		row_text[3] = g_strdup(action2string(f->actions[n]));
 		gtk_list_store_set(list, &iter, 
 					COLUMN_VAR, row_text[0],
 				   COLUMN_ATTR, row_text[1], 
@@ -319,15 +330,18 @@ GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid;
 	     valid = gtk_tree_model_iter_next(model, &iter)) 
 	{
-		FileEntry *fe;
-		VarEntry *ve;
+		FileEntry *f;
+		VarEntry *v;
+		int n;
 
-		gtk_tree_model_get(model, &iter, COLUMN_DATA1, &fe, COLUMN_DATA2, &ve, -1);
+		gtk_tree_model_get(model, &iter, 
+			COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
+			-1);
 		
-		if (!fe->selected)
+		if (!f->selected)
 			continue;
 
-		fe->action = ACT_SKIP;
+		f->actions[n] = ACT_SKIP;
 		gtk_list_store_set(list, &iter, COLUMN_ACTION, "skip", -1);
 	}
 }

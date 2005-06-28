@@ -96,6 +96,7 @@ typedef struct
 /* Used by the local directory list function */
 typedef struct 
 {
+	// used for entries
     char *name;
     time_t date;
     off_t size;
@@ -111,8 +112,7 @@ typedef struct
 
 	// used for actions
 	FileContent* content;	// file content to send
-	int			 action;	// action (skip/rename/overwrite)
-	int*		 actions;	// array of actions for each vars
+	int*		 actions;	// array of actions for each vars (skip/rename/overwrite)
 
 	int			 selected;	// entry is selected
 } FileEntry;

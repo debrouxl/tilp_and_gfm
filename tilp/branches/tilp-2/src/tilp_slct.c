@@ -175,19 +175,25 @@ void tilp_slct_load_contents(void)
 	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
+		FileContent *c;
 
 		if(tifiles_file_is_regular(fe->name))
 		{
-			fe->content = tifiles_content_create_regular();
+			fe->content = c = tifiles_content_create_regular();
 			err = tifiles_file_read_regular(fe->name, fe->content);
 			if(err)
 			{
 				tifiles_content_free_regular(fe->content);
 				fe->content = NULL;
 			}
+
+			fe->actions = calloc(c->num_entries, sizeof(int));
 		}
 		else
+		{
 			fe->content = NULL;
+			fe->actions = NULL;
+		}
 	}
 }
 
@@ -203,6 +209,7 @@ void tilp_slct_unload_contents(void)
 		FileEntry *fe = ptr->data;
 
 		tifiles_content_free_regular(fe->content);
+		free(fe->actions);
 	}
 }
 
