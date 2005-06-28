@@ -496,16 +496,12 @@ void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
 // - unused for sending FLASH files
 void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 {
-	int to_flash = 0;
 	gchar *dst_folder;
 	FileEntry *f;
 
 	// note: dst_folder must be a copy b/c the user_data
 	// pointer is no longer valid after dirlist_remote
 	dst_folder = g_strdup((gchar *) user_data);
-
-	if (dst_folder != NULL)
-		to_flash = !strcmp(dst_folder, "FLASH");
 
 	if (local.selection == NULL)
 		return;
@@ -547,7 +543,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 		// needed: avoid box locking/flickering !
 		//GTK_REFRESH();
 		
-		tilp_calc_send_var(to_flash);
+		tilp_calc_send_var();
 		tilp_slct_unload_contents();
 	}
 

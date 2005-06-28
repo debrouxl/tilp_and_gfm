@@ -42,16 +42,6 @@
   </child>
 
   <child>
-    <widget class="GtkCheckMenuItem" id="send_to_flash1">
-      <property name="visible">True</property>
-      <property name="label" translatable="yes">Send to _flash</property>
-      <property name="use_underline">True</property>
-      <property name="active">False</property>
-      <signal name="activate" handler="rbm_send_to_flash1_activate" last_modification_time="Wed, 22 Jun 2005 11:36:22 GMT"/>
-    </widget>
-  </child>
-
-  <child>
     <widget class="GtkCheckMenuItem" id="recv_as_group1">
       <property name="visible">True</property>
       <property name="label" translatable="yes">Recv as _group</property>

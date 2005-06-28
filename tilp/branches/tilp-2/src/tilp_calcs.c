@@ -430,7 +430,7 @@ int tilp_calc_recv_flash_app(void)
 /*
   Send one or more selected variables
 */
-int tilp_calc_send_var(gint to_flash)
+int tilp_calc_send_var(void)
 {
 	GList *sel;
 	int mode = MODE_NORMAL;
@@ -469,9 +469,6 @@ int tilp_calc_send_var(gint to_flash)
 		return -1;
 
 	// Set options
-	if(to_flash && tifiles_is_flash(calc_handle->model))
-		mode |= MODE_SEND_TO_FLASH;
-
 	if(options.local_path == PATH_LOCAL)
 		mode |= MODE_LOCAL_PATH;
 

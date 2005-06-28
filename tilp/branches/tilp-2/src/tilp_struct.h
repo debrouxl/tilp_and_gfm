@@ -74,7 +74,6 @@ typedef struct
     int		show_all;
 	int		overwrite;
     int		recv_as_group;
-	int		send_to_flash;
 	
 	char*	working_dir;
 

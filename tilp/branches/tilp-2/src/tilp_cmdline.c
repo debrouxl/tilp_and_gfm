@@ -167,7 +167,7 @@ int tilp_cmdline_send(void)
 		else if (tifiles_file_is_regular(fe->name)) 
 		{
 			options.overwrite = FALSE;	// remove dirlist
-			tilp_calc_send_var(0);
+			tilp_calc_send_var();
 			options.overwrite = over;
 			return 0;
 		} 
@@ -186,7 +186,7 @@ int tilp_cmdline_send(void)
 		if (local.selection != NULL) 
 		{
 			options.overwrite = FALSE;
-			tilp_calc_send_var(0);
+			tilp_calc_send_var();
 			options.overwrite = over;
 			return 0;
 		}
