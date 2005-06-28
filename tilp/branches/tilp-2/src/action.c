@@ -181,15 +181,15 @@ gint display_action_dbox(gchar * dest)
 				continue;
 
 			if(w->attr == ATTRB_LOCKED || w->attr == ATTRB_ARCHIVED)
-				f->actions[i] = ACT_SKIP;
+				v->action = ACT_SKIP;
 			else
-				f->actions[i] = ACT_OVER;
+				v->action = ACT_OVER;
 
 			// file contains an already existing var: add it to the window
 			row_text[0] = g_strdup(trans);
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
-			row_text[3] = g_strdup(action2string(f->actions[i]));
+			row_text[3] = g_strdup(action2string(v->action));
 
 			gtk_list_store_append(list, &iter);
 			gtk_list_store_set(list, &iter,
@@ -257,7 +257,7 @@ GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 		if (v->attr != ATTRB_NONE)
 			continue;
 
-		f->actions[n] = ACT_OVER;
+		v->action = ACT_OVER;
 		gtk_list_store_set(list, &iter, COLUMN_ACTION, _("overwrite"), -1);
 	}
 }
@@ -302,7 +302,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 
 		// update action
 		v->attr = (w != NULL) ? w->attr : ATTRB_NONE;
-		f->actions[n] = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_RENAME;
+		v->action = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_RENAME;
 
 		// update var entry
 		strcpy(v->folder, tifiles_get_fldname(full_name));
@@ -312,7 +312,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		// update entry
 		row_text[0] = g_strdup(trans);
 		row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
-		row_text[3] = g_strdup(action2string(f->actions[n]));
+		row_text[3] = g_strdup(action2string(v->action));
 		gtk_list_store_set(list, &iter, 
 					COLUMN_VAR, row_text[0],
 				   COLUMN_ATTR, row_text[1], 
@@ -341,7 +341,7 @@ GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
 		if (!f->selected)
 			continue;
 
-		f->actions[n] = ACT_SKIP;
+		v->action = ACT_SKIP;
 		gtk_list_store_set(list, &iter, COLUMN_ACTION, "skip", -1);
 	}
 }
@@ -362,4 +362,41 @@ GLADE_CB void action_deselect_all_clicked(GtkButton * button, gpointer user_data
 	
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_unselect_all(sel);
+}
+
+GLADE_CB gboolean
+action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
+{
+	GtkTreeView *view = GTK_TREE_VIEW(widget);
+	GtkTreeModel *model = GTK_TREE_MODEL(list);
+	GtkTreePath *path;
+	GtkTreeViewColumn *column;
+	GtkTreeIter iter;
+	gint tx = (gint) event->x;
+	gint ty = (gint) event->y;
+	gint cx, cy;
+
+	if(event->type == GDK_2BUTTON_PRESS)
+	{
+		VarEntry *ve;
+
+		gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx, &cy);
+
+		if (path == NULL)
+			return FALSE;
+
+		gtk_tree_model_get_iter(model, &iter, path);
+		gtk_tree_model_get(model, &iter, COLUMN_DATA_V, &ve, -1);
+
+		if(ve->attr == ATTRB_NONE)
+			ve->attr = ATTRB_LOCKED;
+		else if(ve->attr == ATTRB_LOCKED)
+			ve->attr = ATTRB_ARCHIVED;
+		else if(ve->attr == ATTRB_ARCHIVED)
+			ve->attr = ATTRB_NONE;
+
+		gtk_list_store_set(list, &iter, COLUMN_ATTR, tifiles_attribute_to_string(ve->attr), -1);
+	}
+
+	return FALSE;
 }

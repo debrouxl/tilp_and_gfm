@@ -112,8 +112,6 @@ typedef struct
 
 	// used for actions
 	FileContent* content;	// file content to send
-	int*		 actions;	// array of actions for each vars (skip/rename/overwrite)
-
 	int			 selected;	// entry is selected
 } FileEntry;
 
