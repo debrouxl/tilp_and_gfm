@@ -501,7 +501,8 @@ int tilp_calc_send_var(gint to_flash)
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
-			err = ticalcs_calc_send_var2(calc_handle, mode, f->name);
+			//err = ticalcs_calc_send_var2(calc_handle, mode, f->name);
+			err = ticalcs_calc_send_var(calc_handle, mode, f->content);
 			if(err) 
 			{
 				tilp_err(err);
@@ -513,7 +514,8 @@ int tilp_calc_send_var(gint to_flash)
 		else 
 		{
 			// It is the first or the last one
-			err = ticalcs_calc_send_var2(calc_handle, mode | MODE_SEND_LAST_VAR, f->name);
+			//err = ticalcs_calc_send_var2(calc_handle, mode | MODE_SEND_LAST_VAR, f->name);
+			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content);
 			{
 				tilp_err(err);
 				gif->destroy_pbar();
@@ -531,6 +533,7 @@ int tilp_calc_send_var(gint to_flash)
 			gtk_update.refresh();
 		}
 	} 
+
 	gif->destroy_pbar();
 
 	return 0;

@@ -1,14 +1,6 @@
 SubVersion: $Id$
 
 To do:
-	UTF8 with filenames
-	UTF8 with barnames
-    UTF8 encoding pbs with gtk_refresh (label) under Windows.
-
-	Remove menu bar
-	Remove right view (option)
-
-	Action box
 	Transfers resumable.
 
 - 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
