@@ -294,7 +294,7 @@ rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	g_free(options.working_dir);
 	options.working_dir = g_get_current_dir();
 
-	tilp_config_save();
+	tilp_config_write();
 } 
 
 GLADE_CB void

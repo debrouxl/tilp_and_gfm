@@ -56,49 +56,47 @@ int tilp_drive_change(char drive_letter)
 int tilp_tifiles_ungroup(void)
 {
 	GList *sel;
-	gchar *src_file, *dst_file;
+	gchar *src_file;
+	gchar *dst_file;
+
 	if (!tilp_clist_selection_ready())
 		return -1;
-	sel = local.selection;
-	while (sel != NULL) {
-		gchar *dirname;
+
+	for(sel = local.selection; sel; sel = sel->next)
+	{
 		FileEntry *f = (FileEntry *) sel->data;
-		src_file =
-		    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S,
-				f->name, NULL);
-		dirname =
-		    gif->msg_entry(_("Create new directory"),
-				   _
-				   ("Directory where files will be ungrouped: "),
-				   _("ungrouped"));
+		gchar *dirname;
+
+		dirname = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
 		if (dirname == NULL)
 			return -1;
+
 		if(!strcmp(dirname, ".") || !strcmp(dirname, ""))
 		{
 			gif->msg_box1(_("Error"), _("You can't ungroup in this folder."));
 			return -1;
 		}
-		tilp_file_mkdir(dirname);
-
-		/*
-		   if(mkdir(dirname))
-		   {
-		   gif->msg_box1(_("Information"), 
-		   _("Unable to create the directory.\n\n"));
+	   
+		if(tilp_file_mkdir(dirname))
+		{
 		   g_free(dirname);
-		   } */
-		tilp_chdir(dirname);
-		dst_file =
-		    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S,
-				f->name, NULL);
+		   return -1;
+		}
+
+		src_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
+		tilp_file_chdir(dirname);
+		
+		dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
 		tilp_file_copy(src_file, dst_file);
-		//tifiles_ungroup_file(dst_file);
+		
+		tifiles_ungroup_file(dst_file, NULL);
 		tilp_chdir("..");
+
 		g_free(dirname);
 		g_free(src_file);
 		g_free(dst_file);
-		sel = sel->next;
 	}
+
 	return 0;
 }
 
