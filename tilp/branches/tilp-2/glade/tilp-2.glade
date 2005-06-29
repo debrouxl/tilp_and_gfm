@@ -27,425 +27,6 @@
       <property name="spacing">0</property>
 
       <child>
-	<widget class="GtkHandleBox" id="handlebox1">
-	  <property name="visible">True</property>
-	  <property name="shadow_type">GTK_SHADOW_OUT</property>
-	  <property name="handle_position">GTK_POS_LEFT</property>
-	  <property name="snap_edge">GTK_POS_TOP</property>
-
-	  <child>
-	    <widget class="GtkMenuBar" id="menubar1">
-	      <property name="visible">True</property>
-
-	      <child>
-		<widget class="GtkMenuItem" id="file1">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_File</property>
-		  <property name="use_underline">True</property>
-
-		  <child>
-		    <widget class="GtkMenu" id="file1_menu">
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="save_config1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Save current settings (in the configuration file '~/.tilp').</property>
-			  <property name="label" translatable="yes">Save _config</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_save_config1_activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image86">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-save</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="reload_config1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Load the previously saved settings.</property>
-			  <property name="label" translatable="yes">_Reload config</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_reload_config1_activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image87">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-open</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="default_config1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Load default settings.</property>
-			  <property name="label" translatable="yes">_Default config</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_default_config1_activate"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkSeparatorMenuItem" id="separator13">
-			  <property name="visible">True</property>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="quit1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Exit from TiLP.</property>
-			  <property name="label" translatable="yes">_Quit</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_quit1_activate"/>
-			  <accelerator key="Q" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image88">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-quit</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
-
-	      <child>
-		<widget class="GtkMenuItem" id="setup1">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Setup</property>
-		  <property name="use_underline">True</property>
-
-		  <child>
-		    <widget class="GtkMenu" id="setup1_menu">
-
-		      <child>
-			<widget class="GtkMenuItem" id="options1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Options.</property>
-			  <property name="label" translatable="yes">_Options</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_options1_activate"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="communication1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Communication settings.</property>
-			  <property name="label" translatable="yes">_Devices</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_devices1_activate"/>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
-
-	      <child>
-		<widget class="GtkMenuItem" id="operations1">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Misc</property>
-		  <property name="use_underline">True</property>
-
-		  <child>
-		    <widget class="GtkMenu" id="operations1_menu">
-
-		      <child>
-			<widget class="GtkMenuItem" id="get_infos1">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Get _infos</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_get_infos1_activate" last_modification_time="Fri, 10 Jun 2005 12:31:54 GMT"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="clock1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Clock management (AMS2.08 mini).</property>
-			  <property name="label" translatable="yes">_Set/get clock</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_clock1_activate" last_modification_time="Sat, 08 Feb 2003 14:34:48 GMT"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="get_idlist1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Get the ID-LIST of an FLASH calculator.</property>
-			  <property name="label" translatable="yes">Get ID_list</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_get_idlist1_activate"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="rom_dump1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Get a ROM image for an emulator..</property>
-			  <property name="label" translatable="yes">ROM _dump...</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_rom_dump1_activate"/>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="upgrade_os1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Send an OS upgrade to the calculator</property>
-			  <property name="label" translatable="yes">_Upgrade OS</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_upgrade_os1_activate"/>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
-
-	      <child>
-		<widget class="GtkMenuItem" id="help2">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Help</property>
-		  <property name="use_underline">True</property>
-
-		  <child>
-		    <widget class="GtkMenu" id="help2_menu">
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="manual1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">The TiLP User's Manual in html format.</property>
-			  <property name="label" translatable="yes">_User's Manual</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_manual1_activate" last_modification_time="Sat, 08 Feb 2003 14:35:11 GMT"/>
-			  <accelerator key="H" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image89">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-help</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="manpage1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">The Linux manual page.</property>
-			  <property name="label" translatable="yes">_Manpage</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_manpage1_activate"/>
-			  <accelerator key="M" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image90">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-index</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkSeparatorMenuItem" id="separator71">
-			  <property name="visible">True</property>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="bookmarks1">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Bookmarks</property>
-			  <property name="use_underline">True</property>
-
-			  <child>
-			    <widget class="GtkMenu" id="bookmarks1_menu">
-
-			      <child>
-				<widget class="GtkMenuItem" id="ti_s_web_site1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">http://education.ti.com, the Texas Instruments web site</property>
-				  <property name="label" translatable="yes">TI's web site</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_ti_s_web_site1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:29 GMT"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="calculator_software1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">http://eps.ti.com, TI's store for OS upgrades and FLASH applications.</property>
-				  <property name="label" translatable="yes">Calculator software</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_calculator_software1_activate"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="ticalcorg1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">A great web site on TI related stuffs.</property>
-				  <property name="label" translatable="yes">ticalc.org</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_ticalcorg1_activate"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="tinewsnet1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">A French calculator web site.</property>
-				  <property name="label" translatable="yes">tigen.orgt</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_tinewsnet1_activate"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="ti-frorg1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">A French calculator web site.</property>
-				  <property name="label" translatable="yes">ti-fr.org</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_ti_frorg1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:10 GMT"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="the_lpg1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">http://lpg.ticalc.org, the Linux Programmer Group</property>
-				  <property name="label" translatable="yes">The LPG</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_the_lpg1_activate"/>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkMenuItem" id="tilp's_web_site1">
-				  <property name="visible">True</property>
-				  <property name="tooltip" translatable="yes">http://tilp.info, the TiLP web site.</property>
-				  <property name="label" translatable="yes">TiLP's web site</property>
-				  <property name="use_underline">True</property>
-				  <signal name="activate" handler="on_tilp_s_web_site1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:29 GMT"/>
-				</widget>
-			      </child>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="bug_report1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">How to send a bug report...</property>
-			  <property name="label" translatable="yes">_Bug report</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_bug_report1_activate" last_modification_time="Sat, 03 Apr 2004 14:50:10 GMT"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image91">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-execute</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkSeparatorMenuItem" id="separator73">
-			  <property name="visible">True</property>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="changelog1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Display the log file generated by TiLP. Useful for debugging problems.</property>
-			  <property name="label" translatable="yes">_ChangeLog</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_changelog1_activate" last_modification_time="Fri, 10 Jun 2005 12:30:59 GMT"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image92">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-justify-fill</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="about1">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">About TiLP...</property>
-			  <property name="label" translatable="yes">_About</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_about1_activate"/>
-			</widget>
-		      </child>
-		    </widget>
-		  </child>
-		</widget>
-	      </child>
-	    </widget>
-	  </child>
-	</widget>
-	<packing>
-	  <property name="padding">0</property>
-	  <property name="expand">False</property>
-	  <property name="fill">False</property>
-	</packing>
-      </child>
-
-      <child>
 	<widget class="GtkHPaned" id="hpaned1">
 	  <property name="visible">True</property>
 	  <property name="can_focus">True</property>
@@ -928,6 +509,204 @@
 	  <property name="fill">True</property>
 	</packing>
       </child>
+    </widget>
+  </child>
+</widget>
+
+<widget class="GtkMenu" id="help_menu1">
+
+  <child>
+    <widget class="GtkImageMenuItem" id="manual1">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">The TiLP User's Manual in html format.</property>
+      <property name="label" translatable="yes">_User's Manual</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_manual1_activate" last_modification_time="Sat, 08 Feb 2003 14:35:11 GMT"/>
+      <accelerator key="H" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image89">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-help</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkImageMenuItem" id="manpage1">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">The Linux manual page.</property>
+      <property name="label" translatable="yes">_Manpage</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_manpage1_activate"/>
+      <accelerator key="M" modifiers="GDK_CONTROL_MASK" signal="activate"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image90">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-index</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkSeparatorMenuItem" id="separator71">
+      <property name="visible">True</property>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="bookmarks1">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">_Bookmarks</property>
+      <property name="use_underline">True</property>
+
+      <child>
+	<widget class="GtkMenu" id="bookmarks1_menu">
+
+	  <child>
+	    <widget class="GtkMenuItem" id="ti_s_web_site1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">http://education.ti.com, the Texas Instruments web site</property>
+	      <property name="label" translatable="yes">TI's web site</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_ti_s_web_site1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:29 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="calculator_software1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">http://eps.ti.com, TI's store for OS upgrades and FLASH applications.</property>
+	      <property name="label" translatable="yes">Calculator software</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_calculator_software1_activate"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="ticalcorg1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">A great web site on TI related stuffs.</property>
+	      <property name="label" translatable="yes">ticalc.org</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_ticalcorg1_activate"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="tinewsnet1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">A French calculator web site.</property>
+	      <property name="label" translatable="yes">tigen.orgt</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_tinewsnet1_activate"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="ti-frorg1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">A French calculator web site.</property>
+	      <property name="label" translatable="yes">ti-fr.org</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_ti_frorg1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:10 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="the_lpg1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">http://lpg.ticalc.org, the Linux Programmer Group</property>
+	      <property name="label" translatable="yes">The LPG</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_the_lpg1_activate"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkMenuItem" id="tilp's_web_site1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">http://tilp.info, the TiLP web site.</property>
+	      <property name="label" translatable="yes">TiLP's web site</property>
+	      <property name="use_underline">True</property>
+	      <signal name="activate" handler="on_tilp_s_web_site1_activate" last_modification_time="Sat, 08 Feb 2003 14:33:29 GMT"/>
+	    </widget>
+	  </child>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkImageMenuItem" id="bug_report1">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">How to send a bug report...</property>
+      <property name="label" translatable="yes">_Bug report</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_bug_report1_activate" last_modification_time="Sat, 03 Apr 2004 14:50:10 GMT"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image91">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-execute</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkSeparatorMenuItem" id="separator73">
+      <property name="visible">True</property>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkImageMenuItem" id="changelog1">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">Display the log file generated by TiLP. Useful for debugging problems.</property>
+      <property name="label" translatable="yes">_ChangeLog</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_changelog1_activate" last_modification_time="Fri, 10 Jun 2005 12:30:59 GMT"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image92">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-justify-fill</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="about1">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">About TiLP...</property>
+      <property name="label" translatable="yes">_About</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_about1_activate"/>
     </widget>
   </child>
 </widget>

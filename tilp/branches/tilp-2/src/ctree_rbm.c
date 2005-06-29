@@ -83,3 +83,9 @@ rbm_local_view1_activate             (GtkMenuItem     *menuitem,
 	show_right_view(options.full_gui);
 	toolbar_refresh_buttons();
 }
+
+GLADE_CB void 
+rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
+{
+	display_options_dbox();
+}

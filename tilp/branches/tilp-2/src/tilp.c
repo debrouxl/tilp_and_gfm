@@ -64,15 +64,11 @@ void show_right_view(int view)
 
 	if(view)
 	{
-		data = glade_xml_get_widget(xml, "menubar1");
-		gtk_widget_show_all(data);
 		data = glade_xml_get_widget(xml, "vbox2");
 		gtk_widget_show_all(data);
 	}
 	else
 	{
-		data = glade_xml_get_widget(xml, "menubar1");
-		gtk_widget_hide_all(data);
 		data = glade_xml_get_widget(xml, "vbox2");
 		gtk_widget_hide_all(data);
 
@@ -113,13 +109,27 @@ GtkWidget *display_tilp_dbox()
 	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
 
 	show_right_view(options.full_gui);
-	help_menu = glade_xml_get_widget(xml, "help2_menu");
+	help_menu = glade_xml_get_widget(xml, "help_menu1");
 	
 	clist_init();
 	ctree_init();
 	dnd_init();
 
 	return dbox;
+}
+
+GtkWidget *display_help_menu(void)
+{
+	GladeXML *xml;
+	GtkWidget *menu;
+
+	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "help_menu1", PACKAGE);
+	if (!xml)
+		g_error("GUI loading failed !\n");
+	glade_xml_signal_autoconnect(xml);
+
+	menu = glade_xml_get_widget(xml, "help_menu1");
+	return menu;
 }
 
 GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
@@ -133,113 +143,6 @@ GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 	gtk_main_quit();
 }
 
-/* File menu */
-
-GLADE_CB void on_save_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	tilp_config_save();
-}
-
-GLADE_CB void on_reload_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	tilp_config_load();
-}
-
-GLADE_CB void on_default_config1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	tilp_config_default();
-}
-
-GLADE_CB void on_quit1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	gtk_widget_destroy(GTK_WIDGET(main_wnd));
-}
-
-/* Setup menu */
-
-GLADE_CB void on_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	display_options_dbox();
-}
-
-GLADE_CB void on_devices1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	display_device_dbox();
-}
-
-/* Misc menu */
-
-GLADE_CB void on_get_infos1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-}
-
-GLADE_CB void on_clock1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	display_clock_dbox();
-}
-
-GLADE_CB void on_get_idlist1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	tilp_calc_idlist(0);
-}
-
-GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	char* src_filename;
-	const char *dst_filename;
-
-	if (tilp_calc_rom_dump())
-		return;
-
-	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
-
-	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
-	if(!dst_filename)
-	{
-		g_free(src_filename);
-		return;
-	}
-
-	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", "rom", NULL);
-	else
-		dst_filename = g_strdup(dst_filename);
-	
-	tilp_file_move_with_check(src_filename, dst_filename);
-	g_free(src_filename);
-	
-	tilp_dirlist_local();
-	clist_refresh();
-	labels_refresh();
-}
-
-GLADE_CB void on_upgrade_os1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	GList *sel;
-
-	if (!tilp_clist_selection_ready())
-		return;
-
-	for(sel = local.selection; sel != NULL; sel = sel->next)
-	{
-		FileEntry *f = (FileEntry *)sel->data;
-
-		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(calc_handle->model)) ||
-			tifiles_file_is_tib(f->name)) 
-		{
-			tilp_calc_send_flash_os(f->name);
-			return;
-		} 
-		else 
-		{
-
-			//gif->destroy_pbar();
-			gif->msg_box(_("Error"), 
-				_("It's not a FLASH upgrade or this FLASH file is not intended for this calculator type."));
-			return;
-		}
-	}
-}
 
 /* Help menu */
 
@@ -319,6 +222,36 @@ GLADE_CB void on_about1_activate(GtkMenuItem* menuitem, gpointer user_data)
 }
 
 /* Toolbar buttons callbacks */
+
+GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
+{
+	char* src_filename;
+	const char *dst_filename;
+
+	if (tilp_calc_rom_dump())
+		return;
+
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
+
+	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
+	if(!dst_filename)
+	{
+		g_free(src_filename);
+		return;
+	}
+
+	if (!strcmp(tifiles_fext_get(dst_filename), ""))
+		dst_filename = g_strconcat(dst_filename, ".", "rom", NULL);
+	else
+		dst_filename = g_strdup(dst_filename);
+	
+	tilp_file_move_with_check(src_filename, dst_filename);
+	g_free(src_filename);
+	
+	tilp_dirlist_local();
+	clist_refresh();
+	labels_refresh();
+}
 
 GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
@@ -593,8 +526,8 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 
 GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 {
-	GtkWidget *menu = gtk_menu_new ();
+	GtkWidget *menu = display_help_menu();
 
-	gtk_menu_popup(GTK_MENU(help_menu), NULL, NULL, NULL, NULL,
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
 				       0, gtk_get_current_event_time ());
 }
