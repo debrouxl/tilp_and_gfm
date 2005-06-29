@@ -625,6 +625,7 @@ static int tilp_calc_recv_var1(void)
 			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
 
 			tifiles_group_contents(array, &content);
+			strcpy(content->comment, tifiles_comment_set_group());
 			tifiles_file_write_regular(tmp_filename, content, NULL);
 			tifiles_content_free_regular(content);
 
