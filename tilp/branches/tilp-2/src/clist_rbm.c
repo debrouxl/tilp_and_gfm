@@ -228,24 +228,6 @@ GLADE_CB void rbm_group1_activate(GtkMenuItem* menuitem,
 	labels_refresh();
 } 
 
-GLADE_CB void rbm_open2_activate(GtkMenuItem* menuitem,
-				  gpointer user_data)
-{
-
-/*
-	GList *sel;
-
-	if ((sel = local.selection) == NULL)
-		return;
-
-	while (sel != NULL) {
-		TilpFileInfo *f = (TilpFileInfo *) sel->data;
-		display_gfm_dbox(f->name);
-		sel = g_list_next(sel);
-	}
-*/
-} 
-
 GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)
 {

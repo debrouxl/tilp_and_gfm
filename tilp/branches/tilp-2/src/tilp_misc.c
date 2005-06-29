@@ -102,46 +102,40 @@ int tilp_tifiles_ungroup(void)
 
 int tilp_tifiles_group(void)
 {
-#if 0
 	GList *sel;
 	char **array;
 	gchar *grpname;
 	gchar *dst_file;
-	gint i = 0;
+	int i;
+	FileEntry *f;
 
 	if (!tilp_clist_selection_ready())
 		return -1;
-	if (g_list_length(local.selection) < 2) {
-		gif->msg_box1(_("Error"),
-			     _("You must select at least 2 files.\n\n"));
+
+	if (g_list_length(local.selection) < 2) 
+	{
+		gif->msg_box1(_("Error"), _("You must select at least 2 files.\n\n"));
 		return -1;
 	}
-	grpname =
-	    gif->msg_entry(_("Group files"), _("Group name: "),
-			   _("group"));
+
+	grpname = gif->msg_entry(_("Group files"), _("Group name: "), _("group"));
 	if (grpname == NULL)
 		return -1;
-	array =
-		(char **) g_malloc0((g_list_length(local.selection) + 1) *
-			     sizeof(char *));
-	sel = local.selection;
-	while (sel != NULL) {
-		FileEntry *f = (FileEntry *) sel->data;
-		array[i++] =
-		    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S,
-				f->name, NULL);
-		array[i] = NULL;
-		sel = sel->next;
+
+	array = (char **) g_malloc0((g_list_length(local.selection) + 1) * sizeof(char *));
+	
+	for(sel = local.selection, i = 0; sel; sel = sel->next, i++)
+	{
+		f = (FileEntry *) sel->data;
+		array[i] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
 	}
 	
-	dst_file =
-	    g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
-			".", tifiles_group_file_ext(), NULL);
+	dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
+			".", tifiles_fext_of_group(tifiles_file_get_model(f->name)), NULL);
 		
 	g_free(grpname);
 	tifiles_group_files(array, dst_file);
 	g_strfreev(array);
-#endif
 
 	return 0;
 }
