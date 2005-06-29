@@ -63,7 +63,7 @@ static void refresh_pbar1(void)
 		filter_shift();
 		avg = filter_compute(rate);
 
-		g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", avg / 1000);
+		g_snprintf(buffer, 32, "Rate: %1.1f Kbytes/s", avg);
 		gtk_label_set_text(GTK_LABEL(pbar_wnd.label_rate), buffer);
 
 		GTK_REFRESH();

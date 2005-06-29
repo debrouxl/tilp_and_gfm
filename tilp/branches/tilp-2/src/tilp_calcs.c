@@ -594,8 +594,8 @@ static int tilp_calc_recv_var1(void)
 
 		gif->create_pbar_type5(_("Receiving variable(s)"), "");
 
-		array = (FileContent **)calloc((l+1), sizeof(FileContent *));
-		if(!array)
+		array = tifiles_content_create_group(l);
+		if(array == NULL)
 			return -1;
 
 		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)

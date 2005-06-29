@@ -54,14 +54,15 @@ static gboolean select_function(GtkTreeSelection * selection,
 {
 	GtkTreeIter iter;
 	FileEntry *fe;
+	int n;
 
 	gtk_tree_model_get_iter(model, &iter, path);
-	gtk_tree_model_get(model, &iter, COLUMN_DATA_F, &fe, -1);
+	gtk_tree_model_get(model, &iter, COLUMN_DATA_F, &fe, COLUMN_DATA_N, &n, -1);
 
 	if (gtk_tree_selection_path_is_selected(selection, path))
-		fe->selected = 0;
+		fe->selected[n] = 0;
 	else
-		fe->selected = !0;
+		fe->selected[n] = !0;
 
 	return TRUE;
 }
@@ -251,7 +252,7 @@ GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 			COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
 			-1);
 		
-		if (!f->selected)
+		if (!f->selected[n])
 			continue;
 
 		if (v->attr != ATTRB_NONE)
@@ -286,7 +287,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 				COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
 				-1);
 
-		if (!f->selected)
+		if (!f->selected[n])
 			continue;
 
 		// get new name
@@ -338,7 +339,7 @@ GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
 			COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
 			-1);
 		
-		if (!f->selected)
+		if (!f->selected[n])
 			continue;
 
 		v->action = ACT_SKIP;

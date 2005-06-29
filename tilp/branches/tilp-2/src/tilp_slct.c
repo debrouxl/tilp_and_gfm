@@ -186,10 +186,12 @@ void tilp_slct_load_contents(void)
 				tifiles_content_free_regular(fe->content);
 				fe->content = NULL;
 			}
+			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
 		}
 		else
 		{
 			fe->content = NULL;
+			free(fe->selected);
 		}
 	}
 }

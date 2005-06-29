@@ -9,3 +9,5 @@ gchar *s = N_("Options");
 gchar *s = N_("Local view");
 gchar *s = N_("Full _path");
 gchar *s = N_("Recv as _group");
+gchar *s = N_("Delete var");
+gchar *s = N_("Create folder");

@@ -111,7 +111,7 @@ typedef struct
 
 	// used for actions
 	FileContent* content;	// file content to send
-	int			 selected;	// entry is selected
+	int*		 selected;	// entry/entries is/are selected
 } FileEntry;
 
 /* Used to retrieve stats on the on-calc memory usage */

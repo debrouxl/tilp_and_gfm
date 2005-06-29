@@ -66,11 +66,14 @@ static void cancel_filename(GtkButton * button, gpointer user_data)
 static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
 {
 	GtkWidget *fs;
+	gchar *tmp;
     
 	fs = gtk_file_selection_new("Select a file...");
 
-	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+	tmp = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), tmp);
 	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), filename ? filename : ext);
+	g_free(tmp);
 
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
 			 "clicked", G_CALLBACK(store_filename), fs);

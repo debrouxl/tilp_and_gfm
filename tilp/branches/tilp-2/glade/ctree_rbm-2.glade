@@ -65,6 +65,30 @@
       <signal name="activate" handler="rbm_recv_as_group1_activate" last_modification_time="Sun, 26 Jun 2005 13:01:51 GMT"/>
     </widget>
   </child>
+
+  <child>
+    <widget class="GtkSeparatorMenuItem" id="separator3">
+      <property name="visible">True</property>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="delete_var1">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Delete var</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="rbm_delete_var1_activate" last_modification_time="Wed, 29 Jun 2005 09:43:32 GMT"/>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="create_folder1">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Create folder</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="rbm_create_folder1_activate" last_modification_time="Wed, 29 Jun 2005 09:43:32 GMT"/>
+    </widget>
+  </child>
 </widget>
 
 </glade-interface>
