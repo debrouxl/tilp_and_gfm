@@ -383,13 +383,15 @@ comm_button_search_clicked                (GtkButton       *button,
 			{
 				cable_model = i;
 				cable_port = j;
-				printf("%i: %i\n", cable_model, cable_port);
 				break;
 			}
 	ticables_probing_finish(&cables);
 
 	if(!cable_model && !cable_port)
+	{
+		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
 		return;
+	}
 
 	// search for devices
 	gtk_label_set_text(GTK_LABEL(lbl), "Searching for hand-helds...");
@@ -403,6 +405,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	{
 		tilp_err(err);
 		ticables_handle_del(handle);
+		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
 		return;
 	}
 
@@ -417,8 +420,6 @@ comm_button_search_clicked                (GtkButton       *button,
 
 	ticables_cable_close(handle);
 	ticables_handle_del(handle);
-
-	printf("%i %i %i\n", cable_model, cable_port, calc_model);
 }
 
 GLADE_CB void

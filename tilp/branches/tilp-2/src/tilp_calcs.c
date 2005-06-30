@@ -564,8 +564,9 @@ static int tilp_calc_recv_var1(void)
 		VarEntry *ve = (VarEntry *)remote.selection->data;
 		gchar *tmp_filename;
 		gchar *dst_filename;
+		char *varname;
 
-		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
+		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
 
 		gif->create_pbar_type4(_("Receiving variable(s)"), "");
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
@@ -577,7 +578,8 @@ static int tilp_calc_recv_var1(void)
 			return -1;
 		}
 
-		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, ve->name, 
+		varname = tifiles_transcode_varname_static(calc_handle->model, ve->name, ve->type);
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, varname, 
 			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
