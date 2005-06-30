@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "TiLP"=.\TiLP.dsp - Package Owner=<4>
+Project: "tilp2"=.\tilp2.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -66,7 +66,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "tilp_gtk_console"=.\tilp_gtk_console.dsp - Package Owner=<4>
+Project: "tilp2_gtk_console"=.\tilp2_gtk_console.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -87,7 +87,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "tilp_gtk_win32"=.\tilp_gtk_win32.dsp - Package Owner=<4>
+Project: "tilp2_gtk_win32"=.\tilp2_gtk_win32.dsp - Package Owner=<4>
 
 Package=<5>
 {{{

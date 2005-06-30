@@ -3,24 +3,6 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "tilp_gtk_console"=.\tilp_gtk_console.dsp - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-    Begin Project Dependency
-    Project_Dep_Name ticables2
-    End Project Dependency
-    Begin Project Dependency
-    Project_Dep_Name ticalcs2
-    End Project Dependency
-}}}
-
-###############################################################################
-
 Project: "ticables2"=..\..\TI_LIBS\CABLES\Win32\ticables2.dsp - Package Owner=<4>
 
 Package=<5>
@@ -41,8 +23,23 @@ Package=<5>
 
 Package=<4>
 {{{
+}}}
+
+###############################################################################
+
+Project: "tilp2_gtk_win32"=.\tilp2_gtk_win32.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
     Begin Project Dependency
     Project_Dep_Name ticables2
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticalcs2
     End Project Dependency
 }}}
 

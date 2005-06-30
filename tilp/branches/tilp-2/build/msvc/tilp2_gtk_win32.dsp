@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="tilp_gtk_win32" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="tilp2_gtk_win32" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
 
-CFG=tilp_gtk_win32 - Win32 Debug
+CFG=tilp2_gtk_win32 - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "tilp_gtk_win32.mak".
+!MESSAGE NMAKE /f "tilp2_gtk_win32.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "tilp_gtk_win32.mak" CFG="tilp_gtk_win32 - Win32 Debug"
+!MESSAGE NMAKE /f "tilp2_gtk_win32.mak" CFG="tilp2_gtk_win32 - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "tilp_gtk_win32 - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "tilp_gtk_win32 - Win32 Debug" (based on "Win32 (x86) Application")
+!MESSAGE "tilp2_gtk_win32 - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "tilp2_gtk_win32 - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 
 # Begin Project
@@ -29,7 +29,7 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -54,9 +54,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386 /out:"TiLP.exe"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386 /out:"TiLP2.exe"
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -81,14 +81,14 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"C:\msvc\tilp\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"C:\msvc\tilp2\TiLP2.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
 
 !ENDIF 
 
 # Begin Target
 
-# Name "tilp_gtk_win32 - Win32 Release"
-# Name "tilp_gtk_win32 - Win32 Debug"
+# Name "tilp2_gtk_win32 - Win32 Release"
+# Name "tilp2_gtk_win32 - Win32 Debug"
 # Begin Group "Source Files"
 
 # PROP Default_Filter ""
@@ -366,7 +366,7 @@ SOURCE=.\Tilp.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\tilp2.ico
+SOURCE=.\tilp.ico
 # End Source File
 # End Group
 # Begin Group "TiLP core"

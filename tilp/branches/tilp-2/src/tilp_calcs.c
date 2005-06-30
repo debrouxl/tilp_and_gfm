@@ -390,7 +390,7 @@ int tilp_calc_recv_flash_app(void)
 	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	gif->create_pbar_type4(_("Receiving application(s)"), "");
+	gif->create_pbar_type5(_("Receiving application(s)"), "");
 
 	ptr = remote.selection2;
 	while (ptr != NULL) 
@@ -655,7 +655,9 @@ static int tilp_calc_recv_var1(void)
 				tilp_file_move_with_check(src_filename, dst_filename);
 
 				g_free(src_filename);
+#ifndef __WIN32__
 				  free(tmp_filename);
+#endif
 				g_free(dst_filename);
 			}
 

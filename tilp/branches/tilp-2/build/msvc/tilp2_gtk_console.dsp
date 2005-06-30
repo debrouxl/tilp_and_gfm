@@ -1,24 +1,24 @@
-# Microsoft Developer Studio Project File - Name="tilp_gtk_console" - Package Owner=<4>
+# Microsoft Developer Studio Project File - Name="tilp2_gtk_console" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Console Application" 0x0103
 
-CFG=tilp_gtk_console - Win32 Debug
+CFG=tilp2_gtk_console - Win32 Debug
 !MESSAGE This is not a valid makefile. To build this project using NMAKE,
 !MESSAGE use the Export Makefile command and run
 !MESSAGE 
-!MESSAGE NMAKE /f "tilp_gtk_console.mak".
+!MESSAGE NMAKE /f "tilp2_gtk_console.mak".
 !MESSAGE 
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "tilp_gtk_console.mak" CFG="tilp_gtk_console - Win32 Debug"
+!MESSAGE NMAKE /f "tilp2_gtk_console.mak" CFG="tilp2_gtk_console - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "tilp_gtk_console - Win32 Release" (based on "Win32 (x86) Console Application")
-!MESSAGE "tilp_gtk_console - Win32 Debug" (based on "Win32 (x86) Console Application")
+!MESSAGE "tilp2_gtk_console - Win32 Release" (based on "Win32 (x86) Console Application")
+!MESSAGE "tilp2_gtk_console - Win32 Debug" (based on "Win32 (x86) Console Application")
 !MESSAGE 
 
 # Begin Project
@@ -28,7 +28,7 @@ CFG=tilp_gtk_console - Win32 Debug
 CPP=cl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "tilp_gtk_console - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_console - Win32 Release"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 0
@@ -38,7 +38,7 @@ RSC=rc.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir ""
-# PROP Intermediate_Dir "C:\msvc\Output\tilp_gtk"
+# PROP Intermediate_Dir "C:\msvc\Output\tilp2_gtk"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
@@ -51,9 +51,9 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"TiLP.exe"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /machine:I386 /out:"TiLP2.exe"
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_console - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_console - Win32 Debug"
 
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
@@ -62,8 +62,8 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "C:\msvc\tilp\"
-# PROP Intermediate_Dir "C:\msvc\Output\tilp_gtk"
+# PROP Output_Dir "C:\msvc\tilp2\"
+# PROP Intermediate_Dir "C:\msvc\Output\tilp2_gtk"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /YX /FD /c
@@ -76,15 +76,15 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /out:"C:\msvc\tilp2\TiLP.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /debug /machine:I386 /out:"C:\msvc\tilp2\TiLP2.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
 # SUBTRACT LINK32 /map
 
 !ENDIF 
 
 # Begin Target
 
-# Name "tilp_gtk_console - Win32 Release"
-# Name "tilp_gtk_console - Win32 Debug"
+# Name "tilp2_gtk_console - Win32 Release"
+# Name "tilp2_gtk_console - Win32 Debug"
 # Begin Group "External Libraries"
 
 # PROP Default_Filter ""

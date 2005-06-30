@@ -1,20 +1,20 @@
-# Microsoft Developer Studio Generated NMAKE File, Based on tilp_gtk_win32.dsp
+# Microsoft Developer Studio Generated NMAKE File, Based on tilp2_gtk_win32.dsp
 !IF "$(CFG)" == ""
-CFG=tilp_gtk_win32 - Win32 Debug
-!MESSAGE No configuration specified. Defaulting to tilp_gtk_win32 - Win32 Debug.
+CFG=tilp2_gtk_win32 - Win32 Debug
+!MESSAGE No configuration specified. Defaulting to tilp2_gtk_win32 - Win32 Debug.
 !ENDIF 
 
-!IF "$(CFG)" != "tilp_gtk_win32 - Win32 Release" && "$(CFG)" != "tilp_gtk_win32 - Win32 Debug"
+!IF "$(CFG)" != "tilp2_gtk_win32 - Win32 Release" && "$(CFG)" != "tilp2_gtk_win32 - Win32 Debug"
 !MESSAGE Invalid configuration "$(CFG)" specified.
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "tilp_gtk_win32.mak" CFG="tilp_gtk_win32 - Win32 Debug"
+!MESSAGE NMAKE /f "tilp2_gtk_win32.mak" CFG="tilp2_gtk_win32 - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "tilp_gtk_win32 - Win32 Release" (based on "Win32 (x86) Application")
-!MESSAGE "tilp_gtk_win32 - Win32 Debug" (based on "Win32 (x86) Application")
+!MESSAGE "tilp2_gtk_win32 - Win32 Release" (based on "Win32 (x86) Application")
+!MESSAGE "tilp2_gtk_win32 - Win32 Debug" (based on "Win32 (x86) Application")
 !MESSAGE 
 !ERROR An invalid configuration is specified.
 !ENDIF 
@@ -29,10 +29,10 @@ CPP=cl.exe
 MTL=midl.exe
 RSC=rc.exe
 
-!IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Release"
 
 OUTDIR=.
-INTDIR=C:\msvc\Output\tilp_gtk
+INTDIR=C:\msvc\Output\tilp2_gtk
 # Begin Custom Macros
 OutDir=.
 # End Custom Macros
@@ -78,21 +78,21 @@ CLEAN :
 	-@erase "$(INTDIR)\support.obj"
 	-@erase "$(INTDIR)\tilp.obj"
 	-@erase "$(INTDIR)\Tilp.res"
-	-@erase "$(INTDIR)\tilp_calcs.obj"
-	-@erase "$(INTDIR)\tilp_error.obj"
-	-@erase "$(INTDIR)\tilp_files.obj"
-	-@erase "$(INTDIR)\tilp_indep.obj"
-	-@erase "$(INTDIR)\tilp_main.obj"
-	-@erase "$(INTDIR)\tilp_misc.obj"
-	-@erase "$(INTDIR)\tilp_paths.obj"
-	-@erase "$(INTDIR)\tilp_plugin.obj"
-	-@erase "$(INTDIR)\tilp_printl.obj"
-	-@erase "$(INTDIR)\tilp_prompt.obj"
-	-@erase "$(INTDIR)\tilp_rcfile.obj"
-	-@erase "$(INTDIR)\tilp_refresh.obj"
-	-@erase "$(INTDIR)\tilp_screen.obj"
-	-@erase "$(INTDIR)\tilp_slct.obj"
-	-@erase "$(INTDIR)\tilp_vars.obj"
+	-@erase "$(INTDIR)\tilp2_calcs.obj"
+	-@erase "$(INTDIR)\tilp2_error.obj"
+	-@erase "$(INTDIR)\tilp2_files.obj"
+	-@erase "$(INTDIR)\tilp2_indep.obj"
+	-@erase "$(INTDIR)\tilp2_main.obj"
+	-@erase "$(INTDIR)\tilp2_misc.obj"
+	-@erase "$(INTDIR)\tilp2_paths.obj"
+	-@erase "$(INTDIR)\tilp2_plugin.obj"
+	-@erase "$(INTDIR)\tilp2_printl.obj"
+	-@erase "$(INTDIR)\tilp2_prompt.obj"
+	-@erase "$(INTDIR)\tilp2_rcfile.obj"
+	-@erase "$(INTDIR)\tilp2_refresh.obj"
+	-@erase "$(INTDIR)\tilp2_screen.obj"
+	-@erase "$(INTDIR)\tilp2_slct.obj"
+	-@erase "$(INTDIR)\tilp2_vars.obj"
 	-@erase "$(INTDIR)\toolbar.obj"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\wizard.obj"
@@ -105,7 +105,7 @@ CPP_PROJ=/nologo /ML /w /W0 /GX /O2 /I "../../../ticables/src" /I "../../../tifi
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "NDEBUG" 
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_win32.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp2_gtk_win32.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
@@ -138,21 +138,21 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp.obj" \
 	"$(INTDIR)\toolbar.obj" \
 	"$(INTDIR)\wizard.obj" \
-	"$(INTDIR)\tilp_calcs.obj" \
-	"$(INTDIR)\tilp_error.obj" \
-	"$(INTDIR)\tilp_files.obj" \
-	"$(INTDIR)\tilp_indep.obj" \
-	"$(INTDIR)\tilp_main.obj" \
-	"$(INTDIR)\tilp_misc.obj" \
-	"$(INTDIR)\tilp_paths.obj" \
-	"$(INTDIR)\tilp_plugin.obj" \
-	"$(INTDIR)\tilp_printl.obj" \
-	"$(INTDIR)\tilp_prompt.obj" \
-	"$(INTDIR)\tilp_rcfile.obj" \
-	"$(INTDIR)\tilp_refresh.obj" \
-	"$(INTDIR)\tilp_screen.obj" \
-	"$(INTDIR)\tilp_slct.obj" \
-	"$(INTDIR)\tilp_vars.obj" \
+	"$(INTDIR)\tilp2_calcs.obj" \
+	"$(INTDIR)\tilp2_error.obj" \
+	"$(INTDIR)\tilp2_files.obj" \
+	"$(INTDIR)\tilp2_indep.obj" \
+	"$(INTDIR)\tilp2_main.obj" \
+	"$(INTDIR)\tilp2_misc.obj" \
+	"$(INTDIR)\tilp2_paths.obj" \
+	"$(INTDIR)\tilp2_plugin.obj" \
+	"$(INTDIR)\tilp2_printl.obj" \
+	"$(INTDIR)\tilp2_prompt.obj" \
+	"$(INTDIR)\tilp2_rcfile.obj" \
+	"$(INTDIR)\tilp2_refresh.obj" \
+	"$(INTDIR)\tilp2_screen.obj" \
+	"$(INTDIR)\tilp2_slct.obj" \
+	"$(INTDIR)\tilp2_vars.obj" \
 	"$(INTDIR)\Tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
@@ -174,10 +174,10 @@ LINK32_OBJS= \
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 
 OUTDIR=C:\msvc\tilp
-INTDIR=C:\msvc\Output\tilp_gtk
+INTDIR=C:\msvc\Output\tilp2_gtk
 # Begin Custom Macros
 OutDir=C:\msvc\tilp\ 
 # End Custom Macros
@@ -223,21 +223,21 @@ CLEAN :
 	-@erase "$(INTDIR)\support.obj"
 	-@erase "$(INTDIR)\tilp.obj"
 	-@erase "$(INTDIR)\Tilp.res"
-	-@erase "$(INTDIR)\tilp_calcs.obj"
-	-@erase "$(INTDIR)\tilp_error.obj"
-	-@erase "$(INTDIR)\tilp_files.obj"
-	-@erase "$(INTDIR)\tilp_indep.obj"
-	-@erase "$(INTDIR)\tilp_main.obj"
-	-@erase "$(INTDIR)\tilp_misc.obj"
-	-@erase "$(INTDIR)\tilp_paths.obj"
-	-@erase "$(INTDIR)\tilp_plugin.obj"
-	-@erase "$(INTDIR)\tilp_printl.obj"
-	-@erase "$(INTDIR)\tilp_prompt.obj"
-	-@erase "$(INTDIR)\tilp_rcfile.obj"
-	-@erase "$(INTDIR)\tilp_refresh.obj"
-	-@erase "$(INTDIR)\tilp_screen.obj"
-	-@erase "$(INTDIR)\tilp_slct.obj"
-	-@erase "$(INTDIR)\tilp_vars.obj"
+	-@erase "$(INTDIR)\tilp2_calcs.obj"
+	-@erase "$(INTDIR)\tilp2_error.obj"
+	-@erase "$(INTDIR)\tilp2_files.obj"
+	-@erase "$(INTDIR)\tilp2_indep.obj"
+	-@erase "$(INTDIR)\tilp2_main.obj"
+	-@erase "$(INTDIR)\tilp2_misc.obj"
+	-@erase "$(INTDIR)\tilp2_paths.obj"
+	-@erase "$(INTDIR)\tilp2_plugin.obj"
+	-@erase "$(INTDIR)\tilp2_printl.obj"
+	-@erase "$(INTDIR)\tilp2_prompt.obj"
+	-@erase "$(INTDIR)\tilp2_rcfile.obj"
+	-@erase "$(INTDIR)\tilp2_refresh.obj"
+	-@erase "$(INTDIR)\tilp2_screen.obj"
+	-@erase "$(INTDIR)\tilp2_slct.obj"
+	-@erase "$(INTDIR)\tilp2_vars.obj"
 	-@erase "$(INTDIR)\toolbar.obj"
 	-@erase "$(INTDIR)\vc60.idb"
 	-@erase "$(INTDIR)\vc60.pdb"
@@ -256,7 +256,7 @@ CPP_PROJ=/nologo /MLd /w /W0 /Gm /GX /ZI /Od /I "../../../ticables/src" /I "../.
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
 RSC_PROJ=/l 0x40c /fo"$(INTDIR)\Tilp.res" /d "_DEBUG" 
 BSC32=bscmake.exe
-BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp_gtk_win32.bsc" 
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\tilp2_gtk_win32.bsc" 
 BSC32_SBRS= \
 	
 LINK32=link.exe
@@ -289,21 +289,21 @@ LINK32_OBJS= \
 	"$(INTDIR)\tilp.obj" \
 	"$(INTDIR)\toolbar.obj" \
 	"$(INTDIR)\wizard.obj" \
-	"$(INTDIR)\tilp_calcs.obj" \
-	"$(INTDIR)\tilp_error.obj" \
-	"$(INTDIR)\tilp_files.obj" \
-	"$(INTDIR)\tilp_indep.obj" \
-	"$(INTDIR)\tilp_main.obj" \
-	"$(INTDIR)\tilp_misc.obj" \
-	"$(INTDIR)\tilp_paths.obj" \
-	"$(INTDIR)\tilp_plugin.obj" \
-	"$(INTDIR)\tilp_printl.obj" \
-	"$(INTDIR)\tilp_prompt.obj" \
-	"$(INTDIR)\tilp_rcfile.obj" \
-	"$(INTDIR)\tilp_refresh.obj" \
-	"$(INTDIR)\tilp_screen.obj" \
-	"$(INTDIR)\tilp_slct.obj" \
-	"$(INTDIR)\tilp_vars.obj" \
+	"$(INTDIR)\tilp2_calcs.obj" \
+	"$(INTDIR)\tilp2_error.obj" \
+	"$(INTDIR)\tilp2_files.obj" \
+	"$(INTDIR)\tilp2_indep.obj" \
+	"$(INTDIR)\tilp2_main.obj" \
+	"$(INTDIR)\tilp2_misc.obj" \
+	"$(INTDIR)\tilp2_paths.obj" \
+	"$(INTDIR)\tilp2_plugin.obj" \
+	"$(INTDIR)\tilp2_printl.obj" \
+	"$(INTDIR)\tilp2_prompt.obj" \
+	"$(INTDIR)\tilp2_rcfile.obj" \
+	"$(INTDIR)\tilp2_refresh.obj" \
+	"$(INTDIR)\tilp2_screen.obj" \
+	"$(INTDIR)\tilp2_slct.obj" \
+	"$(INTDIR)\tilp2_vars.obj" \
 	"$(INTDIR)\Tilp.res" \
 	"..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib" \
 	"..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib" \
@@ -359,15 +359,15 @@ LINK32_OBJS= \
 
 
 !IF "$(NO_EXTERNAL_DEPS)" != "1"
-!IF EXISTS("tilp_gtk_win32.dep")
-!INCLUDE "tilp_gtk_win32.dep"
+!IF EXISTS("tilp2_gtk_win32.dep")
+!INCLUDE "tilp2_gtk_win32.dep"
 !ELSE 
-!MESSAGE Warning: cannot find "tilp_gtk_win32.dep"
+!MESSAGE Warning: cannot find "tilp2_gtk_win32.dep"
 !ENDIF 
 !ENDIF 
 
 
-!IF "$(CFG)" == "tilp_gtk_win32 - Win32 Release" || "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!IF "$(CFG)" == "tilp2_gtk_win32 - Win32 Release" || "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 SOURCE=..\..\src\about.c
 
 "$(INTDIR)\about.obj" : $(SOURCE) "$(INTDIR)"
@@ -536,97 +536,97 @@ SOURCE=.\Tilp.rc
 	$(RSC) $(RSC_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_calcs.c
+SOURCE=..\..\src\tilp2_calcs.c
 
-"$(INTDIR)\tilp_calcs.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_calcs.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_error.c
+SOURCE=..\..\src\tilp2_error.c
 
-"$(INTDIR)\tilp_error.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_error.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_files.c
+SOURCE=..\..\src\tilp2_files.c
 
-"$(INTDIR)\tilp_files.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_files.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_indep.c
+SOURCE=..\..\src\tilp2_indep.c
 
-"$(INTDIR)\tilp_indep.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_indep.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_main.c
+SOURCE=..\..\src\tilp2_main.c
 
-"$(INTDIR)\tilp_main.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_main.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_misc.c
+SOURCE=..\..\src\tilp2_misc.c
 
-"$(INTDIR)\tilp_misc.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_misc.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_paths.c
+SOURCE=..\..\src\tilp2_paths.c
 
-"$(INTDIR)\tilp_paths.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_paths.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_plugin.c
+SOURCE=..\..\src\tilp2_plugin.c
 
-"$(INTDIR)\tilp_plugin.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_plugin.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_printl.c
+SOURCE=..\..\src\tilp2_printl.c
 
-"$(INTDIR)\tilp_printl.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_printl.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_prompt.c
+SOURCE=..\..\src\tilp2_prompt.c
 
-"$(INTDIR)\tilp_prompt.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_prompt.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_rcfile.c
+SOURCE=..\..\src\tilp2_rcfile.c
 
-"$(INTDIR)\tilp_rcfile.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_rcfile.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_refresh.c
+SOURCE=..\..\src\tilp2_refresh.c
 
-"$(INTDIR)\tilp_refresh.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_refresh.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_screen.c
+SOURCE=..\..\src\tilp2_screen.c
 
-"$(INTDIR)\tilp_screen.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_screen.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_slct.c
+SOURCE=..\..\src\tilp2_slct.c
 
-"$(INTDIR)\tilp_slct.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_slct.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-SOURCE=..\..\src\tilp_vars.c
+SOURCE=..\..\src\tilp2_vars.c
 
-"$(INTDIR)\tilp_vars.obj" : $(SOURCE) "$(INTDIR)"
+"$(INTDIR)\tilp2_vars.obj" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
-!IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Release"
 
 "ticables - Win32 Release" : 
    cd "\home\devel\ticables\build\msvc"
@@ -638,7 +638,7 @@ SOURCE=..\..\src\tilp_vars.c
    $(MAKE) /$(MAKEFLAGS) /F .\ticables.mak CFG="ticables - Win32 Release" RECURSE=1 CLEAN 
    cd "..\..\..\tilp\build\msvc"
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 
 "ticables - Win32 Debug" : 
    cd "\home\devel\ticables\build\msvc"
@@ -652,7 +652,7 @@ SOURCE=..\..\src\tilp_vars.c
 
 !ENDIF 
 
-!IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Release"
 
 "ticalcs - Win32 Release" : 
    cd "\home\devel\ticalcs\build\msvc"
@@ -664,7 +664,7 @@ SOURCE=..\..\src\tilp_vars.c
    $(MAKE) /$(MAKEFLAGS) /F .\ticalcs.mak CFG="ticalcs - Win32 Release" RECURSE=1 CLEAN 
    cd "..\..\..\tilp\build\msvc"
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 
 "ticalcs - Win32 Debug" : 
    cd "\home\devel\ticalcs\build\msvc"
@@ -678,7 +678,7 @@ SOURCE=..\..\src\tilp_vars.c
 
 !ENDIF 
 
-!IF  "$(CFG)" == "tilp_gtk_win32 - Win32 Release"
+!IF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Release"
 
 "tifiles - Win32 Release" : 
    cd "\home\devel\tifiles\build\msvc"
@@ -690,7 +690,7 @@ SOURCE=..\..\src\tilp_vars.c
    $(MAKE) /$(MAKEFLAGS) /F .\tifiles.mak CFG="tifiles - Win32 Release" RECURSE=1 CLEAN 
    cd "..\..\..\tilp\build\msvc"
 
-!ELSEIF  "$(CFG)" == "tilp_gtk_win32 - Win32 Debug"
+!ELSEIF  "$(CFG)" == "tilp2_gtk_win32 - Win32 Debug"
 
 "tifiles - Win32 Debug" : 
    cd "\home\devel\tifiles\build\msvc"
