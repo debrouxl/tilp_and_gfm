@@ -505,6 +505,14 @@
 			  </child>
 
 			  <child>
+			    <widget class="GtkMenuItem" id="usb1">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Direct USB</property>
+			      <property name="use_underline">True</property>
+			    </widget>
+			  </child>
+
+			  <child>
 			    <widget class="GtkMenuItem" id="vti1">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">VTi</property>

@@ -81,16 +81,20 @@ gint display_device_dbox()
 		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	break;	
 
-	case CABLE_VTI:
+	case CABLE_USB:
 		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
+	break;	
+
+	case CABLE_VTI:
+		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	break;
 
     case CABLE_TIE:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	break;
 	
 	case CABLE_VTL:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
+		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
 	break;   
 
 	default:
@@ -264,9 +268,10 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 2: tmp.cable_model = CABLE_BLK; break;
 	case 3:	tmp.cable_model = CABLE_PAR; break;
 	case 4: tmp.cable_model = CABLE_SLV; break;	
-	case 5: tmp.cable_model = CABLE_VTI; break;
-	case 6: tmp.cable_model = CABLE_TIE; break;
-	case 7: tmp.cable_model = CABLE_VTL; break;
+	case 5: tmp.cable_model = CABLE_USB; break;	
+	case 6: tmp.cable_model = CABLE_VTI; break;
+	case 7: tmp.cable_model = CABLE_TIE; break;
+	case 8: tmp.cable_model = CABLE_VTL; break;
 	}
 }
 
