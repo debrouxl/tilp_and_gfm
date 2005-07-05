@@ -50,10 +50,17 @@
 */
 int tilp_calc_isready(void)
 {
-	int err = ticalcs_calc_isready(calc_handle);
+	int err;
+	int to;
+	
+	// first check: fast
+	to = ticables_options_set_timeout(cable_handle, 10);
+	err = ticalcs_calc_isready(calc_handle);
+	ticables_options_set_timeout(cable_handle, to);
 
 	if(err) 
 	{
+		// second check: slower
 		err = ticalcs_calc_isready(calc_handle);
 		if(err)
 		{
@@ -752,7 +759,7 @@ int tilp_calc_del_var(void)
 	GList *sel;
 	int err;
 
-	if(!tilp_ctree_selection_ready())
+	if(!remote.selection && !remote.selection2)
 		return 0;
 
 	if(tilp_calc_isready())
@@ -768,13 +775,31 @@ int tilp_calc_del_var(void)
 			return 0;
 	}
 
+	gif->create_pbar_type2(_("Deleting var(s)"), "Please wait...");
+
 	for(sel = remote.selection; sel; sel = sel->next)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
 		err = ticalcs_calc_del_var(calc_handle, ve);
 		if(tilp_err(err))
+		{
+			gif->destroy_pbar();
 			return -1;
+		}
 	}
+
+	for(sel = remote.selection2; sel; sel = sel->next)
+	{
+		VarEntry *ve = (VarEntry *)sel->data;
+		err = ticalcs_calc_del_var(calc_handle, ve);
+		if(tilp_err(err))
+		{
+			gif->destroy_pbar();
+			return -1;
+		}
+	}
+
+	gif->destroy_pbar();
 
 	return 0;
 }
@@ -795,10 +820,17 @@ int tilp_calc_new_fld(void)
 	if (fldname == NULL)
 		return 0;
 
+	gif->create_pbar_type2(_("Creating folder"), "Please wait...");
+
 	strcpy(ve.folder, fldname);
 	err = ticalcs_calc_new_fld(calc_handle, &ve);
 	if(tilp_err(err))
+	{
+		gif->destroy_pbar();
 		return -1;
+	}
+
+	gif->destroy_pbar();
 
 	return 0;
 }
@@ -806,6 +838,7 @@ int tilp_calc_new_fld(void)
 int tilp_calc_get_infos(CalcInfos *infos)
 {
 	int err;
+	gchar *str;
 
 	if(tilp_calc_isready())
 		return -1;
@@ -816,6 +849,10 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	err = ticalcs_calc_get_version(calc_handle, infos);
 	if(tilp_err(err))
 		return -1;
+
+	str = g_strdup_printf(_("OS version: %s\nBOOT version: %s\n"), infos->os, infos->bios);
+	gif->msg_box(_("Information"), str);
+	g_free(str);
 
 	return 0;
 }

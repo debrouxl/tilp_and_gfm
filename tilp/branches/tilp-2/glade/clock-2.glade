@@ -373,7 +373,7 @@
 		      <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 		      <property name="snap_to_ticks">False</property>
 		      <property name="wrap">False</property>
-		      <property name="adjustment">2000 2000 3000 1 10 10</property>
+		      <property name="adjustment">2000 1997 3000 1 10 10</property>
 		      <signal name="changed" handler="clock_spinbutton3_changed" object="spinbutton3"/>
 		    </widget>
 		    <packing>

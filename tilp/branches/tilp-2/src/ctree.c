@@ -236,38 +236,51 @@ static GtkTreeIter apps_node;
 
 void ctree_set_basetree(void)
 {
+	GtkTreeIter clc_node;
+	GtkTreeIter *top_node = NULL;
 	GtkTreeIter lcd_node, rom_node, idl_node, clk_node;
 
 	// clear tree
 	gtk_tree_store_clear(tree);
+	
+	// top node
+#if 1
+	top_node = &clc_node;
+	gtk_tree_store_append(tree, top_node, NULL);
+	gtk_tree_store_set(tree, &clc_node, 
+		COLUMN_NAME, tifiles_model_to_string(calc_handle->model),
+		COLUMN_DATA, (gpointer) NULL, -1);
+#endif
 
 	// lcd, rom, vars & apps nodes
-	gtk_tree_store_append(tree, &lcd_node, NULL);
+	gtk_tree_store_append(tree, &lcd_node, top_node);
 	gtk_tree_store_set(tree, &lcd_node, COLUMN_NAME, NODE1,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
-	gtk_tree_store_append(tree, &rom_node, NULL);
+	gtk_tree_store_append(tree, &rom_node, top_node);
 	gtk_tree_store_set(tree, &rom_node, COLUMN_NAME, NODE2,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
-	gtk_tree_store_append(tree, &vars_node, NULL);
+	gtk_tree_store_append(tree, &vars_node, top_node);
 	gtk_tree_store_set(tree, &vars_node, COLUMN_NAME, NODE3,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
 	if (tifiles_is_flash(calc_handle->model)) 
 	{
-		gtk_tree_store_append(tree, &apps_node, NULL);
+		gtk_tree_store_append(tree, &apps_node, top_node);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
 				   COLUMN_DATA, (gpointer) NULL, -1);
 
-		gtk_tree_store_append(tree, &idl_node, NULL);
+		gtk_tree_store_append(tree, &idl_node, top_node);
 		gtk_tree_store_set(tree, &idl_node, COLUMN_NAME, NODE5,
 				   COLUMN_DATA, (gpointer) NULL, -1);
 
-		gtk_tree_store_append(tree, &clk_node, NULL);
+		gtk_tree_store_append(tree, &clk_node, top_node);
 		gtk_tree_store_set(tree, &clk_node, COLUMN_NAME, NODE6,
 				   COLUMN_DATA, (gpointer) NULL, -1);
 	}
+
+	gtk_tree_view_expand_all(GTK_TREE_VIEW(ctree_wnd));
 }
 
 /* Management */
@@ -494,6 +507,12 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 		else if(!strcmp(name, NODE6))
 			display_clock_dbox();
+
+		else if(!strcmp(name, tifiles_model_to_string(calc_handle->model)))
+		{
+			CalcInfos infos;
+			tilp_calc_get_infos(&infos);
+		}
 
 		return TRUE;
 	}

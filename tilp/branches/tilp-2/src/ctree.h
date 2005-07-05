@@ -31,6 +31,7 @@ enum {
 #define CTREE_NCOLS CTREE_DATA
 */
 
+#define NODE0 _("Calc")
 #define NODE1 _("Screen")
 #define NODE2 _("Operating System")
 #define NODE3 _("Variables")
