@@ -85,7 +85,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -137,6 +137,7 @@
 </widget>
 
 <widget class="GtkDialog" id="pbar2_dbox">
+  <property name="width_request">160</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Title 2</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -291,7 +292,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -326,7 +327,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -459,7 +460,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -613,7 +614,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>
@@ -648,7 +649,7 @@
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
-	      <property name="pulse_step">0.1</property>
+	      <property name="pulse_step">0.10000000149</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">0</property>

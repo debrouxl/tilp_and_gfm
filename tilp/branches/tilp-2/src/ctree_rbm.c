@@ -58,10 +58,10 @@ GtkWidget *create_ctree_rbm(void)
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
 
 	data = glade_xml_get_widget(xml, "delete_var1");
-	gtk_widget_set_sensitive(data, FALSE);
+	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));
 
 	data = glade_xml_get_widget(xml, "create_folder1");
-	gtk_widget_set_sensitive(data, FALSE);
+	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_NEWFLD));
 
 	menu = glade_xml_get_widget(xml, "ctree_rbm");
 	return menu;
@@ -103,11 +103,11 @@ rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 GLADE_CB void 
 rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	//
+	tilp_calc_del_var();
 }
 
 GLADE_CB void 
 rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	display_options_dbox();
+	tilp_calc_new_fld();
 }

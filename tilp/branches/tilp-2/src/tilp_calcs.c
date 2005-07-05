@@ -746,3 +746,76 @@ int tilp_calc_recv_var(void)
 
 	return 0;
 }
+
+int tilp_calc_del_var(void)
+{
+	GList *sel;
+	int err;
+
+	if(!tilp_ctree_selection_ready())
+		return 0;
+
+	if(tilp_calc_isready())
+		return -1;
+
+	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
+		return 0;
+
+	if(options.overwrite)
+	{
+		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that ?"));
+		if(ret == BUTTON2)
+			return 0;
+	}
+
+	for(sel = remote.selection; sel; sel = sel->next)
+	{
+		VarEntry *ve = (VarEntry *)sel->data;
+		err = ticalcs_calc_del_var(calc_handle, ve);
+		if(tilp_err(err))
+			return -1;
+	}
+
+	return 0;
+}
+
+int tilp_calc_new_fld(void)
+{
+	gchar *fldname = NULL;
+	int err;
+	VarEntry ve;
+
+	if(tilp_calc_isready())
+		return -1;
+
+	if(!(ticalcs_calc_features(calc_handle) & OPS_NEWFLD))
+		return 0;
+
+	fldname = gif->msg_entry(_("New Folder"), _("Name: "), _("folder"));
+	if (fldname == NULL)
+		return 0;
+
+	strcpy(ve.folder, fldname);
+	err = ticalcs_calc_new_fld(calc_handle, &ve);
+	if(tilp_err(err))
+		return -1;
+
+	return 0;
+}
+
+int tilp_calc_get_infos(CalcInfos *infos)
+{
+	int err;
+
+	if(tilp_calc_isready())
+		return -1;
+
+	if(!(ticalcs_calc_features(calc_handle) & OPS_VERSION))
+		return 0;
+
+	err = ticalcs_calc_get_version(calc_handle, infos);
+	if(tilp_err(err))
+		return -1;
+
+	return 0;
+}
