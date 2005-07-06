@@ -57,8 +57,12 @@ int tilp_dirlist_remote(void)
 	remote.memory.mem_vars = ticalcs_dirlist_mem_used(remote.var_tree);
 	remote.memory.mem_apps = ticalcs_dirlist_mem_used(remote.app_tree);
 
-	err = ticalcs_calc_get_memfree(calc_handle, (uint32_t *)&(remote.memory.mem_free));
-	if(err)
+	if(ticalcs_calc_features(calc_handle) & FTS_MEMFREE)
+	{
+		TreeInfo *info = (TreeInfo *)((remote.var_tree)->data);
+		remote.memory.mem_free = info->mem_free;
+	}
+	else
 		remote.memory.mem_free = -1;
 
 	ticalcs_dirlist_display(remote.var_tree);
