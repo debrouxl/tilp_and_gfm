@@ -212,8 +212,10 @@ extern "C" {
   int tilp_printl(int level, const char *format, ...);
 
   // GTK+ only (export callbacks for Glade linking at runtime)
-#ifdef __WIN32__
+#if defined(__WIN32__) && !defined(HAVE_FVISIBILITY)
 # define GLADE_CB __declspec(dllexport)
+#elif defined(HAVE_FVISIBILITY)
+# define GLADE_CB __attribute__ ((visibility("default")))
 #else
 # define GLADE_CB
 #endif
