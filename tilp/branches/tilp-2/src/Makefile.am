@@ -4,21 +4,20 @@ AM_CPPFLAGS = -I$(top_srcdir)/intl
 AM_CFLAGS = -Wall
 
 # programs and files to compile and install 
-bin_PROGRAMS = tilp
-pkginclude_HEADERS = tilp_plugin.h
+bin_PROGRAMS = tilp2
 
 # build instructions
-tilp_CPPFLAGS = @TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
+tilp2_CPPFLAGS = @TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
-	-DPLUGIN_DIR=\"$(pkglibdir)\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	-DGTK_DISABLE_DEPRECATED
-tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
+#tilp2_LDFLAGS = -Wl,--export-dynamic
+tilp2_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
 	@LTLIBINTL@ @LIBZ@
-tilp_SOURCES = *.h \
+tilp2_SOURCES = *.h \
 	tilp_calcs.c tilp_cmdline.c tilp_config.c tilp_error.c \
 	tilp_files.c tilp_gif.c tilp_log.c tilp_main.c \
 	tilp_misc.c tilp_paths.c tilp_screen.c tilp_slct.c \

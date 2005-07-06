@@ -466,7 +466,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB DLLTOOL ac_ct_DLLTOOL AS ac_ct_AS OBJDUMP ac_ct_OBJDUMP CPP CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL GROFF USE_GROFF_TRUE USE_GROFF_FALSE MKINSTALLDIRS USE_NLS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC2 ALLOCA GLIBC21 INTL_MACOSX_LIBS HAVE_POSIX_PRINTF HAVE_ASPRINTF HAVE_SNPRINTF HAVE_WPRINTF LIBICONV LTLIBICONV INTLBISON BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT DATADIRNAME INSTOBJEXT GENCAT INTLOBJS INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB PKG_CONFIG TICABLES_CFLAGS TICABLES_LIBS TIFILES_CFLAGS TIFILES_LIBS TICALCS_CFLAGS TICALCS_LIBS GLIB_CFLAGS GLIB_LIBS GTK_CFLAGS GTK_LIBS GLADE_CFLAGS GLADE_LIBS LIBZ LIBOBJS tilp_plugin_dir tilp_pixmap_dir LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB DLLTOOL ac_ct_DLLTOOL AS ac_ct_AS OBJDUMP ac_ct_OBJDUMP CPP CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL GROFF USE_GROFF_TRUE USE_GROFF_FALSE MKINSTALLDIRS USE_NLS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC2 ALLOCA GLIBC21 INTL_MACOSX_LIBS HAVE_POSIX_PRINTF HAVE_ASPRINTF HAVE_SNPRINTF HAVE_WPRINTF LIBICONV LTLIBICONV INTLBISON BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT DATADIRNAME INSTOBJEXT GENCAT INTLOBJS INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB PKG_CONFIG ac_pt_PKG_CONFIG TICABLES_CFLAGS TICABLES_LIBS TIFILES_CFLAGS TIFILES_LIBS TICALCS_CFLAGS TICALCS_LIBS GLIB_CFLAGS GLIB_LIBS GTK_CFLAGS GTK_LIBS GLADE_CFLAGS GLADE_LIBS LIBZ LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -947,6 +947,58 @@ ac_env_FFLAGS_set=${FFLAGS+set}
 ac_env_FFLAGS_value=$FFLAGS
 ac_cv_env_FFLAGS_set=${FFLAGS+set}
 ac_cv_env_FFLAGS_value=$FFLAGS
+ac_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_cv_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_cv_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_env_TICABLES_CFLAGS_set=${TICABLES_CFLAGS+set}
+ac_env_TICABLES_CFLAGS_value=$TICABLES_CFLAGS
+ac_cv_env_TICABLES_CFLAGS_set=${TICABLES_CFLAGS+set}
+ac_cv_env_TICABLES_CFLAGS_value=$TICABLES_CFLAGS
+ac_env_TICABLES_LIBS_set=${TICABLES_LIBS+set}
+ac_env_TICABLES_LIBS_value=$TICABLES_LIBS
+ac_cv_env_TICABLES_LIBS_set=${TICABLES_LIBS+set}
+ac_cv_env_TICABLES_LIBS_value=$TICABLES_LIBS
+ac_env_TIFILES_CFLAGS_set=${TIFILES_CFLAGS+set}
+ac_env_TIFILES_CFLAGS_value=$TIFILES_CFLAGS
+ac_cv_env_TIFILES_CFLAGS_set=${TIFILES_CFLAGS+set}
+ac_cv_env_TIFILES_CFLAGS_value=$TIFILES_CFLAGS
+ac_env_TIFILES_LIBS_set=${TIFILES_LIBS+set}
+ac_env_TIFILES_LIBS_value=$TIFILES_LIBS
+ac_cv_env_TIFILES_LIBS_set=${TIFILES_LIBS+set}
+ac_cv_env_TIFILES_LIBS_value=$TIFILES_LIBS
+ac_env_TICALCS_CFLAGS_set=${TICALCS_CFLAGS+set}
+ac_env_TICALCS_CFLAGS_value=$TICALCS_CFLAGS
+ac_cv_env_TICALCS_CFLAGS_set=${TICALCS_CFLAGS+set}
+ac_cv_env_TICALCS_CFLAGS_value=$TICALCS_CFLAGS
+ac_env_TICALCS_LIBS_set=${TICALCS_LIBS+set}
+ac_env_TICALCS_LIBS_value=$TICALCS_LIBS
+ac_cv_env_TICALCS_LIBS_set=${TICALCS_LIBS+set}
+ac_cv_env_TICALCS_LIBS_value=$TICALCS_LIBS
+ac_env_GLIB_CFLAGS_set=${GLIB_CFLAGS+set}
+ac_env_GLIB_CFLAGS_value=$GLIB_CFLAGS
+ac_cv_env_GLIB_CFLAGS_set=${GLIB_CFLAGS+set}
+ac_cv_env_GLIB_CFLAGS_value=$GLIB_CFLAGS
+ac_env_GLIB_LIBS_set=${GLIB_LIBS+set}
+ac_env_GLIB_LIBS_value=$GLIB_LIBS
+ac_cv_env_GLIB_LIBS_set=${GLIB_LIBS+set}
+ac_cv_env_GLIB_LIBS_value=$GLIB_LIBS
+ac_env_GTK_CFLAGS_set=${GTK_CFLAGS+set}
+ac_env_GTK_CFLAGS_value=$GTK_CFLAGS
+ac_cv_env_GTK_CFLAGS_set=${GTK_CFLAGS+set}
+ac_cv_env_GTK_CFLAGS_value=$GTK_CFLAGS
+ac_env_GTK_LIBS_set=${GTK_LIBS+set}
+ac_env_GTK_LIBS_value=$GTK_LIBS
+ac_cv_env_GTK_LIBS_set=${GTK_LIBS+set}
+ac_cv_env_GTK_LIBS_value=$GTK_LIBS
+ac_env_GLADE_CFLAGS_set=${GLADE_CFLAGS+set}
+ac_env_GLADE_CFLAGS_value=$GLADE_CFLAGS
+ac_cv_env_GLADE_CFLAGS_set=${GLADE_CFLAGS+set}
+ac_cv_env_GLADE_CFLAGS_value=$GLADE_CFLAGS
+ac_env_GLADE_LIBS_set=${GLADE_LIBS+set}
+ac_env_GLADE_LIBS_value=$GLADE_LIBS
+ac_cv_env_GLADE_LIBS_set=${GLADE_LIBS+set}
+ac_cv_env_GLADE_LIBS_value=$GLADE_LIBS
 
 #
 # Report the --help message.
@@ -1071,6 +1123,26 @@ Some influential environment variables:
   CXXCPP      C++ preprocessor
   F77         Fortran 77 compiler command
   FFLAGS      Fortran 77 compiler flags
+  PKG_CONFIG  path to pkg-config utility
+  TICABLES_CFLAGS
+              C compiler flags for TICABLES, overriding pkg-config
+  TICABLES_LIBS
+              linker flags for TICABLES, overriding pkg-config
+  TIFILES_CFLAGS
+              C compiler flags for TIFILES, overriding pkg-config
+  TIFILES_LIBS
+              linker flags for TIFILES, overriding pkg-config
+  TICALCS_CFLAGS
+              C compiler flags for TICALCS, overriding pkg-config
+  TICALCS_LIBS
+              linker flags for TICALCS, overriding pkg-config
+  GLIB_CFLAGS C compiler flags for GLIB, overriding pkg-config
+  GLIB_LIBS   linker flags for GLIB, overriding pkg-config
+  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
+  GTK_LIBS    linker flags for GTK, overriding pkg-config
+  GLADE_CFLAGS
+              C compiler flags for GLADE, overriding pkg-config
+  GLADE_LIBS  linker flags for GLADE, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -3656,7 +3728,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 3659 "configure"' > conftest.$ac_ext
+  echo '#line 3731 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -5455,7 +5527,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:5458:" \
+echo "$as_me:5530:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -6487,11 +6559,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6490: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6562: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6494: \$? = $ac_status" >&5
+   echo "$as_me:6566: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -6720,11 +6792,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6723: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6795: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:6727: \$? = $ac_status" >&5
+   echo "$as_me:6799: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -6780,11 +6852,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:6783: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:6855: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:6787: \$? = $ac_status" >&5
+   echo "$as_me:6859: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -8968,7 +9040,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 8971 "configure"
+#line 9043 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -9066,7 +9138,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9069 "configure"
+#line 9141 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -11243,11 +11315,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:11246: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:11318: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:11250: \$? = $ac_status" >&5
+   echo "$as_me:11322: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -11303,11 +11375,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:11306: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:11378: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:11310: \$? = $ac_status" >&5
+   echo "$as_me:11382: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -12672,7 +12744,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12675 "configure"
+#line 12747 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12770,7 +12842,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 12773 "configure"
+#line 12845 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13597,11 +13669,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13600: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13672: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:13604: \$? = $ac_status" >&5
+   echo "$as_me:13676: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -13657,11 +13729,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:13660: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:13732: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:13664: \$? = $ac_status" >&5
+   echo "$as_me:13736: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -15702,11 +15774,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15705: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:15777: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:15709: \$? = $ac_status" >&5
+   echo "$as_me:15781: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -15935,11 +16007,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15938: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16010: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:15942: \$? = $ac_status" >&5
+   echo "$as_me:16014: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings
@@ -15995,11 +16067,11 @@ else
    -e 's:.*FLAGS}? :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:15998: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16070: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:16002: \$? = $ac_status" >&5
+   echo "$as_me:16074: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -18183,7 +18255,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 18186 "configure"
+#line 18258 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -18281,7 +18353,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 18284 "configure"
+#line 18356 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -26996,11 +27068,11 @@ _ACEOF
 
 
 
-  succeeded=no
 
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
 if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
@@ -27025,7 +27097,6 @@ do
 done
 done
 
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
   ;;
 esac
 fi
@@ -27039,77 +27110,19 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-  fi
-
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for ticables2 >= 0.0.1" >&5
-echo $ECHO_N "checking for ticables2 >= 0.0.1... $ECHO_C" >&6
-
-        if $PKG_CONFIG --exists "ticables2 >= 0.0.1" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
-
-            echo "$as_me:$LINENO: checking TICABLES_CFLAGS" >&5
-echo $ECHO_N "checking TICABLES_CFLAGS... $ECHO_C" >&6
-            TICABLES_CFLAGS=`$PKG_CONFIG --cflags "ticables2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TICABLES_CFLAGS" >&5
-echo "${ECHO_T}$TICABLES_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking TICABLES_LIBS" >&5
-echo $ECHO_N "checking TICABLES_LIBS... $ECHO_C" >&6
-            TICABLES_LIBS=`$PKG_CONFIG --libs "ticables2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TICABLES_LIBS" >&5
-echo "${ECHO_T}$TICABLES_LIBS" >&6
-        else
-            TICABLES_CFLAGS=""
-            TICABLES_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            TICABLES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticables2 >= 0.0.1"`
-            echo $TICABLES_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (ticables2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (ticables2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
-   { (exit 1); exit 1; }; }
-  fi
-
-
-
-
-
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
 set dummy pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
+if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  case $PKG_CONFIG in
+  case $ac_pt_PKG_CONFIG in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
@@ -27119,485 +27132,547 @@ do
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
   ;;
 esac
 fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
 
-if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+if test -n "$ac_pt_PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
+echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-  fi
-
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for tifiles2 >= 0.0.1" >&5
-echo $ECHO_N "checking for tifiles2 >= 0.0.1... $ECHO_C" >&6
-
-        if $PKG_CONFIG --exists "tifiles2 >= 0.0.1" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
-
-            echo "$as_me:$LINENO: checking TIFILES_CFLAGS" >&5
-echo $ECHO_N "checking TIFILES_CFLAGS... $ECHO_C" >&6
-            TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TIFILES_CFLAGS" >&5
-echo "${ECHO_T}$TIFILES_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking TIFILES_LIBS" >&5
-echo $ECHO_N "checking TIFILES_LIBS... $ECHO_C" >&6
-            TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TIFILES_LIBS" >&5
-echo "${ECHO_T}$TIFILES_LIBS" >&6
-        else
-            TIFILES_CFLAGS=""
-            TIFILES_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.0.1"`
-            echo $TIFILES_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (tifiles2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (tifiles2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
-   { (exit 1); exit 1; }; }
-  fi
-
-
-
-
-
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
+  PKG_CONFIG=$ac_pt_PKG_CONFIG
 else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
 fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
+echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	else
+		echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+		PKG_CONFIG=""
+	fi
+
+fi
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for TICABLES" >&5
+echo $ECHO_N "checking for TICABLES... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticables2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticables2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TICABLES_CFLAGS=`$PKG_CONFIG --cflags "ticables2 >= 0.0.1" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticables2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticables2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TICABLES_LIBS=`$PKG_CONFIG --libs "ticables2 >= 0.0.1" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
 fi
 
-  fi
+if test $pkg_failed = yes; then
+	TICABLES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticables2 >= 0.0.1"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$TICABLES_PKG_ERRORS" 1>&5
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for ticalcs2 >= 0.0.1" >&5
-echo $ECHO_N "checking for ticalcs2 >= 0.0.1... $ECHO_C" >&6
+	{ { echo "$as_me:$LINENO: error: Package requirements (ticables2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-        if $PKG_CONFIG --exists "ticalcs2 >= 0.0.1" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+Alternatively you may set the TICABLES_CFLAGS and TICABLES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (ticables2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-            echo "$as_me:$LINENO: checking TICALCS_CFLAGS" >&5
-echo $ECHO_N "checking TICALCS_CFLAGS... $ECHO_C" >&6
-            TICALCS_CFLAGS=`$PKG_CONFIG --cflags "ticalcs2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TICALCS_CFLAGS" >&5
-echo "${ECHO_T}$TICALCS_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking TICALCS_LIBS" >&5
-echo $ECHO_N "checking TICALCS_LIBS... $ECHO_C" >&6
-            TICALCS_LIBS=`$PKG_CONFIG --libs "ticalcs2 >= 0.0.1"`
-            echo "$as_me:$LINENO: result: $TICALCS_LIBS" >&5
-echo "${ECHO_T}$TICALCS_LIBS" >&6
-        else
-            TICALCS_CFLAGS=""
-            TICALCS_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            TICALCS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticalcs2 >= 0.0.1"`
-            echo $TICALCS_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (ticalcs2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (ticalcs2 >= 0.0.1) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+Alternatively you may set the TICABLES_CFLAGS and TICABLES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
    { (exit 1); exit 1; }; }
-  fi
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TICABLES_CFLAGS and TICABLES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TICABLES_CFLAGS and TICABLES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
-
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
 else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
+	TICABLES_CFLAGS=$pkg_cv_TICABLES_CFLAGS
+	TICABLES_LIBS=$pkg_cv_TICABLES_LIBS
+	:
 fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+
+
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for TIFILES" >&5
+echo $ECHO_N "checking for TIFILES... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.0.1" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.0.1" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
 fi
 
-  fi
+if test $pkg_failed = yes; then
+	TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.0.1"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$TIFILES_PKG_ERRORS" 1>&5
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for glib-2.0 >= 2.0.0" >&5
-echo $ECHO_N "checking for glib-2.0 >= 2.0.0... $ECHO_C" >&6
+	{ { echo "$as_me:$LINENO: error: Package requirements (tifiles2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-        if $PKG_CONFIG --exists "glib-2.0 >= 2.0.0" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (tifiles2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-            echo "$as_me:$LINENO: checking GLIB_CFLAGS" >&5
-echo $ECHO_N "checking GLIB_CFLAGS... $ECHO_C" >&6
-            GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0 >= 2.0.0"`
-            echo "$as_me:$LINENO: result: $GLIB_CFLAGS" >&5
-echo "${ECHO_T}$GLIB_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking GLIB_LIBS" >&5
-echo $ECHO_N "checking GLIB_LIBS... $ECHO_C" >&6
-            GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0 >= 2.0.0"`
-            echo "$as_me:$LINENO: result: $GLIB_LIBS" >&5
-echo "${ECHO_T}$GLIB_LIBS" >&6
-        else
-            GLIB_CFLAGS=""
-            GLIB_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.0.0"`
-            echo $GLIB_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (glib-2.0 >= 2.0.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (glib-2.0 >= 2.0.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
    { (exit 1); exit 1; }; }
-  fi
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
-
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
 else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
+	TIFILES_CFLAGS=$pkg_cv_TIFILES_CFLAGS
+	TIFILES_LIBS=$pkg_cv_TIFILES_LIBS
+	:
 fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+
+
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for TICALCS" >&5
+echo $ECHO_N "checking for TICALCS... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticalcs2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticalcs2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TICALCS_CFLAGS=`$PKG_CONFIG --cflags "ticalcs2 >= 0.0.1" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticalcs2 >= 0.0.1\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticalcs2 >= 0.0.1") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_TICALCS_LIBS=`$PKG_CONFIG --libs "ticalcs2 >= 0.0.1" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
 fi
 
-  fi
+if test $pkg_failed = yes; then
+	TICALCS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticalcs2 >= 0.0.1"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$TICALCS_PKG_ERRORS" 1>&5
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for gtk+-2.0 >= 2.0.0" >&5
-echo $ECHO_N "checking for gtk+-2.0 >= 2.0.0... $ECHO_C" >&6
+	{ { echo "$as_me:$LINENO: error: Package requirements (ticalcs2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-        if $PKG_CONFIG --exists "gtk+-2.0 >= 2.0.0" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (ticalcs2 >= 0.0.1) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-            echo "$as_me:$LINENO: checking GTK_CFLAGS" >&5
-echo $ECHO_N "checking GTK_CFLAGS... $ECHO_C" >&6
-            GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.0.0"`
-            echo "$as_me:$LINENO: result: $GTK_CFLAGS" >&5
-echo "${ECHO_T}$GTK_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking GTK_LIBS" >&5
-echo $ECHO_N "checking GTK_LIBS... $ECHO_C" >&6
-            GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.0.0"`
-            echo "$as_me:$LINENO: result: $GTK_LIBS" >&5
-echo "${ECHO_T}$GTK_LIBS" >&6
-        else
-            GTK_CFLAGS=""
-            GTK_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.0.0"`
-            echo $GTK_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (gtk+-2.0 >= 2.0.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (gtk+-2.0 >= 2.0.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
    { (exit 1); exit 1; }; }
-  fi
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
 
-
-  succeeded=no
-
-  if test -z "$PKG_CONFIG"; then
-    # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
 else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
+	TICALCS_CFLAGS=$pkg_cv_TICALCS_CFLAGS
+	TICALCS_LIBS=$pkg_cv_TICALCS_LIBS
+	:
 fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+
+
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for GLIB" >&5
+echo $ECHO_N "checking for GLIB... $ECHO_C" >&6
 
 if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.0.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.0.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0 >= 2.0.0" 2>/dev/null`
 else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"glib-2.0 >= 2.0.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "glib-2.0 >= 2.0.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0 >= 2.0.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
 fi
 
-  fi
+if test $pkg_failed = yes; then
+	GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.0.0"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$GLIB_PKG_ERRORS" 1>&5
 
-  if test "$PKG_CONFIG" = "no" ; then
-     echo "*** The pkg-config script could not be found. Make sure it is"
-     echo "*** in your path, or set the PKG_CONFIG environment variable"
-     echo "*** to the full path to pkg-config."
-     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
-  else
-     PKG_CONFIG_MIN_VERSION=0.9.0
-     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
-        echo "$as_me:$LINENO: checking for libglade-2.0 >= 1.99.0" >&5
-echo $ECHO_N "checking for libglade-2.0 >= 1.99.0... $ECHO_C" >&6
+	{ { echo "$as_me:$LINENO: error: Package requirements (glib-2.0 >= 2.0.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-        if $PKG_CONFIG --exists "libglade-2.0 >= 1.99.0" ; then
-            echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-            succeeded=yes
+Alternatively you may set the GLIB_CFLAGS and GLIB_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (glib-2.0 >= 2.0.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
 
-            echo "$as_me:$LINENO: checking GLADE_CFLAGS" >&5
-echo $ECHO_N "checking GLADE_CFLAGS... $ECHO_C" >&6
-            GLADE_CFLAGS=`$PKG_CONFIG --cflags "libglade-2.0 >= 1.99.0"`
-            echo "$as_me:$LINENO: result: $GLADE_CFLAGS" >&5
-echo "${ECHO_T}$GLADE_CFLAGS" >&6
-
-            echo "$as_me:$LINENO: checking GLADE_LIBS" >&5
-echo $ECHO_N "checking GLADE_LIBS... $ECHO_C" >&6
-            GLADE_LIBS=`$PKG_CONFIG --libs "libglade-2.0 >= 1.99.0"`
-            echo "$as_me:$LINENO: result: $GLADE_LIBS" >&5
-echo "${ECHO_T}$GLADE_LIBS" >&6
-        else
-            GLADE_CFLAGS=""
-            GLADE_LIBS=""
-            ## If we have a custom action on failure, don't print errors, but
-            ## do set a variable so people can do so.
-            GLADE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libglade-2.0 >= 1.99.0"`
-            echo $GLADE_PKG_ERRORS
-        fi
-
-
-
-     else
-        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
-        echo "*** See http://www.freedesktop.org/software/pkgconfig"
-     fi
-  fi
-
-  if test $succeeded = yes; then
-     :
-  else
-     { { echo "$as_me:$LINENO: error: Library requirements (libglade-2.0 >= 1.99.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
-echo "$as_me: error: Library requirements (libglade-2.0 >= 1.99.0) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+Alternatively you may set the GLIB_CFLAGS and GLIB_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
    { (exit 1); exit 1; }; }
-  fi
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
 
+Alternatively you may set the GLIB_CFLAGS and GLIB_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the GLIB_CFLAGS and GLIB_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	GLIB_CFLAGS=$pkg_cv_GLIB_CFLAGS
+	GLIB_LIBS=$pkg_cv_GLIB_LIBS
+	:
+fi
+
+
+
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for GTK" >&5
+echo $ECHO_N "checking for GTK... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.0.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.0.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.0.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.0.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.0.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.0.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.0.0"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$GTK_PKG_ERRORS" 1>&5
+
+	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0 >= 2.0.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the GTK_CFLAGS and GTK_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (gtk+-2.0 >= 2.0.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the GTK_CFLAGS and GTK_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the GTK_CFLAGS and GTK_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the GTK_CFLAGS and GTK_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
+	:
+fi
+
+
+
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for GLADE" >&5
+echo $ECHO_N "checking for GLADE... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 1.99.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 1.99.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GLADE_CFLAGS=`$PKG_CONFIG --cflags "libglade-2.0 >= 1.99.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 1.99.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 1.99.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GLADE_LIBS=`$PKG_CONFIG --libs "libglade-2.0 >= 1.99.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	GLADE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libglade-2.0 >= 1.99.0"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$GLADE_PKG_ERRORS" 1>&5
+
+	{ { echo "$as_me:$LINENO: error: Package requirements (libglade-2.0 >= 1.99.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the GLADE_CFLAGS and GLADE_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (libglade-2.0 >= 1.99.0) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the GLADE_CFLAGS and GLADE_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the GLADE_CFLAGS and GLADE_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the GLADE_CFLAGS and GLADE_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	GLADE_CFLAGS=$pkg_cv_GLADE_CFLAGS
+	GLADE_LIBS=$pkg_cv_GLADE_LIBS
+	:
+fi
 
 
 
@@ -29061,12 +29136,6 @@ fi
 done
 
 
-# pass some variables to  plugins
-tilp_plugin_dir='${libdir}/tilp'
-
-tilp_pixmap_dir='${datadir}/tilp/pixmaps'
-
-
 # Option to allow user to go outside his home directory.
 # Check whether --enable-exit-homedir or --disable-exit-homedir was given.
 if test "${enable_exit_homedir+set}" = set; then
@@ -29139,6 +29208,47 @@ echo "${ECHO_T}${msnative_struct}" >&6
   fi
   ;;
 esac
+
+# Check for the new -fvisibility=hidden flag introduced in gcc 4.0
+# Allow to reduce shared library size and avoid symbol clash
+case $host_os in
+*mingw*)
+  ;;
+*)
+        if test x$GCC = xyes; then
+           visibility_flag=''
+           echo "$as_me:$LINENO: checking whether gcc accepts -fvisibility" >&5
+echo $ECHO_N "checking whether gcc accepts -fvisibility... $ECHO_C" >&6
+           if test -z "$ac_cv_prog_CC"; then
+              our_gcc="$CC"
+           else
+              our_gcc="$ac_cv_prog_CC"
+           fi
+           if $our_gcc -v --help 2>/dev/null | grep "fvisibility" >/dev/null; then
+              visibility_flag='-fvisibility=hidden'
+           fi
+           if test x"$visibility_flag" = x ; then
+              echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+           else
+              CFLAGS="$CFLAGS $visibility_flag"
+              echo "$as_me:$LINENO: result: ${visibility_flag}" >&5
+echo "${ECHO_T}${visibility_flag}" >&6
+
+cat >>confdefs.h <<\_ACEOF
+#define HAVE_FVISIBILITY 1
+_ACEOF
+
+            fi
+        fi
+        ;;
+esac
+
+case "$host" in
+  *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
+  *)          EXFL="" ;;
+esac
+LDFLAGS="$LDFLAGS $EXFL"
 
 
 
@@ -29932,6 +30042,7 @@ s,@LIBINTL@,$LIBINTL,;t t
 s,@LTLIBINTL@,$LTLIBINTL,;t t
 s,@POSUB@,$POSUB,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
 s,@TICABLES_CFLAGS@,$TICABLES_CFLAGS,;t t
 s,@TICABLES_LIBS@,$TICABLES_LIBS,;t t
 s,@TIFILES_CFLAGS@,$TIFILES_CFLAGS,;t t
@@ -29946,8 +30057,6 @@ s,@GLADE_CFLAGS@,$GLADE_CFLAGS,;t t
 s,@GLADE_LIBS@,$GLADE_LIBS,;t t
 s,@LIBZ@,$LIBZ,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
-s,@tilp_plugin_dir@,$tilp_plugin_dir,;t t
-s,@tilp_pixmap_dir@,$tilp_pixmap_dir,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF
 

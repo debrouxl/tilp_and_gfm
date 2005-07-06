@@ -101,12 +101,6 @@ AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr strtol])
 
-# pass some variables to  plugins
-tilp_plugin_dir='${libdir}/tilp'
-AC_SUBST(tilp_plugin_dir)
-tilp_pixmap_dir='${datadir}/tilp/pixmaps'
-AC_SUBST(tilp_pixmap_dir)
-
 # Option to allow user to go outside his home directory.
 AC_ARG_ENABLE(exit-homedir,
   AC_HELP_STRING([--enable-exit-homedir], [allow user to go outside his home directory]),
@@ -163,6 +157,40 @@ case $host_os in
   fi
   ;;
 esac
+
+# Check for the new -fvisibility=hidden flag introduced in gcc 4.0
+# Allow to reduce shared library size and avoid symbol clash
+case $host_os in
+*mingw*)
+  ;;
+*)
+        if test x$GCC = xyes; then
+           visibility_flag=''
+           AC_MSG_CHECKING([whether gcc accepts -fvisibility])
+           if test -z "$ac_cv_prog_CC"; then
+              our_gcc="$CC"
+           else
+              our_gcc="$ac_cv_prog_CC"
+           fi
+           if $our_gcc -v --help 2>/dev/null | grep "fvisibility" >/dev/null; then
+              visibility_flag='-fvisibility=hidden'
+           fi
+           if test x"$visibility_flag" = x ; then
+              AC_MSG_RESULT([no])
+           else
+              CFLAGS="$CFLAGS $visibility_flag"
+              AC_MSG_RESULT([${visibility_flag}])
+              AC_DEFINE(HAVE_FVISIBILITY, 1, [Use -fvisibility=hidden flag])
+            fi
+        fi
+        ;;
+esac
+
+case "$host" in
+  *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
+  *)          EXFL="" ;;
+esac
+LDFLAGS="$LDFLAGS $EXFL"
 
 AC_SUBST(CFLAGS)
 AC_SUBST(LDFLAGS)

@@ -94,10 +94,10 @@ int tilp_init(int *argc, char ***argv)
 
 	/* Init locale & internationalization */
 #ifdef ENABLE_NLS
-	tilp_info( "setlocale: <%s>\n", setlocale(LC_ALL, ""));
-  	tilp_info( "bindtextdomain: <%s>\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	tilp_info( "setlocale: <%s>", setlocale(LC_ALL, ""));
+  	tilp_info( "bindtextdomain: <%s>", bindtextdomain(PACKAGE, inst_paths.locale_dir));
   	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	tilp_info( "textdomain: <%s>\n", textdomain(PACKAGE));
+  	tilp_info( "textdomain: <%s>", textdomain(PACKAGE));
 #endif /* ENABLE_NLS */
 
 	/* Check the version of libraries and init framework */

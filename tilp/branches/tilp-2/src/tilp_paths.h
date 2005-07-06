@@ -50,7 +50,6 @@ typedef struct
     gchar *help_dir;		// help files
     gchar *pixmap_dir;		// pixmaps
     gchar *icon_dir;		// icons
-    gchar *plugin_dir;		// plug-ins
     gchar *glade_dir;		// directory of files for Glade
     gchar *home_dir;		// $HOME
 } TilpInstPaths;

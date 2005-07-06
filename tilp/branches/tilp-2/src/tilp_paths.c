@@ -53,8 +53,6 @@ static void init_linux_paths(void)
 	    g_strconcat(inst_paths.base_dir, "help/", NULL);
 	inst_paths.manpage_dir = 
             g_strconcat(inst_paths.base_dir, "", NULL);
-	inst_paths.plugin_dir = 
-            g_strdup(PLUGIN_DIR);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade/", NULL);
 	inst_paths.home_dir =
@@ -99,8 +97,6 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "help\\", NULL);
 	inst_paths.manpage_dir =
 	    g_strconcat(inst_paths.base_dir, "", NULL);
-	inst_paths.plugin_dir =
-	    g_strconcat(inst_paths.base_dir, "plugins\\", NULL);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
 	inst_paths.home_dir = 

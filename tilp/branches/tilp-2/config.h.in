@@ -63,8 +63,8 @@
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
 
-/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
-#undef HAVE_DOPRNT
+/* Use -fvisibility=hidden flag */
+#undef HAVE_FVISIBILITY
 
 /* Define to 1 if you have the `fwprintf' function. */
 #undef HAVE_FWPRINTF
@@ -123,10 +123,6 @@
 
 /* Define if you have the 'long long' type. */
 #undef HAVE_LONG_LONG
-
-/* Define to 1 if your system has a GNU libc compatible `malloc' function, and
-   to 0 otherwise. */
-#undef HAVE_MALLOC
 
 /* Define to 1 if you have the <malloc.h> header file. */
 #undef HAVE_MALLOC_H
@@ -223,17 +219,14 @@
 /* Define to 1 if you have the <sys/types.h> header file. */
 #undef HAVE_SYS_TYPES_H
 
-/* Define to 1 if you have the <tilp/macros.h> header file. */
-#undef HAVE_TILP_MACROS_H
+/* Define to 1 if you have the <tilp2/ticables.h> header file. */
+#undef HAVE_TILP2_TICABLES_H
 
-/* Define to 1 if you have the <tilp/ticables.h> header file. */
-#undef HAVE_TILP_TICABLES_H
+/* Define to 1 if you have the <tilp2/ticalcs.h> header file. */
+#undef HAVE_TILP2_TICALCS_H
 
-/* Define to 1 if you have the <tilp/ticalcs.h> header file. */
-#undef HAVE_TILP_TICALCS_H
-
-/* Define to 1 if you have the <tilp/tifiles.h> header file. */
-#undef HAVE_TILP_TIFILES_H
+/* Define to 1 if you have the <tilp2/tifiles.h> header file. */
+#undef HAVE_TILP2_TIFILES_H
 
 /* Define to 1 if you have the `tsearch' function. */
 #undef HAVE_TSEARCH
@@ -246,9 +239,6 @@
 
 /* Define if you have the 'unsigned long long' type. */
 #undef HAVE_UNSIGNED_LONG_LONG
-
-/* Define to 1 if you have the `vprintf' function. */
-#undef HAVE_VPRINTF
 
 /* Define if you have the 'wchar_t' type. */
 #undef HAVE_WCHAR_T
@@ -340,9 +330,6 @@
 #ifndef __cplusplus
 #undef inline
 #endif
-
-/* Define to rpl_malloc if the replacement function should be used. */
-#undef malloc
 
 /* Define to `int' if <sys/types.h> does not define. */
 #undef mode_t

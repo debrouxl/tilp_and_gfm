@@ -21,10 +21,12 @@
 
 #include <gtk/gtk.h>
 
+#ifndef GLADE_CB
 #ifdef __WIN32__
 # define GLADE_CB __declspec(dllexport)
 #else
 # define GLADE_CB
+#endif
 #endif
 
 void create_pbar_type1(const gchar* title);
