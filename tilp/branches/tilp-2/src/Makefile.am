@@ -19,17 +19,16 @@ tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
 	@LTLIBINTL@ @LIBZ@
 tilp_SOURCES = *.h \
-	tilp_calcs.c tilp_error.c tilp_files.c tilp_indep.c tilp_main.c \
-	tilp_misc.c tilp_prompt.c tilp_rcfile.c tilp_refresh.c tilp_screen.c \
-	tilp_slct.c tilp_vars.c tilp_paths.c \
-	tilp_plugin.c tilp_printl.c main.c \
+	tilp_calcs.c tilp_cmdline.c tilp_config.c tilp_error.c \
+	tilp_files.c tilp_gif.c tilp_log.c tilp_main.c \
+	tilp_misc.c tilp_paths.c tilp_screen.c tilp_slct.c \
+	tilp_update.c tilp_vars.c tilp.c main.c \
 	\
-	support.c toolbar.c gtk_refresh.c \
-	\
-	tilp.c dboxes.c pbars.c clist.c ctree.c labels.c popup.c \
-	general.c extprgms.c comm.c clock.c filesel.c logfile.c manpage.c \
-	about.c release.c scroptions.c screenshot.c splash.c wizard.c \
-	shell.c action.c dnd.c
+	about.c action.c bookmark.c clist.c clist_rbm.c clock.c \
+	ctree.c ctree_rbm.c dboxes.c device.c dnd.c filesel.c \
+	gtk_gif.c gtk_update.c labels.c manpage.c options.c pbars.c \
+	release.c screenshot.c scroptions.c splash.c support.c \
+	toolbar.c
 
 dos2unix:
 	dos2unix

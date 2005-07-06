@@ -189,12 +189,9 @@ tilp_pixmap_dir = @tilp_pixmap_dir@
 tilp_plugin_dir = @tilp_plugin_dir@
 
 # subdirectories to scan
-SUBDIRS = \
-	build desktop glade help icons intl \
-	pixmaps po src registry plugins\
-$(am__append_1)
+SUBDIRS = build glade help icons intl pixmaps src #po $(am__append_1)
 
-dist_pkgdata_DATA = COPYING RELEASE ./registry/tilp.registry
+dist_pkgdata_DATA = COPYING RELEASE
 
 EXTRA_DIST = README.* TODO po/TRANSLATORS
 subdir = .
@@ -217,8 +214,7 @@ DIST_COMMON = README $(dist_pkgdata_DATA) $(srcdir)/Makefile.in \
 	config.h.in config.rpath config.sub configure configure.ac \
 	depcomp install-sh ltmain.sh missing mkinstalldirs tilp.lsm.in \
 	tilp.spec.in
-DIST_SUBDIRS = build desktop glade help icons intl pixmaps po src \
-	registry plugins man
+DIST_SUBDIRS = $(SUBDIRS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -431,7 +427,7 @@ distcleancheck_listfiles = find . -type f -print
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkinstalldirs) $(distdir)/. $(distdir)/./registry $(distdir)/intl $(distdir)/po
+	$(mkinstalldirs) $(distdir)/. $(distdir)/intl $(distdir)/po
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -458,7 +454,7 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-	list='$(DIST_SUBDIRS)'; for subdir in $$list; do \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
 	  if test "$$subdir" = .; then :; else \
 	    test -d $(distdir)/$$subdir \
 	    || mkdir $(distdir)/$$subdir \

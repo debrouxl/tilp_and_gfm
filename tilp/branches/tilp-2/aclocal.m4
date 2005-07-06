@@ -6813,7 +6813,7 @@ AC_DEFUN([AC_ISC_POSIX],
   ]
 )
 
-# gettext.m4 serial 34 (gettext-0.14.2)
+# gettext.m4 serial 37 (gettext-0.14.4)
 dnl Copyright (C) 1995-2005 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
@@ -6878,8 +6878,8 @@ AC_DEFUN([AM_GNU_GETTEXT],
   ifelse([$2], [], , [ifelse([$2], [need-ngettext], , [ifelse([$2], [need-formatstring-macros], ,
     [errprint([ERROR: invalid second argument to AM_GNU_GETTEXT
 ])])])])
-  define(gt_included_intl, ifelse([$1], [external], [no], [yes]))
-  define(gt_libtool_suffix_prefix, ifelse([$1], [use-libtool], [l], []))
+  define([gt_included_intl], ifelse([$1], [external], [no], [yes]))
+  define([gt_libtool_suffix_prefix], ifelse([$1], [use-libtool], [l], []))
 
   AC_REQUIRE([AM_PO_SUBDIRS])dnl
   ifelse(gt_included_intl, yes, [
@@ -6954,7 +6954,7 @@ changequote([,])dnl
 ], [])[extern int _nl_msg_cat_cntr;
 extern int *_nl_domain_bindings;],
             [bindtextdomain ("", "");
-return (int) gettext ("")]ifelse([$2], [need-ngettext], [ + (int) ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_domain_bindings],
+return * gettext ("")]ifelse([$2], [need-ngettext], [ + * ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_domain_bindings],
             gt_cv_func_gnugettext_libc=yes,
             gt_cv_func_gnugettext_libc=no)])
 
@@ -6990,7 +6990,7 @@ extern
 #endif
 const char *_nl_expand_alias (const char *);],
               [bindtextdomain ("", "");
-return (int) gettext ("")]ifelse([$2], [need-ngettext], [ + (int) ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_expand_alias ("")],
+return * gettext ("")]ifelse([$2], [need-ngettext], [ + * ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_expand_alias ("")],
               gt_cv_func_gnugettext_libintl=yes,
               gt_cv_func_gnugettext_libintl=no)
             dnl Now see whether libintl exists and depends on libiconv.
@@ -7011,7 +7011,7 @@ extern
 #endif
 const char *_nl_expand_alias (const char *);],
                 [bindtextdomain ("", "");
-return (int) gettext ("")]ifelse([$2], [need-ngettext], [ + (int) ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_expand_alias ("")],
+return * gettext ("")]ifelse([$2], [need-ngettext], [ + * ngettext ("", "", 0)], [])[ + _nl_msg_cat_cntr + *_nl_expand_alias ("")],
                [LIBINTL="$LIBINTL $LIBICONV"
                 LTLIBINTL="$LTLIBINTL $LTLIBICONV"
                 gt_cv_func_gnugettext_libintl=yes
@@ -7054,6 +7054,7 @@ return (int) gettext ("")]ifelse([$2], [need-ngettext], [ + (int) ngettext ("", 
         LIBS=`echo " $LIBS " | sed -e 's/ -lintl / /' -e 's/^ //' -e 's/ $//'`
       fi
 
+      CATOBJEXT=
       if test "$gt_use_preinstalled_gnugettext" = "yes" \
          || test "$nls_cv_use_gnu_gettext" = "yes"; then
         dnl Mark actions to use GNU gettext tools.
@@ -7145,6 +7146,7 @@ return (int) gettext ("")]ifelse([$2], [need-ngettext], [ + (int) ngettext ("", 
     AC_SUBST(GENCAT)
 
     dnl For backward compatibility. Some Makefiles may be using this.
+    INTLOBJS=
     if test "$USE_INCLUDED_LIBINTL" = yes; then
       INTLOBJS="\$(GETTOBJS)"
     fi
@@ -7361,7 +7363,7 @@ AC_DEFUN([gt_CHECK_DECL],
 dnl Usage: AM_GNU_GETTEXT_VERSION([gettext-version])
 AC_DEFUN([AM_GNU_GETTEXT_VERSION], [])
 
-# po.m4 serial 5 (gettext-0.14.2)
+# po.m4 serial 7 (gettext-0.14.3)
 dnl Copyright (C) 1995-2005 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
@@ -7469,6 +7471,9 @@ AC_DEFUN([AM_PO_SUBDIRS],
           /*) top_srcdir="$ac_given_srcdir" ;;
           *)  top_srcdir="$ac_dots$ac_given_srcdir" ;;
         esac
+        # Treat a directory as a PO directory if and only if it has a
+        # POTFILES.in file. This allows packages to have multiple PO
+        # directories under different names or in different locations.
         if test -f "$ac_given_srcdir/$ac_dir/POTFILES.in"; then
           rm -f "$ac_dir/POTFILES"
           test -n "$as_me" && echo "$as_me: creating $ac_dir/POTFILES" || echo "creating $ac_dir/POTFILES"
@@ -7482,7 +7487,7 @@ AC_DEFUN([AM_PO_SUBDIRS],
             if test -n "$OBSOLETE_ALL_LINGUAS"; then
               test -n "$as_me" && echo "$as_me: setting ALL_LINGUAS in configure.in is obsolete" || echo "setting ALL_LINGUAS in configure.in is obsolete"
             fi
-            ALL_LINGUAS_=`sed -e "/^#/d" "$ac_given_srcdir/$ac_dir/LINGUAS"`
+            ALL_LINGUAS_=`sed -e "/^#/d" -e "s/#.*//" "$ac_given_srcdir/$ac_dir/LINGUAS"`
             # Hide the ALL_LINGUAS assigment from automake.
             eval 'ALL_LINGUAS''=$ALL_LINGUAS_'
             POMAKEFILEDEPS="$POMAKEFILEDEPS LINGUAS"
@@ -7661,7 +7666,7 @@ changequote([,])dnl
   fi
   if test -f "$ac_given_srcdir/$ac_dir/LINGUAS"; then
     # The LINGUAS file contains the set of available languages.
-    ALL_LINGUAS_=`sed -e "/^#/d" "$ac_given_srcdir/$ac_dir/LINGUAS"`
+    ALL_LINGUAS_=`sed -e "/^#/d" -e "s/#.*//" "$ac_given_srcdir/$ac_dir/LINGUAS"`
     POMAKEFILEDEPS="$POMAKEFILEDEPS LINGUAS"
   else
     # Set ALL_LINGUAS to the value of the Makefile variable LINGUAS.
@@ -7788,8 +7793,8 @@ EOF
   mv "$ac_file.tmp" "$ac_file"
 ])
 
-# nls.m4 serial 1 (gettext-0.12)
-dnl Copyright (C) 1995-2003 Free Software Foundation, Inc.
+# nls.m4 serial 2 (gettext-0.14.3)
+dnl Copyright (C) 1995-2003, 2005 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
 dnl with or without modifications, as long as this notice is preserved.
@@ -7807,6 +7812,8 @@ dnl Authors:
 dnl   Ulrich Drepper <drepper@cygnus.com>, 1995-2000.
 dnl   Bruno Haible <haible@clisp.cons.org>, 2000-2003.
 
+AC_PREREQ(2.50)
+
 AC_DEFUN([AM_NLS],
 [
   AC_MSG_CHECKING([whether NLS is requested])
@@ -7820,6 +7827,8 @@ AC_DEFUN([AM_NLS],
 
 AC_DEFUN([AM_MKINSTALLDIRS],
 [
+  dnl Tell automake >= 1.10 to complain if mkinstalldirs is missing.
+  m4_ifdef([AC_REQUIRE_AUX_FILE], [AC_REQUIRE_AUX_FILE([mkinstalldirs])])
   dnl If the AC_CONFIG_AUX_DIR macro for autoconf is used we possibly
   dnl find the mkinstalldirs script in another subdir but $(top_srcdir).
   dnl Try to locate it.
@@ -8083,13 +8092,15 @@ AC_DEFUN([AC_LIB_WITH_FINAL_PREFIX],
   prefix="$acl_save_prefix"
 ])
 
-# lib-link.m4 serial 5 (gettext-0.14.2)
+# lib-link.m4 serial 6 (gettext-0.14.3)
 dnl Copyright (C) 2001-2005 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
 dnl with or without modifications, as long as this notice is preserved.
 
 dnl From Bruno Haible.
+
+AC_PREREQ(2.50)
 
 dnl AC_LIB_LINKFLAGS(name [, dependencies]) searches for libname and
 dnl the libraries corresponding to explicit and implicit dependencies.
@@ -8178,6 +8189,8 @@ dnl libext, shlibext, hardcode_libdir_flag_spec, hardcode_libdir_separator,
 dnl hardcode_direct, hardcode_minus_L.
 AC_DEFUN([AC_LIB_RPATH],
 [
+  dnl Tell automake >= 1.10 to complain if config.rpath is missing.
+  m4_ifdef([AC_REQUIRE_AUX_FILE], [AC_REQUIRE_AUX_FILE([config.rpath])])
   AC_REQUIRE([AC_PROG_CC])                dnl we use $CC, $GCC, $LDFLAGS
   AC_REQUIRE([AC_LIB_PROG_LD])            dnl we use $LD, $with_gnu_ld
   AC_REQUIRE([AC_CANONICAL_HOST])         dnl we use $host
@@ -9465,7 +9478,7 @@ AC_DEFUN([gt_LC_MESSAGES],
 dnl PKG_CHECK_MODULES(GSTUFF, gtk+-2.0 >= 1.3 glib = 1.3.4, action-if, action-not)
 dnl defines GSTUFF_LIBS, GSTUFF_CFLAGS, see pkg-config man page
 dnl also defines GSTUFF_PKG_ERRORS on error
-AC_DEFUN(PKG_CHECK_MODULES, [
+AC_DEFUN([PKG_CHECK_MODULES], [
   succeeded=no
 
   if test -z "$PKG_CONFIG"; then

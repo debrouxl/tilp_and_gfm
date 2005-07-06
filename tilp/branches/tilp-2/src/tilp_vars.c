@@ -57,7 +57,7 @@ int tilp_dirlist_remote(void)
 	remote.memory.mem_vars = ticalcs_dirlist_mem_used(remote.var_tree);
 	remote.memory.mem_apps = ticalcs_dirlist_mem_used(remote.app_tree);
 
-	err = ticalcs_calc_get_memfree(calc_handle, &(remote.memory.mem_free));
+	err = ticalcs_calc_get_memfree(calc_handle, (uint32_t *)&(remote.memory.mem_free));
 	if(err)
 		remote.memory.mem_free = -1;
 
@@ -68,11 +68,9 @@ int tilp_dirlist_remote(void)
 }
 
 /* Sorting functions */
-
+/*
 static gint sort_by_name(gconstpointer a, gconstpointer b)
 {
-
-	/*
 	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
 	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
 
@@ -86,10 +84,10 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 	   }
 	   else
 	   return -1;
-	 */
+
 	return 0;
 }
-
+*/
 void tilp_vars_sort_by_name(void)
 {
 	//g_list_sort(remote., sort_by_name);

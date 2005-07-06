@@ -107,7 +107,7 @@ int tilp_tifiles_group(void)
 	gchar *grpname;
 	gchar *dst_file;
 	int i;
-	FileEntry *f;
+	FileEntry *f = NULL;
 
 	if (!tilp_clist_selection_ready())
 		return -1;

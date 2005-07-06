@@ -21,8 +21,12 @@
 #  include <config.h>
 #endif
 
+#ifdef __WIN32__
 #include <windows.h>
+#endif
 #include <gtk/gtk.h>
+
+#include "dboxes.h"
 
 int go_to_bookmark(const char *link)
 {
@@ -77,7 +81,7 @@ int go_to_bookmark(const char *link)
 
 	if (i == n) 
 	{
-		msg_box("Error", "Spawn error: do you have Mozilla installed ?");
+		msg_box1("Error", "Spawn error: do you have Mozilla installed ?");
 		return -1;
 	} 
 #endif

@@ -122,8 +122,9 @@ GtkWidget *create_clist_rbm(void)
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
 
 	menu = glade_xml_get_widget(xml, "clist_rbm");
+#ifdef __WIN32__
 	set_drives(menu, menu);
-
+#endif
 	return menu;
 }
 

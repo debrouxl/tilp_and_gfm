@@ -246,7 +246,7 @@ int tilp_file_chdir(const char *path)
 		return -1;
 	}
 	seteuid(effective);
-	curr_dir = g_get_cwdir();
+	curr_dir = g_get_current_dir();
 
 #ifndef ALLOW_EXIT_HOMEDIR
 	home_dir = g_get_home_dir();
@@ -270,8 +270,7 @@ int tilp_file_chdir(const char *path)
 			} 
 			else 
 			{
-				DISPLAY_ERROR
-				    ("You can not go outside of your HOME directory.");
+				tilp_warning(_("You can not go outside of your HOME directory."));
 			}
 
 			return -1;
@@ -587,7 +586,7 @@ void tilp_file_sort_by_name(void)
 
 static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
-	FileEntry* fi_a = (FileEntry *)a;
+//FileEntry* fi_a = (FileEntry *)a;
 	FileEntry* fi_b = (FileEntry *)b;
 	
 	return ((fi_b->attrib & S_IFMT) == S_IFDIR);

@@ -25,6 +25,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -123,6 +124,8 @@ int tilp_calc_send_backup(const char *filename)
 	case CALC_V200:
 		gif->create_pbar_type5(_("Backup"), "");
 		break;
+	default:
+	    return 0;
 		break;
 	}
 
@@ -169,6 +172,8 @@ int tilp_calc_recv_backup(void)
 	case CALC_TI92:
 		gif->create_pbar_type2(_("Backup"), _("Receiving blocks"));
 		break;
+	default:
+	    return 0;
 	}
 
 	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
@@ -206,7 +211,7 @@ int tilp_calc_idlist(int to_file)
 	if(tilp_calc_isready())
 		return -1;
 
-	err = ticalcs_calc_recv_idlist(calc_handle, idlist);
+	err = ticalcs_calc_recv_idlist(calc_handle, (char *)idlist);
 	if(err)
 	{
 		tilp_err(err);
@@ -749,6 +754,8 @@ int tilp_calc_recv_var(void)
 	case CALC_TI85:
 		return tilp_calc_recv_var2();
 		break;
+		    default:
+			return 0;
 	}
 
 	return 0;

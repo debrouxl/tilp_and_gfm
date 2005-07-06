@@ -24,6 +24,10 @@
 	Screen shot management
 */
 
+#ifndef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -31,6 +35,7 @@
 #ifdef HAVE_LIBZ
 # include <zlib.h>
 #endif
+#define Z_OK 0
 
 #include "tilp_core.h"
 

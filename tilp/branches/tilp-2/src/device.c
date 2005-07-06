@@ -23,7 +23,9 @@
 #  include <config.h>
 #endif
 
+#undef GTK_DISABLE_DEPRECATED
 #include <gtk/gtk.h>
+#define GTK_DISABLE_DEPRECATED
 #include <glade/glade.h>
 #include <string.h>
 
@@ -138,11 +140,11 @@ gint display_device_dbox()
 	case CALC_TI82:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
-
+/*
 	case CALC_TI82S:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
-
+  */
 	case CALC_TI83:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
@@ -323,7 +325,7 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
 	case 0: tmp.calc_model = CALC_NONE;	 break;
 	case 1: tmp.calc_model = CALC_TI73;	 break;
 	case 2:	tmp.calc_model = CALC_TI82;  break;
-	case 3:	tmp.calc_model = CALC_TI82S; break;
+	case 3:	tmp.calc_model = CALC_TI83; break;
 	case 4: tmp.calc_model = CALC_TI83;  break;
 	case 5: tmp.calc_model = CALC_TI83P; break;
 	case 6: tmp.calc_model = CALC_TI84P; break;
@@ -369,7 +371,9 @@ comm_spinbutton_timeout_changed        (GtkEditable     *editable,
     		gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
-static int cable_model, cable_port, calc_model;
+static CableModel cable_model;
+static CalcModel calc_model;
+static CablePort cable_port;
 
 GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,

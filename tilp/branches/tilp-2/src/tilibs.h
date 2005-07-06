@@ -41,13 +41,11 @@
 
 #if !defined(__MACOSX__) && !defined(__WIN32__)
 # include <tilp2/tifiles.h>
-# include <tilp2/macros.h>
 #elif defined(__MACOSX__)
 # include <libtifiles2/tifiles.h>
 # include <libtifiles2/macros.h>
 #else
 # include "tifiles.h"
-# include "macros.h"
 #endif
 
 #if !defined(__MACOSX__) && !defined(__WIN32__)
