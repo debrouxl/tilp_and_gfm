@@ -281,15 +281,6 @@ rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 } 
 
 GLADE_CB void
-rbm_send_vars_to_flash1_activate(GtkMenuItem* menuitem, gpointer user_data)
-{
-	if (tifiles_is_flash(options.calc_model))
-		on_tilp_button9b_clicked(NULL, "FLASH");
-	else 
-		msg_box1("Information", "Only available with TI83+ calculators...");
-}
-
-GLADE_CB void
 rbm_show_all_files1_activate            (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {

@@ -136,16 +136,29 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 		gtk_tree_model_get(model, &iter, COLUMN_NAME, &name, -1);
 
-		if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
+		if(!strcmp(name, NODE4))
 		{
+			// send to flash
+			on_tilp_button9b_clicked(NULL, "FLASH");
+			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			return;
+		}
+
+		else if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
+		{
+			// send to folder
 			on_tilp_button9b_clicked(NULL, ve->name);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
 
-		on_tilp_button9b_clicked(NULL, "");
-		gtk_drag_finish(drag_context, TRUE, FALSE, time);
-		return;
+		else
+		{
+			// send standard
+			on_tilp_button9b_clicked(NULL, "");
+			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			return;
+		}
 	}
 
 	gtk_drag_finish(drag_context, FALSE, FALSE, time);

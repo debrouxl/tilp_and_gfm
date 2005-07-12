@@ -132,7 +132,7 @@ static const char* action2string(int action)
 	return "";
 }
 
-gint display_action_dbox(gchar * dest)
+gint display_action_dbox(gchar *target)
 {
 	GladeXML *xml;
 	GtkWidget *dbox;
@@ -172,6 +172,19 @@ gint display_action_dbox(gchar * dest)
 			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 			char *trans;
 			char full_name[19];
+
+			// modify attr or folder if target is specified
+			if(strcmp(target, ""))
+			{
+				if(!strcmp(target, "FLASH"))
+				{
+					v->attr = ATTRB_ARCHIVED;
+				}
+				else
+				{
+					strcpy(v->folder, target);
+				}
+			}
 
 			// search for matching var
 			trans = tifiles_transcode_varname_static(c->model, v->name, v->type);

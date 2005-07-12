@@ -421,18 +421,18 @@ void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
 
 // Used for sending vars
 // Note: user_data is a string:
-// - such as "FLASH" for sending var into FLASH (ti83+/89/92+/v200)
+// - such as "FLASH" for sending var into FLASH (ti83+/84+/89/92+/v200)
 // - such as "" for sending var in the default folder
 // - such as "foo" for sending var in the 'foo' folder
 // - unused for sending FLASH files
 void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 {
-	gchar *dst_folder;
+	gchar *target;
 	FileEntry *f;
 
 	// note: dst_folder must be a copy b/c the user_data
 	// pointer is no longer valid after dirlist_remote
-	dst_folder = g_strdup((gchar *) user_data);
+	target = g_strdup((gchar *) user_data);
 
 	if (local.selection == NULL)
 		return;
@@ -459,15 +459,15 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	{
 		tilp_slct_load_contents();			
 
-		if (options.overwrite == CONFIRM_YES) 
+		if (options.overwrite == CONFIRM_YES || strcmp(target, "")) 
 		{
 			if (ticalcs_calc_features(calc_handle) & FTS_SILENT) 
 				if (tilp_dirlist_remote())
 					return;
 
-			if (display_action_dbox(dst_folder) == BUTTON2) 
+			if (display_action_dbox(target) == BUTTON2) 
 			{
-				g_free(dst_folder);
+				g_free(target);
 				return;
 			}
 		}
@@ -478,7 +478,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 		tilp_slct_unload_contents();
 	}
 
-	g_free(dst_folder);
+	g_free(target);
 }
 
 
