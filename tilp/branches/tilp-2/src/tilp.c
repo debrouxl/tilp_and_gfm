@@ -380,8 +380,6 @@ void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
 {
 	int ret;
 
-	printf("hello !\n ");
-
 	if ((remote.selection != NULL) || (remote.selection2 != NULL)) 
 	{
 		if (remote.selection != NULL) 

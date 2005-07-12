@@ -108,19 +108,13 @@ void tilp_delete_selected_files()
 	if (local.selection == NULL)
 		return;
 
-	if (g_list_length(local.selection) == 1) 
+	if(options.overwrite) 
 	{
 		ret = gif->msg_box2(_("Warning"), _
-				    ("Are you sure you want to remove this file ?\n\n"));
-	} 
-	else 
-	{
-		ret = gif->msg_box2(_("Warning"), _
-				    ("Are you sure you want to remove these files ?\n\n"));
-	}
-
-	if (ret == BUTTON2)
+				    ("Are you sure you want to remove these file(s) ?\n\n"));
+		if (ret == BUTTON2)
 		return;
+	}	
 
 	while (ptr != NULL) 
 	{

@@ -72,29 +72,20 @@ int tilp_dirlist_remote(void)
 }
 
 /* Sorting functions */
-/*
-static gint sort_by_name(gconstpointer a, gconstpointer b)
+static gint sort_by_name(GNode* node, gpointer data)
 {
-	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
+	VarEntry* ve = node->data;
 
-	   if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
-	   (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
-	   {
-	   if(options.ctree_sort_order == SORT_UP)
-	   return strcmp(fi_b->translate, fi_a->translate);
-	   else
-	   return strcmp(fi_a->translate, fi_b->translate);
-	   }
-	   else
-	   return -1;
+	printf("<%s>\n", ve->name);
 
 	return 0;
 }
-*/
+
 void tilp_vars_sort_by_name(void)
 {
-	//g_list_sort(remote., sort_by_name);
+	if(ticalcs_calc_features(calc_handle) & FTS_FOLDER)
+		return;
+	//g_node_children_foreach((GNode *)remote.var_tree, G_TRAVERSE_ALL, sort_by_name, NULL);
 }
 
 /* Sort variables by attribute */
@@ -102,8 +93,8 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 {
 
 	/*
-	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
+	   VarEntry *fi_a = (VarEntry *)a;
+	   VarEntry *fi_b = (VarEntry *)b;
 
 	   if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) && 
 	   (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
@@ -128,8 +119,8 @@ void tilp_vars_sort_by_info(void)
 static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
 	/*
-	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
+	   VarEntry *fi_a = (VarEntry *)a;
+	   VarEntry *fi_b = (VarEntry *)b;
 
 	   if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
 	   (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )
@@ -155,8 +146,8 @@ void tilp_vars_sort_by_type(void)
 static gint sort_by_size(gconstpointer a, gconstpointer b)
 {
 	/*
-	   TicalcVarInfo *fi_a = (TicalcVarInfo *)a;
-	   TicalcVarInfo *fi_b = (TicalcVarInfo *)b;
+	   VarEntry *fi_a = (VarEntry *)a;
+	   VarEntry *fi_b = (VarEntry *)b;
 
 	   if( !strcmp((fi_a->folder)->translate, (fi_b->folder)->translate) &&
 	   (fi_a->is_folder != FOLDER) && (fi_b->is_folder != FOLDER) )

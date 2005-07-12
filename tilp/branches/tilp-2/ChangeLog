@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 To do:
 	Transfers resumable.
-	DnD of "Variables" transfer a group of all vars !
+	Send directly to selected folder/archive
 
 - 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
 	Use new TiLP-II framework (libti*2)
