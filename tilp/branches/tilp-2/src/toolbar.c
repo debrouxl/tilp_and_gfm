@@ -19,9 +19,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#undef GTK_DISABLE_DEPRECATED
+//#undef GTK_DISABLE_DEPRECATED
 #include <gtk/gtk.h>
-#define GTK_DISABLE_DEPRECATED
+//#define GTK_DISABLE_DEPRECATED
 
 #include "tilp_core.h"
 
@@ -118,9 +118,9 @@ void toolbar_refresh_buttons(void)
 // 2: receive
 void toolbar_set_button(int sr)
 {
-//GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
-	    //GtkToolItem *item = gtk_toolbar_get_nth_item(tb, 5);
-	    //GtkToolButton *btn = GTK_TOOL_BUTTON(item);
+	GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
+	GtkToolItem *item = gtk_toolbar_get_nth_item(tb, 5);
+	GtkToolButton *btn = GTK_TOOL_BUTTON(item);
 	GtkWidget *icon;
 
 	icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.xpm");

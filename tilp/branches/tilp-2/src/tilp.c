@@ -363,7 +363,18 @@ GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
 		if(!remote.selection)
 		{
 			// Ask for a file if no selection
-			printf("Open file !\n");
+			const char *filename;
+			char *ext;
+
+			ext = g_strconcat("*.", "*", NULL);
+			filename = create_fsel(local.cwdir, NULL, ext, FALSE);
+			g_free(ext);
+
+			if(filename)
+			{
+				tilp_add_file_to_selection(filename);
+				tilp_calc_send_var();
+			}
 		}
 		else
 		{

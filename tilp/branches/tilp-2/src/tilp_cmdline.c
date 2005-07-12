@@ -158,11 +158,11 @@ int tilp_cmdline_send(void)
 		{
 			if (!g_strcasecmp(ext, tifiles_fext_of_flash_app(options.calc_model)))
 			{
-				//tilp_calc_send_flash_app(fe->name);
+				tilp_calc_send_flash_app(fe->name);
 			}
 			else if (!g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model)))
 			{
-				//tilp_calc_send_flash_os(fe->name);
+				tilp_calc_send_flash_os(fe->name);
 			}
 		} 
 		else if (tifiles_file_is_regular(fe->name)) 

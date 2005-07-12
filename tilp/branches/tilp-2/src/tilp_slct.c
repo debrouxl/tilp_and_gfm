@@ -73,6 +73,12 @@ void tilp_clist_selection_display(void)
 }
 #endif /* !__MACOSX__ */
 
+/* Add a file to the file_selection (if it does not exist in the list) */
+void tilp_add_file_to_selection(const char *filename)
+{
+	local.selection = g_list_append(local.selection, (gpointer) filename);
+}
+
 /* Destroy the selection of the clist window */
 void tilp_clist_file_selection_destroy(void)
 {

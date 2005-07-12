@@ -24,8 +24,8 @@
 
 void tilp_clist_selection_destroy(void);
 void tilp_ctree_selection_destroy(void);
-void tilp_clist_file_selection_destroy(void);
 
+void tilp_clist_file_selection_destroy(void);
 void tilp_add_file_to_file_selection(const char *filename);
 
 void tilp_delete_selected_files(void);
@@ -39,5 +39,7 @@ void tilp_clist_selection_display(void);
 
 void tilp_slct_load_contents(void);
 void tilp_slct_unload_contents(void);
+
+void tilp_add_file_to_selection(const char *filename);
 
 #endif
