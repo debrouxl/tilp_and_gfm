@@ -77,6 +77,10 @@ int tilp_err(int errcode)
 					}
 				}
 			}
+
+			// reset
+			ticables_cable_reset(cable_handle);
+
             // FIXME OS X : we'll need to go full-UTF8 at some point
 #ifndef __MACOSX__
 			utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
