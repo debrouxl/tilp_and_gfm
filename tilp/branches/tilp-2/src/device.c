@@ -389,11 +389,13 @@ comm_button_search_clicked                (GtkButton       *button,
 	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
 	GTK_REFRESH();
 	ticables_probing_do(&cables, 5);
+	for(i = 1; i <= 5/*7*/; i++)
+		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
 
 	cable_model = cable_port = calc_model = 0;
-	for(i = CABLE_GRY; i <= CABLE_USB; i++)
+	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
 		for(j = PORT_1; j <= PORT_4; j++)
-			if(cables[i][j])
+			if(cables[i][j] && ((i >= CABLE_VTI) && (j == PORT_2)))
 			{
 				cable_model = i;
 				cable_port = j;

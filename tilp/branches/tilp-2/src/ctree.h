@@ -38,7 +38,7 @@ enum {
 #define NODE4 _("Applications")
 #define NODE5 _("ID-LIST")
 #define NODE6 _("Clock")
-#define NODEx _("Any Folder")
+#define NODEx _("A Folder")
 
 void ctree_init(void);
 void ctree_refresh(void);
