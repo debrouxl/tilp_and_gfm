@@ -136,6 +136,8 @@ int tilp_init(int *argc, char ***argv)
 			tilp_err(err);
 		}
 
+		ticables_cable_reset(cable_handle);
+
 		// Initialize callbacks with default functions
 		tilp_update_set_default();
 	}
