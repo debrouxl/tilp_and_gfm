@@ -140,49 +140,45 @@ gint display_device_dbox()
 	case CALC_TI82:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
 	  break;
-/*
-	case CALC_TI82S:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
-	  break;
-  */
+
 	case CALC_TI83:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
 	  break;
 	  
 	case CALC_TI83P:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
 	  break;
 
 	case CALC_TI84P:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	  
 	case CALC_TI85:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
 	  break;
 	  
 	case CALC_TI86:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
 	  break;
 	  
 	case CALC_TI89:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 9);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
 	  break;
 
 	case CALC_TI89T:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 10);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 9);
 	  break;
 	  
 	case CALC_TI92:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 11);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 10);
 	  break;
 	  
 	case CALC_TI92P:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 12);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 11);
 	  break;
 	  
 	case CALC_V200:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 13);
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 12);
 	  break;
 	}
 
@@ -325,17 +321,16 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
 	case 0: tmp.calc_model = CALC_NONE;	 break;
 	case 1: tmp.calc_model = CALC_TI73;	 break;
 	case 2:	tmp.calc_model = CALC_TI82;  break;
-	case 3:	tmp.calc_model = CALC_TI83; break;
-	case 4: tmp.calc_model = CALC_TI83;  break;
-	case 5: tmp.calc_model = CALC_TI83P; break;
-	case 6: tmp.calc_model = CALC_TI84P; break;
-	case 7: tmp.calc_model = CALC_TI85;  break;
-	case 8: tmp.calc_model = CALC_TI86;  break;
-	case 9: tmp.calc_model = CALC_TI89;  break;
-	case 10:tmp.calc_model = CALC_TI89T; break;
-	case 11:tmp.calc_model = CALC_TI92;  break;
-	case 12:tmp.calc_model = CALC_TI92P; break;
-	case 13:tmp.calc_model = CALC_V200;  break;
+	case 3: tmp.calc_model = CALC_TI83;  break;
+	case 4: tmp.calc_model = CALC_TI83P; break;
+	case 5: tmp.calc_model = CALC_TI84P; break;
+	case 6: tmp.calc_model = CALC_TI85;  break;
+	case 7: tmp.calc_model = CALC_TI86;  break;
+	case 8: tmp.calc_model = CALC_TI89;  break;
+	case 9:tmp.calc_model = CALC_TI89T; break;
+	case 10:tmp.calc_model = CALC_TI92;  break;
+	case 11:tmp.calc_model = CALC_TI92P; break;
+	case 12:tmp.calc_model = CALC_V200;  break;
   	}	
 }
 
@@ -395,7 +390,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	cable_model = cable_port = calc_model = 0;
 	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
 		for(j = PORT_1; j <= PORT_4; j++)
-			if(cables[i][j] && ((i >= CABLE_VTI) && (j == PORT_2)))
+			if(cables[i][j])	// && ((i >= CABLE_VTI) && (j == PORT_2)))
 			{
 				cable_model = i;
 				cable_port = j;
