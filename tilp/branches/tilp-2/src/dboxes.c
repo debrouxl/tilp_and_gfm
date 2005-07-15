@@ -65,8 +65,7 @@ int msg_box1(const gchar * title, gchar * message)
 		gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 						GTK_RESPONSE_OK);
 		label = gtk_label_new(message);
-		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox),
-				  label);
+		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
 		gtk_widget_show(label);
 
 		result = gtk_dialog_run(GTK_DIALOG(dialog));
@@ -100,8 +99,7 @@ gint msg_box2(const char *title, char *message)
 	else
 		msg_type = GTK_MESSAGE_INFO;
 
-	dialog =
-	    gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
+	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
 				   GTK_BUTTONS_OK_CANCEL, message);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);

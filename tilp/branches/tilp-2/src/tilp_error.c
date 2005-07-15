@@ -79,7 +79,7 @@ int tilp_err(int errcode)
 			}
 
 			// reset
-			ticables_cable_reset(cable_handle);
+			//ticables_cable_reset(cable_handle);
 
             // FIXME OS X : we'll need to go full-UTF8 at some point
 #ifndef __MACOSX__
