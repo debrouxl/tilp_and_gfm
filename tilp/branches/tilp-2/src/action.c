@@ -167,7 +167,7 @@ gint display_action_dbox(gchar *target)
 		// parse each VarEntry in FileEntry
 		for (i = 0; i < c->num_entries; i++) 
 		{
-			VarEntry *v = &(c->entries[i]);
+			VarEntry *v = c->entries[i];
 			VarEntry *w;
 			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 			char *trans;

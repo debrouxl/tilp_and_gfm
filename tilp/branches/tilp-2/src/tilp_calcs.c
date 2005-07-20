@@ -362,8 +362,10 @@ int tilp_calc_send_flash_os(char *filename)
 	if(ret == BUTTON2)
 		return -1;
 
+	/*
 	if(tilp_calc_isready())
 		return -1;
+	*/
 
 	old_timeout = calc_handle->cable->timeout;
 	if(calc_handle->model == CALC_TI83P || calc_handle->model == CALC_TI84P)
@@ -641,7 +643,7 @@ static int tilp_calc_recv_var1(void)
 			tifiles_group_contents(array, &content);
 			strcpy(content->comment, tifiles_comment_set_group());
 			tifiles_file_write_regular(tmp_filename, content, NULL);
-			tifiles_content_free_regular(content);
+			tifiles_content_delete_regular(content);
 
 			g_free(tmp_filename);
 			ret = 1;
@@ -677,7 +679,7 @@ static int tilp_calc_recv_var1(void)
 		}
 
 		gif->destroy_pbar();
-		tifiles_content_free_group(array);
+		tifiles_content_delete_group(array);
 	}
 
 	return ret;
