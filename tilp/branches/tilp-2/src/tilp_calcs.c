@@ -512,7 +512,6 @@ int tilp_calc_send_var(void)
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
-			//err = ticalcs_calc_send_var2(calc_handle, mode, f->name);
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content);
 			if(err) 
 			{
@@ -525,7 +524,6 @@ int tilp_calc_send_var(void)
 		else 
 		{
 			// It is the first or the last one
-			//err = ticalcs_calc_send_var2(calc_handle, mode | MODE_SEND_LAST_VAR, f->name);
 			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content);
 			{
 				tilp_err(err);
@@ -687,52 +685,52 @@ static int tilp_calc_recv_var1(void)
 
 static int tilp_calc_recv_var2(void)
 {
-	/*
-	case CALC_TI82:
-	case CALC_TI85:
-		{
+	gchar *tmp_filename;
+	gchar *dst_filename;
+	VarEntry* ve;
+	char *varname;
+	int err;
 
-			//
-			// Receive one variable (filename is returned by recv_var) or 
-			// several variables packed into a group (used the passed arg as
-			// filename)
-			//
-			char *old_path = g_get_current_dir();
-			char *src_path = NULL;
-			char *dst_path = NULL;
-			char *str;
-			char tmp_filename[MAXCHARS];
-			int err;
-			strcpy(tmp_filename, TMPFILE_GROUP);
-			gif->create_pbar_type4(_("Receiving variable(s)"),
-					       _("Waiting..."));
-			chdir(g_get_tmp_dir());
-			err =
-			    ti_calc.recv_var(tmp_filename, MODE_NORMAL,
-					     NULL);
-			chdir(old_path);
-			gif->destroy_pbar();
-			if(tilp_error(err))
-				return -1;
+	//
+	// Receive one variable or several variables packed into a group.
+	//
+	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
 
-			// Detect for single/group file
-			if(!strcmp(tmp_filename, TMPFILE_GROUP))
-				return +1;
+	gif->create_pbar_type4(_("Receiving variable(s)"), _("Waiting..."));
+	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
+	gif->destroy_pbar();
 
-			// Check for existence and move
-			src_path =
-			    g_strconcat(g_get_tmp_dir(),
-					G_DIR_SEPARATOR_S, tmp_filename,
-					NULL);
-			str = dst_path =
-			    g_strconcat(g_get_current_dir(),
-					G_DIR_SEPARATOR_S, tmp_filename,
-					NULL);
-			tilp_file_move_with_check(src_path, dst_path);
-		}
-		break;
+	if(err)
+	{
+		tilp_err(err);
+		return -1;
 	}
-*/
+
+	// Check for single/group
+	if(ve)
+	{
+		//single
+		varname = tifiles_transcode_varname_static(calc_handle->model, ve->name, ve->type);
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, varname, 
+			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
+		tilp_file_move_with_check(tmp_filename, dst_filename);
+
+		tifiles_ve_delete(ve);
+		g_free(tmp_filename);
+		g_free(dst_filename);
+
+		return 0;
+	}
+	else
+	{
+		if(!options.recv_as_group)
+		{
+			// to do... (ungrouping)
+		}
+
+		return 1;
+	}
+
 	return 0;
 }
 
