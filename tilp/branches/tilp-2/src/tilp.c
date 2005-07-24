@@ -230,7 +230,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 	if (tilp_calc_rom_dump())
 		return;
-
+#if 1
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
 
 	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
@@ -251,6 +251,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
+#endif
 }
 
 GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
