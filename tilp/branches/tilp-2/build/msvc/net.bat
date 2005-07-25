@@ -9,11 +9,11 @@ del *.idb
 del *.obj
 del *.pch
 del *.exe
-del *.*~
-del *.dep
-del *.bak
 deltree /y output
 deltree /y debug
 deltree /y release
-deltree /y test
+rmdir /s /q output
+rmdir /s /q debug
+rmdir /s /q release
+
 cls

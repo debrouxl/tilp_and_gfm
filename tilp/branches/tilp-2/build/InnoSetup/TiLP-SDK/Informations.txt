@@ -1,16 +1,17 @@
 This is a preliminary SDK...
 
 
-This SDK contains some parts of the TiLP project and is intended to Windows developers.
+This SDK contains all the stuffs needed to use the TiLP framework
+(the libti*2). It's intended for Windows developers.
 
-Included: source code, documentation and libraries of
-- ticables
-- ticalcs
-- tifiles
+Included: source code, documentation, libraries and test programs of
+- ticables2
+- ticalcs2
+- tifiles2
 
-You will need a Windows compiler (MSVC 5.0 mini or C++ Builder).
-MinGW is not supported yet.
-
+You will need a Windows compiler (MSVC 6.0 mini or MinGW) and the glib provided
+with the GTK+ 2.6.x development package:
+<http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.7-rc1.exe?download>.
 
 ----------------------------------------------------------------------
 Please report any bugs, questions, ... to <tilp-devel@lists.sf.net>  
