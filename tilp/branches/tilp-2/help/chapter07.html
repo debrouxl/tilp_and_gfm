@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR" content="Mozilla 1.1 under Linux">
+  <title>TiLP User's Manual</title>
+  <meta name="author" content="The TiLP team">
+  <meta name="description" content="User's Manual">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<div align="center">
+<div style="text-align: left;">
+<div class="NAVFOOTER">
+<hr align="left" width="100%">
+<table summary="Footer navigation table" border="0" cellpadding="0"
+ cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td align="left" valign="top" width="33%"><a href="chapter06.html"
+ accesskey="P">Prev</a></td>
+      <td align="center" valign="top" width="34%"><a
+ href="Manual_en.html" accesskey="H">Home</a></td>
+      <td align="right" valign="top" width="33%"><a
+ href="chapter20.html" accesskey="N">Next</a></td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" width="33%">Screenshots<br>
+      </td>
+      <td align="center" valign="top" width="34%">&nbsp;</td>
+      <td align="right" valign="top" width="33%">Problems &amp; Bugs<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr align="left" width="100%">
+</div>
+</div>
+</div>
+<h1>7. Command line</h1>
+<p><font color="#000000">TiLP can accept some arguments on the command
+line for specific purposes. The text below is an excerpt of the Linux
+'manpage' but it is appplicable to Windows, too. <br>
+Under Linux, manpage is accessible by typeing 'man TiLP' in the shell.<br>
+Windows users will open the <span style="font-style: italic;">ManPage.txt</span>
+file in <span style="font-style: italic;">C:\Program Files\TiLP</span>
+folder.<br>
+</font></p>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><font size="-1"><span
+ style="font-family: courier;">TILP(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TILP(1)<br>
+      <br>
+      <br>
+      <br>
+NAME<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TiLP - a communication program for
+TI calculators ('Ti Linking Program'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or 'Tilp is a Linking Program')<br>
+      <br>
+SYNOPSYS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilp&nbsp; [--help]&nbsp;
+[--version]&nbsp; [-h]&nbsp; [-v]&nbsp; [-calc=]&nbsp; [-link=]&nbsp;
+[-port=&nbsp; ]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [-adr_port=]&nbsp;
+[-dev_port=]&nbsp; [-timeout=]&nbsp; [-delay=]&nbsp; [-cmdline]&nbsp;
+[-gui=]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [filename]<br>
+      <br>
+DESCRIPTION<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The TiLP program allows you to
+backup, restore and archive variables of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; your&nbsp; Texas&nbsp;
+Intruments&nbsp; calculator on your computer. It has also addi-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tional features such as screen
+dump, remote control, ROM&nbsp; dump,&nbsp; FLASH-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ing.&nbsp; TiLP is a very complete
+program. Moreover, you have the same pro-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gram for all calculator types.<br>
+      <br>
+OPTIONS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The command line of tilp can
+be&nbsp; used&nbsp; for&nbsp; sending&nbsp; or&nbsp; opening&nbsp; files<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (variables, backup, FLASH apps,
+OS, ...). For sending one or more file,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simply pass the filename(s)
+on&nbsp; the&nbsp; command&nbsp; line&nbsp; with&nbsp; the&nbsp;
+-cmdline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; option.&nbsp; If&nbsp; you&nbsp;
+don't&nbsp; use the -cmdline option, the file will be open<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; within the GUI by the Group File
+Manager.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It is possible to send one or more
+files (single/group&nbsp; file&nbsp; only)&nbsp; or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; one&nbsp; file&nbsp; which can be
+a single/group var as well as a backup, a FLASH<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; app or an Operating System even.
+You can not do any&nbsp; other&nbsp; operations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If&nbsp; you&nbsp; want&nbsp;
+more&nbsp; operations,&nbsp; you&nbsp; can&nbsp; use&nbsp; the&nbsp;
+interactive&nbsp; mode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (-gui=console).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: options must be passed
+before the filename !<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilp accepts the following options:<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -h, --help<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Display a list of all command line options.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -v, --version<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Output the version info.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -cmdline<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Send file(s)&nbsp; without&nbsp; launching&nbsp; any&nbsp;
+Graphic&nbsp; User&nbsp; Interface.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Informations are displayed in the terminal.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -gui=&nbsp; Use&nbsp; a&nbsp;
+specific&nbsp; graphic&nbsp; interface.&nbsp; You&nbsp; can choose
+'console'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(prompt), or 'gtk' (GTK+).&nbsp; In console mode, you can enter&nbsp;
+some<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+commands.&nbsp; There&nbsp; are several commands which allow you to do
+the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+same things that you could do in GUI mode. These&nbsp; commands&nbsp;
+are:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ready, screen [filename], dirlist [filename], backup [filename],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+restore [filename], send [filename]&nbsp; (variable,&nbsp;
+FLASHapp,&nbsp; OS),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+receive [filename] and dump [filename] (ROM).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -calc= Select&nbsp; a&nbsp;
+calculator type: v200, ti92+, ti92, ti89, ti86, ti85,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ti83+, ti83, ti82 or ti73.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -link= Select a link cable&nbsp;
+type:&nbsp; Grey&nbsp; TIGraphLink&nbsp; (tgl),&nbsp; home-made<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+serial&nbsp; or&nbsp; Black&nbsp; TIGraphLink&nbsp; (ser),&nbsp;
+home-made&nbsp; parallel link<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(par), fastAVRlink (avr), generic virtual link (vtl), TiLPlator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+virtual link (tie), VTi virtual link (vti), TI/PC USB link (tpu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+or USB TIGraphLink also known as SilverLink (slv).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -port= Specify on which port the
+link cable is plugged on. Can&nbsp; be&nbsp; any<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+value between 1 and 2, 3 or 4 (depending on link cable).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -adr_port=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Optionnal.&nbsp; Override&nbsp; value&nbsp; passed&nbsp; with
+-port.&nbsp; This value can<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+represent either a direct address, either a link number, accord-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ing&nbsp; to&nbsp; the&nbsp; link type. It will override the address
+associated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+with the port specified in the config&nbsp; file.&nbsp;&nbsp;
+Give&nbsp; the&nbsp; direct<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+address&nbsp; of&nbsp; the parallel port (0x3BC, 0x378 or 0x278) or
+serial<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+port (0x3F8, 0x2F8, 0x3E8 or 0x2E8), depending of the link cable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+type.&nbsp;&nbsp; Give&nbsp; the link number of the virtual link (1
+-&gt; #0, 2 -&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+#1).&nbsp; Give the link mode of the TI/PC USB link (1 -&gt; 'raw' mode,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2 -&gt; 'cooked' mode).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -dev_port=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Optionnal.&nbsp; Override&nbsp; value passed with -port.&nbsp; It will
+override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+the device associated with the&nbsp; port&nbsp; specified&nbsp;
+in&nbsp; the&nbsp; config<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+file.&nbsp;&nbsp; Give&nbsp; the&nbsp; serial&nbsp; port device
+(/dev/ttyS[0..3]) for the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Grey TIGraphLink&nbsp; or&nbsp; the&nbsp; fastAVRlink.&nbsp;&nbsp;
+Give&nbsp; the&nbsp; USB&nbsp; device<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(/dev/tiglusb[0..3]).<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -timeout=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+in&nbsp; tenth of seconds (0.1 s). This is the time while the program<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+wait a response of the calculator. Once this delay elapsed,&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+program send a time out error. The default value is 1 seconds.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -delay=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+in&nbsp; microseconds.&nbsp; This is the time which separate the
+transmis-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sion of 2 bytes.&nbsp; The default value is 5 microseconds.&nbsp;
+Decrease<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+this&nbsp; value&nbsp; increase the transfer speed but decrease the
+relia-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bility of the transmission.<br>
+      <br>
+EXAMPLE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Quicly send (no gui) an TI89 file
+with a BlackLink cable on the&nbsp; second<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serial port (/dev/ttyS1 or COM2);
+timeout is set to 2s:<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilp -cmdline -calc=ti89
+-link=serial -port=2 -timeout=20&nbsp;&nbsp; group.89g<br>
+      <br>
+CONFIG FILE FORMAT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This&nbsp; section describes the
+format of the .tilp config file which is in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the home directory of the user
+(Linux) or the&nbsp; tilp.ini&nbsp; file&nbsp; (Win32).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The&nbsp; file&nbsp; is&nbsp;
+separated&nbsp; into&nbsp; several&nbsp; sections (hardware, gui, calc,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; external programs, fonts, screen,
+misc). But, there is&nbsp; no&nbsp; order,&nbsp; you<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; can&nbsp; write&nbsp; lines&nbsp;
+as you want.&nbsp; A line preceded by the '#' symbol is a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comment. Each line has the&nbsp;
+following&nbsp; format:&nbsp; option=something.&nbsp;&nbsp; The<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; config&nbsp; file&nbsp; must&nbsp;
+have the 'RC_END' string at end.&nbsp; Every line can be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; put in any order. Beware: any
+comment added to the file will&nbsp; be&nbsp; over-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; written !&nbsp; Below is described
+each option and the possible values:<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; version=&nbsp; Which&nbsp;
+version&nbsp; of&nbsp; TiLP has written the config file. Used to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display the Release the file and
+to keep compatibility.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; calctype= Defines the calculator
+type.&nbsp; Choose&nbsp; one&nbsp; of&nbsp; the&nbsp; following<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value: ti82, ti83, ti83+, ti85,
+ti86, ti89, ti92, ti92+, v200.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; linktype=&nbsp; Define&nbsp;
+the&nbsp; link&nbsp; cable&nbsp; type.&nbsp; Choose one of the following<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value: TIGraphLink, parallel,
+serial,&nbsp; AVRlink,&nbsp; fastAVRlink,&nbsp; virtual,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TiLPlator, VTi, UsbGraphLink,
+TiPcUsbLink.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; port=&nbsp; Define&nbsp; the port
+to use. You have to choose one of the following<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value depending on your link cable
+type and the port you want use: par-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allel&nbsp; port&nbsp;
+#[1-3],&nbsp; serial port #[1-4], virtual port #[1-2], USB port<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #[1-4].<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; method= You can specify here an
+I/O management method to use.&nbsp; You&nbsp; can<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; choose:&nbsp; automatic, asm, api
+and driver. Non-expert users should choose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; automatic. The libticables
+library&nbsp; will&nbsp; automatically&nbsp; determine&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; best method.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adr_port=&nbsp; If&nbsp; you
+specify a value, this will override the default set-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tings associated with the port
+value.&nbsp; Define the I/O&nbsp; address&nbsp; of&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I/O&nbsp; port to use. It can be
+0x3F8 for a serial port or 0x378 for a par-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allel port for instance.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serial_device= If you specify a
+value, this will override&nbsp; the&nbsp; default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; settings&nbsp; associated&nbsp;
+with&nbsp; the&nbsp; port value.&nbsp; Define the device name to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; baudrate= If you have a
+fastAVRlink cable, you may&nbsp; have&nbsp; to&nbsp; pass&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; link cable speed. This value must
+be the same than the cable one.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; timeout=&nbsp; with&nbsp;
+the&nbsp; timeout&nbsp; value to use in tenth of seconds. Default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value: 20.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delay= with the delay value&nbsp;
+to&nbsp; use&nbsp; in&nbsp; micro-seconds&nbsp; for&nbsp; home-made<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cables. Default value: 10<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rts_cts=&nbsp; Enable&nbsp;
+(on)&nbsp; or&nbsp; disable&nbsp; (off)&nbsp; the&nbsp; hardware&nbsp;
+flow control<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (RTS/CTS method) for the
+fastAVRlink cable. Disable it can decrease the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reliability of transfers unless
+you decrease the link speed. Above 9600<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bauds, flow control is recommended.<br>
+      <br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xsize= and ysize= Gives the X and
+Y values of the size of the left win-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dow. Default values: 300 and 400.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clist_sort=&nbsp; Define the
+sorting method for the right window. Choose one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of the following value: name,
+date, size, user, group, attrib<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; clist_order= Define the sorting
+order&nbsp; for&nbsp; the&nbsp; right&nbsp; window.&nbsp; Choose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; either 'up' or 'down'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctree_sort=&nbsp; Define&nbsp; the
+sorting method for the left window. Choose one<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; of the following value: name,
+info, type, size<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctree_order= Define the
+sorting&nbsp; order&nbsp; for&nbsp; the&nbsp; left&nbsp; window.&nbsp;
+Choose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; either 'up' or 'down'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file_display=&nbsp; Define&nbsp;
+whether&nbsp; tilp&nbsp; shows only TI files or all files.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Possible values are 'ti' or 'all'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; confirm= Define whether tilp ask
+you confirmation when you delete&nbsp; some<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; files. Use carefully !!! You can
+choose 'yes' or 'no'<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console=&nbsp; Define whether tilp
+will display some verbose informations or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; not. Under Win32, this will
+display a background console. Values: 'yes'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or 'no'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_gui= Display the Graphic User
+Interface in command line mode. Val-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ues: 'yes' or 'no'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; single_or_group= Receive set of
+files as a single file or as a&nbsp; grouped<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file. Values: 'single' or 'group'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; use_checksum= Unimplemented yet.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; path=&nbsp; Define whether tilp
+sends the variable in its original folder or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in the locurrent folder. Choose
+either 'full' or&nbsp; 'local'.&nbsp; Works&nbsp; only<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for TI89/92/92+.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; probe_ti=&nbsp; Define&nbsp;
+whether&nbsp; tilp&nbsp; will try and determine the calculator<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; automagically. Works only for
+TI73, TI83+, TI89 and TI92+&nbsp; calculators.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Values: 'yes' or 'no'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unzip_location= Define the
+location of the program to use for unzipping<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; archives. Most of the time, the
+'unzip' string is enough.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unzip_options= Define the options
+to pass on the command&nbsp; line&nbsp; of&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'unzip'&nbsp; program. By default,
+all files of the ZIP archive are deflated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in a directory such as
+'archive_name/'. An option such&nbsp; as&nbsp; 'unzip_fil-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ter=*.89* -d tidir/' can be useful
+too.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tar_location=&nbsp;&nbsp;
+Define&nbsp; the&nbsp; location&nbsp; of&nbsp; the&nbsp; program&nbsp;
+for&nbsp; untarring<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; archives. Most of the time, the
+'tar' string is enough.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tar_options= Define the options to
+pass on&nbsp; the&nbsp; command&nbsp; line&nbsp; of&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'tar'&nbsp; program. By default,
+this option is equal to 'tar_options=xvzf'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; web_location= Define the location
+of the browser. Mozilla&nbsp; is&nbsp; used&nbsp; by<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default: /usr/bin/mozilla.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; web_options=&nbsp; Define&nbsp;
+the&nbsp; options&nbsp; to&nbsp; pass on the command line of the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'browser' program. By default,
+there is no option.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left_font_name= Define the font to
+use in the left window (calc files).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The font is described by its XFLD
+(X-Font Logical Description) name.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right_font_name=&nbsp;
+Define&nbsp; the font to use in the right window (computer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; files). The font is
+described&nbsp; by&nbsp; its&nbsp; XFLD&nbsp; name,&nbsp; such&nbsp;
+as:&nbsp; -adobe-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+courier-medium-r-*-*-*-125-*-*-*-*-*-*<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; screen_mode=&nbsp; Define whether
+tilp display the entire screen of the cal-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; culator or only the visible part.
+This option is only useful&nbsp; for&nbsp; TI89<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; calculators&nbsp; because&nbsp;
+they have a screen which has the same size than a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TI92 one but only a part is
+displayed. The other part is&nbsp; only&nbsp; useable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; via ASM programming.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; screen_format=&nbsp; Define&nbsp;
+the&nbsp; image format to use for saving screen cap-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tures. It can be 'jpg' or 'png'.
+Previous format such as&nbsp; 'xpm',&nbsp; 'pcx'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or 'bmp' are not supported any
+longer.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; screen_blurry= Define whether the
+image is saved in B&amp;W or saved like a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VTi image (dark &amp; light gray).
+Values: 'yes' or 'no'.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; locale= Override the default
+locale ("C" most of the time). Must&nbsp; be&nbsp; a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; string such as 'fr_FR' or 'en _US'
+for instance.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; working_dir= Contains the
+directory that TiLP will list at startup. Can<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; be changed from the popup menu.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Think to terminate your config
+script with the 'RC_END' word !!!<br>
+      <br>
+      <br>
+COPYRIGHT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Copyright (C) 1999-2004, Romain
+Lievin.&nbsp; Permission to use, copy,&nbsp; mod-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ify, and distribute this software
+and its documentation for any purpose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and without fee is hereby granted,
+provided that&nbsp; the&nbsp; above&nbsp; copyright<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; notice&nbsp; appear&nbsp; in&nbsp;
+all&nbsp; copies and that both that copyright notice and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this permission notice appear in
+supporting documentation.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This program and its source code
+is distributed under the terms of&nbsp; the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; terms&nbsp; of the GNU General
+Public License as published by the Free Soft-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ware Foundation; either version 2
+of the License, or (at&nbsp; your&nbsp; option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; any later version.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This&nbsp; program&nbsp; is&nbsp;
+distributed&nbsp; in the hope that it will be useful, but<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WITHOUT ANY&nbsp; WARRANTY;&nbsp;
+without&nbsp; even&nbsp; the&nbsp; implied&nbsp; warranty&nbsp;
+of&nbsp; MER-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CHANTABILITY&nbsp; or FITNESS FOR
+A PARTICULAR PURPOSE.&nbsp; See the GNU General<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Public License for more details.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You should have received a copy of
+the GNU General Public License along<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; with this program; if not, write
+to the Free Software Foundation, Inc.,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 59 Temple Place - Suite 330,
+Boston, MA 02111-1307, USA.<br>
+      <br>
+      <br>
+SUGGESTIONS AND BUG REPORTS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The&nbsp; canonical place to find
+tilp and some&nbsp; miscellenaous&nbsp; informations<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+is&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+at&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://www.tilp.info&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(redirected&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; on<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://lpg.ticalc.org/prj_tilp/index.php)&nbsp; You&nbsp;&nbsp;
+can&nbsp;&nbsp; also&nbsp;&nbsp; look&nbsp;&nbsp; at<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://lpg.ticalc.org&nbsp;
+and&nbsp; http://www.ticalc.org for others TI related<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; programs for Linux. French&nbsp;
+people&nbsp; can&nbsp; also&nbsp; look&nbsp; at&nbsp; http://www.ti-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fr.org.<br>
+      <br>
+AUTHOR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Original author (Linux &amp;
+Win32): Romain Lievin.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mac OS-X port by Julien Blache.<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FreeBSD port by Tijl Coosemans.<br>
+      <br>
+THANKS<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks&nbsp; to&nbsp; these
+persons to have lent me their calculator: Jean-Pierre<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and Thomas (TI92+), Benoit,
+Philippe and Florence (TI89), Louis (TI86),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Luc (TI85), Nicolas (TI83),
+Jean-Philippe and Francois (TI82).&nbsp; Special<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; thanks to Guillaume for her
+Grey/Gray TIGL link cable.&nbsp; Thanks to&nbsp; many<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; others (patches, suggestions, ...)<br>
+      <br>
+SEE ALSO<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilp-reg(1)<br>
+      <br>
+      <br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+March 3,
+2003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TILP(1)<br>
+      </span></font></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<hr>
+</body>
+</html>

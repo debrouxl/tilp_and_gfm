@@ -2,36 +2,32 @@
 <html>
 <head>
   <title>FAQ</title>
-      
   <meta http-equiv="content-type"
  content="text/html; charset=ISO-8859-1">
-   
   <meta name="author" content="Romain Li&eacute;vin">
-   
   <meta name="description" content="Frequently Asked Questions">
 </head>
-  <body>
- 
-<div align="center">				<big><big><big><big><u><b>FAQ <br>
- (Frequently Asked Questions)</b></u></big></big></big></big><br>
- </div>
- 
+<body>
+<div align="center"> <big><big><big><big><u><b>FAQ <br>
+(Frequently Asked Questions)</b></u></big></big></big></big><br>
+</div>
 <pre><br><br><br><br><br><br></pre>
- 
-<div align="center">				<big><big><b><u>General</u></b></big></big><br>
- </div>
- 
-<pre><br><br><b>Q:</b> I have a SilverLink cable and a TI86 calc ? Can I use TI GraphLink software ?<br><br><b>A:</b> No, you can't. The 'TI GraphLink XX' series software have no support for the SilverLink cable.<br>Moreover, TI-Connect does not support old calculator (82/83, 85/86).<br>You have to use a third-party software such as TiLP.<br><br><b>Q:</b> How can I upgrade AMS ? I tried and used Files|AMS to ROM image or Misc|ROM dump but it did work...<br><b>A:</b> For upgrading the OS of your calculator, simply select an AMS upgrade in the right window and click on the '&lt;-/-&gt;' toolbar button.<br><br><b>Q:</b> Hey, im running Win XP, and use a homemade parallel link cable, but am having trouble finding a way to sucesfily getting fargo II into my calculator (ti-92). Ive tried using the origonal fargo exes, but they say that the calculator isnt connected. Ive also found link software (Wizard92), that says it supports the homemade cable, and also has a feature that  suposedly installs fargo onto the 92. But this also doesnt work. Your TiLP is the only link software that works for me. Is there any way, that using TiLP i could put fargo on my calc. If not, do you have any other ideas?<br> thanks<br><br><b>A:</b> Yes, there is a way. Simply send a 'pre-installed Fargo backup'. This kind of backups are distributed with the Fargo package for different ROM versions. You will find such a package in the ticalc.org archives.<br><br><b>Q:</b> However it seems like i can't send data to the my TI83+ calc, when the windows app sends data it gives the calc a litlle time to do "garbage collection" and then send the whole app... however it seems like tilp times out when the calc do garbage collections - it doesn't wait for it, this is quite sad as it blocks me from using my calc... <br><b>A:</b> It's a known problem. The TiLP team don't know how to detect and prevent a 'Garbage Collection'. At the time being, you have to retry transfer...<br><br><b>Q:</b> Another question: the ROM dump procedes at about 5.5k/s is it a normal speed? When I upload files to the calc the speed is above 7k/s. <br><b>A:</b> The maximal speed for TI9x calcs is roughly 4.5KB/s and 3.0 KB/s for TI8x calcs. The speed TiLP is displaying is approximative and may depend of some OS considerations (buffering, scheduling, ...).<br><br><b>Q:</b> I shall soon be starting to teach classes with 30 students, using the TI83+, I have a TI83+ Silver with USB silver cable. Is there any way I can make or buy a cable to connect to my TI83+ or laptop so I can program the 30 TI83+ calculators all at the same time.<br><b>A:</b> Are teacher a strange species :-)) Well, it currently not possible. It may be with a set of SilverLink cables and USB hubs as well as some modifications of TiLP...<br><br><br><br></pre>
- 
-<div align="center">				<big><big><b><u>Win32 specific<br>
- </u></b></big></big></div>
- 
-<pre><br><br>Q: I was wondering if tilp could be used with the blacklink cable through a USB to serial converter, since my new laptop does not have a serial port.<br>A: TiLP could be but it has not been tested in this way. If someone wants to test this, he can mail me. He will have my full support !<br>Please note that not all adapters at all can do this... Some of them are very simple USB/RS232 bridges, some others are more sophisticated.<br><br>Q: Can tilp for win32 and ti-connect both coexist together when using a USB graphlink (silverlink?).  I noticed that both use seperate drivers for the silverlink, so can they both be used, or must one driver be uninstalled for the other one to work?<br>A: The 2 drivers are incompatibles. Only 2 driver can be loaded at a time. Then, you can not simultaneously uses TiLP and TI-Connect.<br><br>Q:  I keep getting the following message when trying to send something to my calculator:<br>1: Timeout occured while writing to the device.<br>2: Check that your link cable is plugged and/or the calculator is ready.<br>3: GetLastError= 997 -&gt; Overlapped I/O operation is in progress.<br>A: This message shows up a timeout error. But, it may sometimes be a problem with the driver. Try and plug/unplug your SilverLink cable.<br><br>Q: I have recently installed your tilp program, but I am unsuccessful to upload games onto my ti-89. even if i unplug the modem, it still says the Com port is plugged. after that error message pops up another one pops up and says 1: error while flushing the buffers. 2: internal win32 error. i am not sure what to do. thanks.<br>A: You have 2 solutions:<br>- use another COM port,<br>- unplug your modem, plug your cable, reboot and run TiLP.<br><br>Q: I installed TiLP. It works sending files from ti89 to PC, but when I try to send files from pc to ti89 I always get timeot error (I tryed many and many timeout and delay settings). I have a home made parallel cable that works ok with w32tran8x (except that I cannot sent group files: it just send the first file of .89g files). I used varlink to receive files. What can be the problem? <br>A: TiLP and W32Tran8x did not have the same behaviour when you are sending/receiving files. W32Tran8x only use manual transfers whereas TiLP use silent transfers. Simply stay in the home screen and send files from the right frame. You can even send group files.<br><br><br><br></pre>
- 
-<div align="center">				<big><big><b><u>Linux specific<br>
- </u></b></big></big></div>
- 
-<pre><br><br>Q: Do you know if the tiser module works with a USB to serial adapter ?<br>A: No, the tiser module is not intended for this kind of use. It can only handles BlackLink cables on a true serial port.<br><br>Q: I was wondering if tilp could be used with the blacklink cable through a USB to serial converter, since my new laptop does not have a serial port.<br>A: TiLP could be but it has not been tested in this way. Anyways, I will have to modify libticables for this...<br>Please note that not all adapters at all can do this... Some of them are very simple USB/RS232 bridges, some others are more sophisticated.<br><br>Q: I got the following error when I am trying and compiling libtiXX: Making all in intl<br>make[2]: Entering directory `/home/dodeskaden/downloads/ti/tilp-5.11/intl'<br>make[2]: *** No rule to make target `libintl.@l@a', needed by `all-yes'.  Stop.<br>make[2]: Leaving directory `/home/dodeskaden/downloads/ti/tilp-5.11/intl'<br>make[1]: *** [all-recursive] Error 1<br>A: my libtool is broken then you are allowed to fire me ! More seriously, make a 'distclean' and relaunch configure with the '--disable-nls' argument.<br><br>Q: After compilation, I did not manage to detect my cable (original GrayLink) altough I installed tiser.<br>A: tiser is intended to be used with BlackLink and home-made serial link cables. You don't need a module for this cable but think to check device permissions !<br><br>Q: I'm trying to use your TI usb sliverlink cable kernel module under<br>mandrake linux 8.2 (kernel version 2.4.18)  and for some reason devfs<br>isn't creating the nodes for the cable.  I get the directory<br>/dev/ticables/usb but it is empty. (if i understood the docs right, i<br>should have nodes 0,1,2... in that directory)<br>Is there something that I need to do to get devfs to create these nodes?<br>A: Yes : plug the cable :-) The node are created when a device is detected.<br><br>Q: make gives this on stderr:<br>In file included from pcx.c:39:<br>tilibs.h:61:22: ticalcs.h: No such file or directory<br>make[2]: *** [pcx.o] Error 1<br>make[1]: *** [all-recursive] Error 1<br>make: *** [all-recursive-am] Error 2<br>A: I haev a problem with an header file. Simply edit the 'src/tilibs.h' in tilp and uncomment #ifdef HAVE_TILP_TICALCS_H. Then, do a make.<br><br>Q: I found that the unresolved symbols in tiser.o are as follows:<br>depmod: *** Unresolved symbols in <br>/lib/modules/2.4.8-26mdk/kernel/drivers/misc/tiser.o<br>depmod: 	devfs_unregister_chrdev<br>depmod: 	devfs_register<br>depmod: 	schedule<br>depmod: 	__udelay<br>depmod: 	devfs_mk_dir<br>depmod: 	no_llseek<br>depmod: 	devfs_unregister<br>depmod: 	devfs_register_chrdev<br>depmod: 	sprintf<br>depmod: 	jiffies<br>depmod: 	printk<br>No clue how to fix this.  This is found with "depmod -e" after "make install".<br>A: tiser has been developed on a 2.4.[14|18] kernel. Use the same kernel :-)<br><br>Q: I cannot get it to talk to a serial port though...  With tiser unloaded, the <br>method=automatic in the config file tells me that it cannot find a method, <br>but with tiser loaded, it cannot open the port.  No matter what port, no <br>matter if root is the one running the program.<br>A: Always try and run TiLP in a super-user account at first time so that you can know whether your cable works correctly. You will use a kernel module after. If you use the serial port where your modem was plugged, change of serial port or reboot your machine. It seems that serial settings are not always restored by modems.<br><br>Q: I'm trying to use your TI usb sliverlink cable kernel module under<br> mandrake linux 8.2 (kernel version 2.4.18)  and for some reason devfs<br> isn't creating the nodes for the cable.  I get the directory<br> /dev/ticables/usb but it is empty. (if i understood the docs right, i<br> should have nodes 0,1,2... in that directory)<br> Is there something that I need to do to get devfs to create these nodes?<br><br>A: Yes : plug the cable :-)<br><br>Q: Ok, tilp works now, but I get this error when I try to access the calc :<br>Msg: Timeout occured while reading to the device.<br>Cause: Check that your link cable is plugged and/or the calculator is ready.<br>System: Permission denied (errno = 13)<br><br>A: Check nodes permissions (/dev/ttySx).<br><br><br></pre>
- <br>
+<div align="center"> <big><big><b><u>General</u></b></big></big><br>
+</div>
+<pre><br><b></b><b>Q:</b> ?<br><b>A:</b> .<br><b></b><br><br></pre>
+<div align="center"> <big><big><b><u>Win32 specific<br>
+</u></b></big></big></div>
+<pre><br>Q: If anyone is getting one of these:<br>- ** WARNING **: Couldn't load font "MS Sans Serif 8" falling back to "Sans 8"<br>- ** ERROR **: file shape.c line 75: assertion failed: (glyphs-&gt;num_glyphs &gt; 0) or any other warning or error <br>message regarding fonts/glyphs<br>A: the fix is to open your C:\Program Files\Shared Files\Gtk\2.0\etc\gtk-2.0\gtkrc and to add<br>this:<br></pre>
+<div style="margin-left: 40px;">style "user-font"<br>
+{<br>
+font_name="Arial"<br>
+}<br>
+widget_class "*" style "user-font"<br>
+</div>
+<pre>This forces GTK+ to use a compatible font (Arial) and reportedly fixes both the aforementioned problems, <br>and probably others too...<br><br><br></pre>
+<div align="center"> <big><big><b><u>Linux specific<br>
+</u></b></big></big></div>
+<pre><br>Q: ?<br>A: .<br><br></pre>
+<br>
 </body>
 </html>
