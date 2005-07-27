@@ -54,6 +54,9 @@ int tilp_calc_isready(void)
 	int err;
 	int to;
 	
+	//CalcModel model;
+	//return ticalcs_probe_calc_1(calc_handle, &model);
+
 	// first check: fast
 	to = ticables_options_set_timeout(cable_handle, 10);
 	err = ticalcs_calc_isready(calc_handle);
@@ -857,10 +860,39 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	if(tilp_err(err))
 		return -1;
 
-	str = g_strdup_printf(_("OS version: %s\nBOOT version: %s\nBattery: %s"), 
-		infos->os, infos->bios, infos->battery ? "good" : "low");
+	str = g_strdup_printf(
+		_("OS version: %s\nBOOT version: %sType: HW i\nBattery: %s"), 
+		infos->os, infos->bios, infos->hw_rev, infos->battery ? "good" : "low");
 	gif->msg_box(_("Information"), str);
 	g_free(str);
+
+	return 0;
+}
+
+/*
+	Receive main certificate (exprimental)
+ */
+int tilp_calc_recv_cert(void)
+{
+	int err;
+	gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
+			tifiles_model_to_string(calc_handle->model), ".", tifiles_fext_of_certif(calc_handle->model),
+			NULL);
+
+	if(tilp_calc_isready())
+		return -1;
+
+	if(!(ticalcs_calc_features(calc_handle) & FTS_CERT))
+		return -1;
+
+	gif->create_pbar_type4(_("Receiving certificate"), "");
+
+	err = ticalcs_calc_recv_cert2(calc_handle, filename);
+	g_free(filename);
+	if(err) 
+		tilp_err(err);
+
+	gif->destroy_pbar();
 
 	return 0;
 }

@@ -23,7 +23,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <pango/pango.h>
 
 #include "gstruct.h"
 #include "support.h"
@@ -238,18 +237,24 @@ void ctree_set_basetree(void)
 {
 	GtkTreeIter clc_node;
 	GtkTreeIter *top_node = NULL;
-	GtkTreeIter lcd_node, rom_node, idl_node, clk_node;
+	GtkTreeIter lcd_node, rom_node, idl_node, clk_node, cer_node;
+	gchar* str;
 
 	// clear tree
 	gtk_tree_store_clear(tree);
 	
 	// top node
 #if 1
+	//str = g_strdup_printf("%s %s %i", tifiles_model_to_string(calc_handle->model),
+	//	ticables_model_to_string(cable_handle->model), cable_handle->port);
+	str = g_strdup(tifiles_model_to_string(calc_handle->model));
+
 	top_node = &clc_node;
 	gtk_tree_store_append(tree, top_node, NULL);
 	gtk_tree_store_set(tree, &clc_node, 
-		COLUMN_NAME, tifiles_model_to_string(calc_handle->model),
+		COLUMN_NAME, str,
 		COLUMN_DATA, (gpointer) NULL, -1);
+	g_free(str);
 #endif
 
 	// lcd, rom, vars & apps nodes
@@ -278,6 +283,11 @@ void ctree_set_basetree(void)
 		gtk_tree_store_append(tree, &clk_node, top_node);
 		gtk_tree_store_set(tree, &clk_node, COLUMN_NAME, NODE6,
 				   COLUMN_DATA, (gpointer) NULL, -1);
+#if 1
+		gtk_tree_store_append(tree, &cer_node, top_node);
+		gtk_tree_store_set(tree, &cer_node, COLUMN_NAME, NODE7,
+				   COLUMN_DATA, (gpointer) NULL, -1);
+#endif
 	}
 
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(ctree_wnd));

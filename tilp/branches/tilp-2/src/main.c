@@ -88,6 +88,9 @@ int main(int argc, char *argv[])
 		gdk_window_set_icon_name(main_wnd->window, _("TiLP-II"));
 	}
 
+
+	//tifiles_file_display("c:\\msvc\\tilp2\\ticsheet.89k");
+
 	/* 
 	   If variables have been passed on the command line in GUI mode then
 	   send them 

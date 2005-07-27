@@ -110,8 +110,6 @@ void toolbar_refresh_buttons(void)
 	gtk_widget_set_sensitive(toolbar_wnd.button11, features & OPS_DIRLIST);
 	gtk_widget_set_sensitive(toolbar_wnd.button12, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(toolbar_wnd.button13, features & OPS_BACKUP);
-	gtk_widget_set_sensitive(toolbar_wnd.button14, !(features & FTS_SILENT));
-	//gtk_widget_set_sensitive(toolbar_wnd.button14, !options.full_gui);
 }
 
 // 0: disabled
@@ -119,6 +117,7 @@ void toolbar_refresh_buttons(void)
 // 2: receive
 void toolbar_set_button(int sr)
 {
+	/*
 	GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
 	GtkToolItem *item = gtk_toolbar_get_nth_item(tb, 5);
 	GtkToolButton *btn = GTK_TOOL_BUTTON(item);
@@ -132,4 +131,5 @@ void toolbar_set_button(int sr)
 		gtk_widget_set_sensitive(toolbar_wnd.button14, FALSE);
 	else
 		gtk_widget_set_sensitive(toolbar_wnd.button14, sr);
+		*/
 }

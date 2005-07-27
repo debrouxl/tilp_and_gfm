@@ -255,6 +255,10 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 			on_tilp_button9_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		} 
+		else if (!strcmp(name, NODE7))
+		{
+			tilp_calc_recv_cert();
+		}
 		else 
 		{
 			// single/group to get
