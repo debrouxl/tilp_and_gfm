@@ -245,9 +245,9 @@ void ctree_set_basetree(void)
 	
 	// top node
 #if 1
-	//str = g_strdup_printf("%s %s %i", tifiles_model_to_string(calc_handle->model),
-	//	ticables_model_to_string(cable_handle->model), cable_handle->port);
-	str = g_strdup(tifiles_model_to_string(calc_handle->model));
+	str = g_strdup_printf("%s %s %i", tifiles_model_to_string(calc_handle->model),
+		ticables_model_to_string(cable_handle->model), cable_handle->port);
+	//str = g_strdup(tifiles_model_to_string(calc_handle->model));
 
 	top_node = &clc_node;
 	gtk_tree_store_append(tree, top_node, NULL);
@@ -518,7 +518,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		else if(!strcmp(name, NODE6))
 			display_clock_dbox();
 
-		else if(!strcmp(name, tifiles_model_to_string(calc_handle->model)))
+		else if(!strncmp(name, tifiles_model_to_string(calc_handle->model), 4))
 		{
 			CalcInfos infos;
 			tilp_calc_get_infos(&infos);

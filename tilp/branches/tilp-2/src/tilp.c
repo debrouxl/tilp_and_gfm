@@ -452,6 +452,11 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	f = (FileEntry *) local.selection->data;
 	if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
 	{
+		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_certif(calc_handle->model))) 
+		{
+			if (tilp_calc_send_flash_app(f->name) != 0)
+				return;
+		} 
 		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(calc_handle->model))) 
 		{
 			if (tilp_calc_send_flash_app(f->name) != 0)

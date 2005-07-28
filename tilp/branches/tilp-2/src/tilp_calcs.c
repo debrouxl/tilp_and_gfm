@@ -282,8 +282,12 @@ int tilp_calc_rom_dump(void)
 	switch (calc_handle->model) 
 	{
 	case CALC_TI73:
+	case CALC_TI82:
+	case CALC_TI83:
 	case CALC_TI83P:
 	case CALC_TI84P:
+	case CALC_TI85:
+	case CALC_TI86:
 	case CALC_TI89:
 	case CALC_TI89T:
 	case CALC_TI92:
@@ -311,8 +315,8 @@ int tilp_calc_send_flash_app(char *filename)
 	int err;
 	gint old_timeout;
 
-	if(strcasecmp(tifiles_fext_get(filename), 
-					tifiles_fext_of_flash_app(calc_handle->model))) 
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(calc_handle->model)) &&
+	   strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(calc_handle->model))) 
 	{
 		gif->msg_box(_("Error"),
 			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
