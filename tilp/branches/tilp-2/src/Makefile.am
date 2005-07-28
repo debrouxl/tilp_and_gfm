@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 AM_CPPFLAGS = -I$(top_srcdir)/intl
-AM_CFLAGS = -Wall
+AM_CFLAGS = -Wall -Wno-pointer-sign
 
 # programs and files to compile and install 
 bin_PROGRAMS = tilp2

@@ -44,7 +44,7 @@ int tilp_calc_new_fld(void);
 
 int tilp_calc_get_infos(CalcInfos*);
 
-tilp_calc_send_cert(void);
-tilp_calc_recv_cert(void);
+int tilp_calc_send_cert(void);
+int tilp_calc_recv_cert(void);
 
 #endif

@@ -19,9 +19,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-//#undef GTK_DISABLE_DEPRECATED
+#undef GTK_DISABLE_DEPRECATED
 #include <gtk/gtk.h>
-//#define GTK_DISABLE_DEPRECATED
+#define GTK_DISABLE_DEPRECATED
 
 #include "tilp_core.h"
 
