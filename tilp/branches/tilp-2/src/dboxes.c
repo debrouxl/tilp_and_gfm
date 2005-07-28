@@ -221,6 +221,8 @@ char *msg_entry(const char *title, const char *message, const char *content)
 	entry = GTK_WIDGET(data);
 	gtk_entry_set_text(GTK_ENTRY(data), content);
 
+	gtk_editable_select_region(GTK_EDITABLE(entry), 0, -1);
+
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) 
 	{
