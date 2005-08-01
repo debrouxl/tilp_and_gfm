@@ -454,7 +454,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	{
 		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_certif(calc_handle->model))) 
 		{
-			if (tilp_calc_send_flash_app(f->name) != 0)
+			if (tilp_calc_send_cert(f->name) != 0)
 				return;
 		} 
 		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(calc_handle->model))) 

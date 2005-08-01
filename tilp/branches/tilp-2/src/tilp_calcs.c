@@ -315,8 +315,7 @@ int tilp_calc_send_flash_app(char *filename)
 	int err;
 	gint old_timeout;
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(calc_handle->model)) &&
-	   strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(calc_handle->model))) 
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(calc_handle->model))) 
 	{
 		gif->msg_box(_("Error"),
 			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
@@ -897,6 +896,33 @@ int tilp_calc_recv_cert(void)
 		tilp_err(err);
 
 	gif->destroy_pbar();
+
+	return 0;
+}
+
+/*
+	Send certificate (experimental)
+ */
+int tilp_calc_send_cert(char *filename)
+{
+	int err;
+
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(calc_handle->model))) 
+	{
+		gif->msg_box(_("Error"),
+			     _("It's not a certificate or this certificate is not targetted for this calculator type."));
+		return -1;
+	}
+
+	if(tilp_calc_isready())
+		return -1;
+	
+	gif->create_pbar_type3(_("Flash"));
+	err = ticalcs_calc_send_cert2(calc_handle, filename);
+	gif->destroy_pbar();
+
+	if(tilp_err(err))
+		return -1;
 
 	return 0;
 }
