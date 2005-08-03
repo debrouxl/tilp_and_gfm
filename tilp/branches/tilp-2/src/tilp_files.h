@@ -28,6 +28,7 @@ int tilp_file_copy(const char *src, const char *dst);
 int tilp_file_move(const char *src, const char *dst);
 int tilp_file_delete(const char *f);
 int tilp_file_mkdir(const char *pathname);
+int tilp_file_exist(const char* filename);
 int tilp_file_check(const char *src, char **dst);
 int tilp_file_move_with_check(const char *src, const char *dst);
 int tilp_file_chdir(const char *path);

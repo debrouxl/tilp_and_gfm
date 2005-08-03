@@ -531,6 +531,7 @@ int tilp_calc_send_var(void)
 		{
 			// It is the first or the last one
 			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content);
+			if(err)
 			{
 				tilp_err(err);
 				gif->destroy_pbar();

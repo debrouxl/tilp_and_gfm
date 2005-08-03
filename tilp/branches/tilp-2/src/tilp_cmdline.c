@@ -72,18 +72,25 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	g_option_context_parse(context, argc, argv, &error);
 	g_option_context_free(context);
 
+	// report error
+	if (error) 
+	{
+		tilp_warning("Failed to parse cmdline: %s\n", error->message);
+		g_error_free(error);
+	}
+
 	// convert name to value
 	if(calc != NULL)
 	{
 		options.calc_model = ticalcs_string_to_model(calc);
-		g_free(cable);
+		g_free(calc);
 	}
 
 	// convert name to value
 	if(cable != NULL)
 	{
-		options.cable_model = ticalcs_string_to_model(cable);
-		g_free(calc);
+		options.cable_model = ticables_string_to_model(cable);
+		g_free(cable);
 	}
 
 	// are files passed ?
@@ -116,6 +123,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 			fe->name = g_strdup(*q);
 			local.selection = g_list_prepend(local.selection, fe);
 		}
+		tilp_slct_load_contents();
 
 		g_strfreev(array);
 		g_strfreev(flist);
@@ -154,6 +162,10 @@ int tilp_cmdline_send(void)
 	if (g_list_length(local.selection) == 1) 
 	{
 		// One file
+		if(!tilp_file_exist(fe->name))
+		{
+			tilp_warning(_("File does not exist !"));
+		}
 		if (tifiles_file_is_flash(fe->name)) 
 		{
 			if (!g_strcasecmp(ext, tifiles_fext_of_flash_app(options.calc_model)))
@@ -178,7 +190,7 @@ int tilp_cmdline_send(void)
 		} 
 		else 
 		{
-			tilp_warning(_("Unknown file type.\n"));
+			tilp_warning(_("Unknown file type !"));
 		}
 	} 
 	else 

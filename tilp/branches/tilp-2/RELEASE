@@ -2,8 +2,8 @@
 
 
 
-Previous version: 6.78b		(29/04/2005)
-Current version:  6.79		(24/05/2005)
+Previous version: 
+Current version:  0.01		(03/08/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -23,24 +23,23 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- PDF/EPS image support for screenshots
+	- ...
 
 Improvements:
 -------------
 
-	- none
+	- ...
 
 Bug fixes:
 ----------
 
-	- none
+	- ...
 
 Known problems:
 ---------------
 
 	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
 		You can disable it by using the GTK theme selector.
-	- [Linux]: don't user kernel module for SilverLink, use built-in ticables support instead.
 
 
 Bug report:

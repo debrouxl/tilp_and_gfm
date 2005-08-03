@@ -27,14 +27,14 @@ Note2: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 			 but supported	by our driver.
 
 Supported calculators are: 
-	TI73, TI82, TI83, TI83+/SE, TI84+/SE, TI85, TI86, 
+	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
 	TI89, TI89 Titanium, TI92, TI92+ and V200.
 
 
 FEATURES
 --------
 
-Note: some features depends on the OS version. Be sure to have the latest !
+Note: some features depends on the OS version. Be sure to have the latest one !
 
 TI89/TI89 Titanium/TI92+/V200:
   - remote control of the calculator
@@ -46,6 +46,7 @@ TI89/TI89 Titanium/TI92+/V200:
   - sending/receiving of FLASH applications
   - upgrading of Operating System (AMS)
   - getting/setting time (need AMS >= 2.08)
+  - certificates
 
 TI92:
   - remote control of the calculator
@@ -61,14 +62,14 @@ TI86:
   - sending/receiving backup (old & new ti86 calcs)
   - sending/receiving variable
   - TIGL file support
-  - ROM dump (any shell)
+  - ROM dump
 
 TI85:
   - screen dump
   - sending/receiving backup
   - sending/receiving variable
   - TIGL file support
-  - ROM dump (Usgard or ZShell required)
+  - ROM dump
 
 TI83+/TI84+ (SE or not SE):
   - screen dump
@@ -77,7 +78,8 @@ TI83+/TI84+ (SE or not SE):
   - sending/receiving variable
   - sending/receiving of FLASH applications
   - upgrading of Operating System (GRAPH EXPLORER SOFTWARE)
-  - ROM dump (any shell)
+  - ROM dump
+  - certificates
 
 Note: the TI83+ is the only calc to have a GROUP variable. TiLP supports it in
 a specific way: this kind of var is saved as a single file as any other
@@ -91,14 +93,14 @@ TI83:
   - sending/receiving variable
   - sending/receiving backup
   - TIGL file support
-  - ROM dump (AShell required)
+  - ROM dump
 
 TI82:
   - screen dump
   - sending/receiving variable
   - sending/receiving backup
   - TIGL files support
-  - ROM dump (ASh required)
+  - ROM dump
 
 TI73:
   - screen dump
@@ -106,6 +108,7 @@ TI73:
   - sending/receiving variable
   - sending/receiving of FLASH applications
   - upgrading of Operating System (GRAPH EXPLORER SOFTWARE)
+  - ROM dump
 
 
 AVAILABILITY

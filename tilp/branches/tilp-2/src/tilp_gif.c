@@ -84,7 +84,6 @@ void default_create_pbar_type5(const char *title, char *text)
 
 void default_destroy_pbar(void)
 {
-	tilp_info("");
 }
 
 /*

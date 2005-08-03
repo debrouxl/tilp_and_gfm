@@ -150,7 +150,7 @@ int tilp_init(int *argc, char ***argv)
 #ifndef __MACOSX__
 	if((working_mode & MODE_CMD) && !(working_mode & MODE_GUI))
 	{
-		//tilp_cmdline_send();
+		tilp_cmdline_send();
 		exit(0);
 	}
 #endif				/* !__MACOSX__ */

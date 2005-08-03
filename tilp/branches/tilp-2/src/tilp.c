@@ -474,7 +474,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	} 
 	else 
 	{
-		tilp_slct_load_contents();			
+		tilp_slct_load_contents();
 
 		if (options.overwrite == CONFIRM_YES || strcmp(target, "")) 
 		{

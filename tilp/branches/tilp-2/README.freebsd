@@ -12,7 +12,7 @@ REQUIREMENTS
 
  - X11 (X Window System)
  - GTK 2.0.0 or higher (http://www.gtk.org/)
- - the ticables, tifiles and ticalcs-4 libraries (http://tilp.info/)
+ - the ticables2, tifiles2 and ticalcs2 libraries (http://tilp.info/)
  - libusb if you want to use the SilverLink cable (TI-GRAPH LINK USB).
 
 

@@ -131,6 +131,10 @@ int tilp_file_mkdir(const char *pathname)
 	return 0;
 }
 
+int tilp_file_exist(const char* filename)
+{
+	return !access(filename, F_OK);
+}
 
 /* 
    Check for file existence. If file already exists, ask for an
