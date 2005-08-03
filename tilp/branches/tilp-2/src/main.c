@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	tilp_update_set_gtk();
 
 	/* Create the main window */
-	if(working_mode & MODE_GUI)
+	if(!(working_mode & MODE_CMD))
 	{
 		splash_screen_set_label(_("Loading GUI..."));
 		main_wnd = display_tilp_dbox();
@@ -75,11 +75,14 @@ int main(int argc, char *argv[])
 	local.cwdir = g_get_current_dir();
 
 	/* Update the local view (not visible yet) */
-	clist_refresh();
-	labels_refresh();
+	if(!(working_mode & MODE_CMD))
+	{
+		clist_refresh();
+		labels_refresh();
+	}
 
 	/* In cmdline, does not display the entire window, only the pbar */
-	if(working_mode & MODE_GUI) 
+	if(!(working_mode & MODE_CMD))
 	{
 		gtk_widget_show(main_wnd);
 		toolbar_refresh_buttons();
@@ -103,7 +106,8 @@ int main(int argc, char *argv[])
 
 	/* GTK main loop */
 	splash_screen_stop();
-	gtk_main();
+	if(!(working_mode & MODE_CMD))
+		gtk_main();
 	tilp_exit();
 
 	return 0;
