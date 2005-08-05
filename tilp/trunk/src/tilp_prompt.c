@@ -55,19 +55,19 @@ static void prompt_commands(void);
 int do_command(unsigned char *cmd, unsigned char *arg1)
 {
 	if (cmdState) {
-		if (!strcmp(cmd, "quit")) {
+		if (!strcmp((char*)cmd, "quit")) {
 			cmdState = 0;
 			getOut = 1;
 		}
-		if (!strcmp(cmd, "exit")) {
+		if (!strcmp((char*)cmd, "exit")) {
 			cmdState = 0;
 			getOut = 1;
 		}
-		if (!(strcmp(cmd, "help"))) {
+		if (!(strcmp((char *)cmd, "help"))) {
 			printl(0, _
 				("Currently recognized commands: ls, cd, help, quit, exit, ready, screen [filename], dirlist [filename], backup [filename], restore [filename], send [filename], receive [filename] and dump [filename]\n"));
 		}
-		if (!(strcmp(cmd, "ls"))) {
+		if (!(strcmp((char *)cmd, "ls"))) {
 			char ext[4];
 			struct stat aStat;
 			GDir *dir;
@@ -92,9 +92,9 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
 						(int) (aStat.st_size));
 			} g_dir_close(dir);
 		}
-		if (!(strcmp(cmd, "cd"))) {
+		if (!(strcmp((char *)cmd, "cd"))) {
 			if (arg1) {
-				if (tilp_chdir(arg1))
+				if (tilp_chdir((char *)arg1))
 					printl(0, _
 						("\nIllegal directory!\n"));
 
@@ -107,46 +107,46 @@ int do_command(unsigned char *cmd, unsigned char *arg1)
 				printl(0, _("\nCurrent directory is:\n%s\n"),
 					currDir);
 		}
-		if (!(strcmp(cmd, "ready"))) {
+		if (!(strcmp((char *)cmd, "ready"))) {
 			tilp_calc_isready();
 
 			//printl(0, "%s\n", cb_calc_is_ready() ? "ok" : "nok");
 		}
-		if (!(strcmp(cmd, "screen"))) {
+		if (!(strcmp((char *)cmd, "screen"))) {
 			tilp_screen_capture();
 			if (arg1) {
 
 				//tilp_screen_save(arg1);
 			}
 		}
-		if (!strcmp(cmd, "dirlist")) {
+		if (!strcmp((char *)cmd, "dirlist")) {
 			tilp_dirlist_remote();
 
 			//tilp_dirlist_printl(0, );
 		}
-		if (!strcmp(cmd, "backup")) {
+		if (!strcmp((char *)cmd, "backup")) {
 			tilp_calc_recv_backup();
 			if (arg1) {
 			}
 		}
-		if (!strcmp(cmd, "restore")) {
+		if (!strcmp((char *)cmd, "restore")) {
 			if (arg1)
-				tilp_calc_send_backup(arg1);
+				tilp_calc_send_backup((char *)arg1);
 		}
-		if (!strcmp(cmd, "send")) {
+		if (!strcmp((char *)cmd, "send")) {
 
 			/*
 			   if(arg1)
 			   tilp_calc_send_var(arg1);
 			 */
 		}
-		if (!strcmp(cmd, "receive")) {
+		if (!strcmp((char *)cmd, "receive")) {
 
 			//cb_recv_var();
 			if (arg1) {
 			}
 		}
-		if (!strcmp(cmd, "dump")) {
+		if (!strcmp((char *)cmd, "dump")) {
 			tilp_calc_rom_dump();
 			if (arg1) {
 			}
@@ -168,7 +168,7 @@ static void prompt_commands(void)
 		arg2 = strtok(NULL, " ");
 
 		if (cmd)
-			do_command(cmd, arg1);
+		      do_command((unsigned char *)cmd, (unsigned char *)arg1);
 	}
 }
 int tilp_prompt(void)
