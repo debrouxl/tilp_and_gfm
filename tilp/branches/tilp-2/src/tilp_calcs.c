@@ -214,7 +214,7 @@ int tilp_calc_idlist(int to_file)
 	if(tilp_calc_isready())
 		return -1;
 
-	err = ticalcs_calc_recv_idlist(calc_handle, (char *)idlist);
+	err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t)idlist);
 	if(err)
 	{
 		tilp_err(err);

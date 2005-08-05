@@ -103,7 +103,8 @@ on_treeview2_drag_data_get(GtkWidget * widget,
 			   guint info, guint time, gpointer user_data)
 {
 	gchar *name = "foo_bar";
-	gtk_selection_data_set(data, data->target, 8, name, strlen(name));
+	gtk_selection_data_set(data, data->target, 8, 
+			       (guchar *)name, strlen(name));
 }
 
 // retrieve data
@@ -198,7 +199,9 @@ on_treeview1_drag_data_get(GtkWidget * widget,
 	} 
 	else
 	{
-		gtk_selection_data_set(data, data->target, 8, name_to_drag, strlen(name_to_drag));
+		gtk_selection_data_set(data, data->target, 8, 
+				       (guchar *)name_to_drag, 
+				       strlen(name_to_drag));
 	}
 }
 
