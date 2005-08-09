@@ -355,73 +355,100 @@ key pressed while dragging.<br>
 <blockquote> </blockquote>
 <h2>5.3 Backup / Restore<br>
 </h2>
-<table border="1">
+<br>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
   <tbody>
     <tr>
-      <td><img alt=""
+      <td style="vertical-align: top;"><img alt=""
  src="file:///c:/sources/roms/tilp/help/Image17.png" height="32"
- width="32"> </td>
-      <td><font size="3">Backup the calculator data. On FLASH
+ width="32"></td>
+      <td style="vertical-align: top;"><font size="3">Backup the
+calculator data. On FLASH
 calculators, the backup is not a true backup, it's a group of all
 variables (83+/89/92+/V200PLT) but attributes are kept
 (locking/archiving), but FLASH applications are not saved. On the other
 calculators, the backup is a memory copy and contains the whole
 calculator content. Alternate way: by double-clicking the <span
- style="font-style: italic;">Variables</span> node.<br>
-      </font></td>
+ style="font-style: italic;">Variables</span> node.</font></td>
     </tr>
-  </tbody>
-</table>
-<br>
-<table border="1">
-  <tbody>
     <tr>
-      <td><img alt=""
+      <td style="vertical-align: top;"><img alt=""
  src="file:///c:/sources/roms/tilp/help/Image18.png" height="32"
- width="32"> </td>
-      <td><font size="3">Restore the calculator content by sending
+ width="32"></td>
+      <td style="vertical-align: top;"><font size="3">Restore the
+calculator content by sending
 a previously received backup. Contrary to TI's software, variables will
-stay archived if they were archived before the backup.<br>
-      </font></td>
+stay archived if they were archived before the backup.</font></td>
     </tr>
   </tbody>
 </table>
 <br>
-<h2>5.4 Send / Receive variables and/or applications<br>
+<h2>5.4 Send / Receive variables or applications<br>
 </h2>
+<h3>5.4.1 Full GUI mode</h3>
 The main window is splitted into 2 frames :
 the remote frame (calculator) and the local frame (computer).
 <blockquote>
   <p> </p>
 </blockquote>
 <p><font size="3">1&deg;) The calculator frame lists variables and
-applications stored into your calculator. By clicking on an item, you
+applications stored onto your calculator. By clicking on an item, you
 can select one or more variables/applications. </font></p>
-<p><font size="3">If you have selected one or more variables, </font><font
- size="3">they will be saved one by one or grouped into a single file
-depending on the <span style="font-style: italic;">Recv as group</span>
-option.</font><br>
-<font size="3">Next, drag the selection to receive
+<font size="3"></font><font size="3">Next, drag the selection to
+receive
 variables/applications if
 the calculator support directory listing. Else, use the <span
- style="font-style: italic;">Receive</span> button (TI82/85).<br>
-</font> </p>
+ style="font-style: italic;">Receive</span> button (TI82/85).</font><font
+ size="3"><br>
+If you have selected one or more variables, </font><font size="3">they
+will be saved one by one (if </font><font size="3"><span
+ style="font-style: italic;">Recv as group</span></font><font size="3">
+is unchecked) or grouped into a single file (if <span
+ style="font-style: italic;">Recv as group</span> is).</font>
+<p> </p>
 <font size="3">2&deg;) The computer frame lists the files in
-your
-working folder. This can be saved with the local popup menu.<br>
-You can change folder by double-clicking the&nbsp;<img alt="dotdot"
+your current folder like displayed at the bottom. You can change folder
+by double-clicking the&nbsp;<img alt="dotdot"
  src="file:///c:/sources/roms/tilp/help/Image20.png" height="14"
  width="16"> button or by double-clicking a folder. You
 also
 can change the working drive (Windows) with the local popup menu.</font>
-<p><font size="3">You can send to hand-helds:<br>
-- variables,<br>
-- applications,<br>
-- operating system.<br>
-</font></p>
-<p><font size="3">Simply select one or more files (variables or
+<><font size="3"><br>
+<br>
+You can send to hand-helds variables, applications or operating
+systems. Simply select one or more files (variables or
 FLASH applications only; no backup) and drag them onto the remote view.<br>
+</font></>
+<h3><font size="3"><big>5.4.2 Simplfified GUI mode</big><br>
+</font></h3>
+<p><font size="3">The main window only contains the remote view
+(calculator). You have to use the <span style="font-style: italic;">Send
+</span>&amp; <span style="font-style: italic;">Receive </span>toolbar
+buttons for operations.<br>
 </font></p>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><img alt=""
+ src="tb_calc_send.png" style="width: 32px; height: 32px;"></td>
+      <td style="vertical-align: top;"><font size="3">Open a file
+selector which lets you select one or more
+files to send. Allowed files are variables, applications or operating
+systems.</font></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><img alt=""
+ src="tb_calc_recv.png" style="width: 32px; height: 32px;"></td>
+      <td style="vertical-align: top;">Same behaviour as explained in
+the full GUI mode (2&deg;). <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3><font><big><font size="3"><big>5.4.3 About variable overwriting</big></font></big></font></h3>
 <p><font size="3">If you have enabled the <span
  style="font-style: italic;">confirm deleting/overwriting</span>
 option,
@@ -482,7 +509,8 @@ But, for some of them, a shell may be required:<br>
 <p> <font size="3">Calculators based on FLASH technology (TI83+,
 TI84+, TI89, TI92+ and V200PLT) have a unique identifier in their
 memory. This
-identifier can be requested by TI for buying/signing FLASH applications.</font><br>
+identifier can be requested for subscription on the TI online store and
+is needed for buying/signing FLASH applications.</font><br>
 </p>
 <h2>5.8 Clock</h2>
 <blockquote> </blockquote>
