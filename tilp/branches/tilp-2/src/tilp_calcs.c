@@ -214,7 +214,7 @@ int tilp_calc_idlist(int to_file)
 	if(tilp_calc_isready())
 		return -1;
 
-	err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t)idlist);
+	err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t *)idlist);
 	if(err)
 	{
 		tilp_err(err);
@@ -634,7 +634,6 @@ static int tilp_calc_recv_var1(void)
 
 			gtk_update.cnt2 = i;
 			gtk_update.max2 = l;
-			printf("%i %i\n", i, l);
 			gtk_update.pbar();
 			gtk_update.refresh();
 		}

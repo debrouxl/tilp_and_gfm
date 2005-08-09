@@ -117,12 +117,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 
 		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
-		{
-			FileEntry* fe = g_malloc0(sizeof(FileEntry));
-
-			fe->name = g_strdup(*q);
-			local.selection = g_list_prepend(local.selection, fe);
-		}
+			tilp_clist_add_file_to_selection(*q);
 		tilp_slct_load_contents();
 
 		g_strfreev(array);

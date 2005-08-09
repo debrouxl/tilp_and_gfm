@@ -57,15 +57,15 @@ an hand-held<br>
 4&deg;) <span style="font-style: italic;">Timeout </span>: default
 timeout in tenth of seconds (1/10 s). <font size="3">This determines
 how long TiLP will wait for a responce before
-displaying an error message. It is strongly recommended to not
-decrease this below 1.5s or you may get false transmission errors. <br>
+displaying an error message. It is strongly recommended not to
+decrease the value below 1.5s or you may get transmission errors. <br>
 Please note that during FLASH transfers, this value is <span
  style="font-style: italic;">automatically</span> increased to 10
 seconds.</font><br>
 5&deg;) <span style="font-style: italic;">Delay </span>: inter-bit
 delay for serial/parallel cable in micro-seconds. <font size="3">
 The lower the value is, the faster the transfer will be. However, the
-transmission may become unstable (transmissions errors) if you try to
+transmission may become unstable (transmissions errors) if you try and
 go
 too fast. 10&micro;s is the optimal value. If you have a fast
 calculator (TI89/92/92+), you can decrease it.<br>
@@ -193,12 +193,12 @@ need to manually set the port to <span style="font-style: italic;">#2</span>.<br
 <br>
 If you want to use TiLP for exchanging data with
 an emulator (such as VTi under Windows or TiLP under Linux/Win32),
-you will have to select <i>Vti</i> or <i>TiLP</i>. TiLP must be
-launched AFTER the emulator has already been started.<br>
+you will have to select <i>Vti</i> or <i>TiEmu</i>. TiLP must be
+launched AFTER the emulator.<br>
 </font>
 <h2>3.2 General Options </h2>
 This part has been greatly simplified in TiLP-II. There are now few
-options which can be set-up in 2 ways:<br>
+options they can be set-up in 2 ways:<br>
 - by the Options box,<br>
 - by the left/right popup menus.<br>
 <br>
@@ -212,7 +212,7 @@ will display all files or only TI files.<br>
 checked, TiLP will ask for confirmation for operations such as
 deleting files, overwriting files, or overwriting calculator variables
 (a directory listing is performed before sending any variable)</font>.<br>
-3&deg;)<font size="3"><i> Path </i>: tells TiLP to send variables
+3&deg;)<font size="3"><i> Path </i>: request TiLP to send variables
 to the current folder (local) or to the original folder (full).
 This works only with TI9x calculators </font><font size="3">(89/92/92+/V200)</font><font
  size="3">.</font><br>
@@ -253,7 +253,7 @@ peculiarity: its screen (LCD) is smaller than one in a TI92(+), but the
 real screen (in terms of memory) has the same size as a TI92(+). You
 can see the LCD as a rectangular window. </font><font size="3">If you
 select the <i>full</i> button, TiLP will
-display the entire TI89 screen from the calculator's memory; otherwise,
+display the whole TI89 screen from the calculator's memory; otherwise,
 it will only display the portion visible on the actual TI89's screen
 (LCD).</font>
 <p> </p>

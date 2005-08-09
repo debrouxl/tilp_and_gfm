@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkWindow" id="tilp_dbox">
-  <property name="visible">True</property>
+  <property name="visible">False</property>
   <property name="title" translatable="yes">TiLP ('Ti Linking Program')</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -19,6 +19,7 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <signal name="destroy" handler="on_tilp_dbox_destroy"/>
+  <signal name="delete_event" handler="on_tilp_dbox_delete_event" last_modification_time="Tue, 09 Aug 2005 15:05:36 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox1">
@@ -55,7 +56,7 @@
 		      <property name="show_arrow">True</property>
 
 		      <child>
-			<widget class="GtkToolButton" id="button4">
+			<widget class="GtkToolButton" id="button1">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Check whether calculator is ready...</property>
 			  <property name="label" translatable="yes">Ready ?</property>
@@ -64,7 +65,79 @@
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
-			  <signal name="clicked" handler="on_tilp_button4_clicked"/>
+			  <signal name="clicked" handler="on_tilp_button1_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:12 GMT"/>
+			</widget>
+			<packing>
+			  <property name="expand">False</property>
+			  <property name="homogeneous">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkToolButton" id="button2">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">List calculator content (folders, variables and applications).</property>
+			  <property name="label" translatable="yes">Dirlist</property>
+			  <property name="use_underline">True</property>
+			  <property name="icon">../pixmaps/tb_calc_dirlist.xpm</property>
+			  <property name="visible_horizontal">True</property>
+			  <property name="visible_vertical">True</property>
+			  <property name="is_important">False</property>
+			  <signal name="clicked" handler="on_tilp_button2_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:16 GMT"/>
+			</widget>
+			<packing>
+			  <property name="expand">False</property>
+			  <property name="homogeneous">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkToolButton" id="button3">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Backup the calculator content.</property>
+			  <property name="label" translatable="yes">Backup</property>
+			  <property name="use_underline">True</property>
+			  <property name="icon">../pixmaps/tb_calc_backup.xpm</property>
+			  <property name="visible_horizontal">True</property>
+			  <property name="visible_vertical">True</property>
+			  <property name="is_important">False</property>
+			  <signal name="clicked" handler="on_tilp_button3_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:20 GMT"/>
+			</widget>
+			<packing>
+			  <property name="expand">False</property>
+			  <property name="homogeneous">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkToolButton" id="button4">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Restore the calculator content.</property>
+			  <property name="label" translatable="yes">Restore</property>
+			  <property name="use_underline">True</property>
+			  <property name="icon">../pixmaps/tb_calc_restore.xpm</property>
+			  <property name="visible_horizontal">True</property>
+			  <property name="visible_vertical">True</property>
+			  <property name="is_important">False</property>
+			  <signal name="clicked" handler="on_tilp_button4_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:25 GMT"/>
+			</widget>
+			<packing>
+			  <property name="expand">False</property>
+			  <property name="homogeneous">True</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkToolButton" id="button5">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Receive variables from non-silent calculators.</property>
+			  <property name="label" translatable="yes">Receive</property>
+			  <property name="use_underline">True</property>
+			  <property name="icon">../pixmaps/tb_calc_recv.xpm</property>
+			  <property name="visible_horizontal">True</property>
+			  <property name="visible_vertical">True</property>
+			  <property name="is_important">False</property>
+			  <signal name="clicked" handler="on_tilp_button5_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:08 GMT"/>
 			</widget>
 			<packing>
 			  <property name="expand">False</property>
@@ -74,69 +147,14 @@
 
 		      <child>
 			<widget class="GtkToolButton" id="button6">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">List calculator content (folders, variables and applications).</property>
-			  <property name="label" translatable="yes">Dirlist</property>
-			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_dirlist.xpm</property>
-			  <property name="visible_horizontal">True</property>
-			  <property name="visible_vertical">True</property>
-			  <property name="is_important">False</property>
-			  <signal name="clicked" handler="on_tilp_button6_clicked"/>
-			</widget>
-			<packing>
-			  <property name="expand">False</property>
-			  <property name="homogeneous">True</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkToolButton" id="button7">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Backup the calculator content.</property>
-			  <property name="label" translatable="yes">Backup</property>
-			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_backup.xpm</property>
-			  <property name="visible_horizontal">True</property>
-			  <property name="visible_vertical">True</property>
-			  <property name="is_important">False</property>
-			  <signal name="clicked" handler="on_tilp_button7_clicked"/>
-			</widget>
-			<packing>
-			  <property name="expand">False</property>
-			  <property name="homogeneous">True</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkToolButton" id="button8">
-			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Restore the calculator content.</property>
-			  <property name="label" translatable="yes">Restore</property>
-			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_restore.xpm</property>
-			  <property name="visible_horizontal">True</property>
-			  <property name="visible_vertical">True</property>
-			  <property name="is_important">False</property>
-			  <signal name="clicked" handler="on_tilp_button8_clicked"/>
-			</widget>
-			<packing>
-			  <property name="expand">False</property>
-			  <property name="homogeneous">True</property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkToolButton" id="button9">
-			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Receive variables from non-silent calculators.</property>
-			  <property name="label" translatable="yes">Receive</property>
+			  <property name="label" translatable="yes">Send</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_recv.xpm</property>
+			  <property name="icon">../pixmaps/tb_calc_send.xpm</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
-			  <signal name="clicked" handler="on_tilp_button9_clicked"/>
+			  <signal name="clicked" handler="on_tilp_button6_clicked" last_modification_time="Tue, 09 Aug 2005 13:50:03 GMT"/>
 			</widget>
 			<packing>
 			  <property name="expand">False</property>

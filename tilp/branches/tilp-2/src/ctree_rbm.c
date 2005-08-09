@@ -35,38 +35,6 @@
 #include "options.h"
 #include "tilp_core.h"
 
-/* Create/update menu */
-
-GtkWidget *create_ctree_rbm(void)
-{
-	GladeXML *xml;
-	GtkWidget *menu;
-	gpointer data;
-
-	xml = glade_xml_new(tilp_paths_build_glade("ctree_rbm-2.glade"), "ctree_rbm", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
-
-	data = glade_xml_get_widget(xml, "full_path1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), !options.local_path);
-
-	data = glade_xml_get_widget(xml, "local_view1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.full_gui);
-
-	data = glade_xml_get_widget(xml, "recv_as_group1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
-
-	data = glade_xml_get_widget(xml, "delete_var1");
-	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));
-
-	data = glade_xml_get_widget(xml, "create_folder1");
-	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_NEWFLD));
-
-	menu = glade_xml_get_widget(xml, "ctree_rbm");
-	return menu;
-}
-
 /* Callbacks */
 
 GLADE_CB void
@@ -89,9 +57,19 @@ GLADE_CB void
 rbm_local_view1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+	if(options.full_gui)
+		gtk_window_get_size(GTK_WINDOW(main_wnd), &options.wnd_x_size1, &options.wnd_y_size1);
+	else
+		gtk_window_get_size(GTK_WINDOW(main_wnd), &options.wnd_x_size2, &options.wnd_y_size2);
+
 	options.full_gui = GTK_CHECK_MENU_ITEM(menuitem)->active;
 	show_right_view(options.full_gui);
 	toolbar_refresh_buttons();
+
+	if(options.full_gui)
+		gtk_window_resize(GTK_WINDOW(main_wnd), options.wnd_x_size1, options.wnd_y_size1);
+	else
+		gtk_window_resize(GTK_WINDOW(main_wnd), options.wnd_x_size2, options.wnd_y_size2);
 }
 
 GLADE_CB void 
@@ -110,4 +88,38 @@ GLADE_CB void
 rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_new_fld();
+}
+
+/* Create/update menu */
+
+GtkWidget *create_ctree_rbm(void)
+{
+	GladeXML *xml;
+	GtkWidget *menu;
+	gpointer data;
+
+	xml = glade_xml_new(tilp_paths_build_glade("ctree_rbm-2.glade"), "ctree_rbm", PACKAGE);
+	if (!xml)
+		g_error("GUI loading failed !\n");
+	glade_xml_signal_autoconnect(xml);
+
+	data = glade_xml_get_widget(xml, "full_path1");
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), !options.local_path);
+
+	data = glade_xml_get_widget(xml, "local_view1");
+	g_signal_handlers_block_by_func(GTK_OBJECT(data), rbm_local_view1_activate, NULL);
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.full_gui);
+	g_signal_handlers_unblock_by_func(GTK_OBJECT(data), rbm_local_view1_activate, NULL);
+
+	data = glade_xml_get_widget(xml, "recv_as_group1");
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
+
+	data = glade_xml_get_widget(xml, "delete_var1");
+	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));
+
+	data = glade_xml_get_widget(xml, "create_folder1");
+	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_NEWFLD));
+
+	menu = glade_xml_get_widget(xml, "ctree_rbm");
+	return menu;
 }

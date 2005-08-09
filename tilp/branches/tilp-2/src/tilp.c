@@ -88,6 +88,10 @@ GtkWidget *display_tilp_dbox()
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "tilp_dbox");
+	if(options.full_gui)
+		gtk_window_resize(GTK_WINDOW(dbox), options.wnd_x_size1, options.wnd_y_size1);
+	else
+		gtk_window_resize(GTK_WINDOW(dbox), options.wnd_x_size2, options.wnd_y_size2);
 
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
@@ -96,17 +100,18 @@ GtkWidget *display_tilp_dbox()
 	label_wnd.label22 = glade_xml_get_widget(xml, "label24");
 
 	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
-	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button4");
-	toolbar_wnd.button11 = glade_xml_get_widget(xml, "button6");
-	toolbar_wnd.button12 = glade_xml_get_widget(xml, "button7");
-	toolbar_wnd.button13 = glade_xml_get_widget(xml, "button8");
-	toolbar_wnd.button14 = glade_xml_get_widget(xml, "button9");
+	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button1");
+	toolbar_wnd.button11 = glade_xml_get_widget(xml, "button2");
+	toolbar_wnd.button12 = glade_xml_get_widget(xml, "button3");
+	toolbar_wnd.button13 = glade_xml_get_widget(xml, "button4");
+	toolbar_wnd.button14 = glade_xml_get_widget(xml, "button5");
+	toolbar_wnd.button15 = glade_xml_get_widget(xml, "button6");
 	toolbar_wnd.button20 = glade_xml_get_widget(xml, "button10");
 	toolbar_wnd.button21 = glade_xml_get_widget(xml, "button11");
 	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
 
 	paned = glade_xml_get_widget(xml, "hpaned1");
-	gtk_paned_set_position(GTK_PANED(paned), options.xsize);
+	gtk_paned_set_position(GTK_PANED(paned), options.pane_x_size);
 
 	show_right_view(options.full_gui);
 	help_menu = glade_xml_get_widget(xml, "help_menu1");
@@ -134,7 +139,7 @@ GtkWidget *display_help_menu(void)
 
 GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
 {
-	options.xsize = gtk_paned_get_position(paned);
+	options.pane_x_size = gtk_paned_get_position(paned);
 }
 
 GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
@@ -143,6 +148,18 @@ GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 	gtk_main_quit();
 }
 
+GLADE_CB gboolean
+on_tilp_dbox_delete_event              (GtkWidget       *widget,
+                                        GdkEvent         *event,
+                                        gpointer          user_data)
+{
+	if(options.full_gui)
+		gtk_window_get_size(GTK_WINDOW(widget), &options.wnd_x_size1, &options.wnd_y_size1);
+	else
+		gtk_window_get_size(GTK_WINDOW(widget), &options.wnd_x_size2, &options.wnd_y_size2);
+
+	return FALSE;
+}
 
 /* Help menu */
 
@@ -254,12 +271,14 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 #endif
 }
 
-GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
+// Ready
+GLADE_CB void on_tilp_button1_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_calc_isready();
 }
 
-GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
+// Dirlist
+GLADE_CB void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
 {
 	if (tilp_calc_dirlist() != 0)
 		return;
@@ -268,8 +287,8 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-
-GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
+// Send Backup
+GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
@@ -303,8 +322,8 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-
-GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
+// Recv Backup
+GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	char *ext;
@@ -353,42 +372,7 @@ static int save_group(void)
 	return 0;
 }
 
-void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data);
-void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data);
-
-GLADE_CB void on_tilp_button9_clicked(GtkButton* button, gpointer user_data)
-{
-	if(!options.full_gui)
-	{
-		// Local view only
-		if(!remote.selection)
-		{
-			// Ask for a file if no selection
-			const char *filename;
-			char *ext;
-
-			ext = g_strconcat("*.", "*", NULL);
-			filename = create_fsel(local.cwdir, NULL, ext, FALSE);
-			g_free(ext);
-
-			if(filename)
-			{
-				tilp_add_file_to_selection(filename);
-				tilp_calc_send_var();
-			}
-		}
-		else
-		{
-			// If selection, send it
-			on_tilp_button9a_clicked(button, user_data);
-		}
-	}
-	else
-		on_tilp_button9a_clicked(button, user_data);
-}
-
-// Used for receiving vars
-void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
+void on_tilp_recv(void)
 {
 	int ret;
 
@@ -437,14 +421,14 @@ void on_tilp_button9a_clicked(GtkButton* button, gpointer user_data)
 // - such as "" for sending var in the default folder
 // - such as "foo" for sending var in the 'foo' folder
 // - unused for sending FLASH files
-void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
+void on_tilp_send(gchar *user_data)
 {
 	gchar *target;
 	FileEntry *f;
 
 	// note: dst_folder must be a copy b/c the user_data
 	// pointer is no longer valid after dirlist_remote
-	target = g_strdup((gchar *) user_data);
+	target = g_strdup(user_data);
 
 	if (local.selection == NULL)
 		return;
@@ -489,7 +473,7 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 			}
 		}
 		// needed: avoid box locking/flickering !
-		//GTK_REFRESH();
+		GTK_REFRESH();
 		
 		tilp_calc_send_var();
 		tilp_slct_unload_contents();
@@ -498,6 +482,36 @@ void on_tilp_button9b_clicked(GtkButton* button, gpointer user_data)
 	g_free(target);
 }
 
+// Receive
+GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
+{
+	on_tilp_recv();
+}
+
+// Send
+GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
+{
+	gchar** filenames;
+	gchar** ptr;
+	char *ext;
+
+	ext = g_strconcat("*.", "*", NULL);
+	filenames = create_fsels(local.cwdir, NULL, ext);
+	g_free(ext);
+
+	if(filenames == NULL)
+		return;
+	
+	for(ptr = filenames; *ptr != NULL; ptr++)
+		tilp_clist_add_file_to_selection(*ptr);
+
+	g_strfreev(filenames);
+	
+	on_tilp_send("");
+	tilp_clist_selection_destroy();
+}
+
+// ---
 
 // make new dir
 GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)

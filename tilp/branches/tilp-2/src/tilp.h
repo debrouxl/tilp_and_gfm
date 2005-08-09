@@ -72,23 +72,15 @@ on_bug_report1_activate                (GtkMenuItem     *menuitem,
 
 void on_about1_activate(GtkMenuItem * menuitem, gpointer user_data);
 
+void on_tilp_button1_clicked(GtkButton * button, gpointer user_data);
+void on_tilp_button2_clicked(GtkButton * button, gpointer user_data);
+void on_tilp_button3_clicked(GtkButton * button, gpointer user_data);
 void on_tilp_button4_clicked(GtkButton * button, gpointer user_data);
-
 void on_tilp_button5_clicked(GtkButton * button, gpointer user_data);
-
 void on_tilp_button6_clicked(GtkButton * button, gpointer user_data);
 
-void on_tilp_button7_clicked(GtkButton * button, gpointer user_data);
-
-void on_tilp_button8_clicked(GtkButton * button, gpointer user_data);
-
-void on_tilp_button9_clicked(GtkButton * button, gpointer user_data);
-void on_tilp_button9b_clicked(GtkButton * button, gpointer user_data);
-
 void on_tilp_button10_clicked(GtkButton * button, gpointer user_data);
-
 void on_tilp_button11_clicked(GtkButton * button, gpointer user_data);
-
 void on_tilp_button12_clicked(GtkButton * button, gpointer user_data);
 
 gboolean

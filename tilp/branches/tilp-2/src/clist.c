@@ -123,7 +123,6 @@ static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
 	GtkSortType sort1 = gtk_tree_view_column_get_sort_order(column);
 	GtkSortType sort2 = (options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 
-	printf("%i %i\n", sort1, sort2);
 	if(sort1 == sort2)
 	{
 		options.local_sort_order = !options.local_sort_order;

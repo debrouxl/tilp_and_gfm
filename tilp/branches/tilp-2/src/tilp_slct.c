@@ -73,6 +73,14 @@ void tilp_clist_selection_display(void)
 }
 #endif /* !__MACOSX__ */
 
+void tilp_clist_add_file_to_selection(const char* filename)
+{
+	FileEntry* fe = g_malloc0(sizeof(FileEntry));
+
+	fe->name = g_strdup(filename);
+	local.selection = g_list_prepend(local.selection, fe);
+}
+
 /* Add a file to the file_selection (if it does not exist in the list) */
 void tilp_add_file_to_selection(const char *filename)
 {

@@ -56,8 +56,14 @@ typedef struct
 
 	// gui
 #ifndef __MACOSX__
-    int		xsize;
-    int		ysize;
+    int		pane_x_size;
+    int		pane_y_size;
+
+	int		wnd_x_size1;
+	int		wnd_y_size1;
+
+	int		wnd_x_size2;
+	int		wnd_y_size2;
 
     int		local_sort;
     int		local_sort_order;
@@ -134,8 +140,8 @@ typedef struct
     GList* dirlist;			// linked list of files & directories
     gchar* cwdir;			// current active directory
 
-    GList* selection;		// selection of files (send, view, ...)
-    GList* file_selection;	// selection of files (cut/copy/paste)
+    GList* selection;		// selection of files (data: FileEntry)
+    GList* file_selection;	// selection of files (data: char*)
 
     int copy_cut;			// action type
 } TilpLocal;
@@ -149,8 +155,8 @@ typedef struct
 
     TilpMem	memory;			// memory free or used by calc
 
-    GList*	selection;		// selection of variables
-    GList*	selection2;		// selection of applications
+    GList*	selection;		// selection of variables    (data: VarEntry)
+    GList*	selection2;		// selection of applications (data: VarEntry)
 } TilpRemote;
 
 /* Global variables */

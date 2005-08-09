@@ -103,11 +103,6 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(clist_wnd));
 	gtk_tree_selection_unselect_all(sel);
 
-	if(gtk_tree_selection_count_selected_rows(selection) > 0)
-		toolbar_set_button(2);
-	else
-		toolbar_set_button(1);
-
 	// create a new selection
 	for (list = gtk_tree_selection_get_selected_rows(selection, &model);
 	     list != NULL; list = list->next) 
@@ -510,7 +505,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 			on_rom_dump1_activate(NULL, NULL);
 
 		else if (!strcmp(name, NODE3))
-			on_tilp_button7_clicked(NULL, NULL);
+			on_tilp_button3_clicked(NULL, NULL);
 
 		else if(!strcmp(name, NODE5))
 			tilp_calc_idlist(0);

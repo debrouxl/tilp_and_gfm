@@ -56,8 +56,14 @@ static void default_config_win32(void)
 #ifndef __MACOSX__
 int tilp_config_default(void)
 {
-	options.xsize = 640 / 2;
-	options.ysize = 480 / 2;
+	options.pane_x_size = 640 / 2;
+	options.pane_y_size = 480 / 2;
+
+	options.wnd_x_size1 = 640;
+	options.wnd_y_size1 = 480;
+
+	options.wnd_x_size2 = 320;
+	options.wnd_y_size2 = 320;
 
 	options.local_sort = SORT_BY_NAME;
 	options.local_sort_order = SORT_DOWN;
@@ -210,11 +216,23 @@ int tilp_config_write(void)
 
 	// Section [GUI]
 
-	g_key_file_set_integer(kf, SECTION_GUI, "xsize", options.xsize);
-	g_key_file_set_comment(kf, SECTION_GUI, "xsize", "Size of window", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "pane_x_size", options.pane_x_size);
+	g_key_file_set_comment(kf, SECTION_GUI, "pane_x_size", "Size of remote view", &error);
 
-	g_key_file_set_integer(kf, SECTION_GUI, "ysize", options.ysize);
-	g_key_file_set_comment(kf, SECTION_GUI, "ysize", "Size of window", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "pane_y_size", options.pane_y_size);
+	g_key_file_set_comment(kf, SECTION_GUI, "pane_y_size", "Size of remote view", &error);
+
+	g_key_file_set_integer(kf, SECTION_GUI, "wnd_x_size1", options.wnd_x_size1);
+	g_key_file_set_comment(kf, SECTION_GUI, "wnd_x_size1", "Size of window (full)", &error);
+
+	g_key_file_set_integer(kf, SECTION_GUI, "wnd_y_size1", options.wnd_y_size1);
+	g_key_file_set_comment(kf, SECTION_GUI, "wnd_y_size1", "Size of window (full)", &error);
+
+	g_key_file_set_integer(kf, SECTION_GUI, "wnd_x_size2", options.wnd_x_size2);
+	g_key_file_set_comment(kf, SECTION_GUI, "wnd_x_size2", "Size of window (no local)", &error);
+
+	g_key_file_set_integer(kf, SECTION_GUI, "wnd_y_size2", options.wnd_y_size2);
+	g_key_file_set_comment(kf, SECTION_GUI, "wnd_y_size2", "Size of window (no local)", &error);
 
 	g_key_file_set_integer(kf, SECTION_GUI, "local_sort", options.local_sort);
 	g_key_file_set_comment(kf, SECTION_GUI, "local_sort", "Sorting mode for local view", &error);
@@ -359,8 +377,14 @@ int tilp_config_read(void)
 		g_key_file_get_integer(kf, SECTION_DEVICE, "cable_delay", &error);
 
 	// Section GUI
-	options.xsize = g_key_file_get_integer(kf, SECTION_GUI, "xsize", &error);
-	options.ysize = g_key_file_get_integer(kf, SECTION_GUI, "ysize", &error);
+	options.pane_x_size = g_key_file_get_integer(kf, SECTION_GUI, "pane_x_size", &error);
+	options.pane_y_size = g_key_file_get_integer(kf, SECTION_GUI, "pane_y_size", &error);
+
+	options.wnd_x_size1 = g_key_file_get_integer(kf, SECTION_GUI, "wnd_x_size1", &error);
+	options.wnd_y_size2 = g_key_file_get_integer(kf, SECTION_GUI, "wnd_y_size2", &error);
+
+	options.wnd_x_size1 = g_key_file_get_integer(kf, SECTION_GUI, "wnd_x_size1", &error);
+	options.wnd_y_size2 = g_key_file_get_integer(kf, SECTION_GUI, "wnd_y_size2", &error);
 
 	options.local_sort = 
 		g_key_file_get_integer(kf, SECTION_GUI, "local_sort", &error);

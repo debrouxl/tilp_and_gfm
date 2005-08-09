@@ -107,6 +107,8 @@ on_treeview2_drag_data_get(GtkWidget * widget,
 			       (guchar *)name, strlen(name));
 }
 
+extern on_tilp_send(gchar*);
+
 // retrieve data
 GLADE_CB void
 on_treeview1_drag_data_received(GtkWidget * widget,
@@ -140,7 +142,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		if(!strcmp(name, NODE4))
 		{
 			// send to flash
-			on_tilp_button9b_clicked(NULL, "FLASH");
+			on_tilp_send("FLASH");
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
@@ -148,7 +150,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		else if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
 		{
 			// send to folder
-			on_tilp_button9b_clicked(NULL, ve->name);
+			on_tilp_send(ve->name);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
@@ -156,7 +158,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		else
 		{
 			// send standard
-			on_tilp_button9b_clicked(NULL, "");
+			on_tilp_send("");
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
@@ -238,7 +240,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else if (!strcmp(name, NODE3)) 
 		{
 			// all variables to get
-			on_tilp_button9_clicked(NULL, NULL);
+			on_tilp_button5_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		}
 		else if (!strcmp(name, NODE4))
@@ -255,7 +257,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else if (!strcmp(name, NODEx)) 
 		{
 			// folder to get
-			on_tilp_button9_clicked(NULL, NULL);
+			on_tilp_button5_clicked(NULL, NULL);
 			select_vars_under_folder(0);	//deselect
 		} 
 		else if (!strcmp(name, NODE7))
@@ -265,7 +267,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		else 
 		{
 			// single/group to get
-			on_tilp_button9_clicked(NULL, NULL);
+			on_tilp_button5_clicked(NULL, NULL);
 		}
 
 		gtk_drag_finish(drag_context, TRUE, FALSE, time);

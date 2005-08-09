@@ -40,6 +40,8 @@ extern struct toolbar_window
 	GtkWidget* button12;
 	GtkWidget* button13;
 	GtkWidget* button14;
+	GtkWidget* button15;
+
 	GtkWidget* button20;
 	GtkWidget* button21;
 	GtkWidget* button22;
