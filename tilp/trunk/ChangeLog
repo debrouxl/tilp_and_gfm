@@ -16,6 +16,9 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 19/08/2005, version 6.80 (3.9.6, 0.6.6, 4.6.1): roms
+	Added gcc 4.0 support with fvisibility flag.
+
 - 26/05/2005, version 6.79 (3.9.2, 0.6.5, 4.5.9): jb
 	Images in EPS/PDF files now compressed if zlib is available and
 	ASCII85-encoded.

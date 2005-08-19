@@ -3,7 +3,7 @@
 
 
 Previous version: 6.78b		(29/04/2005)
-Current version:  6.79		(24/05/2005)
+Current version:  6.80		(19/08/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -23,12 +23,12 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- PDF/EPS image support for screenshots
+	- PDF/EPS image support (w/ compression) for screenshots
 
 Improvements:
 -------------
 
-	- none
+	- [Linux] can be compiled with gcc 4.0 for now.
 
 Bug fixes:
 ----------
