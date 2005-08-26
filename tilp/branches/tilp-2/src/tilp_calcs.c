@@ -781,6 +781,22 @@ int tilp_calc_del_var(void)
 	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
+	if(calc_handle->model == CALC_TI89 || calc_handle->model == CALC_TI92P ||
+		calc_handle->model == CALC_TI89T || calc_handle->model == CALC_V200)
+	{
+		CalcInfos infos;
+
+		err = ticalcs_calc_get_version(calc_handle, &infos);
+		if(tilp_err(err))
+			return -1;
+
+		if(strcmp(infos.os, "2.09") < 0)
+		{
+			gif->msg_box1(_("Information"), _("You need AMS 2.09 mini for this operation."));
+			return -1;
+		}
+	}
+
 	if(options.overwrite)
 	{
 		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that ?"));
