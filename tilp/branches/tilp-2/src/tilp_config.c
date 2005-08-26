@@ -66,9 +66,9 @@ int tilp_config_default(void)
 	options.wnd_y_size2 = 320;
 
 	options.local_sort = SORT_BY_NAME;
-	options.local_sort_order = SORT_DOWN;
+	options.local_sort_order = SORT_UP;
 	options.remote_sort = SORT_BY_NAME;
-	options.remote_sort_order = SORT_DOWN;
+	options.remote_sort_order = SORT_UP;
 
 #ifdef __WIN32__
 	options.fs_type = 2;
