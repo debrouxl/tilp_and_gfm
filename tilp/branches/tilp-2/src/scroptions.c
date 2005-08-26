@@ -68,12 +68,13 @@ gint display_scroptions_dbox()
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == BMP)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton23");
+
+	data = glade_xml_get_widget(xml, "radiobutton14");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == PDF)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton24");
+	data = glade_xml_get_widget(xml, "radiobutton15");
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == EPS)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
@@ -144,14 +145,14 @@ on_radiobutton13_toggled(GtkToggleButton * togglebutton,
 		tmp_image_format = BMP;
 }
 GLADE_CB void
-on_radiobutton23_toggled(GtkToggleButton * togglebutton,
+on_radiobutton14_toggled(GtkToggleButton * togglebutton,
 			 gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = PDF;
 }
 GLADE_CB void
-on_radiobutton24_toggled(GtkToggleButton * togglebutton,
+on_radiobutton15_toggled(GtkToggleButton * togglebutton,
 			 gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))

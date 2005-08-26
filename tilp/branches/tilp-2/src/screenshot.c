@@ -98,11 +98,23 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 	switch (options.screen_format) 
 	{
 	case XPM:
-	case PCX:
+		type = "xpm";
+		filename = create_fsel(local.cwdir, "screenshot.xpm", "*.xpm", TRUE);
+		if (!filename)
+			return;
+
+		pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
+		result = gdk_pixbuf_save(pixbuf, filename, type, &error, NULL);
+		break;
 	case BMP:
-		gif->msg_box1("Information",
-			"Sorry, these formats are not supported any longer.");
-		return;
+		type = "bmp";
+		filename = create_fsel(local.cwdir, "screenshot.bmp", "*.bmp", TRUE);
+		if (!filename)
+			return;
+
+		pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
+		result = gdk_pixbuf_save(pixbuf, filename, type, &error, NULL);
+		break;
 	case JPG:
 		type = "jpeg";
 		filename = create_fsel(local.cwdir, "screenshot.jpg", "*.jpg", TRUE);

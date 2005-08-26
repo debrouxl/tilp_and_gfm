@@ -16,6 +16,7 @@
   <property name="skip_pager_hint">False</property>
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+  <property name="focus_on_map">True</property>
   <property name="has_separator">True</property>
 
   <child internal-child="vbox">
@@ -153,6 +154,10 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -216,6 +221,10 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		      <property name="width_chars">-1</property>
+		      <property name="single_line_mode">False</property>
+		      <property name="angle">0</property>
 		    </widget>
 		    <packing>
 		      <property name="type">label_item</property>
@@ -248,6 +257,10 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>
@@ -304,8 +317,9 @@
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <property name="active">False</property>
-		      <property name="inconsistent">True</property>
+		      <property name="inconsistent">False</property>
 		      <property name="draw_indicator">True</property>
+		      <property name="group">radiobutton10</property>
 		      <signal name="toggled" handler="on_radiobutton11_toggled" last_modification_time="Thu, 13 Feb 2003 20:53:15 GMT"/>
 		    </widget>
 		    <packing>
@@ -351,9 +365,9 @@
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
 		      <property name="active">False</property>
-		      <property name="inconsistent">True</property>
+		      <property name="inconsistent">False</property>
 		      <property name="draw_indicator">True</property>
-		      <property name="group">radiobutton11</property>
+		      <property name="group">radiobutton10</property>
 		      <signal name="toggled" handler="on_radiobutton13_toggled" last_modification_time="Thu, 13 Feb 2003 20:53:07 GMT"/>
 		    </widget>
 		    <packing>
@@ -367,7 +381,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkRadioButton" id="radiobutton23">
+		    <widget class="GtkRadioButton" id="radiobutton14">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">PDF</property>
@@ -378,7 +392,7 @@
 		      <property name="inconsistent">False</property>
 		      <property name="draw_indicator">True</property>
 		      <property name="group">radiobutton10</property>
-		      <signal name="toggled" handler="on_radiobutton23_toggled" last_modification_time="Sun, 15 May 2005 15:27:57 GMT"/>
+		      <signal name="toggled" handler="on_radiobutton14_toggled" last_modification_time="Fri, 26 Aug 2005 20:30:20 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -391,7 +405,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkRadioButton" id="radiobutton24">
+		    <widget class="GtkRadioButton" id="radiobutton15">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">EPS (PostScript)</property>
@@ -402,7 +416,7 @@
 		      <property name="inconsistent">False</property>
 		      <property name="draw_indicator">True</property>
 		      <property name="group">radiobutton10</property>
-		      <signal name="toggled" handler="on_radiobutton24_toggled" last_modification_time="Sun, 15 May 2005 15:28:04 GMT"/>
+		      <signal name="toggled" handler="on_radiobutton15_toggled" last_modification_time="Fri, 26 Aug 2005 20:30:26 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
@@ -429,6 +443,10 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
 		</widget>
 		<packing>
 		  <property name="type">label_item</property>
@@ -454,6 +472,10 @@
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">0</property>
 	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
 	    </widget>
 	    <packing>
 	      <property name="type">tab</property>

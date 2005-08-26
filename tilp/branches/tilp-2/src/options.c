@@ -30,6 +30,7 @@
 #include "support.h"
 #include "options.h"
 #include "tilp_core.h"
+#include "clist.h"
 
 static TilpOptions tmp_options;
 
