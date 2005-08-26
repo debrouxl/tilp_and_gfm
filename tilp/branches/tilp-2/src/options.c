@@ -84,7 +84,7 @@ gint display_options_dbox()
 	{
 	case GTK_RESPONSE_OK:
 		memcpy(&options, &tmp_options, sizeof(tmp_options));
-		//clist_refresh();
+		clist_refresh();
 		break;
 	case GTK_RESPONSE_HELP:
 		break;

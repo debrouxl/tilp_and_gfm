@@ -207,7 +207,7 @@ gint display_action_dbox(gchar *target)
 
 			gtk_list_store_append(list, &iter);
 			gtk_list_store_set(list, &iter,
-					   COLUMN_VAR,  row_text[0],
+					   COLUMN_VAR,  full_name,
 					   COLUMN_ATTR, row_text[1],
 					   COLUMN_FILE, row_text[2],
 					   COLUMN_ACTION, row_text[3],
