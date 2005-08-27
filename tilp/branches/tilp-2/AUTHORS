@@ -9,8 +9,8 @@ web: http://lpg.ticalc.org/prj_tilp
 mail: roms@tilp.info
 
 
-Julien Blache (jb): Mac OS-X port, Debian packaging
-===================================================
+Julien Blache (jb): Mac OS-X port, Debian packaging, libusb preliminary support
+===============================================================================
 
 web: http://jblache.org
 mail: jb@jblache.org
@@ -21,12 +21,7 @@ Tijl Coosemans (Kalimero): BSD port
 
 web: http://tijl.studentenweb.org
 mail: tijl@ulyssis.org
-
-
-Severin Trochut (surfkiller): BeOS port
-=======================================
-
-mail: setrochu@sun.cpe.fr
+-> some code and concepts of ticables-2 library
 
 
 Jesse Palmer (jp3d): icon designer
@@ -36,17 +31,24 @@ web: http://jp3d.net
 mail: jp@jp3d.net
 
 
+Benjamin Moody (FloppusMaximus): TI8x rom dumper
+================================================
+
+web: http://lpg.ticalc.org/prj_tilem/index.html
+mail: benjamin@ecg.mit.edu 
+
+
 Packagers:
 ==========
 - Julien Blache <jb@jblache.org>: Linux/Debian
-- Benjamin Gordon: <ben@bxg.org>: Linux/Redhat
+- Kevin Kofler: <Kevin@tigcc.ticalc.org>: Linux/Fedora
 - Romain Lievin: <roms@tilp.info>: Win32
 
 
 All the others who have contributed to
 ======================================
 
-Some contributions have been brought about this software by people.
-See the THANKS file for more informations.
+The users, the helpers, the testers, the bug reporters, ...
 
-Thanks to Benjamin Moody <bmoody@WPI.EDU> for his TI83+/TI84+ ROM dumper. Well, good work on TiLem ;-)
+Special thanks to Texas Instruments France who donate the following devices at 
+Aug the 22th, 2005: TI82, 83, 89, 92+, V200 in order to help me in testing TiLP-2.
