@@ -450,7 +450,8 @@ void on_tilp_send(gchar *user_data)
 		{
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;
-		} else if (tifiles_file_is_tib(f->name)) 
+		} 
+		else if (tifiles_file_is_tib(f->name)) 
 		{
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;

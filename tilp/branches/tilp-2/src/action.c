@@ -164,6 +164,15 @@ gint display_action_dbox(gchar *target)
 		FileEntry *f = (FileEntry *)sel->data;
 		FileContent *c = (FileContent *)f->content;
 
+		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		{
+			gif->msg_box(_("Error"),
+				     _("You can not send backups in this way. Use the 'Restore' button instead."));
+
+			button = BUTTON2; // skip box as cancel
+			goto out_clean;
+		}
+
 		// parse each VarEntry in FileEntry
 		for (i = 0; i < c->num_entries; i++) 
 		{
@@ -223,7 +232,7 @@ gint display_action_dbox(gchar *target)
 
 	if (empty == TRUE) 
 	{
-		button = BUTTON1; // skip box
+		button = BUTTON1; // skip box as ok
 		goto out_clean;
 	}
 
