@@ -244,13 +244,15 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
+	char filename[128];
 
 	if (tilp_calc_rom_dump())
 		return;
 #if 1
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
 
-	dst_filename = create_fsel(local.cwdir, NULL, "*.rom", TRUE);
+	sprintf(filename, "dump%s", tifiles_model_to_string(calc_handle->model));
+	dst_filename = create_fsel(local.cwdir, filename, "*.rom", TRUE);
 	if(!dst_filename)
 	{
 		g_free(src_filename);
