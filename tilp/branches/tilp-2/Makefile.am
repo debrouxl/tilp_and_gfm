@@ -11,6 +11,6 @@ dist_pkgdata_DATA = COPYING RELEASE
 
 EXTRA_DIST = README.* TODO po/TRANSLATORS
 
-bundle:
-	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*
-	gzip tarball.tar
+#bundle:
+#	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*
+#	gzip tarball.tar

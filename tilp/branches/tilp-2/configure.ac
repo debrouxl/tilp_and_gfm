@@ -24,8 +24,8 @@ AC_CONFIG_FILES([
   pixmaps/Makefile
   po/Makefile.in
   src/Makefile
-  tilp.lsm
-  tilp.spec
+  tilp2.lsm
+  tilp2.spec
 ])
 
 AC_MSG_CHECKING([for something to drink while compiling])
