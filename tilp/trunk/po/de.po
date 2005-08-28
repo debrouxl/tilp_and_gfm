@@ -553,7 +553,7 @@ msgstr "-adr_port=... Adresse des Ports angeben\n"
 #: src/tilp_main.c:90
 msgid "filename      a filename to send (console or GTK+)\n"
 msgstr ""
-"dateiname     ein Dateinname, der gesendet werden soll (Konsole oder GTK+)\n"
+"dateiname     ein Dateiname, der gesendet werden soll (Konsole oder GTK+)\n"
 
 #: src/tilp_main.c:92
 msgid "See the manpage for more informations...\n"
@@ -577,7 +577,7 @@ msgstr ""
 
 #: src/tilp_main.c:116
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
-msgstr "DIESES PROGRAMM GEWÄHRT KEINERLEI GARANTIEEN.\n"
+msgstr "DIESES PROGRAMM GEWÄHRT KEINERLEI GARANTIEN.\n"
 
 #: src/tilp_main.c:117
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
