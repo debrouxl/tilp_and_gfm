@@ -35,7 +35,7 @@ enum {
 #define NODE1 _("Screen")
 #define NODE2 _("Operating System")
 #define NODE3 _("Variables")
-#define NODE4 _("Applications")
+#define NODE4 _("Apps/Archive")
 #define NODE5 _("ID-LIST")
 #define NODE6 _("Clock")
 #define NODEx _("A Folder")
