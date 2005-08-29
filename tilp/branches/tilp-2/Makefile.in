@@ -197,7 +197,7 @@ subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = intl/Makefile tilp.lsm tilp.spec
+CONFIG_CLEAN_FILES = intl/Makefile tilp2.lsm tilp2.spec
 DIST_SOURCES =
 DATA = $(dist_pkgdata_DATA)
 
@@ -209,10 +209,10 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive pdf-recursive \
 	check-recursive installcheck-recursive
 DIST_COMMON = README $(dist_pkgdata_DATA) $(srcdir)/Makefile.in \
 	$(srcdir)/configure ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL \
-	Makefile.am NEWS THANKS TODO aclocal.m4 compile config.guess \
+	Makefile.am NEWS TODO aclocal.m4 compile config.guess \
 	config.h.in config.rpath config.sub configure configure.ac \
-	depcomp install-sh ltmain.sh missing mkinstalldirs tilp.lsm.in \
-	tilp.spec.in
+	depcomp install-sh ltmain.sh missing mkinstalldirs tilp2.lsm.in \
+	tilp2.spec.in
 DIST_SUBDIRS = $(SUBDIRS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -253,9 +253,9 @@ distclean-hdr:
 	-rm -f config.h stamp-h1
 intl/Makefile: $(top_builddir)/config.status $(top_srcdir)/intl/Makefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-tilp.lsm: $(top_builddir)/config.status tilp.lsm.in
+tilp2.lsm: $(top_builddir)/config.status tilp2.lsm.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-tilp.spec: $(top_builddir)/config.status tilp.spec.in
+tilp2.spec: $(top_builddir)/config.status tilp2.spec.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
@@ -642,9 +642,9 @@ uninstall-info: uninstall-info-recursive
 	uninstall-info-am uninstall-info-recursive uninstall-recursive
 
 
-bundle:
-	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*
-	gzip tarball.tar
+#bundle:
+#	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*
+#	gzip tarball.tar
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

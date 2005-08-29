@@ -2026,7 +2026,7 @@ fi
 
           ac_config_headers="$ac_config_headers config.h"
 
-                                                                                                                        ac_config_files="$ac_config_files Makefile build/Makefile glade/Makefile help/Makefile icons/Makefile intl/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile tilp.lsm tilp.spec"
+                                                                                                                        ac_config_files="$ac_config_files Makefile build/Makefile glade/Makefile help/Makefile icons/Makefile intl/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile tilp2.lsm tilp2.spec"
 
 
 echo "$as_me:$LINENO: checking for something to drink while compiling" >&5
@@ -29848,8 +29848,8 @@ do
   "pixmaps/Makefile" ) CONFIG_FILES="$CONFIG_FILES pixmaps/Makefile" ;;
   "po/Makefile.in" ) CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-  "tilp.lsm" ) CONFIG_FILES="$CONFIG_FILES tilp.lsm" ;;
-  "tilp.spec" ) CONFIG_FILES="$CONFIG_FILES tilp.spec" ;;
+  "tilp2.lsm" ) CONFIG_FILES="$CONFIG_FILES tilp2.lsm" ;;
+  "tilp2.spec" ) CONFIG_FILES="$CONFIG_FILES tilp2.spec" ;;
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   "default-1" ) CONFIG_COMMANDS="$CONFIG_COMMANDS default-1" ;;
   "config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
