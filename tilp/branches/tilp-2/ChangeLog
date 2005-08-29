@@ -7,6 +7,9 @@ To do:
 	full/local path and targetted folder ?
 	ungrouping of TI82/85 files when option is unchecked
 
+	pb with cmd line
+	pb with auto-detect
+
 - 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
 	Use new TiLP-II framework (libti*2)
 

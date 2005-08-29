@@ -152,7 +152,7 @@ void tilp_rename_selected_files()
 	while (ptr != NULL) 
 	{
 		FileEntry *fi = ptr->data;
-		printf("<<%s>>\n", fi->name);
+
 		filename =
 		    gif->msg_entry(_("Rename the file"), _("Name: "),
 				   fi->name);
