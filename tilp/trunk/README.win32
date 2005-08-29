@@ -23,11 +23,25 @@ REQUIREMENTS
 NOTES
 -----
 
-1°) You need some extra libraries 
-(GTK+ 2.0). The GTK+ package includes the Wimp (Windows IMPersonator) theme 
-engine which gives Windows look & feel (includes XP theming). Is also included the GTK theme selector.
-You may need to use it on non-NT systems if you get a lot of warnings about a font. Simply disable the
-WiMP theme for another one.
+1°) You need some extra libraries (GTK+ 2.6). 
+
+The GTK+ package includes the Wimp (Windows IMPersonator) theme engine which gives 
+Windows look & feel (includes XP theming). Is also included the GTK theme selector.
+You may need to use it on non-NT systems if you get a lot of warnings about a font. 
+Simply disable the WiMP theme for another one.
+
+If anyone is getting one of these:
+- ** WARNING **: Couldn't load font "MS Sans Serif 8" falling back to "Sans 8"
+- ** ERROR **: file shape.c line 75: assertion failed: (glyphs->num_glyphs > 0)
+or any other warning or error message regarding fonts/glyphs, the fix is to
+open your C:\Program Files\Shared Files\Gtk\2.0\etc\gtk-2.0\gtkrc and to add this:
+	style "user-font"
+	{
+	font_name="Arial"
+	}
+	widget_class "*" style "user-font"
+This forces GTK+ to use a compatible font (Arial) and reportedly fixes both
+the aforementioned problems, and probably others too.
 
 2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 the Win32 driver on the Linux Programmer Group at http://lpg.ticalc.org/prj_usb.
