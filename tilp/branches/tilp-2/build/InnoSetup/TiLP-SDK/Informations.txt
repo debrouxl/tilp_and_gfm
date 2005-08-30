@@ -11,7 +11,7 @@ Included: source code, documentation, libraries and test programs of
 
 You will need a Windows compiler (MSVC 6.0 mini or MinGW) and the glib provided
 with the GTK+ 2.6.x development package:
-<http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.7-rc1.exe?download>.
+<http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.8-rc1.exe?download>.
 
 ----------------------------------------------------------------------
 Please report any bugs, questions, ... to <tilp-devel@lists.sf.net>  

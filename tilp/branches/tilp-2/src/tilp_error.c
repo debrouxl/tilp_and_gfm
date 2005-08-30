@@ -116,8 +116,7 @@ int tilp_err(int errcode)
 			tilp_info("%s\n", s);
 	}
 
-	//free(s);
-
+	free(s);
 	return errcode;
 }
 
