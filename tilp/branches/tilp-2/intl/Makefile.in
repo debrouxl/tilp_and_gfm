@@ -1,5 +1,5 @@
 # Makefile for directory with message catalog handling library of GNU gettext
-# Copyright (C) 1995-1998, 2000-2003 Free Software Foundation, Inc.
+# Copyright (C) 1995-1998, 2000-2005 Free Software Foundation, Inc.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU Library General Public License as published
@@ -13,7 +13,7 @@
 #
 # You should have received a copy of the GNU Library General Public
 # License along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
 # USA.
 
 PACKAGE = @PACKAGE@
@@ -98,6 +98,7 @@ SOURCES = \
   plural-exp.c \
   localcharset.c \
   relocatable.c \
+  langprefs.c \
   localename.c \
   log.c \
   printf.c \
@@ -123,6 +124,7 @@ OBJECTS = \
   plural-exp.$lo \
   localcharset.$lo \
   relocatable.$lo \
+  langprefs.$lo \
   localename.$lo \
   log.$lo \
   printf.$lo \
@@ -152,7 +154,7 @@ libintl.a libgnuintl.a: $(OBJECTS)
 libintl.la libgnuintl.la: $(OBJECTS)
 	$(LIBTOOL) --mode=link \
 	  $(CC) $(CPPFLAGS) $(CFLAGS) $(XCFLAGS) $(LDFLAGS) -o $@ \
-	  $(OBJECTS) @LTLIBICONV@ $(LIBS) \
+	  $(OBJECTS) @LTLIBICONV@ @INTL_MACOSX_LIBS@ $(LIBS) \
 	  -version-info $(LTV_CURRENT):$(LTV_REVISION):$(LTV_AGE) \
 	  -rpath $(libdir) \
 	  -no-undefined
@@ -163,7 +165,7 @@ libintl.la libgnuintl.la: $(OBJECTS)
 # Maintainers of other packages that include the intl directory must *not*
 # change these values.
 LTV_CURRENT=6
-LTV_REVISION=1
+LTV_REVISION=3
 LTV_AGE=4
 
 .SUFFIXES:
@@ -212,6 +214,8 @@ localcharset.lo: $(srcdir)/localcharset.c
 	$(LIBTOOL) --mode=compile $(COMPILE) $(srcdir)/localcharset.c
 relocatable.lo: $(srcdir)/relocatable.c
 	$(LIBTOOL) --mode=compile $(COMPILE) $(srcdir)/relocatable.c
+langprefs.lo: $(srcdir)/langprefs.c
+	$(LIBTOOL) --mode=compile $(COMPILE) $(srcdir)/langprefs.c
 localename.lo: $(srcdir)/localename.c
 	$(LIBTOOL) --mode=compile $(COMPILE) $(srcdir)/localename.c
 log.lo: $(srcdir)/log.c
@@ -271,7 +275,8 @@ install-exec: all
 	  : ; \
 	fi
 	if test "$(PACKAGE)" = "gettext-tools" \
-	   && test '@USE_INCLUDED_LIBINTL@' = no; then \
+	   && test '@USE_INCLUDED_LIBINTL@' = no \
+	   && test @GLIBC2@ != no; then \
 	  $(mkinstalldirs) $(DESTDIR)$(libdir); \
 	  $(LIBTOOL) --mode=install \
 	    $(INSTALL_DATA) libgnuintl.$la $(DESTDIR)$(libdir)/libgnuintl.$la; \
@@ -330,7 +335,8 @@ installdirs:
 	  : ; \
 	fi
 	if test "$(PACKAGE)" = "gettext-tools" \
-	   && test '@USE_INCLUDED_LIBINTL@' = no; then \
+	   && test '@USE_INCLUDED_LIBINTL@' = no \
+	   && test @GLIBC2@ != no; then \
 	  $(mkinstalldirs) $(DESTDIR)$(libdir); \
 	else \
 	  : ; \
@@ -360,7 +366,8 @@ uninstall:
 	  : ; \
 	fi
 	if test "$(PACKAGE)" = "gettext-tools" \
-	   && test '@USE_INCLUDED_LIBINTL@' = no; then \
+	   && test '@USE_INCLUDED_LIBINTL@' = no \
+	   && test @GLIBC2@ != no; then \
 	  rm -f $(DESTDIR)$(libdir)/preloadable_libintl.so; \
 	else \
 	  : ; \
@@ -462,7 +469,7 @@ dist distdir: Makefile
 	  $(MAKE) $(DISTFILES.common) $(DISTFILES.generated) $$additional; \
 	  for file in ChangeLog $(DISTFILES.common) $(DISTFILES.generated) $$additional; do \
 	    if test -f $$file; then dir=.; else dir=$(srcdir); fi; \
-	    cp -p $$dir/$$file $(distdir); \
+	    cp -p $$dir/$$file $(distdir) || test $$file = Makefile.in || exit 1; \
 	  done; \
 	fi
 

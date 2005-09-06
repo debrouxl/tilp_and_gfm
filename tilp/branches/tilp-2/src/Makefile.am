@@ -1,19 +1,19 @@
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = -I$(top_srcdir)/intl
 AM_CFLAGS = -Wall #-Wno-pointer-sign
 
-# programs and files to compile and install 
+# programs and files to compile and install
 bin_PROGRAMS = tilp-2
 
 # build instructions
-tilp_2_CPPFLAGS = @TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
+tilp_2_CPPFLAGS = -I$(top_srcdir)/intl \
+	@TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	-DGTK_DISABLE_DEPRECATED
-#tilp_2_LDFLAGS = -Wl,--export-dynamic
+tilp_2_LDFLAGS = -export-dynamic
 tilp_2_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
 	@LTLIBINTL@ @LIBZ@

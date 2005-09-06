@@ -1,5 +1,5 @@
 /* Provide relocatable packages.
-   Copyright (C) 2003 Free Software Foundation, Inc.
+   Copyright (C) 2003-2004 Free Software Foundation, Inc.
    Written by Bruno Haible <bruno@clisp.org>, 2003.
 
    This program is free software; you can redistribute it and/or modify it
@@ -14,7 +14,7 @@
 
    You should have received a copy of the GNU Library General Public
    License along with this program; if not, write to the Free Software
-   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307,
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
    USA.  */
 
 
@@ -72,20 +72,20 @@
    ISSLASH(C)           tests whether C is a directory separator character.
    IS_PATH_WITH_DIR(P)  tests whether P contains a directory specification.
  */
-#if defined _WIN32 || defined __WIN32__ || defined __EMX__ || defined __DJGPP__
-  /* Win32, OS/2, DOS */
+#if defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined __EMX__ || defined __DJGPP__
+  /* Win32, Cygwin, OS/2, DOS */
 # define ISSLASH(C) ((C) == '/' || (C) == '\\')
 # define HAS_DEVICE(P) \
     ((((P)[0] >= 'A' && (P)[0] <= 'Z') || ((P)[0] >= 'a' && (P)[0] <= 'z')) \
      && (P)[1] == ':')
 # define IS_PATH_WITH_DIR(P) \
     (strchr (P, '/') != NULL || strchr (P, '\\') != NULL || HAS_DEVICE (P))
-# define FILESYSTEM_PREFIX_LEN(P) (HAS_DEVICE (P) ? 2 : 0)
+# define FILE_SYSTEM_PREFIX_LEN(P) (HAS_DEVICE (P) ? 2 : 0)
 #else
   /* Unix */
 # define ISSLASH(C) ((C) == '/')
 # define IS_PATH_WITH_DIR(P) (strchr (P, '/') != NULL)
-# define FILESYSTEM_PREFIX_LEN(P) 0
+# define FILE_SYSTEM_PREFIX_LEN(P) 0
 #endif
 
 /* Original installation prefix.  */
@@ -189,7 +189,7 @@ compute_curr_prefix (const char *orig_installprefix,
 
   /* Determine the current installation directory.  */
   {
-    const char *p_base = curr_pathname + FILESYSTEM_PREFIX_LEN (curr_pathname);
+    const char *p_base = curr_pathname + FILE_SYSTEM_PREFIX_LEN (curr_pathname);
     const char *p = curr_pathname + strlen (curr_pathname);
     char *q;
 
@@ -216,7 +216,7 @@ compute_curr_prefix (const char *orig_installprefix,
     const char *rp = rel_installdir + strlen (rel_installdir);
     const char *cp = curr_installdir + strlen (curr_installdir);
     const char *cp_base =
-      curr_installdir + FILESYSTEM_PREFIX_LEN (curr_installdir);
+      curr_installdir + FILE_SYSTEM_PREFIX_LEN (curr_installdir);
 
     while (rp > rel_installdir && cp > cp_base)
       {
@@ -234,8 +234,8 @@ compute_curr_prefix (const char *orig_installprefix,
 		  same = true;
 		break;
 	      }
-#if defined _WIN32 || defined __WIN32__ || defined __EMX__ || defined __DJGPP__
-	    /* Win32, OS/2, DOS - case insignificant filesystem */
+#if defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined __EMX__ || defined __DJGPP__
+	    /* Win32, Cygwin, OS/2, DOS - case insignificant filesystem */
 	    if ((*rpi >= 'a' && *rpi <= 'z' ? *rpi - 'a' + 'A' : *rpi)
 		!= (*cpi >= 'a' && *cpi <= 'z' ? *cpi - 'a' + 'A' : *cpi))
 	      break;
