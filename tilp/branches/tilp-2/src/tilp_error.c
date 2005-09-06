@@ -66,14 +66,16 @@ int tilp_err(int errcode)
 			err = ticables_error_get(err, &s);
 			if (err) 
 			{
+				//free(s);
 				err = tifiles_error_get(err, &s);
 				if (err) 
 				{
+					//free(s);
 					err = ticalcs_error_get(err, &s);
 					if (err) 
 					{
-
 						// next level: error for TiLP
+						//free(s);
 					}
 				}
 			}
@@ -105,9 +107,11 @@ int tilp_err(int errcode)
 		}
 		else 
 		{
+			free(s);
 			err = ticalcs_error_get(err, &s);
 			if (!err)
 			{
+				free(s);
 				return 0;
 			}
 		}
@@ -116,7 +120,7 @@ int tilp_err(int errcode)
 			tilp_info("%s\n", s);
 	}
 
-	free(s);
+	//free(s);
 	return errcode;
 }
 
