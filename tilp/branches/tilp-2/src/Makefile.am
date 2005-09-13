@@ -2,6 +2,10 @@
 
 AM_CFLAGS = -Wall #-Wno-pointer-sign
 
+#ifneq (,$(findstring __WIN32__,$(CFLAGS)))
+#	@LDFLAGS@ += -lcomdlg32
+#endif
+
 # programs and files to compile and install
 bin_PROGRAMS = tilp-2
 

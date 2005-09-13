@@ -188,6 +188,7 @@ esac
 
 case "$host" in
   *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
+  *-*-win32*) EXFL="-lcomdlg32" ;;
   *)          EXFL="" ;;
 esac
 LDFLAGS="$LDFLAGS $EXFL"

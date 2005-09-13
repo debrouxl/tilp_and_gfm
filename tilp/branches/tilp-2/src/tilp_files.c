@@ -45,8 +45,8 @@
 # include <grp.h>
 #endif
 
-#ifdef __WIN32__
-#include "dirent.h"	// for S_ISDIR use
+#ifdef _MSC_VER
+# include "../build/msvc/dirent.h"	// for S_ISDIR use
 #endif
 
 #include "tilp_core.h"
@@ -122,7 +122,11 @@ int tilp_file_delete(const char *f)
 
 int tilp_file_mkdir(const char *pathname)
 {
+#ifdef __WIN32__
+	if(g_mkdir(pathname, S_IRWXU) < 0)
+#else
 	if(g_mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) < 0)
+#endif
 	{
 		gif->msg_box1(_("Information"), _("Unable to create the directory.\n\n"));
 		return -1;
