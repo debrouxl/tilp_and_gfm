@@ -26,7 +26,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#ifdef __WIN32__
 #include <windows.h>
+#endif
 
 #include "tilp_core.h"
 

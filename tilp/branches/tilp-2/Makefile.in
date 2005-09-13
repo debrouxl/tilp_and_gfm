@@ -39,8 +39,7 @@ host_triplet = @host@
 @USE_GROFF_TRUE@am__append_1 = man
 DIST_COMMON = README $(am__configure_deps) $(dist_pkgdata_DATA) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/config.h.in $(srcdir)/tilp2.lsm.in \
-	$(srcdir)/tilp2.spec.in $(top_srcdir)/configure \
+	$(srcdir)/config.h.in $(top_srcdir)/configure \
 	$(top_srcdir)/intl/Makefile.in ABOUT-NLS AUTHORS COPYING \
 	ChangeLog INSTALL NEWS TODO compile config.guess config.rpath \
 	config.sub depcomp install-sh ltmain.sh missing mkinstalldirs
@@ -53,7 +52,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = config.h
-CONFIG_CLEAN_FILES = intl/Makefile tilp2.lsm tilp2.spec
+CONFIG_CLEAN_FILES = intl/Makefile
 SOURCES =
 DIST_SOURCES =
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
@@ -298,10 +297,6 @@ distclean-hdr:
 	-rm -f config.h stamp-h1
 intl/Makefile: $(top_builddir)/config.status $(top_srcdir)/intl/Makefile.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
-tilp2.lsm: $(top_builddir)/config.status $(srcdir)/tilp2.lsm.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-tilp2.spec: $(top_builddir)/config.status $(srcdir)/tilp2.spec.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -465,7 +460,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/. $(distdir)/intl $(distdir)/po
+	$(mkdir_p) $(distdir)/intl $(distdir)/po
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \

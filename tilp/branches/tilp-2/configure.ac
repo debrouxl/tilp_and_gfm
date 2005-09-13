@@ -24,8 +24,6 @@ AC_CONFIG_FILES([
   pixmaps/Makefile
   po/Makefile.in
   src/Makefile
-  tilp2.lsm
-  tilp2.spec
 ])
 
 AC_MSG_CHECKING([for something to drink while compiling])
@@ -188,7 +186,7 @@ esac
 
 case "$host" in
   *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
-  *-*-win32*) EXFL="-lcomdlg32" ;;
+  *-*-mingw*) EXFL="-lcomdlg32" ;;
   *)          EXFL="" ;;
 esac
 LDFLAGS="$LDFLAGS $EXFL"
