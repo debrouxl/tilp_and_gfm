@@ -10,6 +10,13 @@ To do:
 	pb with cmd line
 	pb with auto-detect
 
+- 15/06/2005, version 0.02 (0.0.1, 0.0.1, 0.0.1): roms
+	- updated autotools scripts (tijl)
+	- imported gettext 0.14.5 (tijl)
+	- enabled i18n (tijl)
+	- fixed glade errors by linking tilp with -export-dynamic (tijl)
+	- fixed MinGW compilation issues but the -lcomdlg32 issue still need to be fixed.
+
 - 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
 	Use new TiLP-II framework (libti*2)
 
