@@ -2,8 +2,8 @@
 
 
 
-Previous version: 
-Current version:  0.01		(29/08/2005)
+Previous version: 0.01		(29/08/2005)
+Current version:  0.02		(02/10/2005)
 
 SubVersion (CVS) revision: $Id$
 
@@ -24,23 +24,22 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- ...
+	- TI73/8X+ auto-probe support updated. Calculator probing updated.
+
 
 Improvements:
 -------------
 
-	- ...
+	- TiEmu virtual link for Windows
+	- rewritten GrayLink support (broken)
+
 
 Bug fixes:
 ----------
 
-	- ...
-
-Known problems:
----------------
-
-	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
-		You can disable it by using the GTK theme selector.
+	- TiEmu virtual link for Linux
+	- reading of TIB files
+	- sending of FLASH apps with size >= 64KB
 
 
 Bug report:

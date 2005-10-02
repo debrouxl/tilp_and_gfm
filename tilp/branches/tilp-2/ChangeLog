@@ -10,7 +10,7 @@ To do:
 	pb with cmd line
 	pb with auto-detect
 
-- 15/06/2005, version 0.02 (0.0.1, 0.0.1, 0.0.1): roms
+- 15/09/2005, version 0.02 (0.0.3, 0.0.3, 0.0.3): roms
 	- updated autotools scripts (tijl)
 	- imported gettext 0.14.5 (tijl)
 	- enabled i18n (tijl)
