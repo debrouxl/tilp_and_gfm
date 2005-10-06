@@ -15,9 +15,12 @@ REQUIREMENTS
  - the SilverLink driver v3.x if you have a SilverLink cable
 	 Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 	
-	 Note1: if you are using 'The GiMP', you don't need to get this GTK+ package, they are compatible.
-	 Note2: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported
+	 Note1: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported
 					by our driver.
+	 Note2: if you are using 'The GiMP', you may encounter DLL's problems...
+		The GTK+ package (1) provided with the GiMP may not be fully compatible with one used by TiLP/TiEmu.
+		On the other hand, the package (2) requested by TiLP/TiEmu is compatible with the GiMP.
+		Thus, if you are using The GiMP, you are strongly encouraged to uninstall (1) and install (2).
 
 
 NOTES
