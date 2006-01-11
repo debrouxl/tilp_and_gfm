@@ -10,6 +10,10 @@ To do:
 	pb with cmd line
 	pb with auto-detect
 
+	automatic install of the USB driver
+
+	Send automatic log of config by mail for error reporting
+
 - 15/09/2005, version 0.02 (0.0.3, 0.0.3, 0.0.3): roms
 	- updated autotools scripts (tijl)
 	- imported gettext 0.14.5 (tijl)
