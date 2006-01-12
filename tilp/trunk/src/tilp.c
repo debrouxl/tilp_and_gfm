@@ -21,6 +21,9 @@
 #  include <config.h>
 #endif				/*  */
 
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <stdlib.h>

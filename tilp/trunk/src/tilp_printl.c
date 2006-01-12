@@ -27,6 +27,9 @@
   - tilp
 */
 
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>

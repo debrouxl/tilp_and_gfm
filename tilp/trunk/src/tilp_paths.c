@@ -22,6 +22,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 
 #ifndef __MACOSX__
 #include "tilibs.h"

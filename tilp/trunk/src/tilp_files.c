@@ -32,6 +32,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#ifdef __WIN32__
+#include <windows.h>
+#endif
+
 #ifndef __MACOSX__
 # include <glib.h>
 #else
