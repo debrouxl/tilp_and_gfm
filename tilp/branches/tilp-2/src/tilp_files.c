@@ -32,6 +32,9 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 
 #ifndef __MACOSX__
 # include <glib.h>
