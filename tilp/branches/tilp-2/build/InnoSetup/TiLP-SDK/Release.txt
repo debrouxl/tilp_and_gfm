@@ -3,10 +3,11 @@
 
 
 Previous version: 
-Current version:  0.01 (29/08/2005)
+Current version:  0.02 (20/01/2006)
 
 SubVersion (CVS) revision: $Id$
 
-- ticables2 v0.0.1
-- tifiles2  v0.0.1
-- ticalcs2  v0.0.1
+- ticables2 v0.0.4
+- tifiles2  v0.0.3
+- ticalcs2  v0.0.4
+- cticables2 v0.0.1

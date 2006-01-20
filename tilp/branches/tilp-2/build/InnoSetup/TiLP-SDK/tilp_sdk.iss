@@ -6,7 +6,7 @@
 
 [Setup]
 AppName=TiLP-II SDK
-AppVerName=TiLP-II SDK 0.01
+AppVerName=TiLP-II SDK 0.02
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -25,33 +25,50 @@ Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescri
 [Files]
 ; TiCables library
 Source: "C:\sources\roms\ticables2\build\msvc\*.*"; DestDir: "{app}\ticables2\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticables2\docs\html\*"; DestDir: "{app}\ticables2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticables2\docs\html\*.html"; DestDir: "{app}\ticables2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticables2\docs\html\*.gif"; DestDir: "{app}\ticables2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticables2\src\*.c"; DestDir: "{app}\ticables2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticables2\src\*.h"; DestDir: "{app}\ticables2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticables2\tests\*.c"; DestDir: "{app}\ticables2\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 
 Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}\ticables2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 Source: "C:\sources\roms\ticables2\build\msvc\ticables2.lib"; DestDir: "{app}\ticables2\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\tests\test_ticables_2.exe"; DestDir: "{app}\ticables2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 
 Source: "C:\msvc\tilp2\ticables2.dll"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
 Source: "C:\msvc\tilp2\ticables2.lib"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\test_ticables_2.exe"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
+
 
 Source: "C:\sources\roms\ticables2\ChangeLog"; DestDir: "{app}\ticables2"; Flags: ignoreversion;
 Source: "C:\sources\roms\ticables2\ReadMe"; DestDir: "{app}\ticables2"; Flags: ignoreversion;
 Source: "C:\sources\roms\ticables2\Copying"; DestDir: "{app}\ticables2"; Flags: ignoreversion;
 
+; COM Ticables wrapper
+Source: "C:\sources\roms\ticables2\com\cticables2.tlb"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\com\cticables2.idl"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\com\cticables2.h"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\com\cticables2_i.c"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\com\cticables2_p.c"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticables2\com\Debug\cticables2.dll"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+Source: "C:\msvc\tilp2\ticables2.dll"; DestDir: "{app}\cticables2\"; Flags: ignoreversion;
+Source: "C:\sources\roms\ticables2\com\test_vba.doc"; DestDir: "{app}\cticables2\"; CopyMode: alwaysoverwrite;
+
 ; TiCalcs library
 Source: "C:\sources\roms\ticalcs2\build\msvc\*.*"; DestDir: "{app}\ticalcs2\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\ticalcs2\docs\html\*"; DestDir: "{app}\ticalcs2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticalcs2\docs\html\*.html"; DestDir: "{app}\ticalcs2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticalcs2\docs\html\*.gif"; DestDir: "{app}\ticalcs2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticalcs2\src\*.c"; DestDir: "{app}\ticalcs2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticalcs2\src\*.h"; DestDir: "{app}\ticalcs2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\ticalcs2\tests\*.c"; DestDir: "{app}\ticalcs2\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 
 Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}\ticalcs2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 Source: "C:\sources\roms\ticalcs2\build\msvc\ticalcs2.lib"; DestDir: "{app}\ticalcs2\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticalcs2\tests\test_ticalcs_2.exe"; DestDir: "{app}\ticalcs2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 
 Source: "C:\msvc\tilp2\ticalcs2.dll"; DestDir: "{app}\ticalcs2\build\msvc\Debug"; Flags: ignoreversion;
 Source: "C:\msvc\tilp2\ticalcs2.lib"; DestDir: "{app}\ticalcs2\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\test_ticalcs_2.exe"; DestDir: "{app}\ticalcs2\build\msvc\Debug"; Flags: ignoreversion;
 
 Source: "C:\sources\roms\ticalcs2\ChangeLog"; DestDir: "{app}\ticalcs2"; Flags: ignoreversion;
 Source: "C:\sources\roms\ticalcs2\ReadMe"; DestDir: "{app}\ticalcs2"; Flags: ignoreversion;
@@ -59,16 +76,19 @@ Source: "C:\sources\roms\ticalcs2\Copying"; DestDir: "{app}\ticalcs2"; Flags: ig
 
 ; TiFiles library
 Source: "C:\sources\roms\tifiles2\build\msvc\*.*"; DestDir: "{app}\tifiles2\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
-Source: "C:\sources\roms\tifiles2\docs\html\*"; DestDir: "{app}\tifiles2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\tifiles2\docs\html\*.html"; DestDir: "{app}\tifiles2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\tifiles2\docs\html\*.gif"; DestDir: "{app}\tifiles2\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\tifiles2\src\*.c"; DestDir: "{app}\tifiles2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\tifiles2\src\*.h"; DestDir: "{app}\tifiles2\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 Source: "C:\sources\roms\tifiles2\tests\*.c"; DestDir: "{app}\tifiles2\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
 
 Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}\tifiles2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 Source: "C:\sources\roms\tifiles2\build\msvc\tifiles2.lib"; DestDir: "{app}\tifiles2\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\tifiles2\tests\test_tifiles_2.exe"; DestDir: "{app}\tifiles2\build\msvc\Release"; CopyMode: alwaysoverwrite;
 
 Source: "C:\msvc\tilp2\tifiles2.dll"; DestDir: "{app}\tifiles2\build\msvc\Debug"; Flags: ignoreversion;
 Source: "C:\msvc\tilp2\tifiles2.lib"; DestDir: "{app}\tifiles2\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\test_tifiles_2.exe"; DestDir: "{app}\tifiles2\build\msvc\Debug"; Flags: ignoreversion;
 
 Source: "C:\sources\roms\tifiles2\ChangeLog"; DestDir: "{app}\tifiles2"; Flags: ignoreversion;
 Source: "C:\sources\roms\tifiles2\ReadMe"; DestDir: "{app}\tifiles2"; Flags: ignoreversion;
@@ -83,6 +103,10 @@ Name: "{group}\SDK\Uninstall the TiLP-II SDK"; Filename: "{uninstallexe}"
 Name: "{group}\SDK\ticables2 library"; Filename: "{app}\ticables2\docs\index.html"
 Name: "{group}\SDK\ticalcs2 library"; Filename: "{app}\ticalcs2\docs\index.html"
 Name: "{group}\SDK\tifiles2 library"; Filename: "{app}\tifiles2\docs\index.html"
+
+[Run]
+; Remove any previously installed PortTalk driver (especially v1.x)
+Filename: "{sys}\regsvr32.exe"; Parameters: """{app}\cticables2\cticables2.dll"""; MinVersion: 0,4;
 
 [UninstallDelete]
 Type: files; Name: "{app}\tilp2-sdk.url"
