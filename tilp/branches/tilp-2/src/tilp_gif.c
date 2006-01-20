@@ -32,25 +32,25 @@ TilpGuiFncts *gif;
 
 int default_msg_box1(const char *title, char *message)
 {
-	tilp_info("msg_box: %s, %s", title, message);
+	tilp_info("msg_box: [%s] [%s]", title, message);
 	return 0;
 }
 
 int default_msg_box2(const char *title, char *message)
 {
-	tilp_info("user1_box: %s, %s", title, message);
+	tilp_info("user1_box: [%s] [%s]", title, message);
 	return 0;
 }
 
 int default_msg_box3(const char *title, char *message, const char *b1, const char *b2, const char *b3)
 {
-	tilp_info("user1_box: %s, %s", title, message);
+	tilp_info("user1_box: [%s] [%s]", title, message);
 	return 0;
 }
 
 int default_msg_box4(const char *title, char *message)
 {
-	tilp_info("user1_box: %s, %s", title, message);
+	tilp_info("user1_box: [%s] [%s]", title, message);
 	return 0;
 }
 char *default_msg_entry(const char *title, const char *message, const char *content)

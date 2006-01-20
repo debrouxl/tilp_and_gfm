@@ -67,7 +67,6 @@ int main(int argc, char *argv[])
 	{
 		splash_screen_set_label(_("Loading GUI..."));
 		main_wnd = display_tilp_dbox();
-		tilp_err(0);		// display console mode errors
 	}
 
 	/* Do a local directory list */
@@ -81,6 +80,10 @@ int main(int argc, char *argv[])
 		labels_refresh();
 	}
 
+	/* Inits are done ! */
+	working_mode &= ~MODE_INI;
+	tilp_err(0);		// pop errors (display console mode)
+
 	/* In cmdline, does not display the entire window, only the pbar */
 	if(!(working_mode & MODE_CMD))
 	{
@@ -90,9 +93,6 @@ int main(int argc, char *argv[])
 		gtk_window_set_icon(GTK_WINDOW(main_wnd), icon);
 		gdk_window_set_icon_name(main_wnd->window, _("TiLP-II"));
 	}
-
-
-	//tifiles_file_display("c:\\msvc\\tilp2\\ticsheet.89k");
 
 	/* 
 	   If variables have been passed on the command line in GUI mode then

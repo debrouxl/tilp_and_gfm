@@ -14,6 +14,8 @@ To do:
 
 	Send automatic log of config by mail for error reporting
 
+	UTF-8 filenames are not fully managed.
+
 - 15/09/2005, version 0.02 (0.0.3, 0.0.3, 0.0.3): roms
 	- updated autotools scripts (tijl)
 	- imported gettext 0.14.5 (tijl)

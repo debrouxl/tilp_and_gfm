@@ -30,7 +30,7 @@
 
 #include "tilp_core.h"
 
-/*extern*/ int working_mode;
+extern int working_mode;
 static GList *stack = NULL;
 
 /*
@@ -48,14 +48,12 @@ int tilp_err(int errcode)
 	gsize bw;
 #endif /* !__MACOSX__ */
 
-	if (!errcode)
-		return 0;
-
-	/* Push error messages */
-	stack = g_list_append(stack, GINT_TO_POINTER(errcode));
+	/* Push error messages (if any)*/
+	if(errcode)
+		stack = g_list_append(stack, GINT_TO_POINTER(errcode));
 
 	/* Pop error messages */
-	if (working_mode & MODE_GUI) 
+	if (!(working_mode & MODE_INI)) 
 	{
 		int i;
 		for (i = 0; i < (int)g_list_length(stack); i++) 
@@ -101,18 +99,19 @@ int tilp_err(int errcode)
 
 		/* Retrieve the error message */
 		err = ticables_error_get(err, &s);
-		if (!err)
+		if (err)
 		{
-			return 0;
-		}
-		else 
-		{
-			free(s);
+			//free(s);
 			err = ticalcs_error_get(err, &s);
-			if (!err)
+			if (err)
 			{
-				free(s);
-				return 0;
+				//free(s);
+				err = ticalcs_error_get(err, &s);
+				if (err) 
+				{
+					// next level: error for TiLP
+					//free(s);
+				}
 			}
 		}
 
