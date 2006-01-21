@@ -11,10 +11,11 @@ To do:
 	pb with auto-detect
 
 	automatic install of the USB driver
-
 	Send automatic log of config by mail for error reporting
+	Auto-downlonad/install gladewin32 package.
 
-	UTF-8 filenames are not fully managed.
+- 21/01/2006, version 0.03 (0.0.4, 0.0.4, 0.0.4): roms
+	- fixed a bug in the TiLP error management system
 
 - 15/09/2005, version 0.02 (0.0.3, 0.0.3, 0.0.3): roms
 	- updated autotools scripts (tijl)
