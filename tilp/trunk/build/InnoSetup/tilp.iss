@@ -339,7 +339,7 @@ Root: HKCR; SubKey: ".73q"; ValueType: string;  ValueData: "TiLP.Certificate"; T
 Root: HKCR; SubKey: ".73z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73s"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73t"; ValueType: string;  ValueData: "TiLP.Table_Setup"; Tasks: tifiles;
-Root: HKCR; SubKey: ".73u"; ValueType: string;  ValueData: "TiLP.OS_Upgrage"; Tasks: tifiles;
+Root: HKCR; SubKey: ".73u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73v"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
