@@ -188,7 +188,7 @@ void tilp_slct_load_contents(void)
 
 		if(tifiles_file_is_regular(fe->name))
 		{
-			fe->content = c = tifiles_content_create_regular();
+			fe->content = c = tifiles_content_create_regular(calc_handle->model);
 			err = tifiles_file_read_regular(fe->name, fe->content);
 			if(err)
 			{

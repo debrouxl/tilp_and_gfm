@@ -623,7 +623,7 @@ static int tilp_calc_recv_var1(void)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
 			
-			array[i] = tifiles_content_create_regular();
+			array[i] = tifiles_content_create_regular(calc_handle->model);
 
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
 			if(err)
