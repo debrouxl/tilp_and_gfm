@@ -27892,12 +27892,12 @@ else
   if test "x$ac_cv_env_TIFILES_CFLAGS_set" = "xset"; then
 	pkg_cv_TIFILES_CFLAGS=$ac_cv_env_TIFILES_CFLAGS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.0.1\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "tifiles2 >= 0.0.1" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.0.5\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "tifiles2 >= 0.0.5" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.0.1" 2>/dev/null`
+		pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.0.5" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -27915,12 +27915,12 @@ else
   if test "x$ac_cv_env_TIFILES_LIBS_set" = "xset"; then
 	pkg_cv_TIFILES_LIBS=$ac_cv_env_TIFILES_LIBS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.0.1\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "tifiles2 >= 0.0.1" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.0.5\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "tifiles2 >= 0.0.5" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.0.1" 2>/dev/null`
+		pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.0.5" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -27932,18 +27932,18 @@ echo "$as_me:$LINENO: result: $pkg_cv_TIFILES_LIBS" >&5
 echo "${ECHO_T}$pkg_cv_TIFILES_LIBS" >&6
 
 if test $pkg_failed = yes; then
-	TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.0.1"`
+	TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.0.5"`
 	# Put the nasty error message in config.log where it belongs
 	echo "$TIFILES_PKG_ERRORS" 1>&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (tifiles2 >= 0.0.1) were not met.
+	{ { echo "$as_me:$LINENO: error: Package requirements (tifiles2 >= 0.0.5) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
 Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
 to avoid the need to call pkg-config.  See the pkg-config man page for
 more details." >&5
-echo "$as_me: error: Package requirements (tifiles2 >= 0.0.1) were not met.
+echo "$as_me: error: Package requirements (tifiles2 >= 0.0.5) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
