@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-06 17:44+0200\n"
+"POT-Creation-Date: 2006-01-28 19:17+0100\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Sylvain Garsault <sylvain.garsault@freesbee.fr>\n"
 "Language-Team: Français <kde-francophone@kde.org>\n"
@@ -65,8 +65,8 @@ msgstr "action.c : échec du chargement de l'interface graphique !\n"
 #: src/tilp_calcs.c:320 src/tilp_calcs.c:362 src/tilp_calcs.c:469
 #: src/tilp_calcs.c:476 src/tilp_calcs.c:483 src/tilp_calcs.c:928
 #: src/tilp_config.c:315 src/tilp_error.c:87 src/tilp_error.c:90
-#: src/tilp_files.c:213 src/tilp_files.c:249 src/tilp_files.c:272
-#: src/tilp_files.c:293 src/tilp_misc.c:45 src/tilp_misc.c:76
+#: src/tilp_files.c:220 src/tilp_files.c:256 src/tilp_files.c:279
+#: src/tilp_files.c:300 src/tilp_misc.c:45 src/tilp_misc.c:76
 #: src/tilp_misc.c:117
 msgid "Error"
 msgstr "Erreur"
@@ -77,11 +77,11 @@ msgstr ""
 "Vous ne pouvez pas envoyer de sauvegarde de cette façon. Utilisez plutôt le "
 "bouton \"Restaurer\"."
 
-#: src/action.c:317 src/tilp_files.c:168 src/tilp_slct.c:157
+#: src/action.c:317 src/tilp_files.c:175 src/tilp_slct.c:157
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: src/action.c:317 src/tilp_files.c:169
+#: src/action.c:317 src/tilp_files.c:176
 msgid "New name: "
 msgstr "Nouveau nom : "
 
@@ -163,14 +163,14 @@ msgstr ""
 
 #: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:247 src/tilp_calcs.c:299
 #: src/tilp_calcs.c:795 src/tilp_calcs.c:885 src/tilp_config.c:460
-#: src/tilp_config.c:468 src/tilp_files.c:102 src/tilp_files.c:115
-#: src/tilp_files.c:127 src/tilp_misc.c:49 src/tilp_slct.c:51
+#: src/tilp_config.c:468 src/tilp_files.c:105 src/tilp_files.c:118
+#: src/tilp_files.c:134 src/tilp_misc.c:49 src/tilp_slct.c:51
 #: src/tilp_slct.c:165 src/tilp_slct.c:246 src/tilp_slct.c:259
 msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:103 src/tilp_calcs.c:278
-#: src/tilp_calcs.c:367 src/tilp_calcs.c:802 src/tilp_files.c:157
+#: src/tilp_calcs.c:367 src/tilp_calcs.c:802 src/tilp_files.c:164
 #: src/tilp_slct.c:127
 msgid "Warning"
 msgstr "Avertissement"
@@ -212,7 +212,7 @@ msgstr ""
 msgid "Loading GUI..."
 msgstr "Chargement de l'IHM..."
 
-#: src/main.c:91
+#: src/main.c:94
 #, fuzzy
 msgid "TiLP-II"
 msgstr "TiLP"
@@ -476,18 +476,18 @@ msgstr "Fichier de configuration enregistré"
 msgid "Configuration file loaded."
 msgstr "Fichier de configuration chargé"
 
-#: src/tilp_files.c:102
+#: src/tilp_files.c:105
 #, fuzzy
 msgid ""
 "Unable to move file.\n"
 "\n"
 msgstr "Impossible de supprimer le fichier ! "
 
-#: src/tilp_files.c:115
+#: src/tilp_files.c:118
 msgid "Unable to remove the file !"
 msgstr "Impossible de supprimer le fichier ! "
 
-#: src/tilp_files.c:127
+#: src/tilp_files.c:134
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -495,7 +495,7 @@ msgstr ""
 "Impossible de créer ce dossier.\n"
 "\n"
 
-#: src/tilp_files.c:155
+#: src/tilp_files.c:162
 #, c-format
 msgid ""
 "The file %s already exists.\n"
@@ -504,31 +504,31 @@ msgstr ""
 "Le fichier %s existe déjà.\n"
 "L'écraser ?"
 
-#: src/tilp_files.c:158
+#: src/tilp_files.c:165
 msgid "Overwrite "
 msgstr "Écraser"
 
-#: src/tilp_files.c:158
+#: src/tilp_files.c:165
 msgid "Rename "
 msgstr "Renommer"
 
-#: src/tilp_files.c:158
+#: src/tilp_files.c:165
 msgid "Skip "
 msgstr "Quitter"
 
-#: src/tilp_files.c:213
+#: src/tilp_files.c:220
 msgid "Unable to move the temporary file.\n"
 msgstr "Impossible de déplacer les fichiers temporaires.\n"
 
-#: src/tilp_files.c:248
+#: src/tilp_files.c:255
 msgid "Chdir error.\n"
 msgstr "Erreur en changeant de dossier.\n"
 
-#: src/tilp_files.c:249 src/tilp_files.c:293 src/tilp_misc.c:45
+#: src/tilp_files.c:256 src/tilp_files.c:300 src/tilp_misc.c:45
 msgid "Unable to change directory."
 msgstr "Impossible de changer de dossier."
 
-#: src/tilp_files.c:273 src/tilp_files.c:277
+#: src/tilp_files.c:280 src/tilp_files.c:284
 msgid "You can not go outside of your HOME directory."
 msgstr "Vous ne pouvez pas sortir de votre dossier HOME."
 

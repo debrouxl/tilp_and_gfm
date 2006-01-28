@@ -2,8 +2,8 @@
 
 
 
-Previous version: 0.01		(29/08/2005)
-Current version:  0.02		(02/10/2005)
+Previous version: 0.02		(02/10/2005)
+Current version:  0.03		(28/01/2006)
 
 SubVersion (CVS) revision: $Id$
 
@@ -24,22 +24,20 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- TI73/8X+ auto-probe support updated. Calculator probing updated.
+	- TiGroup (*.tig) file support
 
 
 Improvements:
 -------------
 
-	- TiEmu virtual link for Windows
-	- rewritten GrayLink support (broken)
+	- support Unicode (UTF-8) filenames
 
 
 Bug fixes:
 ----------
 
-	- TiEmu virtual link for Linux
-	- reading of TIB files
-	- sending of FLASH apps with size >= 64KB
+	- cable bug fixes
+	- cable probe: use first cable instead of the last one.
 
 
 Bug report:
