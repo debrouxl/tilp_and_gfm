@@ -24,6 +24,8 @@ Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "A
 Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
 
 Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
+Name: "slv_drv"; Description: "SilverLink support (copy, no install)"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "tlk_drv"; Description: "BlackLink or Parallel support"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
 ; Glade files
@@ -65,10 +67,19 @@ Source: "C:\sources\roms\ticables\tests\ticables.dll"; DestDir: "{app}"; Flags: 
 Source: "C:\sources\roms\ticalcs\tests\ticalcs.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 ; Copy PortTalk driver for Windows NT4/2000/XP
-Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion
-Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\misc\Porttalk22\AllowIO.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion; Tasks: tlk_drv;
+Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
+Source: "C:\sources\roms\misc\Porttalk22\AllowIO.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
+Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
+; Copy LPG's SilverLink driver
+Source: "C:\sources\roms\tiglusb\src\xp\driver\License.txt"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.inf"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 0,4;
+Source: "C:\sources\roms\tiglusb\src\98\driver\License.txt"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.inf"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
 ; TiLP fonts
 ;Source: "C:\sources\roms\tilp\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp\fonts\tilp.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
@@ -114,11 +125,11 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP"; Filename: "
 
 [Run]
 ; Remove any previously installed PortTalk driver (especially v1.x)
-Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
+Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 
 [UninstallRun]
 ; Remove any previously installed PortTalk driver (especially v1.x)
-Filename: "{app}\Uninstall.exe"; Parameters: ""; MinVersion: 0,4;
+Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 
 [Registry]
 ; This adds the GTK+ libraries to tilp.exe's path
@@ -135,10 +146,16 @@ Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"; ValueT
 Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "TiLP"; ValueData: "tilp.fon"
 Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"; ValueType: string; ValueName: "TiLP"; ValueData: "tilp.fon"
 ; Install the NT PortTalk driver
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Type"; ValueData: "1";  MinVersion: 0,4;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Start"; ValueData: "2"; MinVersion: 0,4;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; MinVersion: 0,4;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: string; ValueName: "DisplayName"; ValueData: "PortTalk"; MinVersion: 0,4;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Type"; ValueData: "1";  MinVersion: 0,4; Tasks: tlk_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Start"; ValueData: "2"; MinVersion: 0,4; Tasks: tlk_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; MinVersion: 0,4; Tasks: tlk_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: string; ValueName: "DisplayName"; ValueData: "PortTalk"; MinVersion: 0,4; Tasks: tlk_drv;
+; Install the LPG's SilverLink driver
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "Type"; ValueData: "1";  Tasks: slv_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "Start"; ValueData: "3"; Tasks: slv_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; Tasks: slv_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "DisplayName"; ValueData: "TiglUsb.sys TI-GRAPH / DIRECT LINK USB driver"; Tasks: slv_drv;
+Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "ImagePath"; ValueData: "System32\Drivers\TiglUsb.sys"; Tasks: slv_drv;
 ; Register TiLP in the shell
 Root: HKCR; SubKey: "TiLP.TIxx.file"; ValueType: string; ValueData: "TI73..V200 file"
 Root: HKCR; Subkey: "TiLP.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\TiLP.exe,0"
