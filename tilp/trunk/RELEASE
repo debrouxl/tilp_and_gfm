@@ -23,17 +23,28 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- PDF/EPS image support (w/ compression) for screenshots
+	- PDF/EPS image support (w/ compression) for screenshots 
+		(Julien Blache's contribution)
+
 
 Improvements:
 -------------
 
 	- [Linux] can be compiled with gcc 4.0 for now.
+	- [Win32] the installer now copies the SilverLink driver files, 
+							don't need to download them !
+	- virtual link cable support
+
 
 Bug fixes:
 ----------
 
-	- none
+	- various bug in the cable management layer
+	- possible buffer overflow with recv_packet (usually occurs with 
+				virtual links because the received length is invalid).
+	- fixed detection of TI file signature (not case sensitive)
+	- make loading of FLASH OS more robust against file 'garbaged' by TI.
+
 
 Known problems:
 ---------------
