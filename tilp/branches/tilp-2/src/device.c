@@ -394,8 +394,9 @@ comm_button_search_clicked                (GtkButton       *button,
 			{
 				cable_model = i;
 				cable_port = j;
-				break;
+				goto finished;
 			}
+finished:
 	ticables_probing_finish(&cables);
 
 	if(!cable_model && !cable_port)

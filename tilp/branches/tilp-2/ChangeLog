@@ -14,8 +14,9 @@ To do:
 	Send automatic log of config by mail for error reporting
 	Auto-downlonad/install gladewin32 package.
 
-- 21/01/2006, version 0.03 (0.0.4, 0.0.4, 0.0.4): roms
+- 21/01/2006, version 0.03 (0.0.4, 0.0.5, 0.0.4): roms
 	- fixed a bug in the TiLP error management system
+	- cable probe: use first cable instead of the last one. Anywais, this box should display a list so that user can choose cable & calc.
 
 - 15/09/2005, version 0.02 (0.0.3, 0.0.3, 0.0.3): roms
 	- updated autotools scripts (tijl)

@@ -1,5 +1,11 @@
 This is a list of some things to do:
 
+- cable probe: use first cable instead of the last one. Anywais, this box should
+		display a list so that user can choose cable & calc.
+- make release on SF for Tijl
+- install SilverLink driver auto-magically
+- suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
+
 <<
 Hi. I just wanted to make a few suggestions and report some things that 
 appear to be bugs. Let me know if more information is needed, or if I 
