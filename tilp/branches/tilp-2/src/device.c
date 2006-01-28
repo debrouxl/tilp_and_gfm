@@ -381,6 +381,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	gchar *s;
 
 	// search for cables
+	tilp_info("Searching for link cables...");
 	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
 	GTK_REFRESH();
 	ticables_probing_do(&cables, 5);
@@ -406,6 +407,8 @@ finished:
 	}
 
 	// search for devices
+	tilp_info("Searching for hand-helds on %i:%i...", 
+		  cable_model, cable_port);
 	gtk_label_set_text(GTK_LABEL(lbl), "Searching for hand-helds...");
 	GTK_REFRESH();
 	
