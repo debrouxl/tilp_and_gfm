@@ -13,6 +13,12 @@ To do:
 	automatic install of the USB driver
 	Send automatic log of config by mail for error reporting
 	Auto-downlonad/install gladewin32 package.
+	Display list for detect cables/calcs
+	tig support.
+
+- 30/01/2006, version 0.04 (0.0.4, 0.0.6, 0.0.4): roms
+	- reverted tifiles to locale encoding
+	- checked/fixed tilp for use of the good filename encoding
 
 - 21/01/2006, version 0.03 (0.0.4, 0.0.5, 0.0.4): roms
 	- fixed a bug in the TiLP error management system

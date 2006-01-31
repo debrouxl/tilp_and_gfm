@@ -79,7 +79,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\License.txt"; DestDir: "{app}\slv
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.inf"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
-
 ; TiLP fonts
 ;Source: "C:\sources\roms\tilp2\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp2\fonts\tilp2.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
@@ -103,6 +102,12 @@ Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
 Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 
+; Downloader
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\ssleay32.dll"; DestDir: "{app}\wget";
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\gtk.loc"; DestDir: "{app}\wget";
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app}\wget";
+
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 Name: "{app}\plugins"; Flags: uninsneveruninstall;
@@ -116,6 +121,7 @@ Name: "{group}\TiLP-II on the Web"; Filename: "{app}\tilp2.url"
 Name: "{group}\Uninstall TiLP-II"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\User_Manual.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
+Name: "{group}\Install GTK+ from web"; Filename: "{app}\wget\d_and_i.bat";
 
 Name: "{userdesktop}\TiLP-II"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-II"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
@@ -123,16 +129,12 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-II"; Filename
 [Run]
 ; Remove any previously installed PortTalk driver (especially v1.x)
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
+Filename: "{app}\tilp2.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
+Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 
 [UninstallRun]
 ; Remove any previously installed PortTalk driver (especially v1.x)
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
-
-[Registry]
-; This adds the GTK+ libraries to tilp2.exe's path
-;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp2.exe"; Flags: uninsdeletekeyifempty
-;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp2.exe"; ValueType: string; ValueData: "{app}\tilp2.exe"; Flags: uninsdeletevalue
-;Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp2.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetGtkPath}\lib"; Flags: uninsdeletevalue
 
 [Registry]
 ; Register TI fonts
@@ -161,6 +163,8 @@ Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open";  ValueType: string; ValueData: 
 Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open\command"; ValueType: string; ValueData: "{app}\tilp2.exe '%1'"
 ; Boost GTK2 (WinNT/2000/XP)
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "PANGO_WIN32_NO_UNISCRIBE"; ValueData: "anything"; MinVersion: 0,4;
+; TiGroup entries
+Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "TiLP.TiGroup"; Tasks: tifiles;
 ; V200 file entries
 Root: HKCR; SubKey: ".v2a"; ValueType: string;  ValueData: "TiLP.Figure"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
@@ -565,12 +569,25 @@ begin
   end;
 end;
 
+function DisplayWarning(I: Integer): Boolean;
+var
+  S: String;
+begin
+  if(I = 1) then begin
+    S := 'The GTK+ libraries are not installed: ';
+  end;
+  if(I = 2) then begin
+    S := 'The GTK+ libraries are installed but the version is old: ';
+  end;
+  MsgBox(S + 'you will need the GTK+ 2.6.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
+end;
+
 function InitializeSetup(): Boolean;
 begin
   // Retrieve GTK path
   Result := GetGtkInstalled ();
   if not Result then begin
-    MsgBox ('Please install the "GTK+ 2.6.x Runtime Environment" (2.6.10 mini). You can obtain GTK+ from <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.10-rc1.exe?download>.', mbError, MB_OK);
+    DisplayWarning(1);
   end;
 
   // Retrieve GTK version
@@ -579,13 +596,13 @@ begin
 
     // and check
     if CompareStr(GtkVersion, '2.6.10') < 0 then begin
-      MsgBox ('Wrong package version. You need at least version 2.6.10 from <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.10-rc1.exe?download>.', mbError, MB_OK);
+      DisplayWarning(2);
     end;
   end;
 
   // Check version of USB driver
   if IsTiglUsbVersion3Mini() then begin
-    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
+    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP/TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
   end;
 
   // Check for non-NT and WiMP theme
