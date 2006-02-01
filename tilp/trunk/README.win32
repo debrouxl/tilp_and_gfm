@@ -15,12 +15,12 @@ REQUIREMENTS
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
  - the GTK+ 2.6 libraries
     Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.7-rc1.exe?download>
+    => They can be automatically download & installed by the installer.
  - the SilverLink driver v3.x if you have a SilverLink cable
-	 Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
-	 	or <http://lpg.ticalc.org/prj_usb>.
+	  Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
+	 	=> It is now installed in the TiLP folder by the installer.
 	
-	 Note1: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported
-					by our driver.
+	 Note1: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported by our driver.
 	 Note2: if you are using 'The GiMP', you may encounter DLL's problems...
 		The GTK+ package (1) provided with the GiMP may not be fully compatible with one used by TiLP/TiEmu.
 		On the other hand, the package (2) requested by TiLP/TiEmu is compatible with the GiMP.
@@ -30,7 +30,7 @@ REQUIREMENTS
 NOTES
 -----
 
-1°) You need some extra libraries (GTK+ 2.6). 
+1°) This setup may download & install some extra libraries (GTK+ 2.6). 
 
 The GTK+ package includes the Wimp (Windows IMPersonator) theme engine which gives 
 Windows look & feel (includes XP theming). Is also included the GTK theme selector.
@@ -50,7 +50,7 @@ open your C:\Program Files\Shared Files\Gtk\2.0\etc\gtk-2.0\gtkrc and to add thi
 This forces GTK+ to use a compatible font (Arial) and reportedly fixes both
 the aforementioned problems, and probably others too.
 
-2°) If you have a SilverLink cable (TI-GRAPH LINK USB), you will be happy:
+2°) This setup will copy the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb):
 it is now provided with TiLP and available in the 'slvdrv98'/'slvdrvXP' folder.
 
 Simply plug your link cable: Windows should detect a new device. 
@@ -67,16 +67,18 @@ This step may require an administrator account (at least for NT4).
 You will need to REBOOT your machine after installation (if you plan to 
 use a parallel or serial link cable).
 
-4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP use the
-Courier New font. Nevertheless, if you have installed the TI-Connect software, 
-TiLP will use the TI's fonts.
-
-
 PortTalk copyright (http://www.beyondlogic.org):
 Documentation and source code Copyright © 2002 Craig Peacock, Craig.Peacock@beyondlogic.org
 This driver is provided "as is", without any guarantee made as to its suitability or fitness 
 for any particular use. Permission is herby granted to modify or enhance this sample code
 to produce a derivative program which may only be distributed in compiled object form only.
+
+4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP use the
+Courier New font. Nevertheless, if you have installed the TI-Connect software, 
+TiLP will use the TI's fonts.
+
+5°) This setup will install the GNU's 'wget' utility for download of GTK+
+(http://xoomer.virgilio.it/hherold/).
 
 
 COMPILATION
@@ -96,7 +98,7 @@ AVAILABILITY
 COPYRIGHT
 ---------
 
-TiLP is Copyright (C) 1999-2004 by the TiLP team <tilp-users@lists.sf.net>
+TiLP is Copyright (C) 1999-2006 by the TiLP team <tilp-users@lists.sf.net>
 
 Copying is allowed under the terms of GNU General Public License.  
 See the file COPYING for more details.
