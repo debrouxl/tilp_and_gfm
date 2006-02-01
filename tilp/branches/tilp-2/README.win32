@@ -6,6 +6,9 @@
 
 
 
+
+
+
 REQUIREMENTS
 ------------
 
@@ -17,7 +20,7 @@ REQUIREMENTS
 	 Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
 	 => It is now installed in the TiLP folder by the installer.
 	
-	 Note1: support of direct USB cable of TI84+ / TI89 Titanium is in progress but still unusable.
+	 Note1: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP but supported by our driver.
 	 Note2: if you are using 'The GiMP', you may encounter DLL's problems...
 		The GTK+ package (1) provided with the GiMP may not be fully compatible with one used by TiLP/TiEmu.
 		On the other hand, the package (2) requested by TiLP/TiEmu is compatible with the GiMP.
@@ -47,10 +50,12 @@ open your C:\Program Files\Shared Files\Gtk\2.0\etc\gtk-2.0\gtkrc and to add thi
 This forces GTK+ to use a compatible font (Arial) and reportedly fixes both
 the aforementioned problems, and probably others too.
 
-2°) This setup will install the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb).
+2°) This setup will copy the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb):
+it is now provided with TiLP and available in the 'slvdrv98'/'slvdrvXP' folder.
 
-Simply plug your link cable: Windows should detect a new device. Next, follow the
-installation instructions.
+Simply plug your link cable: Windows should detect a new device. 
+But, you still have to manually install it by requesting an update of driver and
+specifying driver files location to force installation.
 
 You can install driver at any time (that is to say before or after TiLP installation).
 
@@ -62,16 +67,15 @@ This step may require an administrator account (at least for NT4).
 You will need to REBOOT your machine after installation (if you plan to 
 use a parallel or serial link cable).
 
-4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP use the
-Courier New font. Nevertheless, if you have installed the TI-Connect software, 
-TiLP will use the TI's fonts.
-
-
 PortTalk copyright (http://www.beyondlogic.org):
 Documentation and source code Copyright © 2002 Craig Peacock, Craig.Peacock@beyondlogic.org
 This driver is provided "as is", without any guarantee made as to its suitability or fitness 
 for any particular use. Permission is herby granted to modify or enhance this sample code
 to produce a derivative program which may only be distributed in compiled object form only.
+
+4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP uses the
+'Courier New' font. Nevertheless, if you have installed the TI-Connect software, 
+TiLP will use the TI's fonts.
 
 5°) This setup will install the GNU's 'wget' utility for download of GTK+
 (http://xoomer.virgilio.it/hherold/).

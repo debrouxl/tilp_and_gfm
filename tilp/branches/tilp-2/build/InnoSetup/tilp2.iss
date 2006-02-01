@@ -30,9 +30,11 @@ Name: "tlk_drv"; Description: "BlackLink or Parallel support"; GroupDescription:
 [Files]
 ; Glade files
 Source: "C:\sources\roms\tilp2\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
+
 ; Help files
 Source: "C:\sources\roms\tilp2\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\help\*.htm?"; DestDir: "{app}\help"; Flags: ignoreversion;
+
 ; Icons files
 Source: "C:\sources\roms\tilp2\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
@@ -45,13 +47,16 @@ Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; Dest
 Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
+
 ; Pixmaps files
 Source: "C:\sources\roms\tilp2\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
+
 ; i18n files
 ;Source: "C:\sources\roms\libs\files\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tifiles.mo"; Flags: ignoreversion;
 ;Source: "C:\sources\roms\libs\cables\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticables.mo"; Flags: ignoreversion;
 ;Source: "C:\sources\roms\libs\calcs\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticalcs.mo"; Flags: ignoreversion;
 ;Source: "C:\sources\roms\tilp2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
+
 ; Misc files
 Source: "C:\sources\roms\tilp2\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
@@ -60,16 +65,19 @@ Source: "C:\sources\roms\tilp2\COPYING"; DestDir: "{app}"; DestName: "License.tx
 Source: "C:\sources\roms\tilp2\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
 Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
+
 ; TiLP/GTK
 Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\msvc\tilp-2.exe"; DestDir: "{app}"; DestName: "tilp2.exe"; Flags: ignoreversion
+
 ; Copy PortTalk driver for Windows NT4/2000/XP
 Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion; Tasks: tlk_drv;
 Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
 Source: "C:\sources\roms\misc\Porttalk22\AllowIO.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
 Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
+
 ; Copy LPG's SilverLink driver
 Source: "C:\sources\roms\tiglusb\src\xp\driver\License.txt"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
@@ -79,6 +87,7 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\License.txt"; DestDir: "{app}\slv
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.inf"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
+
 ; TiLP fonts
 ;Source: "C:\sources\roms\tilp2\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp2\fonts\tilp2.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
@@ -94,7 +103,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\dri
 ;Source: "C:\sources\roms\tilp2\fonts\Ti83ppc.ttf";  DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp2\fonts\Ti83ppcb.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
 ;Source: "C:\sources\roms\tilp2\fonts\TI-92P.TTF";   DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-; Script to modify AUTOEXEC.bat
 
 ; GTK+ specific
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
@@ -110,7 +118,6 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
-Name: "{app}\plugins"; Flags: uninsneveruninstall;
 
 [INI]
 Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp2"
@@ -155,7 +162,6 @@ Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dwor
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; Tasks: slv_drv;
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "DisplayName"; ValueData: "TiglUsb.sys TI-GRAPH / DIRECT LINK USB driver"; Tasks: slv_drv;
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "ImagePath"; ValueData: "System32\Drivers\TiglUsb.sys"; Tasks: slv_drv;
-
 ; Register TiLP in the shell
 Root: HKCR; SubKey: "TiLP.TIxx.file"; ValueType: string; ValueData: "TI73..V200 file"
 Root: HKCR; Subkey: "TiLP.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\tilp2.exe,0"

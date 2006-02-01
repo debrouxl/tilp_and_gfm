@@ -4,6 +4,7 @@
 
 Previous version: 0.02		(02/10/2005)
 Current version:  0.03		(28/01/2006)
+Add-on version:   0.03b   (01/02/2006)
 
 SubVersion (CVS) revision: $Id$
 
@@ -25,6 +26,9 @@ New capabilities:
 -----------------
 
 	- TiGroup (*.tig) file support
+	
+	- the installer can download & install the GTK+ libraries
+	- the installer copies the LPG's SilverLink driver. No need to download it for now.
 
 
 Improvements:
