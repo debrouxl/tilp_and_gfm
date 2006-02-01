@@ -282,6 +282,7 @@ void clist_refresh(void)
 		b = options.show_all || S_ISDIR(fe->attrib) ||
 			tifiles_file_is_ti(fe->name) ||
 			tifiles_file_is_tib(fe->name) ||
+			tifiles_file_is_tig(fe->name) ||
 			(tifiles_file_get_model(fe->name) == options.calc_model);
 		if(!b)
 			continue;
@@ -304,8 +305,8 @@ void clist_refresh(void)
 			pix = create_pixbuf(icon_name);
 		}
 
-		// utf8
-		utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
+		// filenames are stored in the 'locale encoding' and GTK+ uses utf8
+		utf8 = g_locale_to_utf8(fe->name, -1, &br, &bw, NULL);
 
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, 
