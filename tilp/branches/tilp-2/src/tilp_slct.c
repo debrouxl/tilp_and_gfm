@@ -198,6 +198,17 @@ void tilp_slct_load_contents(void)
 			}
 			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
 		}
+		else if(tifiles_file_is_tig(fe->name))
+		{
+			fe->content = c = tifiles_content_create_regular(calc_handle->model);
+			err = tifiles_file_read_tigroup(fe->name, fe->content);
+			if(err)
+			{
+				tifiles_content_delete_regular(fe->content);
+				fe->content = NULL;
+			}
+			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
+		}
 		else
 		{
 			fe->content = NULL;
@@ -217,7 +228,8 @@ void tilp_slct_unload_contents(void)
 	{
 		FileEntry *fe = ptr->data;
 
-		tifiles_content_delete_regular(fe->content);
+		if(fe->content)
+			tifiles_content_delete_regular(fe->content);
 	}
 }
 

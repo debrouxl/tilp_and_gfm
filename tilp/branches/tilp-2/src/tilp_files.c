@@ -25,12 +25,19 @@
 	These functions are mainly used by the right window.
 */
 
+/* 
+	Some informations about these file selectors: starting at tifiles2-v0.0.6, we
+	use the 'glib filename encoding' scheme for charset encoding of filenames:
+	- UTF-8 charset on Windows,
+	- locale charset on Linux (usually UTF-8 but this is not always true).
+
+	GTK+ always uses UTF-8 for widgets (label, file selectors, ...) thus some conversions
+	may be needed.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <sys/types.h>
-//#include <sys/stat.h>
-//#include <unistd.h>
 #include <time.h>
 #ifdef __WIN32__
 #include <windows.h>
@@ -62,12 +69,12 @@ int tilp_file_copy(const char *src, const char *dst)
 	FILE *in, *out;
 	int c;
 
-	if ((in = fopen(src, "rb")) == NULL) 
+	if ((in = g_fopen(src, "rb")) == NULL) 
 	{
 		return -1;
 	}
 
-	if ((out = fopen(dst, "wb")) == NULL) 
+	if ((out = g_fopen(dst, "wb")) == NULL) 
 	{
 		return -2;
 	}
@@ -90,17 +97,27 @@ int tilp_file_copy(const char *src, const char *dst)
 
 int tilp_file_copy(const char *src, const char *dst)
 {
-	if (!CopyFile(src, dst, FALSE))
-		return -1;
+	int ret = 0;
+	gchar *src_utf8 = g_filename_to_utf8(src, -1, NULL, NULL, NULL);
+	gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
+	gchar *dst_utf8 = g_filename_to_utf8(dst, -1, NULL, NULL, NULL);
+	gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
 
-	return 0;
+	if (!CopyFile(src_loc, dst_loc, FALSE))
+		ret = 1;
+
+	g_free(src_utf8);
+	g_free(dst_utf8);
+	g_free(src_loc);
+	g_free(dst_loc);
+
+	return ret;
 }
 #endif				
 
 int tilp_file_move(const char *src, const char *dst)
 {
-	if(tilp_file_copy(src, dst) < 0)
-	//if(g_rename(src, dst) < 0)
+	if(tilp_file_copy(src, dst) < 0)	//if(g_rename(src, dst) < 0)
 	{
 		gif->msg_box1(_("Information"), _("Unable to move file.\n\n"));
 		return -1;
@@ -253,7 +270,7 @@ int tilp_file_chdir(const char *path)
 	effective = geteuid();
 	seteuid(getuid());
 
-	if (chdir(path)) 
+	if (g_chdir(path)) 
 	{
 		tilp_warning(_("Chdir error.\n"));
 		gif->msg_box1(_("Error"), _("Unable to change directory."));
@@ -274,7 +291,7 @@ int tilp_file_chdir(const char *path)
 	{
 		if (strcmp(curr_dir, g_get_tmp_dir())) 
 		{
-			chdir(home_dir);
+			g_chdir(home_dir);
 			g_free(curr_dir);
 
 			if (gif != NULL) 

@@ -164,6 +164,9 @@ gint display_action_dbox(gchar *target)
 		FileEntry *f = (FileEntry *)sel->data;
 		FileContent *c = (FileContent *)f->content;
 
+		if(f->content == NULL)	// file can't be loaded
+			continue;
+
 		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
 		{
 			gif->msg_box(_("Error"),

@@ -12,11 +12,11 @@ To do:
 
 	Send automatic log of config by mail for error reporting
 	Display list for detect cables/calcs
-	tig support.
 
 - 03/02/2006, version 0.05 (0.0.4, 0.0.6, 0.0.4): roms
 	- tifiles2 library has switched to 'glib filename encoding'
 	- fixed missing or bad utf8/glib conversions
+	- added TiGroup support (sending only =  read only)
 
 - 30/01/2006, version 0.04 (0.0.4, 0.0.5, 0.0.4): roms
 	- reverted tifiles to locale encoding
