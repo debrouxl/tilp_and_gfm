@@ -152,13 +152,14 @@ void tilp_rename_selected_files()
 	while (ptr != NULL) 
 	{
 		FileEntry *fi = ptr->data;
+		gchar *utf8;
 
-		filename =
-		    gif->msg_entry(_("Rename the file"), _("Name: "),
-				   fi->name);
-
-		if (filename == NULL)
+		utf8 = gif->msg_entry(_("Rename the file"), _("Name: "), fi->name);
+		if (utf8 == NULL)
 			return;
+
+		filename = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
+		g_free(utf8);
 
 		if (tilp_file_move(fi->name, filename) < 0) 
 		{

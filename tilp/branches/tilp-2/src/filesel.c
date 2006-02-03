@@ -22,16 +22,28 @@
  *  Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+/* 
+	Some informations about these file selectors: starting at tifiles2-v0.0.6, we
+	use the 'glib filename encoding' scheme for charset encoding of filenames:
+	- UTF-8 charset on Windows,
+	- locale charset on Linux (usually UTF-8 but this is not always true).
+
+	GTK+ always uses UTF-8 for widgets (label, file selectors, ...) thus some conversions
+	may be needed.
+*/
+
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif				/*  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <gtk/gtk.h>
 #include <string.h>
 
 #ifdef __WIN32__
 #include <windows.h>
+#include <wchar.h>
 #endif
 
 #if WITH_KDE
@@ -66,14 +78,16 @@ static void cancel_filename(GtkButton * button, gpointer user_data)
 static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
 {
 	GtkWidget *fs;
-	gchar *tmp;
+	gchar *sfilename, *sext;
+
+	// gtk_file_selection_complete ALWAYS wants UTF-8.
+	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
+	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
     
 	fs = gtk_file_selection_new("Select a file...");
 
-	tmp = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);
-	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), tmp);
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), filename ? filename : ext);
-	g_free(tmp);
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), sfilename ? sfilename : sext);
 
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
 			 "clicked", G_CALLBACK(store_filename), fs);
@@ -99,6 +113,9 @@ static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, g
 	for(action = 0; !action; )
 		GTK_REFRESH();
 
+	g_free(sfilename);
+	g_free(sext);
+
 	return fname;
 }
 
@@ -110,6 +127,11 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 	gchar *path;
 	gchar **sarray;
 	gint i;
+	gchar *sfilename, *sext;
+
+	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
+	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
+	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
     
 	// create box
 	dialog = gtk_file_chooser_dialog_new (
@@ -127,11 +149,11 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 
 	// set default name
 	if(filename)
-		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), filename);
+		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), sfilename);
 
 	// set wildcards
 	filter = gtk_file_filter_new();
-	sarray = g_strsplit(ext, ";", -1);
+	sarray = g_strsplit(sext, ";", -1);
 	for(i = 0; sarray[i] != NULL; i++)
 		gtk_file_filter_add_pattern (filter, sarray[i]);
 	g_strfreev(sarray);
@@ -145,6 +167,9 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 		fname = NULL;
 	gtk_widget_destroy (dialog);
 
+	g_free(sfilename);
+	g_free(sext);
+
 	return fname;
 }
 
@@ -153,18 +178,33 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 {
 #ifdef WIN32
 	OPENFILENAME o;
-	char lpstrFile[1024] = "\0";
-	char lpstrFilter[256];
+	char lpstrFile[2048] = "\0";
+	char lpstrFilter[512];
 	char *p;
 	gchar **sarray;
 	int i, n;
+	int have_widechar = G_WIN32_HAVE_WIDECHAR_API();
+	void *sdirname;
 
 	// clear structure
 	memset (&o, 0, sizeof(OPENFILENAME));
 
 	// set default filename
 	if(filename)
-		strcpy(lpstrFile, filename);
+	{
+		void *temp;
+		if (have_widechar)
+		{
+			temp = g_utf8_to_utf16(filename,-1,NULL,NULL,NULL);
+			wcsncpy((wchar_t *)lpstrFile, temp, sizeof(lpstrFile)>>1);
+		}
+		else
+		{
+			temp = g_locale_from_utf8(filename,-1,NULL,NULL,NULL);
+			strncpy(lpstrFile, temp, sizeof(lpstrFile));
+		}
+		g_free(temp);
+	}
 
 	// format filter
 	sarray = g_strsplit(ext, "|", -1);
@@ -172,22 +212,50 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 
 	for(i = 0, p = lpstrFilter; i < n; i++)
 	{
-		strcpy(p, sarray[i]);
-		p += strlen(sarray[i]);
-		*p++ = '\0';
-
-		strcpy(p, sarray[i]);
-		p += strlen(sarray[i]);
-		*p++ = '\0';
+		void *temp;
+		if (have_widechar)
+		{
+			temp = g_utf8_to_utf16(sarray[i],-1,NULL,NULL,NULL);
+			wcscpy((wchar_t *)p,temp);
+			p += (wcslen(temp)<<1);
+			*p++ = '\0';
+			*p++ = '\0';
+			wcscpy((wchar_t *)p,temp);
+			p += (wcslen(temp)<<1);
+			*p++ = '\0';
+			*p++ = '\0';
+		}
+		else
+		{
+			temp = g_locale_from_utf8(sarray[i],-1,NULL,NULL,NULL);
+			strcpy(p,temp);
+			p += strlen(temp);
+			*p++ = '\0';
+			strcpy(p,temp);
+			p += strlen(temp);
+			*p++ = '\0';
+		}
+		g_free(temp);
 	}
 	*p++ = '\0';
+	if (have_widechar)
+		*p++ = '\0';
 	g_strfreev(sarray);
 
 	// set structure
 	o.lStructSize = sizeof (o);	
 	o.lpstrFilter = lpstrFilter;	//"All\0*.*\0Text\0*.TXT\0";
 	o.lpstrFile = lpstrFile;
-	o.nMaxFile = sizeof(lpstrFile);
+	if (have_widechar)
+	{
+		o.nMaxFile = sizeof(lpstrFile) >> 1;
+		sdirname = g_utf8_to_utf16(dirname,-1,NULL,NULL,NULL);
+	}
+	else
+	{
+		o.nMaxFile = sizeof(lpstrFile);
+		sdirname = g_locale_from_utf8(dirname,-1,NULL,NULL,NULL);
+	}
 	o.lpstrInitialDir = dirname;
 	o.Flags = 0x02000000 | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY |
 				 OFN_NOCHANGEDIR | OFN_EXPLORER | OFN_LONGNAMES | OFN_NONETWORKBUTTON;
@@ -195,16 +263,28 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 	// open/close
 	if(save)
 	{
-		if(!GetSaveFileName(&o))
+		if(!(have_widechar ? GetSaveFileNameW((OPENFILENAMEW *)&o) : GetSaveFileName(&o)))
+		{
+			g_free(sdirname);
 			return filename = NULL;
+		}
 	}
 	else
 	{
-		if(!GetOpenFileName(&o))
+		if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName(&o)))
+		{
+			g_free(sdirname);
 			return filename = NULL;
+		}
 	}
 
-	return fname = g_strdup(lpstrFile);
+	g_free(sdirname);
+
+	if (have_widechar)
+		fname = g_utf16_to_utf8((wchar_t *)lpstrFile,-1,NULL,NULL,NULL);
+	else
+		fname = g_locale_to_utf8(lpstrFile,-1,NULL,NULL,NULL);
+	return fname;
 #endif
 
 	return NULL;
@@ -241,7 +321,15 @@ const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean s
 {
 #ifndef __WIN32__
 	if(options.fs_type == 2)
-		options.fs_type = 1;
+	{
+#if WITH_KDE
+		const char *p = getenv("KDE_FULL_SESSION");
+		if (p && *p) // KDE is running
+			options.fs_type = 3;
+		else
+#endif
+			options.fs_type = 1;
+	}
 #endif
 #if !WITH_KDE
 	if(options.fs_type == 3)
@@ -283,12 +371,17 @@ static void cancel_filenames(GtkButton * button, gpointer user_data)
 static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 {
 	GtkWidget *fs;
+	gchar *sfilename, *sext;
+
+	// gtk_file_selection_complete ALWAYS wants UTF-8.
+	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
+	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
     
 	fs = gtk_file_selection_new("Select a file...");
 
 	gtk_file_selection_set_select_multiple(GTK_FILE_SELECTION(fs), TRUE);
 	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
-	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), filename ? filename : ext);
+	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), sfilename ? sfilename : sext);
 
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
 			 "clicked", G_CALLBACK(store_filenames), fs);
@@ -312,6 +405,9 @@ static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 	for(actions = 0; !actions; )
 		GTK_REFRESH();
 
+	g_free(sfilename);
+	g_free(sext);
+
 	return filenames;
 }
 
@@ -323,6 +419,11 @@ static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 	gchar *path;
 	gchar **sarray;
 	gint i;
+	gchar *sfilename, *sext;
+
+	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
+	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
+	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
     
 	// create box
 	dialog = gtk_file_chooser_dialog_new ("Open File",
@@ -342,37 +443,39 @@ static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 
 	// set default name
 	if(filename)
-		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), filename);
+		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), sfilename);
 
 	// set wildcards
 	filter = gtk_file_filter_new();
-	sarray = g_strsplit(ext, ";", -1);
+	sarray = g_strsplit(sext, ";", -1);
 	for(i = 0; sarray[i] != NULL; i++)
 		gtk_file_filter_add_pattern (filter, sarray[i]);
 	g_strfreev(sarray);
 	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), filter);
 
 	// get result
-	g_free(filename);
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
 		GSList *list, *p;
 		gchar **q;
-		
-		// convert list into string array
-		list = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
-		filenames = g_malloc0(g_slist_length(list)+1);
 
+		// convert list into string array
+		list=gtk_file_chooser_get_filenames(GTK_FILE_CHOOSER (dialog));
+	      
+		filenames = (gchar **)g_malloc0((g_slist_length(list)+1) * 
+						sizeof(gchar *));
 		for(p = list, q = filenames; p; p = g_slist_next(p), q++)
-		{
-			*q = g_malloc0(strlen(p->data) + 1);
-			strcpy(*q, p->data);
-		}
+			*q = p->data;
 		*q = NULL;
+		     
+		g_slist_free(list);
 	}
 	else
 		filenames = NULL;
 	gtk_widget_destroy (dialog);
+
+	g_free(sfilename);
+	g_free(sext);
 
 	return filenames;
 }
@@ -382,18 +485,34 @@ static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 {
 #ifdef WIN32
 	OPENFILENAME o;
-	char lpstrFile[1024] = "\0";
-	char lpstrFilter[256];
+	char lpstrFile[2048] = "\0";
+	char lpstrFilter[512];
 	char *p;
 	gchar **sarray;
 	int i, n;
+	int have_widechar = G_WIN32_HAVE_WIDECHAR_API();
+	void *sdirname;
+	gchar *temp1;
 
 	// clear structure
 	memset (&o, 0, sizeof(OPENFILENAME));
 
 	// set default filename
 	if(filename)
-		strncpy(lpstrFile, filename, sizeof(lpstrFile));
+	{
+		void *temp;
+		if (have_widechar)
+		{
+			temp = g_utf8_to_utf16(filename,-1,NULL,NULL,NULL);
+			wcsncpy((wchar_t *)lpstrFile, temp, sizeof(lpstrFile)>>1);
+		}
+		else
+		{
+			temp = g_locale_from_utf8(filename,-1,NULL,NULL,NULL);
+			strncpy(lpstrFile, temp, sizeof(lpstrFile));
+		}
+		g_free(temp);
+	}
 
 	// format filter
 	sarray = g_strsplit(ext, "|", -1);
@@ -401,51 +520,99 @@ static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 
 	for(i = 0, p = lpstrFilter; i < n; i++)
 	{
-		strcpy(p, sarray[i]);
-		p += strlen(sarray[i]);
-		*p++ = '\0';
-
-		strcpy(p, sarray[i]);
-		p += strlen(sarray[i]);
-		*p++ = '\0';
+		void *temp;
+		if (have_widechar)
+		{
+			temp = g_utf8_to_utf16(sarray[i],-1,NULL,NULL,NULL);
+			wcscpy((wchar_t *)p,temp);
+			p += (wcslen(temp)<<1);
+			*p++ = '\0';
+			*p++ = '\0';
+			wcscpy((wchar_t *)p,temp);
+			p += (wcslen(temp)<<1);
+			*p++ = '\0';
+			*p++ = '\0';
+		}
+		else
+		{
+			temp = g_locale_from_utf8(sarray[i],-1,NULL,NULL,NULL);
+			strcpy(p,temp);
+			p += strlen(temp);
+			*p++ = '\0';
+			strcpy(p,temp);
+			p += strlen(temp);
+			*p++ = '\0';
+		}
+		g_free(temp);
 	}
 	*p++ = '\0';
+	if (have_widechar)
+		*p++ = '\0';
 	g_strfreev(sarray);
 
 	// set structure
 	o.lStructSize = sizeof (o);	
 	o.lpstrFilter = lpstrFilter;	//"All\0*.*\0Text\0*.TXT\0";
 	o.lpstrFile = lpstrFile;		//"C:\msvc\tilp\0foo.txt\0bar.txt"
-	o.nMaxFile = sizeof(lpstrFile);
-	o.lpstrInitialDir = dirname;
+	if (have_widechar)
+	{
+		o.nMaxFile = sizeof(lpstrFile) >> 1;
+		sdirname = g_utf8_to_utf16(dirname,-1,NULL,NULL,NULL);
+	}
+	else
+	{
+		o.nMaxFile = sizeof(lpstrFile);
+		sdirname = g_locale_from_utf8(dirname,-1,NULL,NULL,NULL);
+	}
+	o.lpstrInitialDir = sdirname;
 	o.Flags = 0x02000000 | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY |
 				 OFN_NOCHANGEDIR | OFN_EXPLORER | OFN_LONGNAMES | OFN_NONETWORKBUTTON |
 				 OFN_ALLOWMULTISELECT;
 
 	// open selector
-	if(!GetOpenFileName(&o))
+	if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName(&o)))
+	{
+		g_free(sdirname);
 		return NULL;
+	}
 	filenames = NULL;
 
 	// converts resulting string
-	for(p = lpstrFile, i=0; *p; p += strlen(p)+1, i++)
+	if (have_widechar)
+		temp1 = g_utf16_to_utf8((wchar_t *)lpstrFile,-1,NULL,NULL,NULL);
+	else
+		temp1 = g_locale_to_utf8(lpstrFile,-1,NULL,NULL,NULL);
+	for(p = lpstrFile, i=0; *p;
+	    p += have_widechar?((wcslen((wchar_t *)p)+1)<<1):(strlen(p)+1), i++)
 	{
 		if(i)	// skip directory
 		{
+			gchar *temp;
 			filenames = g_realloc(filenames, (i+1) * sizeof(gchar *));
-			filenames[i-1] = g_strconcat(lpstrFile, G_DIR_SEPARATOR_S, p, NULL);
+			if (have_widechar)
+				temp = g_utf16_to_utf8((wchar_t *)p,-1,NULL,NULL,NULL);
+			else
+				temp = g_locale_to_utf8(p,-1,NULL,NULL,NULL);
+			filenames[i-1] = g_strconcat(temp1, G_DIR_SEPARATOR_S, temp, NULL);
+			g_free(temp);
 		}
 	}
+	g_free(temp1);
 
 	// one file selected ?
 	if(i == 1)
 	{
 		filenames = g_malloc(2 * sizeof(gchar *));
-		filenames[0] = g_strdup(lpstrFile);
+		if (have_widechar)
+			filenames[0] = g_utf16_to_utf8((wchar_t *)lpstrFile,-1,NULL,NULL,NULL);
+		else
+			filenames[0] = g_locale_to_utf8(lpstrFile,-1,NULL,NULL,NULL);
 		filenames[1] = NULL;
 	}
 	else
 		filenames[i-1] = NULL;
+
+	g_free(sdirname);
 
 	return filenames;
 #endif
@@ -473,7 +640,15 @@ gchar** create_fsels(gchar *dirname, gchar *filename, gchar *ext)
 {
 #ifndef __WIN32__
 	if(options.fs_type == 2)
-		options.fs_type = 1;
+	{
+#if WITH_KDE
+		const char *p = getenv("KDE_FULL_SESSION");
+		if (p && *p) // KDE is running
+			options.fs_type = 3;
+		else
+#endif
+			options.fs_type = 1;
+	}
 #endif
 #if !WITH_KDE
 	if(options.fs_type == 3)
@@ -492,5 +667,3 @@ gchar** create_fsels(gchar *dirname, gchar *filename, gchar *ext)
 
 	return NULL;
 }
-
-

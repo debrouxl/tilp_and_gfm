@@ -109,6 +109,8 @@ void labels_refresh(void)
 	
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
 	format(utf8, path);
+	g_free(utf8);
+
 	snprintf(str, sizeof(str), _("Folder: %s"), path);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label22), str);
 }

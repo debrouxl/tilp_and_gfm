@@ -38,7 +38,6 @@ int tilp_drive_change(char drive_letter)
 	gchar *s;
 	snprintf(local.cwdir, 8, "%c:\\", (char) drive_letter);
 
-	//s = g_filename_from_utf8(local.cur_dir, NULL);
 	s = g_strdup(local.cwdir);
 	if (tilp_chdir(s) == -1) 
 	{
@@ -65,11 +64,15 @@ int tilp_tifiles_ungroup(void)
 	for(sel = local.selection; sel; sel = sel->next)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
+		gchar *utf8;
 		gchar *dirname;
 
-		dirname = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
-		if (dirname == NULL)
+		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
+		if (utf8 == NULL)
 			return -1;
+
+		dirname = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
+		g_free(utf8);
 
 		if(!strcmp(dirname, ".") || !strcmp(dirname, ""))
 		{

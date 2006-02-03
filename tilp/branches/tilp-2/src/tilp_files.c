@@ -28,9 +28,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
+//#include <sys/types.h>
+//#include <sys/stat.h>
+//#include <unistd.h>
 #include <time.h>
 #ifdef __WIN32__
 #include <windows.h>
@@ -125,11 +125,14 @@ int tilp_file_delete(const char *f)
 
 int tilp_file_mkdir(const char *pathname)
 {
+	int mode;
+
 #ifdef __WIN32__
-	if(g_mkdir(pathname, S_IRWXU) < 0)
+	mode = S_IRWXU;
 #else
-	if(g_mkdir(pathname, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) < 0)
+	mode = S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
 #endif
+	if(g_mkdir(pathname, mode) < 0)
 	{
 		gif->msg_box1(_("Information"), _("Unable to create the directory.\n\n"));
 		return -1;
@@ -140,7 +143,7 @@ int tilp_file_mkdir(const char *pathname)
 
 int tilp_file_exist(const char* filename)
 {
-	return !access(filename, F_OK);
+	return g_file_test(filename, G_FILE_TEST_EXISTS);
 }
 
 /* 
@@ -157,7 +160,7 @@ int tilp_file_check(const char *src, char **dst)
 
 	if (options.overwrite == CONFIRM_YES) 
 	{
-		if (access(src, F_OK) == 0) 
+		if (tilp_file_exist(src)) 
 		{
 			sprintf(buffer, _("The file %s already exists.\nOverwrite ?"), src);
 			ret =
@@ -295,7 +298,7 @@ int tilp_file_chdir(const char *path)
 
 int tilp_file_chdir(const char *path)
 {
-	if (_chdir(path)) 
+	if (g_chdir(path)) 
 	{
 		gif->msg_box1(_("Error"), _("Unable to change directory."));
 		return -1;

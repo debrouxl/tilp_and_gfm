@@ -24,8 +24,8 @@ Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "A
 Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
 
 Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
-Name: "slv_drv"; Description: "SilverLink support (copy, no install)"; GroupDescription: "Drivers:"; MinVersion: 0,4
-Name: "tlk_drv"; Description: "BlackLink or Parallel support"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "slv_drv"; Description: "Copy SilverLink drivers"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "tlk_drv"; Description: "Install BlackLink or Parallel cable"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
 ; Glade files

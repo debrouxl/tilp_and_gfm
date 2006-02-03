@@ -10,13 +10,15 @@ To do:
 	pb with cmd line
 	pb with auto-detect
 
-	automatic install of the USB driver
 	Send automatic log of config by mail for error reporting
-	Auto-downlonad/install gladewin32 package.
 	Display list for detect cables/calcs
 	tig support.
 
-- 30/01/2006, version 0.04 (0.0.4, 0.0.6, 0.0.4): roms
+- 03/02/2006, version 0.05 (0.0.4, 0.0.6, 0.0.4): roms
+	- tifiles2 library has switched to 'glib filename encoding'
+	- fixed missing or bad utf8/glib conversions
+
+- 30/01/2006, version 0.04 (0.0.4, 0.0.5, 0.0.4): roms
 	- reverted tifiles to locale encoding
 	- checked/fixed tilp for use of the good filename encoding
 

@@ -528,6 +528,7 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 		return;
 
 	dirname = g_filename_from_utf8(utf8, -1, &br, &bw, NULL);
+	g_free(utf8);
 
 	tilp_file_mkdir(dirname);
 	g_free(dirname);

@@ -305,9 +305,8 @@ void clist_refresh(void)
 			pix = create_pixbuf(icon_name);
 		}
 
-		// filenames are stored in the 'locale encoding' and GTK+ uses utf8
-		utf8 = g_locale_to_utf8(fe->name, -1, &br, &bw, NULL);
-
+		// filenames are stored in the 'glib filename encoding' and GTK+ uses utf8
+		utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, 
 				   COLUMN_NAME, utf8,
@@ -317,6 +316,7 @@ void clist_refresh(void)
 				   COLUMN_DATA, (gpointer) fe, 
                    COLUMN_ICON, pix, 
                    -1);
+		g_free(utf8);
 	}
 
 	g_object_unref(pix1);
