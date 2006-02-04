@@ -25,7 +25,7 @@ Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescri
 
 Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
 Name: "slv_drv"; Description: "Copy SilverLink drivers"; GroupDescription: "Drivers:"; MinVersion: 0,4
-Name: "tlk_drv"; Description: "Install BlackLink or Parallel cable"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "tlk_drv"; Description: "Install BlackLink/Parallel cable"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
 ; Glade files
@@ -616,4 +616,6 @@ begin
   if FileExists(WimpPath) and not UsingWinNT() then begin
         MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
   end;
+  
+  Result := true;
 end;
