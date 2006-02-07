@@ -1,5 +1,5 @@
 .\"                              hey, Emacs:   -*- nroff -*-
-.\" tilp is free software; you can redistribute it and/or modify
+.\" tilp-2 is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
 .\" the Free Software Foundation; either version 2 of the License, or
 .\" (at your option) any later version.
@@ -21,10 +21,10 @@ TiLP - a communication program for TI calculators ('Ti Linking Program' or 'Tilp
 .SH DESCRIPTION
 The \fBTiLP\fP program allows you to backup, restore and archive variables of your Texas Intruments calculator on your computer. It has also additional features such as screen dump, remote control, ROM dump, FLASHing. TiLP is a very complete program. Moreover, you have the same program for all calculator types.
 .SH OPTIONS
-The command line of tilp can be used for sending or opening files (variables, backup, FLASH apps, OS, ...). For sending one or more file, simply pass the filename(s) on the command line with the \fB-cmdline\fP option. If you don't use the \fB-cmdline\fP option, the file will be open within the GUI by the Group File Manager.
+The command line of tilp-2 can be used for sending or opening files (variables, backup, FLASH apps, OS, ...). For sending one or more file, simply pass the filename(s) on the command line with the \fB-cmdline\fP option. If you don't use the \fB-cmdline\fP option, the file will be open within the GUI by the Group File Manager.
 
 It is possible to send one or more files (single/group file only) or one file which can be a single/group var as well as a backup, a FLASH app or an Operating System even. You can not do any other operations. If you want more operations, you can use the interactive mode (\fB-gui=console\fP).
-Example: tilp --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
+Example: tilp-2 --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
 
 Note: options must be passed before the filename !
 
@@ -60,7 +60,7 @@ transfer speed but decrease the reliability of the transmission.
 .SH EXAMPLE
 Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
-tilp --calc=ti89 --cable=serial --port=2 --timeout=20 --no-gui group.89g
+tilp-2 --calc=ti89 --cable=serial --port=2 --timeout=20 --no-gui group.89g
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.
@@ -101,7 +101,7 @@ Define the sorting method for the left window. Choose one of the following value
 Define the sorting order for the left window. Choose either 'up' or 'down'.
 
 \fBfile_display=\fP
-Define whether tilp shows only TI files or all files. Possible values are 'ti' or 'all'.
+Define whether tilp-2 shows only TI files or all files. Possible values are 'ti' or 'all'.
 
 \fBfs_type=\fP
 File selector type (gtk1, gtk2, win32, qt).
@@ -116,13 +116,13 @@ Use full path when sending variables
 Show all files and not only TI files.
 
 \fBoverwrite=\fP
-Define whether tilp ask you confirmation when you delete some files. Use carefully !!! You can choose 'yes' or 'no'
+Define whether tilp-2 ask you confirmation when you delete some files. Use carefully !!! You can choose 'yes' or 'no'
 
 \fBrecv_as_group=\fP
 Receive set of files as a grouped file.
 
 \fBconsole=\fP
-Define whether tilp will display some verbose informations or not. Under Win32, this will display a background console. Values: 'yes' or 'no'.
+Define whether tilp-2 will display some verbose informations or not. Under Win32, this will display a background console. Values: 'yes' or 'no'.
 
 \fBshow_gui=\fP
 Display the Graphic User Interface in command line mode. Values: 'yes' or 'no'.
@@ -147,13 +147,13 @@ Define the image format to use for saving screen captures. It can be 'jpg' or 'p
 ???
 
 \fBscreen_clipping=\fP
-Define whether tilp display the entire screen of the calculator or only the visible part. This option is only useful for TI89 calculators because they have a screen which has the same size than a TI92 one but only a part is displayed. The other part is only useable via ASM programming.
+Define whether tilp-2 display the entire screen of the calculator or only the visible part. This option is only useful for TI89 calculators because they have a screen which has the same size than a TI92 one but only a part is displayed. The other part is only useable via ASM programming.
 
 \fBscreen_blurry=\fP
 Define whether the image is saved in B&W or saved like a VTi image (dark & light gray). Values: 'yes' or 'no'.
 
 .SH COPYRIGHT
-Copyright (C) 1999-2005, Romain Lievin. 
+Copyright (C) 1999-2006, Romain Lievin. 
 Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation.
 
 This program and its source code is distributed under the terms of the 
@@ -164,7 +164,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 .SH SUGGESTIONS AND BUG REPORTS
-The  canonical place to find tilp and some miscellenaous informations is at 
+The  canonical place to find tilp-2 and some miscellenaous informations is at 
 http://www.tilp.info (redirected on http://lpg.ticalc.org/prj_tilp/index.php)
 You can also look at http://lpg.ticalc.org and http://www.ticalc.org for others TI related programs for Linux. French people can also look at http://www.ti-fr.org.
 .SH AUTHOR
@@ -178,4 +178,4 @@ Thanks to these persons to have lent me their calculator: Jean-Pierre and Thomas
 Special thanks to Guillaume for her Grey/Gray TIGL link cable.
 Thanks to many others (patches, suggestions, ...)
 .SH SEE ALSO
-tilp-reg(1)
+tilp(1) tiemu(1)

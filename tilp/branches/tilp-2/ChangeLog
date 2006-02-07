@@ -1,17 +1,6 @@
 SubVersion: $Id$
 
-To do:
-	Transfers resumable.
-	increase timeout for TI82/85 sending/recv
-
-	full/local path and targetted folder ?
-	ungrouping of TI82/85 files when option is unchecked
-
-	pb with cmd line
-	pb with auto-detect
-
-	Send automatic log of config by mail for error reporting
-	Display list for detect cables/calcs
+Log of changes:	
 
 - 03/02/2006, version 0.05 (0.0.4, 0.0.6, 0.0.4): roms
 	- tifiles2 library has switched to 'glib filename encoding'
