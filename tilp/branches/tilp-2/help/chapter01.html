@@ -144,7 +144,7 @@ All systems must have an available port that will support your cable
 <font size="3"><u>Linux:</u></font>
 <p> </p>
 <ul>
-  <li><font size="3">install the TiLP <a
+  <li><font size="3">install the TiLP-II <a
  href="http://www.ticalc.org/archives/files/fileinfo/337/33748.html">framework</a></font>
   </li>
   <li><font size="3">install TiLP either by compiling sources, either
@@ -157,8 +157,76 @@ right permissions ! Same for USB filesystem, too !<br>
 <ul>
   <li>download and install GTK+ 2.7.x<br>
   </li>
-  <li><font size="3">execute the InnoSetup installer</font></li>
+  <li><font size="3">execute the InnoSetup installer</font><br>
+  </li>
 </ul>
+<h2>1.5 Configuration / Setting-up (Linux)<br>
+</h2>
+<font size="3">A burning issue with TiLP and Linux is good set-up of
+device access. Linux is secure because it heavily relies on permissions.<br>
+You should always run TiLP as root for the first run. By this way, you
+will be almost sure to run TiLP with success.<br>
+<br>
+If you want to run TiLP as a simple user, you must take care of
+permissions. This is explained below.<br>
+<br>
+For BlackLink or home-made serial cable, the node is '/dev/ttySx". You
+must have r/w permissions on this device. This can be done by:<br>
+- giving up r/w permissions to other (chmod ugo+rw /dev/ttyS0) or,
+better,<br>
+- adding your user to the group 'dialout' (edit /etc/group and your
+username after the ':').<br>
+<br>
+Example 1:<br>
+<span style="font-family: courier new;">&nbsp;&nbsp;&nbsp;
+crw-rw-rw-&nbsp; 1 root dialout 4, 64 2006-02-08 13:40 /dev/ttyS0<br>
+</span></font><font size="3">Example 2:<br>
+<span style="font-family: courier new;">&nbsp;&nbsp;&nbsp;
+dialout:x:20:romain</span></font><br>
+<font size="3"><span style="font-family: courier new;"></span><br>
+For parallel link cable, the node is '/dev/parportX' and the same rules
+apply.<br>
+<br>
+For SilverLink cable, things are more complicated...<br>
+<br>
+</font>
+<table style="width: 100%; text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><font size="3">libusb uses a
+pseudo-filesystem known as 'usbdevfs` or 'usbfs` to access the USB
+devices connected to your machine. This filesystem must be mounted<br>
+under /proc/bus/usb for libusb to work.<br>
+      <br>
+It could be done using the following command:<br>
+      <span style="font-family: courier new;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mount -t usbfs none /proc/bus/usb</span><br>
+      <br>
+An alternative and more permanent method would be to add<br>
+      <span style="font-family: courier new;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+none /proc/bus/usb usbfs defaults 0 0</span><br>
+to your /etc/fstab file. It will mount the usbfs for you automatically
+at boot time ; only root will be able to access the USB devices with
+this setup.<br>
+      <br>
+Several mount options are available, that allow you to set the
+permissions on the files created under /proc/bus/usb so that non-root
+users can use libusb applications:<br>
+&nbsp;- devuid=xxx, devgid=xxx, devmode=xxx respectively set the uid,
+the gid and the mode of the devices files, ie /proc/bus/usb/BBB/DDD<br>
+&nbsp;- busuid=xxx, busgid=xxx, devmode=xxx respectively set the uid,
+the gid and the mode of the bus files, ie /proc/bus/usb/BBB<br>
+&nbsp;- listuid=xxx, listgid=xxx, listmode=xxx respectively set the
+uid, the gid and the mode of /proc/bus/usb/devices<br>
+      <br>
+&nbsp;-- Aurelien Jarno &lt;aurel32@debian.org&gt;, Sun, 21 Mar 2004
+01:01:44 +0100</font></td>
+    </tr>
+  </tbody>
+</table>
+<font size="3"><br>
+</font>
 <hr>
 </body>
 </html>
