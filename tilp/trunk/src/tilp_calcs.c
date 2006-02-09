@@ -584,6 +584,7 @@ static int tilp_calc_recv_var1(void)
 		gchar *tmp_filename;
 		gchar *dst_filename;
 		char *varname;
+		char *basename;
 		gchar *utf8;
 
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
@@ -599,12 +600,14 @@ static int tilp_calc_recv_var1(void)
 		}
 
 		utf8 = tifiles_transcode_varname_static(calc_handle->model, ve->name, ve->type);
-		varname = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
+		basename = tifiles_varname_to_filename_static(calc_handle->model, utf8);
+		varname = g_filename_from_utf8(basename, -1, NULL, NULL, NULL);
 
 		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, varname, 
 			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
+		g_free(varname);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 	}

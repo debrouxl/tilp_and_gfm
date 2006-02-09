@@ -1,11 +1,14 @@
 This is a list of some things to do:
 
+- greek/specials chars (TI8x/TI9x) and filenames
 - increase timeout for TI82/85 sending/recv
-- full/local path and targetted folder ?
+- rewrite target folder when sending to a specific folder
 - ungrouping of TI82/85 files when option is unchecked
-- pb with cmd line
+- pb with cmd line (hiboo) ?
 - display list for detect cables/calcs
-- install SilverLink driver auto-magically not only copy)
+- install SilverLink driver auto-magically (not only copy)
+
+- skip/retry button
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
@@ -52,7 +55,7 @@ selection, but it toggles the state of the file where I started
 dragging. This is somewhat confusing. (In other words, dragging should 
 not also count as clicking.)
 
-* When transferring files and getting directory lists, the transfer 
++ When transferring files and getting directory lists, the transfer 
 progress dialog box automatically resizes itself horizontally. Since 
 this often happens many times a second, this is quite distracting. Maybe 
 the box shouldn't resize automatically, or it should only resize in one 
