@@ -16,6 +16,9 @@ Tips:
 To do:
       UTF8 encoding pbs with gtk_refresh (label) under Windows.
 
+- 14/02/2006, version 6.81 (3.9.6, 0.6.6, 4.6.1): roms
+	- fixed bug #1249545: cmdline failed for sending file in current dir
+	
 - 19/08/2005, version 6.80 (3.9.6, 0.6.6, 4.6.1): roms
 	Added gcc 4.0 support with fvisibility flag.
 

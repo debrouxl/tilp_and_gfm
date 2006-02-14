@@ -71,7 +71,7 @@ static void init_linux_paths(void)
 #endif				/*  */
 
 	// on LINUX systems, HOME directory by default for security reasons
-	tilp_chdir(inst_paths.home_dir);
+	//tilp_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 
@@ -118,7 +118,7 @@ static void init_win32_paths(void)
 #endif				/*  */
 
 	// on WIN32 systems, 'My TI Files' by default
-	_chdir(inst_paths.home_dir);
+	//_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 int tilp_paths_init(void)

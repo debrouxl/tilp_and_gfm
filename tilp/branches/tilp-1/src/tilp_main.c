@@ -134,6 +134,7 @@ int scan_cmdline(int argc, const char **argv)
 	char *q;
 	char arg[80];
 	TilpFileInfo *fi;
+
 	for (cnt = 1; cnt < argc; cnt++) {
 		p = argv[cnt];
 		if (*p == '-') {
@@ -154,9 +155,7 @@ int scan_cmdline(int argc, const char **argv)
 				filename_on_cmdline = g_strdup(p);
 			}
 
-			//printf("<<%s>\n", filename_on_cmdline);
-
-			// build a pseudo-selection for the TiLP core
+       			// build a pseudo-selection for the TiLP core
 			fi = (TilpFileInfo *)
 			    g_malloc0(sizeof(TilpFileInfo));
 			fi->name = g_strdup(filename_on_cmdline);
@@ -304,10 +303,10 @@ int tilp_main(int argc, const char *argv[], char **arge)
     	rc_init_with_default();
 	rc_get_user_prefs();
 #endif /* !__MACOSX__ */
-	tilp_chdir(options.working_dir);
 
 	// Scan the command line (passed as an argument)
 	scan_cmdline(argc, argv);
+	tilp_chdir(options.working_dir); //must be after scan_cmdline for paths
 
 	// Init locale & internationalization
 #ifdef ENABLE_NLS
