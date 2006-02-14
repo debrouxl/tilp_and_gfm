@@ -11,4 +11,4 @@ registrydir = $(pkgdatadir)/tilp
 dist_registry_DATA = tilp.registry
 
 install:
-	@$(INSTALL) -d $(tilp_plugin_dir)
+	@$(INSTALL) -d ${DESTDIR}$(tilp_plugin_dir)

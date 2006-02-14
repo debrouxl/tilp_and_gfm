@@ -20,14 +20,17 @@ install: $(FILES)
 	fi;
 
 	@echo Installing application registry in Gnome...
-	@$(INSTALL) -m644 gnome/tilp.applications /usr/share/application-registry
+	@$(INSTALL) -d $(DESTDIR)/usr/share/application-registry
+	@$(INSTALL) -m644 gnome/tilp.applications $(DESTDIR)/usr/share/application-registry
 
 	@echo Installing file and icons handling in Gnome...
-	@$(INSTALL) -m644 gnome/tilp.keys /usr/share/mime-info
-	@$(INSTALL) -m644 gnome/tilp.mime /usr/share/mime-info
+	@$(INSTALL) -d $(DESTDIR)/usr/share/mime-info
+	@$(INSTALL) -m644 gnome/tilp.keys $(DESTDIR)/usr/share/mime-info
+	@$(INSTALL) -m644 gnome/tilp.mime $(DESTDIR)/usr/share/mime-info
 
 	@echo Installing TiLP menu entry in Gnome...
-	@$(INSTALL) -m644 gnome/TiLP.desktop /usr/share/applications
+	@$(INSTALL) -d $(DESTDIR)/usr/share/applications
+	@$(INSTALL) -m644 gnome/TiLP.desktop $(DESTDIR)/usr/share/applications
 	@echo Done.
 
 	@echo "---";
@@ -38,11 +41,11 @@ install: $(FILES)
 #	fi;
 
 #	@echo Installing TiLP menu entry in KDE...
-#	@$(INSTALL) -d /usr/share/applnk/Edutainment/Mathematics
-#	@$(INSTALL) -m644 kde/tilp.desktop /usr/share/applnk/Edutainment/Mathematics/
+#	@$(INSTALL) -d $(DESTDIR)/usr/share/applnk/Edutainment/Mathematics
+#	@$(INSTALL) -m644 kde/tilp.desktop $(DESTDIR)/usr/share/applnk/Edutainment/Mathematics/
 
 #	@echo Installing file and icons handling in KDE...
-#	@$(INSTALL) -m644 kde/x-tilp.desktop /usr/share/mimelnk/application
+#	@$(INSTALL) -m644 kde/x-tilp.desktop $(DESTDIR)/usr/share/mimelnk/application
 #	@echo Done.
 
 uninstall: $(FILES)
