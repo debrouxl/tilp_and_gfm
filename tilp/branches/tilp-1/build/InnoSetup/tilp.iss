@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP
-AppVerName=TiLP 6.80b
+AppVerName=TiLP 6.81
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -104,9 +104,8 @@ Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist
 Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 
 ; Downloader
-Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\ssleay32.dll"; DestDir: "{app}\wget";
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
-Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\gtk.loc"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app}\wget";
 
 [Dirs]
@@ -579,7 +578,7 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.8.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.6.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
 end;
 
 function InitializeSetup(): Boolean;
@@ -595,7 +594,7 @@ begin
     Result := GetGtkVersionInstalled ();
 
     // and check
-    if CompareStr(GtkVersion, '2.8.10') < 0 then begin
+    if CompareStr(GtkVersion, '2.6.10') < 0 then begin
       DisplayWarning(2);
     end;
   end;
