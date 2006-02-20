@@ -60,12 +60,6 @@ static void init_linux_paths(void)
 	    g_strconcat(inst_paths.base_dir, "glade/", NULL);
 	inst_paths.home_dir =
 		g_strdup(g_get_home_dir());
-
-	/* bintextdomain(PACKAGE, "/usr/share/locale"); ->
-	   '/usr/share/locale/  fr/LC_MESSAGES/tilp.mo' */
-#ifdef ENABLE_NLS
-	inst_paths.locale_dir = g_strconcat(LOCALEDIR, "/", NULL);
-#endif				/*  */
 }
 #endif				/*  */
 
@@ -101,13 +95,6 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
 	inst_paths.home_dir = 
 	    g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
-
-	/* bintextdomain(PACKAGE, "/usr/share/locale"); ->
-	   '/usr/share/locale/  fr/LC_MESSAGES/tilp.mo' */
-#ifdef ENABLE_NLS
-	inst_paths.locale_dir =
-	    g_strconcat(inst_paths.base_dir, "locale\\", NULL);
-#endif				/*  */
 }
 #endif				/*  */
 

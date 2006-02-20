@@ -39,7 +39,7 @@ static void default_config_linux(void)	// linux specific options
 {
 	options.remote_font_name = g_strdup("");
 	options.local_font_name = g_strdup("-adobe-courier-medium-r-*-*-*-120-*-*-*-*-*-*");
-	options.working_dir = g_strdup(g_get_home_dir());
+	options.working_dir = g_strdup(inst_paths.home_dir);
 }
 #endif				
 
@@ -48,8 +48,7 @@ static void default_config_win32(void)
 {
 	options.remote_font_name = g_strdup("");
 	options.local_font_name = g_strdup("-adobe-courier-medium-r-normal--12-120-75-75-p-70-iso8859-1");
-	//options.working_dir = g_get_current_dir();
-	options.working_dir = g_strdup("C:\\msvc\\tilp2");
+	options.working_dir = g_strdup(inst_paths.home_dir);
 }
 #endif
 

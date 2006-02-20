@@ -1,13 +1,6 @@
 This is a list of some things to do:
 
-- warnings in libs under Linux
-- increase timeout for TI82/85 sending/recv
 - rewrite target folder when sending to a specific folder
-- ungrouping of TI82/85 files when option is unchecked
-- pb with cmd line (hiboo) ?
-- display list for detect cables/calcs
-- install SilverLink driver auto-magically (not only copy)
-
 - skip/retry button
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:

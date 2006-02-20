@@ -150,6 +150,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		else if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
 		{
 			// send to folder
+			printf("target folder: <%s>\n", name);
 			on_tilp_send(ve->name);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
