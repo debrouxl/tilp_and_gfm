@@ -252,67 +252,6 @@ int tilp_file_move_with_check(const char *src, const char *dst)
 	return !0;
 }
 
-
-/*
-  Change directory. This functions is a wrapper for chdir.
-  It manages privileges and ensure that the user can not exit from the
-  HOME directory
-*/
-#if defined(__LINUX__) || defined(__MACOSX__)
-int tilp_file_chdir(const char *path)
-{
-#ifndef ALLOW_EXIT_HOMEDIR
-	const gchar *home_dir;
-#endif /* !ALLOW_EXIT_HOMEDIR */
-	gchar *curr_dir;
-	uid_t effective;
-
-	effective = geteuid();
-	seteuid(getuid());
-
-	if (g_chdir(path)) 
-	{
-		tilp_warning(_("Chdir error.\n"));
-		gif->msg_box1(_("Error"), _("Unable to change directory."));
-		return -1;
-	}
-	seteuid(effective);
-	curr_dir = g_get_current_dir();
-
-#ifndef ALLOW_EXIT_HOMEDIR
-	home_dir = g_get_home_dir();
-
-	/* If curr_dir does not begin with "home_dir"
-	 * or strlen(curr_dir) < strlen(home_dir)
-	 * then the user is trying to escape its home directory.
-	 */
-	if ((strlen(curr_dir) < strlen(home_dir)) ||
-	    (strncmp(curr_dir, home_dir, strlen(home_dir)) != 0)) 
-	{
-		if (strcmp(curr_dir, g_get_tmp_dir())) 
-		{
-			g_chdir(home_dir);
-			g_free(curr_dir);
-
-			if (gif != NULL) 
-			{
-				gif->msg_box1(_("Error"), _
-					     ("You can not go outside of your HOME directory."));
-			} 
-			else 
-			{
-				tilp_warning(_("You can not go outside of your HOME directory."));
-			}
-
-			return -1;
-		}
-	}
-#endif /* !ALLOW_EXIT_HOMEDIR */
-	return 0;
-}
-
-#else
-
 #if !GLIB_CHECK_VERSION(2, 8, 0)
 #include <errno.h>
 #include <direct.h>
@@ -376,7 +315,6 @@ int tilp_file_chdir(const char *path)
 
 	return 0;
 }
-#endif /* __LINUX__ || __MACOSX__ */
 
 /* Replace any invalid chars in the filename by an underscore '_' */
 char *tilp_file_underscorize(char *s)

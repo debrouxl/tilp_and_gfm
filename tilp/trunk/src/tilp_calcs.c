@@ -706,7 +706,8 @@ static int tilp_calc_recv_var2(void)
 	//
 	// Receive one variable or several variables packed into a group.
 	//
-	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
+		".", tifiles_fext_of_group(calc_handle->model), NULL);
 
 	gif->create_pbar_type4(_("Receiving variable(s)"), _("Waiting..."));
 	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
@@ -738,9 +739,15 @@ static int tilp_calc_recv_var2(void)
 		if(!options.recv_as_group)
 		{
 			// to do... (ungrouping)
+			tifiles_ungroup_file(tmp_filename, NULL);
+			g_free(tmp_filename);
+			
+			return 0;
 		}
-
-		return 1;
+		else
+		{
+			return 1;
+		}
 	}
 
 	return 0;

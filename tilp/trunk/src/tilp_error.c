@@ -64,16 +64,16 @@ int tilp_err(int errcode)
 			err = ticables_error_get(err, &s);
 			if (err) 
 			{
-				//free(s);
+				g_free(s);
 				err = tifiles_error_get(err, &s);
 				if (err) 
 				{
-					//free(s);
+					g_free(s);
 					err = ticalcs_error_get(err, &s);
 					if (err) 
 					{
 						// next level: error for TiLP
-						//free(s);
+						g_free(s);
 					}
 				}
 			}
@@ -101,16 +101,16 @@ int tilp_err(int errcode)
 		err = ticables_error_get(err, &s);
 		if (err)
 		{
-			//free(s);
+			g_free(s);
 			err = ticalcs_error_get(err, &s);
 			if (err)
 			{
-				//free(s);
+				g_free(s);
 				err = ticalcs_error_get(err, &s);
 				if (err) 
 				{
 					// next level: error for TiLP
-					//free(s);
+					g_free(s);
 				}
 			}
 		}

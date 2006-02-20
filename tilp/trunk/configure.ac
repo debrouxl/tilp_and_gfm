@@ -99,16 +99,6 @@ AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr strtol])
 
-# Option to allow user to go outside his home directory.
-AC_ARG_ENABLE(exit-homedir,
-  AC_HELP_STRING([--enable-exit-homedir], [allow user to go outside his home directory]),
-  [tilp_cv_enable_exit_homedir=$enableval], [])
-AC_CACHE_CHECK([whether to allow user to go outside his home directory],
-  [tilp_cv_enable_exit_homedir], [tilp_cv_enable_exit_homedir=no])
-if test x$tilp_cv_enable_exit_homedir = xyes; then
-  AC_DEFINE(ALLOW_EXIT_HOMEDIR, 1, [Define to 1 to allow user to go outside his home directory.])
-fi
-
 # Platform specific tests.
 dnl AC_CANONICAL_HOST
 case "$host" in
@@ -198,17 +188,10 @@ AC_SUBST(LDFLAGS)
 AC_OUTPUT
 
 echo "Now, you can type 'make' and 'make install'."
+echo ""
+echo "If you are a single user and you want to move in your filesystem, "
+echo "you can choose to add the '--enable-exit-homedir' option on the"
+echo "'configure' command line."
+echo "By default, it is disabled for security reasons !"
+echo ""
 
-if test x$tilp_cv_enable_exit_homedir = xyes; then
- echo ""
- echo "The 'exit HOME dir' facility is now enabled as default behaviour."
- echo "Please keep in mind tha this is not secure..."
- echo ""
-else
- echo ""
- echo "If you are a single user and you want to move in your filesystem, "
- echo "you can choose to add the '--enable-exit-homedir' option on the"
- echo "'configure' command line."
- echo "By default, it is disabled for security reasons !"
- echo ""
-fi
