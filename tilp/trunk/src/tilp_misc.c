@@ -39,7 +39,7 @@ int tilp_drive_change(char drive_letter)
 	snprintf(local.cwdir, 8, "%c:\\", (char) drive_letter);
 
 	s = g_strdup(local.cwdir);
-	if (tilp_chdir(s) == -1) 
+	if (tilp_file_chdir(s) == -1) 
 	{
 		gif->msg_box1(_("Error"), _("Unable to change directory."));
 	}
@@ -93,7 +93,7 @@ int tilp_tifiles_ungroup(void)
 		tilp_file_copy(src_file, dst_file);
 		
 		tifiles_ungroup_file(dst_file, NULL);
-		tilp_chdir("..");
+		tilp_file_chdir("..");
 
 		g_free(dirname);
 		g_free(src_file);

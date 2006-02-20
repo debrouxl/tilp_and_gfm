@@ -66,9 +66,6 @@ static void init_linux_paths(void)
 #ifdef ENABLE_NLS
 	inst_paths.locale_dir = g_strconcat(LOCALEDIR, "/", NULL);
 #endif				/*  */
-
-	// on LINUX systems, HOME directory by default for security reasons
-	tilp_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 
@@ -111,9 +108,6 @@ static void init_win32_paths(void)
 	inst_paths.locale_dir =
 	    g_strconcat(inst_paths.base_dir, "locale\\", NULL);
 #endif				/*  */
-
-	// on WIN32 systems, 'My TI Files' by default
-	_chdir(inst_paths.home_dir);
 }
 #endif				/*  */
 

@@ -367,7 +367,7 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 		if (S_ISDIR(fe->attrib)) 
 		{
 			// go into folder
-			tilp_chdir(fe->name);
+			tilp_file_chdir(fe->name);
 			g_free(local.cwdir);
 			local.cwdir = g_get_current_dir();
 

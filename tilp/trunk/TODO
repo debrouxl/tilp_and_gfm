@@ -1,6 +1,10 @@
 This is a list of some things to do:
 
-- greek/specials chars (TI8x/TI9x) and filenames
+Parlant de homedir, à mon avis, faudrait supprimer la protection contre la sortie du homedir, elle n'apporte rien en sécurité (sauf si quelqu'un met TiLP en SUID et GTK+ refuse de tourner de toute façon si on fait ça) et je désactive ça depuis toujours (tous mes RPMs sont compilés avec --enable-exit-homedir).
+[14:31:52] <roms> j'y pensais surtout que cette 'feature' est ch*ante !
+[14:34:08] <Kevin Kofler> À mon avis, tous les chdir vers le homedir sont probablement à zapper (le répertoire courant est le répertoire courant pour une raison), et cette "protection" aussi.
+
+- warnings in libs under Linux
 - increase timeout for TI82/85 sending/recv
 - rewrite target folder when sending to a specific folder
 - ungrouping of TI82/85 files when option is unchecked

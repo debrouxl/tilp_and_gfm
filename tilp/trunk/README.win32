@@ -13,7 +13,7 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 95/98/Me or Windows NT4/2000/XP
- - the GTK+ 2.8 libraries
+ - the GTK+ 2.6 libraries
     Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.10-rc1.exe?download>
     => They can be automatically download & installed by the installer.
  - the SilverLink driver v3.4 if you have a SilverLink cable

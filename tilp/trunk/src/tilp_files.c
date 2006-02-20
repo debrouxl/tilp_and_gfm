@@ -313,6 +313,59 @@ int tilp_file_chdir(const char *path)
 
 #else
 
+#if !GLIB_CHECK_VERSION(2, 8, 0)
+#include <errno.h>
+#include <direct.h>
+// Code taken from Glib
+int g_chdir (const gchar *path)
+{
+#ifdef __WIN32__
+  if (G_WIN32_HAVE_WIDECHAR_API ())
+    {
+      wchar_t *wpath = g_utf8_to_utf16 (path, -1, NULL, NULL, NULL);
+      int retval;
+      int save_errno;
+
+      if (wpath == NULL)
+	{
+	  errno = EINVAL;
+	  return -1;
+	}
+
+      retval = _wchdir (wpath);
+      save_errno = errno;
+
+      g_free (wpath);
+      
+      errno = save_errno;
+      return retval;
+    }
+  else
+    {
+      gchar *cp_path = g_locale_from_utf8 (path, -1, NULL, NULL, NULL);
+      int retval;
+      int save_errno;
+
+      if (cp_path == NULL)
+	{
+	  errno = EINVAL;
+	  return -1;
+	}
+
+      retval = chdir (cp_path);
+      save_errno = errno;
+
+      g_free (cp_path);
+
+      errno = save_errno;
+      return retval;
+    }
+#else
+  return chdir (path);
+#endif
+}
+#endif
+
 int tilp_file_chdir(const char *path)
 {
 	if (g_chdir(path)) 

@@ -83,11 +83,9 @@ int tilp_init(int *argc, char ***argv)
 	rc_get_user_prefs();
 #endif
 
-	/* Change to workign folder */
-	tilp_file_chdir(options.working_dir);
-
-	/* Scan and modify command line */
+	/* Scan and modify command line and change to working folder*/
 	tilp_cmdline_scan(argc, argv);
+	tilp_file_chdir(options.working_dir);
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);

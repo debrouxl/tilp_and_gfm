@@ -182,7 +182,7 @@ GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 GLADE_CB void
 rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	tilp_chdir("..");
+	tilp_file_chdir("..");
 
 	g_free(local.cwdir);
 	local.cwdir = g_get_current_dir();
