@@ -72,6 +72,7 @@ int tilp_dirlist_remote(void)
 }
 
 /* Sorting functions */
+#if 0
 static gint sort_by_name(GNode* node, gpointer data)
 {
 	VarEntry* ve = node->data;
@@ -80,6 +81,7 @@ static gint sort_by_name(GNode* node, gpointer data)
 
 	return 0;
 }
+#endif
 
 void tilp_vars_sort_by_name(void)
 {

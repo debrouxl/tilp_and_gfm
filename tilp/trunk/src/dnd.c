@@ -107,7 +107,7 @@ on_treeview2_drag_data_get(GtkWidget * widget,
 			       (guchar *)name, strlen(name));
 }
 
-extern on_tilp_send(gchar*);
+extern int on_tilp_send(gchar*);
 
 // retrieve data
 GLADE_CB void
