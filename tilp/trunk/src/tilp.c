@@ -463,6 +463,9 @@ void on_tilp_send(gchar *user_data)
 	{
 		tilp_slct_load_contents();
 
+		// change target folder
+		tilp_slct_change_folder(target);
+
 		// udpate folder listing (if supported)
 		if (ticalcs_calc_features(calc_handle) & FTS_SILENT) 
 			if (tilp_dirlist_remote())

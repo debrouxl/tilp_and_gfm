@@ -139,7 +139,9 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 		gtk_tree_model_get(model, &iter, COLUMN_NAME, &name, -1);
 
-		if(!strcmp(name, NODE4))
+		g_print("Received \"%s\" as selection information.\n", name);
+
+		if(!strcmp(name, NODE4))	// Apps/Archive
 		{
 			// send to flash
 			on_tilp_send("FLASH");
@@ -147,11 +149,16 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			return;
 		}
 
-		else if (ve && (ve->type == tifiles_folder_type(options.calc_model))) 
+		else if (ve && tifiles_has_folder(options.calc_model))
 		{
 			// send to folder
-			printf("target folder: <%s>\n", name);
-			on_tilp_send(ve->name);
+			char *target;
+
+			if(!strcmp(ve->folder, ""))
+				target = ve->name;
+			else
+				target = ve->folder;
+			on_tilp_send(target);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
@@ -180,12 +187,15 @@ GLADE_CB void
 on_treeview1_drag_begin(GtkWidget * widget,
 			GdkDragContext * drag_context, gpointer user_data)
 {
+	// Folder
 	if (!strcmp(name_to_drag, NODEx) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
 
+	// Variables
 	else if (!strcmp(name_to_drag, NODE3) && !(ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
 
+	// Variables
 	else if (!strcmp(name_to_drag, NODE3) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
 }
@@ -220,10 +230,9 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 	{
 		gchar *name = (gchar *) data->data;
 
-		g_print("Received \"%s\" as selection information.\n", name);
-		if (!strcmp(name, NODE1)) 
+		//g_print("Received \"%s\" as selection information.\n", name);
+		if (!strcmp(name, NODE1))	// Screen
 		{
-			// screenshot
 			display_screenshot_dbox();
 			on_scdbox_button1_clicked(NULL, NULL);
 
@@ -233,35 +242,34 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 				on_sc_quit1_activate(NULL, NULL);
 			}
 		} 
-		else if (!strcmp(name, NODE2)) 
+		else if (!strcmp(name, NODE2))	// OS
 		{
-			// ROM dumping
 			on_rom_dump1_activate(NULL, NULL);
 		} 
-		else if (!strcmp(name, NODE3)) 
+		else if (!strcmp(name, NODE3))	// Variables
 		{
 			// all variables to get
 			on_tilp_button5_clicked(NULL, NULL);
-			select_vars_under_folder(0);	//deselect
+			select_vars_under_folder(0);
 		}
-		else if (!strcmp(name, NODE4))
+		else if (!strcmp(name, NODE4))	// Apps & Archives
 		{
 		}
-		else if (!strcmp(name, NODE5)) 
+		else if (!strcmp(name, NODE5))	// IDlist
 		{
 			// put IDLIST in a text file
 			tilp_calc_idlist(1);
 		}
-		else if (!strcmp(name, NODE6))
+		else if (!strcmp(name, NODE6))	// Clock
 		{
 		}
-		else if (!strcmp(name, NODEx)) 
+		else if (!strcmp(name, NODEx))	// Folder
 		{
 			// folder to get
 			on_tilp_button5_clicked(NULL, NULL);
-			select_vars_under_folder(0);	//deselect
+			select_vars_under_folder(0);
 		} 
-		else if (!strcmp(name, NODE7))
+		else if (!strcmp(name, NODE7))	// Certificate
 		{
 			tilp_calc_recv_cert();
 		}

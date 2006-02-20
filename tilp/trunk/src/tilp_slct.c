@@ -233,6 +233,24 @@ void tilp_slct_unload_contents(void)
 	}
 }
 
+void tilp_slct_change_folder(const char *target)
+{
+	GList *ptr;
+
+	if (local.selection == NULL)
+		return;
+
+	for(ptr = local.selection; ptr; ptr = ptr->next)
+	{
+		FileEntry *fe = ptr->data;
+		FileContent *c = fe->content;
+		int i;
+
+		for(i = 0; i < c->num_entries; i++)
+			strcpy(((c->entries)[i])->folder, target);	
+	}
+}
+
 //-----------
 
 /* Destroy the selection of the remote window */
