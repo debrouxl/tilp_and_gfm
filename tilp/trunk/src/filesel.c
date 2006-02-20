@@ -196,11 +196,13 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 		if (have_widechar)
 		{
 			temp = g_utf8_to_utf16(filename,-1,NULL,NULL,NULL);
+			if(!temp) return NULL;
 			wcsncpy((wchar_t *)lpstrFile, temp, sizeof(lpstrFile)>>1);
 		}
 		else
 		{
 			temp = g_locale_from_utf8(filename,-1,NULL,NULL,NULL);
+			if(!temp) return NULL;
 			strncpy(lpstrFile, temp, sizeof(lpstrFile));
 		}
 		g_free(temp);
@@ -256,7 +258,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 		o.nMaxFile = sizeof(lpstrFile);
 		sdirname = g_locale_from_utf8(dirname,-1,NULL,NULL,NULL);
 	}
-	o.lpstrInitialDir = dirname;
+	o.lpstrInitialDir = sdirname;
 	o.Flags = 0x02000000 | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY |
 				 OFN_NOCHANGEDIR | OFN_EXPLORER | OFN_LONGNAMES | OFN_NONETWORKBUTTON;
 
@@ -504,11 +506,13 @@ static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 		if (have_widechar)
 		{
 			temp = g_utf8_to_utf16(filename,-1,NULL,NULL,NULL);
+			if(!temp) return NULL;
 			wcsncpy((wchar_t *)lpstrFile, temp, sizeof(lpstrFile)>>1);
 		}
 		else
 		{
 			temp = g_locale_from_utf8(filename,-1,NULL,NULL,NULL);
+			if(!temp) return NULL;
 			strncpy(lpstrFile, temp, sizeof(lpstrFile));
 		}
 		g_free(temp);

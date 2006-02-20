@@ -9,6 +9,7 @@ Log of changes:
 	- removed 'exit home dir' limitation/security
 	- ungroup TI82/85 files when option is set to 'single'
 	- rewrite target folder when sending to a specific folder
+	- fixed bug in the Win32 file selector (default folder)
 
 - 03/02/2006, version 0.05 (0.0.4, 0.0.6, 0.0.4): roms
 	- tifiles2 library has switched to 'glib filename encoding'
