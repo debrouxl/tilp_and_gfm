@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP2, 0.03, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP2, 0.06, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -52,7 +52,11 @@ PKG_CHECK_MODULES(TICABLES, ticables2 >= 0.0.1)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.0.5)
+PKG_CHECK_MODULES(TICONV, ticonv >= 0.0.1)
+AC_SUBST(TICONV_CFLAGS)
+AC_SUBST(TICONV_LIBS)
+
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.0.9)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 
@@ -188,10 +192,3 @@ AC_SUBST(LDFLAGS)
 AC_OUTPUT
 
 echo "Now, you can type 'make' and 'make install'."
-echo ""
-echo "If you are a single user and you want to move in your filesystem, "
-echo "you can choose to add the '--enable-exit-homedir' option on the"
-echo "'configure' command line."
-echo "By default, it is disabled for security reasons !"
-echo ""
-
