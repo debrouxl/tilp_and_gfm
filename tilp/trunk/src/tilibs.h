@@ -56,4 +56,12 @@
 # include "ticalcs.h"
 #endif
 
+#if !defined(__MACOSX__) && !defined(__WIN32__)
+# include <tilp2/ticonv.h>
+#elif defined(__MACOSX__)
+# include <libticonv/ticonv.h>
+#else
+# include "ticonv.h"
+#endif
+
 #endif

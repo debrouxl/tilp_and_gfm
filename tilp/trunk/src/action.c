@@ -199,7 +199,7 @@ gint display_action_dbox(gchar *target)
 			}
 
 			// search for matching var
-			trans = tifiles_transcode_varname_static(c->model, v->name, v->type);
+			trans = ticonv_varname_to_utf8(c->model, (const char *)v->name, (unsigned int)v->type);
 			tifiles_build_fullname(c->model, full_name, v->folder, v->name);
 
 			w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
@@ -212,7 +212,7 @@ gint display_action_dbox(gchar *target)
 				v->action = ACT_OVER;
 
 			// file contains an already existing var: add it to the window
-			row_text[0] = g_strdup(trans);
+			row_text[0] = g_strdup(trans); g_free(trans);
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
 			row_text[3] = g_strdup(action2string(v->action));
@@ -333,10 +333,10 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		// update var entry
 		strcpy(v->folder, tifiles_get_fldname(full_name));
 		strcpy(v->name,   tifiles_get_varname(full_name));
-		trans = tifiles_transcode_varname_static(c->model, v->name, v->type);
+		trans = ticonv_varname_to_utf8(c->model, (const char *)v->name, (unsigned int)v->type);
 
 		// update entry
-		row_text[0] = g_strdup(trans);
+		row_text[0] = g_strdup(trans); g_free(trans);
 		row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 		row_text[3] = g_strdup(action2string(v->action));
 		gtk_list_store_set(list, &iter, 

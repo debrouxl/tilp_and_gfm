@@ -159,8 +159,6 @@ void ctree_init(void)
 	GtkTreeSelection *selection;
 	GtkTreeViewColumn *column;
 	gint i;
-	
-	tifiles_transcoding_set(ENCODING_UNICODE);
 
 	tree = gtk_tree_store_new(CTREE_NCOLS, G_TYPE_STRING,
 				  GDK_TYPE_PIXBUF, G_TYPE_STRING,
@@ -360,12 +358,14 @@ void ctree_refresh(void)
 
 		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER)) 
 		{
-			gtk_tree_store_append(tree, &parent_node, &vars_node);
+			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name, fe->type);
 
+			gtk_tree_store_append(tree, &parent_node, &vars_node);
 			gtk_tree_store_set(tree, &parent_node, 
-					   COLUMN_NAME, tifiles_transcode_varname_static (options.calc_model, fe->name, fe->type), 
+					   COLUMN_NAME, utf8, 
 					   COLUMN_DATA, (gpointer) fe,
 					   COLUMN_ICON, pix1, -1);
+			g_free(utf8);
 		}
 
 		for (j = 0; j < (int)t_node_n_children(parent); j++) 
@@ -375,7 +375,7 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = g_strdup(tifiles_transcode_varname_static(options.calc_model, ve->name, ve->type));
+			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 			tilp_var_get_size(ve, &row_text[3]);
 
@@ -419,7 +419,7 @@ void ctree_refresh(void)
 		VarEntry *ve = (VarEntry *) (node->data);
 		char icon_name[256];
 
-		row_text[0] = g_strdup(tifiles_transcode_varname_static (options.calc_model, ve->name, ve->type));
+		row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 		row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 		row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 

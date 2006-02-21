@@ -478,7 +478,7 @@ int tilp_calc_send_var(void)
 			return 0;
 		}
 
-		if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tig(f->name)) 
+		if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
 		{
 			gif->msg_box(_("Error"), _("There is an unknown file type in the selection."));
 			return 0;
@@ -583,9 +583,7 @@ static int tilp_calc_recv_var1(void)
 		VarEntry *ve = (VarEntry *)remote.selection->data;
 		gchar *tmp_filename;
 		gchar *dst_filename;
-		char *varname;
 		char *basename;
-		gchar *utf8;
 
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
 
@@ -599,15 +597,12 @@ static int tilp_calc_recv_var1(void)
 			return -1;
 		}
 
-		utf8 = tifiles_transcode_varname_static(calc_handle->model, ve->name, ve->type);
-		basename = tifiles_varname_to_filename_static(calc_handle->model, utf8);
-		varname = g_filename_from_utf8(basename, -1, NULL, NULL, NULL);
-
-		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, varname, 
+		basename = ticonv_varname_to_filename(calc_handle->model, ve->name);
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
 			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
-		g_free(varname);
+		g_free(basename);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 	}
@@ -700,8 +695,9 @@ static int tilp_calc_recv_var2(void)
 	gchar *tmp_filename;
 	gchar *dst_filename;
 	VarEntry* ve;
-	char *varname;
+	//char *varname;
 	int err;
+	char *basename;
 
 	//
 	// Receive one variable or several variables packed into a group.
@@ -723,12 +719,13 @@ static int tilp_calc_recv_var2(void)
 	if(ve)
 	{
 		//single
-		varname = tifiles_transcode_varname_static(calc_handle->model, ve->name, ve->type);
-		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, varname, 
+		basename = ticonv_varname_to_filename(calc_handle->model, ve->name);
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
 			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
 		tifiles_ve_delete(ve);
+		g_free(basename);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 

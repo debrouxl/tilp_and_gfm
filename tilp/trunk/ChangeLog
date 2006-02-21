@@ -1,6 +1,9 @@
 SubVersion: $Id$
 
-Log of changes:	
+Log of changes:	tilp (cables, calcs, files, ticonv)
+
+- 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
+	- switched to ticonv library
 
 - 07/02/2006, version 0.06 (0.0.4, 0.0.6, 0.0.4): roms
 	- updated manpage according to bug #1397587

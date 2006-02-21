@@ -282,7 +282,7 @@ void clist_refresh(void)
 		b = options.show_all || S_ISDIR(fe->attrib) ||
 			tifiles_file_is_ti(fe->name) ||
 			tifiles_file_is_tib(fe->name) ||
-			tifiles_file_is_tig(fe->name) ||
+			tifiles_file_is_tigroup(fe->name) ||
 			(tifiles_file_get_model(fe->name) == options.calc_model);
 		if(!b)
 			continue;
