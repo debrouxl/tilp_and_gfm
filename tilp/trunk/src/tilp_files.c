@@ -104,8 +104,20 @@ int tilp_file_copy(const char *src, const char *dst)
 	gchar *dst_utf8 = g_filename_to_utf8(dst, -1, NULL, NULL, NULL);
 	gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
 
-	if (!CopyFile(src_loc, dst_loc, FALSE))
-		ret = 1;
+	if(G_WIN32_HAVE_WIDECHAR_API())
+	{
+		gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8,-1,NULL,NULL,NULL);
+		gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8,-1,NULL,NULL,NULL);
+		
+		if(src_utf16 && dst_utf16)
+			if (!CopyFileW(src_utf16, dst_utf16, FALSE))
+				ret = 1;
+	}
+	else
+	{
+		if (!CopyFile(src_loc, dst_loc, FALSE))
+			ret = 1;
+	}
 
 	g_free(src_utf8);
 	g_free(dst_utf8);
