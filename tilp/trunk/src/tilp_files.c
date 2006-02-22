@@ -100,9 +100,7 @@ int tilp_file_copy(const char *src, const char *dst)
 {
 	int ret = 0;
 	gchar *src_utf8 = g_filename_to_utf8(src, -1, NULL, NULL, NULL);
-	gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
 	gchar *dst_utf8 = g_filename_to_utf8(dst, -1, NULL, NULL, NULL);
-	gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
 
 	if(G_WIN32_HAVE_WIDECHAR_API())
 	{
@@ -112,17 +110,25 @@ int tilp_file_copy(const char *src, const char *dst)
 		if(src_utf16 && dst_utf16)
 			if (!CopyFileW(src_utf16, dst_utf16, FALSE))
 				ret = 1;
+		
+		g_free(src_utf16);
+		g_free(dst_utf16);
 	}
 	else
 	{
-		if (!CopyFile(src_loc, dst_loc, FALSE))
-			ret = 1;
+		gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
+		gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
+		
+		if(src_loc && dst_loc)
+			if (!CopyFile(src_loc, dst_loc, FALSE))
+				ret = 1;
+		
+		g_free(src_loc);
+		g_free(dst_loc);
 	}
 
 	g_free(src_utf8);
 	g_free(dst_utf8);
-	g_free(src_loc);
-	g_free(dst_loc);
 
 	return ret;
 }
