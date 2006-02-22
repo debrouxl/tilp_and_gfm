@@ -99,6 +99,9 @@ int tilp_init(int *argc, char ***argv)
 #endif /* ENABLE_NLS */
 
 	/* Check the version of libraries and init framework */
+	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0) 
+		tilp_error(_("libticonv library version <%s> mini required.\n"), TILP_REQUIRES_LIBCONV_VERSION);
+
 	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0) 
 		tilp_error(_("libtifiles library version <%s> mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
 	

@@ -45,6 +45,11 @@
 #include "tilp_core.h"
 #include "gtk_update.h"
 
+static void my_log_handler                  (const gchar *log_domain,
+                                             GLogLevelFlags log_level,
+                                             const gchar *message,
+                                             gpointer user_data) {}
+
 int main(int argc, char *argv[])
 {
 	GdkPixbuf *icon;
@@ -57,6 +62,24 @@ int main(int argc, char *argv[])
 	add_pixmap_directory(inst_paths.pixmap_dir);
 	add_pixmap_directory(inst_paths.icon_dir);
 	splash_screen_start();
+
+	/*
+		Get rid of glib, gdk, gtk warnings when compiled in Release mode
+	*/
+#if !defined(_DEBUG)
+	g_log_set_handler ("GLib", 
+		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
+		my_log_handler, NULL);
+	g_log_set_handler ("Gdk", 
+		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
+		my_log_handler, NULL);
+	g_log_set_handler ("Gtk", 
+		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
+		my_log_handler, NULL);
+
+	g_log_set_handler ("GLib", G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION, 
+		my_log_handler, NULL);
+#endif
 
 	/* Init the GUI independant functions */
 	tilp_gif_set_gtk();
