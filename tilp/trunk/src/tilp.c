@@ -467,11 +467,6 @@ void on_tilp_send(gchar *user_data)
 		if(strcmp(target, ""))
 			tilp_slct_change_folder(target);
 
-		// udpate folder listing (if supported)
-		if (ticalcs_calc_features(calc_handle) & FTS_SILENT) 
-			if (tilp_dirlist_remote())
-				return;
-
 		// and wait for action
 		if (display_action_dbox(target) == BUTTON2) 
 		{
