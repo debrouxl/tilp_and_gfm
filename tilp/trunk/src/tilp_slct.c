@@ -215,6 +215,25 @@ void tilp_slct_load_contents(void)
 			free(fe->selected);
 		}
 	}
+
+	// replaced "" folder by "main" (temporary...)
+	if(!(ticalcs_calc_features(calc_handle) & FTS_FOLDER))
+		return;
+
+	for(ptr = local.selection; ptr; ptr = ptr->next)
+	{
+		FileEntry *fe = ptr->data;
+		FileContent *c = fe->content;
+		int i;
+
+		for(i = 0; i < c->num_entries; i++)
+		{
+			VarEntry *ve = (c->entries)[i];
+
+			if(!strcmp(ve->folder , ""))
+				strcpy(ve->folder, "main");
+		}
+	}
 }
 
 void tilp_slct_unload_contents(void)
@@ -249,6 +268,25 @@ void tilp_slct_change_folder(const char *target)
 		for(i = 0; i < c->num_entries; i++)
 			strcpy(((c->entries)[i])->folder, target);	
 	}
+}
+
+void tilp_slct_update_dirlist(void)
+{
+	GList *ptr;
+
+	if (local.selection == NULL)
+		return;
+
+	for(ptr = local.selection; ptr; ptr = ptr->next)
+	{
+		FileEntry *fe = ptr->data;
+		FileContent *c = fe->content;
+		int i;
+
+		for(i = 0; i < c->num_entries; i++)
+			ticalcs_dirlist_entry_add(remote.var_tree, (c->entries)[i]);
+	}
+	ticalcs_dirlist_display(remote.var_tree);
 }
 
 //-----------

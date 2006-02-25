@@ -427,6 +427,7 @@ void on_tilp_send(gchar *user_data)
 {
 	gchar *target;
 	FileEntry *f;
+	int ret;
 
 	// note: dst_folder must be a copy b/c the user_data
 	// pointer is no longer valid after dirlist_remote
@@ -476,8 +477,15 @@ void on_tilp_send(gchar *user_data)
 
 		// needed: avoid box locking/flickering !
 		GTK_REFRESH();
-		
-		tilp_calc_send_var();
+		ret = tilp_calc_send_var();
+
+		// update dirlist (caching, avoid to request dirlist again)
+		if(!ret)
+		{
+			tilp_slct_update_dirlist();
+			ctree_refresh();
+		}
+
 		tilp_slct_unload_contents();
 	}
 

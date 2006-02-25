@@ -4,15 +4,16 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library
-	- make hand-held goes to HOME when not ready
+	- make hand-held goes to HOME when not ready (kevin)
+	- implemented feature requet: "TiLP always gets a list of the files on the calc, even if I already " (T. Evans)
 
 - 07/02/2006, version 0.06 (0.0.4, 0.0.6, 0.0.4): roms
 	- updated manpage according to bug #1397587
-	- varnames with greek characters are now saved fine
-	- fixed bug #1430307: "full path on cmd line"
-	- removed 'exit home dir' limitation/security
+	- varnames with greek characters are now saved fine (T. Evans)
+	- fixed bug #1430307: "full path on cmd line" (hiboo)
+	- removed 'exit home dir' limitation/security (kevin)
 	- ungroup TI82/85 files when option is set to 'single'
-	- rewrite target folder when sending to a specific folder
+	- rewrite target folder when sending to a specific folder (T. Evans)
 	- fixed bug in the Win32 file selector (default folder)
 
 - 03/02/2006, version 0.05 (0.0.4, 0.0.6, 0.0.4): roms

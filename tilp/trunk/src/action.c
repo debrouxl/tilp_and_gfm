@@ -147,8 +147,11 @@ gint display_action_dbox(gchar *target)
 	if (!(ticalcs_calc_features(calc_handle) & FTS_SILENT) )
 		return BUTTON1;
 	else
-		if (tilp_dirlist_remote())
-			return BUTTON1;
+	{
+		if(remote.var_tree == NULL)
+			if (tilp_dirlist_remote())
+				return BUTTON1;
+	}
 
 	// box creation
 	xml = glade_xml_new(tilp_paths_build_glade("action-2.glade"), "action_dbox", PACKAGE);

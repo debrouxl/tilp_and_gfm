@@ -843,6 +843,10 @@ int tilp_calc_del_var(void)
 			gif->destroy_pbar();
 			return -1;
 		}
+		else
+		{
+			ticalcs_dirlist_entry_del(remote.var_tree, ve);
+		}
 	}
 
 	for(sel = remote.selection2; sel; sel = sel->next)
@@ -857,6 +861,7 @@ int tilp_calc_del_var(void)
 	}
 
 	gif->destroy_pbar();
+	ctree_refresh();
 
 	return 0;
 }
