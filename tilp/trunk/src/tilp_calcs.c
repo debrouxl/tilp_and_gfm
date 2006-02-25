@@ -62,6 +62,24 @@ int tilp_calc_isready(void)
 	err = ticalcs_calc_isready(calc_handle);
 	ticables_options_set_timeout(cable_handle, to);
 
+	if(err == 257 /*ERR_NOT_READY*/)
+	{
+		switch(calc_handle->model)
+		{
+		case CALC_TI89:
+		case CALC_TI89T:
+			err = ticalcs_calc_send_key(calc_handle, 277);
+			break;
+		case CALC_TI92:
+		case CALC_TI92P:
+		case CALC_V200:
+			err = ticalcs_calc_send_key(calc_handle, 8273);
+			break;
+
+		default: break;
+		}
+	}
+	
 	if(err) 
 	{
 		// second check: slower
