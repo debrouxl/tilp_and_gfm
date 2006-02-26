@@ -39,8 +39,9 @@
 # include <stdlib.h>
 #endif				/*  */
 
-#include "gtk_update.h"
 #include "tilp_core.h"
+#include "gtk_update.h"
+#include "ctree.H"
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp
@@ -870,7 +871,8 @@ int tilp_calc_new_fld(void)
 {
 	gchar *fldname = NULL;
 	int err;
-	VarEntry ve;
+	VarEntry vr = { 0 };
+	VarEntry ve = { 0 };
 
 	if(tilp_calc_isready())
 		return -1;
@@ -884,16 +886,21 @@ int tilp_calc_new_fld(void)
 
 	gif->create_pbar_type2(_("Creating folder"), "Please wait...");
 
-	strcpy(ve.folder, fldname);
-	err = ticalcs_calc_new_fld(calc_handle, &ve);
+	strcpy(vr.folder, fldname);
+	err = ticalcs_calc_new_fld(calc_handle, &vr);
 	if(tilp_err(err))
 	{
 		gif->destroy_pbar();
 		return -1;
 	}
+	else
+	{
+		strcpy(ve.folder, fldname);	// vr is modified by ticalcs_calc_new_fld
+		ticalcs_dirlist_entry_add(remote.var_tree, &ve);
+		ctree_refresh();
+	}
 
 	gif->destroy_pbar();
-
 	return 0;
 }
 
