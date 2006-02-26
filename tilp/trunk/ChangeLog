@@ -4,8 +4,11 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library
+	- fixed bug with the re-target folder feature.
 	- make hand-held goes to HOME when not ready (kevin)
-	- implemented feature requet: "TiLP always gets a list of the files on the calc, even if I already " (T. Evans)
+	- implemented feature request: "TiLP always gets a list of the files on the calc, even if I already " (T. Evans)
+	- when ticables/ticalcs error occurs: reset cable and wait for 0.5s (i/o link active -> disappear)
+	- 
 
 - 07/02/2006, version 0.06 (0.0.4, 0.0.6, 0.0.4): roms
 	- updated manpage according to bug #1397587

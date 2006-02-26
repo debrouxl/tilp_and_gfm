@@ -29,6 +29,7 @@
 #endif				/*  */
 
 #include "tilp_core.h"
+#include "pause.h"
 
 extern int working_mode;
 static GList *stack = NULL;
@@ -75,11 +76,20 @@ int tilp_err(int errcode)
 						// next level: error for TiLP
 						g_free(s);
 					}
+					else
+					{
+						// ticalcs error => reset
+						ticables_cable_reset(cable_handle);
+						PAUSE(500);
+					}
 				}
 			}
-
-			// reset
-			ticables_cable_reset(cable_handle);
+			else
+			{
+				// ticables error => reset
+				ticables_cable_reset(cable_handle);
+				PAUSE(500);
+			}			
 
             // FIXME OS X : we'll need to go full-UTF8 at some point
 #ifndef __MACOSX__
