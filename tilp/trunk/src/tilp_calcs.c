@@ -550,7 +550,6 @@ tilp_calc_send_var_retry:
 					break;
 				case BUTTON2: 
 					continue;
-					break;
 				case BUTTON3:
 				default: break;
 				}
@@ -575,7 +574,6 @@ tilp_calc_send_var_retry:
 					break;
 				case BUTTON2: 
 					continue;
-					break;
 				case BUTTON3:
 				default: break;
 				}
@@ -613,6 +611,7 @@ static int tilp_calc_recv_var1(void)
 	int i, l;
 	int err, ret=0;
 	FileContent **array;
+	int btn;
 
 	l = g_list_length(remote.selection);
 
@@ -624,7 +623,7 @@ static int tilp_calc_recv_var1(void)
 	
 	if(l == 1) 
 	{
-		// One file
+		// One variable
 		VarEntry *ve = (VarEntry *)remote.selection->data;
 		gchar *tmp_filename;
 		gchar *dst_filename;
@@ -653,7 +652,7 @@ static int tilp_calc_recv_var1(void)
 	}
 	else
 	{
-		// Multiple files (single or group depending on global option)
+		// Multiple variables (single or group depending on global option)
 		GList *sel;
 		gchar *src_filename;
 		gchar *tmp_filename;
@@ -668,13 +667,29 @@ static int tilp_calc_recv_var1(void)
 		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
-			
-			array[i] = tifiles_content_create_regular(options.calc_model);
+			static int b = 0;
 
+tilp_calc_recv_var1_retry:
+			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
+			
 			if(err)
 			{
 				tilp_err(err);
+
+				btn = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
+				switch(btn)
+				{
+				case BUTTON1: 
+					goto tilp_calc_recv_var1_retry;
+					break;
+				case BUTTON2:
+					tifiles_content_delete_regular(array[i--]);
+					continue;
+				case BUTTON3:
+				default: break;
+				}
+
 				break;
 			}
 
