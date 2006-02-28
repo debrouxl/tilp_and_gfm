@@ -238,9 +238,9 @@ void ctree_set_basetree(void)
 	
 	// top node
 #if 1
-	str = g_strdup_printf("%s %s %i", tifiles_model_to_string(calc_handle->model),
-		ticables_model_to_string(cable_handle->model), cable_handle->port);
-	//str = g_strdup(tifiles_model_to_string(calc_handle->model));
+	str = g_strdup_printf("%s %s %i", tifiles_model_to_string(options.calc_model),
+		ticables_model_to_string(options.cable_model), options.cable_port);
+	//str = g_strdup(tifiles_model_to_string(options.calc_model));
 
 	top_node = &clc_node;
 	gtk_tree_store_append(tree, top_node, NULL);
@@ -263,7 +263,7 @@ void ctree_set_basetree(void)
 	gtk_tree_store_set(tree, &vars_node, COLUMN_NAME, NODE3,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
-	if (tifiles_is_flash(calc_handle->model)) 
+	if (tifiles_is_flash(options.calc_model)) 
 	{
 		gtk_tree_store_append(tree, &apps_node, top_node);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
@@ -515,7 +515,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		else if(!strcmp(name, NODE6))
 			display_clock_dbox();
 
-		else if(!strncmp(name, tifiles_model_to_string(calc_handle->model), 4))
+		else if(!strncmp(name, tifiles_model_to_string(options.calc_model), 4))
 		{
 			CalcInfos infos;
 			tilp_calc_get_infos(&infos);

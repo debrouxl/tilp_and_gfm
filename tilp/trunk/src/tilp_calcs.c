@@ -65,7 +65,7 @@ int tilp_calc_isready(void)
 
 	if(err == 257 /*ERR_NOT_READY*/)
 	{
-		switch(calc_handle->model)
+		switch(options.calc_model)
 		{
 		case CALC_TI89:
 		case CALC_TI89T:
@@ -126,7 +126,7 @@ int tilp_calc_send_backup(const char *filename)
 	if(tilp_calc_isready())
 		return -1;
 
-	switch (calc_handle->model) 
+	switch (options.calc_model) 
 	{
 	case CALC_TI82:
 	case CALC_TI85:
@@ -172,7 +172,7 @@ int tilp_calc_recv_backup(void)
 	if(tilp_calc_isready())
 		return -1;
 
-	switch (calc_handle->model) 
+	switch (options.calc_model) 
 	{
 	case CALC_TI82:
 	case CALC_TI85:
@@ -210,7 +210,7 @@ int tilp_calc_recv_backup(void)
 	} 
 	while ((err == ERROR_READ_TIMEOUT) && 
 		((!(ticalcs_calc_features(calc_handle) & FTS_SILENT)) || 
-		(calc_handle->model == CALC_TI86)));
+		(options.calc_model == CALC_TI86)));
 
 	g_free(filename);
 	gif->destroy_pbar();
@@ -298,7 +298,7 @@ int tilp_calc_rom_dump(void)
 	if(ret != BUTTON1)
 		return -1;
 
-	switch (calc_handle->model) 
+	switch (options.calc_model) 
 	{
 	case CALC_TI73:
 	case CALC_TI82:
@@ -332,9 +332,8 @@ int tilp_calc_rom_dump(void)
 int tilp_calc_send_flash_app(char *filename)
 {
 	int err;
-	gint old_timeout;
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(calc_handle->model))) 
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(options.calc_model))) 
 	{
 		gif->msg_box(_("Error"),
 			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
@@ -344,8 +343,7 @@ int tilp_calc_send_flash_app(char *filename)
 	if(tilp_calc_isready())
 		return -1;
 	
-	old_timeout = calc_handle->cable->timeout;
-	if(calc_handle->model == CALC_TI83P)
+	if(options.calc_model == CALC_TI83P)
 		ticables_options_set_timeout(cable_handle, 300);
 	else
 		ticables_options_set_timeout(cable_handle, 100);
@@ -354,7 +352,7 @@ int tilp_calc_send_flash_app(char *filename)
 	err = ticalcs_calc_send_flash2(calc_handle, filename);
 	gif->destroy_pbar();
 
-	ticables_options_set_timeout(cable_handle, old_timeout);
+	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 	
 	if(tilp_err(err))
 		return -1;
@@ -372,10 +370,9 @@ int tilp_calc_send_flash_app(char *filename)
 int tilp_calc_send_flash_os(char *filename)
 {
 	int err, ret;
-	gint old_timeout;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(calc_handle->model)) &&
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(options.calc_model)) &&
 		!tifiles_file_is_tib(filename)) 
 	{
 		gif->msg_box(_("Error"),
@@ -392,8 +389,7 @@ int tilp_calc_send_flash_os(char *filename)
 		return -1;
 	*/
 
-	old_timeout = calc_handle->cable->timeout;
-	if(calc_handle->model == CALC_TI83P || calc_handle->model == CALC_TI84P)
+	if(options.calc_model == CALC_TI83P || options.calc_model == CALC_TI84P)
 		ticables_options_set_timeout(cable_handle, 300);
 	else
 		ticables_options_set_timeout(cable_handle, 100);
@@ -402,7 +398,7 @@ int tilp_calc_send_flash_os(char *filename)
 	err = ticalcs_calc_send_flash2(calc_handle, filename);
 	gif->destroy_pbar();
 
-	ticables_options_set_timeout(cable_handle, old_timeout);
+	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
 	if(tilp_err(err))
 		return -1;
@@ -439,7 +435,7 @@ int tilp_calc_recv_flash_app(void)
 
 		strcpy(filename, ve->name);
 		strcat(filename, ".");
-		strcat(filename, tifiles_vartype2fext(calc_handle->model, ve->type));
+		strcat(filename, tifiles_vartype2fext(options.calc_model, ve->type));
 
 		if(!tilp_file_check(filename, &dst)) 
 		{
@@ -616,9 +612,9 @@ static int tilp_calc_recv_var1(void)
 			return -1;
 		}
 
-		basename = ticonv_varname_to_filename(calc_handle->model, ve->name);
+		basename = ticonv_varname_to_filename(options.calc_model, ve->name);
 		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
-			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
+			".", tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
 		g_free(basename);
@@ -643,7 +639,7 @@ static int tilp_calc_recv_var1(void)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
 			
-			array[i] = tifiles_content_create_regular(calc_handle->model);
+			array[i] = tifiles_content_create_regular(options.calc_model);
 
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
 			if(err)
@@ -722,7 +718,7 @@ static int tilp_calc_recv_var2(void)
 	// Receive one variable or several variables packed into a group.
 	//
 	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
-		".", tifiles_fext_of_group(calc_handle->model), NULL);
+		".", tifiles_fext_of_group(options.calc_model), NULL);
 
 	gif->create_pbar_type4(_("Receiving variable(s)"), _("Waiting..."));
 	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
@@ -738,9 +734,9 @@ static int tilp_calc_recv_var2(void)
 	if(ve)
 	{
 		//single
-		basename = ticonv_varname_to_filename(calc_handle->model, ve->name);
+		basename = ticonv_varname_to_filename(options.calc_model, ve->name);
 		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
-			".", tifiles_vartype2fext(calc_handle->model, ve->type), NULL);
+			".", tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
 		tifiles_ve_delete(ve);
@@ -771,7 +767,7 @@ static int tilp_calc_recv_var2(void)
 
 int tilp_calc_recv_var(void)
 {
-	switch (calc_handle->model) 
+	switch (options.calc_model) 
 	{
 	case CALC_TI73:
 	case CALC_TI83:
@@ -810,8 +806,8 @@ int tilp_calc_del_var(void)
 	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
-	if(calc_handle->model == CALC_TI89 || calc_handle->model == CALC_TI92P ||
-		calc_handle->model == CALC_TI89T || calc_handle->model == CALC_V200)
+	if(options.calc_model == CALC_TI89 || options.calc_model == CALC_TI92P ||
+		options.calc_model == CALC_TI89T || options.calc_model == CALC_V200)
 	{
 		CalcInfos infos;
 
@@ -935,7 +931,7 @@ int tilp_calc_recv_cert(void)
 {
 	int err;
 	gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
-			tifiles_model_to_string(calc_handle->model), ".", tifiles_fext_of_certif(calc_handle->model),
+			tifiles_model_to_string(options.calc_model), ".", tifiles_fext_of_certif(options.calc_model),
 			NULL);
 
 	if(tilp_calc_isready())
@@ -963,7 +959,7 @@ int tilp_calc_send_cert(char *filename)
 {
 	int err;
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(calc_handle->model))) 
+	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(options.calc_model))) 
 	{
 		gif->msg_box(_("Error"),
 			     _("It's not a certificate or this certificate is not targetted for this calculator type."));

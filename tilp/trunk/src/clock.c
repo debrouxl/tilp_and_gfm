@@ -103,7 +103,7 @@ gint display_clock_dbox()
 		tmp_clk.month, tmp_clk.year, tmp_clk.hours,
 		tmp_clk.minutes, tmp_clk.seconds,
 		(tmp_clk.time_format == 12) ? "12" : "24",
-		ticalcs_clock_format2date(calc_handle->model, tmp_clk.date_format));
+		ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
 
 	xml = glade_xml_new(tilp_paths_build_glade("clock-2.glade"), "clock_dbox", PACKAGE);
 	if(!xml)
@@ -125,7 +125,7 @@ gint display_clock_dbox()
 			tmp_clk.day, tmp_clk.month, tmp_clk.year,
 			tmp_clk.hours, tmp_clk.minutes, tmp_clk.seconds,
 			(tmp_clk.time_format == 12) ? "12" : "24",
-			ticalcs_clock_format2date(calc_handle->model, tmp_clk.date_format));
+			ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
 
 		err = ticalcs_calc_isready(calc_handle);
 		if(err)

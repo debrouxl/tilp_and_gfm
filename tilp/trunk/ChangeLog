@@ -8,7 +8,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- make hand-held goes to HOME when not ready (kevin)
 	- implemented feature request: "TiLP always gets a list of the files on the calc, even if I already " (T. Evans)
 	- when ticables/ticalcs error occurs: reset cable and wait for 0.5s (i/o link active -> disappear)
-	- 
+	- don't use cable_handle & calc_handle fields: they are private
 
 - 07/02/2006, version 0.06 (0.0.4, 0.0.6, 0.0.4): roms
 	- updated manpage according to bug #1397587

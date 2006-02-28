@@ -251,7 +251,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 #if 1
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
 
-	sprintf(filename, "dump%s", tifiles_model_to_string(calc_handle->model));
+	sprintf(filename, "dump%s", tifiles_model_to_string(options.calc_model));
 	dst_filename = create_fsel(local.cwdir, filename, "*.rom", TRUE);
 	if(!dst_filename)
 	{
@@ -301,7 +301,7 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
 
-	ext = g_strconcat("*.", tifiles_fext_of_backup(calc_handle->model), NULL);
+	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), NULL);
 	dst_filename = create_fsel(local.cwdir, "backup", ext, TRUE);
 	g_free(ext);
 
@@ -312,7 +312,7 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(calc_handle->model), NULL);
+		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(options.calc_model), NULL);
 	else
 		dst_filename = g_strdup(dst_filename);
 	
@@ -330,7 +330,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 	const char *filename;
 	char *ext;
 
-	ext = g_strconcat("*.", tifiles_fext_of_backup(calc_handle->model), NULL);
+	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), NULL);
 	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
 	g_free(ext);
 
@@ -349,7 +349,7 @@ static int save_group(void)
 
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
 
-	ext = g_strconcat("*.", tifiles_fext_of_group(calc_handle->model), NULL);
+	ext = g_strconcat("*.", tifiles_fext_of_group(options.calc_model), NULL);
 	dst_filename = create_fsel(local.cwdir, "group", ext, TRUE);
 	g_free(ext);
 
@@ -360,7 +360,7 @@ static int save_group(void)
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_group(calc_handle->model), NULL);
+		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_group(options.calc_model), NULL);
 	else
 		dst_filename = g_strdup(dst_filename);
 	
@@ -399,7 +399,7 @@ void on_tilp_recv(void)
 				return;
 		}
 	} 
-	else if ((calc_handle->model == CALC_TI82) || (calc_handle->model == CALC_TI85)) 
+	else if ((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85)) 
 	{
 		ret = tilp_calc_recv_var();
 		if (ret < 0)
@@ -439,17 +439,17 @@ void on_tilp_send(gchar *user_data)
 	f = (FileEntry *) local.selection->data;
 	if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
 	{
-		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_certif(calc_handle->model))) 
+		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_certif(options.calc_model))) 
 		{
 			if (tilp_calc_send_cert(f->name) != 0)
 				return;
 		} 
-		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(calc_handle->model))) 
+		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(options.calc_model))) 
 		{
 			if (tilp_calc_send_flash_app(f->name) != 0)
 				return;
 		} 
-		else if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(calc_handle->model))) 
+		else if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
 		{
 			if (tilp_calc_send_flash_os(f->name) != 0)
 				return;

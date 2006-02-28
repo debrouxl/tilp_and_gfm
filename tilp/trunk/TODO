@@ -1,25 +1,10 @@
 This is a list of some things to do:
 
+- sending of files from cmdline
 - skip/retry button
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
-Hi. I just wanted to make a few suggestions and report some things that 
-appear to be bugs. Let me know if more information is needed, or if I 
-misunderstood something.
-
-Thanks for the nice work!
-
-TiLP 6.74
-SuSE Linux Pro 9.1
-Kernel 2.6.4-52
-Cable: Sliverlink
-TI-89: AMS 2.09
-TI-86: ROM 1.4
-I also have a TI-82 and TI-85, but I haven't tested them with TiLP yet.
-
-SUGGESTIONS:
-
 * When transmission errors occur, it would be nice to have Retry and 
 Skip buttons for backups or sending/receiving multiple files. When TI 
 Connect encounters an error, it gives a Retry button that tries the 
@@ -46,25 +31,7 @@ erases my selection. If I hold Ctrl while dragging, it doesn't erase the
 selection, but it toggles the state of the file where I started 
 dragging. This is somewhat confusing. (In other words, dragging should 
 not also count as clicking.)
-
-* Items like "Screen" and "Operating system" do not appear to be 
-selectable. It took me a while to figure out how to transfer these 
-items. Since they are not highlighted when clicked, I did not know I 
-could still drag them to the righthand pane (to transfer them to the 
-computer).
-
-PROBLEMS:
-
-TI-89--
-
-* Every time I send a variable to my TI-89:
-
-1. TiLP always gets a list of the files on the calc, even if I already 
-did it (which is time-consuming)
-2. It tells me "The following variable(s) exist(s) on calculator" even 
-when they don't. The list showing the variables is blank, because the 
-variables do not exist on the calculator. Usually picking Overwrite will 
-send the files without problems, but it's annoying.
+>>
 
 + = done.
 * = in progress.
