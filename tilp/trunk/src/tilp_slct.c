@@ -216,8 +216,8 @@ void tilp_slct_load_contents(void)
 		}
 	}
 
-	// replaced "" folder by "main" (temporary...)
-	if(!(ticalcs_calc_features(calc_handle) & FTS_FOLDER))
+	// replaced "" folder by "main"
+	if(!tifiles_has_folder(options.calc_model))
 		return;
 
 	for(ptr = local.selection; ptr; ptr = ptr->next)
