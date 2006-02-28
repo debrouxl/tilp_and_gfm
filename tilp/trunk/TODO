@@ -1,25 +1,8 @@
 This is a list of some things to do:
 
-- sending of files from cmdline
-- skip/retry button
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
-* When transmission errors occur, it would be nice to have Retry and 
-Skip buttons for backups or sending/receiving multiple files. When TI 
-Connect encounters an error, it gives a Retry button that tries the 
-operation again starting with the variable where the error occurred, and 
-a Skip button that continues the operation but skips the file where the 
-error occurred.
-
-This would be especially welcome in TiLP for Silverlink users (like me), 
-because sometimes errors occur due to the cable's strange behavior. If a 
-problem occurs in the middle of a backup, for instance, I could just 
-Retry with the same file and not have to start the whole transfer over 
-again. If one particular file seems to cause problems, I could use Skip 
-to skip that file and continue with the rest of the files, without 
-having to cancel and select the other files by hand.
-
 * Selecting multiple files is a little strange. Ctrl and Shift keys while 
 clicking in the lists work as expected, but unlike with other programs 
 like Konqueror, I cannot use both Ctrl and Shift at the same time. TiLP 

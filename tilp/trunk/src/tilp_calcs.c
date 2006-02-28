@@ -41,7 +41,8 @@
 
 #include "tilp_core.h"
 #include "gtk_update.h"
-#include "ctree.H"
+#include "ctree.h"
+#include "dboxes.h"
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp
@@ -470,6 +471,7 @@ int tilp_calc_send_var(void)
 	GList *sel;
 	int mode = MODE_NORMAL;
 	gint i, l = 0;
+	int ret;
 
 	if(!tilp_clist_selection_ready())
 		return 0;
@@ -495,7 +497,7 @@ int tilp_calc_send_var(void)
 
 		if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
 		{
-			gif->msg_box(_("Error"), _("There is an unknown file type in the selection."));
+			gif->msg_box(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
 			return 0;
 		}
 	}
@@ -529,16 +531,31 @@ int tilp_calc_send_var(void)
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
 
+tilp_calc_send_var_retry:
 		// It is not the last file to send
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content);
+			err = 4;
 			if(err) 
 			{
 				tilp_err(err);
-				gif->destroy_pbar();
 
+				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
+				switch(ret)
+				{
+				case BUTTON1: 
+					goto tilp_calc_send_var_retry;
+					break;
+				case BUTTON2: 
+					continue;
+					break;
+				case BUTTON3:
+				default: break;
+				}
+
+				gif->destroy_pbar();
 				return -1;
 			}
 		} 
@@ -549,8 +566,21 @@ int tilp_calc_send_var(void)
 			if(err)
 			{
 				tilp_err(err);
-				gif->destroy_pbar();
 
+				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
+				switch(ret)
+				{
+				case BUTTON1: 
+					goto tilp_calc_send_var_retry;
+					break;
+				case BUTTON2: 
+					continue;
+					break;
+				case BUTTON3:
+				default: break;
+				}
+
+				gif->destroy_pbar();
 				return -1;
 			}
 		}

@@ -31,6 +31,7 @@
 #include <string.h>
 
 #include "tilp_core.h"
+#include "dboxes.h"
 
 /* Destroy the selection of the local window */
 void tilp_clist_selection_destroy(void)
@@ -213,6 +214,7 @@ void tilp_slct_load_contents(void)
 		{
 			fe->content = NULL;
 			free(fe->selected);
+			//msg_box1("Warning", "TiLP was not able to load a file: check path !");
 		}
 	}
 
@@ -225,6 +227,9 @@ void tilp_slct_load_contents(void)
 		FileEntry *fe = ptr->data;
 		FileContent *c = fe->content;
 		int i;
+
+		if(c == NULL)
+			continue;
 
 		for(i = 0; i < c->num_entries; i++)
 		{

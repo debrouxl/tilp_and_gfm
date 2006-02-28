@@ -10,6 +10,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- when ticables/ticalcs error occurs: reset cable and wait for 0.5s (i/o link active -> disappear)
 	- don't use cable_handle & calc_handle fields: they are private
 	- fixed command line
+	- added skip/retry/cancel box when sending of files
 
 - 07/02/2006, version 0.06 (0.0.4, 0.0.6, 0.0.4): roms
 	- updated manpage according to bug #1397587
