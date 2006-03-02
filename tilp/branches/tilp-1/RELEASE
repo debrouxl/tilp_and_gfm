@@ -34,22 +34,22 @@ New capabilities:
 Improvements:
 -------------
 
-	- none
+	- [linux] merged hiboo's patches for ebuid support
 
 
 Bug fixes:
 ----------
 
 	- fixed bug #1249545: cmdline failed for sending file in current dir
-	- reverted to GTK+ 2.6
+	- reverted to GTK+ 2.6 (6.80b)
 
 
 Known problems:
 ---------------
 
-	- [Win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
+	- [win32]: the GTK-Wimp theme displays a lot of warning under non-NT Windows. 
 		You can disable it by using the GTK theme selector.
-	- [Linux]: don't user kernel module for SilverLink, use built-in ticables support instead.
+	- [linux]: don't user kernel module for SilverLink, use built-in ticables support instead.
 
 
 Bug report:
