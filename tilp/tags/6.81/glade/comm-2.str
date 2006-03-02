@@ -1,0 +1,37 @@
+
+
+gchar *s = N_("Communication Settings");
+gchar *s = N_("_Auto-detect");
+gchar *s = N_("Cable:");
+gchar *s = N_("Port:");
+gchar *s = N_("Calc:");
+gchar *s = N_("Timeout:");
+gchar *s = N_("Delay:");
+gchar *s = N_("GrayLink");
+gchar *s = N_("BlackLink");
+gchar *s = N_("SilverLink");
+gchar *s = N_("ParallelLink");
+gchar *s = N_("VTi");
+gchar *s = N_("TiEmu");
+gchar *s = N_("virtual");
+gchar *s = N_("null");
+gchar *s = N_("custom");
+gchar *s = N_("#1");
+gchar *s = N_("#2");
+gchar *s = N_("#3");
+gchar *s = N_("#4");
+gchar *s = N_("null");
+gchar *s = N_("TI73");
+gchar *s = N_("TI82");
+gchar *s = N_("TI83");
+gchar *s = N_("TI83+");
+gchar *s = N_("TI84+");
+gchar *s = N_("TI85");
+gchar *s = N_("TI86");
+gchar *s = N_("TI89");
+gchar *s = N_("TI89 Titanium");
+gchar *s = N_("TI92");
+gchar *s = N_("TI92+");
+gchar *s = N_("V200PLT");
+gchar *s = N_("Settings");
+gchar *s = N_("Have a problem ? Check out the log:");
