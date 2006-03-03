@@ -279,11 +279,13 @@ void clist_refresh(void)
 		FileEntry *fe = (FileEntry *) dirlist->data;
 		gboolean b;
 
+		CalcModel s = tifiles_file_get_model(fe->name);
+		CalcModel t = options.calc_model;
+
 		b = options.show_all || S_ISDIR(fe->attrib) ||
-			tifiles_file_is_ti(fe->name) ||
 			tifiles_file_is_tib(fe->name) ||
 			tifiles_file_is_tigroup(fe->name) ||
-			(tifiles_file_get_model(fe->name) == options.calc_model);
+			tifiles_calc_are_compat(s, t);
 		if(!b)
 			continue;
 

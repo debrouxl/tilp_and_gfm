@@ -500,6 +500,12 @@ int tilp_calc_send_var(void)
 			gif->msg_box(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
 			return 0;
 		}
+
+		if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
+		{
+			gif->msg_box(_("Error"), _("There is a file type incompatible with the target hand-held in the selection."));
+			return 0;
+		}
 	}
 
 	if(tilp_calc_isready())
