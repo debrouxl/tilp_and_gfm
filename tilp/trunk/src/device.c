@@ -435,12 +435,7 @@ finished:
 
 	ticables_cable_close(handle);
 	ticables_handle_del(handle);
-}
 
-GLADE_CB void
-comm_button_apply_clicked                (GtkButton       *button,
-                                          gpointer         user_data)
-{
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
