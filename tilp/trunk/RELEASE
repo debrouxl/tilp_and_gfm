@@ -2,9 +2,9 @@
 
 
 
-Previous version: 0.02		(02/10/2005)
-Current version:  0.03		(28/01/2006)
-Add-on version:   0.03b   (01/02/2006)
+Previous version: 0.03		(28/01/2006)
+Current version:  0.07		(05/03/2006)
+
 
 SubVersion (CVS) revision: $Id$
 
@@ -25,23 +25,29 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP
 New capabilities:
 -----------------
 
-	- TiGroup (*.tig) file support
-	
-	- the installer can download & install the GTK+ libraries
-	- the installer copies the LPG's SilverLink driver. No need to download it for now.
+	- TiGroup (*.tig) file support (read only)
 
 
 Improvements:
 -------------
 
-	- support Unicode (UTF-8) filenames
+	- better handling of filenames with international characters
+	- rewrite target fodler when dropping selection to a specific folder
+	- ungroup TI82/85 files when option is set to 'single'
+	- removed 'exit home dir' limitation/security
+	- make hand-held goes to HOME when not ready
+	- doesn't request systematically a dirlist before sending variables. Instead, TiLP manages a kind of cache.
+	- added skip/retry/cancel box when sending/receiving several files
+	- automatically change for detected cable/calc in the device box
 
 
 Bug fixes:
 ----------
 
-	- cable bug fixes
-	- cable probe: use first cable instead of the last one.
+	- win32 file selector
+	- #1430307: "full path on cmd line"
+	- #1397587: manual page updated
+	- the right view did not filter file types correctly
 
 
 Bug report:

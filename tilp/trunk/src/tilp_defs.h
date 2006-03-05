@@ -66,8 +66,7 @@
 #define TIFF 4   /* Tagged Image File Format  */
 #define BMP  3   /* Bitmap					  */
 #define JPG  2   /* JPEG format				  */
-#define PCX  1   /* PCX						  */
-#define XPM  0   /* pixmap					  */
+#define XPM  1   /* pixmap					  */
 
 /* Cut or copy selected file */
 #define CUT_FILE	1

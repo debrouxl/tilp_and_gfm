@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP-II
-AppVerName=TiLP-II 0.03
+AppVerName=TiLP-II 0.07
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php
@@ -70,6 +70,7 @@ Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.tx
 Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticonv\tests\ticonv.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\msvc\tilp-2.exe"; DestDir: "{app}"; DestName: "tilp2.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
@@ -111,9 +112,8 @@ Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist
 Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 
 ; Downloader
-Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\ssleay32.dll"; DestDir: "{app}\wget";
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
-Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\gtk.loc"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app}\wget";
 
 [Dirs]

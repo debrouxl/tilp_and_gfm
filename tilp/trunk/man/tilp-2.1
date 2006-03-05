@@ -13,7 +13,7 @@
 .\" along with this program; see the file COPYING.  If not, write to
 .\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 .\"
-.TH TILP 1 "July 26, 2005"
+.TH TILP 1 "March 05, 2006"
 .SH NAME
 TiLP - a communication program for TI calculators ('Ti Linking Program' or 'Tilp is a Linking Program')
 .SH SYNOPSYS
@@ -60,7 +60,7 @@ transfer speed but decrease the reliability of the transmission.
 .SH EXAMPLE
 Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
-tilp-2 --calc=ti89 --cable=serial --port=2 --timeout=20 --no-gui group.89g
+tilp-2 --calc=ti89 --cable=BlackLink --port=2 --timeout=20 --no-gui group.89g
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.
@@ -85,8 +85,14 @@ with the timeout value to use in tenth of seconds. Default value: 20.
 \fBcable_delay=\fP
 with the delay value to use in micro-seconds for home-made cables. Default value: 10
 
-\fBxsize=\fP and \fBysize=\fP
-Gives the X and Y values of the size of the left window. Default values: 300 and 400.
+\fBpane_x_size=\fP and \fBpane_y_size=\fP
+Gives the width and height values of the remote view.
+
+\fBwnd_x_size1=\fP and \fBwnd_y_size1=\fP
+Gives the width and height of the windows in full view.
+
+\fBwnd_x_size2=\fP and \fBwnd_y_size2=\fP
+Gives the width and height of the windows in simplified view (no right frame).
 
 \fBlocal_sort=\fP
 Define the sorting method for the right window. Choose one of the following value: name, date, size, user, group, attrib
@@ -100,35 +106,23 @@ Define the sorting method for the left window. Choose one of the following value
 \fBremote_sort_order=\fP
 Define the sorting order for the left window. Choose either 'up' or 'down'.
 
-\fBfile_display=\fP
-Define whether tilp-2 shows only TI files or all files. Possible values are 'ti' or 'all'.
-
 \fBfs_type=\fP
-File selector type (gtk1, gtk2, win32, qt).
+File selector type (0: gtk1, 1: gtk2, 2: win32, 3: qt).
 
 \fBfull_gui=\fP
-Display the local frame.
+Display the right frame (local view).
 
 \fBlocal_path=\fP
-Use full path when sending variables
+Use full path when sending variables.
 
 \fBshow_all=\fP
-Show all files and not only TI files.
+Show all files (1) or only TI files (0).
 
 \fBoverwrite=\fP
-Define whether tilp-2 ask you confirmation when you delete some files. Use carefully !!! You can choose 'yes' or 'no'
+Defines whether tilp-2 ask you confirmation when you delete files/variables. Use carefully !!!
 
 \fBrecv_as_group=\fP
-Receive set of files as a grouped file.
-
-\fBconsole=\fP
-Define whether tilp-2 will display some verbose informations or not. Under Win32, this will display a background console. Values: 'yes' or 'no'.
-
-\fBshow_gui=\fP
-Display the Graphic User Interface in command line mode. Values: 'yes' or 'no'.
-
-\fBsingle_or_group=\fP
-Receive set of files as a single file or as a grouped file. Values: 'single' or 'group'.
+Receive set of files as a grouped file if enabled.
 
 \fBworking_dir=\fP
 Contains the directory that TiLP will list at startup. Can be changed from the popup menu.
@@ -141,16 +135,16 @@ Define the font to use in the right window (computer files). The font is describ
 -adobe-courier-medium-r-*-*-*-125-*-*-*-*-*-*
 
 \fBscreen_format=\fP
-Define the image format to use for saving screen captures. It can be 'jpg' or 'png'. Previous format such as 'xpm', 'pcx' or 'bmp' are not supported any longer.
+Define the image format to use for saving screen captures. It can be: xpm (1), jpg, bmp, tif, png, pdf and eps (7).
 
 \fBscreen_scaling=\fP
-???
+Unused.
 
 \fBscreen_clipping=\fP
-Define whether tilp-2 display the entire screen of the calculator or only the visible part. This option is only useful for TI89 calculators because they have a screen which has the same size than a TI92 one but only a part is displayed. The other part is only useable via ASM programming.
+If enabled, display only the LCD area. Otherwise, displays the full area (the hidden part is only useable via ASM programming on TI89).
 
 \fBscreen_blurry=\fP
-Define whether the image is saved in B&W or saved like a VTi image (dark & light gray). Values: 'yes' or 'no'.
+Define whether the image is saved in B&W or saved like a VTi image (dark & light gray).
 
 .SH COPYRIGHT
 Copyright (C) 1999-2006, Romain Lievin. 

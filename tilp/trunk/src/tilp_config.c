@@ -211,8 +211,6 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.cable_delay);	
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Inter-bit delay in µs", &error);
 
-	g_key_file_set_comment(kf, SECTION_DEVICE, NULL, "Device section", &error);
-
 	// Section [GUI]
 
 	g_key_file_set_integer(kf, SECTION_GUI, "pane_x_size", options.pane_x_size);
@@ -251,8 +249,6 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_GUI, "full_gui", options.full_gui);
 	g_key_file_set_comment(kf, SECTION_GUI, "full_gui", "Use full gui (TiLP-I) or just remote view", &error);
 
-	g_key_file_set_comment(kf, SECTION_GUI, NULL, "GUI section", &error);
-
 	// Section [OPTIONS]
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect hand-held model", &error);
@@ -272,16 +268,12 @@ int tilp_config_write(void)
 	g_key_file_set_string (kf, SECTION_OPTIONS, "working_dir", options.working_dir);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "working_dir", "Working folder", &error);
 
-	g_key_file_set_comment(kf, SECTION_OPTIONS, NULL, "GUI section", &error);
-
 	// Section [FONTS]
 	g_key_file_set_string (kf, SECTION_FONTS, "remote_font_name", options.remote_font_name);
 	g_key_file_set_comment(kf, SECTION_FONTS, "remote_font_name", "Font to use for remote view", &error);
 
 	g_key_file_set_string (kf, SECTION_FONTS, "local_font_name", options.local_font_name);
 	g_key_file_set_comment(kf, SECTION_FONTS, "local_font_name", "Font to use for local view", &error);
-
-	g_key_file_set_comment(kf, SECTION_FONTS, NULL, "Screenshot section", &error);
 
 	// Section [SCREEN]
 	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_format", options.screen_format);
@@ -295,8 +287,6 @@ int tilp_config_write(void)
 
 	g_key_file_set_integer(kf, SECTION_SCREEN, "screen_blurry", options.screen_blurry);
 	g_key_file_set_comment(kf, SECTION_SCREEN, "screen_blurry", "Save as blurry image", &error);
-
-	g_key_file_set_comment(kf, SECTION_SCREEN, NULL, "Screenshot section", &error);
 
 	// export file as string
 	content = g_key_file_to_data(kf, NULL, &error);
