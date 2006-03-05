@@ -225,7 +225,7 @@ GLADE_CB void rbm_group1_activate(GtkMenuItem* menuitem,
 {
 	tilp_tifiles_group();
 
-	clist_refresh();
+	//clist_refresh();
 	labels_refresh();
 } 
 

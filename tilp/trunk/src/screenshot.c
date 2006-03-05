@@ -66,7 +66,7 @@ GLADE_CB void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data)
 	GdkPixbuf *pixbuf;
 	GError *error = NULL;
 
-	filename = create_fsel(local.cwdir, NULL, "*.jpg;*.png;*.eps;*.pdf;*.xpm;*.bmp", FALSE);
+	filename = create_fsel(local.cwdir, NULL, "*.jpg;*.png;*.xpm;*.bmp", FALSE);
 	if (!filename)
 		return;
 

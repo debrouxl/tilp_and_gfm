@@ -5,6 +5,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 03/02/2006, verison 0.08 (0.0.6, 0.0.6, 0.1.0, 0.0.1): roms (testing phase)
 	- the right view did not filter file types correctly
 	- user's suggestion: automatically change for detected cable/calc.
+	- fixed displaying of greek chars in the action dbox.
+	- can't load pdf/eps files
 
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library
