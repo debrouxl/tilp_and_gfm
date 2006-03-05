@@ -206,8 +206,8 @@ gint display_action_dbox(gchar *target)
 			}
 
 			// search for matching var
-			trans = ticonv_varname_to_utf8(c->model, (const char *)v->name, (unsigned int)v->type);
 			tifiles_build_fullname(c->model, full_name, v->folder, v->name);
+			trans = ticonv_varname_to_utf8(c->model, (const char *)full_name, (unsigned int)v->type);
 
 			w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
 			if (w == NULL)
@@ -219,14 +219,14 @@ gint display_action_dbox(gchar *target)
 				v->action = ACT_OVER;
 
 			// file contains an already existing var: add it to the window
-			row_text[0] = g_strdup(trans); g_free(trans);
+			row_text[0] = trans;
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
 			row_text[3] = g_strdup(action2string(v->action));
 
 			gtk_list_store_append(list, &iter);
 			gtk_list_store_set(list, &iter,
-					   COLUMN_VAR,  full_name,
+					   COLUMN_VAR,  row_text[0],
 					   COLUMN_ATTR, row_text[1],
 					   COLUMN_FILE, row_text[2],
 					   COLUMN_ACTION, row_text[3],
