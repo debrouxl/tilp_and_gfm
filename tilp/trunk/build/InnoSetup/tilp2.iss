@@ -120,7 +120,7 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 
 [INI]
-Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp2"
+Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp"
 
 [Icons]
 Name: "{group}\TiLP-II"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"
@@ -129,6 +129,7 @@ Name: "{group}\Uninstall TiLP-II"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\User_Manual.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
 Name: "{group}\Install GTK+ from web"; Filename: "{app}\wget\d_and_i.bat";
+Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
 
 Name: "{userdesktop}\TiLP-II"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-II"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
