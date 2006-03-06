@@ -1,5 +1,6 @@
 This is a list of some things to do:
 
+- cmdline from Explorer Shell
 - release SDK
 - pbars are not always updated
 - send/recv FLASH app : violation with tifiles_content_delete_flash (ti73 & 83+)
@@ -7,6 +8,9 @@ This is a list of some things to do:
 - TI84+ ROM dump: if canceled, calc is reset and RAM is cleared
 - TI86: no update of pbars in recv mode for instance
 - TI89: same
+- TI92: recb backup: tifiles_content_delete_backup violation
+- SilverLink is still NACK'ed after error. Does not appear with TiLP1
+- V200: don't update pbar romdump
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
