@@ -3,7 +3,7 @@
 
 
 Previous version: 0.03		(28/01/2006)
-Current version:  0.07		(05/03/2006)
+Current version:  0.08		(06/03/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -17,7 +17,7 @@ a Linux/Win32/Mac OS-X driver on the Linux Programmer Group at
 
 For the other link cables, no driver is needed because it's provided.
 
-Note: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP 
+Note: direct USB cable of TI84+ / TI89 Titanium is currenly _unusable_ by TiLP 
 	but supported by our driver. Preliminary support exists for development 
 	purposes only.
 
@@ -39,6 +39,7 @@ Improvements:
 	- doesn't request systematically a dirlist before sending variables. Instead, TiLP manages a kind of cache.
 	- added skip/retry/cancel box when sending/receiving several files
 	- automatically change for detected cable/calc in the device box
+	- don't list some system variables which appears in dirlist: regCoef and regEq.
 
 
 Bug fixes:
@@ -48,6 +49,14 @@ Bug fixes:
 	- #1430307: "full path on cmd line"
 	- #1397587: manual page updated
 	- the right view did not filter file types correctly
+	- directory list is now free'd
+	- displaying of greek chars in the action dbox.
+	- can't load pdf/eps files
+	- warnings with progress bars
+	- don't update dirlist with TI82/85
+	- don't display hw revision for TI8x calcs
+	- OS version formatting
+	- TI73 sending & receiving of FLASH apps
 
 
 Bug report:
