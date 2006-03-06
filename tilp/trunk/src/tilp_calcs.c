@@ -433,10 +433,13 @@ int tilp_calc_recv_flash_app(void)
 	{
 		VarEntry *ve = (VarEntry *) ptr->data;
 		int err;
+		char *str;
 
-		strcpy(filename, ve->name);
+		str = ticonv_varname_to_filename(options.calc_model, ve->name);
+		strcpy(filename, str);
 		strcat(filename, ".");
 		strcat(filename, tifiles_vartype2fext(options.calc_model, ve->type));
+		g_free(str);
 
 		if(!tilp_file_check(filename, &dst)) 
 		{
