@@ -7,6 +7,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- user's suggestion: automatically change for detected cable/calc.
 	- fixed displaying of greek chars in the action dbox.
 	- can't load pdf/eps files
+	- clamp gtk_update.cnt2 to avoid warnings
 
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library

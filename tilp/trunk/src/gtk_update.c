@@ -74,12 +74,16 @@ static void refresh_pbar2(void)
 {
 	if (pbar_wnd.pbar2 != NULL) 
     {
+		if(gtk_update.cnt2 > gtk_update.max2)
+			gtk_update.cnt2 = gtk_update.max2;
+
 		if(gtk_update.max2 != 0)
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar_wnd.pbar2), 
 				(float)gtk_update.cnt2 / gtk_update.max2);
 
 		GTK_REFRESH();
     }
+
 }
 
 static void gtk_pbar(void)
