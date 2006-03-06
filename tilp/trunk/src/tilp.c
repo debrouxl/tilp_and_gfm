@@ -346,8 +346,8 @@ static int save_group(void)
 	const char *dst_filename;
 	char *ext;
 
-
-	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
+		".", tifiles_fext_of_group(options.calc_model), NULL);
 
 	ext = g_strconcat("*.", tifiles_fext_of_group(options.calc_model), NULL);
 	dst_filename = create_fsel(local.cwdir, "group", ext, TRUE);
