@@ -286,6 +286,7 @@ rbm_show_all_files1_activate            (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	options.show_all = GTK_CHECK_MENU_ITEM(menuitem)->active;
+	clist_refresh();
 }
 
 
