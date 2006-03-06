@@ -971,9 +971,15 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	if(tilp_err(err))
 		return -1;
 
-	str = g_strdup_printf(
-		_("OS version: %s\nBOOT version: %s\nType: HW %i\nBattery: %s"), 
-		infos->os, infos->bios, infos->hw_rev, infos->battery ? "good" : "low");
+	if(infos->hw_rev != 0xff)
+		str = g_strdup_printf(
+			_("OS version: %s\nBOOT version: %s\nType: HW %i\nBattery: %s"), 
+			infos->os, infos->bios, infos->hw_rev, infos->battery ? "good" : "low");
+	else
+		str = g_strdup_printf(
+			_("OS version: %s\nBOOT version: %s\nBattery: %s"), 
+			infos->os, infos->bios, infos->battery ? "good" : "low");
+
 	gif->msg_box(_("Information"), str);
 	g_free(str);
 

@@ -11,6 +11,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed group filename (recently modified but not propagated).
 	- don't update dirlist with TI82/85
 	- refresh clist when (un)checking 'show all files' in the popup menu
+	- don't display hw revision for TI8x calcs
 
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library
