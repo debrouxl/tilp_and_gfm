@@ -282,6 +282,9 @@ void tilp_slct_update_dirlist(void)
 	if (local.selection == NULL)
 		return;
 
+	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
+		return;
+
 	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
