@@ -638,7 +638,8 @@ static int tilp_calc_recv_var1(void)
 		gchar *dst_filename;
 		char *basename;
 
-		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
+			".", tifiles_fext_of_group(options.calc_model), NULL);
 
 		gif->create_pbar_type4(_("Receiving variable(s)"), "");
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
@@ -712,7 +713,8 @@ tilp_calc_recv_var1_retry:
 		{
 			FileContent* content;
 
-			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, NULL);
+			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
+				".", tifiles_fext_of_group(options.calc_model), NULL);
 
 			tifiles_group_contents(array, &content);
 			strcpy(content->comment, tifiles_comment_set_group());
