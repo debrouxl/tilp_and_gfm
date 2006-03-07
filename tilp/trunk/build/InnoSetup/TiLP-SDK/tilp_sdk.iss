@@ -6,7 +6,7 @@
 
 [Setup]
 AppName=TiLP-II SDK
-AppVerName=TiLP-II SDK 0.02
+AppVerName=TiLP-II SDK 0.08
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
@@ -37,7 +37,7 @@ Source: "C:\sources\roms\ticables2\tests\test_ticables_2.exe"; DestDir: "{app}\t
 
 Source: "C:\msvc\tilp2\ticables2.dll"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
 Source: "C:\msvc\tilp2\ticables2.lib"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
-Source: "C:\msvc\tilp2\test_ticables_2.exe"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\test_ticables2.exe"; DestDir: "{app}\ticables2\build\msvc\Debug"; Flags: ignoreversion;
 
 
 Source: "C:\sources\roms\ticables2\ChangeLog"; DestDir: "{app}\ticables2"; Flags: ignoreversion;
@@ -94,6 +94,27 @@ Source: "C:\sources\roms\tifiles2\ChangeLog"; DestDir: "{app}\tifiles2"; Flags: 
 Source: "C:\sources\roms\tifiles2\ReadMe"; DestDir: "{app}\tifiles2"; Flags: ignoreversion;
 Source: "C:\sources\roms\tifiles2\Copying"; DestDir: "{app}\tifiles2"; Flags: ignoreversion;
 
+; TiConv library
+Source: "C:\sources\roms\ticonv\build\msvc\*.*"; DestDir: "{app}\ticonv\build\msvc"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\docs\html\*.html"; DestDir: "{app}\ticonv\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\docs\html\*.gif"; DestDir: "{app}\ticonv\docs"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\docs\charsets\*.*"; DestDir: "{app}\ticonv\charsets"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\src\*.c"; DestDir: "{app}\ticonv\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\src\*.h"; DestDir: "{app}\ticonv\src"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+Source: "C:\sources\roms\ticonv\tests\*.c"; DestDir: "{app}\ticonv\tests"; CopyMode: alwaysoverwrite; Flags: recursesubdirs;
+
+Source: "C:\sources\roms\ticonv\tests\ticonv.dll"; DestDir: "{app}\ticonv\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticonv\build\msvc\ticonv.lib"; DestDir: "{app}\ticonv\build\msvc\Release"; CopyMode: alwaysoverwrite;
+Source: "C:\sources\roms\ticonv\tests\test_ticonv.exe"; DestDir: "{app}\ticonv\build\msvc\Release"; CopyMode: alwaysoverwrite;
+
+Source: "C:\msvc\tilp2\ticonv.dll"; DestDir: "{app}\ticonv\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\ticonv.lib"; DestDir: "{app}\ticonv\build\msvc\Debug"; Flags: ignoreversion;
+Source: "C:\msvc\tilp2\test_tifiles_2.exe"; DestDir: "{app}\ticonv\build\msvc\Debug"; Flags: ignoreversion;
+
+Source: "C:\sources\roms\ticonv\ChangeLog"; DestDir: "{app}\ticonv"; Flags: ignoreversion;
+Source: "C:\sources\roms\ticonv\ReadMe"; DestDir: "{app}\ticonv"; Flags: ignoreversion;
+Source: "C:\sources\roms\ticonv\Copying"; DestDir: "{app}\ticonv"; Flags: ignoreversion;
+
 [INI]
 Filename: "{app}\tilp2-sdk.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp/architecture.html"
 
@@ -103,6 +124,7 @@ Name: "{group}\SDK\Uninstall the TiLP-II SDK"; Filename: "{uninstallexe}"
 Name: "{group}\SDK\ticables2 library"; Filename: "{app}\ticables2\docs\index.html"
 Name: "{group}\SDK\ticalcs2 library"; Filename: "{app}\ticalcs2\docs\index.html"
 Name: "{group}\SDK\tifiles2 library"; Filename: "{app}\tifiles2\docs\index.html"
+Name: "{group}\SDK\ticonv library"; Filename: "{app}\ticonv\docs\index.html"
 
 [Run]
 ; Remove any previously installed PortTalk driver (especially v1.x)

@@ -3,14 +3,12 @@ This is a list of some things to do:
 - release SDK
 
 1)
-- send/recv FLASH app : violation with tifiles_content_delete_flash (ti73 & 83+)
-- TI92: recv backup: tifiles_content_delete_backup violation
 - select files for deletion, cancel/ok => violation in tree_selection_changed
 
 2)
 - pbars are not always updated
 - TI86: no update of pbars in recv mode for instance
-- TI89: same
+- TI89: no update of pbars in recv mode for instance
 - V200: don't update pbar romdump
 
 3)

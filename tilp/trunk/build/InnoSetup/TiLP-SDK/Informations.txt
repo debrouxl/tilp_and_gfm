@@ -8,6 +8,7 @@ Included: source code, documentation, libraries and test programs of
 - ticables2
 - ticalcs2
 - tifiles2
+- ticonv
 - COM wrapper for ticables2
 
 You will need a Windows compiler (MSVC 6.0 mini or MinGW) and the glib provided
