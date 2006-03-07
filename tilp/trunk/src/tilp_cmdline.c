@@ -2,7 +2,7 @@
 /* $Id: tilp_core.h 1125 2005-05-24 18:09:19Z julien $ */
 
 /*  TiLP - Ti Linking Program
- *  Copyright (C) 1999-2005  Romain Lievin
+ *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ static GOptionEntry entries[] =
 
 void tilp_cmdline_version(void)
 {
-	fprintf(stdout, _("TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"), TILP_VERSION);
+	fprintf(stdout, _("TiLP - Version %s, (C) 1999-2006 Romain Lievin\n"), TILP_VERSION);
 #ifdef __BSD__
 	fprintf(stdout, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif

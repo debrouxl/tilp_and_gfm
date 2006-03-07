@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*  TiLP - Ti Linking Program
- *  Copyright (C) 1999-2005  Romain Lievin
+ *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@ int tilp_config_write(void)
 
 	g_key_file_set_comment(kf, NULL, NULL, 
 		"# Config file for TiLP\n" \
-		"# Copyright (C) 1999-2005 The TiLP Team <tilp-devel@lists.sf.net>\n" \
+		"# Copyright (C) 1999-2006 The TiLP Team <tilp-devel@lists.sf.net>\n" \
 		"# Warning: any comments that you add to this file WILL be overwritten", &error);
 
 	// Section [DEVICE]

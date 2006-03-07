@@ -2,7 +2,7 @@
 /* $Id: tilp_core.h 1125 2005-05-24 18:09:19Z julien $ */
 
 /*  TiLP - Ti Linking Program
- *  Copyright (C) 1999-2005  Romain Lievin
+ *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

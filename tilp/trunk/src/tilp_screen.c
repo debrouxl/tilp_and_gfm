@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*  TiLP - Ti Linking Program
- *  Copyright (C) 1999-2005  Romain Lievin
+ *  Copyright (C) 1999-2006  Romain Lievin
  *  Copyright (C) 2005 Julien BLACHE <jb@jblache.org>
  *
  *  This program is free software; you can redistribute it and/or modify
