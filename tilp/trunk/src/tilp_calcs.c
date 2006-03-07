@@ -474,7 +474,7 @@ int tilp_calc_send_var(void)
 	GList *sel;
 	int mode = MODE_NORMAL;
 	gint i, l = 0;
-	int ret;
+//	int ret;
 
 	if(!tilp_clist_selection_ready())
 		return 0;
@@ -540,17 +540,16 @@ int tilp_calc_send_var(void)
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
 
-tilp_calc_send_var_retry:
+//tilp_calc_send_var_retry:
 		// It is not the last file to send
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content);
-			err = 4;
 			if(err) 
 			{
 				tilp_err(err);
-
+/*
 				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
 				switch(ret)
 				{
@@ -562,7 +561,7 @@ tilp_calc_send_var_retry:
 				case BUTTON3:
 				default: break;
 				}
-
+*/
 				gif->destroy_pbar();
 				return -1;
 			}
@@ -574,7 +573,7 @@ tilp_calc_send_var_retry:
 			if(err)
 			{
 				tilp_err(err);
-
+/*
 				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
 				switch(ret)
 				{
@@ -586,7 +585,7 @@ tilp_calc_send_var_retry:
 				case BUTTON3:
 				default: break;
 				}
-
+*/
 				gif->destroy_pbar();
 				return -1;
 			}
@@ -620,7 +619,7 @@ static int tilp_calc_recv_var1(void)
 	int i, l;
 	int err, ret=0;
 	FileContent **array;
-	int btn;
+	//int btn;
 
 	l = g_list_length(remote.selection);
 
@@ -679,14 +678,14 @@ static int tilp_calc_recv_var1(void)
 			VarEntry *ve = (VarEntry *)sel->data;
 			static int b = 0;
 
-tilp_calc_recv_var1_retry:
+//tilp_calc_recv_var1_retry:
 			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
 			
 			if(err)
 			{
 				tilp_err(err);
-
+/*
 				btn = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
 				switch(btn)
 				{
@@ -701,6 +700,7 @@ tilp_calc_recv_var1_retry:
 				}
 
 				break;
+				*/
 			}
 
 			gtk_update.cnt2 = i;
