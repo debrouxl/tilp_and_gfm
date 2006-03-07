@@ -1,16 +1,20 @@
 This is a list of some things to do:
 
-- cmdline from Explorer Shell
 - release SDK
-- pbars are not always updated
+
+1)
 - send/recv FLASH app : violation with tifiles_content_delete_flash (ti73 & 83+)
+- TI92: recv backup: tifiles_content_delete_backup violation
 - select files for deletion, cancel/ok => violation in tree_selection_changed
-- TI84+ ROM dump: if canceled, calc is reset and RAM is cleared
+
+2)
+- pbars are not always updated
 - TI86: no update of pbars in recv mode for instance
 - TI89: same
-- TI92: recv backup: tifiles_content_delete_backup violation
-- SilverLink is still NACK'ed after error. Does not appear with TiLP1
 - V200: don't update pbar romdump
+
+3)
+- SilverLink is still NACK'ed after error. Does not appear with TiLP1
 - SilverLink cable is using 100% CPU under Windows.
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:

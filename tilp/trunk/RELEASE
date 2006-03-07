@@ -57,6 +57,7 @@ Bug fixes:
 	- don't display hw revision for TI8x calcs
 	- OS version formatting
 	- TI73 sending & receiving of FLASH apps
+	- [win32] ParallelLink is available again
 
 
 Bug report:

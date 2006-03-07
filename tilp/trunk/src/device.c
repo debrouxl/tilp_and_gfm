@@ -214,6 +214,13 @@ gint display_device_dbox()
 	{
 	case GTK_RESPONSE_OK:
 	case GTK_RESPONSE_CANCEL:
+		//
+		if(tmp.cable_model == CABLE_USB)
+		{
+			gif->msg_box1("Information", "Beware: DirectLink cable is currently unsupported !");
+			goto loop;
+		}
+
 		// copy options
 		cable_handle = ticables_handle_new(tmp.cable_model, tmp.cable_port);
 		if(cable_handle == NULL)
