@@ -698,9 +698,8 @@ static int tilp_calc_recv_var1(void)
 				case BUTTON3:
 				default: break;
 				}
-
+*/
 				break;
-				*/
 			}
 
 			gtk_update.cnt2 = i;
