@@ -79,16 +79,20 @@ int tilp_err(int errcode)
 					else
 					{
 						// ticalcs error => reset
+						gif->msg_box("Information", "Connection is being reset...", !0);
 						ticables_cable_reset(cable_handle);
-						PAUSE(500);
+						PAUSE(1000);
+						gif->msg_box("", "", 0);
 					}
 				}
 			}
 			else
 			{
 				// ticables error => reset
+				gif->msg_box("Information", "Connection is being reset...", !0);
 				ticables_cable_reset(cable_handle);
-				PAUSE(500);
+				PAUSE(1000);
+				gif->msg_box("", "", 0);
 			}			
 
             // FIXME OS X : we'll need to go full-UTF8 at some point

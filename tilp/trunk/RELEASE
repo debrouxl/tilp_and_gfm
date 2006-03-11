@@ -66,6 +66,7 @@ Known bugs:
 
 	- the refreshing of the local frame may crash TiLP under some circumstances
 	- need to close/re-open TiLP when the SilverLink is stalled (= blocked)
+	- many cables (GrayLink & SilverLink use up to 100% of CPU when running)
 
 
 Bug report:
