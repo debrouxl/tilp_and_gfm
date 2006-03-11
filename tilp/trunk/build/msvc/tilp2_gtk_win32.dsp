@@ -89,7 +89,58 @@ LINK32=link.exe
 
 # Name "tilp2_gtk_win32 - Win32 Release"
 # Name "tilp2_gtk_win32 - Win32 Debug"
+# Begin Group "Resource Files"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\tilp.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\Tilp.rc
+# End Source File
+# Begin Source File
+
+SOURCE=.\tilp2.ico
+# End Source File
+# End Group
+# Begin Group "Header Files"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\..\src\tilp_calcs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_defs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_files.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_indep.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_log.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_paths.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_struct.h
+# End Source File
+# End Group
 # Begin Group "Source Files"
+
+# PROP Default_Filter ""
+# Begin Group "gui"
 
 # PROP Default_Filter ""
 # Begin Source File
@@ -102,7 +153,15 @@ SOURCE=..\..\src\action.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\bookmark.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\clist.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\clist_rbm.c
 # End Source File
 # Begin Source File
 
@@ -110,11 +169,11 @@ SOURCE=..\..\src\clock.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\comm.c
+SOURCE=..\..\src\ctree.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\ctree.c
+SOURCE=..\..\src\ctree_rbm.c
 # End Source File
 # Begin Source File
 
@@ -122,11 +181,11 @@ SOURCE=..\..\src\dboxes.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\dnd.c
+SOURCE=..\..\src\device.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\extprgms.c
+SOURCE=..\..\src\dnd.c
 # End Source File
 # Begin Source File
 
@@ -134,11 +193,11 @@ SOURCE=..\..\src\filesel.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\general.c
+SOURCE=..\..\src\gtk_gif.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\gtk_refresh.c
+SOURCE=..\..\src\gtk_update.c
 # End Source File
 # Begin Source File
 
@@ -146,23 +205,15 @@ SOURCE=..\..\src\labels.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\logfile.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\main.c
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\manpage.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\pbars.c
+SOURCE=..\..\src\options.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\popup.c
+SOURCE=..\..\src\pbars.c
 # End Source File
 # Begin Source File
 
@@ -175,10 +226,6 @@ SOURCE=..\..\src\screenshot.c
 # Begin Source File
 
 SOURCE=..\..\src\scroptions.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\shell.c
 # End Source File
 # Begin Source File
 
@@ -196,185 +243,25 @@ SOURCE=..\..\src\tilp.c
 
 SOURCE=..\..\src\toolbar.c
 # End Source File
-# Begin Source File
-
-SOURCE=..\..\src\wizard.c
-# End Source File
 # End Group
-# Begin Group "Header Files"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\src\about.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\action.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clist.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clock.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\comm.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ctree.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dboxes.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dnd.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\extprgms.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\filesel.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\general.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gstruct.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gtk_refresh.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\intl.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\labels.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\logfile.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\manpage.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\pbars.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\pbars_db.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\popup.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\release.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\screenshot.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\scroptions.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\shell.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\splash.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\support.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilibs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_core.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_defs.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_indep.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_paths.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_plugin.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_prompt.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_struct.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\toolbar.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\wizard.h
-# End Source File
-# End Group
-# Begin Group "Resource Files"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=.\tilp.ico
-# End Source File
-# Begin Source File
-
-SOURCE=.\tilp.ico
-# End Source File
-# Begin Source File
-
-SOURCE=.\Tilp.rc
-# End Source File
-# End Group
-# Begin Group "TiLP core"
+# Begin Group "core"
 
 # PROP Default_Filter ""
 # Begin Source File
 
 SOURCE=..\..\src\tilp_calcs.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_cmdline.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_config.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_core.h
 # End Source File
 # Begin Source File
 
@@ -386,7 +273,11 @@ SOURCE=..\..\src\tilp_files.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp_indep.c
+SOURCE=..\..\src\tilp_gif.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tilp_log.c
 # End Source File
 # Begin Source File
 
@@ -402,26 +293,6 @@ SOURCE=..\..\src\tilp_paths.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp_plugin.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_printl.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_prompt.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_rcfile.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_refresh.c
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\tilp_screen.c
 # End Source File
 # Begin Source File
@@ -430,55 +301,60 @@ SOURCE=..\..\src\tilp_slct.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_update.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_vars.c
+# End Source File
+# End Group
+# Begin Source File
+
+SOURCE=..\..\src\main.c
 # End Source File
 # End Group
 # Begin Group "External Libraries"
 
-# PROP Default_Filter "*.lib"
+# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\glib-2.0.lib"
+SOURCE="..\..\..\..\..\GTK2DEV\lib\glib-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\libglade-2.0.lib"
+SOURCE="..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\..\..\Gtk2Dev\lib\intl.lib
+SOURCE="..\..\..\..\..\GTK2DEV\lib\glade-2.0.lib"
 # End Source File
 # End Group
 # Begin Source File
