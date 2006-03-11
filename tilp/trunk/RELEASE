@@ -58,6 +58,14 @@ Bug fixes:
 	- OS version formatting
 	- TI73 sending & receiving of FLASH apps
 	- [win32] ParallelLink is available again
+	- command line argument passing => TiLP can send files from the Explorer
+
+
+Known bugs:
+-----------
+
+	- the refreshing of the local frame may crash TiLP under some circumstances
+	- need to close/re-open TiLP when the SilverLink is stalled (= blocked)
 
 
 Bug report:

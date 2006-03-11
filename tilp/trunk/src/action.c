@@ -176,7 +176,7 @@ gint display_action_dbox(gchar *target)
 
 		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
 		{
-			gif->msg_box(_("Error"),
+			gif->msg_box1(_("Error"),
 				     _("You can not send backups in this way. Use the 'Restore' button instead."));
 
 			button = BUTTON2; // skip box as cancel

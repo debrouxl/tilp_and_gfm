@@ -316,7 +316,7 @@ int tilp_calc_rom_dump(void)
 		return do_rom_dump(0);
 	break;
 	default:
-		gif->msg_box(_("Information"), _("Currently unsupported !"));
+		gif->msg_box1(_("Information"), _("Currently unsupported !"));
 		break;
 	}
 
@@ -336,7 +336,7 @@ int tilp_calc_send_flash_app(char *filename)
 
 	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(options.calc_model))) 
 	{
-		gif->msg_box(_("Error"),
+		gif->msg_box1(_("Error"),
 			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
 		return -1;
 	}
@@ -376,7 +376,7 @@ int tilp_calc_send_flash_os(char *filename)
 	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(options.calc_model)) &&
 		!tifiles_file_is_tib(filename)) 
 	{
-		gif->msg_box(_("Error"),
+		gif->msg_box1(_("Error"),
 			     _("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));
 		return -1;
 	}
@@ -486,27 +486,27 @@ int tilp_calc_send_var(void)
 
 		if(tifiles_file_is_flash(f->name)) 
 		{
-			gif->msg_box(_("Error"),
+			gif->msg_box1(_("Error"),
 				_("You can not send both variables and applications simultaneously."));
 			return 0;
 		}
 
 		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
 		{
-			gif->msg_box(_("Error"),
+			gif->msg_box1(_("Error"),
 				     _("You can not send backups in this way. Use the 'Restore' button instead."));
 			return 0;
 		}
 
 		if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
 		{
-			gif->msg_box(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
+			gif->msg_box1(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
 			return 0;
 		}
 
 		if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
 		{
-			gif->msg_box(_("Error"), _("There is a file type incompatible with the target hand-held in the selection."));
+			gif->msg_box1(_("Error"), _("There is a file type incompatible with the target hand-held in the selection."));
 			return 0;
 		}
 	}
@@ -979,7 +979,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 			_("OS version: %s\nBOOT version: %s\nBattery: %s"), 
 			infos->os, infos->bios, infos->battery ? "good" : "low");
 
-	gif->msg_box(_("Information"), str);
+	gif->msg_box1(_("Information"), str);
 	g_free(str);
 
 	return 0;
@@ -1022,7 +1022,7 @@ int tilp_calc_send_cert(char *filename)
 
 	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(options.calc_model))) 
 	{
-		gif->msg_box(_("Error"),
+		gif->msg_box1(_("Error"),
 			     _("It's not a certificate or this certificate is not targetted for this calculator type."));
 		return -1;
 	}

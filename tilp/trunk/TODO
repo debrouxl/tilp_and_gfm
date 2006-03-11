@@ -1,8 +1,6 @@
 This is a list of some things to do:
 
-0)
-- consistency problem: some cables are reset'ed when opened but not all (SilverLink)
-- reset cable at startup (SilverLink)
+remove /proc/bus/usb from ticables2 => deprecated !
 
 1)
 - select files for deletion, cancel/ok => violation in tree_selection_changed
@@ -14,7 +12,7 @@ This is a list of some things to do:
 - V200: don't update pbar romdump
 
 3)
-- SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found
+- SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
 - SilverLink cable is using 100% CPU under Windows => add a function in ticables2 which
 allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 

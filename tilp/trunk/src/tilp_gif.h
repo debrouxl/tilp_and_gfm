@@ -35,8 +35,9 @@ extern "C" {
 */
 typedef struct 
 {
+	int (*msg_box ) (const char *title, char *message, gint action);
+
     // Display a modal OK dialog box with a title and a message
-	int (*msg_box ) (const char *title, char *message);
     int (*msg_box1) (const char *title, char *message);
 
     // Display a modal OK/Cancel dialog box

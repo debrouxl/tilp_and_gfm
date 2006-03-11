@@ -33,7 +33,41 @@
 
 static gint ret_val = 0;
 
-int msg_box1(const gchar * title, gchar * message)
+int msg_box(const char *title, const char *message, int action)
+{
+	static GtkWidget *dialog = NULL;
+
+	if(action)
+	{
+		gint msg_type = GTK_MESSAGE_INFO;
+
+		if (!strcmp(title, _("Information")))
+			msg_type = GTK_MESSAGE_INFO;
+		else if (!strcmp(title, _("Warning")))
+			msg_type = GTK_MESSAGE_WARNING;
+		else if (!strcmp(title, _("Question")))
+			msg_type = GTK_MESSAGE_QUESTION;
+		else if (!strcmp(title, _("Error")))
+			msg_type = GTK_MESSAGE_ERROR;
+
+		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
+					   msg_type, GTK_BUTTONS_CLOSE,
+					   message);
+		//gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_show_all(GTK_WIDGET(dialog));
+		
+		while(gtk_events_pending()) gtk_main_iteration();
+	}
+	else if(dialog)
+	{
+		gtk_widget_destroy(GTK_WIDGET(dialog));
+		dialog = NULL;
+	}
+
+	return 0;
+}
+
+int msg_box1(const char *title, const char *message)
 {
 	GtkWidget *dialog, *label;
 	gint result;
@@ -82,7 +116,7 @@ int msg_box1(const gchar * title, gchar * message)
 	return 0;
 }
 
-gint msg_box2(const char *title, char *message)
+gint msg_box2(const char *title, const char *message)
 {
 	GtkWidget *dialog;
 	gint result;
@@ -120,7 +154,7 @@ gint msg_box2(const char *title, char *message)
 	return 0;
 }
 
-gint msg_box3(const char *title, char *message, const char *button1,
+gint msg_box3(const char *title, const char *message, const char *button1,
 	      const char *button2, const char *button3)
 {
 	GtkWidget *dialog, *label;
@@ -158,7 +192,7 @@ gint msg_box3(const char *title, char *message, const char *button1,
 	return 0;
 }
 
-gint msg_box4(const char *title, char *message)
+gint msg_box4(const char *title, const char *message)
 {
 	GtkWidget *dialog, *label;
 	gint result;

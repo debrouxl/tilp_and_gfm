@@ -30,6 +30,12 @@
 
 TilpGuiFncts *gif;
 
+int default_msg_box(const char *title, char *message, int action)
+{
+	tilp_info("msg_box: [%s] [%s]", title, message);
+	return 0;
+}
+
 int default_msg_box1(const char *title, char *message)
 {
 	tilp_info("msg_box: [%s] [%s]", title, message);
@@ -98,7 +104,7 @@ void tilp_gif_set_default(void)
 {
 	static TilpGuiFncts default_gif;
 
-	default_gif.msg_box  = default_msg_box1;
+	default_gif.msg_box  = default_msg_box;
 	default_gif.msg_box1 = default_msg_box1;
 	default_gif.msg_box2 = default_msg_box2;
 	default_gif.msg_box3 = default_msg_box3;

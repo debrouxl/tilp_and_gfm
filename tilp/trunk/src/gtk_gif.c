@@ -35,7 +35,7 @@ void tilp_gif_set_gtk(void)
 {
 	static TilpGuiFncts gtk_gif;
 
-	gtk_gif.msg_box  = msg_box1;
+	gtk_gif.msg_box  = msg_box;
 	gtk_gif.msg_box1 = msg_box1;
 	gtk_gif.msg_box2 = msg_box2;
 	gtk_gif.msg_box3 = msg_box3;

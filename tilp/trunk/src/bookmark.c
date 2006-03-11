@@ -87,23 +87,15 @@ int go_to_bookmark(const char *link)
 #endif
 	else 
 	{
-		GtkWidget *dialog;
-		GTimer *timer;
 		const gchar *message = "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+		GTimer *timer;
 
-		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
-					   GTK_MESSAGE_INFO,
-					   GTK_BUTTONS_CLOSE, message);
-		g_signal_connect_swapped(GTK_OBJECT(dialog), "response",
-					 G_CALLBACK(gtk_widget_destroy),
-					 GTK_OBJECT(dialog));
-		gtk_widget_show_all(GTK_WIDGET(dialog));
-		
-		while(gtk_events_pending()) gtk_main_iteration();
+		msg_box("Information", message, !0);
+
 		for(timer = g_timer_new(); g_timer_elapsed(timer, NULL) < 3.0;);
-
 		g_timer_destroy(timer);
-		gtk_widget_destroy(GTK_WIDGET(dialog));
+
+		msg_box("", "", 0);
 	}
 
 	return 0;
