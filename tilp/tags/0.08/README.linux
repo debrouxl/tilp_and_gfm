@@ -1,0 +1,77 @@
+				*****************
+				* TiLP		*
+				* Linux version *
+				*****************
+
+
+
+
+DESCRIPTION
+-----------
+
+Development platform: GNU/Linux Debian, 2.5.64 kernel, XFree 4.2.1, GTK+ 2.2.
+
+
+REQUIREMENTS
+------------
+
+ - A UNIX computer or workstation and a C compiler (gcc) 
+	for the Linux version
+ - X11 (X Window System)
+ - GTK+ 2.x (http://www.gtk.org)
+ - the ticables2, tifiles2 and ticalcs2 libraries
+ - the libusb library to use the SilverLink cable (TI-GRAPH LINK USB).
+
+
+INSTALLATION
+------------
+
+At first, you must have the ticables and ticalcs libraries installed. See
+the documentation of these libraries for the installation procedure.
+
+Untar the tilp-X.XX.tar.gz archive (tar -xvzf), change directory to 
+tilp directory.
+
+Type "./configure" or "./configure --enable-exit-homedir".
+If you are a single user and you want be able to move in your filesystem, 
+then choose the second option. But, for security reasons, you should prefer the
+normal method.
+
+Type "make", "make install" (requires the root privileges).
+
+
+USAGE
+-----
+
+Type 'tilp' for using it.
+A manpage is available by 'man tilp'.
+A user's manual is available in the doc/manual directory or from TiLP.
+
+
+AVAILABILITY
+------------
+
+  http://lpg.ticalc.org/prj_tilp (redirected on http://tilp.sourceforge.net)
+
+
+COPYRIGHT
+---------
+
+TiLP is Copyright (C) 1999-2005 by the TiLP team <tilp-users@lists.sf.net>
+
+Copying is allowed under the terms of GNU General Public License.  
+See the file COPYING for more details.
+
+
+THANKS
+------
+
+See the THANKS file, please.
+
+
+---------------------------------------------------------------------------
+Please report any bugs, questions, ...  (please give us your platform, your 
+calculator type (with ROM version) and your link cable model).
+
+
+The TiLP team <tilp-users@lists.sf.net>

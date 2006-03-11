@@ -1,0 +1,36 @@
+This is a list of some things to do:
+
+remove /proc/bus/usb from ticables2 => deprecated !
+
+1)
+- select files for deletion, cancel/ok => violation in tree_selection_changed
+
+2)
+- pbars are not always updated (seems to be fixed)
+- TI86: no update of pbars in recv mode for instance
+- TI89: no update of pbars in recv mode for instance
+- V200: don't update pbar romdump
+
+3)
+- SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
+- SilverLink cable is using 100% CPU under Windows => add a function in ticables2 which
+allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
+
+- suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
+<<
+* Selecting multiple files is a little strange. Ctrl and Shift keys while 
+clicking in the lists work as expected, but unlike with other programs 
+like Konqueror, I cannot use both Ctrl and Shift at the same time. TiLP 
+acts like I only pressed Ctrl. It would be nice if Ctrl+Shift worked as 
+in many programs.
+
+Also, when I have multiple files selected and try to drag them, it 
+erases my selection. If I hold Ctrl while dragging, it doesn't erase the 
+selection, but it toggles the state of the file where I started 
+dragging. This is somewhat confusing. (In other words, dragging should 
+not also count as clicking.)
+>>
+
++ = done.
+* = in progress.
+- = to do...
