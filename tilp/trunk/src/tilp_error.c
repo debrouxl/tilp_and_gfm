@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #ifndef __MACOSX__
 #include "tilibs.h"

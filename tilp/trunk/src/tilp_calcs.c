@@ -676,7 +676,7 @@ static int tilp_calc_recv_var1(void)
 		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
-			static int b = 0;
+			//static int b = 0;
 
 //tilp_calc_recv_var1_retry:
 			array[i] = tifiles_content_create_regular(options.calc_model);

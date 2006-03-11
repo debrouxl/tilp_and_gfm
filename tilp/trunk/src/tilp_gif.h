@@ -35,20 +35,20 @@ extern "C" {
 */
 typedef struct 
 {
-	int (*msg_box ) (const char *title, char *message, gint action);
+	int (*msg_box ) (const char *title, const char *message, gint action);
 
     // Display a modal OK dialog box with a title and a message
-    int (*msg_box1) (const char *title, char *message);
+    int (*msg_box1) (const char *title, const char *message);
 
     // Display a modal OK/Cancel dialog box
-    int (*msg_box2) (const char *title, char *message);
+    int (*msg_box2) (const char *title, const char *message);
 
     // Display a modal dialog box with 3 buttons
-    int (*msg_box3) (const char *title, char *message,
+    int (*msg_box3) (const char *title, const char *message,
 		     const char *btn1, const char *btn2, const char *btn3);
 
     // Display a modal Next/Cancel dialog box
-    int (*msg_box4) (const char *title, char *message);
+    int (*msg_box4) (const char *title, const char *message);
 
     // Display a modal entry dialog box with a title, a message and
     // a predefined content.

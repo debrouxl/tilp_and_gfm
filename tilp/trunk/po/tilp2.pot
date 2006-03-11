@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-28 19:17+0100\n"
+"POT-Creation-Date: 2006-03-11 11:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: src/about.c:91
 #, c-format
-msgid "Framework version (cables=%s, files=%s, calcs=%s)"
+msgid "Framework version (cables=%s, files=%s, calcs=%s, ticonv=%s)"
 msgstr ""
 
 #: src/action.c:91
@@ -45,7 +45,7 @@ msgstr ""
 msgid "rename"
 msgstr ""
 
-#: src/action.c:128 src/action.c:284
+#: src/action.c:128 src/action.c:294
 msgid "overwrite"
 msgstr ""
 
@@ -53,45 +53,45 @@ msgstr ""
 msgid "skip"
 msgstr ""
 
-#: src/action.c:152 src/clock.c:110
+#: src/action.c:159 src/clock.c:110
 msgid "action.c: GUI loading failed !\n"
 msgstr ""
 
-#: src/action.c:169 src/dboxes.c:48 src/dboxes.c:97 src/main.c:133
-#: src/tilp_calcs.c:320 src/tilp_calcs.c:362 src/tilp_calcs.c:469
-#: src/tilp_calcs.c:476 src/tilp_calcs.c:483 src/tilp_calcs.c:928
-#: src/tilp_config.c:315 src/tilp_error.c:87 src/tilp_error.c:90
-#: src/tilp_files.c:220 src/tilp_files.c:256 src/tilp_files.c:279
-#: src/tilp_files.c:300 src/tilp_misc.c:45 src/tilp_misc.c:76
-#: src/tilp_misc.c:117
+#: src/action.c:179 src/dboxes.c:50 src/dboxes.c:82 src/dboxes.c:131
+#: src/main.c:156 src/tilp_calcs.c:339 src/tilp_calcs.c:379
+#: src/tilp_calcs.c:489 src/tilp_calcs.c:496 src/tilp_calcs.c:503
+#: src/tilp_calcs.c:509 src/tilp_calcs.c:1025 src/tilp_config.c:304
+#: src/tilp_error.c:107 src/tilp_error.c:110 src/tilp_files.c:259
+#: src/tilp_files.c:331 src/tilp_misc.c:44 src/tilp_misc.c:79
+#: src/tilp_misc.c:120
 msgid "Error"
 msgstr ""
 
-#: src/action.c:170 src/tilp_calcs.c:477
+#: src/action.c:180 src/tilp_calcs.c:497
 msgid "You can not send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/action.c:317 src/tilp_files.c:175 src/tilp_slct.c:157
+#: src/action.c:327 src/tilp_files.c:214 src/tilp_slct.c:158
 msgid "Rename the file"
 msgstr ""
 
-#: src/action.c:317 src/tilp_files.c:176
+#: src/action.c:327 src/tilp_files.c:215
 msgid "New name: "
 msgstr ""
 
-#: src/clist.c:180 src/ctree.c:178
+#: src/clist.c:181 src/ctree.c:176
 msgid "Name"
 msgstr ""
 
-#: src/clist.c:185 src/ctree.c:201
+#: src/clist.c:186 src/ctree.c:199
 msgid "Type"
 msgstr ""
 
-#: src/clist.c:190 src/ctree.c:206
+#: src/clist.c:191 src/ctree.c:204
 msgid "Size"
 msgstr ""
 
-#: src/clist.c:195
+#: src/clist.c:196
 msgid "Date"
 msgstr ""
 
@@ -99,19 +99,19 @@ msgstr ""
 msgid "Change drive"
 msgstr ""
 
-#: src/clist_rbm.c:254 src/tilp.c:526 glade/clist_rbm-2.str:18
+#: src/clist_rbm.c:254 src/tilp.c:533 glade/clist_rbm-2.str:18
 msgid "Make a new directory"
 msgstr ""
 
-#: src/clist_rbm.c:254 src/tilp.c:526 src/tilp_calcs.c:848 src/tilp_slct.c:157
+#: src/clist_rbm.c:254 src/tilp.c:533 src/tilp_calcs.c:934 src/tilp_slct.c:158
 msgid "Name: "
 msgstr ""
 
-#: src/clist_rbm.c:255 src/tilp.c:526
+#: src/clist_rbm.c:255 src/tilp.c:533
 msgid "new_directory"
 msgstr ""
 
-#: src/ctree.c:196
+#: src/ctree.c:194
 msgid "Attr"
 msgstr ""
 
@@ -151,21 +151,22 @@ msgstr ""
 msgid "Certificate"
 msgstr ""
 
-#: src/dboxes.c:42 src/dboxes.c:91 src/tilp_calcs.c:247 src/tilp_calcs.c:299
-#: src/tilp_calcs.c:795 src/tilp_calcs.c:885 src/tilp_config.c:460
-#: src/tilp_config.c:468 src/tilp_files.c:105 src/tilp_files.c:118
-#: src/tilp_files.c:134 src/tilp_misc.c:49 src/tilp_slct.c:51
-#: src/tilp_slct.c:165 src/tilp_slct.c:246 src/tilp_slct.c:259
+#: src/dboxes.c:44 src/dboxes.c:76 src/dboxes.c:125 src/tilp_calcs.c:267
+#: src/tilp_calcs.c:319 src/tilp_calcs.c:875 src/tilp_calcs.c:982
+#: src/tilp_config.c:449 src/tilp_config.c:457 src/tilp_files.c:141
+#: src/tilp_files.c:154 src/tilp_files.c:173 src/tilp_misc.c:48
+#: src/tilp_slct.c:52 src/tilp_slct.c:167 src/tilp_slct.c:323
+#: src/tilp_slct.c:336
 msgid "Information"
 msgstr ""
 
-#: src/dboxes.c:44 src/dboxes.c:93 src/tilp_calcs.c:103 src/tilp_calcs.c:278
-#: src/tilp_calcs.c:367 src/tilp_calcs.c:802 src/tilp_files.c:164
-#: src/tilp_slct.c:127
+#: src/dboxes.c:46 src/dboxes.c:78 src/dboxes.c:127 src/tilp_calcs.c:123
+#: src/tilp_calcs.c:298 src/tilp_calcs.c:384 src/tilp_calcs.c:882
+#: src/tilp_files.c:203 src/tilp_slct.c:128
 msgid "Warning"
 msgstr ""
 
-#: src/dboxes.c:46 src/dboxes.c:95
+#: src/dboxes.c:48 src/dboxes.c:80 src/dboxes.c:129
 msgid "Question"
 msgstr ""
 
@@ -173,11 +174,11 @@ msgstr ""
 msgid "comm.c: GUI loading failed !\n"
 msgstr ""
 
-#: src/filesel.c:227
+#: src/filesel.c:309
 msgid "Save file"
 msgstr ""
 
-#: src/filesel.c:230 src/filesel.c:463
+#: src/filesel.c:312 src/filesel.c:634
 msgid "Open file"
 msgstr ""
 
@@ -191,24 +192,24 @@ msgstr ""
 msgid "Memory free/used: %u/%u bytes"
 msgstr ""
 
-#: src/labels.c:112
+#: src/labels.c:114
 #, c-format
 msgid "Folder: %s"
 msgstr ""
 
-#: src/main.c:68
+#: src/main.c:91
 msgid "Loading GUI..."
 msgstr ""
 
-#: src/main.c:94
+#: src/main.c:117
 msgid "TiLP-II"
 msgstr ""
 
-#: src/main.c:103
+#: src/main.c:126
 msgid "Command line..."
 msgstr ""
 
-#: src/main.c:133
+#: src/main.c:156
 msgid "An TiLP session is already running. Check the task list."
 msgstr ""
 
@@ -221,7 +222,7 @@ msgstr ""
 msgid "Manual_en.html"
 msgstr ""
 
-#: src/tilp_calcs.c:103
+#: src/tilp_calcs.c:123
 msgid ""
 "You are going to restore the content\n"
 "of your calculator with a backup.\n"
@@ -229,37 +230,37 @@ msgid ""
 "Are you sure you want to do that ?"
 msgstr ""
 
-#: src/tilp_calcs.c:115 src/tilp_calcs.c:122 src/tilp_calcs.c:128
-#: src/tilp_calcs.c:161 src/tilp_calcs.c:167 src/tilp_calcs.c:173
-#: src/tilp_calcs.c:176 glade/tilp-2.str:13
+#: src/tilp_calcs.c:135 src/tilp_calcs.c:142 src/tilp_calcs.c:148
+#: src/tilp_calcs.c:181 src/tilp_calcs.c:187 src/tilp_calcs.c:193
+#: src/tilp_calcs.c:196 glade/tilp-2.str:13
 msgid "Backup"
 msgstr ""
 
-#: src/tilp_calcs.c:115
+#: src/tilp_calcs.c:135
 msgid "Waiting for confirmation on calc..."
 msgstr ""
 
-#: src/tilp_calcs.c:161
+#: src/tilp_calcs.c:181
 msgid "Waiting for backup from calc..."
 msgstr ""
 
-#: src/tilp_calcs.c:176
+#: src/tilp_calcs.c:196
 msgid "Receiving blocks"
 msgstr ""
 
-#: src/tilp_calcs.c:224
+#: src/tilp_calcs.c:244
 msgid "ID-LIST : "
 msgstr ""
 
-#: src/tilp_calcs.c:264
+#: src/tilp_calcs.c:284
 msgid "ROM dump"
 msgstr ""
 
-#: src/tilp_calcs.c:264
+#: src/tilp_calcs.c:284
 msgid "Receiving data"
 msgstr ""
 
-#: src/tilp_calcs.c:278
+#: src/tilp_calcs.c:298
 msgid ""
 "An assembly program is about to be\n"
 "sent on your calculator. If you have not made\n"
@@ -267,21 +268,21 @@ msgid ""
 "proceeding with ROM dumping..."
 msgstr ""
 
-#: src/tilp_calcs.c:299
+#: src/tilp_calcs.c:319
 msgid "Currently unsupported !"
 msgstr ""
 
-#: src/tilp_calcs.c:321
+#: src/tilp_calcs.c:340
 msgid ""
 "It's not an FLASH application or this FLASH application is not intended for "
 "this calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:334 src/tilp_calcs.c:382 src/tilp_calcs.c:936
+#: src/tilp_calcs.c:352 src/tilp_calcs.c:398 src/tilp_calcs.c:1033
 msgid "Flash"
 msgstr ""
 
-#: src/tilp_calcs.c:357
+#: src/tilp_calcs.c:374
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -293,67 +294,73 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:363
+#: src/tilp_calcs.c:380
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:413
+#: src/tilp_calcs.c:429
 msgid "Receiving application(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:470
+#: src/tilp_calcs.c:490
 msgid "You can not send both variables and applications simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:483
-msgid "There is an unknown file type in the selection."
+#: src/tilp_calcs.c:503
+msgid ""
+"There is an unknown file type in the selection or the path is incorrect."
 msgstr ""
 
-#: src/tilp_calcs.c:502
+#: src/tilp_calcs.c:509
+msgid ""
+"There is a file type incompatible with the target hand-held in the selection."
+msgstr ""
+
+#: src/tilp_calcs.c:528
 msgid "Sending group file"
 msgstr ""
 
-#: src/tilp_calcs.c:504 src/tilp_calcs.c:508
+#: src/tilp_calcs.c:530 src/tilp_calcs.c:534
 msgid "Sending variables"
 msgstr ""
 
-#: src/tilp_calcs.c:590 src/tilp_calcs.c:616 src/tilp_calcs.c:705
+#: src/tilp_calcs.c:643 src/tilp_calcs.c:670 src/tilp_calcs.c:778
 msgid "Receiving variable(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:705
+#: src/tilp_calcs.c:778
 msgid "Waiting..."
 msgstr ""
 
-#: src/tilp_calcs.c:795
+#: src/tilp_calcs.c:875
 msgid "You need AMS 2.09 mini for this operation."
 msgstr ""
 
-#: src/tilp_calcs.c:802
+#: src/tilp_calcs.c:882
 msgid ""
 "You are about to delete variable(s).\n"
 "Are you sure you want to do that ?"
 msgstr ""
 
-#: src/tilp_calcs.c:807
+#: src/tilp_calcs.c:887
 msgid "Deleting var(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:848
+#: src/tilp_calcs.c:934
 msgid "New Folder"
 msgstr ""
 
-#: src/tilp_calcs.c:848
+#: src/tilp_calcs.c:934
 msgid "folder"
 msgstr ""
 
-#: src/tilp_calcs.c:852
+#: src/tilp_calcs.c:938
 msgid "Creating folder"
 msgstr ""
 
-#: src/tilp_calcs.c:883
+#: src/tilp_calcs.c:975
 #, c-format
 msgid ""
 "OS version: %s\n"
@@ -362,11 +369,19 @@ msgid ""
 "Battery: %s"
 msgstr ""
 
-#: src/tilp_calcs.c:907
+#: src/tilp_calcs.c:979
+#, c-format
+msgid ""
+"OS version: %s\n"
+"BOOT version: %s\n"
+"Battery: %s"
+msgstr ""
+
+#: src/tilp_calcs.c:1004
 msgid "Receiving certificate"
 msgstr ""
 
-#: src/tilp_calcs.c:929
+#: src/tilp_calcs.c:1026
 msgid ""
 "It's not a certificate or this certificate is not targetted for this "
 "calculator type."
@@ -374,7 +389,7 @@ msgstr ""
 
 #: src/tilp_cmdline.c:49
 #, c-format
-msgid "TiLP - Version %s, (C) 1999-2005 Romain Lievin\n"
+msgid "TiLP - Version %s, (C) 1999-2006 Romain Lievin\n"
 msgstr ""
 
 #: src/tilp_cmdline.c:51
@@ -415,67 +430,59 @@ msgstr ""
 msgid "Unknown file type !"
 msgstr ""
 
-#: src/tilp_config.c:316
+#: src/tilp_config.c:305
 msgid "Unable to write the config file (~/.tilp or tilp.ini).\n"
 msgstr ""
 
-#: src/tilp_config.c:460
+#: src/tilp_config.c:449
 msgid "Configuration file saved."
 msgstr ""
 
-#: src/tilp_config.c:468
+#: src/tilp_config.c:457
 msgid "Configuration file loaded."
 msgstr ""
 
-#: src/tilp_files.c:105
+#: src/tilp_files.c:141
 msgid ""
 "Unable to move file.\n"
 "\n"
 msgstr ""
 
-#: src/tilp_files.c:118
+#: src/tilp_files.c:154
 msgid "Unable to remove the file !"
 msgstr ""
 
-#: src/tilp_files.c:134
+#: src/tilp_files.c:173
 msgid ""
 "Unable to create the directory.\n"
 "\n"
 msgstr ""
 
-#: src/tilp_files.c:162
+#: src/tilp_files.c:201
 #, c-format
 msgid ""
 "The file %s already exists.\n"
 "Overwrite ?"
 msgstr ""
 
-#: src/tilp_files.c:165
+#: src/tilp_files.c:204
 msgid "Overwrite "
 msgstr ""
 
-#: src/tilp_files.c:165
+#: src/tilp_files.c:204
 msgid "Rename "
 msgstr ""
 
-#: src/tilp_files.c:165
+#: src/tilp_files.c:204
 msgid "Skip "
 msgstr ""
 
-#: src/tilp_files.c:220
+#: src/tilp_files.c:259
 msgid "Unable to move the temporary file.\n"
 msgstr ""
 
-#: src/tilp_files.c:255
-msgid "Chdir error.\n"
-msgstr ""
-
-#: src/tilp_files.c:256 src/tilp_files.c:300 src/tilp_misc.c:45
+#: src/tilp_files.c:331 src/tilp_misc.c:44
 msgid "Unable to change directory."
-msgstr ""
-
-#: src/tilp_files.c:280 src/tilp_files.c:284
-msgid "You can not go outside of your HOME directory."
 msgstr ""
 
 #: src/tilp_main.c:51
@@ -486,22 +493,27 @@ msgstr ""
 msgid "Done.\n"
 msgstr ""
 
-#: src/tilp_main.c:105
+#: src/tilp_main.c:103
+#, c-format
+msgid "libticonv library version <%s> mini required.\n"
+msgstr ""
+
+#: src/tilp_main.c:106
 #, c-format
 msgid "libtifiles library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:108
+#: src/tilp_main.c:109
 #, c-format
 msgid "libticables library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_main.c:111
+#: src/tilp_main.c:112
 #, c-format
 msgid "libticalcs library version <%s> mini required.\n"
 msgstr ""
 
-#: src/tilp_misc.c:49
+#: src/tilp_misc.c:48
 msgid "This function is not available in the Win version."
 msgstr ""
 
@@ -517,25 +529,25 @@ msgstr ""
 msgid "ungrouped"
 msgstr ""
 
-#: src/tilp_misc.c:76
+#: src/tilp_misc.c:79
 msgid "You can't ungroup in this folder."
 msgstr ""
 
-#: src/tilp_misc.c:117
+#: src/tilp_misc.c:120
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
 msgstr ""
 
-#: src/tilp_misc.c:121
+#: src/tilp_misc.c:124
 msgid "Group files"
 msgstr ""
 
-#: src/tilp_misc.c:121
+#: src/tilp_misc.c:124
 msgid "Group name: "
 msgstr ""
 
-#: src/tilp_misc.c:121
+#: src/tilp_misc.c:124
 msgid "group"
 msgstr ""
 
@@ -555,21 +567,21 @@ msgstr ""
 msgid "Couldn't open destination file for writing!"
 msgstr ""
 
-#: src/tilp_slct.c:52
+#: src/tilp_slct.c:53
 msgid "A file must have been selected in the right window."
 msgstr ""
 
-#: src/tilp_slct.c:128
+#: src/tilp_slct.c:129
 msgid ""
 "Are you sure you want to remove these file(s) ?\n"
 "\n"
 msgstr ""
 
-#: src/tilp_slct.c:166
+#: src/tilp_slct.c:168
 msgid "Unable to rename the file or directory."
 msgstr ""
 
-#: src/tilp_slct.c:247 src/tilp_slct.c:260
+#: src/tilp_slct.c:324 src/tilp_slct.c:337
 msgid "A variable must have been selected in the left window."
 msgstr ""
 
