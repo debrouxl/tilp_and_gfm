@@ -29,7 +29,12 @@
 #endif				/*  */
 
 #include "tilp_core.h"
-#include "pause.h"
+
+#ifdef __WIN32__
+#define PAUSE(x) Sleep(x)
+#else
+#define PAUSE(x) usleep(1000*(x))
+#endif
 
 extern int working_mode;
 static GList *stack = NULL;
