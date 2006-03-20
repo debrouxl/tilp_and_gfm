@@ -1,20 +1,17 @@
 This is a list of some things to do:
 
-remove /proc/bus/usb from ticables2 => deprecated !
+0)
+- remove /proc/bus/usb from ticables2 => deprecated !
 
 1)
 - select files for deletion, cancel/ok => violation in tree_selection_changed
 
 2)
-- pbars are not always updated (seems to be fixed)
-- TI86: no update of pbars in recv mode for instance
-- TI89: no update of pbars in recv mode for instance
-- V200: don't update pbar romdump
-
-3)
 - SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
-- SilverLink cable is using 100% CPU under Windows => add a function in ticables2 which
+- SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
 allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
+
+
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<

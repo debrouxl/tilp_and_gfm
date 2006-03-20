@@ -30,6 +30,8 @@
 #include "gstruct.h"
 #include "gtk_update.h"
 
+//#define DISABLE_UPDATE	// for testing purposes
+
 static void gtk_start(void)
 {
 	gtk_update.cnt1 = gtk_update.max1 = 0;
@@ -88,8 +90,10 @@ static void refresh_pbar2(void)
 
 static void gtk_pbar(void)
 {
+#ifndef DISABLE_UPDATE
 	refresh_pbar1();
 	refresh_pbar2();
+#endif
 } 
 
 // note: info_update.label_text is encoded in UTF8 but variable names ('%s')
@@ -98,17 +102,21 @@ static void gtk_pbar(void)
 // is nothing to do...
 static void gtk_label(void)
 {
+#ifndef DISABLE_UPDATE
 	if (pbar_wnd.label == NULL)
 		return;
 
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), gtk_update.text);
 
 	GTK_REFRESH();
+#endif
 }
 
 static void gtk_refresh(void)
 {
+#ifndef DISABLE_UPDATE
 	GTK_REFRESH();
+#endif
 }
 
 CalcUpdate gtk_update =
