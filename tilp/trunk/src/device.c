@@ -150,6 +150,7 @@ gint display_device_dbox()
 	  break;
 
 	case CALC_TI84P:
+	case CALC_TI84P_USB:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
 	  break;
 	  
@@ -214,12 +215,9 @@ gint display_device_dbox()
 	{
 	case GTK_RESPONSE_OK:
 	case GTK_RESPONSE_CANCEL:
-		//
+		// re-map cable&calc
 		if(tmp.cable_model == CABLE_USB)
-		{
-			gif->msg_box1("Information", "Beware: DirectLink cable is currently unsupported !");
-			goto loop;
-		}
+			gif->msg_box1("Information", "Beware: DirectLink cable support is curently experimental and being implemented for TI84+ only !");
 
 		// copy options
 		cable_handle = ticables_handle_new(tmp.cable_model, tmp.cable_port);
@@ -230,7 +228,9 @@ gint display_device_dbox()
 		}
 		else
 		{
-			calc_handle = ticalcs_handle_new(tmp.calc_model);
+			CalcModel cm = (tmp.cable_model == CABLE_USB && tmp.calc_model == CALC_TI84P) ? CALC_TI84P_USB : tmp.calc_model;
+
+			calc_handle = ticalcs_handle_new(cm);
 			if(calc_handle == NULL)
 			{
 				gif->msg_box1("Error", "Can't set cable");
