@@ -125,11 +125,15 @@ int tilp_init(int *argc, char ***argv)
 	}
 	else
 	{
+		CalcModel cm = (options.cable_model == CABLE_USB && options.calc_model == CALC_TI84P) ? CALC_TI84P_USB : options.calc_model;
+
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
 		//ticables_cable_reset(cable_handle);
 
-		calc_handle = ticalcs_handle_new(options.calc_model);
+
+
+		calc_handle = ticalcs_handle_new(cm);
 		if(calc_handle == NULL)
 		{
 			gif->msg_box1("Error", "Can't set cable");
