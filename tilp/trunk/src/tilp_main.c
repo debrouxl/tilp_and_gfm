@@ -125,7 +125,14 @@ int tilp_init(int *argc, char ***argv)
 	}
 	else
 	{
-		CalcModel cm = (options.cable_model == CABLE_USB && options.calc_model == CALC_TI84P) ? CALC_TI84P_USB : options.calc_model;
+		CalcModel cm;
+
+		if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI84P)
+				cm = CALC_TI84P_USB;
+			else if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI89T)
+				cm = CALC_TI89T_USB;
+			else
+				cm = options.calc_model;
 
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
