@@ -870,7 +870,7 @@ int tilp_calc_del_var(void)
 		if(tilp_err(err))
 			return -1;
 
-		if(strcmp(infos.os, "2.09") < 0)
+		if(strcmp(infos.os_version, "2.09") < 0)
 		{
 			gif->msg_box1(_("Information"), _("You need AMS 2.09 mini for this operation."));
 			return -1;
@@ -958,7 +958,8 @@ int tilp_calc_new_fld(void)
 int tilp_calc_get_infos(CalcInfos *infos)
 {
 	int err;
-	gchar *str;
+	gchar *str = g_strdup("");
+	gchar *tmp;
 
 	if(tilp_calc_isready())
 		return -1;
@@ -970,14 +971,108 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	if(tilp_err(err))
 		return -1;
 
-	if(infos->hw_rev != 0xff)
-		str = g_strdup_printf(
-			_("OS version: %s\nBOOT version: %s\nType: HW %i\nBattery: %s"), 
-			infos->os, infos->bios, infos->hw_rev, infos->battery ? "good" : "low");
-	else
-		str = g_strdup_printf(
-			_("OS version: %s\nBOOT version: %s\nBattery: %s"), 
-			infos->os, infos->bios, infos->battery ? "good" : "low");
+	if(infos->mask & INFOS_PRODUCT_NUMBER)
+	{
+		tmp = g_strdup_printf("%sProduct Number: %08x\n", str, infos->product_number);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_PRODUCT_NAME)
+	{
+		tmp = g_strdup_printf("%sProduct Name: %s\n", str, infos->product_name);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_CALC_ID)
+	{
+		tmp = g_strdup_printf("%sCalculator Id: %02x%02x%02x%02x%02x\n", str, infos->main_calc_id);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_HW_VERSION)
+	{
+		tmp = g_strdup_printf("%sHardware Version: %i\n", str, infos->hw_version);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LANG_ID)
+	{
+		tmp = g_strdup_printf("%sLanguage Id: %i %i\n", str, infos->language_id, infos->sub_lang_id);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_DEVICE_TYPE)
+	{
+		tmp = g_strdup_printf("%sDevice Type: %s\n", str, ticalcs_model_to_string(infos->device_type));
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_BOOT_VERSION)
+	{
+		tmp = g_strdup_printf("%sBoot Version: %s\n", str, infos->boot_version);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_OS_VERSION)
+	{
+		tmp = g_strdup_printf("%sOs Version: %s\n", str, infos->os_version);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_RAM_PHYS)
+	{
+		tmp = g_strdup_printf("%sPhysical RAM: %i\n", str, infos->ram_phys);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_RAM_USER)
+	{
+		tmp = g_strdup_printf("%sUser RAM: %i\n", str, infos->ram_user);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_RAM_FREE)
+	{
+		tmp = g_strdup_printf("%sFree RAM: %i\n", str, infos->ram_free);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_FLASH_PHYS)
+	{
+		tmp = g_strdup_printf("%sPhysical FLASH: %i\n", str, infos->flash_phys);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_FLASH_USER)
+	{
+		tmp = g_strdup_printf("%sUser FLASH: %i\n", str, infos->flash_user);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_FLASH_FREE)
+	{
+		tmp = g_strdup_printf("%sFree FLASH: %i\n", str, infos->flash_free);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LCD_WIDTH)
+	{
+		tmp = g_strdup_printf("%sLCD width: %i\n", str, infos->lcd_width);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LCD_HEIGHT)
+	{
+		tmp = g_strdup_printf("%sLCD height: %i\n", str, infos->lcd_height);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_BATTERY)
+	{
+		tmp = g_strdup_printf("%sBattery: %s\n", str, infos->battery ? "good" : "low");
+		g_free(str);
+		str = tmp;
+	}
 
 	gif->msg_box1(_("Information"), str);
 	g_free(str);
