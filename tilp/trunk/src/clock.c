@@ -157,12 +157,14 @@ GLADE_CB void
 clock_radiobutton3_toggled(GtkToggleButton * togglebutton,
 			   gpointer user_data)
 {
+	tmp_clk.on = 1;
 } 
 
 GLADE_CB void
 clock_radiobutton4_toggled(GtkToggleButton * togglebutton,
 			   gpointer user_data)
 {
+	tmp_clk.on = 0;
 } 
 
 GLADE_CB void
