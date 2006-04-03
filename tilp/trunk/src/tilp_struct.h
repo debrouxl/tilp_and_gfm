@@ -123,14 +123,15 @@ typedef struct
 /* Used to retrieve stats on the on-calc memory usage */
 typedef struct 
 {
-    int n_vars;			// number of vars
-    int n_folders;		// number of folders
-	int n_apps;			// number of FLASH apps
+	unsigned int n_folders;		// number of folders
+    unsigned int n_vars;		// number of vars
+	unsigned int n_apps;		// number of FLASH apps
 
-	int	mem_vars;		// memory used in RAM
-	int mem_apps;		// memory used in FLASH
+	unsigned int ram_used;
+	unsigned int flash_used;
 
-    int mem_free;		// remaining memory
+    unsigned int ram_free;
+	unsigned int flash_free;
 } TilpMem;
 
 

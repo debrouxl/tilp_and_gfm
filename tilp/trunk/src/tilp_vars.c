@@ -54,16 +54,16 @@ int tilp_dirlist_remote(void)
 	remote.memory.n_vars = ticalcs_dirlist_num_vars(remote.var_tree);
 	remote.memory.n_apps = ticalcs_dirlist_num_vars(remote.app_tree);
 	
-	remote.memory.mem_vars = ticalcs_dirlist_mem_used(remote.var_tree);
-	remote.memory.mem_apps = ticalcs_dirlist_mem_used(remote.app_tree);
+	remote.memory.ram_used = ticalcs_dirlist_mem_used(remote.var_tree);
+	remote.memory.flash_used = ticalcs_dirlist_mem_used(remote.app_tree);
 
 	if(ticalcs_calc_features(calc_handle) & FTS_MEMFREE)
 	{
 		TreeInfo *info = (TreeInfo *)((remote.var_tree)->data);
-		remote.memory.mem_free = info->mem_free;
+		remote.memory.ram_free = info->mem_free;
 	}
 	else
-		remote.memory.mem_free = -1;
+		remote.memory.ram_free = -1;
 
 	ticalcs_dirlist_display(remote.var_tree);
 	ticalcs_dirlist_display(remote.app_tree);
