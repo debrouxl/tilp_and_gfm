@@ -955,6 +955,12 @@ int tilp_calc_new_fld(void)
 	return 0;
 }
 
+#ifdef _DEBUG
+# define EXTRA_INFOS 1
+#else
+# define EXTRA_INFOS 0
+#endif
+
 int tilp_calc_get_infos(CalcInfos *infos)
 {
 	int err;
@@ -971,27 +977,10 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	if(tilp_err(err))
 		return -1;
 
+#if EXTRA_INFOS
 	if(infos->mask & INFOS_PRODUCT_NUMBER)
 	{
 		tmp = g_strdup_printf("%sProduct Number: %08x\n", str, infos->product_number);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_PRODUCT_NAME)
-	{
-		tmp = g_strdup_printf("%sProduct Name: %s\n", str, infos->product_name);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_CALC_ID)
-	{
-		tmp = g_strdup_printf("%sCalculator Id: %02x%02x%02x%02x%02x\n", str, infos->main_calc_id);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_HW_VERSION)
-	{
-		tmp = g_strdup_printf("%sHardware Version: %i\n", str, infos->hw_version);
 		g_free(str);
 		str = tmp;
 	}
@@ -1003,7 +992,44 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	}
 	if(infos->mask & INFOS_DEVICE_TYPE)
 	{
-		tmp = g_strdup_printf("%sDevice Type: %s\n", str, ticalcs_model_to_string(infos->device_type));
+		tmp = g_strdup_printf("%sDevice Type: %02x\n", str, infos->device_type);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LCD_WIDTH)
+	{
+		tmp = g_strdup_printf("%sLCD width: %i pixels\n", str, infos->lcd_width);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LCD_HEIGHT)
+	{
+		tmp = g_strdup_printf("%sLCD height: %i pixels\n", str, infos->lcd_height);
+		g_free(str);
+		str = tmp;
+	}
+	
+	{
+		tmp = g_strdup_printf("%s\n\n", str);
+		g_free(str);
+		str = tmp;
+	}
+#endif
+	if(infos->mask & INFOS_PRODUCT_NAME)
+	{
+		tmp = g_strdup_printf("%sProduct Name: <%s>\n", str, infos->product_name);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_MAIN_CALC_ID)
+	{
+		tmp = g_strdup_printf("%sCalculator Id: %s\n", str, infos->main_calc_id);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_HW_VERSION)
+	{
+		tmp = g_strdup_printf("%sHardware Version: %i\n", str, infos->hw_version);
 		g_free(str);
 		str = tmp;
 	}
@@ -1021,49 +1047,37 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	}
 	if(infos->mask & INFOS_RAM_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical RAM: %i\n", str, infos->ram_phys);
+		tmp = g_strdup_printf("%sPhysical RAM: %i bytes\n", str, infos->ram_phys);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_USER)
 	{
-		tmp = g_strdup_printf("%sUser RAM: %i\n", str, infos->ram_user);
+		tmp = g_strdup_printf("%sUser RAM: %i bytes\n", str, infos->ram_user);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_FREE)
 	{
-		tmp = g_strdup_printf("%sFree RAM: %i\n", str, infos->ram_free);
+		tmp = g_strdup_printf("%sFree RAM: %i bytes\n", str, infos->ram_free);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical FLASH: %i\n", str, infos->flash_phys);
+		tmp = g_strdup_printf("%sPhysical FLASH: %i bytes\n", str, infos->flash_phys);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_USER)
 	{
-		tmp = g_strdup_printf("%sUser FLASH: %i\n", str, infos->flash_user);
+		tmp = g_strdup_printf("%sUser FLASH: %i bytes\n", str, infos->flash_user);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_FREE)
 	{
-		tmp = g_strdup_printf("%sFree FLASH: %i\n", str, infos->flash_free);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_LCD_WIDTH)
-	{
-		tmp = g_strdup_printf("%sLCD width: %i\n", str, infos->lcd_width);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_LCD_HEIGHT)
-	{
-		tmp = g_strdup_printf("%sLCD height: %i\n", str, infos->lcd_height);
+		tmp = g_strdup_printf("%sFree FLASH: %i bytes\n", str, infos->flash_free);
 		g_free(str);
 		str = tmp;
 	}
