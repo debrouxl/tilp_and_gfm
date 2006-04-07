@@ -207,7 +207,7 @@ gint display_action_dbox(gchar *target)
 
 			// search for matching var
 			tifiles_build_fullname(c->model, full_name, v->folder, v->name);
-			trans = ticonv_varname_to_utf8(c->model, (const char *)full_name, (unsigned int)v->type);
+			trans = ticonv_varname_to_utf8(c->model, (const char *)full_name);
 
 			w = ticalcs_dirlist_var_exist(remote.var_tree, full_name);
 			if (w == NULL)
@@ -340,7 +340,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		// update var entry
 		strcpy(v->folder, tifiles_get_fldname(full_name));
 		strcpy(v->name,   tifiles_get_varname(full_name));
-		trans = ticonv_varname_to_utf8(c->model, (const char *)v->name, (unsigned int)v->type);
+		trans = ticonv_varname_to_utf8(c->model, (const char *)v->name);
 
 		// update entry
 		row_text[0] = g_strdup(trans); g_free(trans);
