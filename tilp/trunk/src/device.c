@@ -49,6 +49,7 @@ gint display_device_dbox()
 	GtkWidget *data;
 	gint result;
 	int err;
+	CalcModel cm;
 
 	xml = glade_xml_new(tilp_paths_build_glade("device-2.glade"), "device_dbox", PACKAGE);
 	if (!xml)
@@ -230,9 +231,7 @@ gint display_device_dbox()
 			goto loop;
 		}
 		else
-		{
-			CalcModel cm;
-			
+		{		
 			if(tmp.cable_model == CABLE_USB && tmp.calc_model == CALC_TI84P)
 				cm = CALC_TI84P_USB;
 			else if(tmp.cable_model == CABLE_USB && tmp.calc_model == CALC_TI89T)
@@ -259,7 +258,7 @@ gint display_device_dbox()
 		options.cable_model = tmp.cable_model;
 		options.cable_port = tmp.cable_port;
 		options.cable_timeout = tmp.cable_timeout;
-		options.calc_model = tmp.calc_model;
+		options.calc_model = cm;
 
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
