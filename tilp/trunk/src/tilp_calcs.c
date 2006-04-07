@@ -145,6 +145,8 @@ int tilp_calc_send_backup(const char *filename)
 	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
+	case CALC_TI84P_USB:
+	case CALC_TI89T_USB:
 		gif->create_pbar_type5(_("Backup"), "");
 		break;
 	default:
@@ -190,6 +192,8 @@ int tilp_calc_recv_backup(void)
 	case CALC_TI89T:
 	case CALC_TI92P:
 	case CALC_V200:
+	case CALC_TI84P_USB:
+	case CALC_TI89T_USB:
 		gif->create_pbar_type5(_("Backup"), "");
 		break;
 	case CALC_TI92:
@@ -834,6 +838,8 @@ int tilp_calc_recv_var(void)
 	case CALC_TI92:
 	case CALC_TI92P:
 	case CALC_V200:
+	case CALC_TI84P_USB:
+	case CALC_TI89T_USB:
 		return tilp_calc_recv_var1();
 		break;
 	case CALC_TI82:
