@@ -300,6 +300,7 @@ void ctree_refresh(void)
 	GtkTreeIter child_node;
 	TNode *vars, *apps;
 	int i, j;
+	unsigned char *v;
 
 	if (remote.var_tree == NULL)
 		return;
@@ -383,6 +384,16 @@ void ctree_refresh(void)
 			strcat(icon_name, ".ico");
 			tilp_file_underscorize(icon_name);
 			pix9 = create_pixbuf(icon_name);
+
+			// ticonv wrapper
+#ifdef __WIN32__
+		v = row_text[0];
+		if(v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
+		{
+			row_text[0][1] = v[3] - 0x80 + '0';
+			row_text[0][2] = '\0';
+		}
+#endif
 
 			gtk_tree_store_append(tree, &child_node, &parent_node);
 			gtk_tree_store_set(tree, &child_node, COLUMN_NAME,
