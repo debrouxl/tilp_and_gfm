@@ -114,7 +114,7 @@ static gint sort_by_attrib(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_info(void)
 {
-	g_list_sort(local.dirlist, sort_by_attrib);
+	local.dirlist = g_list_sort(local.dirlist, sort_by_attrib);
 }
 
 /* Sort variables by type */
@@ -141,7 +141,7 @@ static gint sort_by_type(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_type(void)
 {
-	g_list_sort(local.dirlist, sort_by_type);
+	local.dirlist = g_list_sort(local.dirlist, sort_by_type);
 }
 
 /* Sort variables by size */
@@ -168,7 +168,7 @@ static gint sort_by_size(gconstpointer a, gconstpointer b)
 
 void tilp_vars_sort_by_size(void)
 {
-	g_list_sort(local.dirlist, sort_by_size);
+	local.dirlist = g_list_sort(local.dirlist, sort_by_size);
 }
 
 /* Misc */
