@@ -2,6 +2,10 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 03/04/2006, version 0.09 (0.0.7, 0.0.8, 0.1.2, 0.0.3): roms
+	- added USB hand-helds support
+	- re-map 0x2080..9 chars into the ctree
+
 - 03/02/2006, version 0.08 (0.0.7, 0.0.6, 0.1.0, 0.0.1): roms (testing phase: ~260 tests)
 	- the right view did not filter file types correctly
 	- user's suggestion: automatically change for detected cable/calc.
