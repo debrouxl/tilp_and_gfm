@@ -928,8 +928,8 @@ int tilp_calc_new_fld(void)
 {
 	gchar *fldname = NULL;
 	int err;
-	VarEntry vr = { 0 };
-	VarEntry ve = { 0 };
+	VarEntry vr;
+	VarEntry ve;
 
 	if(tilp_calc_isready())
 		return -1;
@@ -943,6 +943,8 @@ int tilp_calc_new_fld(void)
 
 	gif->create_pbar_type2(_("Creating folder"), "Please wait...");
 
+	memset(&ve, 0, sizeof(ve));
+	memset(&vr, 0, sizeof(vr));
 	strcpy(vr.folder, fldname);
 	err = ticalcs_calc_new_fld(calc_handle, &vr);
 	if(tilp_err(err))
@@ -1053,37 +1055,43 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	}
 	if(infos->mask & INFOS_RAM_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical RAM: %i bytes\n", str, infos->ram_phys);
+		tmp = g_strdup_printf("%sPhysical RAM: %u bytes\n", str, 
+				      (unsigned int)infos->ram_phys);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_USER)
 	{
-		tmp = g_strdup_printf("%sUser RAM: %i bytes\n", str, infos->ram_user);
+		tmp = g_strdup_printf("%sUser RAM: %u bytes\n", str, 
+				      (unsigned int)infos->ram_user);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_FREE)
 	{
-		tmp = g_strdup_printf("%sFree RAM: %i bytes\n", str, infos->ram_free);
+		tmp = g_strdup_printf("%sFree RAM: %u bytes\n", str, 
+				      (unsigned int)infos->ram_free);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical FLASH: %i bytes\n", str, infos->flash_phys);
+		tmp = g_strdup_printf("%sPhysical FLASH: %u bytes\n", str, 
+				      (unsigned int)infos->flash_phys);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_USER)
 	{
-		tmp = g_strdup_printf("%sUser FLASH: %i bytes\n", str, infos->flash_user);
+		tmp = g_strdup_printf("%sUser FLASH: %u bytes\n", str, 
+				      (unsigned int)infos->flash_user);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_FREE)
 	{
-		tmp = g_strdup_printf("%sFree FLASH: %i bytes\n", str, infos->flash_free);
+		tmp = g_strdup_printf("%sFree FLASH: %u bytes\n", str, 
+				      (unsigned int)infos->flash_free);
 		g_free(str);
 		str = tmp;
 	}
