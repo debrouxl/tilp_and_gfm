@@ -100,7 +100,7 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 
 	// create a new selection
 	list = gtk_tree_selection_get_selected_rows(selection, &model);
-	printf("---> %i\n", g_list_length(list));
+	//printf("---> %i\n", g_list_length(list));
 	while (list != NULL) 
 	{
 		GtkTreePath *path = list->data;
