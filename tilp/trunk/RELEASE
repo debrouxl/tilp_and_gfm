@@ -2,8 +2,8 @@
 
 
 
-Previous version: 0.03		(28/01/2006)
-Current version:  0.08		(06/03/2006)
+Previous version: 0.08		(06/03/2006)
+Current version:  0.09		(14/03/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -25,40 +25,19 @@ Note: direct USB cable of TI84+ / TI89 Titanium is currenly _unusable_ by TiLP
 New capabilities:
 -----------------
 
-	- TiGroup (*.tig) file support (read only)
+	- TI84+ with USB support (beware: experimental !)
 
 
 Improvements:
 -------------
 
-	- better handling of filenames with international characters
-	- rewrite target fodler when dropping selection to a specific folder
-	- ungroup TI82/85 files when option is set to 'single'
-	- removed 'exit home dir' limitation/security
-	- make hand-held goes to HOME when not ready
-	- doesn't request systematically a dirlist before sending variables. Instead, TiLP manages a kind of cache.
-	- added skip/retry/cancel box when sending/receiving several files
-	- automatically change for detected cable/calc in the device box
-	- don't list some system variables which appears in dirlist: regCoef and regEq.
+	- none
 
 
 Bug fixes:
 ----------
 
-	- win32 file selector
-	- #1430307: "full path on cmd line"
-	- #1397587: manual page updated
-	- the right view did not filter file types correctly
-	- directory list is now free'd
-	- displaying of greek chars in the action dbox.
-	- can't load pdf/eps files
-	- warnings with progress bars
-	- don't update dirlist with TI82/85
-	- don't display hw revision for TI8x calcs
-	- OS version formatting
-	- TI73 sending & receiving of FLASH apps
-	- [win32] ParallelLink is available again
-	- command line argument passing => TiLP can send files from the Explorer
+	- none
 
 
 Known bugs:
@@ -66,7 +45,7 @@ Known bugs:
 
 	- the refreshing of the local frame may crash TiLP under some circumstances
 	- need to close/re-open TiLP when the SilverLink is stalled (= blocked)
-	- many cables (GrayLink & SilverLink use up to 100% of CPU when running)
+	- many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
 
 
 Bug report:
