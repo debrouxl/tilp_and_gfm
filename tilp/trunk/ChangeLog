@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 15/04/2006, version 0.10 (0.0.7, 0.1.0, 0.1.2, 0.0.3): roms
+	- follows ticalcs2 changes in the API
+
 - 03/04/2006, version 0.09 (0.0.7, 0.0.8, 0.1.2, 0.0.3): roms
 	- added USB hand-helds support
 	- re-map 0x2080..9 chars into the ctree

@@ -354,7 +354,7 @@ int tilp_calc_send_flash_app(char *filename)
 		ticables_options_set_timeout(cable_handle, 100);
 
 	gif->create_pbar_type3(_("Flash"));
-	err = ticalcs_calc_send_flash2(calc_handle, filename);
+	err = ticalcs_calc_send_app2(calc_handle, filename);
 	gif->destroy_pbar();
 
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
@@ -369,7 +369,7 @@ int tilp_calc_send_flash_app(char *filename)
 /*
   Send a FLASH Operating System (AMS).
   Note: the timeout is increased to 10 seconds during the operation.
-  Note2: the timeout is set to 30 seconds during operation tdue to garbage collection attempt
+  Note2: the timeout is set to 30 seconds during operation due to garbage collection attempt
 	(TI83+ only, bug #738486)
 */
 int tilp_calc_send_flash_os(char *filename)
@@ -400,7 +400,7 @@ int tilp_calc_send_flash_os(char *filename)
 		ticables_options_set_timeout(cable_handle, 100);
 
 	gif->create_pbar_type3(_("Flash"));
-	err = ticalcs_calc_send_flash2(calc_handle, filename);
+	err = ticalcs_calc_send_os2(calc_handle, filename);
 	gif->destroy_pbar();
 
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
@@ -451,7 +451,7 @@ int tilp_calc_recv_flash_app(void)
 			return 0;
 		}
 
-		err = ticalcs_calc_recv_flash2(calc_handle, dst, ve);
+		err = ticalcs_calc_recv_app2(calc_handle, dst, ve);
 		if(err) 
 		{
 			tilp_err(err);
