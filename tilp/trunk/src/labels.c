@@ -91,6 +91,8 @@ static char* format(char *src, char *dst)
 	return dst;
 }
 
+extern const char* format_bytes(unsigned long value);
+
 /* Refresh the info window */
 void labels_refresh(void)
 {
@@ -100,9 +102,9 @@ void labels_refresh(void)
 	gchar path[256];
 
 	if(remote.memory.ram_free == -1)
-		snprintf(str, sizeof(str), _("Memory used: %u bytes"), remote.memory.ram_used);
+		snprintf(str, sizeof(str), _("Memory used: %s"), format_bytes(remote.memory.ram_used));
 	else
-		snprintf(str, sizeof(str), _("Memory free: %u bytes"), remote.memory.ram_free);
+		snprintf(str, sizeof(str), _("Memory free: %s"), format_bytes(remote.memory.ram_free));
 
 	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
 	
