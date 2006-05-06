@@ -18,13 +18,12 @@ See README.linux, README.win32 or README.freebsd according to your
 platform for more informations.
 
 All physical link cables are supported by TiLP: parallel, serial, 
-BlackLink, GrayLink, AVRlink and SilverLink.
+BlackLink, GrayLink, AVRlink, SilverLink and DirectLink.
 TiLP also support some virtual links: one for VirtualTI, the other one for
 GtkTiEmu.
 
 Note1: the SilverLink cable may not work fine TI82/85.
-Note2: direct USB cable of TI84+ / TI89 Titanium is currenly unusable by TiLP 
-			 but supported	by our driver.
+Note2: sending of OS, remote control and certificates are not supported by DirectLink yet.
 
 Supported calculators are: 
 	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
