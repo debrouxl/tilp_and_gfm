@@ -3,7 +3,7 @@ SubVersion: $Id$
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 06/05/2006, version 0.11 (0.0.7, 0.1.1, 0.1.2, 0.0.3): roms
-	- added a new label which display FLASH free/used
+	- added a new label which display RAM/FLASH free &used
 	- show more levels in the current path
 
 - 15/04/2006, version 0.10 (0.0.7, 0.1.0, 0.1.2, 0.0.3): roms

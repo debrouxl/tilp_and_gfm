@@ -98,10 +98,11 @@ extern const char* format_bytes(unsigned long value);
 /* Refresh the info window */
 void labels_refresh(void)
 {
-	gchar str[256];
 	gsize br, bw;
 	gchar *utf8;
 	gchar path[1024];
+
+	gchar *str, *str1, *str2;
 
 	/* path */	
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
@@ -111,16 +112,26 @@ void labels_refresh(void)
 	gtk_label_set_text(GTK_LABEL(label_wnd.label22), path);
 
 	/* RAM */
+	str1 = g_strdup(format_bytes(remote.memory.ram_used));
+	str2 = g_strdup(format_bytes(remote.memory.ram_free));
+
 	if(remote.memory.ram_free == -1)
-		snprintf(str, sizeof(str), _("RAM used: %s"), format_bytes(remote.memory.ram_used));
+		str = g_strdup_printf(_("RAM used: %s"), str1);
 	else
-		snprintf(str, sizeof(str), _("RAM free: %s"), format_bytes(remote.memory.ram_free));
+		str = g_strdup_printf(_("RAM used: %s & free: %s"), str1, str2);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
 
 	/* FLASH */
+	str1 = g_strdup(format_bytes(remote.memory.flash_used));
+	str2 = g_strdup(format_bytes(remote.memory.flash_free));
+
 	if(remote.memory.flash_free == -1)
-		snprintf(str, sizeof(str), _("FLASH used: %s"), format_bytes(remote.memory.flash_used));
+		str = g_strdup_printf(_("FLASH used: %s"), str1);
 	else
-		snprintf(str, sizeof(str), _("FLASH free: %s"), format_bytes(remote.memory.flash_free));
+		str = g_strdup_printf(_("FLASH used: %s & free: %s"), str1, str2);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label23), str);
+
+	g_free(str1);
+	g_free(str2);
+	g_free(str);
 }
