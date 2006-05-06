@@ -19,6 +19,7 @@ gchar *s = N_("Receive variables from non-silent calculators.");
 gchar *s = N_("Send");
 gchar *s = N_("Calculator files");
 gchar *s = N_("0 bytes free/used");
+gchar *s = N_("0 bytes free/used");
 gchar *s = N_("Memory:");
 gchar *s = N_("Create a new directory.");
 gchar *s = N_("MkDir");

@@ -33,7 +33,9 @@ struct label_window label_wnd = { 0 };
 #define snprintf _snprintf
 #endif
 
-static char* format(char *src, char *dst)
+#define PATH_LEVEL	10
+
+static char* format_path(char *src, char *dst)
 {
 	char header[5];		// "C:\" as Win32 or "/" as Linux)
 	char *path;			// leading path
@@ -64,7 +66,7 @@ static char* format(char *src, char *dst)
 		p++;
 	}
 
-	if(n <= 2)
+	if(n < PATH_LEVEL)
 		strcpy(dst, src);
 	else {
 		left = strdup(path);
@@ -99,19 +101,26 @@ void labels_refresh(void)
 	gchar str[256];
 	gsize br, bw;
 	gchar *utf8;
-	gchar path[256];
+	gchar path[1024];
 
-	if(remote.memory.ram_free == -1)
-		snprintf(str, sizeof(str), _("Memory used: %s"), format_bytes(remote.memory.ram_used));
-	else
-		snprintf(str, sizeof(str), _("Memory free: %s"), format_bytes(remote.memory.ram_free));
-
-	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
-	
+	/* path */	
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
-	format(utf8, path);
+	format_path(utf8, path);
 	g_free(utf8);
 
-	snprintf(str, sizeof(str), _("Folder: %s"), path);
-	gtk_label_set_text(GTK_LABEL(label_wnd.label22), str);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label22), path);
+
+	/* RAM */
+	if(remote.memory.ram_free == -1)
+		snprintf(str, sizeof(str), _("RAM used: %s"), format_bytes(remote.memory.ram_used));
+	else
+		snprintf(str, sizeof(str), _("RAM free: %s"), format_bytes(remote.memory.ram_free));
+	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
+
+	/* FLASH */
+	if(remote.memory.flash_free == -1)
+		snprintf(str, sizeof(str), _("FLASH used: %s"), format_bytes(remote.memory.flash_used));
+	else
+		snprintf(str, sizeof(str), _("FLASH free: %s"), format_bytes(remote.memory.flash_free));
+	gtk_label_set_text(GTK_LABEL(label_wnd.label23), str);
 }

@@ -52,6 +52,7 @@ extern struct label_window
 {
 	GtkWidget* label21;
 	GtkWidget* label22;
+	GtkWidget* label23;
 } label_wnd;
 
 /* This struct is used to display and manage the progress bar dialog box */

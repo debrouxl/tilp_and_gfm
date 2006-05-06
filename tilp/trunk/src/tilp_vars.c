@@ -64,6 +64,7 @@ int tilp_dirlist_remote(void)
 	}
 	else
 		remote.memory.ram_free = -1;
+	remote.memory.flash_free = -1;
 
 	ticalcs_dirlist_display(remote.var_tree);
 	ticalcs_dirlist_display(remote.app_tree);
