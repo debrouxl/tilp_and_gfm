@@ -400,7 +400,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	tilp_info("Searching for link cables...");
 	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
 	GTK_REFRESH();
-	ticables_probing_do(&cables, 5);
+	ticables_probing_do(&cables, 5, PROBE_ALL);
 	for(i = 1; i <= 5/*7*/; i++)
 		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
 
