@@ -42,6 +42,26 @@ static GtkWidget* om_cable;
 static GtkWidget* om_calc;
 static GtkWidget* om_port;
 
+static CalcModel remap_from_usb(CableModel cable, CalcModel calc)
+{
+	if(cable == CABLE_USB && calc == CALC_TI84P_USB)
+		return CALC_TI84P;
+	else if(cable == CABLE_USB && calc == CALC_TI89T_USB)
+		return  CALC_TI89T;
+	else
+		return calc;
+}
+
+static CalcModel remap_to_usb(CableModel cable, CalcModel calc)
+{
+	if(cable == CABLE_USB && calc == CALC_TI84P)
+		return CALC_TI84P_USB;
+	else if(cable == CABLE_USB && calc == CALC_TI89T)
+		return  CALC_TI89T_USB;
+	else
+		return calc;
+}
+
 gint display_device_dbox()
 {
 	GladeXML *xml;
@@ -220,7 +240,7 @@ gint display_device_dbox()
 		// re-map cable&calc
 #ifdef _NDEBUG
 		if(tmp.cable_model == CABLE_USB)
-			gif->msg_box1("Information", "Beware: DirectLink cable support is curently experimental and being implemented for TI84+ only !");
+			gif->msg_box1("Information", "Beware: DirectLink cable support is curently experimental and being implemented");
 #endif
 
 		// copy options
@@ -231,13 +251,8 @@ gint display_device_dbox()
 			goto loop;
 		}
 		else
-		{		
-			if(tmp.cable_model == CABLE_USB && tmp.calc_model == CALC_TI84P)
-				cm = CALC_TI84P_USB;
-			else if(tmp.cable_model == CABLE_USB && tmp.calc_model == CALC_TI89T)
-				cm = CALC_TI89T_USB;
-			else
-				cm = tmp.calc_model;
+		{	
+			cm = remap_to_usb(tmp.cable_model, tmp.calc_model);
 
 			calc_handle = ticalcs_handle_new(cm);
 			if(calc_handle == NULL)
@@ -440,7 +455,14 @@ finished:
 		return;
 	}
 
-	ticalcs_probe_calc(handle, &calc_model);
+	if(cable_model != CABLE_USB)
+	{
+		ticalcs_probe_calc(handle, &calc_model);
+	}
+	else
+	{
+		ticalcs_probe_usb_calc(handle, &calc_model);
+	}
 	s = g_strdup_printf("Found: %s %s %s", 
 		ticalcs_model_to_string(calc_model),
 		ticables_model_to_string(cable_model),
@@ -451,6 +473,8 @@ finished:
 
 	ticables_cable_close(handle);
 	ticables_handle_del(handle);
+
+	calc_model = remap_from_usb(cable_model, calc_model);
 
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
