@@ -35,6 +35,7 @@
 int tilp_dirlist_remote(void)
 {
 	int err;
+	TreeInfo *ti;
 
 	// delete old trees
 	ticalcs_dirlist_destroy(&remote.var_tree);
@@ -51,20 +52,26 @@ int tilp_dirlist_remote(void)
 	}
 	gif->destroy_pbar();
 
+	// count entries
 	remote.memory.n_vars = ticalcs_dirlist_num_vars(remote.var_tree);
 	remote.memory.n_apps = ticalcs_dirlist_num_vars(remote.app_tree);
-	
-	remote.memory.ram_used = ticalcs_dirlist_mem_used(remote.var_tree);
-	remote.memory.flash_used = ticalcs_dirlist_mem_used(remote.app_tree);
 
+	// get mem used stats
+	ti = remote.var_tree->data;
+	remote.memory.ram_used = ti->mem_used;
+	ti = remote.app_tree->data;
+	remote.memory.flash_used = ti->mem_used;
+	
+	// get mem free stats
 	if(ticalcs_calc_features(calc_handle) & FTS_MEMFREE)
 	{
-		TreeInfo *info = (TreeInfo *)((remote.var_tree)->data);
-		remote.memory.ram_free = info->mem_free;
+		ticalcs_calc_get_memfree(calc_handle, &remote.memory.ram_free, &remote.memory.flash_free);
 	}
 	else
+	{
+		remote.memory.flash_free = -1;
 		remote.memory.ram_free = -1;
-	remote.memory.flash_free = -1;
+	}
 
 	ticalcs_dirlist_display(remote.var_tree);
 	ticalcs_dirlist_display(remote.app_tree);
