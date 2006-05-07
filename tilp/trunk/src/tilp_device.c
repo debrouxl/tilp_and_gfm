@@ -158,104 +158,92 @@ step3:
 	return ret;
 }
 
-static CableModel cable_model;
-static CalcModel calc_model;
-static CablePort cable_port;
-
 /* Scan for cables & devices. Scan order is time increasing */
-int tilp_device_probe_all(CableModel* cable, CalcModel* calc)
+int tilp_device_probe_all(int ***result)
 {
-#if 0
-	int i, j;
-	int **cables;
+	int **array;
+	int i;
+	int cable, port, calc;
+	int found;
 	CableHandle* handle;
-	int err, ret;
+	int err;
 	gchar *s;
 
+	// search for cables
 	tilp_info("Searching for link cables...");
+	ticables_probing_do(&array, 5, PROBE_ALL);
+	*result = array;
 
-	// search for USB cables (faster)
-	ret = ticables_probing_do(&cables, 5, PROBE_USB);
-	if(!ret) goto step2;
-	
-	// search for hand-held
+	for(i = 1; i <= 5; i++)
+		printf("%i: %i %i %i %i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
 
-	err = ticalcs_probe_usb_calc(handle, &calc_model);
-
-	tilp_info("Searching for hand-helds on %i:%i...", 
-		  cable_model, cable_port);
-	
-	handle = ticables_handle_new(cable_model, cable_port);
-	ticables_options_set_timeout(handle, 10);
-
-	err = ticables_cable_open(handle);
-	if(err)
-	{
-		tilp_err(err);
-		ticables_handle_del(handle);
-
+	// found at least 1 cable ?
+	for(cable = CABLE_GRY; cable <= CABLE_USB; cable++)
+		for(port = PORT_1; port <= PORT_4; port++)
+			if(array[cable][port])
+				found = 1;
+	if(!found)
 		return -1;
-	}
 
-	ticables_probing_finish(&cables);
+	// search for devices on all cables
+	for(cable = CABLE_GRY; cable <= CABLE_USB; cable++)
+	{
+		for(port = PORT_1; port <= PORT_4; port++)
+		{
+			tilp_info("Searching for hand-helds on %i:%i...", 
+				  cable, port);
 
-step2:
+			if(!array[cable][port])
+				continue;
+			
+			handle = ticables_handle_new(cable, port);
+			ticables_options_set_timeout(handle, 10);
 
-	ticables_probing_do(&cables, 5, PROBE_ALL);
-	for(i = 1; i <= 5/*7*/; i++)
-		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
-
-	cable_model = cable_port = calc_model = 0;
-	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
-		for(j = PORT_1; j <= PORT_4; j++)
-			if(cables[i][j])	// && ((i >= CABLE_VTI) && (j == PORT_2)))
+			err = ticables_cable_open(handle);
+			if(err)
 			{
-				cable_model = i;
-				cable_port = j;
-				goto finished;
+				ticables_handle_del(handle);
+				array[cable][port] = CALC_NONE;
+				continue;
 			}
-finished:
-	ticables_probing_finish(&cables);
 
-	if(!cable_model && !cable_port)
-		return -1;
+			if(cable != CABLE_USB)
+			{
+				err = ticalcs_probe_calc(handle, &calc);
+				if(err)
+				{
+					array[cable][port] = CALC_NONE;
+					goto reloop;
+				}
+				array[cable][port] = calc;
+			}
+			else
+			{
+				err = ticalcs_probe_usb_calc(handle, &calc);
+				if(err)
+				{
+					array[cable][port] = CALC_NONE;
+					goto reloop;
+				}
+				array[cable][port] = calc;
+			}
+			s = g_strdup_printf("Found: %s on %s:%s", 
+				ticalcs_model_to_string(calc),
+				ticables_model_to_string(cable),
+				ticables_port_to_string(port));
+			tilp_info(s);
+			g_free(s);
 
-	// search for devices
-	tilp_info("Searching for hand-helds on %i:%i...", 
-		  cable_model, cable_port);
-	
-	handle = ticables_handle_new(cable_model, cable_port);
-	ticables_options_set_timeout(handle, 10);
-
-	err = ticables_cable_open(handle);
-	if(err)
-	{
-		tilp_err(err);
-		ticables_handle_del(handle);
-
-		return -1;
+reloop:
+			ticables_cable_close(handle);
+			ticables_handle_del(handle);
+		}
 	}
 
-	if(cable_model != CABLE_USB)
-	{
-		ticalcs_probe_calc(handle, &calc_model);
-	}
-	else
-	{
-		ticalcs_probe_usb_calc(handle, &calc_model);
-	}
-	s = g_strdup_printf("Found: %s %s %s", 
-		ticalcs_model_to_string(calc_model),
-		ticables_model_to_string(cable_model),
-		ticables_port_to_string(cable_port));
-	tilp_info(s);
-	g_free(s);
+	// show results
+	for(i = 1; i <= 5; i++)
+		printf("%i: %02i %02i %02i %02i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
 
-	ticables_cable_close(handle);
-	ticables_handle_del(handle);
-
-	calc_model = remap_from_usb(cable_model, calc_model);
-#endif
 	return 0;
 }
 
@@ -308,3 +296,80 @@ int tilp_device_close(void)
 
 	return err;
 }
+
+#if 0
+int i, j;
+	int **cables;
+	CableHandle* handle;
+	int err;
+	gchar *s;
+
+	// search for cables
+	tilp_info("Searching for link cables...");
+	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
+	GTK_REFRESH();
+	ticables_probing_do(&cables, 5, PROBE_ALL);
+	for(i = 1; i <= 5/*7*/; i++)
+		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
+
+	cable_model = cable_port = calc_model = 0;
+	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
+		for(j = PORT_1; j <= PORT_4; j++)
+			if(cables[i][j])	// && ((i >= CABLE_VTI) && (j == PORT_2)))
+			{
+				cable_model = i;
+				cable_port = j;
+				goto finished;
+			}
+finished:
+	ticables_probing_finish(&cables);
+
+	if(!cable_model && !cable_port)
+	{
+		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
+		return;
+	}
+
+	// search for devices
+	tilp_info("Searching for hand-helds on %i:%i...", 
+		  cable_model, cable_port);
+	gtk_label_set_text(GTK_LABEL(lbl), "Searching for hand-helds...");
+	GTK_REFRESH();
+	
+	handle = ticables_handle_new(cable_model, cable_port);
+	ticables_options_set_timeout(handle, 10);
+
+	err = ticables_cable_open(handle);
+	if(err)
+	{
+		tilp_err(err);
+		ticables_handle_del(handle);
+		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
+		return;
+	}
+
+	if(cable_model != CABLE_USB)
+	{
+		ticalcs_probe_calc(handle, &calc_model);
+	}
+	else
+	{
+		ticalcs_probe_usb_calc(handle, &calc_model);
+	}
+	s = g_strdup_printf("Found: %s %s %s", 
+		ticalcs_model_to_string(calc_model),
+		ticables_model_to_string(cable_model),
+		ticables_port_to_string(cable_port));
+	gtk_label_set_text(GTK_LABEL(lbl), s);
+	GTK_REFRESH();
+	g_free(s);
+
+	ticables_cable_close(handle);
+	ticables_handle_del(handle);
+
+	calc_model = tilp_remap_from_usb(cable_model, calc_model);
+
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
+#endif

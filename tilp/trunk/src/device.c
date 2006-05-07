@@ -356,81 +356,9 @@ GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
-#if 0
-	int i, j;
-	int **cables;
-	CableHandle* handle;
-	int err;
-	gchar *s;
+	int **array;
 
-	// search for cables
-	tilp_info("Searching for link cables...");
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
-	GTK_REFRESH();
-	ticables_probing_do(&cables, 5, PROBE_ALL);
-	for(i = 1; i <= 5/*7*/; i++)
-		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
-
-	cable_model = cable_port = calc_model = 0;
-	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
-		for(j = PORT_1; j <= PORT_4; j++)
-			if(cables[i][j])	// && ((i >= CABLE_VTI) && (j == PORT_2)))
-			{
-				cable_model = i;
-				cable_port = j;
-				goto finished;
-			}
-finished:
-	ticables_probing_finish(&cables);
-
-	if(!cable_model && !cable_port)
-	{
-		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
-		return;
-	}
-
-	// search for devices
-	tilp_info("Searching for hand-helds on %i:%i...", 
-		  cable_model, cable_port);
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for hand-helds...");
-	GTK_REFRESH();
-	
-	handle = ticables_handle_new(cable_model, cable_port);
-	ticables_options_set_timeout(handle, 10);
-
-	err = ticables_cable_open(handle);
-	if(err)
-	{
-		tilp_err(err);
-		ticables_handle_del(handle);
-		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
-		return;
-	}
-
-	if(cable_model != CABLE_USB)
-	{
-		ticalcs_probe_calc(handle, &calc_model);
-	}
-	else
-	{
-		ticalcs_probe_usb_calc(handle, &calc_model);
-	}
-	s = g_strdup_printf("Found: %s %s %s", 
-		ticalcs_model_to_string(calc_model),
-		ticables_model_to_string(cable_model),
-		ticables_port_to_string(cable_port));
-	gtk_label_set_text(GTK_LABEL(lbl), s);
-	GTK_REFRESH();
-	g_free(s);
-
-	ticables_cable_close(handle);
-	ticables_handle_del(handle);
-
-	calc_model = tilp_remap_from_usb(cable_model, calc_model);
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
-#endif
+	tilp_device_probe_all(&array);
+	ticables_probing_finish(&array);
 }
 

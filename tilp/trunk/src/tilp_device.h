@@ -26,7 +26,7 @@ CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc);
 CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc);
 
 int tilp_device_probe_usb(CableModel* cable, CablePort* port, CalcModel* calc);
-int tilp_device_probe_all(CableModel* cable, CalcModel* calc);
+int tilp_device_probe_all(int ***result);
 
 int tilp_device_open(void);
 int tilp_device_close(void);
