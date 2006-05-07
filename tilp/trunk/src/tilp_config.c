@@ -88,7 +88,7 @@ int tilp_config_default(void)
 	options.screen_clipping = SCREEN_CLIPPED;
 	options.screen_blurry = 0;
 
-	options.auto_detect = 1;
+	options.auto_detect = 0;
 	options.recv_as_group = 1;
 
 	options.cable_model = CABLE_NUL;

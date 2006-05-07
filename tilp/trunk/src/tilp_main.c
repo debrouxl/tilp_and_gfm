@@ -116,6 +116,18 @@ int tilp_init(int *argc, char ***argv)
 	/* 
 	   Set cable & calc
 	*/
+	if(options.auto_detect)
+	{
+		int ret, cable, calc, port;
+		ret = tilp_device_probe_usb(&cable, &port, &calc);
+		if(!ret)
+		{
+			options.cable_model = cable;
+			options.cable_port = port;
+			options.calc_model = calc;
+		}
+	}
+
 	tilp_device_open();
 
 	/* 

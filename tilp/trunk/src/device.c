@@ -191,6 +191,9 @@ gint display_device_dbox()
 	data = glade_xml_get_widget(xml, "spinbutton_comm_delay");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.cable_delay);
 
+	data = glade_xml_get_widget(xml, "checkbutton1");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
+
 	// Avoid early callbacks
 	tmp.cable_delay = options.cable_delay;
 	tmp.cable_model = options.cable_model;
@@ -321,10 +324,10 @@ comm_calc_activate                     (GtkMenuItem     *menuitem,
 
 
 GLADE_CB void
-comm_checkbutton_calc_auto_toggled     (GtkToggleButton *togglebutton,
+comm_checkbutton1_toggled     (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-  	//if (togglebutton->active == TRUE)
+	options.auto_detect = togglebutton->active;
 }
 
 
@@ -430,3 +433,4 @@ finished:
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
 #endif
 }
+

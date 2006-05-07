@@ -76,13 +76,12 @@ static int found_port(int *ports)
 }
 
 /* Scan for USB devices only (fast) */
-int tilp_probe_usb(CableModel* cable_model, CalcModel* calc_model)
+int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* calc_model)
 {
 	int err;
 	int ret = -1;
 	int **cables;
 	CableHandle* handle;
-	int port;
 
 	// search for all USB cables (faster)
 	tilp_info("Searching for link cables...");
@@ -94,11 +93,11 @@ int tilp_probe_usb(CableModel* cable_model, CalcModel* calc_model)
 	}
 
 	// search for DirectLink devices
-	port = found_port(cables[CABLE_USB]);
-	if(port)
+	*port = found_port(cables[CABLE_USB]);
+	if(*port)
 	{
 		tilp_info("Searching for hand-helds on DirectLink...");
-		handle = ticables_handle_new(CABLE_USB, port);
+		handle = ticables_handle_new(CABLE_USB, *port);
 		ticables_options_set_timeout(handle, 10);
 
 		err = ticables_cable_open(handle);
@@ -125,11 +124,11 @@ int tilp_probe_usb(CableModel* cable_model, CalcModel* calc_model)
 	
 step2:
 	// search for SilverLink devices
-	port = found_port(cables[CABLE_SLV]);
-	if(port)
+	*port = found_port(cables[CABLE_SLV]);
+	if(*port)
 	{
 		tilp_info("Searching for hand-helds on SilverLink...");
-		handle = ticables_handle_new(CABLE_SLV, port);
+		handle = ticables_handle_new(CABLE_SLV, *port);
 		ticables_options_set_timeout(handle, 10);
 
 		err = ticables_cable_open(handle);
@@ -164,7 +163,7 @@ static CalcModel calc_model;
 static CablePort cable_port;
 
 /* Scan for cables & devices. Scan order is time increasing */
-int tilp_probe_all(CableModel* cable, CalcModel* calc)
+int tilp_device_probe_all(CableModel* cable, CalcModel* calc)
 {
 #if 0
 	int i, j;
