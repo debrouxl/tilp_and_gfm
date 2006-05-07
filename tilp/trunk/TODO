@@ -27,6 +27,42 @@ dragging. This is somewhat confusing. (In other words, dragging should
 not also count as clicking.)
 >>
 
+- suggestions from O. Armand:
+<<
+Pour le débit j'ai 65kb/s !! (sachant que c'est le code de TI côté
+calc, donc pas forcément un truc optimisé...) A moins que ce soit même
+plus, car j'ai parfois un overflow qui fait afficher "Rate: -1,$
+Kbytes/s". J'aimerais bien savoir en combien de secondes un OS peut
+être flashé avec ça.
+
+Concernant le problème des libti* :
+> J'ai resorti des fichiers Ti-Connect de TI89/Titanium/92+: 0: none, 1:
+> locked et 2: archived. J'ai corrigé ma doc en conséquence.
+> Concernant TiEmu, ma tifile semble etre bugguée (3 au lieu de 2).
+> Je vais regarder çà de + près et te tenir au courant.
+Tu penses pouvoir corriger ça prochainement ? (parce que là les
+fichiers de groupe générés par TI-Vibe ne peuvent pas être envoyés
+avec TILP :( ).
+Il y a un autre truc bizarre, c'est que les dossiers de destination
+des fichiers de groupe des fichiers générés ne sont pas pris en
+compte, tout est envoyé dans main... (cf l'exemple ci-joint).
+
+Et un truc qui n'est peut-être pas spécifique au DirectLink (je ne
+sais pas trop, je n'utilise pas TiLP d'habitude) : c'est dommage que
+"Invalid packet. Cause: a transmission error" soit affiché au lieu de
+messages d'erreur plus expicites, par exemple quand on essaie
+d'écraser une variable archivée ou quand il n'y a plus assez de
+mémoire.
+Et c'est aussi dommage que lorsqu'on le lance depuis l'explorateur
+Windows via une association de fichier, il ne propose pas d'écraser un
+fichier s'il existe déjà en RAM (ou l'écraser par défaut), plutôt que
+de retourner le message d'erreur ci-dessus.
+Pendant qu'on est dans TiLP, un autre truc qui serait pratique, ce
+serait de pouvoir taper directement le chemin d'accès du dossier
+courant (comme on peut par exemple le faire dans l'explorateur
+Windows), plutôt que de devoir passer par l'UI.
+>>
+
 + = done.
 * = in progress.
 - = to do...

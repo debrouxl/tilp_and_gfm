@@ -48,8 +48,6 @@ gint display_device_dbox()
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
-	int err;
-	CalcModel cm;
 
 	xml = glade_xml_new(tilp_paths_build_glade("device-2.glade"), "device_dbox", PACKAGE);
 	if (!xml)
@@ -199,62 +197,32 @@ gint display_device_dbox()
 	tmp.cable_port = options.cable_port;
 	tmp.cable_timeout = options.cable_timeout;
 	tmp.calc_model = options.calc_model;
-
-	// Close handles
-	// detach cable (made by handle_del, too)
-	err = ticalcs_cable_detach(calc_handle);
-	if(tilp_err(err))
-		return -1;
-
-	// remove calc & cable
-	ticalcs_handle_del(calc_handle);
-	ticables_handle_del(cable_handle);
 	
-	// Loop
- loop:
+	// Dialog box
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) 
 	{
-	case GTK_RESPONSE_OK:
 	case GTK_RESPONSE_CANCEL:
-		// re-map cable&calc
+		break;
+	case GTK_RESPONSE_OK:
 #ifdef _NDEBUG
 		if(tmp.cable_model == CABLE_USB)
 			gif->msg_box1("Information", "Beware: DirectLink cable support is curently experimental and being implemented");
 #endif
+		// set cable
+		tilp_device_close();
 
 		// copy options
-		cable_handle = ticables_handle_new(tmp.cable_model, tmp.cable_port);
-		if(cable_handle == NULL)
-		{
-			gif->msg_box1("Error", "Can't set cable");
-			goto loop;
-		}
-		else
-		{	
-			cm = tilp_remap_to_usb(tmp.cable_model, tmp.calc_model);
-
-			calc_handle = ticalcs_handle_new(cm);
-			if(calc_handle == NULL)
-			{
-				gif->msg_box1("Error", "Can't set cable");
-				goto loop;
-			}
-			else
-			{
-				err = ticalcs_cable_attach(calc_handle, cable_handle);
-				tilp_err(err);
-			}
-			ticables_options_set_timeout(cable_handle, tmp.cable_timeout);
-			ticables_options_set_delay(cable_handle, tmp.cable_delay);
-		}
-
 		options.cable_delay = tmp.cable_delay;
 		options.cable_model = tmp.cable_model;
 		options.cable_port = tmp.cable_port;
 		options.cable_timeout = tmp.cable_timeout;
-		options.calc_model = cm;
+		options.calc_model = tmp.calc_model;
 
+		// set cable
+		tilp_device_open();
+
+		// and refresh
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
 		break;
@@ -385,6 +353,7 @@ GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
+#if 0
 	int i, j;
 	int **cables;
 	CableHandle* handle;
@@ -459,4 +428,5 @@ finished:
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
+#endif
 }
