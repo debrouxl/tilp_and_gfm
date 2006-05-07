@@ -86,7 +86,7 @@ int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* c
 	// search for all USB cables (faster)
 	tilp_info("Searching for link cables...");
 	ret = ticables_probing_do(&cables, 5, PROBE_USB);
-	if(!ret)
+	if(ret)
 	{
 		ticables_probing_finish(&cables);
 		return -1;
@@ -240,8 +240,8 @@ reloop:
 		}
 	}
 
-	// show results
-	for(i = 1; i <= 5; i++)
+	// show list
+	for(i = 1; i <= 5; i++) 
 		printf("%i: %02i %02i %02i %02i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
 
 	return 0;

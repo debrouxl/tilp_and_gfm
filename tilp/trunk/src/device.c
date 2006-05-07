@@ -348,17 +348,41 @@ comm_spinbutton_timeout_changed        (GtkEditable     *editable,
     		gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
-static CableModel cable_model;
-static CalcModel calc_model;
-static CablePort cable_port;
-
 GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
 	int **array;
+	int i, j;
+	int cable, port, calc;
+	gchar *s;
 
+	gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices...");
+	GTK_REFRESH();
 	tilp_device_probe_all(&array);
+
+	for(i = CABLE_GRY; i <= CABLE_USB; i++)
+		for(j = PORT_1; j <= PORT_4; j++)
+			if(array[i][j] != CALC_NONE)
+				goto found;
+
+found:
+	cable = i;
+	port = j;
+	calc = array[i][j];
+
+	s = g_strdup_printf("Found: %s %s %s", 
+		ticalcs_model_to_string(calc),
+		ticables_model_to_string(cable),
+		ticables_port_to_string(port));
+	gtk_label_set_text(GTK_LABEL(lbl), s);
+	GTK_REFRESH();
+	g_free(s);
+
+	calc = tilp_remap_from_usb(cable, calc);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), port);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc);
+
 	ticables_probing_finish(&array);
 }
-

@@ -7,6 +7,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- show more levels in the current path
 	- reworked/factorized opening/closing of device
 	- auto-detect USB devices at startup
+	- reworked full auto-detection
 
 - 15/04/2006, version 0.10 (0.0.7, 0.1.0, 0.1.2, 0.0.3): roms
 	- follows ticalcs2 changes in the API
