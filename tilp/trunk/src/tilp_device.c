@@ -259,3 +259,53 @@ finished:
 #endif
 	return 0;
 }
+
+int tilp_device_open(void)
+{
+	int err = 0;
+
+	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
+	if(cable_handle == NULL)
+	{
+		gif->msg_box1("Error", "Can't set cable");
+	}
+	else
+	{
+		CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
+
+		ticables_options_set_timeout(cable_handle, options.cable_timeout);
+		ticables_options_set_delay(cable_handle, options.cable_delay);
+		//ticables_cable_reset(cable_handle);
+
+		calc_handle = ticalcs_handle_new(cm);
+		if(calc_handle == NULL)
+		{
+			gif->msg_box1("Error", "Can't set cable");
+		}
+		else
+		{
+			err = ticalcs_cable_attach(calc_handle, cable_handle);
+			tilp_err(err);
+		}
+
+		// Initialize callbacks with default functions
+		tilp_update_set_default();
+	}
+
+	return err;
+}
+
+int tilp_device_close(void)
+{
+	int err = 0;
+
+	// detach cable (made by handle_del, too)
+	err = ticalcs_cable_detach(calc_handle);
+	tilp_err(err);
+
+	// remove calc & cable
+	ticalcs_handle_del(calc_handle);
+	ticables_handle_del(cable_handle);
+
+	return err;
+}

@@ -61,8 +61,6 @@ static void signal_handler(int sig_no)
 */
 int tilp_init(int *argc, char ***argv)
 {
-	int err;
-
 	/* Display program version */
 	tilp_cmdline_version();
 
@@ -117,43 +115,8 @@ int tilp_init(int *argc, char ***argv)
 
 	/* 
 	   Set cable & calc
-	*/	
-	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
-	if(cable_handle == NULL)
-	{
-		gif->msg_box1("Error", "Can't set cable");
-	}
-	else
-	{
-		CalcModel cm;
-
-		if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI84P)
-				cm = CALC_TI84P_USB;
-			else if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI89T)
-				cm = CALC_TI89T_USB;
-			else
-				cm = options.calc_model;
-
-		ticables_options_set_timeout(cable_handle, options.cable_timeout);
-		ticables_options_set_delay(cable_handle, options.cable_delay);
-		//ticables_cable_reset(cable_handle);
-
-
-
-		calc_handle = ticalcs_handle_new(cm);
-		if(calc_handle == NULL)
-		{
-			gif->msg_box1("Error", "Can't set cable");
-		}
-		else
-		{
-			err = ticalcs_cable_attach(calc_handle, cable_handle);
-			tilp_err(err);
-		}
-
-		// Initialize callbacks with default functions
-		tilp_update_set_default();
-	}
+	*/
+	tilp_device_open();
 
 	/* 
 	   If we are in command line mode, does the required operation
@@ -172,15 +135,7 @@ int tilp_init(int *argc, char ***argv)
 
 int tilp_exit(void)
 {
-	int err;
-
-	// detach cable (made by handle_del, too)
-	err = ticalcs_cable_detach(calc_handle);
-	tilp_err(err);
-
-	// remove calc & cable
-	ticalcs_handle_del(calc_handle);
-	ticables_handle_del(cable_handle);
+	tilp_device_close();
 
 	ticables_library_exit();
 	tifiles_library_exit();
