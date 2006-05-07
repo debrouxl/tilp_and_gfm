@@ -285,6 +285,10 @@ SOURCE=..\..\src\tilp_paths.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_probe.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_screen.c
 # End Source File
 # Begin Source File

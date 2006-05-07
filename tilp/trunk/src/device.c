@@ -42,26 +42,6 @@ static GtkWidget* om_cable;
 static GtkWidget* om_calc;
 static GtkWidget* om_port;
 
-static CalcModel remap_from_usb(CableModel cable, CalcModel calc)
-{
-	if(cable == CABLE_USB && calc == CALC_TI84P_USB)
-		return CALC_TI84P;
-	else if(cable == CABLE_USB && calc == CALC_TI89T_USB)
-		return  CALC_TI89T;
-	else
-		return calc;
-}
-
-static CalcModel remap_to_usb(CableModel cable, CalcModel calc)
-{
-	if(cable == CABLE_USB && calc == CALC_TI84P)
-		return CALC_TI84P_USB;
-	else if(cable == CABLE_USB && calc == CALC_TI89T)
-		return  CALC_TI89T_USB;
-	else
-		return calc;
-}
-
 gint display_device_dbox()
 {
 	GladeXML *xml;
@@ -252,7 +232,7 @@ gint display_device_dbox()
 		}
 		else
 		{	
-			cm = remap_to_usb(tmp.cable_model, tmp.calc_model);
+			cm = tilp_remap_to_usb(tmp.cable_model, tmp.calc_model);
 
 			calc_handle = ticalcs_handle_new(cm);
 			if(calc_handle == NULL)
@@ -474,7 +454,7 @@ finished:
 	ticables_cable_close(handle);
 	ticables_handle_del(handle);
 
-	calc_model = remap_from_usb(cable_model, calc_model);
+	calc_model = tilp_remap_from_usb(cable_model, calc_model);
 
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);

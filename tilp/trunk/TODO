@@ -11,9 +11,6 @@ This is a list of some things to do:
 - SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
 allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 
-3)
-- auto-detect USB cables first and eventually set them at startup automatically
-
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<

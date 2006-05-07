@@ -54,6 +54,7 @@ extern "C" {
 #include "tilp_struct.h"
 #include "tilp_vars.h"
 #include "tilp_version.h"
+#include "tilp_probe.h"
 
 int tilp_err(int errcode);
 
