@@ -3,7 +3,7 @@
 
 
 Previous version: 0.08		(06/03/2006)
-Current version:  0.10		(05/05/2006)
+Current version:  0.11		(08/05/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,20 +21,25 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- TI84+ with USB support (beware: experimental !)
-	- Titanium with USB support (beware: experimental !)
+	- TI84+ with USB support (except OS sending)
+	- Titanium with USB support (except OS sending)
+	- auto-detect USB devices at startup (configurable)
 
 
 Improvements:
 -------------
 
-	- none
+	- added a new label which display RAM/FLASH free &used
+	- show more levels in the current path
+	- reworked full auto-detection
+	- rewritten data logging system
 
 
 Bug fixes:
 ----------
 
-	- none
+	- management of locked/archived attributes with some files
+	- receiving of backup in TI92
 
 
 Known bugs:
