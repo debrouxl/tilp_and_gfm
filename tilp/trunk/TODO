@@ -6,6 +6,7 @@ This is a list of some things to do:
    - SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 3) detect DUSB on/off & reconnect button ?
+4) updates dirlist & mem when sending apps
 
 //------
 
