@@ -25,7 +25,7 @@ tilp_2_SOURCES = *.h \
 	tilp_calcs.c tilp_cmdline.c tilp_config.c tilp_error.c \
 	tilp_files.c tilp_gif.c tilp_log.c tilp_main.c \
 	tilp_misc.c tilp_paths.c tilp_screen.c tilp_slct.c \
-	tilp_update.c tilp_vars.c tilp.c main.c \
+	tilp_update.c tilp_vars.c tilp_device.c tilp.c main.c \
 	\
 	about.c action.c bookmark.c clist.c clist_rbm.c clock.c \
 	ctree.c ctree_rbm.c dboxes.c device.c dnd.c filesel.c \

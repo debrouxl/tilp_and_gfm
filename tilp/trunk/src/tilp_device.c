@@ -164,7 +164,7 @@ int tilp_device_probe_all(int ***result)
 	int **array;
 	int i;
 	int cable, port, calc;
-	int found;
+	int found = 0;
 	CableHandle* handle;
 	int err;
 	gchar *s;
