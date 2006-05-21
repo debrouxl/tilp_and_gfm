@@ -981,15 +981,15 @@ const char* format_bytes(unsigned long value)
 
 	if(value < 1024)
 	{
-		snprintf(str, sizeof(str), "%u bytes", value);
+		snprintf(str, sizeof(str), "%lu bytes", value);
 	}
 	else if(value < 1024*1024)
 	{
-		snprintf(str, sizeof(str), "%u KB", value >> 10);
+		snprintf(str, sizeof(str), "%lu KB", value >> 10);
 	}
 	else
 	{
-		snprintf(str, sizeof(str), "%u MB", value >> 20);
+		snprintf(str, sizeof(str), "%lu MB", value >> 20);
 	}
 
 	return (const char *)str;
