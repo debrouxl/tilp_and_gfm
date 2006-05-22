@@ -927,7 +927,6 @@ int tilp_calc_del_var(void)
 	}
 
 	gif->destroy_pbar();
-	ctree_refresh();
 
 	return 0;
 }
@@ -985,7 +984,7 @@ const char* format_bytes(unsigned long value)
 {
 	static char str[16];
 
-	if(value < 1024)
+	if(value < 64*1024)
 	{
 		snprintf(str, sizeof(str), "%lu bytes", value);
 	}

@@ -34,6 +34,8 @@
 #include "toolbar.h"
 #include "options.h"
 #include "tilp_core.h"
+#include "labels.h"
+#include "ctree.h"
 
 /* Callbacks */
 
@@ -82,6 +84,10 @@ GLADE_CB void
 rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_del_var();
+	remote.memory.ram_used = ticalcs_dirlist_mem_used(remote.var_tree);
+
+	labels_refresh();
+	ctree_refresh();
 }
 
 GLADE_CB void 
