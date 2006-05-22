@@ -116,6 +116,17 @@ void toolbar_refresh_buttons(void)
 		gtk_widget_hide(toolbar_wnd.button15);
 	else
 		gtk_widget_show(toolbar_wnd.button15);
+
+	/*
+	if(options.calc_model == CALC_TI89T_USB || options.calc_model == CALC_TI84P_USB)
+	{
+		GtkToolbar *tb = GTK_TOOLBAR(toolbar_wnd.toolbar);
+		GtkToolItem *item = gtk_toolbar_get_nth_item(tb, 0);
+		GtkToolButton *btn = GTK_TOOL_BUTTON(item);
+		
+		gtk_tool_button_set_label       (btn, "Connect");
+	}
+	*/
 }
 
 // 0: disabled

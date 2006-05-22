@@ -56,6 +56,12 @@ int tilp_calc_isready(void)
 	int err;
 	int to;
 	
+	if(options.calc_model == CALC_TI89T_USB || options.calc_model == CALC_TI84P_USB)
+	{
+		tilp_device_close();
+		tilp_device_open();
+	}
+
 	//CalcModel model;
 	//return ticalcs_probe_calc_1(calc_handle, &model);
 
