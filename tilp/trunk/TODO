@@ -5,7 +5,7 @@ This is a list of some things to do:
 2) - SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
    - SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
-4) updates dirlist & mem when sending apps
+3) updates dirlist & mem when sending apps
 
 //------
 

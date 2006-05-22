@@ -31,6 +31,8 @@
 #include "action.h"
 #include "support.h"
 #include "tilp_core.h"
+#include "ctree.h"
+#include "labels.h"
 
 static GtkWidget *clist;
 static GtkListStore *list;
@@ -149,8 +151,13 @@ gint display_action_dbox(gchar *target)
 	else
 	{
 		if(remote.var_tree == NULL)
+		{
 			if (tilp_dirlist_remote())
 				return BUTTON1;
+
+			ctree_refresh();
+			labels_refresh();
+		}
 	}
 
 	// box creation

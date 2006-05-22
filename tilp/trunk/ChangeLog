@@ -5,6 +5,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 09/05/2006, version 0.12 (0.0.9, 0.1.1, 0.1.3, 0.0.3): roms
 	- fixed bug in the use of USB auto-detect
 	- rename 'Ready' button into 'Connect' when using DirectLink
+	- update remote frame in the action box
 
 - 06/05/2006, version 0.11 (0.0.9, 0.1.1, 0.1.3, 0.0.3): roms
 	- added a new label which display RAM/FLASH free &used
