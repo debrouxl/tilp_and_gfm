@@ -1,34 +1,15 @@
 This is a list of some things to do:
 
-0) remove /proc/bus/usb from ticables2 => deprecated !
-1) select files for deletion, cancel/ok => violation in tree_selection_changed
-2) - SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
+0) select files for deletion, cancel/ok => violation in tree_selection_changed
+1) - SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
    - SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
-3) updates dirlist & mem when sending apps
+2) updates dirlist & mem when sending apps
 
 //------
 
 - suggestions from O. Armand:
 <<
-Pour le débit j'ai 65kb/s !! (sachant que c'est le code de TI côté
-calc, donc pas forcément un truc optimisé...) A moins que ce soit même
-plus, car j'ai parfois un overflow qui fait afficher "Rate: -1,$
-Kbytes/s". J'aimerais bien savoir en combien de secondes un OS peut
-être flashé avec ça.
-
-Concernant le problème des libti* :
-> J'ai resorti des fichiers Ti-Connect de TI89/Titanium/92+: 0: none, 1:
-> locked et 2: archived. J'ai corrigé ma doc en conséquence.
-> Concernant TiEmu, ma tifile semble etre bugguée (3 au lieu de 2).
-> Je vais regarder çà de + près et te tenir au courant.
-Tu penses pouvoir corriger ça prochainement ? (parce que là les
-fichiers de groupe générés par TI-Vibe ne peuvent pas être envoyés
-avec TILP :( ).
-Il y a un autre truc bizarre, c'est que les dossiers de destination
-des fichiers de groupe des fichiers générés ne sont pas pris en
-compte, tout est envoyé dans main... (cf l'exemple ci-joint).
-
 Et un truc qui n'est peut-être pas spécifique au DirectLink (je ne
 sais pas trop, je n'utilise pas TiLP d'habitude) : c'est dommage que
 "Invalid packet. Cause: a transmission error" soit affiché au lieu de
