@@ -276,13 +276,6 @@ void ctree_set_basetree(void)
 		gtk_tree_store_append(tree, &clk_node, top_node);
 		gtk_tree_store_set(tree, &clk_node, COLUMN_NAME, NODE6,
 				   COLUMN_DATA, (gpointer) NULL, -1);
-
-		if (ticalcs_calc_features(calc_handle) & FTS_CERT)
-		{
-			gtk_tree_store_append(tree, &cer_node, top_node);
-			gtk_tree_store_set(tree, &cer_node, COLUMN_NAME, NODE7,
-				   COLUMN_DATA, (gpointer) NULL, -1);
-		}
 	}
 
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(ctree_wnd));

@@ -269,10 +269,6 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 			on_tilp_button5_clicked(NULL, NULL);
 			select_vars_under_folder(0);
 		} 
-		else if (!strcmp(name, NODE7))	// Certificate
-		{
-			tilp_calc_recv_cert();
-		}
 		else 
 		{
 			// single/group to get
