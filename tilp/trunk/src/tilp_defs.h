@@ -80,9 +80,9 @@
 /* Several working modes */
 #define MODE_INI (1<<0)		/* Startup phase                 */
 #define MODE_CMD (1<<1)		/* Command line mode             */
-#define MODE_GTK (1<<2)		/* GTK gui mode (Linux/Win32)    */
-#define MODE_OSX (1<<3)		/* Cocoa GUI mode (Mac OS X)     */
+
 #define MODE_GUI (1<<4)		/* GUI mode (GTK, MFC, Cocoa)    */
+#define MODE_TXT (1<<5)		/* no GUI (unused)				 */
 
 /* Action */
 

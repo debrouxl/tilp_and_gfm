@@ -58,7 +58,7 @@ void tilp_cmdline_version(void)
     fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
-/* Search for command line options */
+/* Search for command line options and build file list (pseudo-selection) */
 int tilp_cmdline_scan(int *argc, char ***argv)
 {
 	GOptionContext* context;
@@ -133,7 +133,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	return 0;
 }
 
-/* Send files passed on the command line */
+/* Send files passed on the command line (no GUI) */
 int tilp_cmdline_send(void)
 {
 	FileEntry *fe;
