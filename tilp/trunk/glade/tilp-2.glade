@@ -697,7 +697,7 @@
 	    <widget class="GtkMenuItem" id="tinewsnet1">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">A French calculator web site.</property>
-	      <property name="label" translatable="yes">tigen.orgt</property>
+	      <property name="label" translatable="yes">tigen.org</property>
 	      <property name="use_underline">True</property>
 	      <signal name="activate" handler="on_tinewsnet1_activate"/>
 	    </widget>
