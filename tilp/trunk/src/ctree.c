@@ -230,7 +230,7 @@ void ctree_set_basetree(void)
 {
 	GtkTreeIter clc_node;
 	GtkTreeIter *top_node = NULL;
-	GtkTreeIter lcd_node, rom_node, idl_node, clk_node, cer_node;
+	GtkTreeIter lcd_node, rom_node, idl_node, clk_node;
 	gchar* str;
 
 	// clear tree
@@ -295,6 +295,9 @@ void ctree_refresh(void)
 	int i, j;
 
 	if (remote.var_tree == NULL)
+		return;
+
+	if(working_mode & MODE_CMD)
 		return;
 
 	// sort variables

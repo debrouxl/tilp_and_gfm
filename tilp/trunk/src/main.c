@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
 	if((working_mode & MODE_GUI) && (working_mode & MODE_CMD)) 
 	{
 		splash_screen_set_label(_("Command line..."));
-		tilp_cmdline_send();
+		on_tilp_send("");
 	}
 
 	/* GTK main loop */

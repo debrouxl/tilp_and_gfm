@@ -133,7 +133,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	return 0;
 }
 
-/* Send files passed on the command line (no GUI) */
+/* Send files passed on the command line in no GUI mode */
 int tilp_cmdline_send(void)
 {
 	FileEntry *fe;

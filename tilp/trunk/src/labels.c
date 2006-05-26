@@ -101,8 +101,10 @@ void labels_refresh(void)
 	gsize br, bw;
 	gchar *utf8;
 	gchar path[1024];
-
 	gchar *str, *str1, *str2;
+
+	if(working_mode & MODE_CMD)
+		return;
 
 	/* path */	
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);

@@ -16,10 +16,7 @@ sais pas trop, je n'utilise pas TiLP d'habitude) : c'est dommage que
 messages d'erreur plus expicites, par exemple quand on essaie
 d'écraser une variable archivée ou quand il n'y a plus assez de
 mémoire.
-Et c'est aussi dommage que lorsqu'on le lance depuis l'explorateur
-Windows via une association de fichier, il ne propose pas d'écraser un
-fichier s'il existe déjà en RAM (ou l'écraser par défaut), plutôt que
-de retourner le message d'erreur ci-dessus.
+
 Pendant qu'on est dans TiLP, un autre truc qui serait pratique, ce
 serait de pouvoir taper directement le chemin d'accès du dossier
 courant (comme on peut par exemple le faire dans l'explorateur

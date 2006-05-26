@@ -232,6 +232,9 @@ void clist_refresh(void)
 	gchar *utf8;
 	int i;
 
+	if(working_mode & MODE_CMD)
+		return;
+
 	// reparse folders
 	tilp_clist_selection_destroy();
 	tilp_dirlist_local();
