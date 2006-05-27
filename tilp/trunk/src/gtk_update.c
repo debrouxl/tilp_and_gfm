@@ -59,7 +59,7 @@ static void refresh_pbar1(void)
 
 		if(gtk_update.max1 != 0)
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar_wnd.pbar1), 
-				(float)gtk_update.cnt1 / gtk_update.max1);
+				(gdouble)gtk_update.cnt1 / gtk_update.max1);
 
 		rate = gtk_update.rate;
 		filter_shift();
@@ -81,7 +81,7 @@ static void refresh_pbar2(void)
 
 		if(gtk_update.max2 != 0)
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pbar_wnd.pbar2), 
-				(float)gtk_update.cnt2 / gtk_update.max2);
+				(gdouble)gtk_update.cnt2 / gtk_update.max2);
 
 		GTK_REFRESH();
     }

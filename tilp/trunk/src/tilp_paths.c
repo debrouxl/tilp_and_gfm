@@ -77,9 +77,26 @@ static void init_win32_paths(void)
 	hModule = GetModuleHandle("tilp.exe");
 	sBuffer = (char *) malloc(4096 * sizeof(char));
 	dWord = GetModuleFileName(hModule, sBuffer, 4096);
-
-	dirname = g_dirname(sBuffer);
-	inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
+    dirname = g_dirname(sBuffer);
+	
+    // MinGW Option, allows Windows Users to run on a Linux File Hierarhcy
+	#ifdef __MINGW32__
+	  #define MINGW_REL "share\\tilp2"
+	  
+	  char *basename;
+	  basename = g_path_get_basename(dirname);
+	  
+      // Will replace /target/bin with /target/share/tilp2 in MinGW/MSYS
+      if ((strlen(basename) == 3) && !g_strcasecmp(basename, "bin"))
+      {
+          gchar *token;
+          dirname = g_realloc(dirname, strlen(dirname) + strlen(MINGW_REL) + 1);
+          token = dirname + strlen(dirname) - 3;
+          strcpy(token, MINGW_REL);
+      }
+    #endif
+    
+    inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
 	g_free(dirname);
 	free(sBuffer);
 
