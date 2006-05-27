@@ -1,6 +1,5 @@
 This is a list of some things to do:
 
-0) select files for deletion, cancel/ok => violation in tree_selection_changed
 1) - SilverLink is still NACK'ed after error. Does not appear with TiLP1 => found => open/close instead of reset. Why ?
    - SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)

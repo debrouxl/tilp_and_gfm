@@ -5,6 +5,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 25/05/2006, version 0.13 (0.0.9, 0.1.2, 0.1.4, 0.0.3): roms
 	- removed certificate support (deprecated)
 	- raise the action box when sending files from command line in GUI mode (O. Armand)
+	- fixed violation in tree_selection_changed (raised when selecting files for deletion)
 
 - 09/05/2006, version 0.12 (0.0.9, 0.1.1, 0.1.3, 0.0.3): roms
 	- fixed bug in the use of USB auto-detect

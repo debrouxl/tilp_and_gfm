@@ -137,8 +137,6 @@ void tilp_delete_selected_files()
 		tilp_file_delete(fi->name);
 		ptr = ptr->next;
 	}
-
-	tilp_dirlist_local();
 }
 
 /* Rename files which are in local.file_selection */

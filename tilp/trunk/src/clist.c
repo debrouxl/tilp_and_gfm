@@ -239,9 +239,9 @@ void clist_refresh(void)
 	tilp_dirlist_local();
 
 	selection = gtk_tree_view_get_selection(view);
-	//g_signal_handlers_block_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
+	g_signal_handlers_block_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
 	gtk_list_store_clear(list);
-	//g_signal_handlers_unblock_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
+	g_signal_handlers_unblock_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
 
 	// sort files
 	for(i = 0; i < CLIST_NVCOLS; i++)
