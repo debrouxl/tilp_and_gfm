@@ -94,14 +94,10 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	// destroy selection
 	tilp_clist_selection_destroy();
 
-	// clear ctree selection(one selection active at a time)
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
-	gtk_tree_selection_unselect_all(sel);
 
 	// create a new selection
-	list = gtk_tree_selection_get_selected_rows(selection, &model);
-	//printf("---> %i\n", g_list_length(list));
-	while (list != NULL) 
+	for(list = gtk_tree_selection_get_selected_rows(selection, &model); list; list = g_list_next(list))
 	{
 		GtkTreePath *path = list->data;
 		FileEntry *fe;
@@ -113,8 +109,10 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 		local.selection = g_list_append(local.selection, fe);
 		full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
 		local.file_selection = g_list_append(local.file_selection, full_path);
-		list = g_list_next(list);
 	}
+
+	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
+	g_list_free(list);
 }
 
 void clist_refresh(void);
@@ -224,6 +222,7 @@ void clist_init(void)
 void clist_refresh(void)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
+	GtkTreeSelection *selection;
 	GtkTreeViewColumn *col;
 	GtkTreeIter iter;
 	GdkPixbuf *pix1, *pix2, *pix;
@@ -238,7 +237,11 @@ void clist_refresh(void)
 	// reparse folders
 	tilp_clist_selection_destroy();
 	tilp_dirlist_local();
+
+	selection = gtk_tree_view_get_selection(view);
+	//g_signal_handlers_block_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
 	gtk_list_store_clear(list);
+	//g_signal_handlers_unblock_by_func(G_OBJECT(selection), tree_selection_changed, NULL);
 
 	// sort files
 	for(i = 0; i < CLIST_NVCOLS; i++)

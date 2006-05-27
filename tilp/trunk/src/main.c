@@ -123,6 +123,8 @@ int main(int argc, char *argv[])
 	 */
 	if((working_mode & MODE_GUI) && (working_mode & MODE_CMD)) 
 	{
+		extern int on_tilp_send(char *);
+
 		splash_screen_set_label(_("Command line..."));
 		on_tilp_send("");
 	}

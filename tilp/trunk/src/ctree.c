@@ -122,6 +122,9 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 			remote.selection2 = g_list_append(remote.selection2, ve);
 		}
 	}
+
+	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
+	g_list_free(list);
 }
 
 void clist_refresh(void);
