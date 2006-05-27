@@ -32,6 +32,7 @@
 #include "tilp_core.h"
 
 #ifdef __WIN32__
+#include <windows.h>
 #define PAUSE(x) Sleep(x)
 #else
 #define PAUSE(x) usleep(1000*(x))
