@@ -49,6 +49,7 @@ Bug fixes:
 	- fixed TI9x file attribute (archive flag)
 	- TIB was not detected properly by TiLP-II
 	- fixed TI-83+/TI-84+ ROM Dumping Timeout Error Bug (tyler)
+	- fixed progress bar update (tyler)
 
 
 Known bugs:
