@@ -305,7 +305,7 @@ int tilp_calc_rom_dump(void)
 {
 	gint ret;
 
-	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be\nsent on your calculator. If you have not made\na backup yet, you should do one before\nproceeding with ROM dumping..."));
+	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
 	if(ret != BUTTON1)
 		return -1;
 
@@ -316,7 +316,7 @@ int tilp_calc_rom_dump(void)
 	case CALC_TI83:
 	case CALC_TI83P:
 	case CALC_TI84P:
-	case CALC_TI84P_USB:
+	//case CALC_TI84P_USB:
 	case CALC_TI85:
 	case CALC_TI86:
 	case CALC_TI89:

@@ -528,7 +528,8 @@ doing a ROM dump because ROM dumping uses an assembly program which may
 corrupt or crash your calculator.</font> </p>
 <p><font size="3">This operation will transfer a small assembly
 program to your calculator. If your calculator model has remote control
-(89/92/92+/V200), the program will be automatically launched and the
+(83+/89/92/92+/V200), the program will be automatically launched and
+the
 ROM
 will be dumped. Otherwise, TiLP will wait for you to execute the
 assembly program.<br>
@@ -546,8 +547,8 @@ required:<br>
 - TI83 : Squish / Ion<br>
 - TI85 : ZShell<br>
 - TI92 : Fargo-II.<br>
-<br>
-Special instructions for launching:<br>
+When the box display "Waiting for user's action", you will have to
+manually enter some commands for launching the dumper:<br>
 - TI73 : PRGM, EXEC, ROMDUMP,<br>
 - TI82 : you have to place the calculator in receive mode
 to receive the dumping program and next launch it by PRGM, EXEC,
@@ -559,6 +560,10 @@ down to ROMDUMP, ENTER,<br>
 <br>
 - TI84+ USB : </font><font size="3">PRGM, EXEC, ROMDUMP<br>
 - Titanium USB : romdump(), ENTER<br>
+<br>
+USB users: Silver/DirectLink cables do not like timeouts. To avoid
+this, type commands in advance so that you just have to quickly type
+ENTER when the dumper waits for you.<br>
 </font>
 <blockquote> </blockquote>
 <h2>5.7 ID-LIST</h2>
