@@ -55,15 +55,13 @@ int tilp_calc_isready(void)
 {
 	int err;
 	int to;
+	CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
 	
-	if(options.calc_model == CALC_TI89T_USB || options.calc_model == CALC_TI84P_USB)
+	if(cm == CALC_TI89T_USB || cm == CALC_TI84P_USB /*|| options.cable_model == CABLE_SLV*/)
 	{
 		tilp_device_close();
 		tilp_device_open();
 	}
-
-	//CalcModel model;
-	//return ticalcs_probe_calc_1(calc_handle, &model);
 
 	// first check: fast
 	to = ticables_options_set_timeout(cable_handle, 10);
