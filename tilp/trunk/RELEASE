@@ -48,6 +48,7 @@ Bug fixes:
 	- progress bar with TI73/84+ sending of FLASH application
 	- fixed TI9x file attribute (archive flag)
 	- TIB was not detected properly by TiLP-II
+	- fixed TI-83+/TI-84+ ROM Dumping Timeout Error Bug (tyler)
 
 
 Known bugs:
