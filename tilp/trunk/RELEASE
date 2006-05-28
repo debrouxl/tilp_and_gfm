@@ -3,7 +3,7 @@
 
 
 Previous version: 0.08		(06/03/2006)
-Current version:  0.11		(08/05/2006)
+Current version:  0.13		(28/05/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,31 +21,38 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- TI84+ with USB support (except OS sending)
-	- Titanium with USB support (except OS sending)
+	- TI84+ with USB support (but OS sending disabled because not tested enough)
+	- Titanium with USB support
 	- auto-detect USB devices at startup (configurable)
+	- added a new label which display RAM/FLASH free &used
+	- added Titanium/USB ROM dumper
 
 
 Improvements:
 -------------
 
-	- added a new label which display RAM/FLASH free &used
-	- show more levels in the current path
+	- reworked displaying of Hand-Held Informations box
 	- reworked full auto-detection
-	- rewritten data logging system
+	- show more levels in the current path
+	- update remote frame from the action box
+	- update memory used when sending/deleting variables
+	- raise the action box when sending files from command line in GUI mode (O. Armand)
+	- removed certificate support (deprecated)
+	- don't need to close/re-open TiLP when USB hand-held turned off
 
 
 Bug fixes:
 ----------
 
-	- management of locked/archived attributes with some files
-	- receiving of backup in TI92
+	- fixed violation in tree_selection_changed (raised when selecting files for deletion)
+	- progress bar with TI73/84+ sending of FLASH application
+	- fixed TI9x file attribute (archive flag)
+	- TIB was not detected properly by TiLP-II
 
 
 Known bugs:
 -----------
 
-	- the refreshing of the local frame may crash TiLP under some circumstances
 	- need to close/re-open TiLP when the SilverLink is stalled (= blocked)
 	- many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
 

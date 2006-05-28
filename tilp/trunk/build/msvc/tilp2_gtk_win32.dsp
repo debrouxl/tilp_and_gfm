@@ -265,6 +265,10 @@ SOURCE=..\..\src\tilp_core.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tilp_device.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_error.c
 # End Source File
 # Begin Source File

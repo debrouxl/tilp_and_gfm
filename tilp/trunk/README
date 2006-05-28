@@ -1,6 +1,6 @@
-				************
-				*   TiLP   *
-				************
+				***********
+				* TiLP-II *
+				***********
 
 
 
@@ -23,7 +23,8 @@ TiLP also support some virtual links: one for VirtualTI, the other one for
 GtkTiEmu.
 
 Note1: the SilverLink cable may not work fine TI82/85.
-Note2: sending of OS, remote control and certificates are not supported by DirectLink yet.
+Note2: remote control is not supported by DirectLink yet.
+Note3: certificate support has been removed because deprecated
 
 Supported calculators are: 
 	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
@@ -33,7 +34,7 @@ Supported calculators are:
 FEATURES
 --------
 
-Note: some features depends on the OS version. Be sure to have the latest one !
+Note: some features may depend on the OS version. Be sure to have the latest one !
 
 TI89/TI89 Titanium/TI92+/V200:
   - remote control of the calculator
@@ -82,7 +83,7 @@ TI83+/TI84+ (SE or not SE):
 
 Note: the TI83+ is the only calc to have a GROUP variable. TiLP supports it in
 a specific way: this kind of var is saved as a single file as any other
-variable. Thus, if you send it, it will stay be grouped on calc.
+variable. Thus, if you send it, it will stay grouped on calc.
 The TI's software has a different way: it explode the GROUP variable
 into a .8Xg group file and you lost the grouping on calculator.
 

@@ -17,8 +17,8 @@ REQUIREMENTS
     Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.10-rc1.exe?download>
     => They can be automatically download & installed by the installer.
  - the SilverLink driver v3.4 if you have a SilverLink cable
-	 Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
-	 => It is now installed in the TiLP folder by the installer.
+	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
+	=> It is now installed in the TiLP folder by the installer.
 	
 	 Note: if you are using 'The GiMP', you may encounter DLL's problems...
 		The GTK+ package (1) provided with the GiMP may not be fully compatible with one used by TiLP/TiEmu.
@@ -50,7 +50,9 @@ This forces GTK+ to use a compatible font (Arial) and reportedly fixes both
 the aforementioned problems, and probably others too.
 
 2°) This setup will copy the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb):
-it is now provided with TiLP and available in the 'slvdrv98'/'slvdrvXP' folder.
+it is now provided with TiLP and available in the 'slvdrv98' or 'slvdrvXP' folder.
+
+Windows XP-64 users will have to download and install the driver themselves.
 
 Simply plug your link cable: Windows should detect a new device. 
 But, you still have to manually install it by requesting an update of driver and
