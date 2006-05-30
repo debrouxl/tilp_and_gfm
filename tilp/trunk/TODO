@@ -7,6 +7,14 @@ This is a list of some things to do:
 
 //------
 
+- Tyler Cassidy:
+<<
+I think I found an error in TiLP-II, when I ran the screeshot feature with the 83+ on the 
+Officail TiLP-II Binary it crashed the entire program and closed it, but when I compiled it 
+fresh off of SVN along with libticalcs2 0.1.3 it worked fine, maybe this is a compiler error? 
+I used MSYS/MinGW and it worked
+>>
+
 - suggestions from O. Armand:
 <<
 Et un truc qui n'est peut-être pas spécifique au DirectLink (je ne

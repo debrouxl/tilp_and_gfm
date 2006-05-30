@@ -251,7 +251,7 @@ int tilp_config_write(void)
 
 	// Section [OPTIONS]
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect hand-held model", &error);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect USB hand-held model", &error);
 
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "local_path", options.local_path);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "local_path", "Use full path when sending variables", &error);

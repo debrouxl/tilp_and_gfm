@@ -375,3 +375,14 @@ finished:
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
 #endif
+
+#if 0
+	// get list of USB devices
+	tilp_info("Getting list of USB devices...");
+	err = ticables_get_usb_devices(&list, &n);
+	if(err || !n)
+	{
+		free(list);
+		return -1;
+	}
+#endif
