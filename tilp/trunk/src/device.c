@@ -111,6 +111,8 @@ static void clist_populate(GtkListStore *store, int full)
 				-1);
 			g_free(str1); g_free(str2); g_free(str3);
 		}
+
+		//free(list);
 	}
 }
 

@@ -44,6 +44,8 @@
 # define strcasecmp _stricmp
 #endif
 
+//----------------------------------------------------------------------------
+
 CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
 {
 	if(cable == CABLE_USB && calc == CALC_TI84P_USB)
@@ -63,6 +65,8 @@ CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc)
 	else
 		return calc;
 }
+
+//----------------------------------------------------------------------------
 
 static int found_port(int *ports)
 {
@@ -138,7 +142,8 @@ step2:
 			goto step3;
 		}
 
-		err = ticalcs_probe_calc(handle, calc_model);
+		err = ticalcs_probe_usb_calc(handle, calc_model);
+
 		if(err)
 		{
 			ticables_handle_del(handle);
@@ -249,6 +254,8 @@ reloop:
 	return 0;
 }
 
+//----------------------------------------------------------------------------
+
 int tilp_device_open(void)
 {
 	int err = 0;
@@ -298,6 +305,8 @@ int tilp_device_close(void)
 
 	return err;
 }
+
+//---------------- old code --------------------------------------------------
 
 #if 0
 int i, j;
