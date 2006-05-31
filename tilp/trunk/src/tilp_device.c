@@ -75,7 +75,7 @@ static int found_port(int *ports)
 	return 0;
 }
 
-/* Scan for USB devices only (fast) */
+/* Scan for USB devices only (fast, returns the first device found) */
 int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* calc_model)
 {
 	int err;

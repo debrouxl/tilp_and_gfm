@@ -42,6 +42,86 @@ static GtkWidget* om_cable;
 static GtkWidget* om_calc;
 static GtkWidget* om_port;
 
+static GtkListStore *store1 = NULL;
+
+enum { COL_CABLE, COL_PORT, COL_CALC };
+#define CLIST_NVCOLS	(3)		// 3 visible columns
+#define CLIST_NCOLS		(3)		// 3 real columns
+
+static GtkListStore* clist_create(GtkWidget *widget)
+{
+	GtkTreeView *view = GTK_TREE_VIEW(widget);
+	GtkListStore *store;
+	GtkTreeModel *model;
+	GtkCellRenderer *renderer;
+	GtkTreeSelection *selection;
+    const gchar *text[CLIST_NVCOLS] = { _("Cable"), _("Port"), _("Device") };
+    gint i;
+	
+	store = gtk_list_store_new(CLIST_NCOLS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, -1);
+    model = GTK_TREE_MODEL(store);
+	
+    gtk_tree_view_set_model(view, model); 
+    gtk_tree_view_set_headers_visible(view, TRUE);
+	gtk_tree_view_set_rules_hint(view, FALSE);
+  
+	for(i = COL_CABLE; i <= COL_CALC; i++)
+	{
+		renderer = gtk_cell_renderer_text_new();
+		gtk_tree_view_insert_column_with_attributes(view, -1, text[i], renderer, "text", i, NULL);
+	}
+    
+    for (i = 0; i < CLIST_NVCOLS; i++) 
+    {
+		GtkTreeViewColumn *col;
+
+		col = gtk_tree_view_get_column(view, i);
+		gtk_tree_view_column_set_resizable(col, TRUE);
+	}
+	
+	selection = gtk_tree_view_get_selection(view);
+	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
+
+	return store;
+}
+
+static void clist_populate(GtkListStore *store, int full)
+{
+	if(!full)
+	{
+		int i, n, *list;
+
+		ticables_get_usb_devices(&list, &n);
+		
+		for(i = 0; i < n; i++)
+		{
+			GtkTreeIter iter;
+			gchar *str1, *str2, *str3;
+
+			gtk_list_store_append(store, &iter);
+
+			str1 = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
+			str2 = g_strdup_printf("#%i", i);
+			str3 = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
+
+			gtk_list_store_set(store, &iter, 
+				COL_CABLE, str1, 
+				COL_PORT, str2,
+				COL_CALC, str3,
+				-1);
+			g_free(str1); g_free(str2); g_free(str3);
+		}
+	}
+}
+
+static void clist_refresh(GtkListStore *store, int full)
+{
+	gtk_list_store_clear(store);
+	clist_populate(store, full);
+}
+
+//=========================================
+
 gint display_device_dbox()
 {
 	GladeXML *xml;
@@ -55,8 +135,13 @@ gint display_device_dbox()
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "device_dbox");
-
 	lbl = glade_xml_get_widget(xml, "label7");
+
+	// Tree View
+	data = glade_xml_get_widget(xml, "treeview1");
+	store1 = clist_create(data);
+	gtk_widget_show_all(data);
+	clist_populate(store1, 0);
 
 	// Cable  
 	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
@@ -193,6 +278,10 @@ gint display_device_dbox()
 
 	data = glade_xml_get_widget(xml, "checkbutton1");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
+
+	// expander
+	//data = glade_xml_get_widget(xml, "expander1");
+	//gtk_expander_set_expanded(GTK_EXPANDER(data), FALSE);
 
 	// Avoid early callbacks
 	tmp.cable_delay = options.cable_delay;
@@ -357,7 +446,7 @@ comm_button_search_clicked                (GtkButton       *button,
 	int cable, port, calc;
 	gchar *s;
 
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices...");
+	gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices (~20 seconds)...");
 	GTK_REFRESH();
 	tilp_device_probe_all(&array);
 
