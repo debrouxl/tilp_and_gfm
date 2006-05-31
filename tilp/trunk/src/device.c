@@ -42,7 +42,7 @@ static GtkWidget* om_cable;
 static GtkWidget* om_calc;
 static GtkWidget* om_port;
 
-static GtkListStore *store1 = NULL;
+static GtkListStore *store = NULL;
 
 enum { COL_CABLE, COL_PORT, COL_CALC };
 #define CLIST_NVCOLS	(3)		// 3 visible columns
@@ -96,23 +96,55 @@ static void clist_populate(GtkListStore *store, int full)
 		for(i = 0; i < n; i++)
 		{
 			GtkTreeIter iter;
-			gchar *str1, *str2, *str3;
+			gchar** row = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
 
 			gtk_list_store_append(store, &iter);
 
-			str1 = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
-			str2 = g_strdup_printf("#%i", i+1);
-			str3 = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
+			row[COL_CABLE] = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
+			row[COL_PORT] = g_strdup_printf("#%i", i+1);
+			row[COL_CALC] = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
 
 			gtk_list_store_set(store, &iter, 
-				COL_CABLE, str1, 
-				COL_PORT, str2,
-				COL_CALC, str3,
+				COL_CABLE, row[COL_CABLE], 
+				COL_PORT, row[COL_PORT],
+				COL_CALC, row[COL_CALC],
 				-1);
-			g_free(str1); g_free(str2); g_free(str3);
+			g_strfreev(row);
 		}
 
 		//free(list);
+	}
+	else
+	{
+		int **array;
+		int i, j;
+
+		gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices (~20 seconds)...");
+		GTK_REFRESH();
+		tilp_device_probe_all(&array);
+
+		for(i = CABLE_GRY; i <= CABLE_USB; i++)
+		for(j = PORT_1; j <= PORT_4; j++)
+		if(array[i][j] != CALC_NONE)
+		{
+			GtkTreeIter iter;
+			gchar** row = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
+
+			gtk_list_store_append(store, &iter);
+
+			//calc = tilp_remap_from_usb(cable, calc);
+			row[COL_CABLE] = g_strdup(ticables_model_to_string(i));
+			row[COL_PORT] = g_strdup_printf("#%i", j);
+			row[COL_CALC] = g_strdup(ticalcs_model_to_string(array[i][j]));
+
+			gtk_list_store_set(store, &iter, 
+				COL_CABLE, row[COL_CABLE], COL_PORT, row[COL_PORT], COL_CALC, row[COL_CALC],
+				-1);
+			g_strfreev(row);
+		}
+
+		gtk_label_set_text(GTK_LABEL(lbl), "Done !");
+		ticables_probing_finish(&array);
 	}
 }
 
@@ -135,6 +167,10 @@ comm_treeview1_button_press_event  (GtkWidget       *widget,
 	GtkTreeIter iter;
 	gchar** row_text = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
 
+	CableModel cbm;
+	CablePort cbp;
+	CalcModel clm, cm;
+
 	// is double click ?
 	if(event->type != GDK_2BUTTON_PRESS)
 		return FALSE;
@@ -146,9 +182,14 @@ comm_treeview1_button_press_event  (GtkWidget       *widget,
 		COL_CABLE, &row_text[COL_CABLE], COL_PORT, &row_text[COL_PORT], 
 		COL_CALC, &row_text[COL_CALC], -1);
 
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), ticables_string_to_model(row_text[COL_CABLE]));
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), ticables_string_to_port(row_text[COL_PORT]));
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), ticalcs_string_to_model(row_text[COL_CALC]));
+	cbm = ticables_string_to_model(row_text[COL_CABLE]);
+	cbp = ticables_string_to_port(row_text[COL_PORT]);
+	clm = ticalcs_string_to_model(row_text[COL_CALC]);
+	cm = tilp_remap_from_usb(cbm, clm);
+
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cbm);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cbp);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), cm);
 
     g_strfreev(row_text);
 
@@ -174,9 +215,9 @@ gint display_device_dbox()
 
 	// Tree View
 	data = glade_xml_get_widget(xml, "treeview1");
-	store1 = clist_create(data);
+	store = clist_create(data);
 	gtk_widget_show_all(data);
-	clist_populate(store1, 0);
+	clist_populate(store, 0);
 
 	// Cable  
 	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
@@ -476,37 +517,5 @@ GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
-	int **array;
-	int i, j;
-	int cable, port, calc;
-	gchar *s;
-
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices (~20 seconds)...");
-	GTK_REFRESH();
-	tilp_device_probe_all(&array);
-
-	for(i = CABLE_GRY; i <= CABLE_USB; i++)
-		for(j = PORT_1; j <= PORT_4; j++)
-			if(array[i][j] != CALC_NONE)
-				goto found;
-
-found:
-	cable = i;
-	port = j;
-	calc = array[i][j];
-
-	s = g_strdup_printf("Found: %s %s %s", 
-		ticalcs_model_to_string(calc),
-		ticables_model_to_string(cable),
-		ticables_port_to_string(port));
-	gtk_label_set_text(GTK_LABEL(lbl), s);
-	GTK_REFRESH();
-	g_free(s);
-
-	calc = tilp_remap_from_usb(cable, calc);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), port);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc);
-
-	ticables_probing_finish(&array);
+	clist_refresh(store, !0);	
 }
