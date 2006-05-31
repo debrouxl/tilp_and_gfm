@@ -268,6 +268,7 @@
 		  <child>
 		    <widget class="GtkSpinButton" id="spinbutton_comm_delay">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Inter-bit delay for serial/parallel link cables.</property>
 		      <property name="can_focus">True</property>
 		      <property name="climb_rate">1</property>
 		      <property name="digits">0</property>
@@ -572,6 +573,7 @@
 		  <child>
 		    <widget class="GtkCheckButton" id="checkbutton1">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">If checked, TiLP will scan USB devices at startup and will use the first device found.</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">USB scan at startup</property>
 		      <property name="use_underline">True</property>
@@ -715,6 +717,7 @@
 		      <child>
 			<widget class="GtkTreeView" id="treeview1">
 			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Double-click a line to update settings.</property>
 			  <property name="can_focus">True</property>
 			  <property name="headers_visible">True</property>
 			  <property name="rules_hint">False</property>
@@ -723,6 +726,7 @@
 			  <property name="fixed_height_mode">False</property>
 			  <property name="hover_selection">False</property>
 			  <property name="hover_expand">False</property>
+			  <signal name="button_press_event" handler="comm_treeview1_button_press_event" last_modification_time="Wed, 31 May 2006 07:38:36 GMT"/>
 			</widget>
 		      </child>
 		    </widget>

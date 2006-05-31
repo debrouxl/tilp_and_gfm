@@ -4,6 +4,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 28/05/2006, version 0.14 (0.1.0, 0.1.3, 0.1.4, 0.0.3): roms
 	- fixed USB device reconnection
+	- reworked device box: display detected USB device in a list
 
 - 25/05/2006, version 0.13 (0.0.9, 0.1.3, 0.1.4, 0.0.3): roms/tyler
 	- removed certificate support (deprecated)

@@ -101,7 +101,7 @@ static void clist_populate(GtkListStore *store, int full)
 			gtk_list_store_append(store, &iter);
 
 			str1 = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
-			str2 = g_strdup_printf("#%i", i);
+			str2 = g_strdup_printf("#%i", i+1);
 			str3 = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
 
 			gtk_list_store_set(store, &iter, 
@@ -118,6 +118,39 @@ static void clist_refresh(GtkListStore *store, int full)
 {
 	gtk_list_store_clear(store);
 	clist_populate(store, full);
+}
+
+GLADE_CB gboolean
+comm_treeview1_button_press_event  (GtkWidget       *widget,
+                                    GdkEventButton  *event,
+                                    gpointer         user_data)
+{	
+	GtkWidget *list = GTK_WIDGET(widget);
+	GtkTreeView *view = GTK_TREE_VIEW(list);
+	GtkTreeSelection *selection;
+	GtkTreeModel *model;
+	gboolean valid;
+	GtkTreeIter iter;
+	gchar** row_text = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
+
+	// is double click ?
+	if(event->type != GDK_2BUTTON_PRESS)
+		return FALSE;
+
+	// get selection
+	selection = gtk_tree_view_get_selection(view);
+	valid = gtk_tree_selection_get_selected(selection, &model, &iter);
+	gtk_tree_model_get(model, &iter, 
+		COL_CABLE, &row_text[COL_CABLE], COL_PORT, &row_text[COL_PORT], 
+		COL_CALC, &row_text[COL_CALC], -1);
+
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), ticables_string_to_model(row_text[COL_CABLE]));
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), ticables_string_to_port(row_text[COL_PORT]));
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), ticalcs_string_to_model(row_text[COL_CALC]));
+
+    g_strfreev(row_text);
+
+    return FALSE;
 }
 
 //=========================================
