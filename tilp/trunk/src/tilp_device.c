@@ -306,6 +306,40 @@ int tilp_device_close(void)
 	return err;
 }
 
+#ifdef __WIN32__
+#include <windows.h>
+#define PAUSE(x) Sleep(x)
+#else
+#define PAUSE(x) usleep(1000*(x))
+#endif
+
+/*
+  Some comments: SilverLink is still NACK'ed after error. This did not appear
+  with TiLP-1 because it always close/open the device before any transfer.
+  It seems that an error (HALT condition) can not be cleared by a simple
+  slv_reset. We need to reopen the device. Why ? I don't know !
+*/
+int tilp_device_reset(void)
+{
+    //gif->msg_box("Information", "Connection is being \reset...", !0);
+#if 0
+    if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
+    {
+        tilp_device_close();
+        tilp_device_open();
+    }
+    else
+#endif
+    {
+        int err = ticables_cable_reset(cable_handle);
+        tilp_err(err);
+        PAUSE(1000);
+    }
+    //gif->msg_box("", "", 0);
+
+    return 0;
+}
+
 //---------------- old code --------------------------------------------------
 
 #if 0

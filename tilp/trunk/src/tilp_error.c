@@ -31,13 +31,6 @@
 
 #include "tilp_core.h"
 
-#ifdef __WIN32__
-#include <windows.h>
-#define PAUSE(x) Sleep(x)
-#else
-#define PAUSE(x) usleep(1000*(x))
-#endif
-
 extern int working_mode;
 static GList *stack = NULL;
 
@@ -85,21 +78,15 @@ int tilp_err(int errcode)
 					}
 					else
 					{
-						// ticalcs error => reset
-						//gif->msg_box("Information", "Connection is being reset...", !0);
-						ticables_cable_reset(cable_handle);
-						PAUSE(1000);
-						//gif->msg_box("", "", 0);
+					    // ticalcs error => reset
+					    tilp_device_reset();
 					}
 				}
 			}
 			else
 			{
-				// ticables error => reset
-				//gif->msg_box("Information", "Connection is being reset...", !0);
-				ticables_cable_reset(cable_handle);
-				PAUSE(1000);
-				//gif->msg_box("", "", 0);
+			    // ticables error => reset
+			    tilp_device_reset();
 			}			
 
             // FIXME OS X : we'll need to go full-UTF8 at some point

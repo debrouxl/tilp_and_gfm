@@ -31,4 +31,6 @@ int tilp_device_probe_all(int ***result);
 int tilp_device_open(void);
 int tilp_device_close(void);
 
+int tilp_device_reset(void);
+
 #endif
