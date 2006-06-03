@@ -258,26 +258,26 @@ reloop:
 
 int tilp_device_open(void)
 {
-	int err = 0;
+	int err;
 
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 	if(cable_handle == NULL)
-	{
 		gif->msg_box1("Error", "Can't set cable");
-	}
 	else
 	{
 		CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
 
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
-		//ticables_cable_reset(cable_handle);
+
+#if 0
+		err = ticables_cable_reset(cable_handle);
+		tilp_err(err);
+#endif
 
 		calc_handle = ticalcs_handle_new(cm);
 		if(calc_handle == NULL)
-		{
 			gif->msg_box1("Error", "Can't set cable");
-		}
 		else
 		{
 			err = ticalcs_cable_attach(calc_handle, cable_handle);
@@ -293,7 +293,7 @@ int tilp_device_open(void)
 
 int tilp_device_close(void)
 {
-	int err = 0;
+	int err;
 
 	// detach cable (made by handle_del, too)
 	err = ticalcs_cable_detach(calc_handle);
@@ -313,26 +313,87 @@ int tilp_device_close(void)
 #define PAUSE(x) usleep(1000*(x))
 #endif
 
+int tilp_device_err(int err)
+{
+	char *s = NULL;	
+	char *utf;
+	gsize bw;
+	
+	if(!err) return 0;
+	tilp_info("tilp_device_err catched error %i\n", err);
+
+	err = ticables_error_get(err, &s);
+	if (err) 
+	{
+		g_free(s);
+		err = ticalcs_error_get(err, &s);
+		if (err) 
+			g_free(s);
+	}
+
+	if(s)
+	{
+		utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
+		gif->msg_box1(_("Error"), utf);
+	}
+
+	return err;
+}
+
 /*
-  Some comments: SilverLink is still NACK'ed after error. This did not appear
-  with TiLP-1 because it always close/open the device before any transfer.
+  Note: SilverLink is still NACK'ed after error. This did not appear with TiLP-1 
+  because it always close/open the device before any transfer.
   It seems that an error (HALT condition) can not be cleared by a simple
   slv_reset. We need to reopen the device. Why ? I don't know !
+
+  No call to tilp_err in this function to avoid recursivity with tilp_err which
+  may call tilp_device_reset.
 */
 int tilp_device_reset(void)
 {
+	printf("tilp_device_reset\n");
     //gif->msg_box("Information", "Connection is being \reset...", !0);
-#if 0
+#if 1
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
     {
-        tilp_device_close();
-        tilp_device_open();
+		int err;
+
+		// detach cable (made by handle_del, too)
+		PAUSE(500);
+		err = ticalcs_cable_detach(calc_handle);
+		tilp_device_err(err);
+
+		// remove calc & cable
+		ticalcs_handle_del(calc_handle);
+		ticables_handle_del(cable_handle);
+
+		// get cable & attach
+		PAUSE(1000);
+		cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
+		if(cable_handle == NULL)
+			gif->msg_box1("Error", "Can't set cable");
+		else
+		{
+			CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
+
+			ticables_options_set_timeout(cable_handle, options.cable_timeout);
+			ticables_options_set_delay(cable_handle, options.cable_delay);
+
+			calc_handle = ticalcs_handle_new(cm);
+			if(calc_handle == NULL)
+				gif->msg_box1("Error", "Can't set cable");
+			else
+			{
+				err = ticalcs_cable_attach(calc_handle, cable_handle);
+				tilp_device_err(err);
+			}
+		}
     }
     else
 #endif
     {
         int err = ticables_cable_reset(cable_handle);
-        tilp_err(err);
+        tilp_device_err(err);
         PAUSE(1000);
     }
     //gif->msg_box("", "", 0);

@@ -6,6 +6,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed USB device reconnection
 	- reworked device box: display detected USB device in a list as well as full probing list.
 	- tilp_device_probe_usb is now restricted to FLASH devices only (faster)
+	- "SilverLink is still NACK'ed after error. Does not appear with TiLP1 => open/close 
+		instead of reset. Why ?" => Silver/DirectLink cable are now reopened instead of being
+		reset when error occurs.
 
 - 25/05/2006, version 0.13 (0.0.9, 0.1.3, 0.1.4, 0.0.3): roms/tyler
 	- removed certificate support (deprecated)
