@@ -258,7 +258,7 @@ reloop:
 
 int tilp_device_open(void)
 {
-	int err;
+	int err = 0;
 
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 	if(cable_handle == NULL)
@@ -353,7 +353,7 @@ int tilp_device_reset(void)
 {
 	printf("tilp_device_reset\n");
     //gif->msg_box("Information", "Connection is being \reset...", !0);
-#if 1
+#if 0
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
     {
 		int err;
