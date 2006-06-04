@@ -351,7 +351,6 @@ int tilp_device_err(int err)
 */
 int tilp_device_reset(void)
 {
-	printf("tilp_device_reset\n");
     //gif->msg_box("Information", "Connection is being \reset...", !0);
 #if 0
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
