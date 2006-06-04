@@ -434,7 +434,7 @@
 		      <child>
 			<widget class="GtkToolButton" id="button13">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Refresh right frame.</property>
+			  <property name="tooltip" translatable="yes">Help menu.</property>
 			  <property name="label" translatable="yes">Help</property>
 			  <property name="use_underline">True</property>
 			  <property name="stock_id">gtk-help</property>
