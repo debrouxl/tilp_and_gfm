@@ -426,6 +426,9 @@ int tilp_calc_recv_flash_app(void)
 	GList *ptr;
 	char filename[256];
 	char *dst;
+	int i, l;
+
+	l = g_list_length(remote.selection);
 
 	if(!tilp_ctree_selection2_ready())
 		return 0;
@@ -436,10 +439,12 @@ int tilp_calc_recv_flash_app(void)
 	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	gif->create_pbar_type5(_("Receiving application(s)"), "");
+	if(l == 1)
+		gif->create_pbar_type4(_("Receiving application"), "");
+	else
+		gif->create_pbar_type5(_("Receiving application(s)"), "");
 
-	ptr = remote.selection2;
-	while (ptr != NULL) 
+	for(ptr = remote.selection2, i = 0; ptr; ptr = ptr->next, i++) 
 	{
 		VarEntry *ve = (VarEntry *) ptr->data;
 		int err;
@@ -467,7 +472,11 @@ int tilp_calc_recv_flash_app(void)
 
 			return -1;
 		}
-		ptr = ptr->next;
+
+		gtk_update.cnt2 = i;
+		gtk_update.max2 = l;
+		gtk_update.pbar();
+		gtk_update.refresh();
 	}
 
 	g_free(dst);
@@ -633,10 +642,10 @@ static int tilp_calc_recv_var1(void)
 
 	l = g_list_length(remote.selection);
 
-	if(tilp_calc_isready())
+	if(!tilp_ctree_selection_ready())
 		return -1;
 
-	if(!tilp_ctree_selection_ready())
+	if(tilp_calc_isready())
 		return -1;
 	
 	if(l == 1) 
@@ -650,7 +659,7 @@ static int tilp_calc_recv_var1(void)
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 			".", tifiles_fext_of_group(options.calc_model), NULL);
 
-		gif->create_pbar_type4(_("Receiving variable(s)"), "");
+		gif->create_pbar_type4(_("Receiving variable"), "");
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
 		gif->destroy_pbar();
 
