@@ -447,7 +447,7 @@ int tilp_calc_recv_flash_app(void)
 	for(ptr = remote.selection2, i = 0; ptr; ptr = ptr->next, i++) 
 	{
 		VarEntry *ve = (VarEntry *) ptr->data;
-		int err;
+		int err, ret;
 		char *str;
 
 		str = ticonv_varname_to_filename(options.calc_model, ve->name);
@@ -456,10 +456,13 @@ int tilp_calc_recv_flash_app(void)
 		strcat(filename, tifiles_vartype2fext(options.calc_model, ve->type));
 		g_free(str);
 
-		if(!tilp_file_check(filename, &dst)) 
+		ret = tilp_file_check(filename, &dst);
+		if(ret == 0)
+			continue;
+		else if(ret == -1)
 		{
 			gif->destroy_pbar();
-			return 0;
+			return -1;
 		}
 
 		err = ticalcs_calc_recv_app2(calc_handle, dst, ve);

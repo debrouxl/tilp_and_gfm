@@ -184,8 +184,8 @@ int tilp_file_exist(const char* filename)
 
 /* 
    Check for file existence. If file already exists, ask for an
-   action (skip, overwrite or rename).
-   Return 0 if skipped. 
+   action (skip, overwrite/rename or exit).
+   Return 0 if skipped, 1 if renamed/overwritten, -1 if exited.
 */
 int tilp_file_check(const char *src, char **dst)
 {
@@ -205,11 +205,10 @@ int tilp_file_check(const char *src, char **dst)
 
 			switch (ret) 
 			{
-			case BUTTON1:
+			case BUTTON1:	// overwrite
 				*dst = g_strdup(src);
-				return !0;
-				break;
-			case BUTTON2:
+				return 1;
+			case BUTTON2:	// rename
 				dirname =
 				    gif->msg_entry(_("Rename the file"),
 						   _("New name: "), src);
@@ -217,14 +216,11 @@ int tilp_file_check(const char *src, char **dst)
 						return 0;
 					*dst = g_strdup(dirname);
 					g_free(dirname);
-				return !0;
-				break;
-			case BUTTON3:
+				return 1;
+			case BUTTON3:	// skip
 				return 0;
-				break;
-			default:
-				return 0;
-				break;
+			default:		// close
+				return -1;
 			}
 		} 
 		else 
@@ -245,30 +241,31 @@ int tilp_file_check(const char *src, char **dst)
 
 /*
   Try and move a file. If file already exists, ask for an action
-  (skip, overwrite or rename)
-  Return 0 if skipped. 
+  (skip, overwrite/rename or exit)
+  Return 0 if skipped, 1 if renamed/overwritten, -1 if exited.
 */
 int tilp_file_move_with_check(const char *src, const char *dst)
 {
 	char *dst2;
 
-	if (tilp_file_check(dst, &dst2)) 
+	switch(tilp_file_check(dst, &dst2))
 	{
+	case 1:
 		if (tilp_file_move(src, dst2)) 
 		{
 			gif->msg_box1(_("Error"), _("Unable to move the temporary file.\n"));
 			g_free(dst2);
 			return 0;
 		}
-	} 
-	else 
-	{
+	case -1:
+		return -1;
+	case 0:
 		g_free(dst2);
 		return 0;
 	}
-	g_free(dst2);
 
-	return !0;
+	g_free(dst2);
+	return -1;
 }
 
 #if !GLIB_CHECK_VERSION(2, 8, 0)

@@ -10,6 +10,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 		instead of reset. Why ?" => Silver/DirectLink cable are now reopened instead of being
 		reset when error occurs.
 	- allow receiving of several FLASH app at once
+	- fixed/improved tilp_file_check & tilp_file_move_with_check
 
 - 25/05/2006, version 0.13 (0.0.9, 0.1.3, 0.1.4, 0.0.3): roms/tyler
 	- removed certificate support (deprecated)
