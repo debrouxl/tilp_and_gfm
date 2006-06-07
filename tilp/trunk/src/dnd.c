@@ -198,6 +198,10 @@ on_treeview1_drag_begin(GtkWidget * widget,
 	// Variables
 	else if (!strcmp(name_to_drag, NODE3) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		select_vars_under_folder(!0);
+
+	// Applications
+	else if (!strcmp(name_to_drag, NODE4) && (ticalcs_calc_features(calc_handle) & FTS_FLASH))
+		select_vars_under_folder(!0);
 }
 
 GLADE_CB void
@@ -254,6 +258,9 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		}
 		else if (!strcmp(name, NODE4))	// Apps & Archives
 		{
+			// all apps to get
+			on_tilp_button5_clicked(NULL, NULL);
+			select_vars_under_folder(0);
 		}
 		else if (!strcmp(name, NODE5))	// IDlist
 		{
@@ -271,7 +278,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		} 
 		else 
 		{
-			// single/group to get
+			// single/group/app to get
 			on_tilp_button5_clicked(NULL, NULL);
 		}
 

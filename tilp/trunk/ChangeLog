@@ -9,6 +9,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- "SilverLink is still NACK'ed after error. Does not appear with TiLP1 => open/close 
 		instead of reset. Why ?" => Silver/DirectLink cable are now reopened instead of being
 		reset when error occurs.
+	- allow receiving of several FLASH app at once
 
 - 25/05/2006, version 0.13 (0.0.9, 0.1.3, 0.1.4, 0.0.3): roms/tyler
 	- removed certificate support (deprecated)
