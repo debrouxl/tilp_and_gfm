@@ -5,6 +5,7 @@ This is a list of some things to do:
 3) bug #1493368
 4) user box: overwrite/skip all
 5) bug #1499672
+6) sorting is called twice in clist
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
@@ -24,7 +25,6 @@ My calc:
 TI-84 Plus Silver Edition
 TI-OS 2.30
 
-
 Transfer bugs (both BlackLink and DirectLink):
 
 * When I try to send a group (*.8xg) to my calc all
@@ -43,12 +43,11 @@ calc, I could succesfully rename 8xz to 8xp, but when
 that same file was archived, an invalid file came out
 after the same change
 
-
 Interface bugs:
 
 * Files on calc cannot be sorted by attr/name/etc.
 
-* Sorting by type doesn't work properly on the pc-panel
++ Sorting by type doesn't work properly on the pc-panel
 
 + Sorting by name is Linux's way: difference between
 upper- and lowercase. I know this is not a real bug,
@@ -56,7 +55,7 @@ but it's a bit confusing to native Windows users
 
 Other bugs:
 
-* The file TiglUsb.sys is not included in the
++ The file TiglUsb.sys is not included in the
 installer, this is very confusing to noobs ;-)
 
 

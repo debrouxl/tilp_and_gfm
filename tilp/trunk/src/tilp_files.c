@@ -630,10 +630,19 @@ void tilp_file_sort_by_name(void)
 
 static gint sort_by_type(gconstpointer a, gconstpointer b)
 {
-//FileEntry* fi_a = (FileEntry *)a;
-	FileEntry* fi_b = (FileEntry *)b;
-	
-	return ((fi_b->attrib & S_IFMT) == S_IFDIR);
+	FileEntry* fa = (FileEntry *)a;
+	FileEntry* fb = (FileEntry *)b;
+#if 1
+	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		return strcmp(tifiles_file_get_type(fa->name), tifiles_file_get_type(fb->name));
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && strcmp(tifiles_file_get_type(fa->name), tifiles_file_get_type(fb->name)))
+		return !0;
+
+	return 0;
+#else
+	return ((fb->attrib & S_IFMT) == S_IFDIR);
+#endif
 }
 
 void tilp_file_sort_by_type(void)
