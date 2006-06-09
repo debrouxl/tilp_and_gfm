@@ -430,7 +430,7 @@ void ctree_refresh(void)
 
 		for (j = 0; j < (int)t_node_n_children(parent); j++) 
 		{
-			TNode *node = t_node_nth_child(parent, i);
+			TNode *node = t_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
