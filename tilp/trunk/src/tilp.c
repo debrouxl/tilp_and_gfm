@@ -486,7 +486,7 @@ void on_tilp_send(gchar *user_data)
 			tilp_slct_update_dirlist();
 			ctree_refresh();
 
-			remote.memory.ram_used = ticalcs_dirlist_mem_used(remote.var_tree);
+			remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
 			labels_refresh();
 		}
 

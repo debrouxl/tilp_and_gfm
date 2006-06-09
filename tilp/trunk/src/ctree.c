@@ -426,31 +426,36 @@ void ctree_refresh(void)
 	apps = remote.app_tree;
 	for (i = 0; i < (int)t_node_n_children(apps); i++) 
 	{
-		TNode *node = t_node_nth_child(apps, i);
-		gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
-		VarEntry *ve = (VarEntry *) (node->data);
-		char icon_name[256];
+		TNode *parent = t_node_nth_child(apps, i);
 
-		row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name);
-		row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
-		row_text[3] = g_strdup_printf("%u", (int) (ve->size));
+		for (j = 0; j < (int)t_node_n_children(parent); j++) 
+		{
+			TNode *node = t_node_nth_child(parent, i);
+			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
+			VarEntry *ve = (VarEntry *) (node->data);
+			char icon_name[256];
 
-		strcpy(icon_name, tifiles_vartype2icon(options.calc_model, ve->type));
-		strcat(icon_name, ".ico");
-		tilp_file_underscorize(icon_name);
-		pix9 = create_pixbuf(icon_name);
+			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name);
+			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
+			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 
-		gtk_tree_store_append(tree, &child_node, &apps_node);
-		gtk_tree_store_set(tree, &child_node, 
-				COLUMN_NAME, row_text[0], 
-				COLUMN_TYPE, row_text[2],
-				COLUMN_SIZE, row_text[3], 
-				COLUMN_DATA, (gpointer) ve, 
-				COLUMN_ICON, pix9,
-				COLUMN_FONT, FONT_NAME,
-				   -1);
-		g_object_unref(pix9);
-		g_strfreev(row_text);
+			strcpy(icon_name, tifiles_vartype2icon(options.calc_model, ve->type));
+			strcat(icon_name, ".ico");
+			tilp_file_underscorize(icon_name);
+			pix9 = create_pixbuf(icon_name);
+
+			gtk_tree_store_append(tree, &child_node, &apps_node);
+			gtk_tree_store_set(tree, &child_node, 
+					COLUMN_NAME, row_text[0], 
+					COLUMN_TYPE, row_text[2],
+					COLUMN_SIZE, row_text[3], 
+					COLUMN_DATA, (gpointer) ve, 
+					COLUMN_ICON, pix9,
+					COLUMN_FONT, FONT_NAME,
+					   -1);
+			g_object_unref(pix9);
+			g_strfreev(row_text);
+		}
 	}
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(ctree_wnd));
 

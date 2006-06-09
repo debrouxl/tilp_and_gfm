@@ -290,7 +290,7 @@ void tilp_slct_update_dirlist(void)
 		int i;
 
 		for(i = 0; i < c->num_entries; i++)
-			ticalcs_dirlist_entry_add(remote.var_tree, (c->entries)[i]);
+			ticalcs_dirlist_ve_add(remote.var_tree, (c->entries)[i]);
 	}
 	ticalcs_dirlist_display(remote.var_tree);
 }

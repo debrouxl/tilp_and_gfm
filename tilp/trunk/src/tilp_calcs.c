@@ -921,7 +921,7 @@ int tilp_calc_del_var(void)
 		}
 		else
 		{
-			ticalcs_dirlist_entry_del(remote.var_tree, ve);
+			ticalcs_dirlist_ve_del(remote.var_tree, ve);
 		}
 	}
 
@@ -972,7 +972,7 @@ int tilp_calc_new_fld(void)
 	else
 	{
 		strcpy(ve.folder, fldname);	// vr is modified by ticalcs_calc_new_fld
-		ticalcs_dirlist_entry_add(remote.var_tree, &ve);
+		ticalcs_dirlist_ve_add(remote.var_tree, &ve);
 		ctree_refresh();
 	}
 

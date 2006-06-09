@@ -53,8 +53,8 @@ int tilp_dirlist_remote(void)
 	gif->destroy_pbar();
 
 	// count entries
-	remote.memory.n_vars = ticalcs_dirlist_num_vars(remote.var_tree);
-	remote.memory.n_apps = ticalcs_dirlist_num_vars(remote.app_tree);
+	remote.memory.n_vars = ticalcs_dirlist_ve_count(remote.var_tree);
+	remote.memory.n_apps = ticalcs_dirlist_ve_count(remote.app_tree);
 
 	// get mem used stats
 	ti = remote.var_tree->data;
