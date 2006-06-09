@@ -81,13 +81,17 @@ Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}\PortTal
 
 ; Copy LPG's SilverLink driver
 Source: "C:\sources\roms\tiglusb\src\xp\driver\License.txt"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.inf"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.sys"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 0,4;
 
 Source: "C:\sources\roms\tiglusb\src\98\driver\License.txt"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{app}\slvdrv98";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.inf"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{app}\slvdrv98";  Tasks: slv_drv;
+Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
 
 ; TiLP fonts
