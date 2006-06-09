@@ -50,10 +50,9 @@ Interface bugs:
 
 * Sorting by type doesn't work properly on the pc-panel
 
-* Sorting by name is Linux's way: difference between
++ Sorting by name is Linux's way: difference between
 upper- and lowercase. I know this is not a real bug,
 but it's a bit confusing to native Windows users
-
 
 Other bugs:
 

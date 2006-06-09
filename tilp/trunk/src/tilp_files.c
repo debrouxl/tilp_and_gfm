@@ -601,6 +601,12 @@ int tilp_dirlist_local(void)
 
 /* Sorting */
 
+#ifdef __WIN32__
+# define str_cmp	_stricmp
+#else
+# define str_cmp	strcmp
+#endif
+
 static gint sort_by_name(gconstpointer a, gconstpointer b)
 {
 	FileEntry* fa = (FileEntry *)a;
@@ -608,8 +614,8 @@ static gint sort_by_name(gconstpointer a, gconstpointer b)
 
 	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
 		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
-		return strcmp(fa->name, fb->name);
-	else if (((fb->attrib & S_IFMT) == S_IFDIR) && strcmp(fa->name, fb->name)) 
+		return str_cmp(fa->name, fb->name);
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && str_cmp(fa->name, fb->name)) 
 		return !0;
 
 	return 0;
