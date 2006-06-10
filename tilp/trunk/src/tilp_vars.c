@@ -84,8 +84,9 @@ int tilp_dirlist_remote(void)
 static gint sort_by_name(GNode* node, gpointer data)
 {
 	VarEntry* ve = node->data;
-
-	printf("<%s>\n", ve->name);
+	printf("%p %p %p %p\n", node->next, node->prev, node->parent, node->children);
+	if(ve)
+		printf("<%s>\n", ve->name);
 
 	return 0;
 }
@@ -95,7 +96,8 @@ void tilp_vars_sort_by_name(void)
 {
 	if(ticalcs_calc_features(calc_handle) & FTS_FOLDER)
 		return;
-	//g_node_children_foreach((GNode *)remote.var_tree, G_TRAVERSE_ALL, sort_by_name, NULL);
+
+	//g_node_children_foreach((GNode *)remote.var_tree->children, G_TRAVERSE_ALL, sort_by_name, NULL);
 }
 
 /* Sort variables by attribute */
