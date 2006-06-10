@@ -127,27 +127,35 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 	g_list_free(list);
 }
 
-void clist_refresh(void);
+void ctree_refresh(void);
 static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
 {
 	int col = column2index(user_data, column);
+	GtkSortType sort1 = gtk_tree_view_column_get_sort_order(column);
+	GtkSortType sort2 = (options.remote_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
+
+	if(sort1 == sort2)
+	{
+		options.remote_sort_order = !options.remote_sort_order;
+		ctree_refresh();
+	}
 	
 	switch(col)
 	{
 	case COLUMN_NAME:
-		options.local_sort = SORT_BY_NAME;
+		options.remote_sort = SORT_BY_NAME;
 		ctree_refresh();
 		break;
 	case COLUMN_TYPE:
-		options.local_sort = SORT_BY_TYPE;
+		options.remote_sort = SORT_BY_TYPE;
 		ctree_refresh();
 		break;
 	case COLUMN_SIZE:
-		options.local_sort = SORT_BY_SIZE;
+		options.remote_sort = SORT_BY_SIZE;
 		ctree_refresh();
 		break;
 	case COLUMN_ATTR:
-		options.local_sort = SORT_BY_INFO;
+		options.remote_sort = SORT_BY_INFO;
 		ctree_refresh();
 		break;
 	default: break;
