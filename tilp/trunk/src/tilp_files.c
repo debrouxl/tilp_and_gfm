@@ -604,7 +604,7 @@ int tilp_dirlist_local(void)
 #ifdef __WIN32__
 # define str_cmp	_stricmp
 #else
-# define str_cmp	strcmp
+# define str_cmp	strcasecmp
 #endif
 
 static gint sort_by_name(gconstpointer a, gconstpointer b)
