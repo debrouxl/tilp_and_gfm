@@ -36,12 +36,14 @@ static void gtk_start(void)
 {
 	gtk_update.cnt1 = gtk_update.max1 = 0;
 	gtk_update.cnt2 = gtk_update.max2 = 0;
+	gtk_update.cnt3 = gtk_update.max3 = 0;
 } 
 
 static void gtk_stop(void)
 {
 	gtk_update.cnt1 = gtk_update.max1 = 0;
 	gtk_update.cnt2 = gtk_update.max2 = 0;
+	gtk_update.cnt3 = gtk_update.max3 = 0;
 } 
 
 static void filter_shift(void);
@@ -122,7 +124,7 @@ static void gtk_refresh(void)
 CalcUpdate gtk_update =
 {
 	"", 0,
-	0.0, 0, 0, 0, 0,
+	0.0, 0, 0, 0, 0, 0, 0,  (1 << 0) | (1 << 1), 0,
 	gtk_start,
 	gtk_stop,
 	gtk_refresh,

@@ -372,7 +372,6 @@ int tilp_calc_send_app(void)
 		ticables_options_set_timeout(cable_handle, 100);
 
 	// Display the appropriate dialog box
-	printf("l (sa) = %i\n", l);
 	l = g_list_length(local.selection2);
 	if(l == 1) 
 		gif->create_pbar_type4(_("Sending application"), "");
@@ -399,8 +398,8 @@ int tilp_calc_send_app(void)
 
 		if(l > 1) 
 		{
-			gtk_update.cnt2 = i;
-			gtk_update.max2 = l;
+			gtk_update.cnt3 = i;
+			gtk_update.max3 = l;
 
 			gtk_update.pbar();
 			gtk_update.refresh();
@@ -522,8 +521,8 @@ int tilp_calc_recv_app(void)
 			return -1;
 		}
 
-		gtk_update.cnt2 = i;
-		gtk_update.max2 = l;
+		gtk_update.cnt3 = i;
+		gtk_update.max3 = l;
 		gtk_update.pbar();
 		gtk_update.refresh();
 	}
@@ -588,7 +587,6 @@ int tilp_calc_send_var(void)
 
 	// Display the appropriate dialog box
 	l = g_list_length(local.selection);
-	printf("l (sv) = %i\n", l);
 	if(l == 1) 
 	{
 		if(tifiles_file_is_group(((FileEntry *)(local.selection->data))->name))
@@ -635,8 +633,8 @@ int tilp_calc_send_var(void)
 
 		if(l > 1) 
 		{
-			gtk_update.cnt2 = i;
-			gtk_update.max2 = l;
+			gtk_update.cnt3 = i;
+			gtk_update.max3 = l;
 
 			gtk_update.pbar();
 			gtk_update.refresh();
@@ -727,8 +725,8 @@ static int tilp_calc_recv_var1(void)
 				break;
 			}
 
-			gtk_update.cnt2 = i;
-			gtk_update.max2 = l;
+			gtk_update.cnt3 = i;
+			gtk_update.max3 = l;
 			gtk_update.pbar();
 			gtk_update.refresh();
 		}
