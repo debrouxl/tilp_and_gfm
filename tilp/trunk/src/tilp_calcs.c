@@ -341,7 +341,7 @@ int tilp_calc_rom_dump(void)
   Note2: the timeout is set to 30 seconds during operation due to garbage collection attempt
 	(TI83+ only, bug #738486)
 */
-int tilp_calc_send_flash_app(void)
+int tilp_calc_send_app(void)
 {
 	GList *sel;
 	gint i, l;
@@ -422,7 +422,7 @@ int tilp_calc_send_flash_app(void)
 
   No ready check is made in this function. The RDY command is often rejected in boot mode.
 */
-int tilp_calc_send_flash_os(char *filename)
+int tilp_calc_send_os(char *filename)
 {
 	int err, ret;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
@@ -467,7 +467,7 @@ int tilp_calc_send_flash_os(char *filename)
 /*
   Receive an FLASH application
 */
-int tilp_calc_recv_flash_app(void)
+int tilp_calc_recv_app(void)
 {
 	GList *ptr;
 	char filename[256];

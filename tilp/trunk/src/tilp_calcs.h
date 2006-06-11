@@ -31,10 +31,10 @@ int tilp_calc_recv_var(void);
 int tilp_calc_send_backup(const char* filename);
 int tilp_calc_recv_backup(void);
 
-int tilp_calc_send_flash_app(void);
-int tilp_calc_recv_flash_app(void);
+int tilp_calc_send_app(void);
+int tilp_calc_recv_app(void);
 
-int tilp_calc_send_flash_os(char *filename);
+int tilp_calc_send_os(char *filename);
 int tilp_calc_idlist(int);
 
 int tilp_calc_rom_dump(void);

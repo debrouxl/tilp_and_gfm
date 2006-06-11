@@ -164,7 +164,7 @@ int tilp_cmdline_send(void)
 
 		if (tifiles_file_is_flash(fe->name) && !g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model))) 
 		{
-			tilp_calc_send_flash_os(fe->name);
+			tilp_calc_send_os(fe->name);
 			return 0;
 		}
 		else if (tifiles_file_is_backup(fe->name)) 
@@ -187,7 +187,7 @@ int tilp_cmdline_send(void)
 	if(local.selection2)
 	{
 		options.overwrite = FALSE;
-		tilp_calc_send_flash_app();
+		tilp_calc_send_app();
 		options.overwrite = over;
 		return 0;
 	}

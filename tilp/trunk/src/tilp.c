@@ -395,7 +395,7 @@ void on_tilp_recv(void)
 
 		if (remote.selection2 != NULL) 
 		{
-			ret = tilp_calc_recv_flash_app();
+			ret = tilp_calc_recv_app();
 			if (ret != 0)
 				return;
 		}
@@ -443,16 +443,16 @@ void on_tilp_send(gchar *user_data)
 		{
 			if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
 			{
-				if (tilp_calc_send_flash_os(f->name) != 0)
+				if (tilp_calc_send_os(f->name) != 0)
 					return;
 			} 
 			else if (tifiles_file_is_tib(f->name)) 
 			{
-				if (tilp_calc_send_flash_os(f->name) != 0)
+				if (tilp_calc_send_os(f->name) != 0)
 					return;
 			}
 			else
-				tilp_calc_send_flash_app();
+				tilp_calc_send_app();
 		} 
 	}
 
