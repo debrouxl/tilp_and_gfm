@@ -292,7 +292,8 @@ void tilp_slct_update_dirlist(void)
 		for(i = 0; i < c->num_entries; i++)
 			ticalcs_dirlist_ve_add(remote.var_tree, (c->entries)[i]);
 	}
-	ticalcs_dirlist_display(remote.var_tree);
+	remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
+	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
 
 //-----------
