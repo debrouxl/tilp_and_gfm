@@ -106,9 +106,13 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
 
-		local.selection = g_list_append(local.selection, fe);
 		full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
 		local.file_selection = g_list_append(local.file_selection, full_path);
+
+		if(tifiles_file_is_flash(fe->name))
+			local.selection2 = g_list_append(local.selection2, fe);
+		else if(tifiles_file_is_regular(fe->name))
+			local.selection = g_list_append(local.selection, fe);
 	}
 
 	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);

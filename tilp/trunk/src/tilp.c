@@ -430,40 +430,40 @@ void on_tilp_send(gchar *user_data)
 	FileEntry *f;
 	int ret;
 
-	// note: dst_folder must be a copy b/c the user_data
-	// pointer is no longer valid after dirlist_remote
-	target = g_strdup(user_data);
-
-	if (local.selection == NULL)
+	if (local.selection == NULL && local.selection2 == NULL)
 		return;
-
-	f = (FileEntry *) local.selection->data;
-	if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
+	
+	// send apps
+	if(local.selection2)
 	{
-		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_certif(options.calc_model))) 
+		f = (FileEntry *) local.selection2->data;
+
+		// send os upgrades	
+		if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
 		{
-			if (tilp_calc_send_cert(f->name) != 0)
-				return;
+			if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
+			{
+				if (tilp_calc_send_flash_os(f->name) != 0)
+					return;
+			} 
+			else if (tifiles_file_is_tib(f->name)) 
+			{
+				if (tilp_calc_send_flash_os(f->name) != 0)
+					return;
+			}
+			else
+				tilp_calc_send_flash_app();
 		} 
-		if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(options.calc_model))) 
-		{
-			if (tilp_calc_send_flash_app(f->name) != 0)
-				return;
-		} 
-		else if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
-		{
-			if (tilp_calc_send_flash_os(f->name) != 0)
-				return;
-		} 
-		else if (tifiles_file_is_tib(f->name)) 
-		{
-			if (tilp_calc_send_flash_os(f->name) != 0)
-				return;
-		}
-	} 
-	else 
+	}
+
+	// send vars
+	if(local.selection)
 	{
 		tilp_slct_load_contents();
+
+		// note: dst_folder must be a copy b/c the user_data
+		// pointer is no longer valid after dirlist_remote
+		target = g_strdup(user_data);
 
 		// change target folder
 		if(strcmp(target, ""))
@@ -489,9 +489,8 @@ void on_tilp_send(gchar *user_data)
 		}
 
 		tilp_slct_unload_contents();
+		g_free(target);
 	}
-
-	g_free(target);
 }
 
 // Receive

@@ -57,6 +57,7 @@ int tilp_calc_isready(void)
 	int to;
 	CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
 	
+	// DirectLink cable need re-opening to clear error (STALL)
 	if(cm == CALC_TI89T_USB || cm == CALC_TI84P_USB /*|| options.cable_model == CABLE_SLV*/)
 	{
 		tilp_device_close();
@@ -68,7 +69,7 @@ int tilp_calc_isready(void)
 	err = ticalcs_calc_isready(calc_handle);
 	ticables_options_set_timeout(cable_handle, to);
 
-	if(err == 257 /*ERR_NOT_READY*/)
+	if(err == 257)	/* 257 = ERR_NOT_READY */
 	{
 		switch(options.calc_model)
 		{
@@ -231,7 +232,7 @@ int tilp_calc_recv_backup(void)
 }
 
 /*
-  Receive the IDlist
+  Receive the IDlist (msg box or file)
 */
 int tilp_calc_idlist(int to_file)
 {
@@ -335,20 +336,31 @@ int tilp_calc_rom_dump(void)
 
 
 /*
-  Send a FLASH application
+  Send one or more FLASH application(s).
   Note: the timeout is increased to 10 seconds during the operation.
   Note2: the timeout is set to 30 seconds during operation due to garbage collection attempt
 	(TI83+ only, bug #738486)
 */
-int tilp_calc_send_flash_app(char *filename)
+int tilp_calc_send_flash_app(void)
 {
-	int err;
+	GList *sel;
+	gint i, l;
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_app(options.calc_model))) 
+	if(!tilp_clist_selection_ready())
+		return 0;
+
+	// Check for selection consistence
+	for (sel = local.selection2, l = 0; sel; sel = sel->next) 
 	{
-		gif->msg_box1(_("Error"),
-			     _("It's not an FLASH application or this FLASH application is not intended for this calculator type."));
-		return -1;
+		FileEntry *f = (FileEntry *)sel->data;
+
+		if(tifiles_file_is_flash(f->name) && 
+			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
+		{
+			gif->msg_box1(_("Error"),
+				_("You can not send variables/applications and upgrades simultaneously."));
+			return 0;
+		}
 	}
 
 	if(tilp_calc_isready())
@@ -359,15 +371,45 @@ int tilp_calc_send_flash_app(char *filename)
 	else
 		ticables_options_set_timeout(cable_handle, 100);
 
-	gif->create_pbar_type3(_("Flash"));
-	err = ticalcs_calc_send_app2(calc_handle, filename);
-	gif->destroy_pbar();
+	// Display the appropriate dialog box
+	printf("l (sa) = %i\n", l);
+	l = g_list_length(local.selection2);
+	if(l == 1) 
+		gif->create_pbar_type4(_("Sending application"), "");
+	else
+		gif->create_pbar_type5(_("Sending applications"), "");
 
+	// Now, send files
+	for(sel = local.selection2, i = 0; sel != NULL; sel = sel->next, i++)
+	{
+		FileEntry *f = (FileEntry *)sel->data;
+		int err;
+
+		if(tifiles_file_is_regular(f->name))
+			continue;
+
+		err = ticalcs_calc_send_app2(calc_handle, f->name);
+		if(err)
+		{
+			tilp_err(err);
+			gif->destroy_pbar();
+
+			return -1;
+		}
+
+		if(l > 1) 
+		{
+			gtk_update.cnt2 = i;
+			gtk_update.max2 = l;
+
+			gtk_update.pbar();
+			gtk_update.refresh();
+		}
+	}
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
-	
-	if(tilp_err(err))
-		return -1;
 
+	gif->destroy_pbar();
+	
 	return 0;
 }
 
@@ -377,11 +419,20 @@ int tilp_calc_send_flash_app(char *filename)
   Note: the timeout is increased to 10 seconds during the operation.
   Note2: the timeout is set to 30 seconds during operation due to garbage collection attempt
 	(TI83+ only, bug #738486)
+
+  No ready check is made in this function. The RDY command is often rejected in boot mode.
 */
 int tilp_calc_send_flash_os(char *filename)
 {
 	int err, ret;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
+
+	if(g_list_length(remote.selection) > 1)
+	{
+		gif->msg_box1(_("Error"),
+			     _("You have to select _one_ upgrade to send."));
+		return -1;
+	}
 
 	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(options.calc_model)) &&
 		!tifiles_file_is_tib(filename)) 
@@ -394,11 +445,6 @@ int tilp_calc_send_flash_os(char *filename)
 	ret = gif->msg_box4(_("Warning"), msg);
 	if(ret == BUTTON2)
 		return -1;
-
-	/*
-	if(tilp_calc_isready())
-		return -1;
-	*/
 
 	if(options.calc_model == CALC_TI83P || options.calc_model == CALC_TI84P)
 		ticables_options_set_timeout(cable_handle, 300);
@@ -433,10 +479,10 @@ int tilp_calc_recv_flash_app(void)
 	if(!tilp_ctree_selection2_ready())
 		return 0;
 
-	if(tilp_calc_isready())
+	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
+	if(tilp_calc_isready())
 		return -1;
 
 	if(l == 1)
@@ -494,39 +540,39 @@ int tilp_calc_recv_flash_app(void)
 int tilp_calc_send_var(void)
 {
 	GList *sel;
+	gint i, l;
 	int mode = MODE_NORMAL;
-	gint i, l = 0;
-//	int ret;
 
 	if(!tilp_clist_selection_ready())
 		return 0;
 
 	// Check for selection consistence
-	for (sel = local.selection; sel; sel = sel->next) 
+	for (sel = local.selection, l = 0; sel; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
-		if(tifiles_file_is_flash(f->name)) 
+		if(tifiles_file_is_flash(f->name) && 
+			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
 		{
-			gif->msg_box1(_("Error"),
-				_("You can not send both variables and applications simultaneously."));
+			gif->msg_box1(_("Error"), _("You can not send both variables/applications and upgrades simultaneously."));
 			return 0;
 		}
-
-		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		else if(tifiles_file_is_flash(f->name) && 
+			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(options.calc_model)))
 		{
-			gif->msg_box1(_("Error"),
-				     _("You can not send backups in this way. Use the 'Restore' button instead."));
+			continue;
+		}
+		else if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		{
+			gif->msg_box1(_("Error"), _("You can not send backups in this way. Use the 'Restore' button instead."));
 			return 0;
 		}
-
-		if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
+		else if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
 		{
 			gif->msg_box1(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
 			return 0;
 		}
-
-		if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
+		else if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
 		{
 			gif->msg_box1(_("Error"), _("There is a file type incompatible with the target hand-held in the selection."));
 			return 0;
@@ -541,15 +587,14 @@ int tilp_calc_send_var(void)
 		mode |= MODE_LOCAL_PATH;
 
 	// Display the appropriate dialog box
-	l = g_list_length(sel = local.selection);
+	l = g_list_length(local.selection);
+	printf("l (sv) = %i\n", l);
 	if(l == 1) 
 	{
-		FileEntry *f = (FileEntry *) sel->data;
-
-		if(tifiles_file_is_group(f->name))
+		if(tifiles_file_is_group(((FileEntry *)(local.selection->data))->name))
 			gif->create_pbar_type5(_("Sending group file"), "");
 		else
-			gif->create_pbar_type4(_("Sending variables"), "");
+			gif->create_pbar_type4(_("Sending variable"), "");
 	} 
 	else
 	{
@@ -557,12 +602,11 @@ int tilp_calc_send_var(void)
 	}
 
 	// Now, send files
-	for(sel = local.selection, i =0; sel != NULL; sel = sel->next, i++)
+	for(sel = local.selection, i = 0; sel != NULL; sel = sel->next, i++)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
 
-//tilp_calc_send_var_retry:
 		// It is not the last file to send
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
@@ -571,20 +615,8 @@ int tilp_calc_send_var(void)
 			if(err) 
 			{
 				tilp_err(err);
-/*
-				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
-				switch(ret)
-				{
-				case BUTTON1: 
-					goto tilp_calc_send_var_retry;
-					break;
-				case BUTTON2: 
-					continue;
-				case BUTTON3:
-				default: break;
-				}
-*/
 				gif->destroy_pbar();
+
 				return -1;
 			}
 		} 
@@ -595,20 +627,8 @@ int tilp_calc_send_var(void)
 			if(err)
 			{
 				tilp_err(err);
-/*
-				ret = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
-				switch(ret)
-				{
-				case BUTTON1: 
-					goto tilp_calc_send_var_retry;
-					break;
-				case BUTTON2: 
-					continue;
-				case BUTTON3:
-				default: break;
-				}
-*/
 				gif->destroy_pbar();
+
 				return -1;
 			}
 		}
@@ -641,7 +661,6 @@ static int tilp_calc_recv_var1(void)
 	int i, l;
 	int err, ret=0;
 	FileContent **array;
-	//int btn;
 
 	l = g_list_length(remote.selection);
 
@@ -698,29 +717,13 @@ static int tilp_calc_recv_var1(void)
 		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
-			//static int b = 0;
 
-//tilp_calc_recv_var1_retry:
 			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
 			
 			if(err)
 			{
 				tilp_err(err);
-/*
-				btn = msg_box3("Question", "Which action do you want to take ?", "Retry", "Skip", "Cancel");
-				switch(btn)
-				{
-				case BUTTON1: 
-					goto tilp_calc_recv_var1_retry;
-					break;
-				case BUTTON2:
-					tifiles_content_delete_regular(array[i--]);
-					continue;
-				case BUTTON3:
-				default: break;
-				}
-*/
 				break;
 			}
 
@@ -827,7 +830,6 @@ static int tilp_calc_recv_var2(void)
 	{
 		if(!options.recv_as_group)
 		{
-			// to do... (ungrouping)
 			tifiles_ungroup_file(tmp_filename, NULL);
 			g_free(tmp_filename);
 			

@@ -41,51 +41,57 @@ void tilp_clist_selection_destroy(void)
 		g_list_free(local.selection);
 		local.selection = NULL;
 	}
+
+	if (local.selection2 != NULL) 
+	{
+		g_list_free(local.selection2);
+		local.selection2 = NULL;
+	}
 }
 
 /* Check for files in the list */
 int tilp_clist_selection_ready(void)
 {
-	if (local.selection == NULL) 
+	if (local.selection == NULL && local.selection2 == NULL) 
 	{
-#ifndef __MACOSX__
 		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
-#endif /* !__MACOSX__ */
 		return 0;
 	}
+
 	return !0;
 }
 
-#ifndef __MACOSX__
 void tilp_clist_selection_display(void)
 {
-	GList *ptr = local.selection;
+	GList *ptr;
 
-	if (local.selection == NULL)
+	if (local.selection == NULL && local.selection2 == NULL)
 		return;
 
-	while (ptr != NULL) 
+	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
-		ptr = ptr->next;
+	}
+
+	for(ptr = local.selection2; ptr; ptr = ptr->next)
+	{
+		FileEntry *fi = ptr->data;
+		printf("<%s>\n", fi->name);
 	}
 }
-#endif /* !__MACOSX__ */
 
 void tilp_clist_add_file_to_selection(const char* filename)
 {
 	FileEntry* fe = g_malloc0(sizeof(FileEntry));
 
 	fe->name = g_strdup(filename);
-	local.selection = g_list_prepend(local.selection, fe);
-}
 
-/* Add a file to the file_selection (if it does not exist in the list) */
-void tilp_add_file_to_selection(const char *filename)
-{
-	local.selection = g_list_append(local.selection, (gpointer) filename);
+	if(tifiles_file_is_flash(fe->name))
+		local.selection2 = g_list_prepend(local.selection2, fe);
+	else if(tifiles_file_is_regular(fe->name))
+		local.selection = g_list_prepend(local.selection, fe);	
 }
 
 /* Destroy the selection of the clist window */
@@ -113,7 +119,6 @@ void tilp_add_file_to_file_selection(const char *filename)
 	local.file_selection = g_list_append(local.file_selection, (gpointer) filename);
 }
 
-#ifndef __MACOSX__
 /* Delete files which are in local.file_selection */
 void tilp_delete_selected_files()
 {
@@ -170,7 +175,6 @@ void tilp_rename_selected_files()
 		ptr = ptr->next;
 	}
 }
-#endif /* !__MACOSX__ */
 
 /* Preload TI variables belonging with the selection */
 void tilp_slct_load_contents(void)
@@ -212,7 +216,6 @@ void tilp_slct_load_contents(void)
 		{
 			fe->content = NULL;
 			free(fe->selected);
-			//msg_box1("Warning", "TiLP was not able to load a file: check path !");
 		}
 	}
 
@@ -277,7 +280,7 @@ void tilp_slct_update_dirlist(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL)
+	if (local.selection == NULL && local.selection2 == NULL)
 		return;
 
 	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
@@ -293,6 +296,10 @@ void tilp_slct_update_dirlist(void)
 			ticalcs_dirlist_ve_add(remote.var_tree, (c->entries)[i]);
 	}
 	remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
+
+	{
+		// to do for FLASH apps
+	}
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
 
@@ -318,10 +325,8 @@ int tilp_ctree_selection_ready(void)
 {
 	if (remote.selection == NULL) 
 	{
-#ifndef __MACOSX__
 		gif->msg_box1(_("Information"), _
 			     ("A variable must have been selected in the left window."));
-#endif /* !__MACOSX__ */
 		return 0;
 	}
 	return !0;
@@ -331,10 +336,8 @@ int tilp_ctree_selection2_ready(void)
 {
 	if (remote.selection2 == NULL) 
 	{
-#ifndef __MACOSX__
 		gif->msg_box1(_("Information"), _
 			     ("A variable must have been selected in the left window."));
-#endif /* !__MACOSX__ */
 		return 0;
 	}
 	return !0;
@@ -350,7 +353,6 @@ void tilp_ctree_selection_display(void)
 	for(ptr = remote.selection; ptr; ptr = ptr->next)
 	{
 		VarEntry *ve = ptr->data;
-
 		printf("<%s>\n", ve->name);
 	}
 }

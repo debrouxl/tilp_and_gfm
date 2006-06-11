@@ -141,7 +141,8 @@ typedef struct
     GList* dirlist;			// linked list of files & directories
     gchar* cwdir;			// current active directory
 
-    GList* selection;		// selection of files (data: FileEntry)
+    GList* selection;		// selection of files (data: FileContent)
+	GList* selection2;		// selection of files (data: FlashContent)
     GList* file_selection;	// selection of files (data: char*)
 
     int copy_cut;			// action type
