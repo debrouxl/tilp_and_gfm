@@ -312,32 +312,34 @@ void ctree_refresh(void)
 		return;
 
 	// sort variables
+	for(i = 0; i < CTREE_NVCOLS; i++)
+	{
+		col = gtk_tree_view_get_column(view, i);
+		gtk_tree_view_column_set_sort_indicator(col, FALSE);
+	}
+
 	switch (options.remote_sort) 
 	{
 	case SORT_BY_NAME:
 		tilp_vars_sort_by_name();
-
 		col = gtk_tree_view_get_column(view, COLUMN_NAME);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.remote_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_INFO:
 		tilp_vars_sort_by_info();
-
 		col = gtk_tree_view_get_column(view, COLUMN_ATTR);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.remote_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_TYPE:
 		tilp_vars_sort_by_type();
-
 		col = gtk_tree_view_get_column(view, COLUMN_TYPE);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.remote_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
 		break;
 	case SORT_BY_SIZE:
 		tilp_vars_sort_by_size();
-
 		col = gtk_tree_view_get_column(view, COLUMN_SIZE);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.remote_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);

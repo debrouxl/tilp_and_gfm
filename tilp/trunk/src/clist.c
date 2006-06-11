@@ -249,11 +249,11 @@ void clist_refresh(void)
 		col = gtk_tree_view_get_column(view, i);
 		gtk_tree_view_column_set_sort_indicator(col, FALSE);
 	}
+
 	switch (options.local_sort) 
 	{
 	case SORT_BY_NAME:
-		tilp_file_sort_by_name();
-		
+		tilp_file_sort_by_name();		
 		col = gtk_tree_view_get_column(view, COLUMN_NAME);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
