@@ -153,7 +153,7 @@ int tilp_cmdline_send(void)
 		exit(-1);
 	}
 
-	// Send file(s)
+	// Send os/backup
 	if (g_list_length(local.selection) == 1) 
 	{
 		// One file
@@ -161,43 +161,35 @@ int tilp_cmdline_send(void)
 		{
 			tilp_warning(_("File does not exist !"));
 		}
-		if (tifiles_file_is_flash(fe->name)) 
+
+		if (tifiles_file_is_flash(fe->name) && !g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model))) 
 		{
-			if (!g_strcasecmp(ext, tifiles_fext_of_flash_app(options.calc_model)))
-			{
-				tilp_calc_send_flash_app(fe->name);
-			}
-			else if (!g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model)))
-			{
-				tilp_calc_send_flash_os(fe->name);
-			}
-		} 
-		else if (tifiles_file_is_regular(fe->name)) 
-		{
-			options.overwrite = FALSE;	// remove dirlist
-			tilp_calc_send_var();
-			options.overwrite = over;
+			tilp_calc_send_flash_os(fe->name);
 			return 0;
-		} 
+		}
 		else if (tifiles_file_is_backup(fe->name)) 
 		{
 			tilp_calc_send_backup(fe->name);
-		} 
-		else 
-		{
-			tilp_warning(_("Unknown file type !"));
-		}
-	} 
-	else 
-	{
-		// More than one file
-		if (local.selection != NULL) 
-		{
-			options.overwrite = FALSE;
-			tilp_calc_send_var();
-			options.overwrite = over;
 			return 0;
 		}
+	}
+
+	// Send vars
+	if(local.selection)
+	{
+		options.overwrite = FALSE;
+		tilp_calc_send_var();
+		options.overwrite = over;
+		return 0;
+	}
+
+	// Send apps
+	if(local.selection2)
+	{
+		options.overwrite = FALSE;
+		tilp_calc_send_flash_app();
+		options.overwrite = over;
+		return 0;
 	}
 
 	return 0;

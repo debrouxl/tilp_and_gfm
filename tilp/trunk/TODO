@@ -6,7 +6,7 @@ This is a list of some things to do:
 4) user box: overwrite/skip all
 5) bug #1499672
 6) sorting is called twice in clist
-7) cmdline to check for local.selection2
+7) cmdline to check for local.selection2 (test)
 8) FLASH app in action box ?
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
