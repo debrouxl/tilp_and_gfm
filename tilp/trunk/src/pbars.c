@@ -102,8 +102,8 @@ void create_pbar_type3(const gchar * title)
 	window = glade_xml_get_widget(xml, "pbar3_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar30");
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar31");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar30");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar31");
 	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label32");
 
 	gtk_widget_show_all(window);
@@ -153,8 +153,8 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	pbar_wnd.label_part = glade_xml_get_widget(xml, "label52");
 	pbar_wnd.label = glade_xml_get_widget(xml, "label53");
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar50");
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar51");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar50");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar51");
 	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label54");
 
 	gtk_widget_show_all(window);

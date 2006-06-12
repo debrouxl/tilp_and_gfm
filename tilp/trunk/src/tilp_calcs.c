@@ -387,6 +387,11 @@ int tilp_calc_send_app(void)
 		if(tifiles_file_is_regular(f->name))
 			continue;
 
+		gtk_update.cnt3 = i+1;
+		gtk_update.max3 = l;
+		gtk_update.pbar();
+		gtk_update.refresh();
+
 		err = ticalcs_calc_send_app2(calc_handle, f->name);
 		if(err)
 		{
@@ -394,15 +399,6 @@ int tilp_calc_send_app(void)
 			gif->destroy_pbar();
 
 			return -1;
-		}
-
-		if(l > 1) 
-		{
-			gtk_update.cnt3 = i;
-			gtk_update.max3 = l;
-
-			gtk_update.pbar();
-			gtk_update.refresh();
 		}
 	}
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
@@ -495,6 +491,11 @@ int tilp_calc_recv_app(void)
 		int err, ret;
 		char *str;
 
+		gtk_update.cnt3 = i+1;
+		gtk_update.max3 = l;
+		gtk_update.pbar();
+		gtk_update.refresh();
+
 		str = ticonv_varname_to_filename(options.calc_model, ve->name);
 		strcpy(filename, str);
 		strcat(filename, ".");
@@ -520,11 +521,6 @@ int tilp_calc_recv_app(void)
 
 			return -1;
 		}
-
-		gtk_update.cnt3 = i;
-		gtk_update.max3 = l;
-		gtk_update.pbar();
-		gtk_update.refresh();
 	}
 
 	g_free(dst);
@@ -605,6 +601,11 @@ int tilp_calc_send_var(void)
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
 
+		gtk_update.cnt3 = i+1;
+		gtk_update.max3 = l;
+		gtk_update.pbar();
+		gtk_update.refresh();
+
 		// It is not the last file to send
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
@@ -629,15 +630,6 @@ int tilp_calc_send_var(void)
 
 				return -1;
 			}
-		}
-
-		if(l > 1) 
-		{
-			gtk_update.cnt3 = i;
-			gtk_update.max3 = l;
-
-			gtk_update.pbar();
-			gtk_update.refresh();
 		}
 	} 
 
@@ -675,6 +667,11 @@ static int tilp_calc_recv_var1(void)
 		gchar *tmp_filename;
 		gchar *dst_filename;
 		char *basename;
+
+		gtk_update.cnt3 = 1;
+		gtk_update.max3 = l;
+		gtk_update.pbar();
+		gtk_update.refresh();
 
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 			".", tifiles_fext_of_group(options.calc_model), NULL);
@@ -716,6 +713,11 @@ static int tilp_calc_recv_var1(void)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
 
+			gtk_update.cnt3 = i;
+			gtk_update.max3 = l;
+			gtk_update.pbar();
+			gtk_update.refresh();
+
 			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
 			
@@ -724,11 +726,6 @@ static int tilp_calc_recv_var1(void)
 				tilp_err(err);
 				break;
 			}
-
-			gtk_update.cnt3 = i;
-			gtk_update.max3 = l;
-			gtk_update.pbar();
-			gtk_update.refresh();
 		}
 
 		if(options.recv_as_group)
