@@ -63,6 +63,7 @@ extern struct pbar_window
 	GtkWidget* pbar2;
 	GtkWidget* label;
 	GtkWidget* label_rate;
+	GtkWidget* label_part;
 } pbar_wnd;
 
 #endif

@@ -35,14 +35,20 @@ struct pbar_window pbar_wnd = { 0 };
 
 static GtkWidget *window = NULL;
 
+static void reset_counters(void)
+{
+	gtk_update.cnt1 = gtk_update.max1 = 0;
+	gtk_update.cnt2 = gtk_update.max2 = 0;
+	gtk_update.cnt3 = gtk_update.max3 = 0;
+	gtk_update.cancel = 0;
+}
+
 /* Create a window with 1 progress bar */
 void create_pbar_type1(const gchar * title)
 {
 	GladeXML *xml;
 
-	gtk_update.cnt1 = 0;
-	gtk_update.max1 = 0;
-	gtk_update.cancel = 0;
+	reset_counters();
 
 	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar1_dbox", PACKAGE);
 	if (!xml)
@@ -52,8 +58,8 @@ void create_pbar_type1(const gchar * title)
 	window = glade_xml_get_widget(xml, "pbar1_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar1");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label20");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar10");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label11");
 
 	gtk_widget_show_all(window);
 }
@@ -64,9 +70,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
 
-	gtk_update.cnt1 = 0;
-	gtk_update.max1 = 0;
-	gtk_update.cancel = 0;
+	reset_counters();
 
 	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar2_dbox", PACKAGE);
 	if (!xml)
@@ -76,7 +80,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	window = glade_xml_get_widget(xml, "pbar2_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label = glade_xml_get_widget(xml, "label3");
+	pbar_wnd.label = glade_xml_get_widget(xml, "label20");
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
 
 	gtk_widget_show_all(window);
@@ -88,11 +92,7 @@ void create_pbar_type3(const gchar * title)
 {
 	GladeXML *xml;
 
-	gtk_update.cnt1 = 0;
-	gtk_update.max1 = 0;
-	gtk_update.cancel = 0;
-	gtk_update.cnt2 = 0;
-	gtk_update.max2 = 0;
+	reset_counters();
 
 	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar3_dbox", PACKAGE);
 	if (!xml)
@@ -102,9 +102,9 @@ void create_pbar_type3(const gchar * title)
 	window = glade_xml_get_widget(xml, "pbar3_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar3");
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar2");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label21");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar30");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar31");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label32");
 
 	gtk_widget_show_all(window);
 }
@@ -115,9 +115,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
 
-	gtk_update.cnt1 = 0;
-	gtk_update.max1 = 0;
-	gtk_update.cancel = 0;
+	reset_counters();
 
 	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar4_dbox", PACKAGE);
 	if (!xml)
@@ -127,10 +125,11 @@ void create_pbar_type4(const gchar * title, gchar * text)
 	window = glade_xml_get_widget(xml, "pbar4_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label = glade_xml_get_widget(xml, "label15");
+	pbar_wnd.label_part = glade_xml_get_widget(xml, "label41");
+	pbar_wnd.label = glade_xml_get_widget(xml, "label42");
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar4");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label22");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar40");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label43");
 
 	gtk_widget_show_all(window);
 }
@@ -141,11 +140,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 {
 	GladeXML *xml;
 
-	gtk_update.cnt1 = 0;
-	gtk_update.max1 = 0;
-	gtk_update.cancel = 0;
-	gtk_update.cnt2 = 0;
-	gtk_update.max2 = 0;
+	reset_counters();
 
 	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar5_dbox", PACKAGE);
 	if (!xml)
@@ -155,11 +150,12 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	window = glade_xml_get_widget(xml, "pbar5_dbox");
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label = glade_xml_get_widget(xml, "label19");
+	pbar_wnd.label_part = glade_xml_get_widget(xml, "label52");
+	pbar_wnd.label = glade_xml_get_widget(xml, "label53");
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar6");
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar5");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label23");
+	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar50");
+	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar51");
+	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label54");
 
 	gtk_widget_show_all(window);
 }

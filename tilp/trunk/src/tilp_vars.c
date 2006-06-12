@@ -80,6 +80,40 @@ int tilp_dirlist_remote(void)
 }
 
 /* Sorting functions */
+
+// use comp_func to sort node siblings
+void sort_nodes(GNode *tree, GCompareFunc comp_func)
+{
+#if 0
+	int j, k;
+	int p = g_node_n_children(tree);
+
+	do
+	{
+		k = p-1;
+
+		for(j = 1; j <= k; j++)
+		{
+			GNode *node1 = g_node_nth_child(tree, j);
+			GNode *node2 = g_node_nth_child(tree, j+1);
+
+			GNode *tmp_p, *tmp_n;
+
+			if(comp_func(node1->data, node2->data) > 0)
+			{
+				tmp_p = node1->previous; tmp_n = node1->next;
+
+				tempValue := topDest[j];
+				topDest[j] := topDest[j+1];
+		        topDest[j+1] := tempValue;
+				
+				p = j;
+			}
+		}
+	} while(p <= k);
+#endif
+}
+
 #if 0
 static gint sort_by_name(GNode* node, gpointer data)
 {
@@ -92,11 +126,13 @@ static gint sort_by_name(GNode* node, gpointer data)
 }
 #endif
 
+/* Sort variables by name */
 void tilp_vars_sort_by_name(void)
 {
 	if(ticalcs_calc_features(calc_handle) & FTS_FOLDER)
 		return;
 
+	//printf("n = %i\n", g_node_n_children(remote.var_tree->children));
 	//g_node_children_foreach((GNode *)remote.var_tree->children, G_TRAVERSE_ALL, sort_by_name, NULL);
 }
 

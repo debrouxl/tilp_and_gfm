@@ -90,11 +90,25 @@ static void refresh_pbar2(void)
 
 }
 
+static void refresh_pbar3(void)
+{
+	if(pbar_wnd.label_part != NULL)
+	{
+		gchar *str;
+
+		str = g_strdup_printf("%i/%i: ", gtk_update.cnt3, gtk_update.max3);
+		gtk_label_set_text(GTK_LABEL(pbar_wnd.label_part), str);
+
+		GTK_REFRESH();
+	}
+}
+
 static void gtk_pbar(void)
 {
 #ifndef DISABLE_UPDATE
 	refresh_pbar1();
 	refresh_pbar2();
+	refresh_pbar3();
 #endif
 } 
 

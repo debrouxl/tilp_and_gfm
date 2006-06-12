@@ -85,7 +85,7 @@ static void default_refresh(void)
 CalcUpdate default_update =
 {
 	"", 0,
-	0.0, 0, 0, 0, 0, 0, 0, (1 << 0),
+	0.0, 0, 0, 0, 0, 0, 0, (1 << 0), 0,
 	default_start,
 	default_stop,
 	default_refresh,
