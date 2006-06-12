@@ -42,7 +42,7 @@ int tilp_dirlist_remote(void)
 	ticalcs_dirlist_destroy(&remote.app_tree);
 	
 	// get new trees
-	gif->create_pbar_type2(_("Directory list"), _("Reading variables"));
+	gif->create_pbar_type2(_("Directory list"));
 	err = ticalcs_calc_get_dirlist(calc_handle, &remote.var_tree, &remote.app_tree);
 
 	if(tilp_err(err))

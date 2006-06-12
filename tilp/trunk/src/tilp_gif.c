@@ -69,7 +69,7 @@ void default_create_pbar_type1(const char *title)
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type2(const char *title, char *text)
+void default_create_pbar_type2(const char *title)
 {
 	tilp_info("%s: ", title);
 }
@@ -79,12 +79,17 @@ void default_create_pbar_type3(const char *title)
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type4(const char *title, char *text)
+void default_create_pbar_type4(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type5(const char *title, char *text)
+void default_create_pbar_type5(const char *title)
+{
+	tilp_info("%s: ", title);
+}
+
+void default_create_pbar(int type, const char *title)
 {
 	tilp_info("%s: ", title);
 }
@@ -110,12 +115,16 @@ void tilp_gif_set_default(void)
 	default_gif.msg_box2 = default_msg_box2;
 	default_gif.msg_box3 = default_msg_box3;
 	default_gif.msg_box4 = default_msg_box4;
+
 	default_gif.msg_entry = default_msg_entry;
+
 	default_gif.create_pbar_type1 = default_create_pbar_type1;
 	default_gif.create_pbar_type2 = default_create_pbar_type2;
 	default_gif.create_pbar_type3 = default_create_pbar_type3;
 	default_gif.create_pbar_type4 = default_create_pbar_type4;
 	default_gif.create_pbar_type5 = default_create_pbar_type5;
+
+	default_gif.create_pbar = default_create_pbar;
 	default_gif.destroy_pbar = default_destroy_pbar;
 
 	tilp_gui_set_fncts(&default_gif);
