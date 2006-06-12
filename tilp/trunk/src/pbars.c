@@ -66,7 +66,7 @@ void create_pbar_type1(const gchar * title)
 
 
 /* Create a window with 1 label */
-void create_pbar_type2(const gchar * title, gchar * text)
+void create_pbar_type2(const gchar * title)
 {
 	GladeXML *xml;
 
@@ -81,7 +81,7 @@ void create_pbar_type2(const gchar * title, gchar * text)
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
 	pbar_wnd.label = glade_xml_get_widget(xml, "label20");
-	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
 
 	gtk_widget_show_all(window);
 }
@@ -111,7 +111,7 @@ void create_pbar_type3(const gchar * title)
 
 
 /* Create a window with a 1 progress bar and 1 label */
-void create_pbar_type4(const gchar * title, gchar * text)
+void create_pbar_type4(const gchar * title)
 {
 	GladeXML *xml;
 
@@ -127,7 +127,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 
 	pbar_wnd.label_part = glade_xml_get_widget(xml, "label41");
 	pbar_wnd.label = glade_xml_get_widget(xml, "label42");
-	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
 	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar40");
 	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label43");
 
@@ -136,7 +136,7 @@ void create_pbar_type4(const gchar * title, gchar * text)
 
 
 /* Create a window with 2 progress bars and 1 label */
-void create_pbar_type5(const gchar * title, gchar * text)
+void create_pbar_type5(const gchar * title)
 {
 	GladeXML *xml;
 
@@ -152,7 +152,7 @@ void create_pbar_type5(const gchar * title, gchar * text)
 
 	pbar_wnd.label_part = glade_xml_get_widget(xml, "label52");
 	pbar_wnd.label = glade_xml_get_widget(xml, "label53");
-	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), text);
+	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
 	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar50");
 	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar51");
 	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label54");
@@ -160,6 +160,20 @@ void create_pbar_type5(const gchar * title, gchar * text)
 	gtk_widget_show_all(window);
 }
 
+/* Create a pbar window */
+void create_pbar(int type, const gchar * title)
+{
+	switch(type)
+	{
+	case 1: create_pbar_type1(title); break;
+	case 2: create_pbar_type1(title); break;
+	case 3: create_pbar_type1(title); break;
+	case 4: create_pbar_type1(title); break;
+	case 5: create_pbar_type1(title); break;
+	default: break;
+	}
+		
+}
 
 /* Destroy a pbar window */
 void destroy_pbar(void)

@@ -22,6 +22,8 @@
 #ifndef __TILP_CALCS__
 #define __TILP_CALCS__
 
+int tilp_pbar_type(CalcFnctsIdx op);
+
 int tilp_calc_isready(void);
 int tilp_calc_dirlist(void);
 

@@ -40,13 +40,18 @@ void tilp_gif_set_gtk(void)
 	gtk_gif.msg_box2 = msg_box2;
 	gtk_gif.msg_box3 = msg_box3;
 	gtk_gif.msg_box4 = msg_box4;
+
 	gtk_gif.msg_entry = msg_entry;
+
 	gtk_gif.create_pbar_type1 = create_pbar_type1;
 	gtk_gif.create_pbar_type2 = create_pbar_type2;
 	gtk_gif.create_pbar_type3 = create_pbar_type3;
 	gtk_gif.create_pbar_type4 = create_pbar_type4;
 	gtk_gif.create_pbar_type5 = create_pbar_type5;
+
+	gtk_gif.create_pbar = create_pbar;
 	gtk_gif.destroy_pbar = destroy_pbar;
+
 
 	tilp_gui_set_fncts(&gtk_gif);
 }

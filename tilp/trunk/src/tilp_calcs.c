@@ -49,6 +49,28 @@
 #endif
 
 /*
+	Get list of counters to refresh
+ */
+int tilp_pbar_type(CalcFnctsIdx op)
+{
+	const char **array = calc_handle->calc->counters;
+	const char *str = array[op];
+
+	if(!strcmp(str, "1P"))
+		return 1;
+	else if(!strcmp(str, "1L"))
+		return 2;
+	else if(!strcmp(str, "2P"))
+		return 3;
+	else if(!strcmp(str, "1P1L"))
+		return 4;
+	else if(!strcmp(str, "2P1L"))
+		return 5;
+
+	return 0;
+}
+
+/*
   Check whether the calc is ready (with or without auto-detection)
 */
 int tilp_calc_isready(void)
@@ -137,7 +159,7 @@ int tilp_calc_send_backup(const char *filename)
 	case CALC_TI82:
 	case CALC_TI85:
 	case CALC_TI86:
-		gif->create_pbar_type5(_("Backup"), _("Waiting for confirmation on calc..."));
+		gif->create_pbar_type5(_("Backup"));
 		break;
 	case CALC_TI73:
 	case CALC_TI83:
@@ -152,7 +174,7 @@ int tilp_calc_send_backup(const char *filename)
 	case CALC_V200:
 	case CALC_TI84P_USB:
 	case CALC_TI89T_USB:
-		gif->create_pbar_type5(_("Backup"), "");
+		gif->create_pbar_type5(_("Backup"));
 		break;
 	default:
 	    return 0;
@@ -185,7 +207,7 @@ int tilp_calc_recv_backup(void)
 	case CALC_TI82:
 	case CALC_TI85:
 	case CALC_TI86:
-		gif->create_pbar_type5(_("Backup"), _("Waiting for backup from calc..."));
+		gif->create_pbar_type5(_("Backup"));
 		break;
 	case CALC_TI73:
 	case CALC_TI83:
@@ -199,10 +221,10 @@ int tilp_calc_recv_backup(void)
 	case CALC_V200:
 	case CALC_TI84P_USB:
 	case CALC_TI89T_USB:
-		gif->create_pbar_type5(_("Backup"), "");
+		gif->create_pbar_type5(_("Backup"));
 		break;
 	case CALC_TI92:
-		gif->create_pbar_type2(_("Backup"), _("Receiving blocks"));
+		gif->create_pbar_type2(_("Backup"));
 		break;
 	default:
 	    return 0;
@@ -290,7 +312,7 @@ static int do_rom_dump(int mode)
 	strcat(tmp_filename, G_DIR_SEPARATOR_S);
 	strcat(tmp_filename, TMPFILE_ROMDUMP);
 
-	gif->create_pbar_type5(_("ROM dump"), _("Receiving data"));
+	gif->create_pbar_type5(_("ROM dump"));
 	err = ticalcs_calc_dump_rom(calc_handle, ROMSIZE_AUTO, tmp_filename);
 	gif->destroy_pbar();
 
@@ -374,9 +396,9 @@ int tilp_calc_send_app(void)
 	// Display the appropriate dialog box
 	l = g_list_length(local.selection2);
 	if(l == 1) 
-		gif->create_pbar_type4(_("Sending application"), "");
+		gif->create_pbar_type4(_("Sending application"));
 	else
-		gif->create_pbar_type5(_("Sending applications"), "");
+		gif->create_pbar_type5(_("Sending applications"));
 
 	// Now, send files
 	for(sel = local.selection2, i = 0; sel != NULL; sel = sel->next, i++)
@@ -481,9 +503,9 @@ int tilp_calc_recv_app(void)
 		return -1;
 
 	if(l == 1)
-		gif->create_pbar_type4(_("Receiving application"), "");
+		gif->create_pbar_type4(_("Receiving application"));
 	else
-		gif->create_pbar_type5(_("Receiving application(s)"), "");
+		gif->create_pbar_type5(_("Receiving application(s)"));
 
 	for(ptr = remote.selection2, i = 0; ptr; ptr = ptr->next, i++) 
 	{
@@ -586,13 +608,13 @@ int tilp_calc_send_var(void)
 	if(l == 1) 
 	{
 		if(tifiles_file_is_group(((FileEntry *)(local.selection->data))->name))
-			gif->create_pbar_type5(_("Sending group file"), "");
+			gif->create_pbar_type5(_("Sending group file"));
 		else
-			gif->create_pbar_type4(_("Sending variable"), "");
+			gif->create_pbar_type4(_("Sending variable"));
 	} 
 	else
 	{
-		gif->create_pbar_type5(_("Sending variables"), "");
+		gif->create_pbar_type5(_("Sending variables"));
 	}
 
 	// Now, send files
@@ -676,7 +698,7 @@ static int tilp_calc_recv_var1(void)
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 			".", tifiles_fext_of_group(options.calc_model), NULL);
 
-		gif->create_pbar_type4(_("Receiving variable"), "");
+		gif->create_pbar_type4(_("Receiving variable"));
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
 		gif->destroy_pbar();
 
@@ -703,7 +725,7 @@ static int tilp_calc_recv_var1(void)
 		gchar *tmp_filename;
 		gchar *dst_filename;
 
-		gif->create_pbar_type5(_("Receiving variable(s)"), "");
+		gif->create_pbar_type5(_("Receiving variable(s)"));
 
 		array = tifiles_content_create_group(l);
 		if(array == NULL)
@@ -795,7 +817,7 @@ static int tilp_calc_recv_var2(void)
 	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 		".", tifiles_fext_of_group(options.calc_model), NULL);
 
-	gif->create_pbar_type4(_("Receiving variable(s)"), _("Waiting..."));
+	gif->create_pbar_type4(_("Receiving variable(s)"));
 	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
 	gif->destroy_pbar();
 
@@ -905,7 +927,7 @@ int tilp_calc_del_var(void)
 			return 0;
 	}
 
-	gif->create_pbar_type2(_("Deleting var(s)"), "Please wait...");
+	gif->create_pbar_type2(_("Deleting var(s)"));
 
 	for(sel = remote.selection; sel; sel = sel->next)
 	{
@@ -955,7 +977,7 @@ int tilp_calc_new_fld(void)
 	if (fldname == NULL)
 		return 0;
 
-	gif->create_pbar_type2(_("Creating folder"), "Please wait...");
+	gif->create_pbar_type2(_("Creating folder"));
 
 	memset(&ve, 0, sizeof(ve));
 	memset(&vr, 0, sizeof(vr));
@@ -1162,7 +1184,7 @@ int tilp_calc_recv_cert(void)
 	if(!(ticalcs_calc_features(calc_handle) & FTS_CERT))
 		return -1;
 
-	gif->create_pbar_type4(_("Receiving certificate"), "");
+	gif->create_pbar_type4(_("Receiving certificate"));
 
 	err = ticalcs_calc_recv_cert2(calc_handle, filename);
 	g_free(filename);

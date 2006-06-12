@@ -30,6 +30,8 @@
 extern "C" {
 #endif
 
+typedef void (*PBAR_FNCT)	(const char*);
+
 /*
   This structure holds the GUI independant functions
 */
@@ -64,13 +66,16 @@ typedef struct
     // 1 pbar
     void (*create_pbar_type1) (const char *title);
     // 1 label
-    void (*create_pbar_type2) (const char *title, char *text);
+    void (*create_pbar_type2) (const char *title);
     // 2 pbars
     void (*create_pbar_type3) (const char *title);
     // 1 pbar & 1 label
-    void (*create_pbar_type4) (const char *title, char *text);
+    void (*create_pbar_type4) (const char *title);
     // 2 pbars & 1 label
-    void (*create_pbar_type5) (const char *title, char *text);
+    void (*create_pbar_type5) (const char *title);
+
+	void (*create_pbar)		  (int type, const char *title);	
+
     // Destroy one of the previous pbar dboxes.
     void (*destroy_pbar) (void);
 
