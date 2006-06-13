@@ -81,6 +81,8 @@ typedef struct
 
 } TilpGuiFncts;
 
+#define create_pbar_(t,s)	create_pbar(tilp_pbar_type(t),(s))
+
 extern TilpGuiFncts *gif;
 
 void tilp_gui_set_fncts(TilpGuiFncts*);

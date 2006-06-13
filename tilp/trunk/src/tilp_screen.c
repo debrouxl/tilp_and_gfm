@@ -53,7 +53,7 @@ int screen_capture(void)
 		return -1;
 
 	/* Place a progress bar */
-	gif->create_pbar_type1(_("Screendump"));
+	gif->create_pbar_(FNCT_RECV_SCREEN, _("Screendump"));
 
 	/* 
 	   Get a screen capture
