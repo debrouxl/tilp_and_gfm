@@ -108,13 +108,12 @@ void tilp_clist_file_selection_destroy(void)
 /* Add a file to the file_selection (if it does not exist in the list) */
 void tilp_add_file_to_file_selection(const char *filename)
 {
-	GList *ptr = local.file_selection;
+	GList *ptr;
 
-	while (ptr != NULL) 
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
 	{
-		if (!strcmp((char *) ptr->data, filename))
+		if (!strcmp((char *)ptr->data, filename))
 			return;
-		ptr = g_list_next(ptr);
 	}
 	local.file_selection = g_list_append(local.file_selection, (gpointer) filename);
 }
@@ -122,10 +121,10 @@ void tilp_add_file_to_file_selection(const char *filename)
 /* Delete files which are in local.file_selection */
 void tilp_delete_selected_files()
 {
-	GList *ptr = local.selection;
+	GList *ptr;
 	gint ret;
 
-	if (local.selection == NULL)
+	if (local.file_selection == NULL)
 		return;
 
 	if(options.overwrite) 
@@ -136,11 +135,9 @@ void tilp_delete_selected_files()
 		return;
 	}	
 
-	while (ptr != NULL) 
+	for(ptr = local.file_selection; ptr; ptr = ptr->next) 
 	{
-		FileEntry *fi = ptr->data;
-		tilp_file_delete(fi->name);
-		ptr = ptr->next;
+		tilp_file_delete((char *)ptr->data);
 	}
 }
 
@@ -148,31 +145,29 @@ void tilp_delete_selected_files()
 void tilp_rename_selected_files()
 {
 	gchar *filename;
-	GList *ptr = local.selection;
+	GList *ptr;
 
-	if (local.selection == NULL)
+	if (local.file_selection == NULL)
 		return;
 
-	while (ptr != NULL) 
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
 	{
-		FileEntry *fi = ptr->data;
 		gchar *utf8;
 
-		utf8 = gif->msg_entry(_("Rename the file"), _("Name: "), fi->name);
+		utf8 = gif->msg_entry(_("Rename the file"), _("Name: "), (char *)ptr->data);
 		if (utf8 == NULL)
 			return;
 
 		filename = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
 		g_free(utf8);
 
-		if (tilp_file_move(fi->name, filename) < 0) 
+		if (tilp_file_move((char *)ptr->data, filename) < 0) 
 		{
 			gif->msg_box1(_("Information"), _
 				     ("Unable to rename the file or directory."));
 			g_free(filename);
 		}
 		g_free(filename);
-		ptr = ptr->next;
 	}
 }
 
