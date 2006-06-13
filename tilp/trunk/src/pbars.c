@@ -39,7 +39,7 @@ static void reset_counters(void)
 {
 	gtk_update.cnt1 = gtk_update.max1 = 0;
 	gtk_update.cnt2 = gtk_update.max2 = 0;
-	gtk_update.cnt3 = gtk_update.max3 = 0;
+	gtk_update.cnt3 = gtk_update.max3 = 1;
 	gtk_update.cancel = 0;
 }
 
@@ -166,10 +166,10 @@ void create_pbar(int type, const gchar * title)
 	switch(type)
 	{
 	case 1: create_pbar_type1(title); break;
-	case 2: create_pbar_type1(title); break;
-	case 3: create_pbar_type1(title); break;
-	case 4: create_pbar_type1(title); break;
-	case 5: create_pbar_type1(title); break;
+	case 2: create_pbar_type2(title); break;
+	case 3: create_pbar_type3(title); break;
+	case 4: create_pbar_type4(title); break;
+	case 5: create_pbar_type5(title); break;
 	default: break;
 	}
 		

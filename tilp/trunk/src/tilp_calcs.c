@@ -423,7 +423,7 @@ int tilp_calc_recv_app(void)
 
 	gif->create_pbar_(FNCT_RECV_APP, _("Receiving app"));
 
-	l = g_list_length(remote.selection);
+	l = g_list_length(remote.selection2);
 	for(ptr = remote.selection2, i = 0; ptr; ptr = ptr->next, i++) 
 	{
 		VarEntry *ve = (VarEntry *) ptr->data;
@@ -639,7 +639,7 @@ static int tilp_calc_recv_var1(void)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
 
-			gtk_update.cnt3 = i;
+			gtk_update.cnt3 = i+1;
 			gtk_update.max3 = l;
 			gtk_update.pbar();
 			gtk_update.refresh();
