@@ -394,17 +394,7 @@ void ctree_refresh(void)
 			pix9 = create_pixbuf(icon_name);
 
 			// ticonv wrapper
-#ifdef __WIN32__
-		{
-		    unsigned char *v;
-		    v = row_text[0];
-		    if(v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
-		    {
-			row_text[0][1] = v[3] - 0x80 + '0';
-			row_text[0][2] = '\0';
-		    }
-		}
-#endif
+			tilp_vars_translate(row_text[0]);
 
 			gtk_tree_store_append(tree, &child_node, &parent_node);
 			gtk_tree_store_set(tree, &child_node, COLUMN_NAME,

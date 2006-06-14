@@ -234,3 +234,17 @@ void tilp_var_get_size(VarEntry* vi, char **buf)
 
 	*buf = g_strdup(buffer);
 }
+
+void tilp_vars_translate(char *utf8)
+{
+#ifdef __WIN32__
+	unsigned char *v;
+
+	v = utf8;
+	if(v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
+	{	
+	utf8[1] = v[3] - 0x80 + '0';
+	utf8[2] = '\0';
+	}
+#endif
+}

@@ -230,6 +230,7 @@ gint display_action_dbox(gchar *target)
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
 			row_text[3] = g_strdup(action2string(v->action));
+			tilp_vars_translate(row_text[0]);
 
 			gtk_list_store_append(list, &iter);
 			gtk_list_store_set(list, &iter,

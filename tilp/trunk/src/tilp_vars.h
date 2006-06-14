@@ -31,4 +31,6 @@ void tilp_vars_sort_by_size(void);
 
 void tilp_var_get_size(VarEntry* vi, char **buf);
 
+void tilp_vars_translate(char *);
+
 #endif
