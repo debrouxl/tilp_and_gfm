@@ -41,7 +41,8 @@ void tilp_slct_load_contents(void);
 void tilp_slct_unload_contents(void);
 
 void tilp_slct_change_folder(const char *target);
-void tilp_slct_update_dirlist(void);
+void tilp_slct_update_varlist(void);
+void tilp_slct_update_applist(void);
 
 void tilp_add_file_to_selection(const char *filename);
 void tilp_clist_add_file_to_selection(const char* filename);

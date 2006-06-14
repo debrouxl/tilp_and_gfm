@@ -271,11 +271,11 @@ void tilp_slct_change_folder(const char *target)
 	}
 }
 
-void tilp_slct_update_dirlist(void)
+void tilp_slct_update_varlist(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL && local.selection2 == NULL)
+	if (local.selection == NULL)
 		return;
 
 	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
@@ -291,6 +291,18 @@ void tilp_slct_update_dirlist(void)
 			ticalcs_dirlist_ve_add(remote.var_tree, (c->entries)[i]);
 	}
 	remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
+	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
+}
+
+void tilp_slct_update_applist(void)
+{
+	GList *ptr;
+
+	if (local.selection2 == NULL)
+		return;
+
+	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
+		return;
 
 	for(ptr = local.selection2; ptr; ptr = ptr->next)
 	{

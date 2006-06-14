@@ -455,6 +455,13 @@ void on_tilp_send(gchar *user_data)
 			else
 			{
 				ret1 = tilp_calc_send_app();
+				if(!ret1)
+				{
+					// update dirlist (caching, avoid to request dirlist again)
+					tilp_slct_update_applist();
+					ctree_refresh();
+					labels_refresh();
+				}
 			}
 		} 
 	}
@@ -483,17 +490,16 @@ void on_tilp_send(gchar *user_data)
 		GTK_REFRESH();
 
 		ret2 = tilp_calc_send_var();
+		if(!ret2)
+		{
+			// update dirlist (caching, avoid to request dirlist again)
+			tilp_slct_update_varlist();
+			ctree_refresh();
+			labels_refresh();
+		}
 
 		tilp_slct_unload_contents();
 		g_free(target);
-	}
-
-	if(!ret1 || !ret2)
-	{
-		// update dirlist (caching, avoid to request dirlist again)
-		tilp_slct_update_dirlist();
-		ctree_refresh();
-		labels_refresh();
 	}
 }
 
