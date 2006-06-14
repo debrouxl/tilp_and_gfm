@@ -7,7 +7,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- reworked management of progress bars
 	- fixed mis-use of file selection (mix between local.selection & local.file_selection)
 		=> critical bug !
-	- 
+	- B.Moody: "If TiLP detects a cable, but no calculator is connected, then the cable
+		will not be uninitialized properly before being reinitialized.  The result
+		is that TiLP attempts to open the cable twice." -> patch merged.
 
 - 09/06/2006, version 0.15 (0.1.1, 0.2.0, 0.1.5, 0.0.3): roms
 	- use reworked dirlist API

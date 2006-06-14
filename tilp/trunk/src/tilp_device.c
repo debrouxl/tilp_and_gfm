@@ -114,6 +114,7 @@ int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* c
 		err = ticalcs_probe_usb_calc(handle, calc_model);
 		if(err)
 		{
+			ticables_cable_close(handle);
 			ticables_handle_del(handle);
 			goto step2;
 		}
@@ -143,9 +144,9 @@ step2:
 		}
 
 		err = ticalcs_probe_usb_calc(handle, calc_model);
-
 		if(err)
 		{
+			ticables_cable_close(handle);
 			ticables_handle_del(handle);
 			goto step3;
 		}
