@@ -1,6 +1,5 @@
 This is a list of some things to do:
 
-1) updates dirlist & mem when sending apps
 2) implement full/true backup (ram = flash) into a TIG file
 3) bug #1493368: mail for check
 4) user box: overwrite/skip all

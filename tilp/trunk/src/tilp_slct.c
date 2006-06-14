@@ -292,8 +292,21 @@ void tilp_slct_update_dirlist(void)
 	}
 	remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
 
+	for(ptr = local.selection2; ptr; ptr = ptr->next)
 	{
-		// to do for FLASH apps
+		FileEntry *fe = ptr->data;
+		FlashContent *content;
+		VarEntry ve;
+
+		content = tifiles_content_create_flash(calc_handle->model);
+		tifiles_file_read_flash(fe->name, content);
+
+		strcpy(ve.name, content->name);
+		ve.size = content->data_length;
+		ve.type = tifiles_flash_type(calc_handle->model);
+
+		ticalcs_dirlist_ve_add(remote.app_tree, &ve);
+		tifiles_content_delete_flash(content);
 	}
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }

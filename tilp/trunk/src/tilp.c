@@ -428,7 +428,8 @@ void on_tilp_send(gchar *user_data)
 {
 	gchar *target;
 	FileEntry *f;
-	int ret;
+	int ret1 = -1;
+	int ret2 = -1;
 
 	if (local.selection == NULL && local.selection2 == NULL)
 		return;
@@ -452,7 +453,9 @@ void on_tilp_send(gchar *user_data)
 					return;
 			}
 			else
-				tilp_calc_send_app();
+			{
+				ret1 = tilp_calc_send_app();
+			}
 		} 
 	}
 
@@ -478,18 +481,19 @@ void on_tilp_send(gchar *user_data)
 
 		// needed: avoid box locking/flickering !
 		GTK_REFRESH();
-		ret = tilp_calc_send_var();
 
-		// update dirlist (caching, avoid to request dirlist again)
-		if(!ret)
-		{
-			tilp_slct_update_dirlist();
-			ctree_refresh();
-			labels_refresh();
-		}
+		ret2 = tilp_calc_send_var();
 
 		tilp_slct_unload_contents();
 		g_free(target);
+	}
+
+	if(!ret1 || !ret2)
+	{
+		// update dirlist (caching, avoid to request dirlist again)
+		tilp_slct_update_dirlist();
+		ctree_refresh();
+		labels_refresh();
 	}
 }
 
