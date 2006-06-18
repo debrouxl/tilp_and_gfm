@@ -196,6 +196,7 @@ void tilp_slct_load_contents(void)
 			}
 			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
 		}
+		/*
 		else if(tifiles_file_is_tigroup(fe->name))
 		{
 			fe->content = c = tifiles_content_create_regular(options.calc_model);
@@ -206,7 +207,7 @@ void tilp_slct_load_contents(void)
 				fe->content = NULL;
 			}
 			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
-		}
+		}*/
 		else
 		{
 			fe->content = NULL;
