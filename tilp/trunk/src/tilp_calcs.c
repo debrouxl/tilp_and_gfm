@@ -1126,7 +1126,7 @@ int tilp_calc_send_tigroup(const char *filename)
 	if(tilp_calc_isready())
 		return -1;
 
-	gif->create_pbar_(FNCT_SEND_BACKUP, _("Restoring"));
+	gif->create_pbar_type5(_("Restoring"));
 	err = ticalcs_calc_send_tigroup2(calc_handle, filename, TIG_ALL);
 	if(err)
 		tilp_err(err);
@@ -1147,7 +1147,7 @@ int tilp_calc_recv_tigroup(void)
 	if(tilp_calc_isready())
 		return -1;
 
-	gif->create_pbar_(FNCT_RECV_BACKUP, _("Backing up"));
+	gif->create_pbar_type5(_("Backing up"));
 	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
 
 	err = ticalcs_calc_recv_tigroup2(calc_handle, filename, TIG_ALL);
