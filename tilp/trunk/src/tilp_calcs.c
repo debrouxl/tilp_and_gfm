@@ -360,7 +360,7 @@ int tilp_calc_send_app(void)
 
   No ready check is made in this function. The RDY command is often rejected in boot mode.
 */
-int tilp_calc_send_os(char *filename)
+int tilp_calc_send_os(const char *filename)
 {
 	int err, ret;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
@@ -1085,7 +1085,7 @@ int tilp_calc_recv_cert(void)
 /*
 	Send certificate (experimental)
  */
-int tilp_calc_send_cert(char *filename)
+int tilp_calc_send_cert(const char *filename)
 {
 	int err;
 
@@ -1101,6 +1101,58 @@ int tilp_calc_send_cert(char *filename)
 	
 	gif->create_pbar_(FNCT_SEND_CERT, _("Sending cert"));
 	err = ticalcs_calc_send_cert2(calc_handle, filename);
+	gif->destroy_pbar();
+
+	if(tilp_err(err))
+		return -1;
+
+	return 0;
+}
+
+/*
+  Send a TiGroup from the specified filename
+  - [in] filename: the file to use
+  - [out]: -1 if error, 0 otherwise
+*/
+int tilp_calc_send_tigroup(const char *filename)
+{
+	int ret;
+	int err;
+
+	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
+	if(ret != BUTTON1)
+		return -1;
+
+	if(tilp_calc_isready())
+		return -1;
+
+	gif->create_pbar_(FNCT_SEND_BACKUP, _("Restoring"));
+	err = ticalcs_calc_send_tigroup2(calc_handle, filename, TIG_ALL);
+	if(err)
+		tilp_err(err);
+	gif->destroy_pbar();
+
+	return 0;
+}
+
+
+/*
+	Receive a TiGroup
+*/
+int tilp_calc_recv_tigroup(void)
+{
+	int err = 0;
+	char *filename;
+
+	if(tilp_calc_isready())
+		return -1;
+
+	gif->create_pbar_(FNCT_RECV_BACKUP, _("Backing up"));
+	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
+
+	err = ticalcs_calc_recv_tigroup2(calc_handle, filename, TIG_ALL);
+	
+	g_free(filename);
 	gif->destroy_pbar();
 
 	if(tilp_err(err))

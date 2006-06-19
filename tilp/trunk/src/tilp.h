@@ -78,6 +78,8 @@ void on_tilp_button3_clicked(GtkButton * button, gpointer user_data);
 void on_tilp_button4_clicked(GtkButton * button, gpointer user_data);
 void on_tilp_button5_clicked(GtkButton * button, gpointer user_data);
 void on_tilp_button6_clicked(GtkButton * button, gpointer user_data);
+void on_tilp_button7_clicked(GtkButton * button, gpointer user_data);
+void on_tilp_button8_clicked(GtkButton * button, gpointer user_data);
 
 void on_tilp_button10_clicked(GtkButton * button, gpointer user_data);
 void on_tilp_button11_clicked(GtkButton * button, gpointer user_data);

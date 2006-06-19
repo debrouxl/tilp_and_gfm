@@ -36,7 +36,7 @@ int tilp_calc_recv_backup(void);
 int tilp_calc_send_app(void);
 int tilp_calc_recv_app(void);
 
-int tilp_calc_send_os(char *filename);
+int tilp_calc_send_os(const char *filename);
 int tilp_calc_idlist(int);
 
 int tilp_calc_rom_dump(void);
@@ -46,7 +46,10 @@ int tilp_calc_new_fld(void);
 
 int tilp_calc_get_infos(CalcInfos*);
 
-int tilp_calc_send_cert(char *filename);
+int tilp_calc_send_cert(const char *filename);
 int tilp_calc_recv_cert(void);
+
+int tilp_calc_send_tigroup(const char *filename);
+int tilp_calc_recv_tigroup(void);
 
 #endif

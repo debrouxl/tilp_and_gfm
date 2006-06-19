@@ -290,7 +290,7 @@ GLADE_CB void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-// Send Backup
+// Recv Backup
 GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
@@ -325,7 +325,7 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-// Recv Backup
+// Send Backup
 GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
@@ -530,6 +530,37 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 	
 	on_tilp_send("");
 	tilp_clist_selection_destroy();
+}
+
+// Recv TiGroup
+GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
+{
+	char* src_filename;
+	const char *dst_filename;
+
+	if (tilp_calc_recv_tigroup() != 0)
+		return;
+
+	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
+	dst_filename = create_fsel(local.cwdir, "backup", "*.tig", TRUE);
+
+	if(!dst_filename)
+	{
+		g_free(src_filename);
+		return;
+	}
+
+	if (!strcmp(tifiles_fext_get(dst_filename), ""))
+		dst_filename = g_strconcat(dst_filename, ".tig", NULL);
+	else
+		dst_filename = g_strdup(dst_filename);
+	
+	tilp_file_move_with_check(src_filename, dst_filename);
+	g_free(src_filename);
+	
+	tilp_dirlist_local();
+	clist_refresh();
+	labels_refresh();
 }
 
 // ---

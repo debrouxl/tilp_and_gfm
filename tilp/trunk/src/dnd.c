@@ -234,8 +234,15 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 	{
 		gchar *name = (gchar *) data->data;
 
-		//g_print("Received \"%s\" as selection information.\n", name);
-		if (!strcmp(name, NODE1))	// Screen
+		g_print("Received \"%s\" as selection information.\n", name);
+
+
+		if(strchr(name, '#'))			// Calc
+		{
+			on_tilp_button7_clicked(NULL, NULL);
+
+		}
+		else if (!strcmp(name, NODE1))	// Screen
 		{
 			display_screenshot_dbox();
 			on_scdbox_button1_clicked(NULL, NULL);

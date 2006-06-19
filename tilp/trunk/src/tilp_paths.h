@@ -40,6 +40,7 @@
 #define TMPFILE_ROMDUMP  "tilp.romdump"
 #define TMPFILE_GROUP    "tilp.group"
 #define TMPFILE_FLASHAPP "tilp.flashapp"
+#define TMPFILE_TIGROUP	 "tilp.tigroup"
 
 #ifndef __MACOSX__
 typedef struct 
