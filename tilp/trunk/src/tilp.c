@@ -563,6 +563,18 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
+// Send TiGroup
+GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
+{
+	const char *filename;
+
+	filename = create_fsel(local.cwdir, NULL, "*.tig", FALSE);
+	if(filename)
+		tilp_calc_send_tigroup(filename);
+
+	return;
+}
+
 // ---
 
 // make new dir

@@ -141,7 +141,13 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 
 		g_print("Received \"%s\" as selection information.\n", name);
 
-		if(!strcmp(name, NODE4))	// Apps/Archive
+		if(strchr(name, '#'))			// Calc
+		{
+			on_tilp_button8_clicked(NULL, NULL);
+			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			return;
+		}
+		else if(!strcmp(name, NODE4))	// Apps/Archive
 		{
 			// send to flash
 			on_tilp_send("FLASH");
