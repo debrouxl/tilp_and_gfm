@@ -5,7 +5,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 18/06/2006, version 0.17 (0.1.1, 0.2.2, 0.2.0, 0.0.3): roms
 	- changes in tifiles API (TiGroup)
 	- changes in ticalcs API (backup with TiGroup)
-	- 
+	- fixed accelerator keys in popup menu (right frame)
+	- added accelarator keys in popup menu (left frame)
 
 - 11/06/2006, version 0.16 (0.1.1, 0.2.1, 0.1.5, 0.0.3): roms
 	- removed text argument in pbars: not used because internally set-up by ticalc2

@@ -406,28 +406,28 @@ on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
 {
 	if (event->keyval == GDK_Delete) 
 	{
-		//on_delete_file1_activate(NULL, NULL);
+		rbm_delete_file1_activate(NULL, NULL);
 		return TRUE;
 	}
 
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_X) || (event->keyval == GDK_x))) 
 	{
-		//on_cut1_activate(NULL, NULL);
+		rbm_cut1_activate(NULL, NULL);
 		return TRUE;
 	}
 
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_c) || (event->keyval == GDK_C))) 
 	{
-		//on_copy1_activate(NULL, NULL);
+		rbm_copy1_activate(NULL, NULL);
 		return TRUE;
 	}
 
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_V) || (event->keyval == GDK_v))) 
 	{
-		//on_paste1_activate(NULL, NULL);
+		rbm_paste1_activate(NULL, NULL);
 		return TRUE;
 	}
 	return FALSE;
