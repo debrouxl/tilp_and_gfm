@@ -1,15 +1,12 @@
 This is a list of some things to do:
 
-2) implement full/true backup (ram = flash) into a TIG file
-3) bug #1493368: mail for check
-4) user box: overwrite/skip all
-5) bug #1499672
-6) forum: 
+10) implement full/true backup (ram = flash) into a TIG file
+11) user box: overwrite/skip all
+12) forum: 
 << After making all the depencies, and tilp2 started but did not detect my calculator.
 After going into the device menu and selecting usb scan at startup, and restarting
 tilp I can not get it to run again.
 >>
-9) testing archive in SF
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)

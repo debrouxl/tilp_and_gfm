@@ -2,8 +2,8 @@
 
 
 
-Previous version: 0.08		(06/03/2006)
 Current version:  0.13		(28/05/2006)
+Current version:  0.17-beta	(23/06/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,41 +21,46 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- TI84+ with USB support (but OS sending disabled because not tested enough)
-	- Titanium with USB support
-	- auto-detect USB devices at startup (configurable)
-	- added a new label which display RAM/FLASH free &used
-	- added Titanium/USB ROM dumper
+	- device box can display detected USB devices
+	- sending & receiving of several FLASH apps at once
+	- sending of apps/vars at once
 
 
 Improvements:
 -------------
 
-	- reworked displaying of Hand-Held Informations box
-	- reworked full auto-detection
-	- show more levels in the current path
-	- update remote frame from the action box
-	- update memory used when sending/deleting variables
-	- raise the action box when sending files from command line in GUI mode (O. Armand)
-	- removed certificate support (deprecated)
-	- don't need to close/re-open TiLP when USB hand-held turned off
+	- USB device reconnection
+	- updates dirlist & memory when sending apps (caching)
+	- added accelarator keys in popup menu (left frame)
+	- scan for '/dev/bus/usb', too
+	- re-enabled TI84+ OS sending (tested: OK)
+	- updated 68k ROM dumpers to dump 8 MB on HW4 and rebuilt them with the latest CVS TIGCC (GCC 4.1.1, reduces size) (kevin)
+	- reworked the management of progress bar mechanism
+	- checked/fixed all progress bars
+	- Silver/DirectLink cable are now reopened instead of being	reset when error occurs.
+		More efficient about error clearing.
 
 
 Bug fixes:
 ----------
 
-	- fixed violation in tree_selection_changed (raised when selecting files for deletion)
-	- progress bar with TI73/84+ sending of FLASH application
-	- fixed TI9x file attribute (archive flag)
-	- TIB was not detected properly by TiLP-II
-	- fixed TI-83+/TI-84+ ROM Dumping Timeout Error Bug (tyler)
-	- fixed progress bar update (tyler)
+	- bug #1499672: sorting by type didn't work properly on the pc-panel
+	- [win32] bug #1499672: sorting by name is case insensitive for now
+	- manpage about DirectLink
+	- acceleratorkeys in popup menu (right frame)
+	- [linux] usb_set_config error/warnings in the kernel log (dmesg) due to misuse 
+		of libusb and kernel API changes
+	- buffer overflow in the D-BUS layer and possible bug in the DUSB packet layer
+		which may trigger segfault/crash in screenshot
+	- don't count archived (=FLASH) variables in the memory labels
+	- bug in tifiles_file_is_tib which didn't detect TIB files.
 
 
 Known bugs:
 -----------
 
-	- need to close/re-open TiLP when the SilverLink is stalled (= blocked)
+	- DirectLink support may be broken under Linux. I'm still working on this 
+		burning/complex issue!
 	- many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
 
 
