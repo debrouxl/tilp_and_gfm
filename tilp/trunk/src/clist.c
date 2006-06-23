@@ -402,33 +402,31 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 /* Key pressed */
 GLADE_CB gboolean
 on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
-			     gpointer user_data)
+								gpointer user_data)
 {
 	if (event->keyval == GDK_Delete) 
 	{
 		rbm_delete_file1_activate(NULL, NULL);
 		return TRUE;
 	}
-
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_X) || (event->keyval == GDK_x))) 
 	{
 		rbm_cut1_activate(NULL, NULL);
 		return TRUE;
 	}
-
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_c) || (event->keyval == GDK_C))) 
 	{
 		rbm_copy1_activate(NULL, NULL);
 		return TRUE;
 	}
-
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_V) || (event->keyval == GDK_v))) 
 	{
 		rbm_paste1_activate(NULL, NULL);
 		return TRUE;
 	}
+
 	return FALSE;
 }

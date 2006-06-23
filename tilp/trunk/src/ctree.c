@@ -552,10 +552,36 @@ on_treeview1_button_press_event(GtkWidget * widget,
 	return FALSE;		// pass the event on
 }
 
+#include <gdk/gdkkeysyms.h>
+
+
+/* Key pressed */
 GLADE_CB gboolean
-on_treeview1_button_release_event(GtkWidget * widget,
-				  GdkEventButton * event,
-				  gpointer user_data)
+on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
+								gpointer user_data)
 {
+	if ((event->state == GDK_CONTROL_MASK) &&
+	    ((event->keyval == GDK_D) || (event->keyval == GDK_d)))
+	{
+		rbm_change_device1_activate(NULL, NULL);
+		return TRUE;
+	}
+	if ((event->state == GDK_CONTROL_MASK) &&
+	    ((event->keyval == GDK_O) || (event->keyval == GDK_o)))
+	{
+		rbm_options1_activate(NULL, NULL);
+		return TRUE;
+	}
+	if (event->keyval == GDK_Delete) 
+	{
+		rbm_delete_var1_activate(NULL, NULL);
+		return TRUE;
+	}
+	if (event->keyval == GDK_Insert) 
+	{
+		rbm_create_folder1_activate(NULL, NULL);
+		return TRUE;
+	}
+	
 	return FALSE;
 }
