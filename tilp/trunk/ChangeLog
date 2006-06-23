@@ -7,6 +7,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- changes in ticalcs API (backup with TiGroup)
 	- fixed accelerator keys in popup menu (right frame)
 	- added accelarator keys in popup menu (left frame)
+	- fixed manpage about DirectLink
 
 - 11/06/2006, version 0.16 (0.1.1, 0.2.1, 0.1.5, 0.0.3): roms
 	- removed text argument in pbars: not used because internally set-up by ticalc2
