@@ -12,4 +12,6 @@ int msg_box4(const char *title, const char *message);
 
 char *msg_entry(const char *title, const char *message, const char *content);
 
+int backup_box(const char *title, const char *message, int *mask);
+
 #endif

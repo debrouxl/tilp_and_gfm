@@ -49,7 +49,7 @@ int tilp_calc_get_infos(CalcInfos*);
 int tilp_calc_send_cert(const char *filename);
 int tilp_calc_recv_cert(void);
 
-int tilp_calc_send_tigroup(const char *filename);
-int tilp_calc_recv_tigroup(void);
+int tilp_calc_send_tigroup(const char *filename, TigMode mode);
+int tilp_calc_recv_tigroup(TigMode mode);
 
 #endif

@@ -270,3 +270,61 @@ char *msg_entry(const char *title, const char *message, const char *content)
 
 	return ret;
 }
+
+/* Create the backup box entry and wait */
+int backup_box(const char *title, const char *message, int *mask)
+{
+	GladeXML *xml;
+	GtkWidget *data;
+	GtkWidget *dbox;
+	GtkWidget *entry = NULL;
+	gint result;
+	gint ret = 0;
+	gint b;
+
+	xml = glade_xml_new
+	    (tilp_paths_build_glade("user_boxes-2.glade"), "backup_dbox",
+	     PACKAGE);
+	if (!xml)
+		g_error("dboxes.c: GUI loading failed !\n");
+	glade_xml_signal_autoconnect(xml);
+
+	dbox = data = glade_xml_get_widget(xml, "backup_dbox");
+	gtk_window_set_title(GTK_WINDOW(data), title);
+
+	data = glade_xml_get_widget(xml, "label1");
+	gtk_label_set_text(GTK_LABEL(data), message);
+
+	data = glade_xml_get_widget(xml, "checkbutton1");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), *mask & 1);
+	data = glade_xml_get_widget(xml, "checkbutton2");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), *mask & 2);
+	data = glade_xml_get_widget(xml, "checkbutton3");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), *mask & 4);
+	
+	*mask = 0;
+	result = gtk_dialog_run(GTK_DIALOG(dbox));
+	switch (result) 
+	{
+	case GTK_RESPONSE_OK:
+		data = glade_xml_get_widget(xml, "checkbutton1");
+		b = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(data)) ? 1 : 0;
+		*mask |= (b << 0);
+
+		data = glade_xml_get_widget(xml, "checkbutton2");
+		b = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(data)) ? 1 : 0;
+		*mask |= (b << 1);
+
+		data = glade_xml_get_widget(xml, "checkbutton3");
+		b = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(data)) ? 1 : 0;
+		*mask |= (b << 2);
+
+		gtk_widget_destroy(dbox);
+		return BUTTON1;
+	default:
+		gtk_widget_destroy(dbox);
+		return BUTTON2;
+	}
+
+	return ret;
+}

@@ -6,3 +6,8 @@
 
 gchar *s = N_("Title");
 gchar *s = N_("Name:");
+gchar *s = N_("Backup");
+gchar *s = N_("vars in RAM");
+gchar *s = N_("vars in FLASH");
+gchar *s = N_("apps");
+gchar *s = N_("Data to backup:");

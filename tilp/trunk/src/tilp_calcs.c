@@ -1114,12 +1114,12 @@ int tilp_calc_send_cert(const char *filename)
   - [in] filename: the file to use
   - [out]: -1 if error, 0 otherwise
 */
-int tilp_calc_send_tigroup(const char *filename)
+int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 {
 	int ret;
 	int err;
 
-	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
+	ret = gif->msg_box4(_("Warning"), _("You are about to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
 	if(ret != BUTTON1)
 		return -1;
 
@@ -1127,7 +1127,7 @@ int tilp_calc_send_tigroup(const char *filename)
 		return -1;
 
 	gif->create_pbar_type5(_("Restoring"));
-	err = ticalcs_calc_send_tigroup2(calc_handle, filename, TIG_ALL);
+	err = ticalcs_calc_send_tigroup2(calc_handle, filename, mode);
 	if(err)
 		tilp_err(err);
 	gif->destroy_pbar();
@@ -1139,7 +1139,7 @@ int tilp_calc_send_tigroup(const char *filename)
 /*
 	Receive a TiGroup
 */
-int tilp_calc_recv_tigroup(void)
+int tilp_calc_recv_tigroup(TigMode mode)
 {
 	int err = 0;
 	char *filename;
@@ -1150,7 +1150,7 @@ int tilp_calc_recv_tigroup(void)
 	gif->create_pbar_type5(_("Backing up"));
 	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
 
-	err = ticalcs_calc_recv_tigroup2(calc_handle, filename, TIG_ALL);
+	err = ticalcs_calc_recv_tigroup2(calc_handle, filename, mode);
 	
 	g_free(filename);
 	gif->destroy_pbar();

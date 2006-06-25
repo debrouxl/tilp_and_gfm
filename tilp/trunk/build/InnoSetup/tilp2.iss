@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP-II
-AppVerName=TiLP-II 0.13
+AppVerName=TiLP-II 0.17
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php

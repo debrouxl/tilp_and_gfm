@@ -537,8 +537,14 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
+	int ret;
+	TigMode mode = TIG_ALL;
 
-	if (tilp_calc_recv_tigroup() != 0)
+	ret = backup_box(_("Backup"), _("Data to backup"), &mode);
+	if(ret != BUTTON1)
+		return;
+
+	if (tilp_calc_recv_tigroup(mode) != 0)
 		return;
 
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
@@ -567,10 +573,16 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
+	int ret;
+	TigMode mode = TIG_ALL;
+
+	ret = backup_box(_("Restore"), _("Data to restore"), &mode);
+	if(ret != BUTTON1)
+		return;
 
 	filename = create_fsel(local.cwdir, NULL, "*.tig", FALSE);
 	if(filename)
-		tilp_calc_send_tigroup(filename);
+		tilp_calc_send_tigroup(filename, mode);
 
 	return;
 }
