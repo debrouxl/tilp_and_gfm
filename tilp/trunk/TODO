@@ -8,6 +8,7 @@ After going into the device menu and selecting usb scan at startup, and restarti
 tilp I can not get it to run again.
 >>
 13) usb linux: returns ERR_INVALID_ARG with no cable detected
+14) tigroup preloading ?
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
