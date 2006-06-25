@@ -1126,11 +1126,18 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 	if(tilp_calc_isready())
 		return -1;
 
+	if(options.calc_model == CALC_TI83P)
+		ticables_options_set_timeout(cable_handle, 300);
+	else
+		ticables_options_set_timeout(cable_handle, 100);
+
 	gif->create_pbar_type5(_("Restoring"));
 	err = ticalcs_calc_send_tigroup2(calc_handle, filename, mode);
 	if(err)
 		tilp_err(err);
 	gif->destroy_pbar();
+
+	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
 	return 0;
 }
