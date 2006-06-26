@@ -3,7 +3,7 @@ SubVersion: $Id$
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 25/06/2006, version 0.18 (0.1.1, 0.2.2, 0.2.0, 0.0.3): roms
-	- implemented TiGroup support
+	- implemented full TiGroup support (ram, archive and flash)
 
 - 18/06/2006, version 0.17 (0.1.1, 0.2.2, 0.2.0, 0.0.3): roms
 	- changes in tifiles API (TiGroup)
