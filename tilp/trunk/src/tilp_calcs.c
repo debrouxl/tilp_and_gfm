@@ -147,7 +147,7 @@ int tilp_calc_send_backup(const char *filename)
 	int ret;
 	int err;
 
-	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
+	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
 	if(ret != BUTTON1)
 		return -1;
 
@@ -808,7 +808,7 @@ int tilp_calc_del_var(void)
 
 	if(options.overwrite)
 	{
-		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that ?"));
+		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that?"));
 		if(ret == BUTTON2)
 			return 0;
 	}
@@ -1119,7 +1119,7 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 	int ret;
 	int err;
 
-	ret = gif->msg_box4(_("Warning"), _("You are about to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that ?"));
+	ret = gif->msg_box4(_("Warning"), _("You are about to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
 	if(ret != BUTTON1)
 		return -1;
 
