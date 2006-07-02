@@ -1,13 +1,13 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
-/*  TiEmu - an TI emulator
+/*  TiLP - Ti Linking Program
  *
  *  Copyright (c) 2000-2001, Thomas Corvazier, Romain Lievin
  *  Copyright (c) 2001-2003, Romain Lievin
  *  Copyright (c) 2003, Julien Blache
  *  Copyright (c) 2004, Romain Liévin
- *  Copyright (c) 2005, Romain Liévin, Kevin Kofler
+ *  Copyright (c) 2005-2006, Romain Liévin, Kevin Kofler
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -81,8 +81,8 @@ static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, g
 	gchar *sfilename, *sext;
 
 	// gtk_file_selection_complete ALWAYS wants UTF-8.
-	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
-	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
+	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
     
 	fs = gtk_file_selection_new("Select a file...");
 
@@ -130,8 +130,8 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 	gchar *sfilename, *sext;
 
 	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
-	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
-	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
+	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
     
 	// create box
 	dialog = gtk_file_chooser_dialog_new (
@@ -376,8 +376,8 @@ static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 	gchar *sfilename, *sext;
 
 	// gtk_file_selection_complete ALWAYS wants UTF-8.
-	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
-	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
+	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
     
 	fs = gtk_file_selection_new("Select a file...");
 
@@ -424,8 +424,8 @@ static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 	gchar *sfilename, *sext;
 
 	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
-	sfilename = g_filename_to_utf8(filename,-1,NULL,NULL,NULL);
-	sext = g_filename_to_utf8(ext,-1,NULL,NULL,NULL);
+	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
     
 	// create box
 	dialog = gtk_file_chooser_dialog_new ("Open File",
