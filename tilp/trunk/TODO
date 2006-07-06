@@ -8,7 +8,6 @@ tilp I can not get it to run again.
 >>
 13) usb linux: returns ERR_INVALID_ARG with no cable detected
 14) tigroup preloading ?
-15) ticables2 should display the kernel version...
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
@@ -16,59 +15,6 @@ tilp I can not get it to run again.
 
 
 //------
-
-- bug #1499672:
-<<
- My pc:
-AMD Athlon64 3200+
-Windows XP Professional SP2
-TiLP-II 0.13
-
-My calc:
-TI-84 Plus Silver Edition
-TI-OS 2.30
-
-Transfer bugs (both BlackLink and DirectLink):
-
-# When I try to send a group (*.8xg) to my calc all
-files are received unpacked on the calc, even when
-'Recv. as group' is enabled
-
-+ When I try to send a group from calc to pc, it seems
-to be transferred, but not a single file appears on my pc
-
-* Every edit-locked BASIC and AMS program is marked ASM
-and received as *.8xz, of course this has to be *.8xp
-for both locked BASIC and ASM
-
-* Only when the *.8xz file wasn't in the archive on the
-calc, I could succesfully rename 8xz to 8xp, but when
-that same file was archived, an invalid file came out
-after the same change
-
-Interface bugs:
-
-# Files on calc cannot be sorted by attr/name/etc.
-
-+ Sorting by type doesn't work properly on the pc-panel
-
-+ Sorting by name is Linux's way: difference between
-upper- and lowercase. I know this is not a real bug,
-but it's a bit confusing to native Windows users
-
-Other bugs:
-
-+ The file TiglUsb.sys is not included in the
-installer, this is very confusing to noobs ;-)
-
-
-I hope my descriptions are extensive enough to fix the
-bugs.
-
-Good luck!
-
-Kaaiman
->>
 
 - suggestions from O. Armand:
 <<
