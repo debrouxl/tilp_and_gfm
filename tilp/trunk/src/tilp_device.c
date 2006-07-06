@@ -46,6 +46,14 @@
 
 //----------------------------------------------------------------------------
 
+/* 
+	Note: TiLP internally uses all of the possible values of the CalcModel enumeration
+	but restricts it for the device box.
+	The functions below allows to translate:
+	- TI84+ USB <=> TI84+ w/ DirectLink
+	- Titanium USB <=> Titanium w/ DirectLink
+ */
+
 CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
 {
 	if(cable == CABLE_USB && calc == CALC_TI84P_USB)
@@ -266,8 +274,6 @@ int tilp_device_open(void)
 		gif->msg_box1("Error", "Can't set cable");
 	else
 	{
-		CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
-
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
 
@@ -276,7 +282,7 @@ int tilp_device_open(void)
 		tilp_err(err);
 #endif
 
-		calc_handle = ticalcs_handle_new(cm);
+		calc_handle = ticalcs_handle_new(options.calc_model);
 		if(calc_handle == NULL)
 			gif->msg_box1("Error", "Can't set cable");
 		else
@@ -374,12 +380,10 @@ int tilp_device_reset(void)
 			gif->msg_box1("Error", "Can't set cable");
 		else
 		{
-			CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
-
 			ticables_options_set_timeout(cable_handle, options.cable_timeout);
 			ticables_options_set_delay(cable_handle, options.cable_delay);
 
-			calc_handle = ticalcs_handle_new(cm);
+			calc_handle = ticalcs_handle_new(options.calc_model);
 			if(calc_handle == NULL)
 				gif->msg_box1("Error", "Can't set cable");
 			else
@@ -400,93 +404,3 @@ int tilp_device_reset(void)
 
     return 0;
 }
-
-//---------------- old code --------------------------------------------------
-
-#if 0
-int i, j;
-	int **cables;
-	CableHandle* handle;
-	int err;
-	gchar *s;
-
-	// search for cables
-	tilp_info("Searching for link cables...");
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for cables...");
-	GTK_REFRESH();
-	ticables_probing_do(&cables, 5, PROBE_ALL);
-	for(i = 1; i <= 5/*7*/; i++)
-		printf("%i: %i %i %i %i\n", i, cables[i][1], cables[i][2], cables[i][3], cables[i][4]);
-
-	cable_model = cable_port = calc_model = 0;
-	for(i = CABLE_GRY; i <= CABLE_TIE; i++)
-		for(j = PORT_1; j <= PORT_4; j++)
-			if(cables[i][j])	// && ((i >= CABLE_VTI) && (j == PORT_2)))
-			{
-				cable_model = i;
-				cable_port = j;
-				goto finished;
-			}
-finished:
-	ticables_probing_finish(&cables);
-
-	if(!cable_model && !cable_port)
-	{
-		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
-		return;
-	}
-
-	// search for devices
-	tilp_info("Searching for hand-helds on %i:%i...", 
-		  cable_model, cable_port);
-	gtk_label_set_text(GTK_LABEL(lbl), "Searching for hand-helds...");
-	GTK_REFRESH();
-	
-	handle = ticables_handle_new(cable_model, cable_port);
-	ticables_options_set_timeout(handle, 10);
-
-	err = ticables_cable_open(handle);
-	if(err)
-	{
-		tilp_err(err);
-		ticables_handle_del(handle);
-		gtk_label_set_text(GTK_LABEL(lbl), "Not found !");
-		return;
-	}
-
-	if(cable_model != CABLE_USB)
-	{
-		ticalcs_probe_calc(handle, &calc_model);
-	}
-	else
-	{
-		ticalcs_probe_usb_calc(handle, &calc_model);
-	}
-	s = g_strdup_printf("Found: %s %s %s", 
-		ticalcs_model_to_string(calc_model),
-		ticables_model_to_string(cable_model),
-		ticables_port_to_string(cable_port));
-	gtk_label_set_text(GTK_LABEL(lbl), s);
-	GTK_REFRESH();
-	g_free(s);
-
-	ticables_cable_close(handle);
-	ticables_handle_del(handle);
-
-	calc_model = tilp_remap_from_usb(cable_model, calc_model);
-
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cable_model);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cable_port);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), calc_model);
-#endif
-
-#if 0
-	// get list of USB devices
-	tilp_info("Getting list of USB devices...");
-	err = ticables_get_usb_devices(&list, &n);
-	if(err || !n)
-	{
-		free(list);
-		return -1;
-	}
-#endif

@@ -48,7 +48,7 @@ after the same change
 
 Interface bugs:
 
-* Files on calc cannot be sorted by attr/name/etc.
+# Files on calc cannot be sorted by attr/name/etc.
 
 + Sorting by type doesn't work properly on the pc-panel
 

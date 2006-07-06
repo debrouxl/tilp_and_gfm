@@ -355,10 +355,6 @@ gint display_device_dbox()
 	data = glade_xml_get_widget(xml, "checkbutton1");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
 
-	// expander
-	//data = glade_xml_get_widget(xml, "expander1");
-	//gtk_expander_set_expanded(GTK_EXPANDER(data), FALSE);
-
 	// Avoid early callbacks
 	tmp.cable_delay = options.cable_delay;
 	tmp.cable_model = options.cable_model;
@@ -373,10 +369,6 @@ gint display_device_dbox()
 	case GTK_RESPONSE_CANCEL:
 		break;
 	case GTK_RESPONSE_OK:
-#ifdef _NDEBUG
-		if(tmp.cable_model == CABLE_USB)
-			gif->msg_box1("Information", "Beware: DirectLink cable support is curently experimental and being implemented");
-#endif
 		// set cable
 		tilp_device_close();
 
@@ -386,6 +378,7 @@ gint display_device_dbox()
 		options.cable_port = tmp.cable_port;
 		options.cable_timeout = tmp.cable_timeout;
 		options.calc_model = tmp.calc_model;
+		options.calc_model = tilp_remap_to_usb(options.cable_model, options.calc_model);
 
 		// set cable
 		tilp_device_open();
