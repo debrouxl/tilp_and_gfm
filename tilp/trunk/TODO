@@ -8,6 +8,7 @@ tilp I can not get it to run again.
 >>
 13) usb linux: returns ERR_INVALID_ARG with no cable detected
 14) tigroup preloading ?
+15) ticables2 should display the kernel version...
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
@@ -29,11 +30,11 @@ TI-OS 2.30
 
 Transfer bugs (both BlackLink and DirectLink):
 
-* When I try to send a group (*.8xg) to my calc all
+# When I try to send a group (*.8xg) to my calc all
 files are received unpacked on the calc, even when
 'Recv. as group' is enabled
 
-* When I try to send a group from calc to pc, it seems
++ When I try to send a group from calc to pc, it seems
 to be transferred, but not a single file appears on my pc
 
 * Every edit-locked BASIC and AMS program is marked ASM

@@ -386,11 +386,8 @@ void on_tilp_recv(void)
 			ret = tilp_calc_recv_var();
 			if (ret < 0)
 				return;
-
 			else if (ret > 0)
-			{
 				save_group();
-			}
 		}
 
 		if (remote.selection2 != NULL) 
@@ -405,17 +402,12 @@ void on_tilp_recv(void)
 		ret = tilp_calc_recv_var();
 		if (ret < 0)
 			return;
-
-		if (ret > 0)
-		{
+		else if (ret > 0)
 			save_group();
-		}
-		else 
-		{
-			clist_refresh();
-			labels_refresh();
-		}
 	}
+
+	clist_refresh();
+	labels_refresh();
 }
 
 // Used for sending vars

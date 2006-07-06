@@ -59,9 +59,8 @@ Bug fixes:
 Known bugs:
 -----------
 
-	- DirectLink support may be broken under Linux. I'm still working on this 
-		burning/complex issue!
-	- many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
+	- [linux] Titanium DirectLink support don't work on 2.6.x kernel series.
+	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
 
 
 Bug report:
