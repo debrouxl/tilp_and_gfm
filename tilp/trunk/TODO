@@ -9,11 +9,27 @@ tilp I can not get it to run again.
 13) tigroup preloading ?
 14) - tigroup: g_fopen/fopen in ZIP I/O callbacks to fix
     - test TiGroup with variables like 'Beta'
+15) bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
+	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
+	In fact, we shouldn't extract hand-held from file but pass target hand-held instead.
+	May need some work or worse (API changes).
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
+30) bug from "FTP 83+" <webmaster@ftp83plus.net>:
+<<
+There is still the problem w/ TiLP-II 0.17 beta (framework: cables
+0.1.1, files 0.2.0, calcs 0.2.2, ticonv 0.0.4) on Windows 2000 Pro SP4
+of the program being unable to change device, and still crashes before
+displaying the dialog box. This was first done using a TI83+SE and the
+Ti-Graph Link (Black Link, official, not a compatible one).
+
+At last, when I want to change the linking parameters from now, the
+console outputs the message: "(tilp2.exe:240): ticables-WARNING **:
+TiglUsb library not found. Have you installed the TiglUsb driver ?"
+>>
 
 //------
 

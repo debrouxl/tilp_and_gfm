@@ -87,7 +87,6 @@ static void refresh_pbar2(void)
 
 		GTK_REFRESH();
     }
-
 }
 
 static void refresh_pbar3(void)
