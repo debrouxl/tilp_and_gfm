@@ -204,6 +204,17 @@ gint display_device_dbox()
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
+	gint winxp = 0;
+
+#ifdef __WIN32__
+	OSVERSIONINFO os;
+
+	memset(&os, 0, sizeof(OSVERSIONINFO));
+	os.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+  	GetVersionEx(&os);
+	//printf("%i %i\n", os.dwMajorVersion, os.dwMinorVersion);
+	winxp = (os.dwMajorVersion == 5) && (os.dwMinorVersion == 1);
+#endif
 
 	xml = glade_xml_new(tilp_paths_build_glade("device-2.glade"), "device_dbox", PACKAGE);
 	if (!xml)
@@ -214,10 +225,13 @@ gint display_device_dbox()
 	lbl = glade_xml_get_widget(xml, "label7");
 
 	// Tree View
-	data = glade_xml_get_widget(xml, "treeview1");
-	store = clist_create(data);
-	gtk_widget_show_all(data);
-	clist_populate(store, 0);
+	if(winxp)
+	{
+		data = glade_xml_get_widget(xml, "treeview1");
+		store = clist_create(data);
+		gtk_widget_show_all(data);
+		clist_populate(store, 0);
+	}
 
 	// Cable  
 	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
@@ -354,6 +368,8 @@ gint display_device_dbox()
 
 	data = glade_xml_get_widget(xml, "checkbutton1");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
+	if(!winxp)
+		gtk_widget_set_sensitive(data, FALSE);
 
 	// Avoid early callbacks
 	tmp.cable_delay = options.cable_delay;

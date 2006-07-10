@@ -18,19 +18,6 @@ tilp I can not get it to run again.
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
-30) bug from "FTP 83+" <webmaster@ftp83plus.net>:
-<<
-There is still the problem w/ TiLP-II 0.17 beta (framework: cables
-0.1.1, files 0.2.0, calcs 0.2.2, ticonv 0.0.4) on Windows 2000 Pro SP4
-of the program being unable to change device, and still crashes before
-displaying the dialog box. This was first done using a TI83+SE and the
-Ti-Graph Link (Black Link, official, not a compatible one).
-
-At last, when I want to change the linking parameters from now, the
-console outputs the message: "(tilp2.exe:240): ticables-WARNING **:
-TiglUsb library not found. Have you installed the TiglUsb driver ?"
->>
-
 //------
 
 - suggestions from O. Armand:
