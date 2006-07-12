@@ -95,6 +95,8 @@ typedef struct
     char*	local_font_name;
 #endif
 
+	int		usb_avail;
+
 } TilpOptions;
 
 

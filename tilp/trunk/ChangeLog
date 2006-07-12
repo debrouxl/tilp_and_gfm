@@ -4,7 +4,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 12/07/2006, version 0.19 (0.1.3, 0.2.3, 0.2.2, 0.0.5): roms
 	- for now, use this naming scheme for TI9x var filenames: folder.var.extension
-	- 
+	- suggestion of FTP83+: don't allow use of USB options is USB support is not available.
 
 - 25/06/2006, version 0.18 (0.1.1, 0.2.2, 0.2.0, 0.0.4): roms
 	- implemented full TiGroup support (ram, archive and flash)

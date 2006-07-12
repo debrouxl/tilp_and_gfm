@@ -97,6 +97,8 @@ int tilp_config_default(void)
 	options.cable_delay = DFLT_DELAY;
 	options.cable_timeout = DFLT_TIMEOUT;
 
+	options.usb_avail = 0;
+
 #if defined(__LINUX__) || defined(__BSD__)
 	default_config_linux();
 #elif defined(__WIN32__)

@@ -217,7 +217,8 @@ gint display_device_dbox()
 	data = glade_xml_get_widget(xml, "treeview1");
 	store = clist_create(data);
 	gtk_widget_show_all(data);
-	clist_populate(store, 0);
+	if(options.usb_avail)
+		clist_populate(store, 0);
 
 	// Cable  
 	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
@@ -354,6 +355,7 @@ gint display_device_dbox()
 
 	data = glade_xml_get_widget(xml, "checkbutton1");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
+	gtk_widget_set_sensitive(GTK_WIDGET(data), options.usb_avail);
 
 	// Avoid early callbacks
 	tmp.cable_delay = options.cable_delay;

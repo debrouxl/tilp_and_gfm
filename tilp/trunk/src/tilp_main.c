@@ -113,10 +113,11 @@ int tilp_init(int *argc, char ***argv)
 	tifiles_library_init();
 	ticalcs_library_init();
 
-	/* 
-	   Set cable & calc
-	*/
-	if(options.auto_detect)
+	/* Check for USB support */
+	options.usb_avail = ticables_is_usb_enabled();
+
+	/* Set cable & calc */
+	if(options.auto_detect && options.usb_avail)
 	{
 		int ret;
 		CableModel cable;
