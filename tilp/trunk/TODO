@@ -7,8 +7,6 @@ After going into the device menu and selecting usb scan at startup, and restarti
 tilp I can not get it to run again.
 >>
 13) tigroup preloading ?
-14) - tigroup: g_fopen/fopen in ZIP I/O callbacks to fix
-    - test TiGroup with variables like 'Beta'
 15) bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
 	In fact, we shouldn't extract hand-held from file but pass target hand-held instead.
