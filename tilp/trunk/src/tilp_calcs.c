@@ -596,7 +596,7 @@ static int tilp_calc_recv_var1(void)
 		VarEntry *ve = (VarEntry *)remote.selection->data;
 		gchar *tmp_filename;
 		gchar *dst_filename;
-		char *basename;
+		char *varname, *fldname;
 
 		gtk_update.cnt3 = 1;
 		gtk_update.max3 = l;
@@ -614,12 +614,16 @@ static int tilp_calc_recv_var1(void)
 			return -1;
 		}
 
-		basename = ticonv_varname_to_filename(options.calc_model, ve->name);
-		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
-			".", tifiles_vartype2fext(options.calc_model, ve->type), NULL);
+		varname = ticonv_varname_to_filename(options.calc_model, ve->name);
+		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder);
+
+		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
+			fldname, ".", varname, ".",
+			tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
-		g_free(basename);
+		g_free(fldname);
+		g_free(varname);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 	}
