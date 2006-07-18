@@ -11,32 +11,6 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
-30) Kevin:
-<<
-Bah, ce que j'ai trouvé lourd, c'est que ticalcs_probe_calc et
-    ticalcs_probe_usb_calc:
-    1. sont 2 fonctions différentes, donc if() dans KTIGCC, c'est la
-    libticalcs2 qui devrait gérer ça!
-    et 2. ne sont pas fichues ouvrir le CableHandle elles-mêmes. :-(
-
-Si j'utilise ces fonctions, c'est parce que je fais comme TIGCC IDE: je
-    prends le câble et le port de l'utilisateur et je vérifie moi-même ce
-    qui est branché.
-
-	Je pense que le plus simple serait de laisser les fonctions comme ça et
-    de mettre une fonction ticalcs_probe_calc2 qui fait:
-    ticables_cable_open
-    if (cable==CABLE_USB)
-    ticalcs_probe_usb_calc
-    else
-    ticalcs_probe_calc
-    ticables_cable_close
-
-	De toute façon, je n'utilise la fonction usb que pour le DirectLink (je
-    lance le probe complet sur le SilverLink), donc tu peux aussi changer
-    ça...
->>
-
 //------
 
 - suggestions from O. Armand:

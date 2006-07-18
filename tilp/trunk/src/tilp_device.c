@@ -206,11 +206,11 @@ int tilp_device_probe_all(int ***result)
 	{
 		for(port = PORT_1; port <= PORT_4; port++)
 		{
-			tilp_info("Searching for hand-helds on %i:%i...", 
-				  cable, port);
-
 			if(!array[cable][port])
 				continue;
+			
+			tilp_info("Searching for hand-helds on %i:%i...",
+                                  cable, port);
 
 #if 1
 			err = ticalcs_probe(cable, port, &calc, !0);
