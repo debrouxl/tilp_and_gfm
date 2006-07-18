@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP2, 0.19, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP2, 0.20, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -56,7 +56,7 @@ PKG_CHECK_MODULES(TICONV, ticonv >= 0.0.5)
 AC_SUBST(TICONV_CFLAGS)
 AC_SUBST(TICONV_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.2.2)
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.2.4)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 

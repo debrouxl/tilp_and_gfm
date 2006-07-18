@@ -211,7 +211,23 @@ int tilp_device_probe_all(int ***result)
 
 			if(!array[cable][port])
 				continue;
-			
+
+#if 1
+			err = ticalcs_probe(cable, port, &calc, !0);
+			if(err)
+			{
+				array[cable][port] = CALC_NONE;
+				continue;
+			}
+			array[cable][port] = calc;
+
+			s = g_strdup_printf("Found: %s on %s:%s", 
+				ticalcs_model_to_string(calc),
+				ticables_model_to_string(cable),
+				ticables_port_to_string(port));
+			tilp_info(s);
+			g_free(s);
+#else
 			handle = ticables_handle_new(cable, port);
 			ticables_options_set_timeout(handle, 10);
 
@@ -253,6 +269,7 @@ int tilp_device_probe_all(int ***result)
 reloop:
 			ticables_cable_close(handle);
 			ticables_handle_del(handle);
+#endif
 		}
 	}
 
