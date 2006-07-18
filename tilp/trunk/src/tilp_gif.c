@@ -38,32 +38,81 @@ int default_msg_box(const char *title, const char *message, int action)
 
 int default_msg_box1(const char *title, const char *message)
 {
-	tilp_info("msg_box: [%s] [%s]", title, message);
+	tilp_info("msg_box1: [%s] [%s]", title, message);
+	tilp_info("msg_box1: press ENTER for OK");
+	scanf("");
+
 	return 0;
 }
 
 int default_msg_box2(const char *title, const char *message)
 {
-	tilp_info("user1_box: [%s] [%s]", title, message);
+    int result;
+
+	tilp_info("msg_box2: [%s] [%s]", title, message);
+	tilp_info("msg_box2: press 1 for OK, 2 for CANCEL");
+
+	scanf("%i", &result);
+	switch(result)
+	{
+	case 1: return BUTTON1;
+	default: return BUTTON2;
+	}
+
 	return 0;
 }
 
 int default_msg_box3(const char *title, const char *message, 
 		     const char *b1, const char *b2, const char *b3)
 {
-	tilp_info("user1_box: [%s] [%s]", title, message);
+    int result;
+
+	tilp_info("msg_box3: [%s] [%s]", title, message);
+	tilp_info("msg_box3: press 1 for YES, 2 for NO, 3 for CANCEL");
+
+	scanf("%i", &result);
+	switch(result)
+	{
+	case 1: return BUTTON1;
+        case 2: return BUTTON2;
+	default: return BUTTON3;
+	}
+
 	return 0;
 }
 
 int default_msg_box4(const char *title, const char *message)
 {
-	tilp_info("user1_box: [%s] [%s]", title, message);
+    int result;
+    
+	tilp_info("msg_box4: [%s] [%s]", title, message);
+	tilp_info("msg_box4: press 1 for FORWARD, press 2 for CANCEL");
+
+	scanf("%i", &result);
+        switch(result)
+        {
+        case 1: return BUTTON1;
+        default: return BUTTON2;
+        }	
+
 	return 0;
 }
+
 char *default_msg_entry(const char *title, const char *message, const char *content)
 {
+    char buffer[1024];
+    int ret;
+
+    tilp_info("msg_entry: [%s] [%s] <%s>", title, message, content);
+    tilp_info("msg_entry: type new content or nothing to cancel ");
+    
+    ret = scanf("%s", buffer);
+    if(ret > 0)
+	return g_strdup(buffer);
+    else
 	return NULL;
 }
+
 void default_create_pbar_type1(const char *title)
 {
 	tilp_info("%s: ", title);
