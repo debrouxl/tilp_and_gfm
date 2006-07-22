@@ -1,6 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /*  tilp - a linking program for TI graphing calculators
  *  Copyright (C) 1999-2003  Romain Lievin
+ *  Copyright (C) 2005-2006  Kevin Kofler
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -48,18 +49,19 @@ int go_to_bookmark(const char *link)
 	// * /usr/bin/sensible-browser (Debian's browser script)
 	// * /usr/bin/htmlview (old RHL/Fedora default browser script)
 	// * /usr/bin/firefox (Mozilla Firefox)
-	// * /usr/bin/mozilla (Mozilla Seamonkey)
+	// * /usr/bin/seamonkey (Seamonkey)
 	// * /usr/bin/konqueror (Konqueror)
+	// * /usr/bin/mozilla (old Mozilla Suite)
 	//
 	gboolean result;
-	char *apps[] = 
-	{ 
+	char *apps[] = { 
 			"/usr/bin/gnome-open",
 			"/usr/bin/sensible-browser",
 			"/usr/bin/htmlview",
 			"/usr/bin/firefox",
-			"/usr/bin/mozilla",
+			"/usr/bin/seamonkey",
 			"/usr/bin/konqueror",
+			"/usr/bin/mozilla",
 	};
 	gint i, n;
 
@@ -81,7 +83,7 @@ int go_to_bookmark(const char *link)
 
 	if (i == n) 
 	{
-		msg_box1("Error", "Spawn error: do you have Mozilla installed ?");
+		msg_box1("Error", "Spawn error: do you have Firefox installed ?");
 		return -1;
 	} 
 #endif
