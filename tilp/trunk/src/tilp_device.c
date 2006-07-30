@@ -181,7 +181,7 @@ int tilp_device_probe_all(int ***result)
 	CablePort port;
 	CalcModel calc;
 	int found = 0;
-	CableHandle* handle;
+	//CableHandle* handle;
 	int err;
 	gchar *s;
 

@@ -11,6 +11,14 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
+22)
+<<
+[16:31:40] *** Kevin Kofler is Online
+[16:17:10] <Kevin Kofler> As-tu déjà regardé l'histoire des vars archivées (pas d'erreur convenable quand on essaie de les écraser, juste un timeout)?
+[16:20:28] <Kevin Kofler> Ce bogue rend aussi le link inutilisable jusqu'à ce qu'on éteint/rallume la calculatrice, d'ailleurs (il doit y avoir un error flag ou qqch. comme ça qui est mis: la calculatrice répond à certaines requêtes et pas d'autres).
+[16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
+>>
+
 //------
 
 - suggestions from O. Armand:
