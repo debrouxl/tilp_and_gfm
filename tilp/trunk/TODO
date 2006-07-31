@@ -19,6 +19,8 @@ This is a list of some things to do:
 [16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
 >>
 
+--no-gui --cable=BlackLink --port=1 --calc=TI89t c:\msvc\tilp2\x.89e
+
 //------
 
 - suggestions from O. Armand:

@@ -145,6 +145,8 @@ int tilp_init(int *argc, char ***argv)
 		tilp_cmdline_send();
 		exit(0);
 	}
+	else if(working_mode == MODE_INI)
+		exit(0);
 #endif				/* !__MACOSX__ */
 
 	return 0;
