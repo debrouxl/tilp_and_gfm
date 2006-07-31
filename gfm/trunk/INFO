@@ -1,0 +1,43 @@
+Welcome to GFM! This Program is currently NOT in working condition.
+
+There is many things todo:
+-create a configure script system with the AutoHell Tools so I can work on it!.
+-Please comment everything very well! Messy coders will be shot on site!
+-The Stuff below, also located near the top of src/main.c:
+
+/* Todo List: - Leave, its easy to access in Dev-C++
+   Computer (Folder) Tree:
+   -dragging (folder_drag.c/h)
+     -Group File into the Group Tree and opens Group File
+     -TI File onto TI File in FOlder Tree to merge into Group File
+   -Enter Key on selection in folder tree to open file in Group Tree.
+   -Complete the Right Click Menu Items (I will get these)
+   -Current Folder Label, folders can get long, and they move the slider, so lets cut them with "..." in the middle ;)
+   -All GUI Callback functions for tree in gui.c
+   
+   Group File Tree:
+   -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder
+    tree is called (~line 72)
+   -Dragging (group_drag.c/h)
+     -File onto Folder Tree to extract
+     -File onto TI File in Folder Tree to merge/create Group File
+     -File from Folder Tree into Group Tree to add to Group File
+   -Sorting (code in gtree_sort.c) and implement
+   -Right Click to open that menu and get items coded (in menu.c,menu.h [maybe have two files for different tree menus]      would be fine I think)
+   -Update Labels under Group Tree (Groupfile Size, Num of files in group)
+    (pointers to labels in gfm_widget in gui.h struct)
+   -Double Click (Rename Group File)
+   
+   Other:
+   -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
+    all need coded (nothing done for) callback functions in gui.c
+   -input dialog in dialogs.glade needs to be implemented into dialog.c/h
+   -progress bars need to be done in pbar.c/.h
+   -man page dialog needs to be implemented
+   -html launcher needs to be done
+   -Changelog/Release Dialog (like on on first time TiLP is booted)
+   -Options Dialog (options.c/h) (I have the config file handled in config.c/h)
+   
+   Notes:
+   -file filtering in folder tree?? check the compat part...   
+*/
