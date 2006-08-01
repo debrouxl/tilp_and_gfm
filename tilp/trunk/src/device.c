@@ -33,6 +33,7 @@
 #include "device.h"
 #include "toolbar.h"
 #include "ctree.h"
+#include "clist.h"
 #include "tilp_core.h"
 #include "gtk_update.h"
 
@@ -148,7 +149,7 @@ static void clist_populate(GtkListStore *store, int full)
 	}
 }
 
-static void clist_refresh(GtkListStore *store, int full)
+static void list_refresh(GtkListStore *store, int full)
 {
 	gtk_list_store_clear(store);
 	clist_populate(store, full);
@@ -388,6 +389,7 @@ gint display_device_dbox()
 		// and refresh
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
+		clist_refresh();
 		break;
 	case GTK_RESPONSE_HELP:
 		break;
@@ -512,5 +514,5 @@ GLADE_CB void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {
-	clist_refresh(store, !0);	
+	list_refresh(store, !0);	
 }
