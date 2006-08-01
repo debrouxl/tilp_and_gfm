@@ -23,6 +23,23 @@ This is a list of some things to do:
 
 //------
 
+- "Andrew Haninger" <ahaning@gmail.com>
+<<
+I am having trouble restoring a ZShell backup file to my TI-85 using
+ROM version 10 and a Gray TIGraphLink cable on Linux 2.6. I'm using
+tilp2-0.13.
+
+When I try to use the --no-gui mode, I get:
+
+3# tilp-2 --cable=GrayLink --port=1 --calc=ti85 --no-gui ~/ZSHELL40.85B
+>>
+
+* tilp-2 had been running nicely on SuSE 10.0. Since upgrading to 10.1, the usb
+handling seems to have been changed. Exp. /proc/bus/usb/devices does not exist
+anymore (which lead to error messages [1]), instead it is recommended to use
+lsusb instead to list usb devices. Is there any way to have this adapted in
+the libticables?
+
 - suggestions from O. Armand:
 <<
 Et un truc qui n'est peut-être pas spécifique au DirectLink (je ne
@@ -51,6 +68,32 @@ erases my selection. If I hold Ctrl while dragging, it doesn't erase the
 selection, but it toggles the state of the file where I started 
 dragging. This is somewhat confusing. (In other words, dragging should 
 not also count as clicking.)
+
+* When transmission errors occur, it would be nice to have Retry and 
+Skip buttons for backups or sending/receiving multiple files. When TI 
+Connect encounters an error, it gives a Retry button that tries the 
+operation again starting with the variable where the error occurred, and 
+a Skip button that continues the operation but skips the file where the 
+error occurred.
+
+*The names of variables containing Greek characters are not listed in
+> TiLP correctly. If the names contain Greek characters, the Greek
+> character and all characters after it are missing. For files whose names
+> begin with Greek characters, there is no name displayed at all (the name
+> is effectively a null string), and sending to the computer results in a
+> hidden file named ".86?" where ? is the letter indicating the variable
+> type. If several such files exist on the calculator, it is very
+> difficult to tell them apart because of this.
+
+>>
+
+- FTP 83+" <webmaster@ftp83plus.net>
+<<
+I downloaded the last (0.17 beta) version of TiLP-II
+(framework: cables 0.1.1, files 0.2.0, calcs 0.2.2, ticonv 0.0.4), but
+were unable to change the device, as it just crashed as the dialog box
+was starting to be displayed. Is there a way around this, using Win2000
+SP4 ?
 >>
 
 + = done.

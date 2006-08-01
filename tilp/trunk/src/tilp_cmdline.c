@@ -136,43 +136,12 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 /* Send files passed on the command line in no GUI mode */
 int tilp_cmdline_send(void)
 {
-	FileEntry *fe;
 	int over = options.overwrite;
 	gchar *ext = NULL;
 	
 	// Check for valid selection
-	if (local.selection == NULL)
+	if (local.selection == NULL && local.selection2 == NULL && local.selection3 == NULL)
 		return -1;
-
-	// Check for a valid file
-	fe = (FileEntry *)(g_list_first(local.selection))->data;
-	ext = tifiles_fext_get(fe->name);
-	if(ext == NULL) 
-	{
-		tilp_error(_("Invalid filename. There is no extension !\n"));
-		exit(-1);
-	}
-
-	// Send os/backup
-	if (g_list_length(local.selection) == 1) 
-	{
-		// One file
-		if(!tilp_file_exist(fe->name))
-		{
-			tilp_warning(_("File does not exist !"));
-		}
-
-		if (tifiles_file_is_flash(fe->name) && !g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model))) 
-		{
-			tilp_calc_send_os(fe->name);
-			return 0;
-		}
-		else if (tifiles_file_is_backup(fe->name)) 
-		{
-			tilp_calc_send_backup(fe->name);
-			return 0;
-		}
-	}
 
 	// Send vars
 	if(local.selection)
@@ -183,14 +152,35 @@ int tilp_cmdline_send(void)
 		return 0;
 	}
 
-	// Send apps
+	// Send OS or apps
 	if(local.selection2)
 	{
-		options.overwrite = FALSE;
-		tilp_calc_send_app();
-		options.overwrite = over;
+		FileEntry *fe = (local.selection2)->data;
+
+		if(g_list_length(local.selection2) == 1 && 
+			tifiles_file_is_flash(fe->name) && !g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model)))
+		{
+			tilp_calc_send_os(fe->name);
+			return 0;
+		}
+		else
+		{
+			options.overwrite = FALSE;
+			tilp_calc_send_app();
+			options.overwrite = over;
+			return 0;
+		}
+	}
+
+	// Send backup
+	if(local.selection3)
+	{
+		FileEntry *fe = (local.selection3)->data;
+
+		tilp_calc_send_backup(fe->name);
 		return 0;
 	}
 
 	return 0;
 }
+

@@ -47,12 +47,18 @@ void tilp_clist_selection_destroy(void)
 		g_list_free(local.selection2);
 		local.selection2 = NULL;
 	}
+
+	if (local.selection3 != NULL) 
+	{
+		g_list_free(local.selection3);
+		local.selection3 = NULL;
+	}
 }
 
 /* Check for files in the list */
 int tilp_clist_selection_ready(void)
 {
-	if (local.selection == NULL && local.selection2 == NULL) 
+	if (local.selection == NULL && local.selection2 == NULL && 1) 
 	{
 		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
@@ -66,7 +72,7 @@ void tilp_clist_selection_display(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL && local.selection2 == NULL)
+	if (local.selection == NULL && local.selection2 == NULL && local.selection3)
 		return;
 
 	for(ptr = local.selection; ptr; ptr = ptr->next)
@@ -74,8 +80,12 @@ void tilp_clist_selection_display(void)
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
 	}
-
 	for(ptr = local.selection2; ptr; ptr = ptr->next)
+	{
+		FileEntry *fi = ptr->data;
+		printf("<%s>\n", fi->name);
+	}
+	for(ptr = local.selection3; ptr; ptr = ptr->next)
 	{
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
@@ -88,10 +98,14 @@ void tilp_clist_add_file_to_selection(const char* filename)
 
 	fe->name = g_strdup(filename);
 
-	if(tifiles_file_is_flash(fe->name))
+	if(tifiles_file_is_regular(fe->name))
+		local.selection = g_list_prepend(local.selection, fe);
+
+	else if(tifiles_file_is_flash(fe->name))
 		local.selection2 = g_list_prepend(local.selection2, fe);
-	else if(tifiles_file_is_regular(fe->name))
-		local.selection = g_list_prepend(local.selection, fe);	
+
+	else if(tifiles_file_is_backup(fe->name))
+		local.selection3 = g_list_prepend(local.selection3, fe);	
 }
 
 /* Destroy the selection of the clist window */
