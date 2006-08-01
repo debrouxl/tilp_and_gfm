@@ -2,6 +2,8 @@ This is a list of some things to do:
 
 11) user box: overwrite/skip all
 
+12) can't send with cmdline from 'My TI Files' due to spaces in path
+
 13) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
 	In fact, we shouldn't extract hand-held from file but pass target hand-held instead.

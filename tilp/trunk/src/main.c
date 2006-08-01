@@ -126,7 +126,11 @@ int main(int argc, char *argv[])
 		extern int on_tilp_send(char *);
 
 		splash_screen_set_label(_("Command line..."));
-		on_tilp_send("");
+
+		if(local.selection || local.selection2)
+			on_tilp_send("");
+		else if(local.selection3)
+			tilp_cmdline_send();
 	}
 
 	/* GTK main loop */

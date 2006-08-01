@@ -133,7 +133,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	return 0;
 }
 
-/* Send files passed on the command line in no GUI mode */
+/* Send files passed on the command line in no-gui mode */
 int tilp_cmdline_send(void)
 {
 	int over = options.overwrite;
