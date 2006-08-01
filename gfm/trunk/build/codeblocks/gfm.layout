@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_layout_file>
+<CodeBlocks_layout_file>
+	<File name="../../src/config.c" open="0" top="0">
+		<Cursor position="5652" topLine="151"/>
+	</File>
+	<File name="../../src/file.c" open="0" top="0">
+		<Cursor position="0" topLine="63"/>
+	</File>
+	<File name="../../src/folder_tree.c" open="0" top="0">
+		<Cursor position="0" topLine="445"/>
+	</File>
+	<File name="../../src/gui.c" open="0" top="0">
+		<Cursor position="4527" topLine="103"/>
+	</File>
+	<File name="../../src/main.c" open="0" top="0">
+		<Cursor position="3808" topLine="87"/>
+	</File>
+	<File name="../../src/paths.c" open="0" top="0">
+		<Cursor position="1420" topLine="30"/>
+	</File>
+	<File name="../../src/paths.h" open="0" top="0">
+		<Cursor position="0" topLine="14"/>
+	</File>
+	<File name="../../src/splashscreen.c" open="0" top="0">
+		<Cursor position="3062" topLine="68"/>
+	</File>
+	<File name="../../src/support.h" open="0" top="0">
+		<Cursor position="2643" topLine="41"/>
+	</File>
+	<File name="../../src/tilibs.c" open="0" top="0">
+		<Cursor position="1104" topLine="11"/>
+	</File>
+	<File name="../../src/tilibs.h" open="0" top="0">
+		<Cursor position="855" topLine="0"/>
+	</File>
+</CodeBlocks_layout_file>

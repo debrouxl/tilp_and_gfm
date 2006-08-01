@@ -3,12 +3,12 @@
   Copyright (C) 2006 Tyler Cassidy
   Copyright (C) 2006 Romain Lievin
   28/05/06 20:28 - main.c
-  
+
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation either version 2 of the License, or
   (at your option) any later version.
- 
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
 
   You should have received a copy of the GNU General Public License
   along with this program if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
 /* Todo List: - Leave, its easy to access in Dev-C++
@@ -28,7 +28,7 @@
    -Complete the Right Click Menu Items (I will get these)
    -Current Folder Label, folders can get long, and they move the slider, so lets cut them with "..." in the middle ;)
    -All GUI Callback functions for tree in gui.c
-   
+
    Group File Tree:
    -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder
     tree is called (~line 72)
@@ -41,7 +41,7 @@
    -Update Labels under Group Tree (Groupfile Size, Num of files in group)
     (pointers to labels in gfm_widget in gui.h struct)
    -Double Click (Rename Group File)
-   
+
    Other:
    -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
     all need coded (nothing done for) callback functions in gui.c
@@ -51,9 +51,9 @@
    -html launcher needs to be done
    -Changelog/Release Dialog (like on on first time TiLP is booted)
    -Options Dialog (options.c/h) (I have the config file handled in config.c/h)
-   
+
    Notes:
-   -file filtering in folder tree?? check the compat part...   
+   -file filtering in folder tree?? check the compat part...
 */
 
 #ifdef HAVE_CONFIG_H
@@ -83,7 +83,7 @@ SettingsStruct settings;
 int main(int argc, char *argv[])
 {
     static gchar *icon_dir;
-    
+
     /* Initialize Group File Manager */
     gfm_cmdline(); // Clear warnings on Command line
     gfm_paths_init(); // Setup paths for executable
@@ -94,43 +94,40 @@ int main(int argc, char *argv[])
     icon_dir = g_strconcat(inst_paths.base_dir, "icons/", NULL);
     add_pixmap_directory(icon_dir); // Add Icon Directory
     g_free(icon_dir);
-    
+
     /* Load Splash Screen */
     splash_screen_start();
 
     /* Checking for GUI Files */
     splash_screen_message("Checking for GUI files...");
     glade_files_check();
-    
-    /* Check for tilibs2 and their versions */
-    splash_screen_message("Checking tilibs2 versions...");
-    tilibs_check();
-    
+
+
     /* Load tilibs2 */
     splash_screen_message("Loading tilibs2...");
     tifiles_library_init(); // Load tifiles2
-    
+
     /* Load Settings */
     splash_screen_message("Loading Settings...");
     config_presets(); // Load the Defaults before the User Preferences
     config_load(); // Load User Preferences now
     gfm_change_cwd(settings.cur_dir); // Set the CWD at boot!
     // Or it will start off at where the binary is...
-    
+
     /* Launching GUI */
     splash_screen_message("Launching GUI...");
     launch_gfmgui();
     splash_screen_delete(); // Delete Splash Screen
-    
+
     /* Run into a loop! */
     gtk_main();
-    
+
     /* Save Settings */
     config_save();
-    
+
     /* Close tilibs2 */
     tifiles_library_exit(); // tifiles2
-    
+
     /* Done */
     return 0;
 }

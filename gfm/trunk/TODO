@@ -1,0 +1,12 @@
+TODO:
+
+1. Get Auto Signal Connecting to work (gui.c),
+
+It worked fine on Windows, but when I transfered over to linux and compiled it (same source), it no longer works.
+Would like to figure out why it is not working (same code as TiLP!) because when I click the X or try browsing on the folder
+tree, nothing happens (before (in Windows) I could click the X in the top right hand part of the main GFM window and the whole program would close, I could also do basic browsing on the folder tree via mouse and keyboard. Now I CANNOT. Maybe
+this is a library issue on my behalf.)
+
+
+2. Configuration File System
+3. All the Stuff in INFO

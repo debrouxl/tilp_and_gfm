@@ -19,7 +19,8 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
-  <signal name="destroy" handler="on_gfm_dbox_destroy" last_modification_time="Sun, 04 Jun 2006 23:17:46 GMT"/>
+  <property name="urgency_hint">False</property>
+  <signal name="destroy" handler="gfm_main_destroy" last_modification_time="Tue, 01 Aug 2006 03:52:20 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox1">
@@ -58,6 +59,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_folder_new_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:57:27 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -75,6 +77,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_folder_mkdir_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:57:52 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -92,6 +95,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_folder_refresh_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:57:59 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -109,6 +113,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_folder_delete_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:06 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -281,6 +286,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_group_add_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:18 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -298,6 +304,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_group_rename_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:23 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -315,6 +322,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_group_delete_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:29 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -332,6 +340,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_group_refresh_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:34 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>
@@ -362,6 +371,7 @@
 		      <property name="visible_horizontal">True</property>
 		      <property name="visible_vertical">True</property>
 		      <property name="is_important">False</property>
+		      <signal name="clicked" handler="on_help_button_clicked" last_modification_time="Tue, 01 Aug 2006 03:58:41 GMT"/>
 		    </widget>
 		    <packing>
 		      <property name="expand">False</property>

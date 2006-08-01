@@ -1,0 +1,11 @@
+Here is a quick guide how to get Code Blocks to compile. It will be better in the future.
+
+1. Open up the Project
+2. Project -> Build Options -> GFM -> Compiler -> Other Options
+   Set these to the corrosponding settings on your machine.
+3. Click #defines tab:
+   change __LINUX to either __LINUX__, __WIN32__ or __BSD__ (depending on your system)
+4. Change SHARE_DIR to where ever your icons, pixmaps, help, glade directories are.
+5. Click on Linker, set to the settings to your machine.
+
+6. You should be good to go (on Linux atleast :P).
