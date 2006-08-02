@@ -2,8 +2,6 @@ This is a list of some things to do:
 
 11) user box: overwrite/skip all
 
-12) can't send with cmdline from 'My TI Files' due to spaces in path
-
 13) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
 	In fact, we shouldn't extract hand-held from file but pass target hand-held instead.
@@ -21,15 +19,7 @@ This is a list of some things to do:
 [16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
 >>
 
---no-gui --cable=BlackLink --port=1 --calc=TI89t c:\msvc\tilp2\x.89e
-
 //------
-
-* tilp-2 had been running nicely on SuSE 10.0. Since upgrading to 10.1, the usb
-handling seems to have been changed. Exp. /proc/bus/usb/devices does not exist
-anymore (which lead to error messages [1]), instead it is recommended to use
-lsusb instead to list usb devices. Is there any way to have this adapted in
-the libticables?
 
 - suggestions from O. Armand:
 <<
@@ -66,15 +56,6 @@ Connect encounters an error, it gives a Retry button that tries the
 operation again starting with the variable where the error occurred, and 
 a Skip button that continues the operation but skips the file where the 
 error occurred.
-
-*The names of variables containing Greek characters are not listed in
-TiLP correctly. If the names contain Greek characters, the Greek
-character and all characters after it are missing. For files whose names
-begin with Greek characters, there is no name displayed at all (the name
-is effectively a null string), and sending to the computer results in a
-hidden file named ".86?" where ? is the letter indicating the variable
-type. If several such files exist on the calculator, it is very
-difficult to tell them apart because of this.
 
 *I'm using:
 SUSE Linux 9.3 (kernel 2.6.11)
