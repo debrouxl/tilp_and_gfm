@@ -25,17 +25,6 @@ This is a list of some things to do:
 
 //------
 
-- "Andrew Haninger" <ahaning@gmail.com>
-<<
-I am having trouble restoring a ZShell backup file to my TI-85 using
-ROM version 10 and a Gray TIGraphLink cable on Linux 2.6. I'm using
-tilp2-0.13.
-
-When I try to use the --no-gui mode, I get:
-
-3# tilp-2 --cable=GrayLink --port=1 --calc=ti85 --no-gui ~/ZSHELL40.85B
->>
-
 * tilp-2 had been running nicely on SuSE 10.0. Since upgrading to 10.1, the usb
 handling seems to have been changed. Exp. /proc/bus/usb/devices does not exist
 anymore (which lead to error messages [1]), instead it is recommended to use
@@ -79,13 +68,57 @@ a Skip button that continues the operation but skips the file where the
 error occurred.
 
 *The names of variables containing Greek characters are not listed in
-> TiLP correctly. If the names contain Greek characters, the Greek
-> character and all characters after it are missing. For files whose names
-> begin with Greek characters, there is no name displayed at all (the name
-> is effectively a null string), and sending to the computer results in a
-> hidden file named ".86?" where ? is the letter indicating the variable
-> type. If several such files exist on the calculator, it is very
-> difficult to tell them apart because of this.
+TiLP correctly. If the names contain Greek characters, the Greek
+character and all characters after it are missing. For files whose names
+begin with Greek characters, there is no name displayed at all (the name
+is effectively a null string), and sending to the computer results in a
+hidden file named ".86?" where ? is the letter indicating the variable
+type. If several such files exist on the calculator, it is very
+difficult to tell them apart because of this.
+
+*I'm using:
+SUSE Linux 9.3 (kernel 2.6.11)
+TiLP 6.81 (cables=3.9.7, files=0.6.6, calcs=4.6.2)
+Silverlink USB cable
+
+I've been using TiLP for a long time to transfer data to and from my 
+TI-89 with few problems. But today for the first time, I need to 
+transfer some files to my old TI-86, but I'm not getting anywhere.  
+Lots of strange things are happening.  I did remember to go to the 
+communication settings and select TI-86 first.
+
+First I tried to send a 86G file, but TiLP caused a segmentation fault 
+when trying to send it.  I tried to ungroup it in TiLP first, and it 
+still segfaulted.  Then I ran the old TI-GRAPH LINK 86 software in 
+WINE, and that program appeared to be able to ungroup the file without 
+any trouble, and I could view the contents of the ungrouped files in 
+it.  However, when I sent the ungrouped files using TiLP, the resulting 
+files on the TI-86 had wrong sizes (way too large), and attempting to 
+access them in any way (or deleting them) caused the calc to crash.
+
+Several other files I have (whether grouped or not) cause the same 
+issue.  I think that maybe files I created using FastLink (which was 
+what I used for transferring back when I used Windows) might be the 
+ones with this issue, but I don't have any way to confirm that for 
+sure.  It seems maybe the header of the files is wrong, but that 
+doesn't explain why TI-GRAPH LINK doesn't seem to have any problems 
+with them.  TiLP doesn't appear to have any problems with files it 
+creates itself (using TiLP to transfer a program to the computer then 
+sending it back, for example).  But I have these old files that I 
+really need sent to the calculator, and it isn't working.  Any ideas 
+what's going on or if it can be fixed?
+
+Another issue I'm having which appears unrelated to the above is that I 
+can only send one file at a time.  If I try to send more than one file, 
+only the first gets sent, then a "connection timed out (errno = 110)" 
+error appears every time.  This makes group files impossible to send, 
+since only one file gets sent.  This problem doesn't happen when I 
+transfer files with the TI-89.
+
+I'm not sure if these are bugs or what, and if so, if they're TiLP's 
+fault or something else, so I'm writing to this mailing list first for 
+any ideas.  I could send copies of the problem files if that would 
+help.  Thanks.
 
 >>
 

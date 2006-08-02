@@ -617,9 +617,14 @@ static int tilp_calc_recv_var1(void)
 		varname = ticonv_varname_to_filename(options.calc_model, ve->name);
 		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder);
 
-		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
-			fldname, ".", varname, ".",
-			tifiles_vartype2fext(options.calc_model, ve->type), NULL);
+		if(tifiles_has_folder(options.calc_model))
+			dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
+				fldname, ".", varname, ".",
+				tifiles_vartype2fext(options.calc_model, ve->type), NULL);
+		else
+			dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
+							  varname, ".",
+				tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
 		g_free(fldname);
