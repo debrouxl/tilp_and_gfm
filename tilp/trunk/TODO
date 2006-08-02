@@ -38,18 +38,6 @@ Windows), plutôt que de devoir passer par l'UI.
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
-* Selecting multiple files is a little strange. Ctrl and Shift keys while 
-clicking in the lists work as expected, but unlike with other programs 
-like Konqueror, I cannot use both Ctrl and Shift at the same time. TiLP 
-acts like I only pressed Ctrl. It would be nice if Ctrl+Shift worked as 
-in many programs.
-
-Also, when I have multiple files selected and try to drag them, it 
-erases my selection. If I hold Ctrl while dragging, it doesn't erase the 
-selection, but it toggles the state of the file where I started 
-dragging. This is somewhat confusing. (In other words, dragging should 
-not also count as clicking.)
-
 * When transmission errors occur, it would be nice to have Retry and 
 Skip buttons for backups or sending/receiving multiple files. When TI 
 Connect encounters an error, it gives a Retry button that tries the 
