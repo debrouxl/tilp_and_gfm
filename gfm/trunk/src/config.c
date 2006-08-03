@@ -64,7 +64,7 @@ int config_load(void)
     #ifdef __WIN32__
     save_file = g_strconcat(inst_paths.home_dir, "gfm.ini", NULL);
     #else
-    save_file = g_strconcat(inst_paths.home_dir, ".gfm", NULL);
+    save_file = g_strconcat(inst_paths.home_dir, ".gfmrc", NULL);
     #endif
 
     // Does the file exist?
@@ -153,7 +153,7 @@ int config_save(void)
     #ifdef __WIN32__
     save_file = g_strconcat(inst_paths.home_dir, "gfm.ini", NULL);
     #else
-    save_file = g_strconcat(inst_paths.home_dir, ".gfm", NULL);
+    save_file = g_strconcat(inst_paths.home_dir, ".gfmrc", NULL);
     #endif
 
     // Save to File
