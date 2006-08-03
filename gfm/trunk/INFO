@@ -37,6 +37,7 @@ There is many things todo:
    -html launcher needs to be done
    -Changelog/Release Dialog (like on on first time TiLP is booted)
    -Options Dialog (options.c/h) (I have the config file handled in config.c/h)
+   -More Settings, Main Window Size + Slider Position @ boot
    
    Notes:
    -file filtering in folder tree?? check the compat part...   

@@ -3,12 +3,12 @@
   Copyright (C) 2006 Tyler Cassidy
   Copyright (C) 2006 Romain Lievin
   29/05/06 17:51 - file.c
-  
+
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation either version 2 of the License, or
   (at your option) any later version.
- 
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
 
   You should have received a copy of the GNU General Public License
   along with this program if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
 #ifdef HAVE_CONFIG_H
@@ -28,6 +28,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <glib/gstdio.h>
 #include <gtk/gtk.h>
 #include <tilp2/tifiles.h>
 
@@ -45,13 +46,13 @@
 int file_exists(const char *filename)
 {
     FILE *fpointer;
-    
+
     // Does it exist?
     if ((fpointer = fopen(filename, "r")) == NULL)
         return FALSE;
     else
         fclose(fpointer);
-        
+
     return TRUE;
 }
 
@@ -64,12 +65,12 @@ void glade_files_check(void)
         "manpage.glade",
         "options.glade",
         "pbars.glade",
-        "release.glade"      
+        "release.glade"
     };
     short i, num_files;
     gchar *msg;
     num_files = 6; // Currently 4 files :)
-    
+
     // Loop em all up!
     for (i=0; i<num_files; i++)
     {
@@ -82,10 +83,10 @@ void glade_files_check(void)
                               "' directory!", NULL);
             msgbox_error(msg);
             g_free(msg);
-            exit(-1); // Exit                       
-        }          
+            exit(-1); // Exit
+        }
     }
-    
+
     // Return
     return;
 }
@@ -107,17 +108,17 @@ int file_get_dirlist(void)
     G_CONST_RETURN gchar *dirname;
     struct stat f_info;
     FileEntry *fi;
-    
+
     // Open the Directory
     dir = g_dir_open(settings.cur_dir, 0, &error);
-    
+
     // Couldnt open Directory
     if (dir == NULL)
     {
         msgbox_error("Could not open the Directory!");
         return -1;
     }
-    
+
     // Clear the Directory List
     if (ftree_info.dir_list != NULL)
     {
@@ -125,7 +126,7 @@ int file_get_dirlist(void)
         g_list_free(ftree_info.dir_list);
         ftree_info.dir_list = NULL;
     }
-    
+
     // Add the '..' entry
     fi = (FileEntry *)g_malloc0(sizeof(FileEntry));
     fi->name = g_strdup("..");
@@ -136,32 +137,32 @@ int file_get_dirlist(void)
         fi->attrib = f_info.st_mode; // Mode
     }
     ftree_info.dir_list = g_list_prepend(ftree_info.dir_list, (gpointer)fi); // Added to List
-    
+
     // Add the Rest
     while ((dirname = g_dir_read_name(dir)) != NULL)
-    {        
+    {
         // Valid?
         if (dirname[0] == '.')
             continue;
-        
+
         // Create Entry
         fi = (FileEntry *)g_malloc0(sizeof(FileEntry));
         fi->name = g_strdup(dirname);
         fi->path = g_strjoin(NULL, settings.cur_dir, G_DIR_SEPARATOR_S, fi->name, NULL);
-        if (!g_stat(fi->path, &f_info)) 
+        if (!g_stat(fi->path, &f_info))
 		{
 			fi->date = f_info.st_mtime;
 			fi->size = f_info.st_size;
 			fi->attrib = f_info.st_mode;
 		}
-		
+
 		// Add to the List
 		ftree_info.dir_list = g_list_prepend(ftree_info.dir_list, (gpointer)fi); // Added to list
     }
-    
+
     // Close the Directory
     g_dir_close(dir);
-    
+
     // Return
     return 0; // Good
 }
@@ -171,7 +172,7 @@ char *file_fix_letters(char *string)
 {
     int i, j;
 	char tokens[] = "/\\:*?\"<>|- ";
-	
+
 	// Replace
     for (i=0; i<(int)strlen(string); i++) {
 		for (j=0; j<(int)strlen(tokens); j++) {
@@ -179,7 +180,7 @@ char *file_fix_letters(char *string)
 				string[i] = '_'; // Replace
 		}
 	}
-	
+
 	// Return
 	return string;
 }
@@ -188,14 +189,14 @@ char *file_fix_letters(char *string)
 const char *file_get_type(FileEntry *fe)
 {
     static char buffer[32];
-    
+
     // Is a directory?
     if (S_ISDIR(fe->attrib))
       return "";
-    
+
     // Copy
     strncpy(buffer, tifiles_file_get_type(fe->path), 32);
-    
+
     // Return
     return buffer;
 }
@@ -204,19 +205,19 @@ const char *file_get_type(FileEntry *fe)
 const char *file_get_size(FileEntry *fe)
 {
     static char buffer[32];
-    
+
     // Bytes
     if (fe->size < 1024)
         snprintf(buffer, 32, "  %i", (int)fe->size);
-    
+
     // Kilobytes
     if ((fe->size >= 1024) && (fe->size < 1048576))
         snprintf(buffer, 32, "  %i KB", (int)(fe->size / 1024));
-        
+
     // Megabytes
     if (fe->size >= 1048576)
         snprintf(buffer, 32, "  %i MB", (int)(fe->size / 1048576));
-        
+
     // Return
     return buffer;
 }
@@ -227,7 +228,7 @@ const char *file_get_date(FileEntry *fe)
     static char buffer[32];
     int i;
     char *p;
-    
+
     // Add
     p = ctime(&(fe->date));
     for (i=4; i<11; i++)
@@ -235,7 +236,7 @@ const char *file_get_date(FileEntry *fe)
     for (i=20; i<24; i++)
         buffer[i-13] = *(p + i);
     buffer[i-13] = '\0';
-    
+
     // Return
     return buffer;
 }
@@ -264,7 +265,7 @@ int g_chdir (const gchar *path)
       save_errno = errno;
 
       g_free (wpath);
-      
+
       errno = save_errno;
       return retval;
     }
@@ -297,7 +298,7 @@ int g_chdir (const gchar *path)
 /* Change Current Working Directory */
 int gfm_change_cwd(const char *path)
 {
-    if (g_chdir(path)) 
+    if (g_chdir(path))
 	{
 		msgbox_error("Could not change directory!");
 		return -1;

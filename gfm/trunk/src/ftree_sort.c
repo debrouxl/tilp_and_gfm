@@ -3,12 +3,12 @@
   Copyright (C) 2006 Tyler Cassidy
   Copyright (C) 2006 Romain Lievin
   10/06/06 20:23 - ftree_sort.c
-  
+
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation either version 2 of the License, or
   (at your option) any later version.
- 
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
 
   You should have received a copy of the GNU General Public License
   along with this program if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
 #ifdef HAVE_CONFIG_H
@@ -25,6 +25,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <glib.h>
 #include <tilp2/tifiles.h>
@@ -37,15 +38,15 @@ static gint ftree_sort_name(gpointer a, gpointer b)
 {
     FileEntry *fe_a = (FileEntry *)a;
     FileEntry *fe_b = (FileEntry *)b;
-    
+
     // Lets compare
     if ((((fe_a->attrib & S_IFMT) == S_IFDIR) && ((fe_b->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fe_a->attrib & S_IFMT) != S_IFDIR) && ((fe_b->attrib & S_IFMT) != S_IFDIR))) 
+		(((fe_a->attrib & S_IFMT) != S_IFDIR) && ((fe_b->attrib & S_IFMT) != S_IFDIR)))
 		return strcmp(fe_a->name, fe_b->name);
-	else if (((fe_b->attrib & S_IFMT) == S_IFDIR) && strcmp(fe_a->name, fe_b->name)) 
+	else if (((fe_b->attrib & S_IFMT) == S_IFDIR) && strcmp(fe_a->name, fe_b->name))
 		return !0;
-    
-    
+
+
     // Return
 	return 0;
 }
@@ -54,7 +55,7 @@ static gint ftree_sort_name(gpointer a, gpointer b)
 static gint ftree_sort_type(gpointer a, gpointer b)
 {
     FileEntry* fi_b = (FileEntry *)b;
-	
+
 	// Compare & Return
 	return ((fi_b->attrib & S_IFMT) == S_IFDIR);
 }
@@ -64,14 +65,14 @@ static gint ftree_sort_size(gpointer a, gpointer b)
 {
     FileEntry* fa = (FileEntry *)a;
 	FileEntry* fb = (FileEntry *)b;
-    
+
     // Compare
 	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR)))
 		return (fa->size > fb->size);
-	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->size > fb->size)) 
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->size > fb->size))
 		return !0;
-    
+
     // Return
 	return 0;
 }
@@ -81,14 +82,14 @@ static gint ftree_sort_date(gpointer a, gpointer b)
 {
     FileEntry* fa = (FileEntry *)a;
 	FileEntry* fb = (FileEntry *)b;
-    
+
     // Compare
 	if ((((fa->attrib & S_IFMT) == S_IFDIR) && ((fb->attrib & S_IFMT) == S_IFDIR)) ||
-		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR))) 
+		(((fa->attrib & S_IFMT) != S_IFDIR) && ((fb->attrib & S_IFMT) != S_IFDIR)))
         return (fa->date > fb->date);
-	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->date > fb->date)) 
+	else if (((fb->attrib & S_IFMT) == S_IFDIR) && (fa->date > fb->date))
 		return !0;
-    
+
     // Return
 	return 0;
 }
@@ -114,11 +115,11 @@ int ftree_sort_list(int sort_order)
         default:
              break; // Nothing
     }
-    
+
     // Reverse the List?
     if (ftree_info.sort_order)
         ftree_info.dir_list = g_list_reverse(ftree_info.dir_list); // Flipped List
-        
+
     // Return
     return 0;
 }

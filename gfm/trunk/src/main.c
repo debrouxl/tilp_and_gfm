@@ -51,6 +51,7 @@
    -html launcher needs to be done
    -Changelog/Release Dialog (like on on first time TiLP is booted)
    -Options Dialog (options.c/h) (I have the config file handled in config.c/h)
+   -Settings, size of Window, and where slider is
 
    Notes:
    -file filtering in folder tree?? check the compat part...
@@ -71,9 +72,10 @@
 #include "cmdline.h"
 #include "file.h"
 #include "folder_tree.h"
-#include "gfm.h"
+#include "gui.h"
 #include "paths.h"
 #include "splashscreen.h"
+#include "support.h"
 #include "tilibs.h"
 
 /* Settings Structure */
