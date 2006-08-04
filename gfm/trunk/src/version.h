@@ -22,6 +22,11 @@
 #ifndef __GFMVERSION_H__
 #define __GFMVERSION_H__
 
+/* OS Defintion Checker */
+#if !defined(__LINUX__) && !defined(__WIN32__) && !defined(__MACOSX__) && !defined(__BSD__)
+#error You should define an operating with GCC so I know what to compile! __LINUX__ => Linux, __WIN32__ => Windows, __MACOSX__ => MacOSX, __BSD__ => BSD
+#endif
+
 /* tilibs2 version dependencies */
 #define LIBTICABLES2_REQUIRE_VERSION "0.1.1"
 #define LIBTICONV_REQUIRE_VERSION "0.0.4"

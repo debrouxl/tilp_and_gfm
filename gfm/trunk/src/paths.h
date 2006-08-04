@@ -19,6 +19,11 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+/* Missing of Definitions */
+#ifndef SHARE_DIR
+#error Maybe trying to define a SHARE_DIR definition to GCC to where you shared stuff for GFM will be located before compiling.
+#endif
+
 /* Structures */
 #ifndef __MACOSX__
 typedef struct
