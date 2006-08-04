@@ -645,3 +645,25 @@ GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
 				       0, gtk_get_current_event_time ());
 }
+
+// change folder
+GLADE_CB void
+on_button14_clicked                    (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	gchar *folder;
+	
+	folder = msg_entry(_("Path"), _("Enter new path"), local.cwdir);
+	if(folder != NULL)
+	{
+		if(g_file_test(folder, G_FILE_TEST_IS_DIR))
+		{
+			g_free(local.cwdir);
+			local.cwdir = g_strdup(folder);
+
+			clist_refresh();
+			labels_refresh();
+		}
+		g_free(folder);
+	}
+}
