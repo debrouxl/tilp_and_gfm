@@ -1,0 +1,84 @@
+[Settings]
+Archive=0
+Pack=0
+Packed Variable=
+Project Name=Project1
+GCC Switches=-Os -Wall -W -Wwrite-strings -ffunction-sections -fdata-sections
+Assembler Switches=-g -t
+GNU Assembler Switches=
+Debug Info=0
+Standard Library=1
+Command Line=
+Post-Build Process=
+Use Data Variable=0
+Data Variable=
+Copy Data Variable=1
+Copy Data Variable if Archived=1
+Optimize NOPs=1
+Optimize Returns=1
+Optimize Branches=1
+Optimize Moves=1
+Optimize Tests=1
+Optimize Calculations=1
+Remove Unused Sections=1
+Binary Output=0
+Fargo=0
+Flash OS=0
+Cut Unused Ranges=1
+Reorder Sections=1
+Merge Constants=1
+Initialize BSS=1
+
+[Library Options]
+Use TI-89=1
+Use TI-92 Plus=1
+Use V200=1
+Optimize Calc Consts=0
+Use Kernel=0
+Use PreOS=0
+Minimum AMS Version Defined=1
+Minimum AMS Version=1.00
+Unofficial OS Support=0
+Reloc Format=AMS
+ROM Call Format=Direct
+BSS Ref Format=Kernel
+Data Ref Format=Kernel
+Use F-Line Jumps=0
+Use 4-Byte F-Line Jumps=0
+Use Internal F-Line Emulator=0
+Use Return Value=0
+Enable Error Return=0
+Save Screen=1
+Optimize ROM Calls=0
+
+[File Editing]
+Open File=/home/tyler/gfm/src/config.c
+
+[Included Files]
+C File 1=\home\tyler\gfm\src\cmdline.c
+C File 2=\home\tyler\gfm\src\config.c
+C File 3=\home\tyler\gfm\src\dialog.c
+C File 4=\home\tyler\gfm\src\file.c
+C File 5=\home\tyler\gfm\src\folder_tree.c
+C File 6=\home\tyler\gfm\src\ftree_sort.c
+C File 7=\home\tyler\gfm\src\gui.c
+C File 8=\home\tyler\gfm\src\main.c
+C File 9=\home\tyler\gfm\src\menu.c
+C File 10=\home\tyler\gfm\src\paths.c
+C File 11=\home\tyler\gfm\src\splashscreen.c
+C File 12=\home\tyler\gfm\src\support.c
+C File 13=\home\tyler\gfm\src\tilibs.c
+Header File 1=\home\tyler\gfm\src\cmdline.h
+Header File 2=\home\tyler\gfm\src\config.h
+Header File 3=\home\tyler\gfm\src\dialog.h
+Header File 4=\home\tyler\gfm\src\file.h
+Header File 5=\home\tyler\gfm\src\folder_tree.h
+Header File 6=\home\tyler\gfm\src\gfm.h
+Header File 7=\home\tyler\gfm\src\gui.h
+Header File 8=\home\tyler\gfm\src\menu.h
+Header File 9=\home\tyler\gfm\src\paths.h
+Header File 10=\home\tyler\gfm\src\splashscreen.h
+Header File 11=\home\tyler\gfm\src\support.h
+Header File 12=\home\tyler\gfm\src\tilibs.h
+Header File 13=\home\tyler\gfm\src\version.h
+
