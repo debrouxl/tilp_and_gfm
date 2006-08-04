@@ -11,15 +11,16 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
-22)
+
+//------
+
+- suggestion from K. Kofler:
 <<
 [16:31:40] *** Kevin Kofler is Online
 [16:17:10] <Kevin Kofler> As-tu déjà regardé l'histoire des vars archivées (pas d'erreur convenable quand on essaie de les écraser, juste un timeout)?
 [16:20:28] <Kevin Kofler> Ce bogue rend aussi le link inutilisable jusqu'à ce qu'on éteint/rallume la calculatrice, d'ailleurs (il doit y avoir un error flag ou qqch. comme ça qui est mis: la calculatrice répond à certaines requêtes et pas d'autres).
 [16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
 >>
-
-//------
 
 - suggestions from O. Armand:
 <<
@@ -29,11 +30,6 @@ sais pas trop, je n'utilise pas TiLP d'habitude) : c'est dommage que
 messages d'erreur plus expicites, par exemple quand on essaie
 d'écraser une variable archivée ou quand il n'y a plus assez de
 mémoire.
-
-Pendant qu'on est dans TiLP, un autre truc qui serait pratique, ce
-serait de pouvoir taper directement le chemin d'accès du dossier
-courant (comme on peut par exemple le faire dans l'explorateur
-Windows), plutôt que de devoir passer par l'UI.
 >>
 
 - suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
