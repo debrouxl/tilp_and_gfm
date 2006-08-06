@@ -319,11 +319,14 @@ void tilp_slct_update_applist(void)
 	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
 		return;
 
+	if(!remote.var_tree || !remote.app_tree)
+		return;
+
 	for(ptr = local.selection2; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
 		FlashContent *content;
-		VarEntry ve;
+		VarEntry ve = {0};
 
 		content = tifiles_content_create_flash(calc_handle->model);
 		tifiles_file_read_flash(fe->name, content);

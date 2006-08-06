@@ -2,8 +2,8 @@
 
 
 
-Current version:  0.13		(28/05/2006)
 Current version:  0.17-beta	(23/06/2006)
+Current version:  0.20-beta (05/08/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,39 +21,26 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- device box can display detected USB devices
-	- sending & receiving of several FLASH apps at once
-	- sending of apps/vars at once
+	- full TiGroup (*.tig) support (ram, archive & flash)
 
 
 Improvements:
 -------------
 
-	- USB device reconnection
-	- updates dirlist & memory when sending apps (caching)
-	- added accelarator keys in popup menu (left frame)
-	- scan for '/dev/bus/usb', too
-	- re-enabled TI84+ OS sending (tested: OK)
-	- updated 68k ROM dumpers to dump 8 MB on HW4 and rebuilt them with the latest CVS TIGCC (GCC 4.1.1, reduces size) (kevin)
-	- reworked the management of progress bar mechanism
-	- checked/fixed all progress bars
-	- Silver/DirectLink cable are now reopened instead of being	reset when error occurs.
-		More efficient about error clearing.
+	- refresh right frame after var/app retrieval
+	- don't allow use of USB options is USB support is not available.
+	- for now, use this naming scheme for TI9x var filenames: folder.var.extension (like TiConnect)
+	- allow to directly input the path from keyboard
+	- added Seamonkey to the browser list, suggest Firefox instead of the obsolete Mozilla Suite (kevin)
 
 
 Bug fixes:
 ----------
 
-	- bug #1499672: sorting by type didn't work properly on the pc-panel
-	- [win32] bug #1499672: sorting by name is case insensitive for now
-	- manpage about DirectLink
-	- acceleratorkeys in popup menu (right frame)
-	- [linux] usb_set_config error/warnings in the kernel log (dmesg) due to misuse 
-		of libusb and kernel API changes
-	- buffer overflow in the D-BUS layer and possible bug in the DUSB packet layer
-		which may trigger segfault/crash in screenshot
-	- don't count archived (=FLASH) variables in the memory labels
-	- bug in tifiles_file_is_tib which didn't detect TIB files.
+	- NULL dereference in file selector
+	- bad displaying of lists on TI84+
+	- can't send TI85 backup from command line
+	- bug #1523480: --no-gui doesn't work
 
 
 Known bugs:

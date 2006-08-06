@@ -4,8 +4,7 @@ This is a list of some things to do:
 
 13) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
-	In fact, we shouldn't extract hand-held from file but pass target hand-held instead.
-	May need some work or worse (API changes).
+	Sending is OK, receiving is still KO because we should pass vartype with named lists.
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
