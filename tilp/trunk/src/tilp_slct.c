@@ -326,7 +326,11 @@ void tilp_slct_update_applist(void)
 	{
 		FileEntry *fe = ptr->data;
 		FlashContent *content;
+#ifdef _MSC_VER
 		VarEntry ve = {0};
+#else
+		VarEntry ve = {};
+#endif
 
 		content = tifiles_content_create_flash(calc_handle->model);
 		tifiles_file_read_flash(fe->name, content);
