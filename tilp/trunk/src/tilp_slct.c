@@ -36,19 +36,19 @@
 /* Destroy the selection of the local window */
 void tilp_clist_selection_destroy(void)
 {
-	if (local.selection != NULL) 
+	if (local.selection != NULL)	// Variables
 	{
 		g_list_free(local.selection);
 		local.selection = NULL;
 	}
 
-	if (local.selection2 != NULL) 
+	if (local.selection2 != NULL)	// Applications
 	{
 		g_list_free(local.selection2);
 		local.selection2 = NULL;
 	}
 
-	if (local.selection3 != NULL) 
+	if (local.selection3 != NULL)	// Backups
 	{
 		g_list_free(local.selection3);
 		local.selection3 = NULL;
@@ -191,46 +191,30 @@ void tilp_slct_load_contents(void)
 	GList *ptr;
 	int err;
 
+	// Variables
 	if (local.selection != NULL)
 	{
-
 		for(ptr = local.selection; ptr; ptr = ptr->next)
 		{
 			FileEntry *fe = ptr->data;
-			FileContent *c;
 
 			if(tifiles_file_is_regular(fe->name))
 			{
-				fe->content1 = c = tifiles_content_create_regular(options.calc_model);
+				fe->content1 = tifiles_content_create_regular(options.calc_model);
 				err = tifiles_file_read_regular(fe->name, fe->content1);
 				if(err)
 				{
 					tifiles_content_delete_regular(fe->content1);
 					fe->content1 = NULL;
 				}
-				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
+				fe->selected = (int *)calloc(fe->content1->num_entries + 1, sizeof(int));
 			}
-			/*
-			else if(tifiles_file_is_tigroup(fe->name))
-			{
-				fe->content = c = tifiles_content_create_regular(options.calc_model);
-				err = tifiles_file_read_tigroup(fe->name, fe->content);
-				if(err)
-				{
-					tifiles_content_delete_regular(fe->content);
-					fe->content = NULL;
-				}
-				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
-			}
-			*/
 			else
 			{
 				fe->content1 = NULL;
 				free(fe->selected);
 			}
 		}
-
-
 
 		// replaced "" folder by "main"
 		if(!tifiles_has_folder(options.calc_model))
@@ -255,9 +239,30 @@ void tilp_slct_load_contents(void)
 		}
 	}
 
+	// Applications
 	if(local.selection2 != NULL)
 	{
+		for(ptr = local.selection2; ptr; ptr = ptr->next)
+		{
+			FileEntry *fe = ptr->data;
 
+			if(tifiles_file_is_flash(fe->name))
+			{
+				fe->content2 = tifiles_content_create_flash(options.calc_model);
+				err = tifiles_file_read_flash(fe->name, fe->content2);
+				if(err)
+				{
+					tifiles_content_delete_flash(fe->content2);
+					fe->content2 = NULL;
+				}
+				fe->selected = NULL;
+			}
+			else
+			{
+				fe->content1 = NULL;
+				free(fe->selected);
+			}
+		}
 	}
 }
 
@@ -265,15 +270,26 @@ void tilp_slct_unload_contents(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL)
-		return;
-
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	if (local.selection != NULL)
 	{
-		FileEntry *fe = ptr->data;
+		for(ptr = local.selection; ptr; ptr = ptr->next)
+		{
+			FileEntry *fe = ptr->data;
 
-		if(fe->content1)
-			tifiles_content_delete_regular(fe->content1);
+			if(fe->content1)
+				tifiles_content_delete_regular(fe->content1);
+		}
+	}
+
+	if (local.selection2 != NULL)
+	{
+		for(ptr = local.selection2; ptr; ptr = ptr->next)
+		{
+			FileEntry *fe = ptr->data;
+
+			if(fe->content2)
+				tifiles_content_delete_flash(fe->content2);
+		}
 	}
 }
 
@@ -334,22 +350,18 @@ void tilp_slct_update_applist(void)
 	for(ptr = local.selection2; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
-		FlashContent *content;
+		FlashContent *c = fe->content2;
 #ifdef _MSC_VER
 		VarEntry ve = {0};
 #else
 		VarEntry ve = {};
 #endif
 
-		content = tifiles_content_create_flash(calc_handle->model);
-		tifiles_file_read_flash(fe->name, content);
-
-		strcpy(ve.name, content->name);
-		ve.size = content->data_length;
+		strcpy(ve.name, c->name);
+		ve.size = c->data_length;
 		ve.type = tifiles_flash_type(calc_handle->model);
 
 		ticalcs_dirlist_ve_add(remote.app_tree, &ve);
-		tifiles_content_delete_flash(content);
 	}
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
@@ -377,7 +389,7 @@ int tilp_ctree_selection_ready(void)
 	if (remote.selection == NULL) 
 	{
 		gif->msg_box1(_("Information"), _
-			     ("A variable must have been selected in the left window."));
+			     ("An item must have been selected in the left window."));
 		return 0;
 	}
 	return !0;
@@ -388,7 +400,7 @@ int tilp_ctree_selection2_ready(void)
 	if (remote.selection2 == NULL) 
 	{
 		gif->msg_box1(_("Information"), _
-			     ("A variable must have been selected in the left window."));
+			     ("An item must have been selected in the left window."));
 		return 0;
 	}
 	return !0;
@@ -407,3 +419,17 @@ void tilp_ctree_selection_display(void)
 		printf("<%s>\n", ve->name);
 	}
 }
+
+			/*
+			else if(tifiles_file_is_tigroup(fe->name))
+			{
+				fe->content = c = tifiles_content_create_regular(options.calc_model);
+				err = tifiles_file_read_tigroup(fe->name, fe->content);
+				if(err)
+				{
+					tifiles_content_delete_regular(fe->content);
+					fe->content = NULL;
+				}
+				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
+			}
+			*/

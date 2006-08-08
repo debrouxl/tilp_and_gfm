@@ -447,6 +447,8 @@ void on_tilp_send(gchar *user_data)
 
 	if (local.selection == NULL && local.selection2 == NULL)
 		return;
+
+	tilp_slct_load_contents();
 	
 	// send apps
 	if(local.selection2)
@@ -483,8 +485,6 @@ void on_tilp_send(gchar *user_data)
 	// send vars
 	if(local.selection)
 	{
-		tilp_slct_load_contents();
-
 		// note: dst_folder must be a copy b/c the user_data
 		// pointer is no longer valid after dirlist_remote
 		target = g_strdup(user_data);
@@ -497,6 +497,7 @@ void on_tilp_send(gchar *user_data)
 		if (display_action_dbox(target) == BUTTON2) 
 		{
 			g_free(target);
+			tilp_slct_unload_contents();
 			return;
 		}
 
@@ -512,9 +513,10 @@ void on_tilp_send(gchar *user_data)
 			labels_refresh();
 		}
 
-		tilp_slct_unload_contents();
 		g_free(target);
 	}
+
+	tilp_slct_unload_contents();
 }
 
 // Receive

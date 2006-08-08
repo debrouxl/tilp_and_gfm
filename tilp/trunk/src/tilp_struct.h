@@ -122,7 +122,7 @@ typedef struct
 	FileContent*	content1;	// file content to send or NULL
 	FlashContent*	content2;	// flash content to send or NULL
 	TigContent*		content3;	// unused (NULL)
-	int*			selected;	// entry/entries is/are selected
+	int*			selected;	// entry(ies) selected
 } FileEntry;
 
 /* Used to retrieve stats on the on-calc memory usage */

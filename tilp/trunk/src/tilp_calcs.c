@@ -304,8 +304,7 @@ int tilp_calc_send_app(void)
 		if(tifiles_file_is_flash(f->name) && 
 			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
 		{
-			gif->msg_box1(_("Error"),
-				_("You can not send variables/applications and upgrades simultaneously."));
+			gif->msg_box1(_("Error"), _("You can not send variables/applications and upgrades simultaneously."));
 			return 0;
 		}
 	}
@@ -335,7 +334,7 @@ int tilp_calc_send_app(void)
 		gtk_update.pbar();
 		gtk_update.refresh();
 
-		err = ticalcs_calc_send_app2(calc_handle, f->name);
+		err = ticalcs_calc_send_app(calc_handle, f->content2);
 		if(err)
 		{
 			tilp_err(err);
@@ -528,6 +527,9 @@ int tilp_calc_send_var(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
+
+		if(tifiles_file_is_flash(f->name))
+			continue;
 
 		gtk_update.cnt3 = i+1;
 		gtk_update.max3 = l;
