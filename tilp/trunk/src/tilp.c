@@ -341,7 +341,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	char *ext;
-	TigMode mode = TIG_ALL;
+	TigMode mode = TIG_ALL | TIG_BACKUP;
 
 	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), ";*.tig", NULL);
 	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
@@ -434,7 +434,7 @@ void on_tilp_recv(void)
 
 // Used for sending vars
 // Note: user_data is a string:
-// - such as "FLASH" for sending var into FLASH (ti83+/84+/89/92+/v200)
+// - such as "<FLASH>" for sending var into FLASH (ti83+/84+/89/92+/v200)
 // - such as "" for sending var in the default folder
 // - such as "foo" for sending var in the 'foo' folder
 // - unused for sending FLASH files

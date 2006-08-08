@@ -139,18 +139,18 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 		gtk_tree_model_get(model, &iter, COLUMN_NAME, &name, -1);
 
-		g_print("Received \"%s\" as selection information.\n", name);
+		//g_print("Received \"%s\" as selection information.\n", name);
 
 		if(strchr(name, '#'))			// Calc
 		{
-			on_tilp_button8_clicked(NULL, NULL);
+			//on_tilp_button8_clicked(NULL, NULL);
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
 		else if(!strcmp(name, NODE4))	// Apps/Archive
 		{
 			// send to flash
-			on_tilp_send("FLASH");
+			on_tilp_send("<FLASH>");
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
@@ -240,13 +240,11 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 	{
 		gchar *name = (gchar *) data->data;
 
-		g_print("Received \"%s\" as selection information.\n", name);
-
+		//g_print("Received \"%s\" as selection information.\n", name);
 
 		if(strchr(name, '#'))			// Calc
 		{
-			on_tilp_button7_clicked(NULL, NULL);
-
+			//on_tilp_button7_clicked(NULL, NULL);
 		}
 		else if (!strcmp(name, NODE1))	// Screen
 		{

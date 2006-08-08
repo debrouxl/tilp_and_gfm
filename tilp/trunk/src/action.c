@@ -202,7 +202,7 @@ gint display_action_dbox(gchar *target)
 			// modify attr or folder if target is specified
 			if(strcmp(target, ""))
 			{
-				if(!strcmp(target, "FLASH"))
+				if(!strcmp(target, "<FLASH>"))
 				{
 					v->attr = ATTRB_ARCHIVED;
 				}
