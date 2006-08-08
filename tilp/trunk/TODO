@@ -10,6 +10,9 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
+30) backup/TiGroup => which mode per default?
+31) return value checks in tifiles2 to fix
+
 
 //------
 

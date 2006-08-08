@@ -56,7 +56,6 @@ gint display_options_dbox()
 	data = glade_xml_get_widget(xml, "radiobutton22");
 	if (options.local_path)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
-	data = glade_xml_get_widget(xml, "radiobutton31");
 
 	data = glade_xml_get_widget(xml, "radiobutton81");
 	if (!options.recv_as_group)

@@ -182,7 +182,6 @@
 		  <child>
 		    <widget class="GtkRadioButton" id="radiobutton21">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">_full</property>
 		      <property name="use_underline">True</property>
@@ -203,7 +202,6 @@
 		  <child>
 		    <widget class="GtkRadioButton" id="radiobutton22">
 		      <property name="visible">True</property>
-		      <property name="sensitive">False</property>
 		      <property name="can_focus">True</property>
 		      <property name="label" translatable="yes">_local</property>
 		      <property name="use_underline">True</property>
