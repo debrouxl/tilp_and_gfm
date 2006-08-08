@@ -57,6 +57,14 @@ gint display_options_dbox()
 	if (options.local_path)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
+	data = glade_xml_get_widget(xml, "radiobutton31");
+	if (!options.backup_as_tigroup)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
+	data = glade_xml_get_widget(xml, "radiobutton32");
+	if (options.backup_as_tigroup)
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+
 	data = glade_xml_get_widget(xml, "radiobutton81");
 	if (!options.recv_as_group)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
@@ -138,4 +146,16 @@ GLADE_CB void
 options_radiobutton82_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.recv_as_group = 1;
+}
+
+GLADE_CB void
+options_radiobutton31_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+{
+	tmp_options.backup_as_tigroup = 0;
+} 
+
+GLADE_CB void
+options_radiobutton32_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+{
+	tmp_options.backup_as_tigroup = 1;
 }

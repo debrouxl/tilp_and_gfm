@@ -5,7 +5,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 06/08/2006, version 0.21 (0.1.3, 0.2.4, 0.2.4, 0.0.5): roms
 	- sending app without dirlist make TiLP crash: fixed
 	- re-enabled 'local/full path' option
-	- added option for group/TiGroup
+	- added option allowing to select behaviour of backup (old: backup/group, new: TiGroup)
 
 - 18/07/2006, version 0.20 (0.1.3, 0.2.4, 0.2.2, 0.0.5): roms
 	- use ticalcs_probe instead of the previous code (easier & clearer)

@@ -290,8 +290,8 @@ GLADE_CB void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-// Recv Backup
-GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
+// Backup
+GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
@@ -325,18 +325,40 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-// Send Backup
+GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data);
+
+GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
+{
+	if(options.backup_as_tigroup && tifiles_is_flash(options.calc_model))
+		on_tilp_button7_clicked(button, user_data);
+	else
+		on_tilp_button3b_clicked(button, user_data);
+		
+}
+
+// Restore
 GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	char *ext;
+	TigMode mode = TIG_ALL;
 
-	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), NULL);
+	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), ";*.tig", NULL);
 	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
 	g_free(ext);
 
 	if(filename)
-		tilp_calc_send_backup(filename);
+	{
+		if(tifiles_file_is_tigroup(filename))
+		{
+			int ret = backup_box(_("Restore"), _("Data to restore"), &mode);
+			if(ret != BUTTON1)
+				return;
+			tilp_calc_send_tigroup(filename, mode);
+		}
+		else
+			tilp_calc_send_backup(filename);
+	}
 
 	return;
 }

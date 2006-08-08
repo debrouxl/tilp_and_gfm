@@ -80,6 +80,7 @@ typedef struct
     int		show_all;
 	int		overwrite;
     int		recv_as_group;
+	int		backup_as_tigroup;
 	
 	char*	working_dir;
 

@@ -90,6 +90,7 @@ int tilp_config_default(void)
 
 	options.auto_detect = 0;
 	options.recv_as_group = 1;
+	options.backup_as_tigroup = 1;
 
 	options.cable_model = CABLE_NUL;
 	options.cable_port = PORT_0;
@@ -267,6 +268,9 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "recv_as_group", options.recv_as_group);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "recv_as_group", "Receive as group instead of single files", &error);
 
+	g_key_file_set_integer(kf, SECTION_OPTIONS, "backup_as_tigroup", options.backup_as_tigroup);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "backup_as_tigroup", "Receive as TiGroup instead of backup/group files", &error);
+
 	g_key_file_set_string (kf, SECTION_OPTIONS, "working_dir", options.working_dir);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "working_dir", "Working folder", &error);
 
@@ -403,6 +407,8 @@ int tilp_config_read(void)
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "overwrite", &error);
 	options.recv_as_group = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "recv_as_group", &error);
+	options.backup_as_tigroup = 
+		g_key_file_get_integer(kf, SECTION_OPTIONS, "backup_as_tigroup", &error);
 	s = 
 		g_key_file_get_string(kf, SECTION_OPTIONS, "working_dir", &error);
 	if(s != NULL)
