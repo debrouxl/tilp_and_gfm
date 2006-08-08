@@ -174,7 +174,7 @@ GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	local.copy_cut = 0;
 
 	/* Destroy the file selection and refresh */
-	tilp_clist_file_selection_destroy();
+	tilp_file_selection_destroy();
 	clist_refresh();
 	labels_refresh();
 }
@@ -232,7 +232,7 @@ GLADE_CB void rbm_group1_activate(GtkMenuItem* menuitem,
 GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)
 {
-	tilp_rename_selected_files();
+	tilp_file_selection_rename();
 
 	clist_refresh();
 	labels_refresh();

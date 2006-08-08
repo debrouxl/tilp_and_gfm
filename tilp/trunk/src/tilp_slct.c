@@ -33,6 +33,8 @@
 #include "tilp_core.h"
 #include "dboxes.h"
 
+// -----------------------------
+
 /* Destroy the selection of the local window */
 void tilp_clist_selection_destroy(void)
 {
@@ -92,7 +94,7 @@ void tilp_clist_selection_display(void)
 	}
 }
 
-void tilp_clist_add_file_to_selection(const char* filename)
+void tilp_clist_selection_add(const char* filename)
 {
 	FileEntry* fe = g_malloc0(sizeof(FileEntry));
 
@@ -108,85 +110,8 @@ void tilp_clist_add_file_to_selection(const char* filename)
 		local.selection3 = g_list_prepend(local.selection3, fe);	
 }
 
-/* Destroy the selection of the clist window */
-void tilp_clist_file_selection_destroy(void)
-{
-	if (local.file_selection != NULL) 
-	{
-		g_list_foreach(local.file_selection, (GFunc) g_free, NULL);
-		g_list_free(local.file_selection);
-		local.file_selection = NULL;
-	}
-}
-
-/* Add a file to the file_selection (if it does not exist in the list) */
-void tilp_add_file_to_file_selection(const char *filename)
-{
-	GList *ptr;
-
-	for(ptr = local.file_selection; ptr; ptr = ptr->next)
-	{
-		if (!strcmp((char *)ptr->data, filename))
-			return;
-	}
-	local.file_selection = g_list_append(local.file_selection, (gpointer) filename);
-}
-
-/* Delete files which are in local.file_selection */
-void tilp_delete_selected_files()
-{
-	GList *ptr;
-	gint ret;
-
-	if (local.file_selection == NULL)
-		return;
-
-	if(options.overwrite) 
-	{
-		ret = gif->msg_box2(_("Warning"), _
-				    ("Are you sure you want to remove these file(s) ?\n\n"));
-		if (ret == BUTTON2)
-		return;
-	}	
-
-	for(ptr = local.file_selection; ptr; ptr = ptr->next) 
-	{
-		tilp_file_delete((char *)ptr->data);
-	}
-}
-
-/* Rename files which are in local.file_selection */
-void tilp_rename_selected_files()
-{
-	gchar *filename;
-	GList *ptr;
-
-	if (local.file_selection == NULL)
-		return;
-
-	for(ptr = local.file_selection; ptr; ptr = ptr->next)
-	{
-		gchar *utf8;
-
-		utf8 = gif->msg_entry(_("Rename the file"), _("Name: "), (char *)ptr->data);
-		if (utf8 == NULL)
-			return;
-
-		filename = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
-		g_free(utf8);
-
-		if (tilp_file_move((char *)ptr->data, filename) < 0) 
-		{
-			gif->msg_box1(_("Information"), _
-				     ("Unable to rename the file or directory."));
-			g_free(filename);
-		}
-		g_free(filename);
-	}
-}
-
 /* Preload TI variables belonging with the selection */
-void tilp_slct_load_contents(void)
+void tilp_clist_contents_load(void)
 {
 	GList *ptr;
 	int err;
@@ -257,6 +182,17 @@ void tilp_slct_load_contents(void)
 				}
 				fe->selected = NULL;
 			}
+			/*else if(tifiles_file_is_tigroup(fe->name))
+			{
+				fe->content3 = tifiles_content_create_tigroup(options.calc_model, 0);
+				err = tifiles_file_read_tigroup(fe->name, fe->content3);
+				if(err)
+				{
+					tifiles_content_delete_tigroup(fe->content3);
+					fe->content3 = NULL;
+				}
+				fe->selected = NULL;
+			}*/
 			else
 			{
 				fe->content1 = NULL;
@@ -266,7 +202,7 @@ void tilp_slct_load_contents(void)
 	}
 }
 
-void tilp_slct_unload_contents(void)
+void tilp_clist_contents_unload(void)
 {
 	GList *ptr;
 
@@ -293,7 +229,7 @@ void tilp_slct_unload_contents(void)
 	}
 }
 
-void tilp_slct_change_folder(const char *target)
+void tilp_clist_change_folder(const char *target)
 {
 	GList *ptr;
 
@@ -311,7 +247,7 @@ void tilp_slct_change_folder(const char *target)
 	}
 }
 
-void tilp_slct_update_varlist(void)
+void tilp_clist_update_varlist(void)
 {
 	GList *ptr;
 
@@ -334,7 +270,7 @@ void tilp_slct_update_varlist(void)
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
 
-void tilp_slct_update_applist(void)
+void tilp_clist_update_applist(void)
 {
 	GList *ptr;
 
@@ -366,7 +302,7 @@ void tilp_slct_update_applist(void)
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
 
-//-----------
+// -----------------------------
 
 /* Destroy the selection of the remote window */
 void tilp_ctree_selection_destroy(void)
@@ -420,16 +356,84 @@ void tilp_ctree_selection_display(void)
 	}
 }
 
-			/*
-			else if(tifiles_file_is_tigroup(fe->name))
-			{
-				fe->content = c = tifiles_content_create_regular(options.calc_model);
-				err = tifiles_file_read_tigroup(fe->name, fe->content);
-				if(err)
-				{
-					tifiles_content_delete_regular(fe->content);
-					fe->content = NULL;
-				}
-				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
-			}
-			*/
+// -----------------------------
+
+/* Destroy the selection of the clist window */
+void tilp_file_selection_destroy(void)
+{
+	if (local.file_selection != NULL) 
+	{
+		g_list_foreach(local.file_selection, (GFunc) g_free, NULL);
+		g_list_free(local.file_selection);
+		local.file_selection = NULL;
+	}
+}
+
+/* Add a file to the file_selection (if it does not exist in the list) */
+void tilp_file_selection_add(const char *filename)
+{
+	GList *ptr;
+
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
+	{
+		if (!strcmp((char *)ptr->data, filename))
+			return;
+	}
+	local.file_selection = g_list_append(local.file_selection, (gpointer) filename);
+}
+
+/* Delete files which are in local.file_selection */
+void tilp_file_selection_delete()
+{
+	GList *ptr;
+	gint ret;
+
+	if (local.file_selection == NULL)
+		return;
+
+	if(options.overwrite) 
+	{
+		ret = gif->msg_box2(_("Warning"), _
+				    ("Are you sure you want to remove these file(s) ?\n\n"));
+		if (ret == BUTTON2)
+		return;
+	}	
+
+	for(ptr = local.file_selection; ptr; ptr = ptr->next) 
+	{
+		tilp_file_delete((char *)ptr->data);
+	}
+}
+
+/* Rename files which are in local.file_selection */
+void tilp_file_selection_rename()
+{
+	gchar *filename;
+	GList *ptr;
+
+	if (local.file_selection == NULL)
+		return;
+
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
+	{
+		gchar *utf8;
+
+		utf8 = gif->msg_entry(_("Rename the file"), _("Name: "), (char *)ptr->data);
+		if (utf8 == NULL)
+			return;
+
+		filename = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
+		g_free(utf8);
+
+		if (tilp_file_move((char *)ptr->data, filename) < 0) 
+		{
+			gif->msg_box1(_("Information"), _
+				     ("Unable to rename the file or directory."));
+			g_free(filename);
+		}
+		g_free(filename);
+	}
+}
+
+// -----------------------------
+

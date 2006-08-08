@@ -23,28 +23,24 @@
 #define __TILP_SLCT__
 
 void tilp_clist_selection_destroy(void);
-void tilp_ctree_selection_destroy(void);
-
-void tilp_clist_file_selection_destroy(void);
-void tilp_add_file_to_file_selection(const char *filename);
-
-void tilp_delete_selected_files(void);
-void tilp_rename_selected_files(void);
-
 int  tilp_clist_selection_ready(void);
+void tilp_clist_selection_display(void);
+
+void tilp_clist_selection_add(const char *filename);
+void tilp_clist_contents_load(void);
+void tilp_clist_contents_unload(void);
+
+void tilp_clist_change_folder(const char *target);
+void tilp_clist_update_varlist(void);
+void tilp_clist_update_applist(void);
+
+void tilp_ctree_selection_destroy(void);
 int  tilp_ctree_selection_ready(void);
 int  tilp_ctree_selection2_ready(void);
 
-void tilp_clist_selection_display(void);
-
-void tilp_slct_load_contents(void);
-void tilp_slct_unload_contents(void);
-
-void tilp_slct_change_folder(const char *target);
-void tilp_slct_update_varlist(void);
-void tilp_slct_update_applist(void);
-
-void tilp_add_file_to_selection(const char *filename);
-void tilp_clist_add_file_to_selection(const char* filename);
+void tilp_file_selection_destroy(void);
+void tilp_file_selection_delete(void);
+void tilp_file_selection_rename(void);
+void tilp_file_selection_add(const char *filename);
 
 #endif
