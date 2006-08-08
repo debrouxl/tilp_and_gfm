@@ -113,6 +113,12 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 			local.selection2 = g_list_append(local.selection2, fe);
 		else if(tifiles_file_is_regular(fe->name))
 			local.selection = g_list_append(local.selection, fe);
+		/*else if(tifiles_file_is_tigroup(fe->name))
+		{
+			local.selection = g_list_append(local.selection, fe);
+			local.selection2 = g_list_append(local.selection2, fe);
+		}
+		*/
 	}
 
 	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);

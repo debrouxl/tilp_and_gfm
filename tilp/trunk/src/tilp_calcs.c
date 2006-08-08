@@ -538,7 +538,7 @@ int tilp_calc_send_var(void)
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
-			err = ticalcs_calc_send_var(calc_handle, mode, f->content);
+			err = ticalcs_calc_send_var(calc_handle, mode, f->content1);
 			if(err) 
 			{
 				tilp_err(err);
@@ -550,7 +550,7 @@ int tilp_calc_send_var(void)
 		else 
 		{
 			// It is the first or the last one
-			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content);
+			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content1);
 			if(err)
 			{
 				tilp_err(err);

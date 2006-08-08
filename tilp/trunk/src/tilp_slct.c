@@ -191,64 +191,73 @@ void tilp_slct_load_contents(void)
 	GList *ptr;
 	int err;
 
-	if (local.selection == NULL)
-		return;
-
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	if (local.selection != NULL)
 	{
-		FileEntry *fe = ptr->data;
-		FileContent *c;
 
-		if(tifiles_file_is_regular(fe->name))
+		for(ptr = local.selection; ptr; ptr = ptr->next)
 		{
-			fe->content = c = tifiles_content_create_regular(options.calc_model);
-			err = tifiles_file_read_regular(fe->name, fe->content);
-			if(err)
+			FileEntry *fe = ptr->data;
+			FileContent *c;
+
+			if(tifiles_file_is_regular(fe->name))
 			{
-				tifiles_content_delete_regular(fe->content);
-				fe->content = NULL;
+				fe->content1 = c = tifiles_content_create_regular(options.calc_model);
+				err = tifiles_file_read_regular(fe->name, fe->content1);
+				if(err)
+				{
+					tifiles_content_delete_regular(fe->content1);
+					fe->content1 = NULL;
+				}
+				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
 			}
-			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
+			/*
+			else if(tifiles_file_is_tigroup(fe->name))
+			{
+				fe->content = c = tifiles_content_create_regular(options.calc_model);
+				err = tifiles_file_read_tigroup(fe->name, fe->content);
+				if(err)
+				{
+					tifiles_content_delete_regular(fe->content);
+					fe->content = NULL;
+				}
+				fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
+			}
+			*/
+			else
+			{
+				fe->content1 = NULL;
+				free(fe->selected);
+			}
 		}
-		/*
-		else if(tifiles_file_is_tigroup(fe->name))
+
+
+
+		// replaced "" folder by "main"
+		if(!tifiles_has_folder(options.calc_model))
+			return;
+
+		for(ptr = local.selection; ptr; ptr = ptr->next)
 		{
-			fe->content = c = tifiles_content_create_regular(options.calc_model);
-			err = tifiles_file_read_tigroup(fe->name, fe->content);
-			if(err)
+			FileEntry *fe = ptr->data;
+			FileContent *c = fe->content1;
+			int i;
+
+			if(c == NULL)
+				continue;
+
+			for(i = 0; i < c->num_entries; i++)
 			{
-				tifiles_content_delete_regular(fe->content);
-				fe->content = NULL;
+				VarEntry *ve = (c->entries)[i];
+
+				if(!strcmp(ve->folder , ""))
+					strcpy(ve->folder, "main");
 			}
-			fe->selected = (int *)calloc(c->num_entries + 1, sizeof(int));
-		}*/
-		else
-		{
-			fe->content = NULL;
-			free(fe->selected);
 		}
 	}
 
-	// replaced "" folder by "main"
-	if(!tifiles_has_folder(options.calc_model))
-		return;
-
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	if(local.selection2 != NULL)
 	{
-		FileEntry *fe = ptr->data;
-		FileContent *c = fe->content;
-		int i;
 
-		if(c == NULL)
-			continue;
-
-		for(i = 0; i < c->num_entries; i++)
-		{
-			VarEntry *ve = (c->entries)[i];
-
-			if(!strcmp(ve->folder , ""))
-				strcpy(ve->folder, "main");
-		}
 	}
 }
 
@@ -263,8 +272,8 @@ void tilp_slct_unload_contents(void)
 	{
 		FileEntry *fe = ptr->data;
 
-		if(fe->content)
-			tifiles_content_delete_regular(fe->content);
+		if(fe->content1)
+			tifiles_content_delete_regular(fe->content1);
 	}
 }
 
@@ -278,7 +287,7 @@ void tilp_slct_change_folder(const char *target)
 	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
-		FileContent *c = fe->content;
+		FileContent *c = fe->content1;
 		int i;
 
 		for(i = 0; i < c->num_entries; i++)
@@ -299,7 +308,7 @@ void tilp_slct_update_varlist(void)
 	for(ptr = local.selection; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
-		FileContent *c = fe->content;
+		FileContent *c = fe->content1;
 		int i;
 
 		for(i = 0; i < c->num_entries; i++)

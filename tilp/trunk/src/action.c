@@ -176,9 +176,9 @@ gint display_action_dbox(gchar *target)
 	for (sel = local.selection; sel != NULL; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
-		FileContent *c = (FileContent *)f->content;
+		FileContent *c = (FileContent *)f->content1;
 
-		if(f->content == NULL)	// file can't be loaded
+		if(f->content1 == NULL)	// file can't be loaded
 			continue;
 
 		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
@@ -331,7 +331,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 			continue;
 
 		// get new name
-		c = f->content;
+		c = f->content1;
 		new_name = gif->msg_entry(_("Rename the file"), _("New name: "), tifiles_get_varname(v->name));
 		if (new_name == NULL)
 			continue;
