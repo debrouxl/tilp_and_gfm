@@ -312,10 +312,7 @@ int tilp_calc_send_app(void)
 	if(tilp_calc_isready())
 		return -1;
 	
-	if(options.calc_model == CALC_TI83P)
-		ticables_options_set_timeout(cable_handle, 300);
-	else
-		ticables_options_set_timeout(cable_handle, 100);
+	ticables_options_set_timeout(cable_handle, options.calc_model == CALC_TI83P ? 300 : 100);
 
 	gif->create_pbar_(FNCT_SEND_APP, _("Sending app"));
 
@@ -824,8 +821,10 @@ int tilp_calc_del_var(void)
 			return 0;
 	}
 
+	
 	gif->create_pbar_(FNCT_DEL_VAR, _("Deleting..."));
 
+	ticables_options_set_timeout(cable_handle, 100);
 	for(sel = remote.selection; sel; sel = sel->next)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
@@ -840,7 +839,7 @@ int tilp_calc_del_var(void)
 			ticalcs_dirlist_ve_del(remote.var_tree, ve);
 		}
 	}
-
+	
 	for(sel = remote.selection2; sel; sel = sel->next)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
@@ -851,6 +850,7 @@ int tilp_calc_del_var(void)
 			return -1;
 		}
 	}
+	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
 	gif->destroy_pbar();
 
