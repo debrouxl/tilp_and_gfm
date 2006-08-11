@@ -10,7 +10,6 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
-31) del_var: increase timeout due to garbage collecting
 32) some apps can't be deleted. Why? Maybe I should forbid erasing apps...
 
 //------
@@ -43,39 +42,12 @@ transfer some files to my old TI-86, but I'm not getting anywhere.
 Lots of strange things are happening.  I did remember to go to the 
 communication settings and select TI-86 first.
 
-First I tried to send a 86G file, but TiLP caused a segmentation fault 
-when trying to send it.  I tried to ungroup it in TiLP first, and it 
-still segfaulted.  Then I ran the old TI-GRAPH LINK 86 software in 
-WINE, and that program appeared to be able to ungroup the file without 
-any trouble, and I could view the contents of the ungrouped files in 
-it.  However, when I sent the ungrouped files using TiLP, the resulting 
-files on the TI-86 had wrong sizes (way too large), and attempting to 
-access them in any way (or deleting them) caused the calc to crash.
-
-Several other files I have (whether grouped or not) cause the same 
-issue.  I think that maybe files I created using FastLink (which was 
-what I used for transferring back when I used Windows) might be the 
-ones with this issue, but I don't have any way to confirm that for 
-sure.  It seems maybe the header of the files is wrong, but that 
-doesn't explain why TI-GRAPH LINK doesn't seem to have any problems 
-with them.  TiLP doesn't appear to have any problems with files it 
-creates itself (using TiLP to transfer a program to the computer then 
-sending it back, for example).  But I have these old files that I 
-really need sent to the calculator, and it isn't working.  Any ideas 
-what's going on or if it can be fixed?
-
 Another issue I'm having which appears unrelated to the above is that I 
 can only send one file at a time.  If I try to send more than one file, 
 only the first gets sent, then a "connection timed out (errno = 110)" 
 error appears every time.  This makes group files impossible to send, 
 since only one file gets sent.  This problem doesn't happen when I 
 transfer files with the TI-89.
-
-I'm not sure if these are bugs or what, and if so, if they're TiLP's 
-fault or something else, so I'm writing to this mailing list first for 
-any ideas.  I could send copies of the problem files if that would 
-help.  Thanks.
-
 >>
 
 + = done.
