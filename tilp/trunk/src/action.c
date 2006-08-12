@@ -173,7 +173,7 @@ gint display_action_dbox(gchar *target)
 	create_clist(data);
 
 	// fill model
-	for (sel = local.selection; sel != NULL; sel = sel->next) 
+	for (sel = local.selection1; sel != NULL; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		FileContent *c = (FileContent *)f->content1;

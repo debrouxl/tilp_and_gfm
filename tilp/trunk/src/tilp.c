@@ -401,9 +401,9 @@ void on_tilp_recv(void)
 {
 	int ret;
 
-	if ((remote.selection != NULL) || (remote.selection2 != NULL)) 
+	if ((remote.selection1 != NULL) || (remote.selection2 != NULL)) 
 	{
-		if (remote.selection != NULL) 
+		if (remote.selection1 != NULL) 
 		{
 			ret = tilp_calc_recv_var();
 			if (ret < 0)
@@ -445,7 +445,7 @@ void on_tilp_send(gchar *user_data)
 	int ret1 = -1;
 	int ret2 = -1;
 
-	if (local.selection == NULL && local.selection2 == NULL)
+	if (local.selection1 == NULL && local.selection2 == NULL)
 		return;
 
 	tilp_clist_contents_load();
@@ -483,7 +483,7 @@ void on_tilp_send(gchar *user_data)
 	}
 
 	// send vars
-	if(local.selection)
+	if(local.selection1)
 	{
 		// note: dst_folder must be a copy b/c the user_data
 		// pointer is no longer valid after dirlist_remote

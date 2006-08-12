@@ -140,11 +140,11 @@ int tilp_cmdline_send(void)
 	gchar *ext = NULL;
 	
 	// Check for valid selection
-	if (local.selection == NULL && local.selection2 == NULL && local.selection3 == NULL)
+	if (local.selection1 == NULL && local.selection2 == NULL && local.selection3 == NULL)
 		return -1;
 
 	// Send vars
-	if(local.selection)
+	if(local.selection1)
 	{
 		options.overwrite = FALSE;
 		tilp_calc_send_var();

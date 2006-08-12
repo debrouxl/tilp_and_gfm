@@ -112,7 +112,7 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 		if(tifiles_file_is_flash(fe->name))
 			local.selection2 = g_list_append(local.selection2, fe);
 		else if(tifiles_file_is_regular(fe->name))
-			local.selection = g_list_append(local.selection, fe);
+			local.selection1 = g_list_append(local.selection1, fe);
 		/*else if(tifiles_file_is_tigroup(fe->name))
 		{
 			local.selection = g_list_append(local.selection, fe);

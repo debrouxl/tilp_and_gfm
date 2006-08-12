@@ -115,7 +115,7 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 
 		if (ve->type != tifiles_flash_type(options.calc_model)) 
 		{
-			remote.selection = g_list_append(remote.selection, ve);
+			remote.selection1 = g_list_append(remote.selection1, ve);
 		} 
 		else 
 		{

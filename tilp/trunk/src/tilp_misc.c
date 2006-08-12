@@ -61,7 +61,7 @@ int tilp_tifiles_ungroup(void)
 	if (!tilp_clist_selection_ready())
 		return -1;
 
-	for(sel = local.selection; sel; sel = sel->next)
+	for(sel = local.selection1; sel; sel = sel->next)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
 		gchar *utf8;
@@ -115,7 +115,7 @@ int tilp_tifiles_group(void)
 	if (!tilp_clist_selection_ready())
 		return -1;
 
-	if (g_list_length(local.selection) < 2) 
+	if (g_list_length(local.selection1) < 2) 
 	{
 		gif->msg_box1(_("Error"), _("You must select at least 2 files.\n\n"));
 		return -1;
@@ -125,9 +125,9 @@ int tilp_tifiles_group(void)
 	if (grpname == NULL)
 		return -1;
 
-	array = (char **) g_malloc0((g_list_length(local.selection) + 1) * sizeof(char *));
+	array = (char **) g_malloc0((g_list_length(local.selection1) + 1) * sizeof(char *));
 	
-	for(sel = local.selection, i = 0; sel; sel = sel->next, i++)
+	for(sel = local.selection1, i = 0; sel; sel = sel->next, i++)
 	{
 		f = (FileEntry *) sel->data;
 		array[i] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);

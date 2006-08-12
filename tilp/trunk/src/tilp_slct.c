@@ -38,10 +38,10 @@
 /* Destroy the selection of the local window */
 void tilp_clist_selection_destroy(void)
 {
-	if (local.selection != NULL)	// Variables
+	if (local.selection1 != NULL)	// Variables
 	{
-		g_list_free(local.selection);
-		local.selection = NULL;
+		g_list_free(local.selection1);
+		local.selection1 = NULL;
 	}
 
 	if (local.selection2 != NULL)	// Applications
@@ -60,7 +60,7 @@ void tilp_clist_selection_destroy(void)
 /* Check for files in the list */
 int tilp_clist_selection_ready(void)
 {
-	if (local.selection == NULL && local.selection2 == NULL && 1) 
+	if (local.selection1 == NULL && local.selection2 == NULL && 1) 
 	{
 		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
@@ -74,10 +74,10 @@ void tilp_clist_selection_display(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL && local.selection2 == NULL && local.selection3)
+	if (local.selection1 == NULL && local.selection2 == NULL && local.selection3)
 		return;
 
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	for(ptr = local.selection1; ptr; ptr = ptr->next)
 	{
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
@@ -101,7 +101,7 @@ void tilp_clist_selection_add(const char* filename)
 	fe->name = g_strdup(filename);
 
 	if(tifiles_file_is_regular(fe->name))
-		local.selection = g_list_prepend(local.selection, fe);
+		local.selection1 = g_list_prepend(local.selection1, fe);
 
 	else if(tifiles_file_is_flash(fe->name))
 		local.selection2 = g_list_prepend(local.selection2, fe);
@@ -117,9 +117,9 @@ void tilp_clist_contents_load(void)
 	int err;
 
 	// Variables
-	if (local.selection != NULL)
+	if (local.selection1 != NULL)
 	{
-		for(ptr = local.selection; ptr; ptr = ptr->next)
+		for(ptr = local.selection1; ptr; ptr = ptr->next)
 		{
 			FileEntry *fe = ptr->data;
 
@@ -145,7 +145,7 @@ void tilp_clist_contents_load(void)
 		if(!tifiles_has_folder(options.calc_model))
 			return;
 
-		for(ptr = local.selection; ptr; ptr = ptr->next)
+		for(ptr = local.selection1; ptr; ptr = ptr->next)
 		{
 			FileEntry *fe = ptr->data;
 			FileContent *c = fe->content1;
@@ -206,9 +206,9 @@ void tilp_clist_contents_unload(void)
 {
 	GList *ptr;
 
-	if (local.selection != NULL)
+	if (local.selection1 != NULL)
 	{
-		for(ptr = local.selection; ptr; ptr = ptr->next)
+		for(ptr = local.selection1; ptr; ptr = ptr->next)
 		{
 			FileEntry *fe = ptr->data;
 
@@ -233,10 +233,10 @@ void tilp_clist_change_folder(const char *target)
 {
 	GList *ptr;
 
-	if (local.selection == NULL)
+	if (local.selection1 == NULL)
 		return;
 
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	for(ptr = local.selection1; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
 		FileContent *c = fe->content1;
@@ -251,13 +251,13 @@ void tilp_clist_update_varlist(void)
 {
 	GList *ptr;
 
-	if (local.selection == NULL)
+	if (local.selection1 == NULL)
 		return;
 
 	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
 		return;
 
-	for(ptr = local.selection; ptr; ptr = ptr->next)
+	for(ptr = local.selection1; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
 		FileContent *c = fe->content1;
@@ -307,10 +307,10 @@ void tilp_clist_update_applist(void)
 /* Destroy the selection of the remote window */
 void tilp_ctree_selection_destroy(void)
 {
-	if (remote.selection != NULL) 
+	if (remote.selection1 != NULL) 
 	{
-		g_list_free(remote.selection);
-		remote.selection = NULL;
+		g_list_free(remote.selection1);
+		remote.selection1 = NULL;
 	}
 
 	if (remote.selection2 != NULL) 
@@ -322,7 +322,7 @@ void tilp_ctree_selection_destroy(void)
 
 int tilp_ctree_selection_ready(void)
 {
-	if (remote.selection == NULL) 
+	if (remote.selection1 == NULL) 
 	{
 		gif->msg_box1(_("Information"), _
 			     ("An item must have been selected in the left window."));
@@ -346,10 +346,10 @@ void tilp_ctree_selection_display(void)
 {
 	GList *ptr;
 
-	if (remote.selection == NULL)
+	if (remote.selection1 == NULL)
 		return;
 
-	for(ptr = remote.selection; ptr; ptr = ptr->next)
+	for(ptr = remote.selection1; ptr; ptr = ptr->next)
 	{
 		VarEntry *ve = ptr->data;
 		printf("<%s>\n", ve->name);

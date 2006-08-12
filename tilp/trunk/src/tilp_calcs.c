@@ -368,7 +368,7 @@ int tilp_calc_send_os(const char *filename)
 	int err, ret;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
 
-	if(g_list_length(remote.selection) > 1)
+	if(g_list_length(remote.selection1) > 1)
 	{
 		gif->msg_box1(_("Error"),
 			     _("You have to select _one_ upgrade to send."));
@@ -481,7 +481,7 @@ int tilp_calc_send_var(void)
 		return 0;
 
 	// Check for selection consistence
-	for (sel = local.selection, l = 0; sel; sel = sel->next) 
+	for (sel = local.selection1, l = 0; sel; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
@@ -523,8 +523,8 @@ int tilp_calc_send_var(void)
 	gif->create_pbar_(FNCT_SEND_VAR, _("Sending var(s)"));
 
 	// Now, send files
-	l = g_list_length(local.selection);
-	for(sel = local.selection, i = 0; sel != NULL; sel = sel->next, i++)
+	l = g_list_length(local.selection1);
+	for(sel = local.selection1, i = 0; sel != NULL; sel = sel->next, i++)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
@@ -592,11 +592,11 @@ static int tilp_calc_recv_var1(void)
 	
 	gif->create_pbar_(FNCT_RECV_VAR, _("Receiving var(s)"));
 
-	l = g_list_length(remote.selection);
+	l = g_list_length(remote.selection1);
 	if(l == 1) 
 	{
 		// One variable
-		VarEntry *ve = (VarEntry *)remote.selection->data;
+		VarEntry *ve = (VarEntry *)remote.selection1->data;
 		gchar *tmp_filename;
 		gchar *dst_filename;
 		char *varname, *fldname;
@@ -647,7 +647,7 @@ static int tilp_calc_recv_var1(void)
 		if(array == NULL)
 			return -1;
 
-		for(sel = remote.selection, i = 0; sel; sel = sel->next, i++)
+		for(sel = remote.selection1, i = 0; sel; sel = sel->next, i++)
 		{
 			VarEntry *ve = (VarEntry *)sel->data;
 
@@ -793,7 +793,7 @@ int tilp_calc_del_var(void)
 	GList *sel;
 	int err;
 
-	if(!remote.selection && !remote.selection2)
+	if(!remote.selection1 && !remote.selection2)
 		return 0;
 
 	if(tilp_calc_isready())
@@ -829,7 +829,7 @@ int tilp_calc_del_var(void)
 	gif->create_pbar_(FNCT_DEL_VAR, _("Deleting..."));
 
 	tilp_options_increase_timeout();
-	for(sel = remote.selection; sel; sel = sel->next)
+	for(sel = remote.selection1; sel; sel = sel->next)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
 		err = ticalcs_calc_del_var(calc_handle, ve);

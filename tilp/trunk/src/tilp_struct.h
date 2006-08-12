@@ -146,7 +146,7 @@ typedef struct
     GList* dirlist;			// linked list of files & directories
     gchar* cwdir;			// current active directory
 
-    GList* selection;		// selection of regular files (data: FileEntry*)
+    GList* selection1;		// selection of regular files (data: FileEntry*)
 	GList* selection2;		// selection of flash files   (data: FileEntry*)
 	GList* selection3;		// selection of backup files  (data: FileEntry*)
 
@@ -164,7 +164,7 @@ typedef struct
 
     TilpMem	memory;			// memory free or used by calc
 
-    GList*	selection;		// selection of variables    (data: VarEntry)
+    GList*	selection1;		// selection of variables    (data: VarEntry)
     GList*	selection2;		// selection of applications (data: VarEntry)
 } TilpRemote;
 
