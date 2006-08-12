@@ -22,14 +22,6 @@ This is a list of some things to do:
 [16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
 >>
 
-<<
-Tu as mis ça dans tilp_calcs.c:
-ticables_options_set_timeout(cable_handle, 100);
-Ne faudrait-il pas mettre plutôt:
-ticables_options_set_timeout(cable_handle, 
-options.timeout>100?options.timeout:100);
->>
-
 + = done.
 * = in progress.
 - = to do...

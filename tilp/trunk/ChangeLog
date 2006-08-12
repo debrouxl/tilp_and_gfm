@@ -11,6 +11,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- renamed/cleaned-up tilp_slct.c functions
 	- del_var: increase timeout due to garbage collecting
 	- fixed timeout in send_flash, send_tigroup and del_var
+	- 'Ready' reopens SilverLink device like DirectLink (the only way to clear error)
 
 - 18/07/2006, version 0.20 (0.1.3, 0.2.4, 0.2.2, 0.0.5): roms
 	- use ticalcs_probe instead of the previous code (easier & clearer)

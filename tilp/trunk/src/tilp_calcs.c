@@ -88,7 +88,7 @@ int tilp_calc_isready(void)
 	CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
 	
 	// DirectLink cable need re-opening to clear error (STALL)
-	if(cm == CALC_TI89T_USB || cm == CALC_TI84P_USB /*|| options.cable_model == CABLE_SLV*/)
+	if(cm == CALC_TI89T_USB || cm == CALC_TI84P_USB || options.cable_model == CABLE_SLV)
 	{
 		tilp_device_close();
 		tilp_device_open();
