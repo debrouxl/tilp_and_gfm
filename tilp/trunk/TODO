@@ -1,7 +1,5 @@
 This is a list of some things to do:
 
-11) user box: skip/retry/cancel
-
 13) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
 	Sending is OK, receiving is still KO because we should pass vartype with named lists.
@@ -13,6 +11,8 @@ This is a list of some things to do:
 32) some apps can't be deleted. Why? Maybe I should forbid erasing apps...
 
 33) check return value of all tifiles_xxxx calls into TiLP
+
+34) action box should support apps, too
 
 //------
 

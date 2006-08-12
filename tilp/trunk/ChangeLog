@@ -12,6 +12,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- del_var: increase timeout due to garbage collecting
 	- fixed timeout in send_flash, send_tigroup and del_var
 	- 'Ready' reopens SilverLink device like DirectLink (the only way to clear error)
+	- reworked selection system so that selection contains FileEntry with only _one_ VarEntry. Needed for future skip/retry/cancel dialog box
+	- implemented Skip/Retry/Cancel dialog box when sending file/apps
 
 - 18/07/2006, version 0.20 (0.1.3, 0.2.4, 0.2.2, 0.0.5): roms
 	- use ticalcs_probe instead of the previous code (easier & clearer)

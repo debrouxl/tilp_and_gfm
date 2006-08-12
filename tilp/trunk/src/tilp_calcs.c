@@ -329,7 +329,9 @@ int tilp_calc_send_app(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
+		int ret;
 
+tcsar:
 		if(tifiles_file_is_regular(f->name))
 			continue;
 
@@ -342,8 +344,16 @@ int tilp_calc_send_app(void)
 		if(err)
 		{
 			tilp_err(err);
-			gif->destroy_pbar();
 
+			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			switch(ret)
+			{
+			case BUTTON1: goto tcsar;
+			case BUTTON2: continue;
+			default: break;
+			}
+
+			gif->destroy_pbar();
 			return -1;
 		}
 	}
@@ -528,7 +538,9 @@ int tilp_calc_send_var(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
+		int ret;
 
+tcsvr:
 		if(tifiles_file_is_flash(f->name))
 			continue;
 
@@ -545,8 +557,16 @@ int tilp_calc_send_var(void)
 			if(err) 
 			{
 				tilp_err(err);
-				gif->destroy_pbar();
 
+				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				switch(ret)
+				{
+				case BUTTON1: goto tcsvr;
+				case BUTTON2: continue;
+				default: break;
+				}
+
+				gif->destroy_pbar();
 				return -1;
 			}
 		} 
@@ -557,8 +577,16 @@ int tilp_calc_send_var(void)
 			if(err)
 			{
 				tilp_err(err);
-				gif->destroy_pbar();
 
+				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				switch(ret)
+				{
+				case BUTTON1: goto tcsvr;
+				case BUTTON2: continue;
+				default: break;
+				}
+
+				gif->destroy_pbar();
 				return -1;
 			}
 		}
