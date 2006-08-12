@@ -122,7 +122,7 @@ typedef struct
 	FileContent*	content1;	// file content to send or NULL
 	FlashContent*	content2;	// flash content to send or NULL
 	TigContent*		content3;	// unused (NULL)
-	int*			selected;	// entry(ies) selected
+	int				selected;	// entry is selected
 } FileEntry;
 
 /* Used to retrieve stats on the on-calc memory usage */
@@ -146,7 +146,9 @@ typedef struct
     GList* dirlist;			// linked list of files & directories
     gchar* cwdir;			// current active directory
 
-    GList* selection1;		// selection of regular files (data: FileEntry*)
+	GList* selection0;		// selection of regular files (data: FileEntry*)
+
+    GList* selection1;		// selection of single files  (data: FileEntry* but exploded)
 	GList* selection2;		// selection of flash files   (data: FileEntry*)
 	GList* selection3;		// selection of backup files  (data: FileEntry*)
 

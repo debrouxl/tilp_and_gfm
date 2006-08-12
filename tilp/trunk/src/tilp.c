@@ -445,7 +445,7 @@ void on_tilp_send(gchar *user_data)
 	int ret1 = -1;
 	int ret2 = -1;
 
-	if (local.selection1 == NULL && local.selection2 == NULL)
+	if (local.selection0 == NULL && local.selection2 == NULL)
 		return;
 
 	tilp_clist_contents_load();
