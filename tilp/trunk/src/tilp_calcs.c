@@ -70,6 +70,14 @@ int tilp_pbar_type(CalcFnctsIdx op)
 	return 0;
 }
 
+static void tilp_options_increase_timeout(void)
+{
+	ticables_options_set_timeout(cable_handle, 
+		options.calc_model == CALC_TI83P || options.calc_model == CALC_TI84P ? 
+		(options.cable_timeout > 300 ? options.cable_timeout : 300) :
+		(options.cable_timeout > 100 ? options.cable_timeout : 100));
+}
+
 /*
   Check whether the calc is ready (with or without auto-detection)
 */
@@ -312,11 +320,10 @@ int tilp_calc_send_app(void)
 	if(tilp_calc_isready())
 		return -1;
 	
-	ticables_options_set_timeout(cable_handle, options.calc_model == CALC_TI83P ? 300 : 100);
-
 	gif->create_pbar_(FNCT_SEND_APP, _("Sending app"));
 
 	// Now, send files
+	tilp_options_increase_timeout();
 	l = g_list_length(local.selection2);
 	for(sel = local.selection2, i = 0; sel != NULL; sel = sel->next, i++)
 	{
@@ -380,10 +387,7 @@ int tilp_calc_send_os(const char *filename)
 	if(ret == BUTTON2)
 		return -1;
 
-	if(options.calc_model == CALC_TI83P || options.calc_model == CALC_TI84P)
-		ticables_options_set_timeout(cable_handle, 300);
-	else
-		ticables_options_set_timeout(cable_handle, 100);
+	tilp_options_increase_timeout();
 
 	gif->create_pbar_(FNCT_SEND_OS, _("Upgrading OS"));
 	err = ticalcs_calc_send_os2(calc_handle, filename);
@@ -824,7 +828,7 @@ int tilp_calc_del_var(void)
 	
 	gif->create_pbar_(FNCT_DEL_VAR, _("Deleting..."));
 
-	ticables_options_set_timeout(cable_handle, 100);
+	tilp_options_increase_timeout();
 	for(sel = remote.selection; sel; sel = sel->next)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
@@ -1137,10 +1141,7 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 	if(tilp_calc_isready())
 		return -1;
 
-	if(options.calc_model == CALC_TI83P)
-		ticables_options_set_timeout(cable_handle, 300);
-	else
-		ticables_options_set_timeout(cable_handle, 100);
+	tilp_options_increase_timeout();
 
 	gif->create_pbar_type5(_("Restoring"));
 	err = ticalcs_calc_send_tigroup2(calc_handle, filename, mode);

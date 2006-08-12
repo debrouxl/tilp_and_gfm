@@ -22,32 +22,12 @@ This is a list of some things to do:
 [16:21:09] <Kevin Kofler> Ce qui sert en tout cas, c'est débrancher, éteindre, rebrancher (ce qui rallume la calculatrice).
 >>
 
-- suggestions of 	"Travis Evans" <travisgevans@earthlink.net>:
 <<
-* When transmission errors occur, it would be nice to have Retry and 
-Skip buttons for backups or sending/receiving multiple files. When TI 
-Connect encounters an error, it gives a Retry button that tries the 
-operation again starting with the variable where the error occurred, and 
-a Skip button that continues the operation but skips the file where the 
-error occurred.
-
-*I'm using:
-SUSE Linux 9.3 (kernel 2.6.11)
-TiLP 6.81 (cables=3.9.7, files=0.6.6, calcs=4.6.2)
-Silverlink USB cable
-
-I've been using TiLP for a long time to transfer data to and from my 
-TI-89 with few problems. But today for the first time, I need to 
-transfer some files to my old TI-86, but I'm not getting anywhere.  
-Lots of strange things are happening.  I did remember to go to the 
-communication settings and select TI-86 first.
-
-Another issue I'm having which appears unrelated to the above is that I 
-can only send one file at a time.  If I try to send more than one file, 
-only the first gets sent, then a "connection timed out (errno = 110)" 
-error appears every time.  This makes group files impossible to send, 
-since only one file gets sent.  This problem doesn't happen when I 
-transfer files with the TI-89.
+Tu as mis ça dans tilp_calcs.c:
+ticables_options_set_timeout(cable_handle, 100);
+Ne faudrait-il pas mettre plutôt:
+ticables_options_set_timeout(cable_handle, 
+options.timeout>100?options.timeout:100);
 >>
 
 + = done.

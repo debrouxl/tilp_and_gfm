@@ -78,7 +78,7 @@
   <child>
     <widget class="GtkMenuItem" id="delete_var1">
       <property name="visible">True</property>
-      <property name="label" translatable="yes">Delete var</property>
+      <property name="label" translatable="yes">Delete var/app</property>
       <property name="use_underline">True</property>
       <signal name="activate" handler="rbm_delete_var1_activate" last_modification_time="Wed, 29 Jun 2005 09:43:32 GMT"/>
       <accelerator key="Delete" modifiers="0" signal="activate"/>
