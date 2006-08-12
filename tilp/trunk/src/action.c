@@ -181,19 +181,9 @@ gint display_action_dbox(gchar *target)
 		if(f->content1 == NULL)	// file can't be loaded
 			continue;
 
-		if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		// we have now 1 VarEntry per FileContent
 		{
-			gif->msg_box1(_("Error"),
-				     _("You can not send backups in this way. Use the 'Restore' button instead."));
-
-			button = BUTTON2; // skip box as cancel
-			goto out_clean;
-		}
-
-		// parse each VarEntry in FileEntry
-		for (i = 0; i < c->num_entries; i++) 
-		{
-			VarEntry *v = c->entries[i];
+			VarEntry *v = c->entries[0];			
 			VarEntry *w;
 			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 			char *trans;
