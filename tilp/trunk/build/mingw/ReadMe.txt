@@ -10,7 +10,7 @@ This is how to compile LPG software with MinGW. This bugger can be tricky so wat
 
 These compiling instructions will work for:
 - libticables2, libticonv, libtifiles2, libticables2
-- TiLP II
+- TiLP 2
 - TiEmu 3
 - GFM
 
@@ -70,9 +70,9 @@ Have fun :)
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
----------------------------------------
-| Building an Installer on Windows    |
----------------------------------------
+---------------------------------------------------
+| Building an Installer on Windows for TiEmu3+GDB |
+---------------------------------------------------
 
 Once you have successfully built TiEmu 3, here's how to build an installer on Windows:
 
@@ -85,6 +85,18 @@ Once you have successfully built TiEmu 3, here's how to build an installer on Wi
 4. Right-click on build\nsis\tiemu.nsi and select "Build".
 
 NOTE: TiLP II and GFM don't have NSIS installer scripts yet.
+
+------------------------------------------------------------
+| Building an Installer on Windows for TiLP2 or TiEmu3-GDB |
+------------------------------------------------------------
+
+Once you have successfully built TiLP2/TiEmu3, here's how to build an installer on Windows:
+
+1. Fetch the latest InnoSetup installer v5 from http://www.jrsoftware.org/isinfo.php and install it.
+
+2. Fetch the GNU wget for Win32 from http://xoomer.alice.it/hherold/wget-1.10.2b.zip and unzip it into build/InnoSetup/wget.
+
+3. Press Ctrl+F9 ("Build>Compile").
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
