@@ -62,4 +62,4 @@ typedef struct
 // Globalize a Structure
 extern SettingsStruct settings;
 
-#endif
+#endif // End of __GFM_H__

@@ -32,9 +32,10 @@
 #include "dialog.h"
 #include "file.h"
 #include "folder_tree.h"
+#include "ftree_menu.h"
 #include "gui.h"
 #include "gfm.h"
-#include "menu.h"
+#include "labels.h"
 #include "support.h"
 
 // Keep this numbered, because ordering may be messed up when running with
@@ -136,9 +137,9 @@ static gboolean select_func(GtkTreeSelection* selection, GtkTreeModel* model,
 }
 
 /* Selection Selected */
-static void folder_tree_selection_changed(GtkTreeSelection* selection, gpointer user_data)
+static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
 {
-    GList *list;
+  GList *list;
 	GtkTreeIter iter;
 	GtkTreeModel *model;
 
@@ -148,19 +149,24 @@ static void folder_tree_selection_changed(GtkTreeSelection* selection, gpointer 
 		g_list_free(ftree_info.selection);
 		ftree_info.selection = NULL;
 	}
- 
+	
 	// create a new selection
 	for(list = gtk_tree_selection_get_selected_rows(selection, &model);
-        list; list = g_list_next(list))
+      list; list = g_list_next(list))
 	{
 		GtkTreePath *path = list->data;
 		FileEntry *fe;
+		gchar *full_path;
         
-        // Get the FileEntry
+    // Get the FileEntry
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
-	    
-	    // Add to List
+ 
+		// Lets Add the Path to the file in the selected_files list
+		full_path = g_strconcat(settings.cur_dir, G_DIR_SEPARATOR_S, fe->name, NULL);
+		ftree_info.selected_files = g_list_append(ftree_info.selected_files, full_path);
+
+	  // Add to List
 		ftree_info.selection = g_list_append(ftree_info.selection, fe);
 	}
 
@@ -372,9 +378,7 @@ int folder_tree_refresh(void)
 	g_object_unref(pix2);
 	
 	// Set Folder Tree Current Directory Label
-	utf8 = g_filename_to_utf8(settings.cur_dir, -1, &br, &bw, NULL); // Get Dirname in UTF-8
-    gtk_label_set_text(GTK_LABEL(gfm_widget.current_folder), utf8); // Update Label
-    g_free(utf8); // Free gchar
+	ftree_label_refresh();
 	
 	// Return
 	return 0;
@@ -461,8 +465,8 @@ GLADE_CB gboolean on_folder_tree_button_press_event(GtkWidget *widget,
 }
 
 /* Folder Tree Key Press Event */
-GLADE_CB gboolean on_folder_tree_key_press_event(GtkWidget * widget,
-                                                 GdkEventKey * event,
+GLADE_CB gboolean on_folder_tree_key_press_event(GtkWidget *widget,
+                                                 GdkEventKey *event,
                                                  gpointer user_data)
 {
     // code

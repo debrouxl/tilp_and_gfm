@@ -43,11 +43,14 @@ int config_presets(void)
     /* Set the defaults incase of no Config File */
     ftree_info.column = FTREE_SORT_NAME; // Sort by Name
     ftree_info.sort_order = 0; // Ascending Order
-    settings.confirm = TRUE; // Confirm Deletions
+		ftree_info.working_act = NULL; // Doing Nothing
+		ftree_info.selected_files = NULL; // Clear Out
+
+		settings.confirm = TRUE; // Confirm Deletions
     settings.show_all = FALSE; // Show only TI Files
     settings.cur_dir = inst_paths.home_dir; // Default to Home Dir
     settings.cur_file = "NULL"; // No File to Load
-
+    
     // Return
     return 0;
 }

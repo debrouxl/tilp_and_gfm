@@ -279,22 +279,13 @@ void on_delete1_activate(GtkMenuItem * menuitem, gpointer user_data)
 }
 
 
-void on_cut2_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
 
 
-void on_copy2_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
 
 
-void on_paste1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
 
-}
+
+
 
 
 void on_rename2_activate(GtkMenuItem * menuitem, gpointer user_data)
@@ -365,25 +356,5 @@ void on_options1_activate(GtkMenuItem * menuitem, gpointer user_data)
 
 }
 
-
-void
-on_show_all_files1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
-
-
-void
-on_confirm_delete_overwrite1_activate(GtkMenuItem * menuitem,
-				      gpointer user_data)
-{
-
-}
-
-
-void on_change_drive1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
 
 */

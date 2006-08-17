@@ -26,7 +26,6 @@
      -TI File onto TI File in FOlder Tree to merge into Group File
    -Enter Key on selection in folder tree to open file in Group Tree.
    -Complete the Right Click Menu Items (I will get these)
-   -Current Folder Label, folders can get long, and they move the slider, so lets cut them with "..." in the middle ;)
    -All GUI Callback functions for tree in gui.c
 
    Group File Tree:

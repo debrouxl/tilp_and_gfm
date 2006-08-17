@@ -36,6 +36,11 @@
 #include <windows.h>
 #endif
 
+#ifndef __WIN32__
+#include <pwd.h>
+#include <grp.h>
+#endif
+
 #include "dialog.h"
 #include "file.h"
 #include "folder_tree.h"
@@ -49,11 +54,11 @@ int file_exists(const char *filename)
 
     // Does it exist?
     if ((fpointer = fopen(filename, "r")) == NULL)
-        return FALSE;
+        return -1;
     else
         fclose(fpointer);
 
-    return TRUE;
+    return 0;
 }
 
 /* Check to see if we have all of our Glade Files */
@@ -74,7 +79,7 @@ void glade_files_check(void)
     // Loop em all up!
     for (i=0; i<num_files; i++)
     {
-        if (!file_exists((const char *)gfm_paths_build_glade(glade_files[i])))
+        if (file_exists((const char *)gfm_paths_build_glade(glade_files[i])))
         {
             msg = g_strconcat("Could not find: <b>",
                               glade_files[i],
@@ -246,7 +251,7 @@ const char *file_get_date(FileEntry *fe)
 #include <errno.h>
 #include <direct.h>
 // Code taken from Glib
-int g_chdir (const gchar *path)
+static int g_chdir (const gchar *path)
 {
 #ifdef __WIN32__
   if (G_WIN32_HAVE_WIDECHAR_API ())
@@ -298,11 +303,121 @@ int g_chdir (const gchar *path)
 /* Change Current Working Directory */
 int gfm_change_cwd(const char *path)
 {
-    if (g_chdir(path))
-	{
-		msgbox_error("Could not change directory!");
-		return -1;
-	}
+  if (g_chdir(path))
+			return -1; // Error
+	
+	// Return with Success
+	return 0;
+}
 
+/* Copy File */
+int gfm_copy_file(const char *source, const char *destination)
+{
+	// Does file exist?
+	if (!file_exists(destination) && msgbox_two(MSGBOX_YESNO, "The file already exists! Would you like to overwrite the old file?") == MSGBOX_NO)
+		return 0; // Return quietly
+	
+	// Windows Method
+#ifdef __WIN32__
+	int ret = 0; // Return Variable, 0 is good
+	gchar *src_utf8 = g_filename_to_utf8(source, -1, NULL, NULL, NULL); // Source Location in UTF-8
+	gchar *dst_utf8 = g_filename_to_utf8(destination, -1, NULL, NULL, NULL); // Dest. in UTF-8
+
+	// UTF-16 System?
+	if(G_WIN32_HAVE_WIDECHAR_API())
+	{
+		gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
+		gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
+		
+		// Do we have something?
+		if(src_utf16 && dst_utf16)
+			if (!CopyFileW(src_utf16, dst_utf16, FALSE)) // Copy
+				ret = 1; // Return 1, error!
+		
+		// Free
+		g_free(src_utf16);
+		g_free(dst_utf16);
+	}
+	else
+	{
+		// Converting back to LOCALE from UTF-8
+		gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
+		gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
+		
+		// We have something?
+		if(src_loc && dst_loc)
+			if (!CopyFile(src_loc, dst_loc, FALSE)) // Copy
+				ret = 1; // Return 1, File not copied! Error!
+		
+		// Free
+		g_free(src_loc);
+		g_free(dst_loc);
+	}
+  
+	// Free
+	g_free(src_utf8);
+	g_free(dst_utf8);
+  
+	// Return hopefully with 0 :)
+	return ret;
+#else
+	FILE *in, *out;
+	int c;
+	
+	// Open Source File
+	if ((in = g_fopen(source, "rb")) == NULL) 
+		return -1; // Could not Open Source File!
+
+  
+	// Open Destination File
+	if ((out = g_fopen(destination, "wb")) == NULL) 
+		return -2; // Could not Open Destination File!
+	
+	// Copy the data
+	while (!feof(in)) 
+	{
+		c = fgetc(in);
+		if (feof(in))
+			break;
+		fputc(c, out);
+	}
+  
+	// Close the Files
+	fclose(in);
+	fclose(out);
+  
+	// Return with successful copy!
+	return 0;
+#endif
+}
+
+/* Move Files */
+int gfm_move_file(const char *source, const char *destination)
+{
+	// Copy File
+	if (gfm_copy_file(source, destination) < 0)
+	{
+		msgbox_error("Could not move file!");
+		return -1; // Bad
+	}
+	
+	// Delete old file
+	gfm_delete_file(source);
+	
+	// Return good
+	return 0;
+}
+
+/* Delete File */
+int gfm_delete_file(const gchar *filename)
+{
+	// Delete File
+	if (g_unlink(filename) < 0)
+	{
+		msgbox_error("Could not Delete File!");
+		return -1; // Bad
+	}
+	
+	// Return
 	return 0;
 }

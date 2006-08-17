@@ -31,16 +31,6 @@
 #include "dialog.h"
 #include "paths.h"
 
-/* Error Dialog Box */
-int msgbox_error(const char *message)
-{
-    // Show Message Box
-    msgbox_one(MSGBOX_ERROR, message);
-    
-    // Return
-    return MSGBOX_YES;
-}
-
 /* One Button Dialog Box */
 int msgbox_one(int type, const char *message)
 {

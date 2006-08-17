@@ -22,9 +22,12 @@
 /* Enumerations */
 enum gfm_dialog_enum {MSGBOX_YES=1, MSGBOX_NO=0,
                       MSGBOX_ERROR=1, MSGBOX_INFO=2,
-                      MSGBOX_CONTINUE=3, MSGBOX_YESNO=4, MSGBOX_TWO=5};
+                      MSGBOX_CONTINUE=3, MSGBOX_YESNO=4, MSGBOX_TWO=5,
+											MSGBOX_THREE=6, MSGBOX_INPUT=7};
 
 /* Prototypes */
-int msgbox_error(const char *message);
 int msgbox_one(int type, const char *message);
 int msgbox_two(int type, const char *message);
+
+// Definitions
+#define msgbox_error(message) msgbox_one(MSGBOX_ERROR, message)

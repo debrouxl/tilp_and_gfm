@@ -2,7 +2,7 @@
   Name: Group File Manager
   Copyright (C) 2006 Tyler Cassidy
   Copyright (C) 2006 Romain Lievin
-  06/06/06 19:45 - folder_tree.h
+  16/07/06 17:14 - menu.h
   
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,26 +19,12 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#ifndef __GFM_FTREE_MENU_H__
+#define __GFM_FTREE_MENU_H__
+
 #include <gtk/gtk.h>
 
-enum { FTREE_SORT_NAME=100, FTREE_SORT_TYPE=101, FTREE_SORT_SIZE=102,
-       FTREE_SORT_DATE=103 };
-enum { WORKING_ACT_CUT=200, WORKING_ACT_COPY=201 };
-			 
-// Stores information to public about certain stuff about Folder Tree
-typedef struct
-{
-    GList *dir_list; // List of Files in Directory
-    GList *selection; // List of Selected Files
-    int sort_order; // Which Order
-    int column; // Which Column to sort on
-		int working_act; // Working Action
-		GList *selected_files; // List of Selected File Paths
-} FolderTreeData;
+// Prototypes
+GtkWidget *create_folder_menu(void);
 
-// Export Structure
-extern FolderTreeData ftree_info;
-
-int folder_tree_init(void);
-int folder_tree_refresh(void);
-int ftree_sort_list(int sort_order);
+#endif // End of __GFM_FTREE_MENU_H__

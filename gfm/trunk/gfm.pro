@@ -82,7 +82,7 @@ QMAKE_CFLAGS_RELEASE = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/shar
 
 QMAKE_LFLAGS_RELEASE = -s
 
-DISTFILES += $${glade.files} $${icons.files} $${pixmaps.files} build/codeblocks/* INFO
+DISTFILES += $${glade.files} $${icons.files} $${pixmaps.files} build/ktigcc/* INFO
 
 distbz2.target = dist-bzip2
 distbz2.commands = zcat gfm.tar.gz | bzip2 --best -c > gfm.tar.bz2
