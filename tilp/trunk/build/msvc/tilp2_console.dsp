@@ -354,11 +354,6 @@ SOURCE=.\Tilp.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\tilp2.ico
-# End Source File
-# End Group
-# Begin Source File
-
 SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
