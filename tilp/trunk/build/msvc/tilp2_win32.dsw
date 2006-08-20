@@ -27,7 +27,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "tilp2_gtk_win32"=.\tilp2_gtk_win32.dsp - Package Owner=<4>
+Project: "tilp2_win32"=.\tilp2_win32.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
