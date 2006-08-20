@@ -27,7 +27,7 @@ gfm_SOURCES = \
 	ftree_sort.c	\
 	main.c		\
 	support.c	\
-	config.c	\
+	configfile.c	\
 	folder_tree.c  	\
 	gui.c         	\
 	paths.c         \
