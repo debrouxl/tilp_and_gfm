@@ -47,7 +47,7 @@ int launch_gfmgui(void)
 
     // Glade File Error
     if (!xml)
-        g_error("Failure GFM GUI!\n", __FILE__);
+        g_error("Failure GFM GUI (%s)!\n", __FILE__);
 
     // Connect The Symbols
     glade_xml_signal_autoconnect(xml);

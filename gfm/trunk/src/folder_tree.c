@@ -265,7 +265,7 @@ int folder_tree_refresh(void)
 	GList *dirlist;
 	gsize br, bw;
 	gchar *utf8;
-	int i, col_ind;
+	int i, col_ind = -1;
 	
 	// Clear the Selection
 	if (ftree_info.selection != NULL) 

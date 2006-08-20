@@ -43,7 +43,7 @@ int msgbox_one(int type, const char *message)
     
     // Glade File Error
     if (!xml)
-       g_error("Failure Loading GUI Dialog!\n", __FILE__);
+       g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
        
     // Connect The Symbols
     glade_xml_signal_autoconnect(xml);
@@ -100,7 +100,7 @@ int msgbox_two(int type, const char *message)
     
     // Glade File Error
     if (!xml)
-       g_error("Failure Loading GUI Dialog!\n", __FILE__);
+       g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
        
     // Connect The Symbols
     glade_xml_signal_autoconnect(xml);
