@@ -67,7 +67,7 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
 
-#include "config.h"
+#include "configfile.h"
 #include "cmdline.h"
 #include "file.h"
 #include "folder_tree.h"

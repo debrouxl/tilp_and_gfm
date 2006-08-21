@@ -167,3 +167,58 @@ int msgbox_two(int type, const char *message)
     // Return
     return ret;
 }
+
+/* Message Dialog with Three Buttons */
+int msgbox_three(const char *button1, const char *button2, const char *message)
+{
+	GladeXML *xml;
+	GtkWidget *widget, *data;
+	int choice, ret;
+    
+    // Load the Two Button Dialog from dialogs.glade
+	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "dialog3", NULL);
+    
+    // Glade File Error
+	if (!xml)
+		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
+       
+    // Connect The Symbols
+	glade_xml_signal_autoconnect(xml);
+    
+    // Retrieve the Widget into data & widget
+	widget = glade_xml_get_widget(xml, "dialog3");
+    
+    // The Message
+	data = glade_xml_get_widget(xml, "dialog3_label");
+	gtk_label_set_markup(GTK_LABEL(data), message);
+    
+    // Button 1
+	data = glade_xml_get_widget(xml, "dialog3_button1");
+	gtk_button_set_label(GTK_BUTTON(data), button1);
+    
+    // The Ok Button
+	data = glade_xml_get_widget(xml, "dialog3_button2");
+	gtk_button_set_label(GTK_BUTTON(data), button2);
+    
+	/* Launch the Dialog */
+	choice = gtk_dialog_run(GTK_DIALOG(widget));
+	switch (choice)
+	{
+		case GTK_RESPONSE_OK:
+			ret = MSGBOX_BUTTON1;
+			break;
+		case GTK_RESPONSE_YES:
+			ret = MSGBOX_BUTTON2;
+			break;
+		case GTK_RESPONSE_CANCEL:
+			ret = MSGBOX_NO; // Just Cancel
+			break;
+		default:
+			ret = MSGBOX_NO; // Just Cancel
+			break;       
+	}
+	gtk_widget_destroy(widget);
+    
+    // Return
+	return ret;
+}

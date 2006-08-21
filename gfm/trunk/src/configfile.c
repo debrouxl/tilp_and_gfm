@@ -27,7 +27,7 @@
 #include <string.h>
 #include <glib.h>
 
-#include "config.h"
+#include "configfile.h"
 #include "dialog.h"
 #include "file.h"
 #include "folder_tree.h"

@@ -54,11 +54,11 @@ int file_exists(const char *filename)
 
     // Does it exist?
     if ((fpointer = fopen(filename, "r")) == NULL)
-        return -1;
+        return 0;
     else
         fclose(fpointer);
 
-    return 0;
+    return 1;
 }
 
 /* Check to see if we have all of our Glade Files */
@@ -79,7 +79,7 @@ void glade_files_check(void)
     // Loop em all up!
     for (i=0; i<num_files; i++)
     {
-        if (file_exists((const char *)gfm_paths_build_glade(glade_files[i])))
+        if (!file_exists((const char *)gfm_paths_build_glade(glade_files[i])))
         {
             msg = g_strconcat("Could not find: <b>",
                               glade_files[i],
@@ -314,8 +314,23 @@ int gfm_change_cwd(const char *path)
 int gfm_copy_file(const char *source, const char *destination)
 {
 	// Does file exist?
-	if (!file_exists(destination) && msgbox_two(MSGBOX_YESNO, "The file already exists! Would you like to overwrite the old file?") == MSGBOX_NO)
-		return 0; // Return quietly
+	if (file_exists(destination))
+	{
+		int action;
+		gchar *message;
+		
+		// Make a message
+		message = g_strjoin(NULL, "The File '", destination, "' already exists!", NULL);
+		action = msgbox_three("Overwrite", "Rename", message);
+		
+		// Perform Action
+		if (action == MSGBOX_NO)
+			return 0; // Exit Silently
+		if (action == MSGBOX_BUTTON2)
+		{
+			msgbox_error("Needs to be coded, ~line 331 in file.c");
+		}
+	}
 	
 	// Windows Method
 #ifdef __WIN32__
