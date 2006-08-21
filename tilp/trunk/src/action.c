@@ -141,7 +141,7 @@ gint display_action_dbox(gchar *target)
 	GtkWidget *data;
 	GtkTreeIter iter;
 	GList *sel;
-	int i, button = 0;
+	int button = 0;
 	gint result;
 	gboolean empty = TRUE;
 
@@ -230,7 +230,6 @@ gint display_action_dbox(gchar *target)
 					   COLUMN_ACTION, row_text[3],
 					   COLUMN_DATA_F, (gpointer)f, 
 					   COLUMN_DATA_V, (gpointer)v, 
-					   COLUMN_DATA_N, i,
 					   -1);
 			g_strfreev(row_text);
 
