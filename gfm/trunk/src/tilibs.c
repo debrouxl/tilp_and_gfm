@@ -24,10 +24,8 @@
 #endif
 
 #include <stdlib.h>
-#include <tilp2/tifiles.h>
-#include <tilp2/ticables.h>
-#include <tilp2/ticonv.h>
 #include <gtk/gtk.h>
+#include "tilibs.h"
 
 #include "dialog.h"
 #include "tilibs.h"

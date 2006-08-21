@@ -19,4 +19,37 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-// code
+/*
+  This file includes libtifiles, libticables & libticalcs headers and some
+  other needed headers.
+*/
+
+#ifndef TILIBS_H
+#define TILIBS_H
+
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#if !defined(__MACOSX__) && !defined(__WIN32__)
+# include <tilp2/ticonv.h>
+#elif defined(__MACOSX__)
+# include <libticonv/ticonv.h>
+#else
+# include "ticonv.h"
+#endif
+
+#if !defined(__MACOSX__) && !defined(__WIN32__)
+# include <tilp2/tifiles.h>
+#elif defined(__MACOSX__)
+# include <libtifiles2/tifiles.h>
+# include <libtifiles2/macros.h>
+#else
+# include "tifiles.h"
+#endif
+
+#if defined(__WIN32__) && defined(_MSC_VER)
+#define snprintf	_snprintf
+#endif
+
+#endif

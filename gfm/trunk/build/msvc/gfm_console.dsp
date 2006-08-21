@@ -138,7 +138,7 @@ SOURCE=..\..\src\cmdline.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\config.c
+SOURCE=..\..\src\configfile.c
 # End Source File
 # Begin Source File
 

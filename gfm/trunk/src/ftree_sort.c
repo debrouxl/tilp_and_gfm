@@ -28,7 +28,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <glib.h>
-#include <tilp2/tifiles.h>
+#include "tilibs.h"
 
 #include "folder_tree.h"
 #include "gfm.h"

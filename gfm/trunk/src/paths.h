@@ -19,6 +19,10 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#if defined(__WIN32__) && defined(_MSC_VER)
+#define SHARE_DIR	""
+#endif
+
 /* Missing of Definitions */
 #ifndef SHARE_DIR
 #error Maybe trying to define a SHARE_DIR definition to GCC to where you shared stuff for GFM will be located before compiling.

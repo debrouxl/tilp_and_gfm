@@ -30,10 +30,11 @@
 #include <unistd.h>
 #include <glib/gstdio.h>
 #include <gtk/gtk.h>
-#include <tilp2/tifiles.h>
+#include "tilibs.h"
 
 #ifdef __WIN32__
 #include <windows.h>
+#include <dirent.h>
 #endif
 
 #ifndef __WIN32__
@@ -334,6 +335,7 @@ int gfm_copy_file(const char *source, const char *destination)
 	
 	// Windows Method
 #ifdef __WIN32__
+	{
 	int ret = 0; // Return Variable, 0 is good
 	gchar *src_utf8 = g_filename_to_utf8(source, -1, NULL, NULL, NULL); // Source Location in UTF-8
 	gchar *dst_utf8 = g_filename_to_utf8(destination, -1, NULL, NULL, NULL); // Dest. in UTF-8
@@ -375,6 +377,7 @@ int gfm_copy_file(const char *source, const char *destination)
   
 	// Return hopefully with 0 :)
 	return ret;
+	}
 #else
 	FILE *in, *out;
 	int c;

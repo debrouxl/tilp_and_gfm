@@ -25,7 +25,7 @@
 #include <glib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <tilp2/tifiles.h>
+#include "tilibs.h"
 
 /* Used by the local directory list function */
 typedef struct 

@@ -27,7 +27,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <tilp2/tifiles.h>
+#include "tilibs.h"
+#ifdef __WIN32__
+#include <dirent.h>
+#endif
 
 #include "dialog.h"
 #include "file.h"
