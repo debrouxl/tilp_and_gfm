@@ -124,7 +124,7 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 {
 	GtkWidget *dialog;
 	GtkFileFilter *filter;
-	gchar *path;
+	gchar *path, *tmp;
 	gchar **sarray;
 	gint i;
 	gchar *sfilename, *sext;
@@ -143,7 +143,11 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 				      NULL);
 
 	// set default folder
-	path = g_path_get_dirname(dirname);
+	tmp = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);	// add leading '/' otherwise get_dirname is confused
+	path = g_path_get_dirname(tmp);
+	g_free(tmp);
+
+	printf("<%s>\n", path);
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
 	g_free(path);
 
