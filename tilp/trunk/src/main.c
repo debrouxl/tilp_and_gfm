@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 
 		if(local.selection1 || local.selection2)
 			on_tilp_send("");
-		else if(local.selection3)
+		else if(local.selection4)
 			tilp_cmdline_send();
 	}
 

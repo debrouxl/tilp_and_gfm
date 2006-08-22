@@ -147,10 +147,12 @@ typedef struct
     gchar* cwdir;			// current active directory
 
 	GList* selection0;		// selection of regular files (data: FileEntry*)
-
     GList* selection1;		// selection of single files  (data: FileEntry* but exploded)
+
 	GList* selection2;		// selection of flash files   (data: FileEntry*)
-	GList* selection3;		// selection of backup files  (data: FileEntry*)
+	GList* selection3;		// selection of flash files   (data: FileEntry* but exploded)
+
+	GList* selection4;		// selection of backup files  (data: FileEntry*)
 
     GList* file_selection;	// selection of files (data: char*)
 

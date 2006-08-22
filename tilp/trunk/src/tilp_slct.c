@@ -23,9 +23,6 @@
 	Manage vars/files selections
 */
 
-//#fixme#: change naming scheme because incorrect !
-// tilp_selection_delete_local/remote
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,17 +53,23 @@ void tilp_local_selection_destroy(void)
 		local.selection2 = NULL;
 	}
 
-	if (local.selection3 != NULL)	// Backups
+	if (local.selection3 != NULL)	// Applications
 	{
 		g_list_free(local.selection3);
 		local.selection3 = NULL;
+	}
+
+	if (local.selection4 != NULL)	// Backups
+	{
+		g_list_free(local.selection4);
+		local.selection4 = NULL;
 	}
 }
 
 /* Check for files in the list */
 int tilp_local_selection_ready(void)
 {
-	if (local.selection1 == NULL && local.selection2 == NULL && 1) 
+	if (local.selection1 == NULL && local.selection3 == NULL && 1) 
 	{
 		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
@@ -80,7 +83,7 @@ void tilp_local_selection_display(void)
 {
 	GList *ptr;
 
-	if (local.selection1 == NULL && local.selection2 == NULL && local.selection3)
+	if (local.selection1 == NULL && local.selection3 == NULL && local.selection4)
 		return;
 
 	for(ptr = local.selection0; ptr; ptr = ptr->next)
@@ -93,12 +96,12 @@ void tilp_local_selection_display(void)
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
 	}
-	for(ptr = local.selection2; ptr; ptr = ptr->next)
+	for(ptr = local.selection3; ptr; ptr = ptr->next)
 	{
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
 	}
-	for(ptr = local.selection3; ptr; ptr = ptr->next)
+	for(ptr = local.selection4; ptr; ptr = ptr->next)
 	{
 		FileEntry *fi = ptr->data;
 		printf("<%s>\n", fi->name);
@@ -118,7 +121,7 @@ void tilp_local_selection_add(const char* filename)
 		local.selection2 = g_list_prepend(local.selection2, fe);
 
 	else if(tifiles_file_is_backup(fe->name))
-		local.selection3 = g_list_prepend(local.selection3, fe);	
+		local.selection4 = g_list_prepend(local.selection4, fe);	
 }
 
 /* Preload TI variables belonging with the selection */
@@ -132,30 +135,30 @@ void tilp_local_contents_load(void)
 	{
 		for(ptr = local.selection0; ptr; ptr = ptr->next)
 		{
-			FileEntry *f = ptr->data;
+			FileEntry *fe0 = ptr->data;
 
-			if(tifiles_file_is_regular(f->name) && tifiles_file_is_single(f->name))
+			if(tifiles_file_is_regular(fe0->name) && tifiles_file_is_single(fe0->name))
 			{
-				FileEntry *fe = g_memdup(ptr->data, sizeof(FileEntry));
+				FileEntry *fe1 = g_memdup(ptr->data, sizeof(FileEntry));
 
-				fe->content1 = tifiles_content_create_regular(options.calc_model);
-				err = tifiles_file_read_regular(fe->name, fe->content1);
+				fe1->content1 = tifiles_content_create_regular(options.calc_model);
+				err = tifiles_file_read_regular(fe1->name, fe1->content1);
 				if(err)
 				{
-					tifiles_content_delete_regular(fe->content1);
-					fe->content1 = NULL;
+					tifiles_content_delete_regular(fe1->content1);
+					fe1->content1 = NULL;
 				}
 
-				local.selection1 = g_list_append(local.selection1, fe);
+				local.selection1 = g_list_append(local.selection1, fe1);
 			}
-			else if(tifiles_file_is_regular(f->name) && tifiles_file_is_group(f->name))
+			else if(tifiles_file_is_regular(fe0->name) && tifiles_file_is_group(fe0->name))
 			{
 				// explode group files so that we have 1 VarEntry per item (skip/retry/cancel)
-				FileContent **dst, **p;
-				FileContent *src;
+				FileContent **p, **dst = NULL;
+				FileContent *src = NULL;
 
 				src = tifiles_content_create_regular(options.calc_model);
-				err = tifiles_file_read_regular(f->name, src);
+				err = tifiles_file_read_regular(fe0->name, src);
 				if(err)
 				{
 					tifiles_content_delete_regular(src);
@@ -174,6 +177,27 @@ void tilp_local_contents_load(void)
 				}
 
 				tifiles_content_delete_regular(src);
+			}
+			else if(tifiles_file_is_tigroup(fe0->name))
+			{
+				TigContent *content = NULL;
+				FileContent **p, **contents = NULL;
+				
+				content = tifiles_content_create_tigroup(options.calc_model, 0);
+				err = tifiles_untigroup_content(content, &contents, NULL);
+				tifiles_content_delete_tigroup(content);
+				
+				for(p = contents; *p; p++)
+				{
+					FileEntry *fe1 = g_memdup(ptr->data, sizeof(FileEntry));					
+
+					fe1->content1 = *p;
+				
+					local.selection1 = g_list_append(local.selection1, fe1);
+				}
+
+				for(p = contents; *p; p++)
+					tifiles_content_delete_regular(*p);
 			}
 		}
 
@@ -205,31 +229,42 @@ void tilp_local_contents_load(void)
 	{
 		for(ptr = local.selection2; ptr; ptr = ptr->next)
 		{
-			FileEntry *fe = ptr->data;
+			FileEntry *fe2 = ptr->data;
 
-			if(tifiles_file_is_flash(fe->name))
+			if(tifiles_file_is_flash(fe2->name))
 			{
-				fe->content2 = tifiles_content_create_flash(options.calc_model);
-				err = tifiles_file_read_flash(fe->name, fe->content2);
+				FileEntry *fe3 = g_memdup(ptr->data, sizeof(FileEntry));
+
+				fe3->content2 = tifiles_content_create_flash(options.calc_model);
+				err = tifiles_file_read_flash(fe2->name, fe3->content2);
 				if(err)
 				{
-					tifiles_content_delete_flash(fe->content2);
-					fe->content2 = NULL;
+					tifiles_content_delete_flash(fe3->content2);
+					fe3->content2 = NULL;
 				}
+
+				local.selection3 = g_list_append(local.selection3, fe3);
 			}
-			/*else if(tifiles_file_is_tigroup(fe->name))
+			else if(tifiles_file_is_tigroup(fe2->name))
 			{
-				fe->content3 = tifiles_content_create_tigroup(options.calc_model, 0);
-				err = tifiles_file_read_tigroup(fe->name, fe->content3);
-				if(err)
+				TigContent *content = NULL;
+				FlashContent **p, **contents = NULL;
+				
+				content = tifiles_content_create_tigroup(options.calc_model, 0);
+				err = tifiles_untigroup_content(content, NULL, &contents);
+				tifiles_content_delete_tigroup(content);
+				
+				for(p = contents; *p; p++)
 				{
-					tifiles_content_delete_tigroup(fe->content3);
-					fe->content3 = NULL;
+					FileEntry *fe = g_memdup(ptr->data, sizeof(FileEntry));					
+
+					fe->content2 = *p;
+				
+					local.selection3 = g_list_append(local.selection3, fe);
 				}
-			}*/
-			else
-			{
-				fe->content1 = NULL;
+
+				for(p = contents; *p; p++)
+					tifiles_content_delete_flash(*p);
 			}
 		}
 	}
@@ -250,9 +285,9 @@ void tilp_local_contents_unload(void)
 		}
 	}
 
-	if (local.selection2 != NULL)
+	if (local.selection3 != NULL)
 	{
-		for(ptr = local.selection2; ptr; ptr = ptr->next)
+		for(ptr = local.selection3; ptr; ptr = ptr->next)
 		{
 			FileEntry *fe = ptr->data;
 
@@ -307,7 +342,7 @@ void tilp_local_update_applist(void)
 {
 	GList *ptr;
 
-	if (local.selection2 == NULL)
+	if (local.selection3 == NULL)
 		return;
 
 	if((options.calc_model == CALC_TI82) || (options.calc_model == CALC_TI85))
@@ -316,7 +351,7 @@ void tilp_local_update_applist(void)
 	if(!remote.var_tree || !remote.app_tree)
 		return;
 
-	for(ptr = local.selection2; ptr; ptr = ptr->next)
+	for(ptr = local.selection3; ptr; ptr = ptr->next)
 	{
 		FileEntry *fe = ptr->data;
 		FlashContent *c = fe->content2;

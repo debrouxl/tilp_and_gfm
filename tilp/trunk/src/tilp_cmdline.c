@@ -140,7 +140,7 @@ int tilp_cmdline_send(void)
 	gchar *ext = NULL;
 	
 	// Check for valid selection
-	if (local.selection1 == NULL && local.selection2 == NULL && local.selection3 == NULL)
+	if (local.selection1 == NULL && local.selection2 == NULL && local.selection4 == NULL)
 		return -1;
 
 	// Send vars
@@ -173,9 +173,9 @@ int tilp_cmdline_send(void)
 	}
 
 	// Send backup
-	if(local.selection3)
+	if(local.selection4)
 	{
-		FileEntry *fe = (local.selection3)->data;
+		FileEntry *fe = (local.selection4)->data;
 
 		tilp_calc_send_backup(fe->name);
 		return 0;
