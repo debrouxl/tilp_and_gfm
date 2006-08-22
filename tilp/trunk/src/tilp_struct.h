@@ -154,6 +154,8 @@ typedef struct
 
 	GList* selection4;		// selection of backup files  (data: FileEntry*)
 
+	GList* selection5;		// selection of TiGroup files (data: FileEntry* but not loaded)
+
     GList* file_selection;	// selection of files (data: char*)
 
     int copy_cut;			// action type

@@ -2,7 +2,8 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- ??/08/2006, version 0.22 (0.1.3, 0.2.5, 0.2.6, 0.0.5): roms
+- 22/08/2006, version 0.22 (0.1.3, 0.2.5, 0.2.6, 0.0.5): roms
+	- added full TiGroup support (sending only)
 
 - 06/08/2006, version 0.21 (0.1.3, 0.2.5, 0.2.4, 0.0.5): roms
 	- sending app without dirlist make TiLP crash: fixed

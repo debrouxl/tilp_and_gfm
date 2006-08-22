@@ -305,7 +305,7 @@ int tilp_calc_send_app(void)
 		return 0;
 
 	// Check for selection consistence
-	for (sel = local.selection2, l = 0; sel; sel = sel->next) 
+	for (sel = local.selection3, l = 0; sel; sel = sel->next) 
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
@@ -324,8 +324,8 @@ int tilp_calc_send_app(void)
 
 	// Now, send files
 	tilp_options_increase_timeout();
-	l = g_list_length(local.selection2);
-	for(sel = local.selection2, i = 0; sel != NULL; sel = sel->next, i++)
+	l = g_list_length(local.selection3);
+	for(sel = local.selection3, i = 0; sel != NULL; sel = sel->next, i++)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 		int err;
@@ -495,6 +495,10 @@ int tilp_calc_send_var(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
+		if(tifiles_file_is_tigroup(f->name))
+		{
+			continue;
+		}
 		if(tifiles_file_is_flash(f->name) && 
 			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
 		{

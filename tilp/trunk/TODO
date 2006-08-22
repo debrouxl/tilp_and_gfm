@@ -8,14 +8,11 @@ This is a list of some things to do:
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
 21) SilverLink drivers don't install on Vista2
 
-
-31) TiGroup support
-
 32) check return value of all tifiles_xxxx calls into TiLP
 
 33) some apps can't be deleted. Why? Maybe I should forbid erasing apps...
 
-34) 
+34) ...
 
 
 

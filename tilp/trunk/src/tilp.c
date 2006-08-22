@@ -445,18 +445,18 @@ void on_tilp_send(gchar *user_data)
 	int ret1 = -1;
 	int ret2 = -1;
 
-	if (local.selection0 == NULL && local.selection2 == NULL)
+	if (local.selection0 == NULL && local.selection2 == NULL && local.selection5 == NULL)
 		return;
 
 	tilp_local_contents_load();
 	
 	// send apps
-	if(local.selection2)
+	if(local.selection3 && local.selection5)
 	{
-		f = (FileEntry *) local.selection2->data;
+		f = (FileEntry *) local.selection3->data;
 
 		// send os upgrades	
-		if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name)) 
+		if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name) || tifiles_file_is_tigroup(f->name)) 
 		{
 			if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
 			{
@@ -483,7 +483,7 @@ void on_tilp_send(gchar *user_data)
 	}
 
 	// send vars
-	if(local.selection1)
+	if(local.selection1 && local.selection5)
 	{
 		// note: dst_folder must be a copy b/c the user_data
 		// pointer is no longer valid after dirlist_remote
