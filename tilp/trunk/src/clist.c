@@ -92,7 +92,7 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	GtkTreeSelection *sel;
 
 	// destroy selection
-	tilp_clist_selection_destroy();
+	tilp_local_selection_destroy();
 
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
 
@@ -105,7 +105,7 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
-		tilp_clist_selection_add(fe->name);		
+		tilp_local_selection_add(fe->name);		
 
 		full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
 		tilp_file_selection_add(full_path);
@@ -235,7 +235,7 @@ void clist_refresh(void)
 		return;
 
 	// reparse folders
-	tilp_clist_selection_destroy();
+	tilp_local_selection_destroy();
 	tilp_dirlist_local();
 
 	selection = gtk_tree_view_get_selection(view);

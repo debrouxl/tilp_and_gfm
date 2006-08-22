@@ -97,7 +97,7 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 	GtkTreeSelection *sel;
 
 	// destroy selection
-	tilp_ctree_selection_destroy();
+	tilp_remote_selection_destroy();
 
 	// clear clist selection(one selection active at a time)
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(clist_wnd));
@@ -466,7 +466,7 @@ void ctree_refresh(void)
 	g_object_unref(pix5);
 	g_object_unref(pix6);
 
-	tilp_ctree_selection_destroy();
+	tilp_remote_selection_destroy();
 }
 
 /* Callbacks */

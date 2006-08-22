@@ -22,21 +22,21 @@
 #ifndef __TILP_SLCT__
 #define __TILP_SLCT__
 
-void tilp_clist_selection_destroy(void);
-int  tilp_clist_selection_ready(void);
-void tilp_clist_selection_display(void);
+void tilp_local_selection_destroy(void);
+int  tilp_local_selection_ready(void);
+void tilp_local_selection_display(void);
 
-void tilp_clist_selection_add(const char *filename);
-void tilp_clist_contents_load(void);
-void tilp_clist_contents_unload(void);
+void tilp_local_selection_add(const char *filename);
+void tilp_local_contents_load(void);
+void tilp_local_contents_unload(void);
 
-void tilp_clist_change_folder(const char *target);
-void tilp_clist_update_varlist(void);
-void tilp_clist_update_applist(void);
+void tilp_local_change_folder(const char *target);
+void tilp_local_update_varlist(void);
+void tilp_local_update_applist(void);
 
-void tilp_ctree_selection_destroy(void);
-int  tilp_ctree_selection_ready(void);
-int  tilp_ctree_selection2_ready(void);
+void tilp_remote_selection_destroy(void);
+int  tilp_remote_selection_ready(void);
+int  tilp_remote_selection2_ready(void);
 
 void tilp_file_selection_destroy(void);
 void tilp_file_selection_delete(void);

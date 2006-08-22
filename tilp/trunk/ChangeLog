@@ -2,11 +2,13 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- ??/08/2006, version 0.21 (0.1.3, 0.2.5, 0.2.4, 0.0.5): roms
+
 - 06/08/2006, version 0.21 (0.1.3, 0.2.5, 0.2.4, 0.0.5): roms
 	- sending app without dirlist make TiLP crash: fixed
 	- re-enabled 'local/full path' option
 	- added option allowing to select behaviour of backup (old: backup/group, new: TiGroup)
-	- fixed possible conflict between FLASH token FLASH folder
+	- fixed possible conflict between FLASH token & FLASH folder
 	- preload FLASH files like single/group files (consistency)
 	- renamed/cleaned-up tilp_slct.c functions
 	- del_var: increase timeout due to garbage collecting

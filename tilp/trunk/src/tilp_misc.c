@@ -58,7 +58,7 @@ int tilp_tifiles_ungroup(void)
 	gchar *src_file;
 	gchar *dst_file;
 
-	if (!tilp_clist_selection_ready())
+	if (!tilp_local_selection_ready())
 		return -1;
 
 	for(sel = local.selection1; sel; sel = sel->next)
@@ -112,7 +112,7 @@ int tilp_tifiles_group(void)
 	int i;
 	FileEntry *f = NULL;
 
-	if (!tilp_clist_selection_ready())
+	if (!tilp_local_selection_ready())
 		return -1;
 
 	if (g_list_length(local.selection1) < 2) 

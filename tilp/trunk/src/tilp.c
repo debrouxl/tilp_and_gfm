@@ -448,7 +448,7 @@ void on_tilp_send(gchar *user_data)
 	if (local.selection0 == NULL && local.selection2 == NULL)
 		return;
 
-	tilp_clist_contents_load();
+	tilp_local_contents_load();
 	
 	// send apps
 	if(local.selection2)
@@ -474,7 +474,7 @@ void on_tilp_send(gchar *user_data)
 				if(!ret1)
 				{
 					// update dirlist (caching, avoid to request dirlist again)
-					tilp_clist_update_applist();
+					tilp_local_update_applist();
 					ctree_refresh();
 					labels_refresh();
 				}
@@ -491,13 +491,13 @@ void on_tilp_send(gchar *user_data)
 
 		// change target folder
 		if(strcmp(target, ""))
-			tilp_clist_change_folder(target);
+			tilp_local_change_folder(target);
 
 		// and wait for action
 		if (display_action_dbox(target) == BUTTON2) 
 		{
 			g_free(target);
-			tilp_clist_contents_unload();
+			tilp_local_contents_unload();
 			return;
 		}
 
@@ -508,7 +508,7 @@ void on_tilp_send(gchar *user_data)
 		if(!ret2)
 		{
 			// update dirlist (caching, avoid to request dirlist again)
-			tilp_clist_update_varlist();
+			tilp_local_update_varlist();
 			ctree_refresh();
 			labels_refresh();
 		}
@@ -516,7 +516,7 @@ void on_tilp_send(gchar *user_data)
 		g_free(target);
 	}
 
-	tilp_clist_contents_unload();
+	tilp_local_contents_unload();
 }
 
 // Receive
@@ -540,12 +540,12 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 		return;
 	
 	for(ptr = filenames; *ptr != NULL; ptr++)
-		tilp_clist_selection_add(*ptr);
+		tilp_local_selection_add(*ptr);
 
 	g_strfreev(filenames);
 	
 	on_tilp_send("");
-	tilp_clist_selection_destroy();
+	tilp_local_selection_destroy();
 }
 
 // Recv TiGroup

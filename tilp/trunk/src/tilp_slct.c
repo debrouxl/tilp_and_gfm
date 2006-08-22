@@ -36,7 +36,7 @@
 // -----------------------------
 
 /* Destroy the selection of the local window */
-void tilp_clist_selection_destroy(void)
+void tilp_local_selection_destroy(void)
 {
 	if (local.selection0 != NULL)	// Variables
 	{
@@ -64,7 +64,7 @@ void tilp_clist_selection_destroy(void)
 }
 
 /* Check for files in the list */
-int tilp_clist_selection_ready(void)
+int tilp_local_selection_ready(void)
 {
 	if (local.selection1 == NULL && local.selection2 == NULL && 1) 
 	{
@@ -76,7 +76,7 @@ int tilp_clist_selection_ready(void)
 	return !0;
 }
 
-void tilp_clist_selection_display(void)
+void tilp_local_selection_display(void)
 {
 	GList *ptr;
 
@@ -105,7 +105,7 @@ void tilp_clist_selection_display(void)
 	}
 }
 
-void tilp_clist_selection_add(const char* filename)
+void tilp_local_selection_add(const char* filename)
 {
 	FileEntry* fe = g_malloc0(sizeof(FileEntry));
 
@@ -122,7 +122,7 @@ void tilp_clist_selection_add(const char* filename)
 }
 
 /* Preload TI variables belonging with the selection */
-void tilp_clist_contents_load(void)
+void tilp_local_contents_load(void)
 {
 	GList *ptr;
 	int err;
@@ -235,7 +235,7 @@ void tilp_clist_contents_load(void)
 	}
 }
 
-void tilp_clist_contents_unload(void)
+void tilp_local_contents_unload(void)
 {
 	GList *ptr;
 
@@ -262,7 +262,7 @@ void tilp_clist_contents_unload(void)
 	}
 }
 
-void tilp_clist_change_folder(const char *target)
+void tilp_local_change_folder(const char *target)
 {
 	GList *ptr;
 
@@ -280,7 +280,7 @@ void tilp_clist_change_folder(const char *target)
 	}
 }
 
-void tilp_clist_update_varlist(void)
+void tilp_local_update_varlist(void)
 {
 	GList *ptr;
 
@@ -303,7 +303,7 @@ void tilp_clist_update_varlist(void)
 	remote.memory.flash_used = ticalcs_dirlist_flash_used(remote.var_tree, remote.app_tree);
 }
 
-void tilp_clist_update_applist(void)
+void tilp_local_update_applist(void)
 {
 	GList *ptr;
 
@@ -338,7 +338,7 @@ void tilp_clist_update_applist(void)
 // -----------------------------
 
 /* Destroy the selection of the remote window */
-void tilp_ctree_selection_destroy(void)
+void tilp_remote_selection_destroy(void)
 {
 	if (remote.selection1 != NULL) 
 	{
@@ -353,7 +353,7 @@ void tilp_ctree_selection_destroy(void)
 	}
 }
 
-int tilp_ctree_selection_ready(void)
+int tilp_remote_selection_ready(void)
 {
 	if (remote.selection1 == NULL) 
 	{
@@ -364,7 +364,7 @@ int tilp_ctree_selection_ready(void)
 	return !0;
 }
 
-int tilp_ctree_selection2_ready(void)
+int tilp_remote_selection2_ready(void)
 {
 	if (remote.selection2 == NULL) 
 	{
@@ -375,7 +375,7 @@ int tilp_ctree_selection2_ready(void)
 	return !0;
 }
 
-void tilp_ctree_selection_display(void)
+void tilp_remote_selection_display(void)
 {
 	GList *ptr;
 

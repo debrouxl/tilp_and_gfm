@@ -301,7 +301,7 @@ int tilp_calc_send_app(void)
 	GList *sel;
 	gint i, l;
 
-	if(!tilp_clist_selection_ready())
+	if(!tilp_local_selection_ready())
 		return 0;
 
 	// Check for selection consistence
@@ -422,7 +422,7 @@ int tilp_calc_recv_app(void)
 	char *dst;
 	int i, l;
 
-	if(!tilp_ctree_selection2_ready())
+	if(!tilp_remote_selection2_ready())
 		return 0;
 
 	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
@@ -487,7 +487,7 @@ int tilp_calc_send_var(void)
 	gint i, l;
 	int mode = MODE_NORMAL;
 
-	if(!tilp_clist_selection_ready())
+	if(!tilp_local_selection_ready())
 		return 0;
 
 	// Check for selection consistence
@@ -612,7 +612,7 @@ static int tilp_calc_recv_var1(void)
 	int err, ret=0;
 	FileContent **array;
 
-	if(!tilp_ctree_selection_ready())
+	if(!tilp_remote_selection_ready())
 		return -1;
 
 	if(tilp_calc_isready())
