@@ -147,7 +147,6 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 	path = g_path_get_dirname(tmp);
 	g_free(tmp);
 
-	printf("<%s>\n", path);
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
 	g_free(path);
 

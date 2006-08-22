@@ -16,6 +16,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- implemented Skip/Retry/Cancel dialog box when sending file/apps
 	- fixed bug: file can be selected several times
 	- fixed T. Evans' bug: fix path with save dialog
+	- fixed Unbuntu Bug #49256 (reported as bug #1513271)
 
 - 18/07/2006, version 0.20 (0.1.3, 0.2.4, 0.2.2, 0.0.5): roms
 	- use ticalcs_probe instead of the previous code (easier & clearer)

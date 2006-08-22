@@ -58,7 +58,7 @@ int go_to_bookmark(const char *link)
 			"/usr/bin/gnome-open",
 			"/usr/bin/sensible-browser",
 			"/usr/bin/htmlview",
-			"/usr/bin/firefox",
+			"/usr/bin/firefox -H",
 			"/usr/bin/seamonkey",
 			"/usr/bin/konqueror",
 			"/usr/bin/mozilla",
