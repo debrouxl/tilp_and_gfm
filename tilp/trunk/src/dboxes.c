@@ -277,7 +277,6 @@ int backup_box(const char *title, const char *message, int *mask)
 	GladeXML *xml;
 	GtkWidget *data;
 	GtkWidget *dbox;
-	GtkWidget *entry = NULL;
 	gint result;
 	gint ret = 0;
 	gint b;

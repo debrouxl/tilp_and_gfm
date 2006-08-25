@@ -341,7 +341,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	char *ext;
-	TigMode mode = TIG_ALL | TIG_BACKUP;
+	int mode = TIG_ALL | TIG_BACKUP;
 
 	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), ";*.tig", NULL);
 	filename = create_fsel(local.cwdir, NULL, ext, FALSE);
@@ -351,7 +351,8 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 	{
 		if(tifiles_file_is_tigroup(filename))
 		{
-			int ret = backup_box(_("Restore"), _("Data to restore"), &mode);
+			int ret = backup_box(_("Restore"), 
+					     _("Data to restore"), &mode);
 			if(ret != BUTTON1)
 				return;
 			tilp_calc_send_tigroup(filename, mode);
@@ -554,7 +555,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	char* src_filename;
 	const char *dst_filename;
 	int ret;
-	TigMode mode = TIG_ALL;
+	int mode = TIG_ALL;
 
 	ret = backup_box(_("Backup"), _("Data to backup"), &mode);
 	if(ret != BUTTON1)
@@ -590,7 +591,7 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	int ret;
-	TigMode mode = TIG_ALL;
+	int mode = TIG_ALL;
 
 	ret = backup_box(_("Restore"), _("Data to restore"), &mode);
 	if(ret != BUTTON1)

@@ -138,7 +138,7 @@ int tilp_cmdline_send(void)
 {
 	int over = options.overwrite;
 	gchar *ext = NULL;
-	
+
 	// Check for valid selection
 	if (local.selection1 == NULL && local.selection2 == NULL && local.selection4 == NULL)
 		return -1;

@@ -38,9 +38,11 @@ int default_msg_box(const char *title, const char *message, int action)
 
 int default_msg_box1(const char *title, const char *message)
 {
+    int result;
+    
 	tilp_info("msg_box1: [%s] [%s]", title, message);
 	tilp_info("msg_box1: press ENTER for OK");
-	scanf("");
+	scanf("%i", &result);
 
 	return 0;
 }
