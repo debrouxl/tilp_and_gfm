@@ -19,6 +19,9 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#ifndef __GFMGUI_H__
+#define __GFMGUI_H__
+
 /* Structures */
 typedef struct {
         void *group_tree; // The Group File Tree
@@ -31,3 +34,5 @@ extern GFMWidget gfm_widget;
 
 /* Prototypes */
 int launch_gfmgui(void);
+
+#endif

@@ -19,6 +19,9 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#ifndef __GFMDIALOG_H__
+#define __GFMDIALOG_H__
+
 /* Enumerations */
 enum gfm_dialog_enum {MSGBOX_YES=1, MSGBOX_NO=0,
                       MSGBOX_ERROR=1, MSGBOX_INFO=2,
@@ -33,3 +36,5 @@ int msgbox_three(const char *button1, const char *button2, const char *message);
 
 // Definitions
 #define msgbox_error(message) msgbox_one(MSGBOX_ERROR, message)
+
+#endif

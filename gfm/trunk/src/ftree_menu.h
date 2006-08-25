@@ -19,8 +19,8 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
-#ifndef __GFM_FTREE_MENU_H__
-#define __GFM_FTREE_MENU_H__
+#ifndef __GFMFTREE_MENU_H__
+#define __GFMFTREE_MENU_H__
 
 #include <gtk/gtk.h>
 

@@ -19,7 +19,12 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
-/* Prototypes */
+#ifndef __GFMCONFIGFILE_H__
+#define __GFMCONFIGFILE_H__
+
+// Prototypes
 int config_save(void);
 int config_load(void);
 int config_presets(void);
+
+#endif

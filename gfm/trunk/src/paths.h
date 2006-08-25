@@ -19,6 +19,9 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#ifndef __GFMPATHS_H__
+#define __GFMPATHS_H__
+
 #if defined(__WIN32__) && defined(_MSC_VER)
 #define SHARE_DIR	""
 #endif
@@ -46,3 +49,5 @@ extern GFMInstPaths inst_paths;
 
 int gfm_paths_init(void); // Setup The Installation Paths for GFM
 const char *gfm_paths_build_glade(const char *name); // Used to return exact path to Glade File
+
+#endif

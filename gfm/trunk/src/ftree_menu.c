@@ -235,18 +235,16 @@ GLADE_CB void on_paste1_activate(GtkMenuItem *menuitem, gpointer user_data)
 					dst = "File Copy Cancelled!";
 				msgbox_one(MSGBOX_INFO, dst);
 				
-				// Clear Working List
+				// Clear Working Action
 				ftree_info.working_act = NULL;
-				ftree_info.selected_files = NULL;
 				
 				// Return
 				return;
 			}
 		}
 		
-		// Empty List
+		// Clear Working Action
 		ftree_info.working_act = NULL;
-		ftree_info.selected_files = NULL;
 		
 		// Lets refresh the Folder Tree!
 		folder_tree_refresh();

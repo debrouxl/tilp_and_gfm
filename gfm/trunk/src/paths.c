@@ -30,8 +30,6 @@
 
 #include "paths.h"
 
-/* Anti-MacOSX */
-#ifndef __MACOSX__
 // Lets setup some of the paths that are definate
 GFMInstPaths inst_paths =
 {
@@ -99,9 +97,6 @@ int gfm_paths_init(void)
     // Return
     return 0;
 }
-
-#endif
-/* End of Anti-MacOSX */
 
 /* Will return full path from executable to glade file given */
 const char *gfm_paths_build_glade(const char *name)

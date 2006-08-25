@@ -24,28 +24,19 @@
   other needed headers.
 */
 
-#ifndef TILIBS_H
-#define TILIBS_H
+#ifndef __GFMTILIBS_H__
+#define __GFMTILIBS_H__
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/ticonv.h>
-#elif defined(__MACOSX__)
-# include <libticonv/ticonv.h>
+#if !defined(__WIN32__)
+#include <tilp2/ticonv.h>
+#include <tilp2/tifiles.h>
 #else
-# include "ticonv.h"
-#endif
-
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/tifiles.h>
-#elif defined(__MACOSX__)
-# include <libtifiles2/tifiles.h>
-# include <libtifiles2/macros.h>
-#else
-# include "tifiles.h"
+#include "ticonv.h"
+#include "tifiles.h"
 #endif
 
 #if defined(__WIN32__) && defined(_MSC_VER)

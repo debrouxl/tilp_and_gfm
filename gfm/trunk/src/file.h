@@ -19,6 +19,9 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.         
 */
 
+#ifndef __GFMFILE_H__
+#define __GFMFILE_H__
+
 #include <gtk/gtk.h>
 #include "gfm.h"
 
@@ -34,3 +37,5 @@ int gfm_change_cwd(const char *path);
 int gfm_copy_file(const char *source, const char *destination);
 int gfm_move_file(const char *source, const char *destination);
 int gfm_delete_file(const gchar *filename);
+
+#endif

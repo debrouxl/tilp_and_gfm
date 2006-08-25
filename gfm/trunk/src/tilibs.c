@@ -25,7 +25,6 @@
 
 #include <stdlib.h>
 #include <gtk/gtk.h>
-#include "tilibs.h"
 
 #include "dialog.h"
 #include "tilibs.h"

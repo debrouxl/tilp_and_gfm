@@ -42,7 +42,7 @@ int config_presets(void)
 {
     /* Set the defaults incase of no Config File */
     ftree_info.column = FTREE_SORT_NAME; // Sort by Name
-    ftree_info.sort_order = 0; // Ascending Order
+    ftree_info.sort_order = FTREE_SORT_ASC; // Ascending Order
 		ftree_info.working_act = NULL; // Doing Nothing
 		ftree_info.selected_files = NULL; // Clear Out
 
@@ -93,7 +93,7 @@ int config_load(void)
 
     // Load the Settings now
     // Folder Tree Settings
-    ftree_info.sort_order = g_key_file_get_integer(keyfile, FTREE_SETTINGS, "sort_order", &error);
+    ftree_info.sort_order = g_key_file_get_boolean(keyfile, FTREE_SETTINGS, "sort_order", &error);
     ftree_info.column = g_key_file_get_integer(keyfile, FTREE_SETTINGS, "sort_column", &error);
 
     // Settings
@@ -129,8 +129,8 @@ int config_save(void)
 		"# Warning: any comments that you add to this file WILL be overwritten\n\n", &error);
 
     // Set Sort Order and Column
-    g_key_file_set_integer(keyfile, FTREE_SETTINGS, "sort_order", ftree_info.sort_order); // Sort Order
-    g_key_file_set_comment(keyfile, FTREE_SETTINGS, "sort_order", " Which way to sort files: 0 asc, 1 desc", &error);
+    g_key_file_set_boolean(keyfile, FTREE_SETTINGS, "sort_order", ftree_info.sort_order); // Sort Order
+    g_key_file_set_comment(keyfile, FTREE_SETTINGS, "sort_order", " Which way to sort files: FALSE asc, TRUE desc", &error);
 
     g_key_file_set_integer(keyfile, FTREE_SETTINGS, "sort_column", ftree_info.column); // Column
     g_key_file_set_comment(keyfile, FTREE_SETTINGS, "sort_column", "\n Which Column to sort by: 100 Name, 101 Type, 102 Size, 103 Date", &error);

@@ -86,8 +86,10 @@ static void folder_tree_column_clicked(GtkTreeViewColumn* column, gpointer user_
     if (sort1 == sort2)
     {
         // Lets Flip
-        if (ftree_info.sort_order) ftree_info.sort_order = 0; // A-Z
-        else ftree_info.sort_order = 1; // Z-A
+        if (ftree_info.sort_order)
+					ftree_info.sort_order = FTREE_SORT_ASC; // A-Z
+        else
+					ftree_info.sort_order = FTREE_SORT_DESC; // Z-A
     }
     
     // Lets set the Column to Sort by.
@@ -113,7 +115,7 @@ static void folder_tree_column_clicked(GtkTreeViewColumn* column, gpointer user_
     
     // If switching Columns, always A-Z
     if (col_set != ftree_info.column)
-        ftree_info.sort_order = 0; // A-Z
+        ftree_info.sort_order = FTREE_SORT_ASC; // A-Z
     
     // Set the Column to Sort by
     ftree_info.column = col_set;
@@ -139,6 +141,17 @@ static gboolean select_func(GtkTreeSelection* selection, GtkTreeModel* model,
 	return TRUE;
 }
 
+static void ftree_file_selection_add(const char *filename)
+{
+  GList *ptr;
+  
+	for(ptr = ftree_info.selected_files; ptr; ptr = ptr->next)
+    if (!strcmp((char *)ptr->data, filename))
+      return;
+
+  ftree_info.selected_files = g_list_append(ftree_info.selected_files, (gpointer) filename);
+}
+
 /* Selection Selected */
 static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer user_data)
 {
@@ -151,6 +164,11 @@ static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer 
 	{
 		g_list_free(ftree_info.selection);
 		ftree_info.selection = NULL;
+	}
+	if (ftree_info.selected_files != NULL && ftree_info.working_act == NULL)
+	{
+		g_list_free(ftree_info.selected_files);
+		ftree_info.selected_files = NULL;
 	}
 	
 	// create a new selection
@@ -167,7 +185,8 @@ static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer 
  
 		// Lets Add the Path to the file in the selected_files list
 		full_path = g_strconcat(settings.cur_dir, G_DIR_SEPARATOR_S, fe->name, NULL);
-		ftree_info.selected_files = g_list_append(ftree_info.selected_files, full_path);
+		if (ftree_info.working_act == NULL)
+		  ftree_file_selection_add(full_path);
 
 	  // Add to List
 		ftree_info.selection = g_list_append(ftree_info.selection, fe);
