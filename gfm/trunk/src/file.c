@@ -327,9 +327,12 @@ int gfm_copy_file(const char *source, const char *destination)
 		// Perform Action
 		if (action == MSGBOX_NO)
 			return 0; // Exit Silently
+		
 		if (action == MSGBOX_BUTTON2)
 		{
-			msgbox_error("Needs to be coded, ~line 331 in file.c");
+			char *testit;
+			testit = msgbox_input("Test", "Enter Value", message);
+			printf("Got: %s\n", testit);
 		}
 	}
 	

@@ -222,3 +222,63 @@ int msgbox_three(const char *button1, const char *button2, const char *message)
     // Return
 	return ret;
 }
+
+/* Input Dialog */
+char *msgbox_input(const char *title, const char *input, const char *question)
+{
+	GladeXML *xml;
+	GtkWidget *widget, *data;
+  int result;
+	gchar *ret;  
+	
+    // Load the One Button Dialog from dialogs.glade
+	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "inputdialog", NULL);
+    
+    // Glade File Error
+	if (!xml)
+		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
+       
+    // Connect The Symbols
+	glade_xml_signal_autoconnect(xml);
+    
+    // Retrieve the Widget into data & widget
+	widget = glade_xml_get_widget(xml, "inputdialog");
+    
+	/* Set the Dialog up */
+    // Set the message into the label ;)
+	data = glade_xml_get_widget(xml, "input_label");
+	gtk_label_set_markup(GTK_LABEL(data), question);
+    
+	// If data in input variable, place in entrybox and select
+	if (input != NULL)
+	{
+		// Set data
+		data = glade_xml_get_widget(xml, "input_entry");
+		gtk_entry_set_text(GTK_ENTRY(data), input);
+		
+		// Select
+		gtk_editable_select_region(GTK_EDITABLE(data), 0, -1);
+	}
+  
+	// Set the Title
+	gtk_window_set_title(GTK_WINDOW(widget), title);
+	
+    // Run Dialog
+	result = gtk_dialog_run(GTK_DIALOG(widget));
+	switch(result)
+	{
+		case GTK_RESPONSE_OK:
+			data = glade_xml_get_widget(xml, "input_entry");
+			ret = g_strdup(gtk_entry_get_text(GTK_ENTRY(data)));
+		break;
+		case GTK_RESPONSE_CANCEL:
+			ret = NULL;
+		break;
+	}
+    
+    // Destroy Dialog
+	gtk_widget_destroy(widget);
+    
+    // Return
+	return ret;
+}
