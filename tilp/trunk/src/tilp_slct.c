@@ -164,8 +164,19 @@ void tilp_local_contents_load(void)
 				FlashContent **q, **contents2 = NULL;
 				
 				content = tifiles_content_create_tigroup(options.calc_model, 0);
-				tifiles_file_read_tigroup(fe5->name, content);
+				err = tifiles_file_read_tigroup(fe5->name, content);
+				if(err)
+				{
+					tilp_err(err);
+					continue;
+				}
 				err = tifiles_untigroup_content(content, &contents1, &contents2);
+				if(err)
+				{
+					tilp_err(err);
+					tifiles_content_delete_tigroup(content);
+					continue;
+				}
 				tifiles_content_delete_tigroup(content);
 				
 				for(p = contents1; *p; p++)
@@ -217,7 +228,8 @@ void tilp_local_contents_load(void)
 				if(err)
 				{
 					tifiles_content_delete_regular(fe1->content1);
-					fe1->content1 = NULL;
+					g_free(fe1);
+					continue;
 				}
 
 				local.selection1 = g_list_append(local.selection1, fe1);
@@ -233,11 +245,16 @@ void tilp_local_contents_load(void)
 				if(err)
 				{
 					tifiles_content_delete_regular(src);
-					src = NULL;
-					break;
+					continue;
 				}
 				
-				tifiles_ungroup_content(src, &dst);
+				err = tifiles_ungroup_content(src, &dst);
+				if(err)
+				{
+					tifiles_content_delete_regular(src);
+					continue;
+				}
+
 				for(p = dst; *p; p++)
 				{
 					FileEntry *fe = g_memdup(ptr->data, sizeof(FileEntry));					
@@ -268,7 +285,8 @@ void tilp_local_contents_load(void)
 				if(err)
 				{
 					tifiles_content_delete_flash(fe3->content2);
-					fe3->content2 = NULL;
+					g_free(fe3);
+					continue;
 				}
 
 				local.selection3 = g_list_append(local.selection3, fe3);

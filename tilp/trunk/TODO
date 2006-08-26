@@ -1,18 +1,15 @@
 This is a list of some things to do:
 
-13) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
+10) critical bug: sending LCHASE.8xp from 20sec.zip package failed on TI84+ USB due to un-detokenization
 	of varname (because tifiles2 don't know whether file is targetted for TI84+ or TI84+ USB).
 	Sending is OK, receiving is still KO because we should pass vartype with named lists.
 
 20) SilverLink cable is using more CPU than it should do under Windows => add a function in ticables2 which
    allow to use 2 methods (active polling w/ timeout, needed by TiEmu and timeout managed by OS)
+
 21) SilverLink drivers don't install on Vista2
 
-32) check return value of all tifiles_xxxx calls into TiLP
-
-33) some apps can't be deleted. Why? Maybe I should forbid erasing apps...
-
-34) ...
+22) some apps can't be deleted. Why? Maybe I should forbid erasing apps...
 
 
 
@@ -21,3 +18,11 @@ This is a list of some things to do:
 + = done.
 * = in progress.
 - = to do...
+
+//------
+
+Tips:
+	Set svn:eol property to native on all files
+
+	Run './configure --enable-static=yes --enable-shared=no' for use with
+		ValGrind. Run 'valgrind --tool=memcheck --leak-check=yes ./test'

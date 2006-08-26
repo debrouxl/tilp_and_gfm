@@ -701,13 +701,29 @@ static int tilp_calc_recv_var1(void)
 		if(options.recv_as_group)
 		{
 			FileContent* content;
+			int err;
 
 			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 				".", tifiles_fext_of_group(options.calc_model), NULL);
 
-			tifiles_group_contents(array, &content);
+			err = tifiles_group_contents(array, &content);
+			if(err)
+			{
+				tilp_err(err);
+				tifiles_content_delete_group(array);
+				g_free(tmp_filename);
+				goto tcrv;
+			}
+
 			strcpy(content->comment, tifiles_comment_set_group());
-			tifiles_file_write_regular(tmp_filename, content, NULL);
+			err = tifiles_file_write_regular(tmp_filename, content, NULL);
+			if(err)
+			{
+				tilp_err(err);
+				tifiles_content_delete_group(array);
+				g_free(tmp_filename);
+				goto tcrv;
+			}
 			tifiles_content_delete_regular(content);
 
 			g_free(tmp_filename);
@@ -735,7 +751,7 @@ static int tilp_calc_recv_var1(void)
 
 				g_free(src_filename);
 #ifndef __WIN32__
-				  free(tmp_filename);
+				free(tmp_filename);
 #endif
 				g_free(dst_filename);
 			}
@@ -744,7 +760,7 @@ static int tilp_calc_recv_var1(void)
 		}
 		tifiles_content_delete_group(array);
 	}
-
+tcrv:
 	gif->destroy_pbar();
 
 	return ret;
@@ -796,7 +812,9 @@ static int tilp_calc_recv_var2(void)
 	{
 		if(!options.recv_as_group)
 		{
-			tifiles_ungroup_file(tmp_filename, NULL);
+			err = tifiles_ungroup_file(tmp_filename, NULL);
+			if(err)
+				tilp_err(err);
 			g_free(tmp_filename);
 			
 			return 0;

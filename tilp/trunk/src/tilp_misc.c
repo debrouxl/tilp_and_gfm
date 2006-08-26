@@ -57,6 +57,7 @@ int tilp_tifiles_ungroup(void)
 	GList *sel;
 	gchar *src_file;
 	gchar *dst_file;
+	int err = 0;
 
 	if (!tilp_local_selection_ready())
 		return -1;
@@ -92,7 +93,9 @@ int tilp_tifiles_ungroup(void)
 		dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
 		tilp_file_copy(src_file, dst_file);
 		
-		tifiles_ungroup_file(dst_file, NULL);
+		err = tifiles_ungroup_file(dst_file, NULL);
+		if(err)
+			tilp_err(err);
 		tilp_file_chdir("..");
 
 		g_free(dirname);
@@ -109,7 +112,7 @@ int tilp_tifiles_group(void)
 	char **array;
 	gchar *grpname;
 	gchar *dst_file;
-	int i;
+	int i, err=0;
 	FileEntry *f = NULL;
 
 	if (!tilp_local_selection_ready())
@@ -137,7 +140,9 @@ int tilp_tifiles_group(void)
 			".", tifiles_fext_of_group(tifiles_file_get_model(f->name)), NULL);
 		
 	g_free(grpname);
-	tifiles_group_files(array, dst_file);
+	err = tifiles_group_files(array, dst_file);
+	if(err)
+		tilp_err(err);
 	g_strfreev(array);
 
 	return 0;

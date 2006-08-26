@@ -251,7 +251,6 @@ void ctree_set_basetree(void)
 #if 1
 	str = g_strdup_printf("%s w/ %s on #%i", tifiles_model_to_string(options.calc_model),
 		ticables_model_to_string(options.cable_model), options.cable_port);
-	//str = g_strdup(tifiles_model_to_string(options.calc_model));
 
 	top_node = &clc_node;
 	gtk_tree_store_append(tree, top_node, NULL);
