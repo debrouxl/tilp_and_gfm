@@ -33,22 +33,31 @@
 
 static gint ret_val = 0;
 
+static gint str2msg(const char *title)
+{
+	gint msg_type = GTK_MESSAGE_INFO;
+
+	if (!strcmp(title, _("Information")))
+		msg_type = GTK_MESSAGE_INFO;
+	else if (!strcmp(title, _("Warning")))
+		msg_type = GTK_MESSAGE_WARNING;
+	else if (!strcmp(title, _("Question")))
+		msg_type = GTK_MESSAGE_QUESTION;
+	else if (!strcmp(title, _("Error")))
+		msg_type = GTK_MESSAGE_ERROR;
+	else
+		msg_type = GTK_MESSAGE_INFO;
+
+	return msg_type;
+}
+
 int msg_box(const char *title, const char *message, int action)
 {
 	static GtkWidget *dialog = NULL;
 
 	if(action)
 	{
-		gint msg_type = GTK_MESSAGE_INFO;
-
-		if (!strcmp(title, _("Information")))
-			msg_type = GTK_MESSAGE_INFO;
-		else if (!strcmp(title, _("Warning")))
-			msg_type = GTK_MESSAGE_WARNING;
-		else if (!strcmp(title, _("Question")))
-			msg_type = GTK_MESSAGE_QUESTION;
-		else if (!strcmp(title, _("Error")))
-			msg_type = GTK_MESSAGE_ERROR;
+		gint msg_type = str2msg(title);
 
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   msg_type, GTK_BUTTONS_CLOSE,
@@ -71,17 +80,9 @@ int msg_box1(const char *title, const char *message)
 {
 	GtkWidget *dialog, *label;
 	gint result;
-	gint msg_type = -1;
+	gint msg_type;
 
-	if (!strcmp(title, _("Information")))
-		msg_type = GTK_MESSAGE_INFO;
-	else if (!strcmp(title, _("Warning")))
-		msg_type = GTK_MESSAGE_WARNING;
-	else if (!strcmp(title, _("Question")))
-		msg_type = GTK_MESSAGE_QUESTION;
-	else if (!strcmp(title, _("Error")))
-		msg_type = GTK_MESSAGE_ERROR;
-
+	msg_type = str2msg(title);
 	if (msg_type != -1) 
 	{
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
@@ -120,19 +121,9 @@ gint msg_box2(const char *title, const char *message)
 {
 	GtkWidget *dialog;
 	gint result;
-	gint msg_type = -1;
+	gint msg_type;
 
-	if (!strcmp(title, _("Information")))
-		msg_type = GTK_MESSAGE_INFO;
-	else if (!strcmp(title, _("Warning")))
-		msg_type = GTK_MESSAGE_WARNING;
-	else if (!strcmp(title, _("Question")))
-		msg_type = GTK_MESSAGE_QUESTION;
-	else if (!strcmp(title, _("Error")))
-		msg_type = GTK_MESSAGE_ERROR;
-	else
-		msg_type = GTK_MESSAGE_INFO;
-
+	msg_type = str2msg(title);
 	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
 				   GTK_BUTTONS_OK_CANCEL, message);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
@@ -157,20 +148,19 @@ gint msg_box2(const char *title, const char *message)
 gint msg_box3(const char *title, const char *message, const char *button1,
 	      const char *button2, const char *button3)
 {
-	GtkWidget *dialog, *label;
+	GtkWidget *dialog;
 	gint result;
+	gint msg_type;
 
-	dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(NULL),
-					     (GtkDialogFlags)
-					     (GTK_DIALOG_MODAL),
-					     button1, GTK_RESPONSE_YES,
-					     button2, GTK_RESPONSE_NO,
-					     button3, GTK_RESPONSE_CANCEL, 
-						 NULL);
-	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
-	label = gtk_label_new(message);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
-	gtk_widget_show(label);
+	msg_type = str2msg(title);
+	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
+				   GTK_BUTTONS_NONE, message);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), button1, GTK_RESPONSE_YES);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), button2, GTK_RESPONSE_NO);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), button3, GTK_RESPONSE_CANCEL);
+
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
+					GTK_RESPONSE_CANCEL);
 
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) 
@@ -188,27 +178,24 @@ gint msg_box3(const char *title, const char *message, const char *button1,
 		return BUTTON3;
 		break;
 	}
-
+	
 	return 0;
 }
 
 gint msg_box4(const char *title, const char *message)
 {
-	GtkWidget *dialog, *label;
+	GtkWidget *dialog;
 	gint result;
+	gint msg_type;
 
-	dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(NULL),
-					     (GtkDialogFlags)
-					     (GTK_DIALOG_MODAL),
-					     GTK_STOCK_GO_FORWARD,
-					     GTK_RESPONSE_OK,
-					     GTK_STOCK_CANCEL,
-					     GTK_RESPONSE_CANCEL, NULL);
+	msg_type = str2msg(title);
+	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
+				   GTK_BUTTONS_NONE, message);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_GO_FORWARD, GTK_RESPONSE_OK);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
-	label = gtk_label_new(message);
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
-	gtk_widget_show(label);
 
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) 

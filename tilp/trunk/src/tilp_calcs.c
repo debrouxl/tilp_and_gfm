@@ -83,6 +83,10 @@ static void tilp_options_increase_timeout(void)
 */
 int tilp_calc_isready(void)
 {
+	//gif->msg_box3(_("Warning"), "Hello !", "Skip", "Retry", "Cancel");
+	gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
+
+#if 0
 	int err;
 	int to;
 	CalcModel cm = tilp_remap_to_usb(options.cable_model, options.calc_model);
@@ -127,7 +131,7 @@ int tilp_calc_isready(void)
 			return -1;
 		}
 	}
-
+#endif
 	return 0;
 }
 
