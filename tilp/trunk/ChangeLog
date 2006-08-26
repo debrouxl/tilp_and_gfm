@@ -6,6 +6,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- source code is frozen: entering in testing phase
 	- check return value of all tifiles_xxxx calls into TiLP
 	- reworked user boxes: use GTK standard ones instead
+	//- use GTK+ stock id's
 
 - 22/08/2006, version 0.22 (0.1.3, 0.2.5, 0.2.6, 0.0.5): roms
 	- added full TiGroup support (sending only)
