@@ -896,12 +896,12 @@ POSUB
 PKG_CONFIG
 TICABLES_CFLAGS
 TICABLES_LIBS
-TICONV_CFLAGS
-TICONV_LIBS
-TIFILES_CFLAGS
-TIFILES_LIBS
 TICALCS_CFLAGS
 TICALCS_LIBS
+TIFILES_CFLAGS
+TIFILES_LIBS
+TICONV_CFLAGS
+TICONV_LIBS
 GLIB_CFLAGS
 GLIB_LIBS
 GTK_CFLAGS
@@ -929,12 +929,12 @@ FFLAGS
 PKG_CONFIG
 TICABLES_CFLAGS
 TICABLES_LIBS
-TICONV_CFLAGS
-TICONV_LIBS
-TIFILES_CFLAGS
-TIFILES_LIBS
 TICALCS_CFLAGS
 TICALCS_LIBS
+TIFILES_CFLAGS
+TIFILES_LIBS
+TICONV_CFLAGS
+TICONV_LIBS
 GLIB_CFLAGS
 GLIB_LIBS
 GTK_CFLAGS
@@ -1564,17 +1564,17 @@ Some influential environment variables:
               C compiler flags for TICABLES, overriding pkg-config
   TICABLES_LIBS
               linker flags for TICABLES, overriding pkg-config
-  TICONV_CFLAGS
-              C compiler flags for TICONV, overriding pkg-config
-  TICONV_LIBS linker flags for TICONV, overriding pkg-config
-  TIFILES_CFLAGS
-              C compiler flags for TIFILES, overriding pkg-config
-  TIFILES_LIBS
-              linker flags for TIFILES, overriding pkg-config
   TICALCS_CFLAGS
               C compiler flags for TICALCS, overriding pkg-config
   TICALCS_LIBS
               linker flags for TICALCS, overriding pkg-config
+  TIFILES_CFLAGS
+              C compiler flags for TIFILES, overriding pkg-config
+  TIFILES_LIBS
+              linker flags for TIFILES, overriding pkg-config
+  TICONV_CFLAGS
+              C compiler flags for TICONV, overriding pkg-config
+  TICONV_LIBS linker flags for TICONV, overriding pkg-config
   GLIB_CFLAGS C compiler flags for GLIB, overriding pkg-config
   GLIB_LIBS   linker flags for GLIB, overriding pkg-config
   GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
@@ -30170,12 +30170,12 @@ else
   if test "x$ac_cv_env_TICABLES_CFLAGS_set" = "xset"; then
 	pkg_cv_TICABLES_CFLAGS=$ac_cv_env_TICABLES_CFLAGS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticables2 >= 0.1.3\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "ticables2 >= 0.1.3" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticables2 >= 0.1.4\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "ticables2 >= 0.1.4" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_TICABLES_CFLAGS=`$PKG_CONFIG --cflags "ticables2 >= 0.1.3" 2>/dev/null`
+		pkg_cv_TICABLES_CFLAGS=`$PKG_CONFIG --cflags "ticables2 >= 0.1.4" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -30193,12 +30193,12 @@ else
   if test "x$ac_cv_env_TICABLES_LIBS_set" = "xset"; then
 	pkg_cv_TICABLES_LIBS=$ac_cv_env_TICABLES_LIBS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticables2 >= 0.1.3\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "ticables2 >= 0.1.3" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticables2 >= 0.1.4\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "ticables2 >= 0.1.4" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_TICABLES_LIBS=`$PKG_CONFIG --libs "ticables2 >= 0.1.3" 2>/dev/null`
+		pkg_cv_TICABLES_LIBS=`$PKG_CONFIG --libs "ticables2 >= 0.1.4" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -30210,18 +30210,18 @@ fi
 echo "${ECHO_T}$pkg_cv_TICABLES_LIBS" >&6; }
 
 if test $pkg_failed = yes; then
-	TICABLES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticables2 >= 0.1.3"`
+	TICABLES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticables2 >= 0.1.4"`
 	# Put the nasty error message in config.log where it belongs
 	echo "$TICABLES_PKG_ERRORS" 1>&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (ticables2 >= 0.1.3) were not met.
+	{ { echo "$as_me:$LINENO: error: Package requirements (ticables2 >= 0.1.4) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
 Alternatively you may set the TICABLES_CFLAGS and TICABLES_LIBS environment variables
 to avoid the need to call pkg-config.  See the pkg-config man page for
 more details." >&5
-echo "$as_me: error: Package requirements (ticables2 >= 0.1.3) were not met.
+echo "$as_me: error: Package requirements (ticables2 >= 0.1.4) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
@@ -30254,6 +30254,204 @@ See \`config.log' for more details." >&2;}
 else
 	TICABLES_CFLAGS=$pkg_cv_TICABLES_CFLAGS
 	TICABLES_LIBS=$pkg_cv_TICABLES_LIBS
+	:
+fi
+
+
+
+
+pkg_failed=no
+{ echo "$as_me:$LINENO: checking for TICALCS_CFLAGS" >&5
+echo $ECHO_N "checking for TICALCS_CFLAGS... $ECHO_C" >&6; }
+if test "${pkg_cv_TICALCS_CFLAGS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test "x$ac_cv_env_TICALCS_CFLAGS_set" = "xset"; then
+	pkg_cv_TICALCS_CFLAGS=$ac_cv_env_TICALCS_CFLAGS_value
+elif test -n "$PKG_CONFIG"; then
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticalcs2 >= 0.2.6\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "ticalcs2 >= 0.2.6" >/dev/null 2>&1) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+		pkg_cv_TICALCS_CFLAGS=`$PKG_CONFIG --cflags "ticalcs2 >= 0.2.6" 2>/dev/null`
+	else
+		pkg_failed=yes
+	fi
+else
+	pkg_failed=untried
+fi
+fi
+{ echo "$as_me:$LINENO: result: $pkg_cv_TICALCS_CFLAGS" >&5
+echo "${ECHO_T}$pkg_cv_TICALCS_CFLAGS" >&6; }
+{ echo "$as_me:$LINENO: checking for TICALCS_LIBS" >&5
+echo $ECHO_N "checking for TICALCS_LIBS... $ECHO_C" >&6; }
+if test "${pkg_cv_TICALCS_LIBS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test "x$ac_cv_env_TICALCS_LIBS_set" = "xset"; then
+	pkg_cv_TICALCS_LIBS=$ac_cv_env_TICALCS_LIBS_value
+elif test -n "$PKG_CONFIG"; then
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticalcs2 >= 0.2.6\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "ticalcs2 >= 0.2.6" >/dev/null 2>&1) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+		pkg_cv_TICALCS_LIBS=`$PKG_CONFIG --libs "ticalcs2 >= 0.2.6" 2>/dev/null`
+	else
+		pkg_failed=yes
+	fi
+else
+	pkg_failed=untried
+fi
+fi
+{ echo "$as_me:$LINENO: result: $pkg_cv_TICALCS_LIBS" >&5
+echo "${ECHO_T}$pkg_cv_TICALCS_LIBS" >&6; }
+
+if test $pkg_failed = yes; then
+	TICALCS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticalcs2 >= 0.2.6"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$TICALCS_PKG_ERRORS" 1>&5
+
+	{ { echo "$as_me:$LINENO: error: Package requirements (ticalcs2 >= 0.2.6) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (ticalcs2 >= 0.2.6) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	TICALCS_CFLAGS=$pkg_cv_TICALCS_CFLAGS
+	TICALCS_LIBS=$pkg_cv_TICALCS_LIBS
+	:
+fi
+
+
+
+
+pkg_failed=no
+{ echo "$as_me:$LINENO: checking for TIFILES_CFLAGS" >&5
+echo $ECHO_N "checking for TIFILES_CFLAGS... $ECHO_C" >&6; }
+if test "${pkg_cv_TIFILES_CFLAGS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test "x$ac_cv_env_TIFILES_CFLAGS_set" = "xset"; then
+	pkg_cv_TIFILES_CFLAGS=$ac_cv_env_TIFILES_CFLAGS_value
+elif test -n "$PKG_CONFIG"; then
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.2.7\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "tifiles2 >= 0.2.7" >/dev/null 2>&1) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+		pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.2.7" 2>/dev/null`
+	else
+		pkg_failed=yes
+	fi
+else
+	pkg_failed=untried
+fi
+fi
+{ echo "$as_me:$LINENO: result: $pkg_cv_TIFILES_CFLAGS" >&5
+echo "${ECHO_T}$pkg_cv_TIFILES_CFLAGS" >&6; }
+{ echo "$as_me:$LINENO: checking for TIFILES_LIBS" >&5
+echo $ECHO_N "checking for TIFILES_LIBS... $ECHO_C" >&6; }
+if test "${pkg_cv_TIFILES_LIBS+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test "x$ac_cv_env_TIFILES_LIBS_set" = "xset"; then
+	pkg_cv_TIFILES_LIBS=$ac_cv_env_TIFILES_LIBS_value
+elif test -n "$PKG_CONFIG"; then
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.2.7\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "tifiles2 >= 0.2.7" >/dev/null 2>&1) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+		pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.2.7" 2>/dev/null`
+	else
+		pkg_failed=yes
+	fi
+else
+	pkg_failed=untried
+fi
+fi
+{ echo "$as_me:$LINENO: result: $pkg_cv_TIFILES_LIBS" >&5
+echo "${ECHO_T}$pkg_cv_TIFILES_LIBS" >&6; }
+
+if test $pkg_failed = yes; then
+	TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.2.7"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$TIFILES_PKG_ERRORS" 1>&5
+
+	{ { echo "$as_me:$LINENO: error: Package requirements (tifiles2 >= 0.2.7) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&5
+echo "$as_me: error: Package requirements (tifiles2 >= 0.2.7) were not met.
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details." >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&5
+echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
+to avoid the need to call pkg-config.  See the pkg-config man page for
+more details.
+
+To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+	TIFILES_CFLAGS=$pkg_cv_TIFILES_CFLAGS
+	TIFILES_LIBS=$pkg_cv_TIFILES_LIBS
 	:
 fi
 
@@ -30360,204 +30558,6 @@ fi
 
 
 pkg_failed=no
-{ echo "$as_me:$LINENO: checking for TIFILES_CFLAGS" >&5
-echo $ECHO_N "checking for TIFILES_CFLAGS... $ECHO_C" >&6; }
-if test "${pkg_cv_TIFILES_CFLAGS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_TIFILES_CFLAGS_set" = "xset"; then
-	pkg_cv_TIFILES_CFLAGS=$ac_cv_env_TIFILES_CFLAGS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.2.2\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "tifiles2 >= 0.2.2" >/dev/null 2>&1) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-		pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 0.2.2" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
-else
-	pkg_failed=untried
-fi
-fi
-{ echo "$as_me:$LINENO: result: $pkg_cv_TIFILES_CFLAGS" >&5
-echo "${ECHO_T}$pkg_cv_TIFILES_CFLAGS" >&6; }
-{ echo "$as_me:$LINENO: checking for TIFILES_LIBS" >&5
-echo $ECHO_N "checking for TIFILES_LIBS... $ECHO_C" >&6; }
-if test "${pkg_cv_TIFILES_LIBS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_TIFILES_LIBS_set" = "xset"; then
-	pkg_cv_TIFILES_LIBS=$ac_cv_env_TIFILES_LIBS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"tifiles2 >= 0.2.2\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "tifiles2 >= 0.2.2" >/dev/null 2>&1) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-		pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 0.2.2" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
-else
-	pkg_failed=untried
-fi
-fi
-{ echo "$as_me:$LINENO: result: $pkg_cv_TIFILES_LIBS" >&5
-echo "${ECHO_T}$pkg_cv_TIFILES_LIBS" >&6; }
-
-if test $pkg_failed = yes; then
-	TIFILES_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "tifiles2 >= 0.2.2"`
-	# Put the nasty error message in config.log where it belongs
-	echo "$TIFILES_PKG_ERRORS" 1>&5
-
-	{ { echo "$as_me:$LINENO: error: Package requirements (tifiles2 >= 0.2.2) were not met.
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&5
-echo "$as_me: error: Package requirements (tifiles2 >= 0.2.2) were not met.
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&2;}
-   { (exit 1); exit 1; }; }
-elif test $pkg_failed = untried; then
-	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&5
-echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively you may set the TIFILES_CFLAGS and TIFILES_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&2;}
-   { (exit 1); exit 1; }; }
-else
-	TIFILES_CFLAGS=$pkg_cv_TIFILES_CFLAGS
-	TIFILES_LIBS=$pkg_cv_TIFILES_LIBS
-	:
-fi
-
-
-
-
-pkg_failed=no
-{ echo "$as_me:$LINENO: checking for TICALCS_CFLAGS" >&5
-echo $ECHO_N "checking for TICALCS_CFLAGS... $ECHO_C" >&6; }
-if test "${pkg_cv_TICALCS_CFLAGS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_TICALCS_CFLAGS_set" = "xset"; then
-	pkg_cv_TICALCS_CFLAGS=$ac_cv_env_TICALCS_CFLAGS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticalcs2 >= 0.2.4\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "ticalcs2 >= 0.2.4" >/dev/null 2>&1) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-		pkg_cv_TICALCS_CFLAGS=`$PKG_CONFIG --cflags "ticalcs2 >= 0.2.4" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
-else
-	pkg_failed=untried
-fi
-fi
-{ echo "$as_me:$LINENO: result: $pkg_cv_TICALCS_CFLAGS" >&5
-echo "${ECHO_T}$pkg_cv_TICALCS_CFLAGS" >&6; }
-{ echo "$as_me:$LINENO: checking for TICALCS_LIBS" >&5
-echo $ECHO_N "checking for TICALCS_LIBS... $ECHO_C" >&6; }
-if test "${pkg_cv_TICALCS_LIBS+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test "x$ac_cv_env_TICALCS_LIBS_set" = "xset"; then
-	pkg_cv_TICALCS_LIBS=$ac_cv_env_TICALCS_LIBS_value
-elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"ticalcs2 >= 0.2.4\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "ticalcs2 >= 0.2.4" >/dev/null 2>&1) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-		pkg_cv_TICALCS_LIBS=`$PKG_CONFIG --libs "ticalcs2 >= 0.2.4" 2>/dev/null`
-	else
-		pkg_failed=yes
-	fi
-else
-	pkg_failed=untried
-fi
-fi
-{ echo "$as_me:$LINENO: result: $pkg_cv_TICALCS_LIBS" >&5
-echo "${ECHO_T}$pkg_cv_TICALCS_LIBS" >&6; }
-
-if test $pkg_failed = yes; then
-	TICALCS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticalcs2 >= 0.2.4"`
-	# Put the nasty error message in config.log where it belongs
-	echo "$TICALCS_PKG_ERRORS" 1>&5
-
-	{ { echo "$as_me:$LINENO: error: Package requirements (ticalcs2 >= 0.2.4) were not met.
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&5
-echo "$as_me: error: Package requirements (ticalcs2 >= 0.2.4) were not met.
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details." >&2;}
-   { (exit 1); exit 1; }; }
-elif test $pkg_failed = untried; then
-	{ { echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&5
-echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively you may set the TICALCS_CFLAGS and TICALCS_LIBS environment variables
-to avoid the need to call pkg-config.  See the pkg-config man page for
-more details.
-
-To get pkg-config, see <http://www.freedesktop.org/software/pkgconfig>.
-See \`config.log' for more details." >&2;}
-   { (exit 1); exit 1; }; }
-else
-	TICALCS_CFLAGS=$pkg_cv_TICALCS_CFLAGS
-	TICALCS_LIBS=$pkg_cv_TICALCS_LIBS
-	:
-fi
-
-
-
-
-pkg_failed=no
 { echo "$as_me:$LINENO: checking for GLIB_CFLAGS" >&5
 echo $ECHO_N "checking for GLIB_CFLAGS... $ECHO_C" >&6; }
 if test "${pkg_cv_GLIB_CFLAGS+set}" = set; then
@@ -30566,12 +30566,12 @@ else
   if test "x$ac_cv_env_GLIB_CFLAGS_set" = "xset"; then
 	pkg_cv_GLIB_CFLAGS=$ac_cv_env_GLIB_CFLAGS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"glib-2.0 >= 2.0.0\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "glib-2.0 >= 2.0.0" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"glib-2.0 >= 2.6.0\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "glib-2.0 >= 2.6.0" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0 >= 2.0.0" 2>/dev/null`
+		pkg_cv_GLIB_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0 >= 2.6.0" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -30589,12 +30589,12 @@ else
   if test "x$ac_cv_env_GLIB_LIBS_set" = "xset"; then
 	pkg_cv_GLIB_LIBS=$ac_cv_env_GLIB_LIBS_value
 elif test -n "$PKG_CONFIG"; then
-	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"glib-2.0 >= 2.0.0\" >/dev/null 2>&1") >&5
-  ($PKG_CONFIG --exists "glib-2.0 >= 2.0.0" >/dev/null 2>&1) 2>&5
+	if { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists \"glib-2.0 >= 2.6.0\" >/dev/null 2>&1") >&5
+  ($PKG_CONFIG --exists "glib-2.0 >= 2.6.0" >/dev/null 2>&1) 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-		pkg_cv_GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0 >= 2.0.0" 2>/dev/null`
+		pkg_cv_GLIB_LIBS=`$PKG_CONFIG --libs "glib-2.0 >= 2.6.0" 2>/dev/null`
 	else
 		pkg_failed=yes
 	fi
@@ -30606,18 +30606,18 @@ fi
 echo "${ECHO_T}$pkg_cv_GLIB_LIBS" >&6; }
 
 if test $pkg_failed = yes; then
-	GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.0.0"`
+	GLIB_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0 >= 2.6.0"`
 	# Put the nasty error message in config.log where it belongs
 	echo "$GLIB_PKG_ERRORS" 1>&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (glib-2.0 >= 2.0.0) were not met.
+	{ { echo "$as_me:$LINENO: error: Package requirements (glib-2.0 >= 2.6.0) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
 Alternatively you may set the GLIB_CFLAGS and GLIB_LIBS environment variables
 to avoid the need to call pkg-config.  See the pkg-config man page for
 more details." >&5
-echo "$as_me: error: Package requirements (glib-2.0 >= 2.0.0) were not met.
+echo "$as_me: error: Package requirements (glib-2.0 >= 2.6.0) were not met.
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
@@ -33456,12 +33456,12 @@ POSUB!$POSUB$ac_delim
 PKG_CONFIG!$PKG_CONFIG$ac_delim
 TICABLES_CFLAGS!$TICABLES_CFLAGS$ac_delim
 TICABLES_LIBS!$TICABLES_LIBS$ac_delim
-TICONV_CFLAGS!$TICONV_CFLAGS$ac_delim
-TICONV_LIBS!$TICONV_LIBS$ac_delim
-TIFILES_CFLAGS!$TIFILES_CFLAGS$ac_delim
-TIFILES_LIBS!$TIFILES_LIBS$ac_delim
 TICALCS_CFLAGS!$TICALCS_CFLAGS$ac_delim
 TICALCS_LIBS!$TICALCS_LIBS$ac_delim
+TIFILES_CFLAGS!$TIFILES_CFLAGS$ac_delim
+TIFILES_LIBS!$TIFILES_LIBS$ac_delim
+TICONV_CFLAGS!$TICONV_CFLAGS$ac_delim
+TICONV_LIBS!$TICONV_LIBS$ac_delim
 GLIB_CFLAGS!$GLIB_CFLAGS$ac_delim
 GLIB_LIBS!$GLIB_LIBS$ac_delim
 GTK_CFLAGS!$GTK_CFLAGS$ac_delim
