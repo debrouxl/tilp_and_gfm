@@ -2,14 +2,14 @@
 
 
 
-Current version:  0.17-beta	(23/06/2006)
 Current version:  0.20-beta (05/08/2006)
+Current version:  0.20-beta (27/08/2006)
 
 
 SubVersion (CVS) revision: $Id$
 
 TiLP is available for 4 platforms:
-Linux (GTK), Windows (GTK), Mac OS-X (Cocoa) and FreeBSD (GTK).
+Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 
 If you have a SilverLink cable (TI-GRAPH LINK USB), you will need to retrieve
 a Linux/Win32/Mac OS-X driver on the Linux Programmer Group at 
@@ -21,26 +21,33 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- full TiGroup (*.tig) support (ram, archive & flash)
+	- full TiGroup (*.tig) support (ram, archive & flash) in sending only
+	- implemented Skip/Retry/Cancel dialog box when sending vars/apps
+	- convert DUSB error packets into error message (O. Armand request)
+	- convert DBUS error packets into error message (K. Kofler request)
 
 
 Improvements:
 -------------
 
-	- refresh right frame after var/app retrieval
-	- don't allow use of USB options is USB support is not available.
-	- for now, use this naming scheme for TI9x var filenames: folder.var.extension (like TiConnect)
-	- allow to directly input the path from keyboard
-	- added Seamonkey to the browser list, suggest Firefox instead of the obsolete Mozilla Suite (kevin)
+	- added option allowing to select behaviour of backup (old: backup/group, new: TiGroup)
+	- 'Ready' reopens SilverLink device like DirectLink (the only way to clear error)
+	- reworked user boxes: use GTK standard ones to look better
 
 
 Bug fixes:
 ----------
 
-	- NULL dereference in file selector
-	- bad displaying of lists on TI84+
-	- can't send TI85 backup from command line
-	- bug #1523480: --no-gui doesn't work
+	- sending app without dirlist makes TiLP crash
+	- re-enabled 'local/full path' option
+	- possible conflict between FLASH token & FLASH folder
+	- delete var: increase timeout due to garbage collecting
+	- timeout in send_flash, send_tigroup and del_var
+	- file can be selected several times (file selection)
+	- path with save dialog
+	- Unbuntu Bug #49256 (reported as bug #1513271)
+	- 'Current Folder' button didn't set path properly
+	- can't read some TI86 files due to bad padding of varname => there are _four_ TI-86 file format!
 
 
 Known bugs:

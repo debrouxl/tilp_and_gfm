@@ -24,8 +24,8 @@ GtkTiEmu.
 
 Note1: the SilverLink cable may not work fine TI82/85.
 Note2: remote control is not supported by DirectLink yet.
-Note3: certificate support has been removed because deprecated
-Note4: TI89 Titanium thru Direct USB cable does not work.
+Note3: certificate support has been removed because deprecated.
+Note4: TI89 Titanium thru Direct USB cable does not work on LINUX.
 
 Supported calculators are: 
 	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
