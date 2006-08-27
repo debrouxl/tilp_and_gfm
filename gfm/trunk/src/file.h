@@ -34,8 +34,10 @@ const char *file_get_type(FileEntry *fe);
 const char *file_get_size(FileEntry *fe);
 const char *file_get_date(FileEntry *fe);
 int gfm_change_cwd(const char *path);
+char *gfm_repath_file(const char *path);
 int gfm_copy_file(const char *source, const char *destination);
 int gfm_move_file(const char *source, const char *destination);
 int gfm_delete_file(const gchar *filename);
+int gfm_rename_file(const char *old_name, const char *new_name);
 
 #endif

@@ -311,6 +311,54 @@ int gfm_change_cwd(const char *path)
 	return 0;
 }
 
+/* File Rename routine */
+char *gfm_repath_file(const char *path)
+{
+	int count;
+	gchar **split_string;
+	gchar *split_name, *split_dir;
+	gchar *new_name, *new_path;
+	gchar *message;
+	
+	// Run in a loop until its killed - This is for continous retries.
+	while(1)
+	{
+		// Split Path
+		split_string = g_strsplit(path, G_DIR_SEPARATOR_S, 0);
+		
+		// Count Number of Parts
+		for(count=0; count>=0; count++)
+			if (!split_string[count+1])
+				break; // Break Loop
+		
+		// Form the Values
+		split_name = split_string[count];
+		split_string[count] = NULL; // Clear so we can path now
+		split_dir = g_strjoinv(G_DIR_SEPARATOR_S, split_string);
+		
+		// Set the message so we can ask for a new filename.
+		message = g_strjoin(NULL, "Please choose a new filename for the file '", split_name, "'.", NULL);
+		
+		// Get new filename
+		new_name = msgbox_input("Rename File", split_name, message);
+		
+		// Is the value entered not empty?
+		if (new_name == NULL)
+			return NULL; // Return Silently
+
+		// Check to see if file already exists!
+	  new_path = g_strjoin(NULL, split_dir, G_DIR_SEPARATOR_S, new_name, NULL);
+		if (file_exists(new_path))
+		{
+		 message = g_strjoin(NULL, "The file '", new_name, "' already exists! Try another name?", NULL);
+	    if (msgbox_two(MSGBOX_YESNO, message) == MSGBOX_NO)
+			  return NULL; // Return Silently
+	  }
+		else
+			return new_path; // Return the new path
+	}
+}
+
 /* Copy File */
 int gfm_copy_file(const char *source, const char *destination)
 {
@@ -328,12 +376,10 @@ int gfm_copy_file(const char *source, const char *destination)
 		if (action == MSGBOX_NO)
 			return 0; // Exit Silently
 		
+		// Rename Action
 		if (action == MSGBOX_BUTTON2)
-		{
-			char *testit;
-			testit = msgbox_input("Test", "Enter Value", message);
-			printf("Got: %s\n", testit);
-		}
+			if ((destination = gfm_repath_file(destination)) == NULL)
+				return 0; // Exit Silently
 	}
 	
 	// Windows Method
@@ -437,6 +483,19 @@ int gfm_delete_file(const gchar *filename)
 	{
 		msgbox_error("Could not Delete File!");
 		return -1; // Bad
+	}
+	
+	// Return
+	return 0;
+}
+
+/* Rename File */
+int gfm_rename_file(const char *old_name, const char *new_name)
+{
+	if (g_rename(old_name, new_name) < 0)
+	{
+		msgbox_error("Could not rename file!");
+		return -1; // Error
 	}
 	
 	// Return

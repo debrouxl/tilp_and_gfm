@@ -40,6 +40,8 @@
 #include "paths.h"
 #include "support.h"
 
+static gboolean confirm_bypass;
+
 /* Change Drive Feature (Windows) */
 #ifdef __WIN32__
 static int windows_drive_change(char drive_letter)
@@ -141,8 +143,10 @@ GtkWidget *create_folder_menu(void)
 	data = glade_xml_get_widget(xml, "show_all_files1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), settings.show_all);
 	
+	confirm_bypass = TRUE;
 	data = glade_xml_get_widget(xml, "confirm_delete1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), settings.confirm);
+	confirm_bypass = FALSE;
 
   // Load the Menu Now
 	menu = glade_xml_get_widget(xml, "folder_menu");
@@ -162,13 +166,19 @@ GLADE_CB void on_show_all_files1_activate(GtkMenuItem *menuitem, gpointer user_d
 {
 	  // Update the Setting
 	  settings.show_all = GTK_CHECK_MENU_ITEM(menuitem)->active;
-	  // Refresh the Folder Tree
+	  
+		// Refresh the Folder Tree
 	  folder_tree_refresh();
 }
 
 /* Confirm Delete Checkbox */
 GLADE_CB void on_confirm_delete1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
+	  // Run the Warning
+	  if (confirm_bypass == FALSE && GTK_CHECK_MENU_ITEM(menuitem)->active == FALSE)
+			if (msgbox_two(MSGBOX_CONTINUE, "Disabling this feature will not warn you when you are about to delete files!") == MSGBOX_NO)
+				return;
+	
 	  // Update the Setting
 	  settings.confirm = GTK_CHECK_MENU_ITEM(menuitem)->active;
 }
@@ -191,7 +201,7 @@ GLADE_CB void on_copy2_activate(GtkMenuItem *menuitem, gpointer user_data)
 		if (ftree_info.selected_files == NULL)
 			return;
 
-		ftree_info.working_act = WORKING_ACT_COPY; // Cutting Files
+		ftree_info.working_act = WORKING_ACT_COPY; // Copying Files
 }
 
 /* Paste File */
@@ -248,4 +258,50 @@ GLADE_CB void on_paste1_activate(GtkMenuItem *menuitem, gpointer user_data)
 		
 		// Lets refresh the Folder Tree!
 		folder_tree_refresh();
+}
+
+/* Rename File */
+GLADE_CB void on_rename2_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	gchar *new_path;
+
+	// Check to see if there are more than one selection
+	if (ftree_info.selected_files->next != NULL)
+	{
+		msgbox_one(MSGBOX_INFO, "You can only rename one file at a time.");
+		return;
+	}
+	
+	// Get the path to the new file
+	new_path = gfm_repath_file(ftree_info.selected_files->data);
+	
+	// Is the value null?
+	if (new_path == NULL)
+	{
+		msgbox_two(MSGBOX_INFO, "File not renamed.");
+		return;
+	}
+	
+	// Rename file.
+	gfm_rename_file(ftree_info.selected_files->data, new_path);
+	
+	// Refresh Folder Tree
+	folder_tree_refresh();
+}
+
+/* Delete File */
+GLADE_CB void on_delete2_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	GList *del_queue;
+	
+	// Shall we confirm?
+	if (settings.confirm && msgbox_two(MSGBOX_YESNO, "Once you delete files they will be gone forever! Continue?") == MSGBOX_NO)
+		return;
+	
+	// Delete Files
+	for(del_queue=ftree_info.selected_files; del_queue!=NULL; del_queue=del_queue->next)
+		gfm_delete_file(del_queue->data);
+	
+	// Refresh Folder Tree
+	folder_tree_refresh();
 }

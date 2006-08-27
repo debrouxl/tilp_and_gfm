@@ -44,7 +44,6 @@ int config_presets(void)
     ftree_info.column = FTREE_SORT_NAME; // Sort by Name
     ftree_info.sort_order = FTREE_SORT_ASC; // Ascending Order
 		ftree_info.working_act = NULL; // Doing Nothing
-		ftree_info.selected_files = NULL; // Clear Out
 
 		settings.confirm = TRUE; // Confirm Deletions
     settings.show_all = FALSE; // Show only TI Files

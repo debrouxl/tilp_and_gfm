@@ -261,10 +261,7 @@ void on_add1_activate(GtkMenuItem * menuitem, gpointer user_data)
 }
 
 
-void on_rename1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
+GLADE_CB void on_rename1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
 
 void on_refresh1_activate(GtkMenuItem * menuitem, gpointer user_data)
@@ -278,20 +275,6 @@ void on_delete1_activate(GtkMenuItem * menuitem, gpointer user_data)
 
 }
 
-
-
-
-
-
-
-
-
-
-
-void on_rename2_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
 
 
 void on_delete2_activate(GtkMenuItem * menuitem, gpointer user_data)

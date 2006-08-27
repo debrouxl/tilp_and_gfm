@@ -26,8 +26,7 @@
 enum gfm_dialog_enum {MSGBOX_YES=1, MSGBOX_NO=0,
                       MSGBOX_ERROR=1, MSGBOX_INFO=2,
                       MSGBOX_CONTINUE=3, MSGBOX_YESNO=4, MSGBOX_TWO=5,
-											MSGBOX_THREE=6, MSGBOX_BUTTON1=2, MSGBOX_BUTTON2=3,
-											MSGBOX_INPUT=7};
+											MSGBOX_BUTTON1=2, MSGBOX_BUTTON2=3};
 
 /* Prototypes */
 int msgbox_one(int type, const char *message);
