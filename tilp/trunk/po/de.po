@@ -211,7 +211,7 @@ msgstr "GUI wird geladen..."
 
 #: src/main.c:117
 #, fuzzy
-msgid "TiLP-II"
+msgid "TiLP-2"
 msgstr "TiLP"
 
 #: src/main.c:126

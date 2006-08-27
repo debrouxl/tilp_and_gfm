@@ -59,7 +59,7 @@ Follow the instructions very closely or you will soon see that monkeys will star
 8. Repeat Step 7 for the additional libti* libraries in the FOLLOWING order: libticonv, libtifiles2,
    libticalcs2.
 
-9. Ok. Now all you have to do is repeat step 7 for TiLP-II, TiEmu, or GFM, or all of them if you so
+9. Ok. Now all you have to do is repeat step 7 for TiLP-2, TiEmu, or GFM, or all of them if you so
    wish!
 
 10. Your files are now all located in /target (C:\msys\target). If it does not work, an instruction

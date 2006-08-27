@@ -202,7 +202,7 @@ msgid "Loading GUI..."
 msgstr ""
 
 #: src/main.c:117
-msgid "TiLP-II"
+msgid "TiLP-2"
 msgstr ""
 
 #: src/main.c:126

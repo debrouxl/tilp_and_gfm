@@ -164,7 +164,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed MinGW compilation issues but the -lcomdlg32 issue still need to be fixed.
 
 - 09/06/2005, version 0.01 (0.0.1, 0.0.1, 0.0.1): roms
-	Use new TiLP-II framework (libti*2)
+	Use new TiLP-2 framework (libti*2)
 
 =============[ TiLP II starts here ]==============
 
