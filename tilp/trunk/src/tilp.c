@@ -352,7 +352,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 		if(tifiles_file_is_tigroup(filename))
 		{
 			int ret = backup_box(_("Restore"), 
-					     _("Data to restore"), &mode);
+					     _("Data to restore:"), &mode);
 			if(ret != BUTTON1)
 				return;
 			tilp_calc_send_tigroup(filename, mode);
@@ -557,7 +557,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	int ret;
 	int mode = TIG_ALL;
 
-	ret = backup_box(_("Backup"), _("Data to backup"), &mode);
+	ret = backup_box(_("Backup"), _("Data to backup:"), &mode);
 	if(ret != BUTTON1)
 		return;
 
@@ -593,7 +593,7 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 	int ret;
 	int mode = TIG_ALL;
 
-	ret = backup_box(_("Restore"), _("Data to restore"), &mode);
+	ret = backup_box(_("Restore"), _("Data to restore:"), &mode);
 	if(ret != BUTTON1)
 		return;
 
