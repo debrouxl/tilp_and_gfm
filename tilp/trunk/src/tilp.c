@@ -683,8 +683,9 @@ on_button14_clicked                    (GtkButton       *button,
 	{
 		if(g_file_test(folder, G_FILE_TEST_IS_DIR))
 		{
+			tilp_file_chdir(folder);
 			g_free(local.cwdir);
-			local.cwdir = g_strdup(folder);
+			local.cwdir = g_get_current_dir();
 
 			clist_refresh();
 			labels_refresh();
