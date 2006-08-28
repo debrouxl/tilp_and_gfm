@@ -62,7 +62,7 @@ int tilp_tifiles_ungroup(void)
 	if (!tilp_local_selection_ready())
 		return -1;
 
-	for(sel = local.selection1; sel; sel = sel->next)
+	for(sel = local.selection0; sel; sel = sel->next)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
 		gchar *utf8;
@@ -118,7 +118,7 @@ int tilp_tifiles_group(void)
 	if (!tilp_local_selection_ready())
 		return -1;
 
-	if (g_list_length(local.selection1) < 2) 
+	if (g_list_length(local.selection0) < 2) 
 	{
 		gif->msg_box1(_("Error"), _("You must select at least 2 files.\n\n"));
 		return -1;
@@ -128,9 +128,9 @@ int tilp_tifiles_group(void)
 	if (grpname == NULL)
 		return -1;
 
-	array = (char **) g_malloc0((g_list_length(local.selection1) + 1) * sizeof(char *));
+	array = (char **) g_malloc0((g_list_length(local.selection0) + 1) * sizeof(char *));
 	
-	for(sel = local.selection1, i = 0; sel; sel = sel->next, i++)
+	for(sel = local.selection0, i = 0; sel; sel = sel->next, i++)
 	{
 		f = (FileEntry *) sel->data;
 		array[i] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
@@ -141,6 +141,102 @@ int tilp_tifiles_group(void)
 		
 	g_free(grpname);
 	err = tifiles_group_files(array, dst_file);
+	if(err)
+		tilp_err(err);
+	g_strfreev(array);
+
+	return 0;
+}
+
+int tilp_tifiles_untigroup(void)
+{
+	GList *sel;
+	gchar *src_file;
+	gchar *dst_file;
+	int err = 0;
+
+	if (!tilp_local_selection_ready())
+		return -1;
+
+	for(sel = local.selection0; sel; sel = sel->next)
+	{
+		FileEntry *f = (FileEntry *) sel->data;
+		gchar *utf8;
+		gchar *dirname;
+
+		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
+		if (utf8 == NULL)
+			return -1;
+
+		dirname = g_filename_from_utf8(utf8, -1, NULL, NULL, NULL);
+		g_free(utf8);
+
+		if(!strcmp(dirname, ".") || !strcmp(dirname, ""))
+		{
+			gif->msg_box1(_("Error"), _("You can't ungroup in this folder."));
+			return -1;
+		}
+	   
+		if(tilp_file_mkdir(dirname))
+		{
+		   g_free(dirname);
+		   return -1;
+		}
+
+		src_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
+		tilp_file_chdir(dirname);
+		
+		dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
+		tilp_file_copy(src_file, dst_file);
+		
+		err = tifiles_untigroup_file(dst_file, NULL);
+		if(err)
+			tilp_err(err);
+		tilp_file_chdir("..");
+
+		g_free(dirname);
+		g_free(src_file);
+		g_free(dst_file);
+	}
+
+	return 0;
+}
+
+int tilp_tifiles_tigroup(void)
+{
+	GList *sel;
+	char **array;
+	gchar *grpname;
+	gchar *dst_file;
+	int i, err=0;
+	FileEntry *f = NULL;
+
+	if (!tilp_local_selection_ready())
+		return -1;
+
+	if (g_list_length(local.selection0) < 2) 
+	{
+		gif->msg_box1(_("Error"), _("You must select at least 2 files.\n\n"));
+		return -1;
+	}
+
+	grpname = gif->msg_entry(_("Group files"), _("Group name: "), _("group"));
+	if (grpname == NULL)
+		return -1;
+
+	array = (char **) g_malloc0((g_list_length(local.selection0) + 1) * sizeof(char *));
+	
+	for(sel = local.selection0, i = 0; sel; sel = sel->next, i++)
+	{
+		f = (FileEntry *) sel->data;
+		array[i] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
+	}
+	
+	dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
+			".", tifiles_fext_of_group(tifiles_file_get_model(f->name)), NULL);
+		
+	g_free(grpname);
+	err = tifiles_tigroup_files(array, dst_file);
 	if(err)
 		tilp_err(err);
 	g_strfreev(array);
