@@ -37,6 +37,7 @@
 #include "folder_tree.h"
 #include "ftree_menu.h"
 #include "gfm.h"
+#include "gui.h"
 #include "paths.h"
 #include "support.h"
 
@@ -305,3 +306,81 @@ GLADE_CB void on_delete2_activate(GtkMenuItem *menuitem, gpointer user_data)
 	// Refresh Folder Tree
 	folder_tree_refresh();
 }
+
+/* Make Directory */
+GLADE_CB void on_new_folder1_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	gchar *input_value;
+	gchar *dirname;
+	gsize bw, br;
+	
+	// Get Directory name
+	input_value = msgbox_input("Make Directory", NULL, "Please enter in the name for the directory you wish to create.");
+	
+	if (input_value == NULL)
+	{
+		msgbox_error("Directory creation canceled!");
+		return;
+	}
+	
+	// Convert to UTF-8
+	dirname = g_filename_from_utf8(input_value, -1, &br, &bw, NULL);
+	
+	if (dirname == NULL)
+	{
+		msgbox_error("An error has occured creating the Directory!");
+		return;
+	}
+	
+	// Create the Folder
+	gfm_mkdir(dirname);
+	g_free(dirname); // Free dirname
+	
+	// Refresh the Folder Tree
+	folder_tree_refresh();
+}
+
+/* Select All Files */
+GLADE_CB void on_select_all1_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.comp_tree);
+	GtkTreeSelection *sel;
+	
+	// Select all!
+	sel = gtk_tree_view_get_selection(view);
+	gtk_tree_selection_select_all(sel);
+}
+
+/* Unselect All Files */
+GLADE_CB void on_unselect_all1_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.comp_tree);
+	GtkTreeSelection *sel;
+	
+	// Unselect All!
+	sel = gtk_tree_view_get_selection(view);
+	gtk_tree_selection_unselect_all(sel);
+}
+
+/* Goto Parent Directory */
+GLADE_CB void on_go_to_parent_directory1_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	// Go up one directory!
+	gfm_change_cwd("..");
+	
+	// Update the Current Directory in GFM
+	g_free(settings.cur_dir);
+	settings.cur_dir = g_get_current_dir();
+	
+	// Refresh the Folder Tree.
+	folder_tree_refresh();
+}
+
+/* Refresh Folder Tree */
+GLADE_CB void on_refresh4_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+	// So Simple :D
+	folder_tree_refresh();
+}
+
+/* Next */

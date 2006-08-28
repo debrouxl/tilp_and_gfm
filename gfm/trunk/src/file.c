@@ -304,8 +304,9 @@ static int g_chdir (const gchar *path)
 /* Change Current Working Directory */
 int gfm_change_cwd(const char *path)
 {
-  if (g_chdir(path))
-			return -1; // Error
+	// Change Directory
+	if (g_chdir(path))
+		return -1; // Error
 	
 	// Return with Success
 	return 0;
@@ -496,6 +497,55 @@ int gfm_rename_file(const char *old_name, const char *new_name)
 	{
 		msgbox_error("Could not rename file!");
 		return -1; // Error
+	}
+	
+	// Return
+	return 0;
+}
+
+/* Create Directory */
+int gfm_mkdir(const char *name)
+{
+	int mode;
+	gchar *path;
+	
+	path = g_strjoin(NULL, settings.cur_dir, G_DIR_SEPARATOR_S, name, NULL);
+			
+	// Is it already a directory?
+	if (g_file_test(path, G_FILE_TEST_IS_DIR))
+	{
+		msgbox_error("Directory already exists!");
+		return -2;
+	}
+
+#ifndef __WIN32__
+	// Is it a symbolic link or file?
+	if (g_file_test(path, G_FILE_TEST_IS_SYMLINK))
+	{
+		msgbox_error("Directory name entered is actually a symbolic link!");
+		return -3;
+	}
+#endif
+  
+  // Is there a file where you want to place directory?
+  if (g_file_test(path, G_FILE_TEST_IS_REGULAR))
+  {
+		msgbox_error("File already exists where you want to place directory!");
+		return -4;
+	}
+	
+	// Lets set the modes
+#ifdef __WIN32__
+  mode = S_IRWXU;
+#else
+  mode = S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+#endif
+  
+  // Create the Directory
+  if (g_mkdir(name, mode) < 0)
+  {
+		msgbox_error("Could not create the directory!");
+		return -1;
 	}
 	
 	// Return

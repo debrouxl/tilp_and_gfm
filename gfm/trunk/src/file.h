@@ -39,5 +39,6 @@ int gfm_copy_file(const char *source, const char *destination);
 int gfm_move_file(const char *source, const char *destination);
 int gfm_delete_file(const gchar *filename);
 int gfm_rename_file(const char *old_name, const char *new_name);
+int gfm_mkdir(const char *name);
 
 #endif

@@ -283,37 +283,16 @@ void on_delete2_activate(GtkMenuItem * menuitem, gpointer user_data)
 }
 
 
-void on_new_folder1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
-
-
-void on_select_all1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
-
-
-void on_unselect_all1_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
-
-}
-
-
-void
-on_go_to_parent_directory1_activate(GtkMenuItem * menuitem,
-				    gpointer user_data)
-{
-
-}
 
 
 
-void on_refresh4_activate(GtkMenuItem * menuitem, gpointer user_data)
-{
 
-}
+
+
+
+
+
+
 
 
 void on_groups1_activate(GtkMenuItem * menuitem, gpointer user_data)
