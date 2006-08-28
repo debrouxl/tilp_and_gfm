@@ -250,8 +250,7 @@ int tilp_tifiles_tigroup(void)
 		array[j] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
 	}
 	
-	dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
-			".", tifiles_fext_of_group(tifiles_file_get_model(f->name)), NULL);
+	dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname, ".tig", NULL);
 		
 	g_free(grpname);
 	err = tifiles_tigroup_files(array, dst_file);
