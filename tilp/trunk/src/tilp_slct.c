@@ -75,7 +75,8 @@ void tilp_local_selection_destroy(void)
 /* Check for files in the list */
 int tilp_local_selection_ready(void)
 {
-	if (local.selection1 == NULL && local.selection3 == NULL && 1 && local.selection5) 
+	if (local.selection0 == NULL && local.selection2 == NULL &&
+		local.selection1 == NULL && local.selection3 == NULL && 1 && local.selection5 == NULL) 
 	{
 		gif->msg_box1(_("Information"), _
 			     ("A file must have been selected in the right window."));
@@ -89,7 +90,7 @@ void tilp_local_selection_display(void)
 {
 	GList *ptr;
 
-	if (local.selection1 == NULL && local.selection3 == NULL && local.selection4 && local.selection5)
+	if (local.selection1 == NULL && local.selection3 == NULL && local.selection4 == NULL && local.selection5 == NULL)
 		return;
 
 	for(ptr = local.selection0; ptr; ptr = ptr->next)

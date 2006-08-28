@@ -225,9 +225,27 @@ GLADE_CB void rbm_group1_activate(GtkMenuItem* menuitem,
 {
 	tilp_tifiles_group();
 
-	//clist_refresh();
+	clist_refresh();
 	labels_refresh();
 } 
+
+GLADE_CB void rbm_ungroup2_activate(GtkMenuItem* menuitem,
+				   gpointer user_data)
+{
+	tilp_tifiles_untigroup();
+
+	clist_refresh();
+	labels_refresh();
+} 
+
+GLADE_CB void rbm_group2_activate(GtkMenuItem* menuitem,
+				   gpointer user_data)
+{
+	tilp_tifiles_tigroup();
+
+	clist_refresh();
+	labels_refresh();
+}
 
 GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)

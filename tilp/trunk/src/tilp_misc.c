@@ -67,8 +67,14 @@ int tilp_tifiles_ungroup(void)
 		FileEntry *f = (FileEntry *) sel->data;
 		gchar *utf8;
 		gchar *dirname;
+		gchar *folder, *e;
 
-		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
+		folder = g_strdup(f->name);
+		e = strrchr(folder, '.');
+		if(e) *e = '\0';
+
+		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), folder);
+		g_free(folder);
 		if (utf8 == NULL)
 			return -1;
 
@@ -158,13 +164,19 @@ int tilp_tifiles_untigroup(void)
 	if (!tilp_local_selection_ready())
 		return -1;
 
-	for(sel = local.selection0; sel; sel = sel->next)
+	for(sel = local.selection5; sel; sel = sel->next)
 	{
 		FileEntry *f = (FileEntry *) sel->data;
 		gchar *utf8;
 		gchar *dirname;
+		gchar *folder, *e;
 
-		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), _("ungrouped"));
+		folder = g_strdup(f->name);
+		e = strrchr(folder, '.');
+		if(e) *e = '\0';
+
+		utf8 = gif->msg_entry(_("Create new directory"), _("Directory where files will be ungrouped: "), folder);
+		g_free(folder);
 		if (utf8 == NULL)
 			return -1;
 
@@ -208,13 +220,13 @@ int tilp_tifiles_tigroup(void)
 	char **array;
 	gchar *grpname;
 	gchar *dst_file;
-	int i, err=0;
+	int i, j, err=0;
 	FileEntry *f = NULL;
 
 	if (!tilp_local_selection_ready())
 		return -1;
 
-	if (g_list_length(local.selection0) < 2) 
+	if (g_list_length(local.selection0) + g_list_length(local.selection2) < 2) 
 	{
 		gif->msg_box1(_("Error"), _("You must select at least 2 files.\n\n"));
 		return -1;
@@ -230,6 +242,12 @@ int tilp_tifiles_tigroup(void)
 	{
 		f = (FileEntry *) sel->data;
 		array[i] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
+	}
+
+	for(sel = local.selection2, j = i; sel; sel = sel->next, j++)
+	{
+		f = (FileEntry *) sel->data;
+		array[j] = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, f->name, NULL);
 	}
 	
 	dst_file = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, grpname,
