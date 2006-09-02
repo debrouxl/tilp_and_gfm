@@ -499,7 +499,15 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 	if(event->type == GDK_BUTTON_PRESS)
 	{
-		if (event->button == 3) 
+		if(event->button == 1)
+		{
+			/*
+			printf("clicked !\n");
+			ctree_select_vars(!0);
+			printf("selected ?!\n");
+*/
+		}
+		else if (event->button == 3) 
 		{
 			GdkEventButton *bevent = (GdkEventButton *) (event);
 
@@ -583,4 +591,51 @@ on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
 	}
 	
 	return FALSE;
+}
+
+void ctree_select_vars(gint action)
+{
+	GtkTreeView *view;
+	GtkTreeModel *model;
+	GtkTreePath *path = path_to_drag;
+	GtkTreeIter parent, start_iter, end_iter, iter;
+	view = GTK_TREE_VIEW(ctree_wnd);
+	model = gtk_tree_view_get_model(view);
+
+	// select var beneath a folder
+	gtk_tree_model_get_iter(model, &parent, path);
+
+	if (gtk_tree_model_iter_has_child(model, &parent)) 
+	{
+		GtkTreeSelection *sel;
+		GtkTreePath *start_path, *end_path;
+		gint n;
+		gboolean valid;
+
+		sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
+		n = gtk_tree_model_iter_n_children(model, &parent);
+
+		valid = gtk_tree_model_iter_children(model, &start_iter, &parent);
+		start_path = gtk_tree_model_get_path(model, &start_iter);
+
+		valid = gtk_tree_model_iter_nth_child(model, &end_iter, &parent, n - 1);
+		if(gtk_tree_model_iter_has_child(model, &end_iter))
+		{
+			n = gtk_tree_model_iter_n_children(model, &end_iter);
+			valid = gtk_tree_model_iter_nth_child(model, &iter, &end_iter, n - 1);
+			memcpy(&end_iter, &iter, sizeof(GtkTreeIter));
+		}
+		end_path = gtk_tree_model_get_path(model, &end_iter);
+
+		if (!action)
+			gtk_tree_selection_unselect_range(sel, start_path, end_path);
+		else
+		{
+			gtk_tree_selection_select_range(sel, start_path, end_path);
+			printf("!!!\n");
+		}
+
+		gtk_tree_path_free(start_path);
+		gtk_tree_path_free(end_path);
+	}
 }

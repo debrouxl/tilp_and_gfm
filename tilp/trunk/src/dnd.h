@@ -39,4 +39,6 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 				guint info,
 				guint time, gpointer user_data);
 
+void select_vars_under_folder(gint action);
+
 #endif

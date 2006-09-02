@@ -45,4 +45,6 @@ void ctree_refresh(void);
 void ctree_selection_refresh(void);
 void ctree_set_basetree(void);
 
+void ctree_select_vars(gint action);
+
 #endif

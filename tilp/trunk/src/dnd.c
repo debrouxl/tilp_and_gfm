@@ -187,7 +187,6 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 
 extern gchar *name_to_drag;
 extern GtkTreePath *path_to_drag;
-static void select_vars_under_folder(gint action);
 
 GLADE_CB void
 on_treeview1_drag_begin(GtkWidget * widget,
@@ -195,19 +194,19 @@ on_treeview1_drag_begin(GtkWidget * widget,
 {
 	// Folder
 	if (!strcmp(name_to_drag, NODEx) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
-		select_vars_under_folder(!0);
+		ctree_select_vars(!0);
 
 	// Variables
 	else if (!strcmp(name_to_drag, NODE3) && !(ticalcs_calc_features(calc_handle) & FTS_FOLDER))
-		select_vars_under_folder(!0);
+		ctree_select_vars(!0);
 
 	// Variables
 	else if (!strcmp(name_to_drag, NODE3) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
-		select_vars_under_folder(!0);
+		ctree_select_vars(!0);
 
 	// Applications
 	else if (!strcmp(name_to_drag, NODE4) && (ticalcs_calc_features(calc_handle) & FTS_FLASH))
-		select_vars_under_folder(!0);
+		ctree_select_vars(!0);
 }
 
 GLADE_CB void
@@ -265,13 +264,13 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		{
 			// all variables to get
 			on_tilp_button5_clicked(NULL, NULL);
-			select_vars_under_folder(0);
+			ctree_select_vars(0);
 		}
 		else if (!strcmp(name, NODE4))	// Apps & Archives
 		{
 			// all apps to get
 			on_tilp_button5_clicked(NULL, NULL);
-			select_vars_under_folder(0);
+			ctree_select_vars(0);
 		}
 		else if (!strcmp(name, NODE5))	// IDlist
 		{
@@ -285,7 +284,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 		{
 			// folder to get
 			on_tilp_button5_clicked(NULL, NULL);
-			select_vars_under_folder(0);
+			ctree_select_vars(0);
 		} 
 		else 
 		{
@@ -301,46 +300,3 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 	return;
 }
 
-static void select_vars_under_folder(gint action)
-{
-	GtkTreeView *view;
-	GtkTreeModel *model;
-	GtkTreePath *path = path_to_drag;
-	GtkTreeIter parent, start_iter, end_iter, iter;
-	view = GTK_TREE_VIEW(ctree_wnd);
-	model = gtk_tree_view_get_model(view);
-
-	// select var beneath a folder
-	gtk_tree_model_get_iter(model, &parent, path);
-
-	if (gtk_tree_model_iter_has_child(model, &parent)) 
-	{
-		GtkTreeSelection *sel;
-		GtkTreePath *start_path, *end_path;
-		gint n;
-		gboolean valid;
-
-		sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
-		n = gtk_tree_model_iter_n_children(model, &parent);
-
-		valid = gtk_tree_model_iter_children(model, &start_iter, &parent);
-		start_path = gtk_tree_model_get_path(model, &start_iter);
-
-		valid = gtk_tree_model_iter_nth_child(model, &end_iter, &parent, n - 1);
-		if(gtk_tree_model_iter_has_child(model, &end_iter))
-		{
-			n = gtk_tree_model_iter_n_children(model, &end_iter);
-			valid = gtk_tree_model_iter_nth_child(model, &iter, &end_iter, n - 1);
-			memcpy(&end_iter, &iter, sizeof(GtkTreeIter));
-		}
-		end_path = gtk_tree_model_get_path(model, &end_iter);
-
-		if (!action)
-			gtk_tree_selection_unselect_range(sel, start_path, end_path);
-		else
-			gtk_tree_selection_select_range(sel, start_path, end_path);
-
-		gtk_tree_path_free(start_path);
-		gtk_tree_path_free(end_path);
-	}
-}
