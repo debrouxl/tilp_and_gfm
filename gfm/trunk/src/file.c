@@ -73,7 +73,7 @@ void glade_files_check(void)
     };
     short i, num_files;
     gchar *msg;
-    num_files = 5; // Currently 4 files :)
+    num_files = 5;
 
     // Loop em all up!
     for (i=0; i<num_files; i++)
@@ -385,75 +385,82 @@ int gfm_copy_file(const char *source, const char *destination)
 	
 	// Windows Method
 #ifdef __WIN32__
-	int ret = 0; // Return Variable, 0 is good
-	gchar *src_utf8 = g_filename_to_utf8(source, -1, NULL, NULL, NULL); // Source Location in UTF-8
-	gchar *dst_utf8 = g_filename_to_utf8(destination, -1, NULL, NULL, NULL); // Dest. in UTF-8
-
-	// UTF-16 System?
-	if(G_WIN32_HAVE_WIDECHAR_API())
 	{
-		gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
-		gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
-		
-		// Do we have something?
-		if(src_utf16 && dst_utf16)
-			if (!CopyFileW(src_utf16, dst_utf16, FALSE)) // Copy
-				ret = 1; // Return 1, error!
+		int ret = 0; // Return Variable, 0 is good
+		gchar *src_utf8 = g_filename_to_utf8(source, -1, NULL, NULL, NULL); // Source Location in UTF-8
+		gchar *dst_utf8 = g_filename_to_utf8(destination, -1, NULL, NULL, NULL); // Dest. in UTF-8
+	
+		// UTF-16 System?
+		if(G_WIN32_HAVE_WIDECHAR_API())
+		{
+			gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
+			gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8,-1,NULL,NULL,NULL); // UTF8 -> UTF16
+			
+			// Do we have something?
+			if(src_utf16 && dst_utf16)
+				if (!CopyFileW(src_utf16, dst_utf16, FALSE)) // Copy
+					ret = 1; // Return 1, error!
+			
+			// Free
+			g_free(src_utf16);
+			g_free(dst_utf16);
+		}
+		else
+		{
+			// Converting back to LOCALE from UTF-8
+			gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
+			gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
+			
+			// We have something?
+			if(src_loc && dst_loc)
+				if (!CopyFile(src_loc, dst_loc, FALSE)) // Copy
+					ret = 1; // Return 1, File not copied! Error!
+			
+			// Free
+			g_free(src_loc);
+			g_free(dst_loc);
+		}
 		
 		// Free
-		g_free(src_utf16);
-		g_free(dst_utf16);
-	}
-	else
-	{
-		// Converting back to LOCALE from UTF-8
-		gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
-		gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
+		g_free(src_utf8);
+		g_free(dst_utf8);
 		
-		// We have something?
-		if(src_loc && dst_loc)
-			if (!CopyFile(src_loc, dst_loc, FALSE)) // Copy
-				ret = 1; // Return 1, File not copied! Error!
-		
-		// Free
-		g_free(src_loc);
-		g_free(dst_loc);
+		// Return hopefully with 0 :)
+		return ret;
 	}
-  
-	// Free
-	g_free(src_utf8);
-	g_free(dst_utf8);
-  
-	// Return hopefully with 0 :)
-	return ret;
 #else
-	FILE *in, *out;
-	int c;
-	
-	// Open Source File
-	if ((in = g_fopen(source, "rb")) == NULL) 
-		return -1; // Could not Open Source File!
-
-  
-	// Open Destination File
-	if ((out = g_fopen(destination, "wb")) == NULL) 
-		return -2; // Could not Open Destination File!
-	
-	// Copy the data
-	while (!feof(in)) 
 	{
-		c = fgetc(in);
-		if (feof(in))
-			break;
-		fputc(c, out);
+		FILE *in, *out;
+		int c;
+		
+		// Open Source File
+		if ((in = g_fopen(source, "rb")) == NULL) 
+			return -1; // Could not Open Source File!
+		
+		
+		// Open Destination File
+		if ((out = g_fopen(destination, "wb")) == NULL)
+		{
+			fclose(in);
+			return -2; // Could not Open Destination File!
+		}
+		
+		// Copy the data
+		while (!feof(in)) 
+		{
+			c = fgetc(in);
+			if (feof(in))
+				break;
+			fputc(c, out);
+		}
+		
+		// Close the Files
+		fclose(in);
+		fclose(out);
+		
+		// Return with successful copy!
+		return 0;
 	}
-  
-	// Close the Files
-	fclose(in);
-	fclose(out);
-  
-	// Return with successful copy!
-	return 0;
 #endif
 }
 

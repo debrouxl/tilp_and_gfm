@@ -79,15 +79,6 @@ AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr])
 
-# Platform specific tests.
-dnl AC_CANONICAL_HOST
-case "$host" in
-  *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__" ;;
-  *-*-cygwin) ARCH="-D__WIN32__ -D__CYGWIN__ -mno-cygwin" ;;
-  *)          ARCH="-D__LINUX__" ;;
-esac
-CFLAGS="$CFLAGS $ARCH"
-
 # Ensure MSVC-compatible struct packing convention is used when
 # compiling for Win32 with gcc.
 # What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while

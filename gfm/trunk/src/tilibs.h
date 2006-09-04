@@ -30,7 +30,7 @@
 # include <config.h>
 #endif
 
-#if !defined(__WIN32__) || defined(__MINGW32__)
+#ifndef _MSC_VER
 #include <tilp2/ticonv.h>
 #include <tilp2/tifiles.h>
 #else
@@ -38,7 +38,7 @@
 #include "tifiles.h"
 #endif
 
-#if defined(__WIN32__) && defined(_MSC_VER)
+#ifdef _MSC_VER
 #define snprintf	_snprintf
 #endif
 

@@ -74,8 +74,6 @@ isEmpty(CFLAGS) {
     CFLAGS = -Os -s -fomit-frame-pointer
   }
 }
-unix:CFLAGS += -D__LINUX__
-win32:CFLAGS += -D__WIN32__
 QMAKE_CFLAGS_DEBUG = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/share/gfm"'"'
 QMAKE_CFLAGS_RELEASE = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/share/gfm"'"'
 
