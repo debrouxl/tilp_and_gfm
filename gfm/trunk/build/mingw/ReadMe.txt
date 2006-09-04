@@ -1,5 +1,5 @@
 Compiling LPG Software with MinGW
-Version 1.99 20060812
+Version 1.99 20060904
 Copyright (C) 2005-2006 Kevin Kofler
 Copyright (C) 2001-2006 Romain Lievin
 Copyright (C) 2006 Tyler Cassidy
@@ -10,7 +10,7 @@ This is how to compile LPG software with MinGW. This bugger can be tricky so wat
 
 These compiling instructions will work for:
 - libticables2, libticonv, libtifiles2, libticables2
-- TiLP II
+- TiLP-2
 - TiEmu 3
 - GFM
 
@@ -59,7 +59,7 @@ Follow the instructions very closely or you will soon see that monkeys will star
 8. Repeat Step 7 for the additional libti* libraries in the FOLLOWING order: libticonv, libtifiles2,
    libticalcs2.
 
-9. Ok. Now all you have to do is repeat step 7 for TiLP-II, TiEmu, or GFM, or all of them if you so
+9. Ok. Now all you have to do is repeat step 7 for TiLP-2, TiEmu, or GFM, or all of them if you so
    wish!
 
 10. Your files are now all located in /target (C:\msys\target). If it does not work, an instruction
@@ -70,9 +70,9 @@ Have fun :)
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
----------------------------------------
-| Building an Installer on Windows    |
----------------------------------------
+---------------------------------------------------
+| Building an Installer on Windows for TiEmu3+GDB |
+---------------------------------------------------
 
 Once you have successfully built TiEmu 3, here's how to build an installer on Windows:
 
@@ -84,7 +84,19 @@ Once you have successfully built TiEmu 3, here's how to build an installer on Wi
 
 4. Right-click on build\nsis\tiemu.nsi and select "Build".
 
-NOTE: TiLP II and GFM don't have NSIS installer scripts yet.
+NOTE: TiLP-2 and GFM don't have NSIS installer scripts yet.
+
+-------------------------------------------------------------
+| Building an Installer on Windows for TiLP-2 or TiEmu3-GDB |
+-------------------------------------------------------------
+
+Once you have successfully built TiLP-2/TiEmu3, here's how to build an installer on Windows:
+
+1. Fetch the latest InnoSetup installer v5 from http://www.jrsoftware.org/isinfo.php and install it.
+
+2. Fetch the GNU wget for Win32 from http://xoomer.alice.it/hherold/wget-1.10.2b.zip and unzip it into build/InnoSetup/wget.
+
+3. Press Ctrl+F9 ("Build>Compile").
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -119,7 +131,7 @@ NOTE: TiLP II and GFM don't have NSIS installer scripts yet.
 
 7. Edit cross-mingw32-gtkaio.sh to your system's needs.
 
-8. Use the following commands to build TiEmu (TiLP and GFM can be built the same way, if this is
+8. Use the following commands to build TiEmu (TiLP-2 and GFM can be built the same way, if this is
    broken, please report it as a bug):
    source cross-mingw32-gtkaio.sh #(needs to be done for EACH build!)
    export CFLAGS="-Os -s -fno-exceptions"
@@ -201,4 +213,4 @@ Once you have successfully cross-built TiEmu 3, here's how to build a Windows in
    cd build/nsis
    makensis tiemu-cross.nsi
 
-NOTE: TiLP II and GFM don't have NSIS installer scripts yet.
+NOTE: TiLP-2 and GFM don't have NSIS installer scripts yet.

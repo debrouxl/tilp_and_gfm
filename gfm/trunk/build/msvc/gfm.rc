@@ -67,7 +67,7 @@ BEGIN
         BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
-            VALUE "FileDescription", "gfm-II\0"
+            VALUE "FileDescription", "GFM\0"
             VALUE "FileVersion", "0.01\0"
             VALUE "InternalName", "gfm\0"
             VALUE "LegalCopyright", "Copyright © 1999-2003, Romain Liévin\0"

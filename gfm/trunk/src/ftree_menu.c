@@ -323,7 +323,7 @@ GLADE_CB void on_new_folder1_activate(GtkMenuItem *menuitem, gpointer user_data)
 		return;
 	}
 	
-	// Convert to UTF-8
+	// Convert from UTF-8 to GLib file name encoding
 	dirname = g_filename_from_utf8(input_value, -1, &br, &bw, NULL);
 	
 	if (dirname == NULL)
