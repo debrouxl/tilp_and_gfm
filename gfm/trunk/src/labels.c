@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   12/08/06 17:12 - labels.c
 
   This program is free software you can redistribute it and/or modify
@@ -32,7 +31,7 @@
 #define snprintf _snprintf
 #endif
 
-#define PATH_LEVEL	10
+#define PATH_LEVEL 10
 
 static char* format_path(char *src, char *dst)
 {
@@ -43,19 +42,9 @@ static char* format_path(char *src, char *dst)
 	char *left = NULL;	// left part
 	char *right = NULL;	// right part
 	char str[8];
-
-	// remove header to be platform independant
-  #ifdef __WIN32__
-	strncpy(header, src, 3);
-	header[3] = '\0';
-	path = &src[3];
-  #else
-	strcpy(header, "/");
-	path = &src[1];
-  #endif
-  
+	
 	// count number of path elements (slashes)
-	for(n = 0, p = src; ; n++) 
+	for(n=0, p=src; ; n++) 
 	{
 		p = (char *)strchr(p, G_DIR_SEPARATOR);	
 		if(!p)
@@ -63,9 +52,23 @@ static char* format_path(char *src, char *dst)
 		p++;
 	}
 
+	// Less than 10
 	if(n < PATH_LEVEL)
 		strcpy(dst, src);
-	else {
+	
+	// Clean it up
+	else
+	{
+		// remove header to be platform independant
+#ifdef __WIN32__
+	  strncpy(header, src, 3);
+	  header[3] = '\0';
+	  path = &src[3];
+#else
+	  strcpy(header, "/");
+	  path = &src[1];
+#endif
+		
 		left = strdup(path);
 		right = strdup(path);
 
@@ -86,7 +89,8 @@ static char* format_path(char *src, char *dst)
 		free(left);
 		free(right);
 	}
-
+  
+	// Return
 	return dst;
 }
 

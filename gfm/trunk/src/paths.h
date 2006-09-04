@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   28/05/06 20:40 - paths.h
   
   This program is free software you can redistribute it and/or modify
@@ -22,17 +21,17 @@
 #ifndef __GFMPATHS_H__
 #define __GFMPATHS_H__
 
+// MSVC Definition
 #if defined(__WIN32__) && defined(_MSC_VER)
 #define SHARE_DIR	""
 #endif
 
 /* Missing of Definitions */
 #ifndef SHARE_DIR
-#error Maybe trying to define a SHARE_DIR definition to GCC to where you shared stuff for GFM will be located before compiling.
+#error "Maybe trying to define a SHARE_DIR definition to GCC to where you shared stuff for GFM will be located before compiling."
 #endif
 
 /* Structures */
-#ifndef __MACOSX__
 typedef struct
 {
         gchar *base_dir; // Main Directory
@@ -45,7 +44,6 @@ typedef struct
 
 // Lets Prototype the Structure
 extern GFMInstPaths inst_paths;
-#endif /* No MacOSX! */
 
 int gfm_paths_init(void); // Setup The Installation Paths for GFM
 const char *gfm_paths_build_glade(const char *name); // Used to return exact path to Glade File

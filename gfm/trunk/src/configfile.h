@@ -1,8 +1,7 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
-  01/07/06 18:49 - config.h
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
+  01/07/06 18:49 - configfile.h
   
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

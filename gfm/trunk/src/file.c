@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   29/05/06 17:51 - file.c
 
   This program is free software you can redistribute it and/or modify
@@ -69,13 +68,12 @@ void glade_files_check(void)
         "dialogs.glade",
         "gfm.glade",
         "manpage.glade",
-        "options.glade",
         "pbars.glade",
         "release.glade"
     };
     short i, num_files;
     gchar *msg;
-    num_files = 6; // Currently 4 files :)
+    num_files = 5; // Currently 4 files :)
 
     // Loop em all up!
     for (i=0; i<num_files; i++)
@@ -180,10 +178,10 @@ char *file_fix_letters(char *string)
 	char tokens[] = "/\\:*?\"<>|- ";
 
 	// Replace
-    for (i=0; i<(int)strlen(string); i++) {
+  for (i=0; i<(int)strlen(string); i++) {
 		for (j=0; j<(int)strlen(tokens); j++) {
-			if (string[i] == tokens[j])
-				string[i] = '_'; // Replace
+		  if (string[i] == tokens[j])
+			  string[i] = '_'; // Replace
 		}
 	}
 
@@ -249,8 +247,10 @@ const char *file_get_date(FileEntry *fe)
 
 /* g_chdir, changes current directory, only run if less than GLIB 2.8.0 */
 #if !GLIB_CHECK_VERSION(2, 8, 0)
+
 #include <errno.h>
 #include <direct.h>
+
 // Code taken from Glib
 static int g_chdir (const gchar *path)
 {
@@ -385,7 +385,6 @@ int gfm_copy_file(const char *source, const char *destination)
 	
 	// Windows Method
 #ifdef __WIN32__
-	{
 	int ret = 0; // Return Variable, 0 is good
 	gchar *src_utf8 = g_filename_to_utf8(source, -1, NULL, NULL, NULL); // Source Location in UTF-8
 	gchar *dst_utf8 = g_filename_to_utf8(destination, -1, NULL, NULL, NULL); // Dest. in UTF-8
@@ -427,7 +426,6 @@ int gfm_copy_file(const char *source, const char *destination)
   
 	// Return hopefully with 0 :)
 	return ret;
-	}
 #else
 	FILE *in, *out;
 	int c;

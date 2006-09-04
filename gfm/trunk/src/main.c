@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   28/05/06 20:28 - main.c
 
   This program is free software you can redistribute it and/or modify
@@ -25,8 +24,8 @@
      -Group File into the Group Tree and opens Group File
      -TI File onto TI File in FOlder Tree to merge into Group File
    -Enter Key on selection in folder tree to open file in Group Tree.
-   -Complete the Right Click Menu Items (I will get these)
-   -All GUI Callback functions for tree in gui.c
+   -Group/Ungroup Selection in Folder Tree Right Click Menu
+   -The Rest of GUI Callback functions for tree in gui.c (if any)
 
    Group File Tree:
    -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder
@@ -36,21 +35,19 @@
      -File onto TI File in Folder Tree to merge/create Group File
      -File from Folder Tree into Group Tree to add to Group File
    -Sorting (code in gtree_sort.c) and implement
-   -Right Click to open that menu and get items coded (in menu.c,menu.h [maybe have two files for different tree menus]      would be fine I think)
-   -Update Labels under Group Tree (Groupfile Size, Num of files in group)
+   -Right Click to open that menu and get items coded (in gtree_menu.c,gtree_menu.h)
     (pointers to labels in gfm_widget in gui.h struct)
    -Double Click (Rename Group File)
 
    Other:
    -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
-    all need coded (nothing done for) callback functions in gui.c
-   -input dialog in dialogs.glade needs to be implemented into dialog.c/h
+    all need coded - callback functions in gui.c
    -progress bars need to be done in pbar.c/.h
    -man page dialog needs to be implemented
    -html launcher needs to be done
    -Changelog/Release Dialog (like on on first time TiLP is booted)
-   -Options Dialog (options.c/h) (I have the config file handled in config.c/h)
-   -Settings, size of Window, and where slider is
+   -Load Settings at boot, size of Main Window, and where slider is
+   -Make a routine just for loading glade xml, we have many copies within GFM.
 
    Notes:
    -file filtering in folder tree?? check the compat part...
@@ -103,10 +100,9 @@ int main(int argc, char *argv[])
     splash_screen_message("Checking for GUI files...");
     glade_files_check();
 
-
     /* Load tilibs2 */
     splash_screen_message("Loading tilibs2...");
-    tifiles_library_init(); // Load tifiles2
+		load_tilibs(); // Load tilibs
 
     /* Load Settings */
     splash_screen_message("Loading Settings...");
@@ -126,8 +122,8 @@ int main(int argc, char *argv[])
     /* Save Settings */
     config_save();
 
-    /* Close tilibs2 */
-    tifiles_library_exit(); // tifiles2
+    /* Close tilibs */
+		tifiles_library_exit(); // libtifiles2
 
     /* Done */
     return 0;

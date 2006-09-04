@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   08/06/06 19:10 - folder_tree.c
   
   This program is free software you can redistribute it and/or modify
@@ -165,7 +164,7 @@ static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer 
 		g_list_free(ftree_info.selection);
 		ftree_info.selection = NULL;
 	}
-	if (ftree_info.selected_files != NULL && ftree_info.working_act == NULL)
+	if (ftree_info.selected_files != NULL && ftree_info.working_act == 0)
 	{
 		g_list_free(ftree_info.selected_files);
 		ftree_info.selected_files = NULL;
@@ -185,7 +184,7 @@ static void folder_tree_selection_changed(GtkTreeSelection *selection, gpointer 
  
 		// Lets Add the Path to the file in the selected_files list
 		full_path = g_strconcat(settings.cur_dir, G_DIR_SEPARATOR_S, fe->name, NULL);
-		if (ftree_info.working_act == NULL)
+		if (ftree_info.working_act == 0)
 		  ftree_file_selection_add(full_path);
 
 	  // Add to List
@@ -279,7 +278,7 @@ int folder_tree_init(void)
 /* Refresh the Folder Tree */
 int folder_tree_refresh(void)
 {
-    GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.comp_tree);
+  GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.comp_tree);
 	GtkTreeSelection *selection;
 	GtkTreeViewColumn *col;
 	GtkTreeIter iter;
@@ -298,51 +297,51 @@ int folder_tree_refresh(void)
 	
 	// Get the Directory List
 	file_get_dirlist();
-	
+
 	// Clear the List
 	selection = gtk_tree_view_get_selection(view);
 	g_signal_handlers_block_by_func(G_OBJECT(selection), folder_tree_selection_changed, NULL);
 	gtk_list_store_clear(list);
 	g_signal_handlers_unblock_by_func(G_OBJECT(selection), folder_tree_selection_changed, NULL);
-	
+
 	// Clear the Sorter Buttons on the Columns
 	for (i=0; i<FLIST_NVCOLS; i++)
 	{
-        col = gtk_tree_view_get_column(view, i);
-        gtk_tree_view_column_set_sort_indicator(col, FALSE);
-    }
+    col = gtk_tree_view_get_column(view, i);
+    gtk_tree_view_column_set_sort_indicator(col, FALSE);
+  }
     
-    // Sort the Files
-    switch(ftree_info.column)
-    {
-        case FTREE_SORT_NAME: // Sort by Name
-             col_ind = COLUMN_NAME; // Column to Edit
-        break;
-        case FTREE_SORT_TYPE: // Sort by Type
-             col_ind = COLUMN_TYPE; // Column to Edit
-        break;
-        case FTREE_SORT_SIZE: // Sort by Size
-             col_ind = COLUMN_SIZE; // Column to Edit
-        break;
-        case FTREE_SORT_DATE: // Sort by Date
-             col_ind = COLUMN_DATE; // Column to Edit
-        break;
-        default: // Nothing
-             break;
-    }
-    col = gtk_tree_view_get_column(view, col_ind); // Got Column
-    gtk_tree_view_column_set_sort_indicator(col, TRUE);
-    gtk_tree_view_column_set_sort_order(col, ftree_info.sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
-    ftree_sort_list(ftree_info.column); // Sort the List
-    
-    // Setup the Two Default Icons
-    pix1 = create_pixbuf("up.ico");
+  // Sort the Files
+  switch(ftree_info.column)
+  {
+    case FTREE_SORT_NAME: // Sort by Name
+      col_ind = COLUMN_NAME; // Column to Edit
+    break;
+    case FTREE_SORT_TYPE: // Sort by Type
+      col_ind = COLUMN_TYPE; // Column to Edit
+    break;
+    case FTREE_SORT_SIZE: // Sort by Size
+      col_ind = COLUMN_SIZE; // Column to Edit
+    break;
+    case FTREE_SORT_DATE: // Sort by Date
+      col_ind = COLUMN_DATE; // Column to Edit
+    break;
+    default: // Nothing
+    break;
+  }
+  col = gtk_tree_view_get_column(view, col_ind); // Got Column
+  gtk_tree_view_column_set_sort_indicator(col, TRUE);
+  gtk_tree_view_column_set_sort_order(col, ftree_info.sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
+  ftree_sort_list(ftree_info.column); // Sort the List
+
+  // Setup the Two Default Icons
+  pix1 = create_pixbuf("up.ico");
 	pix2 = create_pixbuf("clist_dir.xpm");
 	
 	// Add the Items to the Tree
 	for (dirlist=ftree_info.dir_list; dirlist!=NULL; dirlist=dirlist->next)
 	{
-        FileEntry *fe = (FileEntry *)dirlist->data;
+    FileEntry *fe = (FileEntry *)dirlist->data;
 		gboolean b;
 		
 		// Pass a test	
@@ -355,34 +354,32 @@ int folder_tree_refresh(void)
 		if(!b)
 			continue;
 		
-        // File, or something else
+    // File, or something else
 		if (S_ISDIR(fe->attrib))
-		{
-            pix = strcmp(fe->name, "..") ? pix2 : pix1;
-        }
-        else
-        {
-            char icon_name[256];
+		  pix = strcmp(fe->name, "..") ? pix2 : pix1;
+    else
+    {
+      char icon_name[256];
             
-            // Copy to icon_name
-            strcpy(icon_name, tifiles_file_get_icon(fe->path));
+      // Copy to icon_name
+      strcpy(icon_name, tifiles_file_get_icon(fe->path));
             
-            // Empty value?
-            if (!strcmp(icon_name, ""))
-                strcpy(icon_name, "TIicon1");
+      // Empty value?
+      if (!strcmp(icon_name, ""))
+        strcpy(icon_name, "TIicon1");
             
-            // Add file extension
-            strcat(icon_name, ".ico");
+      // Add file extension
+      strcat(icon_name, ".ico");
             
-            // Make sure filename is valid.
-            strcpy(icon_name, file_fix_letters(icon_name));
+      // Make sure filename is valid.
+      strcpy(icon_name, file_fix_letters(icon_name));
             
-            // Create the Icon
-            pix = create_pixbuf(icon_name);
-        }
+      // Create the Icon
+      pix = create_pixbuf(icon_name);
+    }
         
-        // Add item to list now
-        utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
+    // Add item to list now
+    utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
 		gtk_list_store_append(list, &iter);
 		gtk_list_store_set(list, &iter, 
 				   COLUMN_NAME, utf8,
@@ -393,8 +390,8 @@ int folder_tree_refresh(void)
                    COLUMN_ICON, pix, 
                    -1);
 		g_free(utf8);
-    }
-	
+  }
+  
 	// Unreference Icons
 	g_object_unref(pix1);
 	g_object_unref(pix2);
@@ -473,7 +470,7 @@ GLADE_CB gboolean on_folder_tree_button_press_event(GtkWidget *widget,
                 // Opening File
                 else if (tifiles_file_is_group(fe->path))
                 {
-                    msgbox_error("Group File!\nCode In: Line ~450 folder_tree.c");
+                    msgbox_error("Group File!\nCode In: Line ~475 folder_tree.c");
                 }
             }
         break;

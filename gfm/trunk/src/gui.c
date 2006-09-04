@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   04/06/06 17:04 - gui.c
 
   This program is free software you can redistribute it and/or modify
@@ -48,10 +47,10 @@ int launch_gfmgui(void)
     // Glade File Error
     if (!xml)
         g_error("Failure GFM GUI (%s)!\n", __FILE__);
-
+		
     // Connect The Symbols
     glade_xml_signal_autoconnect(xml);
-
+		
     // Retrieve the rom8x_dialog widget
     widget = glade_xml_get_widget(xml, "gfm_dbox");
 
@@ -61,7 +60,7 @@ int launch_gfmgui(void)
     gfm_widget.current_folder = glade_xml_get_widget(xml, "folder_label"); // Current Folder Label
     gfm_widget.group_files = glade_xml_get_widget(xml, "groupfile_numfiles_label"); // # files in Group
     gfm_widget.group_filesize = glade_xml_get_widget(xml, "groupfile_filesize_label"); // Size of Group
-
+		
     // Set it up so its 50/50
     data = glade_xml_get_widget(xml, "hpaned1");
     gtk_window_get_size(GTK_WINDOW(widget), &x, &y);
@@ -70,12 +69,12 @@ int launch_gfmgui(void)
 
     // Setup the Group Tree
     // todo
-
+		
     // Setup the Folder Tree
     folder_tree_init(); // Init
     folder_tree_refresh(); // Refresh Folder Tree View
-
-    // Show the Widget
+    
+		// Show the Widget
     gtk_widget_show(widget);
 
     // Return
@@ -283,17 +282,7 @@ void on_delete2_activate(GtkMenuItem * menuitem, gpointer user_data)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+/////////////
 
 void on_groups1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {

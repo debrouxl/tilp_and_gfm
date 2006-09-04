@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   04/06/06 16:23 - tilibs.h
 
   This program is free software you can redistribute it and/or modify
@@ -31,7 +30,7 @@
 # include <config.h>
 #endif
 
-#if !defined(__WIN32__)
+#if !defined(__WIN32__) || defined(__MINGW32__)
 #include <tilp2/ticonv.h>
 #include <tilp2/tifiles.h>
 #else
@@ -42,5 +41,8 @@
 #if defined(__WIN32__) && defined(_MSC_VER)
 #define snprintf	_snprintf
 #endif
+
+// Prototypes
+int load_tilibs(void);
 
 #endif

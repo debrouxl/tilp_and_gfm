@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   28/05/06 20:33 - cmdline.c
   
   This program is free software you can redistribute it and/or modify
@@ -37,30 +36,31 @@ static void my_log_handler(const gchar *log_domain,
 /* Launch Command Line Function */
 void gfm_cmdline(void)
 {
-    // Show the Disclaimer
-    printf("\nTHIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\nPLEASE READ THE DOCUMENTATION FOR DETAILS\n\n");
+  // Show the Disclaimer
+	printf("\nTHIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\nPLEASE READ THE DOCUMENTATION FOR DETAILS.\n\n");
 
-    // Get rid of GTK+ Logging if need-be (GTK, GDK, GLib, libglade)
-    #if !defined(_DEBUG)
-    g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING | 
-                             G_LOG_LEVEL_MESSAGE | 
-                             G_LOG_LEVEL_INFO | 
-                             G_LOG_LEVEL_DEBUG,
-		                     my_log_handler, NULL); // GTK
-    g_log_set_handler("Gdk", G_LOG_LEVEL_WARNING | 
-                             G_LOG_LEVEL_MESSAGE | 
-                             G_LOG_LEVEL_INFO | 
-                             G_LOG_LEVEL_DEBUG,
-		                     my_log_handler, NULL); // Gdk
-    g_log_set_handler("GLib", G_LOG_LEVEL_WARNING | 
-                              G_LOG_LEVEL_MESSAGE | 
-                              G_LOG_LEVEL_INFO | 
-                              G_LOG_LEVEL_MASK | 
-                              G_LOG_FLAG_FATAL | 
-                              G_LOG_FLAG_RECURSION | 
-                              G_LOG_LEVEL_DEBUG,
-                              my_log_handler, NULL); // GLib
-    #endif
+  // Get rid of GTK+ Logging if need-be (GTK, GDK, GLib, libglade)
+  #if !defined(_DEBUG)
+  g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING | 
+                           G_LOG_LEVEL_MESSAGE | 
+                           G_LOG_LEVEL_INFO | 
+                           G_LOG_LEVEL_DEBUG,
+	  	                     my_log_handler, NULL); // GTK
+  g_log_set_handler("Gdk", G_LOG_LEVEL_WARNING | 
+                           G_LOG_LEVEL_MESSAGE | 
+                           G_LOG_LEVEL_INFO | 
+                           G_LOG_LEVEL_DEBUG,
+  		                     my_log_handler, NULL); // Gdk
+  g_log_set_handler("GLib", G_LOG_LEVEL_WARNING | 
+                            G_LOG_LEVEL_MESSAGE | 
+                            G_LOG_LEVEL_INFO | 
+                            G_LOG_LEVEL_MASK |
+														G_LOG_FLAG_FATAL | 
+                            G_LOG_FLAG_RECURSION | 
+                            G_LOG_LEVEL_DEBUG,
+                            my_log_handler, NULL); // GLib
+  #endif
      
-    return;
+	// Return
+  return;
 }

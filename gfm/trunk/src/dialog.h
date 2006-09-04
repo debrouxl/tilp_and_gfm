@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   04/06/06 16:35 - dialog.h
   
   This program is free software you can redistribute it and/or modify
@@ -23,10 +22,12 @@
 #define __GFMDIALOG_H__
 
 /* Enumerations */
-enum gfm_dialog_enum {MSGBOX_YES=1, MSGBOX_NO=0,
-                      MSGBOX_ERROR=1, MSGBOX_INFO=2,
-                      MSGBOX_CONTINUE=3, MSGBOX_YESNO=4, MSGBOX_TWO=5,
-											MSGBOX_BUTTON1=2, MSGBOX_BUTTON2=3};
+enum gfm_dialog_enum {
+  MSGBOX_NO=0, MSGBOX_YES=1,
+	MSGBOX_BUTTON1=2, MSGBOX_BUTTON2=3,
+	MSGBOX_ERROR=1, MSGBOX_INFO=2,
+	MSGBOX_CONTINUE=3, MSGBOX_YESNO=4, MSGBOX_TWO=5
+};
 
 /* Prototypes */
 int msgbox_one(int type, const char *message);

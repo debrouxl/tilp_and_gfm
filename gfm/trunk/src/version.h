@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   29/05/06 17:20 - version.h
   
   This program is free software you can redistribute it and/or modify
@@ -22,17 +21,12 @@
 #ifndef __GFMVERSION_H__
 #define __GFMVERSION_H__
 
-/* OS Defintion Checker */
-#if !defined(__LINUX__) && !defined(__WIN32__) && !defined(__BSD__)
-#error You should define an operating with GCC so I know what to compile! __LINUX__ => Linux, __WIN32__ => Windows, __BSD__ => BSD
-#endif
-
 /* tilibs2 version dependencies */
 #define LIBTICONV_REQUIRE_VERSION "0.0.5"
-#define LIBTIFILES2_REQUIRE_VERSION "0.2.2"
+#define LIBTIFILES2_REQUIRE_VERSION "0.2.7"
 
 /* Group File Manager Version */
-#define GFM_VERSION "0.01" // Main Version
+#define GFM_VERSION "0.02" // Main Version
 #define VERSION GFM_VERSION // Copy
 
 #endif

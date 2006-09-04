@@ -1,8 +1,7 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
-  01/07/06 18:49 - config.c
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
+  01/07/06 18:49 - configfile.c
 
   This program is free software you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -43,12 +42,12 @@ int config_presets(void)
     /* Set the defaults incase of no Config File */
     ftree_info.column = FTREE_SORT_NAME; // Sort by Name
     ftree_info.sort_order = FTREE_SORT_ASC; // Ascending Order
-		ftree_info.working_act = NULL; // Doing Nothing
+		ftree_info.working_act = 0; // Doing Nothing
 
 		settings.confirm = TRUE; // Confirm Deletions
     settings.show_all = FALSE; // Show only TI Files
     settings.cur_dir = inst_paths.home_dir; // Default to Home Dir
-    settings.cur_file = "NULL"; // No File to Load
+    settings.cur_file = NULL; // No File to Load
     
     // Return
     return 0;

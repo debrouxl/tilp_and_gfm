@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   16/07/06 17:15 - menu.c
 
   This program is free software you can redistribute it and/or modify
@@ -177,7 +176,7 @@ GLADE_CB void on_confirm_delete1_activate(GtkMenuItem *menuitem, gpointer user_d
 {
 	  // Run the Warning
 	  if (confirm_bypass == FALSE && GTK_CHECK_MENU_ITEM(menuitem)->active == FALSE)
-			if (msgbox_two(MSGBOX_CONTINUE, "Disabling this feature will not warn you when you are about to delete files!") == MSGBOX_NO)
+			if (msgbox_two(MSGBOX_CONTINUE, "Disabling this feature will not warn you when you are about to delete files! Continue?") == MSGBOX_NO)
 				return;
 	
 	  // Update the Setting
@@ -221,7 +220,7 @@ GLADE_CB void on_paste1_activate(GtkMenuItem *menuitem, gpointer user_data)
 		{
 			// Lets setup src and dst
 			src = (gchar *)work_list->data;
-			dst = g_strconcat(settings.cur_dir, G_DIR_SEPARATOR_S, g_basename(src), NULL);
+			dst = g_strconcat(settings.cur_dir, G_DIR_SEPARATOR_S, g_path_get_basename(src), NULL);
 			
 			// Now lets process our action.
 			// Moving Files
@@ -247,7 +246,7 @@ GLADE_CB void on_paste1_activate(GtkMenuItem *menuitem, gpointer user_data)
 				msgbox_one(MSGBOX_INFO, dst);
 				
 				// Clear Working Action
-				ftree_info.working_act = NULL;
+				ftree_info.working_act = 0;
 				
 				// Return
 				return;
@@ -255,7 +254,7 @@ GLADE_CB void on_paste1_activate(GtkMenuItem *menuitem, gpointer user_data)
 		}
 		
 		// Clear Working Action
-		ftree_info.working_act = NULL;
+		ftree_info.working_act = 0;
 		
 		// Lets refresh the Folder Tree!
 		folder_tree_refresh();

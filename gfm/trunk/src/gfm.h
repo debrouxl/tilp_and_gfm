@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   08/06/06 17:49 - gfm.h
   
   This program is free software you can redistribute it and/or modify
@@ -48,7 +47,6 @@ typedef struct
 
 	// Actions
 	FileContent *content;	// File Content to Handle
-	int *selected;	// entry/entries is/are selected
 } FileEntry;
 
 /* Current GFM Settings */

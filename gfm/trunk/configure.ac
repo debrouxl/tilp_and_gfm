@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(GFM, 0.01, [tilp-users@lists.sourceforge.net])
+AC_INIT(GFM, 0.02, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE

@@ -1,7 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy
-  Copyright (C) 2006 Romain Lievin
+  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
   28/05/06 20:54 - splashscreen.c
 
   This program is free software you can redistribute it and/or modify
@@ -35,9 +34,13 @@
 /* Structure for inner communication */
 typedef struct {
         GtkWidget *splash, *text;
-        short enabled;
+        int enabled;
 } GFMSplashScreen;
-static GFMSplashScreen splashscreen = { 0 };
+static GFMSplashScreen splashscreen = {
+	NULL,
+	NULL,
+	0
+};
 
 /* Splash Screen Initialization Function */
 void splash_screen_start(void)
@@ -45,7 +48,7 @@ void splash_screen_start(void)
     GtkWidget *image, *vbox, *ver_lbl;
     GdkColor color;
     GdkPixbuf *pixbuf;
-    char *version_string;
+    gchar *version_string;
 
     // Is Splash Screen started?
     if (splashscreen.enabled == 1)
@@ -127,6 +130,7 @@ int splash_screen_message(char *message)
 
     // Refresh GTK+
     GTK_REFRESH();
-
+		
+		// Return
     return 0;
 }
