@@ -5,6 +5,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 28/08/2006, version 0.24 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- added grouping/ungroup of TiGroup file in the clist popup menu
 	- tested & validated previous item
+	- revert addition of -H switch to firefox call, FC5's Firefox has no such switch
+	  TiLP shouldn't been invoked through sudo anyway, if it is in Ubuntu, that's a packaging bug (kevin)
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase
