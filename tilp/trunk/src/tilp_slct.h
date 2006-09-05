@@ -37,8 +37,10 @@ void tilp_local_update_applist(void);
 void tilp_remote_selection_destroy(void);
 int  tilp_remote_selection_ready(void);
 int  tilp_remote_selection2_ready(void);
+void tilp_remote_selection_display(void);
 
 void tilp_file_selection_destroy(void);
+void tilp_file_selection_display(void);
 void tilp_file_selection_delete(void);
 void tilp_file_selection_rename(void);
 void tilp_file_selection_add(const char *filename);

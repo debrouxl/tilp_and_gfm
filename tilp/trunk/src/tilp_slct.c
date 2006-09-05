@@ -555,5 +555,17 @@ void tilp_file_selection_rename()
 	}
 }
 
+void tilp_file_selection_display(void)
+{
+	if (local.file_selection == NULL)
+		return;
+
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
+	{
+		gchar *str = ptr->data;
+		printf("<%s>\n", str);
+	}
+}
+
 // -----------------------------
 
