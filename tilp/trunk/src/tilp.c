@@ -452,7 +452,7 @@ void on_tilp_send(gchar *user_data)
 	tilp_local_contents_load();
 	
 	// send apps
-	if(local.selection3 && local.selection5)
+	if(local.selection3 || local.selection5)
 	{
 		f = (FileEntry *) local.selection3->data;
 
@@ -484,7 +484,7 @@ void on_tilp_send(gchar *user_data)
 	}
 
 	// send vars
-	if(local.selection1 && local.selection5)
+	if(local.selection1 || local.selection5)
 	{
 		// note: dst_folder must be a copy b/c the user_data
 		// pointer is no longer valid after dirlist_remote
