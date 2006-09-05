@@ -557,6 +557,8 @@ void tilp_file_selection_rename()
 
 void tilp_file_selection_display(void)
 {
+	GList *ptr;
+
 	if (local.file_selection == NULL)
 		return;
 
