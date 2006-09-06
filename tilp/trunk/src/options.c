@@ -49,14 +49,6 @@ gint display_options_dbox()
 	dbox = glade_xml_get_widget(xml, "options_dbox");
 	memcpy(&tmp_options, &options, sizeof(options));
 
-	data = glade_xml_get_widget(xml, "radiobutton21");
-	if (!options.local_path)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
-
-	data = glade_xml_get_widget(xml, "radiobutton22");
-	if (options.local_path)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
-
 	data = glade_xml_get_widget(xml, "radiobutton31");
 	if (!options.backup_as_tigroup)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
@@ -123,18 +115,6 @@ options_checkbutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 	else
 		tmp_options.overwrite = CONFIRM_NO;
 }
-
-GLADE_CB void
-options_radiobutton21_toggled(GtkToggleButton * togglebutton, gpointer user_data)
-{
-	tmp_options.local_path = PATH_FULL;
-} 
-
-GLADE_CB void
-options_radiobutton22_toggled(GtkToggleButton * togglebutton, gpointer user_data)
-{
-	tmp_options.local_path = PATH_LOCAL;
-} 
 
 GLADE_CB void
 options_radiobutton81_toggled(GtkToggleButton * togglebutton, gpointer user_data)

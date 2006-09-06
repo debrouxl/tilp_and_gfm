@@ -530,10 +530,6 @@ int tilp_calc_send_var(void)
 	if(tilp_calc_isready())
 		return -1;
 
-	// Set options
-	if(options.local_path == PATH_LOCAL)
-		mode |= MODE_LOCAL_PATH;
-
 	gif->create_pbar_(FNCT_SEND_VAR, _("Sending var(s)"));
 
 	// Now, send files

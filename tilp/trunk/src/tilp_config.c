@@ -81,7 +81,6 @@ int tilp_config_default(void)
 	options.full_gui = !0;
 
 	options.overwrite = CONFIRM_YES;
-	options.local_path = 0;
 	options.show_all = 0;
 
 	options.screen_format = PNG;
@@ -256,9 +255,6 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect USB hand-held model", &error);
 
-	g_key_file_set_integer(kf, SECTION_OPTIONS, "local_path", options.local_path);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "local_path", "Use full path when sending variables", &error);
-
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_all", options.show_all);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_all", "Show hidden files in local view", &error);
 
@@ -399,8 +395,6 @@ int tilp_config_read(void)
 	// Section [OPTIONS]
 	options.auto_detect = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "auto_detect", &error);
-	options.local_path = 
-		g_key_file_get_integer(kf, SECTION_OPTIONS, "local_path", &error);
 	options.show_all = 
 		g_key_file_get_integer(kf, SECTION_OPTIONS, "show_all", &error);
 	options.overwrite = 

@@ -40,13 +40,6 @@
 /* Callbacks */
 
 GLADE_CB void
-rbm_full_path1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	options.local_path = !GTK_CHECK_MENU_ITEM(menuitem)->active;
-}
-
-GLADE_CB void
 rbm_change_device1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -108,9 +101,6 @@ GtkWidget *create_ctree_rbm(void)
 	if (!xml)
 		g_error("GUI loading failed !\n");
 	glade_xml_signal_autoconnect(xml);
-
-	data = glade_xml_get_widget(xml, "full_path1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), !options.local_path);
 
 	data = glade_xml_get_widget(xml, "local_view1");
 	g_signal_handlers_block_by_func(GTK_OBJECT(data), rbm_local_view1_activate, NULL);
