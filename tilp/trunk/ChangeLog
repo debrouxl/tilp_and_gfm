@@ -7,6 +7,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- tested & validated previous item
 	- revert addition of -H switch to firefox call, FC5's Firefox has no such switch
 	  TiLP shouldn't been invoked through sudo anyway, if it is in Ubuntu, that's a packaging bug (kevin)
+	- fixed bug with file selection (files was selected but never removed from selection)
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase

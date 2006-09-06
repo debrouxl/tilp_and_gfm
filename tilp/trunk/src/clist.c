@@ -96,23 +96,47 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
 
-	// create a new selection
+	// create local selection
 	for(list = gtk_tree_selection_get_selected_rows(selection, &model); list; list = g_list_next(list))
 	{
 		GtkTreePath *path = list->data;
 		FileEntry *fe;
-		gchar *full_path;
 
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
 		tilp_local_selection_add(fe->name);		
 
-		full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
-		tilp_file_selection_add(full_path);
 	}
 
 	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
 	g_list_free(list);
+	
+	// create file selection
+	list = gtk_tree_selection_get_selected_rows(selection, &model);
+	if(list)
+	{
+		tilp_file_selection_destroy();
+
+		for(; list; list = g_list_next(list))
+		{
+			GtkTreePath *path = list->data;
+			FileEntry *fe;
+			gchar *full_path;
+
+			gtk_tree_model_get_iter(model, &iter, path);
+			gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
+			tilp_local_selection_add(fe->name);		
+
+			full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
+			tilp_file_selection_add(full_path);
+		}
+
+		g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
+		g_list_free(list);
+	}
+
+	tilp_file_selection_display();
+	printf("\n");
 }
 
 void clist_refresh(void);
