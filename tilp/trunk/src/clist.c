@@ -125,7 +125,6 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 
 			gtk_tree_model_get_iter(model, &iter, path);
 			gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
-			tilp_local_selection_add(fe->name);		
 
 			full_path = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, fe->name, NULL);
 			tilp_file_selection_add(full_path);

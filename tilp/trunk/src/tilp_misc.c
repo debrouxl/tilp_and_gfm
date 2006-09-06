@@ -232,7 +232,7 @@ int tilp_tifiles_tigroup(void)
 		return -1;
 	}
 
-	grpname = gif->msg_entry(_("Group files"), _("Group name: "), _("group"));
+	grpname = gif->msg_entry(_("Group files"), _("Group name: "), _("tigroup"));
 	if (grpname == NULL)
 		return -1;
 
