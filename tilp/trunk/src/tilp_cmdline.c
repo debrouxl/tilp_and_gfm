@@ -118,7 +118,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
 			tilp_local_selection_add(*q);
-		tilp_local_contents_load();
+		//tilp_local_contents_load();
 
 		g_strfreev(array);
 		g_strfreev(flist);
@@ -140,8 +140,10 @@ int tilp_cmdline_send(void)
 	gchar *ext = NULL;
 
 	// Check for valid selection
-	if (local.selection1 == NULL && local.selection2 == NULL && local.selection4 == NULL)
+	if (local.selection0 == NULL && local.selection2 == NULL && local.selection4 == NULL)
 		return -1;
+
+	tilp_local_contents_load();
 
 	// Send vars
 	if(local.selection1)
@@ -153,7 +155,7 @@ int tilp_cmdline_send(void)
 	}
 
 	// Send OS or apps
-	if(local.selection2)
+	if(local.selection3)
 	{
 		FileEntry *fe = (local.selection2)->data;
 

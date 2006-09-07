@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 
 		splash_screen_set_label(_("Command line..."));
 
-		if(local.selection1 || local.selection2)
+		if(local.selection0 || local.selection2 || local.selection5)
 			on_tilp_send("");
 		else if(local.selection4)
 			tilp_cmdline_send();

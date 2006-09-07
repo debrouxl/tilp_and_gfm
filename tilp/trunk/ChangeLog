@@ -13,6 +13,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed skip/retry/cancel trap: doesn't catch ERR_ABORT
 	- added skip/retry/cancel for sending of var/app
 	- fixed action box: can't enter folder/varname with more than 8 chars
+	- fixed command line (GUI mode): file is used twice
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase
