@@ -345,7 +345,7 @@ tcsa:
 		{
 			tilp_err(err);
 
-			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 			switch(ret)
 			{
 			case BUTTON1: goto tcsa;
@@ -466,7 +466,7 @@ tcra:
 		{
 			tilp_err(err);
 
-			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 			switch(ret)
 			{
 			case BUTTON1: goto tcra;
@@ -567,7 +567,7 @@ tcsv1:
 			{
 				tilp_err(err);
 
-				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
 				case BUTTON1: goto tcsv1;
@@ -588,7 +588,7 @@ tcsv2:
 			{
 				tilp_err(err);
 
-				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
 				case BUTTON1: goto tcsv2;
@@ -653,7 +653,7 @@ tcrv1:
 		{
 			tilp_err(err);
 
-			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 			switch(ret)
 			{
 			case BUTTON1: goto tcrv1;
@@ -711,7 +711,7 @@ tcrv2:
 			{
 				tilp_err(err);
 
-				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
 				case BUTTON1: goto tcrv2;
