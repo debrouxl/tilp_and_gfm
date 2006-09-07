@@ -13,17 +13,19 @@
 .\" along with this program; see the file COPYING.  If not, write to
 .\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 .\"
-.TH TILP 1 "June 23, 2006"
+.TH TILP-2 "September 07, 2006"
 .SH NAME
 TiLP - a communication program for TI calculators ('Ti Linking Program' or 'Tilp is a Linking Program')
 .SH SYNOPSYS
 \fBtilp-2\fP [--help] [--version] [-h] [-v] [--calc=] [--cable=] [--port= ] [--timeout=] [--delay=] [--no-gui] [filename]
 .SH DESCRIPTION
-The \fBTiLP\fP program allows you to backup, restore and archive variables of your Texas Intruments calculator on your computer. It has also additional features such as screen dump, remote control, ROM dump, FLASHing. TiLP is a very complete program. Moreover, you have the same program for all calculator types.
+The \fBTiLP\fP program allows you to backup, restore and archive variables and/or applications of your Texas Intruments calculator on your computer. It has also additional features such as screen dump, remote control, ROM dump, FLASHing. TiLP is a very complete program. Moreover, you have the same program for all calculator models.
 .SH OPTIONS
-The command line of tilp-2 can be used for sending or opening files (variables, backup, FLASH apps, OS, ...). For sending one or more file, simply pass the filename(s) on the command line with the \fB-cmdline\fP option. If you don't use the \fB-cmdline\fP option, the file will be open within the GUI by the Group File Manager.
+The command line of tilp-2 can be used for sending files like variables, backup, FLASH apps, OS, TiGroup, .... 
+You can not do any other operations. If you want more operations, you have to use the GUI.
+For sending one or more file, simply pass the filename(s) on the command line.
+If you want to use TiLP from console, use the --no-gui switch.
 
-It is possible to send one or more files (single/group file only) or one file which can be a single/group var as well as a backup, a FLASH app or an Operating System even. You can not do any other operations. If you want more operations, you can use the interactive mode (\fB-gui=console\fP).
 Example: tilp-2 --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
 
 Note: options must be passed before the filename !
