@@ -335,8 +335,8 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		v->action = (v->attr != ATTRB_NONE) ? ACT_SKIP : ACT_RENAME;
 
 		// update var entry
-		strcpy(v->folder, tifiles_get_fldname(full_name));
-		strcpy(v->name,   tifiles_get_varname(full_name));
+		strncpy(v->folder, tifiles_get_fldname(full_name), 8); v->folder[8] = 0;
+		strncpy(v->name,   tifiles_get_varname(full_name), 8); v->name[8] = 0;
 		trans = ticonv_varname_to_utf8(c->model, (const char *)v->name);
 
 		// update entry
