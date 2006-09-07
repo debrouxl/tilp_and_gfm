@@ -331,7 +331,6 @@ int tilp_calc_send_app(void)
 		int err;
 		int ret;
 
-tcsa:
 		if(tifiles_file_is_regular(f->name))
 			continue;
 
@@ -340,6 +339,7 @@ tcsa:
 		gtk_update.pbar();
 		gtk_update.refresh();
 
+tcsa:
 		err = ticalcs_calc_send_app(calc_handle, f->content2);
 		if(err && err != ERROR_ABORT)
 		{
@@ -460,10 +460,19 @@ int tilp_calc_recv_app(void)
 			return -1;
 		}
 
+tcra:
 		err = ticalcs_calc_recv_app2(calc_handle, dst, ve);
-		if(err) 
+		if(err && err != ERROR_ABORT) 
 		{
 			tilp_err(err);
+
+			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			switch(ret)
+			{
+			case BUTTON1: goto tcra;
+			case BUTTON2: continue;
+			default: break;
+			}
 
 			g_free(dst);
 			gif->destroy_pbar();
@@ -540,7 +549,6 @@ int tilp_calc_send_var(void)
 		int err;
 		int ret;
 
-tcsv:
 		if(tifiles_file_is_flash(f->name))
 			continue;
 
@@ -553,6 +561,7 @@ tcsv:
 		if(((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
+tcsv1:
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content1);
 			if(err && err != ERROR_ABORT) 
 			{
@@ -561,7 +570,7 @@ tcsv:
 				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
-				case BUTTON1: goto tcsv;
+				case BUTTON1: goto tcsv1;
 				case BUTTON2: continue;
 				default: break;
 				}
@@ -573,6 +582,7 @@ tcsv:
 		else 
 		{
 			// It is the first or the last one
+tcsv2:
 			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content1);
 			if(err && err != ERROR_ABORT)
 			{
@@ -581,7 +591,7 @@ tcsv:
 				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
-				case BUTTON1: goto tcsv;
+				case BUTTON1: goto tcsv2;
 				case BUTTON2: continue;
 				default: break;
 				}
@@ -637,11 +647,21 @@ static int tilp_calc_recv_var1(void)
 		tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 			".", tifiles_fext_of_group(options.calc_model), NULL);
 
+tcrv1:
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
-		if(err)
+		if(err && err != ERROR_ABORT)
 		{
-			gif->destroy_pbar();
 			tilp_err(err);
+
+			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+			switch(ret)
+			{
+			case BUTTON1: goto tcrv1;
+			case BUTTON2: break;
+			default: break;
+			}
+
+			gif->destroy_pbar();
 			return -1;
 		}
 
@@ -684,13 +704,23 @@ static int tilp_calc_recv_var1(void)
 			gtk_update.pbar();
 			gtk_update.refresh();
 
+tcrv2:
 			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
-			if(err)
+			if(err && err != ERROR_ABORT)
 			{
 				tilp_err(err);
+
+				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				switch(ret)
+				{
+				case BUTTON1: goto tcrv2;
+				case BUTTON2: continue;
+				default: break;
+				}
+
 				gif->destroy_pbar();
-				break;
+				return -1;
 			}
 		}
 
