@@ -331,7 +331,7 @@ int tilp_calc_send_app(void)
 		int err;
 		int ret;
 
-tcsar:
+tcsa:
 		if(tifiles_file_is_regular(f->name))
 			continue;
 
@@ -341,14 +341,14 @@ tcsar:
 		gtk_update.refresh();
 
 		err = ticalcs_calc_send_app(calc_handle, f->content2);
-		if(err)
+		if(err && err != ERROR_ABORT)
 		{
 			tilp_err(err);
 
 			ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 			switch(ret)
 			{
-			case BUTTON1: goto tcsar;
+			case BUTTON1: goto tcsa;
 			case BUTTON2: continue;
 			default: break;
 			}
@@ -540,7 +540,7 @@ int tilp_calc_send_var(void)
 		int err;
 		int ret;
 
-tcsvr:
+tcsv:
 		if(tifiles_file_is_flash(f->name))
 			continue;
 
@@ -554,14 +554,14 @@ tcsvr:
 		{
 			// More than one file to send
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content1);
-			if(err) 
+			if(err && err != ERROR_ABORT) 
 			{
 				tilp_err(err);
 
 				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
-				case BUTTON1: goto tcsvr;
+				case BUTTON1: goto tcsv;
 				case BUTTON2: continue;
 				default: break;
 				}
@@ -574,14 +574,14 @@ tcsvr:
 		{
 			// It is the first or the last one
 			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content1);
-			if(err)
+			if(err && err != ERROR_ABORT)
 			{
 				tilp_err(err);
 
 				ret = msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
 				switch(ret)
 				{
-				case BUTTON1: goto tcsvr;
+				case BUTTON1: goto tcsv;
 				case BUTTON2: continue;
 				default: break;
 				}

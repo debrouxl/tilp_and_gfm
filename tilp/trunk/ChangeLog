@@ -10,6 +10,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed bug with file selection (files was selected but never removed from selection)
 	- removed local/full path option
 	- fixed DnD to target folder
+	- fixed skip/retry/cancel trap: doesn't catch ERR_ABORT
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase
