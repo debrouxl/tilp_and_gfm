@@ -42,7 +42,8 @@ int default_msg_box1(const char *title, const char *message)
     
 	tilp_info("msg_box1: [%s] [%s]", title, message);
 	tilp_info("msg_box1: press ENTER for OK");
-	scanf("%i", &result);
+	fflush(stdin);
+	fscanf(stdin, "%i", &result);
 
 	return 0;
 }
@@ -54,7 +55,8 @@ int default_msg_box2(const char *title, const char *message)
 	tilp_info("msg_box2: [%s] [%s]", title, message);
 	tilp_info("msg_box2: press 1 for OK, 2 for CANCEL");
 
-	scanf("%i", &result);
+	fflush(stdin);
+	fscanf(stdin, "%i", &result);
 	switch(result)
 	{
 	case 1: return BUTTON1;
@@ -70,9 +72,10 @@ int default_msg_box3(const char *title, const char *message,
     int result;
 
 	tilp_info("msg_box3: [%s] [%s]", title, message);
-	tilp_info("msg_box3: press 1 for YES, 2 for NO, 3 for CANCEL");
+	tilp_info("msg_box3: press 1 for %s, 2 for %s, 3 for %s", b1, b2, b3);
 
-	scanf("%i", &result);
+	fflush(stdin);
+	fscanf(stdin, "%i", &result);
 	switch(result)
 	{
 	case 1: return BUTTON1;
@@ -90,12 +93,13 @@ int default_msg_box4(const char *title, const char *message)
 	tilp_info("msg_box4: [%s] [%s]", title, message);
 	tilp_info("msg_box4: press 1 for FORWARD, press 2 for CANCEL");
 
-	scanf("%i", &result);
-        switch(result)
-        {
-        case 1: return BUTTON1;
-        default: return BUTTON2;
-        }	
+	fflush(stdin);
+	fscanf(stdin, "%i", &result);
+    switch(result)
+    {
+    case 1: return BUTTON1;
+    default: return BUTTON2;
+    }	
 
 	return 0;
 }
@@ -108,7 +112,8 @@ char *default_msg_entry(const char *title, const char *message, const char *cont
     tilp_info("msg_entry: [%s] [%s] <%s>", title, message, content);
     tilp_info("msg_entry: type new content or nothing to cancel ");
     
-    ret = scanf("%s", buffer);
+	fflush(stdin);
+    ret = fscanf(stdin, "%s", buffer);
     if(ret > 0)
 	return g_strdup(buffer);
     else
