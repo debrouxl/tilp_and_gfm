@@ -133,9 +133,6 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 		g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
 		g_list_free(list);
 	}
-
-	tilp_file_selection_display();
-	printf("\n");
 }
 
 void clist_refresh(void);
