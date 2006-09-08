@@ -236,7 +236,8 @@ int tilp_tifiles_tigroup(void)
 	if (grpname == NULL)
 		return -1;
 
-	array = (char **) g_malloc0((g_list_length(local.selection0) + 1) * sizeof(char *));
+	array = (char **) g_malloc0((g_list_length(local.selection0) + 
+		g_list_length(local.selection2) + 1) * sizeof(char *));
 	
 	for(sel = local.selection0, i = 0; sel; sel = sel->next, i++)
 	{
