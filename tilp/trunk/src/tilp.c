@@ -355,7 +355,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 					     _("Data to restore:"), &mode);
 			if(ret != BUTTON1)
 				return;
-			tilp_calc_send_tigroup(filename, mode);
+			tilp_calc_send_tigroup(filename, mode | TIG_BACKUP);
 		}
 		else
 			tilp_calc_send_backup(filename);

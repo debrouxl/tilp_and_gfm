@@ -381,7 +381,7 @@
 			<widget class="GtkToolButton" id="button10">
 			  <property name="visible">True</property>
 			  <property name="tooltip" translatable="yes">Create a new directory.</property>
-			  <property name="label" translatable="yes">MkDir</property>
+			  <property name="label" translatable="yes">Folder</property>
 			  <property name="use_underline">True</property>
 			  <property name="icon">../pixmaps/tb_mkdir.xpm</property>
 			  <property name="visible_horizontal">True</property>
