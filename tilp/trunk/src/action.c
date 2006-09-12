@@ -203,8 +203,8 @@ gint display_action_dbox(gchar *target)
 			}
 
 			// search for matching var
-			tifiles_build_fullname(c->model, full_name, v->folder, v->name);
-			trans = ticonv_varname_to_utf8(c->model, (const char *)full_name);
+			tifiles_build_fullname(options.calc_model, full_name, v->folder, v->name);
+			trans = ticonv_varname_to_utf8(options.calc_model, (const char *)full_name);
 
 			w = ticalcs_dirlist_ve_exist(remote.var_tree, full_name);
 			if (w == NULL)
@@ -326,7 +326,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 			continue;
 
 		// check that new varname does not exist
-		tifiles_build_fullname(c->model, full_name, v->folder, new_name);
+		tifiles_build_fullname(options.calc_model, full_name, v->folder, new_name);
 		g_free(new_name);
 		w = ticalcs_dirlist_ve_exist(remote.var_tree, full_name);
 
@@ -337,7 +337,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		// update var entry
 		strncpy(v->folder, tifiles_get_fldname(full_name), 8); v->folder[8] = 0;
 		strncpy(v->name,   tifiles_get_varname(full_name), 8); v->name[8] = 0;
-		trans = ticonv_varname_to_utf8(c->model, (const char *)v->name);
+		trans = ticonv_varname_to_utf8(options.calc_model, (const char *)v->name);
 
 		// update entry
 		row_text[0] = g_strdup(trans); g_free(trans);
