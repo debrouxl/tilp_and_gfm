@@ -21,6 +21,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- for now, display a user box between the sending of dumping program and the receiving of data.
 		This will give time to user to enter needed commands without triggering timeouts.
 	- reverted back previous change. ticalcs2 library don't allow this (program is sent internally)
+	- modified ticalcs2 library consequently. Reverted back previous change again and clean-up.
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase

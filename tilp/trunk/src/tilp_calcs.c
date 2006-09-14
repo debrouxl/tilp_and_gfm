@@ -259,11 +259,24 @@ int tilp_calc_idlist(int to_file)
 /*
   Dump the ROM (get a ROM image)
 */
-static int do_rom_dump(int mode)
+int tilp_calc_rom_dump(void)
 {
+	gint ret, err;
 	gchar tmp_filename[MAXCHARS];
-	int err;
-/*
+
+	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
+	if(ret != BUTTON1)
+		return -1;
+
+	/* Transfer ROM dumper */
+	gif->create_pbar_(FNCT_DUMP_ROM, _("Dumping ROM"));
+	err = ticalcs_calc_dump_rom_1(calc_handle);
+	if(tilp_err(err))
+	{
+		gif->destroy_pbar();
+		return -1;
+	}
+
 	switch(options.calc_model)
 	{
 		case CALC_TI73: gif->msg_box1("Information", "Launch the ROM dumper on your TI-73 by entering the following commands: PRGM, EXEC, ROMDUMP. Next, press Close."); break;
@@ -273,30 +286,19 @@ static int do_rom_dump(int mode)
 		case CALC_TI84P_USB: gif->msg_box1("Information", "Launch the ROM dumper on your TI-8X+ by entering the following commands: PRGM, EXEC, ROMDUMP. Next, press Close."); break;
 		case CALC_TI89T_USB: gif->msg_box1("Information", "Launch the ROM dumper on your Titanium by typing romdump(), ENTER. Next, press Close."); break;
 	}
-*/
+
+	/* Get data from dumper */
 	strcpy(tmp_filename, g_get_tmp_dir());
 	strcat(tmp_filename, G_DIR_SEPARATOR_S);
 	strcat(tmp_filename, TMPFILE_ROMDUMP);
 
-	gif->create_pbar_(FNCT_DUMP_ROM, _("Dumping ROM"));
-	err = ticalcs_calc_dump_rom(calc_handle, ROMSIZE_AUTO, tmp_filename);
+	err = ticalcs_calc_dump_rom_2(calc_handle, ROMSIZE_AUTO, tmp_filename);
 	gif->destroy_pbar();
 
 	if(tilp_err(err))
 		return -1;
 
 	return 0;
-}
-
-int tilp_calc_rom_dump(void)
-{
-	gint ret;
-
-	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
-	if(ret != BUTTON1)
-		return -1;
-
-	return do_rom_dump(0);
 }
 
 
