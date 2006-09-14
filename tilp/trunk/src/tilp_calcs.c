@@ -263,7 +263,7 @@ static int do_rom_dump(int mode)
 {
 	gchar tmp_filename[MAXCHARS];
 	int err;
-
+/*
 	switch(options.calc_model)
 	{
 		case CALC_TI73: gif->msg_box1("Information", "Launch the ROM dumper on your TI-73 by entering the following commands: PRGM, EXEC, ROMDUMP. Next, press Close."); break;
@@ -273,7 +273,7 @@ static int do_rom_dump(int mode)
 		case CALC_TI84P_USB: gif->msg_box1("Information", "Launch the ROM dumper on your TI-8X+ by entering the following commands: PRGM, EXEC, ROMDUMP. Next, press Close."); break;
 		case CALC_TI89T_USB: gif->msg_box1("Information", "Launch the ROM dumper on your Titanium by typing romdump(), ENTER. Next, press Close."); break;
 	}
-
+*/
 	strcpy(tmp_filename, g_get_tmp_dir());
 	strcat(tmp_filename, G_DIR_SEPARATOR_S);
 	strcat(tmp_filename, TMPFILE_ROMDUMP);
