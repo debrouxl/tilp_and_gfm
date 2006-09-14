@@ -91,4 +91,6 @@
 #define ACT_OVER	2
 #define ACT_SKIP	3
 
+#define GTK_WIN_POS_TYPE		GTK_WIN_POS_MOUSE
+
 #endif

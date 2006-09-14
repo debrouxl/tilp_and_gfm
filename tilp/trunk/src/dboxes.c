@@ -63,7 +63,7 @@ int msg_box(const char *title, const char *message, int action)
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   msg_type, GTK_BUTTONS_CLOSE,
 					   message);
-		//gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 		gtk_widget_show_all(GTK_WIDGET(dialog));
 		
 		while(gtk_events_pending()) gtk_main_iteration();
@@ -90,6 +90,7 @@ int msg_box1(const char *title, const char *message)
 		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 					   msg_type, GTK_BUTTONS_CLOSE,
 					   message);
+		gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 		gtk_dialog_run(GTK_DIALOG(dialog));
 	} 
 	else 
@@ -105,6 +106,7 @@ int msg_box1(const char *title, const char *message)
 		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
 		gtk_widget_show(label);
 
+		gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 		result = gtk_dialog_run(GTK_DIALOG(dialog));
 		switch (result) 
 		{
@@ -132,6 +134,7 @@ gint msg_box2(const char *title, const char *message)
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
 
+	gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) 
 	{
@@ -166,6 +169,7 @@ gint msg_box3(const char *title, const char *message, const char *button1,
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
 
+	gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) 
 	{
@@ -202,6 +206,7 @@ gint msg_box4(const char *title, const char *message)
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
 
+	gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);
 	result = gtk_dialog_run(GTK_DIALOG(dialog));
 	switch (result) 
 	{
@@ -249,6 +254,7 @@ char *msg_entry(const char *title, const char *message, const char *content)
 
 	gtk_editable_select_region(GTK_EDITABLE(entry), 0, -1);
 
+	gtk_window_set_position(GTK_WINDOW(dbox), GTK_WIN_POS_TYPE);
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) 
 	{
@@ -294,6 +300,7 @@ int backup_box(const char *title, const char *message, int *mask)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), *mask & 4);
 	
 	*mask = 0;
+	gtk_window_set_position(GTK_WINDOW(dbox), GTK_WIN_POS_TYPE);
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) 
 	{
