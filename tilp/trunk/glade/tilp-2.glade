@@ -6,7 +6,7 @@
 <widget class="GtkWindow" id="tilp_dbox">
   <property name="title" translatable="yes">TiLP ('Ti Linking Program')</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
-  <property name="window_position">GTK_WIN_POS_NONE</property>
+  <property name="window_position">GTK_WIN_POS_MOUSE</property>
   <property name="modal">False</property>
   <property name="default_width">640</property>
   <property name="default_height">480</property>
