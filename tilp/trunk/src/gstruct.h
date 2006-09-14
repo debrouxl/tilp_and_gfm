@@ -50,9 +50,12 @@ extern struct toolbar_window
 /* This struct is used by the CLabel window */
 extern struct label_window 
 {
+	GtkWidget* label11;
+	GtkWidget* label12;
+	GtkWidget* label13;
+	GtkWidget* label14;
+
 	GtkWidget* label21;
-	GtkWidget* label22;
-	GtkWidget* label23;
 } label_wnd;
 
 /* This struct is used to display and manage the progress bar dialog box */

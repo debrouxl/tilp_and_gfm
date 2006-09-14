@@ -17,6 +17,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- can send TiGroup from command line and fixed bug in tilp_send
 	- fixed TiGroup restore
 	- fixed UTF8 translation in the action box (relies on the real hand-held model)
+	- reworked RAM/FLASH used/free displaying: use table container
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase

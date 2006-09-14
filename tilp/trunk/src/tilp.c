@@ -96,9 +96,11 @@ GtkWidget *display_tilp_dbox()
 	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
 	clist_wnd = glade_xml_get_widget(xml, "treeview2");
 
-	label_wnd.label21 = glade_xml_get_widget(xml, "label26");
-	label_wnd.label22 = glade_xml_get_widget(xml, "label24");
-	label_wnd.label23 = glade_xml_get_widget(xml, "label29");
+	label_wnd.label11 = glade_xml_get_widget(xml, "label11");
+	label_wnd.label12 = glade_xml_get_widget(xml, "label12");
+	label_wnd.label13 = glade_xml_get_widget(xml, "label13");
+	label_wnd.label14 = glade_xml_get_widget(xml, "label14");
+	label_wnd.label21 = glade_xml_get_widget(xml, "label21");
 
 	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
 	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button1");

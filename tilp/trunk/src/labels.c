@@ -110,30 +110,42 @@ void labels_refresh(void)
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
 	format_path(utf8, path);
 	g_free(utf8);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label21), path);
 
-	gtk_label_set_text(GTK_LABEL(label_wnd.label22), path);
-
-	/* RAM */
+	/* RAM used */
 	str1 = g_strdup(format_bytes(remote.memory.ram_used));
+	str = g_strdup_printf(_("used: %s"), str1);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label11), str);
+	
+	g_free(str1);
+	g_free(str);
+
+	/* RAM free */
 	str2 = g_strdup(format_bytes(remote.memory.ram_free));
 
 	if(remote.memory.ram_free == -1)
-		str = g_strdup_printf(_("RAM used: %s"), str1);
+		str = g_strdup_printf(_("free: N/A"));
 	else
-		str = g_strdup_printf(_("RAM used: %s & free: %s"), str1, str2);
-	gtk_label_set_text(GTK_LABEL(label_wnd.label21), str);
+		str = g_strdup_printf(_("free: %s"), str2);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label13), str);
 
-	/* FLASH */
+	g_free(str2);
+	g_free(str);
+
+	/* FLASH used */
 	str1 = g_strdup(format_bytes(remote.memory.flash_used));
+	str = g_strdup_printf(_("used: %s"), str1);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label12), str);
+
+	g_free(str1);
+	g_free(str);
+
+	/* FLASH free */
 	str2 = g_strdup(format_bytes(remote.memory.flash_free));
 
 	if(remote.memory.flash_free == -1)
-		str = g_strdup_printf(_("FLASH used: %s"), str1);
+		str = g_strdup_printf(_("free: N/A"));
 	else
-		str = g_strdup_printf(_("FLASH used: %s & free: %s"), str1, str2);
-	gtk_label_set_text(GTK_LABEL(label_wnd.label23), str);
-
-	g_free(str1);
-	g_free(str2);
-	g_free(str);
+		str = g_strdup_printf(_("free: %s"), str2);
+	gtk_label_set_text(GTK_LABEL(label_wnd.label14), str);
 }
