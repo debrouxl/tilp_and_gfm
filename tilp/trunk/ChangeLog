@@ -18,6 +18,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed TiGroup restore
 	- fixed UTF8 translation in the action box (relies on the real hand-held model)
 	- reworked RAM/FLASH used/free displaying: use table container
+	- for now, display a user box between the sending of dumping program and the receiving of data.
+		This will give time to user to enter needed commands without triggering timeouts.
 
 - 26/08/2006, version 0.23 (0.1.4, 0.2.6, 0.2.7, 0.0.5): roms
 	- source code is frozen: entering in testing phase

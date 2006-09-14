@@ -51,6 +51,7 @@ static gint str2msg(const char *title)
 	return msg_type;
 }
 
+/* 1 button: Close (non-modal) */
 int msg_box(const char *title, const char *message, int action)
 {
 	static GtkWidget *dialog = NULL;
@@ -76,6 +77,7 @@ int msg_box(const char *title, const char *message, int action)
 	return 0;
 }
 
+/* 1 button: Close (modal) */
 int msg_box1(const char *title, const char *message)
 {
 	GtkWidget *dialog, *label;
@@ -117,6 +119,7 @@ int msg_box1(const char *title, const char *message)
 	return 0;
 }
 
+/* 2 buttons: Ok/Cancel */
 gint msg_box2(const char *title, const char *message)
 {
 	GtkWidget *dialog;
@@ -145,6 +148,7 @@ gint msg_box2(const char *title, const char *message)
 	return 0;
 }
 
+/* 3 buttons: custom */
 gint msg_box3(const char *title, const char *message, const char *button1,
 	      const char *button2, const char *button3)
 {
@@ -182,6 +186,7 @@ gint msg_box3(const char *title, const char *message, const char *button1,
 	return 0;
 }
 
+/* 2 buttons: Forward/Cancel */
 gint msg_box4(const char *title, const char *message)
 {
 	GtkWidget *dialog;
