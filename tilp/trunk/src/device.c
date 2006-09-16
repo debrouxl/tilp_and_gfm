@@ -390,6 +390,12 @@ gint display_device_dbox()
 		toolbar_refresh_buttons();
 		ctree_set_basetree();
 		clist_refresh();
+
+#ifdef __LINUX__
+		if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI89T_USB)
+			gif->msg_box1("Information", "Please note that Titanium thru DirectLink USB currently does not work under Linux (seems to be a kernel issue). I'm sorry...");
+#endif
+
 		break;
 	case GTK_RESPONSE_HELP:
 		break;
