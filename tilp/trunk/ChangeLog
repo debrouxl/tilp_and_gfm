@@ -2,6 +2,8 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 17/09/2006, tagged as version 1.00: roms
+	
 - 28/08/2006, version 0.24 (0.1.4, 0.2.7, 0.2.8, 0.0.6): roms
 	- added grouping/ungroup of TiGroup file in the clist popup menu
 	- tested & validated previous item
