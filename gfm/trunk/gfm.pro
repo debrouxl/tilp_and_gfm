@@ -55,16 +55,22 @@ isEmpty(PREFIX) {
 
 target.path = $$PREFIX/bin
 
-glade.path = $$PREFIX/share/gfm/glade
+pkgdata.path = $$PREFIX/share/gfm
+pkgdata.files = man/Manpage.txt
+
+glade.path = $${pkgdata.path}/glade
 glade.files = glade/*.glade glade/*.gladep
 
-icons.path = $$PREFIX/share/gfm/icons
+icons.path = $${pkgdata.path}/icons
 icons.files = icons/*.ico icons/ListOfTypes.txt
 
-pixmaps.path = $$PREFIX/share/gfm/pixmaps
+pixmaps.path = $${pkgdata.path}/pixmaps
 pixmaps.files = pixmaps/*.xpm
 
-INSTALLS += target glade icons pixmaps
+man.path = $$PREFIX/share/man/man1
+man.files = man/gfm.1
+
+INSTALLS += target glade icons pixmaps man
 
 CFLAGS = $$(CFLAGS)
 isEmpty(CFLAGS) {
@@ -79,7 +85,7 @@ QMAKE_CFLAGS_RELEASE = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/shar
 
 QMAKE_LFLAGS_RELEASE = -s
 
-DISTFILES += $${glade.files} $${icons.files} $${pixmaps.files} build/mingw/* build/devcpp/* glade/*.str INFO README acinclude.m4 configure.ac aclocal.m4 Makefile.am Makefile.in config.h.in configure AUTHORS COPYING ChangeLog INSTALL NEWS compile config.guess config.sub depcomp install-sh ltmain.sh missing build/Makefile.am build/Makefile.in glade/Makefile.am glade/Makefile.in help/Makefile.am help/Makefile.in icons/Makefile.am icons/Makefile.in man/Makefile.am man/Makefile.in pixmaps/Makefile.am pixmaps/Makefile.in src/Makefile.am src/Makefile.in
+DISTFILES += $${pkgdata.files} $${glade.files} $${icons.files} $${pixmaps.files} $${man.files} build/mingw/* build/devcpp/* glade/*.str man/cleaner.c man/gfm.1 man/Manpage.txt INFO README acinclude.m4 configure.ac aclocal.m4 Makefile.am Makefile.in config.h.in configure AUTHORS COPYING ChangeLog INSTALL NEWS compile config.guess config.sub depcomp install-sh ltmain.sh missing build/Makefile.am build/Makefile.in glade/Makefile.am glade/Makefile.in help/Makefile.am help/Makefile.in icons/Makefile.am icons/Makefile.in man/Makefile.am man/Makefile.in pixmaps/Makefile.am pixmaps/Makefile.in src/Makefile.am src/Makefile.in
 
 distbz2.target = dist-bzip2
 distbz2.commands = zcat gfm.tar.gz | bzip2 --best -c > gfm.tar.bz2

@@ -17,7 +17,8 @@
  */
 
 #include <stdio.h>
-#include <strings.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #define MAXCHARS 256
