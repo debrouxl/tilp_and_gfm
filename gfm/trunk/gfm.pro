@@ -70,7 +70,7 @@ pixmaps.files = pixmaps/*.xpm
 man.path = $$PREFIX/share/man/man1
 man.files = man/gfm.1
 
-INSTALLS += target glade icons pixmaps man
+INSTALLS += pkgdata target glade icons pixmaps man
 
 CFLAGS = $$(CFLAGS)
 isEmpty(CFLAGS) {
