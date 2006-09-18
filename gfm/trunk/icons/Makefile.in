@@ -178,39 +178,9 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-LINK_ICONS = \
-	App_Var.ico \
-	Complex_List.ico \
-	Complex_Matrix.ico \
-	Complex_Vector.ico \
-	Diff_Equ.ico \
-	Function.ico \
-	Parametric.ico \
-	Polar.ico \
-	Y_Var.ico
-
 iconsdir = $(pkgdatadir)/icons
-icons_DATA = $(LINK_ICONS) *.ico
+icons_DATA = *.ico
 EXTRA_DIST = *.ico
-
-#App_Var.ico: Application.ico
-#	ln -sf Application.ico App_Var.ico
-#Complex_List.ico: List.ico
-#	ln -sf List.ico Complex_List.ico
-#Complex_Matrix.ico: Matrix.ico
-#	ln -sf Matrix.ico Complex_Matrix.ico
-#Complex_Vector.ico: Vector.ico
-#	ln -sf Vector.ico Complex_Vector.ico
-#Diff_Equ.ico: Equation.ico
-#	ln -sf Equation.ico Diff_Equ.ico
-#Function.ico: Equation.ico
-#	ln -sf Equation.ico Function.ico
-#Parametric.ico: Equation.ico
-#	ln -sf Equation.ico Parametric.ico
-#Polar.ico: Equation.ico
-#	ln -sf Equation.ico Polar.ico
-#Y_Var.ico: Equation.ico
-#	ln -sf Equation.ico Y_Var.ico
 FN = `echo $$I | sed 's/\.ico$//'`
 all: all-am
 
@@ -305,9 +275,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-	$(MAKE) $(AM_MAKEFLAGS) \
-	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
-	  dist-hook
 check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
@@ -386,21 +353,15 @@ ps-am:
 uninstall-am: uninstall-iconsDATA uninstall-info-am
 
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	dist-hook distclean distclean-generic distclean-libtool \
-	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-exec \
-	install-exec-am install-iconsDATA install-info install-info-am \
-	install-man install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am uninstall uninstall-am uninstall-iconsDATA \
-	uninstall-info-am
+	distclean distclean-generic distclean-libtool distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-exec install-exec-am \
+	install-iconsDATA install-info install-info-am install-man \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	uninstall uninstall-am uninstall-iconsDATA uninstall-info-am
 
-
-dist-hook:
-	@list='$(LINK_ICONS)'; for icon in $$list; do \
-	  rm -rf $(distdir)/$$icon; \
-	done
 
 convert:
 	@echo Converting icons to pixmaps

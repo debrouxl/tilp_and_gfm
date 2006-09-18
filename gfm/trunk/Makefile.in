@@ -197,6 +197,7 @@ target_alias = @target_alias@
 
 # subdirectories to scan
 SUBDIRS = build glade help icons pixmaps src $(am__append_1)
+EXTRA_DIST = gfm.pro INFO
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
