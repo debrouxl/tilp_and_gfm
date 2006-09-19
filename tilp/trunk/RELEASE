@@ -2,8 +2,8 @@
 
 
 
-Current version:  0.20-beta (05/08/2006)
-Current version:  0.23-beta (27/08/2006)
+Old     version:  
+Current version:  1.00 (20/09/2006)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,38 +21,28 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- full TiGroup (*.tig) support (ram, archive & flash) in sending only
-	- implemented Skip/Retry/Cancel dialog box when sending vars/apps
-	- convert DUSB error packets into error message (O. Armand request)
-	- convert DBUS error packets into error message (K. Kofler request)
+	- USB hand-helds (except for Titanium under Linux)
+	- TiGroup file format
 
 
 Improvements:
 -------------
 
-	- added option allowing to select behaviour of backup (old: backup/group, new: TiGroup)
-	- 'Ready' reopens SilverLink device like DirectLink (the only way to clear error)
-	- reworked user boxes: use GTK standard ones to look better
+	- skip/retry/cancel
+	- better probing of devices
+	- and many others
 
 
 Bug fixes:
 ----------
 
-	- sending app without dirlist makes TiLP crash
-	- re-enabled 'local/full path' option
-	- possible conflict between FLASH token & FLASH folder
-	- delete var: increase timeout due to garbage collecting
-	- timeout in send_flash, send_tigroup and del_var
-	- file can be selected several times (file selection)
-	- path with save dialog
-	- Unbuntu Bug #49256 (reported as bug #1513271)
-	- 'Current Folder' button didn't set path properly
-	- can't read some TI86 files due to bad padding of varname => there are _four_ TI-86 file format!
+	- 
 
 
 Known bugs:
 -----------
 
+	- the transfer dialog box is not always refreshed
 	- [linux] Titanium DirectLink support don't work on 2.6.x kernel series.
 	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
 
