@@ -18,6 +18,7 @@ SOURCES	+= src/*.c
 QMAKE_PROJECT_DEPTH=1
 
 unix:OBJECTS_DIR = .obj
+!unix:OBJECTS_DIR = obj
 
 GLIB2_MINVERSION = 2.6.0
 HAVE_GLIB2 = $$system(pkg-config --atleast-version=$$GLIB2_MINVERSION glib-2.0 && echo yes || echo no)
