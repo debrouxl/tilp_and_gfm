@@ -92,4 +92,4 @@ DISTFILES += $${pkgdata.files} $${glade.files} $${icons.files} $${pixmaps.files}
 distbz2.target = dist-bzip2
 distbz2.commands = zcat gfm.tar.gz | bzip2 --best -c > gfm.tar.bz2
 distbz2.depends = dist
-QMAKE_EXTRA_UNIX_TARGETS += distbz2
+unix:QMAKE_EXTRA_UNIX_TARGETS += distbz2
