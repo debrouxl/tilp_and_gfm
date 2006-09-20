@@ -23,7 +23,7 @@
 
 /* tilibs2 version dependencies */
 #define LIBTICONV_REQUIRE_VERSION "0.0.5"
-#define LIBTIFILES2_REQUIRE_VERSION "0.2.7"
+#define LIBTIFILES2_REQUIRE_VERSION "0.2.2"
 
 /* Group File Manager Version */
 #define GFM_VERSION "0.02" // Main Version
