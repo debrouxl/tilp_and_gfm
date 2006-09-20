@@ -2,6 +2,7 @@ TEMPLATE	= app
 LANGUAGE	= C
 
 CONFIG	+= warn_on debug
+CONFIG	-= qt
 
 LIBS	+= -Wl,--export-dynamic
 
