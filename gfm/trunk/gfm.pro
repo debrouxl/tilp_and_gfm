@@ -1,8 +1,8 @@
 TEMPLATE	= app
 LANGUAGE	= C
 
+CONFIG	-= qt debug_and_release debug_and_release_target
 CONFIG	+= warn_on debug
-CONFIG	-= qt
 
 LIBS	+= -Wl,--export-dynamic
 
