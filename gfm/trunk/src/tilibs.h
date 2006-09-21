@@ -30,13 +30,8 @@
 # include <config.h>
 #endif
 
-#ifndef _MSC_VER
-#include <tilp2/ticonv.h>
-#include <tilp2/tifiles.h>
-#else
-#include "ticonv.h"
-#include "tifiles.h"
-#endif
+#include <ticonv.h>
+#include <tifiles.h>
 
 #ifdef _MSC_VER
 #define snprintf	_snprintf
