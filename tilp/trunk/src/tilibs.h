@@ -31,37 +31,9 @@
 # include <config.h>
 #endif
 
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/ticables.h>
-#elif defined(__MACOSX__)
-# include <libticables/ticables.h>
-#else
-# include "ticables.h"
-#endif
-
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/tifiles.h>
-#elif defined(__MACOSX__)
-# include <libtifiles2/tifiles.h>
-# include <libtifiles2/macros.h>
-#else
-# include "tifiles.h"
-#endif
-
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/ticalcs.h>
-#elif defined(__MACOSX__)
-# include <libticalcs2/ticalcs.h>
-#else
-# include "ticalcs.h"
-#endif
-
-#if !defined(__MACOSX__) && !defined(__WIN32__)
-# include <tilp2/ticonv.h>
-#elif defined(__MACOSX__)
-# include <libticonv/ticonv.h>
-#else
-# include "ticonv.h"
-#endif
+#include <ticables.h>
+#include <tifiles.h>
+#include <ticalcs.h>
+#include <ticonv.h>
 
 #endif
