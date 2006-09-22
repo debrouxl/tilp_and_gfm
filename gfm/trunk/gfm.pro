@@ -82,7 +82,7 @@ isEmpty(CFLAGS) {
     CFLAGS = -Os -s -fomit-frame-pointer
   }
 }
-*-g++:CFLAGS += -DHAVE_STDINT_H
+*-g++*:CFLAGS += -DHAVE_STDINT_H
 QMAKE_CFLAGS_DEBUG = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/share/gfm"'"'
 QMAKE_CFLAGS_RELEASE = $$CFLAGS $$PKGCONFIG_CFLAGS -DSHARE_DIR='"'"$$PREFIX/share/gfm"'"'
 
