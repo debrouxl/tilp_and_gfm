@@ -1094,7 +1094,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	}
 	if(infos->mask & INFOS_OS_VERSION)
 	{
-		tmp = g_strdup_printf("%sOs Version: %s\n", str, infos->os_version);
+		tmp = g_strdup_printf("%sOS Version: %s\n", str, infos->os_version);
 		g_free(str);
 		str = tmp;
 	}
