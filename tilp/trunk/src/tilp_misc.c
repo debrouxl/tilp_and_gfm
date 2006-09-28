@@ -24,11 +24,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "tilp_core.h"
-
-#ifdef __WIN32__
-#define snprintf _snprintf
-#endif				
+#include "tilp_core.h"			
 
 /* Change the current drive (Win32 only) */
 #ifndef __MACOSX__
@@ -36,7 +32,7 @@ int tilp_drive_change(char drive_letter)
 {
 #ifdef __WIN32__
 	gchar *s;
-	snprintf(local.cwdir, 8, "%c:\\", (char) drive_letter);
+	g_snprintf(local.cwdir, 8, "%c:\\", (char) drive_letter);
 
 	s = g_strdup(local.cwdir);
 	if (tilp_file_chdir(s) == -1) 

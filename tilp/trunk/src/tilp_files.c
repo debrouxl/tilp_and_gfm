@@ -487,22 +487,18 @@ const char *tilp_file_get_date(FileEntry * fi)
 }
 
 
-#ifdef __WIN32__
-#define snprintf _snprintf
-#endif
-
 const char *tilp_file_get_size(FileEntry * fi)
 {
 	static char buffer[32];
 
 	if (fi->size < 1024)
-		snprintf(buffer, 32, "  %i", (int) fi->size);
+		g_snprintf(buffer, 32, "  %i", (int) fi->size);
 
 	else if ((fi->size > 1024) && (fi->size < 1024 * 1024))
-		snprintf(buffer, 32, "%i KB", (int) fi->size >> 10);
+		g_snprintf(buffer, 32, "%i KB", (int) fi->size >> 10);
 
 	else if (fi->size > 1024 * 1024)
-		snprintf(buffer, 32, "%i MB", (int) fi->size >> 20);
+		g_snprintf(buffer, 32, "%i MB", (int) fi->size >> 20);
 
 	return buffer;
 }

@@ -994,25 +994,21 @@ int tilp_calc_new_fld(void)
 # define EXTRA_INFOS 0
 #endif
 
-#ifdef __WIN32__
-#define snprintf _snprintf
-#endif
-
 const char* format_bytes(unsigned long value)
 {
 	static char str[16];
 
 	if(value < 64*1024)
 	{
-		snprintf(str, sizeof(str), "%lu bytes", value);
+		g_snprintf(str, sizeof(str), "%lu bytes", value);
 	}
 	else if(value < 1024*1024)
 	{
-		snprintf(str, sizeof(str), "%lu KB", value >> 10);
+		g_snprintf(str, sizeof(str), "%lu KB", value >> 10);
 	}
 	else
 	{
-		snprintf(str, sizeof(str), "%lu MB", value >> 20);
+		g_snprintf(str, sizeof(str), "%lu MB", value >> 20);
 	}
 
 	return (const char *)str;

@@ -29,10 +29,6 @@
 
 struct label_window label_wnd = { 0 };
 
-#ifdef __WIN32__
-#define snprintf _snprintf
-#endif
-
 #define PATH_LEVEL	10
 
 static char* format_path(char *src, char *dst)
@@ -83,7 +79,7 @@ static char* format_path(char *src, char *dst)
 		strcat(dst, "...");
 		strcat(dst, p);
 		
-		snprintf(str, 8, " (%i)", n);
+		g_snprintf(str, 8, " (%i)", n);
 		strcat(dst, str);
 
 		free(left);

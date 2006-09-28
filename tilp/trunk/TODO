@@ -14,6 +14,12 @@ This is a list of some things to do:
 
 23) TiLP used as a normal user
 
+- migration auto* -> QMake (à voir) ?
+- support i18n (n'a jamais marché, à comprendre)
+- fix Titanium/USB sous Linux
+- recontacter TiEducationFrance qui m'avait proposé de mettre une version
+Linux dûment testée en téléchargement sur leur site officiel.
+
 //------
 
 + = done.

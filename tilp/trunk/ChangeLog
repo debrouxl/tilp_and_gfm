@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 28/09/2006, version 1.01: roms
+	- as stated by Benjmain, replaced snprintf by g_snprintf which is safer
+
 - 17/09/2006, tagged as version 1.00: roms
 	
 - 28/08/2006, version 0.24 (0.1.4, 0.2.7, 0.2.8, 0.0.6): roms
