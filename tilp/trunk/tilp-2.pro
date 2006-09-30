@@ -61,7 +61,11 @@ HAVE_TICONV = $$system(pkg-config --atleast-version=$$TICONV_MINVERSION ticonv &
 PKGCONFIG_CFLAGS += $$system(pkg-config --cflags ticonv)
 LIBS += $$system(pkg-config --libs ticonv)
 
-##ZLIB check to add...
+exists( /usr/lib/libz* ) 
+{
+  message( "Configuring for libz..." )
+  CFLAGS += -DHAVE_LIBZ
+}
 
 #
 # Path settings
@@ -103,11 +107,11 @@ PACKAGE = TiLP2
 
 LIBS	+= -Wl,--export-dynamic
 
-win32 { ARCH = -D__WIN32__ }
-unix  { ARCH = -D__LINUX__ }
+linux-* { ARCH = -D__LINUX__ }
+else *bsd-* { ARCH = -D__BSD__ }
+else win32-* { ARCH = -D__WIN32__ }
 CFLAGS += $$ARCH
 
-CFLAGS = $$(CFLAGS)
 isEmpty(CFLAGS) {
   debug {
     CFLAGS = -Os -g
