@@ -5,10 +5,10 @@
 TEMPLATE	= app
 LANGUAGE	= C
 
+CONFIG -= qt
 CONFIG	+= warn_on debug
 
 HEADERS	+= src/*.h
-
 SOURCES	+= src/*.c
 
 QMAKE_PROJECT_DEPTH=1
@@ -61,9 +61,9 @@ HAVE_TICONV = $$system(pkg-config --atleast-version=$$TICONV_MINVERSION ticonv &
 PKGCONFIG_CFLAGS += $$system(pkg-config --cflags ticonv)
 LIBS += $$system(pkg-config --libs ticonv)
 
-exists( /usr/lib/libz* ) 
+exists(/usr/lib/libz*) 
 {
-  message( "Configuring for libz..." )
+  message("Configuring for libz...")
   CFLAGS += -DHAVE_LIBZ
 }
 
@@ -79,7 +79,7 @@ isEmpty(PREFIX) {
 target.path = $$PREFIX/bin
 
 pkgdata.path = $$PREFIX/share/tilp2
-pkgdata.files = man/Manpage.txt RELEASE
+pkgdata.files = man/Manpage.txt
 
 glade.path = $${pkgdata.path}/glade
 glade.files = glade/*.glade glade/*.gladep
@@ -96,7 +96,7 @@ man.files = man/tilp-2.1
 pixmaps.path = $${pkgdata.path}/pixmaps
 pixmaps.files = pixmaps/*.xpm
 
-INSTALLS += pkgdata glade help icons man pixmaps
+INSTALLS += pkgdata glade help icons man pixmaps target
 
 #
 # Various flags
@@ -109,8 +109,7 @@ LIBS	+= -Wl,--export-dynamic
 
 linux-* { ARCH = -D__LINUX__ }
 else *bsd-* { ARCH = -D__BSD__ }
-else win32-* { ARCH = -D__WIN32__ }
-CFLAGS += $$ARCH
+CFLAGS += $$ARCH -Wno-unused
 
 isEmpty(CFLAGS) {
   debug {
@@ -128,7 +127,11 @@ QMAKE_LFLAGS_RELEASE = -s
 # Distribution
 #
 
-DISTFILES += $${pkgdata.files} $${glade.files} $${icons.files} $${pixmaps.files} $${man.files} build/mingw/* build/devcpp/* glade/*.str man/cleaner.c INFO README acinclude.m4 configure.ac aclocal.m4 Makefile.am Makefile.in config.h.in configure AUTHORS COPYING ChangeLog INSTALL NEWS compile config.guess config.sub depcomp install-sh ltmain.sh missing build/Makefile.am build/Makefile.in glade/Makefile.am glade/Makefile.in help/Makefile.am help/Makefile.in icons/Makefile.am icons/Makefile.in man/Makefile.am man/Makefile.in pixmaps/Makefile.am pixmaps/Makefile.in src/Makefile.am src/Makefile.in
+DISTFILES += \
+  $${pkgdata.files} $${glade.files} $${help.files} $${icons.files} \
+  $${pixmaps.files} $${man.files} Makefile \
+  build/mingw/* build/msvc/* glade/*.str man/cleaner.c man/dos2unix.c \
+  AUTHORS ChangeLog COPYING INSTALL README* RELEASE TODO
 
 distbz2.target = dist-bzip2
 distbz2.commands = zcat gfm.tar.gz | bzip2 --best -c > gfm.tar.bz2

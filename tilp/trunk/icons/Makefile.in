@@ -37,7 +37,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = icons
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(dist_icons_DATA) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -54,8 +55,8 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(iconsdir)"
-iconsDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(icons_DATA)
+dist_iconsDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(dist_icons_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALLOCA = @ALLOCA@
@@ -212,21 +213,8 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-LINK_ICONS = \
-	App_Var.ico \
-	Complex_List.ico \
-	Complex_Matrix.ico \
-	Complex_Vector.ico \
-	Diff_Equ.ico \
-	Function.ico \
-	Parametric.ico \
-	Polar.ico \
-	Y_Var.ico
-
 iconsdir = $(pkgdatadir)/icons
-icons_DATA = $(LINK_ICONS) *.ico
-EXTRA_DIST = *.ico
-FN = `echo $$I | sed 's/\.ico$//'`
+dist_icons_DATA = *.ico
 all: all-am
 
 .SUFFIXES:
@@ -269,19 +257,19 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
-install-iconsDATA: $(icons_DATA)
+install-dist_iconsDATA: $(dist_icons_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(iconsdir)" || $(mkdir_p) "$(DESTDIR)$(iconsdir)"
-	@list='$(icons_DATA)'; for p in $$list; do \
+	@list='$(dist_icons_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(iconsdir)/$$f'"; \
-	  $(iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(iconsdir)/$$f"; \
+	  echo " $(dist_iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(iconsdir)/$$f'"; \
+	  $(dist_iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(iconsdir)/$$f"; \
 	done
 
-uninstall-iconsDATA:
+uninstall-dist_iconsDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(icons_DATA)'; for p in $$list; do \
+	@list='$(dist_icons_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(iconsdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(iconsdir)/$$f"; \
@@ -320,9 +308,6 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
-	$(MAKE) $(AM_MAKEFLAGS) \
-	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
-	  dist-hook
 check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
@@ -372,7 +357,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-iconsDATA
+install-data-am: install-dist_iconsDATA
 
 install-exec-am:
 
@@ -398,43 +383,19 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-iconsDATA uninstall-info-am
+uninstall-am: uninstall-dist_iconsDATA uninstall-info-am
 
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
-	dist-hook distclean distclean-generic distclean-libtool \
-	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-exec \
-	install-exec-am install-iconsDATA install-info install-info-am \
+	distclean distclean-generic distclean-libtool distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dist_iconsDATA \
+	install-exec install-exec-am install-info install-info-am \
 	install-man install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am uninstall uninstall-am uninstall-iconsDATA \
+	ps ps-am uninstall uninstall-am uninstall-dist_iconsDATA \
 	uninstall-info-am
 
-
-dist-hook:
-	@list='$(LINK_ICONS)'; for icon in $$list; do \
-	  rm -rf $(distdir)/$$icon; \
-	done
-
-App_Var.ico: Application.ico
-	ln -sf Application.ico App_Var.ico
-Complex_List.ico: List.ico
-	ln -sf List.ico Complex_List.ico
-Complex_Matrix.ico: Matrix.ico
-	ln -sf Matrix.ico Complex_Matrix.ico
-Complex_Vector.ico: Vector.ico
-	ln -sf Vector.ico Complex_Vector.ico
-Diff_Equ.ico: Equation.ico
-	ln -sf Equation.ico Diff_Equ.ico
-Function.ico: Equation.ico
-	ln -sf Equation.ico Function.ico
-Parametric.ico: Equation.ico
-	ln -sf Equation.ico Parametric.ico
-Polar.ico: Equation.ico
-	ln -sf Equation.ico Polar.ico
-Y_Var.ico: Equation.ico
-	ln -sf Equation.ico Y_Var.ico
 
 convert:
 	@echo Converting icons to pixmaps
