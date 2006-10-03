@@ -131,7 +131,7 @@ Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "h
 Name: "{group}\TiLP-2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"
 Name: "{group}\TiLP-2 on the Web"; Filename: "{app}\tilp2.url"
 Name: "{group}\Uninstall TiLP-2"; Filename: "{uninstallexe}"
-Name: "{group}\User's Manual"; Filename: "{app}\help\User_Manual.html"
+Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
 Name: "{group}\Install GTK+ from web"; Filename: "{app}\wget\d_and_i.bat";
 Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
