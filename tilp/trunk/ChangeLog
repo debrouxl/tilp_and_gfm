@@ -3,7 +3,7 @@ SubVersion: $Id$
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 28/09/2006, version 1.01: roms
-	- as stated by Benjmain, replaced snprintf by g_snprintf which is safer
+	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer
 
 - 17/09/2006, tagged as version 1.00: roms
 	
@@ -994,7 +994,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	Some fixes for Win32.
 
 - 23/06/2001, version 4.32: 
-	Kevin Koffler reports to me 2 bugs with the tiffep and getcwd. 
+	Kevin Kofler reports to me 2 bugs with the tiffep and getcwd. 
 	The actual version of TiLP did not accept directory names which was 
 	too long (>256). 
 
