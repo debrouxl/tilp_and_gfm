@@ -27,6 +27,7 @@
 
 #include "folder_tree.h"
 #include "gfm.h"
+#include "group_tree.h"
 #include "gui.h"
 #include "support.h"
 #include "paths.h"
@@ -68,7 +69,7 @@ int launch_gfmgui(void)
     gtk_paned_set_position(GTK_PANED(data), pane_center);
 
     // Setup the Group Tree
-    // todo
+    group_tree_init(); // Init
 		
     // Setup the Folder Tree
     folder_tree_init(); // Init
@@ -85,30 +86,12 @@ int launch_gfmgui(void)
 /* The Destroy Dialog Event */
 GLADE_CB void gfm_main_destroy(GtkObject *object, gpointer user_data)
 {
-         // Quit Main GTK Loop
-         gtk_main_quit();
+  // Quit Main GTK Loop
+  gtk_main_quit();
 }
 
 // Not Used yet!
 /*
-void
-on_folder_tree_drag_begin(GtkWidget * widget,
-			  GdkDragContext * drag_context,
-			  gpointer user_data)
-{
-
-}
-
-
-void
-on_folder_tree_drag_data_get(GtkWidget * widget,
-			     GdkDragContext * drag_context,
-			     GtkSelectionData * data,
-			     guint info, guint time, gpointer user_data)
-{
-
-}
-
 
 void
 on_folder_tree_drag_data_received(GtkWidget * widget,

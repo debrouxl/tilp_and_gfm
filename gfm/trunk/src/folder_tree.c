@@ -488,8 +488,8 @@ GLADE_CB gboolean on_folder_tree_key_press_event(GtkWidget *widget,
                                                  GdkEventKey *event,
                                                  gpointer user_data)
 {
-    // code
+  // code
     
-    // Return is bad
-    return FALSE;
+  // Return is bad
+  return FALSE;
 }

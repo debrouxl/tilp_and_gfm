@@ -20,7 +20,7 @@
 
 /* Todo List: - Leave, its easy to access in Dev-C++
    Computer (Folder) Tree:
-   -dragging (folder_drag.c/h)
+   -draggin
      -Group File into the Group Tree and opens Group File
      -TI File onto TI File in FOlder Tree to merge into Group File
    -Enter Key on selection in folder tree to open file in Group Tree.
@@ -30,7 +30,7 @@
    Group File Tree:
    -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder
     tree is called (~line 72)
-   -Dragging (group_drag.c/h)
+   -Dragging
      -File onto Folder Tree to extract
      -File onto TI File in Folder Tree to merge/create Group File
      -File from Folder Tree into Group Tree to add to Group File
@@ -39,13 +39,17 @@
     (pointers to labels in gfm_widget in gui.h struct)
    -Double Click (Rename Group File)
 
+    *******************************************
+    group_tree_column_clicked, group_tree_selection change needed to be added!!!!!! and continue on
+    ********************************************
+
    Other:
    -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
     all need coded - callback functions in gui.c
    -progress bars need to be done in pbar.c/.h
-   -man page dialog needs to be implemented
+   -man page dialog needs to be implemented - See Changelog Dialog
    -html launcher needs to be done
-   -Changelog/Release Dialog (like on on first time TiLP is booted)
+   -Changelog/Release Dialog (like on on first time TiLP is booted) - maybe create generic routine for less code (with manpage)
    -Load Settings at boot, size of Main Window, and where slider is
    -Make a routine just for loading glade xml, we have many copies within GFM.
 
@@ -102,7 +106,7 @@ int main(int argc, char *argv[])
 
     /* Load tilibs2 */
     splash_screen_message("Loading tilibs2...");
-		load_tilibs(); // Load tilibs
+    load_tilibs(); // Load tilibs
 
     /* Load Settings */
     splash_screen_message("Loading Settings...");
@@ -123,7 +127,7 @@ int main(int argc, char *argv[])
     config_save();
 
     /* Close tilibs */
-		tifiles_library_exit(); // libtifiles2
+    tifiles_library_exit(); // libtifiles2
 
     /* Done */
     return 0;
