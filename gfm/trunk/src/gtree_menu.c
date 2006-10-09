@@ -17,3 +17,42 @@
   along with this program if not, write to the Free Software
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <stdio.h>
+#include <gtk/gtk.h>
+#include <glade/glade.h>
+
+#include "dialog.h"
+#include "gfm.h"
+#include "group_tree.h"
+#include "gtree_menu.h"
+#include "gui.h"
+#include "paths.h"
+#include "support.h"
+
+/* Load Menu Function */
+GtkWidget *create_group_menu(void)
+{
+  GladeXML *xml;
+  GtkWidget *menu;
+  gpointer data;
+	
+  xml = glade_xml_new(gfm_paths_build_glade("gfm.glade"), "group_menu", NULL);
+
+  // Glade File Error
+  if (!xml)
+    g_error("GUI loading failed!\n");
+
+  // Connect Signals
+  glade_xml_signal_autoconnect(xml);
+  
+  // Load the Menu Now
+  menu = glade_xml_get_widget(xml, "group_menu");
+
+  // Return the Menu
+  return menu;
+}

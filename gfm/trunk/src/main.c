@@ -40,7 +40,8 @@
    -Double Click (Rename Group File)
 
     *******************************************
-    group_tree_column_clicked, group_tree_selection change needed to be added!!!!!! and continue on
+    -group_tree_init(): group_tree_column_clicked, group_tree_selection change needed to be coded
+    -group tree click event, left double click implemented but not used!
     ********************************************
 
    Other:

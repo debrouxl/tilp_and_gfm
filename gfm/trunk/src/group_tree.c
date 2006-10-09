@@ -143,12 +143,64 @@ int group_tree_init(void)
     g_signal_connect(G_OBJECT(col), "clicked", G_CALLBACK(group_tree_column_clicked), view);
   }
     
-    // Selection Setup
-    selection = gtk_tree_view_get_selection(view);
-    gtk_tree_selection_set_mode(selection, GTK_SELECTION_MULTIPLE);
-    gtk_tree_selection_set_select_function(selection, select_func, NULL, NULL);
-    g_signal_connect(G_OBJECT(selection), "changed", G_CALLBACK(group_tree_selection_changed), NULL);
+  // Selection Setup
+  selection = gtk_tree_view_get_selection(view);
+  gtk_tree_selection_set_mode(selection, GTK_SELECTION_MULTIPLE);
+  gtk_tree_selection_set_select_function(selection, select_func, NULL, NULL);
+  g_signal_connect(G_OBJECT(selection), "changed", G_CALLBACK(group_tree_selection_changed), NULL);
     
-    // Return
-    return 0;
+  // Return
+  return 0;
+}
+
+/* Group Tree Clicked Button Event */
+GLADE_CB gboolean on_group_tree_button_press_event(GtkWidget *widget, GdkEventButton *event, gpointer user_data)
+{
+  GtkTreeView *view = GTK_TREE_VIEW(widget);
+  GtkTreeModel *model = GTK_TREE_MODEL(list);
+  GtkTreePath *path;
+  GtkTreeViewColumn *column;
+  GdkEventButton *bevent;
+  gint tx = (gint) event->x;
+  gint ty = (gint) event->y;
+  gint cx, cy;
+  FileEntry *fe;
+  GtkTreeIter iter;
+
+  // Get Path
+  gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx, &cy);
+
+  switch (event->type) 
+  {
+    // Single Click
+    case GDK_BUTTON_PRESS:
+      // Right Click - popup Right Click Menu
+      if (event->button == 3)
+      {
+        bevent = (GdkEventButton *)(event);
+                
+        // Popup Menu
+        gtk_menu_popup(GTK_MENU(create_group_menu()),
+                       NULL, NULL, NULL, NULL,
+                       bevent->button, bevent->time);
+                               
+        // Return
+        return TRUE;
+      }
+    break;
+    // Double Click
+    case GDK_2BUTTON_PRESS:
+      // Left Click
+      if (event->button == 1)
+      {
+        // code
+      }
+    break;
+    // Nothing
+    default:
+    break;
+  }
+
+  // Return
+  return FALSE;
 }

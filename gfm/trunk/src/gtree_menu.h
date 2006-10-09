@@ -17,3 +17,13 @@
   along with this program if not, write to the Free Software
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
+
+#ifndef __GFMGTREE_MENU_H__
+#define __GFMGTREE_MENU_H__
+
+#include <gtk/gtk.h>
+
+// Prototypes
+GtkWidget *create_group_menu(void);
+
+#endif // End of __GFM_FTREE_MENU_H__

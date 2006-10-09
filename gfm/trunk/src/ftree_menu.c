@@ -134,7 +134,7 @@ GtkWidget *create_folder_menu(void)
 
 	// Glade File Error
   if (!xml)
-	g_error("GUI loading failed !\n");
+	g_error("GUI loading failed!\n");
 
 	// Connect Signals
 	glade_xml_signal_autoconnect(xml);

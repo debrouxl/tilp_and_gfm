@@ -106,14 +106,7 @@ on_folder_tree_drag_data_received(GtkWidget * widget,
 }
 
 
-gboolean
-on_group_tree_button_press_event(GtkWidget * widget,
-				 GdkEventButton * event,
-				 gpointer user_data)
-{
 
-    return FALSE;
-}
 
 
 void
