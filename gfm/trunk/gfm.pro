@@ -6,9 +6,16 @@ CONFIG	+= warn_on debug
 
 LIBS	+= -Wl,--export-dynamic
 
-HEADERS	+= src/*.h
+HEADERS	+= src/cmdline.h src/configfile.h src/dialog.h src/drag_drop.h src/file.h \
+           src/folder_tree.h src/ftree_menu.h src/gfm.h src/group_tree.h \
+           src/gtree_menu.h src/gui.h src/labels.h src/paths.h \
+           src/splashscreen.h src/support.h src/tilibs.h
 
-SOURCES	+= src/*.c
+SOURCES	+= src/cmdline.c src/configfile.c src/dialog.c src/drag_drop.c \
+           src/file.c src/folder_tree.c src/ftree_menu.c src/ftree_sort.c \
+           src/group_tree.c src/gtree_menu.c src/gtree_sort.c src/gui.c \
+           src/labels.c src/main.c src/paths.c src/splashscreen.c \
+           src/support.c src/tilibs.c
 
 # If this is not used, a build from /usr/.... will generate
 # Makefiles with relative paths for install.  This totally

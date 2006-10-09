@@ -24,18 +24,22 @@ gfm_LDADD = \
 # right thing with just "*.c".
 gfm_SOURCES = \
 	*.h \
-	cmdline.c	\
-	file.c		\
-	ftree_sort.c	\
-	main.c		\
-	support.c	\
-	configfile.c	\
-	folder_tree.c  	\
-	gui.c         	\
-	paths.c         \
-	tilibs.c	\
-	dialog.c   	\
-	ftree_menu.c   	\
-	labels.c      	\
-	splashscreen.c
+	cmdline.c \
+	configfile.c \
+	dialog.c \
+	drag_drop.c \
+	file.c \
+	folder_tree.c \
+	ftree_menu.c \
+	ftree_sort.c \
+	group_tree.c \
+	gtree_menu.c \
+	gtree_sort.c \
+	gui.c \
+	labels.c \
+	main.c \
+	paths.c \
+	splashscreen.c \
+	support.c \
+	tilibs.c
 
