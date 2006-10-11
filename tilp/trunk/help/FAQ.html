@@ -27,7 +27,29 @@ widget_class "*" style "user-font"<br>
 <pre>This forces GTK+ to use a compatible font (Arial) and reportedly fixes both the aforementioned problems, <br>and probably others too...<br><br><br></pre>
 <div align="center"> <big><big><b><u>Linux specific<br>
 </u></b></big></big></div>
-<pre><br>Q: ?<br>A: .<br><br></pre>
+<pre><br>Q:<br>&lt;&lt;<br></pre>
+<div style="margin-left: 40px;">Hi,&nbsp;<br>
+I'm using tilp2-1.00 on gentoo linux.&nbsp;<br>
+xeelvr / # tilp-2&nbsp;<br>
+ticables-INFO: Check for parport usability:&nbsp;<br>
+ticables-INFO: node /dev/parport0: exists&nbsp;<br>
+ticables-INFO: permissions/user/group: -rw-rw---- root root&nbsp;<br>
+ticables-INFO: is user can r/w on device: yes&nbsp;<br>
+ticables-INFO: is useable: no&nbsp;<br>
+tilp-INFO: Msg: illegal operation or argument.&nbsp;<br>
+Cause: the program which uses this library is buggy. Fire-up the
+developer!&nbsp;<br>
+System: Ioctl() inappropr&eacute; pour un p&eacute;riph&eacute;rique
+(errno = 25)&nbsp;<br>
+tilp-INFO: tilp_device_err catched error 51&nbsp;<br>
 <br>
+Have you any idea?&nbsp;<br>
+</div>
+<pre>&gt;&gt;<br>A: check that your kernel has support for parport and ppdev (your linux kernel .config file must contains at least:<br></pre>
+<div style="margin-left: 40px;">CONFIG_PARPORT=y <br>
+CONFIG_PARPORT_PC=y&nbsp;<br>
+CONFIG_PPDEV=y<br>
+</div>
+That's all !<br>
 </body>
 </html>
