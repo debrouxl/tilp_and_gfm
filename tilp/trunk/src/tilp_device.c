@@ -320,6 +320,8 @@ int tilp_device_close(void)
 	int err;
 
 	// detach cable (made by handle_del, too)
+	if(calc_handle == NULL)
+		return 0;
 	err = ticalcs_cable_detach(calc_handle);
 	tilp_err(err);
 
