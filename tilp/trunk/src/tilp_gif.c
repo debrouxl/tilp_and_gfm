@@ -38,7 +38,7 @@ int default_msg_box(const char *title, const char *message, int action)
 
 int default_msg_box1(const char *title, const char *message)
 {
-#if !defined(_CONSOLE)
+#if !defined(_WINDOWS)
     int result;
 
 	tilp_info("msg_box1: [%s] [%s]", title, message);
@@ -53,7 +53,7 @@ int default_msg_box1(const char *title, const char *message)
 
 int default_msg_box2(const char *title, const char *message)
 {
-#if !defined(_CONSOLE)
+#if !defined(_WINDOWS)
     int result;
 
 	tilp_info("msg_box2: [%s] [%s]", title, message);
@@ -73,7 +73,7 @@ int default_msg_box2(const char *title, const char *message)
 int default_msg_box3(const char *title, const char *message, 
 		     const char *b1, const char *b2, const char *b3)
 {
-#if !defined(_CONSOLE)
+#if !defined(_WINDOWS)
     int result;
 
 	tilp_info("msg_box3: [%s] [%s]", title, message);
@@ -93,7 +93,7 @@ int default_msg_box3(const char *title, const char *message,
 
 int default_msg_box4(const char *title, const char *message)
 {
-#if !defined(_CONSOLE)
+#if !defined(_WINDOWS)
     int result;
     
 	tilp_info("msg_box4: [%s] [%s]", title, message);
@@ -112,7 +112,7 @@ int default_msg_box4(const char *title, const char *message)
 
 char *default_msg_entry(const char *title, const char *message, const char *content)
 {
-#if !defined(_CONSOLE)
+#if !defined(_WINDOWS)
     char buffer[1024];
     int ret;
 
