@@ -38,18 +38,22 @@ int default_msg_box(const char *title, const char *message, int action)
 
 int default_msg_box1(const char *title, const char *message)
 {
+#if !defined(_CONSOLE)
     int result;
-    
+
 	tilp_info("msg_box1: [%s] [%s]", title, message);
 	tilp_info("msg_box1: press ENTER for OK");
 	fflush(stdin);
+
 	fscanf(stdin, "%i", &result);
+#endif
 
 	return 0;
 }
 
 int default_msg_box2(const char *title, const char *message)
 {
+#if !defined(_CONSOLE)
     int result;
 
 	tilp_info("msg_box2: [%s] [%s]", title, message);
@@ -62,13 +66,14 @@ int default_msg_box2(const char *title, const char *message)
 	case 1: return BUTTON1;
 	default: return BUTTON2;
 	}
-
+#endif
 	return 0;
 }
 
 int default_msg_box3(const char *title, const char *message, 
 		     const char *b1, const char *b2, const char *b3)
 {
+#if !defined(_CONSOLE)
     int result;
 
 	tilp_info("msg_box3: [%s] [%s]", title, message);
@@ -82,12 +87,13 @@ int default_msg_box3(const char *title, const char *message,
         case 2: return BUTTON2;
 	default: return BUTTON3;
 	}
-
+#endif
 	return 0;
 }
 
 int default_msg_box4(const char *title, const char *message)
 {
+#if !defined(_CONSOLE)
     int result;
     
 	tilp_info("msg_box4: [%s] [%s]", title, message);
@@ -100,12 +106,13 @@ int default_msg_box4(const char *title, const char *message)
     case 1: return BUTTON1;
     default: return BUTTON2;
     }	
-
+#endif
 	return 0;
 }
 
 char *default_msg_entry(const char *title, const char *message, const char *content)
 {
+#if !defined(_CONSOLE)
     char buffer[1024];
     int ret;
 
@@ -118,6 +125,9 @@ char *default_msg_entry(const char *title, const char *message, const char *cont
 	return g_strdup(buffer);
     else
 	return NULL;
+#else
+	return g_strdup("");
+#endif
 }
 
 void default_create_pbar_type1(const char *title)
