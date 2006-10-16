@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 
+#include "drag_drop.h"
 #include "folder_tree.h"
 #include "gfm.h"
 #include "group_tree.h"
@@ -69,13 +70,16 @@ int launch_gfmgui(void)
     gtk_paned_set_position(GTK_PANED(data), pane_center);
 
     // Setup the Group Tree
-    group_tree_init(); // Init
+    group_tree_init();
 		
     // Setup the Folder Tree
-    folder_tree_init(); // Init
-    folder_tree_refresh(); // Refresh Folder Tree View
+    folder_tree_init();
+    folder_tree_refresh();
     
-		// Show the Widget
+    // Start Drag and Drop
+    drag_drop_init();
+    
+    // Show the Widget
     gtk_widget_show(widget);
 
     // Return
@@ -93,53 +97,6 @@ GLADE_CB void gfm_main_destroy(GtkObject *object, gpointer user_data)
 // Not Used yet!
 /*
 
-void
-on_folder_tree_drag_data_received(GtkWidget * widget,
-				  GdkDragContext * drag_context,
-				  gint x,
-				  gint y,
-				  GtkSelectionData * data,
-				  guint info,
-				  guint time, gpointer user_data)
-{
-
-}
-
-
-
-
-
-void
-on_group_tree_drag_begin(GtkWidget * widget,
-			 GdkDragContext * drag_context, gpointer user_data)
-{
-
-}
-
-
-void
-on_group_tree_drag_data_get(GtkWidget * widget,
-			    GdkDragContext * drag_context,
-			    GtkSelectionData * data,
-			    guint info, guint time, gpointer user_data)
-{
-
-}
-
-
-void
-on_group_tree_drag_data_received(GtkWidget * widget,
-				 GdkDragContext * drag_context,
-				 gint x,
-				 gint y,
-				 GtkSelectionData * data,
-				 guint info,
-				 guint time, gpointer user_data)
-{
-
-}
-
-
 gboolean
 on_group_tree_key_press_event(GtkWidget * widget,
 			      GdkEventKey * event, gpointer user_data)
@@ -154,6 +111,22 @@ void on_users_manual1_activate(GtkMenuItem * menuitem, gpointer user_data)
 
 }
 
+void on_close_file_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+}
+
+void on_compress_level_1_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+}
+void on_compress_level_2_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+}
+void on_compress_level_3_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+}
+void on_compress_level_4_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+}
 
 void on_manpage1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
@@ -238,6 +211,10 @@ void on_add1_activate(GtkMenuItem * menuitem, gpointer user_data)
 
 GLADE_CB void on_rename1_activate(GtkMenuItem *menuitem, gpointer user_data)
 
+void on_close_file_activate(GtkMenuItem * menuitem, gpointer user_data)
+{
+
+}
 
 void on_refresh1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {

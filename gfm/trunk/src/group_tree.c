@@ -36,12 +36,15 @@
 // Keep this numbered, because ordering may be messed up when running with
 // column2index and the switch that uses these as the cases
 enum { COLUMN_ICON=0, COLUMN_NAME=1, COLUMN_TYPE=2, COLUMN_SIZE=3,
-       COLUMN_ATTR=4, COLUMN_DATA=5 };
+       COLUMN_DATA=4 };
 
-#define GLIST_NCOLS (6) // 6 columns
-#define GLIST_NVCOLS (5) // 5 viewable columns
+#define GLIST_NCOLS (5) // 5 columns
+#define GLIST_NVCOLS (4) // 4 viewable columns
 
 static GtkListStore *list;
+
+// Post information about Group Tree
+GroupTreeData gtree_info;
 
 /* Column Clicked Function */
 static void group_tree_column_clicked(GtkTreeViewColumn *column, gpointer user_data)
@@ -121,12 +124,6 @@ int group_tree_init(void)
 				              renderer, "text",
 					      COLUMN_SIZE, NULL);
     
-  // Archived
-  renderer = gtk_cell_renderer_text_new();
-  gtk_tree_view_insert_column_with_attributes(view, -1, "Attributes",
-					      renderer, "text",
-					      COLUMN_ATTR, NULL);
-    
   // Let Columns be clicked/resized
   for(i=0; i<GLIST_NVCOLS; i++)
   {
@@ -149,6 +146,22 @@ int group_tree_init(void)
   gtk_tree_selection_set_select_function(selection, select_func, NULL, NULL);
   g_signal_connect(G_OBJECT(selection), "changed", G_CALLBACK(group_tree_selection_changed), NULL);
     
+  // Return
+  return 0;
+}
+
+/* Clear Group Tree */
+int group_tree_clear(void)
+{
+  GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.group_tree);
+  GtkTreeSelection *selection;  
+
+  // Clear the List
+  selection = gtk_tree_view_get_selection(view);
+  g_signal_handlers_block_by_func(G_OBJECT(selection), group_tree_selection_changed, NULL);
+  gtk_list_store_clear(list);
+  g_signal_handlers_unblock_by_func(G_OBJECT(selection), group_tree_selection_changed, NULL);
+
   // Return
   return 0;
 }

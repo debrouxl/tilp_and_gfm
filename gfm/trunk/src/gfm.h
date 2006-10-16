@@ -45,8 +45,8 @@ typedef struct
     mode_t attrib;
     #endif
 
-	// Actions
-	FileContent *content;	// File Content to Handle
+  // Actions
+  FileContent *content;	// File Content to Handle
 } FileEntry;
 
 /* Current GFM Settings */
@@ -55,6 +55,7 @@ typedef struct
     gboolean confirm, show_all; // Confirm Deletion, Show all files
     gchar *cur_dir; // Current Directory
     gchar *cur_file; // Current Group File
+    FileClass cur_filetype; // TI Group File or Group File
 } SettingsStruct;
 
 // Globalize a Structure

@@ -35,8 +35,8 @@ typedef struct
     GList *selection; // List of Selected Files
     gboolean sort_order; // Which Order
     int column; // Which Column to sort on
-		int working_act; // Working Action
-		GList *selected_files; // List of Selected File Paths
+    int working_act; // Working Action
+    GList *selected_files; // List of Selected File Paths
 } FolderTreeData;
 
 // Export Structure

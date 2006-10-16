@@ -310,7 +310,7 @@ GLADE_CB void on_delete2_activate(GtkMenuItem *menuitem, gpointer user_data)
 GLADE_CB void on_new_folder1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
 	gchar *input_value;
-	gchar *dirname;
+	gchar *dirname, *locale_utf8;
 	gsize bw, br;
 	
 	// Get Directory name
@@ -323,8 +323,10 @@ GLADE_CB void on_new_folder1_activate(GtkMenuItem *menuitem, gpointer user_data)
 	}
 	
 	// Convert from UTF-8 to GLib file name encoding
-	dirname = g_filename_from_utf8(input_value, -1, &br, &bw, NULL);
-	
+        locale_utf8 = g_locale_to_utf8(input_value, -1, &br, &bw, NULL);
+	dirname = g_filename_from_utf8(locale_utf8, -1, &br, &bw, NULL);
+        g_free(locale_utf8);
+        
 	if (dirname == NULL)
 	{
 		msgbox_error("An error has occured creating the Directory!");

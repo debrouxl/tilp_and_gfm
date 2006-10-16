@@ -54,11 +54,11 @@ am_gfm_OBJECTS = gfm-cmdline.$(OBJEXT) gfm-configfile.$(OBJEXT) \
 	gfm-dialog.$(OBJEXT) gfm-drag_drop.$(OBJEXT) \
 	gfm-file.$(OBJEXT) gfm-folder_tree.$(OBJEXT) \
 	gfm-ftree_menu.$(OBJEXT) gfm-ftree_sort.$(OBJEXT) \
-	gfm-group_tree.$(OBJEXT) gfm-gtree_menu.$(OBJEXT) \
-	gfm-gtree_sort.$(OBJEXT) gfm-gui.$(OBJEXT) \
-	gfm-labels.$(OBJEXT) gfm-main.$(OBJEXT) gfm-paths.$(OBJEXT) \
-	gfm-splashscreen.$(OBJEXT) gfm-support.$(OBJEXT) \
-	gfm-tilibs.$(OBJEXT)
+	gfm-group_file.$(OBJEXT) gfm-group_tree.$(OBJEXT) \
+	gfm-gtree_menu.$(OBJEXT) gfm-gtree_sort.$(OBJEXT) \
+	gfm-gui.$(OBJEXT) gfm-labels.$(OBJEXT) gfm-main.$(OBJEXT) \
+	gfm-paths.$(OBJEXT) gfm-splashscreen.$(OBJEXT) \
+	gfm-support.$(OBJEXT) gfm-tilibs.$(OBJEXT)
 gfm_OBJECTS = $(am_gfm_OBJECTS)
 gfm_DEPENDENCIES =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
@@ -226,6 +226,7 @@ gfm_SOURCES = \
 	folder_tree.c \
 	ftree_menu.c \
 	ftree_sort.c \
+	group_file.c \
 	group_tree.c \
 	gtree_menu.c \
 	gtree_sort.c \
@@ -316,6 +317,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-folder_tree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-ftree_menu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-ftree_sort.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-group_file.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-group_tree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gtree_menu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gtree_sort.Po@am__quote@
@@ -459,6 +461,20 @@ gfm-ftree_sort.obj: ftree_sort.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ftree_sort.c' object='gfm-ftree_sort.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ftree_sort.obj `if test -f 'ftree_sort.c'; then $(CYGPATH_W) 'ftree_sort.c'; else $(CYGPATH_W) '$(srcdir)/ftree_sort.c'; fi`
+
+gfm-group_file.o: group_file.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_file.o -MD -MP -MF "$(DEPDIR)/gfm-group_file.Tpo" -c -o gfm-group_file.o `test -f 'group_file.c' || echo '$(srcdir)/'`group_file.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_file.Tpo" "$(DEPDIR)/gfm-group_file.Po"; else rm -f "$(DEPDIR)/gfm-group_file.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_file.c' object='gfm-group_file.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_file.o `test -f 'group_file.c' || echo '$(srcdir)/'`group_file.c
+
+gfm-group_file.obj: group_file.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_file.obj -MD -MP -MF "$(DEPDIR)/gfm-group_file.Tpo" -c -o gfm-group_file.obj `if test -f 'group_file.c'; then $(CYGPATH_W) 'group_file.c'; else $(CYGPATH_W) '$(srcdir)/group_file.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_file.Tpo" "$(DEPDIR)/gfm-group_file.Po"; else rm -f "$(DEPDIR)/gfm-group_file.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_file.c' object='gfm-group_file.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_file.obj `if test -f 'group_file.c'; then $(CYGPATH_W) 'group_file.c'; else $(CYGPATH_W) '$(srcdir)/group_file.c'; fi`
 
 gfm-group_tree.o: group_tree.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_tree.o -MD -MP -MF "$(DEPDIR)/gfm-group_tree.Tpo" -c -o gfm-group_tree.o `test -f 'group_tree.c' || echo '$(srcdir)/'`group_tree.c; \

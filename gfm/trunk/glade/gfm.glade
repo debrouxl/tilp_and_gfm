@@ -732,6 +732,34 @@
 <widget class="GtkMenu" id="group_menu">
 
   <child>
+    <widget class="GtkImageMenuItem" id="close">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">Close TI-Group File</property>
+      <property name="label" translatable="yes">Close File</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_close_file_activate" last_modification_time="Mon, 09 Oct 2006 23:55:15 GMT"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image53">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-close</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkSeparatorMenuItem" id="separator11">
+      <property name="visible">True</property>
+    </widget>
+  </child>
+
+  <child>
     <widget class="GtkImageMenuItem" id="add1">
       <property name="visible">True</property>
       <property name="tooltip" translatable="yes">Add File to Group File</property>
@@ -740,7 +768,7 @@
       <signal name="activate" handler="on_add1_activate" last_modification_time="Sun, 28 May 2006 04:51:51 GMT"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image17">
+	<widget class="GtkImage" id="image54">
 	  <property name="visible">True</property>
 	  <property name="stock">gtk-add</property>
 	  <property name="icon_size">1</property>
@@ -748,6 +776,101 @@
 	  <property name="yalign">0.5</property>
 	  <property name="xpad">0</property>
 	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkImageMenuItem" id="change_comments">
+      <property name="visible">True</property>
+      <property name="tooltip" translatable="yes">Change Comments on TI Group File</property>
+      <property name="label" translatable="yes">Change Comments</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_change_comments_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image55">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-info</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkImageMenuItem" id="change_compression1">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Change Compression</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_change_compression1_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+
+      <child internal-child="image">
+	<widget class="GtkImage" id="image56">
+	  <property name="visible">True</property>
+	  <property name="stock">gtk-convert</property>
+	  <property name="icon_size">1</property>
+	  <property name="xalign">0.5</property>
+	  <property name="yalign">0.5</property>
+	  <property name="xpad">0</property>
+	  <property name="ypad">0</property>
+	</widget>
+      </child>
+
+      <child>
+	<widget class="GtkMenu" id="change_compression1_menu">
+
+	  <child>
+	    <widget class="GtkRadioMenuItem" id="compress_level_1">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Compress to Level 1 (Fastest)</property>
+	      <property name="label" translatable="yes">Level 1</property>
+	      <property name="use_underline">True</property>
+	      <property name="active">True</property>
+	      <signal name="activate" handler="on_compress_level_1_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioMenuItem" id="compress_level_2">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Compress to Level 2</property>
+	      <property name="label" translatable="yes">Level 2</property>
+	      <property name="use_underline">True</property>
+	      <property name="active">False</property>
+	      <property name="group">compress_level_1</property>
+	      <signal name="activate" handler="on_compress_level_2_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioMenuItem" id="compress_level_3">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Compress to Level 3</property>
+	      <property name="label" translatable="yes">Level 3</property>
+	      <property name="use_underline">True</property>
+	      <property name="active">False</property>
+	      <property name="group">compress_level_1</property>
+	      <signal name="activate" handler="on_compress_level_3_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkRadioMenuItem" id="compress_level_4">
+	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Compress to Level 4 (Best)</property>
+	      <property name="label" translatable="yes">Level 4</property>
+	      <property name="use_underline">True</property>
+	      <property name="active">False</property>
+	      <property name="group">compress_level_1</property>
+	      <signal name="activate" handler="on_compress_level_4_activate" last_modification_time="Sun, 15 Oct 2006 01:18:44 GMT"/>
+	    </widget>
+	  </child>
 	</widget>
       </child>
     </widget>
@@ -763,7 +886,7 @@
       <accelerator key="R" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image18">
+	<widget class="GtkImage" id="image57">
 	  <property name="visible">True</property>
 	  <property name="stock">gtk-italic</property>
 	  <property name="icon_size">1</property>
@@ -791,7 +914,7 @@
       <signal name="activate" handler="on_refresh1_activate" last_modification_time="Sun, 28 May 2006 04:51:51 GMT"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image19">
+	<widget class="GtkImage" id="image58">
 	  <property name="visible">True</property>
 	  <property name="stock">gtk-refresh</property>
 	  <property name="icon_size">1</property>
@@ -814,7 +937,7 @@
       <accelerator key="Delete" modifiers="0" signal="activate"/>
 
       <child internal-child="image">
-	<widget class="GtkImage" id="image20">
+	<widget class="GtkImage" id="image59">
 	  <property name="visible">True</property>
 	  <property name="stock">gtk-delete</property>
 	  <property name="icon_size">1</property>

@@ -22,7 +22,6 @@
    Computer (Folder) Tree:
    -draggin
      -Group File into the Group Tree and opens Group File
-     -TI File onto TI File in FOlder Tree to merge into Group File
    -Enter Key on selection in folder tree to open file in Group Tree.
    -Group/Ungroup Selection in Folder Tree Right Click Menu
    -The Rest of GUI Callback functions for tree in gui.c (if any)
@@ -32,8 +31,7 @@
     tree is called (~line 72)
    -Dragging
      -File onto Folder Tree to extract
-     -File onto TI File in Folder Tree to merge/create Group File
-     -File from Folder Tree into Group Tree to add to Group File
+     -Group/File from Folder Tree into Group Tree to add to Group File
    -Sorting (code in gtree_sort.c) and implement
    -Right Click to open that menu and get items coded (in gtree_menu.c,gtree_menu.h)
     (pointers to labels in gfm_widget in gui.h struct)

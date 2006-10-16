@@ -21,7 +21,24 @@
 #ifndef __GFM_GTREE_H__
 #define __GFM_GTREE_H__
 
+#include <gtk/gtk.h>
+
+enum { GTREE_SORT_NAME=100, GTREE_SORT_TYPE=101, GTREE_SORT_SIZE=102 };
+enum { GTREE_SORT_ASC=FALSE, GTREE_SORT_DESC=TRUE };
+
+// Stores information to public about certain stuff about the Group Tree
+typedef struct
+{
+  GList *gfile_list; // List of Files in Group Tree
+  GList *selection; // List of Selected Files
+  gboolean sort_order; // Which Order
+  int column; // Which Column to sort on
+} GroupTreeData;
+
+// Export Structure
+extern GroupTreeData gtree_info;
 
 int group_tree_init(void);
+int group_tree_clear(void);
 
 #endif

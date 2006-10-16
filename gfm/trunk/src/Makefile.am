@@ -32,6 +32,7 @@ gfm_SOURCES = \
 	folder_tree.c \
 	ftree_menu.c \
 	ftree_sort.c \
+	group_file.c \
 	group_tree.c \
 	gtree_menu.c \
 	gtree_sort.c \
