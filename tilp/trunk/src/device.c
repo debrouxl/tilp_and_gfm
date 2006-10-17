@@ -221,6 +221,11 @@ gint display_device_dbox()
 	if(options.usb_avail)
 		clist_populate(store, 0);
 
+#ifdef __WIN32__
+	data = glade_xml_get_widget(xml, "lnx1");
+	gtk_widget_hide(data);
+#endif
+
 	// Cable  
 	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
 	switch (options.cable_model) 
