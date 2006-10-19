@@ -270,7 +270,7 @@ int tilp_file_move_with_check(const char *src, const char *dst)
 
 #if !GLIB_CHECK_VERSION(2, 8, 0)
 #include <errno.h>
-#include <direct.h>
+//#include <direct.h>
 // Code taken from Glib
 int g_chdir (const gchar *path)
 {

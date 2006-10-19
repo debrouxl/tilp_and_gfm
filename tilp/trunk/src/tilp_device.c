@@ -56,19 +56,23 @@
 
 CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
 {
-	if(cable == CABLE_USB && calc == CALC_TI84P_USB)
+        if(cable == CABLE_USB && calc == CALC_TI84P_USB)
 		return CALC_TI84P;
 	else if(cable == CABLE_USB && calc == CALC_TI89T_USB)
 		return  CALC_TI89T;
+	else if(cable == CABLE_DEV && calc == CALC_TI84P_USB)
+	  return CALC_TI84P;
+        else if(cable == CABLE_DEV && calc == CALC_TI89T_USB)
+	  return  CALC_TI89T;
 	else
 		return calc;
 }
 
 CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc)
 {
-	if(cable == CABLE_USB && calc == CALC_TI84P)
+	if((cable == CABLE_USB || cable == CABLE_DEV) && calc == CALC_TI84P)
 		return CALC_TI84P_USB;
-	else if(cable == CABLE_USB && calc == CALC_TI89T)
+	else if((cable == CABLE_USB || cable ==CABLE_DEV) && calc== CALC_TI89T)
 		return  CALC_TI89T_USB;
 	else
 		return calc;
@@ -286,6 +290,7 @@ int tilp_device_open(void)
 {
 	int err = 0;
 
+
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 	if(cable_handle == NULL)
 		gif->msg_box1("Error", "Can't set cable");
@@ -367,8 +372,8 @@ int tilp_device_err(int err)
 }
 
 /*
-  Note: SilverLink is still NACK'ed after error. This did not appear with TiLP-1 
-  because it always close/open the device before any transfer.
+  Note: SilverLink is still NACK'ed after error. This did not appear with 
+  TiLP-1 because it always close/open the device before any transfer.
   It seems that an error (HALT condition) can not be cleared by a simple
   slv_reset. We need to reopen the device. Why ? I don't know !
 
