@@ -85,14 +85,31 @@ int tilp_calc_isready(void)
 {
 	int err;
 	int to;
+	int win32 = 0;
+
+#ifdef __WIN32__
+	win32 = 1;
+#else
+	win32 = 0;
+#endif
 	
-	// DirectLink cable need re-opening to clear error (STALL)
-	if(options.cable_model == CABLE_SLV ||
-	   options.cable_model == CABLE_USB)
-	{
+	/* Hot-plug: we have to reopen cable because calc might have turned
+	   off while using TiLP.
+	   Note: Titanium does _not_ like too fast close/open under Linux. 
+	*/
+
+	if(!win32 && options.calc_model == CALC_TI89T_USB)
+	  {
+	    //printf("hotplug: nothing !\n");
+	  }
+	else if((options.cable_model == CABLE_USB || 
+	   options.cable_model == CABLE_DEV))
+	  {
+	    //printf("hotplug: reopen !\n");
 		tilp_device_close();
 		tilp_device_open();
 	}
+	
 
 	// first check: fast
 	to = ticables_options_set_timeout(cable_handle, 10);
