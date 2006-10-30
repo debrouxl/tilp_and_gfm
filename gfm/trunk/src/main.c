@@ -27,8 +27,7 @@
    -The Rest of GUI Callback functions for tree in gui.c (if any)
 
    Group File Tree:
-   -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder
-    tree is called (~line 72)
+   -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder tree is called (~line 72)
    -Dragging
      -File onto Folder Tree to extract
      -Group/File from Folder Tree into Group Tree to add to Group File
@@ -41,6 +40,14 @@
     -group_tree_init(): group_tree_column_clicked, group_tree_selection change needed to be coded
     -group tree click event, left double click implemented but not used!
     ********************************************
+
+    Group File Support:
+    group_file_create() - creates new Tig or Group File
+    group_file_open() - checks file class and opens with gfile_open or tigfile_open()
+    update tigfile_create() if needed
+    code gfile_create
+    need to get group_tree_refresh coded and implemented into gui.c and in various spots of group_file.c
+    
 
    Other:
    -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
@@ -71,6 +78,7 @@
 #include "cmdline.h"
 #include "file.h"
 #include "folder_tree.h"
+#include "group_file.h"
 #include "gui.h"
 #include "paths.h"
 #include "splashscreen.h"
@@ -124,7 +132,10 @@ int main(int argc, char *argv[])
 
     /* Save Settings */
     config_save();
-
+    
+    /* Free the Group File */
+    group_file_free();
+    
     /* Close tilibs */
     tifiles_library_exit(); // libtifiles2
 

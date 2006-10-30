@@ -39,7 +39,6 @@ GtkWidget *create_group_menu(void)
 {
   GladeXML *xml;
   GtkWidget *menu;
-  gpointer data;
 	
   xml = glade_xml_new(gfm_paths_build_glade("gfm.glade"), "group_menu", NULL);
 

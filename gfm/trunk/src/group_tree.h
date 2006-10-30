@@ -29,7 +29,6 @@ enum { GTREE_SORT_ASC=FALSE, GTREE_SORT_DESC=TRUE };
 // Stores information to public about certain stuff about the Group Tree
 typedef struct
 {
-  GList *gfile_list; // List of Files in Group Tree
   GList *selection; // List of Selected Files
   gboolean sort_order; // Which Order
   int column; // Which Column to sort on

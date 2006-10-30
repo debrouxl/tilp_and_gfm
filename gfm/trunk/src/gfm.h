@@ -56,6 +56,7 @@ typedef struct
     gchar *cur_dir; // Current Directory
     gchar *cur_file; // Current Group File
     FileClass cur_filetype; // TI Group File or Group File
+    CalcModel cur_filemodel; // Current Group File Calculator Model
 } SettingsStruct;
 
 // Globalize a Structure

@@ -120,32 +120,39 @@ GLADE_CB void on_group_tree_drag_data_received(GtkWidget *widget, GdkDragContext
     // Open Group File
     else if (add_list->next == NULL && tifiles_file_is_group(add_list->data))
     {
-      // gfile_open(add_list->data);
-      // return;
+      gfile_open(add_list->data);
+      return;
     }
     
     // Create Group File
     else
-    {
+    { 
+      /*
+      // Option to make Group or Ti Group file -- this needs updating (group_file_create())
       if (tigfile_create(TRUE))
         return; // Error, returning
       else
         if (tigfile_open(DNDInfo.file_path))
           return; // Error
+      */
+      return; // Temporary
     }
   }
   
   // Add to (TI)/group file routines & refresh
-  // open routines set settings.cur_file && settings.cur_filetype
-  
+  // update labels
+
   ////// If TI Group File(s), Split Files out into /tmp and add individually.
  
   
   printf("G-Received\n");
   //- Parse for Multiple Files
-  //-If one file && not tifile- error
+  // Create (TI)group file if no file open & is regular (not flash) file.
   //- check to see if TI File.
+  // no tig on tig, or tig on group, only group on tig
+  // no !CALC_MODEL model files on CALC_MODEL model group files
   // Then add to Group Tree Queue in group_tree.h structure (still have to make)
+  //   group_tree_refresh will do this, it will read from GFile.list
   // Than add to group file (code in group_file.c)
 }
 

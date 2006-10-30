@@ -26,12 +26,15 @@
 #include <glade/glade.h>
 
 #include "drag_drop.h"
+#include "file.h"
 #include "folder_tree.h"
 #include "gfm.h"
+#include "group_file.h"
 #include "group_tree.h"
 #include "gui.h"
 #include "support.h"
 #include "paths.h"
+#include "tilibs.h"
 
 // Global Widget Access Structure
 GFMWidget gfm_widget;
@@ -71,7 +74,23 @@ int launch_gfmgui(void)
 
     // Setup the Group Tree
     group_tree_init();
-		
+    if (settings.cur_file != NULL && file_exists(settings.cur_file))
+    {
+      FileClass file_type = tifiles_file_get_class(settings.cur_file);
+
+      // Ti Group File
+      if (file_type == TIFILE_TIGROUP)
+        tigfile_open(settings.cur_file);
+      
+      // Group File
+      else if (file_type == TIFILE_GROUP)
+        gfile_open(settings.cur_file);
+      
+      // Invalid Choice - not a (TI)Group File
+      else
+        settings.cur_file = NULL;
+    }
+
     // Setup the Folder Tree
     folder_tree_init();
     folder_tree_refresh();

@@ -38,10 +38,14 @@ typedef struct
 // Main TI Group File Data Structure
 typedef struct
 {
-  tigfview **list; // The list of Files in the TiG File
+  tigfview *list; // The list of Files in the TiG File
   int file_size; // Size of files within TiG
   int num_entries; // Number of entries
-  TigContent *TigFile; // The Contents of the TiG File
+  union
+  {
+    TigContent *TigFile; // The Contents of the TiG File
+    FileContent *GFile; // The Contents of the Group File (not TiG File!)
+  } raw;
 } GFileStruct;
 
 extern GFileStruct GFile;
@@ -49,5 +53,8 @@ extern GFileStruct GFile;
 // Prototypes
 int tigfile_create(gboolean globaltize);
 int tigfile_open(const char *filename);
+int gfile_open(const char *filename);
+int group_file_close(void);
+int group_file_free(void);
 
 #endif

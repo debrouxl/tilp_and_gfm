@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 
 #include "gfm.h"
+#include "group_file.h"
 #include "gui.h"
 #include "labels.h"
 
@@ -108,4 +109,31 @@ void ftree_label_refresh(void)
   
 	// Update Label
 	gtk_label_set_text(GTK_LABEL(gfm_widget.current_folder), path);
+}
+
+/* Refresh the Labels in the Group Tree */
+void gtree_labels_refresh(void)
+{
+  gsize br, bw;
+  gchar size[48], num_files[12];
+  gchar *utf8_size, *utf8_num_files;
+  
+  // Parse File Size and place into a string
+  if (GFile.file_size < 1024)
+    snprintf(size, 48, "File Size: %d bytes", GFile.file_size);
+  if (GFile.file_size >= 1024 && GFile.file_size < 1048576)
+    snprintf(size, 48, "File Size: %.2f kilobytes", (float)(GFile.file_size / 1024));
+  if (GFile.file_size >= 1048576)
+    snprintf(size, 48, "File Size: %.2f megabytes", (float)(GFile.file_size / 1048576));
+
+  // Convert number of files to string
+  snprintf(num_files, 12, "Files: %d", GFile.num_entries);
+
+  // Convert to UTF-8
+  utf8_size = g_locale_to_utf8(size, -1, &br, &bw, NULL);
+  utf8_num_files = g_locale_to_utf8(num_files, -1, &br, &bw, NULL);
+
+  // Update labels
+  gtk_label_set_text(GTK_LABEL(gfm_widget.group_filesize), utf8_size);
+  gtk_label_set_text(GTK_LABEL(gfm_widget.group_files), utf8_num_files);
 }

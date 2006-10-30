@@ -30,6 +30,8 @@
 #include "file.h"
 #include "group_file.h"
 #include "group_tree.h"
+#include "gui.h"
+#include "labels.h"
 #include "tilibs.h"
 
 // Group File Structure
@@ -86,7 +88,7 @@ int tigfile_create(gboolean globaltize)
   }
   tifiles_content_delete_tigroup(content);
   
-  if (globaltize)
+  if (globaltize && !ret)
     DNDInfo.file_path = g_strdup(filepath);
   
   // Free stuff
@@ -97,73 +99,175 @@ int tigfile_create(gboolean globaltize)
   return ret;
 }
 
-/* Open Group File */
+/* Open TI Group File */
 int tigfile_open(const char *filename)
 {
   int i, k;
   #define j GFile.num_entries
-  
+
   // Clear Group Tree
   group_tree_clear();
   
+  // Allocate TigContent Structure
+  GFile.raw.TigFile = tifiles_content_create_tigroup(CALC_NONE, 1);
+  
   // Load TI Group File into tig_data
-  if (tifiles_file_read_tigroup(filename, &GFile.TigFile))
+  if (tifiles_file_read_tigroup(filename, GFile.raw.TigFile))
   {
     msgbox_error("Failed to Open TI Group File!");
     return -1;
   }
   
+  // Allocate GFM Compatible List
+  GFile.list = g_malloc0(sizeof(tigfview) * GFile.raw.TigFile->num_entries);
+  
   GFile.num_entries = 0; // Number of Files in List
   GFile.file_size = 0; // Size of files in list
   
   // Lets make the GFM compatible list
-  for(i=0; i<GFile.TigFile->num_entries; i++)
+  for(i=0; i<GFile.raw.TigFile->num_entries; i++)
   {
     // Apps only
-    if (GFile.TigFile->entries[i]->type == TIFILE_FLASH)
+    if (GFile.raw.TigFile->entries[i]->type == TIFILE_FLASH)
     {
-      GFile.list[j]->name = ticonv_varname_to_utf8(GFile.TigFile->entries[i]->content.flash->model,
-                                                   GFile.TigFile->entries[i]->content.flash->name); // Filename in UTF8
-      GFile.list[j]->type = GFile.TigFile->entries[i]->type; // File Type, which would be APP
+      GFile.list[j].name = ticonv_varname_to_utf8(GFile.raw.TigFile->entries[i]->content.flash->model,
+                                                  GFile.raw.TigFile->entries[i]->content.flash->name); // Filename in UTF8
+      GFile.list[j].type = GFile.raw.TigFile->entries[i]->type; // File Type, which would be APP
       
       // Get size, tricky with APPS
-      GFile.list[j]->size = 0;
-      for(k=0; k<GFile.TigFile->entries[i]->content.flash->num_pages; k++)
+      GFile.list[j].size = 0;
+      for(k=0; k<GFile.raw.TigFile->entries[i]->content.flash->num_pages; k++)
       {
-        GFile.list[j]->size += GFile.TigFile->entries[i]->content.flash->pages[k]->size; // APP Size
+        GFile.list[j].size += GFile.raw.TigFile->entries[i]->content.flash->pages[k]->size; // APP Size
       }
-      GFile.file_size += GFile.list[j]->size;
+      GFile.file_size += GFile.list[j].size;
       
-      GFile.list[j]->loc_top = i;
-      GFile.list[j]->model = GFile.TigFile->entries[i]->content.flash->model; // Calculator Model
+      GFile.list[j].loc_top = i;
+      GFile.list[j].model = GFile.raw.TigFile->entries[i]->content.flash->model; // Calculator Model
       
       GFile.num_entries++; // Increment for GFM List
     }
     
-    // Regular/Group/Single files
-    if (GFile.TigFile->entries[i]->type == TIFILE_SINGLE ||
-        GFile.TigFile->entries[i]->type == TIFILE_GROUP ||
-        GFile.TigFile->entries[i]->type == TIFILE_REGULAR)
+    // Regular files
+    if (GFile.raw.TigFile->entries[i]->type == TIFILE_REGULAR)
     {
-      for(k=0; k<GFile.TigFile->entries[i]->content.regular->num_entries; k++)
+      for(k=0; k<GFile.raw.TigFile->entries[i]->content.regular->num_entries; k++)
       {
-        GFile.list[j]->name = ticonv_varname_to_utf8(GFile.TigFile->entries[i]->content.regular->model,
-                                                     GFile.TigFile->entries[i]->content.regular->entries[k]->name); // Filename in UTF8
-        GFile.list[j]->type = GFile.TigFile->entries[i]->type; // File Type
-        GFile.list[j]->size = GFile.TigFile->entries[i]->content.regular->entries[k]->size; // File Size
-        GFile.list[j]->loc_top = i;
-        GFile.list[j]->loc_bot = k;
-        GFile.list[j]->model = GFile.TigFile->entries[i]->content.regular->model; // Calculator Model
+        GFile.list[j].name = ticonv_varname_to_utf8(GFile.raw.TigFile->entries[i]->content.regular->model,
+                                                    GFile.raw.TigFile->entries[i]->content.regular->entries[k]->name); // Filename in UTF8
+        GFile.list[j].type = GFile.raw.TigFile->entries[i]->type; // File Type
+        GFile.list[j].size = GFile.raw.TigFile->entries[i]->content.regular->entries[k]->size; // File Size
+        GFile.list[j].loc_top = i;
+        GFile.list[j].loc_bot = k;
+        GFile.list[j].model = GFile.raw.TigFile->entries[i]->content.regular->model; // Calculator Model
         
-        GFile.file_size += GFile.list[j]->size;
+        GFile.file_size += GFile.list[j].size;
         GFile.num_entries++;
       }
     }
   }
   
-  // set settings.cur_file && .cur_filetype
+  // Set the settings structure data
+  settings.cur_file = g_strdup(filename);
+  settings.cur_filetype == TIFILE_TIGROUP;
+  
+  // Update the labels
+  gtree_labels_refresh();
+  
   // refresh group tree
   /// code group tree refresh
+  
+  // Return
+  return 0;
+}
+
+/* Open Group File */
+int gfile_open(const char *filename)
+{
+  int i;
+  #define j GFile.num_entries
+  
+  // Clear Group Tree
+  group_tree_clear();
+  
+  // Allocate FileContent Strucutre
+  GFile.raw.GFile = tifiles_content_create_group(1);
+  
+  // Load Group FIle into GFile.GFile
+  if (tifiles_file_read_regular(filename, GFile.raw.GFile))
+  {
+    msgbox_error("Failed to Open Group File!");
+    return -1;
+  }
+  
+  // Allocate GFM Compatible List
+  GFile.list = g_malloc0(sizeof(tigfview) * GFile.raw.GFile->num_entries);
+  
+  GFile.num_entries = 0; // Number of Files in List
+  GFile.file_size = 0; // Size of files in list
+  
+  // Lets make the GFM compatible list
+  for(i=0; i<GFile.raw.GFile->num_entries; i++)
+  {
+    GFile.list[j].name = ticonv_varname_to_utf8(GFile.raw.GFile->model, GFile.raw.GFile->entries[i]->name); // Filename in UTF-8
+    GFile.list[j].type = TIFILE_REGULAR;
+    GFile.list[j].size = GFile.raw.GFile->entries[i]->size;
+    GFile.list[j].loc_top = GFile.list[j].loc_bot = i;
+    GFile.list[j].model = GFile.raw.GFile->model;
+    
+    GFile.file_size += GFile.list[j].size;
+    GFile.num_entries++;
+  }
+  
+  // Set the settings structure data
+  settings.cur_file = g_strdup(filename);
+  settings.cur_filetype == TIFILE_GROUP;
+  settings.cur_filemodel = GFile.raw.GFile->model;
+  
+  // Update the labels
+  gtree_labels_refresh();
+  
+  // refresh group tree
+  /// code group tree refresh
+  
+  // Return
+  return 0;
+  
+}
+
+/* Close the Group File */
+int group_file_close(void)
+{
+  // Clear Group Tree
+  group_tree_clear();
+  
+  // Reset the Group Tree Labels
+  gtk_label_set_text(GTK_LABEL(gfm_widget.group_filesize), "File Size: 0 bytes");
+  gtk_label_set_text(GTK_LABEL(gfm_widget.group_files), "Files: 0");
+  
+  // Free the Group File Data
+  group_file_free();
+  
+  // More Stuff
+  settings.cur_file = NULL;
+  
+  // Return
+  return 0;
+}
+
+/* Free the Group File */
+int group_file_free(void)
+{
+  // Free Structures, of a file is open.
+  if (settings.cur_file)
+  {
+    if (settings.cur_filetype == TIFILE_TIGROUP)
+      tifiles_content_delete_tigroup(GFile.raw.TigFile);
+    if (settings.cur_filetype == TIFILE_GROUP)
+      tifiles_content_delete_group(GFile.raw.GFile);
+    
+    g_free(GFile.list);
+  }
   
   // Return
   return 0;

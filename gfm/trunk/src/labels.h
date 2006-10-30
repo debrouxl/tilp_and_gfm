@@ -23,5 +23,6 @@
 
 // Prototypes
 void ftree_label_refresh();
+void gtree_labels_refresh();
 
 #endif
