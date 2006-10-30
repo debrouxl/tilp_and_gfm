@@ -6,10 +6,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer
 	- added CABLE_DEV support for testing purposes (visible under Linux only)
 	- GIF: don't ask when built in _CONSOLE mode
-	- added CABLE_DEV for testing purposes
 	- doesn't reopen DirectLink when using UsbKernel access
-	- don't reopen cable in tilp_ticalcs_isready because Titanium/USB 
-		don't like this under Linux.
+	- don't reopen cable in tilp_ticalcs_isready because Titanium/USB
+	  doesn't like this under Linux.
 
 - 17/09/2006, tagged as version 1.00: roms
 	

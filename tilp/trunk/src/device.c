@@ -402,7 +402,7 @@ gint display_device_dbox()
 
 #ifdef __LINUX__
 		if(options.cable_model == CABLE_USB && options.calc_model == CALC_TI89T_USB)
-			gif->msg_box1("Information", "Please note that Titanium thru DirectLink USB works under Linux but it suffers from a limitation: the cable have to unplugged/plugged whenever TiLP is exited.");
+			gif->msg_box1("Information", "Please note that Titanium through DirectLink USB works under Linux but it suffers from a limitation: the cable has to unplugged/plugged whenever TiLP is exited.");
 #endif
 
 		break;
