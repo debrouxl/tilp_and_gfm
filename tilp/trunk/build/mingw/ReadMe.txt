@@ -10,7 +10,7 @@ This is how to compile LPG software with MinGW. This bugger can be tricky so wat
 
 These compiling instructions will work for:
 - libticables2, libticonv, libtifiles2, libticables2
-- TiLP-2
+- TiLP 2
 - TiEmu 3
 - GFM
 
@@ -84,7 +84,7 @@ Once you have successfully built TiEmu 3, here's how to build an installer on Wi
 
 4. Right-click on build\nsis\tiemu.nsi and select "Build".
 
-NOTE: TiLP-2 and GFM don't have NSIS installer scripts yet.
+NOTE: TiLP 2 and GFM don't have NSIS installer scripts yet.
 
 -------------------------------------------------------------
 | Building an Installer on Windows for TiLP-2 or TiEmu3-GDB |
@@ -213,4 +213,4 @@ Once you have successfully cross-built TiEmu 3, here's how to build a Windows in
    cd build/nsis
    makensis tiemu-cross.nsi
 
-NOTE: TiLP-2 and GFM don't have NSIS installer scripts yet.
+NOTE: TiLP 2 and GFM don't have NSIS installer scripts yet.

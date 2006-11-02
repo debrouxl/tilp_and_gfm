@@ -5,14 +5,14 @@
 ;
 
 [Setup]
-AppName=TiLP-2 SDK
-AppVerName=TiLP-2 SDK 0.08
+AppName=TiLP2 SDK
+AppVerName=TiLP2 SDK 0.08
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
 AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/tilp-developers.php
-DefaultDirName={pf}\TiLP-2 SDK
-DefaultGroupName=TiLP-2
+DefaultDirName={pf}\TiLP2 SDK
+DefaultGroupName=TiLP2
 AllowNoIcons=yes
 LicenseFile=C:\sources\roms\tilp2\COPYING
 InfoBeforeFile=C:\sources\roms\tilp2\build\InnoSetup\TiLP-SDK\Informations.txt
@@ -120,7 +120,7 @@ Filename: "{app}\tilp2-sdk.url"; Section: "InternetShortcut"; Key: "URL"; String
 
 [Icons]
 Name: "{group}\SDK\Developer's area"; Filename: "{app}\tilp2-sdk.url"
-Name: "{group}\SDK\Uninstall the TiLP-2 SDK"; Filename: "{uninstallexe}"
+Name: "{group}\SDK\Uninstall the TiLP2 SDK"; Filename: "{uninstallexe}"
 Name: "{group}\SDK\ticables2 library"; Filename: "{app}\ticables2\docs\index.html"
 Name: "{group}\SDK\ticalcs2 library"; Filename: "{app}\ticalcs2\docs\index.html"
 Name: "{group}\SDK\tifiles2 library"; Filename: "{app}\tifiles2\docs\index.html"

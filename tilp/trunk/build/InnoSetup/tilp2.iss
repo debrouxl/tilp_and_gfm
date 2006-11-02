@@ -6,14 +6,14 @@
 ; $Id$
 
 [Setup]
-AppName=TiLP-2
-AppVerName=TiLP-2 1.01
+AppName=TiLP2
+AppVerName=TiLP2 1.01
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php
 AppUpdatesURL=http://lpg.ticalc.org/prj_tilp2/tilp2-download.php
-DefaultDirName={pf}\TiLP-2
-DefaultGroupName=TiLP-2
+DefaultDirName={pf}\TiLP2
+DefaultGroupName=TiLP2
 AllowNoIcons=yes
 LicenseFile=C:\sources\roms\tilp2\COPYING
 InfoBeforeFile=C:\sources\roms\tilp2\README.win32
@@ -128,15 +128,15 @@ Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp"
 
 [Icons]
-Name: "{group}\TiLP-2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"
-Name: "{group}\TiLP-2 on the Web"; Filename: "{app}\tilp2.url"
-Name: "{group}\Uninstall TiLP-2"; Filename: "{uninstallexe}"
+Name: "{group}\TiLP2"; Filename: "{app}\tilp-2.exe"; WorkingDir: "{app}\My TI files"
+Name: "{group}\TiLP2 on the Web"; Filename: "{app}\tilp2.url"
+Name: "{group}\Uninstall TiLP2"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
 Name: "{group}\Install GTK+ from web"; Filename: "{app}\wget\d_and_i.bat";
 Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
 
-Name: "{userdesktop}\TiLP-2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
+Name: "{userdesktop}\TiLP2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
