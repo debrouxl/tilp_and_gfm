@@ -67,7 +67,7 @@ BEGIN
         BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
-            VALUE "FileDescription", "Ti Linking Program\0"
+            VALUE "FileDescription", "Tilp Is a Linking Program\0"
             VALUE "FileVersion", "1.00\0"
             VALUE "InternalName", "TiLP\0"
             VALUE "LegalCopyright", "Copyright © 1999-2006, Romain Liévin\0"

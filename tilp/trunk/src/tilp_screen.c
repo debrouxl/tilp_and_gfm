@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
-/*  TiLP - Ti Linking Program
+/*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
  *  Copyright (C) 2005 Julien BLACHE <jb@jblache.org>
  *

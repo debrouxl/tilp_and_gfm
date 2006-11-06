@@ -4,7 +4,7 @@
  * DO NOT compile it as part of your application.
  */
 
-gchar *s = N_("TiLP ('Ti Linking Program')");
+gchar *s = N_("TiLP ('Tilp Is a Linking Program')");
 gchar *s = N_("Check whether calculator is ready...");
 gchar *s = N_("Ready ?");
 gchar *s = N_("List calculator content (folders, variables and applications).");

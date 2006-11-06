@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id$ */
 
-/*  TiLP - Ti Linking Program
+/*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
@@ -97,7 +97,7 @@ gint display_about_dbox(void)
 	dlg = GTK_ABOUT_DIALOG(widget);
 	pix = create_pixbuf("logo.xpm");
 
-	gtk_about_dialog_set_name(dlg, "TiLP - Ti Linking Program - ");
+	gtk_about_dialog_set_name(dlg, "TiLP - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
 	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2006 The TiLP Team");

@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id: tilp_gif.c 1198 2005-06-12 17:30:33Z roms $ */
 
-/*  TiLP - Ti Linking Program
+/*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify

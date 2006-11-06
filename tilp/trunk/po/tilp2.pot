@@ -1221,7 +1221,7 @@ msgid "Calculator screen"
 msgstr ""
 
 #: glade/tilp-2.str:7
-msgid "TiLP ('Ti Linking Program')"
+msgid "TiLP ('Tilp Is a Linking Program')"
 msgstr ""
 
 #: glade/tilp-2.str:8

@@ -1302,8 +1302,8 @@ msgid "Calculator screen"
 msgstr "Écran de la calculatrice"
 
 #: glade/tilp-2.str:7
-msgid "TiLP ('Ti Linking Program')"
-msgstr "TiLP (\"Ti Linking Program\")"
+msgid "TiLP ('Tilp Is a Linking Program')"
+msgstr "TiLP (\"Tilp Is a Linking Program\")"
 
 #: glade/tilp-2.str:8
 msgid "Check whether calculator is ready..."

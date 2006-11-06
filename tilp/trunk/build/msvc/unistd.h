@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id: unistd.h 366 2004-03-22 18:04:07Z roms $ */
 
-/*  tilp - Ti Linking Program
+/*  tilp - Tilp Is a Linking Program
  *  Copyright (C) 1999-2004  Romain Lievin
  *
  *  This program is free software; you can redistribute it and/or modify

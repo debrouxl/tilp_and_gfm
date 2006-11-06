@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id: ctree_rbm.c 1218 2005-06-22 09:27:55Z roms $ */
 
-/*  TiLP - Ti Linking Program
+/*  TiLP - Tilp Is a Linking Program
 *  Copyright (C) 1999-2006  Romain Lievin
  *
 *  This program is free software you can redistribute it and/or modify

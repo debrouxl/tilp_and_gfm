@@ -1,7 +1,7 @@
 /* Hey EMACS -*- linux-c -*- */
 /* $Id: tilp_core.h 1125 2005-05-24 18:09:19Z julien $ */
 
-/*  TiLP - Ti Linking Program
+/*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
@@ -65,7 +65,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	GError *error = NULL;
 
 	// parse command line
-	context = g_option_context_new ("- Ti Linking Program");
+	context = g_option_context_new ("- Tilp Is a Linking Program");
 	g_option_context_add_main_entries(context, entries, ""/*GETTEXT_PACKAGE*/);
 	g_option_context_set_help_enabled(context, TRUE);
 	g_option_context_set_ignore_unknown_options(context, FALSE);

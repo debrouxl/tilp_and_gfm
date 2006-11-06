@@ -3,7 +3,7 @@ TILP(1)                                                                TILP(1)
 
 
 NAME
-       TiLP - a communication program for TI calculators ('Ti Linking Program'
+       TiLP - a communication program for TI calculators ('Tilp Is a Linking Program'
        or 'Tilp is a Linking Program')
 
 SYNOPSYS
