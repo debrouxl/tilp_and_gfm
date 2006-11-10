@@ -26,14 +26,8 @@
 #ifndef __TILP_STRUCT__
 #define __TILP_STRUCT__
 
-#ifndef __MACOSX__
-# include <glib.h>
-# include "tilibs.h"
-#else
-# include <glib/glib.h>
-# include <libticables/cabl_int.h>
-# include <libticalcs/calc_def.h>
-#endif				/* !__MACOSX__ */
+#include <glib.h>
+#include "tilibs.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -55,7 +49,6 @@ typedef struct
 	int		calc_model;
 
 	// gui
-#ifndef __MACOSX__
     int		pane_x_size;
     int		pane_y_size;
 
@@ -67,7 +60,6 @@ typedef struct
 
     int		local_sort;
     int		local_sort_order;
-#endif
     int		remote_sort;
     int		remote_sort_order;
 
@@ -91,10 +83,8 @@ typedef struct
     int		screen_blurry;
 
 	// fonts
-#ifndef __MACOSX__
     char*	remote_font_name;
     char*	local_font_name;
-#endif
 
 	int		usb_avail;
 

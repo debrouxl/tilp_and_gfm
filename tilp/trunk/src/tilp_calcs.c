@@ -29,15 +29,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifndef __MACOSX__
-# include "tilibs.h"
-#else				/*  */
-# include <libticables/ticables.h>
-# include <libticalcs/calc_int.h>
-# include <libticalcs/calc_err.h>
-# include <glib/glib.h>
-# include <stdlib.h>
-#endif				/*  */
+#include "tilibs.h"
 
 #include "tilp_core.h"
 #include "gtk_update.h"

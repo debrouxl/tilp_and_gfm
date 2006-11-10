@@ -44,12 +44,8 @@
 #include <windows.h>
 #endif
 
-#ifndef __MACOSX__
-# include <glib.h>
-# include <glib/gstdio.h>
-#else
-# include <glib/glib.h>
-#endif
+#include <glib.h>
+#include <glib/gstdio.h>
 
 #ifndef __WIN32__
 # include <pwd.h>
@@ -428,7 +424,7 @@ const char *tilp_file_get_attributes(FileEntry * fi)
 #endif				
 void tilp_file_get_user_name(FileEntry * fi, char **name)
 {
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 	struct passwd *pwuid;
 
 	if ((pwuid = getpwuid(fi->user)) == NULL) 
@@ -447,7 +443,7 @@ void tilp_file_get_user_name(FileEntry * fi, char **name)
 
 void tilp_file_get_group_name(FileEntry * fi, char **name)
 {
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 	struct group *grpid;
 
 	if ((grpid = getgrgid(fi->group)) == NULL) 
@@ -517,7 +513,6 @@ const char *tilp_file_get_type(FileEntry * fi)
 
 /* Directory listing */
 
-#ifndef __MACOSX__
 static void free_file_info_struct(gpointer data)
 {
 	FileEntry *fi = data;
@@ -588,7 +583,6 @@ int tilp_file_dirlist(void)
 
 	return 0;
 }
-#endif /* !__MACOSX__ */
 
 int tilp_dirlist_local(void)
 {

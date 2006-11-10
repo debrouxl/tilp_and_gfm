@@ -50,9 +50,6 @@ void tilp_cmdline_version(void)
 #ifdef __BSD__
 	fprintf(stdout, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif
-#ifdef __MACOSX__
-	fprintf(stdout, _("Mac OS X port Version %s (%s), (C) 2001-2003 Julien Blache <jb@tilp.info>\n"), TILP_OSX_VERSION, SVN_REV);
-#endif
 	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
     fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);

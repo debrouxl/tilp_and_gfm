@@ -34,7 +34,7 @@
 
 
 /* Fill the option structure with default values */
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 static void default_config_linux(void)	// linux specific options
 {
 	options.remote_font_name = g_strdup("");
@@ -52,7 +52,6 @@ static void default_config_win32(void)
 }
 #endif
 
-#ifndef __MACOSX__
 int tilp_config_default(void)
 {
 	options.pane_x_size = 640 / 2;
@@ -99,7 +98,7 @@ int tilp_config_default(void)
 
 	options.usb_avail = 0;
 
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 	default_config_linux();
 #elif defined(__WIN32__)
 	default_config_win32();
@@ -109,11 +108,10 @@ int tilp_config_default(void)
 
 	return 0;
 }
-#endif /* !__MACOSX__ */
 
 static int get_config_path(char **path)
 {
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 	*path = g_strconcat(g_get_home_dir(), INI_FILE, NULL);
 #elif defined(__WIN32__)
 	*path = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);

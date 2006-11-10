@@ -29,7 +29,7 @@
 #include <stdio.h>
 
 /* Paths */
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 # define INI_FILE  "/.tilp"
 #elif defined(__WIN32__)
 # define INI_FILE  "tilp.ini"
@@ -42,7 +42,6 @@
 #define TMPFILE_FLASHAPP "tilp.flashapp"
 #define TMPFILE_TIGROUP	 "tilp.tigroup"
 
-#ifndef __MACOSX__
 typedef struct 
 {
     gchar *base_dir;		// base directory
@@ -54,11 +53,8 @@ typedef struct
     gchar *glade_dir;		// directory of files for Glade
     gchar *home_dir;		// $HOME
 } TilpInstPaths;
-#endif
 
-#ifndef __MACOSX__
 extern TilpInstPaths	inst_paths;
-#endif /* !__MACOSX__ */
 
 int tilp_paths_init(void);
 const char *tilp_paths_build_glade(const char *name);

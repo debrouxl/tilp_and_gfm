@@ -64,22 +64,15 @@ int tilp_init(int *argc, char ***argv)
 	/* Display program version */
 	tilp_cmdline_version();
 
-#ifndef __MACOSX__
 	/* Initialize platform independant paths */
 	tilp_paths_init();
-#endif
 
 	/* Initialize callbacks with default functions */ 
 	tilp_gif_set_default();
 
 	/* Initialize/reload config */
-#ifndef __MACOSX__
 	tilp_config_default();
 	tilp_config_read();
-#else
-    rc_init_with_default();
-	rc_get_user_prefs();
-#endif
 
 	/* Scan and modify command line and change to working folder*/
 	tilp_cmdline_scan(argc, argv);
@@ -139,7 +132,6 @@ int tilp_init(int *argc, char ***argv)
 	   If we are in command line mode, does the required operation
 	   and exit else fallback on a graphic interface.
 	 */
-#ifndef __MACOSX__
 	if((working_mode & MODE_CMD) && !(working_mode & MODE_GUI))
 	{
 		tilp_cmdline_send();
@@ -147,7 +139,6 @@ int tilp_init(int *argc, char ***argv)
 	}
 	else if(working_mode == MODE_INI)
 		exit(0);
-#endif				/* !__MACOSX__ */
 
 	return 0;
 }

@@ -23,11 +23,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifndef __MACOSX__
 #include "tilibs.h"
-#else				/*  */
-#include <libticalcs/calc_int.h>
-#endif				/*  */
 
 #include "tilp_core.h"
 
@@ -44,10 +40,8 @@ static GList *stack = NULL;
 int tilp_err(int errcode)
 {
 	char *s = NULL;	
-#ifndef __MACOSX__
 	char *utf;
 	gsize bw;
-#endif /* !__MACOSX__ */
 
 	/* Push error messages (if any)*/
 	if(errcode)
@@ -89,14 +83,8 @@ int tilp_err(int errcode)
 			    tilp_device_reset();
 			}			
 
-            // FIXME OS X : we'll need to go full-UTF8 at some point
-#ifndef __MACOSX__
 			utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
 			gif->msg_box1(_("Error"), utf);
-#else
-			if(s)
-				gif->msg_box1(_("Error"), s);
-#endif /* !__MACOSX__ */
 		}
 		g_list_free(stack);
 		stack = NULL;

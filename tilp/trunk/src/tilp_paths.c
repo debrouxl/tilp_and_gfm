@@ -32,18 +32,15 @@
 
 #include "tilp_core.h"
 
-#ifndef __MACOSX__
 TilpInstPaths inst_paths = 
 {
 	"", "\\locale", "\\manpages", "\\help", "\\pixmaps"
 };
-#endif
 
-#ifndef __MACOSX__
 /*
   Called by TiLP at startup for initializing platform dependant paths.
 */
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 static void init_linux_paths(void)
 {
 	inst_paths.base_dir =
@@ -118,7 +115,7 @@ static void init_win32_paths(void)
 int tilp_paths_init(void)
 {
 
-#if defined(__LINUX__) || defined(__BSD__)
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
 	init_linux_paths();
 
 #elif defined(__WIN32__)
@@ -127,7 +124,6 @@ int tilp_paths_init(void)
 #endif				/*  */
 	return 0;
 }
-#endif				/*  */
 
 const char *tilp_paths_build_glade(const char *name)
 {

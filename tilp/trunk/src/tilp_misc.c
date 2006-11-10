@@ -27,7 +27,6 @@
 #include "tilp_core.h"			
 
 /* Change the current drive (Win32 only) */
-#ifndef __MACOSX__
 int tilp_drive_change(char drive_letter)
 {
 #ifdef __WIN32__
@@ -41,12 +40,11 @@ int tilp_drive_change(char drive_letter)
 	}
 	g_free(s);
 #else				
-	gif->msg_box1(_("Information"), _("This function is not available in the Win version."));
+	gif->msg_box1(_("Information"), _("This function is only available in the Windows version."));
 
 #endif				
 	return 0;
 }
-#endif
 
 int tilp_tifiles_ungroup(void)
 {
