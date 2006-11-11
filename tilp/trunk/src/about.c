@@ -108,6 +108,9 @@ gint display_about_dbox(void)
 	gtk_about_dialog_set_artists(dlg, artists);
 	gtk_about_dialog_set_logo(dlg, pix);
 
+	g_signal_connect_swapped(dlg, "response",
+		G_CALLBACK(gtk_widget_destroy), dlg);
+
 	//gtk_show_about_dialog(NULL, "");
 	gtk_widget_show_all(widget);
 

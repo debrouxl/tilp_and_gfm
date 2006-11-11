@@ -14,6 +14,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed memory leaks in config file handling (kevin)
 	- fixed Manpage.txt file name for non-Win32 and MinGW (kevin)
 	- fixed COPYING and RELEASE file names for MinGW (kevin)
+	- fixed about dialog not closing when Close is clicked with GTK+ 2.10 (kevin)
 
 - 17/09/2006, tagged as version 1.00: roms
 	
