@@ -12,7 +12,7 @@ AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php
 AppUpdatesURL=http://lpg.ticalc.org/prj_tilp2/tilp2-download.php
-DefaultDirName={pf}\TiLP2
+DefaultDirName={pf}\TiLP
 DefaultGroupName=TiLP2
 AllowNoIcons=yes
 LicenseFile=C:\sources\roms\tilp2\COPYING
@@ -71,7 +71,7 @@ Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}"; Flags: 
 Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticonv\tests\ticonv.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\tilp2\build\msvc\tilp-2.exe"; DestDir: "{app}"; DestName: "tilp2.exe"; Flags: ignoreversion
+Source: "C:\sources\roms\tilp2\build\msvc\tilp-2.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
 Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion; Tasks: tlk_drv;
@@ -128,7 +128,7 @@ Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp"
 
 [Icons]
-Name: "{group}\TiLP2"; Filename: "{app}\tilp-2.exe"; WorkingDir: "{app}\My TI files"
+Name: "{group}\TiLP2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"
 Name: "{group}\TiLP2 on the Web"; Filename: "{app}\tilp2.url"
 Name: "{group}\Uninstall TiLP2"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
@@ -136,13 +136,13 @@ Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
 Name: "{group}\Install GTK+ from web"; Filename: "{app}\wget\d_and_i.bat";
 Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
 
-Name: "{userdesktop}\TiLP2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp2.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
+Name: "{userdesktop}\TiLP2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
 ; Remove any previously installed PortTalk driver (especially v1.x)
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
-Filename: "{app}\tilp2.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
+Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
 Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 
 [UninstallRun]
@@ -170,9 +170,9 @@ Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: stri
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "ImagePath"; ValueData: "System32\Drivers\TiglUsb.sys"; Tasks: slv_drv;
 ; Register TiLP in the shell
 Root: HKCR; SubKey: "TiLP.TIxx.file"; ValueType: string; ValueData: "TI73..V200 file"
-Root: HKCR; Subkey: "TiLP.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\tilp2.exe,0"
+Root: HKCR; Subkey: "TiLP.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\tilp.exe,0"
 Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open";  ValueType: string; ValueData: "Open with &TiLP"
-Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open\command"; ValueType: string; ValueData: "{app}\tilp2.exe ""%1"""
+Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open\command"; ValueType: string; ValueData: "{app}\tilp.exe ""%1"""
 ; Boost GTK2 (WinNT/2000/XP)
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "PANGO_WIN32_NO_UNISCRIBE"; ValueData: "anything"; MinVersion: 0,4;
 ; TiGroup entries
@@ -379,157 +379,157 @@ Root: HKCR; SubKey: ".73?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks
 Root: HKCR; Subkey: "TiLP.Application"; ValueType: string; ValueName: ""; ValueData: "Application"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Application\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Application.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Application\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Application\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Application\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.App_Variable"; ValueType: string; ValueName: ""; ValueData: "App_Variable"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.App_Variable\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Application.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.App_Variable\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.App_Variable\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.App_Variable\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Asm_Program"; ValueType: string; ValueName: ""; ValueData: "Asm_Program"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Asm_Program\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Asm_Program.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Asm_Program\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Asm_Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Asm_Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Backup"; ValueType: string; ValueName: ""; ValueData: "Backup"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Backup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Backup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Backup\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Backup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Backup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Certificate"; ValueType: string; ValueName: ""; ValueData: "Certificate"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Certificate\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Certificate.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Certificate\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Certificate\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Certificate\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Complex"; ValueType: string; ValueName: ""; ValueData: "Complex"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Complex\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Complex.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Complex\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Complex\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Complex\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Constant"; ValueType: string; ValueName: ""; ValueData: "Constant"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Constant\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Constant.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Constant\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Constant\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Constant\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Data"; ValueType: string; ValueName: ""; ValueData: "Data"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Data\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Data.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Data\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Data\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Data\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Equation"; ValueType: string; ValueName: ""; ValueData: "Equation"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Equation\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Equation.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Equation\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Equation\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Equation\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Expression"; ValueType: string; ValueName: ""; ValueData: "Expression"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Expression\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Expression.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Expression\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Expression\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Expression\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Figure"; ValueType: string; ValueName: ""; ValueData: "Figure"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Figure\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Figure.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Figure\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Figure\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Figure\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Function"; ValueType: string; ValueName: ""; ValueData: "Function"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Function\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Function.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Function\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Function\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Function\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.GDB"; ValueType: string; ValueName: ""; ValueData: "Graphic Data Base"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.GDB\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\GDB.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.GDB\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.GDB\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.GDB\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Group"; ValueType: string; ValueName: ""; ValueData: "Group"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Group\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Group.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Group\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Group\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Group\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.List"; ValueType: string; ValueName: ""; ValueData: "List"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.List\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\List.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.List\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.List\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.List\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Macro"; ValueType: string; ValueName: ""; ValueData: "Macro"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Macro\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Macro.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Macro\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Macro\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Macro\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Matrix"; ValueType: string; ValueName: ""; ValueData: "Matrix"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Matrix\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Matrix.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Matrix\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Matrix\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Matrix\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.OS_Upgrade"; ValueType: string; ValueName: ""; ValueData: "OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.OS_Upgrade\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\OS_Upgrade.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.OS_Upgrade\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.OS_Upgrade\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.OS_Upgrade\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Picture"; ValueType: string; ValueName: ""; ValueData: "Picture"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Picture\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Picture.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Picture\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Picture\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Picture\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Program"; ValueType: string; ValueName: ""; ValueData: "Program"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Program\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Program.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Program\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Range"; ValueType: string; ValueName: ""; ValueData: "Range"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Range\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Range.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Range\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Range\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Range\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Real"; ValueType: string; ValueName: ""; ValueData: "Real"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Real\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Real.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Real\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Real\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Real\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.String"; ValueType: string; ValueName: ""; ValueData: "String"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.String\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\String.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.String\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.String\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.String\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Table_Setup"; ValueType: string; ValueName: ""; ValueData: "Table_Setup"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Table_Setup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Table_Setup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Table_Setup\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Table_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Table_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Text"; ValueType: string; ValueName: ""; ValueData: "Text"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Text\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Text.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Text\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Text\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Text\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Unknown"; ValueType: string; ValueName: ""; ValueData: "Unknown"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Unknown\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Unknown.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Unknown\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Unknown\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Unknown\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Vector"; ValueType: string; ValueName: ""; ValueData: "Vector"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Vector\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Vector.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Vector\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Vector\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Vector\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Window_Setup"; ValueType: string; ValueName: ""; ValueData: "Window_Setup"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Window_Setup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Window_Setup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Window_Setup\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Window_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Window_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Y_Var"; ValueType: string; ValueName: ""; ValueData: "Y_Var"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Y_Var\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Equation.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Y_Var\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Y_Var\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Y_Var\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Zipped"; ValueType: string; ValueName: ""; ValueData: "Zipped"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zipped\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Zipped.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zipped\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Zipped\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Zipped\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.Zoom"; ValueType: string; ValueName: ""; ValueData: "Zoom"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zoom\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Zoom.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zoom\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
-Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp2.exe ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: "{app}\tilp.exe ""%1"""; Tasks: tifiles;
 
 [UninstallDelete]
 Type: files; Name: "{app}\tilp2.url"

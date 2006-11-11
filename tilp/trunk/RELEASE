@@ -33,6 +33,8 @@ Improvements:
 	- [bsd] USB fixes
 	- make source code more reliable (B. Moody)
 	- disabled checksum file check which was accidentally enabled
+	- renamed tilp-2.exe into tilp.exe
+	- [win32] install in c:\Program File\TiLP instead of TiLP-2
 
 
 Bug fixes:
