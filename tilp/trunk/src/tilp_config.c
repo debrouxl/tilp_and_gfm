@@ -191,6 +191,9 @@ int tilp_config_write(void)
 	GError* error = NULL;
 	gchar *content;
 	FILE* f;
+	gint remap;
+
+	remap = tilp_remap_from_usb(options.cable_model, options.calc_model);
 
 	// get file location
 	get_config_path(&ini_file);
@@ -203,7 +206,7 @@ int tilp_config_write(void)
 		"# Warning: any comments that you add to this file WILL be overwritten", &error);
 
 	// Section [DEVICE]
-	g_key_file_set_string (kf, SECTION_DEVICE, "calc_model", ticalcs_model_to_string(options.calc_model));
+	g_key_file_set_string (kf, SECTION_DEVICE, "calc_model", ticalcs_model_to_string(remap));
 	g_key_file_set_comment(kf, SECTION_DEVICE, "calc_model", "Calculator model", &error);
 
 	g_key_file_set_string (kf, SECTION_DEVICE, "cable_model", ticables_model_to_string(options.cable_model));
@@ -367,6 +370,9 @@ int tilp_config_read(void)
 	if(s != NULL)
 		options.cable_model = ticables_string_to_model(s);
 	g_free(s);
+	
+	options.calc_model = tilp_remap_to_usb(options.cable_model, 
+					       options.calc_model);
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_port", &error);
 	if(s != NULL)

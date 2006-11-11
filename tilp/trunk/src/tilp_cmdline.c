@@ -31,9 +31,11 @@ static gchar** array;
 static gchar** flist;
 static gint dont_use_gui;
 extern int working_mode;
+static gint show_version;
 
 static GOptionEntry entries[] = 
 {
+        { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, "Version", NULL},
 	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, "Hand-held model", NULL },
 	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, "Link cable model", NULL },
 	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, "Link cable port", NULL },
@@ -52,7 +54,7 @@ void tilp_cmdline_version(void)
 #endif
 	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-    fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+        fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
 /* Search for command line options and build file list (pseudo-selection) */
@@ -76,6 +78,11 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		g_error_free(error);
 	}
 
+	if(show_version)
+	  {
+	    exit(0);
+	  }
+
 	// convert name to value
 	if(calc != NULL)
 	{
@@ -89,6 +96,12 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		options.cable_model = ticables_string_to_model(cable);
 		g_free(cable);
 	}
+
+	// remap for USB hand-helds
+	options.calc_model = tilp_remap_to_usb(options.cable_model,
+                                               options.calc_model);
+
+	if(!options.cable_port) options.cable_port = PORT_1;
 
 	// are files passed ?
 	if(array != NULL)
