@@ -123,10 +123,13 @@ static int get_config_path(char **path)
 int tilp_config_exist(void)
 {
 	char* ini_file;
+	int result;
 
 	get_config_path(&ini_file);
 
-	return !access(ini_file, F_OK);
+	result = !access(ini_file, F_OK);
+	g_free(ini_file);
+	return result;
 }
 
 
@@ -134,10 +137,13 @@ int tilp_config_exist(void)
 int tilp_config_delete(void)
 {
 	char* ini_file;
+	int result;
 
 	get_config_path(&ini_file);
 
-	return unlink(ini_file);
+	result = unlink(ini_file);
+	g_free(ini_file);
+	return result;
 }
 
 /* Return TiLP version number */
@@ -155,6 +161,7 @@ int tilp_config_get_version(char *version)
 	get_config_path(&ini_file);
 
 	txt = fopen(ini_file, "rt");
+	g_free(ini_file);
 	if (txt == NULL)
 		return -1;
 
@@ -292,6 +299,8 @@ int tilp_config_write(void)
 	content = g_key_file_to_data(kf, NULL, &error);
 	if(error != NULL)
 	{
+		g_key_file_free(kf);
+		g_free(ini_file);
 		fprintf (stderr, "Unable to read file: %s\n", error->message);
 		g_error_free(error);
 		return -1;
@@ -301,6 +310,9 @@ int tilp_config_write(void)
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
+		g_free(content);
+		g_key_file_free(kf);
+		g_free(ini_file);
 		gif->msg_box1(_("Error"), _
 			     ("Unable to write the config file (~/.tilp or tilp.ini).\n"));
 		return -1;
@@ -337,6 +349,8 @@ int tilp_config_read(void)
 	{
 		if(error != NULL)
 		{
+			g_key_file_free(kf);
+			g_free(ini_file);
 			fprintf (stderr, "Unable to read file: %s\n", error->message);
 			g_error_free(error);
 			return -1;

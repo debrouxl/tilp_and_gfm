@@ -9,8 +9,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- doesn't reopen DirectLink when using UsbKernel access
 	- don't reopen cable in tilp_ticalcs_isready because the Titanium with USB
 	  doesn't like this under Linux.
-	- removed non-working leftovers from old Cocoa port, made OS X work like Linux instead
-	- fixed locale directory
+	- removed non-working leftovers from old Cocoa port, made OS X work like Linux instead (kevin)
+	- fixed locale directory (kevin)
+	- fixed memory leaks in config file handling (kevin)
 
 - 17/09/2006, tagged as version 1.00: roms
 	
