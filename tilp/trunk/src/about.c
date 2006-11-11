@@ -88,7 +88,7 @@ gint display_about_dbox(void)
 		}
 	}
 
-	version = g_strdup_printf(_("Framework version (cables=%s, files=%s, calcs=%s, ticonv=%s)"),
+	version = g_strdup_printf(_("Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"),
 	     ticables_version_get(), tifiles_version_get(), ticalcs_version_get(), ticonv_version_get());
 
 	//---
@@ -97,7 +97,7 @@ gint display_about_dbox(void)
 	dlg = GTK_ABOUT_DIALOG(widget);
 	pix = create_pixbuf("logo.xpm");
 
-	gtk_about_dialog_set_name(dlg, "TiLP - Tilp Is a Linking Program - ");
+	gtk_about_dialog_set_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
 	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2006 The TiLP Team");

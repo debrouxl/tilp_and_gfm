@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkWindow" id="tilp_dbox">
-  <property name="title" translatable="yes">TiLP ('Tilp Is a Linking Program')</property>
+  <property name="title" translatable="yes">TiLP2 ('Tilp Is a Linking Program')</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_MOUSE</property>
   <property name="modal">False</property>
