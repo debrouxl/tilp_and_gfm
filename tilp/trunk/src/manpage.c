@@ -49,11 +49,7 @@ gint display_manpage_dbox()
 	GtkTextIter start, end;
 #endif
 
-#ifdef __WIN32__
 	filename = g_strconcat(inst_paths.manpage_dir, "Manpage.txt", NULL);
-#else
-	filename = g_strconcat(inst_paths.manpage_dir, "tilp.1", NULL);
-#endif	
 
 	if (access(filename, F_OK) == 0) 
 	{

@@ -46,7 +46,7 @@ gint display_release_dbox()
 	struct stat stbuf;
 	gint result;
 
-#ifdef __WIN32__
+#ifdef _MSC_VER /* MSVC builds. MinGW builds use Linux file structures. */
 	filename = g_strconcat(inst_paths.base_dir, "Release.txt", NULL);
 #else				/*  */
 	filename = g_strconcat(inst_paths.base_dir, "RELEASE", NULL);

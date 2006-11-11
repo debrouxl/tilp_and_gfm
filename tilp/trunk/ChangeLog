@@ -12,6 +12,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- removed non-working leftovers from old Cocoa port, made OS X work like Linux instead (kevin)
 	- fixed locale directory (kevin)
 	- fixed memory leaks in config file handling (kevin)
+	- fixed Manpage.txt file name for non-Win32 and MinGW (kevin)
+	- fixed COPYING and RELEASE file names for MinGW (kevin)
 
 - 17/09/2006, tagged as version 1.00: roms
 	

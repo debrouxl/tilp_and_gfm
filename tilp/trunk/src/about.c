@@ -67,7 +67,7 @@ gint display_about_dbox(void)
 	gchar buffer[32768];
 	gchar *version;
 
-	#ifdef __WIN32__
+#ifdef _MSC_VER /* MSVC builds. MinGW builds use Linux file structures. */
 	filename = g_strconcat(inst_paths.base_dir, "License.txt", NULL);
 #else				/*  */
 	filename = g_strconcat(inst_paths.base_dir, "COPYING", NULL);
