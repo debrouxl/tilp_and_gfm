@@ -32,6 +32,7 @@
 #include "folder_tree.h"
 #include "gfm.h"
 #include "paths.h"
+#include "tilibs.h"
 
 #define FTREE_SETTINGS "FTREE_SETTINGS"
 #define SETTINGS "SETTINGS"
@@ -152,17 +153,20 @@ int config_save(void)
 
     // Get the Save File Path
     #ifdef __WIN32__
-    save_file = g_strconcat(inst_paths.home_dir, "gfm.ini", NULL);
+    save_file = g_strconcat(inst_paths.home_dir, G_DIR_SEPARATOR_S, "gfm.ini", NULL);
     #else
-    save_file = g_strconcat(inst_paths.home_dir, ".gfmrc", NULL);
+    save_file = g_strconcat(inst_paths.home_dir, G_DIR_SEPARATOR_S, ".gfmrc", NULL);
     #endif
 
     // Save to File
     f_handle = fopen(save_file, "wt");
     if (f_handle == NULL)
     {
-        msgbox_error("Could not save Configuration File!");
-        return -1;
+      msgbox_error("Could not save Configuration File!");
+      g_free(key_data); // Key Data Freed
+      g_free(save_file); // Save File Path Freed
+      g_key_file_free(keyfile); // Key File Freed
+      return -1;
     }
 
     // Save Contents
@@ -175,4 +179,19 @@ int config_save(void)
     g_key_file_free(keyfile); // Key File Freed
 
     return 0;
+}
+
+/* Inspect some config properties */
+int config_check(void)
+{
+  // Current Directory valid?
+  if (!g_file_test(settings.cur_dir, G_FILE_TEST_IS_DIR))
+    settings.cur_dir = inst_paths.home_dir;
+  
+  // Current File exist?
+  if (!g_file_test(settings.cur_file, G_FILE_TEST_EXISTS) || !tifiles_file_is_ti(settings.cur_file))
+    settings.cur_file = NULL;
+  
+  // Return
+  return 0;
 }

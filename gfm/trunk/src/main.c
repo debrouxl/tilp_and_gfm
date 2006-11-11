@@ -119,6 +119,7 @@ int main(int argc, char *argv[])
     splash_screen_message("Loading Settings...");
     config_presets(); // Load the Defaults before the User Preferences
     config_load(); // Load User Preferences now
+    config_check(); // Check to see if values are valid in .gfmrc
     gfm_change_cwd(settings.cur_dir); // Set the CWD at boot!
     // Or it will start off at where the binary is...
 

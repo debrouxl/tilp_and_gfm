@@ -25,5 +25,6 @@
 int config_save(void);
 int config_load(void);
 int config_presets(void);
+int config_check(void);
 
 #endif

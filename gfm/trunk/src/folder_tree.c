@@ -468,7 +468,7 @@ GLADE_CB gboolean on_folder_tree_button_press_event(GtkWidget *widget,
                 }
                 
                 // Opening File
-                else if (tifiles_file_is_group(fe->path))
+                else if (tifiles_file_is_group(fe->path) || tifiles_file_is_tigroup(fe->path))
                 {
                     msgbox_error("Group File!\nCode In: Line ~475 folder_tree.c");
                 }

@@ -115,6 +115,7 @@ int tigfile_open(const char *filename)
   if (tifiles_file_read_tigroup(filename, GFile.raw.TigFile))
   {
     msgbox_error("Failed to Open TI Group File!");
+    tifiles_content_delete_tigroup(GFile.raw.TigFile);
     return -1;
   }
   
@@ -169,7 +170,7 @@ int tigfile_open(const char *filename)
   
   // Set the settings structure data
   settings.cur_file = g_strdup(filename);
-  settings.cur_filetype == TIFILE_TIGROUP;
+  settings.cur_filetype = TIFILE_TIGROUP;
   
   // Update the labels
   gtree_labels_refresh();
@@ -197,6 +198,7 @@ int gfile_open(const char *filename)
   if (tifiles_file_read_regular(filename, GFile.raw.GFile))
   {
     msgbox_error("Failed to Open Group File!");
+    tifiles_content_delete_group(GFile.raw.GFile);
     return -1;
   }
   
@@ -212,7 +214,7 @@ int gfile_open(const char *filename)
     GFile.list[j].name = ticonv_varname_to_utf8(GFile.raw.GFile->model, GFile.raw.GFile->entries[i]->name); // Filename in UTF-8
     GFile.list[j].type = TIFILE_REGULAR;
     GFile.list[j].size = GFile.raw.GFile->entries[i]->size;
-    GFile.list[j].loc_top = GFile.list[j].loc_bot = i;
+    GFile.list[j].loc_top = i;
     GFile.list[j].model = GFile.raw.GFile->model;
     
     GFile.file_size += GFile.list[j].size;
@@ -221,7 +223,7 @@ int gfile_open(const char *filename)
   
   // Set the settings structure data
   settings.cur_file = g_strdup(filename);
-  settings.cur_filetype == TIFILE_GROUP;
+  settings.cur_filetype = TIFILE_GROUP;
   settings.cur_filemodel = GFile.raw.GFile->model;
   
   // Update the labels
