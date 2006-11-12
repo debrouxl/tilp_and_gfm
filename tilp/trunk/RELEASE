@@ -54,6 +54,7 @@ Known bugs:
 		* w/ kernel module: you don't have the issue stated below but replugging is
 		  needed after module removal		
 	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
+	- sending of _named_ list to TI84+/USB fails (LCHASE.8xp from 20sec.zip)
 
 
 Bug report:

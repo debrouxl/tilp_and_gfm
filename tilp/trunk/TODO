@@ -1,18 +1,20 @@
-This is a list of some things to do:
+Bugs:
+-----
 
-10) critical bug: sending LCHASE.8xp from 20sec.zip package failed on 
+- 5 bugs on SF.net
+
+To do:
+------
+
+1) critical bug: sending LCHASE.8xp from 20sec.zip package failed on 
 	TI84+ USB due to un-detokenization of varname (because tifiles2 don't 
 	know whether file is targetted for TI84+ or TI84+ USB).
 	Sending is OK, receiving is still KO because we should pass vartype 
 	with named lists.
 
-20) SilverLink cable is using more CPU than it should do under Windows => add 
+2) SilverLink cable is using more CPU than it should do under Windows => add 
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
-
-21) SilverLink drivers don't install on Vista2
-
-23) TiLP used as a normal user
 
 - migration auto* -> QMake (à voir) ?
 - support i18n (n'a jamais marché, à comprendre)
