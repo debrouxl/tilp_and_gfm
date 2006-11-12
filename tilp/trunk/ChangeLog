@@ -17,6 +17,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed about dialog not closing when Close is clicked with GTK+ 2.10 (kevin)
 	- remap USB hand-helds from/to config file and from command line (bug)
 	- renamed executable tilp-2 into tilp
+	- renamed manpage accordingly (kevin)
 
 - 17/09/2006, tagged as version 1.00: roms
 	

@@ -1,5 +1,5 @@
 .\"                              hey, Emacs:   -*- nroff -*-
-.\" tilp-2 is free software; you can redistribute it and/or modify
+.\" tilp is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
 .\" the Free Software Foundation; either version 2 of the License, or
 .\" (at your option) any later version.
@@ -13,20 +13,20 @@
 .\" along with this program; see the file COPYING.  If not, write to
 .\" the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 .\"
-.TH TILP-2 "September 07, 2006"
+.TH TILP "November 12, 2006"
 .SH NAME
-TiLP - a communication program for TI calculators ('Tilp Is a Linking Program' or 'Tilp is a Linking Program')
+TiLP2 - a communication program for TI calculators ('Tilp Is a Linking Program')
 .SH SYNOPSYS
-\fBtilp-2\fP [--help] [--version] [-h] [-v] [--calc=] [--cable=] [--port= ] [--timeout=] [--delay=] [--no-gui] [filename]
+\fBtilp\fP [--help] [--version] [-h] [-v] [--calc=] [--cable=] [--port= ] [--timeout=] [--delay=] [--no-gui] [filename]
 .SH DESCRIPTION
 The \fBTiLP\fP program allows you to backup, restore and archive variables and/or applications of your Texas Intruments calculator on your computer. It has also additional features such as screen dump, remote control, ROM dump, FLASHing. TiLP is a very complete program. Moreover, you have the same program for all calculator models.
 .SH OPTIONS
-The command line of tilp-2 can be used for sending files like variables, backup, FLASH apps, OS, TiGroup, .... 
+The command line of tilp can be used for sending files like variables, backup, FLASH apps, OS, TiGroup, .... 
 You can not do any other operations. If you want more operations, you have to use the GUI.
 For sending one or more file, simply pass the filename(s) on the command line.
 If you want to use TiLP from console, use the --no-gui switch.
 
-Example: tilp-2 --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
+Example: tilp --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
 
 Note: options must be passed before the filename !
 
@@ -39,7 +39,7 @@ Display a list of all command line options.
 Output the version info.
 .TP
 \fB--no-gui\fP
-Send file(s) without launching any Graphic User Interface. Informations are displayed in the console.
+Send file(s) without launching any Graphical User Interface. All information is displayed in the console.
 Beware: using this switch disables any overwrite check. Use it with care!
 .TP
 \fB--calc=\fP
@@ -63,7 +63,7 @@ transfer speed but decrease the reliability of the transmission.
 .SH EXAMPLE
 Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
-tilp-2 --calc=ti89 --cable=BlackLink --port=2 --timeout=20 --no-gui group.89g
+tilp --calc=ti89 --cable=BlackLink --port=2 --timeout=20 --no-gui group.89g
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.
@@ -122,7 +122,7 @@ Use full path when sending variables.
 Show all files (1) or only TI files (0).
 
 \fBoverwrite=\fP
-Defines whether tilp-2 ask you confirmation when you delete files/variables. Use carefully !!!
+Defines whether tilp ask you confirmation when you delete files/variables. Use carefully !!!
 
 \fBrecv_as_group=\fP
 Receive set of files as a grouped file if enabled.
@@ -161,7 +161,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 .SH SUGGESTIONS AND BUG REPORTS
-The  canonical place to find tilp-2 and some miscellenaous informations is at 
+The canonical place to find TiLP2 and some miscellaneous information is at 
 http://www.tilp.info (redirected on http://lpg.ticalc.org/prj_tilp/index.php)
 You can also look at http://lpg.ticalc.org and http://www.ticalc.org for others TI related programs for Linux. French people can also look at http://www.ti-fr.org.
 .SH AUTHOR
@@ -171,7 +171,7 @@ Mac OS-X port by Julien Blache.
 
 FreeBSD port by Tijl Coosemans.
 .SH THANKS
-Thanks to these persons to have lent me their calculator: Jean-Pierre and Thomas (TI92+), Benoit, Philippe and Florence (TI89), Louis (TI86), Luc (TI85), Nicolas (TI83), Jean-Philippe and Francois (TI82).
+Thanks to these people for having lent me their calculator: Jean-Pierre and Thomas (TI92+), Benoit, Philippe and Florence (TI89), Louis (TI86), Luc (TI85), Nicolas (TI83), Jean-Philippe and Francois (TI82).
 Special thanks to Guillaume for her Grey/Gray TIGL link cable.
 Thanks to many others (patches, suggestions, ...)
 .SH SEE ALSO
