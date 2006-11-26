@@ -294,7 +294,7 @@ int tilp_device_open(void)
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
 
-#if 0
+#if 0 // already done by ticalcs_cable_attach (internal)
 		err = ticables_cable_reset(cable_handle);
 		tilp_err(err);
 #endif
@@ -370,7 +370,7 @@ int tilp_device_err(int err)
   Note: SilverLink is still NACK'ed after error. This did not appear with 
   TiLP-1 because it always close/open the device before any transfer.
   It seems that an error (HALT condition) can not be cleared by a simple
-  slv_reset. We need to reopen the device. Why ? I don't know !
+  slv_reset. We need to reopen the device. Why? I don't know!
 
   No call to tilp_err in this function to avoid recursivity with tilp_err which
   may call tilp_device_reset.
