@@ -18,8 +18,10 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- remap USB hand-helds from/to config file and from command line (bug)
 	- renamed executable tilp-2 into tilp
 	- renamed manpage accordingly (kevin)
+		=> released on 10/11/2006.
 
 - 17/09/2006, tagged as version 1.00: roms
+		=> released on 20/09/2006.
 	
 - 28/08/2006, version 0.24 (0.1.4, 0.2.7, 0.2.8, 0.0.6): roms
 	- added grouping/ungrouping of TiGroup file in the clist popup menu
