@@ -71,7 +71,7 @@ Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}"; Flags: 
 Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticonv\tests\ticonv.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\tilp2\build\msvc\tilp-2.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
+Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
 Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion; Tasks: tlk_drv;
