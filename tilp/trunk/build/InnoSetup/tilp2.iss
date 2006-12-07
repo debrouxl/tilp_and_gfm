@@ -68,7 +68,7 @@ Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.tx
 
 ; TiLP/GTK
 Source: "C:\sources\roms\tifiles2\tests\libtifiles2-3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticables2\tests\libticables2-2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticonv\tests\libticonv-2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
