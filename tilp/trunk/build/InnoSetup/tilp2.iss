@@ -67,10 +67,10 @@ Source: "C:\sources\roms\tilp2\README"; DestDir: "{app}"; DestName: "ReadMe.txt"
 Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
 
 ; TiLP/GTK
-Source: "C:\sources\roms\tifiles2\tests\tifiles2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticables2\tests\ticables2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticalcs2\tests\ticalcs2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticonv\tests\ticonv.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\tifiles2\tests\libtifiles2-3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticables2\tests\libticables2-2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticonv\tests\libticonv-2.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
