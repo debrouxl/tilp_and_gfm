@@ -94,22 +94,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{app}\slv
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
 
-; TiLP fonts
-;Source: "C:\sources\roms\tilp2\fonts\ti_calcs.fon"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\tilp2.fon";     DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-; TI copyrighted fonts, sic !
-;Source: "C:\sources\roms\tilp2\fonts\Ti73____.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti73bold.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti73pc.ttf";   DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti73pcb.ttf";  DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\TI-83.ttf";    DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti83____.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti83pc__.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti83pcb_.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti83ppc.ttf";  DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\Ti83ppcb.ttf"; DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-;Source: "C:\sources\roms\tilp2\fonts\TI-92P.TTF";   DestDir: "{fonts}"; CopyMode: onlyifdoesntexist
-
 ; GTK+ specific
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
 ;libglade/libxml add-on (ignore since no version checking is possible)
@@ -150,11 +134,6 @@ Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; St
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 
 [Registry]
-; Register some fonts
-Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "Fastlink TI-83/86/89 8,10,12"; ValueData: "ti_calcs.fon"
-Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"; ValueType: string; ValueName: "Fastlink TI-83/86/89 8,10,12"; ValueData: "ti_calcs.fon"
-Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "TiLP"; ValueData: "tilp2.fon"
-Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"; ValueType: string; ValueName: "TiLP"; ValueData: "tilp2.fon"
 ; Install the NT PortTalk driver
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Type"; ValueData: "1";  MinVersion: 0,4; Tasks: tlk_drv;
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Start"; ValueData: "2"; MinVersion: 0,4; Tasks: tlk_drv;
