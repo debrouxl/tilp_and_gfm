@@ -150,9 +150,7 @@ Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; St
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 
 [Registry]
-; Register TI fonts
-;Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "Ti83Pluspc (TrueType)"; ValueData: "Ti83ppc.ttf"
-;Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "Ti92Pluspc (TrueType)"; ValueData: "Ti-92p.TTF"
+; Register some fonts
 Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "Fastlink TI-83/86/89 8,10,12"; ValueData: "ti_calcs.fon"
 Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"; ValueType: string; ValueName: "Fastlink TI-83/86/89 8,10,12"; ValueData: "ti_calcs.fon"
 Root: HKLM; SubKey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Fonts"; ValueType: string; ValueName: "TiLP"; ValueData: "tilp2.fon"
