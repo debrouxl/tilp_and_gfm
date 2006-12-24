@@ -43,11 +43,16 @@ int go_to_bookmark(const char *link)
 	}
 #else
 	// Kevin's list:
-	// * /usr/bin/gnome-open (GNOME 2.6+ default browser, this really should be
-	// first on the list to try, as this will honor the user's choice rather than
-	// guessing an arbitrary one)
+	// These ones should be first, as they will honor the user's choice rather
+	// than guessing an arbitrary one:
+	// * /usr/bin/xdg-open (runs the default browser of the desktop environment
+	// currently in use, this is the best solution)
+	// * /usr/bin/gnome-open (GNOME 2.6+ default browser, user-configurable)
+	// Distro-specific browser wrapper scripts:
 	// * /usr/bin/sensible-browser (Debian's browser script)
-	// * /usr/bin/htmlview (old RHL/Fedora default browser script)
+	// * /usr/bin/htmlview (old RHL/Fedora default browser script, current
+	// versions will honor the GNOME browser preference)
+	// Fallback to a hardcoded list of browsers:
 	// * /usr/bin/firefox (Mozilla Firefox)
 	// * /usr/bin/seamonkey (Seamonkey)
 	// * /usr/bin/konqueror (Konqueror)
@@ -55,6 +60,7 @@ int go_to_bookmark(const char *link)
 	//
 	gboolean result;
 	char *apps[] = { 
+			"/usr/bin/xdg-open",
 			"/usr/bin/gnome-open",
 			"/usr/bin/sensible-browser",
 			"/usr/bin/htmlview",

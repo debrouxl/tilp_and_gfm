@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- ??/??/2006, version 1.02 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
+	- added xdg-open in front of the list of browsers (kevin)
+
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer
 	- added CABLE_DEV support for testing purposes (visible under Linux only)
