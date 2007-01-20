@@ -78,7 +78,7 @@ static void cancel_filename(GtkButton * button, gpointer user_data)
 static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
 {
 	GtkWidget *fs;
-	gchar *sfilename, *sext;
+	gchar *sfilename, *sext, *path;
 
 	// gtk_file_selection_complete ALWAYS wants UTF-8.
 	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
@@ -86,7 +86,12 @@ static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, g
     
 	fs = gtk_file_selection_new("Select a file...");
 
-	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+	// set default folder
+	path = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), path);
+	g_free(path);
+
+	// set default name
 	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), sfilename ? sfilename : sext);
 
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
@@ -383,9 +388,14 @@ static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
     
 	fs = gtk_file_selection_new("Select a file...");
-
 	gtk_file_selection_set_select_multiple(GTK_FILE_SELECTION(fs), TRUE);
-	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), dirname);
+
+        // set default folder
+        path = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);
+        gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), path);
+        g_free(path);
+
+        // set default name
 	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), sfilename ? sfilename : sext);
 
 	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
