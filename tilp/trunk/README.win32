@@ -74,11 +74,7 @@ This driver is provided "as is", without any guarantee made as to its suitabilit
 for any particular use. Permission is herby granted to modify or enhance this sample code
 to produce a derivative program which may only be distributed in compiled object form only.
 
-4°) Unfortunately, TiLP does not have some nice TI fonts. By default, TiLP uses the
-'Courier New' font. Nevertheless, if you have installed the TI-Connect software, 
-TiLP will use the TI's fonts.
-
-5°) This setup will install the GNU's 'wget' utility for download of GTK+
+4°) This setup will install the GNU's 'wget' utility for download of GTK+
 (http://xoomer.virgilio.it/hherold/).
 
 

@@ -12,8 +12,7 @@ DESCRIPTION
 TiLP is a program allowing a PC to communicate with 
 a TI calculator.
 
-It works on Linux, Windows, Mac OS-X and FreeBSD platforms. It has been
-ported to BeOS (but this port is not maintained any longer).
+It works on Linux, Windows, Mac OS-X and FreeBSD platforms.
 See README.linux, README.win32 or README.freebsd according to your
 platform for more informations.
 
@@ -24,8 +23,6 @@ GtkTiEmu.
 
 Note1: the SilverLink cable may not work fine TI82/85.
 Note2: remote control is not supported by DirectLink yet.
-Note3: certificate support has been removed because deprecated.
-Note4: TI89 Titanium thru Direct USB cable does not work on LINUX.
 
 Supported calculators are: 
 	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
@@ -41,10 +38,10 @@ TI89/TI89 Titanium/TI92+/V200:
   - remote control of the calculator
   - screen dump
   - directory list
-  - sending/receiving variable
+  - sending/receiving/deleting variable
   - sending/receiving backup
   - ROM dump
-  - sending/receiving of FLASH applications
+  - sending/receiving/deleting FLASH applications
   - upgrading of Operating System (AMS)
   - getting/setting time (need AMS >= 2.08)
   - certificates
@@ -53,7 +50,7 @@ TI92:
   - remote control of the calculator
   - screen dump
   - directory list
-  - sending/receiving variable
+  - sending/receiving/deleting variable
   - sending/receiving backup
   - ROM version
   - ROM dump (FARGO II required)
@@ -76,8 +73,8 @@ TI83+/TI84+ (SE or not SE):
   - screen dump
   - directory list
   - sending/receiving backup (archived vars are not backed up !)
-  - sending/receiving variable
-  - sending/receiving of FLASH applications
+  - sending/receiving/deleting variable
+  - sending/receiving/deleting FLASH applications
   - upgrading of Operating System (GRAPH EXPLORER SOFTWARE)
   - ROM dump
   - certificates

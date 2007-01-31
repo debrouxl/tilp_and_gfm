@@ -16,11 +16,8 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
-- migration auto* -> QMake (à voir) ?
 - support i18n (n'a jamais marché, à comprendre)
 - fix Titanium/USB sous Linux
-- recontacter TiEducationFrance qui m'avait proposé de mettre une version
-Linux dûment testée en téléchargement sur leur site officiel.
 
 //------
 
