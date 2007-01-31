@@ -16,6 +16,8 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
+3) progress bars are not always updated (T. Evans)
+
 - support i18n (n'a jamais marché, à comprendre)
 - fix Titanium/USB sous Linux
 

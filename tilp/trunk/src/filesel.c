@@ -381,7 +381,7 @@ static void cancel_filenames(GtkButton * button, gpointer user_data)
 static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 {
 	GtkWidget *fs;
-	gchar *sfilename, *sext;
+	gchar *sfilename, *sext, *path;
 
 	// gtk_file_selection_complete ALWAYS wants UTF-8.
 	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
