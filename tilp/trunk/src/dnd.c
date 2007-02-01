@@ -147,7 +147,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			gtk_drag_finish(drag_context, TRUE, FALSE, time);
 			return;
 		}
-		else if(!strcmp(name, NODE4))	// Apps/Archive
+		else if(!strcmp(name, NODE4))	// Applications
 		{
 			// send to flash
 			on_tilp_send("<FLASH>");

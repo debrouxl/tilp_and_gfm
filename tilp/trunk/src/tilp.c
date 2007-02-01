@@ -495,7 +495,7 @@ void on_tilp_send(gchar *user_data)
 		target = g_strdup(user_data);
 
 		// change target folder
-		if(strcmp(target, ""))
+		if(strcmp(target, "") && strcmp(target, "<FLASH>"))
 			tilp_local_change_folder(target);
 
 		// and wait for action
