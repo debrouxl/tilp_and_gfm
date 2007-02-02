@@ -305,8 +305,6 @@ GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
 
 	ext = g_strconcat("*.", tifiles_fext_of_backup(options.calc_model), NULL);
-	printf("<<%s>>\n", ext);
-	printf("<<%s>>\n", local.cwdir);
 	dst_filename = create_fsel(local.cwdir, "backup", ext, TRUE);
 	g_free(ext);
 
