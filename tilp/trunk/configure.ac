@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP2, 1.01, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP2, 1.02, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -52,7 +52,7 @@ PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.0.0)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
-PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.0)
+PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.3)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 

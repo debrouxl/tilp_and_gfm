@@ -293,7 +293,6 @@ int tilp_calc_rom_dump(void)
 		case CALC_TI85: gif->msg_box1("Information", "Launch the ROM dumper on your TI-85 by CUSTOM, F1, scroll down to ROMDUMP, ENTER. Next, press Close."); break;
 		case CALC_TI86: gif->msg_box1("Information", "Launch the ROM dumper on your TI-86 by typing ASM(ROMDump), ENTER. Next, press Close."); break;
 		case CALC_TI84P_USB: gif->msg_box1("Information", "Launch the ROM dumper on your TI-8X+ by entering the following commands: PRGM, EXEC, ROMDUMP. Next, press Close."); break;
-		case CALC_TI89T_USB: gif->msg_box1("Information", "Launch the ROM dumper on your Titanium by typing romdump(), ENTER. Next, press Close."); break;
 	}
 
 	/* Get data from dumper */
