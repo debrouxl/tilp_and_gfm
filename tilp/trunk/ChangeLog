@@ -13,6 +13,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 		some others have been replaced by tifiles_file_test)
 	- check tfor TI8x OS version when deleting var/app
 	- check that hand-held specified in device box match those detected at ready check
+	- added a 2s pause when resetting USB communication (seems to be needed...)
 	
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer

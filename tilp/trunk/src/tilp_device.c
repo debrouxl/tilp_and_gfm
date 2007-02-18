@@ -377,11 +377,12 @@ int tilp_device_err(int err)
 */
 int tilp_device_reset(void)
 {
-    //gif->msg_box("Information", "Connection is being \reset...", !0);
 #if 1
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
     {
 		int err;
+
+		gif->msg_box("Information", "Connection is being \nreset...", !0);
 
 		// detach cable (made by handle_del, too)
 		PAUSE(500);
@@ -392,8 +393,10 @@ int tilp_device_reset(void)
 		ticalcs_handle_del(calc_handle);
 		ticables_handle_del(cable_handle);
 
+		// this pause is needed (let's the cable reset its internal state...)
+		PAUSE(2000);
+
 		// get cable & attach
-		PAUSE(1000);
 		cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 		if(cable_handle == NULL)
 			gif->msg_box1("Error", "Can't set cable");
@@ -411,6 +414,8 @@ int tilp_device_reset(void)
 				tilp_device_err(err);
 			}
 		}
+
+		gif->msg_box("", "", 0);
     }
     else
 #endif
@@ -419,7 +424,6 @@ int tilp_device_reset(void)
         tilp_device_err(err);
         PAUSE(1000);
     }
-    //gif->msg_box("", "", 0);
 
     return 0;
 }
