@@ -137,6 +137,26 @@ int tilp_calc_isready(void)
 		}
 	}
 
+	if(tifiles_is_flash(options.calc_model) && options.cable_model != CABLE_USB)
+	{
+		CalcInfos infos;
+
+		err = ticalcs_calc_get_version(calc_handle, &infos);
+		if(tilp_err(err))
+			return -1;
+
+		if(infos.model != options.calc_model)
+		{
+			int ret = gif->msg_box2(_("Warning"), _("The detected model does not match those specified in the settings. Do you want to change it?"));
+			
+			if(ret == BUTTON1)
+			{
+				options.calc_model = infos.model;
+				ctree_set_basetree();
+			}
+		}
+	}
+
 	return 0;
 }
 
