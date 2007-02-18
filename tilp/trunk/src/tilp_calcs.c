@@ -125,7 +125,7 @@ int tilp_calc_isready(void)
 		default: break;
 		}
 	}
-	
+
 	if(err) 
 	{
 		// second check: slower

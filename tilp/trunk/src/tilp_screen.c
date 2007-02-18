@@ -49,8 +49,9 @@ int screen_capture(void)
 	CalcScreenCoord sc;
 	int err;
 
-	if(tilp_calc_isready())
-		return -1;
+	/* bug #1662383: V200 replies as busy but screenshot is working anyways */
+	/*if(tilp_calc_isready())
+		return -1;*/
 
 	/* Place a progress bar */
 	gif->create_pbar_(FNCT_RECV_SCREEN, _("Screendump"));
