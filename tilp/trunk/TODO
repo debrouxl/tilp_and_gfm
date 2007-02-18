@@ -16,10 +16,20 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
-3) progress bars are not always updated (T. Evans)
+3) need to exit TiLP to reset SilverLink error
 
-- support i18n (n'a jamais marché, à comprendre)
-- fix Titanium/USB sous Linux
+4) progress bars are not always updated (T. Evans)
+
+5) implement a remote_exec call in ticalcs2
+
+6) support i18n (n'a jamais marché, à comprendre)
+
+7) fix Titanium/USB sous Linux
+
+8) finir la libtifiles2
+
+9) modifier tilp pour la libtifiles2
+
 
 //------
 
