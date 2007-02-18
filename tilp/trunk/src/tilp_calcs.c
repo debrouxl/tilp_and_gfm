@@ -329,8 +329,7 @@ int tilp_calc_send_app(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
-		if(tifiles_file_is_flash(f->name) && 
-			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
+		if(tifiles_file_test(f->name, TIFILE_OS, CALC_NONE))
 		{
 			gif->msg_box1(_("Error"), _("You can not send variables/applications and upgrades simultaneously."));
 			return 0;
@@ -405,8 +404,7 @@ int tilp_calc_send_os(const char *filename)
 		return -1;
 	}
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_flash_os(options.calc_model)) &&
-		!tifiles_file_is_tib(filename)) 
+	if(!tifiles_file_test(filename, TIFILE_OS, options.calc_model))
 	{
 		gif->msg_box1(_("Error"),
 			     _("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));
@@ -528,14 +526,12 @@ int tilp_calc_send_var(void)
 		{
 			continue;
 		}
-		if(tifiles_file_is_flash(f->name) && 
-			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model)))
+		if(tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
 		{
 			gif->msg_box1(_("Error"), _("You can not send both variables/applications and upgrades simultaneously."));
 			return 0;
 		}
-		else if(tifiles_file_is_flash(f->name) && 
-			!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_app(options.calc_model)))
+		else if(tifiles_file_is_app(f->name))
 		{
 			continue;
 		}

@@ -359,7 +359,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 				return;
 			tilp_calc_send_tigroup(filename, mode | TIG_BACKUP);
 		}
-		else
+		else if(tifiles_file_is_backup(filename))
 			tilp_calc_send_backup(filename);
 	}
 
@@ -458,20 +458,15 @@ void on_tilp_send(gchar *user_data)
 	{
 		f = (FileEntry *) local.selection3->data;
 
-		// send os upgrades	
-		if (tifiles_file_is_flash(f->name) || tifiles_file_is_tib(f->name) || tifiles_file_is_tigroup(f->name)) 
+		// send os upgrades
+		if(tifiles_file_is_flash(f->name) || tifiles_file_is_tigroup(f->name)) 
 		{
-			if (!strcasecmp(tifiles_fext_get(f->name), tifiles_fext_of_flash_os(options.calc_model))) 
+			if(tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
 			{
 				if (tilp_calc_send_os(f->name) != 0)
 					return;
 			} 
-			else if (tifiles_file_is_tib(f->name)) 
-			{
-				if (tilp_calc_send_os(f->name) != 0)
-					return;
-			}
-			else
+			else if(tifiles_file_is_app(f->name))
 			{
 				ret1 = tilp_calc_send_app();
 				if(!ret1)

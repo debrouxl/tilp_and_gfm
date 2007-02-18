@@ -9,6 +9,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed sending of vars into archive thru the App node
 	- Titanium/USB dumper is now launched remotely
 	- bug #1662383: V200 replies as busy but screenshot is working anyways
+	- clean-up/fixes in many tifile_is calls (some of them have been simplified,
+		some others have been replaced by tifiles_file_test).
 	
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer

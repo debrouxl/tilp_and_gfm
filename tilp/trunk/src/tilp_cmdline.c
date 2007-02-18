@@ -170,7 +170,7 @@ int tilp_cmdline_send(void)
 		FileEntry *fe = (local.selection2)->data;
 
 		if(g_list_length(local.selection2) == 1 && 
-			tifiles_file_is_flash(fe->name) && !g_strcasecmp(ext, tifiles_fext_of_flash_os(options.calc_model)))
+			tifiles_file_test(fe->name, TIFILE_OS, options.calc_model))
 		{
 			tilp_calc_send_os(fe->name);
 			return 0;

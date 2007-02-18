@@ -131,8 +131,7 @@ void tilp_local_selection_add(const char* filename)
 
 	fe->name = g_strdup(filename);
 
-	if(tifiles_file_is_regular(fe->name) && 
-	  (tifiles_file_is_single(fe->name) || tifiles_file_is_group(fe->name)))
+	if(tifiles_file_is_regular(fe->name))
 		local.selection0 = g_list_prepend(local.selection0, fe);
 
 	else if(tifiles_file_is_flash(fe->name))
@@ -220,7 +219,7 @@ void tilp_local_contents_load(void)
 		{
 			FileEntry *fe0 = ptr->data;
 
-			if(tifiles_file_is_regular(fe0->name) && tifiles_file_is_single(fe0->name))
+			if(tifiles_file_is_single(fe0->name))
 			{
 				FileEntry *fe1 = g_memdup(ptr->data, sizeof(FileEntry));
 
@@ -235,7 +234,7 @@ void tilp_local_contents_load(void)
 
 				local.selection1 = g_list_append(local.selection1, fe1);
 			}
-			else if(tifiles_file_is_regular(fe0->name) && tifiles_file_is_group(fe0->name))
+			else if(tifiles_file_is_group(fe0->name))
 			{
 				// explode group files so that we have 1 VarEntry per item (skip/retry/cancel)
 				FileContent **p, **dst = NULL;
@@ -277,7 +276,7 @@ void tilp_local_contents_load(void)
 		{
 			FileEntry *fe2 = ptr->data;
 
-			if(tifiles_file_is_flash(fe2->name))
+			if(tifiles_file_is_app(fe2->name) || tifiles_file_test(fe2->name, TIFILE_OS, options.calc_model))
 			{
 				FileEntry *fe3 = g_memdup(ptr->data, sizeof(FileEntry));
 

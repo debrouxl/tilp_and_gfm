@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.00 (20/09/2006)
-Current version:  1.01 (10/11/2006)
+Old     version:  1.01 (10/11/2006)
+Current version:  1.02 (04/02/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,28 +21,20 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- [linux] Titanium/USB hand-held support (for testing: see known bugs)
-	- [linux] USB kernel module support re-added for Titanium/USB 
-		(for testing: may work better than built-in libusb support)
+	- Titanium/USB dumper is now launched remotely
 
 
 Improvements:
 -------------
 
-	- added probing of TI84+ non-SE
-	- [bsd] USB fixes
-	- make source code more reliable (B. Moody)
-	- disabled checksum file check which was accidentally enabled
-	- renamed tilp-2.exe into tilp.exe
-	- [win32] install in c:\Program File\TiLP instead of TiLP-2
+	- remote control for USB hand-helds is implemented (framework only)
+	- 89/92/92+: set to HOME screen before sending dumping program
 
 
 Bug fixes:
 ----------
 
-	- crash on device box opening
-	- timeout when requesting device info from Titanium/USB
-	- ROM dumper: only dumps 4MB  on HW4 as HW3 (K. Kofler)
+	- #1662383: can only take screenshots from the home screen
 
 
 Known bugs:
