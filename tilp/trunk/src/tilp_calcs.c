@@ -894,8 +894,7 @@ int tilp_calc_del_var(void)
 	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
-	if(options.calc_model == CALC_TI89 || options.calc_model == CALC_TI92P ||
-		options.calc_model == CALC_TI89T || options.calc_model == CALC_V200)
+	if(tifiles_is_flash(options.calc_model))
 	{
 		CalcInfos infos;
 
@@ -903,10 +902,21 @@ int tilp_calc_del_var(void)
 		if(tilp_err(err))
 			return -1;
 
-		if(strcmp(infos.os_version, "2.09") < 0)
+		if(tifiles_calc_is_ti9x(options.calc_model))
 		{
-			gif->msg_box1(_("Information"), _("You need AMS 2.09 mini for this operation."));
-			return -1;
+			if(strcmp(infos.os_version, "2.09") < 0)
+			{
+				gif->msg_box1(_("Information"), _("You need AMS 2.09 mini for this operation."));
+				return -1;
+			}
+		} 
+		else if(tifiles_calc_is_ti8x(options.calc_model))
+		{
+			if(strcmp(infos.os_version, "2.00") < 0)
+			{
+				gif->msg_box1(_("Information"), _("You need OS 2.00 mini for this operation."));
+				return -1;
+			}
 		}
 	}
 

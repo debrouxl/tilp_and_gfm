@@ -1,8 +1,3 @@
-Bugs:
------
-
-- 5 bugs on SF.net
-
 To do:
 ------
 
@@ -26,8 +21,9 @@ To do:
 
 7) fix Titanium/USB sous Linux
 
-8) modifier tilp pour la libtifiles2
+8) don't allow to send a TI73 TiGroup file on a TI89 for instance (need to write this in tifiles)
 
+9) detect hand-held model and raises a warning if this does not match current setting
 
 //------
 
