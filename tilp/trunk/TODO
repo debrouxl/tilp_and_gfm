@@ -11,8 +11,6 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
-3) need to exit TiLP to reset SilverLink error
-
 4) progress bars are not always updated (T. Evans)
 
 5) implement a remote_exec call in ticalcs2

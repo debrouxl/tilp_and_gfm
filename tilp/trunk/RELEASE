@@ -29,12 +29,15 @@ Improvements:
 
 	- remote control for USB hand-helds is implemented (framework only)
 	- 89/92/92+: set to HOME screen before sending dumping program
+	- check that hand-held specified in device box matches those detected at ready check
 
 
 Bug fixes:
 ----------
 
 	- #1662383: can only take screenshots from the home screen
+	- USB communication was not reset properly after an error
+	- some dirname with spaces like 'My Files' were not opened properly
 
 
 Known bugs:
@@ -46,7 +49,7 @@ Known bugs:
 		* w/ kernel module: you don't have the issue stated below but replugging is
 		  needed after module removal		
 	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
-	- sending of _named_ list to TI84+/USB fails (LCHASE.8xp from 20sec.zip)
+	- sending of _named_ list to TI84+/USB will fail (LCHASE.8xp from 20sec.zip)
 
 
 Bug report:
