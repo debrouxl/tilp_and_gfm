@@ -137,7 +137,7 @@ int tilp_calc_isready(void)
 		}
 	}
 
-	if(tifiles_is_flash(options.calc_model) && options.cable_model != CABLE_USB)
+	if(tifiles_is_flash(options.calc_model) && options.cable_model != CABLE_USB && options.calc_model != CALC_TI73)
 	{
 		CalcInfos infos;
 

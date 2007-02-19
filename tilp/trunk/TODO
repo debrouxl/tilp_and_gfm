@@ -11,15 +11,13 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
-4) progress bars are not always updated (T. Evans)
+3) progress bars are not always updated (T. Evans)
 
-5) implement a remote_exec call in ticalcs2
+4) don't allow to send a TI73 TiGroup file on a TI89 for instance (need to write this in tifiles)
 
-6) support i18n (n'a jamais marché, à comprendre)
+5) support i18n (n'a jamais marché, à comprendre)
 
-7) fix Titanium/USB sous Linux
-
-8) don't allow to send a TI73 TiGroup file on a TI89 for instance (need to write this in tifiles)
+6) fix Titanium/USB sous Linux
 
 //------
 
