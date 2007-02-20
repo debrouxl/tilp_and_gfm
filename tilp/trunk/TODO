@@ -1,27 +1,9 @@
 To do:
 ------
 
-1) critical bug: sending LCHASE.8xp from 20sec.zip package failed on 
-	TI84+ USB due to un-detokenization of varname (because tifiles2 don't 
-	know whether file is targetted for TI84+ or TI84+ USB).
-	Sending is OK, receiving is still KO because we should pass vartype 
-	with named lists.
+1) progress bars are not always updated (T. Evans)
 
-2) SilverLink cable is using more CPU than it should do under Windows => add 
-	a function in ticables2 which allow to use 2 methods (active polling 
-	w/ timeout, needed by TiEmu and timeout managed by OS).
-
-3) need to exit TiLP to clear a USB error
-
-4) progress bars are not always updated (T. Evans)
-
-6) support i18n (n'a jamais marché, à comprendre)
-
-7) fix Titanium/USB sous Linux
-
-8) bug #1657175: a compiled ASM file can not be send thru D-USB
-
-9) bug:
+2) bug:
 	<<
 	Romain, you did a great job finalizing the version, but a bug still
 	subsists: with a TI 92+ HW2 with 2.09 AMS, linked to a Windows 2000
@@ -29,9 +11,25 @@ To do:
 	makes a crash (and no screenshot..)
 	>>
 
-10) bug: broken pipe problem (T. Evans); see long mail about that
+3) bug: broken pipe problem (T. Evans); see long mail about that
 
-11) bug: impossible to flash TI 83+SE either with TiLP-I or II (see long mail)
+4) bug: impossible to flash TI 83+SE either with TiLP-I or II (see long mail)
+
+5) need to exit TiLP to clear a USB error
+
+6) support i18n (n'a jamais marché, à comprendre)
+
+7) fix Titanium/USB sous Linux
+
+8) critical bug: sending LCHASE.8xp from 20sec.zip package failed on 
+	TI84+ USB due to un-detokenization of varname (because tifiles2 don't 
+	know whether file is targetted for TI84+ or TI84+ USB).
+	Sending is OK, receiving is still KO because we should pass vartype 
+	with named lists.
+
+9) SilverLink cable is using more CPU than it should do under Windows => add 
+	a function in ticables2 which allow to use 2 methods (active polling 
+	w/ timeout, needed by TiEmu and timeout managed by OS).
 
 //------
 

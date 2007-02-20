@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- 17/01/2007, version 1.02 (1.0.3, 1.0.3, 1.0.2, 1.0.1): roms
+- 17/01/2007, version 1.02 (1.0.3, 1.0.4, 1.0.3, 1.0.1): roms
 	- added xdg-open in front of the list of browsers (kevin)
 	- add trailing slash for directory (otherwise, dirname with spaces 
 	like 'My Files' are not opened properly)
