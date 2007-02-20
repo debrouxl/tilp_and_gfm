@@ -311,7 +311,11 @@ void clist_refresh(void)
 
 		b = options.show_all || S_ISDIR(fe->attrib) ||
 			tifiles_file_is_tib(fe->name) ||
+#if 0
 			tifiles_file_is_tigroup(fe->name) ||
+#else
+			tifiles_file_test(fe->name, TIFILE_TIGROUP, options.calc_model) ||
+#endif
 			tifiles_calc_are_compat(s, t);
 		if(!b)
 			continue;

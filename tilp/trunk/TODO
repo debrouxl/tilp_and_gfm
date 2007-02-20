@@ -11,13 +11,27 @@ To do:
 	a function in ticables2 which allow to use 2 methods (active polling 
 	w/ timeout, needed by TiEmu and timeout managed by OS).
 
-3) progress bars are not always updated (T. Evans)
+3) need to exit TiLP to clear a USB error
 
-4) don't allow to send a TI73 TiGroup file on a TI89 for instance (need to write this in tifiles)
+4) progress bars are not always updated (T. Evans)
 
-5) support i18n (n'a jamais marché, à comprendre)
+6) support i18n (n'a jamais marché, à comprendre)
 
-6) fix Titanium/USB sous Linux
+7) fix Titanium/USB sous Linux
+
+8) bug #1657175: a compiled ASM file can not be send thru D-USB
+
+9) bug:
+	<<
+	Romain, you did a great job finalizing the version, but a bug still
+	subsists: with a TI 92+ HW2 with 2.09 AMS, linked to a Windows 2000
+	computer through a Black Link Compatible cable, a click on "Screenshot"
+	makes a crash (and no screenshot..)
+	>>
+
+10) bug: broken pipe problem (T. Evans); see long mail about that
+
+11) bug: impossible to flash TI 83+SE either with TiLP-I or II (see long mail)
 
 //------
 

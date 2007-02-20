@@ -14,6 +14,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- check for TI8x OS version when deleting var/app
 	- check that hand-held specified in device box matches those detected at ready check
 	- added a 2s pause when resetting USB communication (seems to be needed...)
+	- don't allow to send a TI73 TiGroup file on a TI89 for instance 
+		(check that TiGroup matches target hand-held)
 	
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer
