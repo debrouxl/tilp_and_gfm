@@ -3,14 +3,6 @@ To do:
 
 1) progress bars are not always updated (T. Evans)
 
-2) bug:
-	<<
-	Romain, you did a great job finalizing the version, but a bug still
-	subsists: with a TI 92+ HW2 with 2.09 AMS, linked to a Windows 2000
-	computer through a Black Link Compatible cable, a click on "Screenshot"
-	makes a crash (and no screenshot..)
-	>>
-
 3) bug: broken pipe problem (T. Evans); see long mail about that
 
 4) bug: impossible to flash TI 83+SE either with TiLP-I or II (see long mail)
