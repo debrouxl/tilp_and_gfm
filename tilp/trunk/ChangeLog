@@ -4,6 +4,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 23/02/2007, version 1.03 (1.0.4, 1.0.5, 1.0.4, 1.0.1): roms
 	- enabled i18n
+	- set home/working folder as current folder on MinGW build
 
 - 17/01/2007, version 1.02 (1.0.3, 1.0.4, 1.0.3, 1.0.1): roms
 	- added xdg-open in front of the list of browsers (kevin)

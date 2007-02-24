@@ -111,8 +111,12 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "", NULL);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
+	#ifdef __MINGW32__
+	inst_paths.home_dir = g_get_current_dir();
+	#else
 	inst_paths.home_dir = 
 	    g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
+	#endif
 
 #ifdef ENABLE_NLS
 	inst_paths.locale_dir =
