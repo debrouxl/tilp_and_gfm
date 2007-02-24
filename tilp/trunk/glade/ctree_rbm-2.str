@@ -5,8 +5,8 @@
  */
 
 gchar *s = N_("Change _device");
-gchar *s = N_("Options");
-gchar *s = N_("Local view");
+gchar *s = N_("_Options");
+gchar *s = N_("_Local view");
 gchar *s = N_("Recv as _group");
-gchar *s = N_("Delete var/app");
-gchar *s = N_("Create folder");
+gchar *s = N_("_Delete var/app");
+gchar *s = N_("Create _folder");

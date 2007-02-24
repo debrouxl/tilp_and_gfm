@@ -28,6 +28,8 @@
 #include <gtk/gtk.h>
 
 #include "dboxes.h"
+#include "intl.h"
+#include "support.h"
 
 int go_to_bookmark(const char *link)
 {
@@ -95,7 +97,7 @@ int go_to_bookmark(const char *link)
 #endif
 	else 
 	{
-		const gchar *message = "A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.";
+		const gchar *message = _("A web browser has been launched: this may take a while before it appears. If it is already launched, the page will be opened in the existing frame.");
 		GTimer *timer;
 
 		msg_box("Information", message, !0);

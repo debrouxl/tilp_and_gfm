@@ -1034,15 +1034,15 @@ const char* format_bytes(unsigned long value)
 
 	if(value < 64*1024)
 	{
-		g_snprintf(str, sizeof(str), "%lu bytes", value);
+		g_snprintf(str, sizeof(str), _("%lu bytes"), value);
 	}
 	else if(value < 1024*1024)
 	{
-		g_snprintf(str, sizeof(str), "%lu KB", value >> 10);
+		g_snprintf(str, sizeof(str), _("%lu KB"), value >> 10);
 	}
 	else
 	{
-		g_snprintf(str, sizeof(str), "%lu MB", value >> 20);
+		g_snprintf(str, sizeof(str), _("%lu MB"), value >> 20);
 	}
 
 	return (const char *)str;
@@ -1104,79 +1104,79 @@ int tilp_calc_get_infos(CalcInfos *infos)
 #endif
 	if(infos->mask & INFOS_PRODUCT_NAME)
 	{
-		tmp = g_strdup_printf("%sProduct Name: <%s>\n", str, infos->product_name);
+		tmp = g_strdup_printf(_("%sProduct Name: <%s>\n"), str, infos->product_name);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_MAIN_CALC_ID)
 	{
-		tmp = g_strdup_printf("%sCalculator Id: %s\n", str, infos->main_calc_id);
+		tmp = g_strdup_printf(_("%sCalculator Id: %s\n"), str, infos->main_calc_id);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_HW_VERSION)
 	{
-		tmp = g_strdup_printf("%sHardware Version: %i\n", str, infos->hw_version);
+		tmp = g_strdup_printf(_("%sHardware Version: %i\n"), str, infos->hw_version);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_BOOT_VERSION)
 	{
-		tmp = g_strdup_printf("%sBoot Version: %s\n", str, infos->boot_version);
+		tmp = g_strdup_printf(_("%sBoot Version: %s\n"), str, infos->boot_version);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_OS_VERSION)
 	{
-		tmp = g_strdup_printf("%sOS Version: %s\n", str, infos->os_version);
+		tmp = g_strdup_printf(_("%sOS Version: %s\n"), str, infos->os_version);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical RAM: %s\n", str, 
+		tmp = g_strdup_printf(_("%sPhysical RAM: %s\n"), str, 
 				      format_bytes((unsigned int)infos->ram_phys));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_USER)
 	{
-		tmp = g_strdup_printf("%sUser RAM: %s\n", str, 
+		tmp = g_strdup_printf(_("%sUser RAM: %s\n"), str, 
 				      format_bytes((unsigned int)infos->ram_user));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_RAM_FREE)
 	{
-		tmp = g_strdup_printf("%sFree RAM: %s\n", str, 
+		tmp = g_strdup_printf(_("%sFree RAM: %s\n"), str, 
 				      format_bytes((unsigned int)infos->ram_free));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_PHYS)
 	{
-		tmp = g_strdup_printf("%sPhysical FLASH: %s\n", str, 
+		tmp = g_strdup_printf(_("%sPhysical FLASH: %s\n"), str, 
 				      format_bytes((unsigned int)infos->flash_phys));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_USER)
 	{
-		tmp = g_strdup_printf("%sUser FLASH: %s\n", str, 
+		tmp = g_strdup_printf(_("%sUser FLASH: %s\n"), str, 
 				      format_bytes((unsigned int)infos->flash_user));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_FLASH_FREE)
 	{
-		tmp = g_strdup_printf("%sFree FLASH: %s\n", str, 
+		tmp = g_strdup_printf(_("%sFree FLASH: %s\n"), str, 
 				      format_bytes((unsigned int)infos->flash_free));
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_BATTERY)
 	{
-		tmp = g_strdup_printf("%sBattery: %s\n", str, infos->battery ? "good" : "low");
+		tmp = g_strdup_printf(_("%sBattery: %s\n"), str, infos->battery ? _("good") : _("low"));
 		g_free(str);
 		str = tmp;
 	}

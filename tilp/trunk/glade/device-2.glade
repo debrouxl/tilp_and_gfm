@@ -246,6 +246,7 @@
 		  <child>
 		    <widget class="GtkSpinButton" id="spinbutton_comm_timeout">
 		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Timeout value in tenth of seconds.</property>
 		      <property name="can_focus">True</property>
 		      <property name="climb_rate">1</property>
 		      <property name="digits">0</property>
