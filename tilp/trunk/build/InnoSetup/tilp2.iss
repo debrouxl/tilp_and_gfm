@@ -52,10 +52,10 @@ Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; Dest
 Source: "C:\sources\roms\tilp2\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-;Source: "C:\sources\roms\libs\files\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tifiles.mo"; Flags: ignoreversion;
-;Source: "C:\sources\roms\libs\cables\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticables.mo"; Flags: ignoreversion;
-;Source: "C:\sources\roms\libs\calcs\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "ticalcs.mo"; Flags: ignoreversion;
-;Source: "C:\sources\roms\tilp2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\libs\tifiles2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\libs\ticables2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\libs\ticalcs2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\tilp2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
 Source: "C:\sources\roms\tilp2\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
