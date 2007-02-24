@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
+﻿<?xml version="1.0" standalone="no"?> <!--*- mode: xml -*-->
 <!DOCTYPE glade-interface SYSTEM "http://glade.gnome.org/glade-2.0.dtd">
 
 <glade-interface>
@@ -200,7 +200,7 @@
 	    <widget class="GtkImageMenuItem" id="set_as_working_dir1">
 	      <property name="visible">True</property>
 	      <property name="tooltip" translatable="yes">Set the current directory as working directory whenever TiLP starts.</property>
-	      <property name="label" translatable="yes">_Set as working folder</property>
+	      <property name="label" translatable="yes">Set as working _folder</property>
 	      <property name="use_underline">True</property>
 	      <signal name="activate" handler="rbm_set_as_working_dir1_activate"/>
 
@@ -317,7 +317,7 @@
   <child>
     <widget class="GtkMenuItem" id="options1">
       <property name="visible">True</property>
-      <property name="label" translatable="yes">Options</property>
+      <property name="label" translatable="yes">_Options</property>
       <property name="use_underline">True</property>
 
       <child>
@@ -326,7 +326,7 @@
 	  <child>
 	    <widget class="GtkCheckMenuItem" id="show_all_files1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Show all files</property>
+	      <property name="label" translatable="yes">_Show all files</property>
 	      <property name="use_underline">True</property>
 	      <property name="active">False</property>
 	      <signal name="activate" handler="rbm_show_all_files1_activate" last_modification_time="Wed, 22 Jun 2005 08:52:46 GMT"/>
@@ -336,7 +336,7 @@
 	  <child>
 	    <widget class="GtkCheckMenuItem" id="confirm1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Confirm delete/overwrite</property>
+	      <property name="label" translatable="yes">_Confirm delete/overwrite</property>
 	      <property name="use_underline">True</property>
 	      <property name="active">False</property>
 	      <signal name="activate" handler="rbm_confirm_delete_activate" last_modification_time="Wed, 22 Jun 2005 08:52:46 GMT"/>
@@ -346,7 +346,7 @@
 	  <child>
 	    <widget class="GtkCheckMenuItem" id="recv_as_group1">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">Recv as group</property>
+	      <property name="label" translatable="yes">_Receive as group</property>
 	      <property name="use_underline">True</property>
 	      <property name="active">False</property>
 	      <signal name="activate" handler="rbm_recv_as_group1_activate" last_modification_time="Wed, 22 Jun 2005 08:52:46 GMT"/>
