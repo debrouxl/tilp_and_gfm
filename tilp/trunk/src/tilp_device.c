@@ -382,7 +382,7 @@ int tilp_device_reset(void)
     {
 		int err;
 
-		gif->msg_box("Information", "Connection is being \nreset...", !0);
+		gif->msg_box("Information", _("Connection is being \nreset..."), !0);
 
 		// detach cable (made by handle_del, too)
 		PAUSE(500);
@@ -399,7 +399,7 @@ int tilp_device_reset(void)
 		// get cable & attach
 		cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 		if(cable_handle == NULL)
-			gif->msg_box1("Error", "Can't set cable");
+			gif->msg_box1(_("Error"), _("Can't set cable"));
 		else
 		{
 			ticables_options_set_timeout(cable_handle, options.cable_timeout);
@@ -407,7 +407,7 @@ int tilp_device_reset(void)
 
 			calc_handle = ticalcs_handle_new(options.calc_model);
 			if(calc_handle == NULL)
-				gif->msg_box1("Error", "Can't set cable");
+				gif->msg_box1(_("Error"), _("Can't set cable"));
 			else
 			{
 				err = ticalcs_cable_attach(calc_handle, cable_handle);

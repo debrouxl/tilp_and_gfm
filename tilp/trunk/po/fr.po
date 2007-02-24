@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-02-24 20:30+0100\n"
+"POT-Creation-Date: 2007-02-24 20:50+0100\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -156,7 +156,8 @@ msgstr "Question"
 #: src/dboxes.c:46 src/main.c:162 src/tilp_calcs.c:354 src/tilp_calcs.c:422
 #: src/tilp_calcs.c:429 src/tilp_calcs.c:551 src/tilp_calcs.c:560
 #: src/tilp_calcs.c:565 src/tilp_calcs.c:570 src/tilp_calcs.c:1227
-#: src/tilp_config.c:319 src/tilp_error.c:87 src/tilp_files.c:252
+#: src/tilp_config.c:319 src/tilp_device.c:363 src/tilp_device.c:402
+#: src/tilp_device.c:410 src/tilp_error.c:87 src/tilp_files.c:252
 #: src/tilp_files.c:324 src/tilp_misc.c:39 src/tilp_misc.c:80
 #: src/tilp_misc.c:123 src/tilp_misc.c:182 src/tilp_misc.c:225
 msgid "Error"
@@ -189,7 +190,7 @@ msgstr "Ouvrir un fichier"
 #: src/labels.c:113 src/labels.c:133
 #, c-format
 msgid "used: %s"
-msgstr "utilisé: %s"
+msgstr "utilisée: %s"
 
 #: src/labels.c:123 src/labels.c:143
 msgid "free: N/A"
@@ -501,6 +502,16 @@ msgstr "Fichier de configuration enregistré"
 #: src/tilp_config.c:477
 msgid "Configuration file loaded."
 msgstr "Fichier de configuration chargé"
+
+#: src/tilp_device.c:385
+msgid ""
+"Connection is being \n"
+"reset..."
+msgstr "Réinitialisation de la connexion..."
+
+#: src/tilp_device.c:402 src/tilp_device.c:410
+msgid "Can't set cable"
+msgstr "Ne peut configurer le câble"
 
 #: src/tilp_files.c:137
 msgid ""
@@ -937,6 +948,166 @@ msgstr "Date & Heure"
 msgid " _Sync with PC "
 msgstr " _Synchroniser"
 
+#: glade/comm-2.str:7 glade/device-2.str:3
+msgid "Communication Settings"
+msgstr "Paramètres de connexion"
+
+#: glade/comm-2.str:8 glade/device-2.str:5
+msgid "Cable:"
+msgstr "Câble:"
+
+#: glade/comm-2.str:9 glade/device-2.str:6
+msgid "Port:"
+msgstr "Port:"
+
+#: glade/comm-2.str:10 glade/device-2.str:7
+msgid "Calc:"
+msgstr "Calc:"
+
+#: glade/comm-2.str:11 glade/device-2.str:8
+msgid "Timeout:"
+msgstr "Timeout:"
+
+#: glade/comm-2.str:12 glade/device-2.str:9
+msgid "Delay:"
+msgstr "Délai:"
+
+#: glade/comm-2.str:13
+msgid "Inter-bit delay for serial/parallel link cables."
+msgstr "Délai inter-bit pour les câbles série/parallèles."
+
+#: glade/comm-2.str:14 glade/comm-2.str:19 glade/comm-2.str:32
+msgid "None"
+msgstr "Aucun"
+
+#: glade/comm-2.str:15 glade/device-2.str:19
+msgid "#1"
+msgstr "n°1"
+
+#: glade/comm-2.str:16 glade/device-2.str:20
+msgid "#2"
+msgstr "n°2"
+
+#: glade/comm-2.str:17 glade/device-2.str:21
+msgid "#3"
+msgstr "n°3"
+
+#: glade/comm-2.str:18 glade/device-2.str:22
+msgid "#4"
+msgstr "n°4"
+
+#: glade/comm-2.str:20 glade/device-2.str:24
+msgid "TI73"
+msgstr "TI73"
+
+#: glade/comm-2.str:21 glade/device-2.str:25
+msgid "TI82"
+msgstr "TI82"
+
+#: glade/comm-2.str:22 glade/device-2.str:26
+msgid "TI83"
+msgstr "TI83"
+
+#: glade/comm-2.str:23 glade/device-2.str:27
+msgid "TI83+"
+msgstr "TI83+"
+
+#: glade/comm-2.str:24 glade/device-2.str:28
+msgid "TI84+"
+msgstr "TI83+"
+
+#: glade/comm-2.str:25 glade/device-2.str:29
+msgid "TI85"
+msgstr "TI85"
+
+#: glade/comm-2.str:26 glade/device-2.str:30
+msgid "TI86"
+msgstr "TI86"
+
+#: glade/comm-2.str:27 glade/device-2.str:31
+msgid "TI89"
+msgstr "TI89"
+
+#: glade/comm-2.str:28 glade/device-2.str:32
+msgid "TI89 Titanium"
+msgstr "Titanium"
+
+#: glade/comm-2.str:29 glade/device-2.str:33
+msgid "TI92"
+msgstr "TI92"
+
+#: glade/comm-2.str:30 glade/device-2.str:34
+msgid "TI92+"
+msgstr "TI92+"
+
+#: glade/comm-2.str:31 glade/device-2.str:35
+msgid "V200PLT"
+msgstr "V200PLT"
+
+#: glade/comm-2.str:33 glade/device-2.str:10
+msgid "GrayLink"
+msgstr "GrayLink (gris)"
+
+#: glade/comm-2.str:34 glade/device-2.str:11
+msgid "BlackLink"
+msgstr "BlackLink (noir)"
+
+#: glade/comm-2.str:35 glade/device-2.str:13
+msgid "ParallelLink"
+msgstr "Câble parallèle"
+
+#: glade/comm-2.str:36 glade/device-2.str:12
+msgid "SilverLink"
+msgstr "SilverLink (argent)"
+
+#: glade/comm-2.str:37
+msgid "DirectLink"
+msgstr "DirectLink (USB/USB)"
+
+#: glade/comm-2.str:38 glade/device-2.str:14
+msgid "VTi"
+msgstr "VTi"
+
+#: glade/comm-2.str:39 glade/device-2.str:15
+msgid "TiEmu"
+msgstr "TiEmu"
+
+#: glade/comm-2.str:40 glade/device-2.str:16
+msgid "virtual"
+msgstr "virtuel"
+
+#: glade/comm-2.str:41
+msgid "UsbKernel"
+msgstr "UsbKernel"
+
+#: glade/comm-2.str:42
+msgid ""
+"If checked, TiLP will scan USB devices at startup and will use the first "
+"device found."
+msgstr ""
+"Si activé, TiLP parcourera les périphériques USB au démarrage et utilisera "
+"la première combinaison trouvée."
+
+#: glade/comm-2.str:43
+msgid "USB scan at startup"
+msgstr "Scan USB au démarrage"
+
+#: glade/comm-2.str:44 glade/device-2.str:36
+msgid "Settings"
+msgstr "Configuration"
+
+#: glade/comm-2.str:45
+msgid "Don't know which device you have ? Click =>"
+msgstr "Vous ne savez pas quel périph vous avez ? Cliquer =>"
+
+#: glade/comm-2.str:46
+msgid "Probe for attached devices..."
+msgstr "Recherche des périphériques attachés..."
+
+#: glade/comm-2.str:47
+msgid "Double-click a line to update settings."
+msgstr "Double-cliquer une ligne pour mettre à jour la configuration."
+
 #: glade/ctree_rbm-2.str:7
 msgid "Change _device"
 msgstr "Changer de lecteur"
@@ -957,61 +1128,9 @@ msgstr "Supprimer variable/application"
 msgid "Create folder"
 msgstr "_Nouveau dossier"
 
-#: glade/device-2.str:3
-msgid "Communication Settings"
-msgstr "Paramètres de connexion"
-
 #: glade/device-2.str:4
 msgid "_Auto-detect"
 msgstr "_Autodétection"
-
-#: glade/device-2.str:5
-msgid "Cable:"
-msgstr "Câble:"
-
-#: glade/device-2.str:6
-msgid "Port:"
-msgstr "Port:"
-
-#: glade/device-2.str:7
-msgid "Calc:"
-msgstr "Calc:"
-
-#: glade/device-2.str:8
-msgid "Timeout:"
-msgstr "Timeout:"
-
-#: glade/device-2.str:9
-msgid "Delay:"
-msgstr "Délai:"
-
-#: glade/device-2.str:10
-msgid "GrayLink"
-msgstr "GrayLink (gris)"
-
-#: glade/device-2.str:11
-msgid "BlackLink"
-msgstr "BlackLink (noir)"
-
-#: glade/device-2.str:12
-msgid "SilverLink"
-msgstr "SilverLink (argent)"
-
-#: glade/device-2.str:13
-msgid "ParallelLink"
-msgstr "Câble parallèle"
-
-#: glade/device-2.str:14
-msgid "VTi"
-msgstr "VTi"
-
-#: glade/device-2.str:15
-msgid "TiEmu"
-msgstr "TiEmu"
-
-#: glade/device-2.str:16
-msgid "virtual"
-msgstr "virtuel"
 
 #: glade/device-2.str:17 glade/device-2.str:23
 msgid "null"
@@ -1020,74 +1139,6 @@ msgstr "aucun"
 #: glade/device-2.str:18
 msgid "custom"
 msgstr "personnalisé"
-
-#: glade/device-2.str:19
-msgid "#1"
-msgstr "n°1"
-
-#: glade/device-2.str:20
-msgid "#2"
-msgstr "n°2"
-
-#: glade/device-2.str:21
-msgid "#3"
-msgstr "n°3"
-
-#: glade/device-2.str:22
-msgid "#4"
-msgstr "n°4"
-
-#: glade/device-2.str:24
-msgid "TI73"
-msgstr "TI73"
-
-#: glade/device-2.str:25
-msgid "TI82"
-msgstr "TI82"
-
-#: glade/device-2.str:26
-msgid "TI83"
-msgstr "TI83"
-
-#: glade/device-2.str:27
-msgid "TI83+"
-msgstr "TI83+"
-
-#: glade/device-2.str:28
-msgid "TI84+"
-msgstr "TI83+"
-
-#: glade/device-2.str:29
-msgid "TI85"
-msgstr "TI85"
-
-#: glade/device-2.str:30
-msgid "TI86"
-msgstr "TI86"
-
-#: glade/device-2.str:31
-msgid "TI89"
-msgstr "TI89"
-
-#: glade/device-2.str:32
-msgid "TI89 Titanium"
-msgstr "Titanium"
-
-#: glade/device-2.str:33
-msgid "TI92"
-msgstr "TI92"
-
-#: glade/device-2.str:34
-msgid "TI92+"
-msgstr "TI92+"
-
-#: glade/device-2.str:35
-msgid "V200PLT"
-msgstr "V200PLT"
-
-#: glade/device-2.str:36
-msgid "Settings"
-msgstr "Configuration"
 
 #: glade/device-2.str:37
 msgid "Have a problem ? Check out the log:"
