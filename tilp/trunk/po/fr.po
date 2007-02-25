@@ -1,4 +1,4 @@
-# French locale for libtifiles.
+# French locale for TiLP
 # Copyright (C) 2003 Sylvain Garsault
 # Copyright (C) 2007 Romain Liévin
 # This file is distributed under the same license as the libtifiles package.
