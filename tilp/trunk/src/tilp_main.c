@@ -67,6 +67,14 @@ int tilp_init(int *argc, char ***argv)
 	/* Initialize platform independant paths */
 	tilp_paths_init();
 
+	/* Init i18n support */
+#ifdef ENABLE_NLS
+	tilp_info("setlocale: <%s>", setlocale(LC_ALL, ""));
+  	tilp_info("bindtextdomain: <%s>", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+  	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
+  	tilp_info("textdomain: <%s>", textdomain(PACKAGE));
+#endif
+
 	/* Initialize callbacks with default functions */ 
 	tilp_gif_set_default();
 
@@ -80,14 +88,6 @@ int tilp_init(int *argc, char ***argv)
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
-
-	/* Init locale & internationalization */
-#ifdef ENABLE_NLS
-	tilp_info( "setlocale: <%s>", setlocale(LC_ALL, ""));
-  	tilp_info( "bindtextdomain: <%s>", bindtextdomain(PACKAGE, inst_paths.locale_dir));
-  	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	tilp_info( "textdomain: <%s>", textdomain(PACKAGE));
-#endif /* ENABLE_NLS */
 
 	/* Check the version of libraries and init framework */
 	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0) 
