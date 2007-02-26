@@ -69,10 +69,10 @@ int tilp_init(int *argc, char ***argv)
 
 	/* Init i18n support */
 #ifdef ENABLE_NLS
-	tilp_info("setlocale: <%s>", setlocale(LC_ALL, ""));
-  	tilp_info("bindtextdomain: <%s>", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	tilp_info("setlocale: %s", setlocale(LC_ALL, ""));
+  	tilp_info("bindtextdomain: %s", bindtextdomain(PACKAGE, inst_paths.locale_dir));
   	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	tilp_info("textdomain: <%s>", textdomain(PACKAGE));
+  	tilp_info("textdomain: %s", textdomain(PACKAGE));
 #endif
 
 	/* Initialize callbacks with default functions */ 
@@ -91,16 +91,16 @@ int tilp_init(int *argc, char ***argv)
 
 	/* Check the version of libraries and init framework */
 	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0) 
-		tilp_error(_("libticonv library version <%s> mini required.\n"), TILP_REQUIRES_LIBCONV_VERSION);
+		tilp_error(_("libticonv library version %s mini required.\n"), TILP_REQUIRES_LIBCONV_VERSION);
 
 	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0) 
-		tilp_error(_("libtifiles library version <%s> mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
+		tilp_error(_("libtifiles library version %s mini required.\n"), TILP_REQUIRES_LIBFILES_VERSION);
 	
 	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) 
-		tilp_error(_("libticables library version <%s> mini required.\n"), TILP_REQUIRES_LIBCABLES_VERSION);
+		tilp_error(_("libticables library version %s mini required.\n"), TILP_REQUIRES_LIBCABLES_VERSION);
 	
 	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) 
-		tilp_error(_("libticalcs library version <%s> mini required.\n"), TILP_REQUIRES_LIBCALCS_VERSION);
+		tilp_error(_("libticalcs library version %s mini required.\n"), TILP_REQUIRES_LIBCALCS_VERSION);
 
 	ticables_library_init();
 	tifiles_library_init();

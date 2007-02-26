@@ -1104,7 +1104,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 #endif
 	if(infos->mask & INFOS_PRODUCT_NAME)
 	{
-		tmp = g_strdup_printf(_("%sProduct Name: <%s>\n"), str, infos->product_name);
+		tmp = g_strdup_printf(_("%sProduct Name: %s\n"), str, infos->product_name);
 		g_free(str);
 		str = tmp;
 	}
