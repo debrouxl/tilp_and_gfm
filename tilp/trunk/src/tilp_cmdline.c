@@ -35,14 +35,14 @@ static gint show_version;
 
 static GOptionEntry entries[] = 
 {
-        { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, "Version", NULL},
-	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, "Hand-held model", NULL },
-	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, "Link cable model", NULL },
-	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, "Link cable port", NULL },
-	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.cable_timeout, "Link cable timeout", NULL },
-	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.cable_delay, "Link cable delay", NULL },
-	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &dont_use_gui, "Does not use GUI", NULL },
-	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, "filename(s)", NULL },
+    { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
+	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, N_("Hand-held model"), NULL },
+	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, N_("Link cable model"), NULL },
+	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, N_("Link cable port"), NULL },
+	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.cable_timeout, N_("Link cable timeout"), NULL },
+	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.cable_delay, N_("Link cable delay"), NULL },
+	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &dont_use_gui, N_("Does not use GUI"), NULL },
+	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
 	{ NULL }
 };
 
