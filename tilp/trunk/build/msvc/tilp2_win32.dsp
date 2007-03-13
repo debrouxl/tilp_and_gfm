@@ -369,5 +369,9 @@ SOURCE=..\..\ChangeLog
 
 SOURCE=..\..\src\tilp_version.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\..\..\..\..\GTK2DEV\lib\intl.lib
+# End Source File
 # End Target
 # End Project
