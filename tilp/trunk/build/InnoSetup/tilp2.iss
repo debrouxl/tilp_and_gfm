@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP2
-AppVerName=TiLP2 1.02
+AppVerName=TiLP2 1.03
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php
@@ -52,9 +52,9 @@ Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; Dest
 Source: "C:\sources\roms\tilp2\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-Source: "C:\sources\roms\libs\tifiles2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\libs\ticables2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\libs\ticalcs2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\tifiles2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\ticables2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\ticalcs2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\po\fr.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
