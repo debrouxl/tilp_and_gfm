@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.01 (10/11/2006)
-Current version:  1.02 (20/02/2007)
+Old     version:  1.02 (20/02/2007)
+Current version:  1.03 (13/03/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,25 +21,20 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- Titanium/USB dumper is now launched remotely
+	- internationalization support: French locale is currently included
+		If you want to add a locale, drop a mail at <tilp-devel@lists.sf.net>.
 
 
 Improvements:
 -------------
 
-	- remote control for USB hand-helds is implemented (framework only)
-	- 89/92/92+: set to HOME screen before sending dumping program
-	- check that hand-held specified in device box matches those detected at ready check
-	- check that TiGroup file matches target calculator
+	- some typo fixes in the menus
 
 
 Bug fixes:
 ----------
 
-	- #1662383: can only take screenshots from the home screen
-	- USB communication was not reset properly after an error
-	- some dirname with spaces like 'My Files' were not opened properly
-	- #1657175: small program (snake.asm: 309 bytes) was rejected by DirectLink
+	- set home/working folder as current folder on MinGW build
 
 
 Known bugs:
