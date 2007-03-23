@@ -174,7 +174,7 @@ Root: HKCR; SubKey: ".v2s"; ValueType: string;  ValueData: "TiLP.String"; Tasks:
 Root: HKCR; SubKey: ".v2t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: tifiles;
-Root: HKCR; SubKey: ".v2y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".v2y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI92+ file entries
@@ -197,7 +197,7 @@ Root: HKCR; SubKey: ".9xs"; ValueType: string;  ValueData: "TiLP.String"; Tasks:
 Root: HKCR; SubKey: ".9xt"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xu"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xx"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: tifiles;
-Root: HKCR; SubKey: ".9xy"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".9xy"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xz"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9x?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI92 file entries
@@ -220,7 +220,7 @@ Root: HKCR; SubKey: ".92s"; ValueType: string;  ValueData: "TiLP.String"; Tasks:
 Root: HKCR; SubKey: ".92t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: tifiles;
-Root: HKCR; SubKey: ".92y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".92y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI89 file entries
@@ -243,13 +243,13 @@ Root: HKCR; SubKey: ".89s"; ValueType: string;  ValueData: "TiLP.String"; Tasks:
 Root: HKCR; SubKey: ".89t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: tifiles;
-Root: HKCR; SubKey: ".89y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".89y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI86 file entries
 Root: HKCR; SubKey: ".86c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
-Root: HKCR; SubKey: ".86e"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".86e"; ValueType: string;  ValueData: "TiLP.Equation"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86g"; ValueType: string;  ValueData: "TiLP.Group"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86i"; ValueType: string;  ValueData: "TiLP.Picture"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86k"; ValueType: string;  ValueData: "TiLP.Constant"; Tasks: tifiles;
@@ -268,7 +268,7 @@ Root: HKCR; SubKey: ".86?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks
 Root: HKCR; SubKey: ".85b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
-Root: HKCR; SubKey: ".85e"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".85e"; ValueType: string;  ValueData: "TiLP.Equation"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85g"; ValueType: string;  ValueData: "TiLP.Group"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85i"; ValueType: string;  ValueData: "TiLP.Picture"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85k"; ValueType: string;  ValueData: "TiLP.Constant"; Tasks: tifiles;
@@ -316,7 +316,7 @@ Root: HKCR; SubKey: ".83p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks
 Root: HKCR; SubKey: ".83s"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; Tasks: tifiles;
-Root: HKCR; SubKey: ".83y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".83y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI82 file entries
@@ -330,7 +330,7 @@ Root: HKCR; SubKey: ".82n"; ValueType: string;  ValueData: "TiLP.Real"; Tasks: t
 Root: HKCR; SubKey: ".82p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; Tasks: tifiles;
-Root: HKCR; SubKey: ".82y"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".82y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 ; TI73 file entries
@@ -339,7 +339,7 @@ Root: HKCR; SubKey: ".73d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: ti
 Root: HKCR; SubKey: ".73g"; ValueType: string;  ValueData: "TiLP.Group"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73i"; ValueType: string;  ValueData: "TiLP.Picture"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73m"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks: tifiles;
-Root: HKCR; SubKey: ".73k"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".73k"; ValueType: string;  ValueData: "TiLP.Application"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73l"; ValueType: string;  ValueData: "TiLP.List"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73n"; ValueType: string;  ValueData: "TiLP.Real"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;

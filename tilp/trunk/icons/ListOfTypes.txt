@@ -9,9 +9,11 @@ Practically, you just have to change colors of Backup & Zipped icons.
 Others are ok.
 You TIicon?.ico icons was useful, too.
 
-List of files (some vartypes have the same icon but with different files):
+---
 
-- vartype	descriptive	icon file		suggested symbol
+List of icons (some vartypes have the same icon but with different files):
+
+  vartype	descriptive	icon file		suggested symbol
 
 - EXPR		Expression	Expression.ico		x+1
 - REAL		Real		Real.ico		3.0
@@ -50,6 +52,49 @@ List of files (some vartypes have the same icon but with different files):
 - MAC		Macro		Macro.ico		MAC
 - GRP		Group Var	Group.ico		
 
-Icon not listed:
 - BKUP		Backup		Backup.ico		
 - GROUP		Group		Group.ico		a (WinXP) folder icon
+
+---
+
+List of types and extensions:
+
+Type		extension	models
+
+Figure		a			9x
+Backup		b			8x,92
+Complex		c			8x
+Data		c			9x
+GDB			d			8x
+Equation	e			8x
+Expression	e			9x
+Range		f			8x?
+Function	f			9x
+Group		g			all
+Picture		i			all
+Constant 	k			85/86
+Application	k			FLASH
+List		l			8x
+Matrix		m			all
+Real		n			8x
+Program		p			all
+Certificate	q			all
+Range		r			85,86
+String		s			all - 82
+Text		t			9x
+Table Setup	t			8x
+OS Upgrade	u			all
+App Var		v			83+
+Vector		v			86
+Window		w			8x
+Macro		x			9x	
+Y-Var		y			82,83,85,86
+Zipped		y			9x
+Assembly	z			all
+Zoom		z			8x
+
+Polar		?			8x
+Parametric	?			8x
+Diff-Eq		?			8x
+
+TiGroup		tig			all
