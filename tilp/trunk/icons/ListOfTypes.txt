@@ -74,7 +74,7 @@ Group		g			all
 Picture		i			all
 Constant 	k			85/86
 Application	k			FLASH
-List		l			8x
+List		l			all
 Matrix		m			all
 Real		n			8x
 Program		p			all
