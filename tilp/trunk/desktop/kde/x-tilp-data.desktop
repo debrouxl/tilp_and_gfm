@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-data
+Comment=Ti File (Data)
+Comment[fr]=Fichier TI (Données)
+Icon=/usr/local/share/tilp2/icons/Data.ico
+Type=MimeType
+Patterns=*.89c;*.92c;*.9Xc;*.9xc;*.V2c;*.v2c;

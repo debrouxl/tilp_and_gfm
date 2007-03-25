@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-zip
+Comment=Ti File (Zip'ed)
+Comment[fr]=Fichier TI (Compressé)
+Icon=/usr/local/share/tilp2/icons/Zipped.ico
+Type=MimeType
+Patterns=*.89y;*.92y;*.9Xy;*.9xy;*.V2y;*.v2y;

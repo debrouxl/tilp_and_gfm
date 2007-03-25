@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-vector
+Comment=Ti File (Vector)
+Comment[fr]=Fichier TI (Vecteur)
+Icon=/usr/local/share/tilp2/icons/Vector.ico
+Type=MimeType
+Patterns=*.86v;

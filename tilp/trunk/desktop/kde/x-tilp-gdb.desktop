@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-gdb
+Comment=Ti File (GDB)
+Comment[fr]=Fichier TI (GDB)
+Icon=/usr/local/share/tilp2/icons/Expression.ico
+Type=MimeType
+Patterns=*.73d;*.82d;*.83d;*.8Xd;*.8xd;*.85d;*.86d;*.89d;*.92d;*.9Xd;*.9xd;*.V2d;*.v2d;

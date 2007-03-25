@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-app_var
+Comment=Ti File (Application Variable)
+Comment[fr]=Fichier TI (Variable Application)
+Icon=/usr/local/share/tilp2/icons/App_Var.ico
+Type=MimeType
+Patterns=*.8Xv;*.8xv;

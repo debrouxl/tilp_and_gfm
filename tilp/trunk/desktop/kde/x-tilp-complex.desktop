@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-complex
+Comment=Ti File (Complex Number)
+Comment[fr]=Fichier TI (Nombre Complexe)
+Icon=/usr/local/share/tilp2/icons/Complex.ico
+Type=MimeType
+Patterns=*.73c;*.82c;*.83c;*.8Xc;*.8xc;*.85c;*.86c;

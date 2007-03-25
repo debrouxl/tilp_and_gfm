@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-group
+Comment=Ti File (Group)
+Comment[fr]=Fichier TI (Groupe)
+Icon=/usr/local/share/tilp2/icons/Group.ico
+Type=MimeType
+Patterns=*.73g;*.82g;*.83g;*.8Xg;*.8xg;*.85g;*.86g;*.89g;*.92g;*.9Xg;*.9xg;*.V2g;*.v2g;

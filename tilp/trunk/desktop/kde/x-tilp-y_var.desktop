@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-y_var
+Comment=Ti File (Y-Var)
+Comment[fr]=Fichier TI (Y-Var)
+Icon=/usr/local/share/tilp2/icons/Y_Var.ico
+Type=MimeType
+Patterns=*.82y;*.83y;*.85y;*.86y;

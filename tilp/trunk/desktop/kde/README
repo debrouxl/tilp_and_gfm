@@ -1,0 +1,12 @@
+This directory contains shortcuts and mime types for KDE integration.
+You have to copy:
+- tilp.desktop to 
+	$HOME/.local/share/applications or /usr/share/applications
+- x-tilp-*.desktop to 
+	$HOME/.kde/share/mimelnk/application or /usr/share/mimelnk/application
+
+You will have to add a reference to skinedit.desktop into the menu:
+- edit $HOME/.config/menus/applications-kmenuedit.menu
+- add an entry like '<Filename>tilp.desktop</Filename>'
+
+

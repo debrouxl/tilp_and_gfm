@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-list
+Comment=Ti File (List)
+Comment[fr]=Fichier TI (List)
+Icon=/usr/local/share/tilp2/icons/List.ico
+Type=MimeType
+Patterns=*.73l;*.82l;*.83l;*.8Xl;*.8xl;*.85l;*.86l;*.89l;*.92l;*.9Xl;*.9xl;*.V2l;*.v2l;

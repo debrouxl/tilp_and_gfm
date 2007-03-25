@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-macro
+Comment=Ti File (Macro)
+Comment[fr]=Fichier TI (Macro)
+Icon=/usr/local/share/tilp2/icons/Macro.ico
+Type=MimeType
+Patterns=*.89x;*.92x;*.9Xx;*.9xx;*.V2x;*.v2x;

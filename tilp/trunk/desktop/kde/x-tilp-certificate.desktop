@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-certificate
+Comment=Ti File (Certificate)
+Comment[fr]=Fichier TI (Certificat)
+Icon=/usr/local/share/tilp2/icons/Certificate.ico
+Type=MimeType
+Patterns=*.73q;*.8Xq;*.8xq;*.89q;*.9Xq;*.9xq;*.V2q;*.v2q;

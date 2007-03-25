@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+MimeType=application/x-tilp-range
+Comment=Ti File (Range)
+Comment[fr]=Fichier TI (Intervalle)
+Icon=/usr/local/share/tilp2/icons/Range.ico
+Type=MimeType
+Patterns=*.85r;*.86r;
