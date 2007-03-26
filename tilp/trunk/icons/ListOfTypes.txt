@@ -65,7 +65,7 @@ Figure		a			9x
 Backup		b			8x,92
 Complex		c			8x
 Data		c			9x
-GDB			d			8x
+GDB			d			all
 Equation	e			8x
 Expression	e			9x
 Range		f			8x?
@@ -78,12 +78,12 @@ List		l			all
 Matrix		m			all
 Real		n			8x
 Program		p			all
-Certificate	q			all
+Certificate	q			FLASH
 Range		r			85,86
 String		s			all - 82
 Text		t			9x
 Table Setup	t			8x
-OS Upgrade	u			all
+OS Upgrade	u			FLASH
 App Var		v			83+
 Vector		v			86
 Window		w			8x
@@ -95,6 +95,8 @@ Zoom		z			8x
 
 Polar		?			8x
 Parametric	?			8x
-Diff-Eq		?			8x
+Diff-Eq		?			8x or 86?
 
 TiGroup		tig			all
+
+Note: FLASH = 73,8X,89,9X,V2
