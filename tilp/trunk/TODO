@@ -9,8 +9,6 @@ To do:
 
 5) need to exit TiLP to clear a USB error
 
-6) support i18n (n'a jamais marché, à comprendre)
-
 7) fix Titanium/USB sous Linux
 
 8) critical bug: sending LCHASE.8xp from 20sec.zip package failed on 
