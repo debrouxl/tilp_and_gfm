@@ -249,7 +249,7 @@ void ctree_set_basetree(void)
 	
 	// top node
 #if 1
-	str = g_strdup_printf(_("%s w/ %s on #%i"), tifiles_model_to_string(options.calc_model),
+	str = g_strdup_printf(_("%s -> %s:#%i"), tifiles_model_to_string(options.calc_model),
 		ticables_model_to_string(options.cable_model), options.cable_port);
 
 	top_node = &clc_node;

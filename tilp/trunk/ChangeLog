@@ -2,9 +2,13 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- , version 1.04: roms
+	- cosmetic change in the name of the TiEmu virtual link
+
 - 23/02/2007, version 1.03 (1.0.4, 1.0.5, 1.0.4, 1.0.1): roms
 	- enabled i18n
 	- set home/working folder as current folder on MinGW build
+	=> released on 14/03/2007.
 
 - 17/01/2007, version 1.02 (1.0.3, 1.0.4, 1.0.3, 1.0.1): roms
 	- added xdg-open in front of the list of browsers (kevin)
@@ -20,6 +24,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- added a 2s pause when resetting USB communication (seems to be needed...)
 	- don't allow to send a TI73 TiGroup file on a TI89 for instance 
 		(check that TiGroup matches target hand-held)
+	=> released on 20/02/2007.
 	
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
 	- as stated by Benjamin, replaced snprintf by g_snprintf which is safer

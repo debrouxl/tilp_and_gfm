@@ -546,7 +546,7 @@
 			  <child>
 			    <widget class="GtkMenuItem" id="tie1">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TiEmu</property>
+			      <property name="label" translatable="yes">TiEmu/TilEm</property>
 			      <property name="use_underline">True</property>
 			    </widget>
 			  </child>
