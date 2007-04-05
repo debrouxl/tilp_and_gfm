@@ -3,6 +3,7 @@
 
 /*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 2007  Kevin Kofler
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,6 +36,10 @@
 #ifdef __WIN32__
 # include <windows.h>
 #endif				/*  */
+
+#if WITH_KDE
+#include "kde.h"
+#endif
 
 #include "support.h"
 #include "splash.h"
@@ -88,6 +93,14 @@ int main(int argc, char *argv[])
 	/* Create the main window */
 	if(!(working_mode & MODE_CMD))
 	{
+#if WITH_KDE
+		splash_screen_set_label(_("Initializing KDE..."));
+		sp_kde_init(argc, argv, "tilp", _("TiLP"), VERSION, _("Tilp Is a Linking Program"), "Copyright (c) 1999-2007 Romain Lievin", "http://lpg.ticalc.org/prj_tilp/", "tilp-users@lists.sf.net");
+		atexit(sp_kde_finish);
+		// Not needed unless we want to add a DCOP interface.
+		// g_timeout_add(26, sp_kde_process_qt_events, NULL);
+#endif
+
 		splash_screen_set_label(_("Loading GUI..."));
 		main_wnd = display_tilp_dbox();
 	}
