@@ -36,7 +36,11 @@ tilp_SOURCES = *.h \
 	release.c screenshot.c scroptions.c splash.c support.c \
 	toolbar.c \
 	\
-	kde.cpp
+	kde.cpp \
+	kde-private.cpp
+
+kde-private.cpp: kde-private.h
+	@MOC@ kde-private.h -o kde-private.cpp
 
 dos2unix:
 	dos2unix
