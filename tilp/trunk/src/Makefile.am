@@ -37,9 +37,10 @@ tilp_SOURCES = *.h \
 	toolbar.c
 
 if USE_KDE
-tilp_SOURCES += kde.cpp kde-private.cpp
-endif
-if USE_KDE
+tilp_SOURCES += kde.cpp
+nodist_tilp_SOURCES = kde-private.cpp
+CLEANFILES = kde-private.cpp
+
 kde-private.cpp: kde-private.h
 	@MOC@ kde-private.h -o kde-private.cpp
 endif
