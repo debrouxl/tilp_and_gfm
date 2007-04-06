@@ -130,6 +130,7 @@ if test "x$kde" = "xyes"; then
         AC_PATH_KDE
         AC_DEFINE(WITH_KDE, 1, [Use KDE support])
 fi
+AM_CONDITIONAL(USE_KDE, test "x$kde" = "xyes")
 AC_SUBST(kde)
 
 # Ensure MSVC-compatible struct packing convention is used when
