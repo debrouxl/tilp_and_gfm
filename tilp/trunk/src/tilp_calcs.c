@@ -92,6 +92,7 @@ int tilp_calc_isready(void)
 
 	if(!win32 && options.calc_model == CALC_TI89T_USB)
 	  {
+		// does nothing here due to Titanium firmware bug
 	    //printf("hotplug: nothing !\n");
 	  }
 	else if((options.cable_model == CABLE_USB || 
@@ -101,7 +102,6 @@ int tilp_calc_isready(void)
 		tilp_device_close();
 		tilp_device_open();
 	}
-	
 
 	// first check: fast
 	to = ticables_options_set_timeout(cable_handle, 10);
@@ -114,12 +114,12 @@ int tilp_calc_isready(void)
 		{
 		case CALC_TI89:
 		case CALC_TI89T:
-			err = ticalcs_calc_send_key(calc_handle, 277);
+			err = ticalcs_calc_send_key(calc_handle, 277);	//KEY89_HOME
 			break;
 		case CALC_TI92:
 		case CALC_TI92P:
 		case CALC_V200:
-			err = ticalcs_calc_send_key(calc_handle, 8273);
+			err = ticalcs_calc_send_key(calc_handle, 8273);	//
 			break;
 
 		default: break;
@@ -137,24 +137,39 @@ int tilp_calc_isready(void)
 		}
 	}
 
-	if(tifiles_is_flash(options.calc_model) && options.cable_model != CABLE_USB && options.calc_model != CALC_TI73)
+	if(tifiles_is_flash(options.calc_model))
 	{
-		CalcInfos infos;
-
-		err = ticalcs_calc_get_version(calc_handle, &infos);
-		if(tilp_err(err))
+		CalcModel model = CALC_NONE;
+		
+		err = ticalcs_probe(options.cable_model, options.cable_port, &model, 0);
+		if(err)
+		{
+			tilp_err(err);
 			return -1;
-
-		if(infos.model != options.calc_model)
+		}
+	
+		if(model != options.calc_model)
 		{
 			int ret = gif->msg_box2(_("Warning"), _("The detected model does not match those specified in the settings. Do you want to change it?"));
 			
 			if(ret == BUTTON1)
 			{
-				options.calc_model = infos.model;
+				options.calc_model = model;
 				ctree_set_basetree();
 			}
 		}
+
+#if 0
+		{
+			CalcInfos infos;
+
+			err = ticalcs_calc_get_version(calc_handle, &infos);
+			if(tilp_err(err))
+				return -1;
+
+			
+		}
+#endif
 	}
 
 	return 0;
