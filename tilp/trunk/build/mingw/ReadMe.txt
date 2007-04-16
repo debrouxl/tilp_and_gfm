@@ -1,6 +1,6 @@
 Compiling LPG Software with MinGW
-Version 1.99 20060904
-Copyright (C) 2005-2006 Kevin Kofler
+Version 1.99 20070416
+Copyright (C) 2005-2007 Kevin Kofler
 Copyright (C) 2001-2006 Romain Lievin
 Copyright (C) 2006 Tyler Cassidy
 
@@ -228,26 +228,22 @@ Once you have successfully cross-built TiEmu 3, here's how to build a Windows in
 
 1. Fetch the latest NSIS source tarball from http://nsis.sf.net
 
-2. Install the SCons development version (a noarch RPM) from http://scons.sf.net
+2. Install the SCons development version (a noarch RPM) from http://www.scons.org
 
 3. Build NSIS:
-   scons PREFIX=~/nsis SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all
-   scons PREFIX=~/nsis SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all install
+   scons PREFIX=/usr/local SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all VERSION=2.xx
+   scons PREFIX=/usr/local SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all VERSION=2.xx install
+   where 2.xx is the NSIS version (otherwise the binary will claim to be a CVS version).
 
 4. Fetch the corresponding NSIS ZIP file from http://nsis.sf.net
 
-5. Extract some of the contents of the ZIP file into ~/nsis:
-   Docs, Examples -> ~/nsis/share/doc/nsis
-   Bin, Contrib, Include, Menu, Plugins, Stubs -> ~/nsis/share/nsis
+5. Extract some of the contents of the ZIP file into /usr/local:
+   Docs, Examples -> /usr/local/share/doc/nsis
+   Bin, Contrib, Include, Menu, Plugins, Stubs -> /usr/local/share/nsis
 
-6. Use this /usr/local/bin/makensis script (a symlink will NOT work, because makensis expects to be
-   called with a full path!):
-   #!/bin/sh
-   ~/nsis/bin/makensis $*
+6. Install UPX from Fedora Extras. (Can be retrieved with yum: "yum install upx".)
 
-7. Install UPX from Fedora Extras. (Can be retrieved with yum: "yum install upx".)
-
-8. Use the following commands to build the TiEmu setup wizard:
+7. Use the following commands to build the TiEmu setup wizard:
    cd build/nsis
    makensis tiemu-cross.nsi
 
