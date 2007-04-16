@@ -34,7 +34,7 @@ tilp_SOURCES = *.h \
 	ctree.c ctree_rbm.c dboxes.c device.c dnd.c filesel.c \
 	gtk_gif.c gtk_update.c labels.c manpage.c options.c pbars.c \
 	release.c screenshot.c scroptions.c splash.c support.c \
-	toolbar.c
+	toolbar.c fileprop.c
 
 if USE_KDE
 tilp_SOURCES += kde.cpp

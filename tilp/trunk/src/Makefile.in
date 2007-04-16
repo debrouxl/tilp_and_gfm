@@ -58,7 +58,8 @@ am__tilp_SOURCES_DIST = *.h tilp_calcs.c tilp_cmdline.c tilp_config.c \
 	action.c bookmark.c clist.c clist_rbm.c clock.c ctree.c \
 	ctree_rbm.c dboxes.c device.c dnd.c filesel.c gtk_gif.c \
 	gtk_update.c labels.c manpage.c options.c pbars.c release.c \
-	screenshot.c scroptions.c splash.c support.c toolbar.c kde.cpp
+	screenshot.c scroptions.c splash.c support.c toolbar.c \
+	fileprop.c kde.cpp
 @USE_KDE_TRUE@am__objects_1 = tilp-kde.$(OBJEXT)
 am_tilp_OBJECTS = tilp-tilp_calcs.$(OBJEXT) \
 	tilp-tilp_cmdline.$(OBJEXT) tilp-tilp_config.$(OBJEXT) \
@@ -80,7 +81,8 @@ am_tilp_OBJECTS = tilp-tilp_calcs.$(OBJEXT) \
 	tilp-pbars.$(OBJEXT) tilp-release.$(OBJEXT) \
 	tilp-screenshot.$(OBJEXT) tilp-scroptions.$(OBJEXT) \
 	tilp-splash.$(OBJEXT) tilp-support.$(OBJEXT) \
-	tilp-toolbar.$(OBJEXT) $(am__objects_1)
+	tilp-toolbar.$(OBJEXT) tilp-fileprop.$(OBJEXT) \
+	$(am__objects_1)
 @USE_KDE_TRUE@nodist_tilp_OBJECTS = tilp-kde-private.$(OBJEXT)
 tilp_OBJECTS = $(am_tilp_OBJECTS) $(nodist_tilp_OBJECTS)
 tilp_DEPENDENCIES =
@@ -155,6 +157,7 @@ GLIBC21 = @GLIBC21@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMSGFMT = @GMSGFMT@
+GREP = @GREP@
 GROFF = @GROFF@
 GTK_CFLAGS = @GTK_CFLAGS@
 GTK_LIBS = @GTK_LIBS@
@@ -266,20 +269,14 @@ USE_NLS = @USE_NLS@
 USE_THREADS = @USE_THREADS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
+XMKMF = @XMKMF@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_INCLUDES = @X_INCLUDES@
 X_LDFLAGS = @X_LDFLAGS@
 X_PRE_LIBS = @X_PRE_LIBS@
-ac_ct_AR = @ac_ct_AR@
-ac_ct_AS = @ac_ct_AS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
-ac_ct_DLLTOOL = @ac_ct_DLLTOOL@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_OBJDUMP = @ac_ct_OBJDUMP@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
-ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 all_includes = @all_includes@
 all_libraries = @all_libraries@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
@@ -298,12 +295,16 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
@@ -331,12 +332,15 @@ kde_wallpaperdir = @kde_wallpaperdir@
 kde_widgetdir = @kde_widgetdir@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 qt_includes = @qt_includes@
 qt_libraries = @qt_libraries@
 sbindir = @sbindir@
@@ -372,7 +376,7 @@ tilp_SOURCES = *.h tilp_calcs.c tilp_cmdline.c tilp_config.c \
 	ctree_rbm.c dboxes.c device.c dnd.c filesel.c gtk_gif.c \
 	gtk_update.c labels.c manpage.c options.c pbars.c release.c \
 	screenshot.c scroptions.c splash.c support.c toolbar.c \
-	$(am__append_1)
+	fileprop.c $(am__append_1)
 @USE_KDE_TRUE@nodist_tilp_SOURCES = kde-private.cpp
 @USE_KDE_TRUE@CLEANFILES = kde-private.cpp
 all: all-am
@@ -457,6 +461,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-dboxes.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-device.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-dnd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-fileprop.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-filesel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-gtk_gif.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tilp-gtk_update.Po@am__quote@
@@ -1084,6 +1089,20 @@ tilp-toolbar.obj: toolbar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='toolbar.c' object='tilp-toolbar.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(tilp_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tilp-toolbar.obj `if test -f 'toolbar.c'; then $(CYGPATH_W) 'toolbar.c'; else $(CYGPATH_W) '$(srcdir)/toolbar.c'; fi`
+
+tilp-fileprop.o: fileprop.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(tilp_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tilp-fileprop.o -MD -MP -MF "$(DEPDIR)/tilp-fileprop.Tpo" -c -o tilp-fileprop.o `test -f 'fileprop.c' || echo '$(srcdir)/'`fileprop.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/tilp-fileprop.Tpo" "$(DEPDIR)/tilp-fileprop.Po"; else rm -f "$(DEPDIR)/tilp-fileprop.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='fileprop.c' object='tilp-fileprop.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(tilp_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tilp-fileprop.o `test -f 'fileprop.c' || echo '$(srcdir)/'`fileprop.c
+
+tilp-fileprop.obj: fileprop.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(tilp_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tilp-fileprop.obj -MD -MP -MF "$(DEPDIR)/tilp-fileprop.Tpo" -c -o tilp-fileprop.obj `if test -f 'fileprop.c'; then $(CYGPATH_W) 'fileprop.c'; else $(CYGPATH_W) '$(srcdir)/fileprop.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/tilp-fileprop.Tpo" "$(DEPDIR)/tilp-fileprop.Po"; else rm -f "$(DEPDIR)/tilp-fileprop.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='fileprop.c' object='tilp-fileprop.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(tilp_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tilp-fileprop.obj `if test -f 'fileprop.c'; then $(CYGPATH_W) 'fileprop.c'; else $(CYGPATH_W) '$(srcdir)/fileprop.c'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
