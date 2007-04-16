@@ -181,6 +181,10 @@ SOURCE=..\..\src\dnd.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\fileprop.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\filesel.c
 # End Source File
 # Begin Source File
