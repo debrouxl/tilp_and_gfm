@@ -39,6 +39,7 @@
 #include "dboxes.h"
 #include "tilp.h"
 #include "tilp_core.h"
+#include "fileprop.h"
 
 /* Create/update menu */
 
@@ -321,4 +322,22 @@ rbm_recv_as_group1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	options.recv_as_group = GTK_CHECK_MENU_ITEM(menuitem)->active;
+}
+
+GLADE_CB void
+rbm_properties1_activate             (GtkMenuItem     *menuitem,
+                                      gpointer         user_data)
+{
+	GList *ptr;
+
+	if (local.file_selection == NULL)
+		return;
+
+	for(ptr = local.file_selection; ptr; ptr = ptr->next)
+	{
+		gchar *fn = (gchar *)(ptr->data);
+
+		display_properties_dbox(fn);
+	}
+	
 }

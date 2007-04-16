@@ -2,11 +2,12 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- 02/04/2007, version 1.04: roms
+- 02/04/2007, version 1.04 (1.0.5, 1.0.6, 1.0.5, 1.0.2): roms
 	- cosmetic change in the name of the TiEmu virtual link
 	- added KDE file dialog support (like in TiEmu)
 	- fixed/improved hand-held model check
 	- fixed aliasing violations in Win32 file dialog code (kevin)
+	- added Ti File Properties dialog box
 
 - 23/02/2007, version 1.03 (1.0.4, 1.0.5, 1.0.4, 1.0.1): roms
 	- enabled i18n
