@@ -6,6 +6,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- cosmetic change in the name of the TiEmu virtual link
 	- added KDE file dialog support (like in TiEmu)
 	- fixed/improved hand-held model check
+	- fixed aliasing violations in Win32 file dialog code (kevin)
 
 - 23/02/2007, version 1.03 (1.0.4, 1.0.5, 1.0.4, 1.0.1): roms
 	- enabled i18n

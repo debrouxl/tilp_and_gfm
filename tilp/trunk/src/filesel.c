@@ -44,6 +44,11 @@
 #ifdef __WIN32__
 #include <windows.h>
 #include <wchar.h>
+#if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 3)))
+	typedef OPENFILENAME OPENFILENAME_MAYALIAS __attribute__((may_alias));
+#else
+	typedef OPENFILENAME OPENFILENAME_MAYALIAS;
+#endif
 #endif
 
 #if WITH_KDE
@@ -185,7 +190,7 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
 {
 #ifdef WIN32
-	OPENFILENAME o;
+	OPENFILENAME_MAYALIAS o;
 	char lpstrFile[2048] = "\0";
 	char lpstrFilter[512];
 	char *p;
@@ -273,7 +278,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 	// open/close
 	if(save)
 	{
-		if(!(have_widechar ? GetSaveFileNameW((OPENFILENAMEW *)&o) : GetSaveFileName(&o)))
+		if(!(have_widechar ? GetSaveFileNameW((OPENFILENAMEW *)&o) : GetSaveFileName((OPENFILENAME *)&o)))
 		{
 			g_free(sdirname);
 			return filename = NULL;
@@ -281,7 +286,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 	}
 	else
 	{
-		if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName(&o)))
+		if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName((OPENFILENAME *)&o)))
 		{
 			g_free(sdirname);
 			return filename = NULL;
@@ -499,7 +504,7 @@ static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 {
 #ifdef WIN32
-	OPENFILENAME o;
+	OPENFILENAME_MAYALIAS o;
 	char lpstrFile[2048] = "\0";
 	char lpstrFilter[512];
 	char *p;
@@ -587,7 +592,7 @@ static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 				 OFN_ALLOWMULTISELECT;
 
 	// open selector
-	if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName(&o)))
+	if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName((OPENFILENAME *)&o)))
 	{
 		g_free(sdirname);
 		return NULL;
