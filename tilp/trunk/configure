@@ -27501,12 +27501,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.0.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.0.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.6.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.6.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.0.0" 2>/dev/null`
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.6.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -27519,12 +27519,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GTK_LIBS="$GTK_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.0.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.0.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.6.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.6.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.0.0" 2>/dev/null`
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.6.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -27543,14 +27543,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.0.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.6.0"`
         else
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.0.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.6.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$GTK_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0 >= 2.0.0) were not met:
+	{ { echo "$as_me:$LINENO: error: Package requirements (gtk+-2.0 >= 2.6.0) were not met:
 
 $GTK_PKG_ERRORS
 
@@ -27561,7 +27561,7 @@ Alternatively, you may set the environment variables GTK_CFLAGS
 and GTK_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&5
-echo "$as_me: error: Package requirements (gtk+-2.0 >= 2.0.0) were not met:
+echo "$as_me: error: Package requirements (gtk+-2.0 >= 2.6.0) were not met:
 
 $GTK_PKG_ERRORS
 
@@ -27615,12 +27615,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GLADE_CFLAGS="$GLADE_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 1.99.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 1.99.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 2.4.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 2.4.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GLADE_CFLAGS=`$PKG_CONFIG --cflags "libglade-2.0 >= 1.99.0" 2>/dev/null`
+  pkg_cv_GLADE_CFLAGS=`$PKG_CONFIG --cflags "libglade-2.0 >= 2.4.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -27633,12 +27633,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GLADE_LIBS="$GLADE_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 1.99.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 1.99.0") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0 >= 2.4.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0 >= 2.4.0") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_GLADE_LIBS=`$PKG_CONFIG --libs "libglade-2.0 >= 1.99.0" 2>/dev/null`
+  pkg_cv_GLADE_LIBS=`$PKG_CONFIG --libs "libglade-2.0 >= 2.4.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -27657,14 +27657,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        GLADE_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libglade-2.0 >= 1.99.0"`
+	        GLADE_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libglade-2.0 >= 2.4.0"`
         else
-	        GLADE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libglade-2.0 >= 1.99.0"`
+	        GLADE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libglade-2.0 >= 2.4.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$GLADE_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (libglade-2.0 >= 1.99.0) were not met:
+	{ { echo "$as_me:$LINENO: error: Package requirements (libglade-2.0 >= 2.4.0) were not met:
 
 $GLADE_PKG_ERRORS
 
@@ -27675,7 +27675,7 @@ Alternatively, you may set the environment variables GLADE_CFLAGS
 and GLADE_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&5
-echo "$as_me: error: Package requirements (libglade-2.0 >= 1.99.0) were not met:
+echo "$as_me: error: Package requirements (libglade-2.0 >= 2.4.0) were not met:
 
 $GLADE_PKG_ERRORS
 
