@@ -43,6 +43,8 @@ CLEANFILES = kde-private.cpp
 
 kde-private.cpp: kde-private.h
 	@MOC@ kde-private.h -o kde-private.cpp
+else
+EXTRA_DIST = kde.cpp
 endif
 
 dos2unix:

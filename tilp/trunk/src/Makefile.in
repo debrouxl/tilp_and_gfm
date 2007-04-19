@@ -379,6 +379,7 @@ tilp_SOURCES = *.h tilp_calcs.c tilp_cmdline.c tilp_config.c \
 	fileprop.c $(am__append_1)
 @USE_KDE_TRUE@nodist_tilp_SOURCES = kde-private.cpp
 @USE_KDE_TRUE@CLEANFILES = kde-private.cpp
+@USE_KDE_FALSE@EXTRA_DIST = kde.cpp
 all: all-am
 
 .SUFFIXES:
