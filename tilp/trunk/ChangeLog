@@ -8,6 +8,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed/improved hand-held model check
 	- fixed aliasing violations in Win32 file dialog code (kevin)
 	- added Ti File Properties dialog box
+	- filter -s from CFLAGS/CXXFLAGS/LDFLAGS on Darwin (kevin)
 
 - 23/02/2007, version 1.03 (1.0.4, 1.0.5, 1.0.4, 1.0.1): roms
 	- enabled i18n

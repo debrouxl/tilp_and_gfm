@@ -205,8 +205,22 @@ case "$host" in
 esac
 LDFLAGS="$LDFLAGS $EXFL"
 
+# On Darwin, libglade chokes on stripped executables.
+case "$host" in
+  *-apple-darwin*)
+    case "$CFLAGS $CXXFLAGS $LDFLAGS" in
+      *" -s "*|"-s "*|*" -s"|"-s")
+         echo "warning: cannot strip libglade executables on this host"
+         CFLAGS=`echo "$CFLAGS"|sed 's/\( -s\)* / /g;s/^-s //g;s/ -s$//g;s/^-s$//g'`
+         CXXFLAGS=`echo "$CXXFLAGS"|sed 's/\( -s\)* / /g;s/^-s //g;s/ -s$//g;s/^-s$//g'`
+         LDFLAGS=`echo "$LDFLAGS"|sed 's/\( -s\)* / /g;s/^-s //g;s/ -s$//g;s/^-s$//g'`
+         ;;
+    esac
+    ;;
+esac
+
+# some extra flags
 CFLAGS="$CFLAGS -DGTK_DISABLE_DEPRECATED"
-LDFLAGS="$LDFLAGS"
 CXXFLAGS="$CFLAGS -fno-rtti -fno-exceptions"
 
 AC_SUBST(CFLAGS)
