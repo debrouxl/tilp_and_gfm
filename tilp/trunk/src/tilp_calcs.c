@@ -137,6 +137,7 @@ int tilp_calc_isready(void)
 		}
 	}
 
+#if 0
 	if(tifiles_is_flash(options.calc_model))
 	{
 		CalcModel model = CALC_NONE;
@@ -171,6 +172,7 @@ int tilp_calc_isready(void)
 		}
 #endif
 	}
+#endif
 
 	return 0;
 }
