@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.02 (20/02/2007)
-Current version:  1.03 (13/03/2007)
+Old     version:  1.03 (13/03/2007)
+Current version:  1.04 (24/04/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,20 +21,22 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- internationalization support: French locale is currently included
-		If you want to add a locale, drop a mail at <tilp-devel@lists.sf.net>.
+	- Ti File Properties dialog box
 
 
 Improvements:
 -------------
 
-	- some typo fixes in the menus
+	- [linux] added KDE file dialog support (like TiEmu)
+	- [bsd] support NetBSD serial port device names (Jukka Salmi)
 
 
 Bug fixes:
 ----------
 
-	- set home/working folder as current folder on MinGW build
+	- #1676861: VTi link failed due to library name
+	- no clock in TI83+ & TI83+ SE; no clock in TI84+
+	- #1563667: impossible to flash TI-83+/SE (OS)
 
 
 Known bugs:
