@@ -82,8 +82,8 @@ TI83+/TI84+ (SE or not SE):
 Note: the TI83+ is the only calc to have a GROUP variable. TiLP supports it in
 a specific way: this kind of var is saved as a single file as any other
 variable. Thus, if you send it, it will stay grouped on calc.
-The TI's software has a different way: it explode the GROUP variable
-into a .8Xg group file and you lost the grouping on calculator.
+The TI's software has a different way: it explodes the GROUP variable
+into a .8Xg group file and you lose the grouping on calculator.
 
 TI83:
   - screen dump
@@ -119,7 +119,7 @@ AVAILABILITY
 COPYRIGHT
 ---------
 
-TiLP is Copyright (C) 1999-2006 by the TiLP team <tilp-users@lists.sf.net>.
+TiLP is Copyright (C) 1999-2007 by the TiLP team <tilp-users@lists.sf.net>.
 
 Copying is allowed under the terms of GNU General Public License.  
 See the file COPYING for more details.
