@@ -1,0 +1,3 @@
+?package(tilp):needs="X11" section="Apps/Math"\
+  title="TiLP2" command="/usr/bin/tilp"
+
