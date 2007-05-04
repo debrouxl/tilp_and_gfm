@@ -281,6 +281,8 @@ reloop:
 
 //----------------------------------------------------------------------------
 
+static int open = 0; /* keep status to avoid multiple error messages */
+
 int tilp_device_open(void)
 {
 	int err = 0;
@@ -312,6 +314,7 @@ int tilp_device_open(void)
 		tilp_update_set_default();
 	}
 
+	open = err ? 0 : 1;
 	return err;
 }
 
@@ -329,6 +332,7 @@ int tilp_device_close(void)
 	ticalcs_handle_del(calc_handle);
 	ticables_handle_del(cable_handle);
 
+	open = 0;
 	return err;
 }
 
@@ -377,6 +381,9 @@ int tilp_device_err(int err)
 */
 int tilp_device_reset(void)
 {
+  if(!open)
+    return 0;
+
 #if 1
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
     {
