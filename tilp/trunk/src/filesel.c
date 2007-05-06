@@ -281,7 +281,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 		if(!(have_widechar ? GetSaveFileNameW((OPENFILENAMEW *)&o) : GetSaveFileName((OPENFILENAME *)&o)))
 		{
 			g_free(sdirname);
-			return filename = NULL;
+			return fname = NULL;
 		}
 	}
 	else
@@ -289,7 +289,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 		if(!(have_widechar ? GetOpenFileNameW((OPENFILENAMEW *)&o) : GetOpenFileName((OPENFILENAME *)&o)))
 		{
 			g_free(sdirname);
-			return filename = NULL;
+			return fname = NULL;
 		}
 	}
 
