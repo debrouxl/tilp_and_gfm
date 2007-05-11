@@ -34,6 +34,7 @@ endif
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
+	touch configure.ac && touch aclocal.m4 && touch configure
 	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 
 
