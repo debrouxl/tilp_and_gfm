@@ -47,7 +47,6 @@ src/toolbar.c
 glade/action-2.str
 glade/clist_rbm-2.str
 glade/clock-2.str
-glade/comm-2.str
 glade/ctree_rbm-2.str
 glade/device-2.str
 glade/manpage-2.str
