@@ -29,6 +29,7 @@ Improvements:
 
 	- [linux] added KDE file dialog support (like TiEmu)
 	- [bsd] support NetBSD serial port device names (Jukka Salmi)
+	- removed multiple error messages
 
 
 Bug fixes:
