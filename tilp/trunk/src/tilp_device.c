@@ -281,7 +281,7 @@ reloop:
 
 //----------------------------------------------------------------------------
 
-static int open = 0; /* keep status to avoid multiple error messages */
+static int lk_open = 0; /* keep status to avoid multiple error messages */
 
 int tilp_device_open(void)
 {
@@ -314,7 +314,7 @@ int tilp_device_open(void)
 		tilp_update_set_default();
 	}
 
-	open = err ? 0 : 1;
+	lk_open = err ? 0 : 1;
 	return err;
 }
 
@@ -332,7 +332,7 @@ int tilp_device_close(void)
 	ticalcs_handle_del(calc_handle);
 	ticables_handle_del(cable_handle);
 
-	open = 0;
+	lk_open = 0;
 	return err;
 }
 

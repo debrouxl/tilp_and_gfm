@@ -6,7 +6,7 @@
 
 [Setup]
 AppName=TiLP2 SDK
-AppVerName=TiLP2 SDK 1.01
+AppVerName=TiLP2 SDK 1.04
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp-staff.php
