@@ -16,7 +16,7 @@ Obsoletes: tilp < 20050828
 TiLP is a TI<->PC linking program
 
 %prep
-%setup -n tilp
+%setup
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} --libdir=%{_libdir} --mandir=%{_mandir} --disable-nls
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
+* Wed May 16 2007 Kevin Kofler <Kevin@tigcc.ticalc.org>
+Drop -n libticonv, the tarball uses name-version format now.
+
 * Mon Apr 16 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.04-1
 Bump Epoch.
 Use real version number instead of date.
