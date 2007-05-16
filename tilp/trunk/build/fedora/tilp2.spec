@@ -88,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Wed May 16 2007 Kevin Kofler <Kevin@tigcc.ticalc.org>
-Drop -n libticonv, the tarball uses name-version format now.
+Drop -n tilp, the tarball uses name-version format now.
 
 * Mon Apr 16 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.04-1
 Bump Epoch.
