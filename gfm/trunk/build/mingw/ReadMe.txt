@@ -228,7 +228,7 @@ Once you have successfully cross-built TiEmu 3, here's how to build a Windows in
 
 1. Fetch the latest NSIS source tarball from http://nsis.sf.net
 
-2. Install the SCons development version (a noarch RPM) from http://www.scons.org
+2. Install SCons from Fedora Extras. (Can be retrieved with yum: "yum install scons".)
 
 3. Build NSIS:
    scons PREFIX=/usr/local SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all VERSION=2.xx
