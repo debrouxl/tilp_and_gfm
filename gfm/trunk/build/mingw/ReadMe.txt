@@ -1,5 +1,5 @@
 Compiling LPG Software with MinGW
-Version 1.99 20070416
+Version 1.99 20070529
 Copyright (C) 2005-2007 Kevin Kofler
 Copyright (C) 2001-2006 Romain Lievin
 Copyright (C) 2006 Tyler Cassidy
@@ -226,24 +226,11 @@ WARNING: DON'T use GTK+ 2.8 if you want to be able to test with WINE!
 
 Once you have successfully cross-built TiEmu 3, here's how to build a Windows installer on Fedora:
 
-1. Fetch the latest NSIS source tarball from http://nsis.sf.net
+1. Install NSIS from: http://repo.calcforge.org/fedora/
 
-2. Install SCons from Fedora Extras. (Can be retrieved with yum: "yum install scons".)
+2. Install UPX from Fedora Extras. (Can be retrieved with yum: "yum install upx".)
 
-3. Build NSIS:
-   scons PREFIX=/usr/local SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all VERSION=2.xx
-   scons PREFIX=/usr/local SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all VERSION=2.xx install
-   where 2.xx is the NSIS version (otherwise the binary will claim to be a CVS version).
-
-4. Fetch the corresponding NSIS ZIP file from http://nsis.sf.net
-
-5. Extract some of the contents of the ZIP file into /usr/local:
-   Docs, Examples -> /usr/local/share/doc/nsis
-   Bin, Contrib, Include, Menu, Plugins, Stubs -> /usr/local/share/nsis
-
-6. Install UPX from Fedora Extras. (Can be retrieved with yum: "yum install upx".)
-
-7. Use the following commands to build the TiEmu setup wizard:
+3. Use the following commands to build the TiEmu setup wizard:
    cd build/nsis
    makensis tiemu-cross.nsi
 
