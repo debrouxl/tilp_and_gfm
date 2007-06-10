@@ -31,6 +31,13 @@
 
 #include "tilp_core.h"
 
+#ifdef __WIN32__
+#include <windows.h>
+#define PAUSE(x) Sleep(x)
+#else
+#define PAUSE(x) usleep(1000*(x))
+#endif
+
 /* Get a dirlist  */
 int tilp_dirlist_remote(void)
 {
@@ -65,6 +72,7 @@ int tilp_dirlist_remote(void)
 	// get mem free stats
 	if(ticalcs_calc_features(calc_handle) & FTS_MEMFREE)
 	{
+		PAUSE(100);	// needed by TI84+/USB
 		ticalcs_calc_get_memfree(calc_handle, &remote.memory.ram_free, &remote.memory.flash_free);
 	}
 	else
