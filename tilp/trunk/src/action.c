@@ -188,11 +188,12 @@ gint display_action_dbox(gchar *target)
 			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 			char *trans;
 			char full_name[19];
+			int appv = (options.calc_model == CALC_TI83P || options.calc_model != CALC_TI84P) && (v->type == TI83p_APPVAR);
 
 			// modify attr or folder if target is specified
 			if(strcmp(target, ""))
 			{
-				if(!strcmp(target, "<FLASH>"))
+				if(!strcmp(target, "<FLASH>") && !appv)
 				{
 					v->attr = ATTRB_ARCHIVED;
 				}
