@@ -22,8 +22,6 @@ To do:
 7) La vérification de concordance entre modèle sélectionné et modèle détecté 
 	pose problème avec le Gray/BlackLink parce que le port est déjà ouvert
 
-8) envoyer une APPV en FLASH plante TiLP et la calc.
-
 //------
 
 + = done.
