@@ -35,8 +35,8 @@ static void my_log_handler(const gchar *log_domain,
                            const gchar *message,
                            gpointer user_data) { }
 
-static gchar** array;
-static gint show_version;
+static gchar** array = NULL;
+static gint show_version = 0;
 
 static GOptionEntry entries[] = 
 {
@@ -50,7 +50,7 @@ static void gfm_version(void)
 	fprintf(stdout, _("GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"), GFM_VERSION);
 	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-        fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+    fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
 /* Launch Command Line Function */
@@ -77,7 +77,7 @@ void gfm_cmdline(int *argc, char ***argv)
                             G_LOG_LEVEL_MESSAGE | 
                             G_LOG_LEVEL_INFO | 
                             G_LOG_LEVEL_MASK |
-														G_LOG_FLAG_FATAL | 
+							G_LOG_FLAG_FATAL | 
                             G_LOG_FLAG_RECURSION | 
                             G_LOG_LEVEL_DEBUG,
                             my_log_handler, NULL); // GLib

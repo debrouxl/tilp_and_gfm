@@ -37,7 +37,7 @@ GFMWidget gfm_widget;
 int launch_gfmgui(void)
 {
     GladeXML *xml;
-    GtkWidget *widget, *data;
+    GtkWidget *widget;
 
     // Load the GFM Dialog from gfm.glade
     xml = glade_xml_new(gfm_paths_build_glade("gfm.glade"), "gfm_dbox", NULL);
@@ -53,13 +53,12 @@ int launch_gfmgui(void)
     widget = glade_xml_get_widget(xml, "gfm_dbox");
 
     // Global Widget Access
-	/*
-    gfm_widget.group_tree = glade_xml_get_widget(xml, "group_tree");		// Group Tree
-    gfm_widget.comp_tree = glade_xml_get_widget(xml, "folder_tree");		// Folder Tree
-    gfm_widget.current_folder = glade_xml_get_widget(xml, "folder_label");	// Current Folder Label
-    gfm_widget.group_files = glade_xml_get_widget(xml, "groupfile_numfiles_label"); // # files in Group
-    gfm_widget.group_filesize = glade_xml_get_widget(xml, "groupfile_filesize_label"); // Size of Group
-	*/
+	gfm_widget.tree = glade_xml_get_widget(xml, "treeview1");
+	gfm_widget.model = glade_xml_get_widget(xml, "label1");
+	gfm_widget.entries = glade_xml_get_widget(xml, "label3");
+	gfm_widget.comment = glade_xml_get_widget(xml, "label5");
+	gfm_widget.ram = glade_xml_get_widget(xml, "label2");
+	gfm_widget.flash = glade_xml_get_widget(xml, "label4");
 		
 	// To write...
     

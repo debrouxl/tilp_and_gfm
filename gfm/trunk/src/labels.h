@@ -21,7 +21,13 @@
 #ifndef __GFMLABELS_H__
 #define __GFMLABELS_H__
 
+#include "tilibs.h"
+
 // Prototypes
-void labels_refresh();
+void labels_set_model(CalcModel model);
+void labels_set_entries(int n);
+void labels_set_comment(const char* comment);
+void labels_set_ram(uint32_t ram);
+void labels_set_flash(uint32_t flash);
 
 #endif

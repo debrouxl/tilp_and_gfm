@@ -22,12 +22,14 @@
 #define __GFMGUI_H__
 
 /* Structures */
-typedef struct {
-        void *group_tree; // The Group File Tree
-        void *comp_tree; // The Computer (Folder) Tree
-        void *current_folder; // Current Folder Label under Folder Tree
-        void *group_files; // Number of Group Files Label under Group Tree
-        void *group_filesize; // Size of Group File Label under Group Tree
+typedef struct 
+{
+	GtkWidget *tree;
+	GtkWidget *model;
+	GtkWidget *entries;
+	GtkWidget *comment;
+	GtkWidget *ram;
+	GtkWidget *flash;
 } GFMWidget; 
 extern GFMWidget gfm_widget;
 

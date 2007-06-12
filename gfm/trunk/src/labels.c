@@ -93,31 +93,52 @@ static char* format_path(char *src, char *dst)
 	return dst;
 }
 
-/* Refresh the Labels in the window */
-void labels_refresh(void)
+void labels_set_model(CalcModel model)
 {
-	/*
-  gsize br, bw;
-  gchar size[48], num_files[12];
-  gchar *utf8_size, *utf8_num_files;
-  
-  // Parse File Size and place into a string
-  if (GFile.file_size < 1024)
-    snprintf(size, 48, "File Size: %d bytes", GFile.file_size);
-  if (GFile.file_size >= 1024 && GFile.file_size < 1048576)
-    snprintf(size, 48, "File Size: %.2f kilobytes", (float)(GFile.file_size / 1024));
-  if (GFile.file_size >= 1048576)
-    snprintf(size, 48, "File Size: %.2f megabytes", (float)(GFile.file_size / 1048576));
+	gtk_label_set_text(GTK_LABEL(gfm_widget.model),
+		tifiles_model_to_string(model));
+}
 
-  // Convert number of files to string
-  snprintf(num_files, 12, "Files: %d", GFile.num_entries);
+void labels_set_entries(int n)
+{
+	gchar *str;
+	
+	str = g_strdup_printf("%i entries", n);
+	gtk_label_set_text(GTK_LABEL(gfm_widget.entries), str);
+	g_free(str);
+}
 
-  // Convert to UTF-8
-  utf8_size = g_locale_to_utf8(size, -1, &br, &bw, NULL);
-  utf8_num_files = g_locale_to_utf8(num_files, -1, &br, &bw, NULL);
+void labels_set_comment(const char* comment)
+{
+	gtk_label_set_text(GTK_LABEL(gfm_widget.comment), comment);
+}
 
-  // Update labels
-  gtk_label_set_text(GTK_LABEL(gfm_widget.group_filesize), utf8_size);
-  gtk_label_set_text(GTK_LABEL(gfm_widget.group_files), utf8_num_files);
-  */
+void labels_set_ram(uint32_t ram)
+{
+	gchar *str;
+
+	if (ram < 1024)
+		str = g_strdup_printf("RAM used: %d bytes", ram);
+	if (ram >= 1024 && ram < 1048576)
+		str = g_strdup_printf("RAM used: %.2f kilobytes", (float)(ram / 1024));
+	if (ram >= 1048576)
+		str = g_strdup_printf("RAM used: %.2f megabytes", (float)(ram / 1048576));
+
+	gtk_label_set_text(GTK_LABEL(gfm_widget.ram), str);
+	g_free(str);
+}
+
+void labels_set_flash(uint32_t flash)
+{
+	gchar *str;
+
+	if (flash < 1024)
+		str = g_strdup_printf("FLASH used: %d bytes", flash);
+	if (flash >= 1024 && flash < 1048576)
+		str = g_strdup_printf("FLASH used: %.2f kilobytes", (float)(flash / 1024));
+	if (flash >= 1048576)
+		str = g_strdup_printf("FLASH used: %.2f megabytes", (float)(flash / 1048576));
+
+	gtk_label_set_text(GTK_LABEL(gfm_widget.flash), str);
+	g_free(str);
 }
