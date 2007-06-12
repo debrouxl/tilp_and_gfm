@@ -18,51 +18,6 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-/* Todo List: - Leave, its easy to access in Dev-C++
-   Computer (Folder) Tree:
-   -draggin
-     -Group File into the Group Tree and opens Group File
-   -Enter Key on selection in folder tree to open file in Group Tree.
-   -Group/Ungroup Selection in Folder Tree Right Click Menu
-   -The Rest of GUI Callback functions for tree in gui.c (if any)
-
-   Group File Tree:
-   -Init (program in group_tree.c, gtree_sort.c, [group_tree.h]) and call in gui.c where folder tree is called (~line 72)
-   -Dragging
-     -File onto Folder Tree to extract
-     -Group/File from Folder Tree into Group Tree to add to Group File
-   -Sorting (code in gtree_sort.c) and implement
-   -Right Click to open that menu and get items coded (in gtree_menu.c,gtree_menu.h)
-    (pointers to labels in gfm_widget in gui.h struct)
-   -Double Click (Rename Group File)
-
-    *******************************************
-    -group_tree_init(): group_tree_column_clicked, group_tree_selection change needed to be coded
-    -group tree click event, left double click implemented but not used!
-    ********************************************
-
-    Group File Support:
-    group_file_create() - creates new Tig or Group File
-    group_file_open() - checks file class and opens with gfile_open or tigfile_open()
-    update tigfile_create() if needed
-    code gfile_create
-    need to get group_tree_refresh coded and implemented into gui.c and in various spots of group_file.c
-    
-
-   Other:
-   -Buttons at top of Program (New, MkDir, Refresh, Delete || Add, Rename, Delete, Refresh, Help)
-    all need coded - callback functions in gui.c
-   -progress bars need to be done in pbar.c/.h
-   -man page dialog needs to be implemented - See Changelog Dialog
-   -html launcher needs to be done
-   -Changelog/Release Dialog (like on on first time TiLP is booted) - maybe create generic routine for less code (with manpage)
-   -Load Settings at boot, size of Main Window, and where slider is
-   -Make a routine just for loading glade xml, we have many copies within GFM.
-
-   Notes:
-   -file filtering in folder tree?? check the compat part...
-*/
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -74,19 +29,13 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
 
-#include "configfile.h"
 #include "cmdline.h"
-#include "file.h"
-#include "folder_tree.h"
-#include "group_file.h"
 #include "gui.h"
 #include "paths.h"
+#include "file.h"
 #include "splashscreen.h"
 #include "support.h"
 #include "tilibs.h"
-
-/* Settings Structure */
-SettingsStruct settings;
 
 /* Main Function */
 int main(int argc, char *argv[])
@@ -94,8 +43,8 @@ int main(int argc, char *argv[])
     static gchar *icon_dir;
 
     /* Initialize Group File Manager */
-    gfm_cmdline(); // Clear warnings on Command line
-    gfm_paths_init(); // Setup paths for executable
+    gfm_cmdline(&argc, &argv);
+    gfm_paths_init();
 
     /* Load GTK */
     gtk_init(&argc, &argv); // Loadup GTK+
@@ -115,14 +64,6 @@ int main(int argc, char *argv[])
     splash_screen_message("Loading tilibs2...");
     load_tilibs(); // Load tilibs
 
-    /* Load Settings */
-    splash_screen_message("Loading Settings...");
-    config_presets(); // Load the Defaults before the User Preferences
-    config_load(); // Load User Preferences now
-    config_check(); // Check to see if values are valid in .gfmrc
-    gfm_change_cwd(settings.cur_dir); // Set the CWD at boot!
-    // Or it will start off at where the binary is...
-
     /* Launching GUI */
     splash_screen_message("Launching GUI...");
     launch_gfmgui();
@@ -130,12 +71,6 @@ int main(int argc, char *argv[])
 
     /* Run into a loop! */
     gtk_main();
-
-    /* Save Settings */
-    config_save();
-    
-    /* Free the Group File */
-    group_file_free();
     
     /* Close tilibs */
     tifiles_library_exit(); // libtifiles2

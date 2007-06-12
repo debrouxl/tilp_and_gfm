@@ -1,1 +1,1 @@
-EXTRA_DIST = mingw devcpp
+#EXTRA_DIST = mingw devcpp

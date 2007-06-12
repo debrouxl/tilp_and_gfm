@@ -34,18 +34,18 @@
 /* Structures */
 typedef struct
 {
-        gchar *base_dir; // Main Directory
-        gchar *help_dir; // Help Directory
-        gchar *pixmap_dir; // Pixmaps Directory
-        gchar *glade_dir; // Directory with Glade Files
-        gchar *tmp_dir; // Temporary File Directory
-        gchar *home_dir; // Home Directory
+        gchar *base_dir;	// Main Directory
+        gchar *help_dir;	// Help Directory
+        gchar *pixmap_dir;	// Pixmaps Directory
+        gchar *glade_dir;	// Directory with Glade Files
+        gchar *tmp_dir;		// Temporary File Directory
+        gchar *home_dir;	// Home Directory
 } GFMInstPaths;
 
 // Lets Prototype the Structure
 extern GFMInstPaths inst_paths;
 
-int gfm_paths_init(void); // Setup The Installation Paths for GFM
+int gfm_paths_init(void);							 // Setup The Installation Paths for GFM
 const char *gfm_paths_build_glade(const char *name); // Used to return exact path to Glade File
 
 #endif

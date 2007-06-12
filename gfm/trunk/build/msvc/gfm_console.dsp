@@ -138,27 +138,7 @@ SOURCE=..\..\src\cmdline.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\configfile.c
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\dialog.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\file.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\folder_tree.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ftree_menu.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ftree_sort.c
 # End Source File
 # Begin Source File
 

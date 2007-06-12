@@ -22,25 +22,47 @@
 #include <config.h>
 #endif
 
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <gtk/gtk.h>
 
 #include "cmdline.h"
+#include "support.h"
+#include "version.h"
 
 static void my_log_handler(const gchar *log_domain,
                            GLogLevelFlags log_level,
                            const gchar *message,
                            gpointer user_data) { }
 
-/* Launch Command Line Function */
-void gfm_cmdline(void)
+static gchar** array;
+static gint show_version;
+
+static GOptionEntry entries[] = 
 {
-  // Show the Disclaimer
-	printf("\nTHIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\nPLEASE READ THE DOCUMENTATION FOR DETAILS.\n\n");
+    { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
+	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
+	{ NULL }
+};
+
+static void gfm_version(void)
+{
+	fprintf(stdout, _("GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"), GFM_VERSION);
+	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+        fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+}
+
+/* Launch Command Line Function */
+void gfm_cmdline(int *argc, char ***argv)
+{
+	GOptionContext* context;
+	GError *error = NULL;
+
+	gfm_version();
 
   // Get rid of GTK+ Logging if need-be (GTK, GDK, GLib, libglade)
-  #if !defined(_DEBUG)
+#if !defined(_DEBUG)
   g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING | 
                            G_LOG_LEVEL_MESSAGE | 
                            G_LOG_LEVEL_INFO | 
@@ -59,8 +81,20 @@ void gfm_cmdline(void)
                             G_LOG_FLAG_RECURSION | 
                             G_LOG_LEVEL_DEBUG,
                             my_log_handler, NULL); // GLib
-  #endif
-     
-	// Return
-  return;
+#endif
+
+	// parse command line
+	context = g_option_context_new ("- Group File Manager");
+	g_option_context_add_main_entries(context, entries, ""/*GETTEXT_PACKAGE*/);
+	g_option_context_set_help_enabled(context, TRUE);
+	g_option_context_set_ignore_unknown_options(context, FALSE);
+	g_option_context_parse(context, argc, argv, &error);
+	g_option_context_free(context);
+
+	if(show_version)
+	{
+	    exit(0);
+	}
+
+	return;
 }

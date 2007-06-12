@@ -24,6 +24,6 @@
 // Prototypes
 void splash_screen_start(void);
 void splash_screen_delete(void);
-int splash_screen_message(char *message);
+int  splash_screen_message(char *message);
 
 #endif

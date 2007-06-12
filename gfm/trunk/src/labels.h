@@ -22,7 +22,6 @@
 #define __GFMLABELS_H__
 
 // Prototypes
-void ftree_label_refresh();
-void gtree_labels_refresh();
+void labels_refresh();
 
 #endif

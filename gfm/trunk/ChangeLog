@@ -1,4 +1,11 @@
+
+
+Log of changes:	gfm (files, ticonv)
+
+- 10/06/2007, version 0.05 (1.0.6, 1.0.3): roms
+	* Rewritten from scratch. Some parts taken from Tyler Cassidy source code.
+
 2006-08-20  Tyler Cassidy  <tyler@tylerc.org>
 
-	* GFM: initial version.
+	* GFM: initial version (0.03).
 

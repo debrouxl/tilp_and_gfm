@@ -21,12 +21,12 @@
 #ifndef __GFMVERSION_H__
 #define __GFMVERSION_H__
 
-/* tilibs2 version dependencies */
+/* TiLibs2 version dependencies */
 #define LIBTICONV_REQUIRE_VERSION "0.0.5"
 #define LIBTIFILES2_REQUIRE_VERSION "1.0.0"
 
 /* Group File Manager Version */
-#define GFM_VERSION "0.03" // Main Version
-#define VERSION GFM_VERSION // Copy
+#define GFM_VERSION "0.03"
+#define VERSION GFM_VERSION
 
 #endif

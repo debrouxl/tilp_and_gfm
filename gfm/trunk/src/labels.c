@@ -23,8 +23,6 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "gfm.h"
-#include "group_file.h"
 #include "gui.h"
 #include "labels.h"
 
@@ -95,25 +93,10 @@ static char* format_path(char *src, char *dst)
 	return dst;
 }
 
-/* Refresh the Current Folder Label in the Folder Tree */
-void ftree_label_refresh(void)
+/* Refresh the Labels in the window */
+void labels_refresh(void)
 {
-	gsize br, bw;
-	gchar *utf8;
-	gchar path[1024];
-
-	// Convert to UTF-8 and cut down a bit
-	utf8 = g_filename_to_utf8(settings.cur_dir, -1, &br, &bw, NULL);
-	format_path(utf8, path);
-	g_free(utf8);
-  
-	// Update Label
-	gtk_label_set_text(GTK_LABEL(gfm_widget.current_folder), path);
-}
-
-/* Refresh the Labels in the Group Tree */
-void gtree_labels_refresh(void)
-{
+	/*
   gsize br, bw;
   gchar size[48], num_files[12];
   gchar *utf8_size, *utf8_num_files;
@@ -136,4 +119,5 @@ void gtree_labels_refresh(void)
   // Update labels
   gtk_label_set_text(GTK_LABEL(gfm_widget.group_filesize), utf8_size);
   gtk_label_set_text(GTK_LABEL(gfm_widget.group_files), utf8_num_files);
+  */
 }
