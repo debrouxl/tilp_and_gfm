@@ -1,5 +1,5 @@
 mkdir c:\msvc
-mkdir c:\msvc\gfm
+mkdir c:\msvc\tilp2
 
 cd glade
 call copy.bat

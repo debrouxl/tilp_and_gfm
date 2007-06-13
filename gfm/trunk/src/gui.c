@@ -100,13 +100,6 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 		group_create(model);
 }
 
-GLADE_CB void
-on_open_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
-{
-	printf("<%s>\n", file_selector(inst_paths.home_dir, "", "*.*", FALSE));
-}
-
 
 GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
@@ -117,9 +110,40 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 
 
 GLADE_CB void
+on_open_clicked                        (GtkToolButton   *toolbutton,
+                                        gpointer         user_data)
+{
+	gchar *fn;
+
+	if(GFile.contents.group || GFile.contents.tigroup)
+	{
+		int result = msgbox_two(MSGBOX_YESNO, _("Do you want to save previous file?"));
+		if(result == MSGBOX_YES)
+			on_save_clicked(toolbutton,user_data);
+	}
+
+	fn = (char *)file_selector(inst_paths.home_dir, "", "*.*", FALSE);
+	if(fn == NULL)
+		return;
+
+	if(tifiles_file_is_tigroup(fn))
+		tigfile_load(fn);
+	else if(tifiles_file_is_regular(fn))
+		group_load(fn);
+}
+
+
+GLADE_CB void
 on_quit_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+	// save before quit...
+
+	if(GFile.type == TIFILE_TIGROUP)
+		tigfile_destroy();
+	else if(GFile.type == TIFILE_GROUP)
+		group_destroy();
+
 	gtk_main_quit();
 }
 

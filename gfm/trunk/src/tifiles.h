@@ -45,6 +45,7 @@ typedef struct
 	} trees;
 } GFileStruct;
 
+extern GFileStruct GFile;
 
 // Prototypes
 int	tigfile_create(CalcModel model);

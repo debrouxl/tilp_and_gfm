@@ -18,6 +18,11 @@
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
+/*
+	Manage creation, loading and saving of TiGroup/Group file 
+	from/to GFileStruct structure.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -49,6 +54,9 @@ int tigfile_load(const char *filename)
 
 	g_free(GFile.filename);
 	GFile.filename = g_strdup(filename);
+
+	if(GFile.contents.tigroup == NULL)
+		tigfile_create(CALC_NONE);
 
 	ret = tifiles_file_read_tigroup(GFile.filename, GFile.contents.tigroup);
 	if(ret)
@@ -82,6 +90,7 @@ int tigfile_destroy(void)
 {
 	if(GFile.contents.tigroup)
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
+	GFile.contents.tigroup = NULL;
 
 	return 0;
 }
@@ -101,6 +110,9 @@ int group_load(const char *filename)
 
 	g_free(GFile.filename);
 	GFile.filename = g_strdup(filename);
+
+	if(GFile.contents.group == NULL)
+		group_create(CALC_NONE);
 
 	ret = tifiles_file_read_regular(GFile.filename, GFile.contents.group);
 	if(ret)
@@ -134,6 +146,7 @@ int group_destroy(void)
 {
 	if(GFile.contents.group)
 		tifiles_content_delete_regular(GFile.contents.group);
+	GFile.contents.group = NULL;
     
 	return 0;
 }
