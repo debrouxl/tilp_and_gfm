@@ -29,6 +29,7 @@
 
 #include "dialog.h"
 #include "paths.h"
+#include "tilibs.h"
 
 /* One Button Dialog Box */
 int msgbox_one(int type, const char *message)
@@ -227,7 +228,7 @@ char *msgbox_input(const char *title, const char *input, const char *question)
 {
 	GladeXML *xml;
 	GtkWidget *widget, *data;
-  int result;
+	int result;
 	gchar *ret;  
 	
     // Load the One Button Dialog from dialogs.glade
@@ -280,4 +281,43 @@ char *msgbox_input(const char *title, const char *input, const char *question)
     
     // Return
 	return ret;
+}
+
+int msgbox_model(void)
+{
+	GladeXML *xml;
+	GtkWidget *widget, *data;
+	int choice;
+	int calc = 0;
+    
+    // Load the Two Button Dialog from dialogs.glade
+	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "combodialog", NULL);
+    
+    // Glade File Error
+	if (!xml)
+		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
+       
+    // Connect The Symbols
+	glade_xml_signal_autoconnect(xml);
+    
+    // Retrieve the Widget into data & widget
+	widget = glade_xml_get_widget(xml, "combodialog");
+    data = glade_xml_get_widget(xml, "combodialog_combobox");
+	    
+	/* Launch the Dialog */
+	choice = gtk_dialog_run(GTK_DIALOG(widget));
+	switch (choice)
+	{
+		case GTK_RESPONSE_OK:
+		case GTK_RESPONSE_YES:
+			calc = tifiles_string_to_model(gtk_combo_box_get_active_text(GTK_COMBO_BOX(data)));
+			break;
+		case GTK_RESPONSE_CANCEL:
+		default:
+			break;       
+	}
+
+	gtk_widget_destroy(widget);	
+
+	return calc;
 }

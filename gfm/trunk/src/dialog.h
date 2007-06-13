@@ -34,6 +34,7 @@ int msgbox_one(int type, const char *message);
 int msgbox_two(int type, const char *message);
 int msgbox_three(const char *button1, const char *button2, const char *message);
 char *msgbox_input(const char *title, const char *input, const char *question);
+int msgbox_model(void);
 
 // Definitions
 #define msgbox_error(message) msgbox_one(MSGBOX_ERROR, message)
