@@ -66,6 +66,7 @@ int tigfile_load(const char *filename)
 		g_free(GFile.filename);
 		return -1;
 	}
+	GFile.model = GFile.contents.tigroup->model;
 
 	return 0;
 }
@@ -106,11 +107,14 @@ int	group_create(CalcModel model)
 
 int group_load(const char *filename)
 {
-	int ret;
+	int ret, i;
+	TreeInfo *ti;
+	FileContent *content;
 
 	g_free(GFile.filename);
 	GFile.filename = g_strdup(filename);
 
+	// Create and load group file
 	if(GFile.contents.group == NULL)
 		group_create(CALC_NONE);
 
@@ -122,6 +126,73 @@ int group_load(const char *filename)
 		g_free(GFile.filename);
 		return -1;
 	}
+	GFile.model = GFile.contents.group->model;
+
+	content = GFile.contents.group;
+
+	// Recreate folder listing (ticalcs2 compatible)
+    GFile.trees.vars = g_node_new(NULL);
+	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.group->model;
+	ti->type = VAR_NODE_NAME;
+	GFile.trees.vars->data = ti;
+
+	GFile.trees.apps = g_node_new(NULL);
+	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.group->model;
+	ti->type = APP_NODE_NAME;
+	GFile.trees.apps->data = ti;
+
+	if(tifiles_calc_is_ti9x(GFile.model))
+	{
+		int **table;
+		int num_folders;
+		GNode *node, *folder = NULL;
+
+		table = tifiles_create_table_of_entries(content, &num_folders);
+		if (table == NULL)
+			return -1;
+
+		for (i = 0; table[i] != NULL; i++) 
+		{
+			VarEntry *fe;
+			int j, index = table[i][0];
+			fe = content->entries[index];
+
+			node = g_node_new(fe);
+			folder = g_node_append(GFile.trees.vars, node);
+
+			for (j = 0; table[i][j] != -1; j++) 
+			{
+				int index = table[i][j];
+				VarEntry *ve = content->entries[index];
+
+				node = g_node_new(ve);
+				g_node_append(folder, node);
+			}
+		}
+	}
+	else if(tifiles_calc_is_ti8x(GFile.model))
+	{
+		GNode *folder, *root;
+
+		folder = g_node_new(NULL);
+		g_node_append(GFile.trees.vars, folder);
+
+		root = g_node_new(NULL);
+		g_node_append(GFile.trees.apps, root);
+
+		for(i = 0; i < content->num_entries; i++)
+		{
+			VarEntry *ve = content->entries[i];
+			GNode *node;
+
+			node = g_node_new(ve);
+			g_node_append(folder, node);
+		}
+	}
+
+	ticalcs_dirlist_display((TNode *)GFile.trees.vars);
 
 	return 0;
 }
@@ -147,6 +218,9 @@ int group_destroy(void)
 	if(GFile.contents.group)
 		tifiles_content_delete_regular(GFile.contents.group);
 	GFile.contents.group = NULL;
+
+	ticalcs_dirlist_destroy((TNode *)&GFile.trees.vars);
+	GFile.trees.vars = NULL;
     
 	return 0;
 }

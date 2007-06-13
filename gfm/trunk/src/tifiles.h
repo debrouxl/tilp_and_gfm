@@ -40,8 +40,8 @@ typedef struct
 
 	struct
 	{
-		TNode		*vars;		// Variables tree
-		TNode		*apps;		// Applications tree
+		GNode		*vars;		// Variables tree
+		GNode		*apps;		// Applications tree
 	} trees;
 } GFileStruct;
 
