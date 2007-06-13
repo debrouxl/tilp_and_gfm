@@ -24,5 +24,6 @@
 /* Prototypes */
 int file_exists(const char *filename);
 void glade_files_check(void);
+const gchar* file_selector(gchar *dirname, gchar *filename, gchar *ext, gboolean save);
 
 #endif

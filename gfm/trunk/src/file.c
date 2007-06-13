@@ -33,6 +33,7 @@
 #include "dialog.h"
 #include "file.h"
 #include "paths.h"
+#include "support.h"
 
 /* File Exist Function */
 int file_exists(const char *filename)
@@ -77,4 +78,73 @@ void glade_files_check(void)
 
     // Return
     return;
+}
+
+static gchar *fname = NULL;
+static gint action = 0;
+
+static void store_filename(GtkFileSelection * file_selector,
+			   gpointer user_data)
+{
+	fname = g_strdup((gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(user_data)));
+	action = 1;
+} 
+
+static void cancel_filename(GtkButton * button, gpointer user_data)
+{
+	fname = NULL;
+	action = 2;
+} 
+
+// GTK 1.x/2.x (x < 4)
+const gchar* file_selector(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+{
+	GtkWidget *fs;
+	gchar *sfilename, *sext, *path;
+
+	// gtk_file_selection_complete ALWAYS wants UTF-8.
+	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
+    
+	if(save)
+		fs = gtk_file_selection_new(_("Save a file..."));
+	else
+		fs = gtk_file_selection_new(_("Open a file..."));
+
+	// set default folder
+	path = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);
+	gtk_file_selection_set_filename (GTK_FILE_SELECTION(fs), path);
+	g_free(path);
+
+	// set default name
+	gtk_file_selection_complete(GTK_FILE_SELECTION(fs), sfilename ? sfilename : sext);
+
+	g_signal_connect(GTK_OBJECT(GTK_FILE_SELECTION(fs)->ok_button),
+			 "clicked", G_CALLBACK(store_filename), fs);
+
+	g_signal_connect(GTK_OBJECT
+			 (GTK_FILE_SELECTION(fs)->cancel_button),
+			 "clicked", G_CALLBACK(cancel_filename), fs);
+
+	g_signal_connect_swapped(GTK_OBJECT
+				 (GTK_FILE_SELECTION(fs)->ok_button),
+				 "clicked",
+				 G_CALLBACK(gtk_widget_destroy),
+				 (gpointer) fs);
+
+	g_signal_connect_swapped(GTK_OBJECT
+				 (GTK_FILE_SELECTION(fs)->cancel_button),
+				 "clicked", G_CALLBACK(gtk_widget_destroy),
+				 (gpointer) fs);
+
+	gtk_widget_show(fs);
+
+	g_free(fname);
+	for(action = 0; !action; )
+		GTK_REFRESH();
+
+	g_free(sfilename);
+	g_free(sext);
+
+	return fname;
 }
