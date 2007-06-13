@@ -29,6 +29,9 @@
 #include "support.h"
 #include "paths.h"
 #include "tilibs.h"
+#include "dialog.h"
+#include "file.h"
+#include "tifiles.h"
 
 // Global Widget Access Structure
 GFMWidget gfm_widget;
@@ -61,6 +64,7 @@ int launch_gfmgui(void)
 	gfm_widget.flash = glade_xml_get_widget(xml, "label4");
 		
 	// To write...
+	
     
     // Show the Widget
     gtk_widget_show(widget);
@@ -84,15 +88,23 @@ GLADE_CB void
 on_new_clicked                         (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+	CalcModel model;
+	int result;
+	
+	result = msgbox_three("TiGroup", "Single/Group", "File type?");
+	model = msgbox_model();
 
+	if (result == MSGBOX_YES)
+		tigfile_create(model);
+	else
+		group_create(model);
 }
-
 
 GLADE_CB void
 on_open_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
-
+	printf("<%s>\n", file_selector(inst_paths.home_dir, "", "*.*", FALSE));
 }
 
 
@@ -108,7 +120,7 @@ GLADE_CB void
 on_quit_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
-
+	gtk_main_quit();
 }
 
 

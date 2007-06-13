@@ -142,6 +142,10 @@ SOURCE=..\..\src\dialog.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\file.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\gui.c
 # End Source File
 # Begin Source File
@@ -166,6 +170,10 @@ SOURCE=..\..\src\support.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tifiles.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilibs.c
 # End Source File
 # End Group
@@ -178,27 +186,15 @@ SOURCE=..\..\src\cmdline.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\config.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\dialog.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\dnd.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\file.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\folder_tree.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\ftree_menu.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gfm.h
 # End Source File
 # Begin Source File
 
@@ -222,7 +218,15 @@ SOURCE=..\..\src\support.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\tifile.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilibs.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\tree.h
 # End Source File
 # Begin Source File
 

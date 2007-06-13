@@ -32,6 +32,7 @@
 
 #include <ticonv.h>
 #include <tifiles.h>
+#include <ticalcs.h>
 
 #ifdef _MSC_VER
 #define snprintf	_snprintf
