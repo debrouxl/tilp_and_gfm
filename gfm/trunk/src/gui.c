@@ -31,7 +31,7 @@
 #include "tilibs.h"
 #include "dialog.h"
 #include "file.h"
-#include "tifiles.h"
+#include "groups.h"
 
 // Global Widget Access Structure
 GFMWidget gfm_widget;

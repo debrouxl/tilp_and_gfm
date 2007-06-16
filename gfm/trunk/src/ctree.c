@@ -28,7 +28,7 @@
 #include "support.h"
 #include "ctree.h"
 #include "tilibs.h"
-#include "tifiles.h"
+#include "groups.h"
 #include "file.h"
 
 static GtkTreeStore *tree;
