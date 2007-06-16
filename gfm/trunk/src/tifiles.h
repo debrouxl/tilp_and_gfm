@@ -43,19 +43,26 @@ typedef struct
 		GNode		*vars;		// Variables tree
 		GNode		*apps;		// Applications tree
 	} trees;
+
+	int			saved;
 } GFileStruct;
 
 extern GFileStruct GFile;
 
 // Prototypes
-int	tigfile_create(CalcModel model);
-int tigfile_load(const char *filename);
-int tigfile_save(const char *filename);
-int tigfile_destroy(void);
+int	tigroup_create(CalcModel model);
+int tigroup_load(const char *filename);
+int tigroup_save(const char *filename);
+int tigroup_destroy(void);
 
 int	group_create(CalcModel model);
 int group_load(const char *filename);
 int group_save(const char *filename);
 int group_destroy(void);
+
+int file_create(int type, CalcModel model);
+int file_load(const char *filename);
+int file_save(const char *filename);
+int file_destroy(void);
 
 #endif

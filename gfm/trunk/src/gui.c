@@ -94,10 +94,11 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	result = msgbox_three("TiGroup", "Single/Group", "File type?");
 	model = msgbox_model();
 
-	if (result == MSGBOX_YES)
-		tigfile_create(model);
-	else
-		group_create(model);
+	file_create(result == MSGBOX_YES ? TIFILE_TIGROUP : TIFILE_GROUP, model);
+
+	g_free(GFile.filename);
+	GFile.filename = NULL;
+	GFile.saved = 0;
 }
 
 
@@ -105,7 +106,31 @@ GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+	// Newly created file, ask for name
+	if(GFile.filename == NULL)
+	{
+		gchar *fn, *ext;
 
+		if(GFile.type == TIFILE_TIGROUP)
+			ext = "*.tig";
+		else if(GFile.type == TIFILE_GROUP)
+			ext = "*.??g";
+
+		fn = (char *)file_selector(inst_paths.home_dir, "", ext, FALSE);
+		if(fn == NULL)
+			return;
+
+		file_save(fn);
+
+		g_free(GFile.filename);
+		GFile.filename = g_strdup(fn);
+	}
+	else
+	{
+		file_save(GFile.filename);
+	}
+
+	GFile.saved = !0;
 }
 
 
@@ -127,11 +152,36 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 		return;
 
 	if(tifiles_file_is_tigroup(fn))
-		tigfile_load(fn);
-	else if(tifiles_file_is_regular(fn))
-		group_load(fn);
+		GFile.type = TIFILE_TIGROUP;
+	else
+		GFile.type = TIFILE_GROUP;
+
+	file_load(fn);
+
+	g_free(GFile.filename);
+	GFile.filename = g_strdup(fn);
+
+	GFile.saved = 0;
 }
 
+GLADE_CB gboolean
+on_gfm_dbox_delete_event               (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+	printf("destroy !\n");
+	return FALSE;
+}
+
+
+GLADE_CB gboolean
+on_gfm_dbox_destroy_event              (GtkWidget       *widget,
+                                        GdkEvent        *event,
+                                        gpointer         user_data)
+{
+	printf("destroy !\n");
+	return FALSE;
+}
 
 GLADE_CB void
 on_quit_clicked                        (GtkToolButton   *toolbutton,
@@ -139,10 +189,8 @@ on_quit_clicked                        (GtkToolButton   *toolbutton,
 {
 	// save before quit...
 
-	if(GFile.type == TIFILE_TIGROUP)
-		tigfile_destroy();
-	else if(GFile.type == TIFILE_GROUP)
-		group_destroy();
+
+	file_destroy();
 
 	gtk_main_quit();
 }

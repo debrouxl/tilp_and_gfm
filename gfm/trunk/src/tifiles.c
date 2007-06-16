@@ -40,7 +40,7 @@
 
 GFileStruct GFile;
 
-int	tigfile_create(CalcModel model)
+int	tigroup_create(CalcModel model)
 {
 	GFile.contents.tigroup = tifiles_content_create_tigroup(model, 0);
 	GFile.type = TIFILE_TIGROUP;
@@ -48,22 +48,18 @@ int	tigfile_create(CalcModel model)
 	return 0;
 }
 
-int tigfile_load(const char *filename)
+int tigroup_load(const char *filename)
 {
 	int ret;
 
-	g_free(GFile.filename);
-	GFile.filename = g_strdup(filename);
-
 	if(GFile.contents.tigroup == NULL)
-		tigfile_create(CALC_NONE);
+		tigroup_create(CALC_NONE);
 
-	ret = tifiles_file_read_tigroup(GFile.filename, GFile.contents.tigroup);
+	ret = tifiles_file_read_tigroup(filename, GFile.contents.tigroup);
 	if(ret)
 	{
 		msgbox_error("Failed to load TiGroup file!");
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
-		g_free(GFile.filename);
 		return -1;
 	}
 	GFile.model = GFile.contents.tigroup->model;
@@ -71,23 +67,22 @@ int tigfile_load(const char *filename)
 	return 0;
 }
 
-int tigfile_save(const char *filename)
+int tigroup_save(const char *filename)
 {
 	int ret;
 
-	ret = tifiles_file_write_tigroup(GFile.filename, GFile.contents.tigroup);
+	ret = tifiles_file_write_tigroup(filename, GFile.contents.tigroup);
 	if(ret)
 	{
 		msgbox_error("Failed to save TiGroup file!");
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
-		g_free(GFile.filename);
 		return -1;
 	}
 
 	return 0;
 }
 
-int tigfile_destroy(void)
+int tigroup_destroy(void)
 {
 	if(GFile.contents.tigroup)
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
@@ -111,19 +106,15 @@ int group_load(const char *filename)
 	TreeInfo *ti;
 	FileContent *content;
 
-	g_free(GFile.filename);
-	GFile.filename = g_strdup(filename);
-
 	// Create and load group file
 	if(GFile.contents.group == NULL)
 		group_create(CALC_NONE);
 
-	ret = tifiles_file_read_regular(GFile.filename, GFile.contents.group);
+	ret = tifiles_file_read_regular(filename, GFile.contents.group);
 	if(ret)
 	{
 		msgbox_error("Failed to load Group file!");
 		tifiles_content_delete_regular(GFile.contents.group);
-		g_free(GFile.filename);
 		return -1;
 	}
 	GFile.model = GFile.contents.group->model;
@@ -159,7 +150,7 @@ int group_load(const char *filename)
 			int j, index = table[i][0];
 			fe = content->entries[index];
 
-			node = g_node_new(fe);
+			node = g_node_new(tifiles_ve_dup(fe));
 			folder = g_node_append(GFile.trees.vars, node);
 
 			for (j = 0; table[i][j] != -1; j++) 
@@ -167,7 +158,7 @@ int group_load(const char *filename)
 				int index = table[i][j];
 				VarEntry *ve = content->entries[index];
 
-				node = g_node_new(ve);
+				node = g_node_new(tifiles_ve_dup(ve));
 				g_node_append(folder, node);
 			}
 		}
@@ -187,7 +178,7 @@ int group_load(const char *filename)
 			VarEntry *ve = content->entries[i];
 			GNode *node;
 
-			node = g_node_new(ve);
+			node = g_node_new(tifiles_ve_dup(ve));
 			g_node_append(folder, node);
 		}
 	}
@@ -197,16 +188,41 @@ int group_load(const char *filename)
 	return 0;
 }
 
+static gboolean node_to_varentry(GNode* node, gpointer data)
+{
+	if(node)
+	{
+		if(node->data)
+		{
+			VarEntry* ve = node->data;
+
+			printf("<%s-%s>\n", ve->folder, ve->name);
+			tifiles_content_add_entry((FileContent *)data, ve);
+		}
+	}
+
+	return FALSE;
+}
+
 int group_save(const char *filename)
 {
 	int ret;
 
-	ret = tifiles_file_write_regular(GFile.filename, GFile.contents.group, NULL);
+	// Turns tree into group file
+	tifiles_content_delete_regular(GFile.contents.group);
+	group_create(GFile.model);
+
+	if((GFile.trees.vars)->children != NULL)
+	{
+		g_node_traverse(GFile.trees.vars, T_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
+	}
+
+	// Write group file
+	ret = tifiles_file_write_regular(filename, GFile.contents.group, NULL);
 	if(ret)
 	{
 		msgbox_error("Failed to save Group file!");
 		tifiles_content_delete_regular(GFile.contents.group);
-		g_free(GFile.filename);
 		return -1;
 	}
 
@@ -218,9 +234,58 @@ int group_destroy(void)
 	if(GFile.contents.group)
 		tifiles_content_delete_regular(GFile.contents.group);
 	GFile.contents.group = NULL;
+	GFile.model = CALC_NONE;
 
-	ticalcs_dirlist_destroy((TNode *)&GFile.trees.vars);
+	ticalcs_dirlist_destroy((TNode **)&GFile.trees.vars);
 	GFile.trees.vars = NULL;
     
 	return 0;
+}
+
+int file_create(int type, CalcModel model)
+{
+	int ret = 0;
+
+	if(type == TIFILE_TIGROUP)
+		ret = tigroup_create(model);
+	else
+		ret = group_create(model);
+
+	return ret;
+}
+
+int file_load(const char *filename)
+{
+	int ret = 0;
+
+	if(GFile.type == TIFILE_TIGROUP)
+		ret = tigroup_load(filename);
+	else
+		ret = group_load(filename);
+
+	return ret;
+}
+
+int file_save(const char *filename)
+{
+	int ret = 0;
+
+	if(GFile.type == TIFILE_TIGROUP)
+		ret = tigroup_save(filename);
+	else
+		ret = group_save(filename);
+
+	return ret;
+}
+
+int file_destroy(void)
+{
+	int ret = 0;
+
+	if(GFile.type == TIFILE_TIGROUP)
+		ret = tigroup_destroy();
+	else
+		ret = group_destroy();
+
+	return ret;
 }
