@@ -37,7 +37,7 @@ static GtkTreeStore *tree;
 
 /* Initialization */
 
-static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
+static gint column2index(GtkTreeViewColumn* column)
 {
 	gint i;
 
@@ -45,7 +45,7 @@ static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
 	{
 		GtkTreeViewColumn *col;
 
-		col = gtk_tree_view_get_column(GTK_TREE_VIEW(list), i);
+		col = gtk_tree_view_get_column(GTK_TREE_VIEW(gfm_widget.tree), i);
 		if (col == column)
 			return i;
 	}
@@ -374,9 +374,6 @@ void ctree_refresh(void)
 
 /* Callbacks */
 
-gchar *name_to_drag = NULL;
-GtkTreePath *path_to_drag = NULL;
-
 GLADE_CB gboolean
 on_treeview1_button_press_event(GtkWidget * widget,
 				GdkEventButton * event, gpointer user_data)
@@ -387,10 +384,10 @@ on_treeview1_button_press_event(GtkWidget * widget,
 	GtkTreeViewColumn *column;
 	GtkTreeIter parent;
 	VarEntry *ve;
-	gint tx = (gint) event->x;
-	gint ty = (gint) event->y;
-	gint cx, cy;
-	gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx, &cy);
+	int col;
+	
+	gtk_tree_view_get_cursor(view, &path, &column);
+	col = column2index(column);
 
 	if (path == NULL)
 		return FALSE;
@@ -398,16 +395,11 @@ on_treeview1_button_press_event(GtkWidget * widget,
 	gtk_tree_model_get_iter(model, &parent, path);
 	gtk_tree_model_get(model, &parent, COLUMN_DATA, &ve, -1);
 
-	path_to_drag = path;
-	gtk_tree_model_get(model, &parent, COLUMN_NAME, &name_to_drag, -1);
-
 	if (ve == NULL)
 		return FALSE;
 
-	if (ve->type != tifiles_folder_type(GFile.model))
-		return FALSE;
-
-	name_to_drag = NODEx;
+	if((event->type == GDK_2BUTTON_PRESS) && (col == COLUMN_ATTR))
+		printf("attr clicked !\n");
 
 	return FALSE;		// pass the event on
 }
@@ -427,7 +419,7 @@ void ctree_select_vars(gint action)
 {
 	GtkTreeView *view;
 	GtkTreeModel *model;
-	GtkTreePath *path = path_to_drag;
+	GtkTreePath *path;
 	GtkTreeIter parent, start_iter, end_iter, iter;
 	view = GTK_TREE_VIEW(gfm_widget.tree);
 	model = gtk_tree_view_get_model(view);
