@@ -31,6 +31,9 @@ typedef struct
 	GtkWidget *ram;
 	GtkWidget *flash;
 	GtkWidget *save;
+
+	GList	*sel1;	// vars
+	GList	*sel2;	// apps
 } GFMWidget; 
 extern GFMWidget gfm_widget;
 

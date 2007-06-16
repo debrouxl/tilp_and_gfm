@@ -77,18 +77,13 @@ static gboolean select_func(GtkTreeSelection * selection,
 static void tree_selection_changed(GtkTreeSelection * selection,
 				   gpointer user_data)
 {
-#if 0
 	GList *list;
 	GtkTreeIter iter;
 	GtkTreeModel *model;
-	GtkTreeSelection *sel;
 
 	// destroy selection
-	tilp_remote_selection_destroy();
-
-	// clear clist selection(one selection active at a time)
-	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(clist_wnd));
-	gtk_tree_selection_unselect_all(sel);
+	g_list_free(gfm_widget.sel1);
+	g_list_free(gfm_widget.sel2);
 
 	// create a new selection
 	for (list = gtk_tree_selection_get_selected_rows(selection, &model);
@@ -102,17 +97,16 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 
 		if (ve->type != tifiles_flash_type(GFile.model)) 
 		{
-			remote.selection1 = g_list_append(remote.selection1, ve);
+			gfm_widget.sel1 = g_list_append(gfm_widget.sel1, ve);
 		} 
 		else 
 		{
-			remote.selection2 = g_list_append(remote.selection2, ve);
+			gfm_widget.sel2 = g_list_append(gfm_widget.sel2, ve);
 		}
 	}
 
 	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
 	g_list_free(list);
-#endif
 }
 
 static void renderer_edited(GtkCellRendererText * cell,
@@ -431,7 +425,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		printf("attr clicked !\n");
 	}
 
-	return FALSE;		// pass the event on
+	return FALSE;
 }
 
 #include <gdk/gdkkeysyms.h>
@@ -443,53 +437,4 @@ on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
 								gpointer user_data)
 {	
 	return FALSE;
-}
-
-void ctree_select_vars(gint action)
-{
-	/*
-	GtkTreeView *view;
-	GtkTreeModel *model;
-	GtkTreePath *path;
-	GtkTreeIter parent, start_iter, end_iter, iter;
-	view = GTK_TREE_VIEW(gfm_widget.tree);
-	model = gtk_tree_view_get_model(view);
-
-	// select var beneath a folder
-	gtk_tree_model_get_iter(model, &parent, path);
-
-	if (gtk_tree_model_iter_has_child(model, &parent)) 
-	{
-		GtkTreeSelection *sel;
-		GtkTreePath *start_path, *end_path;
-		gint n;
-		gboolean valid;
-
-		sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(gfm_widget.tree));
-		n = gtk_tree_model_iter_n_children(model, &parent);
-
-		valid = gtk_tree_model_iter_children(model, &start_iter, &parent);
-		start_path = gtk_tree_model_get_path(model, &start_iter);
-
-		valid = gtk_tree_model_iter_nth_child(model, &end_iter, &parent, n - 1);
-		if(gtk_tree_model_iter_has_child(model, &end_iter))
-		{
-			n = gtk_tree_model_iter_n_children(model, &end_iter);
-			valid = gtk_tree_model_iter_nth_child(model, &iter, &end_iter, n - 1);
-			memcpy(&end_iter, &iter, sizeof(GtkTreeIter));
-		}
-		end_path = gtk_tree_model_get_path(model, &end_iter);
-
-		if (!action)
-			gtk_tree_selection_unselect_range(sel, start_path, end_path);
-		else
-		{
-			gtk_tree_selection_select_range(sel, start_path, end_path);
-			printf("!!!\n");
-		}
-
-		gtk_tree_path_free(start_path);
-		gtk_tree_path_free(end_path);
-	}
-	*/
 }

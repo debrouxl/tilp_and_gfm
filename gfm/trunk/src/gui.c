@@ -226,7 +226,17 @@ GLADE_CB void
 on_delete_clicked                      (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+	GList *ptr;
 
+	if(GFile.trees.vars == NULL)
+		return;
+
+	for(ptr = gfm_widget.sel1; ptr; ptr = ptr->next)
+	{
+		VarEntry *ve = (VarEntry *)ptr->data;
+
+		printf("<%s>\n", ve->name);
+	}
 }
 
 
@@ -244,13 +254,15 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 	if(tifiles_calc_is_ti8x(GFile.model))
 		return;
 
-	ret = msgbox_input(_("New Folder"), _("folder"), _("Name of folder to create"));
+	ret = msgbox_input(_("New Folder"), _("folder"), _("Name of folder to create:"));
 	if(ret == NULL)
 		return;
 
-	ret[8] = '/0';
+	ret[8] = (char)'/0';
 	ve = tifiles_ve_create();
 	strcpy(ve->name, ret);
+	ve->type = tifiles_folder_type(GFile.model);
+
 	node = g_node_new(ve);
 	g_node_append(GFile.trees.vars, node);
 
