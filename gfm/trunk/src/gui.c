@@ -120,14 +120,14 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 		if(fn == NULL)
 			return;
 
-		file_save(fn);
+		//file_save(fn);
 
 		g_free(GFile.filename);
 		GFile.filename = g_strdup(fn);
 	}
 	else
 	{
-		file_save(GFile.filename);
+		//file_save(GFile.filename);
 	}
 
 	GFile.saved = !0;
@@ -161,7 +161,7 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	g_free(GFile.filename);
 	GFile.filename = g_strdup(fn);
 
-	GFile.saved = 0;
+	GFile.saved = !0;
 }
 
 GLADE_CB gboolean
@@ -169,19 +169,31 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-	printf("destroy !\n");
+	GFile.saved = 0;
+
+	if(!GFile.saved)
+	{
+		int result;
+		
+		result = msgbox_three(_("Save"), _("Quit"), _("File has not been saved yet. Do you want to quit?"));
+		switch(result)
+		{
+		case MSGBOX_BUTTON1: 
+			on_save_clicked(NULL, NULL);
+			return FALSE;
+			break;
+		case MSGBOX_BUTTON2:
+			return FALSE;
+			break;
+		case MSGBOX_NO: 
+			return TRUE; 
+			break;
+		}
+	}
+
 	return FALSE;
 }
 
-
-GLADE_CB gboolean
-on_gfm_dbox_destroy_event              (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
-{
-	printf("destroy !\n");
-	return FALSE;
-}
 
 GLADE_CB void
 on_quit_clicked                        (GtkToolButton   *toolbutton,

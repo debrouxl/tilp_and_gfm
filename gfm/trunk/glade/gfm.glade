@@ -20,6 +20,7 @@
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
   <signal name="destroy" handler="on_gfm_dbox_destroy" last_modification_time="Mon, 11 Jun 2007 20:58:24 GMT"/>
+  <signal name="delete_event" handler="on_gfm_dbox_delete_event" last_modification_time="Fri, 15 Jun 2007 17:45:52 GMT"/>
 
   <child>
     <widget class="GtkVBox" id="vbox4">
