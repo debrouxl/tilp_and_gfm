@@ -146,11 +146,14 @@ int group_load(const char *filename)
 
 		for (i = 0; table[i] != NULL; i++) 
 		{
-			VarEntry *fe;
+			VarEntry *fe, *ve;
 			int j, index = table[i][0];
 			fe = content->entries[index];
 
-			node = g_node_new(tifiles_ve_dup(fe));
+			ve = tifiles_ve_dup(fe);
+			strcpy(ve->name, ve->folder);
+			strcpy(ve->folder, "");
+			node = g_node_new(ve);
 			folder = g_node_append(GFile.trees.vars, node);
 
 			for (j = 0; table[i][j] != -1; j++) 
@@ -170,9 +173,6 @@ int group_load(const char *filename)
 		folder = g_node_new(NULL);
 		g_node_append(GFile.trees.vars, folder);
 
-		root = g_node_new(NULL);
-		g_node_append(GFile.trees.apps, root);
-
 		for(i = 0; i < content->num_entries; i++)
 		{
 			VarEntry *ve = content->entries[i];
@@ -181,9 +181,13 @@ int group_load(const char *filename)
 			node = g_node_new(tifiles_ve_dup(ve));
 			g_node_append(folder, node);
 		}
+
+		root = g_node_new(NULL);
+		g_node_append(GFile.trees.apps, root);
 	}
 
 	ticalcs_dirlist_display((TNode *)GFile.trees.vars);
+	ticalcs_dirlist_display((TNode *)GFile.trees.apps);
 
 	return 0;
 }
