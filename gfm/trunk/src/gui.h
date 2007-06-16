@@ -30,10 +30,13 @@ typedef struct
 	GtkWidget *comment;
 	GtkWidget *ram;
 	GtkWidget *flash;
+	GtkWidget *save;
 } GFMWidget; 
 extern GFMWidget gfm_widget;
 
 /* Prototypes */
 int launch_gfmgui(void);
+
+void enable_save(int state);
 
 #endif

@@ -131,7 +131,9 @@ static void renderer_edited(GtkCellRendererText * cell,
 	gtk_tree_model_get(model, &iter, COLUMN_NAME, &old_text, -1);
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
-	printf("<%s %s>\n", old_text, new_text);
+	strncpy(ve->name, new_text, 8);
+	ve->name[8] = '\0';
+	gtk_tree_store_set(tree, &iter, COLUMN_NAME, ve->name, -1);
 
 	gtk_tree_path_free(path);
 }
@@ -236,7 +238,7 @@ void ctree_set_basetree(void)
 void ctree_refresh(void)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
-	GdkPixbuf *pix1, *pix2, *pix3, *pix4, *pix5, *pix6;
+	GdkPixbuf *pix1, *pix2, *pix3, *pix4, *pix5, *pix6, *pix7;
 	GdkPixbuf *pix9 = NULL;
 	GtkTreeIter pareng_node;
 	GtkTreeIter child_node;
@@ -257,6 +259,7 @@ void ctree_refresh(void)
 	pix4 = create_pixbuf("attr_locked.xpm");
 	pix5 = create_pixbuf("attr_archived.xpm");
 	pix6 = create_pixbuf("TIicon4.ico");
+	pix7 = create_pixbuf("attr_none.xpm");
 
 	// variables tree
 	vars = GFile.trees.vars;
@@ -311,6 +314,9 @@ void ctree_refresh(void)
 
 			switch (ve->attr) 
 			{
+			case ATTRB_NONE:
+				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix7, -1);
+				break;
 			case ATTRB_LOCKED:
 				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
 				break;
@@ -399,7 +405,31 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		return FALSE;
 
 	if((event->type == GDK_2BUTTON_PRESS) && (col == COLUMN_ATTR))
+	{
+		if(ve->attr == ATTRB_NONE)
+			ve->attr = ATTRB_LOCKED;
+		if(ve->attr == ATTRB_LOCKED)
+			ve->attr = ATTRB_ARCHIVED;
+		if(ve->attr == ATTRB_ARCHIVED)
+			ve->attr = ATTRB_NONE;
+		/*
+		switch (ve->attr) 
+			{
+			case ATTRB_NONE:
+				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
+				break;
+			case ATTRB_LOCKED:
+				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
+				break;
+			case ATTRB_ARCHIVED:
+				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix5, -1);
+				break;
+			default:
+				break;
+			}
+			*/
 		printf("attr clicked !\n");
+	}
 
 	return FALSE;		// pass the event on
 }
@@ -417,6 +447,7 @@ on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
 
 void ctree_select_vars(gint action)
 {
+	/*
 	GtkTreeView *view;
 	GtkTreeModel *model;
 	GtkTreePath *path;
@@ -460,4 +491,5 @@ void ctree_select_vars(gint action)
 		gtk_tree_path_free(start_path);
 		gtk_tree_path_free(end_path);
 	}
+	*/
 }

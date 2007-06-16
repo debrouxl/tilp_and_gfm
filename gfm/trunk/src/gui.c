@@ -38,6 +38,12 @@
 // Global Widget Access Structure
 GFMWidget gfm_widget;
 
+void enable_save(int state)
+{
+	GFile.saved = !state;
+	gtk_widget_set_sensitive(gfm_widget.save, state);
+}
+
 /* The Main Interface Launcher */
 int launch_gfmgui(void)
 {
@@ -63,9 +69,11 @@ int launch_gfmgui(void)
 	gfm_widget.entries = glade_xml_get_widget(xml, "label7");
 	gfm_widget.comment = glade_xml_get_widget(xml, "label8");
 	gfm_widget.ram = glade_xml_get_widget(xml, "label9");
-	gfm_widget.flash = glade_xml_get_widget(xml, "label10");	
+	gfm_widget.flash = glade_xml_get_widget(xml, "label10");
+	gfm_widget.save = glade_xml_get_widget(xml, "toolbutton3");
     
     // Show the Widget
+	enable_save(FALSE);
 	ctree_init();
     gtk_widget_show(widget);
 
@@ -98,7 +106,7 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 
 	g_free(GFile.filename);
 	GFile.filename = NULL;
-	GFile.saved = 0;
+	enable_save(TRUE);
 }
 
 
@@ -130,7 +138,7 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 		//file_save(GFile.filename);
 	}
 
-	GFile.saved = !0;
+	enable_save(FALSE);
 }
 
 
@@ -161,7 +169,7 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	g_free(GFile.filename);
 	GFile.filename = g_strdup(fn);
 
-	GFile.saved = !0;
+	enable_save(FALSE);
 
 	ctree_refresh();
 	labels_refresh();
@@ -172,7 +180,7 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-	GFile.saved = 0;
+	enable_save(TRUE);
 
 	if(!GFile.saved)
 	{
