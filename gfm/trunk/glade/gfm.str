@@ -5,8 +5,13 @@
  */
 
 gchar *s = N_("Group File Manager");
-gchar *s = N_("RAM used:");
-gchar *s = N_("# entries:");
-gchar *s = N_("FLASH used:");
+gchar *s = N_("Entries:");
 gchar *s = N_("Model:");
 gchar *s = N_("Comment:");
+gchar *s = N_("N/A");
+gchar *s = N_("0");
+gchar *s = N_("none");
+gchar *s = N_("RAM used:");
+gchar *s = N_("0");
+gchar *s = N_("FLASH used:");
+gchar *s = N_("0");

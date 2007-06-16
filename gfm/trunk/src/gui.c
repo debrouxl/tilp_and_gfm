@@ -59,11 +59,11 @@ int launch_gfmgui(void)
 
     // Global Widget Access
 	gfm_widget.tree = glade_xml_get_widget(xml, "treeview1");
-	gfm_widget.model = glade_xml_get_widget(xml, "label1");
-	gfm_widget.entries = glade_xml_get_widget(xml, "label3");
-	gfm_widget.comment = glade_xml_get_widget(xml, "label5");
-	gfm_widget.ram = glade_xml_get_widget(xml, "label2");
-	gfm_widget.flash = glade_xml_get_widget(xml, "label4");	
+	gfm_widget.model = glade_xml_get_widget(xml, "label6");
+	gfm_widget.entries = glade_xml_get_widget(xml, "label7");
+	gfm_widget.comment = glade_xml_get_widget(xml, "label8");
+	gfm_widget.ram = glade_xml_get_widget(xml, "label9");
+	gfm_widget.flash = glade_xml_get_widget(xml, "label10");	
     
     // Show the Widget
 	ctree_init();

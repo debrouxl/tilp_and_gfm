@@ -108,7 +108,7 @@ void labels_set_entries(int n)
 {
 	gchar *str;
 	
-	str = g_strdup_printf("%i entries", n);
+	str = g_strdup_printf("%i", n);
 	gtk_label_set_text(GTK_LABEL(gfm_widget.entries), str);
 	g_free(str);
 }
@@ -123,11 +123,11 @@ void labels_set_ram(uint32_t ram)
 	gchar *str;
 
 	if (ram < 1024)
-		str = g_strdup_printf("RAM used: %d bytes", ram);
+		str = g_strdup_printf("%d bytes", ram);
 	if (ram >= 1024 && ram < 1048576)
-		str = g_strdup_printf("RAM used: %.2f kilobytes", (float)(ram / 1024));
+		str = g_strdup_printf("%.2f kilobytes", (float)(ram / 1024));
 	if (ram >= 1048576)
-		str = g_strdup_printf("RAM used: %.2f megabytes", (float)(ram / 1048576));
+		str = g_strdup_printf("%.2f megabytes", (float)(ram / 1048576));
 
 	gtk_label_set_text(GTK_LABEL(gfm_widget.ram), str);
 	g_free(str);
@@ -138,11 +138,11 @@ void labels_set_flash(uint32_t flash)
 	gchar *str;
 
 	if (flash < 1024)
-		str = g_strdup_printf("FLASH used: %d bytes", flash);
+		str = g_strdup_printf("%d bytes", flash);
 	if (flash >= 1024 && flash < 1048576)
-		str = g_strdup_printf("FLASH used: %.2f kilobytes", (float)(flash / 1024));
+		str = g_strdup_printf("%.2f kilobytes", (float)(flash / 1024));
 	if (flash >= 1048576)
-		str = g_strdup_printf("FLASH used: %.2f megabytes", (float)(flash / 1048576));
+		str = g_strdup_printf("%.2f megabytes", (float)(flash / 1048576));
 
 	gtk_label_set_text(GTK_LABEL(gfm_widget.flash), str);
 	g_free(str);
