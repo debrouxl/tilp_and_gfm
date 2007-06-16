@@ -115,6 +115,27 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 #endif
 }
 
+static void renderer_edited(GtkCellRendererText * cell,
+			    const gchar * path_string,
+			    const gchar * new_text, gpointer user_data)
+{
+	GtkTreeModel *model = GTK_TREE_MODEL(tree);
+	GtkTreePath *path = gtk_tree_path_new_from_string(path_string);
+	GtkTreeIter iter;
+	const char *old_text;
+	VarEntry *ve;
+
+	if (!gtk_tree_model_get_iter(model, &iter, path))
+		return;
+
+	gtk_tree_model_get(model, &iter, COLUMN_NAME, &old_text, -1);
+	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
+
+	printf("<%s %s>\n", old_text, new_text);
+
+	gtk_tree_path_free(path);
+}
+
 void ctree_init(void)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
@@ -127,7 +148,7 @@ void ctree_init(void)
 	tree = gtk_tree_store_new(CTREE_NCOLS, G_TYPE_STRING,
 				  GDK_TYPE_PIXBUF, G_TYPE_STRING,
 				  G_TYPE_STRING, G_TYPE_POINTER,
-				  G_TYPE_STRING, GDK_TYPE_PIXBUF);
+				  G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_INT);
 	model = GTK_TREE_MODEL(tree);
 
 	gtk_tree_view_set_model(view, model);
@@ -152,7 +173,9 @@ void ctree_init(void)
 	gtk_tree_view_column_set_attributes(GTK_TREE_VIEW_COLUMN(column),
 					    renderer, "text", COLUMN_NAME,
 						"font", COLUMN_FONT,
+						"editable", COLUMN_EDIT,
 					    NULL);
+	g_signal_connect(G_OBJECT(renderer), "edited",	 G_CALLBACK(renderer_edited), NULL);
 
 	renderer = gtk_cell_renderer_pixbuf_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Attr"),
@@ -250,7 +273,9 @@ void ctree_refresh(void)
 			gtk_tree_store_set(tree, &pareng_node, 
 					   COLUMN_NAME, utf8, 
 					   COLUMN_DATA, (gpointer) fe,
-					   COLUMN_ICON, pix1, -1);
+					   COLUMN_ICON, pix1, 
+					   COLUMN_EDIT, FALSE,
+					   -1);
 			g_free(utf8);
 		}
 
@@ -281,6 +306,7 @@ void ctree_refresh(void)
 					   row_text[3], COLUMN_DATA,
 					   (gpointer) ve, COLUMN_ICON, pix9,
 					   COLUMN_FONT, FONT_NAME,
+					   COLUMN_EDIT, TRUE,
 					   -1);
 
 			switch (ve->attr) 
@@ -443,4 +469,3 @@ void ctree_select_vars(gint action)
 		gtk_tree_path_free(end_path);
 	}
 }
-

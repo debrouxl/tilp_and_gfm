@@ -15,3 +15,6 @@ gchar *s = N_("RAM used:");
 gchar *s = N_("0");
 gchar *s = N_("FLASH used:");
 gchar *s = N_("0");
+gchar *s = N_("Click to edit name\n"
+              "Click to change\n"
+              "attribute");

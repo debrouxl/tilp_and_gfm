@@ -150,6 +150,10 @@ SOURCE=..\..\src\file.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\groups.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\gui.c
 # End Source File
 # Begin Source File
@@ -171,10 +175,6 @@ SOURCE=..\..\src\splashscreen.c
 # Begin Source File
 
 SOURCE=..\..\src\support.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tifiles.c
 # End Source File
 # Begin Source File
 
