@@ -107,6 +107,9 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	g_free(GFile.filename);
 	GFile.filename = NULL;
 	enable_save(TRUE);
+
+	ctree_refresh();
+	labels_refresh();
 }
 
 
@@ -226,3 +229,31 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 
 }
 
+
+GLADE_CB void
+on_mkdir_clicked                       (GtkToolButton   *toolbutton,
+                                        gpointer         user_data)
+{
+	gchar *ret;
+	GNode *node;
+	VarEntry *ve;
+
+	if(GFile.trees.vars == NULL)
+		return;
+
+	if(tifiles_calc_is_ti8x(GFile.model))
+		return;
+
+	ret = msgbox_input(_("New Folder"), _("folder"), _("Name of folder to create"));
+	if(ret == NULL)
+		return;
+
+	ret[8] = '/0';
+	ve = tifiles_ve_create();
+	strcpy(ve->name, ret);
+	node = g_node_new(ve);
+	g_node_append(GFile.trees.vars, node);
+
+	ctree_refresh();
+	labels_refresh();
+}
