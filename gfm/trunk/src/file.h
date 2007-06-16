@@ -21,9 +21,15 @@
 #ifndef __GFMFILE_H__
 #define __GFMFILE_H__
 
+#include "tilibs.h"
+
 /* Prototypes */
 int file_exists(const char *filename);
 void glade_files_check(void);
 const gchar* file_selector(gchar *dirname, gchar *filename, gchar *ext, gboolean save);
+
+char *tilp_file_underscorize(char *s);
+void tilp_var_get_size(VarEntry* vi, char **buf);
+void tilp_vars_translate(char *utf8);
 
 #endif

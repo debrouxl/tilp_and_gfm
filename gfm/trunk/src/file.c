@@ -152,3 +152,88 @@ const gchar* file_selector(gchar *dirname, gchar *filename, gchar *ext, gboolean
 
 	return fname;
 }
+
+/* Replace any invalid chars in the filename by an underscore '_' */
+char *tilp_file_underscorize(char *s)
+{
+	int i, j;
+	char tokens[] = "/\\:*?\"<>|- ";
+	for (i = 0; i < (int)strlen(s); i++) {
+		for (j = 0; j < (int)strlen(tokens); j++) {
+			if (s[i] == tokens[j])
+				s[i] = '_';
+		}
+	}
+	return s;
+}
+
+/* Misc */
+
+void tilp_var_get_size(VarEntry* vi, char **buf)
+{
+	char buffer[256];
+
+	if (vi->size < 1024)
+		sprintf(buffer, "  %i", (int) vi->size);
+
+	else if ((vi->size > 1024) && (vi->size < 1024 * 1024))
+		sprintf(buffer, "%i KB", (int) vi->size >> 10);
+
+	else if (vi->size > 1024 * 1024)
+		sprintf(buffer, "%i MB", (int) vi->size >> 20);
+
+	*buf = g_strdup(buffer);
+}
+
+void tilp_vars_translate(char *utf8)
+{
+#ifdef __WIN32__
+	unsigned char *v;
+
+	v = utf8;
+	if(v[0] == 'L' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
+	{	
+		utf8[1] = v[3] - 0x80 + '0';
+		utf8[2] = '\0';
+	}
+
+	if(v[0] == 'Y' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
+	{	
+		utf8[1] = v[3] - 0x80 + '0';
+		utf8[2] = '\0';
+	}
+
+	if(v[0] == 'S' && v[1] == 't' && v[2] == 'r' &&
+		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
+	{
+		utf8[3] = v[5] - 0x80 + '0';
+		utf8[4] = '\0';
+	}
+
+	if(v[0] == 'P' && v[1] == 'i' && v[2] == 'c' &&
+		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
+	{
+		utf8[3] = v[5] - 0x80 + '0';
+		utf8[4] = '\0';
+	}
+
+	if(v[0] == 'G' && v[1] == 'D' && v[2] == 'B' &&
+		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
+	{
+		utf8[3] = v[5] - 0x80 + '0';
+		utf8[4] = '\0';
+	}
+
+	if(v[0] == 'Y' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
+	{	
+		utf8[1] = v[3] - 0x80 + '0';
+		utf8[2] = '\0';
+	}
+
+	if(v[0] == 'r' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x81 && v[3] <= 0x86)
+	{	
+		utf8[1] = v[3] - 0x80 + '0';
+		utf8[2] = '\0';
+	}
+#endif
+}

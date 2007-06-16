@@ -138,6 +138,10 @@ SOURCE=..\..\src\cmdline.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\ctree.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\dialog.c
 # End Source File
 # Begin Source File
