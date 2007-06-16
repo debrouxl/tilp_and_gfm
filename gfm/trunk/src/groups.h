@@ -35,7 +35,7 @@ typedef struct
 	union
 	{
 		TigContent	*tigroup;	// TiGroup or NULL
-		FileContent	*group;		// Group or NULL
+		FileContent	*group;		// Group or TiGroup (ungrouping)
 	} contents;
 
 	struct

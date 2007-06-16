@@ -170,6 +170,7 @@ int group_load(const char *filename)
 			ve = tifiles_ve_dup(fe);
 			strcpy(ve->name, ve->folder);
 			strcpy(ve->folder, "");
+			ve->type = tifiles_folder_type(GFile.model);
 			node = g_node_new(ve);
 			folder = g_node_append(GFile.trees.vars, node);
 
