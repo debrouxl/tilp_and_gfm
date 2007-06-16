@@ -5,6 +5,7 @@
  */
 
 gchar *s = N_("Group File Manager");
+gchar *s = N_("Folder");
 gchar *s = N_("Entries:");
 gchar *s = N_("Model:");
 gchar *s = N_("Comment:");

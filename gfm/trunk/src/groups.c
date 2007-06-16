@@ -94,8 +94,27 @@ int tigroup_destroy(void)
 
 int	group_create(CalcModel model)
 {
-	GFile.contents.group = tifiles_content_create_regular(model);
+	TreeInfo *ti;
+	FileContent *content;
+
+	// Create regular file
+	content = GFile.contents.group = tifiles_content_create_regular(model);
 	GFile.type = TIFILE_GROUP;
+	GFile.model = GFile.contents.group->model;
+
+	// Recreate folder listing (ticalcs2 compatible)
+    GFile.trees.vars = g_node_new(NULL);
+	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.group->model;
+	ti->type = VAR_NODE_NAME;
+	GFile.trees.vars->data = ti;
+
+	GFile.trees.apps = g_node_new(NULL);
+	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.group->model;
+	ti->type = APP_NODE_NAME;
+	GFile.trees.apps->data = ti;
+
 
 	return 0;
 }
@@ -106,10 +125,11 @@ int group_load(const char *filename)
 	TreeInfo *ti;
 	FileContent *content;
 
-	// Create and load group file
-	if(GFile.contents.group == NULL)
-		group_create(CALC_NONE);
+	// Create and load regular file
+	GFile.model = tifiles_file_get_model(filename);
+	GFile.type = TIFILE_GROUP;
 
+	GFile.contents.group = content = tifiles_content_create_regular(GFile.model);
 	ret = tifiles_file_read_regular(filename, GFile.contents.group);
 	if(ret)
 	{
@@ -117,9 +137,6 @@ int group_load(const char *filename)
 		tifiles_content_delete_regular(GFile.contents.group);
 		return -1;
 	}
-	GFile.model = GFile.contents.group->model;
-
-	content = GFile.contents.group;
 
 	// Recreate folder listing (ticalcs2 compatible)
     GFile.trees.vars = g_node_new(NULL);

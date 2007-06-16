@@ -132,7 +132,20 @@
 	      </child>
 
 	      <child>
-		<placeholder/>
+		<widget class="GtkToolButton" id="toolbutton6">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Folder</property>
+		  <property name="use_underline">True</property>
+		  <property name="stock_id">gtk-directory</property>
+		  <property name="visible_horizontal">True</property>
+		  <property name="visible_vertical">True</property>
+		  <property name="is_important">False</property>
+		  <signal name="clicked" handler="on_mkdir_clicked" last_modification_time="Sat, 16 Jun 2007 16:58:51 GMT"/>
+		</widget>
+		<packing>
+		  <property name="expand">False</property>
+		  <property name="homogeneous">True</property>
+		</packing>
 	      </child>
 
 	      <child>
