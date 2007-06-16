@@ -30,4 +30,6 @@ void labels_set_comment(const char* comment);
 void labels_set_ram(uint32_t ram);
 void labels_set_flash(uint32_t flash);
 
+void labels_refresh(void);
+
 #endif

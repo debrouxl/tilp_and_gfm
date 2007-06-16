@@ -22,14 +22,14 @@
 #ifndef __CTREE_H__
 #define __CTREE_H__
 
-/*
-enum {
-  CTREE_NAME, CTREE_ATTR, CTREE_TYPE, CTREE_SIZE,
-  CTREE_DATA, CTREE_FONT, CTREE_ICON,
-  CTREE_NUMBER
+enum 
+{ 
+	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
+	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
 };
-#define CTREE_NCOLS CTREE_DATA
-*/
+
+#define CTREE_NVCOLS	(4)		// 4 visible columns
+#define CTREE_NCOLS		(7)		// 7 real columns
 
 #define NODE0 _("Calc")
 #define NODE1 _("Screen")

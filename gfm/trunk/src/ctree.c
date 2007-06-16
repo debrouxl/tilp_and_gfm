@@ -33,17 +33,7 @@
 
 static GtkTreeStore *tree;
 
-#define FONT_NAME ""	//"courier"
-
-// MUST be the same in dnd.c
-enum 
-{ 
-	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
-	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
-};
-
-#define CTREE_NVCOLS	(4)		// 4 visible columns
-#define CTREE_NCOLS		(7)		// 7 real columns
+#define FONT_NAME "courier"
 
 /* Initialization */
 
@@ -311,7 +301,7 @@ void ctree_refresh(void)
 
 	// Appplications tree
 	apps = GFile.trees.apps;
-	for (i = 0; i < (int)g_node_n_children(apps); i++) 
+	for (i = 0; i < (int)g_node_n_children(apps) && tifiles_is_flash(GFile.model); i++) 
 	{
 		GNode *parent = g_node_nth_child(apps, i);
 

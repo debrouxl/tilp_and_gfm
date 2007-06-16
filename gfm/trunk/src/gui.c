@@ -32,6 +32,8 @@
 #include "dialog.h"
 #include "file.h"
 #include "groups.h"
+#include "labels.h"
+#include "ctree.h"
 
 // Global Widget Access Structure
 GFMWidget gfm_widget;
@@ -61,12 +63,10 @@ int launch_gfmgui(void)
 	gfm_widget.entries = glade_xml_get_widget(xml, "label3");
 	gfm_widget.comment = glade_xml_get_widget(xml, "label5");
 	gfm_widget.ram = glade_xml_get_widget(xml, "label2");
-	gfm_widget.flash = glade_xml_get_widget(xml, "label4");
-		
-	// To write...
-	
+	gfm_widget.flash = glade_xml_get_widget(xml, "label4");	
     
     // Show the Widget
+	ctree_init();
     gtk_widget_show(widget);
 
     // Return
@@ -162,6 +162,9 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	GFile.filename = g_strdup(fn);
 
 	GFile.saved = !0;
+
+	ctree_refresh();
+	labels_refresh();
 }
 
 GLADE_CB gboolean

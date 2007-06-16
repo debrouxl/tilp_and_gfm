@@ -29,6 +29,7 @@
 
 #include "gui.h"
 #include "labels.h"
+#include "groups.h"
 
 #ifdef __WIN32__
 #define snprintf _snprintf
@@ -145,4 +146,22 @@ void labels_set_flash(uint32_t flash)
 
 	gtk_label_set_text(GTK_LABEL(gfm_widget.flash), str);
 	g_free(str);
+}
+
+void labels_refresh(void)
+{
+	int n;
+	int ram;
+	int flash;
+
+	n = ticalcs_dirlist_ve_count((TNode *)GFile.trees.vars) +
+		ticalcs_dirlist_ve_count((TNode *)GFile.trees.apps);
+	ram = ticalcs_dirlist_ram_used((TNode *)GFile.trees.vars);
+	flash = ticalcs_dirlist_flash_used((TNode *)GFile.trees.vars, (TNode *)GFile.trees.apps);
+
+	labels_set_model(GFile.model);
+	labels_set_entries(n);
+	labels_set_comment(GFile.contents.group->comment);
+	labels_set_ram(ram);
+	labels_set_flash(flash);
 }
