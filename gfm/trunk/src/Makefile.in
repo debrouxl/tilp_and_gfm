@@ -50,12 +50,8 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_gfm_OBJECTS = gfm-cmdline.$(OBJEXT) gfm-configfile.$(OBJEXT) \
-	gfm-dialog.$(OBJEXT) gfm-drag_drop.$(OBJEXT) \
-	gfm-file.$(OBJEXT) gfm-folder_tree.$(OBJEXT) \
-	gfm-ftree_menu.$(OBJEXT) gfm-ftree_sort.$(OBJEXT) \
-	gfm-group_file.$(OBJEXT) gfm-group_tree.$(OBJEXT) \
-	gfm-gtree_menu.$(OBJEXT) gfm-gtree_sort.$(OBJEXT) \
+am_gfm_OBJECTS = gfm-cmdline.$(OBJEXT) gfm-ctree.$(OBJEXT) \
+	gfm-dialog.$(OBJEXT) gfm-file.$(OBJEXT) gfm-groups.$(OBJEXT) \
 	gfm-gui.$(OBJEXT) gfm-labels.$(OBJEXT) gfm-main.$(OBJEXT) \
 	gfm-paths.$(OBJEXT) gfm-splashscreen.$(OBJEXT) \
 	gfm-support.$(OBJEXT) gfm-tilibs.$(OBJEXT)
@@ -112,6 +108,7 @@ GLADE_CFLAGS = @GLADE_CFLAGS@
 GLADE_LIBS = @GLADE_LIBS@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GREP = @GREP@
 GROFF = @GROFF@
 GTK_CFLAGS = @GTK_CFLAGS@
 GTK_LIBS = @GTK_LIBS@
@@ -143,6 +140,8 @@ RANLIB = @RANLIB@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+TICALCS_CFLAGS = @TICALCS_CFLAGS@
+TICALCS_LIBS = @TICALCS_LIBS@
 TICONV_CFLAGS = @TICONV_CFLAGS@
 TICONV_LIBS = @TICONV_LIBS@
 TIFILES_CFLAGS = @TIFILES_CFLAGS@
@@ -150,16 +149,9 @@ TIFILES_LIBS = @TIFILES_LIBS@
 USE_GROFF_FALSE = @USE_GROFF_FALSE@
 USE_GROFF_TRUE = @USE_GROFF_TRUE@
 VERSION = @VERSION@
-ac_ct_AR = @ac_ct_AR@
-ac_ct_AS = @ac_ct_AS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
-ac_ct_DLLTOOL = @ac_ct_DLLTOOL@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_OBJDUMP = @ac_ct_OBJDUMP@
-ac_ct_RANLIB = @ac_ct_RANLIB@
-ac_ct_STRIP = @ac_ct_STRIP@
-ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -176,23 +168,30 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
+datarootdir = @datarootdir@
+docdir = @docdir@
+dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
 host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
+htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
+pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
+psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
@@ -219,17 +218,10 @@ gfm_LDADD = \
 gfm_SOURCES = \
 	*.h \
 	cmdline.c \
-	configfile.c \
+	ctree.c \
 	dialog.c \
-	drag_drop.c \
 	file.c \
-	folder_tree.c \
-	ftree_menu.c \
-	ftree_sort.c \
-	group_file.c \
-	group_tree.c \
-	gtree_menu.c \
-	gtree_sort.c \
+	groups.c \
 	gui.c \
 	labels.c \
 	main.c \
@@ -310,17 +302,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-cmdline.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-configfile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-ctree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-dialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-drag_drop.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-file.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-folder_tree.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-ftree_menu.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-ftree_sort.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-group_file.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-group_tree.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gtree_menu.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gtree_sort.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-groups.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-labels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-main.Po@am__quote@
@@ -364,19 +349,19 @@ gfm-cmdline.obj: cmdline.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-cmdline.obj `if test -f 'cmdline.c'; then $(CYGPATH_W) 'cmdline.c'; else $(CYGPATH_W) '$(srcdir)/cmdline.c'; fi`
 
-gfm-configfile.o: configfile.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-configfile.o -MD -MP -MF "$(DEPDIR)/gfm-configfile.Tpo" -c -o gfm-configfile.o `test -f 'configfile.c' || echo '$(srcdir)/'`configfile.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-configfile.Tpo" "$(DEPDIR)/gfm-configfile.Po"; else rm -f "$(DEPDIR)/gfm-configfile.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='configfile.c' object='gfm-configfile.o' libtool=no @AMDEPBACKSLASH@
+gfm-ctree.o: ctree.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ctree.o -MD -MP -MF "$(DEPDIR)/gfm-ctree.Tpo" -c -o gfm-ctree.o `test -f 'ctree.c' || echo '$(srcdir)/'`ctree.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ctree.Tpo" "$(DEPDIR)/gfm-ctree.Po"; else rm -f "$(DEPDIR)/gfm-ctree.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ctree.c' object='gfm-ctree.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-configfile.o `test -f 'configfile.c' || echo '$(srcdir)/'`configfile.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ctree.o `test -f 'ctree.c' || echo '$(srcdir)/'`ctree.c
 
-gfm-configfile.obj: configfile.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-configfile.obj -MD -MP -MF "$(DEPDIR)/gfm-configfile.Tpo" -c -o gfm-configfile.obj `if test -f 'configfile.c'; then $(CYGPATH_W) 'configfile.c'; else $(CYGPATH_W) '$(srcdir)/configfile.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-configfile.Tpo" "$(DEPDIR)/gfm-configfile.Po"; else rm -f "$(DEPDIR)/gfm-configfile.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='configfile.c' object='gfm-configfile.obj' libtool=no @AMDEPBACKSLASH@
+gfm-ctree.obj: ctree.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ctree.obj -MD -MP -MF "$(DEPDIR)/gfm-ctree.Tpo" -c -o gfm-ctree.obj `if test -f 'ctree.c'; then $(CYGPATH_W) 'ctree.c'; else $(CYGPATH_W) '$(srcdir)/ctree.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ctree.Tpo" "$(DEPDIR)/gfm-ctree.Po"; else rm -f "$(DEPDIR)/gfm-ctree.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ctree.c' object='gfm-ctree.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-configfile.obj `if test -f 'configfile.c'; then $(CYGPATH_W) 'configfile.c'; else $(CYGPATH_W) '$(srcdir)/configfile.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ctree.obj `if test -f 'ctree.c'; then $(CYGPATH_W) 'ctree.c'; else $(CYGPATH_W) '$(srcdir)/ctree.c'; fi`
 
 gfm-dialog.o: dialog.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-dialog.o -MD -MP -MF "$(DEPDIR)/gfm-dialog.Tpo" -c -o gfm-dialog.o `test -f 'dialog.c' || echo '$(srcdir)/'`dialog.c; \
@@ -392,20 +377,6 @@ gfm-dialog.obj: dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-dialog.obj `if test -f 'dialog.c'; then $(CYGPATH_W) 'dialog.c'; else $(CYGPATH_W) '$(srcdir)/dialog.c'; fi`
 
-gfm-drag_drop.o: drag_drop.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-drag_drop.o -MD -MP -MF "$(DEPDIR)/gfm-drag_drop.Tpo" -c -o gfm-drag_drop.o `test -f 'drag_drop.c' || echo '$(srcdir)/'`drag_drop.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-drag_drop.Tpo" "$(DEPDIR)/gfm-drag_drop.Po"; else rm -f "$(DEPDIR)/gfm-drag_drop.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='drag_drop.c' object='gfm-drag_drop.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-drag_drop.o `test -f 'drag_drop.c' || echo '$(srcdir)/'`drag_drop.c
-
-gfm-drag_drop.obj: drag_drop.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-drag_drop.obj -MD -MP -MF "$(DEPDIR)/gfm-drag_drop.Tpo" -c -o gfm-drag_drop.obj `if test -f 'drag_drop.c'; then $(CYGPATH_W) 'drag_drop.c'; else $(CYGPATH_W) '$(srcdir)/drag_drop.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-drag_drop.Tpo" "$(DEPDIR)/gfm-drag_drop.Po"; else rm -f "$(DEPDIR)/gfm-drag_drop.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='drag_drop.c' object='gfm-drag_drop.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-drag_drop.obj `if test -f 'drag_drop.c'; then $(CYGPATH_W) 'drag_drop.c'; else $(CYGPATH_W) '$(srcdir)/drag_drop.c'; fi`
-
 gfm-file.o: file.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-file.o -MD -MP -MF "$(DEPDIR)/gfm-file.Tpo" -c -o gfm-file.o `test -f 'file.c' || echo '$(srcdir)/'`file.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-file.Tpo" "$(DEPDIR)/gfm-file.Po"; else rm -f "$(DEPDIR)/gfm-file.Tpo"; exit 1; fi
@@ -420,103 +391,19 @@ gfm-file.obj: file.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-file.obj `if test -f 'file.c'; then $(CYGPATH_W) 'file.c'; else $(CYGPATH_W) '$(srcdir)/file.c'; fi`
 
-gfm-folder_tree.o: folder_tree.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-folder_tree.o -MD -MP -MF "$(DEPDIR)/gfm-folder_tree.Tpo" -c -o gfm-folder_tree.o `test -f 'folder_tree.c' || echo '$(srcdir)/'`folder_tree.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-folder_tree.Tpo" "$(DEPDIR)/gfm-folder_tree.Po"; else rm -f "$(DEPDIR)/gfm-folder_tree.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='folder_tree.c' object='gfm-folder_tree.o' libtool=no @AMDEPBACKSLASH@
+gfm-groups.o: groups.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-groups.o -MD -MP -MF "$(DEPDIR)/gfm-groups.Tpo" -c -o gfm-groups.o `test -f 'groups.c' || echo '$(srcdir)/'`groups.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-groups.Tpo" "$(DEPDIR)/gfm-groups.Po"; else rm -f "$(DEPDIR)/gfm-groups.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='groups.c' object='gfm-groups.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-folder_tree.o `test -f 'folder_tree.c' || echo '$(srcdir)/'`folder_tree.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-groups.o `test -f 'groups.c' || echo '$(srcdir)/'`groups.c
 
-gfm-folder_tree.obj: folder_tree.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-folder_tree.obj -MD -MP -MF "$(DEPDIR)/gfm-folder_tree.Tpo" -c -o gfm-folder_tree.obj `if test -f 'folder_tree.c'; then $(CYGPATH_W) 'folder_tree.c'; else $(CYGPATH_W) '$(srcdir)/folder_tree.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-folder_tree.Tpo" "$(DEPDIR)/gfm-folder_tree.Po"; else rm -f "$(DEPDIR)/gfm-folder_tree.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='folder_tree.c' object='gfm-folder_tree.obj' libtool=no @AMDEPBACKSLASH@
+gfm-groups.obj: groups.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-groups.obj -MD -MP -MF "$(DEPDIR)/gfm-groups.Tpo" -c -o gfm-groups.obj `if test -f 'groups.c'; then $(CYGPATH_W) 'groups.c'; else $(CYGPATH_W) '$(srcdir)/groups.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-groups.Tpo" "$(DEPDIR)/gfm-groups.Po"; else rm -f "$(DEPDIR)/gfm-groups.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='groups.c' object='gfm-groups.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-folder_tree.obj `if test -f 'folder_tree.c'; then $(CYGPATH_W) 'folder_tree.c'; else $(CYGPATH_W) '$(srcdir)/folder_tree.c'; fi`
-
-gfm-ftree_menu.o: ftree_menu.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ftree_menu.o -MD -MP -MF "$(DEPDIR)/gfm-ftree_menu.Tpo" -c -o gfm-ftree_menu.o `test -f 'ftree_menu.c' || echo '$(srcdir)/'`ftree_menu.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ftree_menu.Tpo" "$(DEPDIR)/gfm-ftree_menu.Po"; else rm -f "$(DEPDIR)/gfm-ftree_menu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ftree_menu.c' object='gfm-ftree_menu.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ftree_menu.o `test -f 'ftree_menu.c' || echo '$(srcdir)/'`ftree_menu.c
-
-gfm-ftree_menu.obj: ftree_menu.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ftree_menu.obj -MD -MP -MF "$(DEPDIR)/gfm-ftree_menu.Tpo" -c -o gfm-ftree_menu.obj `if test -f 'ftree_menu.c'; then $(CYGPATH_W) 'ftree_menu.c'; else $(CYGPATH_W) '$(srcdir)/ftree_menu.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ftree_menu.Tpo" "$(DEPDIR)/gfm-ftree_menu.Po"; else rm -f "$(DEPDIR)/gfm-ftree_menu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ftree_menu.c' object='gfm-ftree_menu.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ftree_menu.obj `if test -f 'ftree_menu.c'; then $(CYGPATH_W) 'ftree_menu.c'; else $(CYGPATH_W) '$(srcdir)/ftree_menu.c'; fi`
-
-gfm-ftree_sort.o: ftree_sort.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ftree_sort.o -MD -MP -MF "$(DEPDIR)/gfm-ftree_sort.Tpo" -c -o gfm-ftree_sort.o `test -f 'ftree_sort.c' || echo '$(srcdir)/'`ftree_sort.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ftree_sort.Tpo" "$(DEPDIR)/gfm-ftree_sort.Po"; else rm -f "$(DEPDIR)/gfm-ftree_sort.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ftree_sort.c' object='gfm-ftree_sort.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ftree_sort.o `test -f 'ftree_sort.c' || echo '$(srcdir)/'`ftree_sort.c
-
-gfm-ftree_sort.obj: ftree_sort.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-ftree_sort.obj -MD -MP -MF "$(DEPDIR)/gfm-ftree_sort.Tpo" -c -o gfm-ftree_sort.obj `if test -f 'ftree_sort.c'; then $(CYGPATH_W) 'ftree_sort.c'; else $(CYGPATH_W) '$(srcdir)/ftree_sort.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-ftree_sort.Tpo" "$(DEPDIR)/gfm-ftree_sort.Po"; else rm -f "$(DEPDIR)/gfm-ftree_sort.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ftree_sort.c' object='gfm-ftree_sort.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ftree_sort.obj `if test -f 'ftree_sort.c'; then $(CYGPATH_W) 'ftree_sort.c'; else $(CYGPATH_W) '$(srcdir)/ftree_sort.c'; fi`
-
-gfm-group_file.o: group_file.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_file.o -MD -MP -MF "$(DEPDIR)/gfm-group_file.Tpo" -c -o gfm-group_file.o `test -f 'group_file.c' || echo '$(srcdir)/'`group_file.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_file.Tpo" "$(DEPDIR)/gfm-group_file.Po"; else rm -f "$(DEPDIR)/gfm-group_file.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_file.c' object='gfm-group_file.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_file.o `test -f 'group_file.c' || echo '$(srcdir)/'`group_file.c
-
-gfm-group_file.obj: group_file.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_file.obj -MD -MP -MF "$(DEPDIR)/gfm-group_file.Tpo" -c -o gfm-group_file.obj `if test -f 'group_file.c'; then $(CYGPATH_W) 'group_file.c'; else $(CYGPATH_W) '$(srcdir)/group_file.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_file.Tpo" "$(DEPDIR)/gfm-group_file.Po"; else rm -f "$(DEPDIR)/gfm-group_file.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_file.c' object='gfm-group_file.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_file.obj `if test -f 'group_file.c'; then $(CYGPATH_W) 'group_file.c'; else $(CYGPATH_W) '$(srcdir)/group_file.c'; fi`
-
-gfm-group_tree.o: group_tree.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_tree.o -MD -MP -MF "$(DEPDIR)/gfm-group_tree.Tpo" -c -o gfm-group_tree.o `test -f 'group_tree.c' || echo '$(srcdir)/'`group_tree.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_tree.Tpo" "$(DEPDIR)/gfm-group_tree.Po"; else rm -f "$(DEPDIR)/gfm-group_tree.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_tree.c' object='gfm-group_tree.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_tree.o `test -f 'group_tree.c' || echo '$(srcdir)/'`group_tree.c
-
-gfm-group_tree.obj: group_tree.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-group_tree.obj -MD -MP -MF "$(DEPDIR)/gfm-group_tree.Tpo" -c -o gfm-group_tree.obj `if test -f 'group_tree.c'; then $(CYGPATH_W) 'group_tree.c'; else $(CYGPATH_W) '$(srcdir)/group_tree.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-group_tree.Tpo" "$(DEPDIR)/gfm-group_tree.Po"; else rm -f "$(DEPDIR)/gfm-group_tree.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='group_tree.c' object='gfm-group_tree.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-group_tree.obj `if test -f 'group_tree.c'; then $(CYGPATH_W) 'group_tree.c'; else $(CYGPATH_W) '$(srcdir)/group_tree.c'; fi`
-
-gfm-gtree_menu.o: gtree_menu.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-gtree_menu.o -MD -MP -MF "$(DEPDIR)/gfm-gtree_menu.Tpo" -c -o gfm-gtree_menu.o `test -f 'gtree_menu.c' || echo '$(srcdir)/'`gtree_menu.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-gtree_menu.Tpo" "$(DEPDIR)/gfm-gtree_menu.Po"; else rm -f "$(DEPDIR)/gfm-gtree_menu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gtree_menu.c' object='gfm-gtree_menu.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-gtree_menu.o `test -f 'gtree_menu.c' || echo '$(srcdir)/'`gtree_menu.c
-
-gfm-gtree_menu.obj: gtree_menu.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-gtree_menu.obj -MD -MP -MF "$(DEPDIR)/gfm-gtree_menu.Tpo" -c -o gfm-gtree_menu.obj `if test -f 'gtree_menu.c'; then $(CYGPATH_W) 'gtree_menu.c'; else $(CYGPATH_W) '$(srcdir)/gtree_menu.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-gtree_menu.Tpo" "$(DEPDIR)/gfm-gtree_menu.Po"; else rm -f "$(DEPDIR)/gfm-gtree_menu.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gtree_menu.c' object='gfm-gtree_menu.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-gtree_menu.obj `if test -f 'gtree_menu.c'; then $(CYGPATH_W) 'gtree_menu.c'; else $(CYGPATH_W) '$(srcdir)/gtree_menu.c'; fi`
-
-gfm-gtree_sort.o: gtree_sort.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-gtree_sort.o -MD -MP -MF "$(DEPDIR)/gfm-gtree_sort.Tpo" -c -o gfm-gtree_sort.o `test -f 'gtree_sort.c' || echo '$(srcdir)/'`gtree_sort.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-gtree_sort.Tpo" "$(DEPDIR)/gfm-gtree_sort.Po"; else rm -f "$(DEPDIR)/gfm-gtree_sort.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gtree_sort.c' object='gfm-gtree_sort.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-gtree_sort.o `test -f 'gtree_sort.c' || echo '$(srcdir)/'`gtree_sort.c
-
-gfm-gtree_sort.obj: gtree_sort.c
-@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-gtree_sort.obj -MD -MP -MF "$(DEPDIR)/gfm-gtree_sort.Tpo" -c -o gfm-gtree_sort.obj `if test -f 'gtree_sort.c'; then $(CYGPATH_W) 'gtree_sort.c'; else $(CYGPATH_W) '$(srcdir)/gtree_sort.c'; fi`; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/gfm-gtree_sort.Tpo" "$(DEPDIR)/gfm-gtree_sort.Po"; else rm -f "$(DEPDIR)/gfm-gtree_sort.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gtree_sort.c' object='gfm-gtree_sort.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-gtree_sort.obj `if test -f 'gtree_sort.c'; then $(CYGPATH_W) 'gtree_sort.c'; else $(CYGPATH_W) '$(srcdir)/gtree_sort.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-groups.obj `if test -f 'groups.c'; then $(CYGPATH_W) 'groups.c'; else $(CYGPATH_W) '$(srcdir)/groups.c'; fi`
 
 gfm-gui.o: gui.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT gfm-gui.o -MD -MP -MF "$(DEPDIR)/gfm-gui.Tpo" -c -o gfm-gui.o `test -f 'gui.c' || echo '$(srcdir)/'`gui.c; \

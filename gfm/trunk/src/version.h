@@ -26,7 +26,10 @@
 #define LIBTIFILES2_REQUIRE_VERSION "1.0.0"
 
 /* Group File Manager Version */
-#define GFM_VERSION "0.03"
-#define VERSION GFM_VERSION
+#ifdef __WIN32__
+# define GFM_VERSION "0.03"
+#else
+# define GFM_VERSION VERSION
+#endif
 
 #endif

@@ -24,6 +24,7 @@
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
+#include <string.h>
 
 #include "gui.h"
 #include "support.h"

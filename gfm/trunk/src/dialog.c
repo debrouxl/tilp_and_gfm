@@ -229,7 +229,7 @@ char *msgbox_input(const char *title, const char *input, const char *question)
 	GladeXML *xml;
 	GtkWidget *widget, *data;
 	int result;
-	gchar *ret;  
+	gchar *ret = NULL;  
 	
     // Load the One Button Dialog from dialogs.glade
 	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "inputdialog", NULL);

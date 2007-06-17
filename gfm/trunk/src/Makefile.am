@@ -25,17 +25,10 @@ gfm_LDADD = \
 gfm_SOURCES = \
 	*.h \
 	cmdline.c \
-	configfile.c \
+	ctree.c \
 	dialog.c \
-	drag_drop.c \
 	file.c \
-	folder_tree.c \
-	ftree_menu.c \
-	ftree_sort.c \
-	group_file.c \
-	group_tree.c \
-	gtree_menu.c \
-	gtree_sort.c \
+	groups.c \
 	gui.c \
 	labels.c \
 	main.c \

@@ -40,9 +40,9 @@ static gint show_version = 0;
 
 static GOptionEntry entries[] = 
 {
-    { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
-	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
-	{ NULL }
+  { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
+  { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
+  { 0 }
 };
 
 static void gfm_version(void)

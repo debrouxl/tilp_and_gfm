@@ -120,7 +120,7 @@ void labels_set_comment(const char* comment)
 
 void labels_set_ram(uint32_t ram)
 {
-	gchar *str;
+	gchar *str = g_strdup("");
 
 	if (ram < 1024)
 		str = g_strdup_printf("%d bytes", ram);
@@ -135,7 +135,7 @@ void labels_set_ram(uint32_t ram)
 
 void labels_set_flash(uint32_t flash)
 {
-	gchar *str;
+	gchar *str = g_strdup("");
 
 	if (flash < 1024)
 		str = g_strdup_printf("%d bytes", flash);

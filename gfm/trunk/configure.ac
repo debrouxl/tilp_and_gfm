@@ -44,9 +44,13 @@ PKG_CHECK_MODULES(TICONV, ticonv >= 0.0.5)
 AC_SUBST(TICONV_CFLAGS)
 AC_SUBST(TICONV_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles2 >= 0.2.2)
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 1.0.0)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
+
+PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.0)
+AC_SUBST(TICALCS_CFLAGS)
+AC_SUBST(TICALCS_LIBS)
 
 PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.6.0)
 AC_SUBST(GLIB_CFLAGS)
@@ -63,7 +67,7 @@ AC_SUBST(GLADE_LIBS)
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
-AC_CHECK_HEADERS([tilp2/ticonv.h tilp2/tifiles.h])
+AC_CHECK_HEADERS([tilp2/ticonv.h tilp2/tifiles.h tilp2/ticalcs.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
