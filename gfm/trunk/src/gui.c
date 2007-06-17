@@ -44,6 +44,22 @@ void enable_save(int state)
 	gtk_widget_set_sensitive(gfm_widget.save, state);
 }
 
+/*
+// Nothing to do with GFM, just for test
+static int cnt = 0;
+
+static gint to_cb (gpointer data)
+{
+	gchar *str;
+
+	str = g_strdup_printf("%04i", cnt += 50);
+    gtk_label_set_text(GTK_LABEL(gfm_widget.test), str);
+	g_free(str);
+
+    return TRUE;
+}
+*/
+
 /* The Main Interface Launcher */
 int launch_gfmgui(void)
 {
@@ -71,26 +87,20 @@ int launch_gfmgui(void)
 	gfm_widget.ram = glade_xml_get_widget(xml, "label9");
 	gfm_widget.flash = glade_xml_get_widget(xml, "label10");
 	gfm_widget.save = glade_xml_get_widget(xml, "toolbutton3");
-    
+	//gfm_widget.test = glade_xml_get_widget(xml, "label11");
+	
     // Show the Widget
 	enable_save(FALSE);
 	ctree_init();
     gtk_widget_show(widget);
+
+	//g_timeout_add(250, (GtkFunction)to_cb, NULL);
 
     // Return
     return 0;
 }
 
 /* Callback Functions */
-
-GLADE_CB void
-on_gfm_dbox_destroy                    (GtkObject       *object,
-                                        gpointer         user_data)
-{
-	// Quit Main GTK Loop
-	gtk_main_quit();
-}
-
 
 GLADE_CB void
 on_new_clicked                         (GtkToolButton   *toolbutton,
@@ -178,6 +188,25 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	labels_refresh();
 }
 
+
+GLADE_CB void
+on_quit_clicked                        (GtkToolButton   *toolbutton,
+                                        gpointer         user_data)
+{
+	file_destroy();
+
+	gtk_main_quit();
+}
+
+
+GLADE_CB void
+on_gfm_dbox_destroy                    (GtkObject       *object,
+                                        gpointer         user_data)
+{
+	// Quit Main GTK Loop
+	printf("on_gfm_dbox_destroy\n");
+}
+
 GLADE_CB gboolean
 on_gfm_dbox_delete_event               (GtkWidget       *widget,
                                         GdkEvent        *event,
@@ -197,6 +226,7 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 			return FALSE;
 			break;
 		case MSGBOX_BUTTON2:
+			on_quit_clicked(NULL, NULL);
 			return FALSE;
 			break;
 		case MSGBOX_NO: 
@@ -206,19 +236,6 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 	}
 
 	return FALSE;
-}
-
-
-GLADE_CB void
-on_quit_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
-{
-	// save before quit...
-
-
-	file_destroy();
-
-	gtk_main_quit();
 }
 
 

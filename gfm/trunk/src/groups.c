@@ -115,7 +115,6 @@ int	group_create(CalcModel model)
 	ti->type = APP_NODE_NAME;
 	GFile.trees.apps->data = ti;
 
-
 	return 0;
 }
 

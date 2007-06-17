@@ -190,6 +190,10 @@ SOURCE=..\..\src\cmdline.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\ctree.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\dialog.h
 # End Source File
 # Begin Source File
@@ -199,6 +203,10 @@ SOURCE=..\..\src\dnd.h
 # Begin Source File
 
 SOURCE=..\..\src\file.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\groups.h
 # End Source File
 # Begin Source File
 
@@ -219,10 +227,6 @@ SOURCE=..\..\src\splashscreen.h
 # Begin Source File
 
 SOURCE=..\..\src\support.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tifile.h
 # End Source File
 # Begin Source File
 

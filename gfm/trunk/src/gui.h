@@ -32,6 +32,8 @@ typedef struct
 	GtkWidget *flash;
 	GtkWidget *save;
 
+	GtkWidget *test;
+
 	GList	*sel1;	// vars
 	GList	*sel2;	// apps
 } GFMWidget; 

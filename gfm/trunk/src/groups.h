@@ -32,7 +32,7 @@ typedef struct
 	FileClass	type;		// TiGroup or Regular (single/group)
 	CalcModel	model;		// Hand-held model
 
-	union
+	struct
 	{
 		TigContent	*tigroup;	// TiGroup or NULL
 		FileContent	*group;		// Group or TiGroup (ungrouping)
