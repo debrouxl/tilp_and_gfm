@@ -2,11 +2,11 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- 10/06/2007, version 1.05 (1.0.5, 1.0.6, 1.0.5, 1.0.3): roms
+- 10/06/2007, version 1.05 (1.0.5, 1.0.6, 1.0.6, 1.0.3): roms
 	- sending of APPV variables in FLASH is not allowed; avoid this.
 	- skip sending of IDlist.8xidl (pseudo-variable)
 	- fixed displaying of Pic/Str/Gdb in directory listing (win32)
-	- fixed displaying of Y?/r? in directory listing (win32)
+	- fixed displaying of Y?/r? and 't' in directory listing (win32)
 
 - 02/04/2007, version 1.04 (1.0.5, 1.0.6, 1.0.5, 1.0.2): roms
 	- cosmetic change in the name of the TiEmu virtual link
