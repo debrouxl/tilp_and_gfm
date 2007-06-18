@@ -31,6 +31,7 @@ typedef struct
 	GtkWidget *ram;
 	GtkWidget *flash;
 	GtkWidget *save;
+	GtkWidget *pbar;
 
 	GtkWidget *test;
 

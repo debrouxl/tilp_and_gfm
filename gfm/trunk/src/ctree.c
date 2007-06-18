@@ -53,7 +53,7 @@ static gint column2index(GtkTreeViewColumn* column)
 	return -1;
 }
 
-static gboolean select_func(GtkTreeSelection * selection,
+static gboolean allow_selection(GtkTreeSelection * selection,
 			    GtkTreeModel * model,
 			    GtkTreePath * path,
 			    gboolean path_currently_selected,
@@ -71,7 +71,50 @@ static gboolean select_func(GtkTreeSelection * selection,
 	if (ve->type == tifiles_folder_type(GFile.model))
 		return FALSE;
 
+	if(ve->type == tifiles_flash_type(GFile.model))
+		return FALSE;
+
 	return TRUE;
+}
+
+static void get_selection                               (GtkTreeModel *model,
+                                                         GtkTreePath *path,
+                                                         GtkTreeIter *iter,
+                                                         gpointer data)
+{
+	VarEntry *ve;
+
+	gtk_tree_model_get(model, iter, COLUMN_DATA, &ve, -1);
+
+	if (ve->type != tifiles_flash_type(GFile.model)) 
+	{
+		gfm_widget.sel1 = g_list_append(gfm_widget.sel1, ve);
+	} 
+	else 
+	{
+		gfm_widget.sel2 = g_list_append(gfm_widget.sel2, ve);
+	}
+}			
+
+void ctree_selection_destroy(void)
+{
+	// destroy selection
+	g_list_free(gfm_widget.sel1);
+	gfm_widget.sel1 = NULL;
+	g_list_free(gfm_widget.sel2);
+	gfm_widget.sel2 = NULL;
+}
+
+void ctree_selection_get(void)
+{
+	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
+	GtkTreeSelection *selection = gtk_tree_view_get_selection(view);
+
+	// destroy selection
+	ctree_selection_destroy();
+
+	// create a new selection
+	gtk_tree_selection_selected_foreach(selection, get_selection, NULL);
 }
 
 static void tree_selection_changed(GtkTreeSelection * selection,
@@ -130,6 +173,8 @@ static void renderer_edited(GtkCellRendererText * cell,
 	gtk_tree_store_set(tree, &iter, COLUMN_NAME, ve->name, -1);
 
 	gtk_tree_path_free(path);
+
+	enable_save(TRUE);
 }
 
 void ctree_init(void)
@@ -197,8 +242,7 @@ void ctree_init(void)
 
 	selection = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_MULTIPLE);
-	gtk_tree_selection_set_select_function(selection, select_func, NULL, NULL);
-	g_signal_connect(G_OBJECT(selection), "changed", G_CALLBACK(tree_selection_changed), NULL);
+	gtk_tree_selection_set_select_function(selection, allow_selection, NULL, NULL);
 
 	ctree_set_basetree();
 }
@@ -247,7 +291,7 @@ void ctree_refresh(void)
 	memcpy(&pareng_node, &vars_node, sizeof(GtkTreeIter));
 
 	// load pixmaps
-	pix1 = create_pixbuf("ctree_close_dir.xpm");
+	pix1 = create_pixbuf("ctree_open_dir.xpm");
 	pix2 = create_pixbuf("TIicon2.ico");
 	pix3 = create_pixbuf("ctree_open_dir.xpm");
 	pix4 = create_pixbuf("attr_locked.xpm");

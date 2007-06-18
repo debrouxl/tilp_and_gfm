@@ -89,6 +89,7 @@ int launch_gfmgui(void)
 	gfm_widget.flash = glade_xml_get_widget(xml, "label10");
 	gfm_widget.save = glade_xml_get_widget(xml, "toolbutton3");
 	//gfm_widget.test = glade_xml_get_widget(xml, "label11");
+	gfm_widget.pbar = glade_xml_get_widget(xml, "progressbar1");
 	
     // Show the Widget
 	enable_save(FALSE);
@@ -122,12 +123,16 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	ctree_refresh();
 	labels_refresh();
 }
-
+					
 
 GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
+	//ctree_selection_get();
+	//msgbox_one(MSGBOX_INFO, "Not implemented yet.");
+	//return;
+
 	// Newly created file, ask for name
 	if(GFile.filename == NULL)
 	{
@@ -149,7 +154,7 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 	}
 	else
 	{
-		//file_save(GFile.filename);
+		file_save(GFile.filename);
 	}
 
 	enable_save(FALSE);
@@ -249,12 +254,29 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 	if(GFile.trees.vars == NULL)
 		return;
 
+	ctree_selection_get();
+
 	for(ptr = gfm_widget.sel1; ptr; ptr = ptr->next)
 	{
 		VarEntry *ve = (VarEntry *)ptr->data;
 
 		printf("<%s>\n", ve->name);
+		ticalcs_dirlist_ve_del(GFile.trees.vars, ve);
 	}
+
+	for(ptr = gfm_widget.sel2; ptr; ptr = ptr->next)
+	{
+		VarEntry *ve = (VarEntry *)ptr->data;
+
+		printf("<%s>\n", ve->name);
+		ticalcs_dirlist_ve_del(GFile.trees.apps, ve);
+	}
+
+	ctree_selection_destroy();
+
+	ctree_refresh();
+
+	enable_save(TRUE);
 }
 
 

@@ -154,14 +154,17 @@ void labels_refresh(void)
 	int ram;
 	int flash;
 
-	n = ticalcs_dirlist_ve_count((TNode *)GFile.trees.vars) +
-		ticalcs_dirlist_ve_count((TNode *)GFile.trees.apps);
-	ram = ticalcs_dirlist_ram_used((TNode *)GFile.trees.vars);
-	flash = ticalcs_dirlist_flash_used((TNode *)GFile.trees.vars, (TNode *)GFile.trees.apps);
+	n = ticalcs_dirlist_ve_count(GFile.trees.vars) +
+		ticalcs_dirlist_ve_count(GFile.trees.apps);
+	ram = ticalcs_dirlist_ram_used(GFile.trees.vars);
+	flash = ticalcs_dirlist_flash_used(GFile.trees.vars, GFile.trees.apps);
 
 	labels_set_model(GFile.model);
 	labels_set_entries(n);
-	labels_set_comment(GFile.contents.group->comment);
+	if(GFile.type == TIFILE_TIGROUP)
+		labels_set_comment(GFile.contents.tigroup->comment);
+	else
+		labels_set_comment(GFile.contents.group->comment);
 	labels_set_ram(ram);
 	labels_set_flash(flash);
 }

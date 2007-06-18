@@ -188,52 +188,37 @@ void tilp_var_get_size(VarEntry* vi, char **buf)
 void tilp_vars_translate(char *utf8)
 {
 #ifdef __WIN32__
-	unsigned char *v;
+	int i;
 
-	v = utf8;
-	if(v[0] == 'L' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
-	{	
-		utf8[1] = v[3] - 0x80 + '0';
-		utf8[2] = '\0';
-	}
-
-	if(v[0] == 'Y' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
-	{	
-		utf8[1] = v[3] - 0x80 + '0';
-		utf8[2] = '\0';
-	}
-
-	if(v[0] == 'S' && v[1] == 't' && v[2] == 'r' &&
-		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
+	// Scan for lowerscript
+	for(i = 0; utf8[i] && i < (int)strlen(utf8)-2; i++)
 	{
-		utf8[3] = v[5] - 0x80 + '0';
-		utf8[4] = '\0';
+		if((unsigned char)utf8[i+0] == 0xE2)
+			if((unsigned char)utf8[i+1] == 0x82)
+				if((unsigned char)utf8[i+2] >= 0x80 && 
+					(unsigned char)utf8[i+2] <= 0x89)
+				{
+					int c = (unsigned char)utf8[i+2];
+
+					utf8[i] = utf8[i+2] - 0x80 + '0';
+					memmove(utf8+i+1, utf8+i+3, strlen(utf8+i)-2);
+					break;
+				}
 	}
 
-	if(v[0] == 'P' && v[1] == 'i' && v[2] == 'c' &&
-		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
+	// Scan for 't'
+	for(i = 0; utf8[i] && i < (int)strlen(utf8)-2; i++)
 	{
-		utf8[3] = v[5] - 0x80 + '0';
-		utf8[4] = '\0';
-	}
+		if((unsigned char)utf8[i+0] == 0xE2)
+			if((unsigned char)utf8[i+1] == 0x8A)
+				if((unsigned char)utf8[i+2] == 0xBA)
+				{
+					int c = (unsigned char)utf8[i+2];
 
-	if(v[0] == 'G' && v[1] == 'D' && v[2] == 'B' &&
-		v[3] == 0xE2 && v[4] == 0x82 && v[5] >= 0x80 && v[5] <= 0x89)
-	{
-		utf8[3] = v[5] - 0x80 + '0';
-		utf8[4] = '\0';
-	}
-
-	if(v[0] == 'Y' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x80 && v[3] <= 0x89)
-	{	
-		utf8[1] = v[3] - 0x80 + '0';
-		utf8[2] = '\0';
-	}
-
-	if(v[0] == 'r' && v[1] == 0xE2 && v[2] == 0x82 && v[3] >= 0x81 && v[3] <= 0x86)
-	{	
-		utf8[1] = v[3] - 0x80 + '0';
-		utf8[2] = '\0';
+					utf8[i] = 't';
+					memmove(utf8+i+1, utf8+i+3, strlen(utf8+i)-2);
+					break;
+				}
 	}
 #endif
 }

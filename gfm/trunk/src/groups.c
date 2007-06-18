@@ -39,24 +39,122 @@
 #include "labels.h"
 #include "tilibs.h"
 #include "groups.h"
+#include "support.h"
 
 GFileStruct GFile;
 
 int	tigroup_create(CalcModel model)
 {
+	TreeInfo *ti;
+
+	// Create TiGroup file
 	GFile.contents.tigroup = tifiles_content_create_tigroup(model, 0);
 	GFile.type = TIFILE_TIGROUP;
+	GFile.model = GFile.contents.tigroup->model;
+
+	// Recreate folder listing (ticalcs2 compatible)
+    GFile.trees.vars = g_node_new(NULL);
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.tigroup->model;
+	ti->type = VAR_NODE_NAME;
+	GFile.trees.vars->data = ti;
+
+	GFile.trees.apps = g_node_new(NULL);
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.tigroup->model;
+	ti->type = APP_NODE_NAME;
+	GFile.trees.apps->data = ti;
   
+	return 0;
+}
+
+typedef struct
+{
+	int		found;
+	GNode*	node;
+	gchar	folder[20];
+} SearchArg;
+
+static gboolean	search_for_folder(GNode *node, gpointer data)
+{
+	SearchArg *sa = (gpointer)data;
+	VarEntry *ve = (VarEntry *)node->data;
+
+	if(!strcmp(ve->name, sa->folder))
+	{
+		sa->node = node;
+		sa->found = TRUE;
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static int create_table_of_entries(TigContent *content)
+{
+	TigEntry **ptr;
+	GNode *node, *folder;
+	char prv_fld[20] = "";
+
+	for(ptr = content->entries; *ptr; ptr++)
+	{
+		TigEntry* te = *ptr;
+
+		if(te->type & TIFILE_SINGLE || te->type & TIFILE_GROUP)
+		{
+			VarEntry *ve = te->content.regular->entries[0];
+			SearchArg sa;
+	
+			if(strcmp(ve->folder, prv_fld))
+			{	// cache: make searching faster if previous folder is the same than current
+				memset(&sa, 0, sizeof(sa));
+				strcpy(sa.folder, ve->folder);
+				g_node_children_foreach(GFile.trees.vars, G_TRAVERSE_ALL, search_for_folder, (gpointer)&sa);
+				strcpy(prv_fld, sa.folder);
+			}
+			else
+				sa.found = TRUE;
+			
+			if(!sa.found)
+			{	// create folder, if needed
+				VarEntry *fe = tifiles_ve_dup(ve);
+
+				strcpy(fe->name, ve->folder);
+				strcpy(fe->folder, "");
+				fe->type = tifiles_folder_type(GFile.model);
+				
+				node = g_node_new(fe);
+				folder = g_node_append(GFile.trees.vars, node);
+			}
+			
+			{	// add var
+				node = g_node_new(tifiles_ve_dup(ve));
+				g_node_append(sa.node ? sa.node : folder, node);
+			}
+
+			//ticalcs_dirlist_display(GFile.trees.vars);
+		}
+	}
+
 	return 0;
 }
 
 int tigroup_load(const char *filename)
 {
 	int ret;
+	TreeInfo *ti;
+	TigContent *content;
+	int k, m, n;
+	
+	// Progress bar & message
+	gtk_widget_show(gfm_widget.pbar);
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), _("Loading..."));
+	GTK_REFRESH();
 
-	if(GFile.contents.tigroup == NULL)
-		tigroup_create(CALC_NONE);
+	// Create and load tigroup file
+	GFile.type = TIFILE_TIGROUP;
 
+	GFile.contents.tigroup = content = tifiles_content_create_tigroup(CALC_NONE, 0);
 	ret = tifiles_file_read_tigroup(filename, GFile.contents.tigroup);
 	if(ret)
 	{
@@ -66,11 +164,94 @@ int tigroup_load(const char *filename)
 	}
 	GFile.model = GFile.contents.tigroup->model;
 
+	// Recreate folder listing (ticalcs2 compatible)
+    GFile.trees.vars = g_node_new(NULL);
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.tigroup->model;
+	ti->type = VAR_NODE_NAME;
+	GFile.trees.vars->data = ti;
+
+	GFile.trees.apps = g_node_new(NULL);
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
+	ti->model = GFile.contents.tigroup->model;
+	ti->type = APP_NODE_NAME;
+	GFile.trees.apps->data = ti;
+
+	tifiles_te_sizeof_array(GFile.contents.tigroup->entries, &m, &n);
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), "");
+
+	// Vars
+	if(tifiles_calc_is_ti8x(GFile.model))
+	{
+		GNode *folder;
+		TigEntry **ptr;
+
+		folder = g_node_new(NULL);
+		g_node_append(GFile.trees.vars, folder);
+
+		for(ptr = content->entries; *ptr; ptr++)
+		{
+			TigEntry* entry = *ptr;
+
+			if(entry->type & TIFILE_SINGLE || entry->type & TIFILE_GROUP)
+			{
+				VarEntry *ve = entry->content.regular->entries[0];
+				GNode *node;
+
+				node = g_node_new(tifiles_ve_dup(ve));
+				g_node_append(folder, node);
+
+				gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(gfm_widget.pbar), (gdouble)k++ / (m+n));
+				GTK_REFRESH();
+			}
+		}
+	}
+	else if(tifiles_calc_is_ti9x(GFile.model))
+	{
+		//GFile.contents.tigroup->entries[0]->content.regular->entries[0]->	
+		create_table_of_entries(GFile.contents.tigroup);
+	}
+
+	// Apps
+	{
+		GNode *folder;
+		TigEntry **ptr;
+
+		folder = g_node_new(NULL);
+		g_node_append(GFile.trees.apps, folder);
+
+		for(ptr = content->entries; *ptr; ptr++)
+		{
+			TigEntry* entry = *ptr;
+
+			if(entry->type == TIFILE_FLASH)
+			{
+				VarEntry *ve = tifiles_ve_create();
+				GNode *node;
+
+				strcpy(ve->name, entry->content.flash->name);
+				ve->type = entry->content.flash->data_type;
+				ve->size = entry->content.flash->data_length;
+
+				node = g_node_new(ve);
+				g_node_append(folder, node);
+				
+				gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(gfm_widget.pbar), (gdouble)k++ / (m+n));
+				GTK_REFRESH();
+			}
+		}
+	}	
+
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(gfm_widget.pbar), 0.0);
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), "");
+	gtk_widget_hide(gfm_widget.pbar);
+
 	return 0;
 }
 
 int tigroup_save(const char *filename)
 {
+#if 0
 	int ret;
 
 	ret = tifiles_file_write_tigroup(filename, GFile.contents.tigroup);
@@ -80,6 +261,9 @@ int tigroup_save(const char *filename)
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
 		return -1;
 	}
+#else
+	msgbox_one(MSGBOX_INFO, "Not implemented yet.");
+#endif
 
 	return 0;
 }
@@ -89,6 +273,12 @@ int tigroup_destroy(void)
 	if(GFile.contents.tigroup)
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
 	GFile.contents.tigroup = NULL;
+	GFile.model = CALC_NONE;
+
+	ticalcs_dirlist_destroy(&GFile.trees.vars);
+	GFile.trees.vars = NULL;
+	ticalcs_dirlist_destroy(&GFile.trees.apps);
+	GFile.trees.apps = NULL;
 
 	return 0;
 }
@@ -106,13 +296,13 @@ int	group_create(CalcModel model)
 
 	// Recreate folder listing (ticalcs2 compatible)
     GFile.trees.vars = g_node_new(NULL);
-	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;
 	GFile.trees.vars->data = ti;
 
 	GFile.trees.apps = g_node_new(NULL);
-	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFile.contents.group->model;
 	ti->type = APP_NODE_NAME;
 	GFile.trees.apps->data = ti;
@@ -141,13 +331,13 @@ int group_load(const char *filename)
 
 	// Recreate folder listing (ticalcs2 compatible)
     GFile.trees.vars = g_node_new(NULL);
-	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;
 	GFile.trees.vars->data = ti;
 
 	GFile.trees.apps = g_node_new(NULL);
-	ti = (TreeInfo *)malloc(sizeof(TreeInfo));
+	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFile.contents.group->model;
 	ti->type = APP_NODE_NAME;
 	GFile.trees.apps->data = ti;
@@ -166,13 +356,13 @@ int group_load(const char *filename)
 		{
 			VarEntry *fe, *ve;
 			int j, index = table[i][0];
-			fe = content->entries[index];
+			ve = content->entries[index];
 
-			ve = tifiles_ve_dup(fe);
-			strcpy(ve->name, ve->folder);
-			strcpy(ve->folder, "");
-			ve->type = tifiles_folder_type(GFile.model);
-			node = g_node_new(ve);
+			fe = tifiles_ve_dup(ve);
+			strcpy(fe->name, ve->folder);
+			strcpy(fe->folder, "");
+			fe->type = tifiles_folder_type(GFile.model);
+			node = g_node_new(fe);
 			folder = g_node_append(GFile.trees.vars, node);
 
 			for (j = 0; table[i][j] != -1; j++) 
@@ -205,8 +395,8 @@ int group_load(const char *filename)
 		g_node_append(GFile.trees.apps, root);
 	}
 
-	ticalcs_dirlist_display((TNode *)GFile.trees.vars);
-	ticalcs_dirlist_display((TNode *)GFile.trees.apps);
+	ticalcs_dirlist_display(GFile.trees.vars);
+	ticalcs_dirlist_display(GFile.trees.apps);
 
 	return 0;
 }
@@ -233,11 +423,11 @@ int group_save(const char *filename)
 
 	// Turns tree into group file
 	tifiles_content_delete_regular(GFile.contents.group);
-	group_create(GFile.model);
+	GFile.contents.group = tifiles_content_create_regular(GFile.model);
 
 	if((GFile.trees.vars)->children != NULL)
 	{
-		g_node_traverse(GFile.trees.vars, T_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
+		g_node_traverse(GFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
 	}
 
 	// Write group file
@@ -259,7 +449,7 @@ int group_destroy(void)
 	GFile.contents.group = NULL;
 	GFile.model = CALC_NONE;
 
-	ticalcs_dirlist_destroy((TNode **)&GFile.trees.vars);
+	ticalcs_dirlist_destroy(&GFile.trees.vars);
 	GFile.trees.vars = NULL;
     
 	return 0;
