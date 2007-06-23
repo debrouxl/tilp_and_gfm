@@ -33,8 +33,6 @@ typedef struct
 	GtkWidget *save;
 	GtkWidget *pbar;
 
-	GtkWidget *test;
-
 	GList	*sel1;	// vars
 	GList	*sel2;	// apps
 } GFMWidget; 
@@ -44,5 +42,6 @@ extern GFMWidget gfm_widget;
 int launch_gfmgui(void);
 
 void enable_save(int state);
+void enable_tree(int state);
 
 #endif

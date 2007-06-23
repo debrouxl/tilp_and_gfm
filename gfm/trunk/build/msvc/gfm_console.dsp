@@ -150,7 +150,7 @@ SOURCE=..\..\src\file.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\groups.c
+SOURCE=..\..\src\filesel.c
 # End Source File
 # Begin Source File
 
@@ -170,6 +170,10 @@ SOURCE=..\..\src\paths.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\rwgroup.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\splashscreen.c
 # End Source File
 # Begin Source File
@@ -179,6 +183,10 @@ SOURCE=..\..\src\support.c
 # Begin Source File
 
 SOURCE=..\..\src\tilibs.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\src\ungroup.c
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -198,15 +206,11 @@ SOURCE=..\..\src\dialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\dnd.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\src\file.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\groups.h
+SOURCE=..\..\src\filesel.h
 # End Source File
 # Begin Source File
 
@@ -222,6 +226,10 @@ SOURCE=..\..\src\paths.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\src\rwgroup.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\splashscreen.h
 # End Source File
 # Begin Source File
@@ -234,7 +242,7 @@ SOURCE=..\..\src\tilibs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tree.h
+SOURCE=..\..\src\ungroup.h
 # End Source File
 # Begin Source File
 

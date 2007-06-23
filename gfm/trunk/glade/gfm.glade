@@ -41,11 +41,12 @@
 	      <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
 	      <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
 	      <property name="tooltips">True</property>
-	      <property name="show_arrow">True</property>
+	      <property name="show_arrow">False</property>
 
 	      <child>
 		<widget class="GtkToolButton" id="toolbutton1">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Create a new file.</property>
 		  <property name="stock_id">gtk-new</property>
 		  <property name="visible_horizontal">True</property>
 		  <property name="visible_vertical">True</property>
@@ -61,6 +62,7 @@
 	      <child>
 		<widget class="GtkToolButton" id="toolbutton2">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Open existing file.</property>
 		  <property name="stock_id">gtk-open</property>
 		  <property name="visible_horizontal">True</property>
 		  <property name="visible_vertical">True</property>
@@ -76,26 +78,12 @@
 	      <child>
 		<widget class="GtkToolButton" id="toolbutton3">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Save current file.</property>
 		  <property name="stock_id">gtk-save</property>
 		  <property name="visible_horizontal">True</property>
 		  <property name="visible_vertical">True</property>
 		  <property name="is_important">False</property>
 		  <signal name="clicked" handler="on_save_clicked" last_modification_time="Mon, 11 Jun 2007 20:57:17 GMT"/>
-		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkToolButton" id="toolbutton4">
-		  <property name="visible">True</property>
-		  <property name="stock_id">gtk-quit</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
-		  <signal name="clicked" handler="on_quit_clicked" last_modification_time="Mon, 11 Jun 2007 20:57:42 GMT"/>
 		</widget>
 		<packing>
 		  <property name="expand">False</property>
@@ -117,23 +105,9 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkToolButton" id="toolbutton5">
-		  <property name="visible">True</property>
-		  <property name="stock_id">gtk-delete</property>
-		  <property name="visible_horizontal">True</property>
-		  <property name="visible_vertical">True</property>
-		  <property name="is_important">False</property>
-		  <signal name="clicked" handler="on_delete_clicked" last_modification_time="Mon, 11 Jun 2007 20:57:50 GMT"/>
-		</widget>
-		<packing>
-		  <property name="expand">False</property>
-		  <property name="homogeneous">True</property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkToolButton" id="toolbutton6">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Create a new folder.</property>
 		  <property name="label" translatable="yes">Folder</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_id">gtk-directory</property>
@@ -149,7 +123,35 @@
 	      </child>
 
 	      <child>
-		<placeholder/>
+		<widget class="GtkToolButton" id="toolbutton7">
+		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Add entries from file.</property>
+		  <property name="stock_id">gtk-add</property>
+		  <property name="visible_horizontal">True</property>
+		  <property name="visible_vertical">True</property>
+		  <property name="is_important">False</property>
+		  <signal name="clicked" handler="on_add_clicked" last_modification_time="Thu, 21 Jun 2007 14:43:57 GMT"/>
+		</widget>
+		<packing>
+		  <property name="expand">False</property>
+		  <property name="homogeneous">True</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkToolButton" id="toolbutton5">
+		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Delete selected entries.</property>
+		  <property name="stock_id">gtk-remove</property>
+		  <property name="visible_horizontal">True</property>
+		  <property name="visible_vertical">True</property>
+		  <property name="is_important">False</property>
+		  <signal name="clicked" handler="on_delete_clicked" last_modification_time="Mon, 11 Jun 2007 20:57:50 GMT"/>
+		</widget>
+		<packing>
+		  <property name="expand">False</property>
+		  <property name="homogeneous">True</property>
+		</packing>
 	      </child>
 	    </widget>
 	  </child>
@@ -179,6 +181,7 @@
 	      <child>
 		<widget class="GtkTreeView" id="treeview1">
 		  <property name="visible">True</property>
+		  <property name="sensitive">False</property>
 		  <property name="can_focus">True</property>
 		  <property name="headers_visible">True</property>
 		  <property name="rules_hint">False</property>
@@ -203,7 +206,7 @@
 	    <widget class="GtkTable" id="table1">
 	      <property name="border_width">5</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">7</property>
+	      <property name="n_rows">10</property>
 	      <property name="n_columns">2</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">5</property>
@@ -350,34 +353,6 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label8">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">none</property>
-		  <property name="use_underline">False</property>
-		  <property name="use_markup">False</property>
-		  <property name="justify">GTK_JUSTIFY_LEFT</property>
-		  <property name="wrap">True</property>
-		  <property name="selectable">False</property>
-		  <property name="xalign">0</property>
-		  <property name="yalign">0.5</property>
-		  <property name="xpad">0</property>
-		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">2</property>
-		  <property name="bottom_attach">3</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkLabel" id="label2">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">RAM used:</property>
@@ -490,32 +465,59 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkHSeparator" id="hseparator1">
+		<widget class="GtkButton" id="button1">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes"></property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NONE</property>
+		  <property name="focus_on_click">True</property>
+		  <signal name="clicked" handler="on_comment_clicked" last_modification_time="Thu, 21 Jun 2007 20:46:20 GMT"/>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">2</property>
+		  <property name="bottom_attach">3</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkHSeparator" id="hseparator2">
 		  <property name="visible">True</property>
 		</widget>
 		<packing>
 		  <property name="left_attach">0</property>
 		  <property name="right_attach">2</property>
-		  <property name="top_attach">5</property>
-		  <property name="bottom_attach">6</property>
+		  <property name="top_attach">7</property>
+		  <property name="bottom_attach">8</property>
 		  <property name="x_options">fill</property>
-		  <property name="y_options">fill</property>
 		</packing>
 	      </child>
 
 	      <child>
 		<widget class="GtkLabel" id="label11">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Click to edit name
-Click to change
-attribute</property>
+		  <property name="label" translatable="yes">More actions:
+- click to edit name
+- click twice to change
+attribute
+- click to edit comment
+
+Limitations:
+- no folder deletion
+- no entry move
+- no application edition
+</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_FILL</property>
 		  <property name="wrap">True</property>
 		  <property name="selectable">False</property>
 		  <property name="xalign">0</property>
-		  <property name="yalign">0.5</property>
+		  <property name="yalign">0</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
@@ -529,6 +531,60 @@ attribute</property>
 		  <property name="top_attach">6</property>
 		  <property name="bottom_attach">7</property>
 		  <property name="x_options">fill</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkHSeparator" id="hseparator1">
+		  <property name="visible">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">5</property>
+		  <property name="bottom_attach">6</property>
+		  <property name="x_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkButton" id="button2">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">_Group files...</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <signal name="clicked" handler="on_group_clicked" last_modification_time="Fri, 22 Jun 2007 08:33:29 GMT"/>
+		</widget>
+		<packing>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">8</property>
+		  <property name="bottom_attach">9</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkButton" id="button3">
+		  <property name="visible">True</property>
+		  <property name="can_focus">True</property>
+		  <property name="label" translatable="yes">_Ungroup file...</property>
+		  <property name="use_underline">True</property>
+		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
+		  <signal name="clicked" handler="on_ungroup_clicked" last_modification_time="Fri, 22 Jun 2007 08:33:53 GMT"/>
+		</widget>
+		<packing>
+		  <property name="left_attach">0</property>
+		  <property name="right_attach">2</property>
+		  <property name="top_attach">9</property>
+		  <property name="bottom_attach">10</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options"></property>
 		</packing>
 	      </child>
 	    </widget>

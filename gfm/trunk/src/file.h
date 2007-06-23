@@ -25,8 +25,10 @@
 
 /* Prototypes */
 int file_exists(const char *filename);
+int file_copy(const char *src, const char *dst);
+int file_chdir(const char *path);
+int file_mkdir(const char *pathname);
 void glade_files_check(void);
-const gchar* file_selector(gchar *dirname, gchar *filename, gchar *ext, gboolean save);
 
 char *tilp_file_underscorize(char *s);
 void tilp_var_get_size(VarEntry* vi, char **buf);

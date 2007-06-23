@@ -45,7 +45,7 @@ typedef struct
 // Lets Prototype the Structure
 extern GFMInstPaths inst_paths;
 
-int gfm_paths_init(void);							 // Setup The Installation Paths for GFM
-const char *gfm_paths_build_glade(const char *name); // Used to return exact path to Glade File
+int paths_init(void);							 // Setup The Installation Paths for GFM
+const char *paths_build_glade(const char *name); // Used to return exact path to Glade File
 
 #endif

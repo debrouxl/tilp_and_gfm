@@ -29,7 +29,7 @@
 
 #include "gui.h"
 #include "labels.h"
-#include "groups.h"
+#include "rwgroup.h"
 
 #ifdef __WIN32__
 #define snprintf _snprintf
@@ -115,7 +115,14 @@ void labels_set_entries(int n)
 
 void labels_set_comment(const char* comment)
 {
-	gtk_label_set_text(GTK_LABEL(gfm_widget.comment), comment);
+	gchar *utf8;
+
+	if(comment == NULL)
+		return;
+
+	utf8 = g_locale_to_utf8(comment, -1, NULL, NULL, NULL);
+	gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), utf8);
+	g_free(utf8);
 }
 
 void labels_set_ram(uint32_t ram)
@@ -162,9 +169,9 @@ void labels_refresh(void)
 	labels_set_model(GFile.model);
 	labels_set_entries(n);
 	if(GFile.type == TIFILE_TIGROUP)
-		labels_set_comment(GFile.contents.tigroup->comment);
+		labels_set_comment(GFile.comment);
 	else
-		labels_set_comment(GFile.contents.group->comment);
+		labels_set_comment(GFile.comment);
 	labels_set_ram(ram);
 	labels_set_flash(flash);
 }

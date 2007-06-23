@@ -45,7 +45,7 @@ GFMInstPaths inst_paths =
 };
 
 /* GFM Installation Paths Initialization */
-int gfm_paths_init(void)
+int paths_init(void)
 {
 	// Set Base Path
 #ifndef __WIN32__
@@ -89,14 +89,14 @@ int gfm_paths_init(void)
 	inst_paths.pixmap_dir = g_strconcat(inst_paths.base_dir, "pixmaps", G_DIR_SEPARATOR_S, NULL);
 	inst_paths.glade_dir = g_strconcat(inst_paths.base_dir, "glade", G_DIR_SEPARATOR_S, NULL);
 	inst_paths.tmp_dir = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, NULL);
-	inst_paths.home_dir = g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, NULL);
+	inst_paths.home_dir = g_strconcat(g_get_user_data_dir(), G_DIR_SEPARATOR_S, NULL);
 
   // Return
   return 0;
 }
 
 /* Will return full path from executable to glade file given */
-const char *gfm_paths_build_glade(const char *name)
+const char *paths_build_glade(const char *name)
 {
       static gchar *gladepath = NULL;
       g_free(gladepath);

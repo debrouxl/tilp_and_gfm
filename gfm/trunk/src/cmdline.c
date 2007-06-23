@@ -53,8 +53,7 @@ static void gfm_version(void)
     fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
 }
 
-/* Launch Command Line Function */
-void gfm_cmdline(int *argc, char ***argv)
+void cmdline_scan(int *argc, char ***argv)
 {
 	GOptionContext* context;
 	GError *error = NULL;
@@ -91,10 +90,19 @@ void gfm_cmdline(int *argc, char ***argv)
 	g_option_context_parse(context, argc, argv, &error);
 	g_option_context_free(context);
 
+	// show version if needed
 	if(show_version)
 	{
 	    exit(0);
 	}
 
 	return;
+}
+
+const char* cmdline_get(void)
+{
+	if(array)
+		return array[0];
+	else
+		return NULL;
 }

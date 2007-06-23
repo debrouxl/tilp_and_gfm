@@ -5,17 +5,32 @@
  */
 
 gchar *s = N_("Group File Manager");
+gchar *s = N_("Create a new file.");
+gchar *s = N_("Open existing file.");
+gchar *s = N_("Save current file.");
+gchar *s = N_("Create a new folder.");
 gchar *s = N_("Folder");
+gchar *s = N_("Add entries from file.");
+gchar *s = N_("Delete selected entries.");
 gchar *s = N_("Entries:");
 gchar *s = N_("Model:");
 gchar *s = N_("Comment:");
 gchar *s = N_("N/A");
 gchar *s = N_("0");
-gchar *s = N_("none");
 gchar *s = N_("RAM used:");
 gchar *s = N_("0");
 gchar *s = N_("FLASH used:");
 gchar *s = N_("0");
-gchar *s = N_("Click to edit name\n"
-              "Click to change\n"
-              "attribute");
+gchar *s = N_("More actions:\n"
+              "- click to edit name\n"
+              "- click twice to change\n"
+              "attribute\n"
+              "- click to edit comment\n"
+              "\n"
+              "Limitations:\n"
+              "- no folder deletion\n"
+              "- no entry move\n"
+              "- no application edition\n"
+              "");
+gchar *s = N_("_Group files...");
+gchar *s = N_("_Ungroup file...");

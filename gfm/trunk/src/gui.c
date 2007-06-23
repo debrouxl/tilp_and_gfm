@@ -32,9 +32,12 @@
 #include "tilibs.h"
 #include "dialog.h"
 #include "file.h"
-#include "groups.h"
+#include "rwgroup.h"
 #include "labels.h"
 #include "ctree.h"
+#include "filesel.h"
+#include "cmdline.h"
+#include "ungroup.h"
 
 // Global Widget Access Structure
 GFMWidget gfm_widget;
@@ -45,21 +48,15 @@ void enable_save(int state)
 	gtk_widget_set_sensitive(gfm_widget.save, state);
 }
 
-/*
-// Nothing to do with GFM, just for test
-static int cnt = 0;
-
-static gint to_cb (gpointer data)
+void enable_tree(int state)
 {
-	gchar *str;
-
-	str = g_strdup_printf("%04i", cnt += 50);
-    gtk_label_set_text(GTK_LABEL(gfm_widget.test), str);
-	g_free(str);
-
-    return TRUE;
+	GFile.opened = state;
+	gtk_widget_set_sensitive(gfm_widget.tree, state);
 }
-*/
+
+GLADE_CB void
+on_open_clicked                        (GtkToolButton   *toolbutton,
+                                        gpointer         user_data);
 
 /* The Main Interface Launcher */
 int launch_gfmgui(void)
@@ -68,7 +65,7 @@ int launch_gfmgui(void)
     GtkWidget *widget;
 
     // Load the GFM Dialog from gfm.glade
-    xml = glade_xml_new(gfm_paths_build_glade("gfm.glade"), "gfm_dbox", NULL);
+    xml = glade_xml_new(paths_build_glade("gfm.glade"), "gfm_dbox", NULL);
 
     // Glade File Error
     if (!xml)
@@ -84,19 +81,23 @@ int launch_gfmgui(void)
 	gfm_widget.tree = glade_xml_get_widget(xml, "treeview1");
 	gfm_widget.model = glade_xml_get_widget(xml, "label6");
 	gfm_widget.entries = glade_xml_get_widget(xml, "label7");
-	gfm_widget.comment = glade_xml_get_widget(xml, "label8");
+	gfm_widget.comment = glade_xml_get_widget(xml, "button1");
 	gfm_widget.ram = glade_xml_get_widget(xml, "label9");
 	gfm_widget.flash = glade_xml_get_widget(xml, "label10");
 	gfm_widget.save = glade_xml_get_widget(xml, "toolbutton3");
 	//gfm_widget.test = glade_xml_get_widget(xml, "label11");
 	gfm_widget.pbar = glade_xml_get_widget(xml, "progressbar1");
-	
-    // Show the Widget
+
+	// Inits global vars
 	enable_save(FALSE);
+	enable_tree(FALSE);
+
+	// Show the Widget
 	ctree_init();
     gtk_widget_show(widget);
 
-	//g_timeout_add(250, (GtkFunction)to_cb, NULL);
+	if(cmdline_get() != NULL)
+		on_open_clicked(NULL, (gpointer)cmdline_get());
 
     // Return
     return 0;
@@ -112,13 +113,19 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	int result;
 	
 	result = msgbox_three("TiGroup", "Single/Group", "File type?");
-	model = msgbox_model();
+	if(!result)
+		return;
 
-	file_create(result == MSGBOX_YES ? TIFILE_TIGROUP : TIFILE_GROUP, model);
+	model = msgbox_model();
+	if(!model)
+		return;
+
+	file_create(result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP, model);
 
 	g_free(GFile.filename);
 	GFile.filename = NULL;
-	enable_save(TRUE);
+	enable_save(FALSE);
+	enable_tree(TRUE);
 
 	ctree_refresh();
 	labels_refresh();
@@ -129,33 +136,55 @@ GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
-	//ctree_selection_get();
-	//msgbox_one(MSGBOX_INFO, "Not implemented yet.");
-	//return;
+	gchar *fn, *ext;
+	gchar *filename;
 
-	// Newly created file, ask for name
-	if(GFile.filename == NULL)
+	if(GFile.filename != NULL)
+		filename = g_strdup(GFile.filename);
+
+	if(GFile.type & TIFILE_TIGROUP)
 	{
-		gchar *fn, *ext;
+		ext = g_strdup("*.tig");
+	}
+	else if(GFile.type & TIFILE_GROUP)
+	{
+		if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
+		{
+			// Group file
+			ext = g_strconcat("*.", tifiles_vartype2fext(GFile.model, 0x00), NULL);
+			ext[4] = 'g';
+		}
+		else if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
+		{
+			// Single file
+			GNode *parent, *child;
+			VarEntry *ve;
 
-		if(GFile.type == TIFILE_TIGROUP)
-			ext = "*.tig";
-		else if(GFile.type == TIFILE_GROUP)
-			ext = "*.??g";
+			parent = g_node_nth_child(GFile.trees.vars, 0);
+			child = g_node_nth_child(parent, 0);
+			ve = (VarEntry *) (child->data);
 
-		fn = (char *)file_selector(inst_paths.home_dir, "", ext, FALSE);
-		if(fn == NULL)
+			filename = g_strconcat(ticonv_varname_to_filename(GFile.model, ve->name), ".", 
+				tifiles_vartype2fext(GFile.model, ve->type), NULL);
+			ext = g_strconcat("*.", tifiles_vartype2fext(GFile.model, ve->type), NULL);
+		}
+		else
+		{
+			g_free(filename);
 			return;
-
-		//file_save(fn);
-
-		g_free(GFile.filename);
-		GFile.filename = g_strdup(fn);
+		}
 	}
-	else
-	{
-		file_save(GFile.filename);
-	}
+
+	fn = (char *)create_fsel(inst_paths.home_dir, filename, ext, TRUE);
+	if(fn == NULL)
+		return;
+	g_free(filename);
+	g_free(ext);
+
+	file_save(fn);
+
+	g_free(GFile.filename);
+	GFile.filename = g_strdup(fn);
 
 	enable_save(FALSE);
 }
@@ -167,21 +196,31 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 {
 	gchar *fn;
 
-	if(GFile.contents.group || GFile.contents.tigroup)
+	if(user_data == NULL)
 	{
-		int result = msgbox_two(MSGBOX_YESNO, _("Do you want to save previous file?"));
-		if(result == MSGBOX_YES)
-			on_save_clicked(toolbutton,user_data);
-	}
+		if(GFile.contents.group || GFile.contents.tigroup)
+		{
+			int result = msgbox_two(MSGBOX_YESNO, _("Do you want to save previous file?"));
+			if(result == MSGBOX_YES)
+				on_save_clicked(toolbutton,user_data);
+		}
 
-	fn = (char *)file_selector(inst_paths.home_dir, "", "*.*", FALSE);
-	if(fn == NULL)
-		return;
+		fn = (char *)create_fsel(inst_paths.home_dir, "", "*.73?;*.82?;*.83?;*.8X?;*.85?;*.86?;*.89?;*.92?;*.9x?;*.V2?;*.tig", FALSE);
+		if(fn == NULL)
+			return;
+	}
+	else
+	{
+		// command line
+		fn = (char *)user_data;
+	}
 
 	if(tifiles_file_is_tigroup(fn))
 		GFile.type = TIFILE_TIGROUP;
-	else
+	else if(tifiles_file_is_regular(fn))
 		GFile.type = TIFILE_GROUP;
+	else
+		return;
 
 	file_load(fn);
 
@@ -189,9 +228,13 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	GFile.filename = g_strdup(fn);
 
 	enable_save(FALSE);
+	enable_tree(TRUE);
 
 	ctree_refresh();
 	labels_refresh();
+
+	g_free(inst_paths.home_dir);
+	inst_paths.home_dir = g_path_get_dirname(GFile.filename);
 }
 
 
@@ -200,7 +243,6 @@ on_quit_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
 	file_destroy();
-
 	gtk_main_quit();
 }
 
@@ -210,16 +252,15 @@ on_gfm_dbox_destroy                    (GtkObject       *object,
                                         gpointer         user_data)
 {
 	// Quit Main GTK Loop
-	printf("on_gfm_dbox_destroy\n");
+	//printf("on_gfm_dbox_destroy\n");
 }
+
 
 GLADE_CB gboolean
 on_gfm_dbox_delete_event               (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-	enable_save(TRUE);
-
 	if(!GFile.saved)
 	{
 		int result;
@@ -229,6 +270,7 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 		{
 		case MSGBOX_BUTTON1: 
 			on_save_clicked(NULL, NULL);
+			on_quit_clicked(NULL, NULL);
 			return FALSE;
 			break;
 		case MSGBOX_BUTTON2:
@@ -240,10 +282,69 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 			break;
 		}
 	}
+	else
+		on_quit_clicked(NULL, NULL);
 
 	return FALSE;
 }
 
+
+GLADE_CB void
+on_add_clicked                         (GtkToolButton   *toolbutton,
+                                        gpointer         user_data)
+{
+	char **array, **ptr;
+	CalcModel model;
+	FileContent *content;
+	int ret;
+	int i;
+
+	array = create_fsels(inst_paths.home_dir, "", "*.*");
+	if(array == NULL)
+		return;
+
+	for(ptr = array; *ptr; ptr++)
+	{
+		char *fn = *ptr;
+
+		if(tifiles_file_is_tigroup(fn))
+		{
+			msgbox_one(MSGBOX_ERROR, _("Importing of TiGroup files is not allowed."));
+			return;
+		}
+
+		model = tifiles_file_get_model(fn);
+		if(!tifiles_calc_are_compat(GFile.model, model))
+		{
+			msgbox_one(MSGBOX_ERROR, _("File is not compatible with current target."));
+			return;
+		}
+
+		content = tifiles_content_create_regular(model);
+		ret = tifiles_file_read_regular(fn, content);
+
+		for(i = 0; i < content->num_entries; i++)
+		{
+			VarEntry *ve = content->entries[i];
+
+			if(ticalcs_dirlist_ve_exist(GFile.trees.vars, ve))
+			{
+				msgbox_one(MSGBOX_ERROR, _("The entry already exists. Skipped!"));
+				continue;
+			}
+
+			ticalcs_dirlist_ve_add(GFile.trees.vars, ve);
+		}
+
+		ret = tifiles_content_delete_regular(content);
+	}
+
+	enable_save(TRUE);
+	enable_tree(TRUE);
+
+	ctree_refresh();
+	labels_refresh();
+}
 
 GLADE_CB void
 on_delete_clicked                      (GtkToolButton   *toolbutton,
@@ -260,7 +361,6 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 	{
 		VarEntry *ve = (VarEntry *)ptr->data;
 
-		printf("<%s>\n", ve->name);
 		ticalcs_dirlist_ve_del(GFile.trees.vars, ve);
 	}
 
@@ -268,7 +368,6 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 	{
 		VarEntry *ve = (VarEntry *)ptr->data;
 
-		printf("<%s>\n", ve->name);
 		ticalcs_dirlist_ve_del(GFile.trees.apps, ve);
 	}
 
@@ -308,4 +407,58 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 
 	ctree_refresh();
 	labels_refresh();
+}
+
+GLADE_CB void
+on_comment_clicked                     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	const gchar *str = gtk_button_get_label(button);
+	gchar *input;
+
+	input = msgbox_input(_("Set comment"), str, _("New comment:"));
+	if(input == NULL)
+		return;
+
+	g_free(GFile.comment);
+	GFile.comment = input;
+	labels_set_comment(input);
+	enable_save(TRUE);
+}
+
+GLADE_CB void
+on_group_clicked                       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	int result;
+	char **array;
+	
+	result = msgbox_three("TiGroup", "Single/Group", "File type?");
+	if(!result)
+		return;
+
+	array = create_fsels(inst_paths.home_dir, "", "*.73?;*.82?;*.83?;*.8X?;*.85?;*.86?;*.89?;*.92?;*.9x?;*.V2?");
+	if(array == NULL)
+		return;
+
+	gfm_tifiles_group(array, result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP);
+}
+
+GLADE_CB void
+on_ungroup_clicked                     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+	char *fn;
+	
+	fn = (char *)create_fsel(inst_paths.home_dir, "", "*.73g;*.82g;*.83g;*.8Xg;*.85g;*.86g;*.89g;*.92g;*.9Xg;*.V2g;*.tig", FALSE);
+	if(fn == NULL)
+		return;
+	
+	if(tifiles_file_is_tigroup(fn))
+		gfm_tifiles_ungroup(fn, TIFILE_GROUP);
+	else if(tifiles_file_is_regular(fn))
+		gfm_tifiles_ungroup(fn, TIFILE_TIGROUP);
+	else
+		return;	
+
 }

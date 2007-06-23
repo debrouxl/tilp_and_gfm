@@ -37,14 +37,13 @@
 #include "support.h"
 #include "tilibs.h"
 
-/* Main Function */
 int main(int argc, char *argv[])
 {
     static gchar *icon_dir;
 
     /* Initialize Group File Manager */
-    gfm_cmdline(&argc, &argv);
-    gfm_paths_init();
+    cmdline_scan(&argc, &argv);
+    paths_init();
 
     /* Load GTK */
     gtk_init(&argc, &argv); // Loadup GTK+

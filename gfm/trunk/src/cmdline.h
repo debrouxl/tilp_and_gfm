@@ -22,6 +22,7 @@
 #define __GFMCMDLINE_H__
 
 // Prototypes
-void gfm_cmdline(int *argc, char ***argv);
+void cmdline_scan(int *argc, char ***argv);
+const char* cmdline_get(void);
 
 #endif

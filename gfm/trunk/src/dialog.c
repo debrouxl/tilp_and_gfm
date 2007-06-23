@@ -39,7 +39,7 @@ int msgbox_one(int type, const char *message)
     const gchar *image;
     
     // Load the One Button Dialog from dialogs.glade
-    xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "dialog1", NULL);
+    xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog1", NULL);
     
     // Glade File Error
     if (!xml)
@@ -96,7 +96,7 @@ int msgbox_two(int type, const char *message)
     gchar *image, *cancel_button, *ok_button;
     
     // Load the Two Button Dialog from dialogs.glade
-    xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "dialog2", NULL);
+    xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog2", NULL);
     
     // Glade File Error
     if (!xml)
@@ -176,7 +176,7 @@ int msgbox_three(const char *button1, const char *button2, const char *message)
 	int choice, ret;
     
     // Load the Two Button Dialog from dialogs.glade
-	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "dialog3", NULL);
+	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog3", NULL);
     
     // Glade File Error
 	if (!xml)
@@ -232,7 +232,7 @@ char *msgbox_input(const char *title, const char *input, const char *question)
 	gchar *ret = NULL;  
 	
     // Load the One Button Dialog from dialogs.glade
-	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "inputdialog", NULL);
+	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "inputdialog", NULL);
     
     // Glade File Error
 	if (!xml)
@@ -291,7 +291,7 @@ int msgbox_model(void)
 	int calc = 0;
     
     // Load the Two Button Dialog from dialogs.glade
-	xml = glade_xml_new(gfm_paths_build_glade("dialogs.glade"), "combodialog", NULL);
+	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "combodialog", NULL);
     
     // Glade File Error
 	if (!xml)

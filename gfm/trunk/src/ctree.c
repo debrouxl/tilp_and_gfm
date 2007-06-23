@@ -28,14 +28,14 @@
 #include "support.h"
 #include "ctree.h"
 #include "tilibs.h"
-#include "groups.h"
+#include "rwgroup.h"
 #include "file.h"
+#include "labels.h"
+#include "dialog.h"
 
 static GtkTreeStore *tree;
 
 #define FONT_NAME "courier"
-
-/* Initialization */
 
 static gint column2index(GtkTreeViewColumn* column)
 {
@@ -161,6 +161,8 @@ static void renderer_edited(GtkCellRendererText * cell,
 	GtkTreeIter iter;
 	const char *old_text;
 	VarEntry *ve;
+	gchar *str;
+	VarEntry *arg;
 
 	if (!gtk_tree_model_get_iter(model, &iter, path))
 		return;
@@ -168,10 +170,26 @@ static void renderer_edited(GtkCellRendererText * cell,
 	gtk_tree_model_get(model, &iter, COLUMN_NAME, &old_text, -1);
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
-	strncpy(ve->name, new_text, 8);
-	ve->name[8] = '\0';
-	gtk_tree_store_set(tree, &iter, COLUMN_NAME, ve->name, -1);
+	// tokenize and check for existence
+	str = ticonv_varname_tokenize(GFile.model, new_text);
+	arg = tifiles_ve_dup(ve);
+	if(strlen(str) > 8)
+		str[8] = '\0';
+	strcpy(arg->name, str);
+	g_free(str);
 
+	if(ticalcs_dirlist_ve_exist(GFile.trees.vars, arg))
+	{
+		msgbox_one(MSGBOX_INFO, _("The name already exists. Please choose another one..."));
+		tifiles_ve_delete(arg);
+		return;
+	}
+
+	// update entry
+	strcpy(ve->name, arg->name);
+	tifiles_ve_delete(arg);
+
+	gtk_tree_store_set(tree, &iter, COLUMN_NAME, new_text, -1);
 	gtk_tree_path_free(path);
 
 	enable_save(TRUE);
@@ -271,8 +289,6 @@ void ctree_set_basetree(void)
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(gfm_widget.tree));
 }
 
-/* Management */
-
 void ctree_refresh(void)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
@@ -369,7 +385,7 @@ void ctree_refresh(void)
 		}
 	}
 
-	// Appplications tree
+	// appplications tree
 	apps = GFile.trees.apps;
 	for (i = 0; i < (int)g_node_n_children(apps) && tifiles_is_flash(GFile.model); i++) 
 	{
@@ -412,8 +428,6 @@ void ctree_refresh(void)
 	g_object_unref(pix4);
 	g_object_unref(pix5);
 	g_object_unref(pix6);
-
-	//tilp_remote_selection_destroy();
 }
 
 /* Callbacks */
@@ -426,7 +440,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 	GtkTreeModel *model = GTK_TREE_MODEL(tree);
 	GtkTreePath *path;
 	GtkTreeViewColumn *column;
-	GtkTreeIter parent;
+	GtkTreeIter iter;
 	VarEntry *ve;
 	int col;
 	
@@ -436,37 +450,52 @@ on_treeview1_button_press_event(GtkWidget * widget,
 	if (path == NULL)
 		return FALSE;
 
-	gtk_tree_model_get_iter(model, &parent, path);
-	gtk_tree_model_get(model, &parent, COLUMN_DATA, &ve, -1);
+	gtk_tree_model_get_iter(model, &iter, path);
+	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
 	if (ve == NULL)
 		return FALSE;
 
 	if((event->type == GDK_2BUTTON_PRESS) && (col == COLUMN_ATTR))
 	{
+		GdkPixbuf *pix1, *pix2, *pix3;
+
+		pix1 = create_pixbuf("attr_none.xpm");
+		pix2 = create_pixbuf("attr_locked.xpm");
+		pix3 = create_pixbuf("attr_archived.xpm");
+
+		if(ve->type == tifiles_flash_type(GFile.model))
+			return FALSE;
+
 		if(ve->attr == ATTRB_NONE)
 			ve->attr = ATTRB_LOCKED;
-		if(ve->attr == ATTRB_LOCKED)
+		else if(ve->attr == ATTRB_LOCKED && tifiles_is_flash(GFile.model))
 			ve->attr = ATTRB_ARCHIVED;
-		if(ve->attr == ATTRB_ARCHIVED)
+		else if(ve->attr == ATTRB_LOCKED && !tifiles_is_flash(GFile.model))
 			ve->attr = ATTRB_NONE;
-		/*
+		else if(ve->attr == ATTRB_ARCHIVED)
+			ve->attr = ATTRB_NONE;
+
 		switch (ve->attr) 
-			{
-			case ATTRB_NONE:
-				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
-				break;
-			case ATTRB_LOCKED:
-				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
-				break;
-			case ATTRB_ARCHIVED:
-				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix5, -1);
-				break;
-			default:
-				break;
-			}
-			*/
-		printf("attr clicked !\n");
+		{
+		case ATTRB_NONE:
+			gtk_tree_store_set(tree, &iter, COLUMN_ATTR, pix1, -1);
+			break;
+		case ATTRB_LOCKED:
+			gtk_tree_store_set(tree, &iter, COLUMN_ATTR, pix2, -1);
+			break;
+		case ATTRB_ARCHIVED:
+			gtk_tree_store_set(tree, &iter, COLUMN_ATTR, pix3, -1);
+			break;
+		default:
+			break;
+		}
+
+		g_object_unref(pix1);
+		g_object_unref(pix2);
+		g_object_unref(pix3);
+
+		labels_refresh();
 	}
 
 	return FALSE;
@@ -474,8 +503,6 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 #include <gdk/gdkkeysyms.h>
 
-
-/* Key pressed */
 GLADE_CB gboolean
 on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
 								gpointer user_data)

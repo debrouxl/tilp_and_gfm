@@ -28,14 +28,15 @@
 // Structures
 typedef struct
 {
-	char		*filename;	// Name of file
+	char*		filename;	// Name of file
 	FileClass	type;		// TiGroup or Regular (single/group)
 	CalcModel	model;		// Hand-held model
+	gchar*		comment;	// Comment
 
 	struct
 	{
 		TigContent	*tigroup;	// TiGroup or NULL
-		FileContent	*group;		// Group or TiGroup (ungrouping)
+		FileContent	*group;		// Group or NULL
 	} contents;
 
 	struct
@@ -44,7 +45,12 @@ typedef struct
 		GNode		*apps;		// Applications tree
 	} trees;
 
-	int			saved;
+	TigEntry		**array;	// Backup of FLASH entries
+
+	// Global GFM variables
+
+	int				saved;
+	int				opened;
 } GFileStruct;
 
 extern GFileStruct GFile;
