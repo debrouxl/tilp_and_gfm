@@ -33,7 +33,13 @@
 static void my_log_handler(const gchar *log_domain,
                            GLogLevelFlags log_level,
                            const gchar *message,
-                           gpointer user_data) { }
+                           gpointer user_data) 
+{ 
+  log_domain = log_domain;
+  log_level = log_level;
+  message = message;
+  user_data = user_data;
+}
 
 static gchar** array = NULL;
 static gint show_version = 0;

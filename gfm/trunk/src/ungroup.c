@@ -31,7 +31,7 @@
 #include "file.h"
 #include "tilibs.h"
 
-int gfm_tifiles_ungroup(const char *filename, FileClass type)
+int gfm_tifiles_ungroup(const char *filename, int type)
 {
 	gchar *dirname = g_path_get_dirname(filename);
 	gchar *basename = g_path_get_basename(filename);
@@ -107,14 +107,14 @@ int gfm_tifiles_ungroup(const char *filename, FileClass type)
 	return 0;
 }
 
-int gfm_tifiles_group(const char **filenames, FileClass type)
+int gfm_tifiles_group(const char **filenames, int type)
 {
 	char **ptr;
 	gchar *input;
-	gchar *target;
+	gchar *target = NULL;
 	gchar *dirname = g_path_get_dirname(filenames[0]);
-	gchar *basename = g_path_get_basename(filenames[0]);
-	int err;
+	//	gchar *basename = g_path_get_basename(filenames[0]);
+	int err = 0;
 
 	// Check for selection consistency
 	for(ptr = (char **)filenames; *ptr; ptr++)

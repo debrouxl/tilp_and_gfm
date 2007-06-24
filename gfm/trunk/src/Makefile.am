@@ -17,7 +17,7 @@ gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ \
 gfm_LDFLAGS = -export-dynamic
 
 gfm_LDADD = \
-	@TIFILES_LIBS@ @TICONV_LIBS@ \
+	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@
 
 # automake wants all .c files listed explicitly. This sucks. qmake does the
