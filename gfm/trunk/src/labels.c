@@ -115,14 +115,20 @@ void labels_set_entries(int n)
 
 void labels_set_comment(const char* comment)
 {
-	gchar *utf8;
-
 	if(comment == NULL)
 		return;
 
-	utf8 = g_locale_to_utf8(comment, -1, NULL, NULL, NULL);
-	gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), utf8);
-	g_free(utf8);
+	if(g_utf8_validate(comment, -1, NULL) == TRUE)
+		gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), comment);
+	else
+	{
+		gchar *utf8;
+		
+		utf8 = g_convert(comment, -1, "UTF-8", "ISO-8859-1", NULL, NULL, NULL);
+		gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), utf8);
+		g_free(utf8);
+
+	}
 }
 
 void labels_set_ram(uint32_t ram)

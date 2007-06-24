@@ -317,7 +317,10 @@ int tigroup_save(const char *filename)
 
 	// Turns tree into tigroup file
 	GFile.contents.tigroup = tifiles_content_create_tigroup(GFile.model, 0);
-	strcpy(GFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
+	if(!strcmp(GFile.comment, ""))
+		strcpy(GFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
+	else
+		strcpy(GFile.contents.tigroup->comment, GFile.comment);
 
 	if((GFile.trees.vars)->children != NULL)
 	{
@@ -511,10 +514,18 @@ int group_save(const char *filename)
 		g_node_traverse(GFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
 	}
 
-	if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
-		strcpy(GFile.contents.group->comment, tifiles_comment_set_single());
-	else if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
-		strcpy(GFile.contents.group->comment, tifiles_comment_set_group());
+	if(!strcmp(GFile.comment, ""))
+	{
+		if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
+			strcpy(GFile.contents.group->comment, tifiles_comment_set_single());
+		else if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
+			strcpy(GFile.contents.group->comment, tifiles_comment_set_group());
+	}
+	else
+	{
+		strncpy(GFile.contents.group->comment, GFile.comment, 40);
+		GFile.contents.group->comment[41] = '\0';
+	}
 
 	// Write group file
 	ret = tifiles_file_write_regular(filename, GFile.contents.group, NULL);

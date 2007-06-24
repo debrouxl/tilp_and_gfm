@@ -420,9 +420,15 @@ on_comment_clicked                     (GtkButton       *button,
 	if(input == NULL)
 		return;
 
-	g_free(GFile.comment);
-	GFile.comment = input;
-	labels_set_comment(input);
+	{
+		gchar *latin1;
+
+		g_free(GFile.comment);
+		latin1 = g_convert(input, -1, "ISO-8859-1", "UTF-8", NULL, NULL, NULL);
+		GFile.comment = latin1;
+		labels_set_comment(latin1);
+	}
+
 	enable_save(TRUE);
 }
 
