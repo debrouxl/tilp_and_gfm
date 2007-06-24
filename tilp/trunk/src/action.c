@@ -207,7 +207,7 @@ gint display_action_dbox(gchar *target)
 			tifiles_build_fullname(options.calc_model, full_name, v->folder, v->name);
 			trans = ticonv_varname_to_utf8(options.calc_model, (const char *)full_name);
 
-			w = ticalcs_dirlist_ve_exist(remote.var_tree, full_name);
+			w = ticalcs_dirlist_ve_exist(remote.var_tree, v);
 			if (w == NULL)
 				continue;
 
@@ -329,7 +329,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		// check that new varname does not exist
 		tifiles_build_fullname(options.calc_model, full_name, v->folder, new_name);
 		g_free(new_name);
-		w = ticalcs_dirlist_ve_exist(remote.var_tree, full_name);
+		w = ticalcs_dirlist_ve_exist(remote.var_tree, v);
 
 		// update action
 		v->attr = (w != NULL) ? w->attr : ATTRB_NONE;

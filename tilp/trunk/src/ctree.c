@@ -299,9 +299,9 @@ void ctree_refresh(void)
 	GtkTreeViewColumn *col;
 	GdkPixbuf *pix1, *pix2, *pix3, *pix4, *pix5, *pix6;
 	GdkPixbuf *pix9 = NULL;
-	GtkTreeIter parent_node;
+	GtkTreeIter pareng_node;
 	GtkTreeIter child_node;
-	TNode *vars, *apps;
+	GNode *vars, *apps;
 	int i, j;
 
 	if (remote.var_tree == NULL)
@@ -347,7 +347,7 @@ void ctree_refresh(void)
 
 	// place base nodes
 	ctree_set_basetree();
-	memcpy(&parent_node, &vars_node, sizeof(GtkTreeIter));
+	memcpy(&pareng_node, &vars_node, sizeof(GtkTreeIter));
 
 	// load pixmaps
 	pix1 = create_pixbuf("ctree_close_dir.xpm");
@@ -359,26 +359,26 @@ void ctree_refresh(void)
 
 	// variables tree
 	vars = remote.var_tree;
-	for (i = 0; i < (int)t_node_n_children(vars); i++) 
+	for (i = 0; i < (int)g_node_n_children(vars); i++) 
 	{
-		TNode *parent = t_node_nth_child(vars, i);
+		GNode *parent = g_node_nth_child(vars, i);
 		VarEntry *fe = (VarEntry *) (parent->data);
 
 		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER)) 
 		{
 			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name);
 
-			gtk_tree_store_append(tree, &parent_node, &vars_node);
-			gtk_tree_store_set(tree, &parent_node, 
+			gtk_tree_store_append(tree, &pareng_node, &vars_node);
+			gtk_tree_store_set(tree, &pareng_node, 
 					   COLUMN_NAME, utf8, 
 					   COLUMN_DATA, (gpointer) fe,
 					   COLUMN_ICON, pix1, -1);
 			g_free(utf8);
 		}
 
-		for (j = 0; j < (int)t_node_n_children(parent); j++) 
+		for (j = 0; j < (int)g_node_n_children(parent); j++) 
 		{
-			TNode *node = t_node_nth_child(parent, j);
+			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
@@ -395,7 +395,7 @@ void ctree_refresh(void)
 			// ticonv wrapper
 			tilp_vars_translate(row_text[0]);
 
-			gtk_tree_store_append(tree, &child_node, &parent_node);
+			gtk_tree_store_append(tree, &child_node, &pareng_node);
 			gtk_tree_store_set(tree, &child_node, COLUMN_NAME,
 					   row_text[0],
 					   COLUMN_TYPE,
@@ -423,13 +423,13 @@ void ctree_refresh(void)
 
 	// Appplications tree
 	apps = remote.app_tree;
-	for (i = 0; i < (int)t_node_n_children(apps); i++) 
+	for (i = 0; i < (int)g_node_n_children(apps); i++) 
 	{
-		TNode *parent = t_node_nth_child(apps, i);
+		GNode *parent = g_node_nth_child(apps, i);
 
-		for (j = 0; j < (int)t_node_n_children(parent); j++) 
+		for (j = 0; j < (int)g_node_n_children(parent); j++) 
 		{
-			TNode *node = t_node_nth_child(parent, j);
+			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];

@@ -59,6 +59,7 @@ int screen_capture(void)
 	/* 
 	   Get a screen capture
 	 */
+	g_free(screen.bitmap);
 	sc.format = options.screen_clipping;
 	err = ticalcs_calc_recv_screen(calc_handle, &sc, &screen.bitmap);
 

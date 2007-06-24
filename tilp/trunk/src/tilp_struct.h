@@ -155,8 +155,8 @@ typedef struct
 /* This struct is used by the CTree window */
 typedef struct 
 {
-    TNode*	var_tree;		// future use: tree of vars
-    TNode*	app_tree;		// future use: tree of apps
+    GNode*	var_tree;		// future use: tree of vars
+    GNode*	app_tree;		// future use: tree of apps
 
     TilpMem	memory;			// memory free or used by calc
 
