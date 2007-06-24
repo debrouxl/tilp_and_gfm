@@ -14,7 +14,6 @@ gchar *s = N_("Add entries from file.");
 gchar *s = N_("Delete selected entries.");
 gchar *s = N_("Entries:");
 gchar *s = N_("Model:");
-gchar *s = N_("Comment:");
 gchar *s = N_("N/A");
 gchar *s = N_("0");
 gchar *s = N_("RAM used:");

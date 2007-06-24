@@ -410,29 +410,6 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 }
 
 GLADE_CB void
-on_comment_clicked                     (GtkButton       *button,
-                                        gpointer         user_data)
-{
-	const gchar *str = gtk_button_get_label(button);
-	gchar *input;
-
-	input = msgbox_input(_("Set comment"), str, _("New comment:"));
-	if(input == NULL)
-		return;
-
-	{
-		gchar *latin1;
-
-		g_free(GFile.comment);
-		latin1 = g_convert(input, -1, "ISO-8859-1", "UTF-8", NULL, NULL, NULL);
-		GFile.comment = latin1;
-		labels_set_comment(latin1);
-	}
-
-	enable_save(TRUE);
-}
-
-GLADE_CB void
 on_group_clicked                       (GtkButton       *button,
                                         gpointer         user_data)
 {

@@ -157,7 +157,6 @@ int tigroup_load(const char *filename)
 		return -1;
 	}
 	GFile.model = GFile.contents.tigroup->model;
-	GFile.comment = g_strdup(content->comment);
 
 	// Recreate folder listing (ticalcs2 compatible)
     GFile.trees.vars = g_node_new(NULL);
@@ -317,10 +316,7 @@ int tigroup_save(const char *filename)
 
 	// Turns tree into tigroup file
 	GFile.contents.tigroup = tifiles_content_create_tigroup(GFile.model, 0);
-	if(!strcmp(GFile.comment, ""))
-		strcpy(GFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
-	else
-		strcpy(GFile.contents.tigroup->comment, GFile.comment);
+	strcpy(GFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
 
 	if((GFile.trees.vars)->children != NULL)
 	{
@@ -354,7 +350,6 @@ int tigroup_destroy(void)
 		tifiles_content_delete_tigroup(GFile.contents.tigroup);
 	GFile.contents.tigroup = NULL;
 	GFile.model = CALC_NONE;
-	g_free(GFile.comment);
 
 	ticalcs_dirlist_destroy(&GFile.trees.vars);
 	GFile.trees.vars = NULL;
@@ -410,7 +405,6 @@ int group_load(const char *filename)
 		tifiles_content_delete_regular(GFile.contents.group);
 		return -1;
 	}
-	GFile.comment = g_strdup(content->comment);
 
 	// Recreate folder listing (ticalcs2 compatible)
     GFile.trees.vars = g_node_new(NULL);
@@ -514,18 +508,10 @@ int group_save(const char *filename)
 		g_node_traverse(GFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
 	}
 
-	if(!strcmp(GFile.comment, ""))
-	{
-		if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
-			strcpy(GFile.contents.group->comment, tifiles_comment_set_single());
-		else if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
-			strcpy(GFile.contents.group->comment, tifiles_comment_set_group());
-	}
-	else
-	{
-		strncpy(GFile.contents.group->comment, GFile.comment, 40);
-		GFile.contents.group->comment[41] = '\0';
-	}
+	if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
+		strcpy(GFile.contents.group->comment, tifiles_comment_set_single());
+	else if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
+		strcpy(GFile.contents.group->comment, tifiles_comment_set_group());
 
 	// Write group file
 	ret = tifiles_file_write_regular(filename, GFile.contents.group, NULL);
@@ -545,7 +531,6 @@ int group_destroy(void)
 		tifiles_content_delete_regular(GFile.contents.group);
 	GFile.contents.group = NULL;
 	GFile.model = CALC_NONE;
-	g_free(GFile.comment);
 
 	ticalcs_dirlist_destroy(&GFile.trees.vars);
 	GFile.trees.vars = NULL;

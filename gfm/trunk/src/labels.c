@@ -113,24 +113,6 @@ void labels_set_entries(int n)
 	g_free(str);
 }
 
-void labels_set_comment(const char* comment)
-{
-	if(comment == NULL)
-		return;
-
-	if(g_utf8_validate(comment, -1, NULL) == TRUE)
-		gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), comment);
-	else
-	{
-		gchar *utf8;
-		
-		utf8 = g_convert(comment, -1, "UTF-8", "ISO-8859-1", NULL, NULL, NULL);
-		gtk_button_set_label(GTK_BUTTON(gfm_widget.comment), utf8);
-		g_free(utf8);
-
-	}
-}
-
 void labels_set_ram(uint32_t ram)
 {
 	gchar *str = NULL;
@@ -174,10 +156,6 @@ void labels_refresh(void)
 
 	labels_set_model(GFile.model);
 	labels_set_entries(n);
-	if(GFile.type == TIFILE_TIGROUP)
-		labels_set_comment(GFile.comment);
-	else
-		labels_set_comment(GFile.comment);
 	labels_set_ram(ram);
 	labels_set_flash(flash);
 }
