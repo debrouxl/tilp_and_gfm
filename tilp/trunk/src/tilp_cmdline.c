@@ -147,10 +147,10 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 int tilp_cmdline_send(void)
 {
 	int over = options.overwrite;
-	gchar *ext = NULL;
 
 	// Check for valid selection
-	if (local.selection0 == NULL && local.selection2 == NULL && local.selection4 == NULL)
+	if (local.selection0 == NULL && local.selection2 == NULL && 
+	    local.selection4 == NULL)
 		return -1;
 
 	tilp_local_contents_load();
@@ -170,7 +170,8 @@ int tilp_cmdline_send(void)
 		FileEntry *fe = (local.selection2)->data;
 
 		if(g_list_length(local.selection2) == 1 && 
-			tifiles_file_test(fe->name, TIFILE_OS, options.calc_model))
+			tifiles_file_test(fe->name, TIFILE_OS, 
+					  options.calc_model))
 		{
 			tilp_calc_send_os(fe->name);
 			return 0;

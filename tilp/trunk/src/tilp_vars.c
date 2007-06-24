@@ -35,6 +35,7 @@
 #include <windows.h>
 #define PAUSE(x) Sleep(x)
 #else
+#include <unistd.h>
 #define PAUSE(x) usleep(1000*(x))
 #endif
 

@@ -381,7 +381,7 @@ int tilp_device_err(int err)
 */
 int tilp_device_reset(void)
 {
-  if(!open)
+  if(!lk_open)
     return 0;
 
 #if 1
