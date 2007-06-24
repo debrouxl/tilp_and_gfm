@@ -28,12 +28,13 @@ gfm_SOURCES = \
 	ctree.c \
 	dialog.c \
 	file.c \
-	groups.c \
+	filesel.c \
 	gui.c \
 	labels.c \
 	main.c \
 	paths.c \
+	rwgroup.c \
 	splashscreen.c \
 	support.c \
-	tilibs.c
-
+	tilibs.c \
+	ungroup.c
