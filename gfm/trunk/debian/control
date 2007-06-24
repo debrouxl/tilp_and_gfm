@@ -1,0 +1,14 @@
+Source: gfm
+Section: math
+Priority: optional
+Maintainer: Romain LIEVIN <roms@tilp.info>
+Build-Depends: debhelper (>= 5), libticables2-1-dev (>= 1.0.5-1), libticalcs2-3-dev (>= 1.0.7-1), libtifiles2-4-dev (>= 1.0.7-1), libticonv2 (>= 1.0.3-1), libgtk2.0-dev, libglade2-dev, zlib1g-dev, gettext, groff-base, kdelibs-dev, autoconf, automake1.9
+Standards-Version: 3.7.2
+
+Package: gfm
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: TI hand-helds file manipulation program for X
+ gfm is a program allowing to create/open/save TI hand-helds files.
+ It can group & ungroup files, too.
+ .

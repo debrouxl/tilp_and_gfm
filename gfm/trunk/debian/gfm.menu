@@ -1,0 +1,3 @@
+?package(gfm):needs="X11" section="Apps/Math"\
+  title="GFM" command="/usr/bin/gfm"
+
