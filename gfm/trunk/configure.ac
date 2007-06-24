@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(GFM, 0.05, [tilp-users@lists.sourceforge.net])
+AC_INIT(GFM, 1.00, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -40,15 +40,15 @@ AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 #AM_GNU_GETTEXT
 #AM_GNU_GETTEXT_VERSION(0.14.5)
 
-PKG_CHECK_MODULES(TICONV, ticonv >= 0.0.5)
+PKG_CHECK_MODULES(TICONV, ticonv >= 1.0.3)
 AC_SUBST(TICONV_CFLAGS)
 AC_SUBST(TICONV_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles2 >= 1.0.0)
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 1.0.7)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 
-PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.0)
+PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.7)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 

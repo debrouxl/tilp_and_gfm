@@ -2,7 +2,7 @@
 
 Log of changes:	gfm (calcs, files, ticonv)
 
-- 10/06/2007, version 0.05 (1.0.7, 1.0.7, 1.0.3): roms
+- 10/06/2007, version 1.00 (1.0.7, 1.0.7, 1.0.3): roms
 	* Decided to make the GUI easier: more or less developped from scratch.
 	Most of code taken from Tyler Cassidy's original GFM.
 	Some parts taken from TiLP (file, vars, ctree).
