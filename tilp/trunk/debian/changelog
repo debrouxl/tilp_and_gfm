@@ -1,3 +1,12 @@
+tilp2 (1.06-1) unstable; urgency=low
+
+  - followed API changes in ticalcs2 library
+	- fixed potential bug in action box (var existence checking)
+	- sending of APPV variables in FLASH is not allowed; avoid this.
+	- skip sending of IDlist.8xidl (pseudo-variable)
+	- fixed displaying of Pic/Str/Gdb in directory listing (win32)
+	- fixed displaying of Y?/r? and 't' in directory listing (win32)
+
 tilp2 (1.04-1) unstable; urgency=low
 
   * Initial release.
