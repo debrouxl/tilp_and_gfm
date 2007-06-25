@@ -22,7 +22,7 @@ To do:
 7) La vérification de concordance entre modèle sélectionné et modèle détecté 
 	pose problème avec le Gray/BlackLink parce que le port est déjà ouvert
 
-8) screen-shot is never freed!
+8) Removed group/ungroup from menu. Replace it by GFM short-cut.
 
 //------
 
