@@ -7,11 +7,11 @@
 
 [Setup]
 AppName=TiLP2
-AppVerName=TiLP2 1.04
+AppVerName=TiLP2 1.06
 AppPublisher=The TiLP Team
-AppPublisherURL=http://lpg.ticalc.org/prj_tilp2/tilp2-news.php
-AppSupportURL=http://lpg.ticalc.org/prj_tilp2/tilp2-staff.php
-AppUpdatesURL=http://lpg.ticalc.org/prj_tilp2/tilp2-download.php
+AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp2-news.php
+AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp2-staff.php
+AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/tilp2-download.php
 DefaultDirName={pf}\TiLP
 DefaultGroupName=TiLP2
 AllowNoIcons=yes
@@ -67,10 +67,10 @@ Source: "C:\sources\roms\tilp2\README"; DestDir: "{app}"; DestName: "ReadMe.txt"
 Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
 
 ; TiLP/GTK
-Source: "C:\sources\roms\tifiles2\tests\libtifiles2-3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-2.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticonv\tests\libticonv-2.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
@@ -109,11 +109,13 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 
 [INI]
-Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp"
+Filename: "{app}\tilp2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp/"
+Filename: "{app}\gfm.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_gfm/"
 
 [Icons]
 Name: "{group}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"
 Name: "{group}\TiLP on the Web"; Filename: "{app}\tilp2.url"
+Name: "{group}\GFM on the Web"; Filename: "{app}\gfm.url"
 Name: "{group}\Uninstall TiLP"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
@@ -128,6 +130,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename:
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
 Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
+Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 
 [UninstallRun]
 ; Remove any previously installed PortTalk driver (especially v1.x)
@@ -510,6 +513,7 @@ Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName
 
 [UninstallDelete]
 Type: files; Name: "{app}\tilp2.url"
+Type: files; Name: "{app}\gfm.url"
 
 ;; Taken from "http://www.dropline.net/gtk/support.php" with some customizations
 

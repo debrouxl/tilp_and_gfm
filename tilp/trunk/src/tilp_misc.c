@@ -46,6 +46,7 @@ int tilp_drive_change(char drive_letter)
 	return 0;
 }
 
+#if 0	// Replaced by GFM (http://lpg.ticalc.org/prj_gfm)
 int tilp_tifiles_ungroup(void)
 {
 	GList *sel;
@@ -255,3 +256,4 @@ int tilp_tifiles_tigroup(void)
 
 	return 0;
 }
+#endif

@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.03 (13/03/2007)
-Current version:  1.04 (14/05/2007)
+Old     version:  1.04 (14/05/2007)
+Current version:  1.06 (26/06/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,23 +21,23 @@ For the other link cables, no driver is needed because it's provided.
 New capabilities:
 -----------------
 
-	- Ti File Properties dialog box
-
+	- grouping/ungrouping capabilites have been removed from TiLP. They are
+	now provided thanks to a new application called Group File Manager (GFM)
+	thru the popup-menu. GFM is available here: <http://lpg.ticalc.org/prj_gfm/>.
+	
 
 Improvements:
 -------------
 
-	- [linux] added KDE file dialog support (like TiEmu)
-	- [bsd] support NetBSD serial port device names (Jukka Salmi)
-	- removed multiple error messages
+	- Window, RclWindow and TblSetup variables are now supported
+	- sending/receiving of named list on TI84+/USB is now supported
 
 
 Bug fixes:
 ----------
 
-	- #1676861: VTi link failed due to library name
-	- no clock in TI83+ & TI83+ SE; no clock in TI84+
-	- #1563667: impossible to flash TI-83+/SE (OS)
+	- variable existence checking in action box
+	- TiGroup files correctly handled with TI84+/USB
 
 
 Known bugs:
@@ -49,7 +49,6 @@ Known bugs:
 		* w/ kernel module: you don't have the issue stated below but replugging is
 		  needed after module removal		
 	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
-	- sending of _named_ list to TI84+/USB will fail (LCHASE.8xp from 20sec.zip)
 
 
 Bug report:

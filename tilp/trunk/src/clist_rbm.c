@@ -212,41 +212,45 @@ GLADE_CB void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
 	gtk_tree_selection_unselect_all(sel);
 }
 
-GLADE_CB void rbm_ungroup1_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
+GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
+									gpointer user_data)
 {
-	tilp_tifiles_ungroup();
+#ifdef __WIN32__
+	const char *app_path = "C:\\Program Files\\GFM\\gfm.exe";
+#else
+	const char *app_path = "/usr/bin/gfm";
+#endif
+	GList *sel;
 
-	clist_refresh();
-	labels_refresh();
+	if (local.file_selection == NULL)
+		return;
+
+	if(!tilp_file_exist(app_path))
+	{
+		msg_box1(_("Error"), _("The Group File Manager seems not be installed on your system.\nDownload it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP user's manual for more information."));
+		return;
+	}
+
+	for(sel = local.file_selection; sel; sel = sel->next)
+	{
+		gchar **argv = g_malloc0(3 * sizeof(gchar *));
+		gint result;
+		GError *error;
+		char *filename = (char *)sel->data;
+
+		argv[0] = g_strdup(app_path);
+		argv[1] = g_strdup(filename);
+		argv[2] = NULL;
+
+		result = g_spawn_async(NULL/*local.cwdir*/, argv, NULL, 0, NULL, NULL, NULL, &error);
+		g_strfreev(argv);
+
+		if(result == FALSE)
+		{
+			msg_box1(_("Error"), error->message);
+		}
+	}
 } 
-
-GLADE_CB void rbm_group1_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
-{
-	tilp_tifiles_group();
-
-	clist_refresh();
-	labels_refresh();
-} 
-
-GLADE_CB void rbm_ungroup2_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
-{
-	tilp_tifiles_untigroup();
-
-	clist_refresh();
-	labels_refresh();
-} 
-
-GLADE_CB void rbm_group2_activate(GtkMenuItem* menuitem,
-				   gpointer user_data)
-{
-	tilp_tifiles_tigroup();
-
-	clist_refresh();
-	labels_refresh();
-}
 
 GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)
