@@ -140,32 +140,9 @@ SOURCE=..\..\src\tilp_struct.h
 # Begin Group "Source Files"
 
 # PROP Default_Filter ""
-# Begin Group "gui"
-
-# PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\src\about.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\action.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\bookmark.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clist.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clist_rbm.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\clock.c
+SOURCE=..\..\src\cmdline.c
 # End Source File
 # Begin Source File
 
@@ -173,19 +150,11 @@ SOURCE=..\..\src\ctree.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\ctree_rbm.c
+SOURCE=..\..\src\dialog.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\dboxes.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\device.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\dnd.c
+SOURCE=..\..\src\file.c
 # End Source File
 # Begin Source File
 
@@ -193,11 +162,7 @@ SOURCE=..\..\src\filesel.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\gtk_gif.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\gtk_update.c
+SOURCE=..\..\src\gui.c
 # End Source File
 # Begin Source File
 
@@ -205,31 +170,19 @@ SOURCE=..\..\src\labels.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\manpage.c
+SOURCE=..\..\src\main.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\options.c
+SOURCE=..\..\src\paths.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\pbars.c
+SOURCE=..\..\src\rwgroup.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\release.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\screenshot.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\scroptions.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\splash.c
+SOURCE=..\..\src\splashscreen.c
 # End Source File
 # Begin Source File
 
@@ -237,84 +190,11 @@ SOURCE=..\..\src\support.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\tilp.c
+SOURCE=..\..\src\tilibs.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\toolbar.c
-# End Source File
-# End Group
-# Begin Group "core"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\..\src\tilp_calcs.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_cmdline.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_config.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_core.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_device.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_error.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_files.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_gif.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_log.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_main.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_misc.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_paths.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_screen.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_slct.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_update.c
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\src\tilp_vars.c
-# End Source File
-# End Group
-# Begin Source File
-
-SOURCE=..\..\src\main.c
+SOURCE=..\..\src\ungroup.c
 # End Source File
 # End Group
 # Begin Group "External Libraries"

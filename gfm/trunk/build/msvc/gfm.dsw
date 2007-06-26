@@ -53,6 +53,9 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name ticonv
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ticalcs2
+    End Project Dependency
 }}}
 
 ###############################################################################
