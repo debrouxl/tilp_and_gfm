@@ -176,7 +176,7 @@ static void renderer_edited(GtkCellRendererText * cell,
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
 	// tokenize and check for existence
-	str = ticonv_varname_tokenize(GFile.model, new_text);
+	str = ticonv_varname_tokenize(GFile.model, new_text, ve->type);
 	arg = tifiles_ve_dup(ve);
 	if(strlen(str) > 8)
 		str[8] = '\0';
@@ -329,7 +329,7 @@ void ctree_refresh(void)
 
 		if ((fe != NULL) || tifiles_calc_is_ti9x(GFile.model))
 		{
-			char *utf8 = ticonv_varname_to_utf8(GFile.model, fe->name);
+			char *utf8 = ticonv_varname_to_utf8(GFile.model, fe->name, -1);
 
 			gtk_tree_store_append(tree, &pareng_node, &vars_node);
 			gtk_tree_store_set(tree, &pareng_node, 
@@ -348,7 +348,7 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name);
+			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name, ve->type);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFile.model, ve->type));
 			tilp_var_get_size(ve, &row_text[3]);
 
@@ -403,7 +403,7 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name);
+			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name, ve->type);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFile.model, ve->type));
 			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 

@@ -164,7 +164,7 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 			child = g_node_nth_child(parent, 0);
 			ve = (VarEntry *) (child->data);
 
-			filename = g_strconcat(ticonv_varname_to_filename(GFile.model, ve->name), ".", 
+			filename = g_strconcat(ticonv_varname_to_filename(GFile.model, ve->name, ve->type), ".", 
 				tifiles_vartype2fext(GFile.model, ve->type), NULL);
 			ext = g_strconcat("*.", tifiles_vartype2fext(GFile.model, ve->type), NULL);
 		}
