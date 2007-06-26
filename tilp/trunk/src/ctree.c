@@ -366,7 +366,7 @@ void ctree_refresh(void)
 
 		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER)) 
 		{
-			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name);
+			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name, -1);
 
 			gtk_tree_store_append(tree, &parent_node, &vars_node);
 			gtk_tree_store_set(tree, &parent_node, 
@@ -383,7 +383,7 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name);
+			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 			tilp_var_get_size(ve, &row_text[3]);
 
@@ -434,7 +434,7 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name);
+			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 

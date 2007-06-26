@@ -502,7 +502,7 @@ int tilp_calc_recv_app(void)
 		gtk_update.pbar();
 		gtk_update.refresh();
 
-		str = ticonv_varname_to_filename(options.calc_model, ve->name);
+		str = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
 		strcpy(filename, str);
 		strcat(filename, ".");
 		strcat(filename, tifiles_vartype2fext(options.calc_model, ve->type));
@@ -720,8 +720,8 @@ tcrv1:
 			return -1;
 		}
 
-		varname = ticonv_varname_to_filename(options.calc_model, ve->name);
-		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder);
+		varname = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
+		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder, -1);
 
 		if(tifiles_has_folder(options.calc_model))
 			dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
@@ -877,7 +877,7 @@ static int tilp_calc_recv_var2(void)
 	if(ve)
 	{
 		//single
-		basename = ticonv_varname_to_filename(options.calc_model, ve->name);
+		basename = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
 		dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, basename, 
 			".", tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
