@@ -18,8 +18,10 @@ AC_CONFIG_FILES([
   glade/Makefile
   help/Makefile
   icons/Makefile
+  intl/Makefile
   man/Makefile
   pixmaps/Makefile
+  po/Makefile.in
   src/Makefile
 ])
 
@@ -37,10 +39,10 @@ AC_CHECK_PROG(GROFF, groff, yes, no)
 AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 
 # Checks for libraries.
-#AM_GNU_GETTEXT
-#AM_GNU_GETTEXT_VERSION(0.14.5)
+AM_GNU_GETTEXT
+AM_GNU_GETTEXT_VERSION(0.14.5)
 
-PKG_CHECK_MODULES(TICONV, ticonv >= 1.0.3)
+PKG_CHECK_MODULES(TICONV, ticonv >= 1.0.4)
 AC_SUBST(TICONV_CFLAGS)
 AC_SUBST(TICONV_LIBS)
 

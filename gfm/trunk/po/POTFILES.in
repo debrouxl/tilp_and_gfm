@@ -1,0 +1,9 @@
+# List of source files containing translatable strings.
+
+# GFM source code
+src/main.c
+
+# GFM GUI
+glade/dialogs.str
+glade/gfm.str
+
