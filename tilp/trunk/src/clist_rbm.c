@@ -218,13 +218,21 @@ GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
 #ifdef __WIN32__
 	const char *app_path = "C:\\Program Files\\GFM\\gfm.exe";
 #else
-	const char *app_path = "/usr/bin/gfm";
+	const char *app_path1 = "/usr/bin/gfm";
+	const char *app_path2 = "/usr/local/bin/gfm";
+	const char *app_path = app_path1;
 #endif
 	GList *sel;
 
 	if (local.file_selection == NULL)
 		return;
 
+#ifdef __LINUX__
+	if(tilp_file_exist(app_path1))
+	  app_path = app_path1;
+	else if(tilp_file_exist(app_path2))
+	  app_path = app_path2;
+#endif
 	if(!tilp_file_exist(app_path))
 	{
 		msg_box1(_("Error"), _("The Group File Manager seems not be installed on your system.\nDownload it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP user's manual for more information."));

@@ -2,12 +2,12 @@
 # Copyright (C) 2003 Sylvain Garsault
 # Copyright (C) 2007 Romain Liévin
 # This file is distributed under the same license as the libtifiles package.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-04-24 08:48+0200\n"
+"POT-Creation-Date: 2007-06-26 23:58+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -45,7 +45,7 @@ msgstr "aucun"
 msgid "rename"
 msgstr "renommer"
 
-#: src/action.c:130 src/action.c:291
+#: src/action.c:130 src/action.c:292
 msgid "overwrite"
 msgstr "écraser"
 
@@ -57,11 +57,11 @@ msgstr "sauter"
 msgid "action.c: GUI loading failed !\n"
 msgstr "action.c : échec du chargement de l'interface graphique !\n"
 
-#: src/action.c:324 src/tilp_files.c:209 src/tilp_slct.c:540
+#: src/action.c:325 src/tilp_files.c:209 src/tilp_slct.c:543
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: src/action.c:324 src/tilp_files.c:210
+#: src/action.c:325 src/tilp_files.c:210
 msgid "New name: "
 msgstr "Nouveau nom: "
 
@@ -85,16 +85,37 @@ msgstr "Date"
 msgid "Change drive"
 msgstr "Changer de lecteur"
 
-#: src/clist_rbm.c:273 src/tilp.c:629
+#: src/clist_rbm.c:238 src/clist_rbm.c:258 src/dboxes.c:46 src/main.c:175
+#: src/tilp_calcs.c:373 src/tilp_calcs.c:441 src/tilp_calcs.c:448
+#: src/tilp_calcs.c:570 src/tilp_calcs.c:579 src/tilp_calcs.c:584
+#: src/tilp_calcs.c:589 src/tilp_calcs.c:1246 src/tilp_config.c:311
+#: src/tilp_device.c:367 src/tilp_device.c:409 src/tilp_device.c:417
+#: src/tilp_error.c:87 src/tilp_files.c:252 src/tilp_files.c:324
+#: src/tilp_misc.c:39 src/tilp_misc.c:81 src/tilp_misc.c:124
+#: src/tilp_misc.c:183 src/tilp_misc.c:226
+msgid "Error"
+msgstr "Erreur"
+
+#: src/clist_rbm.c:238
+msgid ""
+"The Group File Manager seems not be installed on your system.\n"
+"Download it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP "
+"user's manual for more information."
+msgstr ""
+"Le Gestionnaire de Fichier Groupés semble ne pas être installé.\n"
+"Téléchargez le depuis <http://lpg.ticalc.org/prj_gfm> ou jetez un coup "
+"d'oeilau manuel de TiLP."
+
+#: src/clist_rbm.c:285 src/tilp.c:629
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: src/clist_rbm.c:273 src/tilp.c:629 src/tilp_calcs.c:1018
-#: src/tilp_slct.c:540
+#: src/clist_rbm.c:285 src/tilp.c:629 src/tilp_calcs.c:1018
+#: src/tilp_slct.c:543
 msgid "Name: "
 msgstr "Nom: "
 
-#: src/clist_rbm.c:274 src/tilp.c:629
+#: src/clist_rbm.c:286 src/tilp.c:629
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
@@ -143,14 +164,14 @@ msgstr "Un Dossier"
 #: src/tilp_calcs.c:948 src/tilp_calcs.c:956 src/tilp_calcs.c:1203
 #: src/tilp_config.c:461 src/tilp_config.c:469 src/tilp_files.c:137
 #: src/tilp_files.c:150 src/tilp_files.c:169 src/tilp_misc.c:43
-#: src/tilp_slct.c:81 src/tilp_slct.c:446 src/tilp_slct.c:457
-#: src/tilp_slct.c:549
+#: src/tilp_slct.c:81 src/tilp_slct.c:449 src/tilp_slct.c:460
+#: src/tilp_slct.c:552
 msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:42 src/tilp_calcs.c:154 src/tilp_calcs.c:204
 #: src/tilp_calcs.c:315 src/tilp_calcs.c:453 src/tilp_calcs.c:964
-#: src/tilp_calcs.c:1274 src/tilp_files.c:199 src/tilp_slct.c:515
+#: src/tilp_calcs.c:1274 src/tilp_files.c:199 src/tilp_slct.c:518
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -159,16 +180,6 @@ msgstr "Avertissement"
 #: src/tilp_calcs.c:769
 msgid "Question"
 msgstr "Question"
-
-#: src/dboxes.c:46 src/main.c:175 src/tilp_calcs.c:373 src/tilp_calcs.c:441
-#: src/tilp_calcs.c:448 src/tilp_calcs.c:570 src/tilp_calcs.c:579
-#: src/tilp_calcs.c:584 src/tilp_calcs.c:589 src/tilp_calcs.c:1246
-#: src/tilp_config.c:311 src/tilp_device.c:363 src/tilp_device.c:402
-#: src/tilp_device.c:410 src/tilp_error.c:87 src/tilp_files.c:252
-#: src/tilp_files.c:324 src/tilp_misc.c:39 src/tilp_misc.c:80
-#: src/tilp_misc.c:123 src/tilp_misc.c:182 src/tilp_misc.c:225
-msgid "Error"
-msgstr "Erreur"
 
 #: src/device.c:59
 msgid "Cable"
@@ -673,13 +684,13 @@ msgstr "Fichier de configuration enregistré"
 msgid "Configuration file loaded."
 msgstr "Fichier de configuration chargé"
 
-#: src/tilp_device.c:385
+#: src/tilp_device.c:392
 msgid ""
 "Connection is being \n"
 "reset..."
 msgstr "Réinitialisation de la connexion..."
 
-#: src/tilp_device.c:402 src/tilp_device.c:410
+#: src/tilp_device.c:409 src/tilp_device.c:417
 msgid "Can't set cable"
 msgstr "Ne peut configurer le câble"
 
@@ -762,19 +773,19 @@ msgstr "La version %s au minimum de libticalcs est nécessaire.\n"
 msgid "This function is only available in the Windows version."
 msgstr "Cette fonction n'est disponible que dans la version Windows."
 
-#: src/tilp_misc.c:70 src/tilp_misc.c:172
+#: src/tilp_misc.c:71 src/tilp_misc.c:173
 msgid "Create new directory"
 msgstr "Créer un nouveau dossier"
 
-#: src/tilp_misc.c:70 src/tilp_misc.c:172
+#: src/tilp_misc.c:71 src/tilp_misc.c:173
 msgid "Directory where files will be ungrouped: "
 msgstr "Dossier dans lequel les fichiers seront dégroupés: "
 
-#: src/tilp_misc.c:80 src/tilp_misc.c:182
+#: src/tilp_misc.c:81 src/tilp_misc.c:183
 msgid "You can't ungroup in this folder."
 msgstr "Vous ne pouvez pas dégrouper dans ce dossier."
 
-#: src/tilp_misc.c:123 src/tilp_misc.c:225
+#: src/tilp_misc.c:124 src/tilp_misc.c:226
 msgid ""
 "You must select at least 2 files.\n"
 "\n"
@@ -782,19 +793,19 @@ msgstr ""
 "Vous devez sélectionner au moins deux fichiers.\n"
 "\n"
 
-#: src/tilp_misc.c:127 src/tilp_misc.c:229
+#: src/tilp_misc.c:128 src/tilp_misc.c:230
 msgid "Group files"
 msgstr "Grouper fichiers"
 
-#: src/tilp_misc.c:127 src/tilp_misc.c:229
+#: src/tilp_misc.c:128 src/tilp_misc.c:230
 msgid "Group name: "
 msgstr "Nom de groupe: "
 
-#: src/tilp_misc.c:127
+#: src/tilp_misc.c:128
 msgid "group"
 msgstr "grouper"
 
-#: src/tilp_misc.c:229
+#: src/tilp_misc.c:230
 msgid "tigroup"
 msgstr "tigroup"
 
@@ -802,15 +813,15 @@ msgstr "tigroup"
 msgid "Screendump"
 msgstr "Capture d'écran"
 
-#: src/tilp_screen.c:197 src/tilp_screen.c:215
+#: src/tilp_screen.c:198 src/tilp_screen.c:216
 msgid "Couldn't allocate memory!"
 msgstr "Ne peut pas allouer de la mémoire!"
 
-#: src/tilp_screen.c:230
+#: src/tilp_screen.c:231
 msgid "zlib error"
 msgstr "erreur zlib"
 
-#: src/tilp_screen.c:330 src/tilp_screen.c:408
+#: src/tilp_screen.c:331 src/tilp_screen.c:409
 msgid "Couldn't open destination file for writing!"
 msgstr "Ne peut pas ouvrir le fichier de destination en écriture!"
 
@@ -818,11 +829,11 @@ msgstr "Ne peut pas ouvrir le fichier de destination en écriture!"
 msgid "A file must have been selected in the right window."
 msgstr "Un fichier doit être sélectionné dans la fenêtre de droite."
 
-#: src/tilp_slct.c:447 src/tilp_slct.c:458
+#: src/tilp_slct.c:450 src/tilp_slct.c:461
 msgid "An item must have been selected in the left window."
 msgstr "Une variable doit être sélectionnée dans la fenêtre de gauche."
 
-#: src/tilp_slct.c:516
+#: src/tilp_slct.c:519
 msgid ""
 "Are you sure you want to remove these file(s) ?\n"
 "\n"
@@ -830,11 +841,11 @@ msgstr ""
 "Voulez-vous vraiment supprimer ce(s) fichier(s) ?\n"
 "\n"
 
-#: src/tilp_slct.c:550
+#: src/tilp_slct.c:553
 msgid "Unable to rename the file or directory."
 msgstr "Impossible de renommer le fichier ou le dossier."
 
-#: src/tilp_vars.c:45
+#: src/tilp_vars.c:53
 msgid "Directory list"
 msgstr "Liste des dossiers"
 
@@ -955,42 +966,22 @@ msgid "_Properties"
 msgstr "_Propriétés"
 
 #: glade/clist_rbm-2.str:28
-msgid "_Groups"
-msgstr "_Groupes"
+msgid "Open..."
+msgstr "Ouvrir..."
 
-#: glade/clist_rbm-2.str:29
-msgid "Ungroup selected file(s)"
-msgstr "Dégrouper le(s) fichier(s) sélectionné(s)"
-
-#: glade/clist_rbm-2.str:30 glade/clist_rbm-2.str:34
-msgid "_Ungroup"
-msgstr "_Dégrouper"
-
-#: glade/clist_rbm-2.str:31
-msgid "Group selected file(s) together"
-msgstr "Grouper ensemble les fichiers sélectionnés"
-
-#: glade/clist_rbm-2.str:32 glade/clist_rbm-2.str:35
-msgid "_Group"
-msgstr "_Grouper"
-
-#: glade/clist_rbm-2.str:33
-msgid "_TiGroups"
-msgstr "_TiGroups"
-
-#: glade/clist_rbm-2.str:36 glade/ctree_rbm-2.str:8 glade/screenshot-2.str:12
+#: glade/clist_rbm-2.str:29 glade/ctree_rbm-2.str:8 glade/screenshot-2.str:12
 msgid "_Options"
 msgstr "_Options"
 
-#: glade/clist_rbm-2.str:37
+#: glade/clist_rbm-2.str:30
 msgid "_Show all files"
 msgstr "_Montrer tous les fichiers"
 
-#: glade/clist_rbm-2.str:38
+#: glade/clist_rbm-2.str:31
 msgid "_Confirm delete/overwrite"
 msgstr "_Confirmer suppression/écrasement"
 
-#: glade/clist_rbm-2.str:39
+#: glade/clist_rbm-2.str:32
 msgid "_Receive as group"
 msgstr "_Recevoir groupé"
 
@@ -1110,170 +1101,6 @@ msgstr "Date & Heure"
 msgid " _Sync with PC "
 msgstr " _Synchroniser"
 
-#: glade/comm-2.str:7 glade/device-2.str:3
-msgid "Communication Settings"
-msgstr "Paramètres de connexion"
-
-#: glade/comm-2.str:8 glade/device-2.str:5
-msgid "Cable:"
-msgstr "Câble:"
-
-#: glade/comm-2.str:9 glade/device-2.str:6
-msgid "Port:"
-msgstr "Port:"
-
-#: glade/comm-2.str:10 glade/device-2.str:7
-msgid "Calc:"
-msgstr "Calc:"
-
-#: glade/comm-2.str:11 glade/device-2.str:8
-msgid "Timeout:"
-msgstr "Timeout:"
-
-#: glade/comm-2.str:12 glade/device-2.str:9
-msgid "Delay:"
-msgstr "Délai:"
-
-#: glade/comm-2.str:13
-msgid "Timeout value in tenth of seconds."
-msgstr "Valeur de délai avant erreur en dixièmes de seconde."
-
-#: glade/comm-2.str:14
-msgid "Inter-bit delay for serial/parallel link cables."
-msgstr "Délai inter-bit pour les câbles série/parallèles."
-
-#: glade/comm-2.str:15 glade/comm-2.str:20 glade/comm-2.str:33
-msgid "None"
-msgstr "Aucun"
-
-#: glade/comm-2.str:16 glade/device-2.str:19
-msgid "#1"
-msgstr "n°1"
-
-#: glade/comm-2.str:17 glade/device-2.str:20
-msgid "#2"
-msgstr "n°2"
-
-#: glade/comm-2.str:18 glade/device-2.str:21
-msgid "#3"
-msgstr "n°3"
-
-#: glade/comm-2.str:19 glade/device-2.str:22
-msgid "#4"
-msgstr "n°4"
-
-#: glade/comm-2.str:21 glade/device-2.str:24
-msgid "TI73"
-msgstr "TI73"
-
-#: glade/comm-2.str:22 glade/device-2.str:25
-msgid "TI82"
-msgstr "TI82"
-
-#: glade/comm-2.str:23 glade/device-2.str:26
-msgid "TI83"
-msgstr "TI83"
-
-#: glade/comm-2.str:24 glade/device-2.str:27
-msgid "TI83+"
-msgstr "TI83+"
-
-#: glade/comm-2.str:25 glade/device-2.str:28
-msgid "TI84+"
-msgstr "TI84+"
-
-#: glade/comm-2.str:26 glade/device-2.str:29
-msgid "TI85"
-msgstr "TI85"
-
-#: glade/comm-2.str:27 glade/device-2.str:30
-msgid "TI86"
-msgstr "TI86"
-
-#: glade/comm-2.str:28 glade/device-2.str:31
-msgid "TI89"
-msgstr "TI89"
-
-#: glade/comm-2.str:29 glade/device-2.str:32
-msgid "TI89 Titanium"
-msgstr "Titanium"
-
-#: glade/comm-2.str:30 glade/device-2.str:33
-msgid "TI92"
-msgstr "TI92"
-
-#: glade/comm-2.str:31 glade/device-2.str:34
-msgid "TI92+"
-msgstr "TI92+"
-
-#: glade/comm-2.str:32 glade/device-2.str:35
-msgid "V200PLT"
-msgstr "V200PLT"
-
-#: glade/comm-2.str:34 glade/device-2.str:10
-msgid "GrayLink"
-msgstr "GrayLink (gris)"
-
-#: glade/comm-2.str:35 glade/device-2.str:11
-msgid "BlackLink"
-msgstr "BlackLink (noir)"
-
-#: glade/comm-2.str:36 glade/device-2.str:13
-msgid "ParallelLink"
-msgstr "Câble parallèle"
-
-#: glade/comm-2.str:37 glade/device-2.str:12
-msgid "SilverLink"
-msgstr "SilverLink (argent)"
-
-#: glade/comm-2.str:38
-msgid "DirectLink"
-msgstr "DirectLink (USB)"
-
-#: glade/comm-2.str:39 glade/device-2.str:14
-msgid "VTi"
-msgstr "VTi"
-
-#: glade/comm-2.str:40
-msgid "TiEmu/TilEm"
-msgstr "TiEmu/TilEm"
-
-#: glade/comm-2.str:41 glade/device-2.str:16
-msgid "virtual"
-msgstr "virtuel"
-
-#: glade/comm-2.str:42
-msgid "UsbKernel"
-msgstr "UsbKernel"
-
-#: glade/comm-2.str:43
-msgid ""
-"If checked, TiLP will scan USB devices at startup and will use the first "
-"device found."
-msgstr ""
-"Si activé, TiLP parcourera les périphériques USB au démarrage et utilisera "
-"la première combinaison trouvée."
-
-#: glade/comm-2.str:44
-msgid "USB scan at startup"
-msgstr "Scan USB au démarrage"
-
-#: glade/comm-2.str:45 glade/device-2.str:36
-msgid "Settings"
-msgstr "Configuration"
-
-#: glade/comm-2.str:46
-msgid "Don't know which device you have ? Click =>"
-msgstr "Cliquer ici pour rechercher des combinaisons =>"
-
-#: glade/comm-2.str:47
-msgid "Probe for attached devices..."
-msgstr "Recherche des périphériques attachés..."
-
-#: glade/comm-2.str:48
-msgid "Double-click a line to update settings."
-msgstr "Double-cliquer une ligne pour mettre à jour la configuration."
-
 #: glade/ctree_rbm-2.str:7
 msgid "Change _device"
 msgstr "_Paramètres"
@@ -1294,13 +1121,61 @@ msgstr "_Supprimer variable/application"
 msgid "Create _folder"
 msgstr "_Nouveau dossier"
 
+#: glade/device-2.str:3
+msgid "Communication Settings"
+msgstr "Paramètres de connexion"
+
 #: glade/device-2.str:4
 msgid "_Auto-detect"
 msgstr "_Autodétection"
 
+#: glade/device-2.str:5
+msgid "Cable:"
+msgstr "Câble:"
+
+#: glade/device-2.str:6
+msgid "Port:"
+msgstr "Port:"
+
+#: glade/device-2.str:7
+msgid "Calc:"
+msgstr "Calc:"
+
+#: glade/device-2.str:8
+msgid "Timeout:"
+msgstr "Timeout:"
+
+#: glade/device-2.str:9
+msgid "Delay:"
+msgstr "Délai:"
+
+#: glade/device-2.str:10
+msgid "GrayLink"
+msgstr "GrayLink (gris)"
+
+#: glade/device-2.str:11
+msgid "BlackLink"
+msgstr "BlackLink (noir)"
+
+#: glade/device-2.str:12
+msgid "SilverLink"
+msgstr "SilverLink (argent)"
+
+#: glade/device-2.str:13
+msgid "ParallelLink"
+msgstr "Câble parallèle"
+
+#: glade/device-2.str:14
+msgid "VTi"
+msgstr "VTi"
+
 #: glade/device-2.str:15
 msgid "TiEmu"
 msgstr "TiEmu"
+
+#: glade/device-2.str:16
+msgid "virtual"
+msgstr "virtuel"
 
 #: glade/device-2.str:17 glade/device-2.str:23
 msgid "null"
@@ -1309,6 +1184,74 @@ msgstr "aucun"
 #: glade/device-2.str:18
 msgid "custom"
 msgstr "personnalisé"
+
+#: glade/device-2.str:19
+msgid "#1"
+msgstr "n°1"
+
+#: glade/device-2.str:20
+msgid "#2"
+msgstr "n°2"
+
+#: glade/device-2.str:21
+msgid "#3"
+msgstr "n°3"
+
+#: glade/device-2.str:22
+msgid "#4"
+msgstr "n°4"
+
+#: glade/device-2.str:24
+msgid "TI73"
+msgstr "TI73"
+
+#: glade/device-2.str:25
+msgid "TI82"
+msgstr "TI82"
+
+#: glade/device-2.str:26
+msgid "TI83"
+msgstr "TI83"
+
+#: glade/device-2.str:27
+msgid "TI83+"
+msgstr "TI83+"
+
+#: glade/device-2.str:28
+msgid "TI84+"
+msgstr "TI84+"
+
+#: glade/device-2.str:29
+msgid "TI85"
+msgstr "TI85"
+
+#: glade/device-2.str:30
+msgid "TI86"
+msgstr "TI86"
+
+#: glade/device-2.str:31
+msgid "TI89"
+msgstr "TI89"
+
+#: glade/device-2.str:32
+msgid "TI89 Titanium"
+msgstr "Titanium"
+
+#: glade/device-2.str:33
+msgid "TI92"
+msgstr "TI92"
+
+#: glade/device-2.str:34
+msgid "TI92+"
+msgstr "TI92+"
+
+#: glade/device-2.str:35
+msgid "V200PLT"
+msgstr "V200PLT"
+
+#: glade/device-2.str:36
+msgid "Settings"
+msgstr "Configuration"
 
 #: glade/device-2.str:37
 msgid "Have a problem ? Check out the log:"
@@ -1758,15 +1701,3 @@ msgstr "variables en FLASH"
 #: glade/user_boxes-2.str:12
 msgid "apps"
 msgstr "applications"
-
-#~ msgid "New _folder"
-#~ msgstr "_Nouveau dossier"
-
-#~ msgid "Refresh file informations"
-#~ msgstr "Rafraîchir informations fichier"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Rafraîchir"
-
-#~ msgid "Cannot find the manpage file."
-#~ msgstr "Impossible de trouver la page de manuel."
