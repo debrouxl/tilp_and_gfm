@@ -104,9 +104,9 @@ Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environmen
 
 ; Register GFM in the shell
 Root: HKCR; SubKey: "GFM.TIxx.file"; ValueType: string; ValueData: "TI73..V200 file"
-Root: HKCR; Subkey: "GFM.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\tilp.exe,0"
+Root: HKCR; Subkey: "GFM.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\gfm.exe,0"
 Root: HKCR; Subkey: "GFM.TIxx.file\shell\open";  ValueType: string; ValueData: "Open with &GFM"
-Root: HKCR; Subkey: "GFM.TIxx.file\shell\open\command"; ValueType: string; ValueData: """{app}\tilp.exe"" ""%1"""
+Root: HKCR; Subkey: "GFM.TIxx.file\shell\open\command"; ValueType: string; ValueData: """{app}\gfm.exe"" ""%1"""
 
 ; TiGroup entries
 Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "GFM.TiGroup"; Tasks: tifiles;
@@ -312,157 +312,157 @@ Root: HKCR; SubKey: ".73?"; ValueType: string;  ValueData: "GFM.Unknown"; Tasks:
 Root: HKCR; Subkey: "GFM.Application"; ValueType: string; ValueName: ""; ValueData: "Application"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Application\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Application.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Application\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Application\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Application\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.App_Variable"; ValueType: string; ValueName: ""; ValueData: "App_Variable"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.App_Variable\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Application.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.App_Variable\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.App_Variable\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.App_Variable\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Asm_Program"; ValueType: string; ValueName: ""; ValueData: "Asm_Program"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Asm_Program\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Asm_Program.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Asm_Program\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Asm_Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Asm_Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Backup"; ValueType: string; ValueName: ""; ValueData: "Backup"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Backup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Backup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Backup\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Backup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Backup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Certificate"; ValueType: string; ValueName: ""; ValueData: "Certificate"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Certificate\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Certificate.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Certificate\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Certificate\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Certificate\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Complex"; ValueType: string; ValueName: ""; ValueData: "Complex"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Complex\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Complex.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Complex\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Complex\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Complex\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Constant"; ValueType: string; ValueName: ""; ValueData: "Constant"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Constant\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Constant.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Constant\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Constant\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Constant\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Data"; ValueType: string; ValueName: ""; ValueData: "Data"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Data\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Data.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Data\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Data\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Data\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Equation"; ValueType: string; ValueName: ""; ValueData: "Equation"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Equation\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Equation.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Equation\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Equation\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Equation\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Expression"; ValueType: string; ValueName: ""; ValueData: "Expression"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Expression\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Expression.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Expression\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Expression\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Expression\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Figure"; ValueType: string; ValueName: ""; ValueData: "Figure"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Figure\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Figure.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Figure\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Figure\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Figure\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Function"; ValueType: string; ValueName: ""; ValueData: "Function"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Function\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Function.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Function\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Function\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Function\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.GDB"; ValueType: string; ValueName: ""; ValueData: "Graphic Data Base"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.GDB\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\GDB.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.GDB\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.GDB\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.GDB\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Group"; ValueType: string; ValueName: ""; ValueData: "Group"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Group\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Group.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Group\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Group\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Group\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.List"; ValueType: string; ValueName: ""; ValueData: "List"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.List\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\List.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.List\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.List\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.List\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Macro"; ValueType: string; ValueName: ""; ValueData: "Macro"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Macro\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Macro.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Macro\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Macro\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Macro\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Matrix"; ValueType: string; ValueName: ""; ValueData: "Matrix"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Matrix\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Matrix.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Matrix\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Matrix\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Matrix\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.OS_Upgrade"; ValueType: string; ValueName: ""; ValueData: "OS_Upgrade"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.OS_Upgrade\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\OS_Upgrade.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.OS_Upgrade\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.OS_Upgrade\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.OS_Upgrade\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Picture"; ValueType: string; ValueName: ""; ValueData: "Picture"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Picture\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Picture.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Picture\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Picture\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Picture\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Program"; ValueType: string; ValueName: ""; ValueData: "Program"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Program\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Program.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Program\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Program\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Range"; ValueType: string; ValueName: ""; ValueData: "Range"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Range\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Range.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Range\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Range\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Range\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Real"; ValueType: string; ValueName: ""; ValueData: "Real"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Real\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Real.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Real\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Real\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Real\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.String"; ValueType: string; ValueName: ""; ValueData: "String"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.String\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\String.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.String\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.String\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.String\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Table_Setup"; ValueType: string; ValueName: ""; ValueData: "Table_Setup"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Table_Setup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Table_Setup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Table_Setup\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Table_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Table_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Text"; ValueType: string; ValueName: ""; ValueData: "Text"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Text\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Text.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Text\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Text\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Text\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Unknown"; ValueType: string; ValueName: ""; ValueData: "Unknown"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Unknown\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Unknown.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Unknown\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Unknown\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Unknown\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Vector"; ValueType: string; ValueName: ""; ValueData: "Vector"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Vector\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Vector.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Vector\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Vector\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Vector\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Window_Setup"; ValueType: string; ValueName: ""; ValueData: "Window_Setup"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Window_Setup\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Window_Setup.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Window_Setup\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Window_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Window_Setup\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Y_Var"; ValueType: string; ValueName: ""; ValueData: "Y_Var"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Y_Var\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Equation.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Y_Var\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Y_Var\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Y_Var\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Zipped"; ValueType: string; ValueName: ""; ValueData: "Zipped"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Zipped\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Zipped.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Zipped\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Zipped\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Zipped\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "GFM.Zoom"; ValueType: string; ValueName: ""; ValueData: "Zoom"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Zoom\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Zoom.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Zoom\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
-Root: HKCR; Subkey: "GFM.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+Root: HKCR; Subkey: "GFM.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
 [UninstallDelete]
 Type: files; Name: "{app}\gfm.url"
