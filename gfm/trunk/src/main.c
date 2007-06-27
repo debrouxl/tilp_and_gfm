@@ -41,17 +41,20 @@ int main(int argc, char *argv[])
 {
     static gchar *icon_dir;
 
+    /* Initialize GFM */
+    paths_init();
+
     /* Init i18n support */
 #ifdef ENABLE_NLS
-    setlocale(LC_ALL, "");
-    bindtextdomain(PACKAGE, inst_paths.locale_dir);
+    fprintf(stdout, "setlocale: %s\n", setlocale(LC_ALL, ""));
+    fprintf(stdout, "bindtextdomain: %s\n", 
+	    bindtextdomain(PACKAGE, inst_paths.locale_dir));
     bind_textdomain_codeset(PACKAGE, "UTF-8");
-    textdomain(PACKAGE);
+    fprintf(stdout, "textdomain: %s\n", textdomain(PACKAGE));
 #endif
 
-    /* Initialize Group File Manager */
+    /* Scan command line */
     cmdline_scan(&argc, &argv);
-    paths_init();
 
     /* Load GTK */
     gtk_init(&argc, &argv); // Loadup GTK+

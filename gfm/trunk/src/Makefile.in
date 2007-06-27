@@ -44,7 +44,7 @@ am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
@@ -241,14 +241,12 @@ target_alias = @target_alias@
 AM_CFLAGS = -Wall -W
 
 # build instructions
-gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ \
+gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
-	-DSHARE_DIR=\"$(pkgdatadir)\"
+	-DSHARE_DIR=\"$(pkgdatadir)\" \
+	-I$(top_srcdir)/intl \
+	-DLOCALEDIR=\"$(datadir)/locale\"
 
-#	-I$(top_srcdir)/intl \
-#	-DLOCALEDIR=\"$(datadir)/locale\" \
-#	-DSYSCONFDIR=\"$(sysconfdir)\" \
-#	-DGTK_DISABLE_DEPRECATED
 gfm_LDFLAGS = -export-dynamic
 gfm_LDADD = \
 	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \

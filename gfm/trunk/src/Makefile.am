@@ -6,13 +6,11 @@ AM_CFLAGS = -Wall -W
 bin_PROGRAMS = gfm
 
 # build instructions
-gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ \
+gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
-	-DSHARE_DIR=\"$(pkgdatadir)\"
-#	-I$(top_srcdir)/intl \
-#	-DLOCALEDIR=\"$(datadir)/locale\" \
-#	-DSYSCONFDIR=\"$(sysconfdir)\" \
-#	-DGTK_DISABLE_DEPRECATED
+	-DSHARE_DIR=\"$(pkgdatadir)\" \
+	-I$(top_srcdir)/intl \
+	-DLOCALEDIR=\"$(datadir)/locale\"
 
 gfm_LDFLAGS = -export-dynamic
 
