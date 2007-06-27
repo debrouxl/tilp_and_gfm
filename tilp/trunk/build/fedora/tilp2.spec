@@ -7,7 +7,7 @@ Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
 Source: %{name}-%{version}.tar.bz2
 Group: Applications/Communications
 License: GPL
-BuildRequires: libticables2-devel >= 1:1.0.6, libticonv-devel >= 1:1.0.3, libtifiles2-devel >= 1:1.0.7, libticalcs2-devel >= 1:1.0.7, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.4.0, zlib-devel, kdelibs-devel >= 6:3.0, desktop-file-utils >= 0.10
+BuildRequires: libticables2-devel >= 1:1.0.6, libticonv-devel >= 1:1.0.4, libtifiles2-devel >= 1:1.0.7, libticalcs2-devel >= 1:1.0.7, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.4.0, zlib-devel, kdelibs-devel >= 6:3.0, desktop-file-utils >= 0.10
 Requires: xdg-utils >= 1.0.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Summary: TiLP is a TI<->PC linking program
@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
-* Sun Jun 24 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.06
+* Wed Jun 27 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.06
 Update to 1.06.
 Update tilibs BuildRequires.
 
