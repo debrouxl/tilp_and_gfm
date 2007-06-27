@@ -40,6 +40,7 @@ typedef struct
         gchar *glade_dir;	// Directory with Glade Files
         gchar *tmp_dir;		// Temporary File Directory
         gchar *home_dir;	// Home Directory
+        gchar *locale_dir;      // Translations Directory
 } GFMInstPaths;
 
 // Lets Prototype the Structure

@@ -41,6 +41,14 @@ int main(int argc, char *argv[])
 {
     static gchar *icon_dir;
 
+    /* Init i18n support */
+#ifdef ENABLE_NLS
+    setlocale(LC_ALL, "");
+    bindtextdomain(PACKAGE, inst_paths.locale_dir);
+    bind_textdomain_codeset(PACKAGE, "UTF-8");
+    textdomain(PACKAGE);
+#endif
+
     /* Initialize Group File Manager */
     cmdline_scan(&argc, &argv);
     paths_init();

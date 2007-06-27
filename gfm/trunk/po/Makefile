@@ -29,7 +29,7 @@ gettextsrcdir = $(datadir)/gettext/po
 
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
-MKINSTALLDIRS = @MKINSTALLDIRS@
+MKINSTALLDIRS = ../mkinstalldirs
 mkinstalldirs = $(SHELL) $(MKINSTALLDIRS)
 
 GMSGFMT = /usr/bin/msgfmt

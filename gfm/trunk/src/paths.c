@@ -41,7 +41,8 @@ GFMInstPaths inst_paths =
     "\\pixmaps",
     "\\glade",
     NULL,
-    NULL
+    NULL,
+    "\\locale",
 };
 
 /* GFM Installation Paths Initialization */
@@ -90,6 +91,14 @@ int paths_init(void)
 	inst_paths.glade_dir = g_strconcat(inst_paths.base_dir, "glade", G_DIR_SEPARATOR_S, NULL);
 	inst_paths.tmp_dir = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, NULL);
 	inst_paths.home_dir = g_strconcat(g_get_user_data_dir(), G_DIR_SEPARATOR_S, NULL);
+#ifdef ENABLE_NLS
+#ifndef __WIN32__
+	inst_paths.locale_dir = g_strconcat(LOCALEDIR, "/", NULL);
+#else
+	inst_paths.locale_dir = g_strconcat(inst_paths.base_dir, "locale\\",
+					    NULL);
+#endif
+#endif
 
   // Return
   return 0;

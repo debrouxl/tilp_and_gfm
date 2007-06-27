@@ -46,6 +46,11 @@
 #  define N_(String) (String)
 #endif
 
+#if defined(__WIN32__) && !defined(__MINGW32__)
+# undef PACKAGE
+# define PACKAGE   "gfm"
+# define LOCALEDIR ""
+#endif
 
 /*
  * Public Functions.
