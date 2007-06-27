@@ -112,7 +112,7 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	CalcModel model;
 	int result;
 	
-	result = msgbox_three("TiGroup", "Single/Group", "File type?");
+	result = msgbox_three(_("TiGroup"), _("Single/Group"), _("File type?"));
 	if(!result)
 		return;
 
@@ -416,7 +416,7 @@ on_group_clicked                       (GtkButton       *button,
 	int result;
 	char **array;
 	
-	result = msgbox_three("TiGroup", "Single/Group", "File type?");
+	result = msgbox_three(_("TiGroup"), _("Single/Group"), _("File type?"));
 	if(!result)
 		return;
 

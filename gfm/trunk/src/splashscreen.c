@@ -79,7 +79,7 @@ void splash_screen_start(void)
      gtk_widget_show(vbox);
 
      // Set the Text Label
-     splashscreen.text = gtk_label_new("Starting Group File Manager...");
+     splashscreen.text = gtk_label_new(_("Starting Group File Manager..."));
      gtk_box_pack_end(GTK_BOX(vbox), splashscreen.text, FALSE, FALSE, 0);
      gtk_widget_show(splashscreen.text);
 

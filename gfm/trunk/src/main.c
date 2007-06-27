@@ -46,11 +46,11 @@ int main(int argc, char *argv[])
 
     /* Init i18n support */
 #ifdef ENABLE_NLS
-    fprintf(stdout, "setlocale: %s\n", setlocale(LC_ALL, ""));
-    fprintf(stdout, "bindtextdomain: %s\n", 
+    g_message("setlocale: %s\n", setlocale(LC_ALL, ""));
+    g_message("bindtextdomain: %s\n", 
 	    bindtextdomain(PACKAGE, inst_paths.locale_dir));
     bind_textdomain_codeset(PACKAGE, "UTF-8");
-    fprintf(stdout, "textdomain: %s\n", textdomain(PACKAGE));
+    g_message("textdomain: %s\n", textdomain(PACKAGE));
 #endif
 
     /* Scan command line */
@@ -67,15 +67,15 @@ int main(int argc, char *argv[])
     splash_screen_start();
 
     /* Checking for GUI Files */
-    splash_screen_message("Checking for GUI files...");
+    splash_screen_message(_("Checking for GUI files..."));
     glade_files_check();
 
     /* Load tilibs2 */
-    splash_screen_message("Loading tilibs2...");
+    splash_screen_message(_("Loading tilibs2..."));
     load_tilibs(); // Load tilibs
 
     /* Launching GUI */
-    splash_screen_message("Launching GUI...");
+    splash_screen_message(_("Launching GUI..."));
     launch_gfmgui();
     splash_screen_delete(); // Delete Splash Screen
 

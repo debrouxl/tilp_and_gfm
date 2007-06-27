@@ -49,7 +49,7 @@ Source: "C:\sources\roms\gfm\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ig
 Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
 Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
 Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
-;Source: "C:\sources\roms\gfm\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "gfm.mo"; Flags: ignoreversion;
+Source: "C:\sources\roms\gfm\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "gfm.mo"; Flags: ignoreversion;
 
 ; Misc files
 Source: "C:\sources\roms\gfm\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion

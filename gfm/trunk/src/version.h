@@ -22,12 +22,13 @@
 #define __GFMVERSION_H__
 
 /* TiLibs2 version dependencies */
-#define LIBTICONV_REQUIRE_VERSION "0.0.5"
-#define LIBTIFILES2_REQUIRE_VERSION "1.0.0"
+#define LIBTICONV_REQUIRE_VERSION	"1.0.4"
+#define LIBTIFILES2_REQUIRE_VERSION "1.0.7"
+#define LIBTICALCS2_REQUIRE_VERSION "1.0.7"
 
 /* Group File Manager Version */
 #ifdef __WIN32__
-# define GFM_VERSION "0.03"
+# define GFM_VERSION "1.00"
 #else
 # define GFM_VERSION VERSION
 #endif
