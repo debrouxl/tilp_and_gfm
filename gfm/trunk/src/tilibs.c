@@ -73,6 +73,7 @@ int load_tilibs(void)
 
   // Load libtifiles2
   tifiles_library_init();
+  ticalcs_library_init();
 	
   // Return
   return 0;
