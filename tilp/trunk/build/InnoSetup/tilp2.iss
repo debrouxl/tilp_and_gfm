@@ -19,6 +19,25 @@ LicenseFile=C:\sources\roms\tilp2\COPYING
 InfoBeforeFile=C:\sources\roms\tilp2\README.win32
 InfoAfterFile=C:\sources\roms\tilp2\RELEASE
 
+;--- Shared Stuffs ---
+[Files]
+Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+
+Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
+
+Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
+Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
+
+[Registry]
+Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
+Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPath"; ValueData: "{cf}\LPG Shared\libs"
+;--- End of Shared Stuffs ---
+
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
 Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
@@ -52,9 +71,6 @@ Source: "C:\sources\roms\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; Dest
 Source: "C:\sources\roms\tilp2\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
 Source: "C:\sources\roms\tilp2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
@@ -66,11 +82,7 @@ Source: "C:\sources\roms\tilp2\man\ManPage.txt"; DestDir: "{app}"; Flags: ignore
 Source: "C:\sources\roms\tilp2\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
 Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
 
-; TiLP/GTK
-Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{app}"; Flags: ignoreversion
+; Binaries
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 ; Copy PortTalk driver for Windows NT4/2000/XP
@@ -96,9 +108,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\dri
 
 ; GTK+ specific
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
-;libglade/libxml add-on (ignore since no version checking is possible)
-Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
-Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 
 ; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
@@ -511,6 +520,11 @@ Root: HKCR; Subkey: "TiLP.Zoom\DefaultIcon"; ValueType: string; ValueName: ""; V
 Root: HKCR; Subkey: "TiLP.Zoom\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
 
+; Add LPG libraries to the gfm's path
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueData: "{app}\tilp.exe"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetLpgDllPath}"; Flags: uninsdeletevalue;
+
 [UninstallDelete]
 Type: files; Name: "{app}\tilp2.url"
 Type: files; Name: "{app}\gfm.url"
@@ -523,6 +537,7 @@ var
   GtkPath: String;
   WimpPath: String;
   GtkVersion: String;
+  LpgPath: String;
 
 function GetGtkInstalled (): Boolean;
 begin
@@ -542,14 +557,13 @@ begin
    Result := Exists
 end;
 
-function GetGtkPath (S: String): String;
+function GetLpgDllPath (S: String): String;
 begin
-    Result := GtkPath;
-end;
-
-function GetGtkVersion (S: String): String;
-begin
-    Result := GtkVersion;
+  Exists := RegQueryStringValue (HKLM, 'Software\LPG Shared', 'DllPath', LpgPath);
+  if not Exists then begin
+    Exists := RegQueryStringValue (HKCU, 'Software\LPG Shared', 'DllPath', LpgPath);
+  end;
+  Result := LpgPath;
 end;
 
 function IsTiglUsbVersion3Mini (): Boolean;
