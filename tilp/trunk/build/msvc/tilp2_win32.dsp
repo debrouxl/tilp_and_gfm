@@ -98,7 +98,7 @@ SOURCE=.\tilp.ico
 # End Source File
 # Begin Source File
 
-SOURCE=.\Tilp.rc
+SOURCE=..\mingw\tilp.rc
 # End Source File
 # Begin Source File
 
