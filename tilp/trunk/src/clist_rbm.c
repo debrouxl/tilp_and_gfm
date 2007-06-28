@@ -212,11 +212,37 @@ GLADE_CB void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
 	gtk_tree_selection_unselect_all(sel);
 }
 
+static const char* get_gfm_path(void)
+{
+	HKEY hKey;
+	static char szKeyBuf[1024];
+	long lResult;
+	DWORD dwType, cbData;
+	gchar *str = NULL;
+
+	// Create and open key and subkey.
+	lResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\gfm.exe", 
+		0, KEY_READ, &hKey);
+	if(lResult != ERROR_SUCCESS)
+		return NULL;
+
+	// Get value of key
+	cbData = sizeof(szKeyBuf);
+	lResult = RegQueryValueEx(hKey, NULL, 0, &dwType, szKeyBuf, &cbData);
+	if(lResult != ERROR_SUCCESS)
+		return NULL;
+	
+	// Close key
+	RegCloseKey(hKey);
+
+	return szKeyBuf;
+}
+
 GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
 									gpointer user_data)
 {
 #ifdef __WIN32__
-	const char *app_path = "C:\\Program Files\\GFM\\gfm.exe";
+	const char *app_path = get_gfm_path();
 #else
 	const char *app_path1 = "/usr/bin/gfm";
 	const char *app_path2 = "/usr/local/bin/gfm";
