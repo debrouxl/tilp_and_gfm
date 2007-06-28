@@ -254,11 +254,11 @@ SOURCE=..\..\src\version.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\gfm.ico
+SOURCE=..\mingw\gfm.ico
 # End Source File
 # Begin Source File
 
-SOURCE=.\gfm.rc
+SOURCE=..\mingw\gfm.rc
 # End Source File
 # End Group
 # Begin Source File
