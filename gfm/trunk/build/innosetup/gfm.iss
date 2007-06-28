@@ -3,7 +3,7 @@
 ;
 ; (c) Copyright 2001-2007, the GFM team
 ;
-; $Id: tilp2.iss 3395 2007-06-09 20:38:21Z roms $
+; $Id: gfm.iss 3395 2007-06-09 20:38:21Z roms $
 
 [Setup]
 AppName=GFM
@@ -18,6 +18,25 @@ AllowNoIcons=yes
 LicenseFile=C:\sources\roms\gfm\COPYING
 InfoBeforeFile=C:\sources\roms\gfm\README
 InfoAfterFile=C:\sources\roms\gfm\ChangeLog
+
+;--- Shared Stuffs ---
+[Files]
+Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+
+Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
+
+Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
+Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
+
+[Registry]
+Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
+Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPath"; ValueData: "{cf}\LPG Shared\libs"
+;--- End of Shared Stuffs ---
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
@@ -46,9 +65,6 @@ Source: "C:\sources\roms\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestNa
 Source: "C:\sources\roms\gfm\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion;
-Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion;
 Source: "C:\sources\roms\gfm\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "gfm.mo"; Flags: ignoreversion;
 
 ; Misc files
@@ -59,17 +75,10 @@ Source: "C:\sources\roms\gfm\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreve
 Source: "C:\sources\roms\gfm\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
 
 ; Binaries
-Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\sources\roms\gfm\build\msvc\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
 
 ; GTK+ specific
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
-;libglade/libxml add-on (ignore since no version checking is possible)
-Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
-Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{app}"; Flags: onlyifdoesntexist;
 
 ; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
@@ -80,19 +89,17 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 
 [INI]
-Filename: "{app}\gfm.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_tilp"
+Filename: "{app}\gfm.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://lpg.ticalc.org/prj_gfm"
 
 [Icons]
-Name: "{group}\GFM"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"
+Name: "{group}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"
 Name: "{group}\GFM on the Web"; Filename: "{app}\gfm.url"
 Name: "{group}\Uninstall GFM"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
 Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
-Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
-Name: "{group}\USB driver installation"; Filename: "{app}\help\usb_driver.html";
 
-Name: "{userdesktop}\GFM"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GFM-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
+Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GFM-2"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
 Filename: "{app}\gfm.exe"; Description: "Launch GFM"; StatusMsg: "Running GFM..."; Flags: postinstall nowait unchecked
@@ -464,6 +471,11 @@ Root: HKCR; Subkey: "GFM.Zoom\DefaultIcon"; ValueType: string; ValueName: ""; Va
 Root: HKCR; Subkey: "GFM.Zoom\shell\open";  ValueType: string; ValueData: "Open with &GFM"; Tasks: tifiles;
 Root: HKCR; Subkey: "GFM.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\gfm.exe"" ""%1"""; Tasks: tifiles;
 
+; Add LPG libraries to the gfm's path
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\gfm.exe"; Flags: uninsdeletekeyifempty
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\gfm.exe"; ValueType: string; ValueData: "{app}\gfm.exe"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\gfm.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetLpgDllPath}"; Flags: uninsdeletevalue;
+
 [UninstallDelete]
 Type: files; Name: "{app}\gfm.url"
 
@@ -475,6 +487,7 @@ var
   GtkPath: String;
   WimpPath: String;
   GtkVersion: String;
+  LpgPath: string;
 
 function GetGtkInstalled (): Boolean;
 begin
@@ -494,14 +507,13 @@ begin
    Result := Exists
 end;
 
-function GetGtkPath (S: String): String;
+function GetLpgDllPath (S: String): String;
 begin
-    Result := GtkPath;
-end;
-
-function GetGtkVersion (S: String): String;
-begin
-    Result := GtkVersion;
+  Exists := RegQueryStringValue (HKLM, 'Software\LPG Shared', 'DllPath', LpgPath);
+  if not Exists then begin
+    Exists := RegQueryStringValue (HKCU, 'Software\LPG Shared', 'DllPath', LpgPath);
+  end;
+  Result := LpgPath;
 end;
 
 function IsTiglUsbVersion3Mini (): Boolean;
