@@ -36,3 +36,8 @@ gfm_SOURCES = \
 	support.c \
 	tilibs.c \
 	ungroup.c
+
+if OS_WIN32
+  gfm_DEPENDENCIES = ../build/mingw/gfm-rc.o
+  gfm_LDFLAGS += -Wl,../build/mingw/gfm-rc.o
+endif

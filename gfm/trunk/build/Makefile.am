@@ -1,1 +1,2 @@
-#EXTRA_DIST = mingw devcpp
+SUBDIRS = mingw
+EXTRA_DIST = innosetup mingw msvc
