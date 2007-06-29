@@ -212,6 +212,7 @@ GLADE_CB void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
 	gtk_tree_selection_unselect_all(sel);
 }
 
+#ifdef __WIN32__
 static const char* get_gfm_path(void)
 {
 	HKEY hKey;
@@ -237,6 +238,7 @@ static const char* get_gfm_path(void)
 
 	return szKeyBuf;
 }
+#endif
 
 GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
 									gpointer user_data)
