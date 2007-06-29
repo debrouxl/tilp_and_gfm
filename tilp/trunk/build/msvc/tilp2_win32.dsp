@@ -94,7 +94,7 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\tilp.ico
+SOURCE=..\mingw\tilp.ico
 # End Source File
 # Begin Source File
 

@@ -350,7 +350,7 @@ SOURCE=..\..\src\tilp_struct.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=.\tilp.ico
+SOURCE=..\mingw\tilp.ico
 # End Source File
 # Begin Source File
 
