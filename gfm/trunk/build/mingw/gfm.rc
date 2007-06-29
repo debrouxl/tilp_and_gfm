@@ -39,7 +39,7 @@ BEGIN
             VALUE "LegalCopyright", "Copyright © 1999-2003, Romain Liévin\0"
             VALUE "LegalTrademarks", "The gfm Team\0"
             VALUE "OriginalFilename", "gfm.exe\0"
-            VALUE "PrivateBuild", "$Id: gfm.rc 2748 2006-08-20 20:57:40Z roms $\0"
+            VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "TI link cable software for Linux, Windows9x/NT4/2000, Mac OS-X and FreeBSD.\0"
             VALUE "ProductVersion", "0, 0, 0, 1\0"
             VALUE "SpecialBuild", "Windows 9x/Me, NT4/2000/XP version\0"
