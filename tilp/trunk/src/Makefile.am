@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-AM_CFLAGS = -Wall #-Wno-pointer-sign
+AM_CFLAGS = -Wall
 
 #ifneq (,$(findstring __WIN32__,$(CFLAGS)))
 #	@LDFLAGS@ += -lcomdlg32
@@ -35,6 +35,11 @@ tilp_SOURCES = *.h \
 	gtk_gif.c gtk_update.c labels.c manpage.c options.c pbars.c \
 	release.c screenshot.c scroptions.c splash.c support.c \
 	toolbar.c fileprop.c
+
+if OS_WIN32
+  tilp_DEPENDENCIES = ../build/mingw/tilp-rc.o
+  tilp_LDFLAGS += -Wl,../build/mingw/tilp-rc.o
+endif
 
 if USE_KDE
 tilp_SOURCES += kde.cpp

@@ -37,7 +37,9 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = tilp$(EXEEXT)
-@USE_KDE_TRUE@am__append_1 = kde.cpp
+@OS_WIN32_FALSE@tilp_DEPENDENCIES =
+@OS_WIN32_TRUE@am__append_1 = -Wl,../build/mingw/tilp-rc.o
+@USE_KDE_TRUE@am__append_2 = kde.cpp
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -85,7 +87,6 @@ am_tilp_OBJECTS = tilp-tilp_calcs.$(OBJEXT) \
 	$(am__objects_1)
 @USE_KDE_TRUE@nodist_tilp_OBJECTS = tilp-kde-private.$(OBJEXT)
 tilp_OBJECTS = $(am_tilp_OBJECTS) $(nodist_tilp_OBJECTS)
-tilp_DEPENDENCIES =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -240,6 +241,8 @@ MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
+OS_WIN32_FALSE = @OS_WIN32_FALSE@
+OS_WIN32_TRUE = @OS_WIN32_TRUE@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -360,7 +363,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
-AM_CFLAGS = -Wall #-Wno-pointer-sign
+AM_CFLAGS = -Wall
 
 # build instructions
 tilp_CPPFLAGS = -I$(top_srcdir)/intl \
@@ -372,7 +375,7 @@ tilp_CPPFLAGS = -I$(top_srcdir)/intl \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
 	-DGTK_DISABLE_DEPRECATED
 
-tilp_LDFLAGS = -export-dynamic
+tilp_LDFLAGS = -export-dynamic $(am__append_1)
 tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ @TICONV_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
 	@LIB_KDECORE@ @LIB_KDEUI@ @LIB_KIO@ @LIB_QT@ @KDE_LDFLAGS@ \
@@ -387,7 +390,8 @@ tilp_SOURCES = *.h tilp_calcs.c tilp_cmdline.c tilp_config.c \
 	ctree_rbm.c dboxes.c device.c dnd.c filesel.c gtk_gif.c \
 	gtk_update.c labels.c manpage.c options.c pbars.c release.c \
 	screenshot.c scroptions.c splash.c support.c toolbar.c \
-	fileprop.c $(am__append_1)
+	fileprop.c $(am__append_2)
+@OS_WIN32_TRUE@tilp_DEPENDENCIES = ../build/mingw/tilp-rc.o
 @USE_KDE_TRUE@nodist_tilp_SOURCES = kde-private.cpp
 @USE_KDE_TRUE@CLEANFILES = kde-private.cpp
 @USE_KDE_FALSE@EXTRA_DIST = kde.cpp

@@ -1021,6 +1021,8 @@ LIB_KFM
 USE_KDE_TRUE
 USE_KDE_FALSE
 kde
+OS_WIN32_TRUE
+OS_WIN32_FALSE
 LTLIBOBJS'
 ac_subst_files=''
       ac_precious_vars='build_alias
@@ -4579,7 +4581,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 4582 "configure"' > conftest.$ac_ext
+  echo '#line 4584 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -7601,11 +7603,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7604: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7606: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7608: \$? = $ac_status" >&5
+   echo "$as_me:7610: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7869,11 +7871,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7872: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7874: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7876: \$? = $ac_status" >&5
+   echo "$as_me:7878: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7973,11 +7975,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7976: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7978: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7980: \$? = $ac_status" >&5
+   echo "$as_me:7982: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -10270,7 +10272,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10273 "configure"
+#line 10275 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10370,7 +10372,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10373 "configure"
+#line 10375 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12706,11 +12708,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12709: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12711: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:12713: \$? = $ac_status" >&5
+   echo "$as_me:12715: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12810,11 +12812,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12813: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12815: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12817: \$? = $ac_status" >&5
+   echo "$as_me:12819: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14371,11 +14373,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14374: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14376: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14378: \$? = $ac_status" >&5
+   echo "$as_me:14380: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14475,11 +14477,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14478: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14480: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14482: \$? = $ac_status" >&5
+   echo "$as_me:14484: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -16662,11 +16664,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16665: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16667: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16669: \$? = $ac_status" >&5
+   echo "$as_me:16671: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -16930,11 +16932,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:16933: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:16935: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:16937: \$? = $ac_status" >&5
+   echo "$as_me:16939: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -17034,11 +17036,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17037: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17039: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:17041: \$? = $ac_status" >&5
+   echo "$as_me:17043: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -29081,12 +29083,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_TICONV_CFLAGS="$TICONV_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.0.3\"") >&5
-  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.0.3") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.0.4\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.0.4") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_TICONV_CFLAGS=`$PKG_CONFIG --cflags "ticonv >= 1.0.3" 2>/dev/null`
+  pkg_cv_TICONV_CFLAGS=`$PKG_CONFIG --cflags "ticonv >= 1.0.4" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -29099,12 +29101,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_TICONV_LIBS="$TICONV_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.0.3\"") >&5
-  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.0.3") 2>&5
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.0.4\"") >&5
+  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.0.4") 2>&5
   ac_status=$?
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; then
-  pkg_cv_TICONV_LIBS=`$PKG_CONFIG --libs "ticonv >= 1.0.3" 2>/dev/null`
+  pkg_cv_TICONV_LIBS=`$PKG_CONFIG --libs "ticonv >= 1.0.4" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -29123,14 +29125,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        TICONV_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "ticonv >= 1.0.3"`
+	        TICONV_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "ticonv >= 1.0.4"`
         else
-	        TICONV_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticonv >= 1.0.3"`
+	        TICONV_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "ticonv >= 1.0.4"`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$TICONV_PKG_ERRORS" >&5
 
-	{ { echo "$as_me:$LINENO: error: Package requirements (ticonv >= 1.0.3) were not met:
+	{ { echo "$as_me:$LINENO: error: Package requirements (ticonv >= 1.0.4) were not met:
 
 $TICONV_PKG_ERRORS
 
@@ -29141,7 +29143,7 @@ Alternatively, you may set the environment variables TICONV_CFLAGS
 and TICONV_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " >&5
-echo "$as_me: error: Package requirements (ticonv >= 1.0.3) were not met:
+echo "$as_me: error: Package requirements (ticonv >= 1.0.4) were not met:
 
 $TICONV_PKG_ERRORS
 
@@ -36355,7 +36357,7 @@ for i in $jpeg_incdirs;
 do
   for j in jpeglib.h;
   do
-    echo "configure: 36358: $i/$j" >&5
+    echo "configure: 36360: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       jpeg_incdir=$i
@@ -36590,7 +36592,7 @@ for i in $qt_incdirs;
 do
   for j in $kde_qt_header;
   do
-    echo "configure: 36593: $i/$j" >&5
+    echo "configure: 36595: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       qt_incdir=$i
@@ -37380,7 +37382,7 @@ for i in $kde_incdirs;
 do
   for j in $kde_check_header;
   do
-    echo "configure: 37383: $i/$j" >&5
+    echo "configure: 37385: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_incdir=$i
@@ -37409,7 +37411,7 @@ for i in $kde_libdirs;
 do
   for j in $kde_check_lib;
   do
-    echo "configure: 37412: $i/$j" >&5
+    echo "configure: 37414: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_libdir=$i
@@ -38471,6 +38473,17 @@ echo "${ECHO_T}${msnative_struct}" >&6; }
   ;;
 esac
 
+
+
+if test "$msnative_struct"; then
+  OS_WIN32_TRUE=
+  OS_WIN32_FALSE='#'
+else
+  OS_WIN32_TRUE='#'
+  OS_WIN32_FALSE=
+fi
+
+
 # Check for the new -fvisibility=hidden flag introduced in gcc 4.0
 # Allow to reduce shared library size and avoid symbol clash
 case $host_os in
@@ -38685,6 +38698,13 @@ if test -z "${USE_KDE_TRUE}" && test -z "${USE_KDE_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"USE_KDE\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"USE_KDE\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${OS_WIN32_TRUE}" && test -z "${OS_WIN32_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"OS_WIN32\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"OS_WIN32\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -39568,10 +39588,12 @@ LIB_KFM!$LIB_KFM$ac_delim
 USE_KDE_TRUE!$USE_KDE_TRUE$ac_delim
 USE_KDE_FALSE!$USE_KDE_FALSE$ac_delim
 kde!$kde$ac_delim
+OS_WIN32_TRUE!$OS_WIN32_TRUE$ac_delim
+OS_WIN32_FALSE!$OS_WIN32_FALSE$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 57; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 59; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

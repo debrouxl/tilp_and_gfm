@@ -4,7 +4,7 @@
 SUBDIRS = build glade help icons intl pixmaps po src
 
 if USE_GROFF
-SUBDIRS += man
+  SUBDIRS += man
 endif
 
 dist_pkgdata_DATA = COPYING RELEASE
