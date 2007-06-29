@@ -2,10 +2,6 @@
 
 AM_CFLAGS = -Wall
 
-#ifneq (,$(findstring __WIN32__,$(CFLAGS)))
-#	@LDFLAGS@ += -lcomdlg32
-#endif
-
 # programs and files to compile and install
 bin_PROGRAMS = tilp
 
@@ -42,14 +38,14 @@ if OS_WIN32
 endif
 
 if USE_KDE
-tilp_SOURCES += kde.cpp
-nodist_tilp_SOURCES = kde-private.cpp
-CLEANFILES = kde-private.cpp
+  tilp_SOURCES += kde.cpp
+  nodist_tilp_SOURCES = kde-private.cpp
+  CLEANFILES = kde-private.cpp
 
-kde-private.cpp: kde-private.h
-	@MOC@ kde-private.h -o kde-private.cpp
+  kde-private.cpp: kde-private.h
+	  @MOC@ kde-private.h -o kde-private.cpp
 else
-EXTRA_DIST = kde.cpp
+  EXTRA_DIST = kde.cpp
 endif
 
 dos2unix:
