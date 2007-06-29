@@ -39,7 +39,7 @@ BEGIN
             VALUE "LegalCopyright", "Copyright © 1999-2007, Romain Liévin\0"
             VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "tilp.exe\0"
-            VALUE "PrivateBuild", "$Id: Tilp.rc 3474 2007-06-24 14:57:56Z roms $\0"
+            VALUE "PrivateBuild", ""
             VALUE "ProductName", "TiLP-2\0"
             VALUE "ProductVersion", "1, 0, 6, 0\0"
             VALUE "SpecialBuild", "Windows 9x/Me, NT4/2000/XP version\0"
