@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*  TiLP - Tilp Is a Linking Program
- *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 1999-2007  Romain Lievin
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #include <glade/glade.h>
 #ifdef __WIN32__
 #include <direct.h>     // _getdrive
+#include <windows.h>
 #endif
 
 #include "support.h"
