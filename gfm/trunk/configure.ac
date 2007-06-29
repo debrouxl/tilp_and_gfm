@@ -124,6 +124,8 @@ code])
   ;;
 esac
 
+AM_CONDITIONAL(OS_WIN32, test "$msnative_struct")
+
 # Check for the new -fvisibility=hidden flag introduced in gcc 4.0
 # Allow to reduce shared library size and avoid symbol clash
 case $host_os in

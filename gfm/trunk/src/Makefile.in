@@ -37,6 +37,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = gfm$(EXEEXT)
+@OS_WIN32_FALSE@gfm_DEPENDENCIES =
+@OS_WIN32_TRUE@am__append_1 = -Wl,../build/mingw/gfm-rc.o
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -57,7 +59,6 @@ am_gfm_OBJECTS = gfm-cmdline.$(OBJEXT) gfm-ctree.$(OBJEXT) \
 	gfm-splashscreen.$(OBJEXT) gfm-support.$(OBJEXT) \
 	gfm-tilibs.$(OBJEXT) gfm-ungroup.$(OBJEXT)
 gfm_OBJECTS = $(am_gfm_OBJECTS)
-gfm_DEPENDENCIES =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -163,6 +164,8 @@ MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
+OS_WIN32_FALSE = @OS_WIN32_FALSE@
+OS_WIN32_TRUE = @OS_WIN32_TRUE@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -247,7 +250,7 @@ gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 	-I$(top_srcdir)/intl \
 	-DLOCALEDIR=\"$(datadir)/locale\"
 
-gfm_LDFLAGS = -export-dynamic
+gfm_LDFLAGS = -export-dynamic $(am__append_1)
 gfm_LDADD = \
 	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@
@@ -272,6 +275,7 @@ gfm_SOURCES = \
 	tilibs.c \
 	ungroup.c
 
+@OS_WIN32_TRUE@gfm_DEPENDENCIES = ../build/mingw/gfm-rc.o
 all: all-am
 
 .SUFFIXES:
