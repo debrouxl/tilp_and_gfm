@@ -45,10 +45,10 @@ open your C:\Program Files\Shared Files\Gtk\2.0\etc\gtk-2.0\gtkrc and to add thi
 This forces GTK+ to use a compatible font (Arial) and reportedly fixes both
 the aforementioned problems, and probably others too.
 
-3°) If you are getting some errors with DLLs like 
-"The procedure entry point atk_relation_set_add_relation_by_type", be sure
-you have one and just _one_ version of GTK+ DLLs. If unsure, remove any
-packages and install it again.
+3°) If you are getting any errors with DLLs, such as "The procedure entry point
+atk_relation_set_add_relation_by_type could not be located in the dynamic link
+library libatk-1.0-0.dll", make sure you have one and only ONE version of the
+GTK+ DLLs. If unsure, remove all GTK+ packages and install it again.
 
 4°) This setup will copy the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb):
 it is now provided with TiLP and available in the 'slvdrv98' or 'slvdrvXP' folder.
