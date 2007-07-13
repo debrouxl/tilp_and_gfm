@@ -3,7 +3,7 @@
 
 
 Old     version:  1.04 (14/05/2007)
-Current version:  1.06 (26/06/2007)
+Current version:  1.06 (??/07/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -38,6 +38,8 @@ Bug fixes:
 
 	- variable existence checking in action box
 	- TiGroup files correctly handled with TI84+/USB
+	- *nix compile fix: fixed KDE path detection for multilib systems with
+	                    both 32-bit and 64-bit libraries installed
 
 
 Known bugs:

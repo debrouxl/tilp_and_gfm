@@ -3,7 +3,7 @@
 dnl    This file is part of the KDE libraries/packages
 dnl    Copyright (C) 1997 Janos Farkas (chexum@shadow.banki.hu)
 dnl              (C) 1997,98,99 Stephan Kulow (coolo@kde.org)
-dnl    Patches for TiEmu Copyright (C) 2005-2006 Kevin Kofler
+dnl    Patches for TiEmu Copyright (C) 2005-2007 Kevin Kofler
 
 dnl    This file is free software; you can redistribute it and/or
 dnl    modify it under the terms of the GNU Library General Public
@@ -1538,7 +1538,7 @@ if test -z "$1"; then
 
 test -n "$KDEDIR" || KDEDIR=`kde-config --prefix`
 kde_incdirs="$KDEDIR/include/kde3 $KDEDIR/include/kde $KDEDIR/include"
-kde_incdirs="$ac_kde_includes $kde_incdirs"
+kde_incdirs="$kde_incdirs $ac_kde_includes"
 AC_FIND_FILE($kde_check_header, $kde_incdirs, kde_incdir)
 ac_kde_includes="$kde_incdir"
 
@@ -1549,7 +1549,7 @@ So, check this please and use another prefix!])
 fi
 
 kde_libdirs="$KDEDIR/lib`kde-config --libsuffix`"
-kde_libdirs="$ac_kde_libraries $kde_libdirs"
+kde_libdirs="$kde_libdirs $ac_kde_libraries"
 AC_FIND_FILE($kde_check_lib, $kde_libdirs, kde_libdir)
 ac_kde_libraries="$kde_libdir"
 
