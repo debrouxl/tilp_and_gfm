@@ -119,7 +119,7 @@ msgstr "Quitter"
 
 #: src/gui.c:268
 msgid "File has not been saved yet. Do you want to quit?"
-msgstr "Le fichier n'a pas été sauvé. Etes-vous sûr de vouloir quitter?"
+msgstr "Le fichier n'a pas été sauvé. Êtes-vous sûr de vouloir quitter?"
 
 #: src/gui.c:312
 msgid "Importing of TiGroup files is not allowed."
@@ -162,7 +162,7 @@ msgstr "%.2f méga-octets"
 
 #: src/main.c:70
 msgid "Checking for GUI files..."
-msgstr "Vérifiecation fichiers IHM..."
+msgstr "Vérification fichiers IHM..."
 
 #: src/main.c:74
 msgid "Loading tilibs2..."
