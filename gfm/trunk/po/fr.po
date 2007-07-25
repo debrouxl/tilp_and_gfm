@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 00:06+0200\n"
+"POT-Creation-Date: 2007-07-25 10:28+0200\n"
 "PO-Revision-Date: 2007-06-27 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -14,6 +14,18 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/main.c:70
+msgid "Checking for GUI files..."
+msgstr "Vérifie fichiers IHM..."
+
+#: src/main.c:74
+msgid "Loading tilibs2..."
+msgstr "Chargement tilibs2..."
+
+#: src/main.c:78
+msgid "Launching GUI..."
+msgstr "Lancement IHM..."
 
 #: glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
 #: glade/dialogs.str:16
