@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-25 10:28+0200\n"
+"POT-Creation-Date: 2007-07-25 10:39+0200\n"
 "PO-Revision-Date: 2007-06-27 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -15,9 +15,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/cmdline.c:49
+msgid "Version"
+msgstr "Version"
+
+#: src/cmdline.c:50
+msgid "filename(s)"
+msgstr "fichier(s)"
+
+#: src/cmdline.c:56
+#, c-format
+msgid "GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
+msgstr "GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
+
+#: src/cmdline.c:57
+#, c-format
+msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
+msgstr "CE PROGRAME NE VIENT AVEC AUCUNE GARANTIE\n"
+
+#: src/cmdline.c:58
+#, c-format
+msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
+msgstr "VEUILLEZ LIRE LA DOCUMENTATION POUR LES DETAILS\n"
+
+#: src/cmdline.c:59
+#, c-format
+msgid "built on %s %s\n"
+msgstr "construit sur %s %s\n"
+
+#: src/ctree.c:188
+msgid "The name already exists. Please choose another one..."
+msgstr "Le nom existe déjà. Veuillez en choisir un autre..."
+
+#: src/ctree.c:225
+msgid "Name"
+msgstr "Nom"
+
+#: src/ctree.c:245
+msgid "Attr"
+msgstr "Attr"
+
+#: src/ctree.c:250
+msgid "Type"
+msgstr "Type"
+
+#: src/ctree.c:255
+msgid "Size"
+msgstr "Taille"
+
+#: src/file.c:187
+msgid "Unable to change directory."
+msgstr "Impossible de changer de répertoire"
+
+#: src/file.c:205
+msgid ""
+"Unable to create the directory.\n"
+"\n"
+msgstr ""
+"Impossible de créer le répertoire.\n"
+"\n"
+
+#: src/file.c:267
+#, c-format
+msgid "%i KB"
+msgstr "%i Ko"
+
+#: src/file.c:270
+#, c-format
+msgid "%i MB"
+msgstr "%i Mo"
+
+#: src/filesel.c:324
+msgid "Save file"
+msgstr "Sauver fichier"
+
+#: src/filesel.c:327 src/filesel.c:654
+msgid "Open file"
+msgstr "Ouvrir fichier"
+
+#: src/gui.c:115 src/gui.c:419
+msgid "TiGroup"
+msgstr "TiGroup"
+
+#: src/gui.c:115 src/gui.c:419
+msgid "Single/Group"
+msgstr "Simple/Groupe"
+
+#: src/gui.c:115 src/gui.c:419
+msgid "File type?"
+msgstr "Type de fichier?"
+
+#: src/gui.c:203
+msgid "Do you want to save previous file?"
+msgstr "Voulez-vous sauver le fichier précédent?"
+
+#: src/gui.c:268
+msgid "Save"
+msgstr "Sauver"
+
+#: src/gui.c:268
+msgid "Quit"
+msgstr "Quitter"
+
+#: src/gui.c:268
+msgid "File has not been saved yet. Do you want to quit?"
+msgstr "Le fichier n'a pas été sauvé. Etes-vous sûr de vouloir quitter?"
+
+#: src/gui.c:312
+msgid "Importing of TiGroup files is not allowed."
+msgstr "L'importation d'un fichier TiGroup n'est pas permise."
+
+#: src/gui.c:319
+msgid "File is not compatible with current target."
+msgstr "Le fichier n'est pas compatible avec le modèle de calculatrice."
+
+#: src/gui.c:332
+msgid "The entry already exists. Skipped!"
+msgstr "Cette entrée existe déjà. Ignorée!"
+
+#: src/gui.c:396
+msgid "New Folder"
+msgstr "Nouveau dossier"
+
+#: src/gui.c:396
+msgid "folder"
+msgstr "dossier"
+
+#: src/gui.c:396
+msgid "Name of folder to create:"
+msgstr "Nom du dossier à créer:"
+
+#: src/labels.c:122 src/labels.c:137
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#: src/labels.c:124 src/labels.c:139
+#, c-format
+msgid "%.2f kilobytes"
+msgstr "%2f kilo-octets"
+
+#: src/labels.c:126 src/labels.c:141
+#, c-format
+msgid "%.2f megabytes"
+msgstr "%.2f méga-octets"
+
 #: src/main.c:70
 msgid "Checking for GUI files..."
-msgstr "Vérifie fichiers IHM..."
+msgstr "Vérifiecation fichiers IHM..."
 
 #: src/main.c:74
 msgid "Loading tilibs2..."
@@ -26,6 +171,46 @@ msgstr "Chargement tilibs2..."
 #: src/main.c:78
 msgid "Launching GUI..."
 msgstr "Lancement IHM..."
+
+#: src/rwgroup.c:145
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: src/rwgroup.c:314
+msgid "Saving..."
+msgstr "Sauvegarde..."
+
+#: src/splashscreen.c:82
+msgid "Starting Group File Manager..."
+msgstr "Démarrage du GFM..."
+
+#: src/ungroup.c:52
+msgid "Create new directory"
+msgstr "Crée un nouveau dossier."
+
+#: src/ungroup.c:52
+msgid "Directory where files will be ungrouped: "
+msgstr "Dossier où les fichiers seront dégroupés: "
+
+#: src/ungroup.c:66
+msgid "You can't ungroup in this folder."
+msgstr "Vous ne pouvez pas dégrouper dans ce dossier."
+
+#: src/ungroup.c:124
+msgid "Group files are not allowed in selection."
+msgstr "Les fichiers groupés ne sont pas autorisés dans la sélection."
+
+#: src/ungroup.c:130
+msgid "FLASH files are not allowed in group files."
+msgstr "Les fichiers FLASH ne sont pas autorisés dans les fichiers groupe."
+
+#: src/ungroup.c:136
+msgid "Group files"
+msgstr "_Grouper fichiers"
+
+#: src/ungroup.c:136
+msgid "Group name: "
+msgstr "Nom groupe: "
 
 #: glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
 #: glade/dialogs.str:16
