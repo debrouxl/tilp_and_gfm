@@ -32,9 +32,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <time.h>
-#ifdef HAVE_LIBZ
-# include <zlib.h>
-#endif
+#include <zlib.h>
 #define Z_OK 0
 
 #include "tilp_core.h"
@@ -185,9 +183,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 	guchar *ubuf, *cbuf;
 	unsigned long cbuflen;
 	unsigned int i, j;
-#ifdef HAVE_LIBZ
 	int ret;
-#endif
 	unsigned int a85count;
 	unsigned long a85tuple;
 	guchar a85block[6];
@@ -207,7 +203,6 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 		ubuf = data;
 	}
 
-#ifdef HAVE_LIBZ
 	/* buffer length = length + 0.1 * length + 12 (mandatory) */
 	cbuflen = len + len / 10 + 12;
 	cbuf = g_malloc(cbuflen);
@@ -232,10 +227,6 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
 		g_free(cbuf);
 		return FALSE;
 	}
-#else
-	cbuf = ubuf;
-	cbuflen = len;
-#endif /* HAVE_LIBZ */
 
 	/* ASCII85 (base 85) encoding */
 	a85count = 0;
@@ -301,14 +292,7 @@ static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned lon
         /* ASCII85 EOD marker + newline*/
 	fprintf(fp, "~>\n");
 
-#ifdef HAVE_LIBZ
 	g_free(cbuf);
-#else
-	/* ubuf == cbuf in this case, can't be freed earlier */
-	if (inv) {
-		g_free(ubuf);
-	}
-#endif
 
 	return TRUE;
 }
@@ -348,11 +332,7 @@ gboolean screen_write_eps(const gchar *filename, GError **error)
 	fprintf(fp, "%d %d scale\n", w, h);
 
 	if (options.screen_blurry) {
-#ifdef HAVE_LIBZ
 		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter false 3 colorimage\n", w, h, w, h, h);
-#else
-		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter false 3 colorimage\n", w, h, w, h, h);
-#endif
 
 		buf = screen_blurry();
 
@@ -368,11 +348,7 @@ gboolean screen_write_eps(const gchar *filename, GError **error)
 		}
 	}
 	else {
-#ifdef HAVE_LIBZ
 		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter image\n", w, h, w, h, h);
-#else
-		fprintf(fp, "%d %d 1 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter image\n", w, h, w, h, h);
-#endif
 
 		ret = write_compressed_a85_screen(fp, screen.bitmap, (h * w) / 8, TRUE, &err);
 
@@ -472,11 +448,7 @@ gboolean screen_write_pdf(const gchar *filename, GError **error)
 		/* RGB, 8 bits per component, ASCIIHex encoding */
 		fprintf(fp, "  /CS /RGB\n");
 		fprintf(fp, "  /BPC 8\n");
-#ifdef HAVE_LIBZ
 		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
-#else
-		fprintf(fp, "  /F /A85\n");
-#endif
 		fprintf(fp, "ID\n");
 
 		buf = screen_blurry();
@@ -496,11 +468,7 @@ gboolean screen_write_pdf(const gchar *filename, GError **error)
 		/* GrayLevel, 1 bit per component, ASCIIHex encoding */
 		fprintf(fp, "  /CS /G\n");
 		fprintf(fp, "  /BPC 1\n");
-#ifdef HAVE_LIBZ
 		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
-#else
-		fprintf(fp, "  /F /A85\n");
-#endif
 		fprintf(fp, "ID\n");
 
 		ret = write_compressed_a85_screen(fp, screen.bitmap, (h * w) / 8, TRUE, &err);

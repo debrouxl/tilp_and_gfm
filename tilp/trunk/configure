@@ -29670,7 +29670,7 @@ fi
 echo "${ECHO_T}$ac_cv_header_zlib_h" >&6; }
 
 fi
-if test $ac_cv_header_zlib_h = yes; then
+
 
 
 { echo "$as_me:$LINENO: checking for compress in -lz" >&5
@@ -29742,10 +29742,6 @@ _ACEOF
   LIBS="-lz $LIBS"
 
 fi
-
-
-fi
-
 
 LIBZ="$LIBS"
 LIBS=""
@@ -36366,7 +36362,7 @@ for i in $jpeg_incdirs;
 do
   for j in jpeglib.h;
   do
-    echo "configure: 36369: $i/$j" >&5
+    echo "configure: 36365: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       jpeg_incdir=$i
@@ -36601,7 +36597,7 @@ for i in $qt_incdirs;
 do
   for j in $kde_qt_header;
   do
-    echo "configure: 36604: $i/$j" >&5
+    echo "configure: 36600: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       qt_incdir=$i
@@ -37391,7 +37387,7 @@ for i in $kde_incdirs;
 do
   for j in $kde_check_header;
   do
-    echo "configure: 37394: $i/$j" >&5
+    echo "configure: 37390: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_incdir=$i
@@ -37420,7 +37416,7 @@ for i in $kde_libdirs;
 do
   for j in $kde_check_lib;
   do
-    echo "configure: 37423: $i/$j" >&5
+    echo "configure: 37419: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_libdir=$i

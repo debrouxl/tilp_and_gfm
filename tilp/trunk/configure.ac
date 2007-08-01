@@ -76,9 +76,8 @@ AC_SUBST(GLADE_CFLAGS)
 AC_SUBST(GLADE_LIBS)
 
 # Check for zlib
-AC_CHECK_HEADER(zlib.h,[
-	AC_CHECK_LIB(z, compress,,)
-],)
+AC_CHECK_HEADER(zlib.h)
+AC_CHECK_LIB(z, compress)
 LIBZ="$LIBS"
 LIBS=""
 AC_SUBST(LIBZ)
