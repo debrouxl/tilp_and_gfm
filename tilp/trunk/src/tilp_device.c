@@ -171,7 +171,11 @@ step3:
 	return ret;
 }
 
-/* Scan for cables & devices. Scan order is time increasing */
+/* 
+   Scan for cables & devices.
+   The current device is closed during scanning because some link cables
+   (serial & paralle) can't be probed while open because already locked.
+*/
 int tilp_device_probe_all(int ***result)
 {
 	int **array;
@@ -183,6 +187,11 @@ int tilp_device_probe_all(int ***result)
 	//CableHandle* handle;
 	int err;
 	gchar *s;
+
+	// Close device
+	err = tilp_device_close();
+	if(err)
+	  return err;
 
 	// search for cables
 	tilp_info("Searching for link cables...");
@@ -275,6 +284,11 @@ reloop:
 	// show list
 	for(i = 1; i <= 5; i++) 
 		printf("%i: %02i %02i %02i %02i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
+
+	// Re-open device
+	err = tilp_device_open();
+	if(err)
+	  return err;
 
 	return 0;
 }
