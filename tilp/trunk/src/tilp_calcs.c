@@ -85,20 +85,18 @@ int tilp_calc_isready(void)
 	win32 = 0;
 #endif
 	
-	/* Hot-plug: we have to reopen cable because calc might have turned
-	   off while using TiLP.
+	/* Hot-plug: we have to reopen USB cable because calc might have 
+	   turned off while using TiLP.
 	   Note: Titanium does _not_ like too fast close/open under Linux. 
 	*/
 
 	if(!win32 && options.calc_model == CALC_TI89T_USB)
 	  {
-		// does nothing here due to Titanium firmware bug
-	    //printf("hotplug: nothing !\n");
+	    // does nothing here due to Titanium firmware bug
 	  }
 	else if((options.cable_model == CABLE_USB || 
 	   options.cable_model == CABLE_DEV))
 	  {
-	    //printf("hotplug: reopen !\n");
 		tilp_device_close();
 		tilp_device_open();
 	}
@@ -136,43 +134,6 @@ int tilp_calc_isready(void)
 			return -1;
 		}
 	}
-
-#if 0
-	if(tifiles_is_flash(options.calc_model))
-	{
-		CalcModel model = CALC_NONE;
-		
-		err = ticalcs_probe(options.cable_model, options.cable_port, &model, 0);
-		if(err)
-		{
-			tilp_err(err);
-			return -1;
-		}
-	
-		if(model != options.calc_model)
-		{
-			int ret = gif->msg_box2(_("Warning"), _("The detected model does not match those specified in the settings. Do you want to change it?"));
-			
-			if(ret == BUTTON1)
-			{
-				options.calc_model = model;
-				ctree_set_basetree();
-			}
-		}
-
-#if 0
-		{
-			CalcInfos infos;
-
-			err = ticalcs_calc_get_version(calc_handle, &infos);
-			if(tilp_err(err))
-				return -1;
-
-			
-		}
-#endif
-	}
-#endif
 
 	return 0;
 }

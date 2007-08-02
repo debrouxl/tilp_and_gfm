@@ -16,6 +16,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed KDE path detection for multilib systems with both 32-bit and
 	  64-bit libraries installed (kevin)
 	- made zlib non-optional now that libtifiles2 requires it anyway (kevin)
+	- close link cable before probing and open it after otherwise current
+	link cable can't be probed (serial & parallel)
 
 - 10/06/2007, version 1.05 (1.0.5, 1.0.6, 1.0.6, 1.0.3): roms
 	- sending of APPV variables in FLASH is not allowed; avoid this.
