@@ -35,6 +35,10 @@ Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Fl
 
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+
 [Registry]
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPath"; ValueData: "{cf}\LPG Shared\libs"
@@ -108,7 +112,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{app}\slv
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
 
-; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{app}\wget";
@@ -137,8 +140,8 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename:
 ; Remove any previously installed PortTalk driver (especially v1.x)
 Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
-Filename: "{app}\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
+Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 
 [UninstallRun]
 ; Remove any previously installed PortTalk driver (especially v1.x)
