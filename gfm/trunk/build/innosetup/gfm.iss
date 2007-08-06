@@ -21,17 +21,19 @@ InfoAfterFile=C:\sources\roms\gfm\ChangeLog
 
 ;--- Shared Stuffs ---
 [Files]
-Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
-Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
-Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
-Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-3.dll');
+Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-1.dll');
+Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-2.dll');
+Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-2.dll');
 
 Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
 Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
 Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
-Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
-Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile;
+Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
+Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
+
+Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
 [Registry]
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
@@ -77,9 +79,6 @@ Source: "C:\sources\roms\gfm\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; 
 ; Binaries
 Source: "C:\sources\roms\gfm\build\msvc\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
 
-; GTK+ specific
-Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
-
 ; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
@@ -96,7 +95,7 @@ Name: "{group}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"
 Name: "{group}\GFM on the Web"; Filename: "{app}\gfm.url"
 Name: "{group}\Uninstall GFM"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
-Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
+Name: "{group}\GTK theme selector"; Filename: "{cf}\LPG Shared\bin\gtkthemeselector.exe";
 
 Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GFM-2"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
@@ -569,4 +568,17 @@ begin
   end;
   
   Result := true;
+end;
+
+procedure DeleteDll(const FileName: string);
+var
+  pf: string;
+begin
+  pf := ExpandConstant('{app}');
+  DeleteFile(pf + '\' + Filename);
+end;
+
+procedure DeleteExe(const FileName: string);
+begin
+  DeleteDll(FileName);
 end;
