@@ -3,7 +3,7 @@
 
 
 Old     version:  1.04 (14/05/2007)
-Current version:  1.06 (??/07/2007)
+Current version:  1.06 (25/07/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -49,8 +49,7 @@ Known bugs:
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is
-		  needed after module removal		
-	- [win32] many cables (GrayLink & SilverLink may use up to 100% of CPU when running)
+		  needed after module removal
 
 
 Bug report:

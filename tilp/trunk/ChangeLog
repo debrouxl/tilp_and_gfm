@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- 19/06/2007, version 1.06 (1.06, 1.0.7, 1.0.7, 1.0.3): roms
+- 19/06/2007, version 1.06 (1.06, 1.0.7, 1.0.7, 1.0.4): roms
 	- followed API changes in ticalcs2 library
 	- fixed potential bug in action box (var existence checking)
 	- fixed this bug (in ticonv):

@@ -33,6 +33,8 @@ Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\f
 Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
 Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 
+Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
+
 [Registry]
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPath"; ValueData: "{cf}\LPG Shared\libs"
@@ -106,9 +108,6 @@ Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{app}\slv
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
 Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
 
-; GTK+ specific
-Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{app}";
-
 ; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{app}\wget";
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{app}\wget";
@@ -127,7 +126,7 @@ Name: "{group}\TiLP on the Web"; Filename: "{app}\tilp2.url"
 Name: "{group}\GFM on the Web"; Filename: "{app}\gfm.url"
 Name: "{group}\Uninstall TiLP"; Filename: "{uninstallexe}"
 Name: "{group}\User's Manual"; Filename: "{app}\help\Manual_en.html"
-Name: "{group}\GTK theme selector"; Filename: "{app}\gtkthemeselector.exe";
+Name: "{group}\GTK theme selector"; Filename: "{cf}\LPG Shared\bin\gtkthemeselector.exe";
 Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&group_id=18378&atid=118378";
 Name: "{group}\USB driver installation"; Filename: "{app}\help\usb_driver.html";
 
@@ -629,7 +628,8 @@ begin
   DeleteFile(pf + '\' + Filename);
 end;
 
-//procedure DeInitializeSetup();
-//begin
-//  DeleteDll('libglade-2.0-0.dll');
-//end;
+procedure DeleteExe(const FileName: string);
+begin
+  DeleteDll(FileName);
+end;
+
