@@ -62,16 +62,13 @@ You can install driver at any time (that is to say before or after TiLP installa
 Given that the LPG SilverLink driver has a Release date more recent than the Texas
 Instruments OEM driver, this driver will be used prior to the TI one.
 
-5°) This setup will install the PortTalk driver for Windows NT4/2000/XP machines.
+5°) This setup will install the DhaHelper driver for Windows NT4/2000/XP machines.
 This step may require an administrator account (at least for NT4).
-You will need to REBOOT your machine after installation (if you plan to 
+You may need to REBOOT your machine after installation (if you plan to 
 use a parallel or serial link cable).
 
-PortTalk copyright (http://www.beyondlogic.org):
-Documentation and source code Copyright © 2002 Craig Peacock, Craig.Peacock@beyondlogic.org
-This driver is provided "as is", without any guarantee made as to its suitability or fitness 
-for any particular use. Permission is herby granted to modify or enhance this sample code
-to produce a derivative program which may only be distributed in compiled object form only.
+DhaHelper is copryrighted (c) 2004 Sascha Sommer and released under GPL license.
+Source code is available from <http://svn.mplayerhq.hu/mplayer/trunk/vidix/dhahelperwin/>.
 
 6°) This setup will install the GNU's 'wget' utility for download of GTK+
 (http://xoomer.virgilio.it/hherold/).

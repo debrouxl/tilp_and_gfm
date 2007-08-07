@@ -3,7 +3,7 @@
 
 
 Old     version:  1.04 (14/05/2007)
-Current version:  1.06 (25/07/2007)
+Current version:  1.06 (07/08/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -31,6 +31,8 @@ Improvements:
 
 	- Window, RclWindow and TblSetup variables are now supported
 	- sending/receiving of named list on TI84+/USB is now supported
+	- [win32] removed PortTalk I/O driver due to license issues. Replaced by GPL'ed
+		MPlayer's DhaHelper driver.
 
 
 Bug fixes:

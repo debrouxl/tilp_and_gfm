@@ -21,27 +21,38 @@ InfoAfterFile=C:\sources\roms\tilp2\RELEASE
 
 ;--- Shared Stuffs ---
 [Files]
+; TI libraries
 Source: "C:\sources\roms\tifiles2\tests\libtifiles2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-3.dll');
 Source: "C:\sources\roms\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-1.dll');
 Source: "C:\sources\roms\ticalcs2\tests\libticalcs2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-2.dll');
 Source: "C:\sources\roms\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-2.dll');
 
+; I18n files
 Source: "C:\sources\roms\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
 Source: "C:\sources\roms\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
 Source: "C:\sources\roms\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
+; Misc
 Source: "C:\Gtk2Dev\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
 Source: "C:\Gtk2Dev\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 
 Source: "C:\Gtk2Dev\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
+; Downloader
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
+;DhaHelper driver
+Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+
 [Registry]
+; Create entries for shared libs (needed by other programs)
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPath"; ValueData: "{cf}\LPG Shared\libs"
+
 ;--- End of Shared Stuffs ---
 
 [Tasks]
@@ -50,7 +61,7 @@ Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescri
 
 Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
 Name: "slv_drv"; Description: "Copy SilverLink drivers"; GroupDescription: "Drivers:"; MinVersion: 0,4
-Name: "tlk_drv"; Description: "Install BlackLink/Parallel cable"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
 ; Glade files
@@ -90,12 +101,6 @@ Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.tx
 
 ; Binaries
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
-
-; Copy PortTalk driver for Windows NT4/2000/XP
-Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{sys}\drivers"; Flags: ignoreversion; Tasks: tlk_drv;
-Source: "C:\sources\roms\misc\Porttalk22\PortTalk.sys"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
-Source: "C:\sources\roms\misc\Porttalk22\AllowIO.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
-Source: "C:\sources\roms\misc\Porttalk22\Uninstall.exe"; DestDir: "{app}\PortTalk"; Flags: ignoreversion; Tasks: tlk_drv;
 
 ; Copy LPG's SilverLink driver
 Source: "C:\sources\roms\tiglusb\src\xp\driver\License.txt"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
@@ -137,28 +142,15 @@ Name: "{userdesktop}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
-; Remove any previously installed PortTalk driver (especially v1.x)
-Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
 Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
+Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv;
 
 [UninstallRun]
-; Remove any previously installed PortTalk driver (especially v1.x)
-Filename: "{app}\PortTalk\Uninstall.exe"; Parameters: ""; MinVersion: 0,4; Tasks: tlk_drv;
+Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
 
 [Registry]
-; Install the NT PortTalk driver
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Type"; ValueData: "1";  MinVersion: 0,4; Tasks: tlk_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "Start"; ValueData: "2"; MinVersion: 0,4; Tasks: tlk_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; MinVersion: 0,4; Tasks: tlk_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\PortTalk"; ValueType: string; ValueName: "DisplayName"; ValueData: "PortTalk"; MinVersion: 0,4; Tasks: tlk_drv;
-; Install the LPG's SilverLink driver
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "Type"; ValueData: "1";  Tasks: slv_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "Start"; ValueData: "3"; Tasks: slv_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: dword; ValueName: "ErrorControl"; ValueData: "1"; Tasks: slv_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "DisplayName"; ValueData: "TiglUsb.sys TI-GRAPH / DIRECT LINK USB driver"; Tasks: slv_drv;
-Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Services\TiglUsb"; ValueType: string; ValueName: "ImagePath"; ValueData: "System32\Drivers\TiglUsb.sys"; Tasks: slv_drv;
 ; Register TiLP in the shell
 Root: HKCR; SubKey: "TiLP.TIxx.file"; ValueType: string; ValueData: "TI73..V200 file"
 Root: HKCR; Subkey: "TiLP.TIxx.file\DefaultIcon"; ValueType: string; ValueData: "{app}\tilp.exe,0"
