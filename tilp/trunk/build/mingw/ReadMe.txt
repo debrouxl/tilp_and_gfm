@@ -1,5 +1,5 @@
 Compiling LPG Software with MinGW
-Version 1.99 20070529
+Version 1.99 20070802
 Copyright (C) 2005-2007 Kevin Kofler
 Copyright (C) 2001-2006 Romain Lievin
 Copyright (C) 2006 Tyler Cassidy
@@ -98,7 +98,7 @@ Next, check-out the following URLs for each target folder:
    libticalcs2.
 
 10. Ok. Now all you have to do is repeat step 7 for TiLP, TiEmu, or GFM, or all of them if you so
-   wish!
+    wish! For TiEmu, you'll also need SDL unless you configure with --disable-sound.
 
 11. Your files are now all located in /target (C:\msys\target). If it does not work, an instruction
     may have been missed or performed wrong, or the source code is broken (which would be a bug,
@@ -116,11 +116,14 @@ Once you have successfully built TiEmu 3, here's how to build an installer on Wi
 
 1. Fetch the latest NSIS installer from http://nsis.sf.net and install it.
 
-2. Fetch UPX from http://upx.sf.net and unzip it.
+2. Fetch the NsisUnz plugin from http://saivert.com/nsis/nsisunz.7z and decompress nsisunz.dll to
+   your NSIS\Plugins directory.
 
-3. Adjust the paths in build\nsis\tiemu.nsi (in the TiEmu 3 source directory) for your installation.
+3. Fetch UPX from http://upx.sf.net and unzip it.
 
-4. Right-click on build\nsis\tiemu.nsi and select "Build".
+4. Adjust the paths in build\nsis\tiemu.nsi (in the TiEmu 3 source directory) for your installation.
+
+5. Right-click on build\nsis\tiemu.nsi and select "Build".
 
 NOTE: TiLP and GFM don't have NSIS installer scripts yet.
 
@@ -150,7 +153,7 @@ Once you have successfully built TiLP2/TiEmu3, here's how to build an installer 
 2. Download and Install the MinGW GCC RPM from http://bitwalk.hp.infoseek.co.jp/download.html
    (Make sure you get a package which includes g++. It is needed to build oleaut.cpp.)
 
-3. Install WINE from Fedora Extras. (Can be retrieved with yum: "yum install wine".)
+3. Install WINE from Fedora. (Can be retrieved with yum: "yum install wine".)
 
 4. Install the last GTK+ 2.6 development package (version 2.6.10-rc1) from http://gladewin32.sf.net
    in WINE.
@@ -167,11 +170,27 @@ Once you have successfully built TiLP2/TiEmu3, here's how to build an installer 
    /usr/local/i386-mingw32/lib/libstdc++.la
    and remove "-lmingwthrd".
 
-7. Edit cross-mingw32-gtkaio.sh to your system's needs.
+7. Download the SDL source from http://www.libsdl.org (the binaries probably won't work due to iconv)
+   You can build a static library from the source using the following options:
+   ln -s /usr/include/wine/windows/dsound.h /usr/local/i386-mingw32/include/ # (for Direct Sound support)
+   source cross-mingw32-gtkaio.sh #(otherwise it won't find iconv and then get confused when it's there)
+   sed -i -e 's/test x\$have_directx = xyes/test x$have_dsound = xyes/g' configure # (don't require all of DirectX for dsound)
+   sed -i -e 's/#include <ddraw\.h>//g' src/audio/windx5/directx.h
+   sed -i -e 's/#include <dinput\.h>//g' src/audio/windx5/directx.h
+   ./configure --host=i386-mingw32 --prefix=... --disable-shared
+   make
+   make install
+   For the prefix, I recommend creating a new directory.
+   You can also use the following configure options to get a sound-only build of SDL:
+   --disable-video --disable-events --disable-joystick --disable-cdrom --disable-timers --disable-loadso
+   (WARNING: Only use these for static builds, a DLL with all that stuff disabled WILL cause problems!)
 
-8. Use the following commands to build TiEmu (TiLP and GFM can be built the same way, if this is
+8. Edit cross-mingw32-gtkaio.sh to your system's needs.
+
+9. Use the following commands to build TiEmu (TiLP and GFM can be built the same way, if this is
    broken, please report it as a bug):
    source cross-mingw32-gtkaio.sh #(needs to be done for EACH build!)
+   export PATH=/path/to/sdl-mingw/bin:$PATH #(replace /path/to/sdl-mingw with the prefix from step 7)
    export CFLAGS="-Os -s -fno-exceptions"
    export CXXFLAGS="-Os -s -fno-exceptions"
    cd libticables-mingw-build
@@ -228,9 +247,12 @@ Once you have successfully cross-built TiEmu 3, here's how to build a Windows in
 
 1. Install NSIS from: http://repo.calcforge.org/fedora/
 
-2. Install UPX from Fedora Extras. (Can be retrieved with yum: "yum install upx".)
+2. Fetch the NsisUnz plugin from http://saivert.com/nsis/nsisunz.7z and decompress nsisunz.dll to
+   your /usr/share/nsis/Plugins directory.
 
-3. Use the following commands to build the TiEmu setup wizard:
+3. Install UPX from Fedora. (Can be retrieved with yum: "yum install upx".)
+
+4. Use the following commands to build the TiEmu setup wizard:
    cd build/nsis
    makensis tiemu-cross.nsi
 
