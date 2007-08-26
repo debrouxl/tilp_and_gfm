@@ -3,7 +3,7 @@
 
 
 Old     version:  1.04 (14/05/2007)
-Current version:  1.06 (07/08/2007)
+Current version:  1.07 (26/08/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -33,6 +33,9 @@ Improvements:
 	- sending/receiving of named list on TI84+/USB is now supported
 	- [win32] removed PortTalk I/O driver due to license issues. Replaced by GPL'ed
 		MPlayer's DhaHelper driver.
+	- [win32] removed my USB driver due to license issues. Replaced by GPL'ed
+		libusb-win32 driver. Those drivers are now automatically registered in
+		the Plug&Play Windows database.
 
 
 Bug fixes:
@@ -42,6 +45,8 @@ Bug fixes:
 	- TiGroup files correctly handled with TI84+/USB
 	- *nix compile fix: fixed KDE path detection for multilib systems with
 	                    both 32-bit and 64-bit libraries installed
+	- close link cable before probing and open it after otherwise current
+		link cable can't be probed (serial & parallel)
 
 
 Known bugs:
