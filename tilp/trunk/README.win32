@@ -12,10 +12,7 @@ REQUIREMENTS
  - the GTK+ 2.6 libraries
     Location: <http://prdownloads.sourceforge.net/gladewin32/gtk-win32-2.6.10-rc1.exe?download>
     => They can be automatically download & installed by the installer.
- - the SilverLink driver v3.4 if you have a SilverLink cable
-	Location: http://www.ticalc.org/pub/win/link/tiglusbinf3.zip
-	=> It is now installed in the TiLP folder by the installer.
-	
+ 	
 	 Note: if you are using 'The GiMP', you may encounter DLL's problems...
 		The GTK+ package (1) provided with the GiMP may not be fully compatible with one used by TiLP/TiEmu.
 		On the other hand, the package (2) requested by TiLP/TiEmu is compatible with the GiMP.
@@ -50,17 +47,14 @@ atk_relation_set_add_relation_by_type could not be located in the dynamic link
 library libatk-1.0-0.dll", make sure you have one and only ONE version of the
 GTK+ DLLs. If unsure, remove all GTK+ packages and install it again.
 
-4°) This setup will copy the LPG's SilverLink driver (http://lpg.ticalc.org/prj_usb):
-it is now provided with TiLP and available in the 'slvdrv98' or 'slvdrvXP' folder.
+4°) This setup will:
+- copy USB drivers into C:\Program Files\{Common Files}\LPG Shared\drivers\usb,
+- and register them into the Plug&Play database.
 
-Simply plug your link cable: Windows should detect a new device. 
-But, you still have to manually install it by requesting an update of driver and
-specifying driver files location to force installation.
+Simply plug your link cable: Windows should detect a new device and automatically
+install it.
 
-You can install driver at any time (that is to say before or after TiLP installation).
-
-Given that the LPG SilverLink driver has a Release date more recent than the Texas
-Instruments OEM driver, this driver will be used prior to the TI one.
+Please note these drivers are not compatible with Ti-Connnect(tm).
 
 5°) This setup will install the DhaHelper driver for Windows NT4/2000/XP machines.
 This step may require an administrator account (at least for NT4).
