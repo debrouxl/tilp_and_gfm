@@ -19,6 +19,8 @@ LicenseFile=C:\sources\roms\tilp2\COPYING
 InfoBeforeFile=C:\sources\roms\tilp2\README.win32
 InfoAfterFile=C:\sources\roms\tilp2\RELEASE
 
+PrivilegesRequired = admin
+
 ;--- Shared Stuffs ---
 [Files]
 ; TI libraries
@@ -43,10 +45,17 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG S
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
-;DhaHelper driver
+; DhaHelper driver
 Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
+
+; USB driver
+Source: "C:\sources\roms\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\sources\roms\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\src\win32\usb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\src\win32\usb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\sources\roms\libusb-win32\bin\*.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
@@ -60,7 +69,7 @@ Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "A
 Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
 
 Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
-Name: "slv_drv"; Description: "Copy SilverLink drivers"; GroupDescription: "Drivers:"; MinVersion: 0,4
+Name: "slv_drv"; Description: "Install USB drivers"; GroupDescription: "Drivers:";
 Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
@@ -102,21 +111,6 @@ Source: "C:\sources\roms\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.tx
 ; Binaries
 Source: "C:\sources\roms\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
-; Copy LPG's SilverLink driver
-Source: "C:\sources\roms\tiglusb\src\xp\driver\License.txt"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.inf"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.sys"; DestDir: "{app}\slvdrvXP"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\xp\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 0,4;
-
-Source: "C:\sources\roms\tiglusb\src\98\driver\License.txt"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{app}\slvdrv98";  Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.inf"; DestDir: "{app}\slvdrv98"; Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{app}\slvdrv98";  Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.dll"; DestDir: "{sys}\drivers";  Tasks: slv_drv;
-Source: "C:\sources\roms\tiglusb\src\98\driver\TiglUsb.sys"; DestDir: "{sys}\drivers";  Tasks: slv_drv; MinVersion: 4,0;
-
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
 
@@ -141,10 +135,16 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename:
 Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
-Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv;
+
+Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
 
 [UninstallRun]
-Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
+;Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
+;same for USB drivers...
 
 [Registry]
 ; Register TiLP in the shell
@@ -529,6 +529,7 @@ var
   GtkVersion: String;
   LpgPath: String;
 
+// Retrieve GTK installation path
 function GetGtkInstalled (): Boolean;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\GTK\2.0', 'Path', GtkPath);
@@ -538,6 +539,7 @@ begin
    Result := Exists
 end;
 
+// Get GTK version
 function GetGtkVersionInstalled (): Boolean;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\GTK\2.0', 'Version', GtkVersion);
@@ -547,6 +549,7 @@ begin
    Result := Exists
 end;
 
+// Get shared components path
 function GetLpgDllPath (S: String): String;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\LPG Shared', 'DllPath', LpgPath);
@@ -556,6 +559,16 @@ begin
   Result := LpgPath;
 end;
 
+function GetDllCount (S: String): Integer;
+var
+  path: string;
+  Count: Cardinal;
+begin
+  path := ExpandConstant('{cf}\LPG Shared\' + S);
+  Exists := RegQueryDWordValue (HKLM, 'Software\Microsoft\Windows\CurrentVersion\SharedDLLs\', path, Count);
+end;
+
+// check for minimum USB driver version
 function IsTiglUsbVersion3Mini (): Boolean;
 var
   Version: String;
@@ -566,6 +579,7 @@ begin
   end;
 end;
 
+// Display warning about GTK version
 function DisplayWarning(I: Integer): Boolean;
 var
   S: String;
@@ -579,6 +593,55 @@ begin
   MsgBox(S + 'you will need the GTK+ 2.6.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
 end;
 
+// Check for previous program presence and uninstall if needed
+function CheckUninstall(S: String): Boolean;
+var
+  uninsexe: String;
+  ResultCode: Integer;
+  I: Integer;
+  L: Integer;
+begin
+  Exists := RegKeyExists(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\' + S + '_is1');
+  Result := false;
+
+  if Exists then begin
+    if MsgBox('The program need to be uninstalled. Click YES to uninstall it or NO to force installation.', mbConfirmation, MB_YESNO) = IDNO
+    then begin
+      Result := true
+    end
+    else begin
+      if RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\' + S + '_is1', 'UninstallString', uninsexe) then
+      begin
+
+        L := Length(uninsexe);
+        for I:=1 to L-1
+        do begin
+          uninsexe[i] := uninsexe[i+1];
+        end;
+        SetLength(uninsexe, L-2);
+        
+        if not Exec(uninsexe, '', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+        then begin
+            Result := false;
+        end
+        else begin
+          if ResultCode <> 0
+          then begin
+            Result := false;
+          end
+          else begin
+            Result := true;
+          end;
+        end;
+      end;
+    end;
+  end
+  else begin
+    Result := true;
+  end;
+end;
+
+// Does various check before doing anything
 function InitializeSetup(): Boolean;
 begin
   // Retrieve GTK path
@@ -605,12 +668,17 @@ begin
   // Check for non-NT and WiMP theme
   WimpPath := GtkPath + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
-        MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
+    MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
   end;
   
-  Result := true;
+  // Uninstall before installing new release
+  if not CheckUninstall('TiLP2') then
+    Result := false
+  else
+    Result := true;
 end;
 
+// Delete shared DLL
 procedure DeleteDll(const FileName: string);
 var
   pf: string;
@@ -619,6 +687,7 @@ begin
   DeleteFile(pf + '\' + Filename);
 end;
 
+// Delete shared EXE
 procedure DeleteExe(const FileName: string);
 begin
   DeleteDll(FileName);

@@ -80,7 +80,7 @@ Next, check-out the following URLs for each target folder:
    replace any 'prefix=/target' entry in any of INST_PATH\lib\pkgconfig\*.pc by 'prefix=INST_PATH'.
 
 6. Edit the C:\msys\etc\profile file and add the following on a new line at the bottom:
-   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/target/lib/pkgconfig
+   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/target/lib/pkgconfig:/lib/pkgconfig
 
 7. Restart MSYS if you have done step 5 while MSYS was running.
 
