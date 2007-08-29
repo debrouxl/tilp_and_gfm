@@ -9,10 +9,6 @@ To do:
 
 4) fix Titanium/USB sous Linux
 
-6) SilverLink cable is using more CPU than it should do under Windows => add 
-	a function in ticables2 which allow to use 2 methods (active polling 
-	w/ timeout, needed by TiEmu and timeout managed by OS).
-
 //------
 
 + = done.

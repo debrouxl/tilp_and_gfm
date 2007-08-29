@@ -22,8 +22,9 @@ New capabilities:
 -----------------
 
 	- grouping/ungrouping capabilites have been removed from TiLP. They are
-	now provided thanks to a new application called Group File Manager (GFM)
-	thru the popup-menu. GFM is available here: <http://lpg.ticalc.org/prj_gfm/>.
+	now provided thanks to a new application called Group File Manager (GFM).
+	This application is still available thru the popup-menu...
+	GFM is available here: <http://lpg.ticalc.org/prj_gfm/>.
 	
 
 Improvements:

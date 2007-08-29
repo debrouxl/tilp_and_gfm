@@ -375,6 +375,10 @@ SOURCE=..\..\ChangeLog
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\RELEASE
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\src\tilp_version.h
 # End Source File
 # Begin Source File

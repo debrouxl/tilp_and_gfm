@@ -375,10 +375,6 @@ SOURCE=..\..\src\tilp_version.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\TODO
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\..\..\GTK2DEV\lib\intl.lib
 # End Source File
 # End Target
