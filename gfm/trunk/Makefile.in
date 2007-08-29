@@ -240,7 +240,6 @@ top_srcdir = @top_srcdir@
 
 # subdirectories to scan
 SUBDIRS = build glade help icons pixmaps po src $(am__append_1)
-EXTRA_DIST = config.rpath gfm.pro INFO
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
