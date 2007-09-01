@@ -1,6 +1,6 @@
 Name: tilp2
 Epoch: 1
-Version: 1.06
+Version: 1.07
 Release: 1
 Vendor: LPG (http://lpg.ticalc.org)
 Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
+* Sun Sep 2 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.07
+Update to 1.07.
+
 * Wed Jun 27 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.06
 Update to 1.06.
 Update tilibs BuildRequires.
