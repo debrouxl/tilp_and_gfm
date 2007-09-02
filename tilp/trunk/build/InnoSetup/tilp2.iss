@@ -48,7 +48,6 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}
 ; DhaHelper driver
 Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
-Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile;
 
 ; USB driver
 Source: "C:\sources\roms\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
@@ -136,11 +135,11 @@ Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 
-Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
+Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take few seconds) ..."
 
 [UninstallRun]
 ;Filename: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
