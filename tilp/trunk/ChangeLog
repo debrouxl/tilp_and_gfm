@@ -2,6 +2,10 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 03/09/2007, version 1.07a (1.0.9, 1.0.7, 1.0.7, 1.0.4): roms
+	- re-released due to missing file in Windows Installer (dhahelper.sys)
+	- includes latest ticables2 library for TiEmu (USB support)
+	
 - 26/08/2007, version 1.07 (1.0.8, 1.0.7, 1.0.7, 1.0.4): roms
 	- updated various documentation about the use of new USB drivers
 
