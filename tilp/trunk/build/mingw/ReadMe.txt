@@ -1,5 +1,5 @@
 Compiling LPG Software with MinGW
-Version 1.99 20070802
+Version 1.99 20070903
 Copyright (C) 2005-2007 Kevin Kofler
 Copyright (C) 2001-2006 Romain Lievin
 Copyright (C) 2006 Tyler Cassidy
@@ -65,42 +65,48 @@ Next, check-out the following URLs for each target folder:
 3. Extract all the Bison and Flex archives into the C:\mingw directory
 
 4. Create a C:\msys\target folder. This is where the compiled stuff will be placed.
-	 This is alse the location where you will install GladeWin32 (see below).
+   This is also the location where you will install GladeWin32 (see below).
 
-5. Download and Install the GladeWin32 Development Packages from
+5. Download and install the GladeWin32 Development Packages from
    http://prdownloads.sf.net/gladewin32/gtk-win32-devel-2.6.10-rc1.exe and make sure you check the
    "Install MSYS environment variables" checkbox when the installer asks you, if you don't, the
    monkeys WILL bite :)
-   
+
    WARNING: DON'T build against GTK+ 2.8 for Windows! GTK+ 2.8 uses Cairo, which doesn't work at all
             on Windows 95/98/Me. Nobody seems interested in fixing that. We've learned this the hard
             way. You have been warned.
-            
-   You have to change the target folder of the installer into C:\msys\target otherwise you will have to 
+
+   You have to change the target folder of the installer into C:\msys\target otherwise you will have to
    replace any 'prefix=/target' entry in any of INST_PATH\lib\pkgconfig\*.pc by 'prefix=INST_PATH'.
 
-6. Edit the C:\msys\etc\profile file and add the following on a new line at the bottom:
-   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/target/lib/pkgconfig:/lib/pkgconfig
+6. Download and untar libusb-win32-device-bin from
+   http://sourceforge.net/project/showfiles.php?group_id=78138
+   Install it using the script provided in the build/mingw directory of libticables2.
 
-7. Restart MSYS if you have done step 5 while MSYS was running.
+7. Install SDL from http://www.libsdl.org (for sound emulation in TiEmu).
 
-8. Now let's compile. Open up MSYS if you haven't already. Make sure all of your source is extracted
-   and ready to compile. With your basic Linux skills, go into the following directory and type the
-   following:
+8. Edit the C:\msys\etc\profile file and add the following on a new line at the bottom:
+   export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/target/lib/pkgconfig:/mingw/lib/pkgconfig
 
-   - Go into the libticables2 directory
-   - Run:
-     ./configure --prefix=/target --disable-nls
-     make
-     make install
+9. Restart MSYS if you have done step 8 while MSYS was running.
 
-9. Repeat Step 7 for the additional libti* libraries in the FOLLOWING order: libticonv, libtifiles2,
-   libticalcs2.
+10. Now let's compile. Open up MSYS if you haven't already. Make sure all of your source is extracted
+    and ready to compile. With your basic Linux skills, go into the following directory and type the
+    following:
 
-10. Ok. Now all you have to do is repeat step 7 for TiLP, TiEmu, or GFM, or all of them if you so
+    - Go into the libticables2 directory
+    - Run:
+      ./configure --prefix=/target --disable-nls
+      make
+      make install
+
+11. Repeat Step 10 for the additional libti* libraries in the FOLLOWING order: libticonv, libtifiles2,
+    libticalcs2.
+
+12. Ok. Now all you have to do is repeat step 10 for TiLP, TiEmu, or GFM, or all of them if you so
     wish! For TiEmu, you'll also need SDL unless you configure with --disable-sound.
 
-11. Your files are now all located in /target (C:\msys\target). If it does not work, an instruction
+13. Your files are now all located in /target (C:\msys\target). If it does not work, an instruction
     may have been missed or performed wrong, or the source code is broken (which would be a bug,
     please report it).
 
@@ -170,7 +176,13 @@ Once you have successfully built TiLP2/TiEmu3, here's how to build an installer 
    /usr/local/i386-mingw32/lib/libstdc++.la
    and remove "-lmingwthrd".
 
-7. Download the SDL source from http://www.libsdl.org (the binaries probably won't work due to iconv)
+7. Download and untar libusb-win32-device-bin from
+   http://sourceforge.net/project/showfiles.php?group_id=78138
+   Install it using the script provided in the build/mingw directory of libticables2:
+   cd libusb-win32-device-bin-*/libusb-win32
+   PREFIX=~/.wine/c/tiemu ./install.sh
+
+8. Download the SDL source from http://www.libsdl.org (the binaries probably won't work due to iconv)
    You can build a static library from the source using the following options:
    ln -s /usr/include/wine/windows/dsound.h /usr/local/i386-mingw32/include/ # (for Direct Sound support)
    source cross-mingw32-gtkaio.sh #(otherwise it won't find iconv and then get confused when it's there)
@@ -185,36 +197,36 @@ Once you have successfully built TiLP2/TiEmu3, here's how to build an installer 
    --disable-video --disable-events --disable-joystick --disable-cdrom --disable-timers --disable-loadso
    (WARNING: Only use these for static builds, a DLL with all that stuff disabled WILL cause problems!)
 
-8. Edit cross-mingw32-gtkaio.sh to your system's needs.
+9. Edit cross-mingw32-gtkaio.sh to your system's needs.
 
-9. Use the following commands to build TiEmu (TiLP and GFM can be built the same way, if this is
-   broken, please report it as a bug):
-   source cross-mingw32-gtkaio.sh #(needs to be done for EACH build!)
-   export PATH=/path/to/sdl-mingw/bin:$PATH #(replace /path/to/sdl-mingw with the prefix from step 7)
-   export CFLAGS="-Os -s -fno-exceptions"
-   export CXXFLAGS="-Os -s -fno-exceptions"
-   cd libticables-mingw-build
-   ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
-   make
-   make install
-   cd ../libticonv-mingw-build
-   ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
-   make
-   make install
-   cd ../libtifiles-mingw-build
-   ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
-   make
-   make install
-   cd ../libticalcs-mingw-build
-   ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
-   make
-   make install
-   cd ../tiemu-mingw-build
-   ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
-   make
-   make install
-   i386-mingw32-strip ~/.wine/c/tiemu/bin/*
-   NOTE: You'll have to substitute an absolute path for ~ to make configure happy.
+10. Use the following commands to build TiEmu (TiLP and GFM can be built the same way, if this is
+    broken, please report it as a bug):
+    source cross-mingw32-gtkaio.sh #(needs to be done for EACH build!)
+    export PATH=/path/to/sdl-mingw/bin:$PATH #(replace /path/to/sdl-mingw with the prefix from step 7)
+    export CFLAGS="-Os -s -fno-exceptions"
+    export CXXFLAGS="-Os -s -fno-exceptions"
+    cd libticables-mingw-build
+    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    make
+    make install
+    cd ../libticonv-mingw-build
+    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    make
+    make install
+    cd ../libtifiles-mingw-build
+    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    make
+    make install
+    cd ../libticalcs-mingw-build
+    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    make
+    make install
+    cd ../tiemu-mingw-build
+    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    make
+    make install
+    i386-mingw32-strip ~/.wine/c/tiemu/bin/*
+    NOTE: You'll have to substitute an absolute path for ~ to make configure happy.
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
