@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP2
-AppVerName=TiLP2 1.07a
+AppVerName=TiLP2 1.07b
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp2-staff.php
@@ -58,7 +58,8 @@ Source: "C:\sources\roms\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\driv
 Source: "C:\sources\roms\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\usb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\usb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\sources\roms\libusb-win32\bin\*.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
+Source: "C:\sources\roms\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: not Is64BitInstallMode
+Source: "C:\sources\roms\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
@@ -138,7 +139,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename:
 Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
-
+; Drivers installation
 Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take few seconds) ..."
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take few seconds) ..."
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take few seconds) ..."
