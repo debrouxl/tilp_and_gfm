@@ -46,8 +46,12 @@ Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LP
 Source: "C:\sources\roms\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
 ; DhaHelper driver
-Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
-Source: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile;
+Source: "C:\sources\roms\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
+Source: "C:\sources\roms\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
+
+; RwPorts driver
+Source: "C:\sources\roms\ticables2\src\win64\rwp\rwports.sys"; DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
+Source: "C:\sources\roms\ticables2\src\win64\rwp\rwpsetup.exe";  DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
 
 ; USB driver
 Source: "C:\sources\roms\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
