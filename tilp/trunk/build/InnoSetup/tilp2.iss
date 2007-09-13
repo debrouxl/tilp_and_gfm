@@ -58,7 +58,7 @@ Source: "C:\sources\roms\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\driv
 Source: "C:\sources\roms\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\usb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
 Source: "C:\sources\roms\ticables2\src\win32\usb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\sources\roms\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: not Is64BitInstallMode
+Source: "C:\sources\roms\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
 Source: "C:\sources\roms\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
 
 [Registry]
