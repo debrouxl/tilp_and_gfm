@@ -4,6 +4,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 17/09/2007n version 1.08 (1.1.0, 1.0.7, 1.0.7, 1.0.4): roms
 	- screenshots can be copied into the clipboard
+	- use fixed fonts for release and manpage dboxes
 
 - 13/09/2007, version 1.07b (1.1.0, 1.0.7, 1.0.7, 1.0.4): roms
 	- fixed ticables2 library due to bad check of dhahelper

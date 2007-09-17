@@ -45,6 +45,7 @@ gint display_release_dbox()
 	gint len = 0;
 	struct stat stbuf;
 	gint result;
+	PangoFontDescription *font_desc;
 
 #ifdef _MSC_VER /* MSVC builds. MinGW builds use Linux file structures. */
 	filename = g_strconcat(inst_paths.base_dir, "Release.txt", NULL);
@@ -74,6 +75,13 @@ gint display_release_dbox()
 
 	dbox = glade_xml_get_widget(xml, "release_dbox");
 	text = glade_xml_get_widget(xml, "textview1");
+
+	// Change font
+	font_desc = pango_font_description_from_string ("Courier");
+	gtk_widget_modify_font (text, font_desc);
+	pango_font_description_free (font_desc);
+
+	// Set text
 	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 	gtk_text_buffer_set_text(txtbuf, buffer, len);
 	
