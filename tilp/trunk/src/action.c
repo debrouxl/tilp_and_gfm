@@ -214,7 +214,7 @@ gint display_action_dbox(gchar *target)
 			if(w->attr == ATTRB_LOCKED || w->attr == ATTRB_ARCHIVED)
 				v->action = ACT_SKIP;
 			else
-				v->action = ACT_OVER;
+				v->action = ACT_SKIP;	//don't overwrite as default behaviour
 
 			// file contains an already existing var: add it to the window
 			row_text[0] = trans;

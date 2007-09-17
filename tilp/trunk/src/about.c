@@ -100,7 +100,7 @@ gint display_about_dbox(void)
 	gtk_about_dialog_set_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
-	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2006 The TiLP Team");
+	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2007 The TiLP Team");
 	gtk_about_dialog_set_license(dlg, buffer);
 	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
 	gtk_about_dialog_set_authors(dlg, authors);
