@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-17 16:49+0200\n"
+"POT-Creation-Date: 2007-09-17 21:42+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -85,7 +85,7 @@ msgstr "Date"
 msgid "Change drive"
 msgstr "Changer de lecteur"
 
-#: src/clist_rbm.c:267 src/clist_rbm.c:287 src/dboxes.c:46 src/main.c:175
+#: src/clist_rbm.c:264 src/clist_rbm.c:284 src/dboxes.c:46 src/main.c:175
 #: src/tilp_calcs.c:334 src/tilp_calcs.c:402 src/tilp_calcs.c:409
 #: src/tilp_calcs.c:531 src/tilp_calcs.c:540 src/tilp_calcs.c:545
 #: src/tilp_calcs.c:550 src/tilp_calcs.c:1207 src/tilp_config.c:311
@@ -96,7 +96,7 @@ msgstr "Changer de lecteur"
 msgid "Error"
 msgstr "Erreur"
 
-#: src/clist_rbm.c:267
+#: src/clist_rbm.c:264
 msgid ""
 "The Group File Manager seems not be installed on your system.\n"
 "Download it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP "
@@ -106,15 +106,15 @@ msgstr ""
 "Téléchargez le depuis <http://lpg.ticalc.org/prj_gfm> ou jetez un coup "
 "d'oeilau manuel de TiLP."
 
-#: src/clist_rbm.c:314 src/tilp.c:629
+#: src/clist_rbm.c:311 src/tilp.c:629
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: src/clist_rbm.c:314 src/tilp.c:629 src/tilp_calcs.c:979 src/tilp_slct.c:543
+#: src/clist_rbm.c:311 src/tilp.c:629 src/tilp_calcs.c:979 src/tilp_slct.c:543
 msgid "Name: "
 msgstr "Nom: "
 
-#: src/clist_rbm.c:315 src/tilp.c:629
+#: src/clist_rbm.c:312 src/tilp.c:629
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
@@ -289,9 +289,10 @@ msgstr "Restaurer"
 msgid "Data to restore:"
 msgstr "Données à restaurer:"
 
-#: src/tilp.c:557 glade/tilp-2.str:13 glade/user_boxes-2.str:9
+#: src/tilp.c:557 glade/options-2.str:16 glade/tilp-2.str:13
+#: glade/user_boxes-2.str:9
 msgid "Backup"
-msgstr "Sauvergarder"
+msgstr "Sauvegarder"
 
 #: src/tilp.c:557 glade/user_boxes-2.str:13
 msgid "Data to backup:"
@@ -323,7 +324,7 @@ msgstr "Restaurer"
 
 #: src/tilp_calcs.c:195 src/tilp_calcs.c:1267
 msgid "Backing up"
-msgstr "Sauvergarder"
+msgstr "Sauvegarder"
 
 #: src/tilp_calcs.c:238
 msgid "ID-LIST : "
@@ -960,7 +961,7 @@ msgstr "_Propriétés"
 msgid "Open..."
 msgstr "Ouvrir..."
 
-#: glade/clist_rbm-2.str:29 glade/ctree_rbm-2.str:8 glade/screenshot-2.str:12
+#: glade/clist_rbm-2.str:29 glade/ctree_rbm-2.str:10 glade/screenshot-2.str:12
 msgid "_Options"
 msgstr "_Options"
 
@@ -971,10 +972,6 @@ msgstr "_Montrer tous les fichiers"
 #: glade/clist_rbm-2.str:31
 msgid "_Confirm delete/overwrite"
 msgstr "_Confirmer suppression/écrasement"
-
-#: glade/clist_rbm-2.str:32
-msgid "_Receive as group"
-msgstr "_Recevoir groupé"
 
 #: glade/clock-2.str:7
 msgid "Clock Management"
@@ -1096,19 +1093,27 @@ msgstr " _Synchroniser"
 msgid "Change _device"
 msgstr "_Paramètres"
 
+#: glade/ctree_rbm-2.str:8
+msgid "_Main Options"
+msgstr "_Options générales"
+
 #: glade/ctree_rbm-2.str:9
 msgid "_Local view"
 msgstr "_Vue locale"
 
-#: glade/ctree_rbm-2.str:10
+#: glade/ctree_rbm-2.str:11
 msgid "Recv as _group"
 msgstr "_Recevoir groupé"
 
-#: glade/ctree_rbm-2.str:11
+#: glade/ctree_rbm-2.str:12
+msgid "Backup as TiGroup"
+msgstr "Sauvegarde avec TiGroup"
+
+#: glade/ctree_rbm-2.str:13
 msgid "_Delete var/app"
 msgstr "_Supprimer variable/application"
 
-#: glade/ctree_rbm-2.str:12
+#: glade/ctree_rbm-2.str:14
 msgid "Create _folder"
 msgstr "_Nouveau dossier"
 
@@ -1287,10 +1292,6 @@ msgstr "T_I seulement"
 #: glade/options-2.str:15
 msgid "Display"
 msgstr "Afficher"
-
-#: glade/options-2.str:16
-msgid "backup"
-msgstr "backup"
 
 #: glade/options-2.str:17
 msgid "_TiGroup"
@@ -1716,3 +1717,9 @@ msgstr "variables en FLASH"
 #: glade/user_boxes-2.str:12
 msgid "apps"
 msgstr "applications"
+
+#~ msgid "_Receive as group"
+#~ msgstr "_Recevoir groupé"
+
+#~ msgid "backup"
+#~ msgstr "backup"

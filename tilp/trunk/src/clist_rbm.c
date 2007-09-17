@@ -120,9 +120,6 @@ GtkWidget *create_clist_rbm(void)
 	data = glade_xml_get_widget(xml, "confirm1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.overwrite);
 
-	data = glade_xml_get_widget(xml, "recv_as_group1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
-
 	menu = glade_xml_get_widget(xml, "clist_rbm");
 #ifdef __WIN32__
 	set_drives(menu, menu);
@@ -355,14 +352,6 @@ rbm_confirm_delete_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 	options.overwrite = GTK_CHECK_MENU_ITEM(menuitem)->active;
-}
-
-
-GLADE_CB void
-rbm_recv_as_group1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-	options.recv_as_group = GTK_CHECK_MENU_ITEM(menuitem)->active;
 }
 
 GLADE_CB void

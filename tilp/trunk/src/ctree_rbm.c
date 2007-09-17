@@ -89,6 +89,20 @@ rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	tilp_calc_new_fld();
 }
 
+GLADE_CB void
+rbm_recv_as_group1_activate             (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+	options.recv_as_group = GTK_CHECK_MENU_ITEM(menuitem)->active;
+}
+
+GLADE_CB void
+rbm_backup_as_tigroup1_activate        (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+	options.backup_as_tigroup = GTK_CHECK_MENU_ITEM(menuitem)->active;
+}
+
 /* Create/update menu */
 
 GtkWidget *create_ctree_rbm(void)
@@ -109,6 +123,9 @@ GtkWidget *create_ctree_rbm(void)
 
 	data = glade_xml_get_widget(xml, "recv_as_group1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
+
+	data = glade_xml_get_widget(xml, "backup_as_tigroup1");
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.backup_as_tigroup);
 
 	data = glade_xml_get_widget(xml, "delete_var1");
 	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));

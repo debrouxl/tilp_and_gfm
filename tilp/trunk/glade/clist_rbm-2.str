@@ -29,4 +29,3 @@ gchar *s = N_("Open...");
 gchar *s = N_("_Options");
 gchar *s = N_("_Show all files");
 gchar *s = N_("_Confirm delete/overwrite");
-gchar *s = N_("_Receive as group");

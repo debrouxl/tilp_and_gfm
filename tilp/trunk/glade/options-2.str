@@ -13,6 +13,6 @@ gchar *s = N_("Confirm");
 gchar *s = N_("all _files");
 gchar *s = N_("T_I only");
 gchar *s = N_("Display");
-gchar *s = N_("backup");
+gchar *s = N_("Backup");
 gchar *s = N_("_TiGroup");
 gchar *s = N_("Backup/Restore with");
