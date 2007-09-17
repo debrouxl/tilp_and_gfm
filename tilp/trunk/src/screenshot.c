@@ -179,6 +179,8 @@ static void destroy_pixbuf(guchar * pixels, gpointer data)
 	g_free(pixels);
 }
 
+extern void on_manual1_activate(GtkMenuItem * menuitem, gpointer user_data);
+
 GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 					gpointer user_data)
 {
@@ -208,7 +210,6 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 				     8, w, h, 3 * w, destroy_pixbuf, NULL);
 	gtk_image_set_from_pixbuf(GTK_IMAGE(scrn_img), pixbuf);
 	g_object_unref(pixbuf);
-	//g_free(bytemap);
 }
 
 GLADE_CB void on_scdbox_button2_clicked(GtkButton * button,
@@ -223,9 +224,18 @@ GLADE_CB void on_scdbox_button3_clicked(GtkButton * button,
 	gtk_widget_destroy(scrn_win);
 }
 
-extern void on_manual1_activate(GtkMenuItem * menuitem, gpointer user_data);
-
 GLADE_CB void on_scdbox_button4_clicked(GtkButton * button, gpointer user_data)
 {
 	on_manual1_activate(NULL, NULL);
-} 
+}
+
+GLADE_CB void on_scdbox_button5_clicked(GtkButton * button, gpointer user_data)
+{
+	GdkPixbuf *pixbuf;
+	GtkClipboard *clipboard;
+
+	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(scrn_img));
+
+	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
+	gtk_clipboard_set_image(clipboard, pixbuf);
+}

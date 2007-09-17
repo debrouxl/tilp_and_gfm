@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-13 21:37+0200\n"
+"POT-Creation-Date: 2007-09-17 16:49+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -1456,23 +1456,47 @@ msgstr "Enregi_strer"
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: glade/screenshot-2.str:13 glade/tilp-2.str:33
+#: glade/screenshot-2.str:13
+msgid "Refresh capture."
+msgstr "Capture d'écran"
+
+#: glade/screenshot-2.str:14 glade/tilp-2.str:33
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: glade/screenshot-2.str:14
+#: glade/screenshot-2.str:15
+msgid "Save capture to picture file."
+msgstr "Sauve la capture dans un fichier image."
+
+#: glade/screenshot-2.str:16
 msgid "Save"
 msgstr "Enregistrer"
 
-#: glade/screenshot-2.str:15
+#: glade/screenshot-2.str:17
+msgid "Quit."
+msgstr "Quitter"
+
+#: glade/screenshot-2.str:18
 msgid "Quit"
 msgstr "Quitter"
 
-#: glade/screenshot-2.str:16 glade/tilp-2.str:35
+#: glade/screenshot-2.str:19
+msgid "User's manual."
+msgstr "Manuel de l'_utilisateur"
+
+#: glade/screenshot-2.str:20 glade/tilp-2.str:35
 msgid "Help"
 msgstr "Aide"
 
-#: glade/screenshot-2.str:17
+#: glade/screenshot-2.str:21
+msgid "Copy capture to clipboard."
+msgstr "Copie la capture écran dans le presse-papier."
+
+#: glade/screenshot-2.str:22
+msgid "Copy"
+msgstr "C_opier"
+
+#: glade/screenshot-2.str:23
 msgid "Calculator screen"
 msgstr "Écran calculatrice"
 
@@ -1692,10 +1716,3 @@ msgstr "variables en FLASH"
 #: glade/user_boxes-2.str:12
 msgid "apps"
 msgstr "applications"
-
-#~ msgid ""
-#~ "The detected model does not match those specified in the settings. Do you "
-#~ "want to change it?"
-#~ msgstr ""
-#~ "Le modèle détecté ne correspond pas à celui qui a été sélectionné.Voulez-"
-#~ "vous le changer ?"
