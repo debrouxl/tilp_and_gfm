@@ -1,13 +1,11 @@
 To do:
 ------
 
-1) progress bars are not always updated (T. Evans)
+1) bug: broken pipe problem (T. Evans); see long mail about that
 
-2) bug: broken pipe problem (T. Evans); see long mail about that
+2) need to exit TiLP to clear an USB error
 
-3) need to exit TiLP to clear an USB error
-
-4) fix Titanium/USB sous Linux
+3) fix Titanium/USB sous Linux
 
 //------
 

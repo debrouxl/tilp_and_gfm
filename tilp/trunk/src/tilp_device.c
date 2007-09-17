@@ -31,6 +31,7 @@
 #include "tilibs.h"
 
 #include "tilp_core.h"
+#include "gtk_update.h"
 
 #ifdef __WIN32__
 # define strcasecmp _stricmp
@@ -325,7 +326,8 @@ int tilp_device_open(void)
 		}
 
 		// Initialize callbacks with default functions
-		tilp_update_set_default();
+		//tilp_update_set_default();
+		tilp_update_set_gtk();
 	}
 
 	lk_open = err ? 0 : 1;
