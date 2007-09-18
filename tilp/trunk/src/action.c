@@ -244,6 +244,15 @@ gint display_action_dbox(gchar *target)
 		goto out_clean;
 	}
 
+	// select all vars
+	{
+		GtkTreeView *view = GTK_TREE_VIEW(clist);
+		GtkTreeSelection *sel;
+
+		sel = gtk_tree_view_get_selection(view);
+		gtk_tree_selection_select_all(sel);
+	}
+
 	// box running
 	gtk_dialog_set_default_response(GTK_DIALOG(dbox), GTK_RESPONSE_CANCEL);
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
