@@ -8,6 +8,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- slightly reworked options in popup menus
 	- don't overwrite variable as default behavior for action box
 	- refresh progress bar (bug)
+	- use of libusb-win32 seems to have removed this problem:
+	  "need to exit TiLP to clear an USB error"
 
 - 13/09/2007, version 1.07b (1.1.0, 1.0.7, 1.0.7, 1.0.4): roms
 	- fixed ticables2 library due to bad check of dhahelper
