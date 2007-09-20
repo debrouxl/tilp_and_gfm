@@ -81,7 +81,7 @@ gint display_clock_dbox()
 
 	if(!(ticalcs_calc_features(calc_handle) & OPS_CLOCK))
 	{
-		gif->msg_box1("Error", "No clock support !");
+		gif->msg_box1(_("Error"), _("No clock support!"));
 		return -1;
 	}
 
