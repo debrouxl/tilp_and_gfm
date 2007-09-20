@@ -52,4 +52,6 @@ int tilp_calc_recv_cert(void);
 int tilp_calc_send_tigroup(const char *filename, TigMode mode);
 int tilp_calc_recv_tigroup(TigMode mode);
 
+int tilp_calc_check_version(const char*, const char*);
+
 #endif

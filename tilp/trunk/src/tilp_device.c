@@ -405,7 +405,7 @@ int tilp_device_reset(void)
     {
 		int err;
 
-		gif->msg_box("Information", _("Connection is being \nreset..."), !0);
+		gif->msg_box("Information", _("Connection is being reset... Please wait for 2 seconds."), !0);
 
 		// detach cable (made by handle_del, too)
 		PAUSE(500);

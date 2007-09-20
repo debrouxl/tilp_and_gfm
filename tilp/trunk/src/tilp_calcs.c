@@ -880,6 +880,42 @@ int tilp_calc_recv_var(void)
 	return 0;
 }
 
+int tilp_calc_check_version(const char *ti9x_ver, const char *ti8x_ver)
+{
+	if(tifiles_is_flash(options.calc_model))
+	{
+		CalcInfos infos;
+		int err;
+
+		err = ticalcs_calc_get_version(calc_handle, &infos);
+		if(tilp_err(err))
+			return -1;
+
+		if(tifiles_calc_is_ti9x(options.calc_model))
+		{
+			if(strcmp(infos.os_version, ti9x_ver) < 0)
+			{
+				gchar *str = g_strdup_printf(_("You need AMS >=%s mini for this operation."), ti9x_ver);
+				gif->msg_box1(_("Information"), str);
+				g_free(str);
+
+				return -1;
+			}
+		} 
+		else if(tifiles_calc_is_ti8x(options.calc_model))
+		{
+			if(strcmp(infos.os_version, ti8x_ver) < 0)
+			{
+				gchar *str = g_strdup_printf(_("You need OS >=%s mini for this operation."), ti8x_ver);
+				gif->msg_box1(_("Information"), str);
+				return -1;
+			}
+		}
+	}
+
+	return 0;
+}
+
 int tilp_calc_del_var(void)
 {
 	GList *sel;
@@ -894,31 +930,8 @@ int tilp_calc_del_var(void)
 	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
-	if(tifiles_is_flash(options.calc_model))
-	{
-		CalcInfos infos;
-
-		err = ticalcs_calc_get_version(calc_handle, &infos);
-		if(tilp_err(err))
-			return -1;
-
-		if(tifiles_calc_is_ti9x(options.calc_model))
-		{
-			if(strcmp(infos.os_version, "2.09") < 0)
-			{
-				gif->msg_box1(_("Information"), _("You need AMS 2.09 mini for this operation."));
-				return -1;
-			}
-		} 
-		else if(tifiles_calc_is_ti8x(options.calc_model))
-		{
-			if(strcmp(infos.os_version, "2.00") < 0)
-			{
-				gif->msg_box1(_("Information"), _("You need OS 2.00 mini for this operation."));
-				return -1;
-			}
-		}
-	}
+	if(tilp_calc_check_version("2.09", "2.00") < 0)
+		return -1;
 
 	if(options.overwrite)
 	{
@@ -927,7 +940,6 @@ int tilp_calc_del_var(void)
 			return 0;
 	}
 
-	
 	gif->create_pbar_(FNCT_DEL_VAR, _("Deleting..."));
 
 	tilp_options_increase_timeout();
