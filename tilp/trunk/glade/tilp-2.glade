@@ -61,7 +61,7 @@
 			  <property name="tooltip" translatable="yes">Check whether calculator is ready...</property>
 			  <property name="label" translatable="yes">Ready ?</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_ready.xpm</property>
+			  <property name="icon">../pixmaps/tb_ready.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -79,7 +79,7 @@
 			  <property name="tooltip" translatable="yes">List calculator content (folders, variables and applications).</property>
 			  <property name="label" translatable="yes">Dirlist</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_dirlist.xpm</property>
+			  <property name="icon">../pixmaps/tb_dirlist.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -97,7 +97,7 @@
 			  <property name="tooltip" translatable="yes">Backup the calculator content.</property>
 			  <property name="label" translatable="yes">Backup</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_backup.xpm</property>
+			  <property name="icon">../pixmaps/tb_backup.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -115,7 +115,7 @@
 			  <property name="tooltip" translatable="yes">Restore the calculator content.</property>
 			  <property name="label" translatable="yes">Restore</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_restore.xpm</property>
+			  <property name="icon">../pixmaps/tb_restore.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -133,7 +133,7 @@
 			  <property name="tooltip" translatable="yes">Receive variables from non-silent calculators.</property>
 			  <property name="label" translatable="yes">Receive</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_recv.xpm</property>
+			  <property name="icon">../pixmaps/tb_receive.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -150,7 +150,7 @@
 			  <property name="tooltip" translatable="yes">Receive variables from non-silent calculators.</property>
 			  <property name="label" translatable="yes">Send</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_calc_send.xpm</property>
+			  <property name="icon">../pixmaps/tb_send.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -505,7 +505,7 @@
 			  <property name="tooltip" translatable="yes">Create a new directory.</property>
 			  <property name="label" translatable="yes">Folder</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_mkdir.xpm</property>
+			  <property name="icon">../pixmaps/tb_mkdir.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -523,7 +523,7 @@
 			  <property name="tooltip" translatable="yes">Delete selected files.</property>
 			  <property name="label" translatable="yes">Delete</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_trash.xpm</property>
+			  <property name="icon">../pixmaps/tb_trash.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -541,7 +541,7 @@
 			  <property name="tooltip" translatable="yes">Refresh right frame.</property>
 			  <property name="label" translatable="yes">Refresh</property>
 			  <property name="use_underline">True</property>
-			  <property name="icon">../pixmaps/tb_refresh.xpm</property>
+			  <property name="icon">../pixmaps/tb_refresh.png</property>
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">False</property>
@@ -559,7 +559,8 @@
 			  <property name="tooltip" translatable="yes">Help menu.</property>
 			  <property name="label" translatable="yes">Help</property>
 			  <property name="use_underline">True</property>
-			  <property name="stock_id">gtk-help</property>
+<property name="icon">../pixmaps/tb_help.png</property>
+
 			  <property name="visible_horizontal">True</property>
 			  <property name="visible_vertical">True</property>
 			  <property name="is_important">True</property>
