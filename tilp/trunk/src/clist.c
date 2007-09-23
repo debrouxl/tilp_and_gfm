@@ -299,7 +299,7 @@ void clist_refresh(void)
 	}
 
 	pix1 = create_pixbuf("up.ico");
-	pix2 = create_pixbuf("clist_dir.xpm");
+	pix2 = create_pixbuf("clist_dir.png");
 
 	for (dirlist = local.dirlist; dirlist != NULL; dirlist = dirlist->next) 
 	{

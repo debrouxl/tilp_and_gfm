@@ -422,7 +422,7 @@ int tilp_device_reset(void)
 		// get cable & attach
 		cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 		if(cable_handle == NULL)
-			gif->msg_box1(_("Error"), _("Can't set cable"));
+			gif->msg_box1(_("Error"), _("Can't set cable."));
 		else
 		{
 			ticables_options_set_timeout(cable_handle, options.cable_timeout);
@@ -430,7 +430,7 @@ int tilp_device_reset(void)
 
 			calc_handle = ticalcs_handle_new(options.calc_model);
 			if(calc_handle == NULL)
-				gif->msg_box1(_("Error"), _("Can't set cable"));
+				gif->msg_box1(_("Error"), _("Can't set cable."));
 			else
 			{
 				err = ticalcs_cable_attach(calc_handle, cable_handle);

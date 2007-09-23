@@ -51,7 +51,7 @@ gint display_screenshot_dbox()
 	scrn_win = glade_xml_get_widget(xml, "screenshot_dbox");
 	scrn_img = glade_xml_get_widget(xml, "pixmap7");
 
-	pixbuf = create_pixbuf("screendump.xpm");
+	pixbuf = create_pixbuf("screendump.png");
 	gtk_image_set_from_pixbuf(GTK_IMAGE(scrn_img), pixbuf);
 	g_object_unref(pixbuf);
 

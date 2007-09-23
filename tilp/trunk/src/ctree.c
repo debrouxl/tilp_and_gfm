@@ -350,11 +350,11 @@ void ctree_refresh(void)
 	memcpy(&parent_node, &vars_node, sizeof(GtkTreeIter));
 
 	// load pixmaps
-	pix1 = create_pixbuf("ctree_close_dir.xpm");
+	pix1 = create_pixbuf("ctree_close_dir.png");
 	pix2 = create_pixbuf("TIicon2.ico");
-	pix3 = create_pixbuf("ctree_open_dir.xpm");
-	pix4 = create_pixbuf("attr_locked.xpm");
-	pix5 = create_pixbuf("attr_archived.xpm");
+	pix3 = create_pixbuf("ctree_open_dir.png");
+	pix4 = create_pixbuf("attr_locked.png");
+	pix5 = create_pixbuf("attr_archived.png");
 	pix6 = create_pixbuf("TIicon4.ico");
 
 	// variables tree

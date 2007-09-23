@@ -95,7 +95,7 @@ gint display_about_dbox(void)
 
 	widget = gtk_about_dialog_new();
 	dlg = GTK_ABOUT_DIALOG(widget);
-	pix = create_pixbuf("logo.xpm");
+	pix = create_pixbuf("logo.png");
 
 	gtk_about_dialog_set_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);

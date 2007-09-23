@@ -43,55 +43,55 @@ void toolbar_set_images(void)
 		
 	child = g_list_nth(tb->children, 0)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_ready.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_ready.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 1)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_screen.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_screen.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 2)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_dirlist.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_dirlist.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 3)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_backup.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_backup.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 4)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_restore.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_restore.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 5)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_send.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_calc_send.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 6)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_mkdir.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_mkdir.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 7)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_trash.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_trash.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 	
 	child = g_list_nth(tb->children, 8)->data;
 	old_icon = child->icon;
-	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.xpm");
+	new_icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.png");
 	pixbuf = gtk_image_get_pixbuf(GTK_IMAGE(new_icon));
 	gtk_image_set_from_pixbuf(GTK_IMAGE(old_icon), pixbuf);
 }
@@ -140,7 +140,7 @@ void toolbar_set_button(int sr)
 	GtkToolButton *btn = GTK_TOOL_BUTTON(item);
 	GtkWidget *icon;
 
-	icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.xpm");
+	icon = create_pixmap(toolbar_wnd.toolbar, "tb_refresh.png");
 	//gtk_tool_button_set_icon_widget((GtkToolButton *)item, icon);
 	//gtk_tool_button_set_label       (btn, "foobar");
 
