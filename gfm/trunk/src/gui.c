@@ -438,9 +438,9 @@ on_ungroup_clicked                     (GtkButton       *button,
 		return;
 	
 	if(tifiles_file_is_tigroup(fn))
-		gfm_tifiles_ungroup(fn, TIFILE_GROUP);
-	else if(tifiles_file_is_regular(fn))
 		gfm_tifiles_ungroup(fn, TIFILE_TIGROUP);
+	else if(tifiles_file_is_regular(fn))
+		gfm_tifiles_ungroup(fn, TIFILE_GROUP);
 	else
 		return;	
 
