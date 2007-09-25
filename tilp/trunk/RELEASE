@@ -3,7 +3,7 @@
 
 
 Old     version:  1.07  (01/09/2007)
-Current version:  1.08  (XX/XX/2007)
+Current version:  1.08  (25/09/2007)
 
 
 SubVersion (CVS) revision: $Id$
@@ -21,13 +21,20 @@ New capabilities:
 Improvements:
 -------------
 
-	- none
+	- don't break USB communication if ROM dumping has been canceled
+	- USB communication is more reliable (LPG's driver replaced by generic libusb-win32 one)
 
 
 Bug fixes:
 ----------
 
-	- none
+	- full screen copy with Titanium hand-held
+	- displaying of full path with Titanium/USB hand-held
+	- sending of FLASH apps on TI73 hand-held
+	- sending of FLASH apps on non-SE hand-helds (bug introduced in revision 3291)
+	- progress bar update for backup & tigroup receiving
+	- some Titanium/USB transfers can fail (when variable has an odd size)
+	- added file extension for GRP variables
 
 
 Known bugs:
@@ -45,10 +52,6 @@ Bug report:
 
 If you think that you have found a bug, please report it. This allows us to 
 improve TiLP and make it better.
-
-It seems that some guys have backup problems with TI89/92+. If you have 
-installed a kernel or some other assembly program which modify the FLASH or
-RAM memory, this may explain your problem. But, mail us anyways.
 
 
 Mailing:
