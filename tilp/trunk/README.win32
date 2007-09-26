@@ -61,11 +61,15 @@ This step may require an administrator account (at least for NT4).
 You may need to REBOOT your machine after installation (if you plan to 
 use a parallel or serial link cable).
 
-DhaHelper is copryrighted (c) 2004 Sascha Sommer and released under GPL license.
+DhaHelper is copyrighted (c) 2004 Sascha Sommer and released under GPL license.
 Source code is available from <http://svn.mplayerhq.hu/mplayer/trunk/vidix/dhahelperwin/>.
 
 6°) This setup will install the GNU's 'wget' utility for download of GTK+
 (http://xoomer.virgilio.it/hherold/).
+
+7°) This setup will install/update the TiLP framework (libti* and drivers) which is
+installed as shared components since TiLP v1.07, TiEmu v3.01 or GFM v1.00. 
+Any software using the TiLP framework will take advantage of this update.
 
 
 USAGE
