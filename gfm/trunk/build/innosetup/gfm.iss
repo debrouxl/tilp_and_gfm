@@ -626,11 +626,11 @@ begin
   // Check for non-NT and WiMP theme
   WimpPath := GtkPath + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
-    MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
+    MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu/GFM', mbError, MB_OK);
   end;
 
   // Uninstall before installing new release
-  if not CheckUninstall('TiLP2') then
+  if not CheckUninstall('GFM') then
     Result := false
   else
     Result := true;
