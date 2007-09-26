@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- 17/09/2007n version 1.08 (1.1.0, 1.0.8, 1.0.7, 1.0.5): roms
+- 17/09/2007, version 1.08 (1.1.0, 1.0.8, 1.0.7, 1.0.5): roms
 	- screenshots can be copied into the clipboard
 	- use fixed fonts for release and manpage dboxes
 	- slightly reworked options in popup menus
