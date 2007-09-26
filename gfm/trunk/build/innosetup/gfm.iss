@@ -485,8 +485,9 @@ var
   GtkPath: String;
   WimpPath: String;
   GtkVersion: String;
-  LpgPath: string;
+  LpgPath: String;
 
+// Retrieve GTK installation path
 function GetGtkInstalled (): Boolean;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\GTK\2.0', 'Path', GtkPath);
@@ -496,6 +497,7 @@ begin
    Result := Exists
 end;
 
+// Get GTK version
 function GetGtkVersionInstalled (): Boolean;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\GTK\2.0', 'Version', GtkVersion);
@@ -505,6 +507,7 @@ begin
    Result := Exists
 end;
 
+// Get shared components path
 function GetLpgDllPath (S: String): String;
 begin
   Exists := RegQueryStringValue (HKLM, 'Software\LPG Shared', 'DllPath', LpgPath);
@@ -514,6 +517,16 @@ begin
   Result := LpgPath;
 end;
 
+function GetDllCount (S: String): Integer;
+var
+  path: string;
+  Count: Cardinal;
+begin
+  path := ExpandConstant('{cf}\LPG Shared\' + S);
+  Exists := RegQueryDWordValue (HKLM, 'Software\Microsoft\Windows\CurrentVersion\SharedDLLs\', path, Count);
+end;
+
+// check for minimum USB driver version
 function IsTiglUsbVersion3Mini (): Boolean;
 var
   Version: String;
@@ -524,6 +537,7 @@ begin
   end;
 end;
 
+// Display warning about GTK version
 function DisplayWarning(I: Integer): Boolean;
 var
   S: String;
@@ -534,9 +548,58 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.6.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > gfm > install gtk+ from the web).', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.6.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
 end;
 
+// Check for previous program presence and uninstall if needed
+function CheckUninstall(S: String): Boolean;
+var
+  uninsexe: String;
+  ResultCode: Integer;
+  I: Integer;
+  L: Integer;
+begin
+  Exists := RegKeyExists(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\' + S + '_is1');
+  Result := false;
+
+  if Exists then begin
+    if MsgBox('The program need to be uninstalled. Click YES to uninstall it or NO to force installation.', mbConfirmation, MB_YESNO) = IDNO
+    then begin
+      Result := true
+    end
+    else begin
+      if RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\' + S + '_is1', 'UninstallString', uninsexe) then
+      begin
+
+        L := Length(uninsexe);
+        for I:=1 to L-1
+        do begin
+          uninsexe[i] := uninsexe[i+1];
+        end;
+        SetLength(uninsexe, L-2);
+
+        if not Exec(uninsexe, '', '', SW_SHOW, ewWaitUntilTerminated, ResultCode)
+        then begin
+            Result := false;
+        end
+        else begin
+          if ResultCode <> 0
+          then begin
+            Result := false;
+          end
+          else begin
+            Result := true;
+          end;
+        end;
+      end;
+    end;
+  end
+  else begin
+    Result := true;
+  end;
+end;
+
+// Does various check before doing anything
 function InitializeSetup(): Boolean;
 begin
   // Retrieve GTK path
@@ -557,18 +620,23 @@ begin
 
   // Check version of USB driver
   if IsTiglUsbVersion3Mini() then begin
-    MsgBox('SilverLink driver v2.x has been removed of your system. Now, GFM/TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
+    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP/TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
   end;
 
   // Check for non-NT and WiMP theme
   WimpPath := GtkPath + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
-        MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of GFM/TiEmu', mbError, MB_OK);
+    MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
   end;
-  
-  Result := true;
+
+  // Uninstall before installing new release
+  if not CheckUninstall('TiLP2') then
+    Result := false
+  else
+    Result := true;
 end;
 
+// Delete shared DLL
 procedure DeleteDll(const FileName: string);
 var
   pf: string;
@@ -577,6 +645,7 @@ begin
   DeleteFile(pf + '\' + Filename);
 end;
 
+// Delete shared EXE
 procedure DeleteExe(const FileName: string);
 begin
   DeleteDll(FileName);
