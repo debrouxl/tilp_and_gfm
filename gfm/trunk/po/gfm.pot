@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-25 10:39+0200\n"
+"POT-Creation-Date: 2007-09-27 13:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,12 +151,12 @@ msgstr ""
 
 #: src/labels.c:124 src/labels.c:139
 #, possible-c-format
-msgid "%.2f kilobytes"
+msgid "%.1f KB"
 msgstr ""
 
 #: src/labels.c:126 src/labels.c:141
 #, possible-c-format
-msgid "%.2f megabytes"
+msgid "%.1f MB"
 msgstr ""
 
 #: src/main.c:70

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-25 10:39+0200\n"
+"POT-Creation-Date: 2007-09-27 13:36+0200\n"
 "PO-Revision-Date: 2007-06-27 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -151,14 +151,12 @@ msgid "%d bytes"
 msgstr "%d octets"
 
 #: src/labels.c:124 src/labels.c:139
-#, c-format
-msgid "%.2f kilobytes"
-msgstr "%2f kilo-octets"
+msgid "%.1f KB"
+msgstr "%.1f Ko"
 
 #: src/labels.c:126 src/labels.c:141
-#, c-format
-msgid "%.2f megabytes"
-msgstr "%.2f méga-octets"
+msgid "%.1f MB"
+msgstr "%.1f Mo"
 
 #: src/main.c:70
 msgid "Checking for GUI files..."
@@ -391,3 +389,9 @@ msgstr "_Grouper fichiers..."
 #: glade/gfm.str:35
 msgid "_Ungroup file..."
 msgstr "_Dégrouper fichiers..."
+
+#~ msgid "%.2f kilobytes"
+#~ msgstr "%2f kilo-octets"
+
+#~ msgid "%.2f megabytes"
+#~ msgstr "%.2f méga-octets"
