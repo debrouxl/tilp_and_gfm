@@ -35,6 +35,7 @@ host_triplet = @host@
 bin_PROGRAMS = gfm$(EXEEXT)
 @OS_WIN32_FALSE@gfm_DEPENDENCIES =
 @OS_WIN32_TRUE@am__append_1 = -Wl,../build/mingw/gfm-rc.o
+@USE_KDE_TRUE@am__append_2 = kde.cpp
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -48,15 +49,20 @@ CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am__gfm_SOURCES_DIST = *.h cmdline.c ctree.c dialog.c file.c filesel.c \
+	gui.c labels.c main.c paths.c rwgroup.c splashscreen.c \
+	support.c tilibs.c ungroup.c kde.cpp
+@USE_KDE_TRUE@am__objects_1 = gfm-kde.$(OBJEXT)
 am_gfm_OBJECTS = gfm-cmdline.$(OBJEXT) gfm-ctree.$(OBJEXT) \
 	gfm-dialog.$(OBJEXT) gfm-file.$(OBJEXT) gfm-filesel.$(OBJEXT) \
 	gfm-gui.$(OBJEXT) gfm-labels.$(OBJEXT) gfm-main.$(OBJEXT) \
 	gfm-paths.$(OBJEXT) gfm-rwgroup.$(OBJEXT) \
 	gfm-splashscreen.$(OBJEXT) gfm-support.$(OBJEXT) \
-	gfm-tilibs.$(OBJEXT) gfm-ungroup.$(OBJEXT)
-gfm_OBJECTS = $(am_gfm_OBJECTS)
-gfm_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(gfm_LDFLAGS) \
+	gfm-tilibs.$(OBJEXT) gfm-ungroup.$(OBJEXT) $(am__objects_1)
+@USE_KDE_TRUE@nodist_gfm_OBJECTS = gfm-kde-private.$(OBJEXT)
+gfm_OBJECTS = $(am_gfm_OBJECTS) $(nodist_gfm_OBJECTS)
+gfm_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(gfm_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -70,8 +76,17 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(gfm_SOURCES)
-DIST_SOURCES = $(gfm_SOURCES)
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(gfm_SOURCES) $(nodist_gfm_SOURCES)
+DIST_SOURCES = $(am__gfm_SOURCES_DIST)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -81,6 +96,7 @@ AMTAR = @AMTAR@
 AR = @AR@
 AS = @AS@
 AUTOCONF = @AUTOCONF@
+AUTODIRS = @AUTODIRS@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
@@ -98,6 +114,9 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
+DCOPIDL = @DCOPIDL@
+DCOPIDL2CPP = @DCOPIDL2CPP@
+DCOP_DEPENDENCIES = @DCOP_DEPENDENCIES@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DLLTOOL = @DLLTOOL@
@@ -138,15 +157,51 @@ INTLLIBS = @INTLLIBS@
 INTLOBJS = @INTLOBJS@
 INTL_LIBTOOL_SUFFIX_PREFIX = @INTL_LIBTOOL_SUFFIX_PREFIX@
 INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
+KDECONFIG = @KDECONFIG@
+KDE_EXTRA_RPATH = @KDE_EXTRA_RPATH@
+KDE_INCLUDES = @KDE_INCLUDES@
+KDE_LDFLAGS = @KDE_LDFLAGS@
+KDE_MT_LDFLAGS = @KDE_MT_LDFLAGS@
+KDE_MT_LIBS = @KDE_MT_LIBS@
+KDE_RPATH = @KDE_RPATH@
 LDFLAGS = @LDFLAGS@
+LIBCOMPAT = @LIBCOMPAT@
+LIBCRYPT = @LIBCRYPT@
+LIBDL = @LIBDL@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
+LIBJPEG = @LIBJPEG@
 LIBMULTITHREAD = @LIBMULTITHREAD@
 LIBOBJS = @LIBOBJS@
+LIBPNG = @LIBPNG@
 LIBPTH = @LIBPTH@
+LIBPTHREAD = @LIBPTHREAD@
+LIBRESOLV = @LIBRESOLV@
 LIBS = @LIBS@
+LIBSM = @LIBSM@
+LIBSOCKET = @LIBSOCKET@
 LIBTHREAD = @LIBTHREAD@
 LIBTOOL = @LIBTOOL@
+LIBUCB = @LIBUCB@
+LIBUTIL = @LIBUTIL@
+LIBXINERAMA = @LIBXINERAMA@
+LIBZ = @LIBZ@
+LIB_KAB = @LIB_KAB@
+LIB_KDECORE = @LIB_KDECORE@
+LIB_KDEPRINT = @LIB_KDEPRINT@
+LIB_KDEUI = @LIB_KDEUI@
+LIB_KFILE = @LIB_KFILE@
+LIB_KFM = @LIB_KFM@
+LIB_KHTML = @LIB_KHTML@
+LIB_KIO = @LIB_KIO@
+LIB_KPARTS = @LIB_KPARTS@
+LIB_KSPELL = @LIB_KSPELL@
+LIB_KSYCOCA = @LIB_KSYCOCA@
+LIB_QPE = @LIB_QPE@
+LIB_QT = @LIB_QT@
+LIB_SMB = @LIB_SMB@
+LIB_X11 = @LIB_X11@
+LIB_XEXT = @LIB_XEXT@
 LN_S = @LN_S@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
@@ -157,6 +212,7 @@ LTLIBTHREAD = @LTLIBTHREAD@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MOC = @MOC@
 MSGFMT = @MSGFMT@
 MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
@@ -172,8 +228,12 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 PRI_MACROS_BROKEN = @PRI_MACROS_BROKEN@
+QTE_NORTTI = @QTE_NORTTI@
+QT_INCLUDES = @QT_INCLUDES@
+QT_LDFLAGS = @QT_LDFLAGS@
 RANLIB = @RANLIB@
 RC = @RC@
+SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -183,12 +243,22 @@ TICONV_CFLAGS = @TICONV_CFLAGS@
 TICONV_LIBS = @TICONV_LIBS@
 TIFILES_CFLAGS = @TIFILES_CFLAGS@
 TIFILES_LIBS = @TIFILES_LIBS@
+UIC = @UIC@
+UIC_TR = @UIC_TR@
+USER_INCLUDES = @USER_INCLUDES@
+USER_LDFLAGS = @USER_LDFLAGS@
 USE_INCLUDED_LIBINTL = @USE_INCLUDED_LIBINTL@
 USE_NLS = @USE_NLS@
+USE_THREADS = @USE_THREADS@
 VERSION = @VERSION@
 WOE32DLL = @WOE32DLL@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
+XMKMF = @XMKMF@
+X_EXTRA_LIBS = @X_EXTRA_LIBS@
+X_INCLUDES = @X_INCLUDES@
+X_LDFLAGS = @X_LDFLAGS@
+X_PRE_LIBS = @X_PRE_LIBS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -196,6 +266,8 @@ abs_top_srcdir = @abs_top_srcdir@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
+all_includes = @all_includes@
+all_libraries = @all_libraries@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -222,6 +294,28 @@ htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
+kde = @kde@
+kde_appsdir = @kde_appsdir@
+kde_bindir = @kde_bindir@
+kde_confdir = @kde_confdir@
+kde_datadir = @kde_datadir@
+kde_htmldir = @kde_htmldir@
+kde_icondir = @kde_icondir@
+kde_includes = @kde_includes@
+kde_libraries = @kde_libraries@
+kde_libs_htmldir = @kde_libs_htmldir@
+kde_libs_prefix = @kde_libs_prefix@
+kde_locale = @kde_locale@
+kde_mimedir = @kde_mimedir@
+kde_moduledir = @kde_moduledir@
+kde_qtver = @kde_qtver@
+kde_servicesdir = @kde_servicesdir@
+kde_servicetypesdir = @kde_servicetypesdir@
+kde_sounddir = @kde_sounddir@
+kde_styledir = @kde_styledir@
+kde_templatesdir = @kde_templatesdir@
+kde_wallpaperdir = @kde_wallpaperdir@
+kde_widgetdir = @kde_widgetdir@
 libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
@@ -233,6 +327,8 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+qt_includes = @qt_includes@
+qt_libraries = @qt_libraries@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -240,45 +336,38 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+x_includes = @x_includes@
+x_libraries = @x_libraries@
 AM_CFLAGS = -Wall -W
 
 # build instructions
 gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
-	-I$(top_srcdir)/intl \
 	-DLOCALEDIR=\"$(datadir)/locale\"
 
 gfm_LDFLAGS = -export-dynamic $(am__append_1)
 gfm_LDADD = \
 	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \
-	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@
+	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
+	@LIB_KDECORE@ @LIB_KDEUI@ @LIB_KIO@ @LIB_QT@ @KDE_LDFLAGS@ \
+	@QT_LDFLAGS@ @X_LDFLAGS@ \
+	@LTLIBINTL@
 
 
 # automake wants all .c files listed explicitly. This sucks. qmake does the
 # right thing with just "*.c".
-gfm_SOURCES = \
-	*.h \
-	cmdline.c \
-	ctree.c \
-	dialog.c \
-	file.c \
-	filesel.c \
-	gui.c \
-	labels.c \
-	main.c \
-	paths.c \
-	rwgroup.c \
-	splashscreen.c \
-	support.c \
-	tilibs.c \
-	ungroup.c
-
+gfm_SOURCES = *.h cmdline.c ctree.c dialog.c file.c filesel.c gui.c \
+	labels.c main.c paths.c rwgroup.c splashscreen.c support.c \
+	tilibs.c ungroup.c $(am__append_2)
 @OS_WIN32_TRUE@gfm_DEPENDENCIES = ../build/mingw/gfm-rc.o
+@USE_KDE_TRUE@nodist_gfm_SOURCES = kde-private.cpp
+@USE_KDE_TRUE@CLEANFILES = kde-private.cpp
+@USE_KDE_FALSE@EXTRA_DIST = kde.cpp
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -352,6 +441,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-file.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-filesel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-gui.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-kde-private.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-kde.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-labels.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/gfm-paths.Po@am__quote@
@@ -578,6 +669,55 @@ gfm-ungroup.obj: ungroup.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o gfm-ungroup.obj `if test -f 'ungroup.c'; then $(CYGPATH_W) 'ungroup.c'; else $(CYGPATH_W) '$(srcdir)/ungroup.c'; fi`
 
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
+
+gfm-kde.o: kde.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gfm-kde.o -MD -MP -MF $(DEPDIR)/gfm-kde.Tpo -c -o gfm-kde.o `test -f 'kde.cpp' || echo '$(srcdir)/'`kde.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/gfm-kde.Tpo $(DEPDIR)/gfm-kde.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kde.cpp' object='gfm-kde.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gfm-kde.o `test -f 'kde.cpp' || echo '$(srcdir)/'`kde.cpp
+
+gfm-kde.obj: kde.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gfm-kde.obj -MD -MP -MF $(DEPDIR)/gfm-kde.Tpo -c -o gfm-kde.obj `if test -f 'kde.cpp'; then $(CYGPATH_W) 'kde.cpp'; else $(CYGPATH_W) '$(srcdir)/kde.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/gfm-kde.Tpo $(DEPDIR)/gfm-kde.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kde.cpp' object='gfm-kde.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gfm-kde.obj `if test -f 'kde.cpp'; then $(CYGPATH_W) 'kde.cpp'; else $(CYGPATH_W) '$(srcdir)/kde.cpp'; fi`
+
+gfm-kde-private.o: kde-private.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gfm-kde-private.o -MD -MP -MF $(DEPDIR)/gfm-kde-private.Tpo -c -o gfm-kde-private.o `test -f 'kde-private.cpp' || echo '$(srcdir)/'`kde-private.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/gfm-kde-private.Tpo $(DEPDIR)/gfm-kde-private.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kde-private.cpp' object='gfm-kde-private.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gfm-kde-private.o `test -f 'kde-private.cpp' || echo '$(srcdir)/'`kde-private.cpp
+
+gfm-kde-private.obj: kde-private.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gfm-kde-private.obj -MD -MP -MF $(DEPDIR)/gfm-kde-private.Tpo -c -o gfm-kde-private.obj `if test -f 'kde-private.cpp'; then $(CYGPATH_W) 'kde-private.cpp'; else $(CYGPATH_W) '$(srcdir)/kde-private.cpp'; fi`
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/gfm-kde-private.Tpo $(DEPDIR)/gfm-kde-private.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kde-private.cpp' object='gfm-kde-private.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(gfm_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gfm-kde-private.obj `if test -f 'kde-private.cpp'; then $(CYGPATH_W) 'kde-private.cpp'; else $(CYGPATH_W) '$(srcdir)/kde-private.cpp'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -682,6 +822,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
@@ -763,6 +904,9 @@ uninstall-am: uninstall-binPROGRAMS
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-binPROGRAMS
 
+
+@USE_KDE_TRUE@  kde-private.cpp: kde-private.h
+@USE_KDE_TRUE@	  @MOC@ kde-private.h -o kde-private.cpp
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

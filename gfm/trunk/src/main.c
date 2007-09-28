@@ -26,6 +26,10 @@
 #include <windows.h>
 #endif
 
+#if WITH_KDE
+#include "kde.h"
+#endif
+
 #include <stdio.h>
 #include <gtk/gtk.h>
 
@@ -65,6 +69,14 @@ int main(int argc, char *argv[])
 
     /* Load Splash Screen */
     splash_screen_start();
+
+#if WITH_KDE
+    splash_screen_set_label(_("Initializing KDE..."));
+    sp_kde_init(argc, argv, "gfm", _("GFM"), VERSION, _("Group File Manager"), "Copyright (c) 2006-2007 Tyler Cassidy, Romain Lievin", "http://lpg.ticalc.org/prj_gfm/", "tilp-users@lists.sf.net");
+    atexit(sp_kde_finish);
+    // Not needed unless we want to add a DCOP interface.
+    // g_timeout_add(26, sp_kde_process_qt_events, NULL);
+#endif
 
     /* Checking for GUI Files */
     splash_screen_message(_("Checking for GUI files..."));
