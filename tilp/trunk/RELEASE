@@ -23,6 +23,7 @@ Improvements:
 
 	- don't break USB communication if ROM dumping has been canceled
 	- USB communication is more reliable (LPG's driver replaced by generic libusb-win32 one)
+	- check for AMS/OS version for clock support
 
 
 Bug fixes:
@@ -32,7 +33,7 @@ Bug fixes:
 	- displaying of full path with Titanium/USB hand-held
 	- sending of FLASH apps on TI73 hand-held
 	- sending of FLASH apps on non-SE hand-helds (bug introduced in revision 3291)
-	- progress bar update for backup & tigroup receiving
+	- progress bar update
 	- some Titanium/USB transfers can fail (when variable has an odd size)
 	- added file extension for GRP variables
 

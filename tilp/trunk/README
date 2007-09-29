@@ -44,7 +44,6 @@ TI89/TI89 Titanium/TI92+/V200:
   - sending/receiving/deleting FLASH applications
   - upgrading of Operating System (AMS)
   - getting/setting time (need AMS >= 2.08)
-  - certificates
 
 TI92:
   - remote control of the calculator
@@ -77,7 +76,6 @@ TI83+/TI84+ (SE or not SE):
   - sending/receiving/deleting FLASH applications
   - upgrading of Operating System (GRAPH EXPLORER SOFTWARE)
   - ROM dump
-  - certificates
 
 Note: the TI83+ is the only calc to have a GROUP variable. TiLP supports it in
 a specific way: this kind of var is saved as a single file as any other
