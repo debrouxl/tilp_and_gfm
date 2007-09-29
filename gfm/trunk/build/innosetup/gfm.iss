@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=GFM
-AppVerName=GFM 1.00
+AppVerName=GFM 1.01
 AppPublisher=The GFM Team
 AppPublisherURL=http://lpg.ticalc.org/gfm/index.html
 AppSupportURL=http://lpg.ticalc.org/gfm/index.html

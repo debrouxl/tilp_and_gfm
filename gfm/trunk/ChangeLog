@@ -1,6 +1,6 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
-- 24/09/2007, version 1.01 (1.0.8, 1.0.8, 1.0.4): roms
+- 24/09/2007, version 1.01 (1.0.8, 1.0.8, 1.0.5): roms
 	* Fixed ungrouping error.
 	* Uninstall software before installation (TiLP framework).
 	* Added support for KDE file dialogs (kevin).
