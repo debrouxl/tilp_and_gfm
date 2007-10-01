@@ -66,6 +66,7 @@
 static gchar *fname = NULL;
 static gint action = 0;
 
+#if !GTK_CHECK_VERSION(2,12,0)
 static void store_filename(GtkFileSelection * file_selector,
 			   gpointer user_data)
 {
@@ -128,6 +129,7 @@ static const gchar* create_fsel_1(gchar *dirname, gchar *filename, gchar *ext, g
 
 	return fname;
 }
+#endif
 
 // GTK >= 2.4
 static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
@@ -369,6 +371,8 @@ const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean s
 static gchar** filenames = NULL;
 static gint actions = 0;
 
+
+#if !GTK_CHECK_VERSION(2,12,0)
 static void store_filenames(GtkFileSelection * file_selector,
 			   gpointer user_data)
 {
@@ -430,6 +434,7 @@ static gchar** create_fsels_1(gchar *dirname, gchar *filename, gchar *ext)
 
 	return filenames;
 }
+#endif
 
 // GTK >= 2.4
 static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
@@ -677,6 +682,10 @@ gchar** create_fsels(gchar *dirname, gchar *filename, gchar *ext)
 		options.fs_type = 1;
 #endif
 	//printf("%i: <%s> <%s> <%s>\n", options.fs_type, dirname, filename, ext);
+#if GTK_CHECK_VERSION(2,12,0)
+	if(options.fs.type == 0)
+	  options.fs_type = 1;
+#endif
 
 	switch(options.fs_type)
 	{
