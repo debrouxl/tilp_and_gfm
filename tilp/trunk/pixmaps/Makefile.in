@@ -305,7 +305,7 @@ top_srcdir = @top_srcdir@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
 pixmapsdir = $(pkgdatadir)/pixmaps
-dist_pixmaps_DATA = *.xpm
+dist_pixmaps_DATA = *.xpm *.png
 all: all-am
 
 .SUFFIXES:
