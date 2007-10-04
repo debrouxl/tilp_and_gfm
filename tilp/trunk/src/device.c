@@ -190,7 +190,8 @@ comm_treeview1_button_press_event  (GtkWidget       *widget,
 
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cbm);
 	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cbp);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), cm);
+	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), 
+		cm >= CALC_NSPIRE ? cm-CALC_NSPIRE+13 : cm);
 
     g_strfreev(row_text);
 
@@ -353,6 +354,10 @@ gint display_device_dbox()
 	case CALC_V200:
 	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 12);
 	  break;
+
+	case CALC_NSPIRE:
+	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 13);
+	  break;
 	}
 
 	// Timeout
@@ -487,10 +492,11 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
 	case 6: tmp.calc_model = CALC_TI85;  break;
 	case 7: tmp.calc_model = CALC_TI86;  break;
 	case 8: tmp.calc_model = CALC_TI89;  break;
-	case 9:tmp.calc_model = CALC_TI89T; break;
+	case 9: tmp.calc_model = CALC_TI89T; break;
 	case 10:tmp.calc_model = CALC_TI92;  break;
 	case 11:tmp.calc_model = CALC_TI92P; break;
 	case 12:tmp.calc_model = CALC_V200;  break;
+	case 13:tmp.calc_model = CALC_NSPIRE;break;
   	}	
 }
 
