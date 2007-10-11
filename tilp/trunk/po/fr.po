@@ -744,7 +744,7 @@ msgstr "Fait.\n"
 #: src/tilp_main.c:94
 #, c-format
 msgid "libticonv library version %s mini required.\n"
-msgstr "La version %s au minimum de libticables est nécessaire.\n"
+msgstr "La version %s au minimum de libticonv est nécessaire.\n"
 
 #: src/tilp_main.c:97
 #, c-format
