@@ -1,10 +1,15 @@
 Name: tilp2
 Epoch: 1
-Version: 1.07
+Version: 1.08
 Release: 1
 Vendor: LPG (http://lpg.ticalc.org)
 Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
+# tarball respun to add pixmaps/*.png from SVN
 Source: %{name}-%{version}.tar.bz2
+#LANG=C svn diff -r 3859:3860 >../tilp2-1.08-install-png-files.diff
+Patch0: tilp2-1.08-install-png-files.diff
+#LANG=C svn diff -r 3870:3871 config.h.in >../tilp2-1.08-regen-config.h.in-autoheader.diff
+Patch1: tilp2-1.08-regen-config.h.in-autoheader.diff
 Group: Applications/Communications
 License: GPL
 BuildRequires: libticables2-devel >= 1:1.0.6, libticonv-devel >= 1:1.0.4, libtifiles2-devel >= 1:1.0.7, libticalcs2-devel >= 1:1.0.7, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.4.0, zlib-devel, kdelibs-devel >= 6:3.0, desktop-file-utils >= 0.10
@@ -17,6 +22,8 @@ TiLP is a TI<->PC linking program
 
 %prep
 %setup
+%patch0 -p0
+%patch1 -p0
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} --libdir=%{_libdir} --mandir=%{_mandir} --disable-nls
@@ -87,10 +94,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
-* Sun Sep 2 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.07
+* Sat Oct 13 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.08-1
+Update to 1.08.
+Backport fix to install .png icons from SVN.
+Backport fix for WITH_KDE to make KDE support actually work from SVN.
+
+* Sun Sep 2 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.07-1
 Update to 1.07.
 
-* Wed Jun 27 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.06
+* Wed Jun 27 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.06-1
 Update to 1.06.
 Update tilibs BuildRequires.
 
