@@ -125,7 +125,7 @@ CONFIG FILE FORMAT
        remote_sort_order= Define the sorting order for the left window. Choose
        either 'up' or 'down'.
 
-       filesel_type= File selector type (0: gtk1, 1: gtk2, 2: native, 3: kde).
+       filesel_type= File selector type (1: gtk, 2: native, 3: kde).
 
        full_gui= Display the right frame (local view).
 
