@@ -320,7 +320,7 @@ static const gchar* create_fsel_4(gchar *dirname, gchar *filename, gchar *ext, g
 	if(save)
 	{
 		if (filename)
-			dirname = g_strconcat(dirname, filename, NULL);
+			dirname = g_strconcat(dirname, "/", filename, NULL);
 		fname = sp_kde_get_write_filename(dirname, extspaces, _("Save file"));
 	}
 	else
