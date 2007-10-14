@@ -8,6 +8,7 @@ bin_PROGRAMS = gfm
 # build instructions
 gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
+	@KDE_INCLUDES@ @QT_INCLUDES@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\"
 
