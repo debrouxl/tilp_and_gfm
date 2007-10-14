@@ -1,5 +1,9 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
+- 14/10/2007, version 1.02 (1.0.8, 1.0.8, 1.0.5): roms
+	* removed old GTK file selector because being deprecated with GTK+ 2.12 (kevin)
+	* fixed dirname+filename concatenation for KDE file selector (kevin)
+
 - 24/09/2007, version 1.01 (1.0.8, 1.0.8, 1.0.5): roms
 	* Fixed ungrouping error.
 	* Uninstall software before installation (TiLP framework).
