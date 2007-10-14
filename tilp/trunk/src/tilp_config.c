@@ -68,6 +68,7 @@ int tilp_config_default(void)
 	options.remote_sort = SORT_BY_NAME;
 	options.remote_sort_order = SORT_UP;
 
+	options.filesel_type = 2;
 	options.fs_type = 2;
 	options.full_gui = !0;
 
@@ -245,8 +246,8 @@ int tilp_config_write(void)
 	g_key_file_set_integer(kf, SECTION_GUI, "remote_sort_order", options.remote_sort_order);
 	g_key_file_set_comment(kf, SECTION_GUI, "remote_sort_order", "Sorting order for remote view", &error);
 
-	g_key_file_set_integer(kf, SECTION_GUI, "fs_type", options.fs_type);
-	g_key_file_set_comment(kf, SECTION_GUI, "fs_type", "File Selector type", &error);
+	g_key_file_set_integer(kf, SECTION_GUI, "filesel_type", options.filesel_type);
+	g_key_file_set_comment(kf, SECTION_GUI, "filesel_type", "File Selector type", &error);
 
 	g_key_file_set_integer(kf, SECTION_GUI, "full_gui", options.full_gui);
 	g_key_file_set_comment(kf, SECTION_GUI, "full_gui", "Use full gui (TiLP-I) or just remote view", &error);
@@ -397,8 +398,11 @@ int tilp_config_read(void)
 	options.remote_sort_order = 
 		g_key_file_get_integer(kf, SECTION_GUI, "remote_sort_order", &error);
 
-	options.fs_type = 
-		g_key_file_get_integer(kf, SECTION_GUI, "fs_type", &error);
+	options.filesel_type = 
+		g_key_file_get_integer(kf, SECTION_GUI, "filesel_type", &error);
+	/* Copy filesel_type to fs_type. If fs_type is 2 (native), it will be changed to the
+	   appropriate number based on the platform, whereas filesel_type stays at 2. */
+	options.fs_type = options.filesel_type;
 	options.full_gui = 
 		g_key_file_get_integer(kf, SECTION_GUI, "full_gui", &error);
 

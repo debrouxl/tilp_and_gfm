@@ -63,7 +63,8 @@ typedef struct
     int		remote_sort;
     int		remote_sort_order;
 
-	int		fs_type;
+	int		filesel_type;
+	int		fs_type; // internal
 	int		full_gui;
 
 	// options
