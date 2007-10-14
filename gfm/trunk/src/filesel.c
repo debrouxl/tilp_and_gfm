@@ -55,7 +55,7 @@
 #include "kde.h"
 #endif
 
-//#include "intl.h"
+#include "support.h"
 #include "filesel.h"
 //#include "tilp_struct.h"
 
