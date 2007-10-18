@@ -3,7 +3,7 @@ dnl $Id$
 
 # Init.
 AC_PREREQ(2.57)
-AC_INIT(TiLP2, 1.08, [tilp-users@lists.sourceforge.net])
+AC_INIT(TiLP2, 1.10, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
@@ -48,15 +48,15 @@ AC_CHECK_TOOL(RC, windres, windres)
 # Checks for libraries.
 AM_GNU_GETTEXT
 
-PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.1.1)
+PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.2.0)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
-PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.0.9)
+PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.1.0)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 
-PKG_CHECK_MODULES(TIFILES, tifiles2 >= 1.0.9)
+PKG_CHECK_MODULES(TIFILES, tifiles2 >= 1.1.0)
 AC_SUBST(TIFILES_CFLAGS)
 AC_SUBST(TIFILES_LIBS)
 

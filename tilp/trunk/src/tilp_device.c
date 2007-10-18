@@ -37,6 +37,13 @@
 # define strcasecmp _stricmp
 #endif
 
+#ifdef __WIN32__
+#include <windows.h>
+#define PAUSE(x) Sleep(x)
+#else
+#define PAUSE(x) usleep(1000*(x))
+#endif
+
 //----------------------------------------------------------------------------
 
 /* 
@@ -311,11 +318,6 @@ int tilp_device_open(void)
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
 
-#if 0 // already done by ticalcs_cable_attach (internal)
-		err = ticables_cable_reset(cable_handle);
-		tilp_err(err);
-#endif
-
 		calc_handle = ticalcs_handle_new(options.calc_model);
 		if(calc_handle == NULL)
 			gif->msg_box1("Error", "Can't set cable");
@@ -323,6 +325,16 @@ int tilp_device_open(void)
 		{
 			err = ticalcs_cable_attach(calc_handle, cable_handle);
 			tilp_err(err);
+
+#if 1
+			if(options.cable_model != CABLE_USB)
+			{
+				// BlackLink & ParallelLink need a reset before use
+				err = ticables_cable_reset(cable_handle);
+				PAUSE(2000);
+				tilp_err(err);
+			}
+#endif
 		}
 
 		// Initialize callbacks with default functions
@@ -351,13 +363,6 @@ int tilp_device_close(void)
 	lk_open = 0;
 	return err;
 }
-
-#ifdef __WIN32__
-#include <windows.h>
-#define PAUSE(x) Sleep(x)
-#else
-#define PAUSE(x) usleep(1000*(x))
-#endif
 
 int tilp_device_err(int err)
 {
@@ -400,7 +405,7 @@ int tilp_device_reset(void)
   if(!lk_open)
     return 0;
 
-#if 1
+#if 0	// disabled because this is managed by ticables v1.2.0 now
     if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
     {
 		int err;

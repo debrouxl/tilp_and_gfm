@@ -2,9 +2,13 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 16/10/2007, version 1.10: (1.2.0, 1.1.0, 1.1.0, 1.0.6): roms
+	- adding NSpire support
+	- ticables library does not reset link at opening stage any longer.
+		Managed by TiLP now.
+
 - 01/10/2007, version 1.09: (1.1.1, 1.0.9, 1.0.9, 1.0.5): roms
 	- removed old GTK file selector because being deprecated with GTK+ 2.12
-	- adding NSpire support
 	- slightly increased timeout when sending FLASH applications, the
 	  previous timeout is nearly too small for big apps
 	- fixed KDE file selector support (needed autoheader rerun) (kevin)

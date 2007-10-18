@@ -15,8 +15,8 @@ IDI_ICON1               ICON    DISCARDABLE     "tilp.ico"
 //
 
 1 VERSIONINFO
- FILEVERSION 1,0,8,0
- PRODUCTVERSION 1,0,8,0
+ FILEVERSION 1,1,0,0
+ PRODUCTVERSION 1,1,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x29L
@@ -34,14 +34,14 @@ BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
             VALUE "FileDescription", "Tilp Is a Linking Program\0"
-            VALUE "FileVersion", "1.08\0"
+            VALUE "FileVersion", "1.10\0"
             VALUE "InternalName", "TiLP\0"
             VALUE "LegalCopyright", "Copyright © 1999-2007, Romain Liévin\0"
             VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "tilp.exe\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "TiLP-2\0"
-            VALUE "ProductVersion", "1, 0, 8, 0\0"
+            VALUE "ProductVersion", "1, 1, 0, 0\0"
             VALUE "SpecialBuild", "Windows 9x/Me, NT4/2000/XP version\0"
         END
     END
