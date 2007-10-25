@@ -6,6 +6,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- adding NSpire support
 	- ticables library does not reset link at opening stage any longer.
 		Managed by TiLP now.
+	- modified CalcInfos structure to support NSpire
+	- format IDLIST for NSpire
 
 - 01/10/2007, version 1.09: (1.1.1, 1.0.9, 1.0.9, 1.0.5): roms
 	- removed old GTK file selector because being deprecated with GTK+ 2.12

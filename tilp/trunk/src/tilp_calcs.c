@@ -124,6 +124,14 @@ int tilp_calc_isready(void)
 		}
 	}
 
+	if(options.calc_model == CALC_NSPIRE)
+	{
+		if(err)
+			return err;
+		else
+			return 0;
+	}
+
 	if(err) 
 	{
 		// second check: slower
@@ -236,12 +244,19 @@ int tilp_calc_idlist(int to_file)
 	}
 	
 	strcpy(buffer, _("ID-LIST : "));
-	strncat(buffer, idlist, 5);
-	strcat(buffer, "-");
-	strncat(buffer, idlist + 5, 5);
-	strcat(buffer, "-");
-	strncat(buffer, idlist + 5 + 5, 4);
-	strcat(buffer, "\0");
+	if(options.calc_model != CALC_NSPIRE)
+	{
+		strncat(buffer, idlist, 5);
+		strcat(buffer, "-");
+		strncat(buffer, idlist + 5, 5);
+		strcat(buffer, "-");
+		strncat(buffer, idlist + 5 + 5, 4);
+		strcat(buffer, "\0");
+	}
+	else
+	{
+		strcat(buffer, idlist);
+	}
 
 	if(to_file)
 	{
