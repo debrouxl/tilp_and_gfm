@@ -123,9 +123,13 @@ GtkWidget *create_ctree_rbm(void)
 
 	data = glade_xml_get_widget(xml, "recv_as_group1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
+	if(options.calc_model == CALC_NSPIRE)
+		gtk_widget_set_sensitive(data, FALSE);
 
 	data = glade_xml_get_widget(xml, "backup_as_tigroup1");
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.backup_as_tigroup);
+	if(options.calc_model == CALC_NSPIRE)
+		gtk_widget_set_sensitive(data, FALSE);
 
 	data = glade_xml_get_widget(xml, "delete_var1");
 	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));

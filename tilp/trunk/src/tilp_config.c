@@ -80,7 +80,7 @@ int tilp_config_default(void)
 	options.screen_blurry = 0;
 
 	options.auto_detect = 0;
-	options.recv_as_group = 1;
+	options.recv_as_group = (options.calc_model == CALC_NSPIRE) ? 0 : 1;
 	options.backup_as_tigroup = 1;
 
 	options.cable_model = CABLE_NUL;
@@ -459,6 +459,9 @@ int tilp_config_read(void)
 	// free structures
 	g_key_file_free(kf);
 	g_free(ini_file);
+
+	if(options.calc_model == CALC_NSPIRE)
+		options.recv_as_group = 0;
 
 	return 0;
 }

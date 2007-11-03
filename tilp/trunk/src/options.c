@@ -49,6 +49,15 @@ gint display_options_dbox()
 	dbox = glade_xml_get_widget(xml, "options_dbox");
 	memcpy(&tmp_options, &options, sizeof(options));
 
+	if(options.calc_model == CALC_NSPIRE)
+	{
+		data = glade_xml_get_widget(xml, "radiobutton31");
+		gtk_widget_set_sensitive(data, FALSE);
+		data = glade_xml_get_widget(xml, "radiobutton32");
+		gtk_widget_set_sensitive(data, FALSE);
+	}
+	else
+	{
 	data = glade_xml_get_widget(xml, "radiobutton31");
 	if (!options.backup_as_tigroup)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
@@ -56,14 +65,25 @@ gint display_options_dbox()
 	data = glade_xml_get_widget(xml, "radiobutton32");
 	if (options.backup_as_tigroup)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+	}
 
-	data = glade_xml_get_widget(xml, "radiobutton81");
-	if (!options.recv_as_group)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+	if(options.calc_model == CALC_NSPIRE)
+	{
+		data = glade_xml_get_widget(xml, "radiobutton81");
+		gtk_widget_set_sensitive(data, FALSE);
+		data = glade_xml_get_widget(xml, "radiobutton82");
+		gtk_widget_set_sensitive(data, FALSE);
+	}
+	else
+	{
+		data = glade_xml_get_widget(xml, "radiobutton81");
+		if (!options.recv_as_group)
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton82");
-	if (options.recv_as_group)
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+		data = glade_xml_get_widget(xml, "radiobutton82");
+		if (options.recv_as_group)
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+	}
 
 	data = glade_xml_get_widget(xml, "radiobutton51");
 	if (options.show_all)
