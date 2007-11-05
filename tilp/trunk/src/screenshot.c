@@ -201,10 +201,15 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 	w = screen.width;
 	h = screen.height;
 
-	if (options.screen_blurry)
-		bytemap = screen_blurry();
+	if(options.calc_model != CALC_NSPIRE)
+	{
+		if (options.screen_blurry)
+			bytemap = screen_bw_blurry();
+		else
+			bytemap = screen_bw_convert();
+	}
 	else
-		bytemap = screen_convert();
+		bytemap = screen_gs_convert();
 
 	pixbuf = gdk_pixbuf_new_from_data(bytemap, GDK_COLORSPACE_RGB, FALSE,
 				     8, w, h, 3 * w, destroy_pixbuf, NULL);

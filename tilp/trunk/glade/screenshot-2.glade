@@ -262,8 +262,6 @@
 
 	  <child>
 	    <widget class="GtkImage" id="pixmap7">
-	      <property name="width_request">244</property>
-	      <property name="height_request">132</property>
 	      <property name="visible">True</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>

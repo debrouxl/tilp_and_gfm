@@ -82,10 +82,10 @@ int screen_capture(void)
 
 
 /*
-  Convert the bitmap into a B&W bytemap.
+  Convert the B&W bitmap into a B&W bytemap.
   The returned RRGGBB array must be freed when no longer used.
 */
-uint8_t *screen_convert(void)
+uint8_t *screen_bw_convert(void)
 {
 	guchar *bitmap, *bytemap, data, mask;
 	gint w;
@@ -130,10 +130,10 @@ uint8_t *screen_convert(void)
 }
 
 /*
-  Convert the bitmap into a 2-colors bytemap.
+  Convert the B&W bitmap into a 2-colors bytemap.
   The returned RRGGBB array must be freed when no longer used.
 */
-uint8_t *screen_blurry(void)
+uint8_t *screen_bw_blurry(void)
 {
 	guchar *bitmap, *bytemap, data, mask;
 	gint w;
@@ -170,6 +170,41 @@ uint8_t *screen_blurry(void)
 				}
 				mask >>= 1;
 			}
+		}
+	}
+
+	return bytemap;
+}
+
+/*
+  Convert an NSpire grayscale bitmap into a bytemap.
+  The returned RRGGBB array must be freed when no longer used.
+*/
+uint8_t* screen_gs_convert(void)
+{
+	guchar *bitmap  = screen.bitmap;
+	gint w = screen.width;
+	gint h = screen.height;
+	guchar *bytemap = g_malloc(3 * w * h);
+	int i, j;
+
+	for (i = 0; i < h; i++) 
+	{
+		for (j = 0; j < w/2; j++)
+		{
+			uint8_t data = bitmap[(w/2) * i + j];
+			uint8_t lo = data & 0x0f;
+			uint8_t hi = data >> 4;
+
+			int pos = w*i + 2*j;
+
+			bytemap[3 * pos + 0] = hi << 4;
+			bytemap[3 * pos + 1] = hi << 4;
+			bytemap[3 * pos + 2] = hi << 4;
+
+			bytemap[3 * pos + 3] = lo << 4;
+			bytemap[3 * pos + 4] = lo << 4;
+			bytemap[3 * pos + 5] = lo << 4;
 		}
 	}
 
@@ -335,7 +370,7 @@ gboolean screen_write_eps(const gchar *filename, GError **error)
 	if (options.screen_blurry) {
 		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter false 3 colorimage\n", w, h, w, h, h);
 
-		buf = screen_blurry();
+		buf = screen_bw_blurry();
 
 		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
 
@@ -452,7 +487,7 @@ gboolean screen_write_pdf(const gchar *filename, GError **error)
 		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
 		fprintf(fp, "ID\n");
 
-		buf = screen_blurry();
+		buf = screen_bw_blurry();
 
 		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
 
