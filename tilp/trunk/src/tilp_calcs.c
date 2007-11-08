@@ -1029,12 +1029,6 @@ int tilp_calc_new_fld(void)
 	return 0;
 }
 
-#ifdef _DEBUG
-# define EXTRA_INFOS 1
-#else
-# define EXTRA_INFOS 0
-#endif
-
 const char* format_bytes(unsigned long value)
 {
 	static char str[16];
@@ -1055,6 +1049,13 @@ const char* format_bytes(unsigned long value)
 	return (const char *)str;
 }
 
+#define LINE_FEED	\
+	{	\
+		tmp = g_strdup_printf("%s\n", str);	\
+		g_free(str);	\
+		str = tmp;	\
+	}
+
 int tilp_calc_get_infos(CalcInfos *infos)
 {
 	int err;
@@ -1071,62 +1072,48 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	if(tilp_err(err))
 		return -1;
 
-#if EXTRA_INFOS
-	if(infos->mask & INFOS_PRODUCT_NUMBER)
-	{
-		tmp = g_strdup_printf("%sProduct Number: %08x\n", str, infos->product_number);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_LANG_ID)
-	{
-		tmp = g_strdup_printf("%sLanguage Id: %i %i\n", str, infos->language_id, infos->sub_lang_id);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_DEVICE_TYPE)
-	{
-		tmp = g_strdup_printf("%sDevice Type: %02x\n", str, infos->device_type);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_LCD_WIDTH)
-	{
-		tmp = g_strdup_printf("%sLCD width: %i pixels\n", str, infos->lcd_width);
-		g_free(str);
-		str = tmp;
-	}
-	if(infos->mask & INFOS_LCD_HEIGHT)
-	{
-		tmp = g_strdup_printf("%sLCD height: %i pixels\n", str, infos->lcd_height);
-		g_free(str);
-		str = tmp;
-	}
-	
-	{
-		tmp = g_strdup_printf("%s\n\n", str);
-		g_free(str);
-		str = tmp;
-	}
-#endif
 	if(infos->mask & INFOS_PRODUCT_NAME)
 	{
 		tmp = g_strdup_printf(_("%sProduct Name: %s\n"), str, infos->product_name);
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_MAIN_CALC_ID)
+
+	if(infos->mask & INFOS_PRODUCT_ID)
 	{
-		tmp = g_strdup_printf(_("%sCalculator Id: %s\n"), str, infos->main_calc_id);
+		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->product_id);
+		g_free(str);
+		str = tmp;
+	} else if(infos->mask & INFOS_MAIN_CALC_ID) // for compat
+	{
+		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->main_calc_id);
 		g_free(str);
 		str = tmp;
 	}
+
+	if(infos->mask & INFOS_LANG_ID)
+	{
+		tmp = g_strdup_printf("%sLanguage Id: %i %i\n", str, infos->language_id, infos->sub_lang_id);
+		g_free(str);
+		str = tmp;
+	}
+
+	LINE_FEED;
+
+	if(infos->mask & INFOS_DEVICE_TYPE)
+	{
+		tmp = g_strdup_printf("%sDevice Type: %02x\n", str, infos->device_type);
+		g_free(str);
+		str = tmp;
+	}
+
 	if(infos->mask & INFOS_HW_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sHardware Version: %i\n"), str, infos->hw_version);
 		g_free(str);
 		str = tmp;
 	}
+
 	if(infos->mask & INFOS_BOOT_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sBoot Version: %s\n"), str, infos->boot_version);
@@ -1139,6 +1126,43 @@ int tilp_calc_get_infos(CalcInfos *infos)
 		g_free(str);
 		str = tmp;
 	}
+	
+	if(infos->mask & INFOS_RUN_LEVEL)
+	{
+		tmp = g_strdup_printf("%sRun level: %s\n", str, (infos->run_level == 2) ? "OS" : "boot");
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_CLOCK_SPEED)
+	{
+		tmp = g_strdup_printf("%sClock speed: %i MHz\n", str, infos->clock_speed);
+		g_free(str);
+		str = tmp;
+	}
+
+	LINE_FEED;
+
+	if(infos->mask & INFOS_LCD_WIDTH)
+	{
+		tmp = g_strdup_printf("%sLCD width: %i pixels\n", str, infos->lcd_width);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_LCD_HEIGHT)
+	{
+		tmp = g_strdup_printf("%sLCD height: %i pixels\n", str, infos->lcd_height);
+		g_free(str);
+		str = tmp;
+	}
+	if(infos->mask & INFOS_BPP)
+	{
+		tmp = g_strdup_printf("%sBits per pixel: %i\n", str, infos->bits_per_pixel);
+		g_free(str);
+		str = tmp;
+	}
+	
+	LINE_FEED;
+	
 	if(infos->mask & INFOS_RAM_PHYS)
 	{
 		tmp = g_strdup_printf(_("%sPhysical RAM: %s\n"), str, 
@@ -1181,6 +1205,9 @@ int tilp_calc_get_infos(CalcInfos *infos)
 		g_free(str);
 		str = tmp;
 	}
+
+	LINE_FEED;
+
 	if(infos->mask & INFOS_BATTERY)
 	{
 		tmp = g_strdup_printf(_("%sBattery: %s\n"), str, infos->battery ? _("good") : _("low"));
