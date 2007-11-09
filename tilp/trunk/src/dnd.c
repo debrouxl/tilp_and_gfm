@@ -171,10 +171,18 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 
 		else
 		{
-			// send standard
-			on_tilp_send("");
-			gtk_drag_finish(drag_context, TRUE, FALSE, time);
-			return;
+			if(options.calc_model == CALC_NSPIRE)
+			{
+				gif->msg_box1(_("Error"), "You have to drag&drop to a target folder!");
+				return;
+			}
+			else
+			{
+				// send standard
+				on_tilp_send("");
+				gtk_drag_finish(drag_context, TRUE, FALSE, time);
+				return;
+			}
 		}
 	}
 

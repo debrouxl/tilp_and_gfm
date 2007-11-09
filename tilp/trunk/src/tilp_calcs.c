@@ -699,7 +699,7 @@ tcrv1:
 		varname = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
 		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder, -1);
 
-		if(tifiles_has_folder(options.calc_model))
+		if(tifiles_has_folder(options.calc_model) && options.calc_model != CALC_NSPIRE)
 			dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
 				fldname, ".", varname, ".",
 				tifiles_vartype2fext(options.calc_model, ve->type), NULL);

@@ -173,7 +173,7 @@ GLADE_CB void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	gchar *path = g_strconcat(inst_paths.help_dir, _("Manual_en.html"), NULL);
 
 	if(go_to_bookmark(path) < 0)
-		msg_box1("Error", "Failed to run browser.");
+		msg_box1(_("Error"), _("Failed to run browser."));
 	g_free(path);
 }
 
