@@ -64,7 +64,6 @@
 /* Single file selectors */
 
 static gchar *fname = NULL;
-static gint action = 0;
 
 // GTK >= 2.4
 static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
@@ -304,8 +303,6 @@ const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean s
 /* Multiple files selectors */
 
 static gchar** filenames = NULL;
-static gint actions = 0;
-
 
 // GTK >= 2.4
 static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
