@@ -22,6 +22,9 @@ REQUIREMENTS
 NOTES
 -----
 
+0°) It's strongly recommended you uninstall Ti-Connect(tm) / Computer Link(tm) before
+installing this software because the USB drivers are not compatible.
+
 1°) This setup may download & install some extra libraries (GTK+ 2.6). 
 
 The GTK+ package includes the Wimp (Windows IMPersonator) theme engine which gives 
