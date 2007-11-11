@@ -169,6 +169,13 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			return;
 		}
 
+		else if(!strcmp(name, NODE2))	// Operating System
+		{
+			on_tilp_send("");
+			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			return;
+		}
+
 		else
 		{
 			if(options.calc_model == CALC_NSPIRE)
