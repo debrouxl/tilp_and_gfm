@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP2
-AppVerName=TiLP2 1.08
+AppVerName=TiLP2 1.10
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp2-staff.php
@@ -158,6 +158,9 @@ Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open";  ValueType: string; ValueData: 
 Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open\command"; ValueType: string; ValueData: """{app}\tilp.exe"" ""%1"""
 ; Boost GTK2 (WinNT/2000/XP)
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "PANGO_WIN32_NO_UNISCRIBE"; ValueData: "anything"; MinVersion: 0,4;
+; NSpire entries
+Root: HKCR; SubKey: ".tns"; ValueType: string;  ValueData: "TiLP.Document"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tno"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 ; TiGroup entries
 Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "TiLP.TiGroup"; Tasks: tifiles;
 ; V200 file entries
@@ -513,6 +516,11 @@ Root: HKCR; Subkey: "TiLP.Zoom"; ValueType: string; ValueName: ""; ValueData: "Z
 Root: HKCR; Subkey: "TiLP.Zoom\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Zoom.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zoom\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Zoom\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+
+Root: HKCR; Subkey: "TiLP.Document"; ValueType: string; ValueName: ""; ValueData: "Document"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Document\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\TIIcon1.ico"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Document\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Document\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
 
 ; Add LPG libraries to the gfm's path
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
