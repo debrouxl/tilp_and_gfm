@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.07  (01/09/2007)
-Current version:  1.08  (25/09/2007)
+Old     version:  1.08  (25/09/2007)
+Current version:  1.10  (XX/XX/2008)
 
 
 SubVersion (CVS) revision: $Id$
@@ -15,33 +15,31 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- screenshot can be copied to clipboard
+	- NSpire (non-CAS) support
 	
 
 Improvements:
 -------------
 
-	- don't break USB communication if ROM dumping has been canceled
-	- USB communication is more reliable (LPG's driver replaced by generic libusb-win32 one)
-	- check for AMS/OS version for clock support
+	- ROM dumping thru SilverLink under Linux is sometimes failing
+	- skip any existing app's when sending a TiGroup file (because app's can not be overwritten)
+	- removed old GTK file selector because being deprecated with GTK+ 2.12
+	- remember filesel_type=native when saving the configuration (kevin)
 
 
 Bug fixes:
 ----------
 
-	- full screen copy with Titanium hand-held
-	- displaying of full path with Titanium/USB hand-held
-	- sending of FLASH apps on TI73 hand-held
-	- sending of FLASH apps on non-SE hand-helds (bug introduced in revision 3291)
-	- progress bar update
-	- some Titanium/USB transfers can fail (when variable has an odd size)
-	- added file extension for GRP variables
+	- the progress bar data rate is sometimes invalid
+	- fixed ROM dumping on TI92+/V200: switching to HOME screen failed
+	- added pause between file sending and ready check (fix bug #1808645)
+	- slightly increased timeout when sending FLASH applications, the
+	  previous timeout is nearly too small for big apps
 
 
 Known bugs:
 -----------
 
-	- the transfer dialog box is not always refreshed
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is
