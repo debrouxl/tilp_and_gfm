@@ -632,7 +632,6 @@ void ctree_select_vars(gint action)
 		else
 		{
 			gtk_tree_selection_select_range(sel, start_path, end_path);
-			printf("!!!\n");
 		}
 
 		gtk_tree_path_free(start_path);

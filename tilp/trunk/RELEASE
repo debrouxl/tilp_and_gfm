@@ -15,7 +15,7 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- NSpire (non-CAS) support
+	- addeds support for NSpire (CAS version not tested)
 	
 
 Improvements:
