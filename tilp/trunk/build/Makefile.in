@@ -520,6 +520,9 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-hook
 check-am: all-am
 check: check-recursive
 all-am: Makefile
@@ -608,7 +611,7 @@ uninstall-am:
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
 	all all-am check check-am clean clean-generic clean-libtool \
-	ctags ctags-recursive distclean distclean-generic \
+	ctags ctags-recursive dist-hook distclean distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
@@ -620,6 +623,12 @@ uninstall-am:
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
 	uninstall uninstall-am
 
+
+dist-hook:
+	if test ! -d .svn; then \
+	rm -f *.odt
+	fi
+	rm -rf $(distdir)/*.odt
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
