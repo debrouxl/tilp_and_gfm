@@ -626,7 +626,7 @@ uninstall-am:
 
 dist-hook:
 	if test ! -d .svn; then \
-	rm -f *.odt
+	rm -f *.odt; \
 	fi
 	rm -rf $(distdir)/*.odt
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
