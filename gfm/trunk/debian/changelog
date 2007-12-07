@@ -1,3 +1,9 @@
+gfm (1.02-1) unstable; urgency=low
+
+  * Fixed some KDE issues (kevin).
+
+ -- Romain LIEVIN <roms@tilp.info>  Thu, 06 Dec 2007 22:57:34 +0100
+
 gfm (1.00-1) unstable; urgency=low
 
   * Initial release.
