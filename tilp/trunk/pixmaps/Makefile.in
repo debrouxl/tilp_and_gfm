@@ -306,6 +306,7 @@ x_includes = @x_includes@
 x_libraries = @x_libraries@
 pixmapsdir = $(pkgdatadir)/pixmaps
 dist_pixmaps_DATA = *.xpm *.png
+EXTRA_DIST = copy.bat
 all: all-am
 
 .SUFFIXES:
