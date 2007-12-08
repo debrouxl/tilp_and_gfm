@@ -337,7 +337,7 @@ x_libraries = @x_libraries@
 # subdirectories to scan
 SUBDIRS = build glade help icons pixmaps po src $(am__append_1)
 dist_pkgdata_DATA = COPYING RELEASE
-EXTRA_DIST = README.* TODO po/TRANSLATORS po/copy.bat
+EXTRA_DIST = README.* TODO po/TRANSLATORS po/copy.bat desktop install.bat
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

@@ -9,7 +9,7 @@ endif
 
 dist_pkgdata_DATA = COPYING RELEASE
 
-EXTRA_DIST = README.* TODO po/TRANSLATORS po/copy.bat
+EXTRA_DIST = README.* TODO po/TRANSLATORS po/copy.bat desktop install.bat
 
 #bundle:
 #	tar cvf tarball.tar /usr/share/tilp /usr/bin/tilp /usr/lib/libticables* /usr/lib/libticalcs* /usr/lib/libtifiles*

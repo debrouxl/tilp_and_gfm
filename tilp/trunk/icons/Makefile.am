@@ -1,6 +1,8 @@
 iconsdir = $(pkgdatadir)/icons
 dist_icons_DATA = *.ico
 
+EXTRA_DIST = COPYRIGHT ListOfTypes.txt copy.bat
+
 convert:
 	@echo Converting icons to pixmaps
 	@for I in *.ico; do winicontoppm -writeand $$I $$I; \
