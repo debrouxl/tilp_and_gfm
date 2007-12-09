@@ -9,7 +9,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- modified CalcInfos structure to support NSpire
 	- format IDLIST for NSpire
 	- reworked Device Infos dialog box
-	- bug to fix: with text msg_box: need to press a key before ENTER rather than pressing ENTER
+	- bug to fix: with text msg_box: need to press a key before ENTER 
+	rather than pressing ENTER
+	=> to release soon...
 
 - 01/10/2007, version 1.09: (1.1.1, 1.0.9, 1.0.9, 1.0.5): roms
 	- removed old GTK file selector because being deprecated with GTK+ 2.12
@@ -18,6 +20,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed KDE file selector support (needed autoheader rerun) (kevin)
 	- remember filesel_type=native when saving the configuration (kevin)
 	- fixed dirname+filename concatenation for KDE file selector (kevin)
+	=> not released
 	
 - 17/09/2007, version 1.08 (1.1.0, 1.0.8, 1.0.8, 1.0.5): roms
 	- screenshots can be copied into the clipboard
@@ -26,6 +29,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- don't overwrite variable as default behavior for action box
 	- refresh progress bar (bug)
 	- check for AMS/OS version for clock support
+	=> tested & validated
+	=> released on 25/09/2007
 
 - 13/09/2007, version 1.07b (1.1.0, 1.0.7, 1.0.7, 1.0.4): roms
 	- fixed ticables2 library due to bad check of dhahelper
@@ -36,6 +41,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	
 - 26/08/2007, version 1.07 (1.0.8, 1.0.7, 1.0.7, 1.0.4): roms
 	- updated various documentation about the use of new USB drivers
+	=> released on 01/09/2007
 
 - 19/06/2007, version 1.06 (1.0.6, 1.0.7, 1.0.7, 1.0.4): roms
 	- followed API changes in ticalcs2 library
@@ -53,12 +59,14 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- made zlib non-optional now that libtifiles2 requires it anyway (kevin)
 	- close link cable before probing and open it after otherwise current
 	link cable can't be probed (serial & parallel)
+	=> not released
 
 - 10/06/2007, version 1.05 (1.0.5, 1.0.6, 1.0.6, 1.0.3): roms
 	- sending of APPV variables in FLASH is not allowed; avoid this.
 	- skip sending of IDlist.8xidl (pseudo-variable)
 	- fixed displaying of Pic/Str/Gdb in directory listing (win32)
 	- fixed displaying of Y?/r? and 't' in directory listing (win32)
+	=> not released
 
 - 02/04/2007, version 1.04 (1.0.5, 1.0.6, 1.0.5, 1.0.2): roms
 	- cosmetic change in the name of the TiEmu virtual link
