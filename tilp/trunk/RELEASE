@@ -3,7 +3,7 @@
 
 
 Old     version:  1.08  (25/09/2007)
-Current version:  1.10  (XX/XX/2008)
+Current version:  1.10  (10/12/2008)
 
 
 SubVersion (CVS) revision: $Id$
@@ -25,6 +25,8 @@ Improvements:
 	- skip any existing app's when sending a TiGroup file (because app's can not be overwritten)
 	- removed old GTK file selector because being deprecated with GTK+ 2.12
 	- remember filesel_type=native when saving the configuration (kevin)
+	- reworked Device Infos dialog box
+	- TiGroup are compressed now
 
 
 Bug fixes:

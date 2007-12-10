@@ -104,7 +104,7 @@ int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* c
 
 	// search for all USB cables (faster)
 	tilp_info("Searching for link cables...");
-	err = ticables_probing_do(&cables, 5, PROBE_USB);
+	err = ticables_probing_do(&cables, 5, PROBE_USB | PROBE_FIRST);
 	if(err)
 	{
 		ticables_probing_finish(&cables);
