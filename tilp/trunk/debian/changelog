@@ -21,3 +21,549 @@ tilp2 (1.04-1) unstable; urgency=low
   * Initial release.
 
  -- Romain LIEVIN <roms@tilp.info>  Tue, 01 May 2007 18:26:34 +0100
+
+tilp (6.80-3) unstable; urgency=low
+
+  * QA upload.
+  * Build depend on tofrodos instead of sysutils.  Closes: #378926.
+  * debian/changelog: Remove obsolete Emacs local variables.
+  * debian/rules:
+    - Add support for DEB_BUILD_OPTIONS=noopt.
+    - Remove support for DEB_BUILD_OPTIONS=debug.
+    - Let dh_strip handle DEB_BUILD_OPTIONS=nostrip.
+  * Conforms to Standards version 3.7.2.
+
+ -- Matej Vela <vela@debian.org>  Thu, 20 Jul 2006 19:26:44 +0200
+
+tilp (6.80-2) unstable; urgency=low
+
+  * Orphaning this package.
+  * debian/control:
+    + Maintainer: set to QA.
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 12 Apr 2006 17:03:40 +0200
+
+tilp (6.80-1) unstable; urgency=low
+
+  * New upstream release.
+    + Updated Build-Depends.
+  * debian/control:
+    + Bumped Standards-Version to 3.6.2 (no changes).
+    + Removed Conflicts/Replaces on gtktilink.
+    + Removed dependency on debconf.
+  * Fix german translation (closes: #313842).
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 28 Aug 2005 23:29:23 +0200
+
+tilp (6.79-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated build-depends.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 28 May 2005 23:54:52 +0200
+
+tilp (6.77-1) unstable; urgency=low
+
+  * New upstream release.
+  * Substitute /usr/bin/mozilla for /usr/bin/sensible-browser, caught by
+    Martin Samuelsson.
+  * debian/control:
+    + Depends: mozilla-browser | www-browser
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  3 Apr 2005 13:43:51 +0200
+
+tilp (6.76-1) unstable; urgency=low
+
+  * New upstream release.
+    + Fixes crash on !i386 due to va_list misuse.
+    + Doesn't show the action dbox if the list of identical variables is
+      empty (closes: #276047).
+  * Bumped B-D on newest libti*.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 31 Oct 2004 16:31:08 +0100
+
+tilp (6.75-2) unstable; urgency=low
+
+  * debian/control:
+    + Bumped build-dependencies on libticables3-dev (>= 3.8.6-1),
+      libticalcs4-dev (>= 4.5.4-1), libtifiles0-dev (>= 0.6.1-1).
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 26 Oct 2004 21:21:02 +0200
+
+tilp (6.75-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Removed xlibs-dev B-D, as it's pulled in by GTK+ and others.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 26 Oct 2004 13:48:57 +0200
+
+tilp (6.72-2) unstable; urgency=low
+
+  * debian/control
+    + Build-Depends: libticables3 (>= 3.8.4-1).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 22 May 2004 21:12:03 +0200
+
+tilp (6.72-1) unstable; urgency=low
+
+  * New upstream release.
+    + Builds with GTK+ 2.4 (closes: #250042).
+  * debian/control
+    + Adjusted Build-dependency on libticalcs4-dev (>= 4.5.3-1).
+  * debian/rules, debian/compat
+    + Switched to DH_COMPAT 4.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 21 May 2004 21:49:52 +0200
+
+tilp (6.68-4) unstable; urgency=low
+
+  * Fixed the fix of #218758 (format() in src/labels.c), and made so that the
+    function behaves correctly when the path contains only 2 slashes.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri,  7 Nov 2003 10:24:14 +0100
+
+tilp (6.68-3) unstable; urgency=low
+
+  * Fixed a heap corruption in src/labels.c (format()). Thanks to Gabriel Ebner
+    who reported the bug and to Sam Hocevar who pointed me to Valgrind
+    (closes: 218758).
+  * Bumped Standards-Version to 3.6.1 (no changes).
+
+ -- Julien BLACHE <jblache@debian.org>  Thu,  6 Nov 2003 15:23:26 +0100
+
+tilp (6.68-2) unstable; urgency=low
+
+  * Removed the debconf note. Added a README.Debian instead.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 29 Aug 2003 18:01:18 +0200
+
+tilp (6.68-1) unstable; urgency=low
+
+  * New upstream release.
+    + Fixed registry location (closes: #207447).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 27 Aug 2003 14:54:46 +0200
+
+tilp (6.67-4) unstable; urgency=low
+
+  * Removed preinst script, we shouldn't remove a stat-override.
+  * Use db_unregister instead of db_purge to remove a debconf templates from
+    the database in the config script.
+  * Standards-Version bumped to 3.6.0 (no changes).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 13 Aug 2003 14:32:02 +0200
+
+tilp (6.67-3) unstable; urgency=low
+
+  * Added sysutils to build-depends.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 22 Jun 2003 12:15:11 +0200
+
+tilp (6.67-2) unstable; urgency=low
+
+  * Added groff-base to build-depends (closes: #198204).
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 20 Jun 2003 17:00:34 +0200
+
+tilp (6.67-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    + Bump Standards-Version to 3.5.10.
+    + Build-Depends on libgtk2.0-dev, libglade2-dev and libticalcs-4-0-dev.
+    + Removed xutils and xbase-clients from dependencies.
+  * debian/rules:
+    + Added autotools-stamp.
+  * debian/tilp.postinst, debian/tilp.postrm
+    + We no longer distribute a font, so remove the code dealing with this.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  8 Jun 2003 21:51:29 +0200
+
+tilp (6.09-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bumped Standards-Version to 3.5.8.
+  * Updated Romain's address and TiLP's website in debian/copyright.
+  * Removed GtkTiLink from the menu entry.
+  * Converted to po-debconf.
+  * Converted to DH_COMPAT=3.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri,  7 Mar 2003 22:35:01 +0100
+
+tilp (5.99+really6.00-pre4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated debian/copyright.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 17 Sep 2002 20:56:28 +0200
+
+tilp (5.36-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 10 Sep 2002 23:13:37 +0200
+
+tilp (5.32-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 23 Aug 2002 13:17:11 +0200
+
+tilp (5.22-1) unstable; urgency=low
+
+  * New upstream release.
+  * Uses new libti*.
+  * Removed autoconf/automake/libtool build-deps.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri,  9 Aug 2002 11:16:50 +0200
+
+tilp (5.11-3) unstable; urgency=low
+
+  * Fixed segfault when accessing a directory not readable by user.
+  * Fixed permissions on newly created directories. (closes: Bug#153517).
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 19 Jul 2002 10:36:15 +0200
+
+tilp (5.11-2) unstable; urgency=low
+
+  * Fixed postrm script to not barf on purge.
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 18 Jul 2002 16:38:28 +0200
+
+tilp (5.11-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed postrm script to not call update-fonts-dir on upgrade.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri, 31 May 2002 17:31:56 +0200
+
+tilp (5.08-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 12 May 2002 18:39:28 +0200
+
+tilp (5.03-1) unstable; urgency=medium
+
+  * New upstream release, bugfixes only.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 22 Apr 2002 14:08:55 +0200
+
+tilp (5.01-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Built againts libusb-0.1-4.
+  * Fix postinst, postrm scripts wrt debhelper.
+  * Included Russian debconf template (closes: Bug#137693).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 13 Mar 2002 11:00:33 +0100
+
+tilp (5.00-1) unstable; urgency=low
+
+  * New upstream release.
+  * Built against kernel-modules- and libusb-enabled
+    libticables v3 (closes: Bug#131087).
+  * Fixed description (closes: Bug#132285).
+  * Modified template file to encourage the use of the tidev-modules.
+  * Modified postinst and postrm scripts to use update-fonts-dir.
+  * Separate the main Debconf template and the translated one.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 25 Feb 2002 14:04:46 +0100
+
+tilp (4.73-2) unstable; urgency=low
+
+  * Do not provide a fonts.dir file, it's against Policy
+  (closes: Bug#127453).
+  * Install a gzipped PCF font, not a BDF one.
+  * Fixed typo in the description (s/screendump/screen dump/)
+  (closes: Bug#125418).
+
+ -- Julien BLACHE <jblache@debian.org>  Wed,  2 Jan 2002 16:34:05 +0100
+
+tilp (4.73-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 24 Nov 2001 10:59:37 +0100
+
+tilp (4.69-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added German template (closes: Bug#117199).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 17 Nov 2001 22:11:09 +0100
+
+tilp (4.52-1) unstable; urgency=low
+
+  * New upstream release.
+  * Linked against libticables2/libticalcs2.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 14 Oct 2001 21:30:20 +0200
+
+tilp (4.50-1) unstable; urgency=low
+
+  * New upstream release.
+  * Linked against libticables2.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon,  1 Oct 2001 21:26:06 +0200
+
+tilp (4.43-1) unstable; urgency=low
+
+  * Rolled back to autoconf 2.13 (closes: Bug#112132).
+
+ -- Julien BLACHE <jblache@debian.org>  Thu, 20 Sep 2001 17:14:26 +0200
+
+tilp (4.42-3) unstable; urgency=low
+
+  * Fixed build-depends wrt autoconf (closes: Bug#112132).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 15 Sep 2001 23:17:59 +0200
+
+tilp (4.42-2) unstable; urgency=low
+
+  * Added libncruses5-dev to the build-depends. (closes: #111614).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat,  8 Sep 2001 22:13:45 +0200
+
+tilp (4.42-1) unstable; urgency=low
+
+  * New upstream release, mainly security fixes regarding chdir handling
+    when run as root.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon,  3 Sep 2001 14:49:10 +0200
+
+tilp (4.37-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun,  8 Jul 2001 15:15:29 +0200
+
+tilp (4.32-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 23 Jun 2001 21:47:35 +0200
+
+tilp (4.07-2) unstable; urgency=low
+
+  * Corrected build depends (closes: Bug#94740).
+  * Added german template to the Debconf note (closes: Bug#94749).
+
+ -- Julien BLACHE <jblache@debian.org>  Sat, 21 Apr 2001 21:16:46 +0200
+
+tilp (4.07-1) unstable; urgency=medium
+
+  * New upstream release.
+  * It is no longer possible to install TiLP setUID due to GTK+... (closes: #89128). 
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 25 Mar 2001 16:59:14 +0200
+
+tilp (3.98-1) unstable; urgency=low
+
+  * Root exploit fixed by upstream. (closes: Bug#87785)
+
+ -- Julien BLACHE <jblache@debian.org>  Tue, 27 Feb 2001 20:41:15 +0100
+
+tilp (3.97-1) unstable; urgency=low
+
+  * New upstream release.
+  * Repackaged from scratch.
+  * Built on testing.
+  * New debconf setup, uses dpkg-statoverride.
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 25 Feb 2001 12:27:02 +0100
+
+tilp (3.80-3) unstable; urgency=low
+
+  * Corrected Build-Depends (closes: Bug#84885)
+
+ -- Julien BLACHE <jblache@debian.org>  Mon,  5 Feb 2001 12:14:14 +0100
+
+tilp (3.80-2) unstable; urgency=low
+
+  * Rebuilt against new libticables (1.4.9-1).
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 17 Dec 2000 10:13:48 +0100
+
+tilp (3.80-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Wed, 13 Dec 2000 17:00:21 +0100
+
+tilp (3.60-1) unstable; urgency=low
+
+  * New upstream version.
+  * Package renamed.
+  * Binary is now setUID root.
+  * Uses debconf to print a little info about that.
+  * Added an icon to the menu entry.
+  * Updated Standards-Version to 3.2.1
+
+ -- Julien BLACHE <jblache@debian.org>  Sun, 12 Nov 2000 12:28:42 +0100
+
+gtktilink (3.42-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Julien BLACHE <jblache@debian.org>  Fri,  6 Oct 2000 22:28:53 +0200
+
+gtktilink (3.20-2) unstable; urgency=low
+
+  * Architecture back to "any".
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 25 Sep 2000 18:42:45 +0200
+
+gtktilink (3.20-1) unstable; urgency=low
+
+  * New upstream release. 
+
+ -- Julien BLACHE <jblache@debian.org>  Mon,  4 Sep 2000 14:58:06 +0200
+
+gtktilink (3.00-5) unstable; urgency=low
+
+  * Architecture restricted to i386.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 28 Aug 2000 15:18:56 +0200
+
+gtktilink (3.00-4woody3) unstable; urgency=low
+
+  * Sources missing from last upload.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 21 Aug 2000 22:15:01 +0200
+
+gtktilink (3.00-4woody2) unstable; urgency=low
+
+  * Moved package to section "Math", moved back the menu entry to "Apps/Maths"
+    (no, I'm not playing YoYo ;)).
+  * Clearly explained what "TI" stands for (Texas Instrument) in package
+    description.
+  * Removed the libc5 binary with permission of upstream author (always
+    available in source package).
+  
+ -- Julien BLACHE <jblache@debian.org>  Mon, 21 Aug 2000 14:56:44 +0200
+
+gtktilink (3.00-4woody1) unstable; urgency=low
+
+  * Now building packages for Potato and Woody.
+  * First upload to master.
+
+ -- Julien BLACHE <jblache@debian.org>  Mon, 21 Aug 2000 12:17:08 +0200
+
+gtktilink (3.00-3) unstable; urgency=low
+
+  * Some bugfixes concerning packaging.
+  * Libc5 flinker binary is still present, this will be fixed in next release
+    of GtkTiLink ; sources have been released (GPL) by upstream author. Waiting
+    for the upstream developer to include them into the tree.
+  * Moved the menu entry to "Apps/Tools" (was "Apps/Maths").
+
+ -- Julien BLACHE <jb@jblache.org>  Mon, 31 Jul 2000 20:32:46 +0200
+
+gtktilink (3.00-2) unstable; urgency=low
+
+  * New build using libticables_1.0.4-2 and libticalcs_1.1.0-2. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed,  5 Jul 2000 12:31:52 +0200
+
+gtktilink (3.00-1) unstable; urgency=low
+
+  * This is the new major release of GtkTiLink, be happy ! :) 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed,  7 Jun 2000 18:36:29 +0200
+
+gtktilink (2.20-1) unstable; urgency=low
+
+  * New upstream release. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed, 31 May 2000 15:49:28 +0200
+
+gtktilink (2.14-devel-1) unstable; urgency=low
+
+  * New upstream release. Beta plug-ins support. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Thu, 25 May 2000 20:33:27 +0200
+
+gtktilink (2.12-1) unstable; urgency=low
+
+  * New upstream release. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Tue, 23 May 2000 21:42:17 +0200
+
+gtktilink (2.05-1) unstable; urgency=low
+
+  * This is an important new release : cables and calcs-specific functions
+  have been put into two libs (libticables and libticalcs Debian packages).
+  It is better than it ever was !
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Thu, 18 May 2000 21:14:01 +0200
+
+gtktilink (2.02-2.41-1) unstable; urgency=low
+
+  * new release 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Tue,  9 May 2000 18:16:07 +0200
+
+gtktilink (2.00-2.38-1) unstable; urgency=low
+
+  * New upstream release ! It is version 2.00 of GTKTiLink ! 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed, 26 Apr 2000 13:48:35 +0200
+
+gtktilink (1.15-2.30-1) unstable; urgency=low
+
+  * new upstream release, there's always a bug with the directory listing. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Mon, 10 Apr 2000 22:25:13 +0200
+
+gtktilink (1.14-2.25-1) unstable; urgency=low
+
+  * New upstream release, re-arranged the sources and deleted the Windows port
+  from the Debian sources.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Tue,  4 Apr 2000 21:35:53 +0200
+
+gtktilink (1.13-2.23-1) unstable; urgency=low
+
+  * new upstream version, moved the program to "Math" in the menu, because
+    it is related to Math ;) (and "Misc" doesn't exists in the menu-policy).
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed, 29 Mar 2000 14:29:00 +0200
+
+gtktilink (1.11-2.20-1) unstable; urgency=low
+
+  * new upstream release, fixed some naming bugs before build. 
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed, 22 Mar 2000 15:17:12 +0100
+
+gtktilink (1.08-2.18-1) unstable; urgency=low
+
+  * new upstream release.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Wed, 15 Mar 2000 15:01:24 +0100
+
+gtktilink (1.06-2.16-1) unstable; urgency=low
+
+  * new upstream release.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Sun,  5 Mar 2000 21:19:36 +0100
+
+gtktilink (1.05-2.13-1) unstable; urgency=low
+
+  * new upstream release, some features added.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Sun, 27 Feb 2000 12:13:58 +0100
+
+gtktilink (1.03-2.10-2) unstable; urgency=low
+
+  * Corrected a bug due to the Windows port. The software was printing "salut"
+  and "au revoir" on stdout when dialing with the calculator.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Tue, 15 Feb 2000 14:05:42 +0100
+
+gtktilink (1.03-2.10-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Julien BLACHE <j.blache@rmcnet.fr>  Mon, 14 Feb 2000 14:55:57 +0100
