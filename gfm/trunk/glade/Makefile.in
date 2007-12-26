@@ -304,8 +304,8 @@ top_srcdir = @top_srcdir@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
 gladedir = $(pkgdatadir)/glade
-dist_glade_DATA = *.glade *.gladep
-EXTRA_DIST = *.str
+dist_glade_DATA = *.glade
+EXTRA_DIST = *.str *.gladep
 all: all-am
 
 .SUFFIXES:

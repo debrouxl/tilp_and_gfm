@@ -1,4 +1,4 @@
 gladedir = $(pkgdatadir)/glade
-dist_glade_DATA = *.glade *.gladep
+dist_glade_DATA = *.glade
 
-EXTRA_DIST = *.str
+EXTRA_DIST = *.str *.gladep

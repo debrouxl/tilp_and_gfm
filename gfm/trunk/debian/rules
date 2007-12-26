@@ -33,10 +33,10 @@ endif
 
 autotools: autotools-stamp
 autotools-stamp:
-  -rm -f config.sub config.guess
-  ln -s /usr/share/misc/config.sub config.sub
-  ln -s /usr/share/misc/config.guess config.guess
-  touch autotools-stamp
+	-rm -f config.sub config.guess
+	ln -s /usr/share/misc/config.sub config.sub
+	ln -s /usr/share/misc/config.guess config.guess
+	touch autotools-stamp
 
 config.status: autotools-stamp configure
 	dh_testdir
@@ -53,6 +53,7 @@ build-stamp:  config.status
 
 	# Add here commands to compile the package.
 	$(MAKE)
+	chrpath -d ./src/gfm
 
 	touch $@
 
