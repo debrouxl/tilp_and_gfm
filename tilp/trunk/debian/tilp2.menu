@@ -1,3 +1,7 @@
-?package(tilp2):needs="X11" section="Apps/Math"\
-  title="TiLP2" command="/usr/bin/tilp"
-
+!C menu-2
+?package(tilp2):
+  section="Applications/Science/Mathematics"
+  needs="X11"
+  title="TiLP2"
+  command="tilp"
+;
