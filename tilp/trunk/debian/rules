@@ -33,10 +33,10 @@ endif
 
 autotools: autotools-stamp
 autotools-stamp:
-  -rm -f config.sub config.guess
-  ln -s /usr/share/misc/config.sub config.sub
-  ln -s /usr/share/misc/config.guess config.guess
-  touch autotools-stamp
+	-rm -f config.sub config.guess
+	ln -s /usr/share/misc/config.sub config.sub
+	ln -s /usr/share/misc/config.guess config.guess
+	touch autotools-stamp
 
 config.status: autotools-stamp configure
 	dh_testdir
@@ -63,7 +63,7 @@ clean:
 
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
-  rm -f config.sub config.guess
+	rm -f config.sub config.guess
 
 	dh_clean 
 

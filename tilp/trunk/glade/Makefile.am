@@ -1,7 +1,7 @@
 gladedir = $(pkgdatadir)/glade
-dist_glade_DATA = *-2.glade *-2.gladep
+dist_glade_DATA = *-2.glade
 
-EXTRA_DIST = *-2.str copy.bat
+EXTRA_DIST = *-2.gladep *-2.str copy.bat
 
 dos2unix:
 	dos2unix
