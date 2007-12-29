@@ -8,7 +8,8 @@ Standards-Version: 3.7.3
 Package: gfm
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: TI hand-helds file manipulation program for X
- gfm is a program allowing to create/open/save TI hand-helds files.
+Description: Texas Instruments hand-helds file manipulation program for X
+ gfm is a program allowing to create or modify TI hand-helds files: rename or
+ remove variables, create folders.
  It can group & ungroup files, too.
  .
