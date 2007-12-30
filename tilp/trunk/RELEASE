@@ -24,9 +24,10 @@ Improvements:
 	- ROM dumping thru SilverLink under Linux is sometimes failing
 	- skip any existing app's when sending a TiGroup file (because app's can not be overwritten)
 	- removed old GTK file selector because being deprecated with GTK+ 2.12
-	- remember filesel_type=native when saving the configuration (kevin)
+	- remember filesel_type=native when saving the configuration
 	- reworked Device Infos dialog box
 	- TiGroup are compressed now
+	- added support for the alternate (KDE/M$) button order
 
 
 Bug fixes:

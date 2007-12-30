@@ -3,6 +3,7 @@
 
 /*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 2007  Kevin Kofler
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -167,6 +168,8 @@ gint display_action_dbox(gchar *target)
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = glade_xml_get_widget(xml, "action_dbox");
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
 	clist = data = glade_xml_get_widget(xml, "treeview1");
 
 	// clist creation

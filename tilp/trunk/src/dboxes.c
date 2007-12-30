@@ -3,6 +3,7 @@
 
 /*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 2007  Kevin Kofler
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -131,6 +132,8 @@ gint msg_box2(const char *title, const char *message)
 	msg_type = str2msg(title);
 	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, msg_type,
 				   GTK_BUTTONS_OK_CANCEL, message);
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
 
@@ -165,6 +168,8 @@ gint msg_box3(const char *title, const char *message, const char *button1,
 	gtk_dialog_add_button(GTK_DIALOG(dialog), button1, GTK_RESPONSE_YES);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), button2, GTK_RESPONSE_NO);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), button3, GTK_RESPONSE_CANCEL);
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog), GTK_RESPONSE_YES,
+	                                        GTK_RESPONSE_NO, GTK_RESPONSE_CANCEL, -1);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
@@ -202,6 +207,8 @@ gint msg_box4(const char *title, const char *message)
 				   GTK_BUTTONS_NONE, message);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_GO_FORWARD, GTK_RESPONSE_OK);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 					GTK_RESPONSE_CANCEL);
@@ -243,6 +250,8 @@ char *msg_entry(const char *title, const char *message, const char *content)
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = data = glade_xml_get_widget(xml, "entry_dbox");
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
 	gtk_window_set_title(GTK_WINDOW(data), title);
 
 	data = glade_xml_get_widget(xml, "frame1");
@@ -287,6 +296,8 @@ int backup_box(const char *title, const char *message, int *mask)
 	glade_xml_signal_autoconnect(xml);
 
 	dbox = data = glade_xml_get_widget(xml, "backup_dbox");
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
 	gtk_window_set_title(GTK_WINDOW(data), title);
 
 	data = glade_xml_get_widget(xml, "label1");
