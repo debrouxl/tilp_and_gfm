@@ -1,6 +1,6 @@
 /*
   Name: Group File Manager
-  Copyright (C) 2006 Tyler Cassidy, Romain Lievin, Kevin Kofler
+  Copyright (C) 2006-2007 Tyler Cassidy, Romain Lievin, Kevin Kofler
   04/06/06 16:35 - dialog.c
   
   This program is free software you can redistribute it and/or modify
@@ -107,6 +107,8 @@ int msgbox_two(int type, const char *message)
     
     // Retrieve the Widget into data & widget
     widget = glade_xml_get_widget(xml, "dialog2");
+    gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+                                            GTK_RESPONSE_CANCEL,-1);
     
     /* Set some Stuff */
     switch(type)
@@ -187,6 +189,9 @@ int msgbox_three(const char *button1, const char *button2, const char *message)
     
     // Retrieve the Widget into data & widget
 	widget = glade_xml_get_widget(xml, "dialog3");
+	/* button1, button2, cancel */
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_YES, GTK_RESPONSE_CANCEL,-1);
     
     // The Message
 	data = glade_xml_get_widget(xml, "dialog3_label");
@@ -243,6 +248,8 @@ char *msgbox_input(const char *title, const char *input, const char *question)
     
     // Retrieve the Widget into data & widget
 	widget = glade_xml_get_widget(xml, "inputdialog");
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
     
 	/* Set the Dialog up */
     // Set the message into the label ;)
@@ -302,7 +309,9 @@ int msgbox_model(void)
     
     // Retrieve the Widget into data & widget
 	widget = glade_xml_get_widget(xml, "combodialog");
-    data = glade_xml_get_widget(xml, "combodialog_combobox");
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+	                                        GTK_RESPONSE_CANCEL,-1);
+	data = glade_xml_get_widget(xml, "combodialog_combobox");
 	    
 	/* Launch the Dialog */
 	choice = gtk_dialog_run(GTK_DIALOG(widget));
