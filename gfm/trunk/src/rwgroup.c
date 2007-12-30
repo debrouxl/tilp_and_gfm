@@ -93,7 +93,8 @@ static gboolean	search_for_folder(GNode *node, gpointer data)
 static int create_table_of_entries(TigContent *content)
 {
 	TigEntry **ptr;
-	GNode *node, *folder;
+	GNode *node;
+	GNode *folder = NULL;
 	char prv_fld[20] = "";
 
 	for(ptr = content->var_entries; *ptr; ptr++)
@@ -106,7 +107,10 @@ static int create_table_of_entries(TigContent *content)
 		{	// cache: make searching faster if previous folder is the same than current
 			memset(&sa, 0, sizeof(sa));
 			strcpy(sa.folder, ve->folder);
-			g_node_children_foreach(GFile.trees.vars, G_TRAVERSE_ALL, search_for_folder, (gpointer)&sa);
+			g_node_children_foreach(GFile.trees.vars, 
+						G_TRAVERSE_ALL, 
+						search_for_folder, 
+						(gpointer)&sa);
 			strcpy(prv_fld, sa.folder);
 		}
 		else

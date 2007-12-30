@@ -44,8 +44,8 @@ config.status: autotools-stamp configure
 	touch configure.ac && touch aclocal.m4 && touch configure
 	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
 		--prefix=/usr --mandir=\$${prefix}/share/man \
-		CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
-
+		CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" \
+		--disable-rpath
 
 build: build-stamp
 build-stamp:  config.status
@@ -53,7 +53,6 @@ build-stamp:  config.status
 
 	# Add here commands to compile the package.
 	$(MAKE)
-	chrpath -d ./src/gfm
 
 	touch $@
 
