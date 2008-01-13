@@ -1,24 +1,13 @@
 Name: tilp2
 Epoch: 1
-Version: 1.08
-Release: 2
+Version: 1.10
+Release: 1
 Vendor: LPG (http://lpg.ticalc.org)
 Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
-# tarball respun to add pixmaps/*.png from SVN
 Source: %{name}-%{version}.tar.bz2
-#LANG=C svn diff -r 3859:3860 >../tilp2-1.08-install-png-files.diff
-Patch0: tilp2-1.08-install-png-files.diff
-#LANG=C svn diff -r 3870:3871 config.h.in >../tilp2-1.08-regen-config.h.in-autoheader.diff
-Patch1: tilp2-1.08-regen-config.h.in-autoheader.diff
-#LANG=C svn diff -r 3896:3897 >../tilp2-1.08-increase-flashapp-timeout.diff
-Patch2: tilp2-1.08-increase-flashapp-timeout.diff
-#LANG=C svn diff -r 3907:3909 >../tilp2-1.08-remember-filesel-native.diff
-Patch3: tilp2-1.08-remember-filesel-native.diff
-#LANG=C svn diff -r 3909:3910 >../tilp2-1.08-fix-kde-filesel.diff
-Patch4: tilp2-1.08-fix-kde-filesel.diff
 Group: Applications/Communications
-License: GPL
-BuildRequires: libticables2-devel >= 1:1.0.6, libticonv-devel >= 1:1.0.4, libtifiles2-devel >= 1:1.0.7, libticalcs2-devel >= 1:1.0.7, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.4.0, zlib-devel, kdelibs-devel >= 6:3.0, desktop-file-utils >= 0.10
+License: GPLv2+
+BuildRequires: libticables2-devel >= 1:1.2.0, libticonv-devel >= 1:1.1.0, libtifiles2-devel >= 1:1.1.0, libticalcs2-devel >= 1:1.1.0, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.4.0, zlib-devel, kdelibs3-devel, desktop-file-utils >= 0.10
 Requires: xdg-utils >= 1.0.0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Summary: TiLP is a TI<->PC linking program
@@ -28,11 +17,6 @@ TiLP is a TI<->PC linking program
 
 %prep
 %setup
-%patch0 -p0
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
-%patch4 -p0
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} --libdir=%{_libdir} --mandir=%{_mandir} --disable-nls
@@ -103,6 +87,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
+* Sun Jan 13 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.10-1
+Update to 1.10.
+Drop obsolete backported patches.
+Specify GPL version in License tag.
+Update tilibs BuildRequires.
+BuildRequire kdelibs3-devel instead of kdelibs-devel.
+
 * Sun Oct 14 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.08-2
 Backport increased FlashApp timeout from SVN.
 Backport fix to not hardcode the file selector type in the config file from SVN.
