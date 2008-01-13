@@ -1,10 +1,9 @@
 Name: gfm
 Version: 1.02
-Release: 0.1.20071014svn
+Release: 1
 Vendor: LPG (http://lpg.ticalc.org)
 Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
-# svn revision 3918
-Source: %{name}-%{version}-20071014.tar.bz2
+Source: %{name}-%{version}.tar.bz2
 Group: Applications/Communications
 License: GPLv2+
 BuildRequires: libticonv-devel >= 1:1.0.4, libtifiles2-devel >= 1:1.0.7, libticalcs2-devel >= 1:1.0.7, glib2-devel >= 2.6.0, gtk2-devel >= 2.6.0, libglade2-devel >= 2.5.0, kdelibs3-devel, desktop-file-utils >= 0.10
@@ -61,5 +60,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/lpg-gfm.desktop
 
 %changelog
-* Sun Oct 14 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.02-0.1.20071014svn
+* Sun Jan 13 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 1.02-1
+Update to 1.02 (release).
+
+* Sun Oct 14 2007 Kevin Kofler <Kevin@tigcc.ticalc.org> 1.02-0.1.20071014svn
 First Fedora RPM.
