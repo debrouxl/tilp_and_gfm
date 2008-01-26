@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.08  (25/09/2007)
-Current version:  1.10  (10/12/2008)
+Old     version:  1.10  (10/12/2007)
+Current version:  1.11  (28/01/2008)
 
 
 SubVersion (CVS) revision: $Id$
@@ -15,34 +15,25 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- addeds support for NSpire (CAS version not tested)
+	- added support for NSpire (CAS version not tested)
 	
 
 Improvements:
 -------------
 
-	- ROM dumping thru SilverLink under Linux is sometimes failing
-	- skip any existing app's when sending a TiGroup file (because app's can not be overwritten)
-	- removed old GTK file selector because being deprecated with GTK+ 2.12
-	- remember filesel_type=native when saving the configuration
-	- reworked Device Infos dialog box
-	- TiGroup are compressed now
-	- added support for the alternate (KDE/M$) button order
+	- full NSpire OS v1.2 & v1.3 support (but you have to restart TiLP if NSPire connection fails)
 
 
 Bug fixes:
 ----------
 
-	- the progress bar data rate is sometimes invalid
-	- fixed ROM dumping on TI92+/V200: switching to HOME screen failed
-	- added pause between file sending and ready check (fix bug #1808645)
-	- slightly increased timeout when sending FLASH applications, the
-	  previous timeout is nearly too small for big apps
+	- non
 
 
 Known bugs:
 -----------
 
+	- [nspire] need to restart TiLP if connection fails
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is

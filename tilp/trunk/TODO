@@ -7,7 +7,7 @@ To do:
 
 3) fix Titanium/USB sous Linux
 
-4) enable virtual linking to TiLeM
+4) need to exit TiLP to restart NSpire connection (ticalcs2 API is missing a function)
 
 //------
 
