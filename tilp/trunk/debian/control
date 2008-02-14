@@ -10,7 +10,7 @@ Architecture: any
 Replaces: tilp
 Conflicts: tilp
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: TI hand-helds <-> PC communication program for X
+Description: Texas Instruments hand-helds <-> PC communication program for X
  TiLP2 is a Texas Instruments hand-helds <-> PC communication program for
  Linux. It is able to use any type of link cable (Gray/Black/Silver/Direct
  Link) with any calculator. See http://lpg.ticalc.org/.

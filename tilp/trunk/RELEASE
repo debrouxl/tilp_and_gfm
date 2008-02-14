@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.10  (10/12/2007)
-Current version:  1.11  (28/01/2008)
+Old     version:  1.10  (10/01/2008)
+Current version:  1.11  (14/02/2008)
 
 
 SubVersion (CVS) revision: $Id$
@@ -15,19 +15,20 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- added support for NSpire (CAS version not tested)
+	- full NSpire OS v1.2 & v1.3 support (but you have to restart TiLP 
+	if NSPire connection fails)
 	
 
 Improvements:
 -------------
 
-	- full NSpire OS v1.2 & v1.3 support (but you have to restart TiLP if NSPire connection fails)
+	- none
 
 
 Bug fixes:
 ----------
 
-	- non
+	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
 
 
 Known bugs:

@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 26/01/2008, version 1.10b: (1.2.0, 1.1.2, 1.1.0, 1.0.6): roms
+	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
+	
 - 16/10/2007, version 1.10: (1.2.0, 1.1.0, 1.1.0, 1.0.6): roms
 	- adding NSpire support
 	- ticables library does not reset link at opening stage any longer.
