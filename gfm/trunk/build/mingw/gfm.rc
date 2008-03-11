@@ -15,8 +15,8 @@ IDI_ICON1               ICON    DISCARDABLE     "gfm.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,1
- PRODUCTVERSION 0,0,0,1
+ FILEVERSION 1,0,2,0
+ PRODUCTVERSION 1,0,2,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x29L
@@ -34,14 +34,14 @@ BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
             VALUE "FileDescription", "GFM\0"
-            VALUE "FileVersion", "0.01\0"
+            VALUE "FileVersion", "1.02\0"
             VALUE "InternalName", "gfm\0"
-            VALUE "LegalCopyright", "Copyright © 1999-2003, Romain Liévin\0"
-            VALUE "LegalTrademarks", "The gfm Team\0"
+            VALUE "LegalCopyright", "Copyright © 1999-2008, Romain Liévin\0"
+            VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "gfm.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "TI link cable software for Linux, Windows9x/NT4/2000, Mac OS-X and FreeBSD.\0"
-            VALUE "ProductVersion", "0, 0, 0, 1\0"
+            VALUE "ProductVersion", "1, 0, 2, 0\0"
             VALUE "SpecialBuild", "Windows 9x/Me, NT4/2000/XP version\0"
         END
     END
