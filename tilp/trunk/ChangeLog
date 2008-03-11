@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 11/03/2008, version 1.11: (1.2.0, 1.1.2, 1.1.1, 1.0.6): roms
+	- fixed various bug crashes due to non NULLified pointers in pbar structure
+
 - 26/01/2008, version 1.10b: (1.2.0, 1.1.2, 1.1.0, 1.0.6): roms
 	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
 	

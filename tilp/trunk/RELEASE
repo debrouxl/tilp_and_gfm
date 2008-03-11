@@ -17,6 +17,7 @@ New capabilities:
 
 	- full NSpire OS v1.2 & v1.3 support (but you have to restart TiLP 
 	if NSPire connection fails)
+	- NSpire CAS version
 	
 
 Improvements:
@@ -29,6 +30,7 @@ Bug fixes:
 ----------
 
 	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
+	- various crashes after directory list
 
 
 Known bugs:

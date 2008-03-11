@@ -2,7 +2,7 @@
 /* $Id$ */
 
 /*  TiLP - Tilp Is a Linking Program
- *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 1999-2008  Romain Lievin
  *  Copyright (C) 2007  Kevin Kofler
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 	{
 #if WITH_KDE
 		splash_screen_set_label(_("Initializing KDE..."));
-		sp_kde_init(argc, argv, "tilp", _("TiLP"), VERSION, _("Tilp Is a Linking Program"), "Copyright (c) 1999-2007 Romain Lievin", "http://lpg.ticalc.org/prj_tilp/", "tilp-users@lists.sf.net");
+		sp_kde_init(argc, argv, "tilp", _("TiLP"), VERSION, _("Tilp Is a Linking Program"), "Copyright (c) 1999-2008 Romain Lievin", "http://lpg.ticalc.org/prj_tilp/", "tilp-users@lists.sf.net");
 		atexit(sp_kde_finish);
 		// Not needed unless we want to add a DCOP interface.
 		// g_timeout_add(26, sp_kde_process_qt_events, NULL);

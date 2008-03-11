@@ -186,6 +186,8 @@ void destroy_pbar(void)
 	pbar_wnd.pbar1 = NULL;
 	pbar_wnd.pbar2 = NULL;
 	pbar_wnd.label = NULL;
+	pbar_wnd.label_rate = NULL;
+	pbar_wnd.label_part = NULL;
 
 	if (window != NULL)
 	{

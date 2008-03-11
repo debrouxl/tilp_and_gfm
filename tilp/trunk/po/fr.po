@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-01-12 06:59+0100\n"
+"POT-Creation-Date: 2008-02-12 08:56+0100\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -165,12 +165,12 @@ msgstr "Horloge"
 msgid "A Folder"
 msgstr "Un Dossier"
 
-#: src/dboxes.c:41 src/tilp_calcs.c:276 src/tilp_calcs.c:289
-#: src/tilp_calcs.c:914 src/tilp_calcs.c:925 src/tilp_calcs.c:1218
-#: src/tilp_config.c:474 src/tilp_config.c:482 src/tilp_files.c:137
-#: src/tilp_files.c:150 src/tilp_files.c:169 src/tilp_misc.c:43
-#: src/tilp_slct.c:81 src/tilp_slct.c:449 src/tilp_slct.c:460
-#: src/tilp_slct.c:552
+#: src/dboxes.c:41 src/device.c:413 src/device.c:417 src/tilp_calcs.c:276
+#: src/tilp_calcs.c:289 src/tilp_calcs.c:914 src/tilp_calcs.c:925
+#: src/tilp_calcs.c:1218 src/tilp_config.c:474 src/tilp_config.c:482
+#: src/tilp_files.c:137 src/tilp_files.c:150 src/tilp_files.c:169
+#: src/tilp_misc.c:43 src/tilp_slct.c:81 src/tilp_slct.c:449
+#: src/tilp_slct.c:460 src/tilp_slct.c:552
 msgid "Information"
 msgstr "Information"
 
@@ -201,6 +201,17 @@ msgstr "Calculatrice"
 #: src/device.c:213
 msgid "comm.c: GUI loading failed !\n"
 msgstr "comm.c : échec du chargement de l'interface graphique !\n"
+
+#: src/device.c:413
+msgid ""
+"Please note that Titanium through DirectLink USB works under Linux but it "
+"suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
+"is exited."
+msgstr ""
+
+#: src/device.c:417
+msgid "Please note you will have to restart TiLP if connection fails."
+msgstr ""
 
 #: src/filesel.c:258
 msgid "Save file"
