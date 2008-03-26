@@ -430,6 +430,10 @@ int tilp_calc_send_os(const char *filename)
 	if(ret == BUTTON2)
 		return -1;
 
+	if(options.calc_model == CALC_NSPIRE)
+		if(tilp_calc_isready())
+			return -1;
+
 	tilp_options_increase_timeout();
 
 	gif->create_pbar_(FNCT_SEND_OS, _("Upgrading OS"));

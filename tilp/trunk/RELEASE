@@ -33,6 +33,7 @@ Bug fixes:
 	- various crashes after directory list
 	- don't check whether calc is ready before doing a screenshot. 
 		Avoid to return to HOME.
+	- force ready check when sending NSpire OS
 
 
 Known bugs:
