@@ -5,6 +5,8 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 11/03/2008, version 1.11: (1.2.0, 1.1.2, 1.1.1, 1.0.6): roms
 	- fixed various bug crashes due to non NULLified pointers in 
 	pbar structure.
+	- don't check whether calc is ready before doing a screenshot. Avoid to
+		return to HOME.
 	=> released on 28/03/2008
 
 - 26/01/2008, version 1.10b: (1.2.0, 1.1.2, 1.1.0, 1.0.6): roms

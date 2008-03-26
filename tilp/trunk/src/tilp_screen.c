@@ -48,7 +48,10 @@ int screen_capture(void)
 	int err;
 
 	/* bug #1662383: V200 replies as busy but screenshot is working anyways */
-	if(options.calc_model != CALC_V200)
+	//if(options.calc_model != CALC_V200)
+
+	/* Don't check whether calc is ready to avoid sending of HOME key */
+	if(options.calc_model == CALC_NSPIRE)
 		if(tilp_calc_isready())
 			return -1;
 

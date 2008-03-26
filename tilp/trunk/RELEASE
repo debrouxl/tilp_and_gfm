@@ -31,6 +31,8 @@ Bug fixes:
 
 	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
 	- various crashes after directory list
+	- don't check whether calc is ready before doing a screenshot. 
+		Avoid to return to HOME.
 
 
 Known bugs:
