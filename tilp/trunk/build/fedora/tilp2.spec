@@ -1,6 +1,6 @@
 Name: tilp2
 Epoch: 1
-Version: 1.10
+Version: 1.11
 Release: 1
 Vendor: LPG (http://lpg.ticalc.org)
 Packager: Kevin Kofler <Kevin@tigcc.ticalc.org>
@@ -87,6 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime/packages/tilp.xml
 
 %changelog
+* Fri Mar 28 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.11-1
+Update to 1.11.
+
 * Sun Jan 13 2008 Kevin Kofler <Kevin@tigcc.ticalc.org> 1:1.10-1
 Update to 1.10.
 Drop obsolete backported patches.
