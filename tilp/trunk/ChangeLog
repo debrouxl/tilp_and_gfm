@@ -2,6 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 13/08/2008, version 1.12: (1.2.0, 1.1.3, 1.1.1, 1.0.6): roms
+	- added NSpire OS1.4 support
+
 - 11/03/2008, version 1.11: (1.2.0, 1.1.2, 1.1.1, 1.0.6): roms
 	- fixed various bug crashes due to non NULLified pointers in 
 	pbar structure.

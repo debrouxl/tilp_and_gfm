@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.10  (10/01/2008)
-Current version:  1.11  (14/02/2008)
+Old     version:  1.11  (14/02/2008)
+Current version:  1.12  (12/08/2008)
 
 
 SubVersion (CVS) revision: $Id$
@@ -15,9 +15,7 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- full NSpire OS v1.2 & v1.3 support (but you have to restart TiLP 
-	if NSPire connection fails)
-	- NSpire CAS version
+	- NSpire & NSpire-CAS OS v1.4 support
 	
 
 Improvements:
@@ -29,11 +27,7 @@ Improvements:
 Bug fixes:
 ----------
 
-	- fixed InnoSetup installer for use with GTK+ >= 2.10.x
-	- various crashes after directory list
-	- don't check whether calc is ready before doing a screenshot. 
-		Avoid to return to HOME.
-	- force ready check when sending NSpire OS
+	- none
 
 
 Known bugs:
