@@ -2,6 +2,11 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- 31/12/2009, version 1.13 (1.2.1, 1.1.3, 1.1.1, 1.0.6): roms
+        - merged Lionel's patch: add some new & shorter command line flags 
+	for use by GCC4TI
+	- 
+	
 - 13/08/2008, version 1.12: (1.2.0, 1.1.3, 1.1.1, 1.0.6): roms
 	- added NSpire OS1.4 support
 

@@ -1,4 +1,4 @@
-.TH TILP 1 "November 12, 2006"
+.TH TILP 1 "December 31, 2008"
 .SH NAME
 TiLP2 - a communication program for TI calculators ('Tilp Is a Linking Program')
 .SH SYNOPSYS
@@ -11,9 +11,7 @@ You can not do any other operations. If you want more operations, you have to us
 For sending one or more file, simply pass the filename(s) on the command line.
 If you want to use TiLP from console, use the --no-gui switch.
 
-Example: tilp --cable=BlackLink --port=1 --calc=ti92+ romdump.9xz
-
-Note: options must be passed before the filename !
+Take care: options must be passed before the filename !
 
 \fBtilp\fP accepts the following options:
 .TP
@@ -23,25 +21,25 @@ Display a list of all command line options.
 \fB-v, --version\fP
 Output the version info.
 .TP
-\fB--no-gui\fP
+\fB--no-gui\fP, \fB-n\fP
 Send file(s) without launching any Graphical User Interface. All information is displayed in the console.
 Beware: using this switch disables any overwrite check. Use it with care!
 .TP
-\fB--calc=\fP
+\fB--calc=\fP\fICALC\fP, \fICALC\fP
 Select a calculator type: v200, ti92+, ti92, ti89t, ti89, ti86, ti85, ti84+, ti83+, ti83, ti82 or ti73.
 .TP
-\fB--cable=\fP
-Select a link cable type (case sensitive): GrayLink, BlackLink, Parallel, SilverLink, DirectLink, VTi, TiEmu.
+\fB--cable=\fP\fICABLE\fP, \fICABLE\fP
+Select a link cable type: GrayLink, BlackLink, Parallel, SilverLink, DirectLink, VTi, TiEmu.
 .TP
-\fB--port=\fP
+\fB--port=\fP\fIPORT\fP, \fB-p\fP\fIPORT\fP
 Specify on which port the link cable is plugged on. Can be null, 1, 2, 3 or 4.
 .TP
-\fB--timeout=\fP
+\fB--timeout=\fP\fITIMEOUT\fP, \fB-t\fP\fITIMEOUT\fP
 in tenth of seconds (0.1 s). This is the time while the program wait a response of the 
 calculator. Once this delay elapsed, the program send a time out error. The 
 default value is 1 seconds.
 .TP
-\fB--delay=\fP
+\fB--delay=\fP\fIDELAY\fP, \fB-d\fP\fIDELAY\fP
 in microseconds. This is the time which separate the transmission of 2 bytes.
 The default value is 5 microseconds. Decrease this value increase the 
 transfer speed but decrease the reliability of the transmission.
@@ -49,6 +47,11 @@ transfer speed but decrease the reliability of the transmission.
 Quicly send (no gui) an TI89 file with a BlackLink cable on the second serial port (/dev/ttyS1 or COM2); timeout is set to 2s:
 .TP
 tilp --calc=ti89 --cable=BlackLink --port=2 --timeout=20 --no-gui group.89g
+.TP
+Starting at version 1.13, a new & shorter syntax can be used:
+.TP
+tilp ti89 blacklink -p2 -t20 -n group.89g
+
 .SH CONFIG FILE FORMAT
 This section describes the format of the .tilp config file which is in the home directory of the user (Linux) or the tilp.ini file (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc). But, there is no order, you can write lines as you want.
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.

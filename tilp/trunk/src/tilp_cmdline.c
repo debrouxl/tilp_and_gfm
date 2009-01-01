@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glib.h>
+#include <string.h>
 
 #include "tilp_core.h"
 
@@ -38,10 +39,10 @@ static GOptionEntry entries[] =
     { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
 	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, N_("Hand-held model"), NULL },
 	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, N_("Link cable model"), NULL },
-	{ "port", 0, 0, G_OPTION_ARG_INT, &options.cable_port, N_("Link cable port"), NULL },
-	{ "timeout", 0, 0, G_OPTION_ARG_INT, &options.cable_timeout, N_("Link cable timeout"), NULL },
-	{ "delay", 0, 0, G_OPTION_ARG_INT, &options.cable_delay, N_("Link cable delay"), NULL },
-	{ "no-gui", 0, 0, G_OPTION_ARG_NONE, &dont_use_gui, N_("Does not use GUI"), NULL },
+	{ "port", 'p', 0, G_OPTION_ARG_INT, &options.cable_port, N_("Link cable port"), NULL },
+	{ "timeout", 't', 0, G_OPTION_ARG_INT, &options.cable_timeout, N_("Link cable timeout"), NULL },
+	{ "delay", 'd', 0, G_OPTION_ARG_INT, &options.cable_delay, N_("Link cable delay"), NULL },
+	{ "no-gui", 'n', 0, G_OPTION_ARG_NONE, &dont_use_gui, N_("Does not use GUI"), NULL },
 	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
 	{ NULL }
 };
@@ -97,6 +98,33 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		g_free(cable);
 	}
 
+	// look for short-options
+        if(array != NULL)
+          {
+            gchar **p;
+	    gint len;
+            int i;
+
+            // check for no extensions
+            for(p = array, len = 0; *p != NULL; p++, len++)
+              {
+                if(strrchr(*p, '.') == NULL)
+                  {
+                    for(i = 0; i < CABLE_MAX; i++)
+                      {
+                        if(!g_strcasecmp(ticables_model_to_string(i), *p))
+                          options.cable_model = i;
+                      }
+
+		    for(i = 0; i < CALC_MAX; i++)
+                      {
+                        if(!g_strcasecmp(ticalcs_model_to_string(i), *p))
+                          options.calc_model = i;
+                      }
+                  }
+	      }
+	  }
+
 	// remap for USB hand-helds
 	options.calc_model = tilp_remap_to_usb(options.cable_model,
                                                options.calc_model);
@@ -111,23 +139,35 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 
 		working_mode = MODE_CMD;
 
-		// check whether path is local or absolute
+		// count files
 		for(p = array, len = 0; *p != NULL; p++, len++);
 
+		// allocate list of files
 		flist = g_malloc0((len + 1) * sizeof(gchar *));
 
 		// rebuild a list of file with full path
 		for(p = array, q = flist; *p != NULL; p++, q++)
 		{
+		  // skip short-options
+		  if(strrchr(*p, '.') == NULL)
+		    {
+		      q--;
+		      continue;
+		    }
+
+		  // check whether path is local or absolute
 			if (!g_path_is_absolute(*p))
 				*q = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, *p, NULL);
 			else
 				*q = g_strdup(*p);
 		}
 
-		// build a pseudo file selection for TiLP
+       		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
+		  {
 			tilp_local_selection_add(*q);
+			printf("filename: <%s>\n", *q);
+		  }
 		//tilp_local_contents_load();
 
 		g_strfreev(array);
