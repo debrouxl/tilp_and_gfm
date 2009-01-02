@@ -58,8 +58,9 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 	GtkWidget *change_drive;
 	GtkWidget *change_drive_menu;
 	GtkWidget *c_drive;
-	int drive, curdrive;
+	int drive;
 	gchar buffer[8];
+	DWORD dwDrives;
 	gint available_drives[27];	// A..Z -> 26 letters
 
 	change_drive = gtk_menu_item_new_with_label(_("Change drive"));
@@ -75,16 +76,16 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 			       (GDestroyNotify)gtk_widget_unref);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(change_drive), change_drive_menu);
 
-	curdrive = _getdrive();
-	for (drive = 1; drive <= 26; drive++)
+	dwDrives = GetLogicalDrives	();
+	for (drive = 0; drive < 26; drive++)
 		available_drives[drive] = 0;
 
-	for (drive = 3; drive <= 26; drive++) 
+	for (drive = 0; drive < 26; drive++) 
 	{
-		if (!_chdrive(drive)) 
+		if (dwDrives & (1 << drive)) 
 		{
-			g_snprintf(buffer, 8, "%c:", drive + 'A' - 1);
-			available_drives[drive] = drive + 'A' - 1;
+			g_snprintf(buffer, 8, "%c:", drive + 'A');
+			available_drives[drive] = drive + 'A';
 
 			c_drive = gtk_menu_item_new_with_label(buffer);
 			g_object_set_data_full(G_OBJECT(menu), "c_drive",
@@ -99,7 +100,6 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 					   GINT_TO_POINTER(available_drives[drive]));
 		}
 	}
-	_chdrive(curdrive);
 }
 #endif				/* __WIN32__ */
 
