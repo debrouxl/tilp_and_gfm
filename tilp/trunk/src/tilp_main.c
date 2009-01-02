@@ -134,8 +134,10 @@ int tilp_init(int *argc, char ***argv)
 	 */
 	if((working_mode & MODE_CMD) && !(working_mode & MODE_GUI))
 	{
-		tilp_cmdline_send();
-		exit(0);
+		int ret;
+
+		ret = tilp_cmdline_send();
+		exit(ret);
 	}
 	else if(working_mode == MODE_INI)
 		exit(0);

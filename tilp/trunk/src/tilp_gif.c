@@ -39,13 +39,11 @@ int default_msg_box(const char *title, const char *message, int action)
 int default_msg_box1(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
-    int result;
-
 	tilp_info("msg_box1: [%s] [%s]", title, message);
 	tilp_info("msg_box1: press ENTER for OK");
 	fflush(stdin);
 
-	fscanf(stdin, "%i", &result);
+	fgetc(stdin);
 #endif
 
 	return 0;
@@ -54,16 +52,17 @@ int default_msg_box1(const char *title, const char *message)
 int default_msg_box2(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
-    int result;
+    int c;
 
 	tilp_info("msg_box2: [%s] [%s]", title, message);
 	tilp_info("msg_box2: press 1 for OK, 2 for CANCEL");
 
 	fflush(stdin);
-	fscanf(stdin, "%i", &result);
-	switch(result)
+	c = fgetc(stdin);
+	
+	switch(c)
 	{
-	case 1: return BUTTON1;
+	case '1': return BUTTON1;
 	default: return BUTTON2;
 	}
 #endif
@@ -74,17 +73,18 @@ int default_msg_box3(const char *title, const char *message,
 		     const char *b1, const char *b2, const char *b3)
 {
 #if !defined(_WINDOWS)
-    int result;
+    int c;
 
 	tilp_info("msg_box3: [%s] [%s]", title, message);
 	tilp_info("msg_box3: press 1 for %s, 2 for %s, 3 for %s", b1, b2, b3);
 
 	fflush(stdin);
-	fscanf(stdin, "%i", &result);
-	switch(result)
+	c = fgetc(stdin);
+
+	switch(c)
 	{
-	case 1: return BUTTON1;
-        case 2: return BUTTON2;
+	case '1': return BUTTON1;
+    case '2': return BUTTON2;
 	default: return BUTTON3;
 	}
 #endif
@@ -94,16 +94,17 @@ int default_msg_box3(const char *title, const char *message,
 int default_msg_box4(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
-    int result;
+    int c;
     
 	tilp_info("msg_box4: [%s] [%s]", title, message);
 	tilp_info("msg_box4: press 1 for FORWARD, press 2 for CANCEL");
 
 	fflush(stdin);
-	fscanf(stdin, "%i", &result);
-    switch(result)
+	c = fgetc(stdin);
+
+    switch(c)
     {
-    case 1: return BUTTON1;
+    case '1': return BUTTON1;
     default: return BUTTON2;
     }	
 #endif

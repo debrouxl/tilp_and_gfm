@@ -31,6 +31,7 @@ static gchar* cable;
 static gchar** array;
 static gchar** flist;
 static gint dont_use_gui;
+       gint silent = 0;
 extern int working_mode;
 static gint show_version;
 
@@ -43,6 +44,7 @@ static GOptionEntry entries[] =
 	{ "timeout", 't', 0, G_OPTION_ARG_INT, &options.cable_timeout, N_("Link cable timeout"), NULL },
 	{ "delay", 'd', 0, G_OPTION_ARG_INT, &options.cable_delay, N_("Link cable delay"), NULL },
 	{ "no-gui", 'n', 0, G_OPTION_ARG_NONE, &dont_use_gui, N_("Does not use GUI"), NULL },
+	{ "silent", 's', 0, G_OPTION_ARG_NONE, &silent, N_("Silent mode (NO-GUI mode only"), NULL },
 	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
 	{ NULL }
 };
@@ -63,6 +65,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 {
 	GOptionContext* context;
 	GError *error = NULL;
+	gint ret = 0;
 
 	// parse command line
 	context = g_option_context_new ("- Tilp Is a Linking Program");
@@ -165,10 +168,20 @@ int tilp_cmdline_scan(int *argc, char ***argv)
        		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
 		  {
-			tilp_local_selection_add(*q);
-			printf("filename: <%s>\n", *q);
+			if(g_file_test(*q, G_FILE_TEST_EXISTS))
+			{
+				tilp_local_selection_add(*q);
+			}
+			else
+			{
+				gchar *str;
+
+				str = g_strdup_printf(_("The file <%s> does not exist."), *q);
+				gif->msg_box1(_("Error"), str);
+				g_free(str);
+				ret = -1;
+			}
 		  }
-		//tilp_local_contents_load();
 
 		g_strfreev(array);
 		g_strfreev(flist);
@@ -180,12 +193,13 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	else
 		working_mode |= MODE_GUI;
 
-	return 0;
+	return ret;
 }
 
 /* Send files passed on the command line in no-gui mode */
 int tilp_cmdline_send(void)
 {
+	int ret = 0;
 	int over = options.overwrite;
 
 	// Check for valid selection
@@ -199,9 +213,9 @@ int tilp_cmdline_send(void)
 	if(local.selection1)
 	{
 		options.overwrite = FALSE;
-		tilp_calc_send_var();
+		ret = tilp_calc_send_var();
 		options.overwrite = over;
-		return 0;
+		return ret;
 	}
 
 	// Send OS or apps
@@ -213,15 +227,15 @@ int tilp_cmdline_send(void)
 			tifiles_file_test(fe->name, TIFILE_OS, 
 					  options.calc_model))
 		{
-			tilp_calc_send_os(fe->name);
-			return 0;
+			ret = tilp_calc_send_os(fe->name);
+			return ret;
 		}
 		else
 		{
 			options.overwrite = FALSE;
-			tilp_calc_send_app();
+			ret = tilp_calc_send_app();
 			options.overwrite = over;
-			return 0;
+			return ret;
 		}
 	}
 
@@ -230,10 +244,10 @@ int tilp_cmdline_send(void)
 	{
 		FileEntry *fe = (local.selection4)->data;
 
-		tilp_calc_send_backup(fe->name);
-		return 0;
+		ret = tilp_calc_send_backup(fe->name);
+		return ret;
 	}
 
-	return 0;
+	return ret;
 }
 
