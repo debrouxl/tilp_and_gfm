@@ -35,6 +35,9 @@ There is no specific tree for download sources but you can use this convenient o
 
 	c:\sources\ or /home/devel/
 	|
+	+- gfm
+	+- libusb-win32
+	+- tfdocgen
 	+- ticables2
 	+- ticalcs2
 	+- ticonv

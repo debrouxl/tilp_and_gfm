@@ -114,8 +114,19 @@ static void init_win32_paths(void)
 	#ifdef __MINGW32__
 	inst_paths.home_dir = g_get_current_dir();
 	#else
-	inst_paths.home_dir = 
-	    g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
+	if(g_win32_get_windows_version() > 5)
+	{
+		// Windows Vista
+		inst_paths.home_dir = 
+			g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, "Documents", G_DIR_SEPARATOR_S, _("My TI Files"), NULL);
+		g_mkdir(inst_paths.home_dir, 0);
+	}
+	else
+	{
+		// Windows XP
+		inst_paths.home_dir = g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
+		g_mkdir(inst_paths.home_dir, 0);
+	}
 	#endif
 
 #ifdef ENABLE_NLS
