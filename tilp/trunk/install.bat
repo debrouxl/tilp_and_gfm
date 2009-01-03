@@ -1,3 +1,5 @@
+mkdir c:\lpg\msvc
+
 cd glade
 call copy.bat
 cd ..

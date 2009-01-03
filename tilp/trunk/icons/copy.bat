@@ -1,3 +1,3 @@
-mkdir c:\msvc\tilp2\icons
-copy *.ico c:\msvc\tilp2\icons
+mkdir c:\lpg\msvc\icons
+copy *.ico c:\lpg\msvc\icons
 del *.bak

@@ -65,7 +65,7 @@ LINK32=link.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "C:\lpg\msvc\tilp2\"
+# PROP Output_Dir "c:\lpg\msvc\"
 # PROP Intermediate_Dir "C:\lpg\msvc\Output\tilp2"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"C:\lpg\msvc\tilp2\tilp.exe" /pdbtype:sept /libpath:"C:\LPG\GTK\Lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"c:\lpg\msvc\tilp.exe" /pdbtype:sept /libpath:"C:\LPG\GTK\Lib"
 
 !ENDIF 
 

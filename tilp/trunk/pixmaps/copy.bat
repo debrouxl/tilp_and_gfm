@@ -1,4 +1,4 @@
-mkdir c:\msvc\tilp2\pixmaps
-copy *.xpm c:\msvc\tilp2\pixmaps
-copy *.png c:\msvc\tilp2\pixmaps
+mkdir c:\lpg\msvc\pixmaps
+copy *.xpm c:\lpg\msvc\pixmaps
+copy *.png c:\lpg\msvc\pixmaps
 del *.bak
