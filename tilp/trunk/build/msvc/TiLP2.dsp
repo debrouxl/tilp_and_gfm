@@ -37,7 +37,7 @@ MTL=midl.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir ""
-# PROP Intermediate_Dir "C:\msvc\Output\tilp2"
+# PROP Intermediate_Dir "C:\lpg\msvc\Output\tilp2"
 # PROP Target_Dir ""
 
 !ELSEIF  "$(CFG)" == "tilp2 - Win32 Debug"
@@ -49,8 +49,8 @@ MTL=midl.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "C:\msvc\tilp2\"
-# PROP Intermediate_Dir "C:\msvc\Output\tilp2"
+# PROP Output_Dir "C:\lpg\msvc\tilp2\"
+# PROP Intermediate_Dir "C:\lpg\msvc\Output\tilp2"
 # PROP Target_Dir ""
 
 !ENDIF 

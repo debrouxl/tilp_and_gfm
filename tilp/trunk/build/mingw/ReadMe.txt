@@ -13,6 +13,7 @@ These compiling instructions will work for:
 - TiLP 2
 - TiEmu 3
 - GFM
+- SkinEdit
 
 Follow the instructions very closely or you will soon see that monkeys will start biting. ;-)
 
@@ -24,7 +25,7 @@ Follow the instructions very closely or you will soon see that monkeys will star
 
 There are two ways to retrieve source code:
 - downloads tarballs from <http://sourceforge.net/project/showfiles.php?group_id=23169>
-- uses SubVersion (svn for short)
+- uses SubVersion (svn for short) from <svn.tilp.info>
 
 1) from tarballs: create a folder and extract all of your tarballs
 
@@ -33,10 +34,10 @@ Take a look at <http://tortoisesvn.tigris.org> and <http://svnbook.red-bean.com>
  
 There is no specific tree for download sources but you can use this convenient one:
 
-	c:\sources\ or /home/devel/
+	c:\lpg\ or /home/devel/
 	|
 	+- gfm
-	+- libusb-win32
+	+- skinedit
 	+- tfdocgen
 	+- ticables2
 	+- ticalcs2
@@ -47,12 +48,15 @@ There is no specific tree for download sources but you can use this convenient o
 	+- tilp2
 
 Next, check-out the following URLs for each target folder: 
-- svn co http://svn.tilp.info/repos/tilp/tilp/trunk tilp2
 - svn co http://svn.tilp.info/repos/tilp/libticables/trunk ticables2 
 - svn co http://svn.tilp.info/repos/tilp/libticalcs/trunk ticalcs2 
 - svn co http://svn.tilp.info/repos/tilp/libtifiles/trunk tifiles2 
 - svn co http://svn.tilp.info/repos/tilp/libticonv/trunk ticonv  
+- svn co http://svn.tilp.info/repos/tilp/tilp/trunk tilp2
 - svn co http://svn.tilp.info/repos/tilp/tiemu/trunk tiemu3
+- svn co http://svn.tilp.info/repos/tilp/tfdocgen/trunk tfdocgen
+- svn co http://svn.tilp.info/repos/tiemu/skinedit/trunk skinedit
+- svn co http://svn.tilp.info/repos/tilp/gfm/trunk gfm
 
 ---------------------------------------
 | Compiling on Windows                |
