@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /w /W0 /GX /O2 /I "../../../ticonv/src" /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /FD /c
+# ADD CPP /nologo /MD /w /W0 /GX /O2 /I "../../../ticonv/src" /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\LPG\GTK\INCLUDE\GTK-2.0" /I "C:\LPG\GTK\LIB\GTK-2.0\INCLUDE" /I "C:\LPG\GTK\INCLUDE\GLIB-2.0" /I "C:\LPG\GTK\LIB\GLIB-2.0\INCLUDE" /I "C:\LPG\GTK\INCLUDE\PANGO-1.0" /I "C:\LPG\GTK\INCLUDE\ATK-1.0" /I "C:\LPG\GTK\include" /I "C:\LPG\GTK\include\libglade-2.0" /I "." /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MD /w /W0 /Gm /GX /ZI /Od /I "c:\gtk2dev\include\cairo" /I "../../../ticonv/src" /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\GTK2DEV\INCLUDE\GTK-2.0" /I "C:\GTK2DEV\LIB\GTK-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\GLIB-2.0" /I "C:\GTK2DEV\LIB\GLIB-2.0\INCLUDE" /I "C:\GTK2DEV\INCLUDE\PANGO-1.0" /I "C:\GTK2DEV\INCLUDE\ATK-1.0" /I "c:\gtk2dev\include" /I "C:\Gtk2Dev\include\libglade-2.0" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /FD /GZ /c
+# ADD CPP /nologo /MD /w /W0 /Gm /GX /ZI /Od /I "C:\LPG\GTK\include\cairo" /I "../../../ticonv/src" /I "../../../ticables2/src" /I "../../../tifiles2/src" /I "../../../ticalcs2/src" /I "../../src/win32" /I "C:\LPG\GTK\INCLUDE\GTK-2.0" /I "C:\LPG\GTK\LIB\GTK-2.0\INCLUDE" /I "C:\LPG\GTK\INCLUDE\GLIB-2.0" /I "C:\LPG\GTK\LIB\GLIB-2.0\INCLUDE" /I "C:\LPG\GTK\INCLUDE\PANGO-1.0" /I "C:\LPG\GTK\INCLUDE\ATK-1.0" /I "C:\LPG\GTK\include" /I "C:\LPG\GTK\include\libglade-2.0" /I "." /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "__WIN32__" /D "_MBCS" /D "ENABLE_NLS" /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"C:\msvc\tilp2\gfm.exe" /pdbtype:sept /libpath:"C:\Gtk2Dev\Lib"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /out:"C:\msvc\tilp2\gfm.exe" /pdbtype:sept /libpath:"C:\LPG\GTK\Lib"
 
 !ENDIF 
 
@@ -202,43 +202,43 @@ SOURCE=..\..\src\ungroup.c
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE="..\..\..\..\..\GTK2DEV\lib\glib-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\glib-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gdk-win32-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gdk-win32-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gtk-win32-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gtk-win32-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gobject-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gobject-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gdk_pixbuf-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gdk_pixbuf-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gthread-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gthread-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\gmodule-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\gmodule-2.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\pango-1.0.lib"
+SOURCE="C:\LPG\GTK\lib\pango-1.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\Gtk2Dev\lib\atk-1.0.lib"
+SOURCE="C:\LPG\GTK\lib\atk-1.0.lib"
 # End Source File
 # Begin Source File
 
-SOURCE="..\..\..\..\..\GTK2DEV\lib\glade-2.0.lib"
+SOURCE="C:\LPG\GTK\lib\glade-2.0.lib"
 # End Source File
 # End Group
 # Begin Source File
@@ -251,7 +251,7 @@ SOURCE=..\..\src\tilp_version.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\..\..\GTK2DEV\lib\intl.lib
+SOURCE=C:\LPG\GTK\lib\intl.lib
 # End Source File
 # End Target
 # End Project
