@@ -1,3 +1,3 @@
-mkdir c:\msvc\tilp2\glade
-copy *.glade c:\msvc\tilp2\glade
+mkdir c:\lpg\msvc\glade
+copy *.glade c:\lpg\msvc\glade
 del *.bak

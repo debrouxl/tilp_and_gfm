@@ -1,5 +1,4 @@
-mkdir c:\msvc
-mkdir c:\msvc\tilp2
+mkdir c:\lpg\msvc
 
 cd glade
 call copy.bat
@@ -13,6 +12,6 @@ cd icons
 call copy.bat
 cd ..
 
-;cd po
-;call copy.bat
-;cd ..
+cd po
+call copy.bat
+cd ..
