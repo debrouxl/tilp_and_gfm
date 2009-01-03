@@ -30,6 +30,8 @@
 
 TilpGuiFncts *gif;
 
+extern gint silent;
+
 int default_msg_box(const char *title, const char *message, int action)
 {
 	tilp_info("msg_box: [%s] [%s]", title, message);
@@ -43,7 +45,8 @@ int default_msg_box1(const char *title, const char *message)
 	tilp_info("msg_box1: press ENTER for OK");
 	fflush(stdin);
 
-	fgetc(stdin);
+	if(!silent)
+		fgetc(stdin);
 #endif
 
 	return 0;
@@ -52,13 +55,14 @@ int default_msg_box1(const char *title, const char *message)
 int default_msg_box2(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
-    int c;
+    int c = '2';
 
 	tilp_info("msg_box2: [%s] [%s]", title, message);
 	tilp_info("msg_box2: press 1 for OK, 2 for CANCEL");
 
 	fflush(stdin);
-	c = fgetc(stdin);
+	if(!silent)
+		c = fgetc(stdin);
 	
 	switch(c)
 	{
@@ -73,13 +77,14 @@ int default_msg_box3(const char *title, const char *message,
 		     const char *b1, const char *b2, const char *b3)
 {
 #if !defined(_WINDOWS)
-    int c;
+    int c = '3';
 
 	tilp_info("msg_box3: [%s] [%s]", title, message);
 	tilp_info("msg_box3: press 1 for %s, 2 for %s, 3 for %s", b1, b2, b3);
 
 	fflush(stdin);
-	c = fgetc(stdin);
+	if(!silent)
+		c = fgetc(stdin);
 
 	switch(c)
 	{
@@ -94,13 +99,14 @@ int default_msg_box3(const char *title, const char *message,
 int default_msg_box4(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
-    int c;
+    int c = '2';
     
 	tilp_info("msg_box4: [%s] [%s]", title, message);
 	tilp_info("msg_box4: press 1 for FORWARD, press 2 for CANCEL");
 
 	fflush(stdin);
-	c = fgetc(stdin);
+	if(!silent)
+		c = fgetc(stdin);
 
     switch(c)
     {
@@ -121,6 +127,9 @@ char *default_msg_entry(const char *title, const char *message, const char *cont
     tilp_info("msg_entry: type new content or nothing to cancel ");
     
 	fflush(stdin);
+	if(silent)
+		return NULL;
+
     ret = fscanf(stdin, "%s", buffer);
     if(ret > 0)
 	return g_strdup(buffer);
