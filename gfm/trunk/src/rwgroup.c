@@ -41,29 +41,29 @@
 #include "rwgroup.h"
 #include "support.h"
 
-GFileStruct GFile;
+GFileStruct GFMFile;
 
 int	tigroup_create(CalcModel model)
 {
 	TreeInfo *ti;
 
 	// Create TiGroup file
-	GFile.contents.tigroup = tifiles_content_create_tigroup(model, 0);
-	GFile.type = TIFILE_TIGROUP;
-	GFile.model = GFile.contents.tigroup->model;
+	GFMFile.contents.tigroup = tifiles_content_create_tigroup(model, 0);
+	GFMFile.type = TIFILE_TIGROUP;
+	GFMFile.model = GFMFile.contents.tigroup->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFile.trees.vars = g_node_new(NULL);
+    GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.tigroup->model;
+	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = VAR_NODE_NAME;
-	GFile.trees.vars->data = ti;
+	GFMFile.trees.vars->data = ti;
 
-	GFile.trees.apps = g_node_new(NULL);
+	GFMFile.trees.apps = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.tigroup->model;
+	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = APP_NODE_NAME;
-	GFile.trees.apps->data = ti;
+	GFMFile.trees.apps->data = ti;
   
 	return 0;
 }
@@ -107,7 +107,7 @@ static int create_table_of_entries(TigContent *content)
 		{	// cache: make searching faster if previous folder is the same than current
 			memset(&sa, 0, sizeof(sa));
 			strcpy(sa.folder, ve->folder);
-			g_node_children_foreach(GFile.trees.vars, 
+			g_node_children_foreach(GFMFile.trees.vars, 
 						G_TRAVERSE_ALL, 
 						search_for_folder, 
 						(gpointer)&sa);
@@ -122,10 +122,10 @@ static int create_table_of_entries(TigContent *content)
 
 			strcpy(fe->name, ve->folder);
 			strcpy(fe->folder, "");
-			fe->type = tifiles_folder_type(GFile.model);
+			fe->type = tifiles_folder_type(GFMFile.model);
 			
 			node = g_node_new(fe);
-			folder = g_node_append(GFile.trees.vars, node);
+			folder = g_node_append(GFMFile.trees.vars, node);
 		}
 		
 		{	// add var
@@ -150,43 +150,43 @@ int tigroup_load(const char *filename)
 	GTK_REFRESH();
 
 	// Create and load tigroup file
-	GFile.type = TIFILE_TIGROUP;
+	GFMFile.type = TIFILE_TIGROUP;
 
-	GFile.contents.tigroup = content = tifiles_content_create_tigroup(CALC_NONE, 0);
-	ret = tifiles_file_read_tigroup(filename, GFile.contents.tigroup);
+	GFMFile.contents.tigroup = content = tifiles_content_create_tigroup(CALC_NONE, 0);
+	ret = tifiles_file_read_tigroup(filename, GFMFile.contents.tigroup);
 	if(ret)
 	{
 		msgbox_error("Failed to load TiGroup file!");
-		tifiles_content_delete_tigroup(GFile.contents.tigroup);
+		tifiles_content_delete_tigroup(GFMFile.contents.tigroup);
 		return -1;
 	}
-	GFile.model = GFile.contents.tigroup->model;
+	GFMFile.model = GFMFile.contents.tigroup->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFile.trees.vars = g_node_new(NULL);
+    GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.tigroup->model;
+	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = VAR_NODE_NAME;
-	GFile.trees.vars->data = ti;
+	GFMFile.trees.vars->data = ti;
 
-	GFile.trees.apps = g_node_new(NULL);
+	GFMFile.trees.apps = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.tigroup->model;
+	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = APP_NODE_NAME;
-	GFile.trees.apps->data = ti;
+	GFMFile.trees.apps->data = ti;
 
-	m = GFile.contents.tigroup->n_vars;
-	n = GFile.contents.tigroup->n_apps;
+	m = GFMFile.contents.tigroup->n_vars;
+	n = GFMFile.contents.tigroup->n_apps;
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), "");
 
 	// Vars
-	if(tifiles_calc_is_ti8x(GFile.model))
+	if(tifiles_calc_is_ti8x(GFMFile.model))
 	{
 		GNode *folder;
 		TigEntry **ptr;
 
 		folder = g_node_new(NULL);
-		g_node_append(GFile.trees.vars, folder);
+		g_node_append(GFMFile.trees.vars, folder);
 
 		for(ptr = content->var_entries; *ptr; ptr++)
 		{
@@ -201,9 +201,9 @@ int tigroup_load(const char *filename)
 			GTK_REFRESH();
 		}
 	}
-	else if(tifiles_calc_is_ti9x(GFile.model))
+	else if(tifiles_calc_is_ti9x(GFMFile.model))
 	{
-		create_table_of_entries(GFile.contents.tigroup);
+		create_table_of_entries(GFMFile.contents.tigroup);
 	}
 
 	// Apps
@@ -213,7 +213,7 @@ int tigroup_load(const char *filename)
 		int i;
 
 		folder = g_node_new(NULL);
-		g_node_append(GFile.trees.apps, folder);
+		g_node_append(GFMFile.trees.apps, folder);
 
 		for(ptr = content->app_entries, i =0; *ptr; ptr++, i++)
 		{
@@ -238,16 +238,16 @@ int tigroup_load(const char *filename)
 	}
 
 	// Extract apps from TiGroup
-	GFile.array = GFile.contents.tigroup->app_entries;
-	GFile.contents.tigroup->app_entries = NULL;
-	GFile.contents.tigroup->n_apps = 0;
+	GFMFile.array = GFMFile.contents.tigroup->app_entries;
+	GFMFile.contents.tigroup->app_entries = NULL;
+	GFMFile.contents.tigroup->n_apps = 0;
 
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(gfm_widget.pbar), 0.0);
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), "");
 	gtk_widget_hide(gfm_widget.pbar);
 
-	tifiles_content_delete_tigroup(GFile.contents.tigroup);
-	GFile.contents.tigroup = NULL;
+	tifiles_content_delete_tigroup(GFMFile.contents.tigroup);
+	GFMFile.contents.tigroup = NULL;
 
 	return 0;
 }
@@ -263,11 +263,11 @@ static gboolean varnode_to_tigentry(GNode* node, gpointer data)
 			gchar *basename, *filename;
 
 			// create filename
-			basename = ticonv_varname_to_filename(GFile.model, ve->name, ve->type);
-			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFile.model, ve->type), NULL);
+			basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
+			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
 			g_free(basename);
 
-			te = tifiles_te_create(filename, TIFILE_SINGLE, GFile.model);
+			te = tifiles_te_create(filename, TIFILE_SINGLE, GFMFile.model);
 			g_free(filename);
 
 			tifiles_content_add_te((TigContent *)data, te);
@@ -291,18 +291,18 @@ static gboolean appnode_to_tigentry(GNode* node, gpointer data)
 			int *p;
 
 			// create filename
-			basename = ticonv_varname_to_filename(GFile.model, ve->name, ve->type);
-			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFile.model, ve->type), NULL);
+			basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
+			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
 			g_free(basename);
 
-			te = tifiles_te_create(filename, TIFILE_FLASH, GFile.model);
+			te = tifiles_te_create(filename, TIFILE_FLASH, GFMFile.model);
 			g_free(filename);
 
 			tifiles_content_add_te(content, te);
 			tifiles_content_delete_flash(te->content.flash);
 
 			p = (int *)ve->data;	// hint: cross-reference on apps 
-			te->content.flash = GFile.array[*p]->content.flash;
+			te->content.flash = GFMFile.array[*p]->content.flash;
 		}
 	}
 
@@ -319,25 +319,25 @@ int tigroup_save(const char *filename)
 	GTK_REFRESH();
 
 	// Turns tree into tigroup file
-	GFile.contents.tigroup = tifiles_content_create_tigroup(GFile.model, 0);
-	strcpy(GFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
+	GFMFile.contents.tigroup = tifiles_content_create_tigroup(GFMFile.model, 0);
+	strcpy(GFMFile.contents.tigroup->comment, tifiles_comment_set_tigroup());
 
-	if((GFile.trees.vars)->children != NULL)
+	if((GFMFile.trees.vars)->children != NULL)
 	{
-		g_node_traverse(GFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, varnode_to_tigentry, GFile.contents.tigroup);
+		g_node_traverse(GFMFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, varnode_to_tigentry, GFMFile.contents.tigroup);
 	}
 
-	if((GFile.trees.apps)->children != NULL)
+	if((GFMFile.trees.apps)->children != NULL)
 	{
-		g_node_traverse(GFile.trees.apps, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, appnode_to_tigentry, GFile.contents.tigroup);
+		g_node_traverse(GFMFile.trees.apps, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, appnode_to_tigentry, GFMFile.contents.tigroup);
 	}
 
 	// Write group file
-	ret = tifiles_file_write_tigroup(filename, GFile.contents.tigroup);
+	ret = tifiles_file_write_tigroup(filename, GFMFile.contents.tigroup);
 	if(ret)
 	{
 		msgbox_error("Failed to save TiGroup file!");
-		tifiles_content_delete_tigroup(GFile.contents.tigroup);
+		tifiles_content_delete_tigroup(GFMFile.contents.tigroup);
 		return -1;
 	}
 
@@ -350,15 +350,15 @@ int tigroup_save(const char *filename)
 
 int tigroup_destroy(void)
 {
-	if(GFile.contents.tigroup)
-		tifiles_content_delete_tigroup(GFile.contents.tigroup);
-	GFile.contents.tigroup = NULL;
-	GFile.model = CALC_NONE;
+	if(GFMFile.contents.tigroup)
+		tifiles_content_delete_tigroup(GFMFile.contents.tigroup);
+	GFMFile.contents.tigroup = NULL;
+	GFMFile.model = CALC_NONE;
 
-	ticalcs_dirlist_destroy(&GFile.trees.vars);
-	GFile.trees.vars = NULL;
-	ticalcs_dirlist_destroy(&GFile.trees.apps);
-	GFile.trees.apps = NULL;
+	ticalcs_dirlist_destroy(&GFMFile.trees.vars);
+	GFMFile.trees.vars = NULL;
+	ticalcs_dirlist_destroy(&GFMFile.trees.apps);
+	GFMFile.trees.apps = NULL;
 
 	return 0;
 }
@@ -371,22 +371,22 @@ int	group_create(CalcModel model)
 	FileContent *content;
 
 	// Create regular file
-	content = GFile.contents.group = tifiles_content_create_regular(model);
-	GFile.type = TIFILE_GROUP;
-	GFile.model = GFile.contents.group->model;
+	content = GFMFile.contents.group = tifiles_content_create_regular(model);
+	GFMFile.type = TIFILE_GROUP;
+	GFMFile.model = GFMFile.contents.group->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFile.trees.vars = g_node_new(NULL);
+    GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.group->model;
+	ti->model = GFMFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;
-	GFile.trees.vars->data = ti;
+	GFMFile.trees.vars->data = ti;
 
-	GFile.trees.apps = g_node_new(NULL);
+	GFMFile.trees.apps = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.group->model;
+	ti->model = GFMFile.contents.group->model;
 	ti->type = APP_NODE_NAME;
-	GFile.trees.apps->data = ti;
+	GFMFile.trees.apps->data = ti;
 
 	return 0;
 }
@@ -398,32 +398,32 @@ int group_load(const char *filename)
 	FileContent *content;
 
 	// Create and load regular file
-	GFile.model = tifiles_file_get_model(filename);
-	GFile.type = TIFILE_GROUP;
+	GFMFile.model = tifiles_file_get_model(filename);
+	GFMFile.type = TIFILE_GROUP;
 
-	GFile.contents.group = content = tifiles_content_create_regular(GFile.model);
-	ret = tifiles_file_read_regular(filename, GFile.contents.group);
+	GFMFile.contents.group = content = tifiles_content_create_regular(GFMFile.model);
+	ret = tifiles_file_read_regular(filename, GFMFile.contents.group);
 	if(ret)
 	{
 		msgbox_error("Failed to load Group file!");
-		tifiles_content_delete_regular(GFile.contents.group);
+		tifiles_content_delete_regular(GFMFile.contents.group);
 		return -1;
 	}
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFile.trees.vars = g_node_new(NULL);
+    GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.group->model;
+	ti->model = GFMFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;
-	GFile.trees.vars->data = ti;
+	GFMFile.trees.vars->data = ti;
 
-	GFile.trees.apps = g_node_new(NULL);
+	GFMFile.trees.apps = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
-	ti->model = GFile.contents.group->model;
+	ti->model = GFMFile.contents.group->model;
 	ti->type = APP_NODE_NAME;
-	GFile.trees.apps->data = ti;
+	GFMFile.trees.apps->data = ti;
 
-	if(tifiles_calc_is_ti9x(GFile.model))
+	if(tifiles_calc_is_ti9x(GFMFile.model))
 	{
 		int **table;
 		int num_folders;
@@ -442,9 +442,9 @@ int group_load(const char *filename)
 			fe = tifiles_ve_dup(ve);
 			strcpy(fe->name, ve->folder);
 			strcpy(fe->folder, "");
-			fe->type = tifiles_folder_type(GFile.model);
+			fe->type = tifiles_folder_type(GFMFile.model);
 			node = g_node_new(fe);
-			folder = g_node_append(GFile.trees.vars, node);
+			folder = g_node_append(GFMFile.trees.vars, node);
 
 			for (j = 0; table[i][j] != -1; j++) 
 			{
@@ -456,12 +456,12 @@ int group_load(const char *filename)
 			}
 		}
 	}
-	else if(tifiles_calc_is_ti8x(GFile.model))
+	else if(tifiles_calc_is_ti8x(GFMFile.model))
 	{
 		GNode *folder, *root;
 
 		folder = g_node_new(NULL);
-		g_node_append(GFile.trees.vars, folder);
+		g_node_append(GFMFile.trees.vars, folder);
 
 		for(i = 0; i < content->num_entries; i++)
 		{
@@ -473,14 +473,14 @@ int group_load(const char *filename)
 		}
 
 		root = g_node_new(NULL);
-		g_node_append(GFile.trees.apps, root);
+		g_node_append(GFMFile.trees.apps, root);
 	}
 
-	ticalcs_dirlist_display(GFile.trees.vars);
-	ticalcs_dirlist_display(GFile.trees.apps);
+	ticalcs_dirlist_display(GFMFile.trees.vars);
+	ticalcs_dirlist_display(GFMFile.trees.apps);
 
-	tifiles_content_delete_regular(GFile.contents.group);
-	GFile.contents.group = NULL;
+	tifiles_content_delete_regular(GFMFile.contents.group);
+	GFMFile.contents.group = NULL;
 
 	return 0;
 }
@@ -505,24 +505,24 @@ int group_save(const char *filename)
 	int ret;
 
 	// Turns tree into group file
-	GFile.contents.group = tifiles_content_create_regular(GFile.model);
+	GFMFile.contents.group = tifiles_content_create_regular(GFMFile.model);
 
-	if((GFile.trees.vars)->children != NULL)
+	if((GFMFile.trees.vars)->children != NULL)
 	{
-		g_node_traverse(GFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFile.contents.group);
+		g_node_traverse(GFMFile.trees.vars, G_IN_ORDER, G_TRAVERSE_LEAVES, -1, node_to_varentry, GFMFile.contents.group);
 	}
 
-	if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
-		strcpy(GFile.contents.group->comment, tifiles_comment_set_single());
-	else if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
-		strcpy(GFile.contents.group->comment, tifiles_comment_set_group());
+	if(ticalcs_dirlist_ve_count(GFMFile.trees.vars) == 1)
+		strcpy(GFMFile.contents.group->comment, tifiles_comment_set_single());
+	else if(ticalcs_dirlist_ve_count(GFMFile.trees.vars) > 1)
+		strcpy(GFMFile.contents.group->comment, tifiles_comment_set_group());
 
 	// Write group file
-	ret = tifiles_file_write_regular(filename, GFile.contents.group, NULL);
+	ret = tifiles_file_write_regular(filename, GFMFile.contents.group, NULL);
 	if(ret)
 	{
 		msgbox_error("Failed to save Group file!");
-		tifiles_content_delete_regular(GFile.contents.group);
+		tifiles_content_delete_regular(GFMFile.contents.group);
 		return -1;
 	}
 
@@ -531,13 +531,13 @@ int group_save(const char *filename)
 
 int group_destroy(void)
 {
-	if(GFile.contents.group)
-		tifiles_content_delete_regular(GFile.contents.group);
-	GFile.contents.group = NULL;
-	GFile.model = CALC_NONE;
+	if(GFMFile.contents.group)
+		tifiles_content_delete_regular(GFMFile.contents.group);
+	GFMFile.contents.group = NULL;
+	GFMFile.model = CALC_NONE;
 
-	ticalcs_dirlist_destroy(&GFile.trees.vars);
-	GFile.trees.vars = NULL;
+	ticalcs_dirlist_destroy(&GFMFile.trees.vars);
+	GFMFile.trees.vars = NULL;
     
 	return 0;
 }
@@ -560,7 +560,7 @@ int file_load(const char *filename)
 {
 	int ret = 0;
 
-	if(GFile.type == TIFILE_TIGROUP)
+	if(GFMFile.type == TIFILE_TIGROUP)
 		ret = tigroup_load(filename);
 	else
 		ret = group_load(filename);
@@ -572,7 +572,7 @@ int file_save(const char *filename)
 {
 	int ret = 0;
 
-	if(GFile.type == TIFILE_TIGROUP)
+	if(GFMFile.type == TIFILE_TIGROUP)
 		ret = tigroup_save(filename);
 	else
 		ret = group_save(filename);
@@ -584,7 +584,7 @@ int file_destroy(void)
 {
 	int ret = 0;
 
-	if(GFile.type == TIFILE_TIGROUP)
+	if(GFMFile.type == TIFILE_TIGROUP)
 		ret = tigroup_destroy();
 	else
 		ret = group_destroy();

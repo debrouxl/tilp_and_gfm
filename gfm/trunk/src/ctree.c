@@ -71,10 +71,10 @@ static gboolean allow_selection(GtkTreeSelection * selection,
 	if (ve == NULL)
 		return FALSE;
 
-	if (ve->type == tifiles_folder_type(GFile.model))
+	if (ve->type == tifiles_folder_type(GFMFile.model))
 		return FALSE;
 
-	if(ve->type == tifiles_flash_type(GFile.model))
+	if(ve->type == tifiles_flash_type(GFMFile.model))
 		return FALSE;
 
 	return TRUE;
@@ -91,7 +91,7 @@ static void get_selection                               (GtkTreeModel *model,
 
 	gtk_tree_model_get(model, iter, COLUMN_DATA, &ve, -1);
 
-	if (ve->type != tifiles_flash_type(GFile.model)) 
+	if (ve->type != tifiles_flash_type(GFMFile.model)) 
 	{
 		gfm_widget.sel1 = g_list_append(gfm_widget.sel1, ve);
 	} 
@@ -143,7 +143,7 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
-		if (ve->type != tifiles_flash_type(GFile.model)) 
+		if (ve->type != tifiles_flash_type(GFMFile.model)) 
 		{
 			gfm_widget.sel1 = g_list_append(gfm_widget.sel1, ve);
 		} 
@@ -176,14 +176,14 @@ static void renderer_edited(GtkCellRendererText * cell,
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
 	// tokenize and check for existence
-	str = ticonv_varname_tokenize(GFile.model, new_text, ve->type);
+	str = ticonv_varname_tokenize(GFMFile.model, new_text, ve->type);
 	arg = tifiles_ve_dup(ve);
 	if(strlen(str) > 8)
 		str[8] = '\0';
 	strcpy(arg->name, str);
 	g_free(str);
 
-	if(ticalcs_dirlist_ve_exist(GFile.trees.vars, arg))
+	if(ticalcs_dirlist_ve_exist(GFMFile.trees.vars, arg))
 	{
 		msgbox_one(MSGBOX_INFO, _("The name already exists. Please choose another one..."));
 		tifiles_ve_delete(arg);
@@ -284,7 +284,7 @@ void ctree_set_basetree(void)
 	gtk_tree_store_set(tree, &vars_node, COLUMN_NAME, NODE3,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
-	if (tifiles_is_flash(GFile.model)) 
+	if (tifiles_is_flash(GFMFile.model)) 
 	{
 		gtk_tree_store_append(tree, &apps_node, top_node);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
@@ -304,7 +304,7 @@ void ctree_refresh(void)
 	GNode *vars, *apps;
 	int i, j;
 
-	if (GFile.trees.vars == NULL)
+	if (GFMFile.trees.vars == NULL)
 		return;
 
 	// place base nodes
@@ -321,15 +321,15 @@ void ctree_refresh(void)
 	pix7 = create_pixbuf("attr_none.xpm");
 
 	// variables tree
-	vars = GFile.trees.vars;
+	vars = GFMFile.trees.vars;
 	for (i = 0; i < (int)g_node_n_children(vars); i++) 
 	{
 		GNode *parent = g_node_nth_child(vars, i);
 		VarEntry *fe = (VarEntry *) (parent->data);
 
-		if ((fe != NULL) || tifiles_calc_is_ti9x(GFile.model))
+		if ((fe != NULL) || tifiles_calc_is_ti9x(GFMFile.model))
 		{
-			char *utf8 = ticonv_varname_to_utf8(GFile.model, fe->name, -1);
+			char *utf8 = ticonv_varname_to_utf8(GFMFile.model, fe->name, -1);
 
 			gtk_tree_store_append(tree, &pareng_node, &vars_node);
 			gtk_tree_store_set(tree, &pareng_node, 
@@ -348,11 +348,11 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name, ve->type);
-			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFile.model, ve->type));
+			row_text[0] = ticonv_varname_to_utf8(GFMFile.model, ve->name, ve->type);
+			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFMFile.model, ve->type));
 			tilp_var_get_size(ve, &row_text[3]);
 
-			strcpy(icon_name, tifiles_vartype2icon(GFile.model, ve->type));
+			strcpy(icon_name, tifiles_vartype2icon(GFMFile.model, ve->type));
 			strcat(icon_name, ".ico");
 			tilp_file_underscorize(icon_name);
 			pix9 = create_pixbuf(icon_name);
@@ -391,8 +391,8 @@ void ctree_refresh(void)
 	}
 
 	// appplications tree
-	apps = GFile.trees.apps;
-	for (i = 0; i < (int)g_node_n_children(apps) && tifiles_is_flash(GFile.model); i++) 
+	apps = GFMFile.trees.apps;
+	for (i = 0; i < (int)g_node_n_children(apps) && tifiles_is_flash(GFMFile.model); i++) 
 	{
 		GNode *parent = g_node_nth_child(apps, i);
 
@@ -403,11 +403,11 @@ void ctree_refresh(void)
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
 
-			row_text[0] = ticonv_varname_to_utf8(GFile.model, ve->name, ve->type);
-			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFile.model, ve->type));
+			row_text[0] = ticonv_varname_to_utf8(GFMFile.model, ve->name, ve->type);
+			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFMFile.model, ve->type));
 			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 
-			strcpy(icon_name, tifiles_vartype2icon(GFile.model, ve->type));
+			strcpy(icon_name, tifiles_vartype2icon(GFMFile.model, ve->type));
 			strcat(icon_name, ".ico");
 			tilp_file_underscorize(icon_name);
 			pix9 = create_pixbuf(icon_name);
@@ -469,14 +469,14 @@ on_treeview1_button_press_event(GtkWidget * widget,
 		pix2 = create_pixbuf("attr_locked.xpm");
 		pix3 = create_pixbuf("attr_archived.xpm");
 
-		if(ve->type == tifiles_flash_type(GFile.model))
+		if(ve->type == tifiles_flash_type(GFMFile.model))
 			return FALSE;
 
 		if(ve->attr == ATTRB_NONE)
 			ve->attr = ATTRB_LOCKED;
-		else if(ve->attr == ATTRB_LOCKED && tifiles_is_flash(GFile.model))
+		else if(ve->attr == ATTRB_LOCKED && tifiles_is_flash(GFMFile.model))
 			ve->attr = ATTRB_ARCHIVED;
-		else if(ve->attr == ATTRB_LOCKED && !tifiles_is_flash(GFile.model))
+		else if(ve->attr == ATTRB_LOCKED && !tifiles_is_flash(GFMFile.model))
 			ve->attr = ATTRB_NONE;
 		else if(ve->attr == ATTRB_ARCHIVED)
 			ve->attr = ATTRB_NONE;

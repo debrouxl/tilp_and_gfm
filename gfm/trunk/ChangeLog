@@ -1,5 +1,9 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
+- 29/04/2009, version 1.03 (1.1.2, 1.1.1, 1.1.0): roms
+	* merged patch from "Philipp Thomas" (bug item #2507422 on TiLP BTS) to avoid conflict
+		because giotypes.h already declares GFile.
+
 - 14/10/2007, version 1.02 (1.0.8, 1.0.8, 1.0.5): roms
 	* fixed KDE file selector support (needed autoheader rerun) (kevin)
 	* removed old GTK file selector because being deprecated with GTK+ 2.12 (kevin)

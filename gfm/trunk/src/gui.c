@@ -44,13 +44,13 @@ GFMWidget gfm_widget;
 
 void enable_save(int state)
 {
-	GFile.saved = !state;
+	GFMFile.saved = !state;
 	gtk_widget_set_sensitive(gfm_widget.save, state);
 }
 
 void enable_tree(int state)
 {
-	GFile.opened = state;
+	GFMFile.opened = state;
 	gtk_widget_set_sensitive(gfm_widget.tree, state);
 }
 
@@ -122,8 +122,8 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 
 	file_create(result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP, model);
 
-	g_free(GFile.filename);
-	GFile.filename = NULL;
+	g_free(GFMFile.filename);
+	GFMFile.filename = NULL;
 	enable_save(FALSE);
 	enable_tree(TRUE);
 
@@ -139,34 +139,34 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 	gchar *fn, *ext;
 	gchar *filename;
 
-	if(GFile.filename != NULL)
-		filename = g_strdup(GFile.filename);
+	if(GFMFile.filename != NULL)
+		filename = g_strdup(GFMFile.filename);
 
-	if(GFile.type & TIFILE_TIGROUP)
+	if(GFMFile.type & TIFILE_TIGROUP)
 	{
 		ext = g_strdup("*.tig");
 	}
-	else if(GFile.type & TIFILE_GROUP)
+	else if(GFMFile.type & TIFILE_GROUP)
 	{
-		if(ticalcs_dirlist_ve_count(GFile.trees.vars) > 1)
+		if(ticalcs_dirlist_ve_count(GFMFile.trees.vars) > 1)
 		{
 			// Group file
-			ext = g_strconcat("*.", tifiles_vartype2fext(GFile.model, 0x00), NULL);
+			ext = g_strconcat("*.", tifiles_vartype2fext(GFMFile.model, 0x00), NULL);
 			ext[4] = 'g';
 		}
-		else if(ticalcs_dirlist_ve_count(GFile.trees.vars) == 1)
+		else if(ticalcs_dirlist_ve_count(GFMFile.trees.vars) == 1)
 		{
 			// Single file
 			GNode *parent, *child;
 			VarEntry *ve;
 
-			parent = g_node_nth_child(GFile.trees.vars, 0);
+			parent = g_node_nth_child(GFMFile.trees.vars, 0);
 			child = g_node_nth_child(parent, 0);
 			ve = (VarEntry *) (child->data);
 
-			filename = g_strconcat(ticonv_varname_to_filename(GFile.model, ve->name, ve->type), ".", 
-				tifiles_vartype2fext(GFile.model, ve->type), NULL);
-			ext = g_strconcat("*.", tifiles_vartype2fext(GFile.model, ve->type), NULL);
+			filename = g_strconcat(ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type), ".", 
+				tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
+			ext = g_strconcat("*.", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
 		}
 		else
 		{
@@ -183,8 +183,8 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 
 	file_save(fn);
 
-	g_free(GFile.filename);
-	GFile.filename = g_strdup(fn);
+	g_free(GFMFile.filename);
+	GFMFile.filename = g_strdup(fn);
 
 	enable_save(FALSE);
 }
@@ -198,7 +198,7 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 
 	if(user_data == NULL)
 	{
-		if(GFile.contents.group || GFile.contents.tigroup)
+		if(GFMFile.contents.group || GFMFile.contents.tigroup)
 		{
 			int result = msgbox_two(MSGBOX_YESNO, _("Do you want to save previous file?"));
 			if(result == MSGBOX_YES)
@@ -216,16 +216,16 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	}
 
 	if(tifiles_file_is_tigroup(fn))
-		GFile.type = TIFILE_TIGROUP;
+		GFMFile.type = TIFILE_TIGROUP;
 	else if(tifiles_file_is_regular(fn))
-		GFile.type = TIFILE_GROUP;
+		GFMFile.type = TIFILE_GROUP;
 	else
 		return;
 
 	file_load(fn);
 
-	g_free(GFile.filename);
-	GFile.filename = g_strdup(fn);
+	g_free(GFMFile.filename);
+	GFMFile.filename = g_strdup(fn);
 
 	enable_save(FALSE);
 	enable_tree(TRUE);
@@ -234,7 +234,7 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 	labels_refresh();
 
 	g_free(inst_paths.home_dir);
-	inst_paths.home_dir = g_path_get_dirname(GFile.filename);
+	inst_paths.home_dir = g_path_get_dirname(GFMFile.filename);
 }
 
 
@@ -261,7 +261,7 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data)
 {
-	if(!GFile.saved)
+	if(!GFMFile.saved)
 	{
 		int result;
 		
@@ -314,7 +314,7 @@ on_add_clicked                         (GtkToolButton   *toolbutton,
 		}
 
 		model = tifiles_file_get_model(fn);
-		if(!tifiles_calc_are_compat(GFile.model, model))
+		if(!tifiles_calc_are_compat(GFMFile.model, model))
 		{
 			msgbox_one(MSGBOX_ERROR, _("File is not compatible with current target."));
 			return;
@@ -327,13 +327,13 @@ on_add_clicked                         (GtkToolButton   *toolbutton,
 		{
 			VarEntry *ve = content->entries[i];
 
-			if(ticalcs_dirlist_ve_exist(GFile.trees.vars, ve))
+			if(ticalcs_dirlist_ve_exist(GFMFile.trees.vars, ve))
 			{
 				msgbox_one(MSGBOX_ERROR, _("The entry already exists. Skipped!"));
 				continue;
 			}
 
-			ticalcs_dirlist_ve_add(GFile.trees.vars, ve);
+			ticalcs_dirlist_ve_add(GFMFile.trees.vars, ve);
 		}
 
 		ret = tifiles_content_delete_regular(content);
@@ -352,7 +352,7 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 {
 	GList *ptr;
 
-	if(GFile.trees.vars == NULL)
+	if(GFMFile.trees.vars == NULL)
 		return;
 
 	ctree_selection_get();
@@ -361,14 +361,14 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 	{
 		VarEntry *ve = (VarEntry *)ptr->data;
 
-		ticalcs_dirlist_ve_del(GFile.trees.vars, ve);
+		ticalcs_dirlist_ve_del(GFMFile.trees.vars, ve);
 	}
 
 	for(ptr = gfm_widget.sel2; ptr; ptr = ptr->next)
 	{
 		VarEntry *ve = (VarEntry *)ptr->data;
 
-		ticalcs_dirlist_ve_del(GFile.trees.apps, ve);
+		ticalcs_dirlist_ve_del(GFMFile.trees.apps, ve);
 	}
 
 	ctree_selection_destroy();
@@ -387,10 +387,10 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 	GNode *node;
 	VarEntry *ve;
 
-	if(GFile.trees.vars == NULL)
+	if(GFMFile.trees.vars == NULL)
 		return;
 
-	if(tifiles_calc_is_ti8x(GFile.model))
+	if(tifiles_calc_is_ti8x(GFMFile.model))
 		return;
 
 	ret = msgbox_input(_("New Folder"), _("folder"), _("Name of folder to create:"));
@@ -400,10 +400,10 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 	ret[8] = (char)'/0';
 	ve = tifiles_ve_create();
 	strcpy(ve->name, ret);
-	ve->type = tifiles_folder_type(GFile.model);
+	ve->type = tifiles_folder_type(GFMFile.model);
 
 	node = g_node_new(ve);
-	g_node_append(GFile.trees.vars, node);
+	g_node_append(GFMFile.trees.vars, node);
 
 	ctree_refresh();
 	labels_refresh();

@@ -52,7 +52,7 @@ typedef struct
 	int				opened;
 } GFileStruct;
 
-extern GFileStruct GFile;
+extern GFileStruct GFMFile;
 
 // Prototypes
 int	tigroup_create(CalcModel model);

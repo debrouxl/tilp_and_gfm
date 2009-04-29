@@ -150,12 +150,12 @@ void labels_refresh(void)
 	int ram;
 	int flash;
 
-	n = ticalcs_dirlist_ve_count(GFile.trees.vars) +
-		ticalcs_dirlist_ve_count(GFile.trees.apps);
-	ram = ticalcs_dirlist_ram_used(GFile.trees.vars);
-	flash = ticalcs_dirlist_flash_used(GFile.trees.vars, GFile.trees.apps);
+	n = ticalcs_dirlist_ve_count(GFMFile.trees.vars) +
+		ticalcs_dirlist_ve_count(GFMFile.trees.apps);
+	ram = ticalcs_dirlist_ram_used(GFMFile.trees.vars);
+	flash = ticalcs_dirlist_flash_used(GFMFile.trees.vars, GFMFile.trees.apps);
 
-	labels_set_model(GFile.model);
+	labels_set_model(GFMFile.model);
 	labels_set_entries(n);
 	labels_set_ram(ram);
 	labels_set_flash(flash);
