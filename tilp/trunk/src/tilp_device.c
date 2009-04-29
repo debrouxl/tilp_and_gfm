@@ -309,6 +309,9 @@ int tilp_device_open(void)
 {
 	int err = 0;
 
+	// close cable before opening a new one
+	if(lk_open)
+		tilp_device_close();
 
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 	if(cable_handle == NULL)
@@ -350,6 +353,10 @@ int tilp_device_close(void)
 {
 	int err;
 
+	// close cable unless already closed
+	if(!lk_open)
+		return 0;
+
 	// detach cable (made by handle_del, too)
 	if(calc_handle == NULL)
 		return 0;
@@ -357,8 +364,8 @@ int tilp_device_close(void)
 	tilp_err(err);
 
 	// remove calc & cable
-	ticalcs_handle_del(calc_handle);
-	ticables_handle_del(cable_handle);
+	ticalcs_handle_del(calc_handle); calc_handle = NULL;
+	ticables_handle_del(cable_handle); cable_handle = NULL;
 
 	lk_open = 0;
 	return err;
