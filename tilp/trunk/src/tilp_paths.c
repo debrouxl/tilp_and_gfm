@@ -30,6 +30,9 @@
 #include <windows.h>
 #endif
 
+#include <glib.h>
+#include <glib/gstdio.h>
+
 #include "tilp_core.h"
 
 TilpInstPaths inst_paths = 
@@ -114,7 +117,7 @@ static void init_win32_paths(void)
 	#ifdef __MINGW32__
 	inst_paths.home_dir = g_get_current_dir();
 	#else
-	if(g_win32_get_windows_version() > 5)
+	if((g_win32_get_windows_version() & 255) > 5)
 	{
 		// Windows Vista
 		inst_paths.home_dir = 
