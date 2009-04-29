@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.11  (14/02/2008)
-Current version:  1.12  (12/08/2008)
+Old     version:  1.12  (12/08/2008)
+Current version:  1.13  (01/05/2009)
 
 
 SubVersion (CVS) revision: $Id$
@@ -15,13 +15,15 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- NSpire & NSpire-CAS OS v1.4 support
+	- merged Lionel's patch: add some new & shorter command line flags 
+	for use by GCC4TI
 	
 
 Improvements:
 -------------
 
-	- none
+	- changed location of "My TI Files" folder (Vista)
+	- switched from GTK+ 2.6 to GTK+ 2.12 GUI framework (faster)
 
 
 Bug fixes:
@@ -38,6 +40,7 @@ Known bugs:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is
 		  needed after module removal
+		=> both of these bugs are due to the Titanium USB internal firmware
 
 
 Bug report:

@@ -9,6 +9,9 @@ To do:
 
 4) need to exit TiLP to restart NSpire connection (ticalcs2 API is missing a function)
 
+5) Auto-detecting device crash: http://yaronet.com/posts.php?s=115472
+Same under Windows with no device at exiting.
+
 //------
 
 Tips:
