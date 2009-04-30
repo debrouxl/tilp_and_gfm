@@ -33,6 +33,9 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <gtk/gtk.h>
+#ifdef __WIN32__
+#include <windows.h>
+#endif
 #include "tilibs.h"
 
 #ifdef _MSC_VER
