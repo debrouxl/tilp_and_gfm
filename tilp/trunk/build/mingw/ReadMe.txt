@@ -213,23 +213,23 @@ Once you have successfully built TiLP2/TiEmu3, here's how to build an installer 
     export CFLAGS="-Os -s -fno-exceptions"
     export CXXFLAGS="-Os -s -fno-exceptions"
     cd libticables-mingw-build
-    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    ./configure --prefix=~/.wine/c/tiemu --host=i386-mingw32 --build=i686-redhat-linux-gnu
     make
     make install
     cd ../libticonv-mingw-build
-    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    ./configure --prefix=~/.wine/c/tiemu --host=i386-mingw32 --build=i686-redhat-linux-gnu
     make
     make install
     cd ../libtifiles-mingw-build
-    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    ./configure --prefix=~/.wine/c/tiemu --host=i386-mingw32 --build=i686-redhat-linux-gnu
     make
     make install
     cd ../libticalcs-mingw-build
-    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    ./configure --prefix=~/.wine/c/tiemu --host=i386-mingw32 --build=i686-redhat-linux-gnu
     make
     make install
     cd ../tiemu-mingw-build
-    ./configure --prefix=~/.wine/c/tiemu --disable-nls --host=i386-mingw32 --build=i686-redhat-linux-gnu
+    ./configure --prefix=~/.wine/c/tiemu --host=i386-mingw32 --build=i686-redhat-linux-gnu
     make
     make install
     i386-mingw32-strip ~/.wine/c/tiemu/bin/*
