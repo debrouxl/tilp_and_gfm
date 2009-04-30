@@ -37,7 +37,7 @@ MTL=midl.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir ""
-# PROP Intermediate_Dir "C:\msvc\Output\gfm"
+# PROP Intermediate_Dir "C:\lpg\msvc\Output\gfm"
 # PROP Target_Dir ""
 
 !ELSEIF  "$(CFG)" == "gfm - Win32 Debug"
@@ -50,7 +50,7 @@ MTL=midl.exe
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "C:\msvc\gfm\"
-# PROP Intermediate_Dir "C:\msvc\Output\gfm"
+# PROP Intermediate_Dir "C:\lpg\msvc\Output\gfm"
 # PROP Target_Dir ""
 
 !ENDIF 
