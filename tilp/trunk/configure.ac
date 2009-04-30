@@ -46,7 +46,7 @@ AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 AC_CHECK_TOOL(RC, windres, windres)
 
 # Checks for libraries.
-AM_GNU_GETTEXT
+AM_GNU_GETTEXT(external)
 
 PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.2.0)
 AC_SUBST(TICABLES_CFLAGS)
