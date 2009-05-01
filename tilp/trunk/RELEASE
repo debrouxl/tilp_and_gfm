@@ -23,13 +23,12 @@ Improvements:
 -------------
 
 	- changed location of "My TI Files" folder (Vista)
-	- switched from GTK+ 2.6 to GTK+ 2.12 GUI framework (faster)
 
 
 Bug fixes:
 ----------
 
-	- none
+	- fixed Folco's bug #2146886: "Crash when auto-detecting device"
 
 
 Known bugs:

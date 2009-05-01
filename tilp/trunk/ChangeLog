@@ -6,7 +6,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
     - merged Lionel's patch: add some new & shorter command line flags 
 	for use by GCC4TI
 	- changed location of "My TI Files" folder (Vista)
-	- replaced obselete function used in the drive list menu  (Vista)
+	- replaced obselete function used in the drive list menu (Vista)
 	- fixed bug #2146886: "Crash when auto-detecting device"
 	
 - 13/08/2008, version 1.12: (1.2.0, 1.1.3, 1.1.1, 1.0.6): roms
