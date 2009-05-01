@@ -525,10 +525,10 @@ Root: HKCR; Subkey: "TiLP.Document\DefaultIcon"; ValueType: string; ValueName: "
 Root: HKCR; Subkey: "TiLP.Document\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Document\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
 
-; Add LPG libraries to the gfm's path
+; Add LPG & GTK libraries to the tilp's path
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; Flags: uninsdeletekeyifempty
 Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueData: "{app}\tilp.exe"; Flags: uninsdeletevalue
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetLpgDllPath}"; Flags: uninsdeletevalue;
+Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\App Paths\tilp.exe"; ValueType: string; ValueName: "Path"; ValueData: "{app};{code:GetLpgDllPath};{code:GetGtkDllPath}"; Flags: uninsdeletevalue;
 
 [UninstallDelete]
 Type: files; Name: "{app}\tilp2.url"
@@ -565,15 +565,6 @@ begin
   	end;
   end;
 
-end;
-
-function GetMDACVersion (): String;
-var
-  sVersion:  String;
-begin
-  sVersion := '';
-  GetVersionNumbersString (ExpandConstant('{cf}\System\Ado\msado15.dll') , sVersion );
-  Result := sVersion;
 end;
 
 // This function compares version strings
@@ -622,7 +613,7 @@ begin
 end;
 
 // Get GTK installation path
-function GetGtkPath(): String;
+function GetGtkPath(S: String): String;
 var
   Exists: boolean;
   GtkPath: string;
@@ -651,6 +642,33 @@ begin
   end;
   
   Result := GtkVersion
+end;
+
+// Get GTK DLL path
+function GetGtkDllPath(S: String): String;
+var
+  Exists: boolean;
+  GtkDllPath: string;
+begin
+  GtkDllPath := '';
+
+  Result := GetGtkPath('') + '\bin';
+end;
+
+// Get LPG installation path
+function GetLpgPath(S: String): String;
+var
+  Exists: boolean;
+  LpgPath: string;
+begin
+  LpgPath := '';
+
+ Exists := RegQueryStringValue (HKLM, 'Software\LPG Shared', 'Path', LpgPath);
+  if not Exists then begin
+    Exists := RegQueryStringValue (HKCU, 'Software\LPG Shared', 'Path', LpgPath);
+  end;
+
+  Result := LpgPath
 end;
 
 // Get shared components path
@@ -771,7 +789,7 @@ begin
   end;
 
   // Check for non-NT and WiMP theme
-  WimpPath := GetGtkPath() + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
+  WimpPath := GetGtkPath('') + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
     MsgBox('Tip: you are running a non-NT platform with the GTK+ WiMP theme engine installed. If you get a lot of warnings about fonts in console, run the Gtk+ Theme Selector as provided in the start menu group of TiLP/TiEmu', mbError, MB_OK);
   end;
