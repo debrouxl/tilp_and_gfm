@@ -132,7 +132,19 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	options.calc_model = tilp_remap_to_usb(options.cable_model,
                                                options.calc_model);
 
-	if(!options.cable_port) options.cable_port = PORT_1;
+	if(!options.cable_port)
+	{
+		switch(options.cable_model)
+		{
+		case CABLE_VTI:
+		case CABLE_TIE:
+			options.cable_port = PORT_0;
+			break;
+		default:
+			options.cable_port = PORT_1;
+			break;
+		}
+	}
 
 	// are files passed ?
 	if(array != NULL)
