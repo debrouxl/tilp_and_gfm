@@ -1,7 +1,7 @@
 # French locale for GFM
 # Copyright (C) 2007 Romain Liévin
 # This file is distributed under the same license as the libtifiles package.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gfm\n"
