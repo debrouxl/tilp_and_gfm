@@ -24,8 +24,6 @@
 #  include <config.h>
 #endif
 
-#undef GTK_DISABLE_DEPRECATED
-
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <string.h>
@@ -46,8 +44,8 @@ static void update_fields(const CalcClock* clk)
 	data = glade_xml_get_widget(xml, "spinbutton1");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->day);
 	
-	data = glade_xml_get_widget(xml, "optionmenu1");
-	gtk_option_menu_set_history(GTK_OPTION_MENU(data), clk->month - 1);
+	data = glade_xml_get_widget(xml, "combobox1");
+	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->month - 1);
 
 	data = glade_xml_get_widget(xml, "spinbutton3");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->year);
@@ -69,9 +67,8 @@ static void update_fields(const CalcClock* clk)
 	if(clk->time_format == 24)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "optionmenu2");
-	gtk_option_menu_set_history(GTK_OPTION_MENU(data), 
-				    clk->date_format - 1);
+	data = glade_xml_get_widget(xml, "combobox2");
+	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->date_format - 1);
 }
 
 gint display_clock_dbox()
@@ -189,30 +186,20 @@ clock_radiobutton2_toggled(GtkToggleButton * togglebutton,
 	modified = TRUE;
 } 
 
-/*
-GLADE_CB void clock_entry2_changed(GtkEditable * editable,
-				     gpointer user_data)
+GLADE_CB void
+on_clock_combobox1_changed             (GtkComboBox     *combobox,
+                                        gpointer         user_data)
 {
-	gchar *ed = gtk_editable_get_chars(editable, 0, -1);
-	tmp_clk.date_format = ticalc_date_to_format(ed);
-	modified = TRUE;
-}
-*/
-
-GLADE_CB void clock_optionmenu2_changed     (GtkOptionMenu   *optionmenu,
-                                            gpointer         user_data)
-{
-	gint nitem = gtk_option_menu_get_history(optionmenu);
-	
-	tmp_clk.date_format = nitem + 1;
-}
-
-GLADE_CB void clock_optionmenu1_changed     (GtkOptionMenu   *optionmenu,
-                                            gpointer         user_data)
-{
-	gint nitem = gtk_option_menu_get_history(optionmenu);
-	
+	gint nitem = gtk_combo_box_get_active(combobox);
 	tmp_clk.month = nitem + 1;
+}
+
+GLADE_CB void
+on_clock_combobox2_changed             (GtkComboBox     *combobox,
+                                        gpointer         user_data)
+{
+	gint nitem = gtk_combo_box_get_active(combobox);
+	tmp_clk.date_format = nitem + 1;
 }
 
 GLADE_CB void clock_spinbutton3_changed(GtkEditable * editable,
