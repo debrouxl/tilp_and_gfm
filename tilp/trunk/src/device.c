@@ -24,9 +24,7 @@
 #  include <config.h>
 #endif
 
-#undef GTK_DISABLE_DEPRECATED
 #include <gtk/gtk.h>
-#define GTK_DISABLE_DEPRECATED
 #include <glade/glade.h>
 #include <string.h>
 
@@ -189,9 +187,9 @@ comm_treeview1_button_press_event  (GtkWidget       *widget,
 	clm = ticalcs_string_to_model(row_text[COL_CALC]);
 	cm = tilp_remap_from_usb(cbm, clm);
 
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_cable), cbm);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_port), cbp);
-	gtk_option_menu_set_history(GTK_OPTION_MENU(om_calc), 
+	gtk_combo_box_set_active(GTK_COMBO_BOX(om_cable), cbm);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(om_port), cbp);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(om_calc), 
 		cm >= CALC_NSPIRE ? cm-CALC_NSPIRE+13 : cm);
 
     g_strfreev(row_text);
@@ -225,137 +223,132 @@ gint display_device_dbox()
 	if(options.usb_avail)
 		clist_populate(store, 0);
 
-#ifdef __WIN32__
-	data = glade_xml_get_widget(xml, "lnx1");
-	gtk_widget_hide(data);
-#endif
-
 	// Cable  
-	data = om_cable = glade_xml_get_widget(xml, "optionmenu_comm_cable");
+	data = om_cable = glade_xml_get_widget(xml, "combobox1");
 	switch (options.cable_model) 
 	{
 	case CABLE_NUL:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
 	break;
 
 	case CABLE_GRY:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
 	break;
 		
 	case CABLE_BLK:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
 	break;
 
 	case CABLE_PAR:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
 	break;
 
 	case CABLE_SLV:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
 	break;	
 
 	case CABLE_USB:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 5);
 	break;	
 
 	case CABLE_VTI:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 6);
 	break;
 
     case CABLE_TIE:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 7);
 	break;
 
 	case CABLE_DEV:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 8);
 	break;
 
 	default:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
 	  break;
 	}
 
 	// Port
-	data = om_port = glade_xml_get_widget(xml, "optionmenu_comm_port");
+	data = om_port = glade_xml_get_widget(xml, "combobox2");
 	switch (options.cable_port) 
 	{
 	case PORT_0:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
 	break;
 	case PORT_1:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
 	break;
 	case PORT_2:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
 	break;
 	case PORT_3:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
 	break;
 	case PORT_4:
-		gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
 	break;
 	}
 
 	// Calc
-	data = om_calc = glade_xml_get_widget(xml, "optionmenu_comm_calc");
+	data = om_calc = glade_xml_get_widget(xml, "combobox3");
 	switch (options.calc_model) 
 	{
 	case CALC_NONE:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 0);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
 	  break;
 
 	case CALC_TI73:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 1);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
 	  break;
 	  
 	case CALC_TI82:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 2);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
 	  break;
 
 	case CALC_TI83:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 3);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
 	  break;
 	  
 	case CALC_TI83P:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 4);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
 	  break;
 
 	case CALC_TI84P:
 	case CALC_TI84P_USB:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 5);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 5);
 	  break;
 	  
 	case CALC_TI85:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 6);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 6);
 	  break;
 	  
 	case CALC_TI86:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 7);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 7);
 	  break;
 	  
 	case CALC_TI89:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 8);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 8);
 	  break;
 
 	case CALC_TI89T:
 	case CALC_TI89T_USB:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 9);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 9);
 	  break;
 	  
 	case CALC_TI92:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 10);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 10);
 	  break;
 	  
 	case CALC_TI92P:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 11);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 11);
 	  break;
 	  
 	case CALC_V200:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 12);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 12);
 	  break;
 
 	case CALC_NSPIRE:
-	  gtk_option_menu_set_history(GTK_OPTION_MENU(data), 13);
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(data), 13);
 	  break;
 	}
 
@@ -424,11 +417,11 @@ gint display_device_dbox()
 
 
 GLADE_CB void
-comm_cable_changed                     (GtkOptionMenu   *optionmenu,
+on_device_combobox1_changed            (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
-	gint nitem = gtk_option_menu_get_history(optionmenu);
-
+	gint nitem = gtk_combo_box_get_active(combobox);
+	
 	switch(nitem)
 	{
 	case 0: tmp.cable_model = CABLE_NUL; break;
@@ -441,46 +434,36 @@ comm_cable_changed                     (GtkOptionMenu   *optionmenu,
 	case 7: tmp.cable_model = CABLE_TIE; break;
 	case 8: tmp.cable_model = CABLE_DEV; break;
 	}
-}
 
-GLADE_CB void
-comm_cable_activate                    (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-}
-
-
-GLADE_CB void
-comm_port_changed                      (GtkOptionMenu   *optionmenu,
-                                        gpointer         user_data)
-{
-	GtkWidget *menu_item = optionmenu->menu_item;
-	gchar *ed = menu_item->name;
-
-	if(!strcmp(ed, "number0"))
-		tmp.cable_port = PORT_0;
-	else if(!strcmp(ed, "number1"))
-		tmp.cable_port = PORT_1;
-	else if(!strcmp(ed, "number2"))
-		tmp.cable_port = PORT_2;
-	else if(!strcmp(ed, "number3"))
-		tmp.cable_port = PORT_3;
-	else if(!strcmp(ed, "number4"))
-		tmp.cable_port = PORT_4;
-}
-
-GLADE_CB void
-comm_port_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
+#ifdef __WIN32__
+	if(tmp.cable_model == CABLE_DEV)
+		gtk_combo_box_set_active(GTK_COMBO_BOX(om_cable), 0);
+#endif
 }
 
 
 GLADE_CB void
-comm_calc_changed                      (GtkOptionMenu   *optionmenu,
+on_device_combobox2_changed            (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
-	gint nitem = gtk_option_menu_get_history(optionmenu);
+	gint nitem = gtk_combo_box_get_active(combobox);
+	
+	switch(nitem)
+	{
+	case 0: tmp.cable_port = PORT_0; break;
+	case 1: tmp.cable_port = PORT_1; break;
+	case 2: tmp.cable_port = PORT_2; break;
+	case 3: tmp.cable_port = PORT_3; break;
+	case 4: tmp.cable_port = PORT_4; break;
+	}
+}
+
+
+GLADE_CB void
+on_device_combobox3_changed            (GtkComboBox     *combobox,
+                                        gpointer         user_data)
+{
+	gint nitem = gtk_combo_box_get_active(combobox);
 
 	switch(nitem)
 	{
@@ -499,12 +482,6 @@ comm_calc_changed                      (GtkOptionMenu   *optionmenu,
 	case 12:tmp.calc_model = CALC_V200;  break;
 	case 13:tmp.calc_model = CALC_NSPIRE;break;
   	}	
-}
-
-GLADE_CB void
-comm_calc_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
 }
 
 

@@ -290,296 +290,6 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkOptionMenu" id="optionmenu_comm_port">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="history">0</property>
-		      <signal name="changed" handler="comm_port_changed" last_modification_time="Mon, 05 Apr 2004 20:49:32 GMT"/>
-
-		      <child>
-			<widget class="GtkMenu" id="menu3">
-
-			  <child>
-			    <widget class="GtkMenuItem" id="number0">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">None</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="number1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">#1</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="number2">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">#2</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="number3">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">#3</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="number4">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">#4</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">1</property>
-		      <property name="bottom_attach">2</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkOptionMenu" id="optionmenu_comm_calc">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="history">0</property>
-		      <signal name="changed" handler="comm_calc_changed" last_modification_time="Mon, 05 Apr 2004 20:49:40 GMT"/>
-
-		      <child>
-			<widget class="GtkMenu" id="menu2">
-
-			  <child>
-			    <widget class="GtkMenuItem" id="none1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">None</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti73">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI73</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti82">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI82</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti83">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI83</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti83plus">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI83+</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti84plus">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI84+</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti85">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI85</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti86">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI86</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti89">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI89</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti89t">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI89 Titanium</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti92">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI92</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ti92plus">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TI92+</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="v200plt1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">V200PLT</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="nspire1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">NSpire</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">3</property>
-		      <property name="bottom_attach">4</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkOptionMenu" id="optionmenu_comm_cable">
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="history">0</property>
-		      <signal name="changed" handler="comm_cable_changed" last_modification_time="Mon, 05 Apr 2004 20:49:18 GMT"/>
-
-		      <child>
-			<widget class="GtkMenu" id="menu1">
-
-			  <child>
-			    <widget class="GtkMenuItem" id="nul1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">None</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="tgl1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">GrayLink</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="ser1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">BlackLink</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="par1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">ParallelLink</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="slv1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">SilverLink</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="usb1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">DirectLink</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="vti1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">VTi</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="tie1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">TiEmu/TilEm</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="lnx1">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">UsbKernel</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">1</property>
-		      <property name="right_attach">2</property>
-		      <property name="top_attach">0</property>
-		      <property name="bottom_attach">1</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkCheckButton" id="checkbutton1">
 		      <property name="visible">True</property>
 		      <property name="tooltip" translatable="yes">If checked, TiLP will scan USB devices at startup and will use the first device found.</property>
@@ -600,6 +310,83 @@
 		      <property name="bottom_attach">4</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBox" id="combobox1">
+		      <property name="visible">True</property>
+		      <property name="items" translatable="yes">Null
+GrayLink
+BlackLink
+Parallel
+SilverLink
+DirectLink
+VTi
+TiEmu
+UsbKernel</property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="changed" handler="on_device_combobox1_changed" last_modification_time="Fri, 08 May 2009 16:17:25 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">0</property>
+		      <property name="bottom_attach">1</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBox" id="combobox2">
+		      <property name="visible">True</property>
+		      <property name="items" translatable="yes">None
+#1
+#2
+#3
+#4</property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="changed" handler="on_device_combobox2_changed" last_modification_time="Fri, 08 May 2009 16:17:33 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">1</property>
+		      <property name="bottom_attach">2</property>
+		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkComboBox" id="combobox3">
+		      <property name="visible">True</property>
+		      <property name="items" translatable="yes">None
+TI73
+TI82
+TI83
+TI83+
+TI84+
+TI85
+TI86
+TI89
+Titanium
+TI92
+TI92+
+V200PLT
+NSpire
+</property>
+		      <property name="add_tearoffs">False</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="changed" handler="on_device_combobox3_changed" last_modification_time="Fri, 08 May 2009 16:17:41 GMT"/>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">3</property>
+		      <property name="bottom_attach">4</property>
+		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 		</widget>
