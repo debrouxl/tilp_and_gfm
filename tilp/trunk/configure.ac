@@ -48,7 +48,7 @@ AC_CHECK_TOOL(RC, windres, windres)
 # Checks for libraries.
 AM_GNU_GETTEXT(external)
 
-PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.2.0)
+PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.3.0)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
 
