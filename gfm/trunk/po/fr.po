@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-01-12 07:01+0100\n"
+"POT-Creation-Date: 2009-05-29 15:52+0200\n"
 "PO-Revision-Date: 2007-06-27 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -63,11 +63,11 @@ msgstr "Type"
 msgid "Size"
 msgstr "Taille"
 
-#: src/file.c:187
+#: src/file.c:190
 msgid "Unable to change directory."
 msgstr "Impossible de changer de répertoire"
 
-#: src/file.c:205
+#: src/file.c:208
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -75,12 +75,12 @@ msgstr ""
 "Impossible de créer le répertoire.\n"
 "\n"
 
-#: src/file.c:267
+#: src/file.c:270
 #, c-format
 msgid "%i KB"
 msgstr "%i Ko"
 
-#: src/file.c:270
+#: src/file.c:273
 #, c-format
 msgid "%i MB"
 msgstr "%i Mo"
