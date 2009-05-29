@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-05-01 23:30+0200\n"
+"POT-Creation-Date: 2009-05-29 15:50+0200\n"
 "PO-Revision-Date: 2004-04-13 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -53,7 +53,7 @@ msgstr "écraser"
 msgid "skip"
 msgstr "sauter"
 
-#: src/action.c:167 src/clock.c:114
+#: src/action.c:167 src/clock.c:111
 msgid "action.c: GUI loading failed !\n"
 msgstr "action.c : échec du chargement de l'interface graphique !\n"
 
@@ -85,11 +85,11 @@ msgstr "Date"
 msgid "Change drive"
 msgstr "Changer de lecteur"
 
-#: src/clist_rbm.c:264 src/clist_rbm.c:284 src/clock.c:85 src/dboxes.c:47
+#: src/clist_rbm.c:264 src/clist_rbm.c:284 src/clock.c:82 src/dboxes.c:47
 #: src/dnd.c:183 src/main.c:175 src/tilp.c:176 src/tilp_calcs.c:349
 #: src/tilp_calcs.c:417 src/tilp_calcs.c:424 src/tilp_calcs.c:550
 #: src/tilp_calcs.c:559 src/tilp_calcs.c:564 src/tilp_calcs.c:569
-#: src/tilp_calcs.c:1265 src/tilp_cmdline.c:180 src/tilp_config.c:315
+#: src/tilp_calcs.c:1265 src/tilp_cmdline.c:192 src/tilp_config.c:315
 #: src/tilp_device.c:395 src/tilp_device.c:437 src/tilp_device.c:445
 #: src/tilp_error.c:87 src/tilp_files.c:252 src/tilp_files.c:324
 #: src/tilp_misc.c:39 src/tilp_misc.c:81 src/tilp_misc.c:124
@@ -120,7 +120,7 @@ msgstr "Nom: "
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
-#: src/clock.c:85
+#: src/clock.c:82
 msgid "No clock support!"
 msgstr "Pas d'horloge !"
 
@@ -165,7 +165,7 @@ msgstr "Horloge"
 msgid "A Folder"
 msgstr "Un Dossier"
 
-#: src/dboxes.c:41 src/device.c:413 src/device.c:417 src/tilp_calcs.c:276
+#: src/dboxes.c:41 src/device.c:402 src/device.c:406 src/tilp_calcs.c:276
 #: src/tilp_calcs.c:289 src/tilp_calcs.c:918 src/tilp_calcs.c:929
 #: src/tilp_calcs.c:1222 src/tilp_config.c:474 src/tilp_config.c:482
 #: src/tilp_files.c:137 src/tilp_files.c:150 src/tilp_files.c:169
@@ -186,23 +186,23 @@ msgstr "Avertissement"
 msgid "Question"
 msgstr "Question"
 
-#: src/device.c:60
+#: src/device.c:58
 msgid "Cable"
 msgstr "Câble"
 
-#: src/device.c:60
+#: src/device.c:58
 msgid "Port"
 msgstr "Port"
 
-#: src/device.c:60
+#: src/device.c:58
 msgid "Device"
 msgstr "Calculatrice"
 
-#: src/device.c:213
+#: src/device.c:211
 msgid "comm.c: GUI loading failed !\n"
 msgstr "comm.c : échec du chargement de l'interface graphique !\n"
 
-#: src/device.c:413
+#: src/device.c:402
 msgid ""
 "Please note that Titanium through DirectLink USB works under Linux but it "
 "suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
@@ -212,7 +212,7 @@ msgstr ""
 "souffre d'une limitation: le cable doit etre débranché/rebranché chaque fois "
 "que TiLP est fermé/quitté."
 
-#: src/device.c:417
+#: src/device.c:406
 msgid "Please note you will have to restart TiLP if connection fails."
 msgstr "Veuillez notez que vous devrez redémarrer TiLP si la connexion échoue."
 
@@ -693,7 +693,7 @@ msgstr "LISEZ S'IL VOUS PLAÎT LA DOCUMENTATION POUR PLUS DE DÉTAILS\n"
 msgid "built on %s %s\n"
 msgstr "compilé sur %s %s\n"
 
-#: src/tilp_cmdline.c:179
+#: src/tilp_cmdline.c:191
 #, c-format
 msgid "The file <%s> does not exist."
 msgstr "Le fichier <%s> n'existe pas."
