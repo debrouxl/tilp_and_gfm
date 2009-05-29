@@ -25,7 +25,7 @@ PrivilegesRequired = admin
 [Files]
 ; TI libraries
 Source: "C:\lpg\tifiles2\tests\libtifiles2-5.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-3.dll');
-Source: "C:\lpg\ticables2\tests\libticables2-1.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-1.dll');
+Source: "C:\lpg\ticables2\tests\libticables2-2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-1.dll');
 Source: "C:\lpg\ticalcs2\tests\libticalcs2-7.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-2.dll');
 Source: "C:\lpg\ticonv\tests\libticonv-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-2.dll');
 
