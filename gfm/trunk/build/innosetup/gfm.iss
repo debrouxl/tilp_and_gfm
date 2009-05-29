@@ -125,7 +125,7 @@ Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI f
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GFM-2"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\gfm.exe"; Description: "Launch GFM"; StatusMsg: "Running GFM..."; Flags: postinstall nowait unchecked
+;Filename: "{app}\gfm.exe"; Description: "Launch GFM"; StatusMsg: "Running GFM..."; Flags: postinstall nowait unchecked
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 
 [UninstallRun]
