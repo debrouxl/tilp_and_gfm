@@ -1,5 +1,5 @@
 SUBDIRS = mingw
-EXTRA_DIST = fedora InnoSetup mingw msvc osx
+EXTRA_DIST = InnoSetup mingw msvc osx
 
 dist-hook:
 	if test ! -d .svn; then \
