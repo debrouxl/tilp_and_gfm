@@ -285,7 +285,7 @@ top_srcdir = @top_srcdir@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
 SUBDIRS = mingw
-EXTRA_DIST = fedora InnoSetup mingw msvc osx
+EXTRA_DIST = InnoSetup mingw msvc osx
 all: all-recursive
 
 .SUFFIXES:
