@@ -1,3 +1,9 @@
+gfm (1.03-1) stable; urgency=low
+
+  * Merged patch from "Philipp Thomas" (bug item #2507422 on TiLP BTS) to avoid conflict because giotypes.h already declares GFile.
+
+ -- Romain LIEVIN <roms@tilp.info>  Mon, 01 Jun 2009 18:55:57 +0100
+	
 gfm (1.02-1) stable; urgency=low
 
   * Fixed some KDE issues (kevin).

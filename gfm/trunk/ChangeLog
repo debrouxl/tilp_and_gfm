@@ -1,8 +1,8 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
 - 29/04/2009, version 1.03 (1.1.2, 1.1.1, 1.1.0): roms
-	* merged patch from "Philipp Thomas" (bug item #2507422 on TiLP BTS) to avoid conflict
-		because giotypes.h already declares GFile.
+	* merged patch from "Philipp Thomas" (bug item #2507422 on TiLP BTS) 
+	to avoid conflict because giotypes.h already declares GFile.
 	* updated installer to use LPG shared files
 
 - 14/10/2007, version 1.02 (1.0.8, 1.0.8, 1.0.5): roms
