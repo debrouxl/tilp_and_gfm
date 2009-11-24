@@ -1,3 +1,19 @@
-Tyler Cassidy <tyler@tylerc.org> - Main Developer
+Tyler Cassidy <nexon89@gmail.com> - Main Developer
 Romain Lievin <roms@tilp.info> - Developer
 Kevin Kofler <kevin.kofler@chello.at> - Developer/qmake manager
+
+
+Packagers and former packagers:
+===============================
+- Julien Blache <jb@jblache.org>: Linux/Debian
+- Kevin Kofler: <kevin.kofler@chello.at>: Linux/Fedora
+- Romain Lievin: <roms@tilp.info>: Win32
+
+
+All the others who have contributed to
+======================================
+
+The users, the helpers, the testers, the bug reporters, ...
+
+Special thanks to Texas Instruments France who donate the following devices at 
+Aug the 22th, 2005: TI82, 83, 89, 92+, V200 in order to help in testing TiLP-2.

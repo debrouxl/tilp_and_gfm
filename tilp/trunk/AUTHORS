@@ -1,7 +1,3 @@
-The TiLP project is managed by the TiLP team.
-The TiLP team includes the following people:
-
-
 Romain Lievin (roms): main developer, Win32 port
 ================================================
 
@@ -38,17 +34,24 @@ web: http://lpg.ticalc.org/prj_tilem/index.html
 mail: benjamin@ecg.mit.edu 
 
 
-Tyler Cassidy (tylerc): bug fixes, contribution
-===============================================
+Kevin Kofler: KDE file dialogs, miscellaneous improvements and bugfixes
+=======================================================================
 
-web: http://www.tylerc.org/
-mail: tyler@tylerc.org
+web: http://www.tigen.org/kevin.kofler/
+mail: kevin.kofler@chello.at
 
 
-Packagers:
-==========
+Tyler Cassidy (tylerc): group file manager (GFM)
+================================================
+
+web: http://www.calcforge.org/
+mail: nexon89@gmail.com
+
+
+Packagers and former packagers:
+===============================
 - Julien Blache <jb@jblache.org>: Linux/Debian
-- Kevin Kofler: <Kevin@tigcc.ticalc.org>: Linux/Fedora
+- Kevin Kofler: <kevin.kofler@chello.at>: Linux/Fedora
 - Romain Lievin: <roms@tilp.info>: Win32
 
 
@@ -58,4 +61,4 @@ All the others who have contributed to
 The users, the helpers, the testers, the bug reporters, ...
 
 Special thanks to Texas Instruments Education France who donate the following devices at 
-Aug the 22th, 2005: TI82, 83, 89, 92+, V200 in order to help me in testing TiLP2.
+Aug the 22th, 2005: TI82, 83, 89, 92+, V200 in order to help in testing TiLP2.
