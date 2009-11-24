@@ -36,6 +36,7 @@ AC_PROG_LIBTOOL
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_PROG_LN_S
@@ -86,7 +87,6 @@ AC_SUBST(LIBZ)
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
-AC_CHECK_HEADERS([tilp2/ticables.h tilp2/ticalcs.h tilp2/tifiles.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
