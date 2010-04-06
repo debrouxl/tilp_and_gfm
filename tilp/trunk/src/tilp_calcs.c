@@ -346,7 +346,7 @@ int tilp_calc_send_app(void)
 
 		if(tifiles_file_test(f->name, TIFILE_OS, CALC_NONE))
 		{
-			gif->msg_box1(_("Error"), _("You can not send variables/applications and upgrades simultaneously."));
+			gif->msg_box1(_("Error"), _("You cannot send variables/applications and upgrades simultaneously."));
 			return 0;
 		}
 	}
@@ -547,7 +547,7 @@ int tilp_calc_send_var(void)
 		}
 		if(tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
 		{
-			gif->msg_box1(_("Error"), _("You can not send both variables/applications and upgrades simultaneously."));
+			gif->msg_box1(_("Error"), _("You cannot send both variables/applications and upgrades simultaneously."));
 			return 0;
 		}
 		else if(tifiles_file_is_app(f->name))
@@ -556,7 +556,7 @@ int tilp_calc_send_var(void)
 		}
 		else if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
 		{
-			gif->msg_box1(_("Error"), _("You can not send backups in this way. Use the 'Restore' button instead."));
+			gif->msg_box1(_("Error"), _("You cannot send backups in this way. Use the 'Restore' button instead."));
 			return 0;
 		}
 		else if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 

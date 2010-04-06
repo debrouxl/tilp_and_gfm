@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2009-05-29 15:52+0200\n"
+"POT-Creation-Date: 2010-03-03 15:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,17 +145,17 @@ msgid "Name of folder to create:"
 msgstr ""
 
 #: src/labels.c:122 src/labels.c:137
-#, possible-c-format
+#, c-format
 msgid "%d bytes"
 msgstr ""
 
 #: src/labels.c:124 src/labels.c:139
-#, possible-c-format
+#, c-format
 msgid "%.1f KB"
 msgstr ""
 
 #: src/labels.c:126 src/labels.c:141
-#, possible-c-format
+#, c-format
 msgid "%.1f MB"
 msgstr ""
 
@@ -177,7 +177,7 @@ msgid "Checking for GUI files..."
 msgstr ""
 
 #: src/main.c:87
-msgid "Loading tilibs2..."
+msgid "Loading tilibs..."
 msgstr ""
 
 #: src/main.c:91
@@ -194,6 +194,11 @@ msgstr ""
 
 #: src/splashscreen.c:82
 msgid "Starting Group File Manager..."
+msgstr ""
+
+#: src/support.c:96 src/support.c:115
+#, c-format
+msgid "Couldn't find pixmap file: %s"
 msgstr ""
 
 #: src/ungroup.c:52

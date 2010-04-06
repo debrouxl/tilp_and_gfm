@@ -3,6 +3,7 @@
 # TiLP source code
 src/about.c
 src/action.c
+src/bookmark.c
 src/clist.c
 src/clist_rbm.c
 src/clock.c

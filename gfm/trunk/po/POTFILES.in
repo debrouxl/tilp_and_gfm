@@ -12,6 +12,7 @@ src/main.c
 src/paths.c
 src/rwgroup.c
 src/splashscreen.c
+src/support.c
 src/tilibs.c
 src/ungroup.c
 

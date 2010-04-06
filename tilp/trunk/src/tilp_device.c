@@ -401,7 +401,7 @@ int tilp_device_err(int err)
 /*
   Note: SilverLink is still NACK'ed after error. This did not appear with 
   TiLP-1 because it always close/open the device before any transfer.
-  It seems that an error (HALT condition) can not be cleared by a simple
+  It seems that an error (HALT condition) cannot be cleared by a simple
   slv_reset. We need to reopen the device. Why? I don't know!
 
   No call to tilp_err in this function to avoid recursivity with tilp_err which
