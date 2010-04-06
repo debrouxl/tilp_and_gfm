@@ -40,7 +40,7 @@ BEGIN
             VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "tilp.exe\0"
             VALUE "PrivateBuild", ""
-            VALUE "ProductName", "TiLP-2\0"
+            VALUE "ProductName", "TI link cable software for Linux, Windows 2000/XP/Vista/7, Mac OS X and FreeBSD.\0"
             VALUE "ProductVersion", "1, 1, 4, 0\0"
             VALUE "SpecialBuild", "Windows 2000/XP/Vista/7 version\0"
         END
