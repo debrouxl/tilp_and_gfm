@@ -86,7 +86,7 @@ AC_FUNC_STAT
 AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr])
 
 # KDE dialogs support
-AC_ARG_WITH(kde, AC_HELP_STRING([--without-kde], [Compile without KDE support]), [kde=$withval], [kde=default])
+AC_ARG_WITH(kde, AC_HELP_STRING([--with-kde], [Compile with KDE support]), [kde=$withval], [kde=no])
 if test "x$kde" = "xdefault"; then
   case $host_os in
     *mingw*)

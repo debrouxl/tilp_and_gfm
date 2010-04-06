@@ -1693,7 +1693,7 @@ Optional Packages:
   --without-libiconv-prefix     don't search for libiconv in includedir and libdir
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
   --without-libintl-prefix     don't search for libintl in includedir and libdir
-  --without-kde           Compile without KDE support
+  --with-kde              Compile with KDE support
   --with-xinerama         enable support for Xinerama
   --with-extra-includes=DIR
                           adds non standard include paths
@@ -23861,7 +23861,7 @@ done
 if test "${with_kde+set}" = set; then :
   withval=$with_kde; kde=$withval
 else
-  kde=default
+  kde=no
 fi
 
 if test "x$kde" = "xdefault"; then
