@@ -71,7 +71,7 @@ int load_tilibs(void)
   }	
 #endif // End of Windows Extravaganza.
 
-  // Load libtifiles2
+  // Load libtifiles2 and libticalcs2
   tifiles_library_init();
   ticalcs_library_init();
 	

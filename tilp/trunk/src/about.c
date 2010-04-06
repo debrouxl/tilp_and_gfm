@@ -3,6 +3,7 @@
 
 /*  TiLP - Tilp Is a Linking Program
  *  Copyright (C) 1999-2006  Romain Lievin
+ *  Copyright (C) 2009 Kevin Kofler
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -33,6 +34,10 @@
 #include "about.h"
 #include "support.h"
 #include "tilp_core.h"
+
+#if !(GTK_CHECK_VERSION(2,12,0))
+#define gtk_about_dialog_set_program_name gtk_about_dialog_set_name
+#endif
 
 static const char* authors[] =  
 {
@@ -97,7 +102,7 @@ gint display_about_dbox(void)
 	dlg = GTK_ABOUT_DIALOG(widget);
 	pix = create_pixbuf("logo.png");
 
-	gtk_about_dialog_set_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
+	gtk_about_dialog_set_program_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
 	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2007 The TiLP Team");

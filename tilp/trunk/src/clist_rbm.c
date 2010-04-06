@@ -65,15 +65,15 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 
 	change_drive = gtk_menu_item_new_with_label(_("Change drive"));
 	g_object_set_data_full(G_OBJECT(menu), "change_drive",
-			       gtk_widget_ref(change_drive),
-			       (GDestroyNotify)gtk_widget_unref);
+			       g_object_ref(change_drive),
+			       (GDestroyNotify)g_object_unref);
 	gtk_widget_show(change_drive);
 
 	gtk_container_add(GTK_CONTAINER(menu), change_drive);
 	change_drive_menu = gtk_menu_new();
 	g_object_set_data_full(G_OBJECT(menu), "change_drive_menu",
-			       gtk_widget_ref(change_drive_menu),
-			       (GDestroyNotify)gtk_widget_unref);
+			       g_object_ref(change_drive_menu),
+			       (GDestroyNotify)g_object_unref);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(change_drive), change_drive_menu);
 
 	dwDrives = GetLogicalDrives	();
@@ -89,8 +89,8 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 
 			c_drive = gtk_menu_item_new_with_label(buffer);
 			g_object_set_data_full(G_OBJECT(menu), "c_drive",
-					       gtk_widget_ref(c_drive),
-					       (GDestroyNotify)gtk_widget_unref);
+					       g_object_ref(c_drive),
+					       (GDestroyNotify)g_object_unref);
 			gtk_widget_show(c_drive);
 
 			gtk_container_add(GTK_CONTAINER(change_drive_menu),

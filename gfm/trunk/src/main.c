@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     glade_files_check();
 
     /* Load tilibs2 */
-    splash_screen_message(_("Loading tilibs2..."));
+    splash_screen_message(_("Loading tilibs..."));
     load_tilibs(); // Load tilibs
 
     /* Launching GUI */
@@ -96,7 +96,8 @@ int main(int argc, char *argv[])
     gtk_main();
     
     /* Close tilibs */
-    tifiles_library_exit(); // libtifiles2
+    ticalcs_library_exit();
+    tifiles_library_exit();
 
     /* Done */
     return 0;
