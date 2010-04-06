@@ -1,8 +1,0 @@
-!C menu-2
-?package(gfm):
-  section="Applications/Science/Mathematics"
-  needs="X11"
-  title="Group File Manager"
-  command="gfm"
-;
-
