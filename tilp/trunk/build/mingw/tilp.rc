@@ -14,29 +14,31 @@ IDI_ICON1               ICON    DISCARDABLE     "tilp.ico"
 // Version
 //
 
-1 VERSIONINFO
+#include "winver.h"
+
+VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,1,4,0
  PRODUCTVERSION 1,1,4,0
- FILEFLAGSMASK 0x3fL
+ FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 #ifdef _DEBUG
- FILEFLAGS 0x29L
+ FILEFLAGS VS_FF_DEBUG
 #else
- FILEFLAGS 0x28L
+ FILEFLAGS 0
 #endif
- FILEOS 0x40004L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE VFT2_UNKNOWN
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040c04b0"
+        BLOCK "040904b0"
         BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
             VALUE "FileDescription", "Tilp Is a Linking Program\0"
             VALUE "FileVersion", "1.14\0"
             VALUE "InternalName", "TiLP\0"
-            VALUE "LegalCopyright", "Copyright © 1999-2010, Romain Liévin\0"
+            VALUE "LegalCopyright", "Copyright Â© 1999-2010, Romain LiÃ©vin, Julien Blache and contributors\0"
             VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "tilp.exe\0"
             VALUE "PrivateBuild", ""
@@ -47,6 +49,6 @@ BEGIN
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x40c, 1200
+        VALUE "Translation", 0x409, 1252
     END
 END
