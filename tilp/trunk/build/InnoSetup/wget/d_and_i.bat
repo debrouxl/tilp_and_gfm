@@ -1,5 +1,5 @@
 del gtk*.*
-wget "http://ovh.dl.sourceforge.net/sourceforge/gladewin32/gtk-win32-2.6.10-rc1.exe"
-gtk-win32-2.6.10-rc1.exe
-del gtk-win32-2.6.10-rc1.exe
+wget "http://downloads.sourceforge.net/gladewin32/gtk-2.12.9-win32-2.exe"
+gtk-2.12.9-win32-2.exe
+del gtk-2.12.9-win32-2.exe
 cls

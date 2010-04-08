@@ -15,52 +15,34 @@ AppUpdatesURL=http://lpg.ticalc.org/gfm/index.html
 DefaultDirName={pf}\GFM
 DefaultGroupName=GFM
 AllowNoIcons=yes
-LicenseFile=C:\lpg\gfm\COPYING
-InfoBeforeFile=C:\lpg\gfm\README
-InfoAfterFile=C:\lpg\gfm\ChangeLog
+LicenseFile=C:\tilp\gfm\trunk\COPYING
+InfoBeforeFile=C:\tilp\gfm\trunk\README
+InfoAfterFile=C:\tilp\gfm\trunk\ChangeLog
 
 PrivilegesRequired = admin
 
 ;--- Shared Stuff ---
 [Files]
 ; TI libraries
-Source: "C:\lpg\tifiles2\tests\libtifiles2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-5.dll');
-Source: "C:\lpg\ticables2\tests\libticables2-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-2.dll');
-Source: "C:\lpg\ticalcs2\tests\libticalcs2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-7.dll');
-Source: "C:\lpg\ticonv\tests\libticonv-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-3.dll');
+Source: "C:\lpg\packages\bin\libtifiles2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-5.dll');
+Source: "C:\lpg\packages\bin\libticables2-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-2.dll');
+Source: "C:\lpg\packages\bin\libticalcs2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-7.dll');
+Source: "C:\lpg\packages\bin\libticonv-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-3.dll');
 
 ; I18n files
-Source: "C:\lpg\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
-Source: "C:\lpg\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
-Source: "C:\lpg\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libtifiles2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticables2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticalcs2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
 ; Misc
-Source: "C:\lpg\gtk\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
-Source: "C:\lpg\gtk\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
-
-Source: "C:\lpg\gtk\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
+Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
+Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
+Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
 ; Downloader
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-
-; DhaHelper driver
-;Source: "C:\lpg\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
-;Source: "C:\lpg\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
-
-; RwPorts driver
-;Source: "C:\lpg\ticables2\src\win64\rwp\rwports.sys"; DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
-;Source: "C:\lpg\ticables2\src\win64\rwp\rwpsetup.exe";  DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
-
-; USB driver
-;Source: "C:\lpg\libusb-win32\bin_modified\libusb0.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-;Source: "C:\lpg\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-;Source: "C:\lpg\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-;Source: "C:\lpg\ticables2\src\win32\usb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-;Source: "C:\lpg\ticables2\src\win32\usb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-;Source: "C:\lpg\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
-;Source: "C:\lpg\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
@@ -77,36 +59,36 @@ Name: "tifiles"; Description: "Register file types"; GroupDescription: "File ass
 
 [Files]
 ; Glade files
-Source: "C:\lpg\gfm\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
 
 ; Icons files
-Source: "C:\lpg\gfm\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
-Source: "C:\lpg\gfm\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
 
 ; Pixmaps files
-Source: "C:\lpg\gfm\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-Source: "C:\lpg\gfm\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "gfm.mo"; Flags: ignoreversion;
+Source: "C:\tilp\gfm\trunk\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "gfm.mo"; Flags: ignoreversion;
 
 ; Misc files
-Source: "C:\lpg\gfm\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
-Source: "C:\lpg\gfm\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; Flags: ignoreversion
-Source: "C:\lpg\gfm\COPYING"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
-Source: "C:\lpg\gfm\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\lpg\gfm\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
+Source: "C:\tilp\gfm\trunk\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
+Source: "C:\tilp\gfm\trunk\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; Flags: ignoreversion
+Source: "C:\tilp\gfm\trunk\COPYING"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
+Source: "C:\tilp\gfm\trunk\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\tilp\gfm\trunk\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
 
 ; Binaries
-Source: "C:\lpg\gfm\build\msvc\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
+Source: "C:\lpg\packages\bin\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -784,3 +766,4 @@ procedure DeleteExe(const FileName: string);
 begin
   DeleteDll(FileName);
 end;
+

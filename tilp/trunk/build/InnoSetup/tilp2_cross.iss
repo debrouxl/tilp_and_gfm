@@ -3,6 +3,10 @@
 ;
 ; (c) Copyright 2001-2010, the TiLP team
 ;
+; NOTE: this file depends on:
+;     * TILP being available through C:\tilp;
+;     * C:\lpg\packages and C:\lpg\deps containing the layout expected by an unmodified recompile_cross_tilp.sh script.
+;
 ; $Id$
 
 [Setup]
@@ -15,52 +19,50 @@ AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/tilp2-download.php
 DefaultDirName={pf}\TiLP
 DefaultGroupName=TiLP2
 AllowNoIcons=yes
-LicenseFile=C:\lpg\tilp2\COPYING
-InfoBeforeFile=C:\lpg\tilp2\README.win32
-InfoAfterFile=C:\lpg\tilp2\RELEASE
+LicenseFile=C:\tilp\tilp\trunk\COPYING
+InfoBeforeFile=C:\tilp\tilp\trunk\README.win32
+InfoAfterFile=C:\tilp\tilp\trunk\RELEASE
 
 PrivilegesRequired = admin
 
 ;--- Shared Stuff ---
 [Files]
 ; TI libraries
-Source: "C:\lpg\tifiles2\tests\libtifiles2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-5.dll');
-Source: "C:\lpg\ticables2\tests\libticables2-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-2.dll');
-Source: "C:\lpg\ticalcs2\tests\libticalcs2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-7.dll');
-Source: "C:\lpg\ticonv\tests\libticonv-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-3.dll');
+Source: "C:\lpg\packages\bin\libtifiles2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-5.dll');
+Source: "C:\lpg\packages\bin\libticables2-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-2.dll');
+Source: "C:\lpg\packages\bin\libticalcs2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-7.dll');
+Source: "C:\lpg\packages\bin\libticonv-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-3.dll');
 
 ; I18n files
-Source: "C:\lpg\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
-Source: "C:\lpg\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
-Source: "C:\lpg\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libtifiles2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticables2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticables2.mo"; Flags: ignoreversion sharedfile;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticalcs2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
 ; Misc
-Source: "C:\lpg\gtk\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
-Source: "C:\lpg\gtk\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
-
-Source: "C:\lpg\gtk\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
+Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
+Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
+Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
 ; Downloader
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
 ; DhaHelper driver
-Source: "C:\lpg\ticables2\src\win32\dha\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
-Source: "C:\lpg\ticables2\src\win32\dha\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
+Source: "C:\lpg\packages\bin\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
+Source: "C:\lpg\packages\bin\dhasetup.exe";  DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
 
 ; RwPorts driver
-Source: "C:\lpg\ticables2\src\win64\rwp\rwports.sys"; DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
-Source: "C:\lpg\ticables2\src\win64\rwp\rwpsetup.exe";  DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
+Source: "C:\lpg\packages\bin\rwports.sys"; DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
+Source: "C:\lpg\packages\bin\rwpsetup.exe";  DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
 
 ; USB driver
-;Source: "C:\lpg\libusb-win32\bin_modified\libusb0.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\ticables2\src\win32\usb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\ticables2\src\win32\usb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
-Source: "C:\lpg\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\lpg\deps\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\lpg\packages\share\libticables2\libusb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\lpg\packages\share\libticables2\libusb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\lpg\deps\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
+Source: "C:\lpg\deps\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
@@ -79,43 +81,43 @@ Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; G
 
 [Files]
 ; Glade files
-Source: "C:\lpg\tilp2\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
 
 ; Help files
-Source: "C:\lpg\tilp2\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\help\*.htm?"; DestDir: "{app}\help"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\help\*.htm?"; DestDir: "{app}\help"; Flags: ignoreversion;
 
 ; Icons files
-Source: "C:\lpg\tilp2\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\*.ico"; DestDir: "{app}\icons"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\COPYRIGHT"; DestDir: "{app}\icons"; DestName: "Copyright.txt"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Application.ico"; DestDir: "{app}\icons"; DestName: "App_Var.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\List.ico"; DestDir: "{app}\icons"; DestName: "Complex_List.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Matrix.ico"; DestDir: "{app}\icons"; DestName: "Complex_Matrix.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Vector.ico"; DestDir: "{app}\icons"; DestName: "Complex_Vector.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Diff_Equ.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Function.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Parametric.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Polar.ico"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestName: "Y_Var.ico"; Flags: ignoreversion;
 
 ; Pixmaps files
-Source: "C:\lpg\tilp2\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
-Source: "C:\lpg\tilp2\pixmaps\*.png"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\pixmaps\*.png"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 
 ; i18n files
-Source: "C:\lpg\tilp2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
+Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\tilp2.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
-Source: "C:\lpg\tilp2\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\COPYING"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\lpg\tilp2\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
-Source: "C:\lpg\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\AUTHORS"; DestDir: "{app}"; DestName: "Authors.txt"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\CHANGELOG"; DestDir: "{app}"; DestName: "ChangeLog.txt"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\COPYING"; DestDir: "{app}"; DestName: "License.txt"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\man\ManPage.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\tilp\tilp\trunk\README"; DestDir: "{app}"; DestName: "ReadMe.txt"; Flags: ignoreversion isreadme
+Source: "C:\tilp\tilp\trunk\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags: ignoreversion
 
 ; Binaries
-Source: "C:\lpg\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
+Source: "C:\lpg\packages\bin\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -142,15 +144,15 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename:
 Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 ; Drivers installation
-Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing NSpire driver (this may take few seconds) ..."
+Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing NSpire driver (this may take a few seconds) ..."
 
 [UninstallRun]
-;Filename: "C:\lpg\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
+;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
 ;same for USB drivers...
 
 [Registry]
@@ -716,7 +718,7 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But, the installer can download and install it for you; simply remember to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
 end;
 
 // Check for previous program presence and uninstall if needed
@@ -785,7 +787,7 @@ begin
 
   // Check version of USB driver
   if IsTiglUsbVersion3Mini() then begin
-    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP/TiEmu/GFM require v3.x (check out the README for download location).', mbError, MB_OK);
+    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP/TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
   end;
 
   // Check for non-NT and WiMP theme
