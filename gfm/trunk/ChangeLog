@@ -1,5 +1,15 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
+- 08/04/2010, version 1.04 (1.1.5, 1.1.3, 1.1.1): debrouxl
+	* minor documentation updates.
+	* removed usage of deprecated GTK functions
+	* made support for KDE dialogs default to disabled, so as to cut down on the build and runtime dependencies.
+	* updated translations.
+	* now closing ticalcs on exit.
+	* updated existing InnoSetup script, created cross-compilation InnoSetup script.
+	* updated gfm.rc file.
+	* updated to Autoconf 2.65.
+
 - 29/04/2009, version 1.03 (1.1.2, 1.1.1, 1.1.0): roms
 	* merged patch from "Philipp Thomas" (bug item #2507422 on TiLP BTS) 
 	to avoid conflict because giotypes.h already declares GFile.

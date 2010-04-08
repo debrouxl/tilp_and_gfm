@@ -2,11 +2,11 @@
 
 
 
-Old     version:  1.12  (12/08/2008)
-Current version:  1.13  (01/05/2009)
+Old     version:  1.13  (2009/06/01)
+Current version:  1.14  (2010/04/xx)
 
 
-SubVersion (CVS) revision: $Id$
+SubVersion (SVN) revision: $Id$
 
 TiLP is available for 4 platforms:
 Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
@@ -15,26 +15,48 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
-	- merged Lionel's patch: add some new & shorter command line flags 
-	for use by GCC4TI
-	
+	- DirectLink USB ROM dumper for 84+ contributed by Brandon Wilson.
+
 
 Improvements:
 -------------
 
-	- changed location of "My TI Files" folder (Vista)
+	- TI-8x ROM dumper source code relicensed to GPL, with Benjamin Moody's authorization.
+	- libticables, libtifiles: downgrade "error" (which abruptly aborts the program) to "critical".
+	- libticalcs: TI-68k: when receiving a variable, strip the folder name if any.
+	- various scattered build improvements
+	- gfm, tilp: don't use deprecated GTK functions anymore.
+	- libtifiles: remove the local copy of an older version of g_fopen, it isn't necessary anymore.
+	- add scripts for compiling and cross-compiling libti* + TILP + GFM from a checkout.
+	- gfm, tilp: update existing InnoSetup scripts, create cross-compilation InnoSetup scripts.
+	- tilp: update tilp.desktop file, contributed by Jon Sturm.
+	- libticalcs: rename CMD_FM_UNKNOWN to CMD_FM_ATTRIBUTES.
 
 
 Bug fixes:
 ----------
 
-	- fixed Folco's bug #2146886: "Crash when auto-detecting device"
+	- libtifiles: fixed bug #2792446: one place was missing an output value initialization,
+	  which could cause failure to send some 83+ FlashApps. Patch by Benjamin Moody.
+	- libticalcs: add several missing "break;" in a switch() construct (calc_89.c).
+	  Reported by Patrick Pélissier.
+	- libticables: release parallel port before closing it.
+	- libtifiles: major fixes for TI-83+ and TI-89 family file handling functions (groups, checksums).
+	- various scattered minor build fixes.
+	- tilp, gfm: fix manpage cleaner not to produce junk at the end of the file, and other cleanups.
+	- libti*: fix examples.
+	- libticalcs: major fix: make Nspire connection reliable, at the expense of latency.
+	- libticables: use a better mode for the ~/.ticables directory.
+	- libticables: apply patch from SF bug #1829964 / #2837637, reportedly fixes compilation on NetBSD.
+	- gfm, tilp: close ticalcs on exit.
+	- libticalcs: fix cmd_s_execute (DUSB command) for 84+, perform more testing for both 89T and 84+.
 
 
 Known bugs:
 -----------
 
 	- [nspire] need to restart TiLP if connection fails
+	- [nspire] Nspire OS 2.x not supported for now
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is
