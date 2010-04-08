@@ -1,15 +1,15 @@
 [Desktop Entry]
-Comment=
-Exec='/usr/local/bin/tilp'
-GenericName=
-Icon=/usr/local/share/tilp2/pixmaps/icon.xpm
-InitialPreference=2
-MimeType=x-tilp-app_var;application/x-tilp-application;x-tilp-asm_program;x-tilp-backup;x-tilp-certificate;x-tilp-complex;x-tilp-constant;x-tilp-data;x-tilp-equation;x-tilp-expression;x-tilp-figure;x-tilp-function;x-tilp-gdb;x-tilp-group;x-tilp-list;x-tilp-macro;x-tilp-matrix;x-tilp-os_upgrade;x-tilp-picture;x-tilp-program;x-tilp-range;x-tilp-real;x-tilp-string;x-tilp-table_setup;x-tilp-text;x-tilp-tigroup;x-tilp-vector;x-tilp-window_setup;x-tilp-y_var;x-tilp-zip;x-tilp-zoom;
 Name=TiLP
-Path=
-StartupNotify=true
-Terminal=false
-TerminalOptions=
+Name[fr_FR]=TiLP
+Comment=Ti Linking Program
+Comment[fr_FR]=Programme de connexion pour calculatrices TI
+GenericName=TI Linking Program
+GenericName[fr_FR]=Connexion calculatrices TI
+Encoding=UTF-8
+Version=1.0
 Type=Application
-X-KDE-SubstituteUID=false
-X-KDE-Username=
+Exec=/usr/bin/tilp
+Icon=/usr/share/tilp2/pixmaps/icon.xpm
+Terminal=false
+Categories=Utility;X-KDE-Utilities-Peripherals;
+MimeType=application/x-tilp
