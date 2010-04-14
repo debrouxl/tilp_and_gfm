@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2010-03-22 20:19+0100\n"
+"POT-Creation-Date: 2010-04-14 16:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,7 @@ msgid "Change drive"
 msgstr ""
 
 #: src/clist_rbm.c:264 src/clist_rbm.c:284 src/clock.c:82 src/dboxes.c:47
-#: src/dnd.c:183 src/main.c:175 src/tilp.c:176 src/tilp_calcs.c:349
+#: src/dnd.c:183 src/main.c:175 src/tilp.c:187 src/tilp_calcs.c:349
 #: src/tilp_calcs.c:417 src/tilp_calcs.c:424 src/tilp_calcs.c:550
 #: src/tilp_calcs.c:559 src/tilp_calcs.c:564 src/tilp_calcs.c:569
 #: src/tilp_calcs.c:1265 src/tilp_cmdline.c:192 src/tilp_config.c:315
@@ -110,16 +110,16 @@ msgid ""
 "user's manual for more information."
 msgstr ""
 
-#: src/clist_rbm.c:311 src/tilp.c:629
+#: src/clist_rbm.c:311 src/tilp.c:640
 msgid "Make a new directory"
 msgstr ""
 
-#: src/clist_rbm.c:311 src/tilp.c:629 src/tilp_calcs.c:1010
+#: src/clist_rbm.c:311 src/tilp.c:640 src/tilp_calcs.c:1010
 #: src/tilp_slct.c:543
 msgid "Name: "
 msgstr ""
 
-#: src/clist_rbm.c:312 src/tilp.c:629
+#: src/clist_rbm.c:312 src/tilp.c:640
 msgid "new_directory"
 msgstr ""
 
@@ -271,15 +271,15 @@ msgstr ""
 msgid "Couldn't find pixmap file: %s"
 msgstr ""
 
-#: src/tilp.c:173
+#: src/tilp.c:184
 msgid "Manual_en.html"
 msgstr ""
 
-#: src/tilp.c:176
+#: src/tilp.c:187
 msgid "Failed to run browser."
 msgstr ""
 
-#: src/tilp.c:225
+#: src/tilp.c:236
 msgid ""
 "There are several ways to get in touch if you encounter a problem with TiLP "
 "or if you have questions, suggestions, bug reports, etc:\n"
@@ -293,28 +293,28 @@ msgid ""
 "Before e-mailing the TiLP team, make sure you have read the FAQ...."
 msgstr ""
 
-#: src/tilp.c:356 src/tilp.c:593 glade/tilp-2.str:15
+#: src/tilp.c:367 src/tilp.c:604 glade/tilp-2.str:15
 msgid "Restore"
 msgstr ""
 
-#: src/tilp.c:357 src/tilp.c:593
+#: src/tilp.c:368 src/tilp.c:604
 msgid "Data to restore:"
 msgstr ""
 
-#: src/tilp.c:557 glade/options-2.str:16 glade/tilp-2.str:13
+#: src/tilp.c:568 glade/options-2.str:16 glade/tilp-2.str:13
 #: glade/user_boxes-2.str:9
 msgid "Backup"
 msgstr ""
 
-#: src/tilp.c:557 glade/user_boxes-2.str:13
+#: src/tilp.c:568 glade/user_boxes-2.str:13
 msgid "Data to backup:"
 msgstr ""
 
-#: src/tilp.c:678
+#: src/tilp.c:696
 msgid "Path"
 msgstr ""
 
-#: src/tilp.c:678
+#: src/tilp.c:696
 msgid "Enter new path"
 msgstr ""
 

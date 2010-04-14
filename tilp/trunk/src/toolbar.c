@@ -26,6 +26,7 @@
 #include "support.h"
 
 struct toolbar_window toolbar_wnd = { 0 };
+struct menubar_window menubar_wnd = { 0 };
 
 /* Put some buttons of the toolbar as sensitive according to some options */
 void toolbar_refresh_buttons(void)
@@ -42,9 +43,16 @@ void toolbar_refresh_buttons(void)
 	gtk_widget_set_sensitive(toolbar_wnd.button12, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(toolbar_wnd.button13, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(toolbar_wnd.button14, !(features & FTS_SILENT) || !options.full_gui);
+	gtk_widget_show(toolbar_wnd.button15);
 
-	if(options.full_gui)
-		gtk_widget_hide(toolbar_wnd.button15);
-	else
-		gtk_widget_show(toolbar_wnd.button15);
+	gtk_widget_set_sensitive(menubar_wnd.backup, features & OPS_BACKUP);
+	gtk_widget_set_sensitive(menubar_wnd.restore, features & OPS_BACKUP);
+	gtk_widget_set_sensitive(menubar_wnd.setclock, features & OPS_CLOCK);
+	gtk_widget_set_sensitive(menubar_wnd.idlist, features & OPS_IDLIST);
+	gtk_widget_set_sensitive(menubar_wnd.dumprom, features & OPS_ROMDUMP);
+	gtk_widget_set_sensitive(menubar_wnd.restore, features & OPS_BACKUP);
+
+	gtk_check_menu_item_set_active(menubar_wnd.viewlocal, options.full_gui);
+	gtk_check_menu_item_set_active(menubar_wnd.showall, options.show_all);
+
 }

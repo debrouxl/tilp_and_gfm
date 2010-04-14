@@ -45,6 +45,7 @@
 #include "filesel.h"
 #include "action.h"
 #include "gtk_update.h"
+#include "screenshot.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -55,6 +56,7 @@ GtkWidget *main_wnd  = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
 GtkWidget *help_menu = NULL;
+
 
 /* Main window */
 
@@ -113,12 +115,21 @@ GtkWidget *display_tilp_dbox()
 	toolbar_wnd.button21 = glade_xml_get_widget(xml, "button11");
 	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
 
+	menubar_wnd.menubar = glade_xml_get_widget(xml, "menubar1");
+	menubar_wnd.viewlocal = glade_xml_get_widget(xml, "menuitem13");
+	menubar_wnd.showall = glade_xml_get_widget(xml, "show_all_files1");
+	menubar_wnd.restore = glade_xml_get_widget(xml, "imagemenuitem4");
+	menubar_wnd.backup = glade_xml_get_widget(xml, "imagemenuitem3");
+	menubar_wnd.idlist = glade_xml_get_widget(xml, "menuitem10");
+	menubar_wnd.setclock = glade_xml_get_widget(xml, "menuitem9");
+	menubar_wnd.dumprom = glade_xml_get_widget(xml, "menuitem8");
+
 	paned = glade_xml_get_widget(xml, "hpaned1");
 	gtk_paned_set_position(GTK_PANED(paned), options.pane_x_size);
 
 	show_right_view(options.full_gui);
 	help_menu = glade_xml_get_widget(xml, "help_menu1");
-	
+
 	clist_init();
 	ctree_init();
 	dnd_init();
@@ -668,13 +679,20 @@ GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 				       0, gtk_get_current_event_time ());
 }
 
+// take screenshot
+GLADE_CB void on_tilp_menuitem7_clicked(GtkButton* button, gpointer user_data)
+{
+	display_screenshot_dbox();
+
+}
+
 // change folder
 GLADE_CB void
 on_button14_clicked                    (GtkButton       *button,
                                         gpointer         user_data)
 {
 	gchar *folder;
-	
+
 	folder = msg_entry(_("Path"), _("Enter new path"), local.cwdir);
 	if(folder != NULL)
 	{
@@ -690,3 +708,34 @@ on_button14_clicked                    (GtkButton       *button,
 		g_free(folder);
 	}
 }
+
+// set clock
+GLADE_CB void on_tilp_menuitem9_clicked(GtkButton* button, gpointer user_data)
+{
+	display_clock_dbox();
+
+}
+
+//get id-list
+GLADE_CB void on_tilp_menuitem10_clicked(GtkButton* button, gpointer user_data)
+{
+	tilp_calc_idlist(0);
+
+}
+
+//get calc info
+GLADE_CB void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
+{
+	CalcInfos infos;
+	tilp_calc_get_infos(&infos);
+
+}
+
+
+//update View menu
+GLADE_CB void on_tilp_viewmenu_active(GtkButton* button, gpointer user_data)
+{
+
+
+}
+

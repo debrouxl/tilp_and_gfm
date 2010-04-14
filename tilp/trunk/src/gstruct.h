@@ -47,6 +47,21 @@ extern struct toolbar_window
 	GtkWidget* button22;
 } toolbar_wnd;
 
+/* This struct is used by the menubar */
+extern struct menubar_window
+{
+	GtkWidget* menubar;
+	GtkWidget* viewlocal;
+	GtkWidget* showall;
+	GtkWidget* senditem;
+	GtkWidget* backup;
+	GtkWidget* restore;
+	GtkWidget* setclock;
+	GtkWidget* idlist;
+	GtkWidget* dumprom;
+
+} menubar_wnd;
+
 /* This struct is used by the CLabel window */
 extern struct label_window 
 {
