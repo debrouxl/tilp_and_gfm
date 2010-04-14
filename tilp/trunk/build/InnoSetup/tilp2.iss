@@ -7,7 +7,7 @@
 
 [Setup]
 AppName=TiLP2
-AppVerName=TiLP2 1.14
+AppVerName=TiLP2 1.15
 AppPublisher=The TiLP Team
 AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp2-news.php
 AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp2-staff.php
@@ -24,10 +24,10 @@ PrivilegesRequired = admin
 ;--- Shared Stuff ---
 [Files]
 ; TI libraries
-Source: "C:\lpg\tifiles2\tests\libtifiles2-6.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-5.dll');
-Source: "C:\lpg\ticables2\tests\libticables2-3.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-2.dll');
-Source: "C:\lpg\ticalcs2\tests\libticalcs2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-7.dll');
-Source: "C:\lpg\ticonv\tests\libticonv-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-3.dll');
+Source: "C:\lpg\tifiles2\tests\libtifiles2-7.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-6.dll');
+Source: "C:\lpg\ticables2\tests\libticables2-4.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-3.dll');
+Source: "C:\lpg\ticalcs2\tests\libticalcs2-9.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-8.dll');
+Source: "C:\lpg\ticonv\tests\libticonv-5.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-4.dll');
 
 ; I18n files
 Source: "C:\lpg\tifiles2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
@@ -815,3 +815,4 @@ procedure DeleteExe(const FileName: string);
 begin
   DeleteDll(FileName);
 end;
+

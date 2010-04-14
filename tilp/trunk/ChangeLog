@@ -2,11 +2,14 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
+- xx/xx/2010, version 1.15 (1.3.2, 1.1.6, 1.1.4, 1.1.2): debrouxl
+	- change encoding in .rc file.
+
 - 08/04/2010, version 1.14 (1.3.1, 1.1.5, 1.1.3, 1.1.1): debrouxl
 	- minor documentation updates.
 	- updated translations.
 	- updated existing InnoSetup script, created cross-compilation InnoSetup script.
-	- now closing ticalcs on exit.
+	- removed usage of deprecated GTK functions
 	- updated tilp.desktop file, contributed by Jon Sturm.
 	- updated tilp.rc file.
 	- updated to Autoconf 2.65.

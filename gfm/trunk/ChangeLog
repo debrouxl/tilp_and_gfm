@@ -1,8 +1,10 @@
 Log of changes:	gfm (calcs, files, ticonv)
 
+- xx/xx/2010, version 1.05 (1.1.6, 1.1.4, 1.1.2): debrouxl
+	- change encoding in .rc file.
+
 - 08/04/2010, version 1.04 (1.1.5, 1.1.3, 1.1.1): debrouxl
 	* minor documentation updates.
-	* removed usage of deprecated GTK functions
 	* made support for KDE dialogs default to disabled, so as to cut down on the build and runtime dependencies.
 	* updated translations.
 	* now closing ticalcs on exit.
