@@ -322,7 +322,7 @@ BlackLink
 Parallel
 SilverLink
 DirectLink
-VTi
+VTI
 TiEmu
 UsbKernel</property>
 		      <property name="add_tearoffs">False</property>
