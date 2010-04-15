@@ -24,6 +24,7 @@ AC_CONFIG_FILES([
   pixmaps/Makefile
   po/Makefile.in
   src/Makefile
+  wicons/Makefile
 ])
 
 AC_MSG_CHECKING([for something to drink while compiling])
@@ -69,7 +70,7 @@ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.6.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.6.0)
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.12.0)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 

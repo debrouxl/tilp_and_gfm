@@ -5,7 +5,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - xx/xx/2010, version 1.15 (1.3.2, 1.1.6, 1.1.4, 1.1.2): debrouxl
 	- change encoding in .rc file.
 	- update three files left over from the translation update in TILP II 1.14.
-	- GUI improvements by Jon Sturm.
+	- GUI improvements by Jon Sturm (require GTK+ 2.12 or later):
+		- use more native icons;
+		- add a menu.
 	- fixes for the TI-83+ series: no OS version checking is necessary for the
 	  del_var and clock operations, because they are already covered by the OPS_*
 	  model checks (reported by Jon Sturm)

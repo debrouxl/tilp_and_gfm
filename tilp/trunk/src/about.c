@@ -35,10 +35,6 @@
 #include "support.h"
 #include "tilp_core.h"
 
-#if !(GTK_CHECK_VERSION(2,12,0))
-#define gtk_about_dialog_set_program_name gtk_about_dialog_set_name
-#endif
-
 static const char* authors[] =  
 {
 	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
@@ -105,7 +101,7 @@ gint display_about_dbox(void)
 	gtk_about_dialog_set_program_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
-	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2007 The TiLP Team");
+	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2010 The TiLP Team");
 	gtk_about_dialog_set_license(dlg, buffer);
 	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
 	gtk_about_dialog_set_authors(dlg, authors);

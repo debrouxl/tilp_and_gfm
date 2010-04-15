@@ -1,0 +1,3 @@
+The icons in this directory are copied from the GPL'ed GNOME icon theme. They
+are installed on Windows only, because no system-wide XDG icon theme is
+usually provided on Windows.

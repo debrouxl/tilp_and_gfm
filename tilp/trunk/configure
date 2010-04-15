@@ -3504,7 +3504,7 @@ fi
 
 ac_config_headers="$ac_config_headers config.h"
 
-ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile"
+ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile wicons/Makefile"
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for something to drink while compiling" >&5
@@ -23346,12 +23346,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.6.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.6.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.12.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12.0") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.6.0" 2>/dev/null`
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.12.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -23364,12 +23364,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_GTK_LIBS="$GTK_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.6.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.6.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= 2.12.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= 2.12.0") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.6.0" 2>/dev/null`
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.12.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -23388,14 +23388,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.6.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "gtk+-2.0 >= 2.12.0"`
         else
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.6.0"`
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.12.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$GTK_PKG_ERRORS" >&5
 
-	as_fn_error "Package requirements (gtk+-2.0 >= 2.6.0) were not met:
+	as_fn_error "Package requirements (gtk+-2.0 >= 2.12.0) were not met:
 
 $GTK_PKG_ERRORS
 
@@ -29443,6 +29443,7 @@ do
     "pixmaps/Makefile") CONFIG_FILES="$CONFIG_FILES pixmaps/Makefile" ;;
     "po/Makefile.in") CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "wicons/Makefile") CONFIG_FILES="$CONFIG_FILES wicons/Makefile" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "po-directories") CONFIG_COMMANDS="$CONFIG_COMMANDS po-directories" ;;
 

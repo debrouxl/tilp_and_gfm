@@ -301,6 +301,7 @@ void ctree_refresh(void)
 	GdkPixbuf *pix9 = NULL;
 	GtkTreeIter parent_node;
 	GtkTreeIter child_node;
+	GtkIconTheme *theme;
 	GNode *vars, *apps;
 	int i, j;
 
@@ -350,11 +351,24 @@ void ctree_refresh(void)
 	memcpy(&parent_node, &vars_node, sizeof(GtkTreeIter));
 
 	// load pixmaps
-	pix1 = create_pixbuf("ctree_close_dir.png");
+	theme = gtk_icon_theme_get_default();
+	pix1 = gtk_widget_render_icon(GTK_WIDGET(view), GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
 	pix2 = create_pixbuf("TIicon2.ico");
-	pix3 = create_pixbuf("ctree_open_dir.png");
-	pix4 = create_pixbuf("attr_locked.png");
-	pix5 = create_pixbuf("attr_archived.png");
+	pix3 = gtk_icon_theme_load_icon(theme, "folder-open", 16, 0, NULL);
+	if (pix3 == NULL)
+	{
+		pix3 = create_pixbuf("ctree_open_dir.png");
+	}
+	pix4 = gtk_icon_theme_load_icon(theme, "emblem-readonly", 16, 0, NULL);
+	if (pix4 == NULL)
+	{
+		pix4 = create_pixbuf("attr_locked.png");
+	}
+	pix5 = gtk_icon_theme_load_icon(theme, "emblem-system", 16, 0, NULL);
+	if (pix5 == NULL)
+	{
+		pix5 = create_pixbuf("attr_archived.png");
+	}
 	pix6 = create_pixbuf("TIicon4.ico");
 
 	// variables tree

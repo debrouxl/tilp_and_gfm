@@ -298,8 +298,8 @@ void clist_refresh(void)
 		break;
 	}
 
-	pix1 = create_pixbuf("up.ico");
-	pix2 = create_pixbuf("clist_dir.png");
+	pix2 = gtk_widget_render_icon(GTK_WIDGET(view), GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
+	pix1 = gtk_widget_render_icon(GTK_WIDGET(view), GTK_STOCK_GO_UP, GTK_ICON_SIZE_MENU, NULL);
 
 	for (dirlist = local.dirlist; dirlist != NULL; dirlist = dirlist->next) 
 	{
