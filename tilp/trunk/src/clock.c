@@ -90,7 +90,7 @@ gint display_clock_dbox()
 		return -1;
 	}
 
-	if(tilp_calc_check_version("2.08", "2.00") < 0)
+	if(tilp_calc_check_version("2.08") < 0)
 		return -1;
 
 	err = ticalcs_calc_get_clock(calc_handle, &tmp_clk);

@@ -899,7 +899,7 @@ int tilp_calc_recv_var(void)
 	return 0;
 }
 
-int tilp_calc_check_version(const char *ti9x_ver, const char *ti8x_ver)
+int tilp_calc_check_version(const char *ti9x_ver)
 {
 	if(tifiles_is_flash(options.calc_model))
 	{
@@ -912,7 +912,7 @@ int tilp_calc_check_version(const char *ti9x_ver, const char *ti8x_ver)
 
 		if(tifiles_calc_is_ti9x(options.calc_model))
 		{
-			if(strcmp(infos.os_version, ti9x_ver) < 0)
+			if((ti9x_ver != NULL) && (strcmp(infos.os_version, ti9x_ver) < 0))
 			{
 				gchar *str = g_strdup_printf(_("You need AMS >=%s mini for this operation."), ti9x_ver);
 				gif->msg_box1(_("Information"), str);
@@ -921,15 +921,6 @@ int tilp_calc_check_version(const char *ti9x_ver, const char *ti8x_ver)
 				return -1;
 			}
 		} 
-		else if(tifiles_calc_is_ti8x(options.calc_model))
-		{
-			if(strcmp(infos.os_version, ti8x_ver) < 0)
-			{
-				gchar *str = g_strdup_printf(_("You need OS >=%s mini for this operation."), ti8x_ver);
-				gif->msg_box1(_("Information"), str);
-				return -1;
-			}
-		}
 	}
 
 	return 0;
@@ -949,7 +940,7 @@ int tilp_calc_del_var(void)
 	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
-	if(tilp_calc_check_version("2.09", "2.00") < 0)
+	if(tilp_calc_check_version("2.09") < 0)
 		return -1;
 
 	if(options.overwrite)
@@ -1006,6 +997,13 @@ int tilp_calc_new_fld(void)
 
 	if(!(ticalcs_calc_features(calc_handle) & OPS_NEWFLD))
 		return 0;
+
+	// This operation is currently implemented the following way:
+	// * for the legacy I/O port, a temporary file is created and then deleted. The latter requires AMS 2.09.
+	// * for the USB port (AMS >= 3.00), it's always supported.
+	// => require AMS 2.09 or later.
+	if(tilp_calc_check_version("2.09") < 0)
+		return -1;
 
 	fldname = gif->msg_entry(_("New Folder"), _("Name: "), _("folder"));
 	if (fldname == NULL)
