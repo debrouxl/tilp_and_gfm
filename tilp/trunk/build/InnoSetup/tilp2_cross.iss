@@ -13,9 +13,9 @@
 AppName=TiLP2
 AppVerName=TiLP2 1.15
 AppPublisher=The TiLP Team
-AppPublisherURL=http://lpg.ticalc.org/prj_tilp/tilp2-news.php
-AppSupportURL=http://lpg.ticalc.org/prj_tilp/tilp2-staff.php
-AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/tilp2-download.php
+AppPublisherURL=http://lpg.ticalc.org/prj_tilp/news.html
+AppSupportURL=http://lpg.ticalc.org/prj_tilp/bug_report.html
+AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/win32.html
 DefaultDirName={pf}\TiLP
 DefaultGroupName=TiLP2
 AllowNoIcons=yes
@@ -103,6 +103,7 @@ Source: "C:\tilp\tilp\trunk\icons\Equation.ico"; DestDir: "{app}\icons"; DestNam
 ; Pixmaps files
 Source: "C:\tilp\tilp\trunk\pixmaps\*.xpm"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
 Source: "C:\tilp\tilp\trunk\pixmaps\*.png"; DestDir: "{app}\pixmaps"; Flags: ignoreversion;
+Source: "C:\tilp\tilp\trunk\wicons\*.png"; DestDir: "{app}\share\icons"; Flags: ignoreversion;
 
 ; i18n files
 Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\tilp2.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
