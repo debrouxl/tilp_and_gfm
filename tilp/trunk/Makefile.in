@@ -72,7 +72,8 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = build glade help icons pixmaps po src wicons man
+DIST_SUBDIRS = build builder glade help icons pixmaps po src wicons \
+	man
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -316,7 +317,8 @@ x_includes = @x_includes@
 x_libraries = @x_libraries@
 
 # subdirectories to scan
-SUBDIRS = build glade help icons pixmaps po src wicons $(am__append_1)
+SUBDIRS = build builder glade help icons pixmaps po src wicons \
+	$(am__append_1)
 dist_pkgdata_DATA = COPYING RELEASE
 EXTRA_DIST = README.* TODO po/copy.bat desktop install.bat
 all: config.h

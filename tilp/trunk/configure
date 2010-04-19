@@ -3504,7 +3504,7 @@ fi
 
 ac_config_headers="$ac_config_headers config.h"
 
-ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile wicons/Makefile"
+ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile builder/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile wicons/Makefile"
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for something to drink while compiling" >&5
@@ -29436,6 +29436,7 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "build/Makefile") CONFIG_FILES="$CONFIG_FILES build/Makefile" ;;
     "build/mingw/Makefile") CONFIG_FILES="$CONFIG_FILES build/mingw/Makefile" ;;
+    "builder/Makefile") CONFIG_FILES="$CONFIG_FILES builder/Makefile" ;;
     "glade/Makefile") CONFIG_FILES="$CONFIG_FILES glade/Makefile" ;;
     "help/Makefile") CONFIG_FILES="$CONFIG_FILES help/Makefile" ;;
     "icons/Makefile") CONFIG_FILES="$CONFIG_FILES icons/Makefile" ;;
