@@ -24,10 +24,4 @@
 
 int tilp_drive_change(char drive_letter);
 
-int tilp_tifiles_ungroup(void);
-int tilp_tifiles_group(void);
-
-int tilp_tifiles_untigroup(void);
-int tilp_tifiles_tigroup(void);
-
 #endif

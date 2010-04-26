@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2010-04-15 12:03+0200\n"
+"POT-Creation-Date: 2010-04-25 19:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,8 +98,7 @@ msgstr ""
 #: src/tilp_calcs.c:1263 src/tilp_cmdline.c:192 src/tilp_config.c:315
 #: src/tilp_device.c:395 src/tilp_device.c:437 src/tilp_device.c:445
 #: src/tilp_error.c:87 src/tilp_files.c:252 src/tilp_files.c:324
-#: src/tilp_misc.c:39 src/tilp_misc.c:81 src/tilp_misc.c:124
-#: src/tilp_misc.c:183 src/tilp_misc.c:226
+#: src/tilp_misc.c:39
 msgid "Error"
 msgstr ""
 
@@ -735,40 +734,6 @@ msgstr ""
 
 #: src/tilp_misc.c:43
 msgid "This function is only available in the Windows version."
-msgstr ""
-
-#: src/tilp_misc.c:71 src/tilp_misc.c:173
-msgid "Create new directory"
-msgstr ""
-
-#: src/tilp_misc.c:71 src/tilp_misc.c:173
-msgid "Directory where files will be ungrouped: "
-msgstr ""
-
-#: src/tilp_misc.c:81 src/tilp_misc.c:183
-msgid "You can't ungroup in this folder."
-msgstr ""
-
-#: src/tilp_misc.c:124 src/tilp_misc.c:226
-msgid ""
-"You must select at least 2 files.\n"
-"\n"
-msgstr ""
-
-#: src/tilp_misc.c:128 src/tilp_misc.c:230
-msgid "Group files"
-msgstr ""
-
-#: src/tilp_misc.c:128 src/tilp_misc.c:230
-msgid "Group name: "
-msgstr ""
-
-#: src/tilp_misc.c:128
-msgid "group"
-msgstr ""
-
-#: src/tilp_misc.c:230
-msgid "tigroup"
 msgstr ""
 
 #: src/tilp_paths.c:124
