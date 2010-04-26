@@ -70,6 +70,7 @@
         <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">True</property>
+        <signal name="activate" handler="rbm_delete_var1_activate"/>
         <accelerator key="Delete" signal="activate"/>
       </widget>
     </child>
@@ -79,6 +80,7 @@
         <property name="visible">True</property>
         <property name="use_underline">True</property>
         <property name="use_stock">False</property>
+        <signal name="activate" handler="rbm_create_folder1_activate"/>
         <accelerator key="Insert" signal="activate"/>
         <child internal-child="image">
           <widget class="GtkImage" id="image2">
