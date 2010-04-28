@@ -59,8 +59,6 @@
 #include "filesel.h"
 //#include "tilp_struct.h"
 
-#define GTK_REFRESH() { while( gtk_events_pending() ) { gtk_main_iteration(); }}
-
 static int fs_type = 2;
 
 /* Single file selectors */

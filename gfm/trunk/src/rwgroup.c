@@ -53,7 +53,7 @@ int	tigroup_create(CalcModel model)
 	GFMFile.model = GFMFile.contents.tigroup->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFMFile.trees.vars = g_node_new(NULL);
+	GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = VAR_NODE_NAME;
@@ -75,7 +75,7 @@ typedef struct
 	gchar	folder[20];
 } SearchArg;
 
-static gboolean	search_for_folder(GNode *node, gpointer data)
+static void	search_for_folder(GNode *node, gpointer data)
 {
 	SearchArg *sa = (gpointer)data;
 	VarEntry *ve = (VarEntry *)node->data;
@@ -84,10 +84,7 @@ static gboolean	search_for_folder(GNode *node, gpointer data)
 	{
 		sa->node = node;
 		sa->found = TRUE;
-		return TRUE;
 	}
-
-	return FALSE;
 }
 
 static int create_table_of_entries(TigContent *content)

@@ -52,7 +52,7 @@ void toolbar_refresh_buttons(void)
 	gtk_widget_set_sensitive(menubar_wnd.dumprom, features & OPS_ROMDUMP);
 	gtk_widget_set_sensitive(menubar_wnd.restore, features & OPS_BACKUP);
 
-	gtk_check_menu_item_set_active(menubar_wnd.viewlocal, options.full_gui);
-	gtk_check_menu_item_set_active(menubar_wnd.showall, options.show_all);
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menubar_wnd.viewlocal), options.full_gui);
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menubar_wnd.showall), options.show_all);
 
 }

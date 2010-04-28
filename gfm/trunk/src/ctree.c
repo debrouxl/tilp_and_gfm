@@ -296,7 +296,6 @@ void ctree_set_basetree(void)
 
 void ctree_refresh(void)
 {
-	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
 	GdkPixbuf *pix1, *pix2, *pix3, *pix4, *pix5, *pix6, *pix7;
 	GdkPixbuf *pix9 = NULL;
 	GtkTreeIter pareng_node;

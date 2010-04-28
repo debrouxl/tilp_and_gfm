@@ -27,9 +27,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <locale.h>
 
 #ifdef __WIN32__
-# include <locale.h>
 # include <windows.h>
 #endif
 

@@ -102,7 +102,7 @@ void labels_refresh(void)
 	if(working_mode & MODE_CMD)
 		return;
 
-	/* path */	
+	/* path */
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
 	format_path(utf8, path);
 	g_free(utf8);
@@ -119,7 +119,7 @@ void labels_refresh(void)
 	/* RAM free */
 	str2 = g_strdup(format_bytes(remote.memory.ram_free));
 
-	if(remote.memory.ram_free == -1)
+	if(remote.memory.ram_free == -1U)
 		str = g_strdup_printf(_("free: N/A"));
 	else
 		str = g_strdup_printf(_("free: %s"), str2);
@@ -139,7 +139,7 @@ void labels_refresh(void)
 	/* FLASH free */
 	str2 = g_strdup(format_bytes(remote.memory.flash_free));
 
-	if(remote.memory.flash_free == -1)
+	if(remote.memory.flash_free == -1U)
 		str = g_strdup_printf(_("free: N/A"));
 	else
 		str = g_strdup_printf(_("free: %s"), str2);

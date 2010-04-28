@@ -397,7 +397,7 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 	if(ret == NULL)
 		return;
 
-	ret[8] = (char)'/0';
+	ret[8] = '\0';
 	ve = tifiles_ve_create();
 	strcpy(ve->name, ret);
 	ve->type = tifiles_folder_type(GFMFile.model);
@@ -424,7 +424,7 @@ on_group_clicked                       (GtkButton       *button,
 	if(array == NULL)
 		return;
 
-	gfm_tifiles_group(array, result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP);
+	gfm_tifiles_group((const char **)array, result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP);
 }
 
 GLADE_CB void

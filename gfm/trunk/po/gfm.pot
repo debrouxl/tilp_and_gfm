@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2010-03-03 15:31+0100\n"
+"POT-Creation-Date: 2010-04-28 14:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,11 +84,11 @@ msgstr ""
 msgid "%i MB"
 msgstr ""
 
-#: src/filesel.c:261
+#: src/filesel.c:259
 msgid "Save file"
 msgstr ""
 
-#: src/filesel.c:264 src/filesel.c:529
+#: src/filesel.c:262 src/filesel.c:527
 msgid "Open file"
 msgstr ""
 
@@ -159,36 +159,36 @@ msgstr ""
 msgid "%.1f MB"
 msgstr ""
 
-#: src/main.c:75
+#: src/main.c:76
 msgid "Initializing KDE..."
 msgstr ""
 
-#: src/main.c:76 glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
+#: src/main.c:77 glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
 #: glade/dialogs.str:16
 msgid "GFM"
 msgstr ""
 
-#: src/main.c:76 glade/dialogs.str:21 glade/gfm.str:7
+#: src/main.c:77 glade/dialogs.str:21 glade/gfm.str:7
 msgid "Group File Manager"
 msgstr ""
 
-#: src/main.c:83
+#: src/main.c:84
 msgid "Checking for GUI files..."
 msgstr ""
 
-#: src/main.c:87
+#: src/main.c:88
 msgid "Loading tilibs..."
 msgstr ""
 
-#: src/main.c:91
+#: src/main.c:92
 msgid "Launching GUI..."
 msgstr ""
 
-#: src/rwgroup.c:149
+#: src/rwgroup.c:146
 msgid "Loading..."
 msgstr ""
 
-#: src/rwgroup.c:318
+#: src/rwgroup.c:315
 msgid "Saving..."
 msgstr ""
 

@@ -237,7 +237,7 @@ on_bug_report1_activate                (GtkMenuItem     *menuitem, gpointer     
   
 	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 				  GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE,
-				  message);
+				  "%s", message);
 	gtk_dialog_run(GTK_DIALOG(dialog));
 	gtk_widget_destroy(dialog);
 }
