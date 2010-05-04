@@ -33,7 +33,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = glade
-DIST_COMMON = $(dist_glade_DATA) $(srcdir)/Makefile.am \
+DIST_COMMON = README $(dist_glade_DATA) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -287,7 +287,7 @@ x_includes = @x_includes@
 x_libraries = @x_libraries@
 gladedir = $(pkgdatadir)/glade
 dist_glade_DATA = *-2.glade
-EXTRA_DIST = *-2.gladep *-2.str copy.bat
+EXTRA_DIST = *-2.gladep *-2.str copy.bat README
 all: all-am
 
 .SUFFIXES:
