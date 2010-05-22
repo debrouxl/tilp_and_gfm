@@ -27,7 +27,6 @@
 #include <string.h>
 
 #include "support.h"
-#include "gstruct.h"
 #include "ctree.h"
 #include "tilp.h"
 #include "screenshot.h"
@@ -56,14 +55,14 @@ enum
 
 static GtkTargetEntry target_table_1[] = 
 {
-	{"clist", 0, TARGET_STRING},
-	{"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
+	{(char *)"clist", 0, TARGET_STRING},
+	{(char *)"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
 
 static GtkTargetEntry target_table_2[] = 
 {
-	{"ctree", 0, TARGET_STRING},
-	{"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
+	{(char *)"ctree", 0, TARGET_STRING},
+	{(char *)"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
 
 static guint n_targets = 1;
@@ -100,14 +99,14 @@ GLADE_CB void
 on_treeview2_drag_data_get(GtkWidget * widget,
 			   GdkDragContext * drag_context,
 			   GtkSelectionData * data,
-			   guint info, guint time, gpointer user_data)
+			   guint info, guint _time, gpointer user_data)
 {
-	gchar *name = "foo_bar";
+	gchar *name = (char *)"foo_bar";
 	gtk_selection_data_set(data, data->target, 8, 
 			       (guchar *)name, strlen(name));
 }
 
-extern int on_tilp_send(gchar*);
+extern int on_tilp_send(const gchar*);
 
 // retrieve data
 GLADE_CB void
@@ -116,7 +115,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 				gint x,
 				gint y,
 				GtkSelectionData * data,
-				guint info, guint time, gpointer user_data)
+				guint info, guint _time, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = gtk_tree_view_get_model(view);
@@ -131,7 +130,7 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		gtk_tree_view_get_dest_row_at_pos(view, x, y, &path, &pos);
 		if (path == NULL) 
 		{
-			gtk_drag_finish(drag_context, FALSE, FALSE, time);
+			gtk_drag_finish(drag_context, FALSE, FALSE, _time);
 			return;
 		}
 		gtk_tree_model_get_iter(model, &iter, path);
@@ -144,14 +143,14 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 		if(strchr(name, '#'))			// Calc
 		{
 			//on_tilp_button8_clicked(NULL, NULL);
-			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 			return;
 		}
 		else if(!strcmp(name, NODE4))	// Applications
 		{
 			// send to flash
 			on_tilp_send("<FLASH>");
-			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 			return;
 		}
 
@@ -165,14 +164,14 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			else
 				target = ve->folder;
 			on_tilp_send(target);
-			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 			return;
 		}
 
 		else if(!strcmp(name, NODE2))	// Operating System
 		{
 			on_tilp_send("");
-			gtk_drag_finish(drag_context, TRUE, FALSE, time);
+			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 			return;
 		}
 
@@ -187,13 +186,13 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			{
 				// send standard
 				on_tilp_send("");
-				gtk_drag_finish(drag_context, TRUE, FALSE, time);
+				gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 				return;
 			}
 		}
 	}
 
-	gtk_drag_finish(drag_context, FALSE, FALSE, time);
+	gtk_drag_finish(drag_context, FALSE, FALSE, _time);
 	return;
 }
 
@@ -228,7 +227,7 @@ GLADE_CB void
 on_treeview1_drag_data_get(GtkWidget * widget,
 			   GdkDragContext * drag_context,
 			   GtkSelectionData * data,
-			   guint info, guint time, gpointer user_data)
+			   guint info, guint _time, gpointer user_data)
 {
 	if (info == TARGET_ROOTWIN) 
 	{
@@ -248,7 +247,7 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 				gint x,
 				gint y,
 				GtkSelectionData * data,
-				guint info, guint time, gpointer user_data)
+				guint info, guint _time, gpointer user_data)
 {
 	if ((data->length >= 0) && (data->format == 8)) 
 	{
@@ -307,11 +306,11 @@ on_treeview2_drag_data_received(GtkWidget * widget,
 			on_tilp_button5_clicked(NULL, NULL);
 		}
 
-		gtk_drag_finish(drag_context, TRUE, FALSE, time);
+		gtk_drag_finish(drag_context, TRUE, FALSE, _time);
 		return;
 	}
 
-	gtk_drag_finish(drag_context, FALSE, FALSE, time);
+	gtk_drag_finish(drag_context, FALSE, FALSE, _time);
 	return;
 }
 

@@ -49,7 +49,7 @@ enum
 
 /* Initialization */
 
-static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
+static gint column2index(GtkWidget* _list, GtkTreeViewColumn* column)
 {
 	gint i;
 
@@ -57,7 +57,7 @@ static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
 	{
 		GtkTreeViewColumn *col;
 
-		col = gtk_tree_view_get_column(GTK_TREE_VIEW(list), i);
+		col = gtk_tree_view_get_column(GTK_TREE_VIEW(_list), i);
 		if (col == column)
 			return i;
 	}
@@ -86,7 +86,7 @@ static gboolean select_func(
 
 static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_data)
 {
-	GList *list;
+	GList *_list;
 	GtkTreeIter iter;
 	GtkTreeModel *model;
 	GtkTreeSelection *sel;
@@ -97,29 +97,29 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ctree_wnd));
 
 	// create local selection
-	for(list = gtk_tree_selection_get_selected_rows(selection, &model); list; list = g_list_next(list))
+	for(_list = gtk_tree_selection_get_selected_rows(selection, &model); _list; _list = g_list_next(_list))
 	{
-		GtkTreePath *path = list->data;
+		GtkTreePath *path = _list->data;
 		FileEntry *fe;
 
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
-		tilp_local_selection_add(fe->name);		
+		tilp_local_selection_add(fe->name);
 
 	}
 
-	g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
-	g_list_free(list);
-	
+	g_list_foreach(_list, (GFunc)gtk_tree_path_free, NULL);
+	g_list_free(_list);
+
 	// create file selection
-	list = gtk_tree_selection_get_selected_rows(selection, &model);
-	if(list)
+	_list = gtk_tree_selection_get_selected_rows(selection, &model);
+	if(_list)
 	{
 		tilp_file_selection_destroy();
 
-		for(; list; list = g_list_next(list))
+		for(; _list; _list = g_list_next(_list))
 		{
-			GtkTreePath *path = list->data;
+			GtkTreePath *path = _list->data;
 			FileEntry *fe;
 			gchar *full_path;
 
@@ -130,8 +130,8 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 			tilp_file_selection_add(full_path);
 		}
 
-		g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
-		g_list_free(list);
+		g_list_foreach(_list, (GFunc)gtk_tree_path_free, NULL);
+		g_list_free(_list);
 	}
 }
 

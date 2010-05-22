@@ -136,8 +136,8 @@ GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
                                         gpointer         user_data)
 {
-	gchar *fn, *ext;
-	gchar *filename;
+	gchar *fn = NULL, *ext = NULL;
+	gchar *filename = NULL;
 
 	if(GFMFile.filename != NULL)
 		filename = g_strdup(GFMFile.filename);

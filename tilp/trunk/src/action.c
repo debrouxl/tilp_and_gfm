@@ -250,10 +250,10 @@ gint display_action_dbox(gchar *target)
 	// select all vars
 	{
 		GtkTreeView *view = GTK_TREE_VIEW(clist);
-		GtkTreeSelection *sel;
+		GtkTreeSelection *sel2;
 
-		sel = gtk_tree_view_get_selection(view);
-		gtk_tree_selection_select_all(sel);
+		sel2 = gtk_tree_view_get_selection(view);
+		gtk_tree_selection_select_all(sel2);
 	}
 
 	// box running

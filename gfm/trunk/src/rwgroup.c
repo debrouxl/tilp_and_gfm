@@ -433,8 +433,8 @@ int group_load(const char *filename)
 		for (i = 0; table[i] != NULL; i++) 
 		{
 			VarEntry *fe, *ve;
-			int j, index = table[i][0];
-			ve = content->entries[index];
+			int j, idx = table[i][0];
+			ve = content->entries[idx];
 
 			fe = tifiles_ve_dup(ve);
 			strcpy(fe->name, ve->folder);
@@ -445,8 +445,8 @@ int group_load(const char *filename)
 
 			for (j = 0; table[i][j] != -1; j++) 
 			{
-				int index = table[i][j];
-				VarEntry *ve = content->entries[index];
+				idx = table[i][j];
+				ve = content->entries[idx];
 
 				node = g_node_new(tifiles_ve_dup(ve));
 				g_node_append(folder, node);

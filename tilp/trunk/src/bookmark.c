@@ -61,7 +61,7 @@ int go_to_bookmark(const char *link)
 	// * /usr/bin/mozilla (old Mozilla Suite)
 	//
 	gboolean result;
-	char *apps[] = { 
+	static const char *apps[] = { 
 			"/usr/bin/xdg-open",
 			"/usr/bin/gnome-open",
 			"/usr/bin/sensible-browser",
@@ -73,7 +73,7 @@ int go_to_bookmark(const char *link)
 	};
 	gint i, n;
 
-	n = sizeof(apps) / sizeof(char *);
+	n = sizeof(apps) / sizeof(apps[0]);
 	for(i = 0; i < n; i++)
 	{
 		gchar **argv = g_malloc0(3 * sizeof(gchar *));

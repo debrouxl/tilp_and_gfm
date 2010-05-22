@@ -33,8 +33,6 @@
 #endif
 
 #include "support.h"
-#include "gstruct.h"
-//#include "ctree.h"
 #include "clist.h"
 #include "labels.h"
 #include "dboxes.h"

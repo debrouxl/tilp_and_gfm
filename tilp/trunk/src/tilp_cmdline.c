@@ -32,7 +32,6 @@ static gchar** array;
 static gchar** flist;
 static gint dont_use_gui;
        gint silent = 0;
-extern int working_mode;
 static gint show_version;
 
 static GOptionEntry entries[] = 
@@ -46,7 +45,7 @@ static GOptionEntry entries[] =
 	{ "no-gui", 'n', 0, G_OPTION_ARG_NONE, &dont_use_gui, N_("Does not use GUI"), NULL },
 	{ "silent", 's', 0, G_OPTION_ARG_NONE, &silent, N_("Silent mode (NO-GUI mode only"), NULL },
 	{ G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &array, N_("filename(s)"), NULL },
-	{ NULL }
+	{ NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
 void tilp_cmdline_version(void)

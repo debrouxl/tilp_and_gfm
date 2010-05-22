@@ -80,7 +80,6 @@ void show_right_view(int view)
 
 GtkWidget *display_tilp_dbox()
 {
-	//GladeXML *xml;
 	GtkWidget *dbox;
 	GtkWidget *paned;
 
@@ -139,15 +138,15 @@ GtkWidget *display_tilp_dbox()
 
 GtkWidget *display_help_menu(void)
 {
-	GladeXML *xml;
+	GladeXML *xml2;
 	GtkWidget *menu;
 
-	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "help_menu1", PACKAGE);
-	if (!xml)
+	xml2 = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "help_menu1", PACKAGE);
+	if (!xml2)
 		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	glade_xml_signal_autoconnect(xml2);
 
-	menu = glade_xml_get_widget(xml, "help_menu1");
+	menu = glade_xml_get_widget(xml2, "help_menu1");
 	return menu;
 }
 
@@ -452,7 +451,7 @@ void on_tilp_recv(void)
 // - such as "" for sending var in the default folder
 // - such as "foo" for sending var in the 'foo' folder
 // - unused for sending FLASH files
-void on_tilp_send(gchar *user_data)
+void on_tilp_send(const gchar *user_data)
 {
 	gchar *target;
 	FileEntry *f;

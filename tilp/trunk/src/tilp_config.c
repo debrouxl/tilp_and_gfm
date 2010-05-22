@@ -108,7 +108,7 @@ static int get_config_path(char **path)
 	*path = g_strconcat(g_get_home_dir(), INI_FILE, NULL);
 #elif defined(__WIN32__)
 	*path = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);
-#endif				
+#endif
 	return 0;
 }
 
@@ -159,7 +159,13 @@ int tilp_config_get_version(char *version)
 		return -1;
 
 	for (i = 0; i < 5; i++)
-		fgets(buffer, 256, txt);
+	{
+		if (fgets(buffer, 256, txt) == NULL)
+		{
+			fclose(txt);
+			return -1;
+		}
+	}
 
 	p = strchr(buffer, '=');
 	if (p == NULL)
@@ -174,6 +180,7 @@ int tilp_config_get_version(char *version)
 	if (p)
 		*p = '\0';
 
+	fclose(txt);
 	return 0;
 }
 
@@ -185,6 +192,7 @@ int tilp_config_write(void)
 	gchar *content;
 	FILE* f;
 	gint remap;
+	int ret = 0;
 
 	remap = tilp_remap_from_usb(options.cable_model, options.calc_model);
 
@@ -208,10 +216,10 @@ int tilp_config_write(void)
 	g_key_file_set_string (kf, SECTION_DEVICE, "cable_port", ticables_port_to_string(options.cable_port));
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_port", "Port", &error);
 
-	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_timeout", options.cable_timeout);	
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_timeout", options.cable_timeout);
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_timeout", "Timeout in tenth of seconds", &error);
 
-	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.cable_delay);	
+	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.cable_delay);
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Inter-bit delay in µs", &error);
 
 	// Section [GUI]
@@ -298,33 +306,33 @@ int tilp_config_write(void)
 	content = g_key_file_to_data(kf, NULL, &error);
 	if(error != NULL)
 	{
-		g_key_file_free(kf);
-		g_free(ini_file);
 		fprintf (stderr, "Unable to read file: %s\n", error->message);
 		g_error_free(error);
-		return -1;
+		ret = -1;
+		goto exit;
 	} 
 	
 	// write content
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
-		g_free(content);
-		g_key_file_free(kf);
-		g_free(ini_file);
-		gif->msg_box1(_("Error"), _
-			     ("Unable to write the config file (~/.tilp or tilp.ini).\n"));
-		return -1;
+		gif->msg_box1(_("Error"), _("Unable to write the config file (~/.tilp or tilp.ini).\n"));
+		ret = -1;
+		goto exit;
 	}
-	fwrite(content, strlen(content), 1, f);
+	if (fwrite(content, strlen(content), 1, f) < 1)
+	{
+		ret = -1;
+	}
 	fclose(f);
 
+exit:
 	// free structures
 	g_free(content);
 	g_key_file_free(kf);
 	g_free(ini_file);
 
-	return 0;
+	return ret;
 }
 
 int tilp_config_read(void)
@@ -344,9 +352,9 @@ int tilp_config_read(void)
 	// and read
 	kf = g_key_file_new();
 	result = g_key_file_load_from_file(kf, ini_file, G_KEY_FILE_NONE, &error);
-	if(result == FALSE)
+	if (result == FALSE)
 	{
-		if(error != NULL)
+		if (error != NULL)
 		{
 			g_key_file_free(kf);
 			g_free(ini_file);

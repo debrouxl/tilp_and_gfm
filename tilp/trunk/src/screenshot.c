@@ -29,7 +29,6 @@
 
 #include "support.h"
 #include "screenshot.h"
-#include "support.h"
 #include "dboxes.h"
 #include "scroptions.h"
 #include "filesel.h"
@@ -89,7 +88,7 @@ GLADE_CB void on_sc_save1_activate(GtkMenuItem * menuitem,
 	GdkPixbuf *pixbuf;
 	gboolean result = FALSE;
 	GError *error = NULL;
-	gchar *type;
+	const gchar *type;
 	const gchar *filename = NULL;
 
 	if(screen_success == FALSE)

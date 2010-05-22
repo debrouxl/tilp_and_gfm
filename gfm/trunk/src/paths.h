@@ -23,7 +23,7 @@
 
 // MSVC Definition
 #if defined(__WIN32__) && defined(_MSC_VER)
-#define SHARE_DIR	""
+#define SHARE_DIR ""
 #endif
 
 /* Missing of Definitions */
@@ -34,19 +34,19 @@
 /* Structures */
 typedef struct
 {
-        gchar *base_dir;	// Main Directory
-        gchar *help_dir;	// Help Directory
-        gchar *pixmap_dir;	// Pixmaps Directory
-        gchar *glade_dir;	// Directory with Glade Files
-        gchar *tmp_dir;		// Temporary File Directory
-        gchar *home_dir;	// Home Directory
-        gchar *locale_dir;      // Translations Directory
+    gchar *base_dir;   // Main Directory
+    gchar *help_dir;   // Help Directory
+    gchar *pixmap_dir; // Pixmaps Directory
+    gchar *glade_dir;  // Directory with Glade Files
+    gchar *tmp_dir;    // Temporary File Directory
+    gchar *home_dir;   // Home Directory
+    gchar *locale_dir; // Translations Directory
 } GFMInstPaths;
 
 // Lets Prototype the Structure
 extern GFMInstPaths inst_paths;
 
-int paths_init(void);							 // Setup The Installation Paths for GFM
+int paths_init(void);                            // Setup The Installation Paths for GFM
 const char *paths_build_glade(const char *name); // Used to return exact path to Glade File
 
 #endif

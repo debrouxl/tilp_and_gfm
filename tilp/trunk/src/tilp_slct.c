@@ -409,11 +409,7 @@ void tilp_local_update_applist(void)
 	{
 		FileEntry *fe = ptr->data;
 		FlashContent *c = fe->content2;
-#ifdef _MSC_VER
 		VarEntry ve = {0};
-#else
-		VarEntry ve = {};
-#endif
 
 		strcpy(ve.name, c->name);
 		ve.size = c->data_length;

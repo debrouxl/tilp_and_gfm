@@ -242,7 +242,7 @@ int tilp_calc_idlist(int to_file)
 		tilp_err(err);
 		return -1;
 	}
-	
+
 	strcpy(buffer, _("ID-LIST : "));
 	if(options.calc_model != CALC_NSPIRE)
 	{
@@ -269,7 +269,11 @@ int tilp_calc_idlist(int to_file)
 		if(f == NULL)
 			return -1;
 
-		fwrite(buffer, strlen(buffer), 1, f);
+		if (fwrite(buffer, strlen(buffer), 1, f) < 1)
+		{
+			fclose(f);
+			return -1;
+		}
 		fclose(f);
 	}
 	else
@@ -762,7 +766,6 @@ tcrv2:
 		if(options.recv_as_group)
 		{
 			FileContent* content;
-			int err;
 
 			tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 				".", tifiles_fext_of_group(options.calc_model), NULL);

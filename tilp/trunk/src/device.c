@@ -51,15 +51,15 @@ enum { COL_CABLE, COL_PORT, COL_CALC };
 static GtkListStore* clist_create(GtkWidget *widget)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
-	GtkListStore *store;
+	GtkListStore *store2;
 	GtkTreeModel *model;
 	GtkCellRenderer *renderer;
 	GtkTreeSelection *selection;
     const gchar *text[CLIST_NVCOLS] = { _("Cable"), _("Port"), _("Device") };
     gint i;
 	
-	store = gtk_list_store_new(CLIST_NCOLS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, -1);
-    model = GTK_TREE_MODEL(store);
+	store2 = gtk_list_store_new(CLIST_NCOLS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, -1);
+    model = GTK_TREE_MODEL(store2);
 	
     gtk_tree_view_set_model(view, model); 
     gtk_tree_view_set_headers_visible(view, TRUE);
@@ -82,10 +82,10 @@ static GtkListStore* clist_create(GtkWidget *widget)
 	selection = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
 
-	return store;
+	return store2;
 }
 
-static void clist_populate(GtkListStore *store, int full)
+static void clist_populate(GtkListStore *_store, int full)
 {
 	if(!full)
 	{
@@ -98,13 +98,13 @@ static void clist_populate(GtkListStore *store, int full)
 			GtkTreeIter iter;
 			gchar** row = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
 
-			gtk_list_store_append(store, &iter);
+			gtk_list_store_append(_store, &iter);
 
 			row[COL_CABLE] = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
 			row[COL_PORT] = g_strdup_printf("#%i", i+1);
 			row[COL_CALC] = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
 
-			gtk_list_store_set(store, &iter, 
+			gtk_list_store_set(_store, &iter, 
 				COL_CABLE, row[COL_CABLE], 
 				COL_PORT, row[COL_PORT],
 				COL_CALC, row[COL_CALC],
@@ -130,14 +130,14 @@ static void clist_populate(GtkListStore *store, int full)
 			GtkTreeIter iter;
 			gchar** row = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
 
-			gtk_list_store_append(store, &iter);
+			gtk_list_store_append(_store, &iter);
 
 			//calc = tilp_remap_from_usb(cable, calc);
 			row[COL_CABLE] = g_strdup(ticables_model_to_string(i));
 			row[COL_PORT] = g_strdup_printf("#%i", j);
 			row[COL_CALC] = g_strdup(ticalcs_model_to_string(array[i][j]));
 
-			gtk_list_store_set(store, &iter, 
+			gtk_list_store_set(_store, &iter, 
 				COL_CABLE, row[COL_CABLE], COL_PORT, row[COL_PORT], COL_CALC, row[COL_CALC],
 				-1);
 			g_strfreev(row);
@@ -148,10 +148,10 @@ static void clist_populate(GtkListStore *store, int full)
 	}
 }
 
-static void list_refresh(GtkListStore *store, int full)
+static void list_refresh(GtkListStore *_store, int full)
 {
-	gtk_list_store_clear(store);
-	clist_populate(store, full);
+	gtk_list_store_clear(_store);
+	clist_populate(_store, full);
 }
 
 GLADE_CB gboolean
@@ -428,8 +428,8 @@ on_device_combobox1_changed            (GtkComboBox     *combobox,
 	case 1: tmp.cable_model = CABLE_GRY; break;
 	case 2: tmp.cable_model = CABLE_BLK; break;
 	case 3:	tmp.cable_model = CABLE_PAR; break;
-	case 4: tmp.cable_model = CABLE_SLV; break;	
-	case 5: tmp.cable_model = CABLE_USB; break;	
+	case 4: tmp.cable_model = CABLE_SLV; break;
+	case 5: tmp.cable_model = CABLE_USB; break;
 	case 6: tmp.cable_model = CABLE_VTI; break;
 	case 7: tmp.cable_model = CABLE_TIE; break;
 	case 8: tmp.cable_model = CABLE_DEV; break;

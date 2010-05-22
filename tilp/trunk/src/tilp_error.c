@@ -27,7 +27,6 @@
 
 #include "tilp_core.h"
 
-extern int working_mode;
 static GList *stack = NULL;
 
 /*

@@ -57,17 +57,15 @@
 
 #include "support.h"
 #include "filesel.h"
-//#include "tilp_struct.h"
 
 static int fs_type = 2;
 
 /* Single file selectors */
 
 static gchar *fname = NULL;
-static gint action = 0;
 
 // GTK >= 2.4
-static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+static const gchar* create_fsel_2(const gchar *dirname, const gchar *filename, const gchar *ext, gboolean save)
 {
 	GtkWidget *dialog;
 	GtkFileFilter *filter;
@@ -124,7 +122,7 @@ static const gchar* create_fsel_2(gchar *dirname, gchar *filename, gchar *ext, g
 }
 
 // WIN32
-static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+static const gchar* create_fsel_3(const gchar *dirname, const gchar *filename, const gchar *ext, gboolean save)
 {
 #ifdef WIN32
 	OPENFILENAME_MAYALIAS o;
@@ -243,7 +241,7 @@ static const gchar* create_fsel_3(gchar *dirname, gchar *filename, gchar *ext, g
 }
 
 // KDE
-static const gchar* create_fsel_4(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+static const gchar* create_fsel_4(const gchar *dirname, const gchar *filename, const gchar *ext, gboolean save)
 {
 #if WITH_KDE
 	gchar *p;
@@ -269,7 +267,7 @@ static const gchar* create_fsel_4(gchar *dirname, gchar *filename, gchar *ext, g
 }
 
 // Front-end
-const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean save)
+const gchar *create_fsel(const gchar *dirname, const gchar *filename, const gchar *ext, gboolean save)
 {
 #ifndef __WIN32__
 	if(fs_type == 2)
@@ -304,10 +302,9 @@ const gchar *create_fsel(gchar *dirname, gchar *filename, gchar *ext, gboolean s
 /* Multiple files selectors */
 
 static gchar** filenames = NULL;
-static gint actions = 0;
 
 // GTK >= 2.4
-static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
+static gchar** create_fsels_2(const gchar *dirname, const gchar *filename, const gchar *ext)
 {
 	GtkWidget *dialog;
 	GtkFileFilter *filter;
@@ -376,7 +373,7 @@ static gchar** create_fsels_2(gchar *dirname, gchar *filename, gchar *ext)
 }
 
 // WIN32
-static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
+static gchar** create_fsels_3(const gchar *dirname, const gchar *filename, const gchar *ext)
 {
 #ifdef WIN32
 	OPENFILENAME_MAYALIAS o;
@@ -517,7 +514,7 @@ static gchar** create_fsels_3(gchar *dirname, gchar *filename, gchar *ext)
 	return NULL;
 }
 
-static gchar** create_fsels_4(gchar *dirname, gchar *filename, gchar *ext)
+static gchar** create_fsels_4(const gchar *dirname, const gchar *filename, const gchar *ext)
 {
 #if WITH_KDE
 	gchar *p;
@@ -533,7 +530,7 @@ static gchar** create_fsels_4(gchar *dirname, gchar *filename, gchar *ext)
 }
 
 // Front-end
-gchar** create_fsels(gchar *dirname, gchar *filename, gchar *ext)
+gchar** create_fsels(const gchar *dirname, const gchar *filename, const gchar *ext)
 {
 #ifndef __WIN32__
 	if(fs_type == 2)

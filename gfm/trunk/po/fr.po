@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.0.4\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2010-04-28 14:36+0200\n"
+"POT-Creation-Date: 2010-05-20 21:05+0200\n"
 "PO-Revision-Date: 2007-06-27 13:21+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -85,11 +85,11 @@ msgstr "%i Ko"
 msgid "%i MB"
 msgstr "%i Mo"
 
-#: src/filesel.c:259
+#: src/filesel.c:257
 msgid "Save file"
 msgstr "Sauver fichier"
 
-#: src/filesel.c:262 src/filesel.c:527
+#: src/filesel.c:260 src/filesel.c:524
 msgid "Open file"
 msgstr "Ouvrir fichier"
 

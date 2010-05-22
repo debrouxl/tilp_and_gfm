@@ -37,16 +37,16 @@
 
 #include "paths.h"
 
-// Lets setup some of the paths that are definate
+// Let's setup some of the paths that are defined
 GFMInstPaths inst_paths =
 {
-    "",
-    "\\help",
-    "\\pixmaps",
-    "\\glade",
-    NULL,
-    NULL,
-    "\\locale",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
 };
 
 /* GFM Installation Paths Initialization */

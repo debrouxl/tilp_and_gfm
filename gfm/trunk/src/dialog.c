@@ -93,7 +93,7 @@ int msgbox_two(int type, const char *message)
     GladeXML *xml;
     GtkWidget *widget, *data;
     int choice, ret;
-    gchar *image, *cancel_button, *ok_button;
+    const gchar *image, *cancel_button, *ok_button;
     
     // Load the Two Button Dialog from dialogs.glade
     xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog2", NULL);

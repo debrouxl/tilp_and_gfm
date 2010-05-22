@@ -37,7 +37,14 @@
 
 TilpInstPaths inst_paths = 
 {
-	"", "\\locale", "\\manpages", "\\help", "\\pixmaps"
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL
 };
 
 /*

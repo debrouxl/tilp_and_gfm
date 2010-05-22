@@ -24,7 +24,6 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "gstruct.h"
 #include "support.h"
 #include "labels.h"
 #include "screenshot.h"
@@ -127,7 +126,6 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 	g_list_free(list);
 }
 
-void ctree_refresh(void);
 static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
 {
 	int col = column2index(user_data, column);
