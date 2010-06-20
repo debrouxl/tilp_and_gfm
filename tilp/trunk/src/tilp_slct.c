@@ -138,7 +138,7 @@ void tilp_local_selection_add(const char* filename)
 		local.selection2 = g_list_prepend(local.selection2, fe);
 
 	else if(tifiles_file_is_backup(fe->name))
-		local.selection4 = g_list_prepend(local.selection4, fe);	
+		local.selection4 = g_list_prepend(local.selection4, fe);
 
 	else if(tifiles_file_is_tigroup(fe->name))
 		local.selection5 = g_list_prepend(local.selection5, fe);
@@ -181,7 +181,7 @@ void tilp_local_contents_load(void)
 				
 				for(p = contents1; *p; p++)
 				{
-					FileEntry *fe1 = g_memdup(ptr->data, sizeof(FileEntry));					
+					FileEntry *fe1 = g_memdup(ptr->data, sizeof(FileEntry));
 					fe1->name = g_memdup(fe1->name, strlen(fe1->name)+1);
 
 					fe1->content1 = *p;
@@ -193,7 +193,7 @@ void tilp_local_contents_load(void)
 				
 				for(q = contents2; *q; q++)
 				{
-					FileEntry *fe3 = g_memdup(ptr->data, sizeof(FileEntry));					
+					FileEntry *fe3 = g_memdup(ptr->data, sizeof(FileEntry));
 					fe3->name = g_memdup(fe3->name, strlen(fe3->name)+1);
 
 					fe3->content2 = *q;
@@ -204,7 +204,7 @@ void tilp_local_contents_load(void)
 						strcpy(ve.name, (*q)->name);
 						ve.type = (*q)->data_type;
 						fe3->name = tifiles_build_filename(options.calc_model, &ve);
-					}*/					
+					}*/
 				
 					local.selection3 = g_list_append(local.selection3, fe3);
 				}
@@ -260,7 +260,7 @@ void tilp_local_contents_load(void)
 
 				for(p = dst; *p; p++)
 				{
-					FileEntry *fe = g_memdup(ptr->data, sizeof(FileEntry));					
+					FileEntry *fe = g_memdup(ptr->data, sizeof(FileEntry));
 
 					fe->content1 = *p;
 				
@@ -365,7 +365,7 @@ void tilp_local_change_folder(const char *target)
 		int i;
 
 		for(i = 0; i < c->num_entries; i++)
-			strcpy(((c->entries)[i])->folder, target);	
+			strcpy(((c->entries)[i])->folder, target);
 	}
 }
 

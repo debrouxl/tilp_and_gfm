@@ -257,6 +257,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
+	const char *dst_filename2;
 	char filename[128];
 
 	if (tilp_calc_rom_dump())
@@ -266,20 +267,25 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 	sprintf(filename, "dump%s", tifiles_model_to_string(options.calc_model));
 	dst_filename = create_fsel(local.cwdir, filename, "*.rom", TRUE);
-	if(!dst_filename)
+	if (!dst_filename)
 	{
 		g_free(src_filename);
 		return;
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", "rom", NULL);
+		dst_filename2 = g_strconcat(dst_filename, ".", "rom", NULL);
 	else
-		dst_filename = g_strdup(dst_filename);
-	
-	tilp_file_move_with_check(src_filename, dst_filename);
+		dst_filename2 = g_strdup(dst_filename);
+	g_free(dst_filename);
+
+	if (dst_filename2)
+	{
+		tilp_file_move_with_check(src_filename, dst_filename2);
+	}
 	g_free(src_filename);
-	
+	g_free(dst_filename2);
+
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
@@ -307,6 +313,7 @@ GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
+	const char *dst_filename2;
 	char *ext;
 
 	if (tilp_calc_recv_backup() != 0)
@@ -318,20 +325,25 @@ GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 	dst_filename = create_fsel(local.cwdir, "backup", ext, TRUE);
 	g_free(ext);
 
-	if(!dst_filename)
+	if (!dst_filename)
 	{
 		g_free(src_filename);
 		return;
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(options.calc_model), NULL);
+		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(options.calc_model), NULL);
 	else
-		dst_filename = g_strdup(dst_filename);
+		dst_filename2 = g_strdup(dst_filename);
+	g_free(dst_filename);
 	
-	tilp_file_move_with_check(src_filename, dst_filename);
+	if (dst_filename2)
+	{
+		tilp_file_move_with_check(src_filename, dst_filename2);
+	}
 	g_free(src_filename);
-	
+	g_free(dst_filename2);
+
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
@@ -380,6 +392,7 @@ static int save_group(void)
 {
 	char* src_filename;
 	const char *dst_filename;
+	const char *dst_filename2;
 	char *ext;
 
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
@@ -389,20 +402,25 @@ static int save_group(void)
 	dst_filename = create_fsel(local.cwdir, "group", ext, TRUE);
 	g_free(ext);
 
-	if(!dst_filename)
+	if (!dst_filename)
 	{
 		g_free(src_filename);
 		return -1;
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".", tifiles_fext_of_group(options.calc_model), NULL);
+		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_group(options.calc_model), NULL);
 	else
-		dst_filename = g_strdup(dst_filename);
-	
-	tilp_file_move_with_check(src_filename, dst_filename);
+		dst_filename2 = g_strdup(dst_filename);
+	g_free(dst_filename);
+
+	if (dst_filename2)
+	{
+		tilp_file_move_with_check(src_filename, dst_filename2);
+	}
 	g_free(src_filename);
-	
+	g_free(dst_filename2);
+
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
@@ -561,6 +579,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
+	const char *dst_filename2;
 	int ret;
 	int mode = TIG_ALL;
 
@@ -581,12 +600,17 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	}
 
 	if (!strcmp(tifiles_fext_get(dst_filename), ""))
-		dst_filename = g_strconcat(dst_filename, ".tig", NULL);
+		dst_filename2 = g_strconcat(dst_filename, ".tig", NULL);
 	else
-		dst_filename = g_strdup(dst_filename);
-	
-	tilp_file_move_with_check(src_filename, dst_filename);
+		dst_filename2 = g_strdup(dst_filename);
+	g_free(dst_filename);
+
+	if (dst_filename2)
+	{
+		tilp_file_move_with_check(src_filename, dst_filename2);
+	}
 	g_free(src_filename);
+	g_free(dst_filename2);
 	
 	tilp_dirlist_local();
 	clist_refresh();

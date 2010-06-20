@@ -259,7 +259,7 @@ GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
 #endif
 	if(!tilp_file_exist(app_path))
 	{
-		msg_box1(_("Error"), _("The Group File Manager seems not be installed on your system.\nDownload it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP user's manual for more information."));
+		msg_box1(_("Error"), _("The Group File Manager doesn't seem to be installed on your system.\nDownload it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP user manual for more information."));
 		return;
 	}
 

@@ -186,7 +186,7 @@ int tilp_file_exist(const char* filename)
 int tilp_file_check(const char *src, char **dst)
 {
 	int ret;
-	char buffer[256];
+	char buffer[2048];
 	char *dirname;
 	*dst = NULL;
 
@@ -711,5 +711,3 @@ void tilp_file_sort_by_attrib(void)
 	if(!options.local_sort_order)
 		local.dirlist = g_list_reverse(local.dirlist);
 }
-
-

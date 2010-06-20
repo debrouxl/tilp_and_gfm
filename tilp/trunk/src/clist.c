@@ -326,7 +326,7 @@ void clist_refresh(void)
 		} 
 		else 
 		{
-			char icon_name[256];
+			char icon_name[2048];
 
 			strcpy(icon_name, tifiles_file_get_icon(fe->name));
 

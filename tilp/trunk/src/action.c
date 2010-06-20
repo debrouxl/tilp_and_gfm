@@ -186,11 +186,11 @@ gint display_action_dbox(gchar *target)
 
 		// we have now 1 VarEntry per FileContent
 		{
-			VarEntry *v = c->entries[0];			
+			VarEntry *v = c->entries[0];
 			VarEntry *w;
 			gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 			char *trans;
-			char full_name[19];
+			char full_name[260];
 			int appv = (options.calc_model == CALC_TI83P || options.calc_model != CALC_TI84P) && (v->type == TI83p_APPV);
 
 			// modify attr or folder if target is specified
@@ -232,8 +232,8 @@ gint display_action_dbox(gchar *target)
 					   COLUMN_ATTR, row_text[1],
 					   COLUMN_FILE, row_text[2],
 					   COLUMN_ACTION, row_text[3],
-					   COLUMN_DATA_F, (gpointer)f, 
-					   COLUMN_DATA_V, (gpointer)v, 
+					   COLUMN_DATA_F, (gpointer)f,
+					   COLUMN_DATA_V, (gpointer)v,
 					   -1);
 			g_strfreev(row_text);
 
@@ -323,7 +323,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 		gchar *new_name = NULL;
 		gchar **row_text = g_malloc0(5 * sizeof(gchar *));
 		char *trans;
-		char full_name[19];
+		char full_name[260];
 
 		gtk_tree_model_get(model, &iter, 
 				COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,

@@ -53,9 +53,9 @@ static void refresh_pbar1(void)
 {
 	gchar buffer[32];
 	gfloat rate, avg;
-  
+
 	if (pbar_wnd.pbar1 != NULL) 
-    {
+	{
 		if(gtk_update.cnt1 > gtk_update.max1)
 			gtk_update.cnt1 = gtk_update.max1;
 
@@ -77,7 +77,7 @@ static void refresh_pbar1(void)
 static void refresh_pbar2(void)
 {
 	if (pbar_wnd.pbar2 != NULL) 
-    {
+	{
 		if(gtk_update.cnt2 > gtk_update.max2)
 			gtk_update.cnt2 = gtk_update.max2;
 
@@ -86,17 +86,17 @@ static void refresh_pbar2(void)
 				(gdouble)gtk_update.cnt2 / gtk_update.max2);
 
 		GTK_REFRESH();
-    }
+	}
 }
 
 static void refresh_pbar3(void)
 {
+	gchar buffer[32];
+
 	if(pbar_wnd.label_part != NULL)
 	{
-		gchar *str;
-
-		str = g_strdup_printf("%i/%i: ", gtk_update.cnt3, gtk_update.max3);
-		gtk_label_set_text(GTK_LABEL(pbar_wnd.label_part), str);
+		g_snprintf(buffer, 32, "%i/%i: ", gtk_update.cnt3, gtk_update.max3);
+		gtk_label_set_text(GTK_LABEL(pbar_wnd.label_part), buffer);
 
 		GTK_REFRESH();
 	}
@@ -180,6 +180,6 @@ static gfloat filter_compute(gfloat input)
 
 	avg -= min;
 	avg -= max;
-	
+
 	return (avg / 6);
 }
