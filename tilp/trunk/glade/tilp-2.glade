@@ -506,7 +506,7 @@
                     <child>
                       <widget class="GtkToolButton" id="button6">
                         <property name="has_tooltip">True</property>
-                        <property name="tooltip" translatable="yes">Receive variables from non-silent calculators.</property>
+                        <property name="tooltip" translatable="yes">Send variables to non-silent calculators.</property>
                         <property name="label" translatable="yes">Send</property>
                         <property name="use_underline">True</property>
                         <property name="stock_id">gtk-go-up</property>

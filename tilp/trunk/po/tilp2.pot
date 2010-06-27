@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2010-06-20 14:13+0200\n"
+"POT-Creation-Date: 2010-06-27 14:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1453,12 +1453,16 @@ msgstr ""
 msgid "Restore the calculator content."
 msgstr ""
 
-#: glade/tilp-2.str:16 glade/tilp-2.str:18
+#: glade/tilp-2.str:16
 msgid "Receive variables from non-silent calculators."
 msgstr ""
 
 #: glade/tilp-2.str:17
 msgid "Receive"
+msgstr ""
+
+#: glade/tilp-2.str:18
+msgid "Send variables to non-silent calculators."
 msgstr ""
 
 #: glade/tilp-2.str:19
