@@ -301,6 +301,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
+ACLOCAL_AMFLAGS = -I m4
 
 # subdirectories to scan
 SUBDIRS = build glade help icons pixmaps po src $(am__append_1)

@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+ACLOCAL_AMFLAGS=-I m4
+
 # subdirectories to scan
 SUBDIRS = build glade help icons pixmaps po src
 

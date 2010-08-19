@@ -7,6 +7,7 @@ AC_INIT(TiLP2, 1.15, [tilp-users@lists.sourceforge.net])
 
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_PREFIX_DEFAULT(/usr/local)
 
