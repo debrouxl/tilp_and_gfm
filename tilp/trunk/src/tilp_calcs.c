@@ -292,9 +292,12 @@ int tilp_calc_rom_dump(void)
 
 	gif->msg_box1(_("Information"), _("ROM contents is copyrighted by Texas Instruments. You are not allowed to copy and/or distribute any ROM image! For more informations, see the License Agreement provided with any FLASH OS upgrade."));
 
-	ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
-	if(ret != BUTTON1)
-		return -1;
+	if (options.calc_model != CALC_NSPIRE)
+	{
+		ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
+		if(ret != BUTTON1)
+			return -1;
+	}
 
 	/* Transfer ROM dumper */
 	gif->create_pbar_(FNCT_DUMP_ROM, _("Dumping ROM"));
