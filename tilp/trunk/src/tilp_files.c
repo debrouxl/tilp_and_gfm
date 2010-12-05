@@ -490,10 +490,10 @@ const char *tilp_file_get_size(FileEntry * fi)
 	if (fi->size < 1024)
 		g_snprintf(buffer, 32, "  %i", (int) fi->size);
 
-	else if ((fi->size > 1024) && (fi->size < 1024 * 1024))
+	else if ((fi->size >= 1024) && (fi->size < 1024 * 1024))
 		g_snprintf(buffer, 32, "%i KB", (int) fi->size >> 10);
 
-	else if (fi->size > 1024 * 1024)
+	else if (fi->size >= 1024 * 1024)
 		g_snprintf(buffer, 32, "%i MB", (int) fi->size >> 20);
 
 	return buffer;

@@ -235,10 +235,10 @@ void tilp_var_get_size(VarEntry* vi, char **buf)
 	if (vi->size < 1024)
 		sprintf(buffer, "  %i", (int) vi->size);
 
-	else if ((vi->size > 1024) && (vi->size < 1024 * 1024))
+	else if ((vi->size >= 1024) && (vi->size < 1024 * 1024))
 		sprintf(buffer, "%i KB", (int) vi->size >> 10);
 
-	else if (vi->size > 1024 * 1024)
+	else if (vi->size >= 1024 * 1024)
 		sprintf(buffer, "%i MB", (int) vi->size >> 20);
 
 	*buf = g_strdup(buffer);
