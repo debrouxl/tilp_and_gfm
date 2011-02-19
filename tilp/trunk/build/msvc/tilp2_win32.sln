@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tilp2_win32", "tilp2_win32.vcproj", "{2BDA56AD-E9BC-4A0B-9AB5-7BA4C9165DB6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ticables2", "..\..\..\ticables2\build\msvc\ticables2.vcproj", "{000D62B2-DF70-44EB-936C-CFEF0F33192D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ticalcs2", "..\..\..\ticalcs2\build\msvc\ticalcs2.vcproj", "{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BDA56AD-E9BC-4A0B-9AB5-7BA4C9165DB6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2BDA56AD-E9BC-4A0B-9AB5-7BA4C9165DB6}.Debug|Win32.Build.0 = Debug|Win32
+		{2BDA56AD-E9BC-4A0B-9AB5-7BA4C9165DB6}.Release|Win32.ActiveCfg = Release|Win32
+		{2BDA56AD-E9BC-4A0B-9AB5-7BA4C9165DB6}.Release|Win32.Build.0 = Release|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Debug|Win32.Build.0 = Debug|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Release|Win32.ActiveCfg = Release|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Release|Win32.Build.0 = Release|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Debug|Win32.Build.0 = Debug|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Release|Win32.ActiveCfg = Release|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
