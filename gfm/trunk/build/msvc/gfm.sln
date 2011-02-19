@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gfm", "gfm.vcproj", "{9FCF05A2-0078-4D7F-A44B-52C8CE42476F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E} = {0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gfm_console", "gfm_console.vcproj", "{AE619E93-A40A-4110-98BA-7EB2BD0BD24B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E} = {0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}
+		{B5B5319A-2398-4547-8FE4-864123C69A7A} = {B5B5319A-2398-4547-8FE4-864123C69A7A}
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91} = {2FF4D202-3072-4C33-ADAC-9D0C57C47C91}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gfm_win32", "gfm_win32.vcproj", "{0FB9BA0F-B489-4959-A778-D53D1645C4E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E} = {0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}
+		{B5B5319A-2398-4547-8FE4-864123C69A7A} = {B5B5319A-2398-4547-8FE4-864123C69A7A}
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91} = {2FF4D202-3072-4C33-ADAC-9D0C57C47C91}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ticables2", "..\..\..\ticables2\build\msvc\ticables2.vcproj", "{000D62B2-DF70-44EB-936C-CFEF0F33192D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ticalcs2", "..\..\..\ticalcs2\build\msvc\ticalcs2.vcproj", "{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E} = {0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}
+		{B5B5319A-2398-4547-8FE4-864123C69A7A} = {B5B5319A-2398-4547-8FE4-864123C69A7A}
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D} = {000D62B2-DF70-44EB-936C-CFEF0F33192D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ticonv", "..\..\..\ticonv\build\msvc\ticonv.vcproj", "{B5B5319A-2398-4547-8FE4-864123C69A7A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tifiles2", "..\..\..\tifiles2\build\msvc\tifiles2.vcproj", "{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5B5319A-2398-4547-8FE4-864123C69A7A} = {B5B5319A-2398-4547-8FE4-864123C69A7A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FCF05A2-0078-4D7F-A44B-52C8CE42476F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FCF05A2-0078-4D7F-A44B-52C8CE42476F}.Debug|Win32.Build.0 = Debug|Win32
+		{9FCF05A2-0078-4D7F-A44B-52C8CE42476F}.Release|Win32.ActiveCfg = Release|Win32
+		{9FCF05A2-0078-4D7F-A44B-52C8CE42476F}.Release|Win32.Build.0 = Release|Win32
+		{AE619E93-A40A-4110-98BA-7EB2BD0BD24B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AE619E93-A40A-4110-98BA-7EB2BD0BD24B}.Debug|Win32.Build.0 = Debug|Win32
+		{AE619E93-A40A-4110-98BA-7EB2BD0BD24B}.Release|Win32.ActiveCfg = Release|Win32
+		{AE619E93-A40A-4110-98BA-7EB2BD0BD24B}.Release|Win32.Build.0 = Release|Win32
+		{0FB9BA0F-B489-4959-A778-D53D1645C4E8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0FB9BA0F-B489-4959-A778-D53D1645C4E8}.Debug|Win32.Build.0 = Debug|Win32
+		{0FB9BA0F-B489-4959-A778-D53D1645C4E8}.Release|Win32.ActiveCfg = Release|Win32
+		{0FB9BA0F-B489-4959-A778-D53D1645C4E8}.Release|Win32.Build.0 = Release|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Debug|Win32.Build.0 = Debug|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Release|Win32.ActiveCfg = Release|Win32
+		{000D62B2-DF70-44EB-936C-CFEF0F33192D}.Release|Win32.Build.0 = Release|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Debug|Win32.Build.0 = Debug|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Release|Win32.ActiveCfg = Release|Win32
+		{2FF4D202-3072-4C33-ADAC-9D0C57C47C91}.Release|Win32.Build.0 = Release|Win32
+		{B5B5319A-2398-4547-8FE4-864123C69A7A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B5B5319A-2398-4547-8FE4-864123C69A7A}.Debug|Win32.Build.0 = Debug|Win32
+		{B5B5319A-2398-4547-8FE4-864123C69A7A}.Release|Win32.ActiveCfg = Release|Win32
+		{B5B5319A-2398-4547-8FE4-864123C69A7A}.Release|Win32.Build.0 = Release|Win32
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}.Debug|Win32.Build.0 = Debug|Win32
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}.Release|Win32.ActiveCfg = Release|Win32
+		{0D4D2C20-8CB8-4ACF-8B5A-F3FDB9B38D1E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
