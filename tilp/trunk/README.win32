@@ -8,8 +8,8 @@
 REQUIREMENTS
 ------------
 
- - a Windows computer: Windows 2000, XP, Vista 7 (32-bit or 64-bit)
- - the GTK+ 2.12 libraries
+ - a Windows computer: Windows 2000, XP, Vista, 7 (32-bit or 64-bit)
+ - the GTK+ 2.12 libraries with libglade
     Location: <http://downloads.sourceforge.net/gladewin32/gtk-2.12.9-win32-2.exe>
     => they can be automatically downloaded & installed by the installer.
 
@@ -22,8 +22,9 @@ REQUIREMENTS
 NOTES
 -----
 
-0°) It's strongly recommended you uninstall TI-Connect(tm) / Computer Link(tm) before
-installing this software because the USB drivers are not compatible.
+0°) It's recommended you uninstall TI-Connect(tm) / TI-Nspire Computer Link
+Software(tm), or at least deactivate their drivers, before installing TILP, because
+the USB drivers are not compatible.
 
 1°) This setup may download & install some extra libraries (GTK+ 2.12). 
 
@@ -57,9 +58,9 @@ install it.
 
 Please note these drivers are not compatible with Ti-Connnect(tm).
 
-5°) 64-bit ("x64") Vista and 7 default to refuse unsigned drivers - and TiLP
-uses libusb, which Microsoft has not signed. Therefore, you'll have to somehow
-disable or work around the driver signature enforcement:
+5°) 64-bit ("x64") Vista and 7 default to refuse unsigned drivers - and TILP,
+through libticables2, uses libusb, which Microsoft has not signed. Therefore,
+you'll have to somehow disable or work around the driver signature enforcement:
 - you can, EACH time you boot the computer, enter the Advanced Boot Options
 menu, by pressing "F8" and selecting "Disable Driver Signature Enforcement".
 See http://www.sevenforums.com/tutorials/666-advanced-boot-options.html for

@@ -10,10 +10,11 @@ Development platform: FreeBSD 4.8-STABLE, XFree86 4.3.0, GTK 2.2.1
 REQUIREMENTS
 ------------
 
+ - A C compiler (gcc, clang)
  - X11 (X Window System)
- - GTK 2.0.0 or higher (http://www.gtk.org/)
- - the ticables2, tifiles2 and ticalcs2 libraries (http://tilp.info/)
- - libusb if you want to use the SilverLink cable (TI-GRAPH LINK USB).
+ - GTK 2.x (http://www.gtk.org/) with libglade
+ - the ticonv, ticables2, tifiles2 and ticalcs2 libraries (http://tilp.info/)
+ - the libusb library to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
 
 
 INSTALLATION

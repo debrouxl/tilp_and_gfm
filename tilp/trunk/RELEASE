@@ -32,7 +32,8 @@ Known bugs:
 -----------
 
 	- [nspire] need to restart TiLP if connection fails
-	- [nspire] Nspire OS 2.x not supported for now
+	- [nspire] receiving files from Nspire OS >= 1.7 not supported for now, TI changed something in the protocol
+	- [nspire] on Windows, connection losses can happen, but unplugging and replugging the calculator seems to fix the problem
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
 		* w/ kernel module: you don't have the issue stated below but replugging is

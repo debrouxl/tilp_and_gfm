@@ -9,26 +9,27 @@
 DESCRIPTION
 -----------
 
-Development platform: GNU/Linux Debian Lenny, 2.6.x kernel, X.Org 7.3, GTK+ 2.12.
+Development platform: GNU/Linux Debian Lenny, 2.6.x kernel, X.Org 7.3, GTK+ 2.12 & 2.18.
 
 
 REQUIREMENTS
 ------------
 
- - A UNIX computer or workstation and a C compiler (gcc) for the Linux version
+ - A UNIX computer or workstation and a C compiler (gcc, clang)
  - X11 (X Window System)
- - GTK+ 2.x (http://www.gtk.org)
+ - GTK+ 2.x (http://www.gtk.org) with libglade
  - the ticonv, tifiles2, ticables2 and ticalcs2 libraries
- - the libusb library to use the SilverLink cable (TI-GRAPH LINK USB).
+ - the libusb library to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
 
 
 INSTALLATION
 ------------
 
-At first, you must have the ticables and ticalcs libraries installed. See
-the documentation of these libraries for the installation procedure.
+At first, you must have the libticonv, libtifiles2, libticables2 and
+libticalcs2 libraries installed. See the documentation of these libraries
+for the installation procedure.
 
-Untar the tilp-X.XX.tar.gz archive (tar -xvzf), change directory to 
+Untar the tilp-X.XX.tar.bz2 archive (tar -xvjf), change directory to 
 tilp directory.
 
 Type "./configure" or "./configure --enable-exit-homedir".
@@ -37,6 +38,9 @@ then choose the second option. But, for security reasons, you should prefer the
 normal method.
 
 Type "make", "make install" (requires the root privileges).
+
+If you want to install it in a prefix different from /usr/local, use
+'./configure --prefix=...' (e.g. $HOME).
 
 
 USAGE
