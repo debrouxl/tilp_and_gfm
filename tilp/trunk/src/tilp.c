@@ -49,7 +49,7 @@
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
-#endif				/* __WIN32__ */
+#endif /* __WIN32__ */
 
 GladeXML *xml = NULL;
 GtkWidget *main_wnd  = NULL;
@@ -72,7 +72,7 @@ void show_right_view(int view)
 	else
 	{
 		data = glade_xml_get_widget(xml, "vbox2");
-		gtk_widget_hide_all(data);
+		gtk_widget_hide(data);
 
 		//gtk_window_resize(dbox, options.xsize, options.ysize);
 	}
@@ -161,10 +161,7 @@ GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 	gtk_main_quit();
 }
 
-GLADE_CB gboolean
-on_tilp_dbox_delete_event              (GtkWidget       *widget,
-                                        GdkEvent         *event,
-                                        gpointer          user_data)
+GLADE_CB gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* event, gpointer user_data)
 {
 	if(options.full_gui)
 		gtk_window_get_size(GTK_WINDOW(widget), &options.wnd_x_size1, &options.wnd_y_size1);
@@ -227,12 +224,10 @@ GLADE_CB void on_tilp_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_
 	go_to_bookmark("http://tilp.info");
 } 
 
-GLADE_CB void
-on_bug_report1_activate                (GtkMenuItem     *menuitem, gpointer         user_data)
+GLADE_CB void on_bug_report1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GtkWidget *dialog;
-	const gchar *message =
-    _("There are several ways to get in touch if you encounter a problem with TiLP or if you have questions, suggestions, bug reports, etc:\n- if you have general questions or problems, please consider the users' mailing list first (mailto:tilp-users@list.sf.net).\n- if you want to discuss about TiLP, you can use the TiLP forum (http://sourceforge.net/forum/?group_id=18378).\n- for bug reports, use the 'Bug Tracking System' (http://sourceforge.net/tracker/?group_id=18378).\n\nBefore e-mailing the TiLP team, make sure you have read the FAQ....");
+	const gchar *message = _("There are several ways to get in touch if you encounter a problem with TiLP or if you have questions, suggestions, bug reports, etc:\n- if you have general questions or problems, please consider the users' mailing list first (mailto:tilp-users@list.sf.net).\n- if you want to discuss about TiLP, you can use the TiLP forum (http://sourceforge.net/forum/?group_id=18378).\n- for bug reports, use the 'Bug Tracking System' (http://sourceforge.net/tracker/?group_id=18378).\n\nBefore e-mailing the TiLP team, make sure you have read the FAQ....");
   
 	dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL,
 				  GTK_MESSAGE_INFO, GTK_BUTTONS_CLOSE,
@@ -262,7 +257,7 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 	if (tilp_calc_rom_dump())
 		return;
-#if 1
+
 	src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_ROMDUMP, NULL);
 
 	sprintf(filename, "dump%s", tifiles_model_to_string(options.calc_model));
@@ -289,7 +284,6 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
-#endif
 }
 
 // Ready
@@ -357,7 +351,6 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 		on_tilp_button7_clicked(button, user_data);
 	else
 		on_tilp_button3b_clicked(button, user_data);
-		
 }
 
 // Restore
@@ -375,8 +368,7 @@ GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 	{
 		if(tifiles_file_is_tigroup(filename))
 		{
-			int ret = backup_box(_("Restore"), 
-					     _("Data to restore:"), &mode);
+			int ret = backup_box(_("Restore"), _("Data to restore:"), &mode);
 			if(ret != BUTTON1)
 				return;
 			tilp_calc_send_tigroup(filename, mode | TIG_BACKUP);
@@ -564,12 +556,12 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 
 	if(filenames == NULL)
 		return;
-	
+
 	for(ptr = filenames; *ptr != NULL; ptr++)
 		tilp_local_selection_add(*ptr);
 
 	g_strfreev(filenames);
-	
+
 	on_tilp_send("");
 	tilp_local_selection_destroy();
 }
@@ -611,7 +603,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	}
 	g_free(src_filename);
 	g_free(dst_filename2);
-	
+
 	tilp_dirlist_local();
 	clist_refresh();
 	labels_refresh();
@@ -698,21 +690,17 @@ GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
 {
 	GtkWidget *menu = display_help_menu();
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL,
-				       0, gtk_get_current_event_time ());
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
 }
 
 // take screenshot
 GLADE_CB void on_tilp_menuitem7_clicked(GtkButton* button, gpointer user_data)
 {
 	display_screenshot_dbox();
-
 }
 
 // change folder
-GLADE_CB void
-on_button14_clicked                    (GtkButton       *button,
-                                        gpointer         user_data)
+GLADE_CB void on_button14_clicked(GtkButton* button, gpointer user_data)
 {
 	gchar *folder;
 
@@ -736,14 +724,12 @@ on_button14_clicked                    (GtkButton       *button,
 GLADE_CB void on_tilp_menuitem9_clicked(GtkButton* button, gpointer user_data)
 {
 	display_clock_dbox();
-
 }
 
 //get id-list
 GLADE_CB void on_tilp_menuitem10_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_calc_idlist(0);
-
 }
 
 //get calc info
@@ -751,7 +737,6 @@ GLADE_CB void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
 {
 	CalcInfos infos;
 	tilp_calc_get_infos(&infos);
-
 }
 
 
@@ -759,6 +744,4 @@ GLADE_CB void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
 GLADE_CB void on_tilp_viewmenu_active(GtkButton* button, gpointer user_data)
 {
 
-
 }
-
