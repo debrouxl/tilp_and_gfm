@@ -24,8 +24,9 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fix display of files whose size is exactly 1 KB or 1 MB.
 	- reconfigure under Debian Squeeze with Autoconf 2.67 and Automake 1.11.1.
 	- in the building process of the manpage cleaner, use $(CC) instead of gcc. Extracted from MacPorts.
-	- add VS 2008 project/solution files
+	- add VS 2008 project/solution files.
 	- documentation and comment updates.
+	- GTK+ 2.24 compatibility fix.
 
 - 08/04/2010, version 1.14 (1.3.1, 1.1.5, 1.1.3, 1.1.1): debrouxl
 	- minor documentation updates.
