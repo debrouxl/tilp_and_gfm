@@ -9,7 +9,7 @@
 DESCRIPTION
 -----------
 
-Development platform: GNU/Linux Debian Lenny, 2.6.x kernel, X.Org 7.3, GTK+ 2.12 & 2.18.
+Development platform: GNU/Linux Debian Lenny & Squeeze, 2.6.x kernel, X.Org 7.3 & 7.5, GTK+ 2.12 & 2.20.
 
 
 REQUIREMENTS
@@ -18,14 +18,21 @@ REQUIREMENTS
  - A UNIX computer or workstation and a C compiler (gcc, clang)
  - X11 (X Window System)
  - GTK+ 2.x (http://www.gtk.org) with libglade
- - the ticonv, tifiles2, ticables2 and ticalcs2 libraries
- - the libusb library to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
+ - the ticonv, tifiles2, ticables2 and ticalcs2 libraries (http://tilp.info/)
+ - the libusb library (version 0.1 preferred, there's an experimental support for
+   1.0) to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
 
 
 INSTALLATION
 ------------
 
-At first, you must have the libticonv, libtifiles2, libticables2 and
+Automatic installation: use the following script (which contains
+information about the packages you need for building them):
+http://lpg.ticalc.org/prj_tilp/download/install_tilp.sh .
+It will build all of libticonv, libtifiles2, libticables2, libticalcs2, gfm and tilp.
+
+
+Manual installation: you must have the libticonv, libtifiles2, libticables2 and
 libticalcs2 libraries installed. See the documentation of these libraries
 for the installation procedure.
 

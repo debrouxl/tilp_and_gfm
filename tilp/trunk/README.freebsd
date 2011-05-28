@@ -14,7 +14,8 @@ REQUIREMENTS
  - X11 (X Window System)
  - GTK 2.x (http://www.gtk.org/) with libglade
  - the ticonv, ticables2, tifiles2 and ticalcs2 libraries (http://tilp.info/)
- - the libusb library to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
+ - the libusb library (version 0.1 preferred, there's an experimental support for
+   1.0) to use the SilverLink (TI-GRAPH LINK USB) and DirectLink cables
 
 
 INSTALLATION

@@ -27,18 +27,23 @@ Note2: remote control is not supported by DirectLink yet.
 Supported calculators are: 
 	TI73, TI82, TI83, TI83+(SE), TI84+(SE), TI85, TI86, 
 	TI89, TI89 Titanium, TI92, TI92+ and V200,
-	NSpire (non-CAS).
+	NSpire (CAS and non-CAS).
 
 
 FEATURES
 --------
 
-Note: some features may depend on the OS version. Be sure to have the latest one !
+Note: some features may depend on the OS version.
+Be sure to have the latest OS version... except maybe on the Nspire, because newer
+OS versions tend to contain with unwanted changes (backwards incompatibilities
+in documents, anti-downgrade protections, fixes for vulnerabilities that allowed
+native code programs, etc.).
 
-NSpire:
+NSpire (CAS):
   - screen dump
   - directory list
-  - sending/receiving file
+  - sending/receiving/deleting file
+  - creating 
   - upgrading OS
   - version
 
