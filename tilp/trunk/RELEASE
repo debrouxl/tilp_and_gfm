@@ -3,7 +3,7 @@
 
 
 Old     version:  1.14  (2010/04/08)
-Current version:  1.15  (2010/xx/xx)
+Current version:  1.15  (2011/05/28)
 
 
 SubVersion (SVN) revision: $Id$
@@ -15,24 +15,40 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 New capabilities:
 -----------------
 
+	- tilp: improved UI, by Jon Sturm (Jonimus / TheStorm).
+	- tilp: use more native, themable icons.
+	- libticables: libusb 1.0 backend, for users of the many Linux distros which don't package libusb 1.0 proper anymore.
+	- libticalcs: OS 2.x and 3.x support, variable deletion, folder creation, folder deletion, OS 1.x dumping.
 
 
 Improvements:
 -------------
 
-
+	- libticables: cope with 84+(SE), 89T and Nspire (CAS) USB controller stacks, which want dummy reads or writes in some circumstances.
+	  Most of the causes of variables of peculiar sizes failing to transfer have been fixed.
+	- tilp: compatibility fixes for recent GTK+ versions.
+	- all: commit MSVC 2008 build files.
 
 Bug fixes:
 ----------
 
+Between others (see the Changelog files for complete lists):
 	- all: change encoding in .rc files.
+	- all: lots of fixes for compiler warnings, memory leaks, crasher bugs
+	- libticalcs: fix 86 ROM dumping.
+	- libticalcs: cope with "-1" delays sent by the 84+ when writing to Flash memory, which used to hang (almost) forever.
+	- libticalcs: Nspire ID retrieval.
+	- tilp: fix display of files whose size is exactly 1 KB or 1 MB.
+	- libticalcs, libtifiles: don't crash upon sub-folders of folders (Nspire OS 2.x and 3.x support them).
+	- libtifiles, libticables, libticalcs: turn abrupt program aborts such as assert() and exit() into tests + ti*_critical().
+	- libticalcs: fix a declaration after statement.
+	- libticalcs: cope with martian packets sent by Nspire OS >= 1.7 when replying to a session close packet.
 
 
 Known bugs:
 -----------
 
-	- [nspire] need to restart TiLP if connection fails
-	- [nspire] receiving files from Nspire OS >= 1.7 not supported for now, TI changed something in the protocol
+	- [nspire] sometimes need to restart TiLP if connection fails
 	- [nspire] on Windows, connection losses can happen, but unplugging and replugging the calculator seems to fix the problem
 	- [linux] Titanium DirectLink support works but:
 		* w/ libusb: you will have to replug link cable whenever you exit TiLP
