@@ -117,6 +117,7 @@ Source: "C:\lpg\tilp2\RELEASE"; DestDir: "{app}"; DestName: "Release.txt"; Flags
 
 ; Binaries
 Source: "C:\lpg\tilp2\build\msvc\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
+Source: "C:\lpg\tilp2\build\msvc\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -136,6 +137,7 @@ Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&
 Name: "{group}\USB driver installation"; Filename: "{app}\help\usb_driver.html";
 
 Name: "{userdesktop}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
+Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
