@@ -187,9 +187,9 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 	guchar *bytemap;
 	gint w, h;
 
-	if (screen_capture()) 
+	if (screen_capture())
 	{
-		screen_success = FALSE;	
+		screen_success = FALSE;
 		return;
 	} 
 	else
@@ -208,7 +208,32 @@ GLADE_CB void on_scdbox_button1_clicked(GtkButton * button,
 			bytemap = screen_bw_convert();
 	}
 	else
-		bytemap = screen_gs_convert();
+	{
+		// For Nspires, we have to determine the calc model...
+		CalcInfos infos;
+		if (ticalcs_calc_get_version(calc_handle, &infos))
+		{
+			screen_success = FALSE;
+			return;
+		}
+
+		if (infos.bits_per_pixel == 4)
+		{
+			// Nspire (CAS) Clickpad or Touchpad.
+			bytemap = screen_gs_convert();
+		}
+		else if (infos.bits_per_pixel == 16)
+		{
+			// Nspire (CAS) CX.
+			bytemap = screen_16bitcolor_convert();
+		}
+		else
+		{
+			tilp_critical(_("Unknown calculator model with %d bpp\n"), infos.bits_per_pixel);
+			screen_success = FALSE;
+			return;
+		}
+	}
 
 	pixbuf = gdk_pixbuf_new_from_data(bytemap, GDK_COLORSPACE_RGB, FALSE,
 				     8, w, h, 3 * w, destroy_pixbuf, NULL);

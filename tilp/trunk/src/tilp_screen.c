@@ -215,6 +215,36 @@ uint8_t* screen_gs_convert(void)
 }
 
 /*
+  Convert an NSpire CX 16-bit color bitmap into a bytemap.
+  The returned RRGGBB array must be freed when no longer used.
+*/
+uint8_t* screen_16bitcolor_convert(void)
+{
+	guchar *bitmap  = screen.bitmap;
+	gint w = screen.width;
+	gint h = screen.height;
+	guchar *bytemap = g_malloc(3 * w * h);
+	int i, j;
+
+	for (i = 0; i < h; i++)
+	{
+		for (j = 0; j < w; j++)
+		{
+			uint16_t data = ((uint16_t *)bitmap)[w * i + j];
+
+			int pos = w*i + j;
+
+			// Current code: R5 G6 B5. Let's see if it's correct.
+			bytemap[3 * pos + 0] = ((data & 0xF800) >> 11) << 3;
+			bytemap[3 * pos + 1] = ((data & 0x07E0) >>  5) << 2;
+			bytemap[3 * pos + 2] = ((data & 0x001F) >>  0) << 3;
+		}
+	}
+
+	return bytemap;
+}
+
+/*
  * Utility function for the EPS and PDF output
  */
 static gboolean write_compressed_a85_screen(FILE *fp, guchar *data, unsigned long len, gboolean inv, GError **error)
