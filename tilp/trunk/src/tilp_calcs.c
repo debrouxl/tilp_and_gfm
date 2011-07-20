@@ -1100,7 +1100,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 
 	if(infos->mask & INFOS_LANG_ID)
 	{
-		tmp = g_strdup_printf("%sLanguage Id: %i %i\n", str, infos->language_id, infos->sub_lang_id);
+		tmp = g_strdup_printf(_("%sLanguage Id: %i %i\n"), str, infos->language_id, infos->sub_lang_id);
 		g_free(str);
 		str = tmp;
 	}
@@ -1109,7 +1109,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 
 	if(infos->mask & INFOS_DEVICE_TYPE)
 	{
-		tmp = g_strdup_printf("%sDevice Type: %02x\n", str, infos->device_type);
+		tmp = g_strdup_printf(_("%sDevice Type: %02x\n"), str, infos->device_type);
 		g_free(str);
 		str = tmp;
 	}
@@ -1127,6 +1127,12 @@ int tilp_calc_get_infos(CalcInfos *infos)
 		g_free(str);
 		str = tmp;
 	}
+	if(infos->mask & INFOS_BOOT2_VERSION)
+	{
+		tmp = g_strdup_printf(_("%sBoot2 Version: %s\n"), str, infos->boot2_version);
+		g_free(str);
+		str = tmp;
+	}
 	if(infos->mask & INFOS_OS_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sOS Version: %s\n"), str, infos->os_version);
@@ -1136,13 +1142,13 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	
 	if(infos->mask & INFOS_RUN_LEVEL)
 	{
-		tmp = g_strdup_printf("%sRun level: %s\n", str, (infos->run_level == 2) ? "OS" : "boot");
+		tmp = g_strdup_printf(_("%sRun level: %s\n"), str, (infos->run_level == 2) ? "OS" : "boot");
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_CLOCK_SPEED)
 	{
-		tmp = g_strdup_printf("%sClock speed: %i MHz\n", str, infos->clock_speed);
+		tmp = g_strdup_printf(_("%sClock speed: %i MHz\n"), str, infos->clock_speed);
 		g_free(str);
 		str = tmp;
 	}
@@ -1151,19 +1157,19 @@ int tilp_calc_get_infos(CalcInfos *infos)
 
 	if(infos->mask & INFOS_LCD_WIDTH)
 	{
-		tmp = g_strdup_printf("%sLCD width: %i pixels\n", str, infos->lcd_width);
+		tmp = g_strdup_printf(_("%sLCD width: %i pixels\n"), str, infos->lcd_width);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_LCD_HEIGHT)
 	{
-		tmp = g_strdup_printf("%sLCD height: %i pixels\n", str, infos->lcd_height);
+		tmp = g_strdup_printf(_("%sLCD height: %i pixels\n"), str, infos->lcd_height);
 		g_free(str);
 		str = tmp;
 	}
 	if(infos->mask & INFOS_BPP)
 	{
-		tmp = g_strdup_printf("%sBits per pixel: %i\n", str, infos->bits_per_pixel);
+		tmp = g_strdup_printf(_("%sBits per pixel: %i\n"), str, infos->bits_per_pixel);
 		g_free(str);
 		str = tmp;
 	}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.15\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2011-07-14 14:35+0200\n"
+"POT-Creation-Date: 2011-07-20 13:39+0200\n"
 "PO-Revision-Date: 2010-08-29 14:31+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -99,7 +99,7 @@ msgstr "Changer de lecteur"
 #: src/dnd.c:182 src/main.c:175 src/tilp.c:183 src/tilp_calcs.c:355
 #: src/tilp_calcs.c:423 src/tilp_calcs.c:430 src/tilp_calcs.c:556
 #: src/tilp_calcs.c:565 src/tilp_calcs.c:570 src/tilp_calcs.c:575
-#: src/tilp_calcs.c:1268 src/tilp_cmdline.c:191 src/tilp_config.c:319
+#: src/tilp_calcs.c:1274 src/tilp_cmdline.c:191 src/tilp_config.c:319
 #: src/tilp_device.c:395 src/tilp_device.c:437 src/tilp_device.c:445
 #: src/tilp_error.c:86 src/tilp_files.c:252 src/tilp_files.c:324
 #: src/tilp_misc.c:39
@@ -175,7 +175,7 @@ msgid "A Folder"
 msgstr "Un Dossier"
 
 #: src/dboxes.c:41 src/device.c:402 src/device.c:406 src/tilp_calcs.c:280
-#: src/tilp_calcs.c:293 src/tilp_calcs.c:923 src/tilp_calcs.c:1225
+#: src/tilp_calcs.c:293 src/tilp_calcs.c:923 src/tilp_calcs.c:1231
 #: src/tilp_config.c:482 src/tilp_config.c:490 src/tilp_files.c:137
 #: src/tilp_files.c:150 src/tilp_files.c:169 src/tilp_misc.c:43
 #: src/tilp_slct.c:81 src/tilp_slct.c:445 src/tilp_slct.c:456
@@ -184,7 +184,7 @@ msgid "Information"
 msgstr "Information"
 
 #: src/dboxes.c:43 src/tilp_calcs.c:173 src/tilp_calcs.c:297
-#: src/tilp_calcs.c:435 src/tilp_calcs.c:953 src/tilp_calcs.c:1296
+#: src/tilp_calcs.c:435 src/tilp_calcs.c:953 src/tilp_calcs.c:1302
 #: src/tilp_files.c:199 src/tilp_slct.c:514
 msgid "Warning"
 msgstr "Avertissement"
@@ -356,11 +356,11 @@ msgstr ""
 "Toute la mémoire sera effacée.\n"
 "Voulez-vous vraiment continuer ?"
 
-#: src/tilp_calcs.c:180 src/tilp_calcs.c:1305
+#: src/tilp_calcs.c:180 src/tilp_calcs.c:1311
 msgid "Restoring"
 msgstr "Restaurer"
 
-#: src/tilp_calcs.c:203 src/tilp_calcs.c:1328
+#: src/tilp_calcs.c:203 src/tilp_calcs.c:1334
 msgid "Backing up"
 msgstr "Sauvegarder"
 
@@ -555,6 +555,16 @@ msgstr "%sNom du Produit: %s\n"
 msgid "%sProduct Id: %s\n"
 msgstr "%sId Produit: %s\n"
 
+#: src/tilp_calcs.c:1103
+#, c-format
+msgid "%sLanguage Id: %i %i\n"
+msgstr "%sN° langue: %i %i\n"
+
+#: src/tilp_calcs.c:1112
+#, c-format
+msgid "%sDevice Type: %02x\n"
+msgstr "%sType de calc: %02x\n"
+
 #: src/tilp_calcs.c:1119
 #, c-format
 msgid "%sHardware Version: %i\n"
@@ -567,57 +577,87 @@ msgstr "%sVersion du Boot: %s\n"
 
 #: src/tilp_calcs.c:1132
 #, c-format
+msgid "%sBoot2 Version: %s\n"
+msgstr "%sVersion du Boot2: %s\n"
+
+#: src/tilp_calcs.c:1138
+#, c-format
 msgid "%sOS Version: %s\n"
 msgstr "%sVersion de l'OS: %s\n"
 
-#: src/tilp_calcs.c:1175
+#: src/tilp_calcs.c:1145
+#, c-format
+msgid "%sRun level: %s\n"
+msgstr "%sNiveau: %s\n"
+
+#: src/tilp_calcs.c:1151
+#, c-format
+msgid "%sClock speed: %i MHz\n"
+msgstr "%sVitesse d'horloge: %i MHz\n"
+
+#: src/tilp_calcs.c:1160
+#, c-format
+msgid "%sLCD width: %i pixels\n"
+msgstr "%sLargeur écran: %i pixels\n"
+
+#: src/tilp_calcs.c:1166
+#, c-format
+msgid "%sLCD height: %i pixels\n"
+msgstr "%sHauteur écran: %i pixels\n"
+
+#: src/tilp_calcs.c:1172
+#, c-format
+msgid "%sBits per pixel: %i\n"
+msgstr "%sBits par pixel: %i\n"
+
+#: src/tilp_calcs.c:1181
 #, c-format
 msgid "%sPhysical RAM: %s\n"
 msgstr "%sRAM physique: %s\n"
 
-#: src/tilp_calcs.c:1182
+#: src/tilp_calcs.c:1188
 #, c-format
 msgid "%sUser RAM: %s\n"
 msgstr "%sRAM utilisateur: %s\n"
 
-#: src/tilp_calcs.c:1189
+#: src/tilp_calcs.c:1195
 #, c-format
 msgid "%sFree RAM: %s\n"
 msgstr "%sRAM libre: %s\n"
 
-#: src/tilp_calcs.c:1196
+#: src/tilp_calcs.c:1202
 #, c-format
 msgid "%sPhysical FLASH: %s\n"
 msgstr "%sFLASH physique: %s\n"
 
-#: src/tilp_calcs.c:1203
+#: src/tilp_calcs.c:1209
 #, c-format
 msgid "%sUser FLASH: %s\n"
 msgstr "%sFLASH utilisateur: %s\n"
 
-#: src/tilp_calcs.c:1210
+#: src/tilp_calcs.c:1216
 #, c-format
 msgid "%sFree FLASH: %s\n"
 msgstr "%sFLASH libre: %s\n"
 
-#: src/tilp_calcs.c:1220
+#: src/tilp_calcs.c:1226
 #, c-format
 msgid "%sBattery: %s\n"
 msgstr "%sBatterie: %s\n"
 
-#: src/tilp_calcs.c:1220
+#: src/tilp_calcs.c:1226
 msgid "good"
 msgstr "bonne"
 
-#: src/tilp_calcs.c:1220
+#: src/tilp_calcs.c:1226
 msgid "low"
 msgstr "faible"
 
-#: src/tilp_calcs.c:1247
+#: src/tilp_calcs.c:1253
 msgid "Receiving cert"
 msgstr "Réception certificat"
 
-#: src/tilp_calcs.c:1269
+#: src/tilp_calcs.c:1275
 msgid ""
 "It's not a certificate or this certificate is not targetted for this "
 "calculator type."
@@ -625,11 +665,11 @@ msgstr ""
 "Il ne s'agit pas d'un certificat ou ce certificat n'est pas destiné à ce "
 "modèle de calculatrice."
 
-#: src/tilp_calcs.c:1276
+#: src/tilp_calcs.c:1282
 msgid "Sending cert"
 msgstr "Envoi certificat"
 
-#: src/tilp_calcs.c:1296
+#: src/tilp_calcs.c:1302
 msgid ""
 "You are about to restore the content\n"
 "of your calculator with a backup.\n"
