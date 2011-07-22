@@ -95,34 +95,97 @@ int tilp_config_default(void)
 	default_config_linux();
 #elif defined(__WIN32__)
 	default_config_win32();
-#else				
-	return 0;
+#else
+
 #endif
 
 	return 0;
 }
 
-static int get_config_path(char **path)
+static char * get_config_path(void)
 {
-#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
-	*path = g_strconcat(g_get_home_dir(), INI_FILE, NULL);
-#elif defined(__WIN32__)
-	*path = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);
-#endif
-	return 0;
+	return g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, INI_FILE, NULL);
 }
 
 /* Chech whether a RC file exists */
 int tilp_config_exist(void)
 {
-	char* ini_file;
-	int result;
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
+	char * ini_file;
+	int retval;
 
-	get_config_path(&ini_file);
+	ini_file = get_config_path();
 
-	result = !access(ini_file, F_OK);
+	retval = !access(ini_file, F_OK);
 	g_free(ini_file);
-	return result;
+	return retval;
+#elif defined(__WIN32__)
+	char* old_ini_file;
+	char* ini_file;
+	int result1, result2, retval;
+
+	// On Windows, there can be two config files:
+	// * in the install dir (deprecated, as it does not work well with the UAC);
+	old_ini_file = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);
+	result1 = !access(old_ini_file, F_OK);
+	// * per-user config files (which the *nix versions have been using for ages).
+	ini_file = get_config_path();
+	result2 = !access(ini_file, F_OK);
+
+	if (result1)
+	{
+		// A config file exists at the old location
+		if (!result2)
+		{
+			// No config file exists at the new location, bad.
+			// Create it.
+			FILE *in;
+			FILE *out;
+
+			in = fopen(old_ini_file, "rb");
+			out = fopen(ini_file, "wb");
+			if (in && out)
+			{
+				int c;
+
+				while ((c = fgetc(in)) != EOF)
+				{
+					fputc(c, out);
+				}
+				fclose(out);
+				fclose(in);
+				// A config file now exists at the new location.
+				// Delete the old file.
+				unlink(old_ini_file);
+				retval = 1;
+			}
+			else
+			{
+				// There's a problem...
+				// Trigger failure in the callers.
+				retval = 0;
+			}
+		}
+		else
+		{
+			// A config file exists at the new location (even if a config file exists at the old location), good.
+			retval = 1;
+		}
+	}
+	else if (result2)
+	{
+		// A config file exists at the new location, good.
+		retval = 1;
+	}
+	else
+	{
+		// No config file at either location.
+		retval = 0;
+	}
+	g_free(old_ini_file);
+	g_free(ini_file);
+	return retval;
+#endif
 }
 
 
@@ -132,7 +195,7 @@ int tilp_config_delete(void)
 	char* ini_file;
 	int result;
 
-	get_config_path(&ini_file);
+	ini_file = get_config_path();
 
 	result = unlink(ini_file);
 	g_free(ini_file);
@@ -151,7 +214,7 @@ int tilp_config_get_version(char *version)
 	strcpy(version, "");
 	if (tilp_config_exist() == 0) 
 		return -1;
-	get_config_path(&ini_file);
+	ini_file = get_config_path();
 
 	txt = fopen(ini_file, "rt");
 	g_free(ini_file);
@@ -197,13 +260,13 @@ int tilp_config_write(void)
 	remap = tilp_remap_from_usb(options.cable_model, options.calc_model);
 
 	// get file location
-	get_config_path(&ini_file);
+	ini_file = get_config_path();
 
 	kf = g_key_file_new();
 
 	g_key_file_set_comment(kf, NULL, NULL, 
 		"# Config file for TiLP\n" \
-		"# Copyright (C) 1999-2006 The TiLP Team <tilp-devel@lists.sf.net>\n" \
+		"# Copyright (C) 1999-2011 The TiLP Team <tilp-devel@lists.sf.net>\n" \
 		"# Warning: any comments that you add to this file WILL be overwritten", &error);
 
 	// Section [DEVICE]
@@ -316,7 +379,7 @@ int tilp_config_write(void)
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
-		gif->msg_box1(_("Error"), _("Unable to write the config file (~/.tilp or tilp.ini).\n"));
+		gif->msg_box1(_("Error"), _("Unable to write the config file (~/.tilp or ~/tilp.ini).\n"));
 		ret = -1;
 		goto exit;
 	}
@@ -347,7 +410,7 @@ int tilp_config_read(void)
 		return -1;
 
 	// get file location
-	get_config_path(&ini_file);
+	ini_file = get_config_path();
 
 	// and read
 	kf = g_key_file_new();
