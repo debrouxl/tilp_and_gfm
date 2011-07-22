@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.15\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2011-07-20 13:39+0200\n"
+"POT-Creation-Date: 2011-07-21 17:33+0200\n"
 "PO-Revision-Date: 2010-08-29 14:31+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -96,10 +96,10 @@ msgid "Change drive"
 msgstr "Changer de lecteur"
 
 #: src/clist_rbm.c:262 src/clist_rbm.c:282 src/clock.c:82 src/dboxes.c:47
-#: src/dnd.c:182 src/main.c:175 src/tilp.c:183 src/tilp_calcs.c:355
+#: src/dnd.c:182 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:355
 #: src/tilp_calcs.c:423 src/tilp_calcs.c:430 src/tilp_calcs.c:556
 #: src/tilp_calcs.c:565 src/tilp_calcs.c:570 src/tilp_calcs.c:575
-#: src/tilp_calcs.c:1274 src/tilp_cmdline.c:191 src/tilp_config.c:319
+#: src/tilp_calcs.c:1274 src/tilp_cmdline.c:192 src/tilp_config.c:319
 #: src/tilp_device.c:395 src/tilp_device.c:437 src/tilp_device.c:445
 #: src/tilp_error.c:86 src/tilp_files.c:252 src/tilp_files.c:324
 #: src/tilp_misc.c:39
@@ -247,31 +247,31 @@ msgstr "libre: NC"
 msgid "free: %s"
 msgstr "libre: %s"
 
-#: src/main.c:97
+#: src/main.c:108
 msgid "Initializing KDE..."
 msgstr "Initialisation de KDE..."
 
-#: src/main.c:98
+#: src/main.c:109
 msgid "TiLP"
 msgstr "TiLP"
 
-#: src/main.c:98
+#: src/main.c:109
 msgid "Tilp Is a Linking Program"
 msgstr "TiLP ('Tilp Is a Linking Program')"
 
-#: src/main.c:104
+#: src/main.c:115
 msgid "Loading GUI..."
 msgstr "Chargement de l'IHM..."
 
-#: src/main.c:130
+#: src/main.c:141
 msgid "TiLP2"
 msgstr "TiLP2"
 
-#: src/main.c:141
+#: src/main.c:152
 msgid "Command line..."
 msgstr "Ligne de commande..."
 
-#: src/main.c:175
+#: src/main.c:186
 msgid "An TiLP session is already running. Check the task list."
 msgstr "Une session de TILP est déjà en cours d'exécution."
 
@@ -742,7 +742,7 @@ msgstr "LISEZ S'IL VOUS PLAÎT LA DOCUMENTATION POUR PLUS DE DÉTAILS\n"
 msgid "built on %s %s\n"
 msgstr "compilé sur %s %s\n"
 
-#: src/tilp_cmdline.c:190
+#: src/tilp_cmdline.c:191
 #, c-format
 msgid "The file <%s> does not exist."
 msgstr "Le fichier <%s> n'existe pas."

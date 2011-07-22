@@ -50,13 +50,14 @@ static GOptionEntry entries[] =
 
 void tilp_cmdline_version(void)
 {
-	fprintf(stdout, _("TiLP2 - Version %s, (C) 1999-2008 Romain Lievin\n"), TILP_VERSION);
+	printf(_("TiLP2 - Version %s, (C) 1999-2008 Romain Lievin\n"), TILP_VERSION);
 #ifdef __BSD__
-	fprintf(stdout, _("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
+	printf(_("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif
-	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-        fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+	printf(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+	printf(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+	printf(_("built on %s %s\n"), __DATE__, __TIME__);
+	fflush(stdout);
 }
 
 /* Search for command line options and build file list (pseudo-selection) */

@@ -53,10 +53,11 @@ static GOptionEntry entries[] =
 
 static void gfm_version(void)
 {
-	fprintf(stdout, _("GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"), GFM_VERSION);
-	fprintf(stdout, _("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
-	fprintf(stdout, _("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-    fprintf(stdout, _("built on %s %s\n"), __DATE__, __TIME__);
+	printf(_("GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"), GFM_VERSION);
+	printf(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
+	printf(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
+	printf(_("built on %s %s\n"), __DATE__, __TIME__);
+	fflush(stdout);
 }
 
 void cmdline_scan(int *argc, char ***argv)

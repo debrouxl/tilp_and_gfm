@@ -55,9 +55,20 @@ static void my_log_handler                  (const gchar *log_domain,
                                              const gchar *message,
                                              gpointer user_data) {}
 
+#define LOG_FILE ".tilp.log"
+
 int main(int argc, char *argv[])
 {
 	GdkPixbuf *icon;
+
+	/* Redirect standard output to a file - printing to the Windows terminal slows operation down way too much */
+#ifdef __WIN32__
+	gchar *tmp;
+
+	tmp = g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, LOG_FILE, NULL);
+	freopen(tmp, "w", stdout);
+	g_free(tmp);
+#endif
 
 	/* Init the tilp core */
 	tilp_init(&argc, &argv);
