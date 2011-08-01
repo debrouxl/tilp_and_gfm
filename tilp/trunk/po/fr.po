@@ -750,7 +750,8 @@ msgstr "Le fichier <%s> n'existe pas."
 #: src/tilp_config.c:382
 msgid "Unable to write the config file (~/.tilp or ~/tilp.ini).\n"
 msgstr ""
-"Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/tilp.ini).\n"
+"Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/tilp."
+"ini).\n"
 
 #: src/tilp_config.c:545
 msgid "Configuration file saved."
