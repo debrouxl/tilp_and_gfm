@@ -48,16 +48,19 @@ int tilp_pbar_type(CalcFnctsIdx op)
 	const char **array = calc_handle->calc->counters;
 	const char *str = array[op];
 
-	if(!strcmp(str, "1P"))
-		return 1;
-	else if(!strcmp(str, "1L"))
-		return 2;
-	else if(!strcmp(str, "2P"))
-		return 3;
-	else if(!strcmp(str, "1P1L"))
-		return 4;
-	else if(!strcmp(str, "2P1L"))
-		return 5;
+	if (str != NULL)
+	{
+		if(!strcmp(str, "1P"))
+			return 1;
+		else if(!strcmp(str, "1L"))
+			return 2;
+		else if(!strcmp(str, "2P"))
+			return 3;
+		else if(!strcmp(str, "1P1L"))
+			return 4;
+		else if(!strcmp(str, "2P1L"))
+			return 5;
+	}
 
 	return 0;
 }

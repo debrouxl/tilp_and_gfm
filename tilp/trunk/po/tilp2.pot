@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2011-07-22 10:14+0200\n"
+"POT-Creation-Date: 2011-08-11 14:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,11 +93,11 @@ msgid "Change drive"
 msgstr ""
 
 #: src/clist_rbm.c:262 src/clist_rbm.c:282 src/clock.c:82 src/dboxes.c:47
-#: src/dnd.c:182 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:355
-#: src/tilp_calcs.c:423 src/tilp_calcs.c:430 src/tilp_calcs.c:556
-#: src/tilp_calcs.c:565 src/tilp_calcs.c:570 src/tilp_calcs.c:575
-#: src/tilp_calcs.c:1274 src/tilp_cmdline.c:192 src/tilp_config.c:382
-#: src/tilp_device.c:395 src/tilp_device.c:437 src/tilp_device.c:445
+#: src/dnd.c:182 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:358
+#: src/tilp_calcs.c:426 src/tilp_calcs.c:433 src/tilp_calcs.c:559
+#: src/tilp_calcs.c:568 src/tilp_calcs.c:573 src/tilp_calcs.c:578
+#: src/tilp_calcs.c:1277 src/tilp_cmdline.c:191 src/tilp_config.c:382
+#: src/tilp_device.c:405 src/tilp_device.c:447 src/tilp_device.c:455
 #: src/tilp_error.c:86 src/tilp_files.c:252 src/tilp_files.c:324
 #: src/tilp_misc.c:39
 msgid "Error"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Make a new directory"
 msgstr ""
 
-#: src/clist_rbm.c:309 src/tilp.c:655 src/tilp_calcs.c:1013
+#: src/clist_rbm.c:309 src/tilp.c:655 src/tilp_calcs.c:1016
 #: src/tilp_slct.c:539
 msgid "Name: "
 msgstr ""
@@ -168,8 +168,8 @@ msgstr ""
 msgid "A Folder"
 msgstr ""
 
-#: src/dboxes.c:41 src/device.c:402 src/device.c:406 src/tilp_calcs.c:280
-#: src/tilp_calcs.c:293 src/tilp_calcs.c:923 src/tilp_calcs.c:1231
+#: src/dboxes.c:41 src/device.c:402 src/device.c:406 src/tilp_calcs.c:283
+#: src/tilp_calcs.c:296 src/tilp_calcs.c:926 src/tilp_calcs.c:1234
 #: src/tilp_config.c:545 src/tilp_config.c:553 src/tilp_files.c:137
 #: src/tilp_files.c:150 src/tilp_files.c:169 src/tilp_misc.c:43
 #: src/tilp_slct.c:81 src/tilp_slct.c:445 src/tilp_slct.c:456
@@ -177,15 +177,15 @@ msgstr ""
 msgid "Information"
 msgstr ""
 
-#: src/dboxes.c:43 src/tilp_calcs.c:173 src/tilp_calcs.c:297
-#: src/tilp_calcs.c:435 src/tilp_calcs.c:953 src/tilp_calcs.c:1302
+#: src/dboxes.c:43 src/tilp_calcs.c:176 src/tilp_calcs.c:300
+#: src/tilp_calcs.c:438 src/tilp_calcs.c:956 src/tilp_calcs.c:1305
 #: src/tilp_files.c:199 src/tilp_slct.c:514
 msgid "Warning"
 msgstr ""
 
-#: src/dboxes.c:45 src/tilp_calcs.c:388 src/tilp_calcs.c:512
-#: src/tilp_calcs.c:611 src/tilp_calcs.c:632 src/tilp_calcs.c:697
-#: src/tilp_calcs.c:755
+#: src/dboxes.c:45 src/tilp_calcs.c:391 src/tilp_calcs.c:515
+#: src/tilp_calcs.c:614 src/tilp_calcs.c:635 src/tilp_calcs.c:700
+#: src/tilp_calcs.c:758
 msgid "Question"
 msgstr ""
 
@@ -323,7 +323,7 @@ msgstr ""
 msgid "Enter new path"
 msgstr ""
 
-#: src/tilp_calcs.c:173
+#: src/tilp_calcs.c:176
 msgid ""
 "You are going to restore the content\n"
 "of your calculator with a backup.\n"
@@ -331,26 +331,26 @@ msgid ""
 "Are you sure you want to do that?"
 msgstr ""
 
-#: src/tilp_calcs.c:180 src/tilp_calcs.c:1311
+#: src/tilp_calcs.c:183 src/tilp_calcs.c:1314
 msgid "Restoring"
 msgstr ""
 
-#: src/tilp_calcs.c:203 src/tilp_calcs.c:1334
+#: src/tilp_calcs.c:206 src/tilp_calcs.c:1337
 msgid "Backing up"
 msgstr ""
 
-#: src/tilp_calcs.c:246
+#: src/tilp_calcs.c:249
 msgid "ID-LIST : "
 msgstr ""
 
-#: src/tilp_calcs.c:293
+#: src/tilp_calcs.c:296
 msgid ""
 "ROM contents is copyrighted by Texas Instruments. You are not allowed to "
 "copy and/or distribute any ROM image! For more informations, see the License "
 "Agreement provided with any FLASH OS upgrade."
 msgstr ""
 
-#: src/tilp_calcs.c:297
+#: src/tilp_calcs.c:300
 msgid ""
 "An assembly program is about to be sent on your calculator.\n"
 "If you have not made a backup yet, you should do one before\n"
@@ -360,39 +360,39 @@ msgid ""
 "(especially if you have a USB cable)."
 msgstr ""
 
-#: src/tilp_calcs.c:303
+#: src/tilp_calcs.c:306
 msgid "Dumping ROM"
 msgstr ""
 
-#: src/tilp_calcs.c:355
+#: src/tilp_calcs.c:358
 msgid "You cannot send variables/applications and upgrades simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:363
+#: src/tilp_calcs.c:366
 msgid "Sending app"
 msgstr ""
 
-#: src/tilp_calcs.c:388 src/tilp_calcs.c:512 src/tilp_calcs.c:611
-#: src/tilp_calcs.c:632 src/tilp_calcs.c:697 src/tilp_calcs.c:755
+#: src/tilp_calcs.c:391 src/tilp_calcs.c:515 src/tilp_calcs.c:614
+#: src/tilp_calcs.c:635 src/tilp_calcs.c:700 src/tilp_calcs.c:758
 msgid "Action to take?"
 msgstr ""
 
-#: src/tilp_calcs.c:388 src/tilp_calcs.c:512 src/tilp_calcs.c:611
-#: src/tilp_calcs.c:632 src/tilp_calcs.c:697 src/tilp_calcs.c:755
+#: src/tilp_calcs.c:391 src/tilp_calcs.c:515 src/tilp_calcs.c:614
+#: src/tilp_calcs.c:635 src/tilp_calcs.c:700 src/tilp_calcs.c:758
 msgid "Retry"
 msgstr ""
 
-#: src/tilp_calcs.c:388 src/tilp_calcs.c:512 src/tilp_calcs.c:611
-#: src/tilp_calcs.c:632 src/tilp_calcs.c:697 src/tilp_calcs.c:755
+#: src/tilp_calcs.c:391 src/tilp_calcs.c:515 src/tilp_calcs.c:614
+#: src/tilp_calcs.c:635 src/tilp_calcs.c:700 src/tilp_calcs.c:758
 msgid "Skip"
 msgstr ""
 
-#: src/tilp_calcs.c:388 src/tilp_calcs.c:512 src/tilp_calcs.c:611
-#: src/tilp_calcs.c:632 src/tilp_calcs.c:697 src/tilp_calcs.c:755
+#: src/tilp_calcs.c:391 src/tilp_calcs.c:515 src/tilp_calcs.c:614
+#: src/tilp_calcs.c:635 src/tilp_calcs.c:700 src/tilp_calcs.c:758
 msgid "Cancel"
 msgstr ""
 
-#: src/tilp_calcs.c:419
+#: src/tilp_calcs.c:422
 msgid ""
 "You are going to upgrade the Operating System\n"
 "of your calculator.\n"
@@ -404,216 +404,216 @@ msgid ""
 "TI73/83+ users need to turn the calculator off and press a key."
 msgstr ""
 
-#: src/tilp_calcs.c:424
+#: src/tilp_calcs.c:427
 msgid "You have to select _one_ upgrade to send."
 msgstr ""
 
-#: src/tilp_calcs.c:431
+#: src/tilp_calcs.c:434
 msgid ""
 "It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:445
+#: src/tilp_calcs.c:448
 msgid "Upgrading OS"
 msgstr ""
 
-#: src/tilp_calcs.c:477
+#: src/tilp_calcs.c:480
 msgid "Receiving app"
 msgstr ""
 
-#: src/tilp_calcs.c:556
+#: src/tilp_calcs.c:559
 msgid ""
 "You cannot send both variables/applications and upgrades simultaneously."
 msgstr ""
 
-#: src/tilp_calcs.c:565
+#: src/tilp_calcs.c:568
 msgid "You cannot send backups in this way. Use the 'Restore' button instead."
 msgstr ""
 
-#: src/tilp_calcs.c:570
+#: src/tilp_calcs.c:573
 msgid ""
 "There is an unknown file type in the selection or the path is incorrect."
 msgstr ""
 
-#: src/tilp_calcs.c:575
+#: src/tilp_calcs.c:578
 msgid ""
 "There is a file type incompatible with the target hand-held in the selection."
 msgstr ""
 
-#: src/tilp_calcs.c:583
+#: src/tilp_calcs.c:586
 msgid "Sending var(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:672 src/tilp_calcs.c:851
+#: src/tilp_calcs.c:675 src/tilp_calcs.c:854
 msgid "Receiving var(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:922
+#: src/tilp_calcs.c:925
 #, c-format
 msgid "You need AMS >=%s mini for this operation."
 msgstr ""
 
-#: src/tilp_calcs.c:953
+#: src/tilp_calcs.c:956
 msgid ""
 "You are about to delete variable(s).\n"
 "Are you sure you want to do that?"
 msgstr ""
 
-#: src/tilp_calcs.c:958
+#: src/tilp_calcs.c:961
 msgid "Deleting..."
 msgstr ""
 
-#: src/tilp_calcs.c:1013
+#: src/tilp_calcs.c:1016
 msgid "New Folder"
 msgstr ""
 
-#: src/tilp_calcs.c:1013
+#: src/tilp_calcs.c:1016
 msgid "folder"
 msgstr ""
 
-#: src/tilp_calcs.c:1017
+#: src/tilp_calcs.c:1020
 msgid "Creating..."
 msgstr ""
 
-#: src/tilp_calcs.c:1045
+#: src/tilp_calcs.c:1048
 #, c-format
 msgid "%lu bytes"
 msgstr ""
 
-#: src/tilp_calcs.c:1049
+#: src/tilp_calcs.c:1052
 #, c-format
 msgid "%lu KB"
 msgstr ""
 
-#: src/tilp_calcs.c:1053
+#: src/tilp_calcs.c:1056
 #, c-format
 msgid "%lu MB"
 msgstr ""
 
-#: src/tilp_calcs.c:1084
+#: src/tilp_calcs.c:1087
 #, c-format
 msgid "%sProduct Name: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1091 src/tilp_calcs.c:1096
+#: src/tilp_calcs.c:1094 src/tilp_calcs.c:1099
 #, c-format
 msgid "%sProduct Id: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1103
+#: src/tilp_calcs.c:1106
 #, c-format
 msgid "%sLanguage Id: %i %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1112
+#: src/tilp_calcs.c:1115
 #, c-format
 msgid "%sDevice Type: %02x\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1119
+#: src/tilp_calcs.c:1122
 #, c-format
 msgid "%sHardware Version: %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1126
+#: src/tilp_calcs.c:1129
 #, c-format
 msgid "%sBoot Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1132
+#: src/tilp_calcs.c:1135
 #, c-format
 msgid "%sBoot2 Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1138
+#: src/tilp_calcs.c:1141
 #, c-format
 msgid "%sOS Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1145
+#: src/tilp_calcs.c:1148
 #, c-format
 msgid "%sRun level: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1151
+#: src/tilp_calcs.c:1154
 #, c-format
 msgid "%sClock speed: %i MHz\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1160
+#: src/tilp_calcs.c:1163
 #, c-format
 msgid "%sLCD width: %i pixels\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1166
+#: src/tilp_calcs.c:1169
 #, c-format
 msgid "%sLCD height: %i pixels\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1172
+#: src/tilp_calcs.c:1175
 #, c-format
 msgid "%sBits per pixel: %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1181
+#: src/tilp_calcs.c:1184
 #, c-format
 msgid "%sPhysical RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1188
+#: src/tilp_calcs.c:1191
 #, c-format
 msgid "%sUser RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1195
+#: src/tilp_calcs.c:1198
 #, c-format
 msgid "%sFree RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1202
+#: src/tilp_calcs.c:1205
 #, c-format
 msgid "%sPhysical FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1209
+#: src/tilp_calcs.c:1212
 #, c-format
 msgid "%sUser FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1216
+#: src/tilp_calcs.c:1219
 #, c-format
 msgid "%sFree FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1226
+#: src/tilp_calcs.c:1229
 #, c-format
 msgid "%sBattery: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1226
+#: src/tilp_calcs.c:1229
 msgid "good"
 msgstr ""
 
-#: src/tilp_calcs.c:1226
+#: src/tilp_calcs.c:1229
 msgid "low"
 msgstr ""
 
-#: src/tilp_calcs.c:1253
+#: src/tilp_calcs.c:1256
 msgid "Receiving cert"
 msgstr ""
 
-#: src/tilp_calcs.c:1275
+#: src/tilp_calcs.c:1278
 msgid ""
 "It's not a certificate or this certificate is not targetted for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:1282
+#: src/tilp_calcs.c:1285
 msgid "Sending cert"
 msgstr ""
 
-#: src/tilp_calcs.c:1302
+#: src/tilp_calcs.c:1305
 msgid ""
 "You are about to restore the content\n"
 "of your calculator with a backup.\n"
@@ -682,7 +682,7 @@ msgstr ""
 msgid "built on %s %s\n"
 msgstr ""
 
-#: src/tilp_cmdline.c:191
+#: src/tilp_cmdline.c:190
 #, c-format
 msgid "The file <%s> does not exist."
 msgstr ""
@@ -699,11 +699,11 @@ msgstr ""
 msgid "Configuration file loaded."
 msgstr ""
 
-#: src/tilp_device.c:420
+#: src/tilp_device.c:430
 msgid "Connection is being reset... Please wait for 2 seconds."
 msgstr ""
 
-#: src/tilp_device.c:437 src/tilp_device.c:445
+#: src/tilp_device.c:447 src/tilp_device.c:455
 msgid "Can't set cable."
 msgstr ""
 

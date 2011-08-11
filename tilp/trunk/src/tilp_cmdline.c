@@ -36,7 +36,7 @@ static gint show_version;
 
 static GOptionEntry entries[] = 
 {
-    { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
+	{ "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
 	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, N_("Hand-held model"), NULL },
 	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, N_("Link cable model"), NULL },
 	{ "port", 'p', 0, G_OPTION_ARG_INT, &options.cable_port, N_("Link cable port"), NULL },
@@ -83,9 +83,9 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	}
 
 	if(show_version)
-	  {
-	    exit(0);
-	  }
+	{
+		exit(0);
+	}
 
 	// convert name to value
 	if(calc != NULL)
@@ -102,35 +102,34 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	}
 
 	// look for short-options
-        if(array != NULL)
-          {
-            gchar **p;
-	    gint len;
-            int i;
+	if(array != NULL)
+	{
+		gchar **p;
+		gint len;
+		int i;
 
-            // check for no extensions
-            for(p = array, len = 0; *p != NULL; p++, len++)
-              {
-                if(strrchr(*p, '.') == NULL)
-                  {
-                    for(i = 0; i < CABLE_MAX; i++)
-                      {
-                        if(!g_strcasecmp(ticables_model_to_string(i), *p))
-                          options.cable_model = i;
-                      }
+		// check for no extensions
+		for(p = array, len = 0; *p != NULL; p++, len++)
+		{
+			if(strrchr(*p, '.') == NULL)
+			{
+				for(i = 0; i < CABLE_MAX; i++)
+				{
+					if(!g_strcasecmp(ticables_model_to_string(i), *p))
+						options.cable_model = i;
+				}
 
-		    for(i = 0; i < CALC_MAX; i++)
-                      {
-                        if(!g_strcasecmp(ticalcs_model_to_string(i), *p))
-                          options.calc_model = i;
-                      }
-                  }
-	      }
-	  }
+				for(i = 0; i < CALC_MAX; i++)
+				{
+					if(!g_strcasecmp(ticalcs_model_to_string(i), *p))
+						options.calc_model = i;
+				}
+			}
+		}
+	}
 
 	// remap for USB hand-helds
-	options.calc_model = tilp_remap_to_usb(options.cable_model,
-                                               options.calc_model);
+	options.calc_model = tilp_remap_to_usb(options.cable_model, options.calc_model);
 
 	if(!options.cable_port)
 	{
@@ -163,23 +162,23 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		// rebuild a list of file with full path
 		for(p = array, q = flist; *p != NULL; p++, q++)
 		{
-		  // skip short-options
-		  if(strrchr(*p, '.') == NULL)
-		    {
-		      q--;
-		      continue;
-		    }
+			// skip short-options
+			if(strrchr(*p, '.') == NULL)
+			{
+				q--;
+				continue;
+			}
 
-		  // check whether path is local or absolute
+			// check whether path is local or absolute
 			if (!g_path_is_absolute(*p))
 				*q = g_strconcat(g_get_current_dir(), G_DIR_SEPARATOR_S, *p, NULL);
 			else
 				*q = g_strdup(*p);
 		}
 
-       		// build a pseudo file selection for TiLP
+		// build a pseudo file selection for TiLP
 		for(q = flist; *q != NULL; q++)
-		  {
+		{
 			if(g_file_test(*q, G_FILE_TEST_EXISTS))
 			{
 				tilp_local_selection_add(*q);
@@ -193,7 +192,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 				g_free(str);
 				ret = -1;
 			}
-		  }
+		}
 
 		g_strfreev(array);
 		g_strfreev(flist);
@@ -235,9 +234,8 @@ int tilp_cmdline_send(void)
 	{
 		FileEntry *fe = (local.selection2)->data;
 
-		if(g_list_length(local.selection2) == 1 && 
-			tifiles_file_test(fe->name, TIFILE_OS, 
-					  options.calc_model))
+		if(   g_list_length(local.selection2) == 1
+		   && tifiles_file_test(fe->name, TIFILE_OS, options.calc_model))
 		{
 			ret = tilp_calc_send_os(fe->name);
 			return ret;

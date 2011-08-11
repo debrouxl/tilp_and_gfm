@@ -308,10 +308,20 @@ static int lk_open = 0; /* keep status to avoid multiple error messages */
 int tilp_device_open(void)
 {
 	int err = 0;
+	const char *calc;
+	const char *cable;
 
 	// close cable before opening a new one
 	if(lk_open)
 		tilp_device_close();
+
+	cable = ticables_model_to_string(options.cable_model);
+	calc = ticalcs_model_to_string(options.calc_model);
+	tilp_info("Opening cable %s on port #%d to communicate with calculator %s", cable, options.cable_port, calc);
+	if (options.calc_model == CALC_NONE)
+	{
+		tilp_warning("Attempting to communicate with calculator \"none\" !");
+	}
 
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
 	if(cable_handle == NULL)
