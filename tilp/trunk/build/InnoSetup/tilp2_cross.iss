@@ -9,6 +9,8 @@
 ;
 ; $Id$
 
+#include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
+
 [Setup]
 AppName=TiLP2
 AppVerName=TiLP2 1.16
@@ -18,14 +20,14 @@ AppSupportURL=http://lpg.ticalc.org/prj_tilp/bug_report.html
 AppUpdatesURL=http://lpg.ticalc.org/prj_tilp/win32.html
 DefaultDirName={pf}\TiLP
 DefaultGroupName=TiLP2
-AllowNoIcons=yes
+AllowNoIcons=true
 LicenseFile=C:\tilp\tilp\trunk\COPYING
 InfoBeforeFile=C:\tilp\tilp\trunk\README.win32
 InfoAfterFile=C:\tilp\tilp\trunk\RELEASE
-
 PrivilegesRequired = admin
+SolidCompression=true
+Compression=lzma2/Max
 
-;--- Shared Stuff ---
 [Files]
 ; TI libraries
 Source: "C:\lpg\packages\bin\libtifiles2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-7.dll');
@@ -42,11 +44,6 @@ Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticalcs2.mo"; DestDir: "
 Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
 Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
-
-; Downloader
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
 
 ; DhaHelper driver
 Source: "C:\lpg\packages\bin\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
@@ -74,12 +71,14 @@ Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPat
 ;--- End of Shared Stuff ---
 
 [Tasks]
-Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
-Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
+Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Desktop integration:"; MinVersion: 4,4
+Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Desktop integration:"; MinVersion: 4,4; Flags: unchecked
+Name: "tifiles"; Description: "Register file types"; GroupDescription: "Desktop integration:";
 
-Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
 Name: "slv_drv"; Description: "Install USB drivers"; GroupDescription: "Drivers:";
 Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; GroupDescription: "Drivers:"; MinVersion: 0,4
+
+Name: "gtk_runtime"; Description: "Download GTK+ runtime"; GroupDescription: "GTK+ Runtime:"; MinVersion: 0,4
 
 [Files]
 ; Glade files
@@ -143,10 +142,10 @@ Name: "{userdesktop}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
-;Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
+Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall runascurrentuser nowait unchecked
 ;Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall unchecked shellexec;
-Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 ; Drivers installation
+Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "stop"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Stopping DHA driver (this may take a few seconds) ..."
 Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take a few seconds) ..."
 ; x86
 Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
@@ -160,6 +159,8 @@ Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+; GTK+ Runtime installer
+Filename: "{tmp}\gtk-2.12.9-win32-2.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
 
 [UninstallRun]
 ;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -659,7 +660,6 @@ end;
 // Get GTK DLL path
 function GetGtkDllPath(S: String): String;
 var
-  Exists: boolean;
   GtkDllPath: string;
 begin
   GtkDllPath := '';
@@ -728,7 +728,7 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But, the installer can download and install it for you; simply think to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > tilp > install gtk+ from the web).', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But the installer can download and install it for you; simply leave the checkbox checked.', mbError, MB_OK);
 end;
 
 // Check for previous program presence and uninstall if needed
@@ -780,6 +780,7 @@ begin
   end;
 end;
 
+
 // Does various checks before doing anything
 function InitializeSetup(): Boolean;
 begin
@@ -813,6 +814,30 @@ begin
     Result := true;
 end;
 
+procedure InitializeWizard();
+begin
+  // Initialize InnoTools Downloader
+  ITD_Init();
+  
+  //ITD_SetOption('Debug_DownloadDelay','0');
+  //ITD_SetOption('Debug_Messages','1');
+  ITD_SetOption('UI_DetailedMode','1');
+
+  // We'll download the following file...
+  ITD_AddFileSize('http://dfn.dl.sourceforge.net/project/gladewin32/gtk+-win32-runtime/2.12.9/gtk-2.12.9-win32-2.exe', ExpandConstant('{tmp}\gtk-2.12.9-win32-2.exe'), 7378984);
+  // ... after the user clicks on Install.
+  ITD_DownloadAfter(wpPreparing);
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurPageID = wpReady then begin
+    if not IsTaskSelected('gtk_runtime') then begin
+      ITD_ClearFiles();
+    end;
+  end;
+end;
+
 // Delete shared DLL
 procedure DeleteDll(const FileName: string);
 var
@@ -827,4 +852,3 @@ procedure DeleteExe(const FileName: string);
 begin
   DeleteDll(FileName);
 end;
-
