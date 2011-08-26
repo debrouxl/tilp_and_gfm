@@ -19,6 +19,7 @@ AC_CONFIG_FILES([
   build/Makefile
   build/mingw/Makefile
   builder/Makefile
+  desktop/Makefile
   glade/Makefile
   help/Makefile
   icons/Makefile

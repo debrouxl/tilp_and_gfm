@@ -3539,7 +3539,7 @@ fi
 
 ac_config_headers="$ac_config_headers config.h"
 
-ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile"
+ac_config_files="$ac_config_files Makefile build/Makefile build/mingw/Makefile desktop/Makefile glade/Makefile help/Makefile icons/Makefile man/Makefile pixmaps/Makefile po/Makefile.in src/Makefile"
 
 
 # Setup libtool.
@@ -29491,6 +29491,7 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "build/Makefile") CONFIG_FILES="$CONFIG_FILES build/Makefile" ;;
     "build/mingw/Makefile") CONFIG_FILES="$CONFIG_FILES build/mingw/Makefile" ;;
+    "desktop/Makefile") CONFIG_FILES="$CONFIG_FILES desktop/Makefile" ;;
     "glade/Makefile") CONFIG_FILES="$CONFIG_FILES glade/Makefile" ;;
     "help/Makefile") CONFIG_FILES="$CONFIG_FILES help/Makefile" ;;
     "icons/Makefile") CONFIG_FILES="$CONFIG_FILES icons/Makefile" ;;
