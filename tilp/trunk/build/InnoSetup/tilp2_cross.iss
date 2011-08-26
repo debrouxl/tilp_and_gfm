@@ -57,12 +57,14 @@ Source: "C:\lpg\packages\bin\rwports.sys"; DestDir: "{cf}\LPG Shared\drivers\rwp
 Source: "C:\lpg\packages\bin\rwpsetup.exe";  DestDir: "{cf}\LPG Shared\drivers\rwp"; Flags: sharedfile; Check: Is64BitInstallMode
 
 ; USB driver
-Source: "C:\lpg\deps\libusb-win32\bin\*.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\deps\libusb-win32\bin\*.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
+Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; DestName: "libusb0.sys"; Flags: sharedfile; Check: not Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; DestName: "libusb0_x86.dll"; Flags: sharedfile; Check: not Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.sys"; DestDir: "{cf}\LPG Shared\drivers\usb"; DestName: "libusb0.sys"; Flags: sharedfile; Check: Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.dll"; DestDir: "{cf}\LPG Shared\drivers\usb"; DestName: "libusb0.dll"; Flags: sharedfile; Check: Is64BitInstallMode
 Source: "C:\lpg\packages\share\libticables2\libusb\*.cat"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
 Source: "C:\lpg\packages\share\libticables2\libusb\*.inf"; DestDir: "{cf}\LPG Shared\drivers\usb"; Flags: sharedfile;
-Source: "C:\lpg\deps\libusb-win32\bin\libusb0.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall;
-Source: "C:\lpg\deps\libusb-win32\bin\libusb0_x64.dll"; DestDir: "{win}\system32"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{win}\system32"; DestName: "libusb0_x86.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: not Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.dll"; DestDir: "{win}\system32"; DestName: "libusb0.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
@@ -119,7 +121,6 @@ Source: "C:\tilp\tilp\trunk\RELEASE"; DestDir: "{app}"; DestName: "Release.txt";
 
 ; Binaries
 Source: "C:\lpg\packages\bin\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
-Source: "C:\lpg\packages\bin\gfm.exe"; DestDir: "{app}"; DestName: "gfm.exe"; Flags: ignoreversion
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -139,20 +140,26 @@ Name: "{group}\Bug Report"; Filename: "http://sourceforge.net/tracker/?func=add&
 Name: "{group}\USB driver installation"; Filename: "{app}\help\usb_driver.html";
 
 Name: "{userdesktop}\TiLP"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
-Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\TiLP-2"; Filename: "{app}\tilp.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
 ;Filename: "{app}\tilp.exe"; Description: "Launch TiLP"; StatusMsg: "Running TiLP..."; Flags: postinstall nowait unchecked
-Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall shellexec;
+;Filename: "{app}\gfm.url"; Description: "Download GFM"; Flags: nowait postinstall unchecked shellexec;
 Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
 ; Drivers installation
 Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing DHA driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing NSpire driver (this may take a few seconds) ..."
+; x86
+Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
+; amd64
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
 
 [UninstallRun]
 ;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -166,7 +173,7 @@ Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open";  ValueType: string; ValueData: 
 Root: HKCR; Subkey: "TiLP.TIxx.file\shell\open\command"; ValueType: string; ValueData: """{app}\tilp.exe"" ""%1"""
 ; Boost GTK2 (WinNT/2000/XP)
 Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: string; ValueName: "PANGO_WIN32_NO_UNISCRIBE"; ValueData: "anything"; MinVersion: 0,4;
-; NSpire entries
+; Nspire entries
 Root: HKCR; SubKey: ".tns"; ValueType: string;  ValueData: "TiLP.Document"; Tasks: tifiles;
 Root: HKCR; SubKey: ".tno"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 ; TiGroup entries
