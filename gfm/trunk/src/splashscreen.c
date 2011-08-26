@@ -91,7 +91,7 @@ void splash_screen_start(void)
      g_free(version_string);
 
      // Setup the Splash Logo
-     pixbuf = create_pixbuf("logo.xpm");
+     pixbuf = create_pixbuf("gfm.xpm");
      image = gtk_image_new_from_pixbuf(pixbuf);
      gtk_box_pack_end(GTK_BOX(vbox), image, FALSE, FALSE, 0);
      g_object_unref(pixbuf);
