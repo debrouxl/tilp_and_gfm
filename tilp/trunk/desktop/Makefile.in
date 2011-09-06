@@ -74,8 +74,8 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(desktopdir)"
-DATA = $(desktop_DATA)
+am__installdirs = "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"
+DATA = $(desktop_DATA) $(mime_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -314,10 +314,13 @@ top_srcdir = @top_srcdir@
 x_includes = @x_includes@
 x_libraries = @x_libraries@
 desktopdir = $(datadir)/applications
+mimedir = $(datadir)/mime/packages
 pixmapsdir = $(pkgdatadir)/pixmaps
 desktop_in_files = tilp.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-EXTRA_DIST = $(desktop_in_files) README.txt
+mime_files = tilp.xml
+mime_DATA = tilp.xml
+EXTRA_DIST = $(desktop_in_files) $(mime_files) README.txt
 CLEANFILES = $(desktop_in_files:.desktop.in=.desktop)
 all: all-am
 
@@ -378,6 +381,26 @@ uninstall-desktopDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(desktopdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(desktopdir)" && rm -f $$files
+install-mimeDATA: $(mime_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(mimedir)" || $(MKDIR_P) "$(DESTDIR)$(mimedir)"
+	@list='$(mime_DATA)'; test -n "$(mimedir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(mimedir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(mimedir)" || exit $$?; \
+	done
+
+uninstall-mimeDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(mime_DATA)'; test -n "$(mimedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(mimedir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(mimedir)" && rm -f $$files
 tags: TAGS
 TAGS:
 
@@ -419,7 +442,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(desktopdir)"; do \
+	for dir in "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(mimedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -468,7 +491,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-desktopDATA
+install-data-am: install-desktopDATA install-mimeDATA
 
 install-dvi: install-dvi-am
 
@@ -512,7 +535,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-desktopDATA
+uninstall-am: uninstall-desktopDATA uninstall-mimeDATA
 
 .MAKE: install-am install-strip
 
@@ -522,11 +545,12 @@ uninstall-am: uninstall-desktopDATA
 	install-data install-data-am install-desktopDATA install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	uninstall uninstall-am uninstall-desktopDATA
+	install-mimeDATA install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-desktopDATA \
+	uninstall-mimeDATA
 
 
 tilp.desktop:
