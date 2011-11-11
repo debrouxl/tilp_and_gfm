@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.15\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2011-08-11 14:48+0200\n"
+"POT-Creation-Date: 2011-11-05 16:21+0200\n"
 "PO-Revision-Date: 2010-08-29 14:31+0000\n"
 "Last-Translator: Romain Liévin <roms@tilp.info>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -96,7 +96,7 @@ msgid "Change drive"
 msgstr "Changer de lecteur"
 
 #: src/clist_rbm.c:262 src/clist_rbm.c:282 src/clock.c:82 src/dboxes.c:47
-#: src/dnd.c:182 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:358
+#: src/dnd.c:181 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:358
 #: src/tilp_calcs.c:426 src/tilp_calcs.c:433 src/tilp_calcs.c:559
 #: src/tilp_calcs.c:568 src/tilp_calcs.c:573 src/tilp_calcs.c:578
 #: src/tilp_calcs.c:1277 src/tilp_cmdline.c:191 src/tilp_config.c:382

@@ -44,7 +44,8 @@ enum
 
 enum 
 { 
-	TARGET_STRING, TARGET_ROOTWIN, TARGET_LEFT, TARGET_RIGHT,
+	TARGET_STRING, TARGET_ROOTWIN, TARGET_TEXT_URI_LIST,
+	TARGET_LEFT, TARGET_RIGHT,
 };
 
 /*static GtkTargetEntry target_table[] = {
@@ -56,6 +57,7 @@ enum
 static GtkTargetEntry target_table_1[] = 
 {
 	{(char *)"clist", 0, TARGET_STRING},
+	{(char *)"text/uri-list", 0, TARGET_TEXT_URI_LIST, },
 	{(char *)"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
 
@@ -74,7 +76,7 @@ void dnd_init(void)
 			    target_table_1, n_targets,
 			    GDK_ACTION_COPY | GDK_ACTION_MOVE);
 	gtk_drag_dest_set(ctree_wnd, GTK_DEST_DEFAULT_ALL,
-			  target_table_1, n_targets,
+			  target_table_1, n_targets+1,
 			  GDK_ACTION_COPY | GDK_ACTION_MOVE);
 
 	// from tree to list
@@ -87,12 +89,6 @@ void dnd_init(void)
 }
 
 /* CList -> CTree */
-
-GLADE_CB void
-on_treeview2_drag_begin(GtkWidget * widget,
-			GdkDragContext * drag_context, gpointer user_data)
-{
-}
 
 // pass data
 GLADE_CB void
@@ -124,17 +120,35 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 	GtkTreeIter iter;
 	VarEntry *ve;
 	gchar *name;
+	gchar *target = NULL;
+	gboolean success = FALSE;
 
-	if ((data->length >= 0) && (data->format == 8)) 
+	if ((data->length >= 0) && (data->format == 8))
 	{
-		gtk_tree_view_get_dest_row_at_pos(view, x, y, &path, &pos);
-		if (path == NULL) 
+		if (drag_context->action == GDK_ACTION_ASK)
 		{
-			gtk_drag_finish(drag_context, FALSE, FALSE, _time);
-			return;
+			drag_context->action = GDK_ACTION_COPY;
 		}
-		gtk_tree_model_get_iter(model, &iter, path);
 
+		if (info == TARGET_TEXT_URI_LIST)
+		{
+			int i;
+			gchar **list;
+			//list = g_uri_list_extract_uris((gchar *)gtk_selection_data_get_data(data));
+			list = gtk_selection_data_get_uris(data);
+			tilp_local_selection_destroy();
+			for (i = 0;list[i] != NULL; i++)
+			{
+				name = g_filename_from_uri(list[i], NULL, NULL);
+				tilp_local_selection_add(name);
+			}
+			g_strfreev(list);
+		}
+
+		gtk_tree_view_get_dest_row_at_pos(view, x, y, &path, &pos);
+		if (path == NULL)
+			goto end;
+		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 		gtk_tree_model_get(model, &iter, COLUMN_NAME, &name, -1);
 
@@ -142,39 +156,24 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 
 		if(strchr(name, '#'))			// Calc
 		{
-			//on_tilp_button8_clicked(NULL, NULL);
-			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
-			return;
 		}
 		else if(!strcmp(name, NODE4))	// Applications
 		{
 			// send to flash
-			on_tilp_send("<FLASH>");
-			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
-			return;
+			target=(char *)"<FLASH>";
 		}
-
 		else if (ve && tifiles_has_folder(options.calc_model))
 		{
 			// send to folder
-			char *target;
-
 			if(!strcmp(ve->folder, ""))
 				target = ve->name;
 			else
 				target = ve->folder;
-			on_tilp_send(target);
-			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
-			return;
 		}
-
 		else if(!strcmp(name, NODE2))	// Operating System
 		{
-			on_tilp_send("");
-			gtk_drag_finish(drag_context, TRUE, FALSE, _time);
-			return;
+			target=(char *)"";
 		}
-
 		else
 		{
 			if(options.calc_model == CALC_NSPIRE)
@@ -185,14 +184,18 @@ on_treeview1_drag_data_received(GtkWidget * widget,
 			else
 			{
 				// send standard
-				on_tilp_send("");
-				gtk_drag_finish(drag_context, TRUE, FALSE, _time);
-				return;
+				target=(char *)"";
 			}
 		}
-	}
 
-	gtk_drag_finish(drag_context, FALSE, FALSE, _time);
+		if (target!=NULL)
+			on_tilp_send(target);
+
+		tilp_local_selection_destroy();
+		success = TRUE;
+	}
+end:
+	gtk_drag_finish(drag_context, success, FALSE, _time);
 	return;
 }
 

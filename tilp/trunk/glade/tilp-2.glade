@@ -762,7 +762,6 @@
                             <property name="rubber_banding">True</property>
                             <signal name="button_press_event" handler="on_treeview2_button_press_event"/>
                             <signal name="key_press_event" handler="on_treeview2_key_press_event"/>
-                            <signal name="drag_begin" handler="on_treeview2_drag_begin"/>
                             <signal name="drag_data_get" handler="on_treeview2_drag_data_get"/>
                             <signal name="drag_data_received" handler="on_treeview2_drag_data_received"/>
                           </widget>
