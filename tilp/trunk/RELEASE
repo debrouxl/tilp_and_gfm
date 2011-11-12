@@ -17,6 +17,7 @@ New capabilities:
 	- ability to get screenshots from Nspire CX calculators.
 	- libticables now uses a libusb version that allows stable use of the filter driver, i.e. side-by-side usage of TI-Connect/TINC(L)S and TILP.
 	- ability to transfer OS files to Nspire CX calculators.
+	- ability to transfer OS files to Nspire CM calculators.
 
 Improvements:
 -------------
@@ -24,12 +25,18 @@ Improvements:
 	- when displaying calc information, print boot2 version if any; add several translatable strings and translations.
 	- on Windows, redirect stdout to ~/.tilp.log (because the Windows terminal is too slow); eliminate explicit usage of stdout.
 	- on Windows, add support for storing the config file in the home directory and for upgrading from a config file stored in the install directory.
+	- add MIME types and FD.o desktop files.
+	- 8xo file support - they used to be called 8xgrp by libtifiles/TILP.
+	- improve drag&drop code, by Jon Sturm.
 
 Bug fixes:
 ----------
 	- made Nspire support usable again on Windows, thanks to the libusb-win32 update.
 	  The patch to libusb-win32 required by Nspires is now upstream, under the form of a new usb_reset_ex() function, as discussed with the
           libusb-win32 maintainers.
+	- fixed crashes in normal usage, and sanitized libti* function arguments.
+	- ROM dumping of 84+(SE) and 89T through DirectLink.
+	- sending files of sizes 244 modulo 250, larger than 244 bytes, to 84+(SE) through DirectLink.
 
 Known bugs:
 -----------
