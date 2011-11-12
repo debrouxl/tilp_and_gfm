@@ -804,6 +804,7 @@ tcrv2:
 
 			for(i = 0; i < l; i++)
 			{
+				tmp_filename = NULL;
 				err = tifiles_file_write_regular(NULL, array[i], &tmp_filename);
 				if(err)
 				{
@@ -811,18 +812,20 @@ tcrv2:
 					break;
 				}
 
-				src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, 
-					g_basename(tmp_filename), NULL);
-				dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
-					g_basename(tmp_filename), NULL);
+				if (tmp_filename != NULL)
+				{
+					src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
+						g_basename(tmp_filename), NULL);
+					dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S,
+						g_basename(tmp_filename), NULL);
 
-				tilp_file_move_with_check(src_filename, dst_filename);
+					g_free(tmp_filename);
 
-				g_free(src_filename);
-#ifndef __WIN32__
-				free(tmp_filename);
-#endif
-				g_free(dst_filename);
+					tilp_file_move_with_check(src_filename, dst_filename);
+
+					g_free(dst_filename);
+					g_free(src_filename);
+				}
 			}
 
 			tilp_file_chdir(local.cwdir);

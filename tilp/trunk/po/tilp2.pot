@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2011-11-05 16:21+0200\n"
+"POT-Creation-Date: 2011-11-12 13:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgstr ""
 #: src/dnd.c:181 src/main.c:186 src/tilp.c:183 src/tilp_calcs.c:358
 #: src/tilp_calcs.c:426 src/tilp_calcs.c:433 src/tilp_calcs.c:559
 #: src/tilp_calcs.c:568 src/tilp_calcs.c:573 src/tilp_calcs.c:578
-#: src/tilp_calcs.c:1277 src/tilp_cmdline.c:191 src/tilp_config.c:382
+#: src/tilp_calcs.c:1280 src/tilp_cmdline.c:191 src/tilp_config.c:382
 #: src/tilp_device.c:405 src/tilp_device.c:447 src/tilp_device.c:455
 #: src/tilp_error.c:86 src/tilp_files.c:252 src/tilp_files.c:324
 #: src/tilp_misc.c:39
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Make a new directory"
 msgstr ""
 
-#: src/clist_rbm.c:309 src/tilp.c:655 src/tilp_calcs.c:1016
+#: src/clist_rbm.c:309 src/tilp.c:655 src/tilp_calcs.c:1019
 #: src/tilp_slct.c:539
 msgid "Name: "
 msgstr ""
@@ -169,7 +169,7 @@ msgid "A Folder"
 msgstr ""
 
 #: src/dboxes.c:41 src/device.c:402 src/device.c:406 src/tilp_calcs.c:283
-#: src/tilp_calcs.c:296 src/tilp_calcs.c:926 src/tilp_calcs.c:1234
+#: src/tilp_calcs.c:296 src/tilp_calcs.c:929 src/tilp_calcs.c:1237
 #: src/tilp_config.c:545 src/tilp_config.c:553 src/tilp_files.c:137
 #: src/tilp_files.c:150 src/tilp_files.c:169 src/tilp_misc.c:43
 #: src/tilp_slct.c:81 src/tilp_slct.c:445 src/tilp_slct.c:456
@@ -178,7 +178,7 @@ msgid "Information"
 msgstr ""
 
 #: src/dboxes.c:43 src/tilp_calcs.c:176 src/tilp_calcs.c:300
-#: src/tilp_calcs.c:438 src/tilp_calcs.c:956 src/tilp_calcs.c:1305
+#: src/tilp_calcs.c:438 src/tilp_calcs.c:959 src/tilp_calcs.c:1308
 #: src/tilp_files.c:199 src/tilp_slct.c:514
 msgid "Warning"
 msgstr ""
@@ -331,11 +331,11 @@ msgid ""
 "Are you sure you want to do that?"
 msgstr ""
 
-#: src/tilp_calcs.c:183 src/tilp_calcs.c:1314
+#: src/tilp_calcs.c:183 src/tilp_calcs.c:1317
 msgid "Restoring"
 msgstr ""
 
-#: src/tilp_calcs.c:206 src/tilp_calcs.c:1337
+#: src/tilp_calcs.c:206 src/tilp_calcs.c:1340
 msgid "Backing up"
 msgstr ""
 
@@ -445,175 +445,175 @@ msgstr ""
 msgid "Sending var(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:675 src/tilp_calcs.c:854
+#: src/tilp_calcs.c:675 src/tilp_calcs.c:857
 msgid "Receiving var(s)"
 msgstr ""
 
-#: src/tilp_calcs.c:925
+#: src/tilp_calcs.c:928
 #, c-format
 msgid "You need AMS >=%s mini for this operation."
 msgstr ""
 
-#: src/tilp_calcs.c:956
+#: src/tilp_calcs.c:959
 msgid ""
 "You are about to delete variable(s).\n"
 "Are you sure you want to do that?"
 msgstr ""
 
-#: src/tilp_calcs.c:961
+#: src/tilp_calcs.c:964
 msgid "Deleting..."
 msgstr ""
 
-#: src/tilp_calcs.c:1016
+#: src/tilp_calcs.c:1019
 msgid "New Folder"
 msgstr ""
 
-#: src/tilp_calcs.c:1016
+#: src/tilp_calcs.c:1019
 msgid "folder"
 msgstr ""
 
-#: src/tilp_calcs.c:1020
+#: src/tilp_calcs.c:1023
 msgid "Creating..."
 msgstr ""
 
-#: src/tilp_calcs.c:1048
+#: src/tilp_calcs.c:1051
 #, c-format
 msgid "%lu bytes"
 msgstr ""
 
-#: src/tilp_calcs.c:1052
+#: src/tilp_calcs.c:1055
 #, c-format
 msgid "%lu KB"
 msgstr ""
 
-#: src/tilp_calcs.c:1056
+#: src/tilp_calcs.c:1059
 #, c-format
 msgid "%lu MB"
 msgstr ""
 
-#: src/tilp_calcs.c:1087
+#: src/tilp_calcs.c:1090
 #, c-format
 msgid "%sProduct Name: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1094 src/tilp_calcs.c:1099
+#: src/tilp_calcs.c:1097 src/tilp_calcs.c:1102
 #, c-format
 msgid "%sProduct Id: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1106
+#: src/tilp_calcs.c:1109
 #, c-format
 msgid "%sLanguage Id: %i %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1115
+#: src/tilp_calcs.c:1118
 #, c-format
 msgid "%sDevice Type: %02x\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1122
+#: src/tilp_calcs.c:1125
 #, c-format
 msgid "%sHardware Version: %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1129
+#: src/tilp_calcs.c:1132
 #, c-format
 msgid "%sBoot Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1135
+#: src/tilp_calcs.c:1138
 #, c-format
 msgid "%sBoot2 Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1141
+#: src/tilp_calcs.c:1144
 #, c-format
 msgid "%sOS Version: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1148
+#: src/tilp_calcs.c:1151
 #, c-format
 msgid "%sRun level: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1154
+#: src/tilp_calcs.c:1157
 #, c-format
 msgid "%sClock speed: %i MHz\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1163
+#: src/tilp_calcs.c:1166
 #, c-format
 msgid "%sLCD width: %i pixels\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1169
+#: src/tilp_calcs.c:1172
 #, c-format
 msgid "%sLCD height: %i pixels\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1175
+#: src/tilp_calcs.c:1178
 #, c-format
 msgid "%sBits per pixel: %i\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1184
+#: src/tilp_calcs.c:1187
 #, c-format
 msgid "%sPhysical RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1191
+#: src/tilp_calcs.c:1194
 #, c-format
 msgid "%sUser RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1198
+#: src/tilp_calcs.c:1201
 #, c-format
 msgid "%sFree RAM: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1205
+#: src/tilp_calcs.c:1208
 #, c-format
 msgid "%sPhysical FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1212
+#: src/tilp_calcs.c:1215
 #, c-format
 msgid "%sUser FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1219
+#: src/tilp_calcs.c:1222
 #, c-format
 msgid "%sFree FLASH: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1229
+#: src/tilp_calcs.c:1232
 #, c-format
 msgid "%sBattery: %s\n"
 msgstr ""
 
-#: src/tilp_calcs.c:1229
+#: src/tilp_calcs.c:1232
 msgid "good"
 msgstr ""
 
-#: src/tilp_calcs.c:1229
+#: src/tilp_calcs.c:1232
 msgid "low"
 msgstr ""
 
-#: src/tilp_calcs.c:1256
+#: src/tilp_calcs.c:1259
 msgid "Receiving cert"
 msgstr ""
 
-#: src/tilp_calcs.c:1278
+#: src/tilp_calcs.c:1281
 msgid ""
 "It's not a certificate or this certificate is not targetted for this "
 "calculator type."
 msgstr ""
 
-#: src/tilp_calcs.c:1285
+#: src/tilp_calcs.c:1288
 msgid "Sending cert"
 msgstr ""
 
-#: src/tilp_calcs.c:1305
+#: src/tilp_calcs.c:1308
 msgid ""
 "You are about to restore the content\n"
 "of your calculator with a backup.\n"
