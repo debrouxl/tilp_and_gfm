@@ -45,7 +45,7 @@ AC_CHECK_TOOL(RC, windres, windres)
 
 # Checks for libraries.
 AM_GNU_GETTEXT(external)
-AM_GNU_GETTEXT_VERSION([0.16])
+AM_GNU_GETTEXT_VERSION([0.17])
 
 PKG_CHECK_MODULES(TICONV, ticonv >= 1.0.4)
 AC_SUBST(TICONV_CFLAGS)

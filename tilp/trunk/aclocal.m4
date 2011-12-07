@@ -1186,6 +1186,7 @@ AC_SUBST([am__untar])
 
 m4_include([m4/gettext.m4])
 m4_include([m4/iconv.m4])
+m4_include([m4/intlmacosx.m4])
 m4_include([m4/lib-ld.m4])
 m4_include([m4/lib-link.m4])
 m4_include([m4/lib-prefix.m4])
