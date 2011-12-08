@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # This script, aimed at users, automates the compilation and installation of tilp & gfm
 # from the SVN repository.
@@ -7,7 +7,7 @@
 # **********
 # IMPORTANT:
 # **********
-#     * see below for prerequisites (build dependencies) or peculiarities (e.g. 64-bit Fedora).
+#     * please read below for prerequisites (build dependencies) or peculiarities (e.g. 64-bit Fedora).
 #     * you should remove equivalent packages, if any, before running this script.
 #
 # Copyright (C) Lionel Debroux 2009, 2010, 2011
@@ -18,11 +18,46 @@
 # $SRCDIR/tilp/libticables, $SRCDIR/tilp/libticalcs, $SRCDIR/tilp/gfm and $SRCDIR/tilp/tilp.
 
 
-# The prefix where the binaries will be installed, e.g. $HOME, /usr, /usr/local.
+
+# **********************************************************************
+# MANDATORY dependencies for compiling and running libti*, gfm and tilp:
+# **********************************************************************
+# (Debian and Fedora package names are given as examples, install respectively with `apt-get install ...` and `yum install ...`)
+# * Subversion (subversion, subversion)
+# * Suitable C compiler + C++ compiler:
+#      * GCC + G++: (gcc + g++, gcc + gcc-c++)
+#      * Clang (clang, clang), preferably version 3.0 and later.
+# * GNU make (make, make). BSD make might work.
+#   (on Debian, you can install "build-essential" to get gcc, g++ and make)
+# * pkg-config (pkg-config, pkgconfig)
+# * GNU autoconf (autoconf, autoconf)
+# * GNU automake (automake, automake)
+# * GNU libtool (libtool, libtool)
+# * glib 2.x development files (libglib2.0-dev, glib2-devel)
+# * zlib development files (zlib1g-dev, zlib-devel)
+# * libusb development files (libusb-dev + libusb-1.0-0-dev, libusb-devel + libusb1-devel)
+#   (libusb 0.1.x preferred, but libticables now has a libusb 1.0 backend activated with "--enable-libusb10", see below)
+# * GTK+ 2.x development files (libgtk2.0-dev, gtk2-devel)
+# * Glade development files (libglade2-dev, libglade2-devel)
+# * SDL 1.2 development files (libsdl1.2-dev, SDL-devel)
+# * GNU gettext (gettext, gettext)
+# * GNU bison (bison, bison)
+# * GNU flex (flex, flex)
+# * GNU groff (groff, groff)
+# * GNU texinfo (texinfo, texinfo)
+# * XDG utils (xdg-utils, xdg-utils)
 #
-# ****************
+# Optional dependencies:
+# * KDE 3.x development files (kdelibs4-dev, kdelibs3-devel), if you want to compile tilp with support for the KDE file dialog.
+#   (this implies a slew of development files, among which the Qt development files, and is therefore disabled by default)
+
+
+# ******************************************************************************
+# The prefix where the binaries will be installed, e.g. $HOME, /usr, /usr/local.
+# ******************************************************************************
+
 # IMPORTANT NOTES:
-# ****************
+# ----------------
 # * for compilation to succeed, you may have to execute
 # $ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:[{$PREFIX}]/lib/pkgconfig
 # (where [{$PREFIX}] is the contents of the PREFIX line below, without the quotes).
@@ -37,32 +72,27 @@
 PREFIX="/usr"
 
 
+# ******************************************************************************
 # The place where the sources will be stored.
+# ******************************************************************************
 SRCDIR="$HOME/lpg"
 
 
-# MANDATORY dependencies for compiling and running libti* and tilp:
-# (Debian and Fedora package names are given if they're different from each other)
-# * (subversion - for downloading the sources)
-# * pkg-config
-# * GNU autoconf, automake, libtool
-# * glib 2.x development files (libglib2.0-dev, glib2-devel)
-# * zlib development files (zlib1g-dev, zlib-devel)
-# * libusb development files (libusb-dev, libusb-devel)
-#   (libusb 0.1.x preferred, but libticables now has a libusb 1.0 backend activated with "--enable-libusb10", see below)
-# * GTK+ 2.x and Glade development files (libgtk2.0-dev + libglade2-dev, gtk2-devel + libglade2-devel)
-# * SDL 1.2 development files (libsdl1.2-dev, SDL-devel)
-# * GNU gettext
-# * GNU bison, flex
-# * GNU groff, texinfo
-# * XDG utils
-#
-# Optional dependencies:
-# * KDE 3.x development files (kdelibs4-dev, kdelibs3-devel), if you want to compile tilp with support for the KDE file dialog.
-#   (this implies a slew of development files, among which the Qt development files, and is therefore disabled by default)
+# ******************************************************************************
+# Default values for the C and C++ compilers, if these variables are not set
+# in the environment or the command-line (before the invocation of install_tilp.sh).
+# ******************************************************************************
+if [ "x$CC" = "x" ]; then
+    #CC=clang
+    CC=gcc
+fi
+if [ "x$CXX" = "x" ]; then
+    #CXX=clang++
+    CXX=g++
+fi
 
 
-# Checkout/update, `configure`, `make` and `make install` the given module
+# Subroutine: checkout/update, `configure`, `make` and `make install` the given module
 handle_one_module() {
   module_name="$1"
   shift # Kick the first argument, so as to be able to pass the rest to configure.
@@ -81,7 +111,7 @@ handle_one_module() {
   echo "Configuring $module_name"
   # Add --libdir=/usr/lib64 on e.g. 64-bit Fedora 14, which insists on searching for 64-bit libs in /usr/lib64.
   # Or modify PKG_CONFIG_PATH as described above.
-  ./configure "--prefix=$PREFIX" $@ || return 1
+  ./configure "--prefix=$PREFIX" CC=$CC CXX=$CXX $@ || return 1
   echo "Building $module_name"
   make || return 1
   echo "Installing $module_name"
@@ -89,18 +119,51 @@ handle_one_module() {
   cd ..
 }
 
+# Subroutine: perform a quick rough sanity check on compilers.
+rough_sanity_check() {
+  echo "Performing a quick rough sanity check on compilers"
+  # CC
+  cat << EOF > "$SRCDIR/tilp/hello.c"
+#include <stdio.h>
+
+int main(int argc, char * argv[]) {
+    printf("Hello World !\n");
+    return 0;
+}
+EOF
+
+  "$CC" "$SRCDIR/tilp/hello.c" -o "$SRCDIR/tilp/hello" || exit 1
+  echo "CC=$CC exists"
+  # CXX
+  cat << EOF > "$SRCDIR/tilp/hello.cc"
+#include <cstdio>
+
+int main(int argc, char * argv[]) {
+    printf("Hello World !\n");
+    return 0;
+}
+
+EOF
+
+  "$CXX" "$SRCDIR/tilp/hello.cc" -o "$SRCDIR/tilp/hello" || exit 1
+  echo "CXX=$CXX exists"
+}
+
+# The main part of the script starts here.
 echo -e "\033[4mBefore proceeding further, make sure that you're ready to go (look inside the install script):\033[m"
-echo -e "1) configured \033[1mPREFIX\033[m and \033[1mSRCDIR\033[m the way you wish;"
+echo -e "1) configured \033[1mPREFIX\033[m and \033[1mSRCDIR\033[m the way you wish"
+echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into using non-GCC compilers);"
 echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which installs libraries to non-standard paths), added --libdir=/usr/lib64 to the marked line, or..."
 echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
-echo -e "3) installed the build dependencies listed in the script."
+echo -e "3) installed the build dependencies listed in the script. Unless you're on Debian and derivatives, use libusb 1.0."
 echo -e "\033[4mOtherwise, the build will fail!\033[m."
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
 
-
 echo "Creating output folder if necessary"
 mkdir -p "$SRCDIR/tilp" || exit 1
+
+rough_sanity_check
 
 cd "$SRCDIR/tilp"
 echo "=== libticonv ==="
