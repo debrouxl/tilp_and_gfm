@@ -5,6 +5,8 @@
 ;
 ; $Id$
 
+#include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
+
 [Setup]
 AppName=GFM
 AppVerName=GFM 1.06
@@ -14,14 +16,15 @@ AppSupportURL=http://lpg.ticalc.org/gfm/index.html
 AppUpdatesURL=http://lpg.ticalc.org/gfm/index.html
 DefaultDirName={pf}\GFM
 DefaultGroupName=GFM
-AllowNoIcons=yes
+AllowNoIcons=true
 LicenseFile=C:\tilp\gfm\trunk\COPYING
 InfoBeforeFile=C:\tilp\gfm\trunk\README
 InfoAfterFile=C:\tilp\gfm\trunk\ChangeLog
+SolidCompression=true
+Compression=lzma2/Max
 
 PrivilegesRequired = admin
 
-;--- Shared Stuff ---
 [Files]
 ; TI libraries
 Source: "C:\lpg\packages\bin\libtifiles2-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-7.dll');
@@ -39,11 +42,6 @@ Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"
 Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
-; Downloader
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\*.dll"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\wget.exe"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-Source: "C:\tilp\tilp\trunk\build\InnoSetup\wget\d_and_i.bat"; DestDir: "{cf}\LPG Shared\wget"; Flags: ignoreversion
-
 [Registry]
 ; Create entries for shared libs (needed by other programs)
 Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "Path"; ValueData: "{cf}\LPG Shared"
@@ -52,10 +50,11 @@ Root: HKLM; Subkey: "Software\LPG Shared"; ValueType: string; ValueName: "DllPat
 ;--- End of Shared Stuff ---
 
 [Tasks]
-Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4
-Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Additional icons:"; MinVersion: 4,4; Flags: unchecked
+Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "Desktop integration:"; MinVersion: 4,4
+Name: "quicklaunchicon"; Description: "Create a &Quick Launch icon"; GroupDescription: "Desktop integration:"; MinVersion: 4,4; Flags: unchecked
+Name: "tifiles"; Description: "Register file types"; GroupDescription: "Desktop integration:";
 
-Name: "tifiles"; Description: "Register file types"; GroupDescription: "File association:";
+Name: "gtk_runtime"; Description: "Download GTK+ runtime"; GroupDescription: "GTK+ Runtime:"; MinVersion: 0,4
 
 [Files]
 ; Glade files
@@ -107,8 +106,9 @@ Name: "{userdesktop}\GFM"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI f
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\GFM-2"; Filename: "{app}\gfm.exe"; WorkingDir: "{app}\My TI files"; MinVersion: 4,4; Tasks: quicklaunchicon
 
 [Run]
-;Filename: "{app}\gfm.exe"; Description: "Launch GFM"; StatusMsg: "Running GFM..."; Flags: postinstall nowait unchecked
-Filename: "{cf}\LPG Shared\wget\d_and_i.bat"; Description: "Download and install GTK+"; StatusMsg: "Running ..."; Flags: nowait postinstall unchecked hidewizard;
+Filename: "{app}\gfm.exe"; Description: "Launch GFM"; StatusMsg: "Running GFM..."; Flags: postinstall nowait unchecked
+; GTK+ Runtime installer
+Filename: "{tmp}\gtk-2.12.9-win32-2.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
 
 [UninstallRun]
 ;Filename: "C:\lpg\ticables2\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -598,7 +598,6 @@ end;
 // Get GTK DLL path
 function GetGtkDllPath(S: String): String;
 var
-  Exists: boolean;
   GtkDllPath: string;
 begin
   GtkDllPath := '';
@@ -667,7 +666,7 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But, the installer can download and install it for you; simply remember to check the box at the last tab/page. Otherwise, you can still download it from the start menu (start menu > programs > gfm > install gtk+ from the web).', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But the installer can download and install it for you; simply leave the checkbox checked.', mbError, MB_OK);
 end;
 
 // Check for previous program presence and uninstall if needed
@@ -750,6 +749,30 @@ begin
     Result := false
   else
     Result := true;
+end;
+
+procedure InitializeWizard();
+begin
+  // Initialize InnoTools Downloader
+  ITD_Init();
+
+  //ITD_SetOption('Debug_DownloadDelay','0');
+  //ITD_SetOption('Debug_Messages','1');
+  ITD_SetOption('UI_DetailedMode','1');
+
+  // We'll download the following file...
+  ITD_AddFileSize('http://dfn.dl.sourceforge.net/project/gladewin32/gtk+-win32-runtime/2.12.9/gtk-2.12.9-win32-2.exe', ExpandConstant('{tmp}\gtk-2.12.9-win32-2.exe'), 7378984);
+  // ... after the user clicks on Install.
+  ITD_DownloadAfter(wpPreparing);
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if CurPageID = wpReady then begin
+    if not IsTaskSelected('gtk_runtime') then begin
+      ITD_ClearFiles();
+    end;
+  end;
 end;
 
 // Delete shared DLL
