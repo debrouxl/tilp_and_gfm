@@ -2,6 +2,8 @@ SubVersion: $Id$
 
 Log of changes:	gfm (calcs, files, ticonv)
 
+- xx/xx/xxxx, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
+
 - 14/12/2011, version 1.06 (1.1.7, 1.1.5, 1.1.3): debrouxl
 	- eliminate explicit usage of stdout.
 	- upgrade COPYING files and FSF addresses embedded in files, so as to make rpmlint happier.

@@ -2,8 +2,8 @@
 
 
 
-Old     version:  1.15  (2011/05/28)
-Current version:  1.16  (2011/12/xx)
+Old     version:  1.16  (2011/12/15)
+Current version:  1.17  (2012/xx/xx)
 
 
 SubVersion (SVN) revision: $Id$
@@ -14,33 +14,12 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 
 New capabilities:
 -----------------
-	- ability to get screenshots from Nspire CX calculators.
-	- libticables now uses a libusb version that allows stable use of the filter driver, i.e. side-by-side usage of TI-Connect/TINC(L)S and TILP.
-	- ability to transfer OS files to Nspire CX calculators.
-	- ability to transfer OS files to Nspire CM calculators.
 
 Improvements:
 -------------
-	- added several messages in the Linux device detection code, and unified / updated messages and translations.
-	- when displaying calc information, print boot2 version if any; add several translatable strings and translations.
-	- on Windows, redirect stdout to ~/.tilp.log (because the Windows terminal is too slow); eliminate explicit usage of stdout.
-	- on Windows, add support for storing the config file in the home directory and for upgrading from a config file stored in the install directory.
-	- add MIME types and FD.o desktop files.
-	- 8xo file support - they used to be called 8xgrp by libtifiles/TILP.
-	- improve drag&drop code, by Jon Sturm.
-	- add Window, RclWin and TblSet tokens for CALC_TI82 and CALC_TI85 (SF bug #3438610).
-	- add error codes returned by DUSB protocol calcs when refusing a FlashApp whose signature does not match, and by Nspires when they're out of memory.
 
 Bug fixes:
 ----------
-	- made Nspire support usable again on Windows, thanks to the libusb-win32 update.
-	  The patch to libusb-win32 required by Nspires is now upstream, under the form of a new usb_reset_ex() function, as discussed with the
-	  libusb-win32 maintainers.
-	- fixed crashes in normal usage, and sanitized libti* function arguments.
-	- ROM dumping of 84+(SE) and 89T through DirectLink.
-	- sending files of sizes 244 modulo 250, larger than 244 bytes, to 84+(SE) through DirectLink.
-	- fix the incorrect reporting of Flashapps' sizes for 73 / 83+ family, when the DBUS protocol is used (SF bug #3440569).
-	- if we're talking to a 73, don't try to test for 83+SE. The oldest 73 OS versions don't support get_version.
 
 Known bugs:
 -----------

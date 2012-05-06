@@ -17,8 +17,8 @@ IDI_ICON1               ICON    DISCARDABLE     "tilp.ico"
 #include "winver.h"
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,1,6,0
- PRODUCTVERSION 1,1,6,0
+ FILEVERSION 1,1,7,0
+ PRODUCTVERSION 1,1,7,0
  FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 #ifdef _DEBUG
  FILEFLAGS (VS_FF_PRERELEASE | VS_FF_DEBUG)
@@ -36,14 +36,14 @@ BEGIN
             VALUE "Comments", "This program is placed under GPL license. The license can be found on www.gnu.org\0"
             VALUE "CompanyName", "Linux Programmer Group\0"
             VALUE "FileDescription", "Tilp Is a Linking Program\0"
-            VALUE "FileVersion", "1.16\0"
+            VALUE "FileVersion", "1.17\0"
             VALUE "InternalName", "TiLP\0"
-            VALUE "LegalCopyright", "Copyright \xA9 1999-2011, Romain Li\xE9vin, Julien Blache and contributors\0"
+            VALUE "LegalCopyright", "Copyright \xA9 1999-2012, Romain Li\xE9vin, Julien Blache and contributors\0"
             VALUE "LegalTrademarks", "The TiLP Team\0"
             VALUE "OriginalFilename", "tilp.exe\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "TI link cable software for Linux, Windows 2000/XP/Vista/7, Mac OS X and FreeBSD.\0"
-            VALUE "ProductVersion", "1, 1, 6, 0\0"
+            VALUE "ProductVersion", "1, 1, 7, 0\0"
             VALUE "SpecialBuild", "Windows 2000/XP/Vista/7 version\0"
         END
     END
