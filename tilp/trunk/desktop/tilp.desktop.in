@@ -11,5 +11,5 @@ Type=Application
 Exec=@bindir@/tilp
 Icon=@pixmapsdir@/tilp.xpm
 Terminal=false
-Categories=Utility;X-KDE-Utilities-Peripherals;
-MimeType=application/x-tilp
+Categories=Utility;DesktopUtility;X-KDE-Utilities-Peripherals;
+MimeType=application/x-tilp;
