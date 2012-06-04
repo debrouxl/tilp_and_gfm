@@ -79,7 +79,7 @@ int tilp_config_default(void)
 	options.screen_clipping = SCREEN_CLIPPED;
 	options.screen_blurry = 0;
 
-	options.auto_detect = 0;
+	options.auto_detect = 1;
 	options.recv_as_group = (options.calc_model == CALC_NSPIRE) ? 0 : 1;
 	options.backup_as_tigroup = 1;
 
