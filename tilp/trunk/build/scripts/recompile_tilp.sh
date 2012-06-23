@@ -25,6 +25,7 @@ handle_one_module() {
   make clean || return 1
   make || return 1
   echo "Installing $module_name"
+  make check || return 1
   make install || return 1
   cd ../..
 }
