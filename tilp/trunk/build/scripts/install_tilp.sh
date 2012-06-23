@@ -53,7 +53,10 @@
 
 
 # ******************************************************************************
-# The prefix where the binaries will be installed, e.g. $HOME, /usr, /usr/local.
+# Default prefix where the binaries will be installed, e.g.
+# $HOME, /usr, /usr/local, /opt/tilp.
+# Note that you can set the value of PREFIX interactively through e.g.:
+# $ PREFIX="$HOME" <path>/install_tilp.sh
 # ******************************************************************************
 
 # IMPORTANT NOTES:
@@ -68,14 +71,19 @@
 # * after successful installation, you may have to add $PREFIX/bin to $PATH,
 # and $PREFIX/lib to $LD_LIBRARY_PATH, for the SVN versions of libti*, tilp & gfm
 # to get picked up.
-#PREFIX="$HOME"
-PREFIX="/usr"
+if [ "x$PREFIX" = "x" ]; then
+    PREFIX="/usr"
+fi
 
 
 # ******************************************************************************
-# The place where the sources will be stored.
+# Default place where the sources will be stored, if it's not de
+# Note that you can set the value of SRCDIR thusly:
+# $ SRCDIR="/opt/src" <path>/install_tilp.sh
 # ******************************************************************************
-SRCDIR="$HOME/lpg"
+if [ "x$SRCDIR" = "x" ]; then
+    SRCDIR="$HOME/lpg"
+fi
 
 
 # ******************************************************************************
@@ -119,10 +127,10 @@ handle_one_module() {
   cd ..
 }
 
-# Subroutine: perform a quick rough sanity check on compilers.
-rough_sanity_check() {
+# Subroutine: perform quick rough sanity check on compilers and PREFIX.
+rough_sanity_checks() {
   echo "Performing a quick rough sanity check on compilers"
-  # CC
+  # Test CC, which also checks whether the user can write to SRCDIR
   cat << EOF > "$SRCDIR/tilp/hello.c"
 #include <stdio.h>
 
@@ -134,7 +142,7 @@ EOF
 
   "$CC" "$SRCDIR/tilp/hello.c" -o "$SRCDIR/tilp/hello" || exit 1
   echo "CC=$CC exists"
-  # CXX
+  # Test CXX, which also checks whether the user can write to SRCDIR
   cat << EOF > "$SRCDIR/tilp/hello.cc"
 #include <cstdio>
 
@@ -147,6 +155,21 @@ EOF
 
   "$CXX" "$SRCDIR/tilp/hello.cc" -o "$SRCDIR/tilp/hello" || exit 1
   echo "CXX=$CXX exists"
+
+  echo "Checking whether $PREFIX can be written to"
+  TEMPFILE=`mktemp $PREFIX/XXXXXXXXXXX`
+  if [ "$?" -ne 0 ]; then
+    echo -e "\033[1mNo, cannot write to $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"
+    exit 1
+  fi
+  cat << EOF > "$TEMPFILE"
+This is a test file
+EOF
+  if [ "$?" -ne 0 ]; then
+    echo -e "\033[1mNo, cannot write to $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"
+    exit 1
+  fi
+  rm "$TEMPFILE"
 }
 
 # The main part of the script starts here.
@@ -163,7 +186,7 @@ read
 echo "Creating output folder if necessary"
 mkdir -p "$SRCDIR/tilp" || exit 1
 
-rough_sanity_check
+rough_sanity_checks
 
 cd "$SRCDIR/tilp"
 echo "=== libticonv ==="
