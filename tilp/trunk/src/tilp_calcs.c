@@ -303,7 +303,7 @@ int tilp_calc_rom_dump(void)
 	}
 
 	/* Transfer ROM dumper */
-	gif->create_pbar_(FNCT_DUMP_ROM, _("Dumping ROM"));
+	gif->create_pbar_(FNCT_DUMP_ROM1, _("Dumping ROM"));
 	err = ticalcs_calc_dump_rom_1(calc_handle);
 	if(tilp_err(err))
 	{
