@@ -167,7 +167,7 @@ Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
 ; GTK+ Runtime installer
-Filename: "{tmp}\gtk-2.12.9-win32-2.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
+Filename: "{tmp}\gtk2-runtime-2.24.8-2011-12-03-ash.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
 
 [UninstallRun]
 ;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -735,7 +735,7 @@ begin
   if(I = 2) then begin
     S := 'The GTK+ libraries are installed but the version is old: ';
   end;
-  MsgBox(S + 'you will need the GTK+ 2.12.x Runtime Environnement! But the installer can download and install it for you; simply leave the checkbox checked.', mbError, MB_OK);
+  MsgBox(S + 'you will need the GTK+ 2.24.8 Runtime Environnement! But the installer can download and install it for you; simply leave the checkbox checked. You can also go to http://gtk-win.sourceforge.net .', mbError, MB_OK);
 end;
 
 // Check for previous program presence and uninstall if needed
@@ -798,7 +798,7 @@ begin
 
   // Retrieve GTK version and compare
   if IsGtkInstalled() then begin
-    if CompareVersion(GetGtkVersion(), '2.12.9') < 0 then begin
+    if CompareVersion(GetGtkVersion(), '2.24.8') < 0 then begin
         DisplayWarning(2);
     end;
   end;
@@ -831,7 +831,7 @@ begin
   ITD_SetOption('UI_DetailedMode','1');
 
   // We'll download the following file...
-  ITD_AddFileSize('http://dfn.dl.sourceforge.net/project/gladewin32/gtk+-win32-runtime/2.12.9/gtk-2.12.9-win32-2.exe', ExpandConstant('{tmp}\gtk-2.12.9-win32-2.exe'), 7378984);
+  ITD_AddFileSize('http://garr.dl.sourceforge.net/project/gtk-win/GTK+%20Runtime%20Environment/GTK+%202.24/gtk2-runtime-2.24.8-2011-12-03-ash.exe', ExpandConstant('{tmp}\gtk2-runtime-2.24.8-2011-12-03-ash.exe'), 7907423);
   // ... after the user clicks on Install.
   ITD_DownloadAfter(wpPreparing);
 end;

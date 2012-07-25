@@ -9,8 +9,8 @@ REQUIREMENTS
 ------------
 
  - a Windows computer: Windows 2000, XP, Vista, 7 (32-bit or 64-bit)
- - the GTK+ 2.12 libraries with libglade
-    Location: <http://downloads.sourceforge.net/gladewin32/gtk-2.12.9-win32-2.exe>
+ - the GTK+ 2.24 libraries
+    Location: <http://garr.dl.sourceforge.net/project/gtk-win/GTK+%20Runtime%20Environment/GTK+%202.24/gtk2-runtime-2.24.8-2011-12-03-ash.exe>
     => they can be automatically downloaded & installed by the installer.
 
 	 Note: if you are using 'The GiMP', you might encounter DLL problems...
@@ -35,7 +35,7 @@ The following steps assume that TI-Connect / TINC(L)S is already installed:
 After that, the device ought to work in both TILP and TI-Connect / TILP and (TINCLS or TINCS).
 
 
-2°) This setup may download & install some extra libraries (GTK+ 2.12).
+2°) This setup may download & install some extra libraries (GTK+ 2.24).
 
 The GTK+ package includes the Wimp (Windows IMPersonator) theme engine which gives 
 Windows look & feel (includes XP theming). Is also included the GTK theme selector.
