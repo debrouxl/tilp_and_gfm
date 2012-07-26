@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!--*- mode: xml -*-->
+<interface domain="tilp2">
+  <object class="GtkUIManager" id="uimanager1">
+    <child>
+      <object class="GtkActionGroup" id="actiongroup1">
+        <child>
+          <object class="GtkAction" id="file1">
+            <property name="name">file1</property>
+            <property name="label" translatable="yes">_File</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="load1">
+            <property name="stock_id">gtk-open</property>
+            <property name="name">load1</property>
+            <signal handler="on_sc_load1_activate" name="activate"/>
+          </object>
+          <accelerator key="L" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="save1">
+            <property name="stock_id">gtk-save</property>
+            <property name="name">save1</property>
+            <signal handler="on_sc_save1_activate" name="activate"/>
+          </object>
+          <accelerator key="S" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="separator2">
+            <property name="name">separator2</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="quit1">
+            <property name="stock_id">gtk-quit</property>
+            <property name="name">quit1</property>
+            <signal handler="on_sc_quit1_activate" name="activate"/>
+          </object>
+          <accelerator key="Q" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="options1">
+            <property name="name">options1</property>
+            <property name="label" translatable="yes">_Options</property>
+            <signal handler="on_sc_options1_activate" name="activate"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <ui>
+      <menubar name="menubar1">
+        <menu action="file1">
+          <menuitem action="load1"/>
+          <menuitem action="save1"/>
+          <menuitem action="separator2"/>
+          <menuitem action="quit1"/>
+        </menu>
+        <menuitem action="options1"/>
+      </menubar>
+    </ui>
+  </object>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkWindow" id="screenshot_dbox">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Screen capture</property>
+    <property name="window_position">mouse</property>
+    <child>
+      <object class="GtkVBox" id="vbox1">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkMenuBar" constructor="uimanager1" id="menubar1">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkToolbar" id="toolbar1">
+            <property name="visible">True</property>
+            <property name="toolbar_style">icons</property>
+            <child>
+              <object class="GtkToolButton" id="button1">
+                <property name="visible">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip-text" translatable="yes">Refresh capture.</property>
+                <property name="label" translatable="yes">Refresh</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-refresh</property>
+                <signal handler="on_scdbox_button1_clicked" name="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="button2">
+                <property name="visible">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip-text" translatable="yes">Save capture to picture file.</property>
+                <property name="label" translatable="yes">Save</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-save</property>
+                <signal handler="on_scdbox_button2_clicked" name="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="button3">
+                <property name="visible">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip-text" translatable="yes">Quit.</property>
+                <property name="label" translatable="yes">Quit</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-quit</property>
+                <signal handler="on_scdbox_button3_clicked" name="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="button4">
+                <property name="visible">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip-text" translatable="yes">User's manual.</property>
+                <property name="label" translatable="yes">Help</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-help</property>
+                <signal handler="on_scdbox_button4_clicked" name="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="button5">
+                <property name="visible">True</property>
+                <property name="has_tooltip">True</property>
+                <property name="tooltip-text" translatable="yes">Copy capture to clipboard.</property>
+                <property name="label" translatable="yes">Copy</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-copy</property>
+                <signal handler="on_scdbox_button5_clicked" name="clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame" id="frame2">
+            <property name="visible">True</property>
+            <property name="border_width">5</property>
+            <property name="label_xalign">0</property>
+            <child>
+              <object class="GtkImage" id="pixmap7">
+                <property name="visible">True</property>
+                <property name="xpad">2</property>
+                <property name="ypad">2</property>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel" id="label1">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Calculator screen</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="statusbar1">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

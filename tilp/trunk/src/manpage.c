@@ -24,7 +24,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -35,7 +34,8 @@
 
 gint display_manpage_dbox()
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GtkWidget *dbox;
 	GtkTextBuffer *txtbuf;
 	GtkWidget *text;
@@ -64,13 +64,17 @@ gint display_manpage_dbox()
 		}
 	}
 
-	xml = glade_xml_new(tilp_paths_build_glade("manpage-2.glade"), "manpage_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("manpage.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "manpage_dbox");
-	text = glade_xml_get_widget(xml, "textview1");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "manpage_dbox"));
+	text = GTK_WIDGET (gtk_builder_get_object (builder, "textview1"));
 
 	// Change font
 	font_desc = pango_font_description_from_string ("Courier");

@@ -24,7 +24,6 @@
 #endif				/*  */
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 
 #include "support.h"
@@ -39,16 +38,22 @@ static GtkWidget *scrn_img;
 
 gint display_screenshot_dbox()
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GdkPixbuf *pixbuf;
 
-	xml = glade_xml_new(tilp_paths_build_glade("screenshot-2.glade"), "screenshot_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("screenshot.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
 
-	scrn_win = glade_xml_get_widget(xml, "screenshot_dbox");
-	scrn_img = glade_xml_get_widget(xml, "pixmap7");
+	gtk_builder_connect_signals(builder, NULL);
+
+	scrn_win = GTK_WIDGET (gtk_builder_get_object (builder, "screenshot_dbox"));
+	scrn_img = GTK_WIDGET (gtk_builder_get_object (builder, "pixmap7"));
 
 	pixbuf = create_pixbuf("screendump.png");
 	gtk_image_set_from_pixbuf(GTK_IMAGE(scrn_img), pixbuf);

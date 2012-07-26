@@ -22,7 +22,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -51,7 +50,7 @@
 #define strcasecmp _stricmp
 #endif /* __WIN32__ */
 
-GladeXML *xml = NULL;
+GtkBuilder *builder = NULL;
 GtkWidget *main_wnd  = NULL;
 GtkWidget *clist_wnd = NULL;
 GtkWidget *ctree_wnd = NULL;
@@ -66,12 +65,12 @@ void show_right_view(int view)
 
 	if(view)
 	{
-		data = glade_xml_get_widget(xml, "vbox2");
+		data = GTK_WIDGET (gtk_builder_get_object (builder, "vbox2"));
 		gtk_widget_show_all(data);
 	}
 	else
 	{
-		data = glade_xml_get_widget(xml, "vbox2");
+		data = GTK_WIDGET (gtk_builder_get_object (builder, "vbox2"));
 		gtk_widget_hide(data);
 
 		//gtk_window_resize(dbox, options.xsize, options.ysize);
@@ -82,72 +81,62 @@ GtkWidget *display_tilp_dbox()
 {
 	GtkWidget *dbox;
 	GtkWidget *paned;
+	GError* error = NULL;
 
-	xml = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "tilp_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("tilp.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return NULL; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "tilp_dbox");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "tilp_dbox"));
 	if(options.full_gui)
 		gtk_window_resize(GTK_WINDOW(dbox), options.wnd_x_size1, options.wnd_y_size1);
 	else
 		gtk_window_resize(GTK_WINDOW(dbox), options.wnd_x_size2, options.wnd_y_size2);
 
-	ctree_wnd = glade_xml_get_widget(xml, "treeview1");
-	clist_wnd = glade_xml_get_widget(xml, "treeview2");
+	ctree_wnd = GTK_WIDGET (gtk_builder_get_object (builder, "treeview1"));
+	clist_wnd = GTK_WIDGET (gtk_builder_get_object (builder, "treeview2"));
 
-	label_wnd.label11 = glade_xml_get_widget(xml, "label11");
-	label_wnd.label12 = glade_xml_get_widget(xml, "label12");
-	label_wnd.label13 = glade_xml_get_widget(xml, "label13");
-	label_wnd.label14 = glade_xml_get_widget(xml, "label14");
-	label_wnd.label21 = glade_xml_get_widget(xml, "label21");
+	label_wnd.label11 = GTK_WIDGET (gtk_builder_get_object (builder, "label11"));
+	label_wnd.label12 = GTK_WIDGET (gtk_builder_get_object (builder, "label12"));
+	label_wnd.label13 = GTK_WIDGET (gtk_builder_get_object (builder, "label13"));
+	label_wnd.label14 = GTK_WIDGET (gtk_builder_get_object (builder, "label14"));
+	label_wnd.label21 = GTK_WIDGET (gtk_builder_get_object (builder, "label21"));
 
-	toolbar_wnd.toolbar = glade_xml_get_widget(xml, "toolbar2");
-	toolbar_wnd.button10 = glade_xml_get_widget(xml, "button1");
-	toolbar_wnd.button11 = glade_xml_get_widget(xml, "button2");
-	toolbar_wnd.button12 = glade_xml_get_widget(xml, "button3");
-	toolbar_wnd.button13 = glade_xml_get_widget(xml, "button4");
-	toolbar_wnd.button14 = glade_xml_get_widget(xml, "button5");
-	toolbar_wnd.button15 = glade_xml_get_widget(xml, "button6");
-	toolbar_wnd.button20 = glade_xml_get_widget(xml, "button10");
-	toolbar_wnd.button21 = glade_xml_get_widget(xml, "button11");
-	toolbar_wnd.button22 = glade_xml_get_widget(xml, "button12");
+	toolbar_wnd.toolbar = GTK_WIDGET (gtk_builder_get_object (builder, "toolbar2"));
+	toolbar_wnd.button10 = GTK_WIDGET (gtk_builder_get_object (builder, "button1"));
+	toolbar_wnd.button11 = GTK_WIDGET (gtk_builder_get_object (builder, "button2"));
+	toolbar_wnd.button12 = GTK_WIDGET (gtk_builder_get_object (builder, "button3"));
+	toolbar_wnd.button13 = GTK_WIDGET (gtk_builder_get_object (builder, "button4"));
+	toolbar_wnd.button14 = GTK_WIDGET (gtk_builder_get_object (builder, "button5"));
+	toolbar_wnd.button15 = GTK_WIDGET (gtk_builder_get_object (builder, "button6"));
+	toolbar_wnd.button20 = GTK_WIDGET (gtk_builder_get_object (builder, "button10"));
+	toolbar_wnd.button21 = GTK_WIDGET (gtk_builder_get_object (builder, "button11"));
+	toolbar_wnd.button22 = GTK_WIDGET (gtk_builder_get_object (builder, "button12"));
 
-	menubar_wnd.menubar = glade_xml_get_widget(xml, "menubar1");
-	menubar_wnd.viewlocal = glade_xml_get_widget(xml, "menuitem13");
-	menubar_wnd.showall = glade_xml_get_widget(xml, "show_all_files1");
-	menubar_wnd.restore = glade_xml_get_widget(xml, "imagemenuitem4");
-	menubar_wnd.backup = glade_xml_get_widget(xml, "imagemenuitem3");
-	menubar_wnd.idlist = glade_xml_get_widget(xml, "menuitem10");
-	menubar_wnd.setclock = glade_xml_get_widget(xml, "menuitem9");
-	menubar_wnd.dumprom = glade_xml_get_widget(xml, "menuitem8");
+	menubar_wnd.menubar = GTK_WIDGET (gtk_builder_get_object (builder, "menubar1"));
+	menubar_wnd.viewlocal = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem13"));
+	menubar_wnd.showall = GTK_WIDGET (gtk_builder_get_object (builder, "show_all_files1"));
+	menubar_wnd.restore = GTK_WIDGET (gtk_builder_get_object (builder, "imagemenuitem4"));
+	menubar_wnd.backup = GTK_WIDGET (gtk_builder_get_object (builder, "imagemenuitem3"));
+	menubar_wnd.idlist = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem10"));
+	menubar_wnd.setclock = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem9"));
+	menubar_wnd.dumprom = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem8"));
 
-	paned = glade_xml_get_widget(xml, "hpaned1");
+	paned = GTK_WIDGET (gtk_builder_get_object (builder, "hpaned1"));
 	gtk_paned_set_position(GTK_PANED(paned), options.pane_x_size);
 
 	show_right_view(options.full_gui);
-	help_menu = glade_xml_get_widget(xml, "help_menu1");
 
 	clist_init();
 	ctree_init();
 	dnd_init();
 
 	return dbox;
-}
-
-GtkWidget *display_help_menu(void)
-{
-	GladeXML *xml2;
-	GtkWidget *menu;
-
-	xml2 = glade_xml_new(tilp_paths_build_glade("tilp-2.glade"), "help_menu1", PACKAGE);
-	if (!xml2)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml2);
-
-	menu = glade_xml_get_widget(xml2, "help_menu1");
-	return menu;
 }
 
 GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
@@ -204,9 +193,9 @@ GLADE_CB void on_ticalcorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	go_to_bookmark("http://www.ticalc.org");
 }
 
-GLADE_CB void on_tinewsnet1_activate(GtkMenuItem* menuitem, gpointer user_data)
+GLADE_CB void on_tiplanetorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
-	go_to_bookmark("http://www.tigen.org");
+	go_to_bookmark("http://tiplanet.org");
 }
 
 GLADE_CB void on_ti_frorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
@@ -684,13 +673,6 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 
 	clist_refresh();
 	labels_refresh();
-}
-
-GLADE_CB void on_tilp_button13_clicked(GtkButton* button, gpointer user_data)
-{
-	GtkWidget *menu = display_help_menu();
-
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
 }
 
 // take screenshot

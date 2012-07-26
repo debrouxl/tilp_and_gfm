@@ -35,9 +35,8 @@ Source: "C:\lpg\ticables2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\L
 Source: "C:\lpg\ticalcs2\po\fr.gmo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
 ; Misc
-Source: "C:\lpg\gtk\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
-Source: "C:\lpg\gtk\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
-
+;Source: "C:\lpg\gtk\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
+;Source: "C:\lpg\gtk\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 Source: "C:\lpg\gtk\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
 ; Downloader
@@ -77,8 +76,8 @@ Name: "slv_drv"; Description: "Install USB drivers"; GroupDescription: "Drivers:
 Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; GroupDescription: "Drivers:"; MinVersion: 0,4
 
 [Files]
-; Glade files
-Source: "C:\lpg\tilp2\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
+; GTK+Builder files
+Source: "C:\lpg\tilp2\builder\*.ui"; DestDir: "{app}\builder"; Flags: ignoreversion;
 
 ; Help files
 Source: "C:\lpg\tilp2\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;

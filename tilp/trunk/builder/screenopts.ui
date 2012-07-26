@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<!--*- mode: xml -*-->
+<interface domain="tilp2">
+  <object class="GtkDialog" id="screenopts_dbox">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Screen Capture Options</property>
+    <property name="type">GTK_WINDOW_TOPLEVEL</property>
+    <property name="window_position">GTK_WIN_POS_MOUSE</property>
+    <property name="modal">False</property>
+    <property name="resizable">False</property>
+    <property name="destroy_with_parent">False</property>
+    <property name="decorated">True</property>
+    <property name="skip_taskbar_hint">False</property>
+    <property name="skip_pager_hint">False</property>
+    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
+    <property name="focus_on_map">True</property>
+    <property name="has_separator">True</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox2">
+        <property name="visible">True</property>
+        <property name="homogeneous">False</property>
+        <property name="spacing">0</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area2">
+            <property name="visible">True</property>
+            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <child>
+              <object class="GtkButton" id="cancelbutton1">
+                <property name="visible">True</property>
+                <property name="can_default">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="label">gtk-cancel</property>
+                <property name="use_stock">True</property>
+                <property name="relief">GTK_RELIEF_NORMAL</property>
+                <property name="focus_on_click">True</property>
+                <accelerator key="Escape" modifiers="0" signal="clicked"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="okbutton1">
+                <property name="visible">True</property>
+                <property name="can_default">True</property>
+                <property name="can_focus">True</property>
+                <property name="label">gtk-ok</property>
+                <property name="use_stock">True</property>
+                <property name="relief">GTK_RELIEF_NORMAL</property>
+                <property name="focus_on_click">True</property>
+                <accelerator key="Return" modifiers="0" signal="clicked"/>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="padding">0</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">GTK_PACK_END</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkNotebook" id="notebook1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="show_tabs">True</property>
+            <property name="show_border">True</property>
+            <property name="tab_pos">GTK_POS_TOP</property>
+            <property name="scrollable">False</property>
+            <property name="enable_popup">False</property>
+            <child>
+              <object class="GtkHBox" id="hbox3">
+                <property name="visible">True</property>
+                <property name="homogeneous">False</property>
+                <property name="spacing">0</property>
+                <child>
+                  <object class="GtkFrame" id="frame2">
+                    <property name="border_width">5</property>
+                    <property name="visible">True</property>
+                    <property name="label_xalign">0</property>
+                    <property name="label_yalign">0.5</property>
+                    <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+                    <child>
+                      <object class="GtkVBox" id="vbox3">
+                        <property name="border_width">5</property>
+                        <property name="visible">True</property>
+                        <property name="homogeneous">True</property>
+                        <property name="spacing">0</property>
+                        <child>
+                          <object class="GtkRadioButton" id="radiobutton21">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="label" translatable="yes">_full</property>
+                            <property name="use_underline">True</property>
+                            <property name="relief">GTK_RELIEF_NORMAL</property>
+                            <property name="focus_on_click">True</property>
+                            <property name="active">False</property>
+                            <property name="inconsistent">False</property>
+                            <property name="draw_indicator">True</property>
+                            <signal handler="on_radiobutton21_toggled" name="toggled"/>
+                          </object>
+                          <packing>
+                            <property name="padding">0</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkRadioButton" id="radiobutton22">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="label" translatable="yes">_clipped (TI89)</property>
+                            <property name="use_underline">True</property>
+                            <property name="relief">GTK_RELIEF_NORMAL</property>
+                            <property name="focus_on_click">True</property>
+                            <property name="active">True</property>
+                            <property name="inconsistent">False</property>
+                            <property name="draw_indicator">True</property>
+                            <property name="group">radiobutton21</property>
+                            <signal handler="on_radiobutton22_toggled" name="toggled"/>
+                          </object>
+                          <packing>
+                            <property name="padding">0</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label1">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Screen mode:</property>
+                        <property name="use_underline">False</property>
+                        <property name="use_markup">False</property>
+                        <property name="justify">GTK_JUSTIFY_LEFT</property>
+                        <property name="wrap">False</property>
+                        <property name="selectable">False</property>
+                        <property name="xalign">0.5</property>
+                        <property name="yalign">0.5</property>
+                        <property name="xpad">0</property>
+                        <property name="ypad">0</property>
+                        <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+                        <property name="width_chars">-1</property>
+                        <property name="single_line_mode">False</property>
+                        <property name="angle">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="padding">0</property>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame" id="frame4">
+                    <property name="border_width">5</property>
+                    <property name="visible">True</property>
+                    <property name="label_xalign">0</property>
+                    <property name="label_yalign">0.5</property>
+                    <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+                    <child>
+                      <object class="GtkVBox" id="vbox4">
+                        <property name="border_width">5</property>
+                        <property name="visible">True</property>
+                        <property name="homogeneous">True</property>
+                        <property name="spacing">0</property>
+                        <child>
+                          <object class="GtkCheckButton" id="checkbutton1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="label" translatable="yes">_emulate</property>
+                            <property name="use_underline">True</property>
+                            <property name="relief">GTK_RELIEF_NORMAL</property>
+                            <property name="focus_on_click">True</property>
+                            <property name="active">False</property>
+                            <property name="inconsistent">False</property>
+                            <property name="draw_indicator">True</property>
+                            <signal handler="on_scopt_checkbutton1_toggled" name="toggled"/>
+                          </object>
+                          <packing>
+                            <property name="padding">0</property>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label5">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Grayscale:</property>
+                        <property name="use_underline">False</property>
+                        <property name="use_markup">False</property>
+                        <property name="justify">GTK_JUSTIFY_LEFT</property>
+                        <property name="wrap">False</property>
+                        <property name="selectable">False</property>
+                        <property name="xalign">0.5</property>
+                        <property name="yalign">0.5</property>
+                        <property name="xpad">0</property>
+                        <property name="ypad">0</property>
+                        <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+                        <property name="width_chars">-1</property>
+                        <property name="single_line_mode">False</property>
+                        <property name="angle">0</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="padding">0</property>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="tab_expand">False</property>
+                <property name="tab_fill">True</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label4">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Screen Format</property>
+                <property name="use_underline">False</property>
+                <property name="use_markup">False</property>
+                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                <property name="wrap">False</property>
+                <property name="selectable">False</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <property name="xpad">0</property>
+                <property name="ypad">0</property>
+                <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+                <property name="width_chars">-1</property>
+                <property name="single_line_mode">False</property>
+                <property name="angle">0</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkFrame" id="frame3">
+                <property name="border_width">5</property>
+                <property name="visible">True</property>
+                <property name="label_xalign">0</property>
+                <property name="label_yalign">0.5</property>
+                <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+                <child>
+                  <object class="GtkTable" id="table1">
+                    <property name="border_width">5</property>
+                    <property name="visible">True</property>
+                    <property name="n_rows">3</property>
+                    <property name="n_columns">2</property>
+                    <property name="homogeneous">False</property>
+                    <property name="row_spacing">0</property>
+                    <property name="column_spacing">0</property>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton10">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">_PNG</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">True</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <signal handler="on_radiobutton10_toggled" last_modification_time="Thu, 13 Feb 2003 20:52:52 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="right_attach">1</property>
+                        <property name="top_attach">0</property>
+                        <property name="bottom_attach">1</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton11">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">_XPM (Unix format)</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">False</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobutton10</property>
+                        <signal handler="on_radiobutton11_toggled" last_modification_time="Thu, 13 Feb 2003 20:53:15 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">0</property>
+                        <property name="bottom_attach">1</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton12">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">_JPEG (non interlaced)</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">False</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobutton10</property>
+                        <signal handler="on_radiobutton12_toggled" last_modification_time="Thu, 13 Feb 2003 20:53:11 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="right_attach">1</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton13">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">_BMP (Windows)</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">False</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobutton10</property>
+                        <signal handler="on_radiobutton13_toggled" last_modification_time="Thu, 13 Feb 2003 20:53:07 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="bottom_attach">2</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton14">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">PDF</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">False</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobutton10</property>
+                        <signal handler="on_radiobutton14_toggled" last_modification_time="Fri, 26 Aug 2005 20:30:20 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="right_attach">1</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="radiobutton15">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="label" translatable="yes">EPS (PostScript)</property>
+                        <property name="use_underline">True</property>
+                        <property name="relief">GTK_RELIEF_NORMAL</property>
+                        <property name="focus_on_click">True</property>
+                        <property name="active">False</property>
+                        <property name="inconsistent">False</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">radiobutton10</property>
+                        <signal handler="on_radiobutton15_toggled" last_modification_time="Fri, 26 Aug 2005 20:30:26 GMT" name="toggled"/>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="right_attach">2</property>
+                        <property name="top_attach">2</property>
+                        <property name="bottom_attach">3</property>
+                        <property name="x_options">fill</property>
+                        <property name="y_options"/>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label2">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Image type:</property>
+                    <property name="use_underline">False</property>
+                    <property name="use_markup">False</property>
+                    <property name="justify">GTK_JUSTIFY_LEFT</property>
+                    <property name="wrap">False</property>
+                    <property name="selectable">False</property>
+                    <property name="xalign">0.5</property>
+                    <property name="yalign">0.5</property>
+                    <property name="xpad">0</property>
+                    <property name="ypad">0</property>
+                    <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+                    <property name="width_chars">-1</property>
+                    <property name="single_line_mode">False</property>
+                    <property name="angle">0</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="tab_expand">False</property>
+                <property name="tab_fill">True</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label3">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">File Format</property>
+                <property name="use_underline">False</property>
+                <property name="use_markup">False</property>
+                <property name="justify">GTK_JUSTIFY_CENTER</property>
+                <property name="wrap">False</property>
+                <property name="selectable">False</property>
+                <property name="xalign">0.5</property>
+                <property name="yalign">0.5</property>
+                <property name="xpad">0</property>
+                <property name="ypad">0</property>
+                <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+                <property name="width_chars">-1</property>
+                <property name="single_line_mode">False</property>
+                <property name="angle">0</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="padding">0</property>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">cancelbutton1</action-widget>
+      <action-widget response="-5">okbutton1</action-widget>
+    </action-widgets>
+  </object>
+</interface>

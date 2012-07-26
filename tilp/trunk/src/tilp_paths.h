@@ -51,6 +51,7 @@ typedef struct
     gchar *pixmap_dir;		// pixmaps
     gchar *icon_dir;		// icons
     gchar *glade_dir;		// directory of files for Glade
+    gchar *builder_dir;		// $HOME
     gchar *home_dir;		// $HOME
 } TilpInstPaths;
 
@@ -58,5 +59,6 @@ extern TilpInstPaths	inst_paths;
 
 int tilp_paths_init(void);
 const char *tilp_paths_build_glade(const char *name);
+const char *tilp_paths_build_builder(const char *name);
 
 #endif

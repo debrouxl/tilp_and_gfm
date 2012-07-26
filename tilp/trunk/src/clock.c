@@ -25,7 +25,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 #include <time.h>
 
@@ -33,7 +32,7 @@
 #include "clock.h"
 #include "tilp_core.h"
 
-static GladeXML *xml;
+static GtkBuilder *builder;
 static gboolean modified;
 static CalcClock tmp_clk;
 
@@ -41,38 +40,39 @@ static void update_fields(const CalcClock* clk)
 {
 	GtkWidget *data;
 
-	data = glade_xml_get_widget(xml, "spinbutton1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton1"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->day);
 	
-	data = glade_xml_get_widget(xml, "combobox1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->month - 1);
 
-	data = glade_xml_get_widget(xml, "spinbutton3");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton3"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->year);
 
-	data = glade_xml_get_widget(xml, "spinbutton4");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton4"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->hours);
 	
-	data = glade_xml_get_widget(xml, "spinbutton5");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton5"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->minutes);
 	
-	data = glade_xml_get_widget(xml, "spinbutton6");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton6"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->seconds);
 	
-	data = glade_xml_get_widget(xml, "radiobutton1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton1"));
 	if(clk->time_format == 12)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton2");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton2"));
 	if(clk->time_format == 24)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "combobox2");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "combobox2"));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->date_format - 1);
 }
 
 gint display_clock_dbox()
 {
+	GError* error = NULL;
 	GtkWidget *dbox;
 	gint result;
 	int err;
@@ -106,12 +106,16 @@ gint display_clock_dbox()
 		(tmp_clk.time_format == 12) ? "12" : "24",
 		ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
 
-	xml = glade_xml_new(tilp_paths_build_glade("clock-2.glade"), "clock_dbox", PACKAGE);
-	if(!xml)
-		g_error(_("action.c: GUI loading failed !\n"));
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("clock.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "clock_dbox");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "clock_dbox"));
 	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
 	                                        GTK_RESPONSE_CANCEL,-1);
 	update_fields(&tmp_clk);

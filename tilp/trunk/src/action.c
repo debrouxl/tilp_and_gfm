@@ -25,7 +25,6 @@
 #endif				/*  */
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -137,7 +136,8 @@ static const char* action2string(int action)
 
 gint display_action_dbox(gchar *target)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GtkWidget *dbox;
 	GtkWidget *data;
 	GtkTreeIter iter;
@@ -162,15 +162,19 @@ gint display_action_dbox(gchar *target)
 	}
 
 	// box creation
-	xml = glade_xml_new(tilp_paths_build_glade("action-2.glade"), "action_dbox", PACKAGE);
-	if (!xml)
-		g_error(_("action.c: GUI loading failed !\n"));
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("action.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "action_dbox");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "action_dbox"));
 	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
 	                                        GTK_RESPONSE_CANCEL,-1);
-	clist = data = glade_xml_get_widget(xml, "treeview1");
+	clist = data = GTK_WIDGET (gtk_builder_get_object (builder, "treeview1"));
 
 	// clist creation
 	create_clist(data);

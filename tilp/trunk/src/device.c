@@ -25,7 +25,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 
 #include "support.h"
@@ -201,30 +200,35 @@ comm_treeview1_button_press_event  (GtkWidget       *widget,
 
 gint display_device_dbox()
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
 
-	xml = glade_xml_new(tilp_paths_build_glade("device-2.glade"), "device_dbox", PACKAGE);
-	if (!xml)
-		g_error(_("comm.c: GUI loading failed !\n"));
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("device.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "device_dbox");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "device_dbox"));
 	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
 	                                        GTK_RESPONSE_CANCEL,-1);
-	lbl = glade_xml_get_widget(xml, "label7");
+	lbl = GTK_WIDGET (gtk_builder_get_object (builder, "label7"));
 
 	// Tree View
-	data = glade_xml_get_widget(xml, "treeview1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "treeview1"));
 	store = clist_create(data);
 	gtk_widget_show_all(data);
 	if(options.usb_avail)
 		clist_populate(store, 0);
 
 	// Cable  
-	data = om_cable = glade_xml_get_widget(xml, "combobox1");
+	data = om_cable = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
 	switch (options.cable_model) 
 	{
 	case CABLE_NUL:
@@ -269,7 +273,7 @@ gint display_device_dbox()
 	}
 
 	// Port
-	data = om_port = glade_xml_get_widget(xml, "combobox2");
+	data = om_port = GTK_WIDGET (gtk_builder_get_object (builder, "combobox2"));
 	switch (options.cable_port) 
 	{
 	case PORT_0:
@@ -290,7 +294,7 @@ gint display_device_dbox()
 	}
 
 	// Calc
-	data = om_calc = glade_xml_get_widget(xml, "combobox3");
+	data = om_calc = GTK_WIDGET (gtk_builder_get_object (builder, "combobox3"));
 	switch (options.calc_model) 
 	{
 	case CALC_NONE:
@@ -353,14 +357,14 @@ gint display_device_dbox()
 	}
 
 	// Timeout
-	data = glade_xml_get_widget(xml, "spinbutton_comm_timeout");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton_comm_timeout"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.cable_timeout);
 	
 	// Delay
-	data = glade_xml_get_widget(xml, "spinbutton_comm_delay");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton_comm_delay"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), options.cable_delay);
 
-	data = glade_xml_get_widget(xml, "checkbutton1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "checkbutton1"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), options.auto_detect);
 	gtk_widget_set_sensitive(GTK_WIDGET(data), options.usb_avail);
 

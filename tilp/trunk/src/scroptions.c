@@ -25,7 +25,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 
 #include "support.h"
@@ -38,61 +37,65 @@ gint tmp_grayscales;
 
 gint display_scroptions_dbox()
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GtkWidget *dbox;
 	GtkWidget *data;
 	gint result;
 
-	xml = glade_xml_new(tilp_paths_build_glade("screenopts-2.glade"), "screenopts_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("screenopts.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
 
-	dbox = glade_xml_get_widget(xml, "screenopts_dbox");
+	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "screenopts_dbox"));
 	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
 	                                        GTK_RESPONSE_CANCEL,-1);
 
-	data = glade_xml_get_widget(xml, "radiobutton10");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton10"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == PNG)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton11");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton11"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == XPM)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton12");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton12"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == JPG)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data),  TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton13");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton13"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == BMP)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton14");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton14"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == PDF)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton15");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton15"));
 	tmp_image_format = options.screen_format;
 	if (options.screen_format == EPS)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton21");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton21"));
 	tmp_screen_mode = options.screen_clipping;
 	if (options.screen_clipping == SCREEN_FULL)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "radiobutton22");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton22"));
 	tmp_screen_mode = options.screen_clipping;
 	if (options.screen_clipping == SCREEN_CLIPPED)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
 
-	data = glade_xml_get_widget(xml, "checkbutton1");
+	data = GTK_WIDGET (gtk_builder_get_object (builder, "checkbutton1"));
 	tmp_grayscales = options.screen_blurry;
 	if (tmp_grayscales != 0)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);

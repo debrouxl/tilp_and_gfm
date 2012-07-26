@@ -24,7 +24,6 @@
 #endif				
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include "tilp_core.h"
 #include "gstruct.h"
@@ -46,20 +45,25 @@ static void reset_counters(void)
 /* Create a window with 1 progress bar */
 void create_pbar_type1(const gchar * title)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 
 	reset_counters();
 
-	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar1_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("pbar1.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	window = glade_xml_get_widget(xml, "pbar1_dbox");
+	window = GTK_WIDGET (gtk_builder_get_object (builder, "pbar1_dbox"));
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar10");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label11");
+	pbar_wnd.pbar1 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar10"));
+	pbar_wnd.label_rate = GTK_WIDGET (gtk_builder_get_object (builder, "label11"));
 
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_TYPE);
 	gtk_widget_show_all(window);
@@ -69,19 +73,24 @@ void create_pbar_type1(const gchar * title)
 /* Create a window with 1 label */
 void create_pbar_type2(const gchar * title)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 
 	reset_counters();
 
-	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar2_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("pbar2.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	window = glade_xml_get_widget(xml, "pbar2_dbox");
+	window = GTK_WIDGET (gtk_builder_get_object (builder, "pbar2_dbox"));
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label = glade_xml_get_widget(xml, "label20");
+	pbar_wnd.label = GTK_WIDGET (gtk_builder_get_object (builder, "label20"));
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
 
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_TYPE);
@@ -92,21 +101,26 @@ void create_pbar_type2(const gchar * title)
 /* Create a window with 2 progress bars */
 void create_pbar_type3(const gchar * title)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 
 	reset_counters();
 
-	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar3_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("pbar3.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	window = glade_xml_get_widget(xml, "pbar3_dbox");
+	window = GTK_WIDGET (gtk_builder_get_object (builder, "pbar3_dbox"));
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar30");
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar31");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label32");
+	pbar_wnd.pbar2 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar30"));
+	pbar_wnd.pbar1 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar31"));
+	pbar_wnd.label_rate = GTK_WIDGET (gtk_builder_get_object (builder, "label32"));
 
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_TYPE);
 	gtk_widget_show_all(window);
@@ -116,23 +130,28 @@ void create_pbar_type3(const gchar * title)
 /* Create a window with a 1 progress bar and 1 label */
 void create_pbar_type4(const gchar * title)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 
 	reset_counters();
 
-	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar4_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("pbar4.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	window = glade_xml_get_widget(xml, "pbar4_dbox");
+	window = GTK_WIDGET (gtk_builder_get_object (builder, "pbar4_dbox"));
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label_part = glade_xml_get_widget(xml, "label41");
-	pbar_wnd.label = glade_xml_get_widget(xml, "label42");
+	pbar_wnd.label_part = GTK_WIDGET (gtk_builder_get_object (builder, "label41"));
+	pbar_wnd.label = GTK_WIDGET (gtk_builder_get_object (builder, "label42"));
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar40");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label43");
+	pbar_wnd.pbar1 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar40"));
+	pbar_wnd.label_rate = GTK_WIDGET (gtk_builder_get_object (builder, "label43"));
 
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_TYPE);
 	gtk_widget_show_all(window);
@@ -142,24 +161,29 @@ void create_pbar_type4(const gchar * title)
 /* Create a window with 2 progress bars and 1 label */
 void create_pbar_type5(const gchar * title)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 
 	reset_counters();
 
-	xml = glade_xml_new(tilp_paths_build_glade("pbars-2.glade"), "pbar5_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("pbar5.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	window = glade_xml_get_widget(xml, "pbar5_dbox");
+	window = GTK_WIDGET (gtk_builder_get_object (builder, "pbar5_dbox"));
 	gtk_window_set_title(GTK_WINDOW(window), title);
 
-	pbar_wnd.label_part = glade_xml_get_widget(xml, "label52");
-	pbar_wnd.label = glade_xml_get_widget(xml, "label53");
+	pbar_wnd.label_part = GTK_WIDGET (gtk_builder_get_object (builder, "label52"));
+	pbar_wnd.label = GTK_WIDGET (gtk_builder_get_object (builder, "label53"));
 	gtk_label_set_text(GTK_LABEL(pbar_wnd.label), "");
-	pbar_wnd.pbar2 = glade_xml_get_widget(xml, "progressbar50");
-	pbar_wnd.pbar1 = glade_xml_get_widget(xml, "progressbar51");
-	pbar_wnd.label_rate = glade_xml_get_widget(xml, "label54");
+	pbar_wnd.pbar2 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar50"));
+	pbar_wnd.pbar1 = GTK_WIDGET (gtk_builder_get_object (builder, "progressbar51"));
+	pbar_wnd.label_rate = GTK_WIDGET (gtk_builder_get_object (builder, "label54"));
 
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_TYPE);
 	gtk_widget_show_all(window);

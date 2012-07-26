@@ -29,7 +29,6 @@
 #include <string.h>
 #include <signal.h>		// for managing some signals
 
-#include <glade/glade.h>
 #include <gtk/gtk.h>
 #include <glib.h>
 

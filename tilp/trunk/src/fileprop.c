@@ -24,7 +24,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -46,19 +45,24 @@ static void new_log_handler(const gchar *log_domain,
 
 gint display_properties_dbox(const char *filename)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
 	GtkWidget *dbox;
 	GtkWidget *text;
+	GError* error = NULL;
 	gint result;
 	guint hid;
 
-	xml = glade_xml_new(tilp_paths_build_glade("manpage-2.glade"), "manpage_dbox", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("manpage.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return NULL; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-	dbox = glade_xml_get_widget(xml, "manpage_dbox");
-	text = glade_xml_get_widget(xml, "textview1");
+	dbox = gtk_builder_get_object(builder, "manpage_dbox");
+	text = gtk_builder_get_object(builder, "textview1");
 	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 
 	hid = g_log_set_handler("tifiles", G_LOG_LEVEL_INFO, new_log_handler, NULL);

@@ -44,6 +44,7 @@ TilpInstPaths inst_paths =
 	NULL,
 	NULL,
 	NULL,
+	NULL,
 	NULL
 };
 
@@ -65,6 +66,8 @@ static void init_linux_paths(void)
             g_strconcat(inst_paths.base_dir, "", NULL);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade/", NULL);
+	inst_paths.builder_dir =
+	    g_strconcat(inst_paths.base_dir, "builder/", NULL);
 	inst_paths.home_dir =
 		g_strdup(g_get_home_dir());
 
@@ -121,6 +124,8 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "", NULL);
 	inst_paths.glade_dir =
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
+	inst_paths.builder_dir =
+	    g_strconcat(inst_paths.base_dir, "builder\\", NULL);
 	#ifdef __MINGW32__
 	inst_paths.home_dir = g_get_current_dir();
 	#else
@@ -165,6 +170,16 @@ const char *tilp_paths_build_glade(const char *name)
 
 	g_free(path);
 	path = g_strconcat(inst_paths.glade_dir, name, NULL);
+
+	return path;
+}
+
+const char *tilp_paths_build_builder(const char *name)
+{
+	static char *path = NULL;
+
+	g_free(path);
+	path = g_strconcat(inst_paths.builder_dir, name, NULL);
 
 	return path;
 }

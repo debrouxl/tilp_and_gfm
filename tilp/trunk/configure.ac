@@ -20,12 +20,10 @@ AC_CONFIG_FILES([
   build/mingw/Makefile
   builder/Makefile
   desktop/Makefile
-  glade/Makefile
   help/Makefile
   icons/Makefile
   man/Makefile
   pixmaps/Makefile
-  po/Makefile.in
   src/Makefile
   wicons/Makefile
 ])
@@ -51,10 +49,15 @@ AC_CHECK_PROG(GROFF, groff, yes, no)
 AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 AC_CHECK_TOOL(RC, windres, windres)
 
-# Checks for libraries.
-AM_GNU_GETTEXT(external)
-AM_GNU_GETTEXT_VERSION([0.17])
+# Translation
+AC_PROG_INTLTOOL([0.40.0])
 
+GETTEXT_PACKAGE=tilp2
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [tilp2])
+AM_GLIB_GNU_GETTEXT
+
+# Checks for libraries.
 PKG_CHECK_MODULES(TICABLES, ticables2 >= 1.3.0)
 AC_SUBST(TICABLES_CFLAGS)
 AC_SUBST(TICABLES_LIBS)
@@ -78,10 +81,6 @@ AC_SUBST(GLIB_LIBS)
 PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.12.0)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
-
-PKG_CHECK_MODULES(GLADE, libglade-2.0 >= 2.4.0)
-AC_SUBST(GLADE_CFLAGS)
-AC_SUBST(GLADE_LIBS)
 
 # Check for zlib
 AC_CHECK_HEADER(zlib.h)
@@ -235,6 +234,8 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
 
 # Output.
-AC_OUTPUT
+AC_OUTPUT([
+po/Makefile.in
+])
 
 echo "Now, you can type 'make' and 'make install'."

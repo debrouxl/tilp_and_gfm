@@ -22,15 +22,6 @@
 #ifndef __CTREE_H__
 #define __CTREE_H__
 
-/*
-enum {
-  CTREE_NAME, CTREE_ATTR, CTREE_TYPE, CTREE_SIZE,
-  CTREE_DATA, CTREE_FONT, CTREE_ICON,
-  CTREE_NUMBER
-};
-#define CTREE_NCOLS CTREE_DATA
-*/
-
 #define NODE0 _("Calc")
 #define NODE1 _("Screen")
 #define NODE2 _("Operating System")

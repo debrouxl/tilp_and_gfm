@@ -41,8 +41,8 @@ Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticables2.mo"; DestDir: 
 Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticalcs2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libticalcs2.mo"; Flags: ignoreversion sharedfile;
 
 ; Misc
-Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
-Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
+;Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
+;Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
 
 ; DhaHelper driver
@@ -88,8 +88,8 @@ Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; G
 Name: "gtk_runtime"; Description: "Download GTK+ runtime"; GroupDescription: "GTK+ Runtime:"; MinVersion: 0,4
 
 [Files]
-; Glade files
-Source: "C:\tilp\tilp\trunk\glade\*.glade"; DestDir: "{app}\glade"; Flags: ignoreversion;
+; GTK+Builder files
+Source: "C:\tilp\tilp\trunk\builder\*.ui"; DestDir: "{app}\builder"; Flags: ignoreversion;
 
 ; Help files
 Source: "C:\tilp\tilp\trunk\help\*.png"; DestDir: "{app}\help"; Flags: ignoreversion;

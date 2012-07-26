@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
 #include "support.h"
 #include "gstruct.h"
@@ -49,7 +48,7 @@ rbm_change_device1_activate             (GtkMenuItem     *menuitem,
 extern void show_right_view(int view);
 
 GLADE_CB void
-rbm_local_view1_activate             (GtkMenuItem     *menuitem,
+rbm_local_view1_activate             (GtkCheckMenuItem    *action,
                                         gpointer         user_data)
 {
 	if(options.full_gui)
@@ -57,7 +56,7 @@ rbm_local_view1_activate             (GtkMenuItem     *menuitem,
 	else
 		gtk_window_get_size(GTK_WINDOW(main_wnd), &options.wnd_x_size2, &options.wnd_y_size2);
 
-	options.full_gui = GTK_CHECK_MENU_ITEM(menuitem)->active;
+	options.full_gui = gtk_check_menu_item_get_active(action);
 	show_right_view(options.full_gui);
 	toolbar_refresh_buttons();
 
@@ -90,53 +89,59 @@ rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 }
 
 GLADE_CB void
-rbm_recv_as_group1_activate             (GtkMenuItem     *menuitem,
+rbm_recv_as_group1_activate             (GtkCheckMenuItem *action,
                                         gpointer         user_data)
 {
-	options.recv_as_group = GTK_CHECK_MENU_ITEM(menuitem)->active;
+	options.recv_as_group = gtk_check_menu_item_get_active(action);
 }
 
 GLADE_CB void
-rbm_backup_as_tigroup1_activate        (GtkMenuItem     *menuitem,
+rbm_backup_as_tigroup1_activate        (GtkCheckMenuItem  *action,
                                         gpointer         user_data)
 {
-	options.backup_as_tigroup = GTK_CHECK_MENU_ITEM(menuitem)->active;
+	options.backup_as_tigroup = gtk_check_menu_item_get_active(action);
 }
 
 /* Create/update menu */
 
 GtkWidget *create_ctree_rbm(void)
 {
-	GladeXML *xml;
+	GtkBuilder *builder;
+	GError* error = NULL;
 	GtkWidget *menu;
 	gpointer data;
 
-	xml = glade_xml_new(tilp_paths_build_glade("ctree_rbm-2.glade"), "ctree_rbm", PACKAGE);
-	if (!xml)
-		g_error("GUI loading failed !\n");
-	glade_xml_signal_autoconnect(xml);
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("ctree_rbm.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
 
-	data = glade_xml_get_widget(xml, "local_view1");
-	g_signal_handlers_block_by_func(GTK_OBJECT(data), rbm_local_view1_activate, NULL);
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.full_gui);
-	g_signal_handlers_unblock_by_func(GTK_OBJECT(data), rbm_local_view1_activate, NULL);
+	gtk_builder_connect_signals(builder, NULL);
 
-	data = glade_xml_get_widget(xml, "recv_as_group1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.recv_as_group);
+	data = gtk_builder_get_object (builder, "local_view1");
+	g_signal_handlers_block_by_func(data, rbm_local_view1_activate, NULL);
+	gtk_check_menu_item_set_active(data, options.full_gui);
+	g_signal_handlers_unblock_by_func(data, rbm_local_view1_activate, NULL);
+
+	data = gtk_builder_get_object (builder, "recv_as_group1");
+	gtk_check_menu_item_set_active(data, options.recv_as_group);
 	if(options.calc_model == CALC_NSPIRE)
 		gtk_widget_set_sensitive(data, FALSE);
 
-	data = glade_xml_get_widget(xml, "backup_as_tigroup1");
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(data), options.backup_as_tigroup);
+	data = gtk_builder_get_object (builder, "backup_as_tigroup1");
+	gtk_check_menu_item_set_active(data, options.backup_as_tigroup);
 	if(options.calc_model == CALC_NSPIRE)
 		gtk_widget_set_sensitive(data, FALSE);
 
-	data = glade_xml_get_widget(xml, "delete_var1");
+	data = gtk_builder_get_object (builder, "delete_var1");
 	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_DELVAR));
 
-	data = glade_xml_get_widget(xml, "create_folder1");
+	data = gtk_builder_get_object (builder, "create_folder1");
 	gtk_widget_set_sensitive(data, (ticalcs_calc_features(calc_handle) & OPS_NEWFLD));
 
-	menu = glade_xml_get_widget(xml, "ctree_rbm");
+	menu = GTK_WIDGET (gtk_builder_get_object (builder, "ctree_rbm"));
 	return menu;
 }
