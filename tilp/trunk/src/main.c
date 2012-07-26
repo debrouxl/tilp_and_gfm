@@ -22,19 +22,19 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				/*  */
+#endif                          /*  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>		// for managing some signals
+#include <signal.h>             // for managing some signals
 
 #include <gtk/gtk.h>
 #include <glib.h>
 
 #ifdef __WIN32__
 # include <windows.h>
-#endif				/*  */
+#endif                          /*  */
 
 #if WITH_KDE
 #include "kde.h"
@@ -49,10 +49,13 @@
 #include "tilp_core.h"
 #include "gtk_update.h"
 
-static void my_log_handler                  (const gchar *log_domain,
-                                             GLogLevelFlags log_level,
-                                             const gchar *message,
-                                             gpointer user_data) {}
+static void my_blackhole_log_handler (const gchar *log_domain,
+                            GLogLevelFlags log_level,
+                            const gchar *message,
+                            gpointer user_data)
+{
+	// Do nothing.
+}
 
 #define LOG_FILE ".tilp.log"
 
@@ -69,6 +72,10 @@ int main(int argc, char *argv[])
 	g_free(tmp);
 #endif
 
+	// Force GLib 2.32+ to print info and debug messages like older versions did, unless this variable is already set.
+	// No effect on earlier GLib versions.
+	g_setenv("G_MESSAGES_DEBUG", "all", /* overwrite = */ FALSE);
+
 	/* Init the tilp core */
 	tilp_init(&argc, &argv);
 
@@ -84,19 +91,19 @@ int main(int argc, char *argv[])
 #if !defined(_DEBUG)
 	g_log_set_handler ("GLib", 
 		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
-		my_log_handler, NULL);
+		my_blackhole_log_handler, NULL);
 	g_log_set_handler ("Gdk", 
 		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
-		my_log_handler, NULL);
+		my_blackhole_log_handler, NULL);
 	g_log_set_handler ("Gtk", 
 		G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE | G_LOG_LEVEL_INFO | G_LOG_LEVEL_DEBUG,
-		my_log_handler, NULL);
+		my_blackhole_log_handler, NULL);
 
 	g_log_set_handler ("GLib", G_LOG_LEVEL_MASK | G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION, 
-		my_log_handler, NULL);
+		my_blackhole_log_handler, NULL);
 #endif
 
-	/* Init the GUI independant functions */
+	/* Init the GUI-independent functions */
 	tilp_gif_set_gtk();
 	tilp_update_set_gtk();
 

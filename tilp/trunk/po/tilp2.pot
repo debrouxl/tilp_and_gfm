@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-23 17:35+0200\n"
+"POT-Creation-Date: 2012-07-24 08:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,7 +99,7 @@ msgid "Change drive"
 msgstr ""
 
 #: ../src/clist_rbm.c:238 ../src/clist_rbm.c:258 ../src/clock.c:82
-#: ../src/dboxes.c:46 ../src/dnd.c:180 ../src/main.c:185 ../src/tilp.c:172
+#: ../src/dboxes.c:46 ../src/dnd.c:180 ../src/main.c:192 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:358 ../src/tilp_calcs.c:426 ../src/tilp_calcs.c:433
 #: ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:568 ../src/tilp_calcs.c:573
 #: ../src/tilp_calcs.c:578 ../src/tilp_calcs.c:1280 ../src/tilp_cmdline.c:191
@@ -241,31 +241,31 @@ msgstr ""
 msgid "free: %s"
 msgstr ""
 
-#: ../src/main.c:107
+#: ../src/main.c:114
 msgid "Initializing KDE..."
 msgstr ""
 
-#: ../src/main.c:108 ../desktop/kde/tilp.desktop.in.h:1
+#: ../src/main.c:115 ../desktop/kde/tilp.desktop.in.h:1
 msgid "TiLP"
 msgstr ""
 
-#: ../src/main.c:108
+#: ../src/main.c:115
 msgid "Tilp Is a Linking Program"
 msgstr ""
 
-#: ../src/main.c:114
+#: ../src/main.c:121
 msgid "Loading GUI..."
 msgstr ""
 
-#: ../src/main.c:140
+#: ../src/main.c:147
 msgid "TiLP2"
 msgstr ""
 
-#: ../src/main.c:151
+#: ../src/main.c:158
 msgid "Command line..."
 msgstr ""
 
-#: ../src/main.c:185
+#: ../src/main.c:192
 msgid "An TiLP session is already running. Check the task list."
 msgstr ""
 
