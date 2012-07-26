@@ -21,16 +21,6 @@
 
 #include <gtk/gtk.h>
 
-#ifndef GLADE_CB
-#if defined(__WIN32__) && !defined(HAVE_FVISIBILITY)
-# define GLADE_CB __declspec(dllexport)
-#elif defined(HAVE_FVISIBILITY)
-# define GLADE_CB __attribute__ ((visibility("default")))
-#else
-# define GLADE_CB
-#endif
-#endif
-
 void create_pbar_type1(const gchar* title);
 void create_pbar_type2(const gchar* title);
 void create_pbar_type3(const gchar* title);
@@ -40,4 +30,4 @@ void create_pbar_type5(const gchar* title);
 void create_pbar(int type, const gchar * title);
 void destroy_pbar(void);
 
-GLADE_CB void on_pbar_okbutton1_pressed(GtkButton* button, gpointer user_data);
+void on_pbar_okbutton1_pressed(GtkButton* button, gpointer user_data);

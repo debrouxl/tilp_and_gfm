@@ -359,7 +359,7 @@ void clist_refresh(void)
 
 /* Callbacks */
 
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
@@ -420,7 +420,7 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 
 
 /* Key pressed */
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
 								gpointer user_data)
 {

@@ -103,18 +103,18 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 
 /* Callbacks */
 
-GLADE_CB void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	local.copy_cut = CUT_FILE;
 } 
 
-GLADE_CB void rbm_copy1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_copy1_activate(GtkMenuItem* menuitem,
 				  gpointer user_data)
 {
 	local.copy_cut = COPY_FILE;
 } 
 
-GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GList *ptr;
 	gchar *src;
@@ -152,7 +152,7 @@ GLADE_CB void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	labels_refresh();
 }
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_file_chdir("..");
@@ -164,7 +164,7 @@ rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	labels_refresh();
 } 
 
-GLADE_CB void rbm_select_all1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_select_all1_activate(GtkMenuItem* menuitem,
 					gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
@@ -174,7 +174,7 @@ GLADE_CB void rbm_select_all1_activate(GtkMenuItem* menuitem,
 	gtk_tree_selection_select_all(sel);
 } 
 
-GLADE_CB void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
 					  gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
@@ -212,7 +212,7 @@ static const char* get_gfm_path(void)
 }
 #endif
 
-GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem,
 									gpointer user_data)
 {
 #ifdef __WIN32__
@@ -260,7 +260,7 @@ GLADE_CB void rbm_opengfm_activate(GtkMenuItem* menuitem,
 	}
 } 
 
-GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_rename1_activate(GtkMenuItem* menuitem,
 				    gpointer user_data)
 {
 	tilp_file_selection_rename();
@@ -269,13 +269,13 @@ GLADE_CB void rbm_rename1_activate(GtkMenuItem* menuitem,
 	labels_refresh();
 } 
 
-GLADE_CB void rbm_update_window1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_update_window1_activate(GtkMenuItem* menuitem,
 					   gpointer user_data)
 {
 	on_tilp_button12_clicked(NULL, NULL);
 } 
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_make_a_new_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	gchar *utf8 = NULL;
@@ -297,13 +297,13 @@ rbm_make_a_new_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	labels_refresh();
 }
 
-GLADE_CB void rbm_delete_file1_activate(GtkMenuItem* menuitem,
+TILP_EXPORT void rbm_delete_file1_activate(GtkMenuItem* menuitem,
 				       gpointer user_data)
 {
 	on_tilp_button11_clicked(NULL, NULL);
 } 
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	g_free(options.working_dir);
@@ -312,7 +312,7 @@ rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	tilp_config_write();
 } 
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_show_all_files1_activate            (GtkCheckMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -322,14 +322,14 @@ rbm_show_all_files1_activate            (GtkCheckMenuItem     *menuitem,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_confirm_delete_activate             (GtkCheckMenuItem     *action,
                                         gpointer         user_data)
 {
 	options.overwrite = gtk_check_menu_item_get_active(action);
 }
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_properties1_activate             (GtkMenuItem     *menuitem,
                                       gpointer         user_data)
 {

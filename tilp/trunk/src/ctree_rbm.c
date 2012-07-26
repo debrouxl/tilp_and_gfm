@@ -38,7 +38,7 @@
 
 /* Callbacks */
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_change_device1_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
@@ -47,7 +47,7 @@ rbm_change_device1_activate             (GtkMenuItem     *menuitem,
 
 extern void show_right_view(int view);
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_local_view1_activate             (GtkCheckMenuItem    *action,
                                         gpointer         user_data)
 {
@@ -66,13 +66,13 @@ rbm_local_view1_activate             (GtkCheckMenuItem    *action,
 		gtk_window_resize(GTK_WINDOW(main_wnd), options.wnd_x_size2, options.wnd_y_size2);
 }
 
-GLADE_CB void 
+TILP_EXPORT void
 rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_options_dbox();
 }
 
-GLADE_CB void 
+TILP_EXPORT void
 rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_del_var();
@@ -82,20 +82,20 @@ rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	ctree_refresh();
 }
 
-GLADE_CB void 
+TILP_EXPORT void
 rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_new_fld();
 }
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_recv_as_group1_activate             (GtkCheckMenuItem *action,
                                         gpointer         user_data)
 {
 	options.recv_as_group = gtk_check_menu_item_get_active(action);
 }
 
-GLADE_CB void
+TILP_EXPORT void
 rbm_backup_as_tigroup1_activate        (GtkCheckMenuItem  *action,
                                         gpointer         user_data)
 {

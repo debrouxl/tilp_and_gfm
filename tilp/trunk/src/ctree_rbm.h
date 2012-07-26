@@ -24,13 +24,9 @@
 
 GtkWidget *create_ctree_rbm(void);
 
-GLADE_CB void
-rbm_change_device1_activate             (GtkMenuItem     *menuitem, gpointer         user_data);
-GLADE_CB void 
-rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data);
-GLADE_CB void
-rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data);
-GLADE_CB void 
-rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_change_device1_activate(GtkMenuItem *menuitem, gpointer user_data);
+void rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data);
 
 #endif

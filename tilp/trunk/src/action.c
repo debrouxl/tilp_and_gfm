@@ -281,7 +281,7 @@ out_clean:
 	return button;
 }
 
-GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
+TILP_EXPORT void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -309,7 +309,7 @@ GLADE_CB void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 	}
 }
 
-GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
+TILP_EXPORT void action_rename_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -368,7 +368,7 @@ GLADE_CB void action_rename_clicked(GtkButton * button, gpointer user_data)
 	}
 }
 
-GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
+TILP_EXPORT void action_skip_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -393,7 +393,7 @@ GLADE_CB void action_skip_clicked(GtkButton * button, gpointer user_data)
 	}
 }
 
-GLADE_CB void action_select_all_clicked(GtkButton * button, gpointer user_data)
+TILP_EXPORT void action_select_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
@@ -402,7 +402,7 @@ GLADE_CB void action_select_all_clicked(GtkButton * button, gpointer user_data)
 	gtk_tree_selection_select_all(sel);
 } 
 
-GLADE_CB void action_deselect_all_clicked(GtkButton * button, gpointer user_data)
+TILP_EXPORT void action_deselect_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
@@ -411,7 +411,7 @@ GLADE_CB void action_deselect_all_clicked(GtkButton * button, gpointer user_data
 	gtk_tree_selection_unselect_all(sel);
 }
 
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);

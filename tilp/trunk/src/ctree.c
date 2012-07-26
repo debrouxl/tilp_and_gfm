@@ -485,7 +485,7 @@ void ctree_refresh(void)
 gchar *name_to_drag = NULL;
 GtkTreePath *path_to_drag = NULL;
 
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 on_treeview1_button_press_event(GtkWidget * widget,
 				GdkEventButton * event, gpointer user_data)
 {
@@ -575,7 +575,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 
 /* Key pressed */
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
 								gpointer user_data)
 {

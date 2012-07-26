@@ -153,7 +153,7 @@ static void list_refresh(GtkListStore *_store, int full)
 	clist_populate(_store, full);
 }
 
-GLADE_CB gboolean
+TILP_EXPORT gboolean
 comm_treeview1_button_press_event  (GtkWidget       *widget,
                                     GdkEventButton  *event,
                                     gpointer         user_data)
@@ -420,7 +420,7 @@ gint display_device_dbox()
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 on_device_combobox1_changed            (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
@@ -446,7 +446,7 @@ on_device_combobox1_changed            (GtkComboBox     *combobox,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 on_device_combobox2_changed            (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
@@ -463,7 +463,7 @@ on_device_combobox2_changed            (GtkComboBox     *combobox,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 on_device_combobox3_changed            (GtkComboBox     *combobox,
                                         gpointer         user_data)
 {
@@ -489,7 +489,7 @@ on_device_combobox3_changed            (GtkComboBox     *combobox,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 comm_checkbutton1_toggled     (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
@@ -497,7 +497,7 @@ comm_checkbutton1_toggled     (GtkToggleButton *togglebutton,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 comm_spinbutton_delay_changed          (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -506,7 +506,7 @@ comm_spinbutton_delay_changed          (GtkEditable     *editable,
 }
 
 
-GLADE_CB void
+TILP_EXPORT void
 comm_spinbutton_timeout_changed        (GtkEditable     *editable,
                                         gpointer         user_data)
 {
@@ -514,7 +514,7 @@ comm_spinbutton_timeout_changed        (GtkEditable     *editable,
     		gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
-GLADE_CB void
+TILP_EXPORT void
 comm_button_search_clicked                (GtkButton       *button,
                                         gpointer         user_data)
 {

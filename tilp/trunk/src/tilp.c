@@ -139,18 +139,18 @@ GtkWidget *display_tilp_dbox()
 	return dbox;
 }
 
-GLADE_CB void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
+TILP_EXPORT void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
 {
 	options.pane_x_size = gtk_paned_get_position(paned);
 }
 
-GLADE_CB void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
+TILP_EXPORT void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
 {
 	tilp_config_write();
 	gtk_main_quit();
 }
 
-GLADE_CB gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* event, gpointer user_data)
+TILP_EXPORT gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* event, gpointer user_data)
 {
 	if(options.full_gui)
 		gtk_window_get_size(GTK_WINDOW(widget), &options.wnd_x_size1, &options.wnd_y_size1);
@@ -164,7 +164,7 @@ GLADE_CB gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* event, 
 
 extern int go_to_bookmark(const char *link);
 
-GLADE_CB void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	gchar *path = g_strconcat(inst_paths.help_dir, _("Manual_en.html"), NULL);
 
@@ -173,47 +173,47 @@ GLADE_CB void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	g_free(path);
 }
 
-GLADE_CB void on_manpage1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_manpage1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_manpage_dbox();
 }
 
-GLADE_CB void on_ti_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_ti_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://education.ti.com");
 }
 
-GLADE_CB void on_calculator_software1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_calculator_software1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://epsstore.ti.com");
 }
 
-GLADE_CB void on_ticalcorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_ticalcorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://www.ticalc.org");
 }
 
-GLADE_CB void on_tiplanetorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_tiplanetorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://tiplanet.org");
 }
 
-GLADE_CB void on_ti_frorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_ti_frorg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://www.ti-fr.com");
 } 
 
-GLADE_CB void on_the_lpg1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_the_lpg1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://lpg.ticalc.org");
 } 
 
-GLADE_CB void on_tilp_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_tilp_s_web_site1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	go_to_bookmark("http://tilp.info");
 } 
 
-GLADE_CB void on_bug_report1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_bug_report1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GtkWidget *dialog;
 	const gchar *message = _("There are several ways to get in touch if you encounter a problem with TiLP or if you have questions, suggestions, bug reports, etc:\n- if you have general questions or problems, please consider the users' mailing list first (mailto:tilp-users@list.sf.net).\n- if you want to discuss about TiLP, you can use the TiLP forum (http://sourceforge.net/forum/?group_id=18378).\n- for bug reports, use the 'Bug Tracking System' (http://sourceforge.net/tracker/?group_id=18378).\n\nBefore e-mailing the TiLP team, make sure you have read the FAQ....");
@@ -225,19 +225,19 @@ GLADE_CB void on_bug_report1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	gtk_widget_destroy(dialog);
 }
 
-GLADE_CB void on_changelog1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_changelog1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_release_dbox();
 }
 
-GLADE_CB void on_about1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_about1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_about_dbox();
 }
 
 /* Toolbar buttons callbacks */
 
-GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
@@ -276,13 +276,13 @@ GLADE_CB void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data)
 }
 
 // Ready
-GLADE_CB void on_tilp_button1_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button1_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_calc_isready();
 }
 
 // Dirlist
-GLADE_CB void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
 {
 	if (tilp_calc_dirlist() != 0)
 		return;
@@ -292,7 +292,7 @@ GLADE_CB void on_tilp_button2_clicked(GtkButton* button, gpointer user_data)
 }
 
 // Backup
-GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
@@ -332,9 +332,9 @@ GLADE_CB void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data);
+TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data);
 
-GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 {
 	if(options.backup_as_tigroup && tifiles_is_flash(options.calc_model))
 		on_tilp_button7_clicked(button, user_data);
@@ -343,7 +343,7 @@ GLADE_CB void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 }
 
 // Restore
-GLADE_CB void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	char *ext;
@@ -527,13 +527,13 @@ void on_tilp_send(const gchar *user_data)
 }
 
 // Receive
-GLADE_CB void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button5_clicked(GtkButton* button, gpointer user_data)
 {
 	on_tilp_recv();
 }
 
 // Send
-GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 {
 	gchar** filenames;
 	gchar** ptr;
@@ -556,7 +556,7 @@ GLADE_CB void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 }
 
 // Recv TiGroup
-GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
 	const char *dst_filename;
@@ -599,7 +599,7 @@ GLADE_CB void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 }
 
 // Send TiGroup
-GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;
 	int ret;
@@ -635,7 +635,7 @@ GLADE_CB void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 // ---
 
 // make new dir
-GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 {
 	gchar *utf8 = NULL;
 	gsize br, bw;
@@ -657,7 +657,7 @@ GLADE_CB void on_tilp_button10_clicked(GtkButton* button, gpointer user_data)
 
 
 // trash
-GLADE_CB void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_file_selection_delete();
 
@@ -666,7 +666,7 @@ GLADE_CB void on_tilp_button11_clicked(GtkButton* button, gpointer user_data)
 }
 
 // refresh
-GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 {
 	if (!local.copy_cut)
 		tilp_file_selection_destroy();
@@ -676,13 +676,13 @@ GLADE_CB void on_tilp_button12_clicked(GtkButton* button, gpointer user_data)
 }
 
 // take screenshot
-GLADE_CB void on_tilp_menuitem7_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_menuitem7_clicked(GtkButton* button, gpointer user_data)
 {
 	display_screenshot_dbox();
 }
 
 // change folder
-GLADE_CB void on_button14_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_button14_clicked(GtkButton* button, gpointer user_data)
 {
 	gchar *folder;
 
@@ -703,19 +703,19 @@ GLADE_CB void on_button14_clicked(GtkButton* button, gpointer user_data)
 }
 
 // set clock
-GLADE_CB void on_tilp_menuitem9_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_menuitem9_clicked(GtkButton* button, gpointer user_data)
 {
 	display_clock_dbox();
 }
 
 //get id-list
-GLADE_CB void on_tilp_menuitem10_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_menuitem10_clicked(GtkButton* button, gpointer user_data)
 {
 	tilp_calc_idlist(0);
 }
 
 //get calc info
-GLADE_CB void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
 {
 	CalcInfos infos;
 	tilp_calc_get_infos(&infos);
@@ -723,7 +723,7 @@ GLADE_CB void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_data)
 
 
 //update View menu
-GLADE_CB void on_tilp_viewmenu_active(GtkButton* button, gpointer user_data)
+TILP_EXPORT void on_tilp_viewmenu_active(GtkButton* button, gpointer user_data)
 {
 
 }

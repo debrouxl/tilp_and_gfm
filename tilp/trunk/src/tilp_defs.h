@@ -93,4 +93,13 @@
 
 #define GTK_WIN_POS_TYPE		GTK_WIN_POS_CENTER
 
+// GTK+ only (export callbacks for GtkBuilder linking at runtime)
+#if defined(__WIN32__) && !defined(HAVE_FVISIBILITY)
+# define TILP_EXPORT __declspec(dllexport)
+#elif defined(HAVE_FVISIBILITY)
+# define TILP_EXPORT __attribute__ ((visibility("default")))
+#else
+# define TILP_EXPORT
+#endif
+
 #endif

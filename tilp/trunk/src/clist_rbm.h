@@ -24,14 +24,10 @@
 
 GtkWidget *create_clist_rbm(void);
 
-GLADE_CB void rbm_delete_file1_activate(GtkMenuItem * menuitem,
-				       gpointer user_data);
-
-GLADE_CB void rbm_cut1_activate(GtkMenuItem * menuitem, gpointer user_data);
-GLADE_CB void rbm_copy1_activate(GtkMenuItem * menuitem,
-				gpointer user_data);
-GLADE_CB void rbm_paste1_activate(GtkMenuItem * menuitem,
-				 gpointer user_data);
+void rbm_delete_file1_activate(GtkMenuItem * menuitem, gpointer user_data);
+void rbm_cut1_activate(GtkMenuItem * menuitem, gpointer user_data);
+void rbm_copy1_activate(GtkMenuItem * menuitem, gpointer user_data);
+void rbm_paste1_activate(GtkMenuItem * menuitem, gpointer user_data);
 
 
 #endif
