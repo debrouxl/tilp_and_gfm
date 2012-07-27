@@ -14,7 +14,7 @@ a TI calculator.
 
 It works on Linux, Windows, Mac OS-X and FreeBSD platforms.
 See README.linux, README.win32 or README.freebsd according to your
-platform for more informations.
+platform for more information.
 
 All physical link cables are supported by TiLP: parallel, serial, 
 BlackLink, GrayLink, AVRlink, SilverLink and DirectLink.
@@ -136,7 +136,7 @@ Copying is allowed under the terms of GNU General Public License.
 See the file COPYING for more details.
 
 Texas Instruments and TI are trademarks of  Texas Instruments Incorporated.
-For more informations: <http://education.ti.com/educationportal/sites/US/nonProductSingle/global_trademarks.html>
+For more information: <http://education.ti.com/educationportal/sites/US/nonProductSingle/global_trademarks.html>
 This document has been written independantly of Texas Instruments.
 
 THANKS

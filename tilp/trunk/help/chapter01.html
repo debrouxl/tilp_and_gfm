@@ -39,7 +39,7 @@
 <p><font size="3">TiLP is a linking program; it allows you to
 connect your TI graphing calculator to a computer/workstation and
 transfers data between them. TiLP is free software and licensed under
-the GNU GPL (GNU General Public License).</font> </p>
+the GNU General Public License (GPL).</font> </p>
 <p><font size="3">TiLP can run on several platforms:</font> </p>
 <ul>
   <li><font size="3">Linux</font> </li>
@@ -55,7 +55,7 @@ the GNU GPL (GNU General Public License).</font> </p>
   <li><font size="3">TI's SilverLink (USB)</font> </li>
   <li><font size="3">home-made parallel (aka $5-cable)</font> </li>
   <li><font size="3">home-made serial (aka $4-cable)</font></li>
-  <li><font size="3">TI's DirectLink USB (84+ &amp; Titanium)<br>
+  <li><font size="3">TI's DirectLink USB (84+, 89 Titanium, Nspire)<br>
     </font></li>
 </ul>
 <p><font size="3">TiLP also supports the following virtual links
@@ -64,9 +64,9 @@ the GNU GPL (GNU General Public License).</font> </p>
   <li><font size="3">VTi (Virtual TI)</font> </li>
   <li><font size="3">TiE (TiEmu 2 &amp; 3)</font></li>
 </ul>
-<p><font size="3">TiLP supports all calculators:</font> </p>
+<p><font size="3">TiLP supports all TI graphing calculators:</font> </p>
 <ul>
-  <li><font size="3">TI89, TI89 Titanium, TI92, TI92+, V200 (m68k)</font>
+  <li><font size="3">TI89, TI89 Titanium, TI92, TI92+, V200 (68k)</font>
   </li>
   <li><font size="3">TI73, 82, 83, 83+, 84+, 85, 86 (z80)</font></li>
   <li><font size="3">NSpire<br>
@@ -74,8 +74,7 @@ the GNU GPL (GNU General Public License).</font> </p>
 </ul>
 <p><font size="3">This documentation covers using TiLP on all
 available platforms. Topics which are specific to a particular
-operating
-system are enclosed within brackets ( "[" and "]" ).</font> </p>
+operating system are enclosed within brackets ( "[" and "]" ).</font> </p>
 <h2>1.2 Features and limitations<br>
 </h2>
 <span style="text-decoration: underline;">Features :</span><br>
@@ -83,57 +82,52 @@ system are enclosed within brackets ( "[" and "]" ).</font> </p>
   <li>multi-platform,</li>
   <li>support all cables</li>
   <li>support all hand-helds</li>
-  <li>support all the operations handled by Ti-Connect and/or Ti Graph
-Links software</li>
+  <li>support all the operations handled by TI-Connect and/or TI Graph-Link software</li>
   <li>built-in ROM dumper</li>
 </ul>
 <span style="text-decoration: underline;">Limitations :</span><br
  style="text-decoration: underline;">
 <ul>
   <li>Titanium thru USB under Linux: cable need to be plugged again
-once TiLP is closed.</li>
-  <li>NSpire emulating a TI84+: not supported yet<br>
+once TiLP is closed (due to a bug in the 89T's OS).</li>
+  <li>NSpire emulating a TI84+: not supported on the oldest OS versions
+due to the incorrect USB descriptor exposed by the Nspire.<br>
   </li>
 </ul>
 <h2>1.3 System requirements</h2>
-<font size="3">In order to run TiLP, your computer must meet one
-of the following sets of requirements, depending on your operating
-system:<br>
+<font size="3">In order to run TiLP, your computer must meet one of the
+following sets of requirements, depending on your operating system:<br>
 </font>
 <p> </p>
 <p><font size="3"><u>Linux:</u></font> </p>
 <ul>
   <li><font size="3">a Pentium PC or better with</font><font size="3">
 any Linux distribution installed</font></li>
-  <li><font size="3">25/30MB of RAM (most part is used by GTK)</font></li>
-  <li><font size="3">an X-Window system (Xfree is the most common)</font>
-  </li>
-  <li><font size="3">GTK+ 2.6 libraries</font> </li>
-  <li><font size="3">USB support thru libusb (if you intend to use
-a SilverLink or DirectLink cable)<br>
+  <li><font size="3">25/30MB of RAM (most part is used by GTK+)</font></li>
+  <li><font size="3">an X-Window system</font></li>
+  <li><font size="3">GTK+ 2.16+ libraries</font></li>
+  <li><font size="3">USB support through libusb, unless you only have
+the old cables<br>
     <br>
-Please check that you must have<span style="font-weight: bold;"> r/w</span>
+Please check that you must have <span style="font-weight: bold;">R/W</span>
 permissions on the corresponding device (/dev/ttySx, /dev/parportX or
 /proc/bus/usb).<br>
     </font></li>
 </ul>
 <p><font size="3"><u>Windows:</u></font> </p>
 <ul>
-  <li><font size="3">a Pentium PC or better with Microsoft Windows
-95/98/Me or NT4/2000/XP</font></li>
-  <li><font size="3">25/30MB of RAM (most part is used by GTK)<br>
+  <li><font size="3">a Pentium PC or better with Microsoft Windows 2000, XP,
+Vista or 7</font></li>
+  <li><font size="3">25/30MB of RAM (most part is used by GTK+)<br>
     </font></li>
-  <li><font size="3">GTK+ 2.6 libraries like 2.6.7 (</font>it is
-recommended
-to use an NT-based version of Windows : NT4, 2000 or XP)</li>
-  <li><font size="3">the Silver/Direct Link <a
- href="http://lpg.ticalc.org/prj_usb/index.html">driver</a> for
-Windows is not needed any longer<br>
+  <li><font size="3">GTK+ 2.24 libraries like 2.24.8</li>
+  <li><font size="3"><a  href="http://lpg.ticalc.org/prj_usb/index.html">
+the Silver/Direct Link driver</a> for Windows is not needed any longer<br>
     </font></li>
 </ul>
-<p><font size="3"><u>Mac OS-X:</u></font> </p>
+<p><font size="3"><u>Mac OS X:</u></font> </p>
 <ul>
-  <li> a Macintosh computer running OS-X </li>
+  <li>a Macintosh computer running OS X</li>
 </ul>
 <p><font size="3"><u>FreeBSD:</u></font> </p>
 <ul>
@@ -147,30 +141,49 @@ All systems must have an available port that will support your cable
 <font size="3"><u>Linux:</u></font>
 <p> </p>
 <ul>
-  <li><font size="3">install the TiLP2 <a
- href="http://www.ticalc.org/archives/files/fileinfo/337/33748.html">framework</a></font>
-  </li>
-  <li><font size="3">install TiLP either by compiling sources or
-by installing a package from your favorite distro,</font></li>
-  <li><font size="3">check that your serial/parallel ports have the
-right permissions ! Same for USB filesystem, too!<br>
+  <li><font size="3">Check whether your favorite distro has packages for
+recent versions of libticonv, libtifiles, libticables, libticalcs, and tilp.
+If it doesn't, the recommended way to install TILP is to use
+<a href="http://lpg.ticalc.org/prj_tilp/download/install_tilp.sh">the install_tilp.sh helper script</a></font>.
+This script has worked for dozens of persons on multiple distro flavors.</li>
+  <li><font size="3">check that your serial/parallel ports and your
+USB filesystem have the appropriate permissions ! See the CONFIG file in
+libticables (the install_tilp.sh script reminds you about it).<br>
     </font></li>
 </ul>
 <p><font size="3"><u>Windows:</u></font> </p>
 <ul>
-  <li>uninstall TI-Connect or Computer Link if you have any of these
-programs; USB drivers are not compatible,<br>
+  <li>In TILP II 1.16+, TILP can be installed side by side with TI-Connect,
+TI-Nspire Computer Software (TINCS) and TI-Nspire Computer Link Software (TINCLS).
+You'll have to install the filter driver manually, see the README file for
+instructions.<br>
   </li>
-  <li>download and install GTK+ 2.6.x or later; be sure to have <b>one</b>
-version of GTK on your system; in doubt, uninstall it,<br>
+  <li>if you want to do everything manually, download and install the gtk-win
+GTK+ runtime 2.24.x or later. Be sure to have <b>a single</b> version of the GTK+
+runtime on your system.<br>
   </li>
-  <li><font size="3">execute the InnoSetup installer.</font><br>
+  <li><font size="3">execute the InnoSetup installer.</font> <b>It can download
+the GTK+ runtime for you.</b><br>
   </li>
+</ul>
+<font size="3"><u>MacOS X:</u></font>
+<p> </p>
+<ul>
+  <li>Same as Linux: the install_tilp.sh script works on MacOS X, provided
+the appropriate packages have been installed from MacPorts</li>
+</ul>
+<font size="3"><u>FreeBSD:</u></font>
+<p> </p>
+<ul>
+  <li>Same as Linux: the install_tilp.sh script should work on FreeBSD.</li>
 </ul>
 <h2>1.5 Configuration / Setting-up (Linux)<br>
 </h2>
 <font size="3">See the CONFIG file shipped with the libticables2
-library, either in the source tarball or in your distro package.<br>
+library, either in the source tarball or in your distro package.
+Your distro package should automatically install udev definitions that make
+it possible to use TILP as a regular, non-root user; if it doesn't, please
+file a bug against the distro package.<br>
 </font><font size="3"><br>
 </font>
 <hr>
