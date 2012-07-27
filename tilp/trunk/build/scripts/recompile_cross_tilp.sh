@@ -82,7 +82,7 @@ echo "=== libticables ==="
 handle_one_module libticables --enable-logging || exit 1
 
 echo "=== libticalcs ==="
-handle_one_module libticalcs || exit 1
+handle_one_module libticalcs --disable-builtin-rom-dumpers || exit 1
 
 
 echo "=== gfm ==="
