@@ -57,13 +57,13 @@ int load_tilibs(void)
     msgbox_error(error_msg);
     g_free(error_msg);
     exit(-1);
-  }	
+  }
 
   // Check libticalcs2
   if (g_ascii_strcasecmp(ticalcs_version_get(), LIBTICALCS2_REQUIRE_VERSION) < 0)
   {
     gchar *error_msg;
-    error_msg = g_strconcat("You require libticalcs2 version <b>", LIBTICALCS2_REQUIRE_VERSION, "</b>\nYou have version <b>", 
+    error_msg = g_strconcat("You require libticalcs2 version <b>", LIBTICALCS2_REQUIRE_VERSION, "</b>\nYou have version <b>",
 				        ticalcs_version_get(), "</b>\nPlease upgrade libticalcs2 and try again.", NULL);
     msgbox_error(error_msg);
     g_free(error_msg);
