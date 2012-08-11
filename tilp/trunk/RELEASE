@@ -14,12 +14,34 @@ Linux (GTK/X11), Windows (GTK/GDI), Mac OS-X (GTK/X11) and FreeBSD (GTK/X11).
 
 New capabilities:
 -----------------
+	- in libticalcs, the ability to send and receive raw DBUS, DUSB and NSP packets (wrapped into in TI's format for header, checksum, etc.).
+	- variable rename and variable attribute change functions, mainly by Benjamin Moody.
+	- new TI-Z80 ROM dumper by Benjamin Moody, with, among others, the ability to automatically dump 82 and 85, and the ability to unlock 73/83+/84+ Flash memory without an OS patch.
+	- the ability to obtain screenshots from TI-80 VSC, by Randy Compton.
 
 Improvements:
 -------------
+	- USB scan at startup (options.auto_detect) is now enabled by default, to be more intuitive to users of TI's official software.
+	- make the install_tilp.sh script sensitive to PREFIX and SRCDIR environment variables; abort early when $PREFIX cannot be written to.
+	- improve test_ticalcs_2.
+	- upgrade GTK+ runtime from 2.12.9 to 2.24.8.
+	- switch from Glade to GTK+Builder for the TILP interface.
+	- integrated tf2hex and the ROM dumpers into the autotools chain, by Benjamin Moody.
+	- switched the source code and building process of the TI-Z80 ROM dumpers from tasm to spasm, by Benjamin Moody.
+	- optimized the TI-68k ROM dumpers
 
 Bug fixes:
 ----------
+	- fixed 84+ product ID retrieval.
+	- now honoring CFLAGS when compiling gfm & tilp "cleaner".
+	- fixed FreeDesktop .desktop files (two steps).
+	- now advertising ROM dumping support in CalcFncts calc_84p_usb.
+	- suppressed name clashes between libticalcs' dusb_rpkt.h / nsp_rpkt.h and dusb_vpkt.h / nsp_vpkt.h.
+	- protected {dbus,dusb,nsp}_{recv,send}, and other DUSB / NSP functions, against NULL parameters.
+	- fixed several malloc/realloc/free vs. g_malloc/g_malloc0/g_free mismatches.
+	- applied downstream Debian patches for fixing FTBFS on sh390x (Debian bug #641092), sh4 (Debian bug #567679) and sparc64 (Debian bug #596601).
+	- made Glib 2.32 and later print info and debug messages, restoring the behaviour of older versions.
+	- integrated a couple fixes to the 84+ DUSB ROM dumper, by Benjamin Moody;
 
 Known bugs:
 -----------
