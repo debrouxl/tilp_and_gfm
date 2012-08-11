@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
-"Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-07-24 08:34+0200\n"
+"Report-Msgid-Bugs-To: tilp-users@lists.sf.net\n"
+"POT-Creation-Date: 2012-08-11 07:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 
 #: ../src/action.c:168 ../src/clist_rbm.c:360 ../src/clock.c:112
 #: ../src/ctree_rbm.c:117 ../src/dboxes.c:248 ../src/dboxes.c:296
-#: ../src/device.c:212 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/device.c:209 ../src/fileprop.c:58 ../src/manpage.c:70
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
 #: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
 #: ../src/screenshot.c:48 ../src/scroptions.c:49 ../src/tilp.c:89
@@ -174,7 +174,7 @@ msgstr ""
 msgid "A Folder"
 msgstr ""
 
-#: ../src/dboxes.c:40 ../src/device.c:406 ../src/device.c:410
+#: ../src/dboxes.c:40 ../src/device.c:407 ../src/device.c:411
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
 #: ../src/tilp_calcs.c:1229 ../src/tilp_config.c:545 ../src/tilp_config.c:553
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
@@ -207,14 +207,14 @@ msgstr ""
 msgid "Device"
 msgstr ""
 
-#: ../src/device.c:406
+#: ../src/device.c:407
 msgid ""
 "Please note that Titanium through DirectLink USB works under Linux but it "
 "suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
 "is exited."
 msgstr ""
 
-#: ../src/device.c:410
+#: ../src/device.c:411
 msgid "Please note you will have to restart TiLP if connection fails."
 msgstr ""
 
@@ -1117,108 +1117,112 @@ msgid "TI73"
 msgstr ""
 
 #: ../builder/device.ui.h:16
-msgid "TI82"
+msgid "TI80"
 msgstr ""
 
 #: ../builder/device.ui.h:17
-msgid "TI83"
+msgid "TI82"
 msgstr ""
 
 #: ../builder/device.ui.h:18
-msgid "TI83+"
+msgid "TI83 / 82 Stats(.fr) / 76.fr"
 msgstr ""
 
 #: ../builder/device.ui.h:19
-msgid "TI84+"
+msgid "TI83+"
 msgstr ""
 
 #: ../builder/device.ui.h:20
-msgid "TI85"
+msgid "TI84+"
 msgstr ""
 
 #: ../builder/device.ui.h:21
-msgid "TI86"
+msgid "TI85"
 msgstr ""
 
 #: ../builder/device.ui.h:22
-msgid "TI89"
+msgid "TI86"
 msgstr ""
 
 #: ../builder/device.ui.h:23
-msgid "Titanium"
+msgid "TI89"
 msgstr ""
 
 #: ../builder/device.ui.h:24
-msgid "TI92"
+msgid "Titanium"
 msgstr ""
 
 #: ../builder/device.ui.h:25
-msgid "TI92+"
+msgid "TI92"
 msgstr ""
 
 #: ../builder/device.ui.h:26
-msgid "V200PLT"
+msgid "TI92+"
 msgstr ""
 
 #: ../builder/device.ui.h:27
-msgid "Nspire"
+msgid "V200PLT"
 msgstr ""
 
 #: ../builder/device.ui.h:28
-msgid "Communication Settings"
+msgid "Nspire"
 msgstr ""
 
 #: ../builder/device.ui.h:29
-msgid "Cable:"
+msgid "Communication Settings"
 msgstr ""
 
 #: ../builder/device.ui.h:30
-msgid "Port:"
+msgid "Cable:"
 msgstr ""
 
 #: ../builder/device.ui.h:31
-msgid "Calc:"
+msgid "Port:"
 msgstr ""
 
 #: ../builder/device.ui.h:32
-msgid "Timeout:"
+msgid "Calc:"
 msgstr ""
 
 #: ../builder/device.ui.h:33
-msgid "Delay:"
+msgid "Timeout:"
 msgstr ""
 
 #: ../builder/device.ui.h:34
-msgid "Timeout value in tenth of seconds."
+msgid "Delay:"
 msgstr ""
 
 #: ../builder/device.ui.h:35
-msgid "Inter-bit delay for serial/parallel link cables."
+msgid "Timeout value in tenth of seconds."
 msgstr ""
 
 #: ../builder/device.ui.h:36
+msgid "Inter-bit delay for serial/parallel link cables."
+msgstr ""
+
+#: ../builder/device.ui.h:37
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
 msgstr ""
 
-#: ../builder/device.ui.h:37
+#: ../builder/device.ui.h:38
 msgid "USB scan at startup"
 msgstr ""
 
-#: ../builder/device.ui.h:38
+#: ../builder/device.ui.h:39
 msgid "Settings"
 msgstr ""
 
-#: ../builder/device.ui.h:39
+#: ../builder/device.ui.h:40
 msgid "Don't know which device you have ? Click =>"
 msgstr ""
 
-#: ../builder/device.ui.h:40
+#: ../builder/device.ui.h:41
 msgid "Probe for attached devices..."
 msgstr ""
 
-#: ../builder/device.ui.h:41
+#: ../builder/device.ui.h:42
 msgid "Double-click a line to update settings."
 msgstr ""
 

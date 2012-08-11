@@ -18514,12 +18514,12 @@ if test -n "$TIFILES_CFLAGS"; then
     pkg_cv_TIFILES_CFLAGS="$TIFILES_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 1.1.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 1.1.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 1.1.6\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 1.1.6") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 1.1.0" 2>/dev/null`
+  pkg_cv_TIFILES_CFLAGS=`$PKG_CONFIG --cflags "tifiles2 >= 1.1.6" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -18531,12 +18531,12 @@ if test -n "$TIFILES_LIBS"; then
     pkg_cv_TIFILES_LIBS="$TIFILES_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 1.1.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 1.1.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"tifiles2 >= 1.1.6\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "tifiles2 >= 1.1.6") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 1.1.0" 2>/dev/null`
+  pkg_cv_TIFILES_LIBS=`$PKG_CONFIG --libs "tifiles2 >= 1.1.6" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -18557,14 +18557,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        TIFILES_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "tifiles2 >= 1.1.0" 2>&1`
+	        TIFILES_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "tifiles2 >= 1.1.6" 2>&1`
         else
-	        TIFILES_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "tifiles2 >= 1.1.0" 2>&1`
+	        TIFILES_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "tifiles2 >= 1.1.6" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$TIFILES_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (tifiles2 >= 1.1.0) were not met:
+	as_fn_error $? "Package requirements (tifiles2 >= 1.1.6) were not met:
 
 $TIFILES_PKG_ERRORS
 
@@ -18608,12 +18608,12 @@ if test -n "$TICONV_CFLAGS"; then
     pkg_cv_TICONV_CFLAGS="$TICONV_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.1.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.1.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.1.4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.1.4") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_TICONV_CFLAGS=`$PKG_CONFIG --cflags "ticonv >= 1.1.0" 2>/dev/null`
+  pkg_cv_TICONV_CFLAGS=`$PKG_CONFIG --cflags "ticonv >= 1.1.4" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -18625,12 +18625,12 @@ if test -n "$TICONV_LIBS"; then
     pkg_cv_TICONV_LIBS="$TICONV_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.1.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.1.0") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"ticonv >= 1.1.4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "ticonv >= 1.1.4") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_TICONV_LIBS=`$PKG_CONFIG --libs "ticonv >= 1.1.0" 2>/dev/null`
+  pkg_cv_TICONV_LIBS=`$PKG_CONFIG --libs "ticonv >= 1.1.4" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -18651,14 +18651,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        TICONV_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "ticonv >= 1.1.0" 2>&1`
+	        TICONV_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "ticonv >= 1.1.4" 2>&1`
         else
-	        TICONV_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "ticonv >= 1.1.0" 2>&1`
+	        TICONV_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "ticonv >= 1.1.4" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$TICONV_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (ticonv >= 1.1.0) were not met:
+	as_fn_error $? "Package requirements (ticonv >= 1.1.4) were not met:
 
 $TICONV_PKG_ERRORS
 

@@ -85,10 +85,13 @@
         <col id="0" translatable="yes">TI73</col>
       </row>
       <row>
+        <col id="0" translatable="yes">TI80</col>
+      </row>
+      <row>
         <col id="0" translatable="yes">TI82</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI83</col>
+        <col id="0" translatable="yes">TI83 / 82 Stats(.fr) / 76.fr</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI83+</col>
