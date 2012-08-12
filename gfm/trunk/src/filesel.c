@@ -23,7 +23,7 @@
  */
 
 /* 
-	Some informations about these file selectors: starting at tifiles2-v0.0.6, we
+	Some information about these file selectors: starting at tifiles2-v0.0.6, we
 	use the 'glib filename encoding' scheme for charset encoding of filenames:
 	- UTF-8 charset on Windows,
 	- locale charset on Linux (usually UTF-8 but this is not always true).

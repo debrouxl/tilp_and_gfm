@@ -328,7 +328,7 @@ int tilp_config_write(void)
 
 	// Section [OPTIONS]
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "auto_detect", options.auto_detect);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect USB hand-held model", &error);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "auto_detect", "Auto-detect USB handheld model", &error);
 
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "show_all", options.show_all);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "show_all", "Show hidden files in local view", &error);

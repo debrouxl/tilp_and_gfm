@@ -30,7 +30,7 @@ typedef struct
 {
 	char*		filename;	// Name of file
 	FileClass	type;		// TiGroup or Regular (single/group)
-	CalcModel	model;		// Hand-held model
+	CalcModel	model;		// Handheld model
 
 	struct
 	{

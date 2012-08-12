@@ -20,7 +20,7 @@
  */
 
 /*
-	This file contains utility functions about hand-helds functions.
+	This file contains utility functions about handhelds functions.
 	These functions are mainly used by the left window.
  */
 
@@ -293,7 +293,7 @@ int tilp_calc_rom_dump(void)
 	gint ret, err;
 	gchar tmp_filename[MAXCHARS];
 
-	gif->msg_box1(_("Information"), _("ROM contents is copyrighted by Texas Instruments. You are not allowed to copy and/or distribute any ROM image! For more informations, see the License Agreement provided with any FLASH OS upgrade."));
+	gif->msg_box1(_("Information"), _("ROM contents is copyrighted by Texas Instruments. You are not allowed to copy and/or distribute any ROM image! For more information, see the License Agreement provided with any FLASH OS upgrade."));
 
 	if (options.calc_model != CALC_NSPIRE)
 	{
@@ -567,7 +567,7 @@ int tilp_calc_send_var(void)
 		}
 		else if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
 		{
-			gif->msg_box1(_("Error"), _("There is a file type incompatible with the target hand-held in the selection."));
+			gif->msg_box1(_("Error"), _("There is a file type incompatible with the target handheld in the selection."));
 			return 0;
 		}
 	}
@@ -1270,7 +1270,7 @@ int tilp_calc_send_cert(const char *filename)
 	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(options.calc_model))) 
 	{
 		gif->msg_box1(_("Error"),
-			     _("It's not a certificate or this certificate is not targetted for this calculator type."));
+			     _("It's not a certificate or this certificate is not targeted at this calculator type."));
 		return -1;
 	}
 

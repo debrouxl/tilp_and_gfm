@@ -4,7 +4,7 @@ gfm(1)                                                                  gfm(1)
 
 
 NAME
-       gfm - a program to manipulate files for TI's hand-helds
+       gfm - a program to manipulate files for TI's handhelds
 
 
 SYNOPSYS

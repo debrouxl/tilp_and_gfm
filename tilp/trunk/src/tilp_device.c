@@ -20,7 +20,7 @@
  */
 
 /*
-	This file contains utility functions for hand-helds probing.
+	This file contains utility functions for handhelds probing.
  */
 
 #include <stdio.h>
@@ -115,7 +115,7 @@ int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* c
 	*port = found_port(cables[CABLE_USB]);
 	if(*port)
 	{
-		tilp_info("Searching for hand-helds on DirectLink...");
+		tilp_info("Searching for handhelds on DirectLink...");
 		handle = ticables_handle_new(CABLE_USB, *port);
 		ticables_options_set_timeout(handle, 10);
 
@@ -147,7 +147,7 @@ step2:
 	*port = found_port(cables[CABLE_SLV]);
 	if(*port)
 	{
-		tilp_info("Searching for hand-helds on SilverLink...");
+		tilp_info("Searching for handhelds on SilverLink...");
 		handle = ticables_handle_new(CABLE_SLV, *port);
 		ticables_options_set_timeout(handle, 10);
 
@@ -225,7 +225,7 @@ int tilp_device_probe_all(int ***result)
 			if(!array[cable][port])
 				continue;
 			
-			tilp_info("Searching for hand-helds on %i:%i...",
+			tilp_info("Searching for handhelds on %i:%i...",
                                   cable, port);
 
 #if 1

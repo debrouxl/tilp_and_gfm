@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
-"Report-Msgid-Bugs-To: tilp-users@lists.sf.net\n"
-"POT-Creation-Date: 2012-08-11 07:22+0200\n"
+"Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
+"POT-Creation-Date: 2012-08-11 07:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -349,7 +349,7 @@ msgstr ""
 #: ../src/tilp_calcs.c:296
 msgid ""
 "ROM contents is copyrighted by Texas Instruments. You are not allowed to "
-"copy and/or distribute any ROM image! For more informations, see the License "
+"copy and/or distribute any ROM image! For more information, see the License "
 "Agreement provided with any FLASH OS upgrade."
 msgstr ""
 
@@ -442,7 +442,7 @@ msgstr ""
 
 #: ../src/tilp_calcs.c:570
 msgid ""
-"There is a file type incompatible with the target hand-held in the selection."
+"There is a file type incompatible with the target handheld in the selection."
 msgstr ""
 
 #: ../src/tilp_calcs.c:578
@@ -609,7 +609,7 @@ msgstr ""
 
 #: ../src/tilp_calcs.c:1273
 msgid ""
-"It's not a certificate or this certificate is not targetted for this "
+"It's not a certificate or this certificate is not targeted at this "
 "calculator type."
 msgstr ""
 
@@ -630,7 +630,7 @@ msgid "Version"
 msgstr ""
 
 #: ../src/tilp_cmdline.c:40
-msgid "Hand-held model"
+msgid "Handheld model"
 msgstr ""
 
 #: ../src/tilp_cmdline.c:41

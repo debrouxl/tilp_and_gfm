@@ -37,7 +37,7 @@ static gint show_version;
 static GOptionEntry entries[] = 
 {
 	{ "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version"), NULL},
-	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, N_("Hand-held model"), NULL },
+	{ "calc", 0, 0, G_OPTION_ARG_STRING, &calc, N_("Handheld model"), NULL },
 	{ "cable", 0, 0, G_OPTION_ARG_STRING, &cable, N_("Link cable model"), NULL },
 	{ "port", 'p', 0, G_OPTION_ARG_INT, &options.cable_port, N_("Link cable port"), NULL },
 	{ "timeout", 't', 0, G_OPTION_ARG_INT, &options.cable_timeout, N_("Link cable timeout"), NULL },
@@ -128,7 +128,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 		}
 	}
 
-	// remap for USB hand-helds
+	// remap for USB handhelds
 	options.calc_model = tilp_remap_to_usb(options.cable_model, options.calc_model);
 
 	if(!options.cable_port)

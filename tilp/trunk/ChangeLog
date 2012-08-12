@@ -169,7 +169,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 02/04/2007, version 1.04 (1.0.5, 1.0.6, 1.0.5, 1.0.2): roms
 	- cosmetic change in the name of the TiEmu virtual link
 	- added KDE file dialog support (like in TiEmu)
-	- fixed/improved hand-held model check
+	- fixed/improved handheld model check
 	- fixed aliasing violations in Win32 file dialog code (kevin)
 	- added Ti File Properties dialog box
 	- filter -s from CFLAGS/CXXFLAGS/LDFLAGS on Darwin (kevin)
@@ -192,10 +192,10 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- clean-up/fixes in many tifile_is calls (some of them have been simplified,
 		some others have been replaced by tifiles_file_test)
 	- check for TI8x OS version when deleting var/app
-	- check that hand-held specified in device box matches those detected at ready check
+	- check that handheld specified in device box matches those detected at ready check
 	- added a 2s pause when resetting USB communication (seems to be needed...)
 	- don't allow to send a TI73 TiGroup file on a TI89 for instance 
-		(check that TiGroup matches target hand-held)
+		(check that TiGroup matches target handheld)
 	=> released on 20/02/2007.
 	
 - 28/09/2006, version 1.01 (1.0.3, 1.0.2, 1.0.2, 1.0.1): roms
@@ -211,7 +211,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed Manpage.txt file name for non-Win32 and MinGW (kevin)
 	- fixed COPYING and RELEASE file names for MinGW (kevin)
 	- fixed about dialog not closing when Close is clicked with GTK+ 2.10 (kevin)
-	- remap USB hand-helds from/to config file and from command line (bug)
+	- remap USB handhelds from/to config file and from command line (bug)
 	- renamed executable tilp-2 into tilp
 	- renamed manpage accordingly (kevin)
 		=> released on 10/11/2006.
@@ -233,7 +233,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fixed command line (GUI mode): file is used twice
 	- can send TiGroup from command line and fixed bug in tilp_send
 	- fixed TiGroup restore
-	- fixed UTF8 translation in the action box (relies on the real hand-held model)
+	- fixed UTF8 translation in the action box (relies on the real handheld model)
 	- reworked RAM/FLASH used/free displaying: use table container
 	- for now, display a user box between the sending of dumping program and the receiving of data.
 		This will give time to user to enter needed commands without triggering timeouts.
@@ -346,11 +346,11 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - 15/04/2006, version 0.10 (0.0.7, 0.1.0, 0.1.2, 0.0.3): roms
 	- follows ticalcs2 changes in the API
-	- added Titanium USB hand-held support
-	- reworked displaying of Hand-Held Informations box
+	- added Titanium USB handheld support
+	- reworked displaying of Handheld Informations box
 
 - 03/04/2006, version 0.09 (0.0.7, 0.0.8, 0.1.2, 0.0.3): roms
-	- added TI84+ USB hand-held support
+	- added TI84+ USB handheld support
 	- re-map 0x2080..9 chars into the ctree
 
 - 03/02/2006, version 0.08 (0.0.7, 0.0.6, 0.1.0, 0.0.1): roms (testing phase: ~260 tests)
@@ -367,7 +367,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 - 21/02/2006, version 0.07 (0.0.6, 0.0.5, 0.0.9, 0.0.1): roms
 	- switched to ticonv library
 	- fixed bug with the re-target folder feature.
-	- make hand-held goes to HOME when not ready (kevin)
+	- make handheld goes to HOME when not ready (kevin)
 	- implemented feature request: "TiLP always gets a list of the files on the calc, even if I already " (T. Evans)
 	- when ticables/ticalcs error occurs: reset cable and wait for 0.5s (i/o link active -> disappear)
 	- don't use cable_handle & calc_handle fields: they are private
