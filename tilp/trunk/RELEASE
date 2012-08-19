@@ -18,6 +18,8 @@ New capabilities:
 	- variable rename and variable attribute change functions, mainly by Benjamin Moody.
 	- new TI-Z80 ROM dumper by Benjamin Moody, with, among others, the ability to automatically dump 82 and 85, and the ability to unlock 73/83+/84+ Flash memory without an OS patch.
 	- the ability to obtain screenshots from TI-80 VSC, by Randy Compton.
+	- transferring Nspire OS extensions, currently limited to English-Chinese dictionaries.
+	- Nspire remote control feature
 
 Improvements:
 -------------
@@ -41,7 +43,9 @@ Bug fixes:
 	- fixed several malloc/realloc/free vs. g_malloc/g_malloc0/g_free mismatches.
 	- applied downstream Debian patches for fixing FTBFS on sh390x (Debian bug #641092), sh4 (Debian bug #567679) and sparc64 (Debian bug #596601).
 	- made Glib 2.32 and later print info and debug messages, restoring the behaviour of older versions.
-	- integrated a couple fixes to the 84+ DUSB ROM dumper, by Benjamin Moody;
+	- integrated a couple fixes to the 84+ DUSB ROM dumper, by Benjamin Moody.
+	- fixes for spelling errors reported by alberthro and TC01.
+	- fixes for i18n problems reported by Benjamin Moody.
 
 Known bugs:
 -----------

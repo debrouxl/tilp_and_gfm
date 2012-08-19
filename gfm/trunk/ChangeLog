@@ -10,6 +10,7 @@ Log of changes:	gfm (calcs, files, ticonv)
 	- regenerate with Automake 1.11.6.
 	- use LF line endings throughout the sources.
 	- some updates, wording and formatting changes to the man pages.
+	- remove spurious executable properties on a couple dozen files. Reported by TC01.
 
 - 14/12/2011, version 1.06 (1.1.7, 1.1.5, 1.1.3): debrouxl
 	- eliminate explicit usage of stdout.
