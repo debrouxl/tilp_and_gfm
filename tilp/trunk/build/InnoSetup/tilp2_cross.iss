@@ -64,11 +64,9 @@ Source: "C:\lpg\packages\share\libticables2\libusb\*.inf"; DestDir: "{cf}\LPG Sh
 ; To Windows directory.
 Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0.sys"; DestDir: "{cf}\system32\drivers"; DestName: "libusb0.sys"; Flags: sharedfile; Check: not Is64BitInstallMode
 Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.sys"; DestDir: "{cf}\system32\drivers"; DestName: "libusb0.sys"; Flags: sharedfile; Check: Is64BitInstallMode
-Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{win}\system32"; DestName: "libusb0_x86.dll"; Flags: replacesameversion restartreplace uninsneveruninstall;
 Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{win}\system32"; DestName: "libusb0.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: not Is64BitInstallMode
 Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.dll"; DestDir: "{win}\system32"; DestName: "libusb0.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
-Source: "C:\lpg\deps\libusb-win32\bin\amd64\libusb0.dll"; DestDir: "{win}\syswow64"; DestName: "libusb0.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
-Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{win}\syswow64"; DestName: "libusb0_x86.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
+Source: "C:\lpg\deps\libusb-win32\bin\x86\libusb0_x86.dll"; DestDir: "{win}\syswow64"; DestName: "libusb0.dll"; Flags: replacesameversion restartreplace uninsneveruninstall; Check: Is64BitInstallMode
 
 [Registry]
 ; Create entries for shared libs (needed by other programs)
