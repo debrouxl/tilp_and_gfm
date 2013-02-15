@@ -3,7 +3,7 @@
 # Maintainer script for automating the cross-compilation and installation of tilp & gfm
 # from a checkout of the complete tilp repository over at svn.tilp.info.
 #
-# Copyright (C) 2010, 2011 Lionel Debroux, Benjamin Moody
+# Copyright (C) 2010, 2011, 2012 Lionel Debroux, Benjamin Moody
 
 
 # REMINDERS: don't forget to:
@@ -29,7 +29,6 @@ PREFIX="$HOME/lpg/packages"
 CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Wdeclaration-after-statement"
 CCPPFLAGS="-D_FORTIFY_SOURCE=2 -I$HOME/lpg/deps/gtk-win32/include -I/usr/i686-w64-mingw32/include/ddk"
 CLDFLAGS="-L$HOME/lpg/deps/gtk-win32/lib"
-LIBUSB_DIR="$HOME/lpg/deps/libusb-win32"
 CHOST="i686-w64-mingw32"
 
 export PKG_CONFIG_PATH=$HOME/lpg/packages/lib/pkgconfig:$HOME/lpg/deps/gtk-win32/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -43,7 +42,7 @@ handle_one_module() {
   cd "$module_name/trunk"
   echo "Configuring $module_name"
   rm -f config.cache
-  ./configure --host="$CHOST" CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS" CXXFLAGS="$CCFLAGS" LDFLAGS="$CLDFLAGS" LIBUSB_CFLAGS="-I$LIBUSB_DIR/include" LIBUSB_LIBS="-L$LIBUSB_DIR/lib/gcc -lusb" --prefix="$PREFIX" $@ || return 1
+  ./configure --host="$CHOST" CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS" CXXFLAGS="$CCFLAGS" LDFLAGS="$CLDFLAGS" --prefix="$PREFIX" $@ || return 1
   echo "Building $module_name"
   make clean || return 1
   make || return 1
