@@ -44,6 +44,7 @@ Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libticalcs2.mo"; DestDir: "
 ;Source: "C:\lpg\deps\gtk-win32\bin\libxml2.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libxml2.dll');
 ;Source: "C:\lpg\deps\gtk-win32\bin\libglade-2.0-0.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: onlyifdoesntexist sharedfile; BeforeInstall: DeleteDll('libglade-2.0-0.dll');
 Source: "C:\lpg\deps\gtk-win32\bin\gtkthemeselector.exe"; DestDir: "{cf}\LPG Shared\bin"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('gtkthemeselector.exe');
+Source: "C:\lpg\depsprefix\bin\libarchive-12.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: ignoreversion sharedfile; BeforeInstall: DeleteExe('libarchive-12.dll');
 
 ; DhaHelper driver
 Source: "C:\lpg\packages\bin\dhahelper.sys"; DestDir: "{cf}\LPG Shared\drivers\dha"; Flags: sharedfile; Check: not Is64BitInstallMode
