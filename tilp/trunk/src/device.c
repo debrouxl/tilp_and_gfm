@@ -41,6 +41,8 @@ static GtkWidget* om_cable;
 static GtkWidget* om_calc;
 static GtkWidget* om_port;
 
+enum { COL_LABEL, COL_VALUE };	// columns in cable/calc tree models
+
 static GtkListStore *store = NULL;
 
 enum { COL_CABLE, COL_PORT, COL_CALC };
@@ -153,6 +155,104 @@ static void list_refresh(GtkListStore *_store, int full)
 	clist_populate(_store, full);
 }
 
+// Select cable model in combobox
+static void set_cable_model(GtkWidget *combo, CableModel cbm)
+{
+	GtkTreeModel *model = gtk_combo_box_get_model(GTK_COMBO_BOX(combo));
+	GtkTreeIter iter;
+	char *str = NULL;
+
+	gtk_tree_model_get_iter_first(model, &iter);
+	do {
+		gtk_tree_model_get(model, &iter, COL_VALUE, &str, -1);
+		if (str && ticables_string_to_model(str) == cbm) {
+			gtk_combo_box_set_active_iter(GTK_COMBO_BOX(combo), &iter);
+			g_free(str);
+			return;
+		}
+		g_free(str);
+		str = NULL;
+	} while (gtk_tree_model_iter_next(model, &iter));
+
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), -1);
+}
+
+// Get cable model from combobox
+static CableModel get_cable_model(GtkWidget *combo)
+{
+	GtkTreeModel *model = gtk_combo_box_get_model(GTK_COMBO_BOX(combo));
+	GtkTreeIter iter;
+	char *str = NULL;
+	CableModel cbm = CABLE_NUL;
+
+	if (!gtk_combo_box_get_active_iter(GTK_COMBO_BOX(combo), &iter))
+		return CABLE_NUL;
+
+	gtk_tree_model_get(model, &iter, COL_VALUE, &str, -1);
+	if (str)
+		cbm = ticables_string_to_model(str);
+	g_free(str);
+	return cbm;
+}
+
+// Select port in combobox
+static void set_cable_port(GtkWidget *combo, CablePort cbp)
+{
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), cbp);
+}
+
+// Get port from combobox
+static CablePort get_cable_port(GtkWidget *combo)
+{
+	int cbp = gtk_combo_box_get_active(GTK_COMBO_BOX(combo));
+	return (cbp < 0 ? 0 : cbp);
+}
+
+// Select calc model in combobox
+static void set_calc_model(GtkWidget *combo, CalcModel cm)
+{
+	GtkTreeModel *model = gtk_combo_box_get_model(GTK_COMBO_BOX(combo));
+	GtkTreeIter iter;
+	char *str = NULL;
+
+	if (cm == CALC_TI84P_USB)
+		cm = CALC_TI84P;
+	else if (cm == CALC_TI89T_USB)
+		cm = CALC_TI89T;
+
+	gtk_tree_model_get_iter_first(model, &iter);
+	do {
+		gtk_tree_model_get(model, &iter, COL_VALUE, &str, -1);
+		if (str && ticalcs_string_to_model(str) == cm) {
+			gtk_combo_box_set_active_iter(GTK_COMBO_BOX(combo), &iter);
+			g_free(str);
+			return;
+		}
+		g_free(str);
+		str = NULL;
+	} while (gtk_tree_model_iter_next(model, &iter));
+
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), -1);
+}
+
+// Get calc model from combobox
+static CalcModel get_calc_model(GtkWidget *combo)
+{
+	GtkTreeModel *model = gtk_combo_box_get_model(GTK_COMBO_BOX(combo));
+	GtkTreeIter iter;
+	char *str = NULL;
+	CalcModel cm = CALC_NONE;
+
+	if (!gtk_combo_box_get_active_iter(GTK_COMBO_BOX(combo), &iter))
+		return CALC_NONE;
+
+	gtk_tree_model_get(model, &iter, COL_VALUE, &str, -1);
+	if (str)
+		cm = ticalcs_string_to_model(str);
+	g_free(str);
+	return cm;
+}
+
 TILP_EXPORT gboolean comm_treeview1_button_press_event(GtkWidget *widget, GdkEventButton *event, gpointer user_data)
 {
 	GtkWidget *list = GTK_WIDGET(widget);
@@ -183,10 +283,9 @@ TILP_EXPORT gboolean comm_treeview1_button_press_event(GtkWidget *widget, GdkEve
 	clm = ticalcs_string_to_model(row_text[COL_CALC]);
 	cm = tilp_remap_from_usb(cbm, clm);
 
-	gtk_combo_box_set_active(GTK_COMBO_BOX(om_cable), cbm);
-	gtk_combo_box_set_active(GTK_COMBO_BOX(om_port), cbp);
-	gtk_combo_box_set_active(GTK_COMBO_BOX(om_calc), 
-		cm >= CALC_NSPIRE ? cm-CALC_NSPIRE+13 : cm);
+	set_cable_model(om_cable, cbm);
+	set_cable_port(om_port, cbp);
+	set_calc_model(om_calc, cm);
 
 	g_strfreev(row_text);
 
@@ -225,137 +324,16 @@ gint display_device_dbox(void)
 		clist_populate(store, 0);
 
 	// Cable  
-	data = om_cable = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
-	switch (options.cable_model) 
-	{
-	case CABLE_NUL:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
-	break;
-
-	case CABLE_GRY:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
-	break;
-		
-	case CABLE_BLK:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
-	break;
-
-	case CABLE_PAR:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
-	break;
-
-	case CABLE_SLV:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
-	break;	
-
-	case CABLE_USB:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 5);
-	break;	
-
-	case CABLE_VTI:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 6);
-	break;
-
-	case CABLE_TIE:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 7);
-	break;
-
-	case CABLE_DEV:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 8);
-	break;
-
-	default:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
-		break;
-	}
+	om_cable = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
+	set_cable_model(om_cable, options.cable_model);
 
 	// Port
-	data = om_port = GTK_WIDGET (gtk_builder_get_object (builder, "combobox2"));
-	switch (options.cable_port) 
-	{
-	case PORT_0:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
-	break;
-	case PORT_1:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
-	break;
-	case PORT_2:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
-	break;
-	case PORT_3:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
-	break;
-	case PORT_4:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
-	break;
-	}
+	om_port = GTK_WIDGET (gtk_builder_get_object (builder, "combobox2"));
+	set_cable_port(om_port, options.cable_port);
 
 	// Calc
-	data = om_calc = GTK_WIDGET (gtk_builder_get_object (builder, "combobox3"));
-	switch (options.calc_model) 
-	{
-	case CALC_NONE:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 0);
-		break;
-
-	case CALC_TI73:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 1);
-		break;
-
-	case CALC_TI80:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 2);
-		break;
-
-	case CALC_TI82:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 3);
-		break;
-
-	case CALC_TI83:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 4);
-		break;
-
-	case CALC_TI83P:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 5);
-		break;
-
-	case CALC_TI84P:
-	case CALC_TI84P_USB:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 6);
-		break;
-
-	case CALC_TI85:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 7);
-		break;
-
-	case CALC_TI86:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 8);
-		break;
-
-	case CALC_TI89:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 9);
-		break;
-
-	case CALC_TI89T:
-	case CALC_TI89T_USB:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 10);
-		break;
-
-	case CALC_TI92:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 11);
-		break;
-
-	case CALC_TI92P:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 12);
-		break;
-
-	case CALC_V200:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 13);
-		break;
-
-	case CALC_NSPIRE:
-		gtk_combo_box_set_active(GTK_COMBO_BOX(data), 14);
-		break;
-	}
+	om_calc = GTK_WIDGET (gtk_builder_get_object (builder, "combobox3"));
+	set_calc_model(om_calc, options.calc_model);
 
 	// Timeout
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton_comm_timeout"));
@@ -423,20 +401,7 @@ gint display_device_dbox(void)
 
 TILP_EXPORT void on_device_combobox1_changed (GtkComboBox *combobox, gpointer user_data)
 {
-	gint nitem = gtk_combo_box_get_active(combobox);
-
-	switch(nitem)
-	{
-	case 0: tmp.cable_model = CABLE_NUL; break;
-	case 1: tmp.cable_model = CABLE_GRY; break;
-	case 2: tmp.cable_model = CABLE_BLK; break;
-	case 3: tmp.cable_model = CABLE_PAR; break;
-	case 4: tmp.cable_model = CABLE_SLV; break;
-	case 5: tmp.cable_model = CABLE_USB; break;
-	case 6: tmp.cable_model = CABLE_VTI; break;
-	case 7: tmp.cable_model = CABLE_TIE; break;
-	case 8: tmp.cable_model = CABLE_DEV; break;
-	}
+	tmp.cable_model = get_cable_model(om_cable);
 
 #ifdef __WIN32__
 	if(tmp.cable_model == CABLE_DEV)
@@ -447,41 +412,13 @@ TILP_EXPORT void on_device_combobox1_changed (GtkComboBox *combobox, gpointer us
 
 TILP_EXPORT void on_device_combobox2_changed (GtkComboBox *combobox, gpointer user_data)
 {
-	gint nitem = gtk_combo_box_get_active(combobox);
-
-	switch(nitem)
-	{
-	case 0: tmp.cable_port = PORT_0; break;
-	case 1: tmp.cable_port = PORT_1; break;
-	case 2: tmp.cable_port = PORT_2; break;
-	case 3: tmp.cable_port = PORT_3; break;
-	case 4: tmp.cable_port = PORT_4; break;
-	}
+	tmp.cable_port = get_cable_port(om_port);
 }
 
 
 TILP_EXPORT void on_device_combobox3_changed (GtkComboBox *combobox, gpointer user_data)
 {
-	gint nitem = gtk_combo_box_get_active(combobox);
-
-	switch(nitem)
-	{
-	case 0:  tmp.calc_model = CALC_NONE;   break;
-	case 1:  tmp.calc_model = CALC_TI73;   break;
-	case 2:  tmp.calc_model = CALC_TI80;   break;
-	case 3:  tmp.calc_model = CALC_TI82;   break;
-	case 4:  tmp.calc_model = CALC_TI83;   break;
-	case 5:  tmp.calc_model = CALC_TI83P;  break;
-	case 6:  tmp.calc_model = CALC_TI84P;  break;
-	case 7:  tmp.calc_model = CALC_TI85;   break;
-	case 8:  tmp.calc_model = CALC_TI86;   break;
-	case 9:  tmp.calc_model = CALC_TI89;   break;
-	case 10: tmp.calc_model = CALC_TI89T;  break;
-	case 11: tmp.calc_model = CALC_TI92;   break;
-	case 12: tmp.calc_model = CALC_TI92P;  break;
-	case 13: tmp.calc_model = CALC_V200;   break;
-	case 14: tmp.calc_model = CALC_NSPIRE; break;
-	}
+	tmp.calc_model = get_calc_model(om_calc);
 }
 
 

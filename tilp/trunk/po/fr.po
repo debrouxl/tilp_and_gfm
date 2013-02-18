@@ -56,7 +56,7 @@ msgstr "sauter"
 
 #: ../src/action.c:168 ../src/clist_rbm.c:360 ../src/clock.c:112
 #: ../src/ctree_rbm.c:117 ../src/dboxes.c:248 ../src/dboxes.c:296
-#: ../src/device.c:209 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/device.c:308 ../src/fileprop.c:58 ../src/manpage.c:70
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
 #: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
 #: ../src/screenshot.c:48 ../src/scroptions.c:49 ../src/tilp.c:89
@@ -180,7 +180,7 @@ msgstr "Horloge"
 msgid "A Folder"
 msgstr "Un Dossier"
 
-#: ../src/dboxes.c:40 ../src/device.c:407 ../src/device.c:411
+#: ../src/dboxes.c:40 ../src/device.c:385 ../src/device.c:389
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
 #: ../src/tilp_calcs.c:1229 ../src/tilp_config.c:545 ../src/tilp_config.c:553
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
@@ -201,19 +201,19 @@ msgstr "Avertissement"
 msgid "Question"
 msgstr "Question"
 
-#: ../src/device.c:57
+#: ../src/device.c:59
 msgid "Cable"
 msgstr "Câble"
 
-#: ../src/device.c:57
+#: ../src/device.c:59
 msgid "Port"
 msgstr "Port"
 
-#: ../src/device.c:57
+#: ../src/device.c:59
 msgid "Device"
 msgstr "Calculatrice"
 
-#: ../src/device.c:407
+#: ../src/device.c:385
 msgid ""
 "Please note that Titanium through DirectLink USB works under Linux but it "
 "suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
@@ -223,7 +223,7 @@ msgstr ""
 "souffre d'une limitation: le cable doit etre débranché/rebranché chaque fois "
 "que TiLP est fermé/quitté."
 
-#: ../src/device.c:411
+#: ../src/device.c:389
 msgid "Please note you will have to restart TiLP if connection fails."
 msgstr "Veuillez noter que vous devrez redémarrer TiLP si la connexion échoue."
 

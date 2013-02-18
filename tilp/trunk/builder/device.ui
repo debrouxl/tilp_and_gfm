@@ -19,35 +19,45 @@
   </object>
   <object class="GtkListStore" id="model1">
     <columns>
-      <column type="gchararray"/>
+      <column type="gchararray"/> <!-- label in GUI -->
+      <column type="gchararray"/> <!-- ticables2 cable name -->
     </columns>
     <data>
       <row>
         <col id="0" translatable="yes">Null</col>
+        <col id="1" translatable="no">null</col>
       </row>
       <row>
         <col id="0" translatable="yes">GrayLink</col>
+        <col id="1" translatable="no">graylink</col>
       </row>
       <row>
         <col id="0" translatable="yes">BlackLink</col>
+        <col id="1" translatable="no">blacklink</col>
       </row>
       <row>
         <col id="0" translatable="yes">Parallel</col>
+        <col id="1" translatable="no">parallel</col>
       </row>
       <row>
         <col id="0" translatable="yes">SilverLink</col>
+        <col id="1" translatable="no">silverlink</col>
       </row>
       <row>
         <col id="0" translatable="yes">DirectLink</col>
+        <col id="1" translatable="no">directlink</col>
       </row>
       <row>
         <col id="0" translatable="yes">VTI</col>
+        <col id="1" translatable="no">vti</col>
       </row>
       <row>
         <col id="0" translatable="yes">TiEmu</col>
+        <col id="1" translatable="no">tiemu</col>
       </row>
       <row>
         <col id="0" translatable="yes">UsbKernel</col>
+        <col id="1" translatable="no">usbkernel</col>
       </row>
     </data>
   </object>
@@ -75,53 +85,69 @@
   </object>
   <object class="GtkListStore" id="model3">
     <columns>
-      <column type="gchararray"/>
+      <column type="gchararray"/> <!-- label in GUI -->
+      <column type="gchararray"/> <!-- ticalcs2 model name -->
     </columns>
     <data>
       <row>
         <col id="0" translatable="yes">None</col>
+        <col id="1" translatable="no">none</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI73</col>
+        <col id="1" translatable="no">ti73</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI80</col>
+        <col id="1" translatable="no">ti80</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI82</col>
+        <col id="1" translatable="no">ti82</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI83 / 82 Stats(.fr) / 76.fr</col>
+        <col id="1" translatable="no">ti83</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI83+</col>
+        <col id="1" translatable="no">ti83+</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI84+</col>
+        <col id="1" translatable="no">ti84+</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI85</col>
+        <col id="1" translatable="no">ti85</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI86</col>
+        <col id="1" translatable="no">ti86</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI89</col>
+        <col id="1" translatable="no">ti89</col>
       </row>
       <row>
         <col id="0" translatable="yes">Titanium</col>
+        <col id="1" translatable="no">ti89t</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI92</col>
+        <col id="1" translatable="no">ti92</col>
       </row>
       <row>
         <col id="0" translatable="yes">TI92+</col>
+        <col id="1" translatable="no">ti92+</col>
       </row>
       <row>
         <col id="0" translatable="yes">V200PLT</col>
+        <col id="1" translatable="no">v200</col>
       </row>
       <row>
         <col id="0" translatable="yes">Nspire</col>
+        <col id="1" translatable="no">nspire</col>
       </row>
     </data>
   </object>
