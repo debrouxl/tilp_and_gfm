@@ -20,7 +20,7 @@ handle_one_module() {
   cd "$module_name/trunk"
   echo "Configuring $module_name"
   rm -f config.cache
-  ./configure CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS" CXXFLAGS="$CCFLAGS" --prefix="$PREFIX" $@ || return 1
+  ./configure CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS $CFLAGS" CXXFLAGS="$CCFLAGS $CFLAGS" --prefix="$PREFIX" $@ || return 1
   echo "Building $module_name"
   make clean || return 1
   make || return 1

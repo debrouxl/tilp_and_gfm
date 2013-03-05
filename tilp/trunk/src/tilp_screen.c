@@ -37,7 +37,7 @@
 
 #include "tilp_core.h"
 
-TilpScreen screen = { 0 };	// change to screen (like local/remote)
+TilpScreen screen = { NULL, 0, 0 };	// change to screen (like local/remote)
 
 /*
   Do a screen capture
@@ -232,9 +232,9 @@ uint8_t* screen_16bitcolor_convert(void)
 		{
 			uint16_t data = ((uint16_t *)bitmap)[w * i + j];
 
-			int pos = w*i + j;
+			int pos = w * i + j;
 
-			// Current code: R5 G6 B5. Let's see if it's correct.
+			// R5 G6 B5.
 			bytemap[3 * pos + 0] = ((data & 0xF800) >> 11) << 3;
 			bytemap[3 * pos + 1] = ((data & 0x07E0) >>  5) << 2;
 			bytemap[3 * pos + 2] = ((data & 0x001F) >>  0) << 3;
