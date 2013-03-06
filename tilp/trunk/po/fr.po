@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-14 19:12+0100\n"
+"POT-Creation-Date: 2013-03-05 19:56+0100\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -54,7 +54,7 @@ msgstr "écraser"
 msgid "skip"
 msgstr "sauter"
 
-#: ../src/action.c:168 ../src/clist_rbm.c:360 ../src/clock.c:112
+#: ../src/action.c:168 ../src/clist_rbm.c:361 ../src/clock.c:112
 #: ../src/ctree_rbm.c:117 ../src/dboxes.c:248 ../src/dboxes.c:296
 #: ../src/device.c:308 ../src/fileprop.c:58 ../src/manpage.c:70
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
@@ -64,7 +64,7 @@ msgstr "sauter"
 msgid "Couldn't load builder file: %s\n"
 msgstr "Impossible de trouver le fichier builder: %s\n"
 
-#: ../src/action.c:341 ../src/tilp_files.c:209 ../src/tilp_slct.c:539
+#: ../src/action.c:341 ../src/tilp_files.c:209 ../src/tilp_slct.c:540
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
@@ -97,11 +97,11 @@ msgstr "Taille"
 msgid "Date"
 msgstr "Date"
 
-#: ../src/clist_rbm.c:64
+#: ../src/clist_rbm.c:65
 msgid "Change drive"
 msgstr "Changer de lecteur"
 
-#: ../src/clist_rbm.c:238 ../src/clist_rbm.c:258 ../src/clock.c:82
+#: ../src/clist_rbm.c:239 ../src/clist_rbm.c:259 ../src/clock.c:82
 #: ../src/dboxes.c:46 ../src/dnd.c:180 ../src/main.c:192 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:551 ../src/tilp_calcs.c:560 ../src/tilp_calcs.c:565
@@ -112,7 +112,7 @@ msgstr "Changer de lecteur"
 msgid "Error"
 msgstr "Erreur"
 
-#: ../src/clist_rbm.c:238
+#: ../src/clist_rbm.c:239
 msgid ""
 "The Group File Manager doesn't seem to be installed on your system.\n"
 "Download it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP "
@@ -122,16 +122,16 @@ msgstr ""
 "Téléchargez le depuis <http://lpg.ticalc.org/prj_gfm> ou jetez un coup "
 "d'oeil au manuel utilisateur de TiLP."
 
-#: ../src/clist_rbm.c:285 ../src/tilp.c:644
+#: ../src/clist_rbm.c:286 ../src/tilp.c:644
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: ../src/clist_rbm.c:285 ../src/tilp.c:644 ../src/tilp_calcs.c:1011
-#: ../src/tilp_slct.c:539
+#: ../src/clist_rbm.c:286 ../src/tilp.c:644 ../src/tilp_calcs.c:1011
+#: ../src/tilp_slct.c:540
 msgid "Name: "
 msgstr "Nom: "
 
-#: ../src/clist_rbm.c:286 ../src/tilp.c:644
+#: ../src/clist_rbm.c:287 ../src/tilp.c:644
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
@@ -184,14 +184,14 @@ msgstr "Un Dossier"
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
 #: ../src/tilp_calcs.c:1229 ../src/tilp_config.c:545 ../src/tilp_config.c:553
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
-#: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:445
-#: ../src/tilp_slct.c:456 ../src/tilp_slct.c:548
+#: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:446
+#: ../src/tilp_slct.c:457 ../src/tilp_slct.c:549
 msgid "Information"
 msgstr "Information"
 
 #: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
 #: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1300
-#: ../src/tilp_files.c:199 ../src/tilp_slct.c:514
+#: ../src/tilp_files.c:199 ../src/tilp_slct.c:515
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -820,30 +820,30 @@ msgstr "Impossible de déplacer le fichier temporaire.\n"
 msgid "Unable to change directory."
 msgstr "Impossible de changer de dossier."
 
-#: ../src/tilp_main.c:51
+#: ../src/tilp_main.c:103
 msgid "Signal SIGINT (Ctrl+C) caught...\n"
 msgstr "Signal SIGINT (Ctrl+C) capturé...\n"
 
-#: ../src/tilp_main.c:53
+#: ../src/tilp_main.c:105
 msgid "Done.\n"
 msgstr "Fait.\n"
 
-#: ../src/tilp_main.c:94
+#: ../src/tilp_main.c:146
 #, c-format
 msgid "libticonv library version is %s but %s mini required.\n"
 msgstr "libticonv: version %s mais %s requise.\n"
 
-#: ../src/tilp_main.c:97
+#: ../src/tilp_main.c:149
 #, c-format
 msgid "libtifiles library version is %s but %s mini required.\n"
 msgstr "libtifiles: version %s mais %s requise.\n"
 
-#: ../src/tilp_main.c:100
+#: ../src/tilp_main.c:152
 #, c-format
 msgid "libticables library version is %s but %s mini required.\n"
 msgstr "libticables: version %s mais %s est requise.\n"
 
-#: ../src/tilp_main.c:103
+#: ../src/tilp_main.c:155
 #, c-format
 msgid "libticalcs library version is %s but %s mini required.\n"
 msgstr "libticalcs: version %s mais %s est requise.\n"
@@ -880,11 +880,11 @@ msgstr "Ne peut pas ouvrir le fichier de destination en écriture!"
 msgid "A file must have been selected in the right window."
 msgstr "Un fichier doit être sélectionné dans la fenêtre de droite."
 
-#: ../src/tilp_slct.c:446 ../src/tilp_slct.c:457
+#: ../src/tilp_slct.c:447 ../src/tilp_slct.c:458
 msgid "An item must have been selected in the left window."
 msgstr "Une variable doit être sélectionnée dans la fenêtre de gauche."
 
-#: ../src/tilp_slct.c:515
+#: ../src/tilp_slct.c:516
 msgid ""
 "Are you sure you want to remove these file(s) ?\n"
 "\n"
@@ -892,7 +892,7 @@ msgstr ""
 "Voulez-vous vraiment supprimer ce(s) fichier(s) ?\n"
 "\n"
 
-#: ../src/tilp_slct.c:549
+#: ../src/tilp_slct.c:550
 msgid "Unable to rename the file or directory."
 msgstr "Impossible de renommer le fichier ou le dossier."
 

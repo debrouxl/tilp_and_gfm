@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.07\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2012-05-06 11:26+0200\n"
+"POT-Creation-Date: 2013-03-05 19:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,23 +45,23 @@ msgstr ""
 msgid "built on %s %s\n"
 msgstr ""
 
-#: src/ctree.c:188
+#: src/ctree.c:187
 msgid "The name already exists. Please choose another one..."
 msgstr ""
 
-#: src/ctree.c:225
+#: src/ctree.c:224
 msgid "Name"
 msgstr ""
 
-#: src/ctree.c:245
+#: src/ctree.c:244
 msgid "Attr"
 msgstr ""
 
-#: src/ctree.c:250
+#: src/ctree.c:249
 msgid "Type"
 msgstr ""
 
-#: src/ctree.c:255
+#: src/ctree.c:254
 msgid "Size"
 msgstr ""
 

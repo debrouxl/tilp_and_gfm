@@ -30,7 +30,7 @@
 #include "pbars.h"
 #include "gtk_update.h"
 
-struct pbar_window pbar_wnd = { 0 };
+struct pbar_window pbar_wnd = { NULL, NULL, NULL, NULL, NULL, NULL };
 
 static GtkWidget *window = NULL;
 

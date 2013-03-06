@@ -283,7 +283,7 @@ int tilp_config_write(void)
 	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_timeout", "Timeout in tenth of seconds", &error);
 
 	g_key_file_set_integer(kf, SECTION_DEVICE, "cable_delay", options.cable_delay);
-	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Inter-bit delay in µs", &error);
+	g_key_file_set_comment(kf, SECTION_DEVICE, "cable_delay", "Inter-bit delay in us", &error);
 
 	// Section [GUI]
 

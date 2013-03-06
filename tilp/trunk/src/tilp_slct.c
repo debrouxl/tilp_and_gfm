@@ -409,8 +409,9 @@ void tilp_local_update_applist(void)
 	{
 		FileEntry *fe = ptr->data;
 		FlashContent *c = fe->content2;
-		VarEntry ve = {0};
+		VarEntry ve;
 
+		memset(&ve, 0, sizeof(ve));
 		strcpy(ve.name, c->name);
 		ve.size = c->data_length;
 		ve.type = tifiles_flash_type(calc_handle->model);

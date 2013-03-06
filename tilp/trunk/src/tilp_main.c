@@ -39,10 +39,62 @@
 CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
 
-TilpOptions options    = { 0 };
-TilpLocal   local  = { 0 };	// I will change these names into local & remote
-TilpRemote  remote = { 0 };
-
+TilpOptions options    = { 0, /* cable_model */
+                           0, /* cable_port */
+                           0, /* cable_timeout */
+                           0, /* cable_delay */
+                           0, /* calc_model */
+                           0, /* pane_x_size */
+                           0, /* pane_y_size */
+                           0, /* wnd_x_size1 */
+                           0, /* wnd_y_size1 */
+                           0, /* wnd_x_size2 */
+                           0, /* wnd_y_size2 */
+                           0, /* local_sort */
+                           0, /* local_sort_order */
+                           0, /* remote_sort */
+                           0, /* remote_sort_order */
+                           0, /* filesel_type */
+                           0, /* fs_type */
+                           0, /* full_gui */
+                           0, /* auto_detect */
+                           0, /* local_path */
+                           0, /* show_all */
+                           0, /* overwrite */
+                           0, /* recv_as_group */
+                           0, /* backup_as_tigroup */
+                           NULL, /* working_dir */
+                           0, /* screen_format */
+                           0, /* screen_scaling */
+                           0, /* screen_clipping */
+                           0, /* screen_blurry */
+                           NULL, /* remote_font_name */
+                           NULL, /* local_font_name */
+                           0 /* usb_avail */
+    };
+TilpLocal   local  = { NULL, /* dirlist */
+                       NULL, /* cwdir */
+                       NULL, /* selection0 */
+                       NULL, /* selection1 */
+                       NULL, /* selection2 */
+                       NULL, /* selection3 */
+                       NULL, /* selection4 */
+                       NULL, /* selection5 */
+                       NULL, /* file_selection */
+                       0 /* copy_cut */ };
+TilpRemote  remote = { NULL, /* var_tree */
+                       NULL, /* app_tree */
+                       {     /* memory */
+                         0,  /* n_folders */
+                         0,  /* n_vars */
+                         0,  /* n_apps */
+                         0,  /* ram_used */
+                         0,  /* flash_used */
+                         0,  /* ram_free */
+                         0   /* flash_free */
+                       },
+                       NULL, /* selection1 */
+                       NULL  /* selection2 */ };
 int working_mode = MODE_INI;
 
 /* Ctrl+C signal handler */

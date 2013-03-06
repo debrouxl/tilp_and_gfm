@@ -261,14 +261,14 @@ TILP_EXPORT void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data
 		dst_filename2 = g_strconcat(dst_filename, ".", "rom", NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free(dst_filename);
+	g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
 		tilp_file_move_with_check(src_filename, dst_filename2);
 	}
 	g_free(src_filename);
-	g_free(dst_filename2);
+	g_free((void *)dst_filename2);
 
 	tilp_dirlist_local();
 	clist_refresh();
@@ -318,14 +318,14 @@ TILP_EXPORT void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(options.calc_model), NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free(dst_filename);
-	
+	g_free((void *)dst_filename);
+
 	if (dst_filename2)
 	{
 		tilp_file_move_with_check(src_filename, dst_filename2);
 	}
 	g_free(src_filename);
-	g_free(dst_filename2);
+	g_free((void *)dst_filename2);
 
 	tilp_dirlist_local();
 	clist_refresh();
@@ -393,14 +393,14 @@ static int save_group(void)
 		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_group(options.calc_model), NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free(dst_filename);
+	g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
 		tilp_file_move_with_check(src_filename, dst_filename2);
 	}
 	g_free(src_filename);
-	g_free(dst_filename2);
+	g_free((void *)dst_filename2);
 
 	tilp_dirlist_local();
 	clist_refresh();
@@ -584,14 +584,14 @@ TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 		dst_filename2 = g_strconcat(dst_filename, ".tig", NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free(dst_filename);
+	g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
 		tilp_file_move_with_check(src_filename, dst_filename2);
 	}
 	g_free(src_filename);
-	g_free(dst_filename2);
+	g_free((void *)dst_filename2);
 
 	tilp_dirlist_local();
 	clist_refresh();

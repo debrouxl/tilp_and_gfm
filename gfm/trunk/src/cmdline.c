@@ -35,10 +35,10 @@ static void my_log_handler(const gchar *log_domain,
                            const gchar *message,
                            gpointer user_data) 
 { 
-  log_domain = log_domain;
-  log_level = log_level;
-  message = message;
-  user_data = user_data;
+  (void)log_domain;
+  (void)log_level;
+  (void)message;
+  (void)user_data;
 }
 
 static gchar** array = NULL;

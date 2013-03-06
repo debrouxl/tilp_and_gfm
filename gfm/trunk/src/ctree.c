@@ -62,8 +62,7 @@ static gboolean allow_selection(GtkTreeSelection * selection,
 	GtkTreeIter iter;
 	VarEntry *ve;
 
-	selection = selection; data = data;
-	path_currently_selected = path_currently_selected;
+	(void)selection; (void)data; (void)path_currently_selected;
 
 	gtk_tree_model_get_iter(model, &iter, path);
 	gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
@@ -87,7 +86,7 @@ static void get_selection                               (GtkTreeModel *model,
 {
 	VarEntry *ve;
 
-	path = path; data = data;
+	(void)path; (void)data;
 
 	gtk_tree_model_get(model, iter, COLUMN_DATA, &ve, -1);
 

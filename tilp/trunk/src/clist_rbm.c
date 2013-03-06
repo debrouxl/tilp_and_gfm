@@ -38,6 +38,7 @@
 #include "tilp.h"
 #include "tilp_core.h"
 #include "fileprop.h"
+#include "toolbar.h"
 
 /* Create/update menu */
 

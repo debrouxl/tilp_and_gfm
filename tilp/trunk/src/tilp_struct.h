@@ -49,8 +49,8 @@ typedef struct
 	int		calc_model;
 
 	// gui
-    int		pane_x_size;
-    int		pane_y_size;
+	int		pane_x_size;
+	int		pane_y_size;
 
 	int		wnd_x_size1;
 	int		wnd_y_size1;
@@ -58,10 +58,10 @@ typedef struct
 	int		wnd_x_size2;
 	int		wnd_y_size2;
 
-    int		local_sort;
-    int		local_sort_order;
-    int		remote_sort;
-    int		remote_sort_order;
+	int		local_sort;
+	int		local_sort_order;
+	int		remote_sort;
+	int		remote_sort_order;
 
 	int		filesel_type;
 	int		fs_type; // internal
@@ -69,23 +69,23 @@ typedef struct
 
 	// options
 	int		auto_detect;
-    int		local_path;
-    int		show_all;
+	int		local_path;
+	int		show_all;
 	int		overwrite;
-    int		recv_as_group;
+	int		recv_as_group;
 	int		backup_as_tigroup;
-	
+
 	char*	working_dir;
 
 	// screen
-    int		screen_format;
-    int		screen_scaling;
-    int		screen_clipping;
-    int		screen_blurry;
+	int		screen_format;
+	int		screen_scaling;
+	int		screen_clipping;
+	int		screen_blurry;
 
 	// fonts
-    char*	remote_font_name;
-    char*	local_font_name;
+	char*	remote_font_name;
+	char*	local_font_name;
 
 	int		usb_avail;
 
@@ -96,17 +96,17 @@ typedef struct
 typedef struct 
 {
 	// used for entries
-    char *name;
-    time_t date;
-    off_t size;
+	char *name;
+	time_t date;
+	off_t size;
 #ifdef __WIN32__
-    int user;
-    int group;
-    int attrib;
+	int user;
+	int group;
+	int attrib;
 #else
-    uid_t user;
-    gid_t group;
-    mode_t attrib;
+	uid_t user;
+	gid_t group;
+	mode_t attrib;
 #endif
 
 	// used for actions
@@ -119,26 +119,26 @@ typedef struct
 /* Used to retrieve stats on the on-calc memory usage */
 typedef struct 
 {
-	unsigned int n_folders;		// number of folders
-    unsigned int n_vars;		// number of vars
-	unsigned int n_apps;		// number of FLASH apps
+	uint32_t n_folders;		// number of folders
+	uint32_t n_vars;		// number of vars
+	uint32_t n_apps;		// number of FLASH apps
 
-	unsigned int ram_used;
-	unsigned int flash_used;
+	uint32_t ram_used;
+	uint32_t flash_used;
 
-    unsigned int ram_free;
-	unsigned int flash_free;
+	uint32_t ram_free;
+	uint32_t flash_free;
 } TilpMem;
 
 
 /* This struct is used by the CList window */
 typedef struct 
 {
-    GList* dirlist;			// linked list of files & directories
-    gchar* cwdir;			// current active directory
+	GList* dirlist;			// linked list of files & directories
+	gchar* cwdir;			// current active directory
 
 	GList* selection0;		// selection of regular files (data: FileEntry*)
-    GList* selection1;		// selection of single files  (data: FileEntry* but exploded)
+	GList* selection1;		// selection of single files  (data: FileEntry* but exploded)
 
 	GList* selection2;		// selection of flash files   (data: FileEntry*)
 	GList* selection3;		// selection of flash files   (data: FileEntry* but exploded)
@@ -147,22 +147,22 @@ typedef struct
 
 	GList* selection5;		// selection of TiGroup files (data: FileEntry* but not loaded)
 
-    GList* file_selection;	// selection of files (data: char*)
+	GList* file_selection;	// selection of files (data: char*)
 
-    int copy_cut;			// action type
+	int copy_cut;			// action type
 } TilpLocal;
 
 
 /* This struct is used by the CTree window */
 typedef struct 
 {
-    GNode*	var_tree;		// future use: tree of vars
-    GNode*	app_tree;		// future use: tree of apps
+	GNode*	var_tree;		// future use: tree of vars
+	GNode*	app_tree;		// future use: tree of apps
 
-    TilpMem	memory;			// memory free or used by calc
+	TilpMem	memory;			// memory free or used by calc
 
-    GList*	selection1;		// selection of variables    (data: VarEntry)
-    GList*	selection2;		// selection of applications (data: VarEntry)
+	GList*	selection1;		// selection of variables    (data: VarEntry)
+	GList*	selection2;		// selection of applications (data: VarEntry)
 } TilpRemote;
 
 /* Global variables */

@@ -25,8 +25,8 @@
 #include "gstruct.h"
 #include "support.h"
 
-struct toolbar_window toolbar_wnd = { 0 };
-struct menubar_window menubar_wnd = { 0 };
+struct toolbar_window toolbar_wnd = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+struct menubar_window menubar_wnd = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 
 /* Put some buttons of the toolbar as sensitive according to some options */
 void toolbar_refresh_buttons(void)

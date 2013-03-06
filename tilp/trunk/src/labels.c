@@ -27,7 +27,7 @@
 #include "tilp_core.h"
 #include "gstruct.h"
 
-struct label_window label_wnd = { 0 };
+struct label_window label_wnd = { NULL, NULL, NULL, NULL, NULL };
 
 #define PATH_LEVEL	10
 

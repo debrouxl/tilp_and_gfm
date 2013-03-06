@@ -46,8 +46,8 @@ static void new_log_handler(const gchar *log_domain,
 gint display_properties_dbox(const char *filename)
 {
 	GtkBuilder *builder;
-	GtkWidget *dbox;
-	GtkWidget *text;
+	GObject *dbox;
+	GObject *text;
 	GError* error = NULL;
 	gint result;
 	guint hid;
@@ -57,7 +57,7 @@ gint display_properties_dbox(const char *filename)
 	{
 		g_warning (_("Couldn't load builder file: %s\n"), error->message);
 		g_error_free (error);
-		return NULL; // THIS RETURNS !
+		return 0; // THIS RETURNS !
 	}
 	gtk_builder_connect_signals(builder, NULL);
 
@@ -66,20 +66,20 @@ gint display_properties_dbox(const char *filename)
 	txtbuf = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 
 	hid = g_log_set_handler("tifiles", G_LOG_LEVEL_INFO, new_log_handler, NULL);
-	tifiles_file_display(filename);	
+	tifiles_file_display(filename);
 	g_log_remove_handler("tifiles", hid);
 
 	{
 		PangoFontDescription *font_desc;
-		GtkWidget *view = text;
+		GObject *view = text;
 
 		font_desc = pango_font_description_from_string ("Courier");
-		gtk_widget_modify_font (view, font_desc);
+		gtk_widget_modify_font (GTK_WIDGET(view), font_desc);
 		pango_font_description_free (font_desc);
 	}
 
 	gtk_window_set_title(GTK_WINDOW(dbox), g_basename(filename));
-	gtk_widget_show(dbox);
+	gtk_widget_show(GTK_WIDGET(dbox));
 
 	result = gtk_dialog_run(GTK_DIALOG(dbox));
 	switch (result) 
@@ -90,7 +90,7 @@ gint display_properties_dbox(const char *filename)
 		break;
 	}
 
-	gtk_widget_destroy(dbox);
+	gtk_widget_destroy(GTK_WIDGET(dbox));
 
 	return 0;
 }
