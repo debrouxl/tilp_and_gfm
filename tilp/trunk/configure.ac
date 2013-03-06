@@ -204,6 +204,25 @@ case $host_os in
         ;;
 esac
 
+# Find a C compiler for the build system (needed for compiling cleaner)
+AC_ARG_VAR([CC_FOR_BUILD], [C compiler for programs to be run on the build system])
+AC_ARG_VAR([CFLAGS_FOR_BUILD], [C compiler flags for CC_FOR_BUILD])
+AC_MSG_CHECKING([for the host compiler])
+if test "x$build" == "x$host" ; then
+  # Not cross-compiling.
+  CC_FOR_BUILD=$CC
+  CFLAGS_FOR_BUILD=$CFLAGS
+  AC_MSG_RESULT([${CC_FOR_BUILD}])
+else
+  # Try to find the host CC among several choices
+  AC_CHECK_PROGS(CC_FOR_BUILD, [gcc cc clang c89 c99], [false])
+  if test "x$CC_FOR_BUILD" = "xfalse" ; then
+    AC_MSG_FAILURE([not found.])
+  else
+    AC_MSG_RESULT([${CC_FOR_BUILD}])
+  fi
+fi
+
 case "$host" in
   *-*-linux*) EXFL="-Wl,--export-dynamic" ;;
   *-*-mingw*) EXFL="-lcomdlg32" ;;

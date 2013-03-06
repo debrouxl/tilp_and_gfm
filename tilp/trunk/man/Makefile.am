@@ -10,6 +10,6 @@ view: $(man_MANS)
 
 dist_win: $(man_MANS)
 	groff -Tascii -man $(man_MANS) > Manpage
-	C_INCLUDE_PATH="" LIBRARY_PATH="" $(CC) $(CFLAGS) cleaner.c -o cleaner
+	C_INCLUDE_PATH="" LIBRARY_PATH="" $(CC_FOR_BUILD) $(CFLAGS_FOR_BUILD) cleaner.c -o cleaner
 	./cleaner Manpage
 	rm Manpage cleaner

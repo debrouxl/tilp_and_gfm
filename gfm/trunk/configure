@@ -637,6 +637,8 @@ gt_needs=
 ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
+CFLAGS_FOR_BUILD
+CC_FOR_BUILD
 OS_WIN32_FALSE
 OS_WIN32_TRUE
 kde
@@ -937,7 +939,9 @@ GTK_CFLAGS
 GTK_LIBS
 GLADE_CFLAGS
 GLADE_LIBS
-XMKMF'
+XMKMF
+CC_FOR_BUILD
+CFLAGS_FOR_BUILD'
 
 
 # Initialize some variables set by options.
@@ -1633,6 +1637,10 @@ Some influential environment variables:
               C compiler flags for GLADE, overriding pkg-config
   GLADE_LIBS  linker flags for GLADE, overriding pkg-config
   XMKMF       Path to xmkmf, Makefile generator for X Window System
+  CC_FOR_BUILD
+              C compiler for programs to be run on the build system
+  CFLAGS_FOR_BUILD
+              C compiler flags for CC_FOR_BUILD
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -22399,7 +22407,7 @@ for i in $jpeg_incdirs;
 do
   for j in jpeglib.h;
   do
-    echo "configure: 22402: $i/$j" >&5
+    echo "configure: 22410: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       jpeg_incdir=$i
@@ -22632,7 +22640,7 @@ for i in $qt_incdirs;
 do
   for j in $kde_qt_header;
   do
-    echo "configure: 22635: $i/$j" >&5
+    echo "configure: 22643: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       qt_incdir=$i
@@ -23385,7 +23393,7 @@ for i in $kde_incdirs;
 do
   for j in $kde_check_header;
   do
-    echo "configure: 23388: $i/$j" >&5
+    echo "configure: 23396: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_incdir=$i
@@ -23410,7 +23418,7 @@ for i in $kde_libdirs;
 do
   for j in $kde_check_lib;
   do
-    echo "configure: 23413: $i/$j" >&5
+    echo "configure: 23421: $i/$j" >&5
     if test -r "$i/$j"; then
       echo "taking that" >&5
       kde_libdir=$i
@@ -24465,6 +24473,73 @@ $as_echo "#define HAVE_FVISIBILITY 1" >>confdefs.h
         fi
         ;;
 esac
+
+# Find a C compiler for the build system (needed for compiling cleaner)
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for the host compiler" >&5
+$as_echo_n "checking for the host compiler... " >&6; }
+if test "x$build" == "x$host" ; then
+  # Not cross-compiling.
+  CC_FOR_BUILD=$CC
+  CFLAGS_FOR_BUILD=$CFLAGS
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${CC_FOR_BUILD}" >&5
+$as_echo "${CC_FOR_BUILD}" >&6; }
+else
+  # Try to find the host CC among several choices
+  for ac_prog in gcc cc clang c89 c99
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_CC_FOR_BUILD+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$CC_FOR_BUILD"; then
+  ac_cv_prog_CC_FOR_BUILD="$CC_FOR_BUILD" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_prog_CC_FOR_BUILD="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+CC_FOR_BUILD=$ac_cv_prog_CC_FOR_BUILD
+if test -n "$CC_FOR_BUILD"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CC_FOR_BUILD" >&5
+$as_echo "$CC_FOR_BUILD" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$CC_FOR_BUILD" && break
+done
+test -n "$CC_FOR_BUILD" || CC_FOR_BUILD="false"
+
+  if test "x$CC_FOR_BUILD" = "xfalse" ; then
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "not found.
+See \`config.log' for more details" "$LINENO" 5; }
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${CC_FOR_BUILD}" >&5
+$as_echo "${CC_FOR_BUILD}" >&6; }
+  fi
+fi
 
 case "$host" in
   *-*-linux*) EXFL="-Wl,--export-dynamic" ;;

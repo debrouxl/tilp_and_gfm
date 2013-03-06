@@ -1,5 +1,5 @@
 
-gfm(1)                                                                  gfm(1)
+gfm(1)                      General Commands Manual                     gfm(1)
 
 
 
