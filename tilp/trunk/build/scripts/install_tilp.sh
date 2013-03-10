@@ -46,6 +46,8 @@
 # * GNU groff (groff, groff)
 # * GNU texinfo (texinfo, texinfo)
 # * XDG utils (xdg-utils, xdg-utils)
+# * libarchive (libarchive-dev)
+# * intltool (intltool)
 #
 # Optional dependencies:
 # * KDE 3.x development files (kdelibs4-dev, kdelibs3-devel), if you want to compile tilp with support for the KDE file dialog.
@@ -74,7 +76,7 @@
 if [ "x$PREFIX" = "x" ]; then
     PREFIX="/usr"
 fi
-
+echo Will use "PREFIX=$PREFIX"
 
 # ******************************************************************************
 # Default place where the sources will be stored, if it's not de
@@ -84,6 +86,7 @@ fi
 if [ "x$SRCDIR" = "x" ]; then
     SRCDIR="$HOME/lpg"
 fi
+echo Will use "SRCDIR=$SRCDIR"
 
 
 # ******************************************************************************
