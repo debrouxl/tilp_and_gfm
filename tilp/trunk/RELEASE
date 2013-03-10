@@ -3,7 +3,7 @@
 
 
 Old     version:  1.16  (2011/12/15)
-Current version:  1.17  (2012/xx/xx)
+Current version:  1.17  (2013/xx/xx)
 
 
 SubVersion (SVN) revision: $Id$
@@ -18,8 +18,9 @@ New capabilities:
 	- variable rename and variable attribute change functions, mainly by Benjamin Moody.
 	- new TI-Z80 ROM dumper by Benjamin Moody, with, among others, the ability to automatically dump 82 and 85, and the ability to unlock 73/83+/84+ Flash memory without an OS patch.
 	- the ability to obtain screenshots from TI-80 VSC, by Randy Compton.
-	- transferring Nspire OS extensions, currently limited to English-Chinese dictionaries.
-	- Nspire remote control feature
+	- the ability to transfer Nspire OS extensions, currently limited to English-Chinese dictionaries.
+	- Nspire remote control feature.
+	- 83+ family DBUS memory dump command.
 
 Improvements:
 -------------
@@ -31,6 +32,10 @@ Improvements:
 	- integrated tf2hex and the ROM dumpers into the autotools chain, by Benjamin Moody.
 	- switched the source code and building process of the TI-Z80 ROM dumpers from tasm to spasm, by Benjamin Moody.
 	- optimized the TI-68k ROM dumpers
+	- improved raw mode external linking, thanks to two new functions for setting both lines simultaneously, by Benjamin Moody.
+	- on Windows, load libusb-win32 dynamically if available, and fail gracefully if it's missing.
+	- in 84+ DUSB ROM dumper, enabled UnlockFlash, so that the certificate page can be dumped.
+	- switched the code for dealing with ZIP files from an embedded minizip to an external libarchive.
 
 Bug fixes:
 ----------
@@ -44,8 +49,16 @@ Bug fixes:
 	- applied downstream Debian patches for fixing FTBFS on sh390x (Debian bug #641092), sh4 (Debian bug #567679) and sparc64 (Debian bug #596601).
 	- made Glib 2.32 and later print info and debug messages, restoring the behaviour of older versions.
 	- integrated a couple fixes to the 84+ DUSB ROM dumper, by Benjamin Moody.
-	- fixes for spelling errors reported by alberthro and TC01.
-	- fixes for i18n problems reported by Benjamin Moody.
+	- fixed spelling errors reported by alberthro and TC01.
+	- fixed i18n problems reported by Benjamin Moody.
+	- fixed 32-on-64 support, and 64-bit serial support, in the Windows installer, both reported by Benjamin Moody.
+	- updated "counters" arrays in CalcFncts instances. They had been broken for years.
+	- defined combobox semantics in XML and retrieving them from C, instead of having two desynchronized definitions.
+	- fixed two detokenization issues. This patch by Benjamin Moody.
+	- fixed a number of problems related to unaligned reads/writes and left shifts of count >= width of type.
+	- fixed more compiler warnings.
+	- now compiling manpage cleaner with host compiler (borrowing Benjamin Moody's code from libticalcs' configure).
+	- fix xbar and ybar TI-68k charset definitions: the combining overline should be after x and y.
 
 Known bugs:
 -----------

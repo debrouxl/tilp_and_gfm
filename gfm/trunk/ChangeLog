@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 Log of changes:	gfm (calcs, files, ticonv)
 
-- xx/xx/2012, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
+- xx/xx/2013, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
 	- honor CFLAGS when compiling cleaner. Patch by Malcolm J. Lewis, SF bug #3491681.
 	- fix FreeDesktop .desktop files. Patch by Malcolm J. Lewis, SF bug #3491673.
 	- regenerate with Autoconf 2.69 and Automake 1.11.5.
@@ -10,7 +10,11 @@ Log of changes:	gfm (calcs, files, ticonv)
 	- regenerate with Automake 1.11.6.
 	- use LF line endings throughout the sources.
 	- some updates, wording and formatting changes to the man pages.
+	- fix some spelling errors (or at least, infrequent forms) reported by Lintian (through Albert "alberthro" Huang) and rpmlint (through TC01).
 	- remove spurious executable properties on a couple dozen files. Reported by TC01.
+	- fix a number of problems related to unaligned reads/writes and left shifts of count >= width of type; fix more compiler warnings reported by clang.
+	- fix more compiler warnings reported (or made more visible) by clang.
+	- compile manpage cleaner with host compiler (borrowing Benjamin Moody's code from libticalcs' configure).
 
 - 14/12/2011, version 1.06 (1.1.7, 1.1.5, 1.1.3): debrouxl
 	- eliminate explicit usage of stdout.
