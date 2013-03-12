@@ -230,7 +230,8 @@ void tilp_local_contents_load(void)
 				err = tifiles_file_read_regular(fe1->name, fe1->content1);
 				if(err)
 				{
-					tifiles_content_delete_regular(fe1->content1);
+					// The content is already deleted by the subroutines of tifiles_file_read_regular.
+					//tifiles_content_delete_regular(fe1->content1);
 					g_free(fe1);
 					continue;
 				}
@@ -247,7 +248,8 @@ void tilp_local_contents_load(void)
 				err = tifiles_file_read_regular(fe0->name, src);
 				if(err)
 				{
-					tifiles_content_delete_regular(src);
+					// The content is already deleted by the subroutines of tifiles_file_read_regular.
+					//tifiles_content_delete_regular(src);
 					continue;
 				}
 				

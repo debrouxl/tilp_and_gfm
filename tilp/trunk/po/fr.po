@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-05 19:56+0100\n"
+"POT-Creation-Date: 2013-03-09 19:38+0100\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -64,7 +64,7 @@ msgstr "sauter"
 msgid "Couldn't load builder file: %s\n"
 msgstr "Impossible de trouver le fichier builder: %s\n"
 
-#: ../src/action.c:341 ../src/tilp_files.c:209 ../src/tilp_slct.c:540
+#: ../src/action.c:341 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
@@ -127,7 +127,7 @@ msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
 #: ../src/clist_rbm.c:286 ../src/tilp.c:644 ../src/tilp_calcs.c:1011
-#: ../src/tilp_slct.c:540
+#: ../src/tilp_slct.c:542
 msgid "Name: "
 msgstr "Nom: "
 
@@ -184,14 +184,14 @@ msgstr "Un Dossier"
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
 #: ../src/tilp_calcs.c:1229 ../src/tilp_config.c:545 ../src/tilp_config.c:553
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
-#: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:446
-#: ../src/tilp_slct.c:457 ../src/tilp_slct.c:549
+#: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
+#: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
 msgid "Information"
 msgstr "Information"
 
 #: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
 #: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1300
-#: ../src/tilp_files.c:199 ../src/tilp_slct.c:515
+#: ../src/tilp_files.c:199 ../src/tilp_slct.c:517
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -880,11 +880,11 @@ msgstr "Ne peut pas ouvrir le fichier de destination en écriture!"
 msgid "A file must have been selected in the right window."
 msgstr "Un fichier doit être sélectionné dans la fenêtre de droite."
 
-#: ../src/tilp_slct.c:447 ../src/tilp_slct.c:458
+#: ../src/tilp_slct.c:449 ../src/tilp_slct.c:460
 msgid "An item must have been selected in the left window."
 msgstr "Une variable doit être sélectionnée dans la fenêtre de gauche."
 
-#: ../src/tilp_slct.c:516
+#: ../src/tilp_slct.c:518
 msgid ""
 "Are you sure you want to remove these file(s) ?\n"
 "\n"
@@ -892,7 +892,7 @@ msgstr ""
 "Voulez-vous vraiment supprimer ce(s) fichier(s) ?\n"
 "\n"
 
-#: ../src/tilp_slct.c:550
+#: ../src/tilp_slct.c:552
 msgid "Unable to rename the file or directory."
 msgstr "Impossible de renommer le fichier ou le dossier."
 

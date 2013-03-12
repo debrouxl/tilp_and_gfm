@@ -28,6 +28,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- fix a number of problems related to unaligned reads/writes and left shifts of count >= width of type; fix more compiler warnings reported by clang.
 	- fix more compiler warnings reported (or made more visible) by clang.
 	- compile manpage cleaner with host compiler (borrowing Benjamin Moody's code from libticalcs' configure).
+	- fix crash reported by Deathrider.
 
 - 14/12/2011, version 1.16 (1.3.3, 1.1.7, 1.1.5, 1.1.3): debrouxl
 	- add support for getting screenshots from Nspire CX calculators.
