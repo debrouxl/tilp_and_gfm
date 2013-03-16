@@ -9,7 +9,7 @@
 PREFIX="$HOME"
 
 # Common flags and definitions.
-CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Wdeclaration-after-statement -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1"
+CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Wdeclaration-after-statement -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -Werror=implicit-function-declaration"
 CCPPFLAGS="-D_FORTIFY_SOURCE=2"
 
 # Configure and build the given module
