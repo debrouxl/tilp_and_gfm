@@ -182,6 +182,8 @@ echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into usin
 echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which installs libraries to non-standard paths), added --libdir=/usr/lib64 to the marked line, or..."
 echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
 echo -e "3) installed the build dependencies listed in the script. Unless you're on Debian and derivatives, use libusb 1.0."
+echo -e "        For instance, on Debian and derivatives, you would run:"
+echo -e "        (sudo) apt-get install subversion autoconf automake libtool libglib2.0-dev zlib1g-dev libusb-dev libgtk2.0-dev libglade2-dev libsdl1.2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
 echo -e "\033[4mOtherwise, the build will fail!\033[m."
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
