@@ -160,19 +160,12 @@ Filename: "{cf}\LPG Shared\drivers\dha\dhasetup.exe"; Parameters: "install"; Min
 Filename: "{cf}\LPG Shared\drivers\rwp\rwpsetup.exe"; Parameters: "stop"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Stopping RWP driver (this may take a few seconds) ..."; check: Is64BitInstallMode
 Filename: "{cf}\LPG Shared\drivers\rwp\rwpsetup.exe"; Parameters: "install"; MinVersion: 0,4; Tasks: dha_drv; StatusMsg: "Installing RWP driver (this may take a few seconds) ..."; check: Is64BitInstallMode
 
-; USB (32-bit)
-Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0_x86.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: not Is64BitInstallMode
-
-; USB (64-bit)
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
-Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."; Check: Is64BitInstallMode
+; USB
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\silverlk.inf"; Tasks: slv_drv; StatusMsg: "Installing SilverLink driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\titanium.inf"; Tasks: slv_drv; StatusMsg: "Installing Titanium driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84plus.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+ driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
+Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."
 
 ; GTK+ Runtime installer
 Filename: "{tmp}\gtk2-runtime-2.24.8-2011-12-03-ash.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
