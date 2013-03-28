@@ -91,10 +91,10 @@ static void init_win32_paths(void)
 	hModule = GetModuleHandle("tilp.exe");
 	sBuffer = (char *) malloc(4096 * sizeof(char));
 	dWord = GetModuleFileName(hModule, sBuffer, 4096);
-    dirname = g_dirname(sBuffer);
-	
-    // MinGW Option, allows Windows Users to run on a Linux File Hierarhcy
-	#ifdef __MINGW32__
+	dirname = g_dirname(sBuffer);
+
+	// MinGW Option, allows Windows Users to run on a Linux File Hierarhcy
+	/*#ifdef __MINGW32__
 	  #define MINGW_REL "share\\tilp2"
 	  
 	  char *basename;
@@ -108,7 +108,7 @@ static void init_win32_paths(void)
           token = dirname + strlen(dirname) - 3;
           strcpy(token, MINGW_REL);
       }
-    #endif
+    #endif*/
     
     inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
 	g_free(dirname);
@@ -126,23 +126,10 @@ static void init_win32_paths(void)
 	    g_strconcat(inst_paths.base_dir, "glade\\", NULL);
 	inst_paths.builder_dir =
 	    g_strconcat(inst_paths.base_dir, "builder\\", NULL);
-	#ifdef __MINGW32__
-	inst_paths.home_dir = g_get_current_dir();
-	#else
-	if((g_win32_get_windows_version() & 255) > 5)
-	{
-		// Windows Vista
-		inst_paths.home_dir = 
-			g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, "Documents", G_DIR_SEPARATOR_S, _("My TI Files"), NULL);
-		g_mkdir(inst_paths.home_dir, 0);
-	}
-	else
-	{
-		// Windows XP
-		inst_paths.home_dir = g_strconcat(inst_paths.base_dir, "My TI files\\", NULL);
-		g_mkdir(inst_paths.home_dir, 0);
-	}
-	#endif
+
+	inst_paths.home_dir = g_strconcat(g_get_user_special_dir(G_USER_DIRECTORY_DOCUMENTS), G_DIR_SEPARATOR_S, _("My TI Files"), NULL);
+	g_mkdir_with_parents(inst_paths.home_dir, 0755);
+
 
 #ifdef ENABLE_NLS
 	inst_paths.locale_dir =

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-09 19:38+0100\n"
+"POT-Creation-Date: 2013-03-19 20:58+0100\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -852,7 +852,7 @@ msgstr "libticalcs: version %s mais %s est requise.\n"
 msgid "This function is only available in the Windows version."
 msgstr "Cette fonction n'est disponible que dans la version Windows."
 
-#: ../src/tilp_paths.c:136
+#: ../src/tilp_paths.c:130
 msgid "My TI Files"
 msgstr "Mes Fichiers TI"
 
