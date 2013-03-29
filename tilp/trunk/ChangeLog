@@ -35,6 +35,7 @@ Log of changes:	tilp (cables, calcs, files, ticonv)
 	- remove some MinGW special-casing. Reported by Jonimus and tifreak, discussed with Jonimus and Benjamin Moody.
 	- redirect log output to a file, better way. Patch by Benjamin Moody.
 	- compile with -mwindows, so as to disable the command-line window.
+	- maintainer build scripts: make declaration-after-statement a hard error.
 
 - 14/12/2011, version 1.16 (1.3.3, 1.1.7, 1.1.5, 1.1.3): debrouxl
 	- add support for getting screenshots from Nspire CX calculators.
