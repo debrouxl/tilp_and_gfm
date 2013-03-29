@@ -3,7 +3,7 @@
 
 
 Old     version:  1.16  (2011/12/15)
-Current version:  1.17  (2013/xx/xx)
+Current version:  1.17  (2013/0x/xx)
 
 
 SubVersion (SVN) revision: $Id$
@@ -20,13 +20,14 @@ New capabilities:
 	- the ability to obtain screenshots from TI-80 VSC, by Randy Compton.
 	- the ability to transfer Nspire OS extensions, currently limited to English-Chinese dictionaries.
 	- Nspire remote control feature.
-	- 83+ family DBUS memory dump command.
+	- in libticalcs, the ability to send DUSB virtual packets, DUSB commands, 83+ family DUSB commands (including the new 83+ family DBUS memory dump command).
+	- temporary kludge for sending 84+CSE Pic files. Patch by Benjamin Moody.
 
 Improvements:
 -------------
 	- USB scan at startup (options.auto_detect) is now enabled by default, to be more intuitive to users of TI's official software.
 	- make the install_tilp.sh script sensitive to PREFIX and SRCDIR environment variables; abort early when $PREFIX cannot be written to.
-	- improve test_ticalcs_2.
+	- improve test_ticalcs_2 (multiple times).
 	- upgrade GTK+ runtime from 2.12.9 to 2.24.8.
 	- switch from Glade to GTK+Builder for the TILP interface.
 	- integrated tf2hex and the ROM dumpers into the autotools chain, by Benjamin Moody.
@@ -36,6 +37,12 @@ Improvements:
 	- on Windows, load libusb-win32 dynamically if available, and fail gracefully if it's missing.
 	- in 84+ DUSB ROM dumper, enabled UnlockFlash, so that the certificate page can be dumped.
 	- switched the code for dealing with ZIP files from an embedded minizip to an external libarchive.
+	- improve the comment of tifiles_file_read_regular. Reformat files8x.c, files9x.c, filesnsp.c and add traces.
+	- when communicating with 84+ through DUSB, allow variables with the same name but different types, by Benjamin Moody.
+	- add known 84+CSE hardware version, and plausible default model for unknown hardware versions. Reported by Benjamin Moody.
+	- install_tilp.sh: add ready-made `apt-get install` command line for Debian & derivatives.
+	- redirect log output to a file, better way. Patch by Benjamin Moody.
+	- compile with -mwindows, so as to disable the command-line window.
 
 Bug fixes:
 ----------
@@ -59,6 +66,11 @@ Bug fixes:
 	- fixed more compiler warnings.
 	- now compiling manpage cleaner with host compiler (borrowing Benjamin Moody's code from libticalcs' configure).
 	- fix xbar and ybar TI-68k charset definitions: the combining overline should be after x and y.
+	- fix crash reported by Deathrider.
+	- add -Werror=implicit-function-declaration to maintainer scripts, and fix a couple warnings turned errors in the Windows code.
+	- installer: use libusb0.dll to install driver on both 32-bit and 64-bit Windows, instead of either libusb0_x86.dll or libusb.dll. Patch by Benjamin Moody.
+	- try to fix an elusive BSOD, reported by multiple persons, possibly introduced by SVN r4428: don't pass $CFLAGS and $CPPFLAGS to $CC when compiling dhahelper.
+	- remove some MinGW special-casing. Reported by Jonimus and tifreak, discussed with Jonimus and Benjamin Moody.
 
 Known bugs:
 -----------

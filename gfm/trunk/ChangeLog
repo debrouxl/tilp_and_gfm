@@ -2,7 +2,7 @@ SubVersion: $Id$
 
 Log of changes:	gfm (calcs, files, ticonv)
 
-- xx/xx/2013, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
+- xx/0x/2013, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
 	- honor CFLAGS when compiling cleaner. Patch by Malcolm J. Lewis, SF bug #3491681.
 	- fix FreeDesktop .desktop files. Patch by Malcolm J. Lewis, SF bug #3491673.
 	- regenerate with Autoconf 2.69 and Automake 1.11.5.
