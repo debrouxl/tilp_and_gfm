@@ -110,8 +110,8 @@ AC_CHECK_FUNCS([getcwd memset mkdir strcasecmp strchr strdup strrchr strstr strt
 # Platform specific tests.
 dnl AC_CANONICAL_HOST
 case "$host" in
-  *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__" ;;
-  *-*-cygwin) ARCH="-D__WIN32__ -D__CYGWIN__ -mno-cygwin" ;;
+  *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__ -mwindows" ;;
+  *-*-cygwin) ARCH="-D__WIN32__ -D__CYGWIN__ -mwindows -mno-cygwin" ;;
   *-*-*bsd*)  ARCH="-D__BSD__" ;;
   *)          ARCH="-D__LINUX__" ;;
 esac

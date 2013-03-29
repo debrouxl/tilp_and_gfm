@@ -19491,8 +19491,8 @@ done
 
 # Platform specific tests.
 case "$host" in
-  *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__" ;;
-  *-*-cygwin) ARCH="-D__WIN32__ -D__CYGWIN__ -mno-cygwin" ;;
+  *-*-mingw*) ARCH="-D__WIN32__ -D__MINGW32__ -mwindows" ;;
+  *-*-cygwin) ARCH="-D__WIN32__ -D__CYGWIN__ -mwindows -mno-cygwin" ;;
   *-*-*bsd*)  ARCH="-D__BSD__" ;;
   *)          ARCH="-D__LINUX__" ;;
 esac
