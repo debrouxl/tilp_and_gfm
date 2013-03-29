@@ -31,6 +31,7 @@
 
 #include <gtk/gtk.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 
 #ifdef __WIN32__
 # include <windows.h>
@@ -57,6 +58,43 @@ static void my_blackhole_log_handler (const gchar *log_domain,
 	// Do nothing.
 }
 
+#ifdef __WIN32__
+static void default_log_handler(const gchar *log_domain,
+                                GLogLevelFlags log_level,
+                                const gchar *message,
+                                gpointer user_data)
+{
+	FILE *log_file = user_data;
+
+	if (log_domain)
+		fprintf(log_file, "%s-", log_domain);
+
+	switch (log_level & G_LOG_LEVEL_MASK) {
+	case G_LOG_LEVEL_ERROR:
+		fprintf(log_file, "ERROR: ");
+		break;
+	case G_LOG_LEVEL_CRITICAL:
+		fprintf(log_file, "CRITICAL: ");
+		break;
+	case G_LOG_LEVEL_WARNING:
+		fprintf(log_file, "WARNING: ");
+		break;
+	case G_LOG_LEVEL_MESSAGE:
+		fprintf(log_file, "MESSAGE: ");
+		break;
+	case G_LOG_LEVEL_INFO:
+		fprintf(log_file, "INFO: ");
+		break;
+	case G_LOG_LEVEL_DEBUG:
+		fprintf(log_file, "DEBUG: ");
+		break;
+	default:
+		fprintf(log_file, "???: ");
+	}
+	fprintf(log_file, "%s\n", message);
+}
+#endif
+
 #define LOG_FILE ".tilp.log"
 
 int main(int argc, char *argv[])
@@ -66,10 +104,14 @@ int main(int argc, char *argv[])
 	/* Redirect standard output to a file - printing to the Windows terminal slows operation down way too much */
 #ifdef __WIN32__
 	gchar *tmp;
+	FILE *log_file;
 
 	tmp = g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, LOG_FILE, NULL);
-	freopen(tmp, "w", stdout);
+	log_file = g_fopen(tmp, "wt");
 	g_free(tmp);
+
+	if (log_file != NULL)
+		g_log_set_default_handler(&default_log_handler, log_file);
 #endif
 
 	// Force GLib 2.32+ to print info and debug messages like older versions did, unless this variable is already set.
