@@ -3,7 +3,7 @@
 
 
 Old     version:  1.16  (2011/12/15)
-Current version:  1.17  (2013/0x/xx)
+Current version:  1.17  (2013/03/31)
 
 
 SubVersion (SVN) revision: $Id$
@@ -43,6 +43,10 @@ Improvements:
 	- install_tilp.sh: add ready-made `apt-get install` command line for Debian & derivatives.
 	- redirect log output to a file, better way. Patch by Benjamin Moody.
 	- compile with -mwindows, so as to disable the command-line window.
+	- add several known command DBUS IDs (documented by Benjamin Moody and Brandon Wilson), this patch mostly by Jon Sturm.
+	- maintainer build scripts: make declaration-after-statement a hard error.
+	- improve tifiles_group_files and tifiles_ungroup_file.
+	- libticalcs: nsp_cmd: add the 0x06 command, whose externally visible effect is to trigger a dialog whose title is "Transfers complete" and text is "All files have been transferred".
 
 Bug fixes:
 ----------
@@ -71,6 +75,7 @@ Bug fixes:
 	- installer: use libusb0.dll to install driver on both 32-bit and 64-bit Windows, instead of either libusb0_x86.dll or libusb.dll. Patch by Benjamin Moody.
 	- try to fix an elusive BSOD, reported by multiple persons, possibly introduced by SVN r4428: don't pass $CFLAGS and $CPPFLAGS to $CC when compiling dhahelper.
 	- remove some MinGW special-casing. Reported by Jonimus and tifreak, discussed with Jonimus and Benjamin Moody.
+	- fix ticonv_utf16_to_ti9x wrt. xbar and ybar.
 
 Known bugs:
 -----------
