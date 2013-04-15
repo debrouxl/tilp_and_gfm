@@ -1,1 +1,0 @@
-You must run definition __DEVCPP__ through compiler for DevCPP to work.
