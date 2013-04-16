@@ -10,12 +10,13 @@
 #     * please read below for prerequisites (build dependencies) or peculiarities (e.g. 64-bit Fedora).
 #     * you should remove equivalent packages, if any, before running this script.
 #
-# Copyright (C) Lionel Debroux 2009, 2010, 2011
+# Copyright (C) Lionel Debroux 2009, 2010, 2011, 2012, 2013
 
 # libti* and tilp are compiled with a proposed set of configuration options,
 # but you may wish to use others. The complete list is available through
-# `./configure --help` run in $SRCDIR/tilp/libticonv, $SRCDIR/tilp/libtifiles,
-# $SRCDIR/tilp/libticables, $SRCDIR/tilp/libticalcs, $SRCDIR/tilp/gfm and $SRCDIR/tilp/tilp.
+# `./configure --help` run in $SRCDIR/tilp/tilibs/libticonv/trunk, $SRCDIR/tilp/tilibs/libtifiles/trunk,
+# $SRCDIR/tilp/tilibs/libticables/trunk, $SRCDIR/tilp/tilibs/libticalcs/trunk,
+# $SRCDIR/tilp/tilp_and_gfm/gfm/trunk and $SRCDIR/tilp/tilp_and_gfm/tilp/trunk.
 
 
 
@@ -23,7 +24,7 @@
 # MANDATORY dependencies for compiling and running libti*, gfm and tilp:
 # **********************************************************************
 # (Debian and Fedora package names are given as examples, install respectively with `apt-get install ...` and `yum install ...`)
-# * Subversion (subversion, subversion)
+# * Git (git, git)
 # * Suitable C compiler + C++ compiler:
 #      * GCC + G++: (gcc + g++, gcc + gcc-c++)
 #      * Clang (clang, clang), preferably version 3.0 and later.
@@ -103,22 +104,26 @@ if [ "x$CXX" = "x" ]; then
 fi
 
 
+# Subroutine: clone/update repository copies.
+handle_repository_copies() {
+  module_name="$1"
+  if [ -d "$module_name" -a -d "$module_name/.git" ]; then
+    echo "Updating $module_name"
+    cd "$module_name"
+    git pull || return 1
+    cd ..
+  else
+    echo "Checking out $module_name"
+    git clone "https://github.com/debrouxl/$module_name" "$module_name" || return 1
+  fi
+}
+
 # Subroutine: checkout/update, `configure`, `make` and `make install` the given module
 handle_one_module() {
   module_name="$1"
   shift # Kick the first argument, so as to be able to pass the rest to configure.
 
-  if [ -d "$module_name" -a -d "$module_name/.svn" ]; then
-    echo "Updating $module_name"
-    cd "$module_name"
-    svn up || return 1
-    cd ..
-  else
-    echo "Checking out $module_name"
-    svn co "http://svn.tilp.info/repos/tilp/$module_name/trunk" "$module_name" || return 1
-  fi
-
-  cd "$module_name"
+  cd "$module_name/trunk"
   echo "Configuring $module_name"
   # Add --libdir=/usr/lib64 on e.g. 64-bit Fedora 14, which insists on searching for 64-bit libs in /usr/lib64.
   # Or modify PKG_CONFIG_PATH as described above.
@@ -127,7 +132,7 @@ handle_one_module() {
   make || return 1
   echo "Installing $module_name"
   make install || return 1
-  cd ..
+  cd -
 }
 
 # Subroutine: perform quick rough sanity check on compilers and PREFIX.
@@ -144,6 +149,7 @@ int main(int argc, char * argv[]) {
 EOF
 
   "$CC" "$SRCDIR/tilp/hello.c" -o "$SRCDIR/tilp/hello" || exit 1
+  "$SRCDIR/tilp/hello" || exit 1
   echo "CC=$CC exists"
   # Test CXX, which also checks whether the user can write to SRCDIR
   cat << EOF > "$SRCDIR/tilp/hello.cc"
@@ -153,10 +159,10 @@ int main(int argc, char * argv[]) {
     printf("Hello World !\n");
     return 0;
 }
-
 EOF
 
   "$CXX" "$SRCDIR/tilp/hello.cc" -o "$SRCDIR/tilp/hello" || exit 1
+  "$SRCDIR/tilp/hello" || exit 1
   echo "CXX=$CXX exists"
 
   echo "Checking whether $PREFIX can be written to"
@@ -183,7 +189,7 @@ echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which ins
 echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
 echo -e "3) installed the build dependencies listed in the script. Unless you're on Debian and derivatives, use libusb 1.0."
 echo -e "        For instance, on Debian and derivatives, you would run:"
-echo -e "        (sudo) apt-get install subversion autoconf automake libtool libglib2.0-dev zlib1g-dev libusb-dev libgtk2.0-dev libglade2-dev libsdl1.2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
+echo -e "        (sudo) apt-get install git autoconf automake libtool libglib2.0-dev zlib1g-dev libusb-dev libgtk2.0-dev libglade2-dev libsdl1.2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
 echo -e "\033[4mOtherwise, the build will fail!\033[m."
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
@@ -194,23 +200,27 @@ mkdir -p "$SRCDIR/tilp" || exit 1
 rough_sanity_checks
 
 cd "$SRCDIR/tilp"
+echo "=== Downloading tilibs ==="
+handle_repository_copies tilibs
+echo "=== Downloading tilp_and_gfm ==="
+handle_repository_copies tilp_and_gfm
 echo "=== libticonv ==="
-handle_one_module libticonv || exit 1
+handle_one_module tilibs/libticonv || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
-handle_one_module libtifiles || exit 1
+handle_one_module tilibs/libtifiles || exit 1
 # Useful configure options include --disable-nls, --enable-logging, --enable-libusb10
 echo "=== libticables ==="
-handle_one_module libticables --enable-logging || exit 1
+handle_one_module tilibs/libticables --enable-logging || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
-handle_one_module libticalcs || exit 1
+handle_one_module tilibs/libticalcs || exit 1
 
 # Use --with-kde if you want to use the native KDE file dialogs (it defaults to disabled because it requires a slew of development package dependencies).
 echo "=== gfm ==="
-handle_one_module gfm || exit 1
+handle_one_module tilp_and_gfm/gfm || exit 1
 echo "=== tilp ==="
-handle_one_module tilp || exit 1
+handle_one_module tilp_and_gfm/tilp || exit 1
 
 echo "=================================================="
 echo "=== libti* + gfm + tilp installed successfully ==="

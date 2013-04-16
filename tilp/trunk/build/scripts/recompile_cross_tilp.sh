@@ -3,7 +3,7 @@
 # Maintainer script for automating the cross-compilation and installation of tilp & gfm
 # from a checkout of the complete tilp repository over at svn.tilp.info.
 #
-# Copyright (C) 2010, 2011, 2012 Lionel Debroux, Benjamin Moody
+# Copyright (C) 2010, 2011, 2012, 2013 Lionel Debroux, Benjamin Moody
 
 
 # REMINDERS: don't forget to:
@@ -11,12 +11,12 @@
 # #!/bin/sh
 # export PKG_CONFIG_LIBDIR=/usr/i686-w64-mingw32/lib
 # exec pkg-config $@
-# (this is for my Debian Lenny, at least)
+# (this is for my Debian Wheezy/sid, at least)
 #
 # 2) create a /target folder pointing to the GTK Wine install path, e.g.
 #    $HOME/.wine/drive_c/GTK
 #
-# 3) have Wine registered through binfmt-support:
+# 3) have Wine registered through binfmt-support if it wasn't already done:
 # update-binfmts --install wine <path_to_wine> --magic MZ
 #
 # 4) if necessary (dependency error about pixman-1), remove "pixman-1 >= 0.10.0"
@@ -49,7 +49,7 @@ handle_one_module() {
   echo "Installing $module_name"
   make check || return 1
   make install || return 1
-  cd ../..
+  cd -
 }
 
 
@@ -60,11 +60,11 @@ echo "=== UPDATEPOT ==="
 sh run_updatepot.sh
 
 
-sed "s/+ _nl_msg.*$//" -i libtifiles/trunk/configure
-sed "s/+ _nl_msg.*$//" -i libticables/trunk/configure
-sed "s/+ _nl_msg.*$//" -i libticalcs/trunk/configure
-sed "s/+ _nl_msg.*$//" -i gfm/trunk/configure
-sed "s/+ _nl_msg.*$//" -i tilp/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilibs/libtifiles/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilibs/libticables/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilibs/libticalcs/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilp_and_gfm/gfm/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilp_and_gfm/tilp/trunk/configure
 
 
 echo "=== tfdocgen ==="
@@ -72,19 +72,19 @@ handle_one_module tfdocgen || exit 1
 
 
 echo "=== libticonv ==="
-handle_one_module libticonv || exit 1
-
+handle_one_module tilibs/libticonv || exit 1
+# Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
-handle_one_module libtifiles || exit 1
-
+handle_one_module tilibs/libtifiles || exit 1
+# Useful configure options include --disable-nls, --enable-logging.
 echo "=== libticables ==="
-handle_one_module libticables --enable-logging || exit 1
-
+handle_one_module tilibs/libticables --enable-logging || exit 1
+# Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
-handle_one_module libticalcs --disable-builtin-rom-dumpers || exit 1
+handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1
 
 
 echo "=== gfm ==="
-handle_one_module gfm || exit 1
+handle_one_module tilp_and_gfm/gfm || exit 1
 echo "=== tilp ==="
-handle_one_module tilp || exit 1
+handle_one_module tilp_and_gfm/tilp || exit 1

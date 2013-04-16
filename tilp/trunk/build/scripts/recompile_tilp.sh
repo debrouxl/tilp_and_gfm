@@ -3,7 +3,7 @@
 # Maintainer script for automating the compilation and installation of tilp & gfm
 # from a checkout of the complete tilp repository over at svn.tilp.info.
 #
-# Copyright (C) 2010, 2011 Lionel Debroux
+# Copyright (C) 2010, 2011, 2012, 2013 Lionel Debroux
 
 # The prefix where the binaries will be installed, e.g. $HOME, /usr, /usr/local.
 PREFIX="$HOME"
@@ -27,7 +27,7 @@ handle_one_module() {
   echo "Installing $module_name"
   make check || return 1
   make install || return 1
-  cd ../..
+  cd -
 }
 
 echo "=== AUTORECONF ==="
@@ -42,19 +42,19 @@ handle_one_module tfdocgen || exit 1
 
 
 echo "=== libticonv ==="
-handle_one_module libticonv || exit 1
+handle_one_module tilibs/libticonv || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
-handle_one_module libtifiles || exit 1
+handle_one_module tilibs/libtifiles || exit 1
 # Useful configure options include --disable-nls, --enable-logging.
 echo "=== libticables ==="
-handle_one_module libticables --enable-logging || exit 1
+handle_one_module tilibs/libticables --enable-logging || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
-handle_one_module libticalcs --disable-builtin-rom-dumpers || exit 1
+handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1
 
 
 echo "=== gfm ==="
-handle_one_module gfm || exit 1
+handle_one_module tilp_and_gfm/gfm || exit 1
 echo "=== tilp ==="
-handle_one_module tilp || exit 1
+handle_one_module tilp_and_gfm/tilp || exit 1
