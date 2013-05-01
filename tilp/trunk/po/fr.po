@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-22 19:19+0100\n"
+"POT-Creation-Date: 2013-05-01 19:24+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -1815,10 +1815,6 @@ msgstr "/home/romain/"
 msgid "Current folder:"
 msgstr "Dossier courant:"
 
-#: ../desktop/kde/x-tilp-application.desktop.in.h:1
-msgid "Ti File (Application)"
-msgstr "Fichier TI (Application)"
-
 #: ../desktop/kde/x-tilp-list.desktop.in.h:1
 msgid "Ti File (List)"
 msgstr "Fichier TI (List)"
@@ -1942,6 +1938,9 @@ msgstr "Fichier TI (Image)"
 #: ../desktop/kde/x-tilp-program.desktop.in.h:1
 msgid "Ti File (Program)"
 msgstr "Fichier TI (Programme)"
+
+#~ msgid "Ti File (Application)"
+#~ msgstr "Fichier TI (Application)"
 
 #~ msgid "TI83"
 #~ msgstr "TI83"

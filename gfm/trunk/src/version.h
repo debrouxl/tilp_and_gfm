@@ -28,7 +28,7 @@
 
 /* Group File Manager Version */
 #ifdef __WIN32__
-# define GFM_VERSION "1.07"
+# define GFM_VERSION "1.08"
 #else
 # define GFM_VERSION VERSION
 #endif
