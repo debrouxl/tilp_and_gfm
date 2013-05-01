@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-zoom
-Comment=Ti File (Zoom)
-Comment[fr]=Fichier TI (Zoom)
-Icon=/usr/local/share/tilp2/icons/Zoom.ico
-Type=MimeType
-Patterns=*.73z;*.82z;*.83z;*.8Xz;*.8xz;*.85z;*.86z;

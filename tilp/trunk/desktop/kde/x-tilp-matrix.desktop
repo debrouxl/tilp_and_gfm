@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-matrix
-Comment=Ti File (Matrix)
-Comment[fr]=Fichier TI (Matrix)
-Icon=/usr/local/share/tilp2/icons/Matrix.ico
-Type=MimeType
-Patterns=*.73m;*.82m;*.83m;*.8Xm;*.8xm;*.85m;*.86m;*.89m;*.92m;*.9Xm;*.9xm;*.V2m;*.v2m;

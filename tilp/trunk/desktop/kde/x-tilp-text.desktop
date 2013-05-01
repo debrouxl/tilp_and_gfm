@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-text
-Comment=Ti File (Text)
-Comment[fr]=Fichier TI (Texte)
-Icon=/usr/local/share/tilp2/icons/Text.ico
-Type=MimeType
-Patterns=*.89t;*.92t;*.9Xt;*.9xt;*.V2t;*.v2t;

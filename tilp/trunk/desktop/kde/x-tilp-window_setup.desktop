@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-window_setup
-Comment=Ti File (Window Setup)
-Comment[fr]=Fichier TI (Window Setup)
-Icon=/usr/local/share/tilp2/icons/Window_Setup.ico
-Type=MimeType
-Patterns=*.73w;*.82w;*.83w;*.8Xw;*.8xw;*.85w;*.86w;

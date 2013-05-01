@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-real
-Comment=Ti File (Real Number)
-Comment[fr]=Fichier TI (Nombre Réel)
-Icon=/usr/local/share/tilp2/icons/Real.ico
-Type=MimeType
-Patterns=*.73n;*.82n;*.83n;*.8Xn;*.8xn;*.85n;*.86n;

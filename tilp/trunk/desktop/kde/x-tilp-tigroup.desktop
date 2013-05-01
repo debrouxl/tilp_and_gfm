@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-tigroup
-Comment=Ti File (TiGroup)
-Comment[fr]=Fichier TI (TiGroup)
-Icon=/usr/local/share/tilp2/icons/TiGroup.ico
-Type=MimeType
-Patterns=*.tig;*.TIG;

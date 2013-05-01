@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x--backup
-Comment=Ti File (Backup)
-Comment[fr]=Fichier TI (Sauvegarde)
-Icon=/usr/local/share/tilp2/icons/Backup.ico
-Type=MimeType
-Patterns=*.73b;*.82b;*.83b;*.8Xb;*.8xb;*.85b;*.86b;*.92b;

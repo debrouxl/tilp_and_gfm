@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-01 19:24+0200\n"
+"POT-Creation-Date: 2013-05-01 19:34+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -254,7 +254,7 @@ msgstr "libre: %s"
 msgid "Initializing KDE..."
 msgstr "Initialisation de KDE..."
 
-#: ../src/main.c:157 ../desktop/kde/tilp.desktop.in.h:1
+#: ../src/main.c:157
 msgid "TiLP"
 msgstr "TiLP"
 
@@ -1815,129 +1815,98 @@ msgstr "/home/romain/"
 msgid "Current folder:"
 msgstr "Dossier courant:"
 
-#: ../desktop/kde/x-tilp-list.desktop.in.h:1
-msgid "Ti File (List)"
-msgstr "Fichier TI (List)"
+#~ msgid "Ti File (List)"
+#~ msgstr "Fichier TI (List)"
 
-#: ../desktop/kde/x-tilp-matrix.desktop.in.h:1
-msgid "Ti File (Matrix)"
-msgstr "Fichier TI (Matrix)"
+#~ msgid "Ti File (Matrix)"
+#~ msgstr "Fichier TI (Matrix)"
 
-#: ../desktop/kde/x-tilp-real.desktop.in.h:1
-msgid "TI File (Real Number)"
-msgstr "Fichier TI (Nombre Réel)"
+#~ msgid "TI File (Real Number)"
+#~ msgstr "Fichier TI (Nombre Réel)"
 
-#: ../desktop/kde/x-tilp-gdb.desktop.in.h:1
-msgid "Ti File (GDB)"
-msgstr "Fichier TI (GDB)"
+#~ msgid "Ti File (GDB)"
+#~ msgstr "Fichier TI (GDB)"
 
-#: ../desktop/kde/x-tilp-data.desktop.in.h:1
-msgid "Ti File (Data)"
-msgstr "Fichier TI (Données)"
+#~ msgid "Ti File (Data)"
+#~ msgstr "Fichier TI (Données)"
 
-#: ../desktop/kde/x-tilp-backup.desktop.in.h:1
-msgid "Ti File (Backup)"
-msgstr "Fichier TI (Sauvegarde)"
+#~ msgid "Ti File (Backup)"
+#~ msgstr "Fichier TI (Sauvegarde)"
 
-#: ../desktop/kde/x-tilp-zip.desktop.in.h:1
-msgid "Ti File (Zip'ed)"
-msgstr "Fichier TI (Compressé)"
+#~ msgid "Ti File (Zip'ed)"
+#~ msgstr "Fichier TI (Compressé)"
 
-#: ../desktop/kde/x-tilp-equation.desktop.in.h:1
-msgid "Ti File (Equation)"
-msgstr "Fichier TI (Equation)"
+#~ msgid "Ti File (Equation)"
+#~ msgstr "Fichier TI (Equation)"
 
-#: ../desktop/kde/x-tilp-os_upgrade.desktop.in.h:1
-msgid "Ti File (Os Upgrade)"
-msgstr "Fichier TI (MAJ du SE)"
+#~ msgid "Ti File (Os Upgrade)"
+#~ msgstr "Fichier TI (MAJ du SE)"
 
-#: ../desktop/kde/x-tilp-table_setup.desktop.in.h:1
-msgid "Ti File (Table Setup)"
-msgstr "Fichier TI (Table Setup)"
+#~ msgid "Ti File (Table Setup)"
+#~ msgstr "Fichier TI (Table Setup)"
 
-#: ../desktop/kde/x-tilp-figure.desktop.in.h:1
-msgid "Ti File (Figure)"
-msgstr "Fichier TI (Figure)"
+#~ msgid "Ti File (Figure)"
+#~ msgstr "Fichier TI (Figure)"
 
-#: ../desktop/kde/x-tilp-app_var.desktop.in.h:1
-msgid "Ti File (Application Variable)"
-msgstr "Fichier TI (Variable Application)"
+#~ msgid "Ti File (Application Variable)"
+#~ msgstr "Fichier TI (Variable Application)"
 
-#: ../desktop/kde/x-tilp-window_setup.desktop.in.h:1
-msgid "Ti File (Window Setup)"
-msgstr "Fichier TI (Window Setup)"
+#~ msgid "Ti File (Window Setup)"
+#~ msgstr "Fichier TI (Window Setup)"
 
-#: ../desktop/kde/x-tilp-range.desktop.in.h:1
-msgid "Ti File (Range)"
-msgstr "Fichier TI (Intervalle)"
+#~ msgid "Ti File (Range)"
+#~ msgstr "Fichier TI (Intervalle)"
 
-#: ../desktop/kde/x-tilp-function.desktop.in.h:1
-msgid "Ti File (Function)"
-msgstr "Fichier TI (Function)"
+#~ msgid "Ti File (Function)"
+#~ msgstr "Fichier TI (Function)"
 
-#: ../desktop/kde/x-tilp-group.desktop.in.h:1
-msgid "Ti File (Group)"
-msgstr "Fichier TI (Groupe)"
+#~ msgid "Ti File (Group)"
+#~ msgstr "Fichier TI (Groupe)"
 
-#: ../desktop/kde/x-tilp-macro.desktop.in.h:1
-msgid "Ti File (Macro)"
-msgstr "Fichier TI (Macro)"
+#~ msgid "Ti File (Macro)"
+#~ msgstr "Fichier TI (Macro)"
 
-#: ../desktop/kde/tilp.desktop.in.h:2
-msgid "TI Linking Program"
-msgstr "TiLP ('Ti Linking Program')"
+#~ msgid "TI Linking Program"
+#~ msgstr "TiLP ('Ti Linking Program')"
 
-#: ../desktop/kde/x-tilp-asm_program.desktop.in.h:1
-msgid "Ti File (Assembly Program)"
-msgstr "Fichier TI (Programme Assembleur)"
+#~ msgid "Ti File (Assembly Program)"
+#~ msgstr "Fichier TI (Programme Assembleur)"
 
-#: ../desktop/kde/x-tilp-vector.desktop.in.h:1
-msgid "Ti File (Vector)"
-msgstr "Fichier TI (Vecteur)"
+#~ msgid "Ti File (Vector)"
+#~ msgstr "Fichier TI (Vecteur)"
 
-#: ../desktop/kde/x-tilp-zoom.desktop.in.h:1
-msgid "Ti File (Zoom)"
-msgstr "Fichier TI (Zoom)"
+#~ msgid "Ti File (Zoom)"
+#~ msgstr "Fichier TI (Zoom)"
 
-#: ../desktop/kde/x-tilp-tigroup.desktop.in.h:1
-msgid "Ti File (TiGroup)"
-msgstr "Fichier TI (TiGroup)"
+#~ msgid "Ti File (TiGroup)"
+#~ msgstr "Fichier TI (TiGroup)"
 
-#: ../desktop/kde/x-tilp-string.desktop.in.h:1
-msgid "Ti File (String)"
-msgstr "Fichier TI (Chaîne)"
+#~ msgid "Ti File (String)"
+#~ msgstr "Fichier TI (Chaîne)"
 
-#: ../desktop/kde/x-tilp-certificate.desktop.in.h:1
-msgid "Ti File (Certificate)"
-msgstr "Fichier TI (Certificat)"
+#~ msgid "Ti File (Certificate)"
+#~ msgstr "Fichier TI (Certificat)"
 
-#: ../desktop/kde/x-tilp-expression.desktop.in.h:1
-msgid "Ti File (Expression)"
-msgstr "Fichier TI (Expression)"
+#~ msgid "Ti File (Expression)"
+#~ msgstr "Fichier TI (Expression)"
 
-#: ../desktop/kde/x-tilp-constant.desktop.in.h:1
-msgid "Ti File (Constant)"
-msgstr "Fichier TI (Constante)"
+#~ msgid "Ti File (Constant)"
+#~ msgstr "Fichier TI (Constante)"
 
-#: ../desktop/kde/x-tilp-text.desktop.in.h:1
-msgid "Ti File (Text)"
-msgstr "Fichier TI (Texte)"
+#~ msgid "Ti File (Text)"
+#~ msgstr "Fichier TI (Texte)"
 
-#: ../desktop/kde/x-tilp-y_var.desktop.in.h:1
-msgid "Ti File (Y-Var)"
-msgstr "Fichier TI (Y-Var)"
+#~ msgid "Ti File (Y-Var)"
+#~ msgstr "Fichier TI (Y-Var)"
 
-#: ../desktop/kde/x-tilp-complex.desktop.in.h:1
-msgid "Ti File (Complex Number)"
-msgstr "Fichier TI (Nombre Complexe)"
+#~ msgid "Ti File (Complex Number)"
+#~ msgstr "Fichier TI (Nombre Complexe)"
 
-#: ../desktop/kde/x-tilp-picture.desktop.in.h:1
-msgid "Ti File (Picture)"
-msgstr "Fichier TI (Image)"
+#~ msgid "Ti File (Picture)"
+#~ msgstr "Fichier TI (Image)"
 
-#: ../desktop/kde/x-tilp-program.desktop.in.h:1
-msgid "Ti File (Program)"
-msgstr "Fichier TI (Programme)"
+#~ msgid "Ti File (Program)"
+#~ msgstr "Fichier TI (Programme)"
 
 #~ msgid "Ti File (Application)"
 #~ msgstr "Fichier TI (Application)"

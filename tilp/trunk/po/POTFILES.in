@@ -65,36 +65,4 @@ src/toolbar.c
 [type: gettext/glade]builder/screenshot.ui
 [type: gettext/glade]builder/tilp.ui
 # files added by intltool-prepare
-desktop/kde/x-tilp-application.desktop.in
-desktop/kde/x-tilp-list.desktop.in
-desktop/kde/x-tilp-matrix.desktop.in
-desktop/kde/x-tilp-real.desktop.in
-desktop/kde/x-tilp-gdb.desktop.in
-desktop/kde/x-tilp-data.desktop.in
-desktop/kde/x-tilp-backup.desktop.in
-desktop/kde/x-tilp-zip.desktop.in
-desktop/kde/x-tilp-equation.desktop.in
-desktop/kde/x-tilp-os_upgrade.desktop.in
-desktop/kde/x-tilp-table_setup.desktop.in
-desktop/kde/x-tilp-figure.desktop.in
-desktop/kde/x-tilp-app_var.desktop.in
-desktop/kde/x-tilp-window_setup.desktop.in
-desktop/kde/x-tilp-range.desktop.in
-desktop/kde/x-tilp-function.desktop.in
-desktop/kde/x-tilp-group.desktop.in
-desktop/kde/x-tilp-macro.desktop.in
-desktop/kde/tilp.desktop.in
-desktop/kde/x-tilp-asm_program.desktop.in
-desktop/kde/x-tilp-vector.desktop.in
-desktop/kde/x-tilp-zoom.desktop.in
-desktop/kde/x-tilp-tigroup.desktop.in
-desktop/kde/x-tilp-string.desktop.in
-desktop/kde/x-tilp-certificate.desktop.in
-desktop/kde/x-tilp-expression.desktop.in
-desktop/kde/x-tilp-constant.desktop.in
-desktop/kde/x-tilp-text.desktop.in
-desktop/kde/x-tilp-y_var.desktop.in
-desktop/kde/x-tilp-complex.desktop.in
-desktop/kde/x-tilp-picture.desktop.in
-desktop/kde/x-tilp-program.desktop.in
 desktop/tilp.desktop.in

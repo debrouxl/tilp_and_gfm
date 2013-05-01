@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-01 19:24+0200\n"
+"POT-Creation-Date: 2013-05-01 19:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,7 +245,7 @@ msgstr ""
 msgid "Initializing KDE..."
 msgstr ""
 
-#: ../src/main.c:157 ../desktop/kde/tilp.desktop.in.h:1
+#: ../src/main.c:157
 msgid "TiLP"
 msgstr ""
 
@@ -1725,132 +1725,4 @@ msgstr ""
 
 #: ../builder/tilp.ui.h:70
 msgid "Current folder:"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-application.desktop.in.h:1
-msgid "Ti File (Application)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-list.desktop.in.h:1
-msgid "Ti File (List)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-matrix.desktop.in.h:1
-msgid "Ti File (Matrix)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-real.desktop.in.h:1
-msgid "TI File (Real Number)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-gdb.desktop.in.h:1
-msgid "Ti File (GDB)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-data.desktop.in.h:1
-msgid "Ti File (Data)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-backup.desktop.in.h:1
-msgid "Ti File (Backup)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-zip.desktop.in.h:1
-msgid "Ti File (Zip'ed)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-equation.desktop.in.h:1
-msgid "Ti File (Equation)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-os_upgrade.desktop.in.h:1
-msgid "Ti File (Os Upgrade)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-table_setup.desktop.in.h:1
-msgid "Ti File (Table Setup)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-figure.desktop.in.h:1
-msgid "Ti File (Figure)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-app_var.desktop.in.h:1
-msgid "Ti File (Application Variable)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-window_setup.desktop.in.h:1
-msgid "Ti File (Window Setup)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-range.desktop.in.h:1
-msgid "Ti File (Range)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-function.desktop.in.h:1
-msgid "Ti File (Function)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-group.desktop.in.h:1
-msgid "Ti File (Group)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-macro.desktop.in.h:1
-msgid "Ti File (Macro)"
-msgstr ""
-
-#: ../desktop/kde/tilp.desktop.in.h:2
-msgid "TI Linking Program"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-asm_program.desktop.in.h:1
-msgid "Ti File (Assembly Program)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-vector.desktop.in.h:1
-msgid "Ti File (Vector)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-zoom.desktop.in.h:1
-msgid "Ti File (Zoom)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-tigroup.desktop.in.h:1
-msgid "Ti File (TiGroup)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-string.desktop.in.h:1
-msgid "Ti File (String)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-certificate.desktop.in.h:1
-msgid "Ti File (Certificate)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-expression.desktop.in.h:1
-msgid "Ti File (Expression)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-constant.desktop.in.h:1
-msgid "Ti File (Constant)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-text.desktop.in.h:1
-msgid "Ti File (Text)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-y_var.desktop.in.h:1
-msgid "Ti File (Y-Var)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-complex.desktop.in.h:1
-msgid "Ti File (Complex Number)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-picture.desktop.in.h:1
-msgid "Ti File (Picture)"
-msgstr ""
-
-#: ../desktop/kde/x-tilp-program.desktop.in.h:1
-msgid "Ti File (Program)"
 msgstr ""

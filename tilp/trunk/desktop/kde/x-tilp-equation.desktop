@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-equation
-Comment=Ti File (Equation)
-Comment[fr]=Fichier TI (Equation)
-Icon=/usr/local/share/tilp2/icons/Equation.ico
-Type=MimeType
-Patterns=*.73e;*.82e;*.83e;*.8Xe;*.8xe;*.85e;*.86e;

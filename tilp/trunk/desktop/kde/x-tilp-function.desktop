@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-function
-Comment=Ti File (Function)
-Comment[fr]=Fichier TI (Function)
-Icon=/usr/local/share/tilp2/icons/Function.ico
-Type=MimeType
-Patterns=*.89f;*.92f;*.9Xf;*.9xf;*.V2f;*.v2f;

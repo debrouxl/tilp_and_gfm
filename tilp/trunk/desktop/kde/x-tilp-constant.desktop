@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-constant
-Comment=Ti File (Constant)
-Comment[fr]=Fichier TI (Constante)
-Icon=/usr/local/share/tilp2/icons/Constant.ico
-Type=MimeType
-Patterns=*.85k;*.86k;

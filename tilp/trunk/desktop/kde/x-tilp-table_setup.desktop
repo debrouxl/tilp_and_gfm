@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-table_setup
-Comment=Ti File (Table Setup)
-Comment[fr]=Fichier TI (Table Setup)
-Icon=/usr/local/share/tilp2/icons/Table_Setup.ico
-Type=MimeType
-Patterns=*.73t;*.82t;*.83t;*.8Xt;*.8xt;*.85t;*.86t;

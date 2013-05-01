@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-os_upgrade
-Comment=Ti File (Os Upgrade)
-Comment[fr]=Fichier TI (MAJ du SE)
-Icon=/usr/local/share/tilp2/icons/OS_upgrade.ico
-Type=MimeType
-Patterns=*.73u;*.8Xu;*.8xu;*.89u;*.9Xu;*.9xu;*.V2u;*.v2u;*.tib;

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-MimeType=application/x-tilp-asm_program
-Comment=Ti File (Assembly Program)
-Comment[fr]=Fichier TI (Programme Assembleur)
-Icon=/usr/local/share/tilp2/icons/Asm_Program.ico
-Type=MimeType
-Patterns=*.73z;*.82z;*.83z;*.8Xz;*.8xz;*.85z;*.86z;*.89z;*.92z;*.9Xz;*.9xz;*.V2z;*.v2z;
