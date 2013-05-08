@@ -55,10 +55,6 @@
         <col id="0" translatable="yes">TiEmu</col>
         <col id="1" translatable="no">tiemu</col>
       </row>
-      <row>
-        <col id="0" translatable="yes">UsbKernel</col>
-        <col id="1" translatable="no">usbkernel</col>
-      </row>
     </data>
   </object>
   <object class="GtkListStore" id="model2">

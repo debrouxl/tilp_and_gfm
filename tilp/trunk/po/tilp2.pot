@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-01 19:37+0200\n"
+"POT-Creation-Date: 2013-05-08 11:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1089,140 +1089,136 @@ msgid "TiEmu"
 msgstr ""
 
 #: ../builder/device.ui.h:9
-msgid "UsbKernel"
-msgstr ""
-
-#: ../builder/device.ui.h:10
 msgid "None"
 msgstr ""
 
-#: ../builder/device.ui.h:11
+#: ../builder/device.ui.h:10
 msgid "#1"
 msgstr ""
 
-#: ../builder/device.ui.h:12
+#: ../builder/device.ui.h:11
 msgid "#2"
 msgstr ""
 
-#: ../builder/device.ui.h:13
+#: ../builder/device.ui.h:12
 msgid "#3"
 msgstr ""
 
-#: ../builder/device.ui.h:14
+#: ../builder/device.ui.h:13
 msgid "#4"
 msgstr ""
 
-#: ../builder/device.ui.h:15
+#: ../builder/device.ui.h:14
 msgid "TI73"
 msgstr ""
 
-#: ../builder/device.ui.h:16
+#: ../builder/device.ui.h:15
 msgid "TI80"
 msgstr ""
 
-#: ../builder/device.ui.h:17
+#: ../builder/device.ui.h:16
 msgid "TI82"
 msgstr ""
 
-#: ../builder/device.ui.h:18
+#: ../builder/device.ui.h:17
 msgid "TI83 / 82 Stats(.fr) / 76.fr"
 msgstr ""
 
-#: ../builder/device.ui.h:19
+#: ../builder/device.ui.h:18
 msgid "TI83+"
 msgstr ""
 
-#: ../builder/device.ui.h:20
+#: ../builder/device.ui.h:19
 msgid "TI84+"
 msgstr ""
 
-#: ../builder/device.ui.h:21
+#: ../builder/device.ui.h:20
 msgid "TI85"
 msgstr ""
 
-#: ../builder/device.ui.h:22
+#: ../builder/device.ui.h:21
 msgid "TI86"
 msgstr ""
 
-#: ../builder/device.ui.h:23
+#: ../builder/device.ui.h:22
 msgid "TI89"
 msgstr ""
 
-#: ../builder/device.ui.h:24
+#: ../builder/device.ui.h:23
 msgid "Titanium"
 msgstr ""
 
-#: ../builder/device.ui.h:25
+#: ../builder/device.ui.h:24
 msgid "TI92"
 msgstr ""
 
-#: ../builder/device.ui.h:26
+#: ../builder/device.ui.h:25
 msgid "TI92+"
 msgstr ""
 
-#: ../builder/device.ui.h:27
+#: ../builder/device.ui.h:26
 msgid "V200PLT"
 msgstr ""
 
-#: ../builder/device.ui.h:28
+#: ../builder/device.ui.h:27
 msgid "Nspire"
 msgstr ""
 
-#: ../builder/device.ui.h:29
+#: ../builder/device.ui.h:28
 msgid "Communication Settings"
 msgstr ""
 
-#: ../builder/device.ui.h:30
+#: ../builder/device.ui.h:29
 msgid "Cable:"
 msgstr ""
 
-#: ../builder/device.ui.h:31
+#: ../builder/device.ui.h:30
 msgid "Port:"
 msgstr ""
 
-#: ../builder/device.ui.h:32
+#: ../builder/device.ui.h:31
 msgid "Calc:"
 msgstr ""
 
-#: ../builder/device.ui.h:33
+#: ../builder/device.ui.h:32
 msgid "Timeout:"
 msgstr ""
 
-#: ../builder/device.ui.h:34
+#: ../builder/device.ui.h:33
 msgid "Delay:"
 msgstr ""
 
-#: ../builder/device.ui.h:35
+#: ../builder/device.ui.h:34
 msgid "Timeout value in tenth of seconds."
 msgstr ""
 
-#: ../builder/device.ui.h:36
+#: ../builder/device.ui.h:35
 msgid "Inter-bit delay for serial/parallel link cables."
 msgstr ""
 
-#: ../builder/device.ui.h:37
+#: ../builder/device.ui.h:36
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
 msgstr ""
 
-#: ../builder/device.ui.h:38
+#: ../builder/device.ui.h:37
 msgid "USB scan at startup"
 msgstr ""
 
-#: ../builder/device.ui.h:39
+#: ../builder/device.ui.h:38
 msgid "Settings"
 msgstr ""
 
-#: ../builder/device.ui.h:40
+#: ../builder/device.ui.h:39
 msgid "Don't know which device you have ? Click =>"
 msgstr ""
 
-#: ../builder/device.ui.h:41
+#: ../builder/device.ui.h:40
 msgid "Probe for attached devices..."
 msgstr ""
 
-#: ../builder/device.ui.h:42
+#: ../builder/device.ui.h:41
 msgid "Double-click a line to update settings."
 msgstr ""
 
