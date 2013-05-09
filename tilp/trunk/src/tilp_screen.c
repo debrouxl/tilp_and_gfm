@@ -74,6 +74,7 @@ int screen_capture(void)
 		screen.width = sc.clipped_width;
 		screen.height = sc.clipped_height;
 	}
+	screen.pixel_format = sc.pixel_format;
 
 	gif->destroy_pbar();
 

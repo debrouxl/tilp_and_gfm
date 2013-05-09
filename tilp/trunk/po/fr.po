@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-08 11:37+0200\n"
+"POT-Creation-Date: 2013-05-09 19:13+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -278,10 +278,10 @@ msgstr "Ligne de commande..."
 msgid "An TiLP session is already running. Check the task list."
 msgstr "Une session de TILP est déjà en cours d'exécution."
 
-#: ../src/screenshot.c:237
+#: ../src/screenshot.c:228
 #, c-format
-msgid "Unknown calculator model with %d bpp\n"
-msgstr "Modèle de calculatrice inconnu, avec %d bpp\n"
+msgid "Unknown calculator model with pixel_format=%d\n"
+msgstr "Modèle de calculatrice inconnu avec pixel_format=%d\n"
 
 #: ../src/support.c:83 ../src/support.c:102
 #, c-format
@@ -861,17 +861,17 @@ msgstr "Mes Fichiers TI"
 msgid "Screendump"
 msgstr "Capture d'écran"
 
-#: ../src/tilp_screen.c:263 ../src/tilp_screen.c:280
+#: ../src/tilp_screen.c:264 ../src/tilp_screen.c:281
 #, c-format
 msgid "Couldn't allocate memory!"
 msgstr "Ne peut pas allouer de la mémoire!"
 
-#: ../src/tilp_screen.c:295
+#: ../src/tilp_screen.c:296
 #, c-format
 msgid "zlib error"
 msgstr "erreur zlib"
 
-#: ../src/tilp_screen.c:384 ../src/tilp_screen.c:454
+#: ../src/tilp_screen.c:385 ../src/tilp_screen.c:455
 #, c-format
 msgid "Couldn't open destination file for writing!"
 msgstr "Ne peut pas ouvrir le fichier de destination en écriture!"

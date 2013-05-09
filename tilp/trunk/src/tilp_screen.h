@@ -27,6 +27,7 @@ typedef struct
     uint8_t* bitmap;
     int      width;
     int      height;
+    CalcPixelFormat pixel_format;
 } TilpScreen;
 
 extern TilpScreen screen;

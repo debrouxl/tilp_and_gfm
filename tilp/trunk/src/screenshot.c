@@ -205,39 +205,29 @@ TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button,
 	w = screen.width;
 	h = screen.height;
 
-	if(options.calc_model != CALC_NSPIRE)
+	switch (screen.pixel_format)
 	{
+	case CALC_PIXFMT_MONO:
 		if (options.screen_blurry)
 			bytemap = screen_bw_blurry();
 		else
 			bytemap = screen_bw_convert();
-	}
-	else
-	{
-		// For Nspires, we have to determine the calc model...
-		CalcInfos infos;
-		if (ticalcs_calc_get_version(calc_handle, &infos))
-		{
-			screen_success = FALSE;
-			return;
-		}
+		break;
 
-		if (infos.bits_per_pixel == 4)
-		{
-			// Nspire (CAS) Clickpad or Touchpad.
-			bytemap = screen_gs_convert();
-		}
-		else if (infos.bits_per_pixel == 16)
-		{
-			// Nspire (CAS) CX.
-			bytemap = screen_16bitcolor_convert();
-		}
-		else
-		{
-			tilp_critical(_("Unknown calculator model with %d bpp\n"), infos.bits_per_pixel);
-			screen_success = FALSE;
-			return;
-		}
+	case CALC_PIXFMT_GRAY_4:
+		// Nspire (CAS) Clickpad or Touchpad.
+		bytemap = screen_gs_convert();
+		break;
+
+	case CALC_PIXFMT_RGB_5_6_5:
+		// Nspire (CAS) CX or TI-84 Plus CSE.
+		bytemap = screen_16bitcolor_convert();
+		break;
+
+	default:
+		tilp_critical(_("Unknown calculator model with pixel_format=%d\n"), screen.pixel_format);
+		screen_success = FALSE;
+		return;
 	}
 
 	pixbuf = gdk_pixbuf_new_from_data(bytemap, GDK_COLORSPACE_RGB, FALSE,

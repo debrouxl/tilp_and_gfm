@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-08 11:37+0200\n"
+"POT-Creation-Date: 2013-05-09 19:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,9 +269,9 @@ msgstr ""
 msgid "An TiLP session is already running. Check the task list."
 msgstr ""
 
-#: ../src/screenshot.c:237
+#: ../src/screenshot.c:228
 #, c-format
-msgid "Unknown calculator model with %d bpp\n"
+msgid "Unknown calculator model with pixel_format=%d\n"
 msgstr ""
 
 #: ../src/support.c:83 ../src/support.c:102
@@ -795,17 +795,17 @@ msgstr ""
 msgid "Screendump"
 msgstr ""
 
-#: ../src/tilp_screen.c:263 ../src/tilp_screen.c:280
+#: ../src/tilp_screen.c:264 ../src/tilp_screen.c:281
 #, c-format
 msgid "Couldn't allocate memory!"
 msgstr ""
 
-#: ../src/tilp_screen.c:295
+#: ../src/tilp_screen.c:296
 #, c-format
 msgid "zlib error"
 msgstr ""
 
-#: ../src/tilp_screen.c:384 ../src/tilp_screen.c:454
+#: ../src/tilp_screen.c:385 ../src/tilp_screen.c:455
 #, c-format
 msgid "Couldn't open destination file for writing!"
 msgstr ""
