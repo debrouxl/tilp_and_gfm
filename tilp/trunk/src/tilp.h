@@ -9,7 +9,7 @@ GtkWidget *display_tilp_dbox(void);
 
 void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data);
 
-void on_tilp_dbox_destroy(GtkObject * object, gpointer user_data);
+void on_tilp_dbox_destroy(GtkWidget * object, gpointer user_data);
 
 gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* event, gpointer user_data);
 

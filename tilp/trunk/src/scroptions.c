@@ -170,7 +170,7 @@ TILP_EXPORT void on_radiobutton22_toggled(GtkToggleButton * togglebutton, gpoint
 
 TILP_EXPORT void on_scopt_checkbutton1_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	if (togglebutton->active == TRUE)
+	if (gtk_toggle_button_get_active(togglebutton) == TRUE)
 		tmp_grayscales = !0;
 	else
 		tmp_grayscales = 0;

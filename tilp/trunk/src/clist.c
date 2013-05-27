@@ -36,11 +36,30 @@
 #include "dirent.h"	// S_ISDIR
 #endif
 
+#if !GTK_CHECK_VERSION(2,24,0)
+#define GDK_KEY_Delete GDK_Delete
+#define GDK_KEY_X GDK_X
+#define GDK_KEY_x GDK_x
+#define GDK_KEY_C GDK_C
+#define GDK_KEY_c GDK_c
+#define GDK_KEY_V GDK_V
+#define GDK_KEY_v GDK_v
+#endif
+
+#if GTK_CHECK_VERSION(3,0,0)
+#define gtk_widget_render_icon(widget,stock_id,size,detail) gtk_widget_render_icon_pixbuf(widget,stock_id,size)
+#endif
+
+#if GTK_CHECK_VERSION(3,10,0)
+#define GTK_STOCK_DIRECTORY "folder"
+#define GTK_STOCK_GO_UP "go-up"
+#endif
+
 static GtkListStore *list;
 
-enum 
-{ 
-	COLUMN_ICON, COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE, 
+enum
+{
+	COLUMN_ICON, COLUMN_NAME, COLUMN_TYPE, COLUMN_SIZE, COLUMN_DATE,
 	COLUMN_DATA,
 };
 
@@ -54,7 +73,7 @@ static gint column2index(GtkWidget* _list, GtkTreeViewColumn* column)
 {
 	gint i;
 
-	for (i = 0; i < CLIST_NVCOLS; i++) 
+	for (i = 0; i < CLIST_NVCOLS; i++)
 	{
 		GtkTreeViewColumn *col;
 
@@ -179,8 +198,8 @@ void clist_init(void)
 	gint i;
 
 	list = gtk_list_store_new(CLIST_NCOLS, GDK_TYPE_PIXBUF,
-					G_TYPE_STRING, G_TYPE_STRING, 
-					G_TYPE_STRING, G_TYPE_STRING, 
+					G_TYPE_STRING, G_TYPE_STRING,
+					G_TYPE_STRING, G_TYPE_STRING,
 				   G_TYPE_POINTER
 			       );
 	model = GTK_TREE_MODEL(list);
@@ -215,7 +234,7 @@ void clist_init(void)
 						    renderer, "text",
 						    COLUMN_DATE, NULL);
 
-	for (i = 0; i < CLIST_NVCOLS; i++) 
+	for (i = 0; i < CLIST_NVCOLS; i++)
 	{
 		GtkTreeViewColumn *col;
 
@@ -246,6 +265,7 @@ void clist_refresh(void)
 	GtkTreeViewColumn *col;
 	GtkTreeIter iter;
 	GdkPixbuf *pix1, *pix2, *pix;
+	GtkIconTheme *theme;
 	GList *dirlist;
 	gsize br, bw;
 	gchar *utf8;
@@ -270,7 +290,7 @@ void clist_refresh(void)
 		gtk_tree_view_column_set_sort_indicator(col, FALSE);
 	}
 
-	switch (options.local_sort) 
+	switch (options.local_sort)
 	{
 	case SORT_BY_NAME:
 		tilp_file_sort_by_name();
@@ -298,10 +318,12 @@ void clist_refresh(void)
 		break;
 	}
 
-	pix2 = gtk_widget_render_icon(GTK_WIDGET(view), GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
-	pix1 = gtk_widget_render_icon(GTK_WIDGET(view), GTK_STOCK_GO_UP, GTK_ICON_SIZE_MENU, NULL);
+	// load pixmaps
+	theme = gtk_icon_theme_get_default();
+	pix2 = gtk_icon_theme_load_icon(theme, GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, 0, NULL);
+	pix1 = gtk_icon_theme_load_icon(theme, GTK_STOCK_GO_UP, GTK_ICON_SIZE_MENU, 0, NULL);
 
-	for (dirlist = local.dirlist; dirlist != NULL; dirlist = dirlist->next) 
+	for (dirlist = local.dirlist; dirlist != NULL; dirlist = dirlist->next)
 	{
 		FileEntry *fe = (FileEntry *) dirlist->data;
 		gboolean b;
@@ -320,11 +342,11 @@ void clist_refresh(void)
 		if(!b)
 			continue;
 
-		if (S_ISDIR(fe->attrib)) 
+		if (S_ISDIR(fe->attrib))
 		{
-			pix = strcmp(fe->name, "..") ? pix2 : pix1; 
-		} 
-		else 
+			pix = strcmp(fe->name, "..") ? pix2 : pix1;
+		}
+		else
 		{
 			char icon_name[2048];
 
@@ -341,13 +363,13 @@ void clist_refresh(void)
 		// filenames are stored in the 'glib filename encoding' and GTK+ uses utf8
 		utf8 = g_filename_to_utf8(fe->name, -1, &br, &bw, NULL);
 		gtk_list_store_append(list, &iter);
-		gtk_list_store_set(list, &iter, 
+		gtk_list_store_set(list, &iter,
 				   COLUMN_NAME, utf8,
 				   COLUMN_TYPE, tilp_file_get_type(fe),
 				   COLUMN_SIZE, tilp_file_get_size(fe),
 				   COLUMN_DATE, tilp_file_get_date(fe),
-				   COLUMN_DATA, (gpointer) fe, 
-                   COLUMN_ICON, pix, 
+				   COLUMN_DATA, (gpointer) fe,
+                   COLUMN_ICON, pix,
                    -1);
 		g_free(utf8);
 	}
@@ -374,10 +396,10 @@ TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEvent
 
 	gtk_tree_view_get_path_at_pos(view, tx, ty, &path, &column, &cx, &cy);
 
-	switch (event->type) 
+	switch (event->type)
 	{
 	case GDK_BUTTON_PRESS:
-		if (event->button == 3) 
+		if (event->button == 3)
 		{
 			bevent = (GdkEventButton *) (event);
 
@@ -396,7 +418,7 @@ TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEvent
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &fe, -1);
 
-		if (S_ISDIR(fe->attrib)) 
+		if (S_ISDIR(fe->attrib))
 		{
 			// go into folder
 			tilp_file_chdir(fe->name);
@@ -405,7 +427,7 @@ TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEvent
 
 			clist_refresh();
 			labels_refresh();
-		} 
+		}
 		break;
 	default:
 		break;
@@ -421,25 +443,25 @@ TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEvent
 /* Key pressed */
 TILP_EXPORT gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
 {
-	if (event->keyval == GDK_Delete) 
+	if (event->keyval == GDK_KEY_Delete)
 	{
 		rbm_delete_file1_activate(NULL, NULL);
 		return TRUE;
 	}
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_X) || (event->keyval == GDK_x))) 
+	    ((event->keyval == GDK_KEY_X) || (event->keyval == GDK_KEY_x)))
 	{
 		rbm_cut1_activate(NULL, NULL);
 		return TRUE;
 	}
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_c) || (event->keyval == GDK_C))) 
+	    ((event->keyval == GDK_KEY_C) || (event->keyval == GDK_KEY_c)))
 	{
 		rbm_copy1_activate(NULL, NULL);
 		return TRUE;
 	}
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_V) || (event->keyval == GDK_v))) 
+	    ((event->keyval == GDK_KEY_V) || (event->keyval == GDK_KEY_v)))
 	{
 		rbm_paste1_activate(NULL, NULL);
 		return TRUE;

@@ -33,6 +33,10 @@
 #include "gtk_update.h"
 #include "splash.h"
 
+#if GTK_CHECK_VERSION(3,2,0)
+#define gtk_vbox_new(a,spacing) gtk_box_new(GTK_ORIENTATION_VERTICAL,spacing)
+#endif
+
 typedef struct 
 {
 	GtkWidget *window;
@@ -44,7 +48,11 @@ static TilpSplashScreen ss;
 GtkWidget *splash_screen_start(void)
 {
 	GtkWidget *image, *vbox;
+#if GTK_CHECK_VERSION(3,0,0)
+	GdkRGBA color;
+#else
 	GdkColor color;
+#endif
 	GdkPixbuf *pixbuf;
 
 	ss.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -54,10 +62,18 @@ GtkWidget *splash_screen_start(void)
 	gtk_window_set_role(GTK_WINDOW(ss.window), "splash");
 	gtk_window_set_resizable(GTK_WINDOW(ss.window), FALSE);
 	gtk_window_set_default_size(GTK_WINDOW(ss.window), 150, 150);
+#if GTK_CHECK_VERSION(3,0,0)
+	color.red = 1.0;
+	color.blue = 1.0;
+	color.green = 1.0;
+	color.alpha = 1.0;
+	gtk_widget_override_background_color(ss.window, GTK_STATE_NORMAL, &color);
+#else
 	color.red = 65535;
 	color.blue = 65535;
 	color.green = 65535;
 	gtk_widget_modify_bg(ss.window, GTK_STATE_NORMAL, &color);
+#endif
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(ss.window), vbox);
 	gtk_widget_show(vbox);
