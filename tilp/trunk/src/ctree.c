@@ -35,14 +35,32 @@
 #include "toolbar.h"
 #include "tilp_core.h"
 
+#if !GTK_CHECK_VERSION(2,24,0)
+#define GDK_KEY_D GDK_D
+#define GDK_KEY_d GDK_d
+#define GDK_KEY_O GDK_O
+#define GDK_KEY_o GDK_o
+#define GDK_KEY_Delete GDK_Delete
+#define GDK_KEY_Insert GDK_Insert
+#endif
+
+#if GTK_CHECK_VERSION(3,0,0)
+#define gtk_widget_render_icon(widget,stock_id,size,detail) gtk_widget_render_icon_pixbuf(widget,stock_id,size)
+#define gtk_widget_modify_font(widget,font_desc) gtk_widget_override_font(widget,font_desc)
+#endif
+
+#if GTK_CHECK_VERSION(3,10,0)
+#define GTK_STOCK_DIRECTORY "folder"
+#endif
+
 static GtkTreeStore *tree;
 
 #define FONT_NAME ""	//"courier"	// use my or TI font ?
 
 // MUST be the same in dnd.c
-enum 
-{ 
-	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
+enum
+{
+	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE,
 	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
 };
 
@@ -55,7 +73,7 @@ static gint column2index(GtkWidget* list, GtkTreeViewColumn* column)
 {
 	gint i;
 
-	for (i = 0; i < CTREE_NVCOLS; i++) 
+	for (i = 0; i < CTREE_NVCOLS; i++)
 	{
 		GtkTreeViewColumn *col;
 
@@ -105,7 +123,7 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 
 	// create a new selection
 	for (list = gtk_tree_selection_get_selected_rows(selection, &model);
-	     list != NULL; list = list->next) 
+	     list != NULL; list = list->next)
 	{
 		GtkTreePath *path = list->data;
 		VarEntry *ve;
@@ -113,11 +131,11 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA, &ve, -1);
 
-		if (ve->type != tifiles_flash_type(options.calc_model)) 
+		if (ve->type != tifiles_flash_type(options.calc_model))
 		{
 			remote.selection1 = g_list_append(remote.selection1, ve);
-		} 
-		else 
+		}
+		else
 		{
 			remote.selection2 = g_list_append(remote.selection2, ve);
 		}
@@ -215,7 +233,7 @@ void ctree_init(void)
 						    renderer, "text",
 						    COLUMN_SIZE, NULL);
 
-	for (i = 0; i < CTREE_NVCOLS; i++) 
+	for (i = 0; i < CTREE_NVCOLS; i++)
 	{
 		GtkTreeViewColumn *col;
 		col = gtk_tree_view_get_column(view, i);
@@ -252,7 +270,7 @@ void ctree_set_basetree(void)
 
 	top_node = &clc_node;
 	gtk_tree_store_append(tree, top_node, NULL);
-	gtk_tree_store_set(tree, &clc_node, 
+	gtk_tree_store_set(tree, &clc_node,
 		COLUMN_NAME, str,
 		COLUMN_DATA, (gpointer) NULL, -1);
 	g_free(str);
@@ -270,7 +288,7 @@ void ctree_set_basetree(void)
 	gtk_tree_store_set(tree, &vars_node, COLUMN_NAME, NODE3,
 			   COLUMN_DATA, (gpointer) NULL, -1);
 
-	if (tifiles_is_flash(options.calc_model)) 
+	if (tifiles_is_flash(options.calc_model))
 	{
 		gtk_tree_store_append(tree, &apps_node, top_node);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
@@ -315,7 +333,7 @@ void ctree_refresh(void)
 		gtk_tree_view_column_set_sort_indicator(col, FALSE);
 	}
 
-	switch (options.remote_sort) 
+	switch (options.remote_sort)
 	{
 	case SORT_BY_NAME:
 		tilp_vars_sort_by_name();
@@ -370,24 +388,24 @@ void ctree_refresh(void)
 
 	// variables tree
 	vars = remote.var_tree;
-	for (i = 0; i < (int)g_node_n_children(vars); i++) 
+	for (i = 0; i < (int)g_node_n_children(vars); i++)
 	{
 		GNode *parent = g_node_nth_child(vars, i);
 		VarEntry *fe = (VarEntry *) (parent->data);
 
-		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER)) 
+		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		{
 			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name, -1);
 
 			gtk_tree_store_append(tree, &parent_node, &vars_node);
-			gtk_tree_store_set(tree, &parent_node, 
-					   COLUMN_NAME, utf8, 
+			gtk_tree_store_set(tree, &parent_node,
+					   COLUMN_NAME, utf8,
 					   COLUMN_DATA, (gpointer) fe,
 					   COLUMN_ICON, pix1, -1);
 			ticonv_utf8_free(utf8);
 		}
 
-		for (j = 0; j < (int)g_node_n_children(parent); j++) 
+		for (j = 0; j < (int)g_node_n_children(parent); j++)
 		{
 			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
@@ -417,7 +435,7 @@ void ctree_refresh(void)
 					   COLUMN_FONT, FONT_NAME,
 					   -1);
 
-			switch (ve->attr) 
+			switch (ve->attr)
 			{
 			case ATTRB_LOCKED:
 				gtk_tree_store_set(tree, &child_node, COLUMN_ATTR, pix4, -1);
@@ -435,11 +453,11 @@ void ctree_refresh(void)
 
 	// Appplications tree
 	apps = remote.app_tree;
-	for (i = 0; i < (int)g_node_n_children(apps); i++) 
+	for (i = 0; i < (int)g_node_n_children(apps); i++)
 	{
 		GNode *parent = g_node_nth_child(apps, i);
 
-		for (j = 0; j < (int)g_node_n_children(parent); j++) 
+		for (j = 0; j < (int)g_node_n_children(parent); j++)
 		{
 			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
@@ -457,11 +475,11 @@ void ctree_refresh(void)
 			pix9 = create_pixbuf(icon_name);
 
 			gtk_tree_store_append(tree, &child_node, &apps_node);
-			gtk_tree_store_set(tree, &child_node, 
-					COLUMN_NAME, row_text[0], 
+			gtk_tree_store_set(tree, &child_node,
+					COLUMN_NAME, row_text[0],
 					COLUMN_TYPE, row_text[2],
-					COLUMN_SIZE, row_text[3], 
-					COLUMN_DATA, (gpointer) ve, 
+					COLUMN_SIZE, row_text[3],
+					COLUMN_DATA, (gpointer) ve,
 					COLUMN_ICON, pix9,
 					COLUMN_FONT, FONT_NAME,
 					   -1);
@@ -518,7 +536,7 @@ TILP_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEven
 			printf("selected ?!\n");
 */
 		}
-		else if (event->button == 3) 
+		else if (event->button == 3)
 		{
 			GdkEventButton *bevent = (GdkEventButton *) (event);
 
@@ -530,7 +548,7 @@ TILP_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEven
 		}
 	}
 
-	if (event->type == GDK_2BUTTON_PRESS) 
+	if (event->type == GDK_2BUTTON_PRESS)
 	{
 		gchar *name;
 
@@ -577,23 +595,23 @@ TILP_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEven
 TILP_EXPORT gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
 {
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_D) || (event->keyval == GDK_d)))
+	    ((event->keyval == GDK_KEY_D) || (event->keyval == GDK_KEY_d)))
 	{
 		rbm_change_device1_activate(NULL, NULL);
 		return TRUE;
 	}
 	if ((event->state == GDK_CONTROL_MASK) &&
-	    ((event->keyval == GDK_O) || (event->keyval == GDK_o)))
+	    ((event->keyval == GDK_KEY_O) || (event->keyval == GDK_KEY_o)))
 	{
 		rbm_options1_activate(NULL, NULL);
 		return TRUE;
 	}
-	if (event->keyval == GDK_Delete) 
+	if (event->keyval == GDK_KEY_Delete)
 	{
 		rbm_delete_var1_activate(NULL, NULL);
 		return TRUE;
 	}
-	if (event->keyval == GDK_Insert) 
+	if (event->keyval == GDK_KEY_Insert)
 	{
 		rbm_create_folder1_activate(NULL, NULL);
 		return TRUE;
@@ -614,7 +632,7 @@ void ctree_select_vars(gint action)
 	// select var beneath a folder
 	gtk_tree_model_get_iter(model, &parent, path);
 
-	if (gtk_tree_model_iter_has_child(model, &parent)) 
+	if (gtk_tree_model_iter_has_child(model, &parent))
 	{
 		GtkTreeSelection *sel;
 		GtkTreePath *start_path, *end_path;

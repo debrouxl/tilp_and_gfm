@@ -34,17 +34,21 @@
 #include "gtk_update.h"
 #include "dnd.h"
 
+#if !GTK_CHECK_VERSION(2,22,0)
+#define gdk_drag_context_get_selected_action(X) X->action
+#endif
+
 // MUST be the same in ctree.c
-enum 
-{ 
-	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
+enum
+{
+	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE,
 	COLUMN_DATA, COLUMN_FONT, COLUMN_ICON
 };
 
 /* Drag & Drop support (DnD) */
 
-enum 
-{ 
+enum
+{
 	TARGET_STRING, TARGET_ROOTWIN, TARGET_TEXT_URI_LIST,
 	TARGET_LEFT, TARGET_RIGHT,
 };
@@ -55,14 +59,14 @@ enum
   { "application/x-rootwin-drop", 0, TARGET_ROOTWIN },
   };*/
 
-static GtkTargetEntry target_table_1[] = 
+static GtkTargetEntry target_table_1[] =
 {
 	{(char *)"clist", 0, TARGET_STRING},
 	{(char *)"text/uri-list", 0, TARGET_TEXT_URI_LIST, },
 	{(char *)"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
 };
 
-static GtkTargetEntry target_table_2[] = 
+static GtkTargetEntry target_table_2[] =
 {
 	{(char *)"ctree", 0, TARGET_STRING},
 	{(char *)"application/x-rootwin-drop", 0, TARGET_ROOTWIN}
@@ -98,7 +102,7 @@ TILP_EXPORT void on_treeview2_drag_data_get(GtkWidget * widget,
                                             guint info, guint _time, gpointer user_data)
 {
 	gchar *name = (char *)"foo_bar";
-	gtk_selection_data_set(data, data->target, 8, (guchar *)name, strlen(name));
+	gtk_selection_data_set(data, gtk_selection_data_get_target(data), 8, (guchar *)name, strlen(name));
 }
 
 // retrieve data
@@ -119,11 +123,13 @@ TILP_EXPORT void on_treeview1_drag_data_received(GtkWidget * widget,
 	gchar *target = NULL;
 	gboolean success = FALSE;
 
-	if ((data->length >= 0) && (data->format == 8))
+	if ((gtk_selection_data_get_length(data) >= 0) && (gtk_selection_data_get_format(data) == 8))
 	{
-		if (drag_context->action == GDK_ACTION_ASK)
+		if (gdk_drag_context_get_selected_action(drag_context) == GDK_ACTION_ASK)
 		{
-			drag_context->action = GDK_ACTION_COPY;
+// XXX is that right ? http://valadoc.org/gtk+-3.0/Gtk.Widget.drag_motion.html.content.tpl
+//			drag_context->action = GDK_ACTION_COPY;
+			gdk_drag_status(drag_context, GDK_ACTION_COPY, _time);
 		}
 
 		if (info == TARGET_TEXT_URI_LIST)
@@ -225,14 +231,14 @@ TILP_EXPORT void on_treeview1_drag_data_get(GtkWidget * widget,
                                             GtkSelectionData * data,
                                             guint info, guint _time, gpointer user_data)
 {
-	if (info == TARGET_ROOTWIN) 
+	if (info == TARGET_ROOTWIN)
 	{
 		tilp_info("I was dropped on the rootwin\n");
-	} 
+	}
 	else
 	{
-		gtk_selection_data_set(data, data->target, 8, 
-				       (guchar *)name_to_drag, 
+		gtk_selection_data_set(data, gtk_selection_data_get_target(data), 8,
+				       (guchar *)name_to_drag,
 				       strlen(name_to_drag));
 	}
 }
@@ -244,9 +250,9 @@ TILP_EXPORT void on_treeview2_drag_data_received(GtkWidget * widget,
                                                  GtkSelectionData * data,
                                                  guint info, guint _time, gpointer user_data)
 {
-	if ((data->length >= 0) && (data->format == 8)) 
+	if ((gtk_selection_data_get_length(data) >= 0) && (gtk_selection_data_get_format(data) == 8))
 	{
-		gchar *name = (gchar *) data->data;
+		gchar *name = (gchar *) gtk_selection_data_get_data(data);
 
 		//g_print("Received \"%s\" as selection information.\n", name);
 
@@ -259,16 +265,16 @@ TILP_EXPORT void on_treeview2_drag_data_received(GtkWidget * widget,
 			display_screenshot_dbox();
 			on_scdbox_button1_clicked(NULL, NULL);
 
-			if (gtk_update.cancel == 0) 
+			if (gtk_update.cancel == 0)
 			{
 				on_sc_save1_activate(NULL, NULL);
 				on_sc_quit1_activate(NULL, NULL);
 			}
-		} 
+		}
 		else if (!strcmp(name, NODE2))	// OS
 		{
 			on_rom_dump1_activate(NULL, NULL);
-		} 
+		}
 		else if (!strcmp(name, NODE3))	// Variables
 		{
 			// all variables to get
@@ -294,8 +300,8 @@ TILP_EXPORT void on_treeview2_drag_data_received(GtkWidget * widget,
 			// folder to get
 			on_tilp_button5_clicked(NULL, NULL);
 			ctree_select_vars(0);
-		} 
-		else 
+		}
+		else
 		{
 			// single/group/app to get
 			on_tilp_button5_clicked(NULL, NULL);

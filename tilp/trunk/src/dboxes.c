@@ -31,6 +31,12 @@
 #include "support.h"
 #include "tilp_core.h"
 
+#if GTK_CHECK_VERSION(3,10,0)
+#define GTK_STOCK_OK _("_OK")
+#define GTK_STOCK_CANCEL _("_Cancel")
+#define GTK_STOCK_GO_FORWARD "go-next"
+#endif
+
 static gint ret_val = 0;
 
 static gint str2msg(const char *title)
@@ -103,7 +109,7 @@ int msg_box1(const char *title, const char *message)
 		gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 						GTK_RESPONSE_OK);
 		label = gtk_label_new(message);
-		gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), label);
+		gtk_container_add(GTK_CONTAINER(GTK_BOX(GTK_DIALOG(dialog))), label);
 		gtk_widget_show(label);
 
 		gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_TYPE);

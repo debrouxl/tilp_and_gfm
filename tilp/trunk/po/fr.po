@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-01 02:00+0100\n"
+"POT-Creation-Date: 2019-10-12 21:48+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -56,9 +56,9 @@ msgstr "sauter"
 
 #: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:118
 #: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
-#: ../src/device.c:307 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/device.c:307 ../src/fileprop.c:62 ../src/manpage.c:74
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
-#: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
+#: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:78
 #: ../src/screenshot.c:49 ../src/scroptions.c:49 ../src/tilp.c:91
 #, c-format
 msgid "Couldn't load builder file: %s\n"
@@ -72,7 +72,7 @@ msgstr "Renommer le fichier"
 msgid "New name: "
 msgstr "Nouveau nom: "
 
-#: ../src/bookmark.c:101
+#: ../src/bookmark.c:112
 msgid ""
 "A web browser has been launched: this may take a while before it appears. If "
 "it is already launched, the page may be opened in the existing frame."
@@ -81,19 +81,19 @@ msgstr ""
 "temps.S'il est déjà lancé, la page sera peut-être ouverte dans l'onglet "
 "existant."
 
-#: ../src/clist.c:199 ../src/ctree.c:186
+#: ../src/clist.c:213 ../src/ctree.c:200
 msgid "Name"
 msgstr "Nom"
 
-#: ../src/clist.c:204 ../src/ctree.c:209
+#: ../src/clist.c:218 ../src/ctree.c:223
 msgid "Type"
 msgstr "Type"
 
-#: ../src/clist.c:209 ../src/ctree.c:214
+#: ../src/clist.c:223 ../src/ctree.c:228
 msgid "Size"
 msgstr "Taille"
 
-#: ../src/clist.c:214
+#: ../src/clist.c:228
 msgid "Date"
 msgstr "Date"
 
@@ -102,7 +102,7 @@ msgid "Change drive"
 msgstr "Changer de lecteur"
 
 #: ../src/clist_rbm.c:235 ../src/clist_rbm.c:255 ../src/clock.c:86
-#: ../src/dboxes.c:46 ../src/dnd.c:177 ../src/main.c:233 ../src/tilp.c:172
+#: ../src/dboxes.c:46 ../src/dnd.c:183 ../src/main.c:233 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
 #: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
@@ -126,12 +126,12 @@ msgstr ""
 msgid "No clock support!"
 msgstr "Horloge non gérée !"
 
-#: ../src/ctree.c:204
+#: ../src/ctree.c:218
 msgid "Attr"
 msgstr "Attribut"
 
 #. top node
-#: ../src/ctree.c:250
+#: ../src/ctree.c:264
 #, c-format
 msgid "%s -> %s:#%i"
 msgstr "%s -> %s:#%i"

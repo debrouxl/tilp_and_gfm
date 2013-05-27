@@ -74,13 +74,30 @@ PKG_CHECK_MODULES(TICALCS, ticalcs2 >= 1.1.9)
 AC_SUBST(TICALCS_CFLAGS)
 AC_SUBST(TICALCS_LIBS)
 
-PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.6.0)
+PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.28.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.12.0)
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
+# Default to GTK+2 for now.
+AC_ARG_WITH(gtk,AS_HELP_STRING([--with-gtk=gtk2|gtk3],
+                                [GTK+ version]),
+[
+  if test "x$withval" = "xgtk2" ; then
+    PKG_CHECK_MODULES([GTK2], [gtk+-2.0 >= 2.20.0])
+  elif test "x$withval" = "xgtk3"; then
+    PKG_CHECK_MODULES([GTK3], [gtk+-3.0 >= 3.0.0])
+  else
+    AC_MSG_ERROR([--with-gtk must be either gtk2 or gtk3])
+  fi
+],
+[
+  PKG_CHECK_MODULES([GTK2], [gtk+-2.0 >= 2.20.0])
+])
+
+AC_SUBST(GTK2_CFLAGS)
+AC_SUBST(GTK2_LIBS)
+AC_SUBST(GTK3_CFLAGS)
+AC_SUBST(GTK3_LIBS)
 
 # Check for zlib
 AC_CHECK_HEADER(zlib.h)
