@@ -28,7 +28,7 @@
 
 #include "tilp_core.h"
 
-TilpGuiFncts *gif;
+const TilpGuiFncts *gif;
 
 extern gint silent;
 
@@ -177,31 +177,31 @@ static void default_destroy_pbar(void)
 /*
   Initialize the internal structure
 */
-void tilp_gui_set_fncts(TilpGuiFncts* gf)
+void tilp_gui_set_fncts(const TilpGuiFncts* gf)
 {
 	gif = gf;
 }
 
 void tilp_gif_set_default(void)
 {
-	static TilpGuiFncts default_gif;
+	static const TilpGuiFncts default_gif = {
+		default_msg_box,
+		default_msg_box1,
+		default_msg_box2,
+		default_msg_box3,
+		default_msg_box4,
 
-	default_gif.msg_box  = default_msg_box;
-	default_gif.msg_box1 = default_msg_box1;
-	default_gif.msg_box2 = default_msg_box2;
-	default_gif.msg_box3 = default_msg_box3;
-	default_gif.msg_box4 = default_msg_box4;
+		default_msg_entry,
 
-	default_gif.msg_entry = default_msg_entry;
+		default_create_pbar_type1,
+		default_create_pbar_type2,
+		default_create_pbar_type3,
+		default_create_pbar_type4,
+		default_create_pbar_type5,
 
-	default_gif.create_pbar_type1 = default_create_pbar_type1;
-	default_gif.create_pbar_type2 = default_create_pbar_type2;
-	default_gif.create_pbar_type3 = default_create_pbar_type3;
-	default_gif.create_pbar_type4 = default_create_pbar_type4;
-	default_gif.create_pbar_type5 = default_create_pbar_type5;
-
-	default_gif.create_pbar = default_create_pbar;
-	default_gif.destroy_pbar = default_destroy_pbar;
+		default_create_pbar,
+		default_destroy_pbar
+	};
 
 	tilp_gui_set_fncts(&default_gif);
 }

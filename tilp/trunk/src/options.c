@@ -134,7 +134,7 @@ TILP_EXPORT void options_radiobutton52_toggled(GtkToggleButton * togglebutton, g
 
 TILP_EXPORT void options_checkbutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
-	if (togglebutton->active == TRUE)
+	if (gtk_toggle_button_get_active(togglebutton) == TRUE)
 		tmp_options.overwrite = CONFIRM_YES;
 	else
 		tmp_options.overwrite = CONFIRM_NO;
