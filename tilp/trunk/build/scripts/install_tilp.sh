@@ -127,6 +127,7 @@ handle_one_module() {
   echo "Configuring $module_name"
   # Add --libdir=/usr/lib64 on e.g. 64-bit Fedora 14, which insists on searching for 64-bit libs in /usr/lib64.
   # Or modify PKG_CONFIG_PATH as described above.
+  autoreconf -i -v -f
   ./configure "--prefix=$PREFIX" CC=$CC CXX=$CXX $@ || return 1
   echo "Building $module_name"
   make || return 1
