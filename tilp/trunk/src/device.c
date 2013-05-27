@@ -419,7 +419,7 @@ TILP_EXPORT void on_device_combobox3_changed(GtkComboBox *combobox, gpointer use
 
 TILP_EXPORT void comm_checkbutton1_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 {
-	options.auto_detect = togglebutton->active;
+	options.auto_detect = gtk_toggle_button_get_active(togglebutton);
 }
 
 TILP_EXPORT void comm_spinbutton_delay_changed(GtkEditable *editable, gpointer user_data)

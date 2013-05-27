@@ -59,6 +59,11 @@
 #include "filesel.h"
 #include "tilp_struct.h"
 
+#if GTK_CHECK_VERSION(3,10,0)
+#define GTK_STOCK_CANCEL _("_Cancel")
+#define GTK_STOCK_OPEN _("_Open")
+#endif
+
 /* Single file selectors */
 
 static gchar *fname = NULL;

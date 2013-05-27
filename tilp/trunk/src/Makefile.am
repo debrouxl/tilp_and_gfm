@@ -8,7 +8,7 @@ bin_PROGRAMS = tilp
 # build instructions
 tilp_CPPFLAGS = -I$(top_srcdir)/intl \
 	@TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ @TICONV_CFLAGS@ \
-	@GLIB_CFLAGS@ @GTK_CFLAGS@ \
+	@GLIB_CFLAGS@ @GTK2_CFLAGS@ @GTK3_CFLAGS@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\" \
@@ -16,7 +16,7 @@ tilp_CPPFLAGS = -I$(top_srcdir)/intl \
 #	@KDE_INCLUDES@ @QT_INCLUDES@
 tilp_LDFLAGS = -export-dynamic
 tilp_LDADD = @TICABLES_LIBS@ @TIFILES_LIBS@ @TICALCS_LIBS@ @TICONV_LIBS@ \
-	@GLIB_LIBS@ @GTK_LIBS@ @LIBZ@
+	@GLIB_LIBS@ @GTK2_LIBS@ @GTK3_LIBS@ @LIBZ@
 #	@LIB_KDECORE@ @LIB_KDEUI@ @LIB_KIO@ @LIB_QT@ @KDE_LDFLAGS@ @QT_LDFLAGS@ @X_LDFLAGS@
 tilp_SOURCES = *.h \
 	tilp_calcs.c tilp_cmdline.c tilp_config.c tilp_error.c \

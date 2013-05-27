@@ -32,6 +32,10 @@
 #include "fileprop.h"
 #include "tilp_core.h"
 
+#if GTK_CHECK_VERSION(3,0,0)
+#define gtk_widget_modify_font(widget,font_desc) gtk_widget_override_font(widget,font_desc)
+#endif
+
 static GtkTextBuffer *txtbuf;
 
 static void new_log_handler(const gchar *log_domain,

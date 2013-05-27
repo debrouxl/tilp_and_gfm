@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 		toolbar_refresh_buttons();
 		icon = create_pixbuf("tilp.xpm");
 		gtk_window_set_icon(GTK_WINDOW(main_wnd), icon);
-		gdk_window_set_icon_name(main_wnd->window, _("TiLP2"));
+		gtk_window_set_icon_name(GTK_WINDOW(main_wnd), _("TiLP2"));
 	}
 
 	/* 
