@@ -146,7 +146,7 @@ TILP_EXPORT void on_hpaned1_size_request(GtkPaned* paned, gpointer user_data)
 	options.pane_x_size = gtk_paned_get_position(paned);
 }
 
-TILP_EXPORT void on_tilp_dbox_destroy(GtkObject* object, gpointer user_data)
+TILP_EXPORT void on_tilp_dbox_destroy(GtkWidget* object, gpointer user_data)
 {
 	tilp_config_write();
 	gtk_main_quit();

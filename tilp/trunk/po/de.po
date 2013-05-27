@@ -58,9 +58,9 @@ msgstr "überspringen"
 
 #: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:118
 #: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
-#: ../src/device.c:307 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/device.c:307 ../src/fileprop.c:62 ../src/manpage.c:74
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
-#: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
+#: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:78
 #: ../src/screenshot.c:49 ../src/scroptions.c:49 ../src/tilp.c:91
 #, c-format
 msgid "Couldn't load builder file: %s\n"
@@ -83,19 +83,19 @@ msgstr ""
 "öffnet. Wenn bereits ein Browser läuft, wurde die Seite eventuell in einem "
 "neuen Reiter geöffnet."
 
-#: ../src/clist.c:199 ../src/ctree.c:186
+#: ../src/clist.c:213 ../src/ctree.c:200
 msgid "Name"
 msgstr "Name"
 
-#: ../src/clist.c:204 ../src/ctree.c:209
+#: ../src/clist.c:218 ../src/ctree.c:223
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/clist.c:209 ../src/ctree.c:214
+#: ../src/clist.c:223 ../src/ctree.c:228
 msgid "Size"
 msgstr "Größe"
 
-#: ../src/clist.c:214
+#: ../src/clist.c:228
 msgid "Date"
 msgstr "Datum"
 
@@ -104,7 +104,7 @@ msgid "Change drive"
 msgstr "Laufwerk ändern"
 
 #: ../src/clist_rbm.c:235 ../src/clist_rbm.c:255 ../src/clock.c:86
-#: ../src/dboxes.c:46 ../src/dnd.c:177 ../src/main.c:233 ../src/tilp.c:172
+#: ../src/dboxes.c:46 ../src/dnd.c:183 ../src/main.c:233 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
 #: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
@@ -129,12 +129,12 @@ msgstr ""
 msgid "No clock support!"
 msgstr "Keine Uhrenunterstützung!"
 
-#: ../src/ctree.c:204
+#: ../src/ctree.c:218
 msgid "Attr"
 msgstr "Attr"
 
 #. top node
-#: ../src/ctree.c:250
+#: ../src/ctree.c:264
 #, c-format
 msgid "%s -> %s:#%i"
 msgstr "%s -> %s:#%i"
