@@ -114,6 +114,7 @@ Source: "C:\tilp\tilp_and_gfm\tilp\trunk\wicons\*.png"; DestDir: "{app}\share\ic
 
 ; i18n files
 Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\tilp2.mo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
+Source: "C:\lpg\packages\share\locale\de\LC_MESSAGES\tilp2.mo"; DestDir: "{app}\locale\de\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
 Source: "C:\tilp\tilp_and_gfm\tilp\trunk\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion

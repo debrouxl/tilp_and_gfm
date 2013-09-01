@@ -103,6 +103,7 @@ Source: "C:\lpg\tilp2\wicons\*.png"; DestDir: "{app}\share\icons"; Flags: ignore
 
 ; i18n files
 Source: "C:\lpg\tilp2\po\fr.gmo"; DestDir: "{app}\locale\fr\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
+Source: "C:\lpg\tilp2\po\de.gmo"; DestDir: "{app}\locale\de\LC_MESSAGES"; DestName: "tilp2.mo"; Flags: ignoreversion;
 
 ; Misc files
 Source: "C:\lpg\tilp2\README.win32"; DestDir: "{app}"; DestName: "Readme_Win32.txt"; Flags: ignoreversion
