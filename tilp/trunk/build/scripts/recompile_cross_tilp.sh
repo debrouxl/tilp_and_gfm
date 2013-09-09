@@ -28,7 +28,7 @@ PREFIX="$HOME/lpg/packages"
 # Common flags and definitions.
 CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Werror=declaration-after-statement -Werror=implicit-function-declaration -D_FORTIFY_SOURCE=2"
 CCPPFLAGS="-I$HOME/lpg/deps/gtk-win32/include -I/usr/i686-w64-mingw32/include/ddk -I$HOME/lpg/depsprefix/include"
-CLDFLAGS="-L$HOME/lpg/deps/gtk-win32/lib -I$HOME/lpg/depsprefix/lib"
+CLDFLAGS="-L$HOME/lpg/deps/gtk-win32/lib -I$HOME/lpg/depsprefix/lib -static-libgcc"
 CHOST="i686-w64-mingw32"
 
 export PKG_CONFIG_PATH=$HOME/lpg/packages/lib/pkgconfig:$HOME/lpg/deps/gtk-win32/lib/pkgconfig:$HOME/lpg/depsprefix/lib/pkgconfig:$PKG_CONFIG_PATH
