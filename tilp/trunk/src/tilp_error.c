@@ -97,7 +97,7 @@ int tilp_err(int errcode)
 		if (err)
 		{
 			g_free(s);
-			err = ticalcs_error_get(err, &s);
+			err = tifiles_error_get(err, &s);
 			if (err)
 			{
 				g_free(s);
