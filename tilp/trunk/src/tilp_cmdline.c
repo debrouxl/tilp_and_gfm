@@ -56,7 +56,7 @@ void tilp_cmdline_version(void)
 #endif
 	printf(_("THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"));
 	printf(_("PLEASE READ THE DOCUMENTATION FOR DETAILS\n"));
-	printf(_("built on %s %s\n"), __DATE__, __TIME__);
+	//printf(_("built on %s %s\n"), __DATE__, __TIME__);
 	fflush(stdout);
 }
 

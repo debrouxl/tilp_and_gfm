@@ -741,11 +741,6 @@ msgstr "CE PROGRAMME N'OFFRE ABSOLUMENT AUCUNE GARANTIE\n"
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "LISEZ S'IL VOUS PLAIT LA DOCUMENTATION POUR PLUS DE DETAILS\n"
 
-#: ../src/tilp_cmdline.c:59
-#, c-format
-msgid "built on %s %s\n"
-msgstr "compilé sur %s %s\n"
-
 #: ../src/tilp_cmdline.c:190
 #, c-format
 msgid "The file <%s> does not exist."
@@ -1810,6 +1805,9 @@ msgstr "/home/romain/"
 #: ../builder/tilp.ui.h:70
 msgid "Current folder:"
 msgstr "Dossier courant:"
+
+#~ msgid "built on %s %s\n"
+#~ msgstr "compilé sur %s %s\n"
 
 #~ msgid "UsbKernel"
 #~ msgstr "UsbKernel"

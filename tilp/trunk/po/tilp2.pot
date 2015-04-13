@@ -681,11 +681,6 @@ msgstr ""
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr ""
 
-#: ../src/tilp_cmdline.c:59
-#, c-format
-msgid "built on %s %s\n"
-msgstr ""
-
 #: ../src/tilp_cmdline.c:190
 #, c-format
 msgid "The file <%s> does not exist."

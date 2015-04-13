@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.07\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2013-05-01 19:24+0200\n"
+"POT-Creation-Date: 2015-04-11 08:49+0200\n"
 "PO-Revision-Date: 2011-12-13 19:16+0100\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -38,11 +38,6 @@ msgstr "CE PROGRAME NE VIENT AVEC AUCUNE GARANTIE\n"
 #, c-format
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "VEUILLEZ LIRE LA DOCUMENTATION POUR LES DETAILS\n"
-
-#: src/cmdline.c:59
-#, c-format
-msgid "built on %s %s\n"
-msgstr "construit sur %s %s\n"
 
 #: src/ctree.c:187
 msgid "The name already exists. Please choose another one..."
@@ -401,6 +396,9 @@ msgstr "_Grouper fichiers..."
 #: glade/gfm.str:35
 msgid "_Ungroup file..."
 msgstr "_Dégrouper fichiers..."
+
+#~ msgid "built on %s %s\n"
+#~ msgstr "construit sur %s %s\n"
 
 #~ msgid "%.2f kilobytes"
 #~ msgstr "%2f kilo-octets"

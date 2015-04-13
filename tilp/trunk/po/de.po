@@ -747,11 +747,6 @@ msgstr "FÜR DIESES PROGRAMM GIBT ES KEINERLEI GEWÄHRLEISTUNG\n"
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "BITTE LESEN SIE DIE DOKUMENTATION, UM DETAILS ZU ERHALTEN\n"
 
-#: ../src/tilp_cmdline.c:59
-#, c-format
-msgid "built on %s %s\n"
-msgstr "erstellt auf %s %s\n"
-
 #: ../src/tilp_cmdline.c:190
 #, c-format
 msgid "The file <%s> does not exist."
@@ -1819,6 +1814,9 @@ msgstr "/home/romain/"
 #: ../builder/tilp.ui.h:70
 msgid "Current folder:"
 msgstr "Aktueller Ordner"
+
+#~ msgid "built on %s %s\n"
+#~ msgstr "erstellt auf %s %s\n"
 
 #~ msgid "action.c: GUI loading failed !\n"
 #~ msgstr "action.c: Laden der grafischen Benutzeroberfläche fehlgeschlagen!\n"
