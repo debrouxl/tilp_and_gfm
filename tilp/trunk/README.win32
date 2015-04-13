@@ -34,6 +34,14 @@ The following steps assume that TI-Connect / TINC(L)S is already installed:
 * run the TILP installer.
 After that, the device ought to work in both TILP and TI-Connect / TILP and (TINCLS or TINCS).
 
+In case you're curious about the reasons of this state of fact:
+* the root cause is that Windows requires drivers for USB devices in vendor-specific class,
+  which is all TI graphing calculators and corresponding USB cables expose;
+* TI's proprietary software and TILP (libticables) cannot use each other's drivers,
+  for both licensing and functionality reasons;
+* Windows hates having more than one driver for any given piece of hardware. One needs to
+  resort to platform-specific complexity known as "filter driver" to work around that;
+* the authors of libusb-win32 and Zadig advise against automatic install, AFAWCT.
 
 2°) This setup may download & install some extra libraries (GTK+ 2.24).
 
