@@ -1,3 +1,17 @@
+#ifndef __DEVICE_H__
+#define __DEVICE_H__
+
 #include <gtk/gtk.h>
 
-gint display_device_dbox();
+gint display_device_dbox(void);
+
+gboolean comm_treeview1_button_press_event(GtkWidget *widget, GdkEventButton *event, gpointer user_data);
+void on_device_combobox1_changed(GtkComboBox *combobox, gpointer user_data);
+void on_device_combobox2_changed(GtkComboBox *combobox, gpointer user_data);
+void on_device_combobox3_changed(GtkComboBox *combobox, gpointer user_data);
+void comm_checkbutton1_toggled(GtkToggleButton *togglebutton, gpointer user_data);
+void comm_spinbutton_delay_changed(GtkEditable *editable, gpointer user_data);
+void comm_spinbutton_timeout_changed(GtkEditable *editable, gpointer user_data);
+void comm_button_search_clicked(GtkButton *button, gpointer user_data);
+
+#endif

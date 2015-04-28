@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_CMDLINE__
-#define __TILP_CMDLINE__
+#ifndef __TILP_CMDLINE_H__
+#define __TILP_CMDLINE_H__
 
 void tilp_cmdline_version(void);
 int  tilp_cmdline_scan(int *argc, char ***argv);

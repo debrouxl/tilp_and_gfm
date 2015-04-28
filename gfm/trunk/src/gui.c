@@ -27,7 +27,6 @@
 #include <string.h>
 
 #include "gui.h"
-#include "support.h"
 #include "paths.h"
 #include "tilibs.h"
 #include "dialog.h"

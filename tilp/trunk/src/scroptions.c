@@ -35,7 +35,7 @@ gint tmp_image_format;
 gint tmp_screen_mode;
 gint tmp_grayscales;
 
-gint display_scroptions_dbox()
+gint display_scroptions_dbox(void)
 {
 	GtkBuilder *builder;
 	GError* error = NULL;
@@ -120,70 +120,55 @@ gint display_scroptions_dbox()
 	return 0;
 }
 
-TILP_EXPORT void
-on_radiobutton10_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+TILP_EXPORT void on_radiobutton10_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = PNG;
 }
 
-TILP_EXPORT void
-on_radiobutton11_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+TILP_EXPORT void on_radiobutton11_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = XPM;
 }
 
-TILP_EXPORT void
-on_radiobutton12_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+TILP_EXPORT void on_radiobutton12_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = JPG;
 }
-TILP_EXPORT void
-on_radiobutton13_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+
+TILP_EXPORT void on_radiobutton13_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = BMP;
 }
-TILP_EXPORT void
-on_radiobutton14_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+
+TILP_EXPORT void on_radiobutton14_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = PDF;
 }
-TILP_EXPORT void
-on_radiobutton15_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+
+TILP_EXPORT void on_radiobutton15_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_image_format = EPS;
 }
 
-TILP_EXPORT void
-on_radiobutton21_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+TILP_EXPORT void on_radiobutton21_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_screen_mode = SCREEN_FULL;
 }
 
-TILP_EXPORT void
-on_radiobutton22_toggled(GtkToggleButton * togglebutton,
-			 gpointer user_data)
+TILP_EXPORT void on_radiobutton22_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton))
 		tmp_screen_mode = SCREEN_CLIPPED;
 }
 
-TILP_EXPORT void
-on_scopt_checkbutton1_toggled(GtkToggleButton * togglebutton,
-			      gpointer user_data)
+TILP_EXPORT void on_scopt_checkbutton1_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (togglebutton->active == TRUE)
 		tmp_grayscales = !0;

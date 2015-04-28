@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_CALCS__
-#define __TILP_CALCS__
+#ifndef __TILP_CALCS_H__
+#define __TILP_CALCS_H__
 
 int tilp_pbar_type(CalcFnctsIdx op);
 
@@ -53,5 +53,7 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode);
 int tilp_calc_recv_tigroup(TigMode mode);
 
 int tilp_calc_check_version(const char*);
+
+char * format_bytes(unsigned long value, char * str, size_t maxlen);
 
 #endif

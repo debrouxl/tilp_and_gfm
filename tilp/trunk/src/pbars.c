@@ -21,7 +21,7 @@
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
-#endif				
+#endif
 
 #include <gtk/gtk.h>
 
@@ -201,7 +201,6 @@ void create_pbar(int type, const gchar * title)
 	case 5: create_pbar_type5(title); break;
 	default: break;
 	}
-		
 }
 
 /* Destroy a pbar window */
@@ -219,7 +218,6 @@ void destroy_pbar(void)
 		window = NULL;
 	}
 }
-
 
 TILP_EXPORT void on_pbar_okbutton1_pressed(GtkButton * button, gpointer user_data)
 {

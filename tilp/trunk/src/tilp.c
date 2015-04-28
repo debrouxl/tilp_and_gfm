@@ -29,6 +29,7 @@
 
 #include "gstruct.h"
 #include "tilp_core.h"
+#include "tilp.h"
 #include "dboxes.h"
 #include "pbars.h"
 #include "about.h"
@@ -45,6 +46,7 @@
 #include "action.h"
 #include "gtk_update.h"
 #include "screenshot.h"
+#include "bookmark.h"
 
 #ifdef __WIN32__
 #define strcasecmp _stricmp
@@ -77,7 +79,7 @@ void show_right_view(int view)
 	}
 }
 
-GtkWidget *display_tilp_dbox()
+GtkWidget *display_tilp_dbox(void)
 {
 	GtkWidget *dbox;
 	GtkWidget *paned;
@@ -161,8 +163,6 @@ TILP_EXPORT gboolean on_tilp_dbox_delete_event(GtkWidget* widget, GdkEvent* even
 }
 
 /* Help menu */
-
-extern int go_to_bookmark(const char *link);
 
 TILP_EXPORT void on_manual1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
@@ -261,7 +261,7 @@ TILP_EXPORT void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data
 		dst_filename2 = g_strconcat(dst_filename, ".", "rom", NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free((void *)dst_filename);
+	//g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
@@ -318,7 +318,7 @@ TILP_EXPORT void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_backup(options.calc_model), NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free((void *)dst_filename);
+	//g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
@@ -331,8 +331,6 @@ TILP_EXPORT void on_tilp_button3b_clicked(GtkButton* button, gpointer user_data)
 	clist_refresh();
 	labels_refresh();
 }
-
-TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data);
 
 TILP_EXPORT void on_tilp_button3_clicked(GtkButton* button, gpointer user_data)
 {
@@ -365,8 +363,6 @@ TILP_EXPORT void on_tilp_button4_clicked(GtkButton* button, gpointer user_data)
 		else if(tifiles_file_is_backup(filename))
 			tilp_calc_send_backup(filename);
 	}
-
-	return;
 }
 
 static int save_group(void)
@@ -393,7 +389,7 @@ static int save_group(void)
 		dst_filename2 = g_strconcat(dst_filename, ".", tifiles_fext_of_group(options.calc_model), NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free((void *)dst_filename);
+	//g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
@@ -584,7 +580,7 @@ TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 		dst_filename2 = g_strconcat(dst_filename, ".tig", NULL);
 	else
 		dst_filename2 = g_strdup(dst_filename);
-	g_free((void *)dst_filename);
+	//g_free((void *)dst_filename);
 
 	if (dst_filename2)
 	{
@@ -720,7 +716,6 @@ TILP_EXPORT void on_tilp_menuitem12_clicked(GtkButton* button, gpointer user_dat
 	CalcInfos infos;
 	tilp_calc_get_infos(&infos);
 }
-
 
 //update View menu
 TILP_EXPORT void on_tilp_viewmenu_active(GtkButton* button, gpointer user_data)

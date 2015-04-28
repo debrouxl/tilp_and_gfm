@@ -24,6 +24,7 @@
 #include "tilp_core.h"
 #include "gstruct.h"
 #include "support.h"
+#include "toolbar.h"
 
 struct toolbar_window toolbar_wnd = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 struct menubar_window menubar_wnd = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
@@ -54,5 +55,4 @@ void toolbar_refresh_buttons(void)
 
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menubar_wnd.viewlocal), options.full_gui);
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menubar_wnd.showall), options.show_all);
-
 }

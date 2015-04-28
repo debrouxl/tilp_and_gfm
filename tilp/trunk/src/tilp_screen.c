@@ -37,7 +37,7 @@
 
 #include "tilp_core.h"
 
-TilpScreen screen = { NULL, 0, 0 };	// change to screen (like local/remote)
+TilpScreen screen = { NULL, 0, 0, CALC_PIXFMT_MONO };	// change to screen (like local/remote)
 
 /*
   Do a screen capture

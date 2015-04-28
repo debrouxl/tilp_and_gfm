@@ -28,8 +28,8 @@
   Format: [tilp]_[group]_[name]
 */
 
-#ifndef __TILP_CORE__
-#define __TILP_CORE__
+#ifndef __TILP_CORE_H__
+#define __TILP_CORE_H__
 
 #ifdef __cplusplus
 extern "C" {

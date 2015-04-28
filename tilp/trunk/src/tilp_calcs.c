@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <gtk/gtk.h>
 
 #include "tilibs.h"
 
@@ -50,15 +51,15 @@ int tilp_pbar_type(CalcFnctsIdx op)
 
 	if (str != NULL)
 	{
-		if(!strcmp(str, "1P"))
+		if (!strcmp(str, "1P"))
 			return 1;
-		else if(!strcmp(str, "1L"))
+		else if (!strcmp(str, "1L"))
 			return 2;
-		else if(!strcmp(str, "2P"))
+		else if (!strcmp(str, "2P"))
 			return 3;
-		else if(!strcmp(str, "1P1L"))
+		else if (!strcmp(str, "1P1L"))
 			return 4;
-		else if(!strcmp(str, "2P1L"))
+		else if (!strcmp(str, "2P1L"))
 			return 5;
 	}
 
@@ -93,13 +94,12 @@ int tilp_calc_isready(void)
 	   Note: Titanium does _not_ like too fast close/open under Linux. 
 	*/
 
-	if(!win32 && options.calc_model == CALC_TI89T_USB)
-	  {
-	    // does nothing here due to Titanium firmware bug
-	  }
-	else if((options.cable_model == CABLE_USB || 
-	   options.cable_model == CABLE_DEV))
-	  {
+	if (!win32 && options.calc_model == CALC_TI89T_USB)
+	{
+		// does nothing here due to Titanium firmware bug
+	}
+	else if (options.cable_model == CABLE_USB || options.cable_model == CABLE_DEV)
+	{
 		tilp_device_close();
 		tilp_device_open();
 	}
@@ -109,7 +109,7 @@ int tilp_calc_isready(void)
 	err = ticalcs_calc_isready(calc_handle);
 	ticables_options_set_timeout(cable_handle, to);
 
-	if(err == 257)	/* 257 = ERR_NOT_READY */
+	if (err == 257)	/* 257 = ERR_NOT_READY */
 	{
 		switch(options.calc_model)
 		{
@@ -127,19 +127,19 @@ int tilp_calc_isready(void)
 		}
 	}
 
-	if(options.calc_model == CALC_NSPIRE)
+	if (options.calc_model == CALC_NSPIRE)
 	{
-		if(err)
+		if (err)
 			return err;
 		else
 			return 0;
 	}
 
-	if(err) 
+	if (err) 
 	{
 		// second check: slower
 		err = ticalcs_calc_isready(calc_handle);
-		if(err)
+		if (err)
 		{
 			tilp_err(err);
 			return -1;
@@ -154,10 +154,10 @@ int tilp_calc_isready(void)
 */
 int tilp_calc_dirlist(void)
 {
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
-	if(tilp_dirlist_remote())
+	if (tilp_dirlist_remote())
 		return -1;
 
 	return 0;
@@ -174,16 +174,16 @@ int tilp_calc_send_backup(const char *filename)
 	int err;
 
 	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
-	if(ret != BUTTON1)
+	if (ret != BUTTON1)
 		return -1;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	gif->create_pbar_(FNCT_SEND_BACKUP, _("Restoring"));
 
 	err = ticalcs_calc_send_backup2(calc_handle, filename);
-	if(err)
+	if (err)
 		tilp_err(err);
 
 	gif->destroy_pbar();
@@ -200,7 +200,7 @@ int tilp_calc_recv_backup(void)
 	int err = 0;
 	char *filename;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	gif->create_pbar_(FNCT_RECV_BACKUP, _("Backing up"));
@@ -209,7 +209,7 @@ int tilp_calc_recv_backup(void)
 	do 
 	{
 		gtk_update.refresh();
-		if(gtk_update.cancel)
+		if (gtk_update.cancel)
 			break;
 
 		err = ticalcs_calc_recv_backup2(calc_handle, filename);
@@ -221,7 +221,7 @@ int tilp_calc_recv_backup(void)
 	g_free(filename);
 	gif->destroy_pbar();
 
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;
@@ -236,18 +236,18 @@ int tilp_calc_idlist(int to_file)
 	char buffer[MAXCHARS];
 	char idlist[32];
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t *)idlist);
-	if(err)
+	if (err)
 	{
 		tilp_err(err);
 		return -1;
 	}
 
 	strcpy(buffer, _("ID-LIST : "));
-	if(options.calc_model != CALC_NSPIRE)
+	if (options.calc_model != CALC_NSPIRE)
 	{
 		strncat(buffer, idlist, 5);
 		strcat(buffer, "-");
@@ -261,7 +261,7 @@ int tilp_calc_idlist(int to_file)
 		strcat(buffer, idlist);
 	}
 
-	if(to_file)
+	if (to_file)
 	{
 		gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, "IDLIST.txt", NULL);
 		FILE *f;
@@ -269,7 +269,7 @@ int tilp_calc_idlist(int to_file)
 		f = fopen(filename, "wt");
 		g_free(filename);
 
-		if(f == NULL)
+		if (f == NULL)
 			return -1;
 
 		if (fwrite(buffer, strlen(buffer), 1, f) < 1)
@@ -298,14 +298,14 @@ int tilp_calc_rom_dump(void)
 	if (options.calc_model != CALC_NSPIRE)
 	{
 		ret = gif->msg_box4(_("Warning"), _("An assembly program is about to be sent on your calculator.\nIf you have not made a backup yet, you should do one before\nproceeding with ROM dumping...\n\nFor the way of proceeding, take a look at the TiLP manual \n(especially if you have a USB cable)."));
-		if(ret != BUTTON1)
+		if (ret != BUTTON1)
 			return -1;
 	}
 
 	/* Transfer ROM dumper */
 	gif->create_pbar_(FNCT_DUMP_ROM1, _("Dumping ROM"));
 	err = ticalcs_calc_dump_rom_1(calc_handle);
-	if(tilp_err(err))
+	if (tilp_err(err))
 	{
 		gif->destroy_pbar();
 		return -1;
@@ -319,7 +319,7 @@ int tilp_calc_rom_dump(void)
 	err = ticalcs_calc_dump_rom_2(calc_handle, ROMSIZE_AUTO, tmp_filename);
 	gif->destroy_pbar();
 
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;
@@ -337,7 +337,7 @@ int tilp_calc_send_app(void)
 	GList *sel;
 	gint i, l;
 
-	if(!tilp_local_selection_ready())
+	if (!tilp_local_selection_ready())
 		return 0;
 
 	// Check for selection consistence
@@ -345,14 +345,14 @@ int tilp_calc_send_app(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
-		if(tifiles_file_test(f->name, TIFILE_OS, CALC_NONE))
+		if (tifiles_file_test(f->name, TIFILE_OS, CALC_NONE))
 		{
 			gif->msg_box1(_("Error"), _("You cannot send variables/applications and upgrades simultaneously."));
 			return 0;
 		}
 	}
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 	
 	gif->create_pbar_(FNCT_SEND_APP, _("Sending app"));
@@ -366,7 +366,7 @@ int tilp_calc_send_app(void)
 		int err;
 		int ret;
 
-		if(tifiles_file_is_regular(f->name))
+		if (tifiles_file_is_regular(f->name))
 			continue;
 
 		gtk_update.cnt3 = i+1;
@@ -376,7 +376,7 @@ int tilp_calc_send_app(void)
 
 tcsa:
 		err = ticalcs_calc_send_app(calc_handle, f->content2);
-		if(err && err != ERROR_ABORT)
+		if (err && err != ERROR_ABORT)
 		{
 			tilp_err(err);
 
@@ -413,14 +413,14 @@ int tilp_calc_send_os(const char *filename)
 	int err, ret;
 	char *msg = _("You are going to upgrade the Operating System\nof your calculator.\nYou are advised to eventually turn off\nyour screen saver, which could cause the transfer to crash.\nIf the transfer fails, wait until the TI89/TI92+ displays\n\"Waiting to receive\"\nand restart the transfer again.\nTI73/83+ users need to turn the calculator off and press a key.");
 
-	if(g_list_length(remote.selection1) > 1)
+	if (g_list_length(remote.selection1) > 1)
 	{
 		gif->msg_box1(_("Error"),
 			     _("You have to select _one_ upgrade to send."));
 		return -1;
 	}
 
-	if(!tifiles_file_test(filename, TIFILE_OS, options.calc_model))
+	if (!tifiles_file_test(filename, TIFILE_OS, options.calc_model))
 	{
 		gif->msg_box1(_("Error"),
 			     _("It's not an FLASH upgrade or this FLASH upgrade is not intended for this calculator type."));
@@ -428,11 +428,11 @@ int tilp_calc_send_os(const char *filename)
 	}
 
 	ret = gif->msg_box4(_("Warning"), msg);
-	if(ret == BUTTON2)
+	if (ret == BUTTON2)
 		return -1;
 
-	if(options.calc_model == CALC_NSPIRE)
-		if(tilp_calc_isready())
+	if (options.calc_model == CALC_NSPIRE)
+		if (tilp_calc_isready())
 			return -1;
 
 	tilp_options_increase_timeout();
@@ -443,7 +443,7 @@ int tilp_calc_send_os(const char *filename)
 
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;
@@ -460,13 +460,13 @@ int tilp_calc_recv_app(void)
 	char *dst;
 	int i, l;
 
-	if(!tilp_remote_selection2_ready())
+	if (!tilp_remote_selection2_ready())
 		return 0;
 
-	if(!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
+	if (!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	gif->create_pbar_(FNCT_RECV_APP, _("Receiving app"));
@@ -490,9 +490,9 @@ int tilp_calc_recv_app(void)
 		g_free(str);
 
 		ret = tilp_file_check(filename, &dst);
-		if(ret == 0)
+		if (ret == 0)
 			continue;
-		else if(ret == -1)
+		else if (ret == -1)
 		{
 			gif->destroy_pbar();
 			return -1;
@@ -500,7 +500,7 @@ int tilp_calc_recv_app(void)
 
 tcra:
 		err = ticalcs_calc_recv_app2(calc_handle, dst, ve);
-		if(err && err != ERROR_ABORT) 
+		if (err && err != ERROR_ABORT) 
 		{
 			tilp_err(err);
 
@@ -534,7 +534,7 @@ int tilp_calc_send_var(void)
 	gint i, l;
 	int mode = MODE_NORMAL;
 
-	if(!tilp_local_selection_ready())
+	if (!tilp_local_selection_ready())
 		return 0;
 
 	// Check for selection consistence
@@ -542,37 +542,37 @@ int tilp_calc_send_var(void)
 	{
 		FileEntry *f = (FileEntry *)sel->data;
 
-		if(tifiles_file_is_tigroup(f->name))
+		if (tifiles_file_is_tigroup(f->name))
 		{
 			continue;
 		}
-		if(tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
+		if (tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
 		{
 			gif->msg_box1(_("Error"), _("You cannot send both variables/applications and upgrades simultaneously."));
 			return 0;
 		}
-		else if(tifiles_file_is_app(f->name))
+		else if (tifiles_file_is_app(f->name))
 		{
 			continue;
 		}
-		else if(tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
+		else if (tifiles_file_is_backup(f->name) && !tifiles_file_is_group(f->name)) 
 		{
 			gif->msg_box1(_("Error"), _("You cannot send backups in this way. Use the 'Restore' button instead."));
 			return 0;
 		}
-		else if(!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
+		else if (!tifiles_file_is_regular(f->name) && !tifiles_file_is_tigroup(f->name)) 
 		{
 			gif->msg_box1(_("Error"), _("There is an unknown file type in the selection or the path is incorrect."));
 			return 0;
 		}
-		else if(!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
+		else if (!tifiles_calc_are_compat(options.calc_model, tifiles_file_get_model(f->name)))
 		{
 			gif->msg_box1(_("Error"), _("There is a file type incompatible with the target handheld in the selection."));
 			return 0;
 		}
 	}
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	gif->create_pbar_(FNCT_SEND_VAR, _("Sending var(s)"));
@@ -585,7 +585,7 @@ int tilp_calc_send_var(void)
 		int err;
 		int ret;
 
-		if(tifiles_file_is_flash(f->name))
+		if (tifiles_file_is_flash(f->name))
 			continue;
 
 		gtk_update.cnt3 = i+1;
@@ -594,12 +594,12 @@ int tilp_calc_send_var(void)
 		gtk_update.refresh();
 
 		// It is not the last file to send
-		if(((sel->next) != NULL) && (l > 1)) 
+		if (((sel->next) != NULL) && (l > 1)) 
 		{
 			// More than one file to send
 tcsv1:
 			err = ticalcs_calc_send_var(calc_handle, mode, f->content1);
-			if(err && err != ERROR_ABORT) 
+			if (err && err != ERROR_ABORT) 
 			{
 				tilp_err(err);
 
@@ -620,7 +620,7 @@ tcsv1:
 			// It is the first or the last one
 tcsv2:
 			err = ticalcs_calc_send_var(calc_handle, mode | MODE_SEND_LAST_VAR, f->content1);
-			if(err && err != ERROR_ABORT)
+			if (err && err != ERROR_ABORT)
 			{
 				tilp_err(err);
 
@@ -658,16 +658,16 @@ static int tilp_calc_recv_var1(void)
 	int err, ret=0;
 	FileContent **array;
 
-	if(!tilp_remote_selection_ready())
+	if (!tilp_remote_selection_ready())
 		return -1;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 	
 	gif->create_pbar_(FNCT_RECV_VAR, _("Receiving var(s)"));
 
 	l = g_list_length(remote.selection1);
-	if(l == 1) 
+	if (l == 1) 
 	{
 		// One variable
 		VarEntry *ve = (VarEntry *)remote.selection1->data;
@@ -685,7 +685,7 @@ static int tilp_calc_recv_var1(void)
 
 tcrv1:
 		err = ticalcs_calc_recv_var2(calc_handle, MODE_NORMAL, tmp_filename, ve);
-		if(err && err != ERROR_ABORT)
+		if (err && err != ERROR_ABORT)
 		{
 			tilp_err(err);
 
@@ -704,7 +704,7 @@ tcrv1:
 		varname = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
 		fldname = ticonv_varname_to_filename(options.calc_model, ve->folder, -1);
 
-		if(tifiles_has_folder(options.calc_model) && options.calc_model != CALC_NSPIRE)
+		if (tifiles_has_folder(options.calc_model) && options.calc_model != CALC_NSPIRE)
 			dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
 				fldname, ".", varname, ".",
 				tifiles_vartype2fext(options.calc_model, ve->type), NULL);
@@ -728,7 +728,7 @@ tcrv1:
 		gchar *dst_filename;
 
 		array = tifiles_content_create_group(l);
-		if(array == NULL)
+		if (array == NULL)
 			return -1;
 
 		for(sel = remote.selection1, i = 0; sel; sel = sel->next, i++)
@@ -743,7 +743,7 @@ tcrv1:
 tcrv2:
 			array[i] = tifiles_content_create_regular(options.calc_model);
 			err = ticalcs_calc_recv_var(calc_handle, MODE_NORMAL, array[i], ve);
-			if(err && err != ERROR_ABORT)
+			if (err && err != ERROR_ABORT)
 			{
 				tilp_err(err);
 
@@ -760,7 +760,7 @@ tcrv2:
 			}
 		}
 
-		if(options.recv_as_group)
+		if (options.recv_as_group)
 		{
 			FileContent* content;
 
@@ -768,7 +768,7 @@ tcrv2:
 				".", tifiles_fext_of_group(options.calc_model), NULL);
 
 			err = tifiles_group_contents(array, &content);
-			if(err)
+			if (err)
 			{
 				tilp_err(err);
 				tifiles_content_delete_group(array);
@@ -778,7 +778,7 @@ tcrv2:
 
 			strcpy(content->comment, tifiles_comment_set_group());
 			err = tifiles_file_write_regular(tmp_filename, content, NULL);
-			if(err)
+			if (err)
 			{
 				tilp_err(err);
 				tifiles_content_delete_group(array);
@@ -798,7 +798,7 @@ tcrv2:
 			{
 				tmp_filename = NULL;
 				err = tifiles_file_write_regular(NULL, array[i], &tmp_filename);
-				if(err)
+				if (err)
 				{
 					tilp_err(err);
 					break;
@@ -850,14 +850,14 @@ static int tilp_calc_recv_var2(void)
 	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
 	gif->destroy_pbar();
 
-	if(err)
+	if (err)
 	{
 		tilp_err(err);
 		return -1;
 	}
 
 	// Check for single/group
-	if(ve)
+	if (ve)
 	{
 		//single
 		basename = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
@@ -874,10 +874,10 @@ static int tilp_calc_recv_var2(void)
 	}
 	else
 	{
-		if(!options.recv_as_group)
+		if (!options.recv_as_group)
 		{
 			err = tifiles_ungroup_file(tmp_filename, NULL);
-			if(err)
+			if (err)
 				tilp_err(err);
 			g_free(tmp_filename);
 			
@@ -894,7 +894,7 @@ static int tilp_calc_recv_var2(void)
 
 int tilp_calc_recv_var(void)
 {
-	if(options.calc_model == CALC_TI82 || options.calc_model == CALC_TI85)
+	if (options.calc_model == CALC_TI82 || options.calc_model == CALC_TI85)
 		return tilp_calc_recv_var2();
 	else
 		return tilp_calc_recv_var1();
@@ -904,18 +904,18 @@ int tilp_calc_recv_var(void)
 
 int tilp_calc_check_version(const char *ti9x_ver)
 {
-	if(tifiles_is_flash(options.calc_model))
+	if (tifiles_is_flash(options.calc_model))
 	{
 		CalcInfos infos;
 		int err;
 
 		err = ticalcs_calc_get_version(calc_handle, &infos);
-		if(tilp_err(err))
+		if (tilp_err(err))
 			return -1;
 
-		if(tifiles_calc_is_ti9x(options.calc_model))
+		if (tifiles_calc_is_ti9x(options.calc_model))
 		{
-			if((ti9x_ver != NULL) && (strcmp(infos.os_version, ti9x_ver) < 0))
+			if ((ti9x_ver != NULL) && (strcmp(infos.os_version, ti9x_ver) < 0))
 			{
 				gchar *str = g_strdup_printf(_("You need AMS >=%s mini for this operation."), ti9x_ver);
 				gif->msg_box1(_("Information"), str);
@@ -934,22 +934,22 @@ int tilp_calc_del_var(void)
 	GList *sel;
 	int err;
 
-	if(!remote.selection1 && !remote.selection2)
+	if (!remote.selection1 && !remote.selection2)
 		return 0;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
-	if(!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
+	if (!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
 		return 0;
 
-	if(tilp_calc_check_version("2.09") < 0)
+	if (tilp_calc_check_version("2.09") < 0)
 		return -1;
 
-	if(options.overwrite)
+	if (options.overwrite)
 	{
 		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that?"));
-		if(ret == BUTTON2)
+		if (ret == BUTTON2)
 			return 0;
 	}
 
@@ -960,7 +960,7 @@ int tilp_calc_del_var(void)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
 		err = ticalcs_calc_del_var(calc_handle, ve);
-		if(tilp_err(err))
+		if (tilp_err(err))
 		{
 			gif->destroy_pbar();
 			return -1;
@@ -975,7 +975,7 @@ int tilp_calc_del_var(void)
 	{
 		VarEntry *ve = (VarEntry *)sel->data;
 		err = ticalcs_calc_del_var(calc_handle, ve);
-		if(tilp_err(err))
+		if (tilp_err(err))
 		{
 			gif->destroy_pbar();
 			return -1;
@@ -995,17 +995,17 @@ int tilp_calc_new_fld(void)
 	VarEntry vr;
 	VarEntry ve;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
-	if(!(ticalcs_calc_features(calc_handle) & OPS_NEWFLD))
+	if (!(ticalcs_calc_features(calc_handle) & OPS_NEWFLD))
 		return 0;
 
 	// This operation is currently implemented the following way:
 	// * for the legacy I/O port, a temporary file is created and then deleted. The latter requires AMS 2.09.
 	// * for the USB port (AMS >= 3.00), it's always supported.
 	// => require AMS 2.09 or later.
-	if(tilp_calc_check_version("2.09") < 0)
+	if (tilp_calc_check_version("2.09") < 0)
 		return -1;
 
 	fldname = gif->msg_entry(_("New Folder"), _("Name: "), _("folder"));
@@ -1018,7 +1018,7 @@ int tilp_calc_new_fld(void)
 	memset(&vr, 0, sizeof(vr));
 	strcpy(vr.folder, fldname);
 	err = ticalcs_calc_new_fld(calc_handle, &vr);
-	if(tilp_err(err))
+	if (tilp_err(err))
 	{
 		gif->destroy_pbar();
 		return -1;
@@ -1034,15 +1034,13 @@ int tilp_calc_new_fld(void)
 	return 0;
 }
 
-const char* format_bytes(unsigned long value)
+char * format_bytes(unsigned long value, char * str, size_t maxlen)
 {
-	static char str[16];
-
-	if(value < 64*1024)
+	if (value < 64*1024)
 	{
 		g_snprintf(str, sizeof(str), _("%lu bytes"), value);
 	}
-	else if(value < 1024*1024)
+	else if (value < 1024*1024)
 	{
 		g_snprintf(str, sizeof(str), _("%lu KB"), value >> 10);
 	}
@@ -1051,7 +1049,7 @@ const char* format_bytes(unsigned long value)
 		g_snprintf(str, sizeof(str), _("%lu MB"), value >> 20);
 	}
 
-	return (const char *)str;
+	return str;
 }
 
 #define LINE_FEED	\
@@ -1066,37 +1064,39 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	int err;
 	gchar *str = g_strdup("");
 	gchar *tmp;
+	char buf[16];
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
-	if(!(ticalcs_calc_features(calc_handle) & OPS_VERSION))
+	if (!(ticalcs_calc_features(calc_handle) & OPS_VERSION))
 		return 0;
 
 	err = ticalcs_calc_get_version(calc_handle, infos);
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
-	if(infos->mask & INFOS_PRODUCT_NAME)
+	if (infos->mask & INFOS_PRODUCT_NAME)
 	{
 		tmp = g_strdup_printf(_("%sProduct Name: %s\n"), str, infos->product_name);
 		g_free(str);
 		str = tmp;
 	}
 
-	if(infos->mask & INFOS_PRODUCT_ID)
+	if (infos->mask & INFOS_PRODUCT_ID)
 	{
 		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->product_id);
 		g_free(str);
 		str = tmp;
-	} else if(infos->mask & INFOS_MAIN_CALC_ID) // for compat
+	}
+	else if (infos->mask & INFOS_MAIN_CALC_ID) // for compat
 	{
 		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->main_calc_id);
 		g_free(str);
 		str = tmp;
 	}
 
-	if(infos->mask & INFOS_LANG_ID)
+	if (infos->mask & INFOS_LANG_ID)
 	{
 		tmp = g_strdup_printf(_("%sLanguage Id: %i %i\n"), str, infos->language_id, infos->sub_lang_id);
 		g_free(str);
@@ -1105,46 +1105,46 @@ int tilp_calc_get_infos(CalcInfos *infos)
 
 	LINE_FEED;
 
-	if(infos->mask & INFOS_DEVICE_TYPE)
+	if (infos->mask & INFOS_DEVICE_TYPE)
 	{
 		tmp = g_strdup_printf(_("%sDevice Type: %02x\n"), str, infos->device_type);
 		g_free(str);
 		str = tmp;
 	}
 
-	if(infos->mask & INFOS_HW_VERSION)
+	if (infos->mask & INFOS_HW_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sHardware Version: %i\n"), str, infos->hw_version);
 		g_free(str);
 		str = tmp;
 	}
 
-	if(infos->mask & INFOS_BOOT_VERSION)
+	if (infos->mask & INFOS_BOOT_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sBoot Version: %s\n"), str, infos->boot_version);
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_BOOT2_VERSION)
+	if (infos->mask & INFOS_BOOT2_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sBoot2 Version: %s\n"), str, infos->boot2_version);
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_OS_VERSION)
+	if (infos->mask & INFOS_OS_VERSION)
 	{
 		tmp = g_strdup_printf(_("%sOS Version: %s\n"), str, infos->os_version);
 		g_free(str);
 		str = tmp;
 	}
-	
-	if(infos->mask & INFOS_RUN_LEVEL)
+
+	if (infos->mask & INFOS_RUN_LEVEL)
 	{
 		tmp = g_strdup_printf(_("%sRun level: %s\n"), str, (infos->run_level == 2) ? "OS" : "boot");
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_CLOCK_SPEED)
+	if (infos->mask & INFOS_CLOCK_SPEED)
 	{
 		tmp = g_strdup_printf(_("%sClock speed: %i MHz\n"), str, infos->clock_speed);
 		g_free(str);
@@ -1153,73 +1153,67 @@ int tilp_calc_get_infos(CalcInfos *infos)
 
 	LINE_FEED;
 
-	if(infos->mask & INFOS_LCD_WIDTH)
+	if (infos->mask & INFOS_LCD_WIDTH)
 	{
 		tmp = g_strdup_printf(_("%sLCD width: %i pixels\n"), str, infos->lcd_width);
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_LCD_HEIGHT)
+	if (infos->mask & INFOS_LCD_HEIGHT)
 	{
 		tmp = g_strdup_printf(_("%sLCD height: %i pixels\n"), str, infos->lcd_height);
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_BPP)
+	if (infos->mask & INFOS_BPP)
 	{
 		tmp = g_strdup_printf(_("%sBits per pixel: %i\n"), str, infos->bits_per_pixel);
 		g_free(str);
 		str = tmp;
 	}
-	
+
 	LINE_FEED;
-	
-	if(infos->mask & INFOS_RAM_PHYS)
+
+	if (infos->mask & INFOS_RAM_PHYS)
 	{
-		tmp = g_strdup_printf(_("%sPhysical RAM: %s\n"), str, 
-				      format_bytes((unsigned int)infos->ram_phys));
+		tmp = g_strdup_printf(_("%sPhysical RAM: %s\n"), str, format_bytes(infos->ram_phys, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_RAM_USER)
+	if (infos->mask & INFOS_RAM_USER)
 	{
-		tmp = g_strdup_printf(_("%sUser RAM: %s\n"), str, 
-				      format_bytes((unsigned int)infos->ram_user));
+		tmp = g_strdup_printf(_("%sUser RAM: %s\n"), str, format_bytes(infos->ram_user, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_RAM_FREE)
+	if (infos->mask & INFOS_RAM_FREE)
 	{
-		tmp = g_strdup_printf(_("%sFree RAM: %s\n"), str, 
-				      format_bytes((unsigned int)infos->ram_free));
+		tmp = g_strdup_printf(_("%sFree RAM: %s\n"), str, format_bytes(infos->ram_free, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_FLASH_PHYS)
+	if (infos->mask & INFOS_FLASH_PHYS)
 	{
-		tmp = g_strdup_printf(_("%sPhysical FLASH: %s\n"), str, 
-				      format_bytes((unsigned int)infos->flash_phys));
+		tmp = g_strdup_printf(_("%sPhysical FLASH: %s\n"), str, format_bytes(infos->flash_phys, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_FLASH_USER)
+	if (infos->mask & INFOS_FLASH_USER)
 	{
-		tmp = g_strdup_printf(_("%sUser FLASH: %s\n"), str, 
-				      format_bytes((unsigned int)infos->flash_user));
+		tmp = g_strdup_printf(_("%sUser FLASH: %s\n"), str, format_bytes(infos->flash_user, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
-	if(infos->mask & INFOS_FLASH_FREE)
+	if (infos->mask & INFOS_FLASH_FREE)
 	{
-		tmp = g_strdup_printf(_("%sFree FLASH: %s\n"), str, 
-				      format_bytes((unsigned int)infos->flash_free));
+		tmp = g_strdup_printf(_("%sFree FLASH: %s\n"), str, format_bytes(infos->flash_free, buf, sizeof(buf)));
 		g_free(str);
 		str = tmp;
 	}
 
 	LINE_FEED;
 
-	if(infos->mask & INFOS_BATTERY)
+	if (infos->mask & INFOS_BATTERY)
 	{
 		tmp = g_strdup_printf(_("%sBattery: %s\n"), str, infos->battery ? _("good") : _("low"));
 		g_free(str);
@@ -1239,20 +1233,20 @@ int tilp_calc_recv_cert(void)
 {
 	int err;
 	gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, 
-			tifiles_model_to_string(options.calc_model), ".", tifiles_fext_of_certif(options.calc_model),
+			tifiles_model_to_string(options.calc_model), ".", tifiles_fext_of_certif (options.calc_model),
 			NULL);
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
-	if(!(ticalcs_calc_features(calc_handle) & FTS_CERT))
+	if (!(ticalcs_calc_features(calc_handle) & FTS_CERT))
 		return -1;
 
 	gif->create_pbar_(FNCT_RECV_CERT, _("Receiving cert"));
 
 	err = ticalcs_calc_recv_cert2(calc_handle, filename);
 	g_free(filename);
-	if(err) 
+	if (err) 
 		tilp_err(err);
 
 	gif->destroy_pbar();
@@ -1267,21 +1261,21 @@ int tilp_calc_send_cert(const char *filename)
 {
 	int err;
 
-	if(strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif(options.calc_model))) 
+	if (strcasecmp(tifiles_fext_get(filename), tifiles_fext_of_certif (options.calc_model))) 
 	{
 		gif->msg_box1(_("Error"),
 			     _("It's not a certificate or this certificate is not targeted at this calculator type."));
 		return -1;
 	}
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
-	
+
 	gif->create_pbar_(FNCT_SEND_CERT, _("Sending cert"));
 	err = ticalcs_calc_send_cert2(calc_handle, filename);
 	gif->destroy_pbar();
 
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;
@@ -1298,17 +1292,17 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 	int err;
 
 	ret = gif->msg_box4(_("Warning"), _("You are about to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
-	if(ret != BUTTON1)
+	if (ret != BUTTON1)
 		return -1;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	tilp_options_increase_timeout();
 
 	gif->create_pbar_type5(_("Restoring"));
 	err = ticalcs_calc_send_tigroup2(calc_handle, filename, mode);
-	if(err)
+	if (err)
 		tilp_err(err);
 	gif->destroy_pbar();
 
@@ -1326,7 +1320,7 @@ int tilp_calc_recv_tigroup(TigMode mode)
 	int err = 0;
 	char *filename;
 
-	if(tilp_calc_isready())
+	if (tilp_calc_isready())
 		return -1;
 
 	gif->create_pbar_type5(_("Backing up"));
@@ -1337,7 +1331,7 @@ int tilp_calc_recv_tigroup(TigMode mode)
 	g_free(filename);
 	gif->destroy_pbar();
 
-	if(tilp_err(err))
+	if (tilp_err(err))
 		return -1;
 
 	return 0;

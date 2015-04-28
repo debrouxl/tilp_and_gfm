@@ -160,94 +160,71 @@ gint display_clock_dbox()
 	return 0;
 }
 
-TILP_EXPORT void
-clock_radiobutton3_toggled(GtkToggleButton * togglebutton,
-			   gpointer user_data)
-{
-	tmp_clk.state = 1;
-} 
-
-TILP_EXPORT void
-clock_radiobutton4_toggled(GtkToggleButton * togglebutton,
-			   gpointer user_data)
-{
-	tmp_clk.state = 0;
-} 
-
-TILP_EXPORT void
-clock_radiobutton1_toggled(GtkToggleButton * togglebutton,
-			   gpointer user_data)
+TILP_EXPORT void clock_radiobutton1_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_clk.time_format = 12;
 	modified = TRUE;
 } 
 
-TILP_EXPORT void
-clock_radiobutton2_toggled(GtkToggleButton * togglebutton,
-			   gpointer user_data)
+TILP_EXPORT void clock_radiobutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_clk.time_format = 24;
 	modified = TRUE;
 } 
 
-TILP_EXPORT void
-on_clock_combobox1_changed             (GtkComboBox     *combobox,
-                                        gpointer         user_data)
+TILP_EXPORT void clock_radiobutton3_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+{
+	tmp_clk.state = 1;
+} 
+
+TILP_EXPORT void clock_radiobutton4_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+{
+	tmp_clk.state = 0;
+} 
+
+TILP_EXPORT void on_clock_combobox1_changed(GtkComboBox *combobox, gpointer user_data)
 {
 	gint nitem = gtk_combo_box_get_active(combobox);
 	tmp_clk.month = nitem + 1;
 }
 
-TILP_EXPORT void
-on_clock_combobox2_changed             (GtkComboBox     *combobox,
-                                        gpointer         user_data)
+TILP_EXPORT void on_clock_combobox2_changed(GtkComboBox *combobox, gpointer user_data)
 {
 	gint nitem = gtk_combo_box_get_active(combobox);
 	tmp_clk.date_format = nitem + 1;
 }
 
-TILP_EXPORT void clock_spinbutton3_changed(GtkEditable * editable,
-					gpointer user_data)
+TILP_EXPORT void clock_spinbutton3_changed(GtkEditable * editable, gpointer user_data)
 {
-	tmp_clk.year =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+	tmp_clk.year = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 	modified = TRUE;
 } 
 
-TILP_EXPORT void clock_spinbutton4_changed(GtkEditable * editable,
-					  gpointer user_data)
+TILP_EXPORT void clock_spinbutton4_changed(GtkEditable * editable, gpointer user_data)
 {
-	tmp_clk.hours =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+	tmp_clk.hours = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 	modified = TRUE;
 } 
 
-TILP_EXPORT void clock_spinbutton5_changed(GtkEditable * editable,
-					  gpointer user_data)
+TILP_EXPORT void clock_spinbutton5_changed(GtkEditable * editable, gpointer user_data)
 {
-	tmp_clk.minutes =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+	tmp_clk.minutes = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 	modified = TRUE;
 } 
 
-TILP_EXPORT void clock_spinbutton6_changed(GtkEditable * editable,
-					  gpointer user_data)
+TILP_EXPORT void clock_spinbutton6_changed(GtkEditable * editable, gpointer user_data)
 {
-	tmp_clk.seconds =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+	tmp_clk.seconds = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 	modified = TRUE;
 } 
 
-TILP_EXPORT void clock_spinbutton1_changed(GtkEditable * editable,
-					  gpointer user_data)
+TILP_EXPORT void clock_spinbutton1_changed(GtkEditable * editable, gpointer user_data)
 {
-	tmp_clk.day =
-	    gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
+	tmp_clk.day = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 	modified = TRUE;
 } 
 
-TILP_EXPORT void clock_sync_button_clicked(GtkButton * button,
-					  gpointer user_data)
+TILP_EXPORT void clock_sync_button_clicked(GtkButton * button, gpointer user_data)
 {
 	time_t tt;
 	struct tm *lt;

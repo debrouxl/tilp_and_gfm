@@ -21,6 +21,8 @@
 #ifndef __GFMGUI_H__
 #define __GFMGUI_H__
 
+#include "support.h"
+
 /* Structures */
 typedef struct 
 {
@@ -43,5 +45,16 @@ int launch_gfmgui(void);
 
 void enable_save(int state);
 void enable_tree(int state);
+
+GLADE_CB void on_new_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_save_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_quit_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_gfm_dbox_destroy(GtkObject *object, gpointer user_data);
+GLADE_CB gboolean on_gfm_dbox_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data);
+GLADE_CB void on_add_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_delete_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_mkdir_clicked(GtkToolButton *toolbutton, gpointer user_data);
+GLADE_CB void on_group_clicked(GtkButton *toolbutton, gpointer user_data);
+GLADE_CB void on_ungroup_clicked(GtkButton *toolbutton, gpointer user_data);
 
 #endif

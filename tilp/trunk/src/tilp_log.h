@@ -23,8 +23,8 @@
 	Domain name logging.
 */
 
-#ifndef __TILP_LOGGING__
-#define __TILP_LOGGING__
+#ifndef __TILP_LOG_H__
+#define __TILP_LOG_H__
 
 #include <glib.h>
 

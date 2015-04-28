@@ -29,27 +29,23 @@
 
 #include "support.h"
 #include "gstruct.h"
+#include "tilp_core.h"
+#include "tilp.h"
 #include "device.h"
 #include "toolbar.h"
 #include "options.h"
-#include "tilp_core.h"
 #include "labels.h"
 #include "ctree.h"
+#include "ctree_rbm.h"
 
 /* Callbacks */
 
-TILP_EXPORT void
-rbm_change_device1_activate             (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_change_device1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
 	display_device_dbox();
 }
 
-extern void show_right_view(int view);
-
-TILP_EXPORT void
-rbm_local_view1_activate             (GtkCheckMenuItem    *action,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_local_view1_activate(GtkCheckMenuItem *action, gpointer user_data)
 {
 	if(options.full_gui)
 		gtk_window_get_size(GTK_WINDOW(main_wnd), &options.wnd_x_size1, &options.wnd_y_size1);
@@ -66,14 +62,12 @@ rbm_local_view1_activate             (GtkCheckMenuItem    *action,
 		gtk_window_resize(GTK_WINDOW(main_wnd), options.wnd_x_size2, options.wnd_y_size2);
 }
 
-TILP_EXPORT void
-rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_options1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	display_options_dbox();
 }
 
-TILP_EXPORT void
-rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_del_var();
 	remote.memory.ram_used = ticalcs_dirlist_ram_used(remote.var_tree);
@@ -82,22 +76,17 @@ rbm_delete_var1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	ctree_refresh();
 }
 
-TILP_EXPORT void
-rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_create_folder1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_calc_new_fld();
 }
 
-TILP_EXPORT void
-rbm_recv_as_group1_activate             (GtkCheckMenuItem *action,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_recv_as_group1_activate(GtkCheckMenuItem *action, gpointer user_data)
 {
 	options.recv_as_group = gtk_check_menu_item_get_active(action);
 }
 
-TILP_EXPORT void
-rbm_backup_as_tigroup1_activate        (GtkCheckMenuItem  *action,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_backup_as_tigroup1_activate(GtkCheckMenuItem *action, gpointer user_data)
 {
 	options.backup_as_tigroup = gtk_check_menu_item_get_active(action);
 }

@@ -22,6 +22,6 @@
 #ifndef __LABELS_H__
 #define __LABELS_H__
 
-void labels_refresh();
+void labels_refresh(void);
 
 #endif

@@ -26,6 +26,7 @@
 
 #include "tilp_core.h"
 #include "gstruct.h"
+#include "labels.h"
 
 struct label_window label_wnd = { NULL, NULL, NULL, NULL, NULL };
 
@@ -89,8 +90,6 @@ static char* format_path(char *src, char *dst)
 	return dst;
 }
 
-extern const char* format_bytes(unsigned long value);
-
 /* Refresh the info window */
 void labels_refresh(void)
 {
@@ -98,6 +97,7 @@ void labels_refresh(void)
 	gchar *utf8;
 	gchar path[1024];
 	gchar *str, *str1, *str2;
+	char buf[16];
 
 	if(working_mode & MODE_CMD)
 		return;
@@ -109,7 +109,7 @@ void labels_refresh(void)
 	gtk_label_set_text(GTK_LABEL(label_wnd.label21), path);
 
 	/* RAM used */
-	str1 = g_strdup(format_bytes(remote.memory.ram_used));
+	str1 = g_strdup(format_bytes(remote.memory.ram_used, buf, sizeof(buf)));
 	str = g_strdup_printf(_("used: %s"), str1);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label11), str);
 	
@@ -117,7 +117,7 @@ void labels_refresh(void)
 	g_free(str);
 
 	/* RAM free */
-	str2 = g_strdup(format_bytes(remote.memory.ram_free));
+	str2 = g_strdup(format_bytes(remote.memory.ram_free, buf, sizeof(buf)));
 
 	if(remote.memory.ram_free == -1U)
 		str = g_strdup_printf(_("free: N/A"));
@@ -129,7 +129,7 @@ void labels_refresh(void)
 	g_free(str);
 
 	/* FLASH used */
-	str1 = g_strdup(format_bytes(remote.memory.flash_used));
+	str1 = g_strdup(format_bytes(remote.memory.flash_used, buf, sizeof(buf)));
 	str = g_strdup_printf(_("used: %s"), str1);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label12), str);
 
@@ -137,7 +137,7 @@ void labels_refresh(void)
 	g_free(str);
 
 	/* FLASH free */
-	str2 = g_strdup(format_bytes(remote.memory.flash_free));
+	str2 = g_strdup(format_bytes(remote.memory.flash_free, buf, sizeof(buf)));
 
 	if(remote.memory.flash_free == -1U)
 		str = g_strdup_printf(_("free: N/A"));

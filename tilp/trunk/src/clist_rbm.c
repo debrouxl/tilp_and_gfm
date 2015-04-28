@@ -33,6 +33,7 @@
 
 #include "support.h"
 #include "clist.h"
+#include "clist_rbm.h"
 #include "labels.h"
 #include "dboxes.h"
 #include "tilp.h"
@@ -109,8 +110,7 @@ TILP_EXPORT void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	local.copy_cut = CUT_FILE;
 } 
 
-TILP_EXPORT void rbm_copy1_activate(GtkMenuItem* menuitem,
-				  gpointer user_data)
+TILP_EXPORT void rbm_copy1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	local.copy_cut = COPY_FILE;
 } 
@@ -153,8 +153,7 @@ TILP_EXPORT void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	labels_refresh();
 }
 
-TILP_EXPORT void
-rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
+/*TILP_EXPORT void rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_file_chdir("..");
 
@@ -163,27 +162,25 @@ rbm_move_to_parent_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 	clist_refresh();
 	labels_refresh();
-} 
+}*/
 
-TILP_EXPORT void rbm_select_all1_activate(GtkMenuItem* menuitem,
-					gpointer user_data)
+/*TILP_EXPORT void rbm_select_all1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
 	GtkTreeSelection *sel;
 
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_select_all(sel);
-} 
+}*/
 
-TILP_EXPORT void rbm_unselect_all1_activate(GtkMenuItem* menuitem,
-					  gpointer user_data)
+/*TILP_EXPORT void rbm_unselect_all1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist_wnd);
 	GtkTreeSelection *sel;
 
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_unselect_all(sel);
-}
+}*/
 
 #ifdef __WIN32__
 static const char* get_gfm_path(void)
@@ -213,8 +210,7 @@ static const char* get_gfm_path(void)
 }
 #endif
 
-TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem,
-									gpointer user_data)
+TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 #ifdef __WIN32__
 	const char *app_path = get_gfm_path();
@@ -259,32 +255,27 @@ TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem,
 			msg_box1(_("Error"), error->message);
 		}
 	}
-} 
+}
 
-TILP_EXPORT void rbm_rename1_activate(GtkMenuItem* menuitem,
-				    gpointer user_data)
+TILP_EXPORT void rbm_rename1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_file_selection_rename();
-
 	clist_refresh();
 	labels_refresh();
-} 
+}
 
-TILP_EXPORT void rbm_update_window1_activate(GtkMenuItem* menuitem,
-					   gpointer user_data)
+/*TILP_EXPORT void rbm_update_window1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	on_tilp_button12_clicked(NULL, NULL);
-} 
+}*/
 
-TILP_EXPORT void
-rbm_make_a_new_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
+/*TILP_EXPORT void rbm_make_a_new_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	gchar *utf8 = NULL;
 	gsize br, bw;
 	gchar *dirname;
 
-	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "),
-				 _("new_directory"));
+	utf8 = gif->msg_entry(_("Make a new directory"), _("Name: "), _("new_directory"));
 	if (utf8 == NULL)
 		return;
 
@@ -296,16 +287,14 @@ rbm_make_a_new_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 
 	clist_refresh();
 	labels_refresh();
-}
+}*/
 
-TILP_EXPORT void rbm_delete_file1_activate(GtkMenuItem* menuitem,
-				       gpointer user_data)
+TILP_EXPORT void rbm_delete_file1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	on_tilp_button11_clicked(NULL, NULL);
 } 
 
-TILP_EXPORT void
-rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
+TILP_EXPORT void rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	g_free(options.working_dir);
 	options.working_dir = g_get_current_dir();
@@ -313,26 +302,19 @@ rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	tilp_config_write();
 } 
 
-TILP_EXPORT void
-rbm_show_all_files1_activate            (GtkCheckMenuItem     *menuitem,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_show_all_files1_activate(GtkCheckMenuItem *menuitem, gpointer user_data)
 {
 	options.show_all = gtk_check_menu_item_get_active(menuitem);
 	toolbar_refresh_buttons();
 	clist_refresh();
 }
 
-
-TILP_EXPORT void
-rbm_confirm_delete_activate             (GtkCheckMenuItem     *action,
-                                        gpointer         user_data)
+TILP_EXPORT void rbm_confirm_delete_activate(GtkCheckMenuItem *action, gpointer user_data)
 {
 	options.overwrite = gtk_check_menu_item_get_active(action);
 }
 
-TILP_EXPORT void
-rbm_properties1_activate             (GtkMenuItem     *menuitem,
-                                      gpointer         user_data)
+TILP_EXPORT void rbm_properties1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
 	GList *ptr;
 
@@ -345,7 +327,6 @@ rbm_properties1_activate             (GtkMenuItem     *menuitem,
 
 		display_properties_dbox(fn);
 	}
-	
 }
 
 GtkWidget *create_clist_rbm(void)

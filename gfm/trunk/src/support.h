@@ -18,6 +18,9 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#ifndef __SUPPORT_H__
+#define __SUPPORT_H__
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -95,3 +98,5 @@ void glade_set_atk_action_description(AtkAction * action,
 
 /* Update GTK Interface in Froze Position */
 #define GTK_REFRESH() { while(gtk_events_pending()) { gtk_main_iteration(); } }
+
+#endif

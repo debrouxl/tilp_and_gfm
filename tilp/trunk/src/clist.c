@@ -28,6 +28,7 @@
 #include "gstruct.h"
 #include "support.h"
 #include "labels.h"
+#include "clist.h"
 #include "clist_rbm.h"
 #include "tilp_core.h"
 
@@ -135,7 +136,6 @@ static void tree_selection_changed(GtkTreeSelection* selection, gpointer user_da
 	}
 }
 
-void clist_refresh(void);
 static void column_clicked(GtkTreeViewColumn* column, gpointer user_data)
 {
 	int col = column2index(user_data, column);
@@ -273,7 +273,7 @@ void clist_refresh(void)
 	switch (options.local_sort) 
 	{
 	case SORT_BY_NAME:
-		tilp_file_sort_by_name();		
+		tilp_file_sort_by_name();
 		col = gtk_tree_view_get_column(view, COLUMN_NAME);
 		gtk_tree_view_column_set_sort_indicator(col, TRUE);
 		gtk_tree_view_column_set_sort_order(col, options.local_sort_order ? GTK_SORT_ASCENDING : GTK_SORT_DESCENDING);
@@ -359,8 +359,7 @@ void clist_refresh(void)
 
 /* Callbacks */
 
-TILP_EXPORT gboolean
-on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
+TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
@@ -420,9 +419,7 @@ on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpoint
 
 
 /* Key pressed */
-TILP_EXPORT gboolean
-on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event,
-								gpointer user_data)
+TILP_EXPORT gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
 {
 	if (event->keyval == GDK_Delete) 
 	{

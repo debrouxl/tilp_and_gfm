@@ -25,7 +25,6 @@
 #include <gtk/gtk.h>
 
 #include "gui.h"
-#include "support.h"
 #include "ctree.h"
 #include "tilibs.h"
 #include "rwgroup.h"

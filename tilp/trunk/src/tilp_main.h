@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_MAIN__
-#define __TILP_MAIN__
+#ifndef __TILP_MAIN_H__
+#define __TILP_MAIN_H__
 
 int tilp_init(int *argc, char ***argv);
 int tilp_exit(void);

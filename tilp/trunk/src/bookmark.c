@@ -30,6 +30,7 @@
 #include "dboxes.h"
 #include "intl.h"
 #include "support.h"
+#include "bookmark.h"
 
 int go_to_bookmark(const char *link)
 {

@@ -19,15 +19,20 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __CLIST_RBM__
-#define __CLIST_RBM__
+#ifndef __CLIST_RBM_H__
+#define __CLIST_RBM_H__
 
 GtkWidget *create_clist_rbm(void);
 
-void rbm_delete_file1_activate(GtkMenuItem * menuitem, gpointer user_data);
 void rbm_cut1_activate(GtkMenuItem * menuitem, gpointer user_data);
 void rbm_copy1_activate(GtkMenuItem * menuitem, gpointer user_data);
 void rbm_paste1_activate(GtkMenuItem * menuitem, gpointer user_data);
-
+void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_rename1_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_delete_file1_activate(GtkMenuItem * menuitem, gpointer user_data);
+void rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data);
+void rbm_show_all_files1_activate(GtkCheckMenuItem *menuitem, gpointer user_data);
+void rbm_confirm_delete_activate(GtkCheckMenuItem *action, gpointer user_data);
+void rbm_properties1_activate(GtkMenuItem *menuitem, gpointer user_data);
 
 #endif

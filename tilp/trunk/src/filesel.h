@@ -24,7 +24,12 @@
  *  Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+#ifndef __FILESEL_H__
+#define __FILESEL_H__
+
 #include <gtk/gtk.h>
 
 const gchar *  create_fsel (const gchar *dirname, const gchar *filename, const gchar *ext, gboolean save);
       gchar ** create_fsels(const gchar *dirname, const gchar *filename, const gchar *ext);
+
+#endif

@@ -20,7 +20,7 @@
  */
 
 /*
-	Default callbacks for GUI Independant Functions
+	Default callbacks for GUI Independent Functions
 */
 
 #include <stdio.h>
@@ -30,6 +30,7 @@
 #include "dboxes.h"
 #include "gstruct.h"
 #include "tilp_core.h"
+#include "gtk_update.h"
 
 void tilp_gif_set_gtk(void)
 {
@@ -51,7 +52,6 @@ void tilp_gif_set_gtk(void)
 
 	gtk_gif.create_pbar = create_pbar;
 	gtk_gif.destroy_pbar = destroy_pbar;
-
 
 	tilp_gui_set_fncts(&gtk_gif);
 }

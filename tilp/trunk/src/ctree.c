@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 
 #include "support.h"
+#include "gstruct.h"
 #include "labels.h"
 #include "screenshot.h"
 #include "tilp.h"
@@ -485,9 +486,7 @@ void ctree_refresh(void)
 gchar *name_to_drag = NULL;
 GtkTreePath *path_to_drag = NULL;
 
-TILP_EXPORT gboolean
-on_treeview1_button_press_event(GtkWidget * widget,
-				GdkEventButton * event, gpointer user_data)
+TILP_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(ctree_wnd);
 	GtkTreeModel *model = GTK_TREE_MODEL(tree);
@@ -575,9 +574,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 
 /* Key pressed */
-TILP_EXPORT gboolean
-on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
-								gpointer user_data)
+TILP_EXPORT gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
 {
 	if ((event->state == GDK_CONTROL_MASK) &&
 	    ((event->keyval == GDK_D) || (event->keyval == GDK_d)))

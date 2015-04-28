@@ -32,13 +32,13 @@ TilpGuiFncts *gif;
 
 extern gint silent;
 
-int default_msg_box(const char *title, const char *message, int action)
+static int default_msg_box(const char *title, const char *message, int action)
 {
 	tilp_info("msg_box: [%s] [%s]", title, message);
 	return 0;
 }
 
-int default_msg_box1(const char *title, const char *message)
+static int default_msg_box1(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
 	tilp_info("msg_box1: [%s] [%s]", title, message);
@@ -52,7 +52,7 @@ int default_msg_box1(const char *title, const char *message)
 	return 0;
 }
 
-int default_msg_box2(const char *title, const char *message)
+static int default_msg_box2(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
     int c = '2';
@@ -73,7 +73,7 @@ int default_msg_box2(const char *title, const char *message)
 	return 0;
 }
 
-int default_msg_box3(const char *title, const char *message, 
+static int default_msg_box3(const char *title, const char *message, 
 		     const char *b1, const char *b2, const char *b3)
 {
 #if !defined(_WINDOWS)
@@ -96,7 +96,7 @@ int default_msg_box3(const char *title, const char *message,
 	return 0;
 }
 
-int default_msg_box4(const char *title, const char *message)
+static int default_msg_box4(const char *title, const char *message)
 {
 #if !defined(_WINDOWS)
     int c = '2';
@@ -117,7 +117,7 @@ int default_msg_box4(const char *title, const char *message)
 	return 0;
 }
 
-char *default_msg_entry(const char *title, const char *message, const char *content)
+static char *default_msg_entry(const char *title, const char *message, const char *content)
 {
 #if !defined(_WINDOWS)
     char buffer[1024];
@@ -140,37 +140,37 @@ char *default_msg_entry(const char *title, const char *message, const char *cont
 #endif
 }
 
-void default_create_pbar_type1(const char *title)
+static void default_create_pbar_type1(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type2(const char *title)
+static void default_create_pbar_type2(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type3(const char *title)
+static void default_create_pbar_type3(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type4(const char *title)
+static void default_create_pbar_type4(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar_type5(const char *title)
+static void default_create_pbar_type5(const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_create_pbar(int type, const char *title)
+static void default_create_pbar(int type, const char *title)
 {
 	tilp_info("%s: ", title);
 }
 
-void default_destroy_pbar(void)
+static void default_destroy_pbar(void)
 {
 }
 

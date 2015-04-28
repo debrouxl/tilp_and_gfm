@@ -37,17 +37,45 @@ static void gtk_start(void)
 	gtk_update.cnt1 = gtk_update.max1 = 0;
 	gtk_update.cnt2 = gtk_update.max2 = 0;
 	gtk_update.cnt3 = gtk_update.max3 = 0;
-} 
+}
 
 static void gtk_stop(void)
 {
 	gtk_update.cnt1 = gtk_update.max1 = 0;
 	gtk_update.cnt2 = gtk_update.max2 = 0;
 	gtk_update.cnt3 = gtk_update.max3 = 0;
-} 
+}
 
-static void filter_shift(void);
-static gfloat filter_compute(gfloat input);
+static gfloat filter[8] = { 0 };
+
+static void filter_shift(void)
+{
+	int i;
+
+	for(i=7; i>0; i--)
+		filter[i] = filter[i-1];
+}
+
+static gfloat filter_compute(gfloat input)
+{
+	int i;
+	gfloat avg, min, max;
+
+	avg = min = max = 0.0;
+
+	filter[0] = input;
+	for(i=0; i<7; i++) {
+		if(filter[i] < min) min = filter[i];
+		if(filter[i] > max) max = filter[i];
+
+		avg += filter[i];
+	}
+
+	avg -= min;
+	avg -= max;
+
+	return (avg / 6);
+}
 
 static void refresh_pbar1(void)
 {
@@ -148,38 +176,4 @@ CalcUpdate gtk_update =
 void tilp_update_set_gtk(void)
 {
 	ticalcs_update_set(calc_handle, &gtk_update);
-}
-
-
-///// misc
-
-static gfloat filter[8] = { 0 };
-
-static void filter_shift(void)
-{
-	int i;
-
-	for(i=7; i>0; i--)
-		filter[i] = filter[i-1];
-}
-
-static gfloat filter_compute(gfloat input)
-{
-	int i;
-	gfloat avg, min, max;
-	
-	avg = min = max = 0.0;
-
-	filter[0] = input;
-	for(i=0; i<7; i++) {
-		if(filter[i] < min) min = filter[i];
-		if(filter[i] > max) max = filter[i];
-
-		avg += filter[i];
-	}
-
-	avg -= min;
-	avg -= max;
-
-	return (avg / 6);
 }

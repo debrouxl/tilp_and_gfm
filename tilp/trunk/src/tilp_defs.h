@@ -23,8 +23,8 @@
   This file contains contains some global definitions
 */
 
-#ifndef __TILP_DEFS__
-#define __TILP_DEFS__
+#ifndef __TILP_DEFS_H__
+#define __TILP_DEFS_H__
 
 /* The sorting order */
 #define SORT_BY_NAME  (1 << 0)

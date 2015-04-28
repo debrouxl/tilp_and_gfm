@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __GTK_UPDATE__
-#define __GTK_UPDATE__
+#ifndef __GTK_UPDATE_H__
+#define __GTK_UPDATE_H__
 
 extern CalcUpdate	gtk_update;
 

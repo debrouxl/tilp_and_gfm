@@ -26,11 +26,13 @@
 #include <string.h>
 
 #include "support.h"
+#include "gstruct.h"
 #include "ctree.h"
 #include "tilp.h"
 #include "screenshot.h"
 #include "tilp_core.h"
 #include "gtk_update.h"
+#include "dnd.h"
 
 // MUST be the same in ctree.c
 enum 
@@ -90,27 +92,22 @@ void dnd_init(void)
 /* CList -> CTree */
 
 // pass data
-TILP_EXPORT void
-on_treeview2_drag_data_get(GtkWidget * widget,
-			   GdkDragContext * drag_context,
-			   GtkSelectionData * data,
-			   guint info, guint _time, gpointer user_data)
+TILP_EXPORT void on_treeview2_drag_data_get(GtkWidget * widget,
+                                            GdkDragContext * drag_context,
+                                            GtkSelectionData * data,
+                                            guint info, guint _time, gpointer user_data)
 {
 	gchar *name = (char *)"foo_bar";
-	gtk_selection_data_set(data, data->target, 8, 
-			       (guchar *)name, strlen(name));
+	gtk_selection_data_set(data, data->target, 8, (guchar *)name, strlen(name));
 }
 
-extern int on_tilp_send(const gchar*);
-
 // retrieve data
-TILP_EXPORT void
-on_treeview1_drag_data_received(GtkWidget * widget,
-				GdkDragContext * drag_context,
-				gint x,
-				gint y,
-				GtkSelectionData * data,
-				guint info, guint _time, gpointer user_data)
+TILP_EXPORT void on_treeview1_drag_data_received(GtkWidget * widget,
+                                                 GdkDragContext * drag_context,
+                                                 gint x,
+                                                 gint y,
+                                                 GtkSelectionData * data,
+                                                 guint info, guint _time, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = gtk_tree_view_get_model(view);
@@ -204,9 +201,7 @@ end:
 extern gchar *name_to_drag;
 extern GtkTreePath *path_to_drag;
 
-TILP_EXPORT void
-on_treeview1_drag_begin(GtkWidget * widget,
-			GdkDragContext * drag_context, gpointer user_data)
+TILP_EXPORT void on_treeview1_drag_begin(GtkWidget * widget, GdkDragContext * drag_context, gpointer user_data)
 {
 	// Folder
 	if (!strcmp(name_to_drag, NODEx) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
@@ -225,11 +220,10 @@ on_treeview1_drag_begin(GtkWidget * widget,
 		ctree_select_vars(!0);
 }
 
-TILP_EXPORT void
-on_treeview1_drag_data_get(GtkWidget * widget,
-			   GdkDragContext * drag_context,
-			   GtkSelectionData * data,
-			   guint info, guint _time, gpointer user_data)
+TILP_EXPORT void on_treeview1_drag_data_get(GtkWidget * widget,
+                                            GdkDragContext * drag_context,
+                                            GtkSelectionData * data,
+                                            guint info, guint _time, gpointer user_data)
 {
 	if (info == TARGET_ROOTWIN) 
 	{
@@ -243,13 +237,12 @@ on_treeview1_drag_data_get(GtkWidget * widget,
 	}
 }
 
-TILP_EXPORT void
-on_treeview2_drag_data_received(GtkWidget * widget,
-				GdkDragContext * drag_context,
-				gint x,
-				gint y,
-				GtkSelectionData * data,
-				guint info, guint _time, gpointer user_data)
+TILP_EXPORT void on_treeview2_drag_data_received(GtkWidget * widget,
+                                                 GdkDragContext * drag_context,
+                                                 gint x,
+                                                 gint y,
+                                                 GtkSelectionData * data,
+                                                 guint info, guint _time, gpointer user_data)
 {
 	if ((data->length >= 0) && (data->format == 8)) 
 	{

@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_FILES__
-#define __TILP_FILES__
+#ifndef __TILP_FILES_H__
+#define __TILP_FILES_H__
 
 #include "tilp_struct.h"
 

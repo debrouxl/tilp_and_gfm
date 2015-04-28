@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_PROBE__
-#define __TILP_PROBE__
+#ifndef __TILP_DEVICE_H__
+#define __TILP_DEVICE_H__
 
 CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc);
 CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc);

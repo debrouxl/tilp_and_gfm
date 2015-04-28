@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef GTOOLBAR_H
-#define GTOOLBAR_H
+#ifndef __TOOLBAR_H__
+#define __TOOLBAR_H__
 
 void toolbar_refresh_buttons(void);
 void toolbar_set_button(int sr);

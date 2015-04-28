@@ -117,7 +117,7 @@ static void clist_populate(GtkListStore *_store, int full)
 	}
 	else
 	{
-		int **array;
+		int **array = NULL;
 		int i, j;
 
 		gtk_label_set_text(GTK_LABEL(lbl), "Searching for devices (~20 seconds)...");
@@ -398,8 +398,7 @@ gint display_device_dbox(void)
 	return 0;
 }
 
-
-TILP_EXPORT void on_device_combobox1_changed (GtkComboBox *combobox, gpointer user_data)
+TILP_EXPORT void on_device_combobox1_changed(GtkComboBox *combobox, gpointer user_data)
 {
 	tmp.cable_model = get_cable_model(om_cable);
 
@@ -409,37 +408,32 @@ TILP_EXPORT void on_device_combobox1_changed (GtkComboBox *combobox, gpointer us
 #endif
 }
 
-
-TILP_EXPORT void on_device_combobox2_changed (GtkComboBox *combobox, gpointer user_data)
+TILP_EXPORT void on_device_combobox2_changed(GtkComboBox *combobox, gpointer user_data)
 {
 	tmp.cable_port = get_cable_port(om_port);
 }
 
-
-TILP_EXPORT void on_device_combobox3_changed (GtkComboBox *combobox, gpointer user_data)
+TILP_EXPORT void on_device_combobox3_changed(GtkComboBox *combobox, gpointer user_data)
 {
 	tmp.calc_model = get_calc_model(om_calc);
 }
-
 
 TILP_EXPORT void comm_checkbutton1_toggled(GtkToggleButton *togglebutton, gpointer user_data)
 {
 	options.auto_detect = togglebutton->active;
 }
 
-
 TILP_EXPORT void comm_spinbutton_delay_changed(GtkEditable *editable, gpointer user_data)
 {
 	tmp.cable_delay = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
-
 
 TILP_EXPORT void comm_spinbutton_timeout_changed(GtkEditable *editable, gpointer user_data)
 {
 	tmp.cable_timeout = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(user_data));
 }
 
-TILP_EXPORT void comm_button_search_clicked(GtkButton  *button, gpointer user_data)
+TILP_EXPORT void comm_button_search_clicked(GtkButton *button, gpointer user_data)
 {
 	list_refresh(store, !0);
 }

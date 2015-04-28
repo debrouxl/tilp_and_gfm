@@ -23,8 +23,8 @@
 
 */
 
-#ifndef __TILP_INDEP__
-#define __TILP_INDEP__
+#ifndef __TILP_GIF_H__
+#define __TILP_GIF_H__
 
 #ifdef __cplusplus
 extern "C" {

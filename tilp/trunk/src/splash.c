@@ -31,6 +31,7 @@
 #include "tilp_version.h"
 #include "tilp_core.h"
 #include "gtk_update.h"
+#include "splash.h"
 
 typedef struct 
 {
@@ -47,10 +48,8 @@ GtkWidget *splash_screen_start(void)
 	GdkPixbuf *pixbuf;
 
 	ss.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(ss.window),
-			     TILP_VERSION);
-	gtk_window_set_position(GTK_WINDOW(ss.window),
-				GTK_WIN_POS_CENTER_ALWAYS);
+	gtk_window_set_title(GTK_WINDOW(ss.window), TILP_VERSION);
+	gtk_window_set_position(GTK_WINDOW(ss.window), GTK_WIN_POS_CENTER_ALWAYS);
 	gtk_window_set_decorated(GTK_WINDOW(ss.window), FALSE);
 	gtk_window_set_role(GTK_WINDOW(ss.window), "splash");
 	gtk_window_set_resizable(GTK_WINDOW(ss.window), FALSE);
@@ -58,8 +57,7 @@ GtkWidget *splash_screen_start(void)
 	color.red = 65535;
 	color.blue = 65535;
 	color.green = 65535;
-	gtk_widget_modify_bg(ss.window, GTK_STATE_NORMAL,
-			     &color);
+	gtk_widget_modify_bg(ss.window, GTK_STATE_NORMAL, &color);
 	vbox = gtk_vbox_new(FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(ss.window), vbox);
 	gtk_widget_show(vbox);

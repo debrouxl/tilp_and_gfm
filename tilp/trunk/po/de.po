@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-01 08:41+0200\n"
+"POT-Creation-Date: 2015-04-28 22:04+0200\n"
 "PO-Revision-Date: 2013-08-30 13:29+0200\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -48,7 +48,7 @@ msgstr "keine"
 msgid "rename"
 msgstr "umbenennen"
 
-#: ../src/action.c:130 ../src/action.c:308
+#: ../src/action.c:130 ../src/action.c:307
 msgid "overwrite"
 msgstr "überschreiben"
 
@@ -56,25 +56,25 @@ msgstr "überschreiben"
 msgid "skip"
 msgstr "überspringen"
 
-#: ../src/action.c:168 ../src/clist_rbm.c:361 ../src/clock.c:112
-#: ../src/ctree_rbm.c:117 ../src/dboxes.c:248 ../src/dboxes.c:296
+#: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:112
+#: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
 #: ../src/device.c:308 ../src/fileprop.c:58 ../src/manpage.c:70
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
 #: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
-#: ../src/screenshot.c:48 ../src/scroptions.c:49 ../src/tilp.c:89
+#: ../src/screenshot.c:49 ../src/scroptions.c:49 ../src/tilp.c:91
 #, c-format
 msgid "Couldn't load builder file: %s\n"
 msgstr "Die builder-Datei konnte nicht gefunden werden: %s\n"
 
-#: ../src/action.c:341 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
+#: ../src/action.c:340 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
 msgid "Rename the file"
 msgstr "Die Datei umbenennen"
 
-#: ../src/action.c:341 ../src/tilp_files.c:210
+#: ../src/action.c:340 ../src/tilp_files.c:210
 msgid "New name: "
 msgstr "Neuer Name: "
 
-#: ../src/bookmark.c:100
+#: ../src/bookmark.c:101
 msgid ""
 "A web browser has been launched: this may take a while before it appears. If "
 "it is already launched, the page may be opened in the existing frame."
@@ -83,15 +83,15 @@ msgstr ""
 "öffnet. Wenn bereits ein Browser läuft, wurde die Seite eventuell in einem "
 "neuen Reiter geöffnet."
 
-#: ../src/clist.c:199 ../src/ctree.c:185
+#: ../src/clist.c:199 ../src/ctree.c:186
 msgid "Name"
 msgstr "Name"
 
-#: ../src/clist.c:204 ../src/ctree.c:208
+#: ../src/clist.c:204 ../src/ctree.c:209
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/clist.c:209 ../src/ctree.c:213
+#: ../src/clist.c:209 ../src/ctree.c:214
 msgid "Size"
 msgstr "Größe"
 
@@ -99,22 +99,22 @@ msgstr "Größe"
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/clist_rbm.c:65
+#: ../src/clist_rbm.c:66
 msgid "Change drive"
 msgstr "Laufwerk ändern"
 
-#: ../src/clist_rbm.c:239 ../src/clist_rbm.c:259 ../src/clock.c:82
-#: ../src/dboxes.c:46 ../src/dnd.c:180 ../src/main.c:234 ../src/tilp.c:172
+#: ../src/clist_rbm.c:235 ../src/clist_rbm.c:255 ../src/clock.c:82
+#: ../src/dboxes.c:46 ../src/dnd.c:177 ../src/main.c:233 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:551 ../src/tilp_calcs.c:560 ../src/tilp_calcs.c:565
-#: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1272 ../src/tilp_cmdline.c:191
-#: ../src/tilp_config.c:382 ../src/tilp_device.c:405 ../src/tilp_device.c:447
-#: ../src/tilp_device.c:455 ../src/tilp_error.c:86 ../src/tilp_files.c:252
+#: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1266 ../src/tilp_cmdline.c:191
+#: ../src/tilp_config.c:382 ../src/tilp_device.c:401 ../src/tilp_device.c:443
+#: ../src/tilp_device.c:451 ../src/tilp_error.c:86 ../src/tilp_files.c:252
 #: ../src/tilp_files.c:324 ../src/tilp_misc.c:39
 msgid "Error"
 msgstr "Fehler"
 
-#: ../src/clist_rbm.c:239
+#: ../src/clist_rbm.c:235
 msgid ""
 "The Group File Manager doesn't seem to be installed on your system.\n"
 "Download it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP "
@@ -125,28 +125,15 @@ msgstr ""
 "Laden Sie es von <http://lpg.ticalc.org/prj_gfm/> herunter oder sehen Sie in "
 "das TiLP-Benutzerhandbuch, um weitere Informationen zu erhalten."
 
-#: ../src/clist_rbm.c:286 ../src/tilp.c:644
-msgid "Make a new directory"
-msgstr "Neues Verzeichnis erstellen"
-
-#: ../src/clist_rbm.c:286 ../src/tilp.c:644 ../src/tilp_calcs.c:1011
-#: ../src/tilp_slct.c:542
-msgid "Name: "
-msgstr "Name: "
-
-#: ../src/clist_rbm.c:287 ../src/tilp.c:644
-msgid "new_directory"
-msgstr "neues_verzeichnis"
-
 #: ../src/clock.c:82
 msgid "No clock support!"
 msgstr "Keine Uhrenunterstützung!"
 
-#: ../src/ctree.c:203
+#: ../src/ctree.c:204
 msgid "Attr"
 msgstr "Attr"
 
-#: ../src/ctree.c:250
+#: ../src/ctree.c:251
 #, c-format
 msgid "%s -> %s:#%i"
 msgstr "%s -> %s:#%i"
@@ -185,7 +172,7 @@ msgstr "Ein Ordner"
 
 #: ../src/dboxes.c:40 ../src/device.c:385 ../src/device.c:389
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
-#: ../src/tilp_calcs.c:1229 ../src/tilp_config.c:545 ../src/tilp_config.c:553
+#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:545 ../src/tilp_config.c:553
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
 #: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
 #: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
@@ -193,7 +180,7 @@ msgid "Information"
 msgstr "Informationen"
 
 #: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
-#: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1300
+#: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1294
 #: ../src/tilp_files.c:199 ../src/tilp_slct.c:517
 msgid "Warning"
 msgstr "Warnung"
@@ -255,37 +242,37 @@ msgstr "frei: N/A"
 msgid "free: %s"
 msgstr "frei: %s"
 
-#: ../src/main.c:156
+#: ../src/main.c:157
 msgid "Initializing KDE..."
 msgstr "KDE wird initialisiert ..."
 
-#: ../src/main.c:157
+#: ../src/main.c:158
 msgid "TiLP"
 msgstr "TiLP"
 
-#: ../src/main.c:157
+#: ../src/main.c:158
 msgid "Tilp Is a Linking Program"
 msgstr "TiLP Ist ein verLinkungsProgramm"
 
-#: ../src/main.c:163
+#: ../src/main.c:164
 msgid "Loading GUI..."
 msgstr "Grafische Benutzeroberfläche wird geladen ..."
 
-#: ../src/main.c:189
+#: ../src/main.c:190
 msgid "TiLP2"
 msgstr "TiLP2"
 
-#: ../src/main.c:200
+#: ../src/main.c:199
 msgid "Command line..."
 msgstr "Befehlszeile ..."
 
-#: ../src/main.c:234
+#: ../src/main.c:233
 msgid "An TiLP session is already running. Check the task list."
 msgstr ""
 "Es läuft bereits eine TiLP-Sitzung. Prüfen Sie die Liste der laufenden "
 "Prozesse."
 
-#: ../src/screenshot.c:228
+#: ../src/screenshot.c:223
 #, fuzzy, c-format
 msgid "Unknown calculator model with pixel_format=%d\n"
 msgstr "Unbekanntes Taschenrechnermodell mit %d bpp\n"
@@ -328,28 +315,40 @@ msgstr ""
 "Bevor Sie dem TiLP-Team mailen, stellen Sie sicher, dass Sie die FAQ gelesen "
 "haben ..."
 
-#: ../src/tilp.c:360 ../src/tilp.c:608 ../builder/tilp.ui.h:52
+#: ../src/tilp.c:358 ../src/tilp.c:604 ../builder/tilp.ui.h:52
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: ../src/tilp.c:360 ../src/tilp.c:608
+#: ../src/tilp.c:358 ../src/tilp.c:604
 msgid "Data to restore:"
 msgstr "Daten zur Wiederherstellung:"
 
-#: ../src/tilp.c:567 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
+#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
 #: ../builder/tilp.ui.h:50
 msgid "Backup"
 msgstr "Sicherungskopie"
 
-#: ../src/tilp.c:567 ../builder/backupdbox.ui.h:5
+#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:5
 msgid "Data to backup:"
 msgstr "Zu sichernde Daten"
 
-#: ../src/tilp.c:689
+#: ../src/tilp.c:640
+msgid "Make a new directory"
+msgstr "Neues Verzeichnis erstellen"
+
+#: ../src/tilp.c:640 ../src/tilp_calcs.c:1011 ../src/tilp_slct.c:542
+msgid "Name: "
+msgstr "Name: "
+
+#: ../src/tilp.c:640
+msgid "new_directory"
+msgstr "neues_verzeichnis"
+
+#: ../src/tilp.c:685
 msgid "Path"
 msgstr "Pfad"
 
-#: ../src/tilp.c:689
+#: ../src/tilp.c:685
 msgid "Enter new path"
 msgstr "Geben Sie den neuen Pfad ein"
 
@@ -365,11 +364,11 @@ msgstr ""
 "Der ganze Speicher wird gelöscht.\n"
 "Sind Sie sicher, dass Sie das tun möchten?"
 
-#: ../src/tilp_calcs.c:183 ../src/tilp_calcs.c:1309
+#: ../src/tilp_calcs.c:183 ../src/tilp_calcs.c:1303
 msgid "Restoring"
 msgstr "Wird wiederhergestellt"
 
-#: ../src/tilp_calcs.c:206 ../src/tilp_calcs.c:1332
+#: ../src/tilp_calcs.c:206 ../src/tilp_calcs.c:1326
 msgid "Backing up"
 msgstr "Wird gesichert"
 
@@ -540,27 +539,27 @@ msgstr "Ordner"
 msgid "Creating..."
 msgstr "Wird erstellt ..."
 
-#: ../src/tilp_calcs.c:1043
+#: ../src/tilp_calcs.c:1041
 #, c-format
 msgid "%lu bytes"
 msgstr "%lu Byte"
 
-#: ../src/tilp_calcs.c:1047
+#: ../src/tilp_calcs.c:1045
 #, c-format
 msgid "%lu KB"
 msgstr "%lu KB"
 
-#: ../src/tilp_calcs.c:1051
+#: ../src/tilp_calcs.c:1049
 #, c-format
 msgid "%lu MB"
 msgstr "%lu MB"
 
-#: ../src/tilp_calcs.c:1082
+#: ../src/tilp_calcs.c:1081
 #, c-format
 msgid "%sProduct Name: %s\n"
 msgstr "%sProduktname: %s\n"
 
-#: ../src/tilp_calcs.c:1089 ../src/tilp_calcs.c:1094
+#: ../src/tilp_calcs.c:1088 ../src/tilp_calcs.c:1094
 #, c-format
 msgid "%sProduct Id: %s\n"
 msgstr "%sProdukt-Id: %s\n"
@@ -625,49 +624,49 @@ msgstr ""
 msgid "%sPhysical RAM: %s\n"
 msgstr "%sPhysikalischer RAM: %s\n"
 
-#: ../src/tilp_calcs.c:1186
+#: ../src/tilp_calcs.c:1185
 #, c-format
 msgid "%sUser RAM: %s\n"
 msgstr "%sBenutzer-RAM: %s\n"
 
-#: ../src/tilp_calcs.c:1193
+#: ../src/tilp_calcs.c:1191
 #, c-format
 msgid "%sFree RAM: %s\n"
 msgstr "%sFreier RAM: %s\n"
 
-#: ../src/tilp_calcs.c:1200
+#: ../src/tilp_calcs.c:1197
 #, c-format
 msgid "%sPhysical FLASH: %s\n"
 msgstr "%sPhysikalischer FLASH: %s\n"
 
-#: ../src/tilp_calcs.c:1207
+#: ../src/tilp_calcs.c:1203
 #, c-format
 msgid "%sUser FLASH: %s\n"
 msgstr "%sBenutzer-FLASH: %s\n"
 
-#: ../src/tilp_calcs.c:1214
+#: ../src/tilp_calcs.c:1209
 #, c-format
 msgid "%sFree FLASH: %s\n"
 msgstr "%sFreier FLASH: %s\n"
 
-#: ../src/tilp_calcs.c:1224
+#: ../src/tilp_calcs.c:1218
 #, c-format
 msgid "%sBattery: %s\n"
 msgstr "%sBatterie: %s\n"
 
-#: ../src/tilp_calcs.c:1224
+#: ../src/tilp_calcs.c:1218
 msgid "good"
 msgstr "gut"
 
-#: ../src/tilp_calcs.c:1224
+#: ../src/tilp_calcs.c:1218
 msgid "low"
 msgstr "niedrig"
 
-#: ../src/tilp_calcs.c:1251
+#: ../src/tilp_calcs.c:1245
 msgid "Receiving cert"
 msgstr "Zertifikat wird empfangen"
 
-#: ../src/tilp_calcs.c:1273
+#: ../src/tilp_calcs.c:1267
 msgid ""
 "It's not a certificate or this certificate is not targeted at this "
 "calculator type."
@@ -675,11 +674,11 @@ msgstr ""
 "Das ist kein Zertifikat oder dieses Zertifikat ist nicht für diesen "
 "Taschenrechnertyp geeignet."
 
-#: ../src/tilp_calcs.c:1280
+#: ../src/tilp_calcs.c:1274
 msgid "Sending cert"
 msgstr "Zertifikat wird gesandt"
 
-#: ../src/tilp_calcs.c:1300
+#: ../src/tilp_calcs.c:1294
 msgid ""
 "You are about to restore the content\n"
 "of your calculator with a backup.\n"
@@ -766,11 +765,11 @@ msgstr "Konfigurationsdatei gespeichert"
 msgid "Configuration file loaded."
 msgstr "Konfigurationsdatei geladen"
 
-#: ../src/tilp_device.c:430
+#: ../src/tilp_device.c:426
 msgid "Connection is being reset... Please wait for 2 seconds."
 msgstr "Verbindung wird zurückgesetzt ... Bitte warten Sie zwei Sekunden."
 
-#: ../src/tilp_device.c:447 ../src/tilp_device.c:455
+#: ../src/tilp_device.c:443 ../src/tilp_device.c:451
 msgid "Can't set cable."
 msgstr "Kabel kann nicht gesetzt werden."
 

@@ -38,4 +38,7 @@ void ctree_set_basetree(void);
 
 void ctree_select_vars(gint action);
 
+gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data);
+gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
+
 #endif

@@ -22,6 +22,8 @@
 #ifndef __CTREE_H__
 #define __CTREE_H__
 
+#include "support.h"
+
 enum 
 { 
 	COLUMN_NAME, COLUMN_ATTR, COLUMN_TYPE, COLUMN_SIZE, 
@@ -47,5 +49,8 @@ void ctree_set_basetree(void);
 
 void ctree_selection_get(void);
 void ctree_selection_destroy(void);
+
+GLADE_CB gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data);
+GLADE_CB gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
 
 #endif

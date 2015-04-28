@@ -24,8 +24,8 @@
   other needed headers.
 */
 
-#ifndef TILIBS_H
-#define TILIBS_H
+#ifndef __TILIBS_H__
+#define __TILIBS_H__
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>

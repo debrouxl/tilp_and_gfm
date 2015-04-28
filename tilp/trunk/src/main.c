@@ -42,6 +42,7 @@
 #endif
 
 #include "support.h"
+#include "gstruct.h"
 #include "splash.h"
 #include "tilp.h"
 #include "toolbar.h"
@@ -195,8 +196,6 @@ int main(int argc, char *argv[])
 	 */
 	if((working_mode & MODE_GUI) && (working_mode & MODE_CMD)) 
 	{
-		extern int on_tilp_send(const char *);
-
 		splash_screen_set_label(_("Command line..."));
 
 		if(local.selection0 || local.selection2 || local.selection5)

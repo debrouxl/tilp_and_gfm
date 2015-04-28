@@ -40,7 +40,7 @@ static const char* authors[] =
 	"Julien Blache (Mac OS-X) <jb@jblache.org>", 
 	"Tijl Coosemans (*BSD) <tijl@ulyssis.org>", 
 	NULL 
-};	
+};
 
 static const char* documenters[] = 
 {

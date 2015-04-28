@@ -38,7 +38,7 @@ static GList *stack = NULL;
  */
 int tilp_err(int errcode)
 {
-	char *s = NULL;	
+	char *s = NULL;
 	char *utf;
 	gsize bw;
 

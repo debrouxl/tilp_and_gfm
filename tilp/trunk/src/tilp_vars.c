@@ -90,10 +90,10 @@ int tilp_dirlist_remote(void)
 
 /* Sorting functions */
 
-// use comp_func to sort node siblings
-void sort_nodes(GNode *tree, GCompareFunc comp_func)
-{
 #if 0
+// use comp_func to sort node siblings
+static void sort_nodes(GNode *tree, GCompareFunc comp_func)
+{
 	int j, k;
 	int p = g_node_n_children(tree);
 
@@ -120,8 +120,8 @@ void sort_nodes(GNode *tree, GCompareFunc comp_func)
 			}
 		}
 	} while(p <= k);
-#endif
 }
+#endif
 
 #if 0
 static gint sort_by_name(GNode* node, gpointer data)

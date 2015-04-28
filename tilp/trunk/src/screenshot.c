@@ -32,11 +32,12 @@
 #include "scroptions.h"
 #include "filesel.h"
 #include "tilp_core.h"
+#include "tilp.h"
 
 GtkWidget *scrn_win;
 static GtkWidget *scrn_img;
 
-gint display_screenshot_dbox()
+gint display_screenshot_dbox(void)
 {
 	GtkBuilder *builder;
 	GError* error = NULL;
@@ -87,8 +88,7 @@ TILP_EXPORT void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data
 
 static gboolean screen_success = FALSE;
 
-TILP_EXPORT void on_sc_save1_activate(GtkMenuItem * menuitem,
-				   gpointer user_data)
+TILP_EXPORT void on_sc_save1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	GdkPixbuf *pixbuf;
 	gboolean result = FALSE;
@@ -166,14 +166,12 @@ TILP_EXPORT void on_sc_save1_activate(GtkMenuItem * menuitem,
 	filename = NULL;
 }
 
-TILP_EXPORT void on_sc_quit1_activate(GtkMenuItem * menuitem,
-				   gpointer user_data)
+TILP_EXPORT void on_sc_quit1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	gtk_widget_destroy(scrn_win);
 }
 
-TILP_EXPORT void on_sc_options1_activate(GtkMenuItem * menuitem,
-				      gpointer user_data)
+TILP_EXPORT void on_sc_options1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	display_scroptions_dbox();
 }
@@ -183,10 +181,7 @@ static void destroy_pixbuf(guchar * pixels, gpointer data)
 	g_free(pixels);
 }
 
-extern void on_manual1_activate(GtkMenuItem * menuitem, gpointer user_data);
-
-TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button,
-					gpointer user_data)
+TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button, gpointer user_data)
 {
 	GdkPixbuf *pixbuf;
 	guchar *bytemap;
@@ -236,14 +231,12 @@ TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button,
 	g_object_unref(pixbuf);
 }
 
-TILP_EXPORT void on_scdbox_button2_clicked(GtkButton * button,
-					gpointer user_data)
+TILP_EXPORT void on_scdbox_button2_clicked(GtkButton * button, gpointer user_data)
 {
 	on_sc_save1_activate(NULL, NULL);
 }
 
-TILP_EXPORT void on_scdbox_button3_clicked(GtkButton * button,
-					gpointer user_data)
+TILP_EXPORT void on_scdbox_button3_clicked(GtkButton * button, gpointer user_data)
 {
 	gtk_widget_destroy(scrn_win);
 }

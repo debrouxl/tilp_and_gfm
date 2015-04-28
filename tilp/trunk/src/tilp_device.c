@@ -58,14 +58,11 @@
 // CABLE_USB & CALC_TIXX_USB -> CALC_TIXX
 CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
 {
-        if(cable == CABLE_USB && calc == CALC_TI84P_USB)
+	if (cable == CABLE_USB && calc == CALC_TI84P_USB)
 		return CALC_TI84P;
-	else if(cable == CABLE_USB && calc == CALC_TI89T_USB)
-		return  CALC_TI89T;
-	else if(cable == CABLE_DEV && calc == CALC_TI84P_USB)
-	  return CALC_TI84P;
-        else if(cable == CABLE_DEV && calc == CALC_TI89T_USB)
-	  return  CALC_TI89T;
+	//MAYBE NEEDS CHANGES
+	else if (cable == CABLE_USB && calc == CALC_TI89T_USB)
+		return CALC_TI89T;
 	else
 		return calc;
 }
@@ -73,10 +70,10 @@ CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
 // CABLE_USB & CALC_TIXX -> CALC_TIXX_USB
 CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc)
 {
-	if((cable == CABLE_USB || cable == CABLE_DEV) && calc == CALC_TI84P)
+	if (cable == CABLE_USB && calc == CALC_TI84P)
 		return CALC_TI84P_USB;
-	else if((cable == CABLE_USB || cable ==CABLE_DEV) && calc== CALC_TI89T)
-		return  CALC_TI89T_USB;
+	else if (cable == CABLE_USB && calc== CALC_TI89T)
+		return CALC_TI89T_USB;
 	else
 		return calc;
 }
@@ -99,7 +96,7 @@ int tilp_device_probe_usb(CableModel* cable_model, CablePort *port, CalcModel* c
 {
 	int err;
 	int ret = -1;
-	int **cables;
+	int **cables = NULL;
 	CableHandle* handle;
 
 	// search for all USB cables (faster)
@@ -147,7 +144,6 @@ step2:
 	*port = found_port(cables[CABLE_SLV]);
 	if(*port)
 	{
-		tilp_info("Searching for handhelds on SilverLink...");
 		handle = ticables_handle_new(CABLE_SLV, *port);
 		ticables_options_set_timeout(handle, 10);
 
@@ -381,7 +377,7 @@ int tilp_device_close(void)
 	return err;
 }
 
-int tilp_device_err(int err)
+static int tilp_device_err(int err)
 {
 	char *s = NULL;	
 	char *utf;

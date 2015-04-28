@@ -111,11 +111,11 @@ static void create_clist(GtkWidget * clist_wnd)
 
 	for (i = 0; i < CLIST_NVCOLS - 1; i++) 
 	{
-	  GtkTreeViewColumn *col;
-	  col = gtk_tree_view_get_column(view, i);
-	  gtk_tree_view_column_set_resizable(col, TRUE);
+		GtkTreeViewColumn *col;
+		col = gtk_tree_view_get_column(view, i);
+		gtk_tree_view_column_set_resizable(col, TRUE);
 	}
-	
+
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_set_mode(sel, GTK_SELECTION_MULTIPLE);
 	gtk_tree_selection_set_select_function(sel, select_function, NULL, NULL);
@@ -172,8 +172,7 @@ gint display_action_dbox(gchar *target)
 	gtk_builder_connect_signals(builder, NULL);
 
 	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "action_dbox"));
-	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_CANCEL,-1);
+	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK, GTK_RESPONSE_CANCEL, -1);
 	clist = data = GTK_WIDGET (gtk_builder_get_object (builder, "treeview1"));
 
 	// clist creation
@@ -271,7 +270,7 @@ gint display_action_dbox(gchar *target)
 	case GTK_RESPONSE_CANCEL:
 		button = BUTTON2;
 	default:
-         button = BUTTON2;
+		button = BUTTON2;
 		break;
 	}
 
@@ -297,7 +296,7 @@ TILP_EXPORT void action_overwrite_clicked(GtkButton * button, gpointer user_data
 		gtk_tree_model_get(model, &iter, 
 			COLUMN_DATA_F, &f, COLUMN_DATA_V, &v, COLUMN_DATA_N, &n,
 			-1);
-		
+
 		if (!f->selected)
 			continue;
 
@@ -397,7 +396,7 @@ TILP_EXPORT void action_select_all_clicked(GtkButton * button, gpointer user_dat
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
-	
+
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_select_all(sel);
 } 
@@ -406,13 +405,12 @@ TILP_EXPORT void action_deselect_all_clicked(GtkButton * button, gpointer user_d
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
-	
+
 	sel = gtk_tree_view_get_selection(view);
 	gtk_tree_selection_unselect_all(sel);
 }
 
-TILP_EXPORT gboolean
-action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
+TILP_EXPORT gboolean action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
@@ -423,7 +421,7 @@ action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gp
 	gint ty = (gint) event->y;
 	gint cx, cy;
 
-	if(event->type == GDK_2BUTTON_PRESS)
+	if (event->type == GDK_2BUTTON_PRESS)
 	{
 		VarEntry *ve;
 
@@ -435,11 +433,11 @@ action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gp
 		gtk_tree_model_get_iter(model, &iter, path);
 		gtk_tree_model_get(model, &iter, COLUMN_DATA_V, &ve, -1);
 
-		if(ve->attr == ATTRB_NONE)
+		if (ve->attr == ATTRB_NONE)
 			ve->attr = ATTRB_LOCKED;
-		else if(ve->attr == ATTRB_LOCKED)
+		else if (ve->attr == ATTRB_LOCKED)
 			ve->attr = ATTRB_ARCHIVED;
-		else if(ve->attr == ATTRB_ARCHIVED)
+		else if (ve->attr == ATTRB_ARCHIVED)
 			ve->attr = ATTRB_NONE;
 
 		gtk_list_store_set(list, &iter, COLUMN_ATTR, tifiles_attribute_to_string(ve->attr), -1);

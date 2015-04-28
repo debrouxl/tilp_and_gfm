@@ -23,8 +23,8 @@
   Contains the right headers for the internationalization library
 */
 
-#ifndef TILP_INTL_H
-#define TILP_INTL_H
+#ifndef __TILP_INTL_H__
+#define __TILP_INTL_H__
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>

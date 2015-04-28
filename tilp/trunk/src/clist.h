@@ -26,4 +26,7 @@ void clist_init(void);
 void clist_refresh(void);
 void clist_selection_refresh(void);
 
+gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data);
+gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
+
 #endif
