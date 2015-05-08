@@ -164,8 +164,8 @@ Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environmen
 ; NSpire entries
 Root: HKCR; SubKey: ".tns"; ValueType: string;  ValueData: "TiLP.Document"; Tasks: tifiles;
 Root: HKCR; SubKey: ".tno"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
-; TiGroup entries
-Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "TiLP.TiGroup"; Tasks: tifiles;
+; TIGroup entries
+Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "TiLP.TIGroup"; Tasks: tifiles;
 ; V200 file entries
 Root: HKCR; SubKey: ".v2a"; ValueType: string;  ValueData: "TiLP.Figure"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;

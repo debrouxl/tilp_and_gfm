@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-28 22:04+0200\n"
+"POT-Creation-Date: 2015-05-08 11:24+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -1116,8 +1116,8 @@ msgid "Recv as _group"
 msgstr "_Recevoir groupé"
 
 #: ../builder/ctree_rbm.ui.h:4
-msgid "Backup as TiGroup"
-msgstr "Sauvegarde avec TiGroup"
+msgid "Backup as TIGroup"
+msgstr "Sauvegarde comme TIGroup"
 
 #: ../builder/ctree_rbm.ui.h:5
 msgid "Create _Folder"
@@ -1340,8 +1340,8 @@ msgid "Display"
 msgstr "Afficher"
 
 #: ../builder/options.ui.h:11
-msgid "_TiGroup"
-msgstr "_TiGroup"
+msgid "_TIGroup"
+msgstr "_TIGroup"
 
 #: ../builder/options.ui.h:12
 msgid "Backup/Restore with"
@@ -1874,8 +1874,8 @@ msgstr "Dossier courant:"
 #~ msgid "Ti File (Zoom)"
 #~ msgstr "Fichier TI (Zoom)"
 
-#~ msgid "Ti File (TiGroup)"
-#~ msgstr "Fichier TI (TiGroup)"
+#~ msgid "Ti File (TIGroup)"
+#~ msgstr "Fichier TI (TIGroup)"
 
 #~ msgid "Ti File (String)"
 #~ msgstr "Fichier TI (Chaîne)"

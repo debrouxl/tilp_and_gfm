@@ -65,7 +65,7 @@ void tilp_local_selection_destroy(void)
 		local.selection4 = NULL;
 	}
 
-	if (local.selection5 != NULL)	// TiGroups
+	if (local.selection5 != NULL)	// TIGroups
 	{
 		g_list_free(local.selection5);
 		local.selection5 = NULL;
@@ -150,7 +150,7 @@ void tilp_local_contents_load(void)
 	GList *ptr;
 	int err;
 
-	// TiGroups
+	// TIGroups
 	if (local.selection5 != NULL)
 	{
 		for(ptr = local.selection5; ptr; ptr = ptr->next)

@@ -1282,7 +1282,7 @@ int tilp_calc_send_cert(const char *filename)
 }
 
 /*
-  Send a TiGroup from the specified filename
+  Send a TIGroup from the specified filename
   - [in] filename: the file to use
   - [out]: -1 if error, 0 otherwise
 */
@@ -1313,7 +1313,7 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 
 
 /*
-	Receive a TiGroup
+	Receive a TIGroup
 */
 int tilp_calc_recv_tigroup(TigMode mode)
 {

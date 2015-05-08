@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-28 22:04+0200\n"
+"POT-Creation-Date: 2015-05-08 11:24+0200\n"
 "PO-Revision-Date: 2013-08-30 13:29+0200\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -1129,8 +1129,8 @@ msgid "Recv as _group"
 msgstr "Als Gruppe _empfangen"
 
 #: ../builder/ctree_rbm.ui.h:4
-msgid "Backup as TiGroup"
-msgstr "Als TiGroup sichern"
+msgid "Backup as TIGroup"
+msgstr "Als TIGroup sichern"
 
 #: ../builder/ctree_rbm.ui.h:5
 msgid "Create _Folder"
@@ -1351,8 +1351,8 @@ msgid "Display"
 msgstr "Anzeige"
 
 #: ../builder/options.ui.h:11
-msgid "_TiGroup"
-msgstr "T_iGroup"
+msgid "_TIGroup"
+msgstr "T_IGroup"
 
 #: ../builder/options.ui.h:12
 msgid "Backup/Restore with"

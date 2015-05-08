@@ -551,7 +551,7 @@ TILP_EXPORT void on_tilp_button6_clicked(GtkButton* button, gpointer user_data)
 	tilp_local_selection_destroy();
 }
 
-// Recv TiGroup
+// Recv TIGroup
 TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 {
 	char* src_filename;
@@ -594,7 +594,7 @@ TILP_EXPORT void on_tilp_button7_clicked(GtkButton* button, gpointer user_data)
 	labels_refresh();
 }
 
-// Send TiGroup
+// Send TIGroup
 TILP_EXPORT void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 {
 	const char *filename;

@@ -97,6 +97,6 @@ Polar		?			8x
 Parametric	?			8x
 Diff-Eq		?			8x or 86?
 
-TiGroup		tig			all
+TIGroup		tig			all
 
 Note: FLASH = 73,8X,89,9X,V2

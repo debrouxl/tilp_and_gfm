@@ -57,7 +57,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="use_action_appearance">False</property>
-        <property name="label" translatable="yes">Backup as TiGroup</property>
+        <property name="label" translatable="yes">Backup as TIGroup</property>
         <property name="use_underline">True</property>
         <property name="active">True</property>
         <signal name="activate" handler="rbm_backup_as_tigroup1_activate" swapped="no"/>

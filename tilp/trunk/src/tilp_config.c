@@ -340,7 +340,7 @@ int tilp_config_write(void)
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "recv_as_group", "Receive as group instead of single files", &error);
 
 	g_key_file_set_integer(kf, SECTION_OPTIONS, "backup_as_tigroup", options.backup_as_tigroup);
-	g_key_file_set_comment(kf, SECTION_OPTIONS, "backup_as_tigroup", "Receive as TiGroup instead of backup/group files", &error);
+	g_key_file_set_comment(kf, SECTION_OPTIONS, "backup_as_tigroup", "Receive as TIGroup instead of backup/group files", &error);
 
 	g_key_file_set_string (kf, SECTION_OPTIONS, "working_dir", options.working_dir);
 	g_key_file_set_comment(kf, SECTION_OPTIONS, "working_dir", "Working folder", &error);

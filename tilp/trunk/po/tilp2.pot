@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-28 22:04+0200\n"
+"POT-Creation-Date: 2015-05-08 11:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1043,7 +1043,7 @@ msgid "Recv as _group"
 msgstr ""
 
 #: ../builder/ctree_rbm.ui.h:4
-msgid "Backup as TiGroup"
+msgid "Backup as TIGroup"
 msgstr ""
 
 #: ../builder/ctree_rbm.ui.h:5
@@ -1265,7 +1265,7 @@ msgid "Display"
 msgstr ""
 
 #: ../builder/options.ui.h:11
-msgid "_TiGroup"
+msgid "_TIGroup"
 msgstr ""
 
 #: ../builder/options.ui.h:12
