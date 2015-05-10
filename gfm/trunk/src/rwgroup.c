@@ -251,22 +251,21 @@ int tigroup_load(const char *filename)
 
 static gboolean varnode_to_tigentry(GNode* node, gpointer data)
 {
-	if(node)
+	if (node && node->data)
 	{
-		if(node->data)
+		VarEntry* ve = node->data;
+		TigEntry* te;
+		gchar *basename, *filename;
+
+		// create filename
+		basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
+		filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
+		g_free(basename);
+
+		te = tifiles_te_create(filename, TIFILE_SINGLE, GFMFile.model);
+		g_free(filename);
+		if (te != NULL)
 		{
-			VarEntry* ve = node->data;
-			TigEntry* te;
-			gchar *basename, *filename;
-
-			// create filename
-			basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
-			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
-			g_free(basename);
-
-			te = tifiles_te_create(filename, TIFILE_SINGLE, GFMFile.model);
-			g_free(filename);
-
 			tifiles_content_add_te((TigContent *)data, te);
 			tifiles_content_add_entry(te->content.regular, tifiles_ve_dup(ve));
 		}
@@ -277,24 +276,23 @@ static gboolean varnode_to_tigentry(GNode* node, gpointer data)
 
 static gboolean appnode_to_tigentry(GNode* node, gpointer data)
 {
-	if(node)
+	if (node && node->data)
 	{
-		if(node->data)
+		TigContent* content = (TigContent *)data;
+		VarEntry* ve = node->data;
+		TigEntry* te;
+		gchar *basename, *filename;
+		int *p;
+
+		// create filename
+		basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
+		filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
+		g_free(basename);
+
+		te = tifiles_te_create(filename, TIFILE_FLASH, GFMFile.model);
+		g_free(filename);
+		if (te != NULL)
 		{
-			TigContent* content = (TigContent *)data;
-			VarEntry* ve = node->data;
-			TigEntry* te;
-			gchar *basename, *filename;
-			int *p;
-
-			// create filename
-			basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
-			filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
-			g_free(basename);
-
-			te = tifiles_te_create(filename, TIFILE_FLASH, GFMFile.model);
-			g_free(filename);
-
 			tifiles_content_add_te(content, te);
 			tifiles_content_delete_flash(te->content.flash);
 
@@ -390,9 +388,10 @@ int	group_create(CalcModel model)
 
 int group_load(const char *filename)
 {
-	int ret, i;
+	unsigned int i;
 	TreeInfo *ti;
 	FileContent *content;
+	int ret;
 
 	// Create and load regular file
 	GFMFile.model = tifiles_file_get_model(filename);
@@ -408,7 +407,7 @@ int group_load(const char *filename)
 	}
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFMFile.trees.vars = g_node_new(NULL);
+	GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFMFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;
@@ -423,7 +422,7 @@ int group_load(const char *filename)
 	if(tifiles_calc_is_ti9x(GFMFile.model))
 	{
 		int **table;
-		int num_folders;
+		unsigned int num_folders;
 		GNode *node, *folder = NULL;
 
 		table = tifiles_create_table_of_entries(content, &num_folders);

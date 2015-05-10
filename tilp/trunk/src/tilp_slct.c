@@ -310,7 +310,7 @@ void tilp_local_contents_load(void)
 		{
 			FileEntry *fe = ptr->data;
 			FileContent *fc = fe->content1;
-			int i;
+			unsigned int i;
 
 			if(fc == NULL)
 				continue;
@@ -364,7 +364,7 @@ void tilp_local_change_folder(const char *target)
 	{
 		FileEntry *fe = ptr->data;
 		FileContent *c = fe->content1;
-		int i;
+		unsigned int i;
 
 		for(i = 0; i < c->num_entries; i++)
 			strcpy(((c->entries)[i])->folder, target);
@@ -385,7 +385,7 @@ void tilp_local_update_varlist(void)
 	{
 		FileEntry *fe = ptr->data;
 		FileContent *c = fe->content1;
-		int i;
+		unsigned int i;
 
 		for(i = 0; i < c->num_entries; i++)
 			ticalcs_dirlist_ve_add(remote.var_tree, (c->entries)[i]);

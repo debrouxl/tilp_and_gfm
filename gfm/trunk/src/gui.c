@@ -129,7 +129,6 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	ctree_refresh();
 	labels_refresh();
 }
-					
 
 GLADE_CB void
 on_save_clicked                        (GtkToolButton   *toolbutton,
@@ -296,7 +295,7 @@ on_add_clicked                         (GtkToolButton   *toolbutton,
 	CalcModel model;
 	FileContent *content;
 	int ret;
-	int i;
+	unsigned int i;
 
 	array = create_fsels(inst_paths.home_dir, "", "*.*");
 	if(array == NULL)

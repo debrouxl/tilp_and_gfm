@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.08\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2015-04-28 08:08+0200\n"
+"POT-Creation-Date: 2015-05-10 11:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,55 +88,55 @@ msgstr ""
 msgid "Open file"
 msgstr ""
 
-#: src/gui.c:114 src/gui.c:418
+#: src/gui.c:114 src/gui.c:417
 msgid "TiGroup"
 msgstr ""
 
-#: src/gui.c:114 src/gui.c:418
+#: src/gui.c:114 src/gui.c:417
 msgid "Single/Group"
 msgstr ""
 
-#: src/gui.c:114 src/gui.c:418
+#: src/gui.c:114 src/gui.c:417
 msgid "File type?"
 msgstr ""
 
-#: src/gui.c:202
+#: src/gui.c:201
 msgid "Do you want to save previous file?"
 msgstr ""
 
-#: src/gui.c:267
+#: src/gui.c:266
 msgid "Save"
 msgstr ""
 
-#: src/gui.c:267
+#: src/gui.c:266
 msgid "Quit"
 msgstr ""
 
-#: src/gui.c:267
+#: src/gui.c:266
 msgid "File has not been saved yet. Do you want to quit?"
 msgstr ""
 
-#: src/gui.c:311
+#: src/gui.c:310
 msgid "Importing of TiGroup files is not allowed."
 msgstr ""
 
-#: src/gui.c:318
+#: src/gui.c:317
 msgid "File is not compatible with current target."
 msgstr ""
 
-#: src/gui.c:331
+#: src/gui.c:330
 msgid "The entry already exists. Skipped!"
 msgstr ""
 
-#: src/gui.c:395
+#: src/gui.c:394
 msgid "New Folder"
 msgstr ""
 
-#: src/gui.c:395
+#: src/gui.c:394
 msgid "folder"
 msgstr ""
 
-#: src/gui.c:395
+#: src/gui.c:394
 msgid "Name of folder to create:"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: src/rwgroup.c:315
+#: src/rwgroup.c:313
 msgid "Saving..."
 msgstr ""
 
