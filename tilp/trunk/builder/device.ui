@@ -90,59 +90,75 @@
         <col id="1" translatable="no">none</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI73</col>
+        <col id="0" translatable="yes">TI-73</col>
         <col id="1" translatable="no">ti73</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI80</col>
+        <col id="0" translatable="yes">TI-80</col>
         <col id="1" translatable="no">ti80</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI82</col>
+        <col id="0" translatable="yes">TI-82</col>
         <col id="1" translatable="no">ti82</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI83 / 82 Stats(.fr) / 76.fr</col>
+        <col id="0" translatable="yes">TI-83 / TI-82 Stats(.fr) / TI-76.fr</col>
         <col id="1" translatable="no">ti83</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI83+</col>
+        <col id="0" translatable="yes">TI-83+</col>
         <col id="1" translatable="no">ti83+</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI84+</col>
+        <col id="0" translatable="yes">TI-84+ / TI-83.fr USB</col>
         <col id="1" translatable="no">ti84+</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI85</col>
+        <col id="0" translatable="yes">TI-84+CSE</col>
+        <col id="1" translatable="no">ti84+cse</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-83 Premium CE</col>
+        <col id="1" translatable="no">ti83pce</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-84 Plus CE</col>
+        <col id="1" translatable="no">ti84+ce</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-82 Advanced</col>
+        <col id="1" translatable="no">ti82a</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-85</col>
         <col id="1" translatable="no">ti85</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI86</col>
+        <col id="0" translatable="yes">TI-86</col>
         <col id="1" translatable="no">ti86</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI89</col>
+        <col id="0" translatable="yes">TI-89</col>
         <col id="1" translatable="no">ti89</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Titanium</col>
+        <col id="0" translatable="yes">TI-89 Titanium</col>
         <col id="1" translatable="no">ti89t</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI92</col>
+        <col id="0" translatable="yes">TI-92</col>
         <col id="1" translatable="no">ti92</col>
       </row>
       <row>
-        <col id="0" translatable="yes">TI92+</col>
+        <col id="0" translatable="yes">TI-92+</col>
         <col id="1" translatable="no">ti92+</col>
       </row>
       <row>
-        <col id="0" translatable="yes">V200PLT</col>
+        <col id="0" translatable="yes">TI-V200 PLT</col>
         <col id="1" translatable="no">v200</col>
       </row>
       <row>
-        <col id="0" translatable="yes">Nspire</col>
+        <col id="0" translatable="yes">TI-Nspire</col>
         <col id="1" translatable="no">nspire</col>
       </row>
     </data>

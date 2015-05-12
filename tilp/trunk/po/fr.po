@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-08 11:24+0200\n"
+"POT-Creation-Date: 2015-05-12 09:25+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -1176,94 +1176,110 @@ msgid "#4"
 msgstr "n°4"
 
 #: ../builder/device.ui.h:14
-msgid "TI73"
-msgstr "TI73"
+msgid "TI-73"
+msgstr "TI-73"
 
 #: ../builder/device.ui.h:15
-msgid "TI80"
-msgstr "TI80"
+msgid "TI-80"
+msgstr "TI-80"
 
 #: ../builder/device.ui.h:16
-msgid "TI82"
-msgstr "TI82"
+msgid "TI-82"
+msgstr "TI-82"
 
 #: ../builder/device.ui.h:17
-msgid "TI83 / 82 Stats(.fr) / 76.fr"
-msgstr "TI83 / 82 Stats(.fr) / 76.fr"
+msgid "TI-83 / TI-82 Stats(.fr) / TI-76.fr"
+msgstr "TI-83 / TI-82 Stats(.fr) / TI-76.fr"
 
 #: ../builder/device.ui.h:18
-msgid "TI83+"
-msgstr "TI83+"
+msgid "TI-83+"
+msgstr "TI-83+"
 
 #: ../builder/device.ui.h:19
-msgid "TI84+"
-msgstr "TI84+"
+msgid "TI-84+ / TI-83.fr USB"
+msgstr "TI-84+ / TI-83.fr USB"
 
 #: ../builder/device.ui.h:20
-msgid "TI85"
-msgstr "TI85"
+msgid "TI-84+CSE"
+msgstr "TI-84+CSE"
 
 #: ../builder/device.ui.h:21
-msgid "TI86"
-msgstr "TI86"
+msgid "TI-83 Premium CE"
+msgstr "TI-83 Premium CE"
 
 #: ../builder/device.ui.h:22
-msgid "TI89"
-msgstr "TI89"
+msgid "TI-84 Plus CE"
+msgstr "TI-84 Plus CE"
 
 #: ../builder/device.ui.h:23
-msgid "Titanium"
-msgstr "Titanium"
+msgid "TI-82 Advanced"
+msgstr "TI-82 Advanced"
 
 #: ../builder/device.ui.h:24
-msgid "TI92"
-msgstr "TI92"
+msgid "TI-85"
+msgstr "TI-85"
 
 #: ../builder/device.ui.h:25
-msgid "TI92+"
-msgstr "TI92+"
+msgid "TI-86"
+msgstr "TI-86"
 
 #: ../builder/device.ui.h:26
-msgid "V200PLT"
-msgstr "V200PLT"
+msgid "TI-89"
+msgstr "TI-89"
 
 #: ../builder/device.ui.h:27
-msgid "Nspire"
-msgstr "Nspire"
+msgid "TI-89 Titanium"
+msgstr "TI-89 Titanium"
 
 #: ../builder/device.ui.h:28
+msgid "TI-92"
+msgstr "TI-92"
+
+#: ../builder/device.ui.h:29
+msgid "TI-92+"
+msgstr "TI-92+"
+
+#: ../builder/device.ui.h:30
+msgid "TI-V200 PLT"
+msgstr "TI-V200 PLT"
+
+#: ../builder/device.ui.h:31
+msgid "TI-Nspire"
+msgstr "TI-Nspire"
+
+#: ../builder/device.ui.h:32
 msgid "Communication Settings"
 msgstr "Paramètres de connexion"
 
-#: ../builder/device.ui.h:29
+#: ../builder/device.ui.h:33
 msgid "Cable:"
 msgstr "Câble:"
 
-#: ../builder/device.ui.h:30
+#: ../builder/device.ui.h:34
 msgid "Port:"
 msgstr "Port:"
 
-#: ../builder/device.ui.h:31
+#: ../builder/device.ui.h:35
 msgid "Calc:"
 msgstr "Calc:"
 
-#: ../builder/device.ui.h:32
+#: ../builder/device.ui.h:36
 msgid "Timeout:"
 msgstr "Timeout:"
 
-#: ../builder/device.ui.h:33
+#: ../builder/device.ui.h:37
 msgid "Delay:"
 msgstr "Délai:"
 
-#: ../builder/device.ui.h:34
+#: ../builder/device.ui.h:38
 msgid "Timeout value in tenth of seconds."
 msgstr "Valeur du temps maximum (timeout) en dixièmes de seconde"
 
-#: ../builder/device.ui.h:35
+#: ../builder/device.ui.h:39
 msgid "Inter-bit delay for serial/parallel link cables."
 msgstr "Attente entre bits pour les câbles série/parallèle"
 
-#: ../builder/device.ui.h:36
+#: ../builder/device.ui.h:40
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
@@ -1271,23 +1287,23 @@ msgstr ""
 "Si coché, TiLP scannera les périphériques USB au démarrage et utilisera le "
 "premier périphérique trouvé."
 
-#: ../builder/device.ui.h:37
+#: ../builder/device.ui.h:41
 msgid "USB scan at startup"
 msgstr "Scan USB au démarrage"
 
-#: ../builder/device.ui.h:38
+#: ../builder/device.ui.h:42
 msgid "Settings"
 msgstr "Configuration"
 
-#: ../builder/device.ui.h:39
+#: ../builder/device.ui.h:43
 msgid "Don't know which device you have ? Click =>"
 msgstr "Vous ne savez pas quel périphérique vous avez ? Cliquez =>"
 
-#: ../builder/device.ui.h:40
+#: ../builder/device.ui.h:44
 msgid "Probe for attached devices..."
 msgstr "Chercher les périphériques connectés..."
 
-#: ../builder/device.ui.h:41
+#: ../builder/device.ui.h:45
 msgid "Double-click a line to update settings."
 msgstr "Double-cliquez sur une ligne pour mettre à jour les paramètres"
 
