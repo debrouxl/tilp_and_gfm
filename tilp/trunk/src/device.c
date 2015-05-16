@@ -90,20 +90,22 @@ static void clist_populate(GtkListStore *_store, int full)
 {
 	if(!full)
 	{
-		int i, n, *list;
+		int i, n;
+		CableDeviceInfo *list;
 
-		ticables_get_usb_devices(&list, &n);
+		ticables_get_usb_device_info(&list, &n);
 
 		for(i = 0; i < n; i++)
 		{
 			GtkTreeIter iter;
 			gchar** row = g_malloc0((CLIST_NVCOLS + 1) * sizeof(gchar *));
+			CalcModel model = ticalcs_device_info_to_model(&list[i]);
 
 			gtk_list_store_append(_store, &iter);
 
-			row[COL_CABLE] = g_strdup(list[i] == PID_TIGLUSB ? "SilverLink" : "DirectLink");
+			row[COL_CABLE] = g_strdup(list[i].family == CABLE_FAMILY_DBUS ? "SilverLink" : "DirectLink");
 			row[COL_PORT] = g_strdup_printf("#%i", i+1);
-			row[COL_CALC] = g_strdup((list[i] == PID_TIGLUSB) ? "" : ticables_usbpid_to_string(list[i]));
+			row[COL_CALC] = g_strdup((model == CALC_NONE) ? "" : ticalcs_model_to_string(model));
 
 			gtk_list_store_set(_store, &iter, 
 				COL_CABLE, row[COL_CABLE], 
@@ -113,7 +115,7 @@ static void clist_populate(GtkListStore *_store, int full)
 			g_strfreev(row);
 		}
 
-		//free(list);
+		ticables_free_usb_device_info(list);
 	}
 	else
 	{
