@@ -215,10 +215,7 @@ static void set_calc_model(GtkWidget *combo, CalcModel cm)
 	GtkTreeIter iter;
 	char *str = NULL;
 
-	if (cm == CALC_TI84P_USB)
-		cm = CALC_TI84P;
-	else if (cm == CALC_TI89T_USB)
-		cm = CALC_TI89T;
+	cm = ticalcs_remap_model_from_usb(CABLE_USB, cm);
 
 	gtk_tree_model_get_iter_first(model, &iter);
 	do {
