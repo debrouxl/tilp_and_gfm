@@ -69,7 +69,7 @@ int tilp_pbar_type(CalcFnctsIdx op)
 static void tilp_options_increase_timeout(void)
 {
 	ticables_options_set_timeout(cable_handle, 
-		options.calc_model == CALC_TI83P || options.calc_model == CALC_TI84P ? 
+		tifiles_calc_is_ti8x(options.calc_model) ?
 		(options.cable_timeout > 300 ? options.cable_timeout : 300) :
 		(options.cable_timeout > 150 ? options.cable_timeout : 150));
 }
