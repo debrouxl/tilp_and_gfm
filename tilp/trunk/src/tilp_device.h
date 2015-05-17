@@ -22,9 +22,6 @@
 #ifndef __TILP_DEVICE_H__
 #define __TILP_DEVICE_H__
 
-CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc);
-CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc);
-
 int tilp_device_probe_usb(CableModel* cable, CablePort* port, CalcModel* calc);
 int tilp_device_probe_all(int ***result);
 

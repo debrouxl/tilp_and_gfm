@@ -44,39 +44,6 @@
 #define PAUSE(x) usleep(1000*(x))
 #endif
 
-//----------------------------------------------------------------------------
-
-/* 
-	Note: TiLP internally uses all of the possible values of the 
-	CalcModel enumeration but restricts it for the device box and the
-	command line.
-	The functions below allows to translate:
-	- TI84+ USB <=> TI84+ w/ DirectLink
-	- Titanium USB <=> Titanium w/ DirectLink
- */
-
-// CABLE_USB & CALC_TIXX_USB -> CALC_TIXX
-CalcModel tilp_remap_from_usb(CableModel cable, CalcModel calc)
-{
-	if (cable == CABLE_USB && calc == CALC_TI84P_USB)
-		return CALC_TI84P;
-	//MAYBE NEEDS CHANGES
-	else if (cable == CABLE_USB && calc == CALC_TI89T_USB)
-		return CALC_TI89T;
-	else
-		return calc;
-}
-
-// CABLE_USB & CALC_TIXX -> CALC_TIXX_USB
-CalcModel tilp_remap_to_usb(CableModel cable, CalcModel calc)
-{
-	if (cable == CABLE_USB && calc == CALC_TI84P)
-		return CALC_TI84P_USB;
-	else if (cable == CABLE_USB && calc== CALC_TI89T)
-		return CALC_TI89T_USB;
-	else
-		return calc;
-}
 
 //----------------------------------------------------------------------------
 

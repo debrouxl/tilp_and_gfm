@@ -129,7 +129,7 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 	}
 
 	// remap for USB handhelds
-	options.calc_model = tilp_remap_to_usb(options.cable_model, options.calc_model);
+	options.calc_model = ticalcs_remap_model_to_usb(options.cable_model, options.calc_model);
 
 	if(!options.cable_port)
 	{

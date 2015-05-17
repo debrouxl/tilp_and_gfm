@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-12 09:25+0200\n"
+"POT-Creation-Date: 2015-05-16 10:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,8 +103,8 @@ msgstr ""
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:551 ../src/tilp_calcs.c:560 ../src/tilp_calcs.c:565
 #: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1266 ../src/tilp_cmdline.c:191
-#: ../src/tilp_config.c:382 ../src/tilp_device.c:401 ../src/tilp_device.c:443
-#: ../src/tilp_device.c:451 ../src/tilp_error.c:86 ../src/tilp_files.c:252
+#: ../src/tilp_config.c:382 ../src/tilp_device.c:368 ../src/tilp_device.c:410
+#: ../src/tilp_device.c:418 ../src/tilp_error.c:86 ../src/tilp_files.c:252
 #: ../src/tilp_files.c:324 ../src/tilp_misc.c:39
 msgid "Error"
 msgstr ""
@@ -163,7 +163,7 @@ msgstr ""
 
 #: ../src/dboxes.c:40 ../src/device.c:385 ../src/device.c:389
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
-#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:545 ../src/tilp_config.c:553
+#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:544 ../src/tilp_config.c:552
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
 #: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
 #: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
@@ -689,19 +689,19 @@ msgstr ""
 msgid "Unable to write the config file (~/.tilp or ~/tilp.ini).\n"
 msgstr ""
 
-#: ../src/tilp_config.c:545
+#: ../src/tilp_config.c:544
 msgid "Configuration file saved."
 msgstr ""
 
-#: ../src/tilp_config.c:553
+#: ../src/tilp_config.c:552
 msgid "Configuration file loaded."
 msgstr ""
 
-#: ../src/tilp_device.c:426
+#: ../src/tilp_device.c:393
 msgid "Connection is being reset... Please wait for 2 seconds."
 msgstr ""
 
-#: ../src/tilp_device.c:443 ../src/tilp_device.c:451
+#: ../src/tilp_device.c:410 ../src/tilp_device.c:418
 msgid "Can't set cable."
 msgstr ""
 

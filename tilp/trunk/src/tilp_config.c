@@ -257,7 +257,7 @@ int tilp_config_write(void)
 	gint remap;
 	int ret = 0;
 
-	remap = tilp_remap_from_usb(options.cable_model, options.calc_model);
+	remap = ticalcs_remap_model_from_usb(options.cable_model, options.calc_model);
 
 	// get file location
 	ini_file = get_config_path();
@@ -438,8 +438,7 @@ int tilp_config_read(void)
 		options.cable_model = ticables_string_to_model(s);
 	g_free(s);
 	
-	options.calc_model = tilp_remap_to_usb(options.cable_model, 
-					       options.calc_model);
+	options.calc_model = ticalcs_remap_model_to_usb(options.cable_model, options.calc_model);
 
 	s = g_key_file_get_string(kf, SECTION_DEVICE, "cable_port", &error);
 	if(s != NULL)

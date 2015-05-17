@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-12 09:25+0200\n"
+"POT-Creation-Date: 2015-05-16 10:14+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -106,8 +106,8 @@ msgstr "Changer de lecteur"
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:551 ../src/tilp_calcs.c:560 ../src/tilp_calcs.c:565
 #: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1266 ../src/tilp_cmdline.c:191
-#: ../src/tilp_config.c:382 ../src/tilp_device.c:401 ../src/tilp_device.c:443
-#: ../src/tilp_device.c:451 ../src/tilp_error.c:86 ../src/tilp_files.c:252
+#: ../src/tilp_config.c:382 ../src/tilp_device.c:368 ../src/tilp_device.c:410
+#: ../src/tilp_device.c:418 ../src/tilp_error.c:86 ../src/tilp_files.c:252
 #: ../src/tilp_files.c:324 ../src/tilp_misc.c:39
 msgid "Error"
 msgstr "Erreur"
@@ -169,7 +169,7 @@ msgstr "Un Dossier"
 
 #: ../src/dboxes.c:40 ../src/device.c:385 ../src/device.c:389
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
-#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:545 ../src/tilp_config.c:553
+#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:544 ../src/tilp_config.c:552
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
 #: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
 #: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
@@ -751,19 +751,19 @@ msgstr ""
 "Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/tilp."
 "ini).\n"
 
-#: ../src/tilp_config.c:545
+#: ../src/tilp_config.c:544
 msgid "Configuration file saved."
 msgstr "Fichier de configuration enregistré"
 
-#: ../src/tilp_config.c:553
+#: ../src/tilp_config.c:552
 msgid "Configuration file loaded."
 msgstr "Fichier de configuration chargé"
 
-#: ../src/tilp_device.c:426
+#: ../src/tilp_device.c:393
 msgid "Connection is being reset... Please wait for 2 seconds."
 msgstr "Réinitialisation de la connexion... Attendez 2 secondes."
 
-#: ../src/tilp_device.c:443 ../src/tilp_device.c:451
+#: ../src/tilp_device.c:410 ../src/tilp_device.c:418
 msgid "Can't set cable."
 msgstr "Ne peut configurer le câble."
 

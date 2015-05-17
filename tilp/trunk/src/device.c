@@ -133,7 +133,7 @@ static void clist_populate(GtkListStore *_store, int full)
 
 			gtk_list_store_append(_store, &iter);
 
-			//calc = tilp_remap_from_usb(cable, calc);
+			//calc = ticalcs_remap_model_from_usb(cable, calc);
 			row[COL_CABLE] = g_strdup(ticables_model_to_string(i));
 			row[COL_PORT] = g_strdup_printf("#%i", j);
 			row[COL_CALC] = g_strdup(ticalcs_model_to_string(array[i][j]));
@@ -281,7 +281,7 @@ TILP_EXPORT gboolean comm_treeview1_button_press_event(GtkWidget *widget, GdkEve
 	cbm = ticables_string_to_model(row_text[COL_CABLE]);
 	cbp = ticables_string_to_port(row_text[COL_PORT]);
 	clm = ticalcs_string_to_model(row_text[COL_CALC]);
-	cm = tilp_remap_from_usb(cbm, clm);
+	cm = ticalcs_remap_model_from_usb(cbm, clm);
 
 	set_cable_model(om_cable, cbm);
 	set_cable_port(om_port, cbp);
@@ -370,7 +370,7 @@ gint display_device_dbox(void)
 		options.cable_port = tmp.cable_port;
 		options.cable_timeout = tmp.cable_timeout;
 		options.calc_model = tmp.calc_model;
-		options.calc_model = tilp_remap_to_usb(options.cable_model, options.calc_model);
+		options.calc_model = ticalcs_remap_model_to_usb(options.cable_model, options.calc_model);
 
 		// set cable
 		tilp_device_open();
