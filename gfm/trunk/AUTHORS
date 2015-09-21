@@ -1,13 +1,19 @@
-Tyler Cassidy <nexon89@gmail.com> - Main Developer
-Romain Lievin <roms@tilp.info> - Developer
+Lionel Debroux <lionel_debroux@yahoo.fr> - Maintainer (2009-)
+Tyler Cassidy <nexon89@gmail.com> - Main Developer (-2009)
+Romain Liévin <roms@tilp.info> - Developer
 Kevin Kofler <kevin.kofler@chello.at> - Developer/qmake manager
 
 
 Packagers and former packagers:
 ===============================
 - Julien Blache <jb@jblache.org>: Linux/Debian
-- Kevin Kofler: <kevin.kofler@chello.at>: Linux/Fedora
-- Romain Lievin: <roms@tilp.info>: Win32
+- Kevin Kofler <kevin.kofler@chello.at>: Linux/Fedora
+- Romain Liévin <roms@tilp.info>: Win32
+- Lionel Debroux <lionel_debroux@yahoo.fr>: Win32
+- Albert Huang <alberth.debian@gmail.com>: Linux/Debian
+- Jon Sturm <jonimoose@gmail.com>: Linux/Arch
+- Ben Rosser <rosser.bjr@gmail.com>: Linux/Fedora
+- Fabian Vogt <fabian@ritter-vogt.de>: Linux/OpenSUSE
 
 
 All the others who have contributed to
@@ -15,5 +21,10 @@ All the others who have contributed to
 
 The users, the helpers, the testers, the bug reporters, ...
 
-Special thanks to Texas Instruments France who donate the following devices at 
-Aug the 22th, 2005: TI82, 83, 89, 92+, V200 in order to help in testing TiLP-2.
+
+Special thanks to Texas Instruments France who donated the following devices in
+order to help testing TILP II:
+* on Aug 22nd, 2005: 82, 83, 89, 92+, V200;
+* in July 2011: Nspire CX CAS;
+* in 2013: 84+CSE;
+* in 2015: 83PCE, 82A, 84+CE-T.
