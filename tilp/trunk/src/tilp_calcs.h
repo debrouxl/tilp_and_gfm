@@ -54,6 +54,4 @@ int tilp_calc_recv_tigroup(TigMode mode);
 
 int tilp_calc_check_version(const char*);
 
-char * format_bytes(unsigned long value, char * str, size_t maxlen);
-
 #endif

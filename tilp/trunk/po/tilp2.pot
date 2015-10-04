@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-16 10:18+0200\n"
+"POT-Creation-Date: 2015-10-04 11:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 msgid "rename"
 msgstr ""
 
-#: ../src/action.c:130 ../src/action.c:307
+#: ../src/action.c:130 ../src/action.c:306
 msgid "overwrite"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 
 #: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:112
 #: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
-#: ../src/device.c:308 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/device.c:307 ../src/fileprop.c:58 ../src/manpage.c:70
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
 #: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
 #: ../src/screenshot.c:49 ../src/scroptions.c:49 ../src/tilp.c:91
@@ -64,11 +64,11 @@ msgstr ""
 msgid "Couldn't load builder file: %s\n"
 msgstr ""
 
-#: ../src/action.c:340 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
+#: ../src/action.c:339 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
 msgid "Rename the file"
 msgstr ""
 
-#: ../src/action.c:340 ../src/tilp_files.c:210
+#: ../src/action.c:339 ../src/tilp_files.c:210
 msgid "New name: "
 msgstr ""
 
@@ -102,10 +102,10 @@ msgstr ""
 #: ../src/dboxes.c:46 ../src/dnd.c:177 ../src/main.c:233 ../src/tilp.c:172
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:551 ../src/tilp_calcs.c:560 ../src/tilp_calcs.c:565
-#: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1266 ../src/tilp_cmdline.c:191
-#: ../src/tilp_config.c:382 ../src/tilp_device.c:368 ../src/tilp_device.c:410
-#: ../src/tilp_device.c:418 ../src/tilp_error.c:86 ../src/tilp_files.c:252
-#: ../src/tilp_files.c:324 ../src/tilp_misc.c:39
+#: ../src/tilp_calcs.c:570 ../src/tilp_calcs.c:1066 ../src/tilp_calcs.c:1108
+#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:368
+#: ../src/tilp_device.c:410 ../src/tilp_device.c:418 ../src/tilp_error.c:86
+#: ../src/tilp_files.c:252 ../src/tilp_files.c:324 ../src/tilp_misc.c:39
 msgid "Error"
 msgstr ""
 
@@ -161,9 +161,9 @@ msgstr ""
 msgid "A Folder"
 msgstr ""
 
-#: ../src/dboxes.c:40 ../src/device.c:385 ../src/device.c:389
+#: ../src/dboxes.c:40 ../src/device.c:384 ../src/device.c:388
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:921
-#: ../src/tilp_calcs.c:1223 ../src/tilp_config.c:544 ../src/tilp_config.c:552
+#: ../src/tilp_calcs.c:1062 ../src/tilp_config.c:544 ../src/tilp_config.c:552
 #: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
 #: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
 #: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
@@ -171,7 +171,7 @@ msgid "Information"
 msgstr ""
 
 #: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
-#: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1294
+#: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:951 ../src/tilp_calcs.c:1136
 #: ../src/tilp_files.c:199 ../src/tilp_slct.c:517
 msgid "Warning"
 msgstr ""
@@ -194,14 +194,14 @@ msgstr ""
 msgid "Device"
 msgstr ""
 
-#: ../src/device.c:385
+#: ../src/device.c:384
 msgid ""
 "Please note that Titanium through DirectLink USB works under Linux but it "
 "suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
 "is exited."
 msgstr ""
 
-#: ../src/device.c:389
+#: ../src/device.c:388
 msgid "Please note you will have to restart TiLP if connection fails."
 msgstr ""
 
@@ -213,17 +213,32 @@ msgstr ""
 msgid "Open file"
 msgstr ""
 
-#: ../src/labels.c:113 ../src/labels.c:133
+#: ../src/labels.c:102
+#, c-format
+msgid "%lu bytes"
+msgstr ""
+
+#: ../src/labels.c:106
+#, c-format
+msgid "%lu KB"
+msgstr ""
+
+#: ../src/labels.c:110
+#, c-format
+msgid "%lu MB"
+msgstr ""
+
+#: ../src/labels.c:138 ../src/labels.c:162
 #, c-format
 msgid "used: %s"
 msgstr ""
 
-#: ../src/labels.c:123 ../src/labels.c:143
+#: ../src/labels.c:149 ../src/labels.c:173
 #, c-format
 msgid "free: N/A"
 msgstr ""
 
-#: ../src/labels.c:125 ../src/labels.c:145
+#: ../src/labels.c:153 ../src/labels.c:177
 #, c-format
 msgid "free: %s"
 msgstr ""
@@ -333,11 +348,11 @@ msgid ""
 "Are you sure you want to do that?"
 msgstr ""
 
-#: ../src/tilp_calcs.c:183 ../src/tilp_calcs.c:1303
+#: ../src/tilp_calcs.c:183 ../src/tilp_calcs.c:1145
 msgid "Restoring"
 msgstr ""
 
-#: ../src/tilp_calcs.c:206 ../src/tilp_calcs.c:1326
+#: ../src/tilp_calcs.c:206 ../src/tilp_calcs.c:1168
 msgid "Backing up"
 msgstr ""
 
@@ -479,144 +494,21 @@ msgstr ""
 msgid "Creating..."
 msgstr ""
 
-#: ../src/tilp_calcs.c:1041
-#, c-format
-msgid "%lu bytes"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1045
-#, c-format
-msgid "%lu KB"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1049
-#, c-format
-msgid "%lu MB"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1081
-#, c-format
-msgid "%sProduct Name: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1088 ../src/tilp_calcs.c:1094
-#, c-format
-msgid "%sProduct Id: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1101
-#, c-format
-msgid "%sLanguage Id: %i %i\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1110
-#, c-format
-msgid "%sDevice Type: %02x\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1117
-#, c-format
-msgid "%sHardware Version: %i\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1124
-#, c-format
-msgid "%sBoot Version: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1130
-#, c-format
-msgid "%sBoot2 Version: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1136
-#, c-format
-msgid "%sOS Version: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1143
-#, c-format
-msgid "%sRun level: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1149
-#, c-format
-msgid "%sClock speed: %i MHz\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1158
-#, c-format
-msgid "%sLCD width: %i pixels\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1164
-#, c-format
-msgid "%sLCD height: %i pixels\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1170
-#, c-format
-msgid "%sBits per pixel: %i\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1179
-#, c-format
-msgid "%sPhysical RAM: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1185
-#, c-format
-msgid "%sUser RAM: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1191
-#, c-format
-msgid "%sFree RAM: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1197
-#, c-format
-msgid "%sPhysical FLASH: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1203
-#, c-format
-msgid "%sUser FLASH: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1209
-#, c-format
-msgid "%sFree FLASH: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1218
-#, c-format
-msgid "%sBattery: %s\n"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1218
-msgid "good"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1218
-msgid "low"
-msgstr ""
-
-#: ../src/tilp_calcs.c:1245
+#: ../src/tilp_calcs.c:1088
 msgid "Receiving cert"
 msgstr ""
 
-#: ../src/tilp_calcs.c:1267
+#: ../src/tilp_calcs.c:1109
 msgid ""
 "It's not a certificate or this certificate is not targeted at this "
 "calculator type."
 msgstr ""
 
-#: ../src/tilp_calcs.c:1274
+#: ../src/tilp_calcs.c:1116
 msgid "Sending cert"
 msgstr ""
 
-#: ../src/tilp_calcs.c:1294
+#: ../src/tilp_calcs.c:1136
 msgid ""
 "You are about to restore the content\n"
 "of your calculator with a backup.\n"

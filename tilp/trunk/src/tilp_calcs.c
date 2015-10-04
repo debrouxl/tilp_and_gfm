@@ -1034,194 +1034,37 @@ int tilp_calc_new_fld(void)
 	return 0;
 }
 
-char * format_bytes(unsigned long value, char * str, size_t maxlen)
-{
-	if (value < 64*1024)
-	{
-		g_snprintf(str, sizeof(str), _("%lu bytes"), value);
-	}
-	else if (value < 1024*1024)
-	{
-		g_snprintf(str, sizeof(str), _("%lu KB"), value >> 10);
-	}
-	else
-	{
-		g_snprintf(str, sizeof(str), _("%lu MB"), value >> 20);
-	}
-
-	return str;
-}
-
-#define LINE_FEED	\
-	{	\
-		tmp = g_strdup_printf("%s\n", str);	\
-		g_free(str);	\
-		str = tmp;	\
-	}
-
 int tilp_calc_get_infos(CalcInfos *infos)
 {
 	int err;
-	gchar *str = g_strdup("");
-	gchar *tmp;
-	char buf[16];
+	char str[2048];
 
 	if (tilp_calc_isready())
+	{
 		return -1;
+	}
 
 	if (!(ticalcs_calc_features(calc_handle) & OPS_VERSION))
+	{
 		return 0;
+	}
 
 	err = ticalcs_calc_get_version(calc_handle, infos);
 	if (tilp_err(err))
+	{
 		return -1;
-
-	if (infos->mask & INFOS_PRODUCT_NAME)
-	{
-		tmp = g_strdup_printf(_("%sProduct Name: %s\n"), str, infos->product_name);
-		g_free(str);
-		str = tmp;
 	}
 
-	if (infos->mask & INFOS_PRODUCT_ID)
+	str[0] = 0;
+	err = ticalcs_infos_to_string(infos, str, sizeof(str));
+	if (!err)
 	{
-		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->product_id);
-		g_free(str);
-		str = tmp;
+		gif->msg_box1(_("Information"), str);
 	}
-	else if (infos->mask & INFOS_MAIN_CALC_ID) // for compat
+	else
 	{
-		tmp = g_strdup_printf(_("%sProduct Id: %s\n"), str, infos->main_calc_id);
-		g_free(str);
-		str = tmp;
+		gif->msg_box1(_("Error"), str);
 	}
-
-	if (infos->mask & INFOS_LANG_ID)
-	{
-		tmp = g_strdup_printf(_("%sLanguage Id: %i %i\n"), str, infos->language_id, infos->sub_lang_id);
-		g_free(str);
-		str = tmp;
-	}
-
-	LINE_FEED;
-
-	if (infos->mask & INFOS_DEVICE_TYPE)
-	{
-		tmp = g_strdup_printf(_("%sDevice Type: %02x\n"), str, infos->device_type);
-		g_free(str);
-		str = tmp;
-	}
-
-	if (infos->mask & INFOS_HW_VERSION)
-	{
-		tmp = g_strdup_printf(_("%sHardware Version: %i\n"), str, infos->hw_version);
-		g_free(str);
-		str = tmp;
-	}
-
-	if (infos->mask & INFOS_BOOT_VERSION)
-	{
-		tmp = g_strdup_printf(_("%sBoot Version: %s\n"), str, infos->boot_version);
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_BOOT2_VERSION)
-	{
-		tmp = g_strdup_printf(_("%sBoot2 Version: %s\n"), str, infos->boot2_version);
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_OS_VERSION)
-	{
-		tmp = g_strdup_printf(_("%sOS Version: %s\n"), str, infos->os_version);
-		g_free(str);
-		str = tmp;
-	}
-
-	if (infos->mask & INFOS_RUN_LEVEL)
-	{
-		tmp = g_strdup_printf(_("%sRun level: %s\n"), str, (infos->run_level == 2) ? "OS" : "boot");
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_CLOCK_SPEED)
-	{
-		tmp = g_strdup_printf(_("%sClock speed: %i MHz\n"), str, infos->clock_speed);
-		g_free(str);
-		str = tmp;
-	}
-
-	LINE_FEED;
-
-	if (infos->mask & INFOS_LCD_WIDTH)
-	{
-		tmp = g_strdup_printf(_("%sLCD width: %i pixels\n"), str, infos->lcd_width);
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_LCD_HEIGHT)
-	{
-		tmp = g_strdup_printf(_("%sLCD height: %i pixels\n"), str, infos->lcd_height);
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_BPP)
-	{
-		tmp = g_strdup_printf(_("%sBits per pixel: %i\n"), str, infos->bits_per_pixel);
-		g_free(str);
-		str = tmp;
-	}
-
-	LINE_FEED;
-
-	if (infos->mask & INFOS_RAM_PHYS)
-	{
-		tmp = g_strdup_printf(_("%sPhysical RAM: %s\n"), str, format_bytes(infos->ram_phys, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_RAM_USER)
-	{
-		tmp = g_strdup_printf(_("%sUser RAM: %s\n"), str, format_bytes(infos->ram_user, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_RAM_FREE)
-	{
-		tmp = g_strdup_printf(_("%sFree RAM: %s\n"), str, format_bytes(infos->ram_free, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_FLASH_PHYS)
-	{
-		tmp = g_strdup_printf(_("%sPhysical FLASH: %s\n"), str, format_bytes(infos->flash_phys, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_FLASH_USER)
-	{
-		tmp = g_strdup_printf(_("%sUser FLASH: %s\n"), str, format_bytes(infos->flash_user, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-	if (infos->mask & INFOS_FLASH_FREE)
-	{
-		tmp = g_strdup_printf(_("%sFree FLASH: %s\n"), str, format_bytes(infos->flash_free, buf, sizeof(buf)));
-		g_free(str);
-		str = tmp;
-	}
-
-	LINE_FEED;
-
-	if (infos->mask & INFOS_BATTERY)
-	{
-		tmp = g_strdup_printf(_("%sBattery: %s\n"), str, infos->battery ? _("good") : _("low"));
-		g_free(str);
-		str = tmp;
-	}
-
-	gif->msg_box1(_("Information"), str);
-	g_free(str);
 
 	return 0;
 }
@@ -1246,10 +1089,9 @@ int tilp_calc_recv_cert(void)
 
 	err = ticalcs_calc_recv_cert2(calc_handle, filename);
 	g_free(filename);
+	gif->destroy_pbar();
 	if (err) 
 		tilp_err(err);
-
-	gif->destroy_pbar();
 
 	return 0;
 }

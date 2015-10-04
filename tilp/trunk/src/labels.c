@@ -55,17 +55,22 @@ static char* format_path(char *src, char *dst)
 #endif
   
 	// count number of path elements (slashes)
-	for(n = 0, p = src; ; n++) 
+	for (n = 0, p = src; ; n++)
 	{
-		p = (char *)strchr(p, G_DIR_SEPARATOR);	
-		if(!p)
+		p = (char *)strchr(p, G_DIR_SEPARATOR);
+		if (!p)
+		{
 			break;
+		}
 		p++;
 	}
 
-	if(n < PATH_LEVEL)
+	if (n < PATH_LEVEL)
+	{
 		strcpy(dst, src);
-	else {
+	}
+	else
+	{
 		left = strdup(path);
 		right = strdup(path);
 
@@ -79,7 +84,7 @@ static char* format_path(char *src, char *dst)
 		strcat(dst, G_DIR_SEPARATOR_S);
 		strcat(dst, "...");
 		strcat(dst, p);
-		
+
 		g_snprintf(str, 8, " (%i)", n);
 		strcat(dst, str);
 
@@ -88,6 +93,24 @@ static char* format_path(char *src, char *dst)
 	}
 
 	return dst;
+}
+
+static char * format_bytes(unsigned long value, char * str, size_t maxlen)
+{
+	if (value < 64*1024)
+	{
+		g_snprintf(str, sizeof(str), _("%lu bytes"), value);
+	}
+	else if (value < 1024*1024)
+	{
+		g_snprintf(str, sizeof(str), _("%lu KB"), (value + 512) >> 10);
+	}
+	else
+	{
+		g_snprintf(str, sizeof(str), _("%lu MB"), (value + 512) >> 20);
+	}
+
+	return str;
 }
 
 /* Refresh the info window */
@@ -100,7 +123,9 @@ void labels_refresh(void)
 	char buf[16];
 
 	if(working_mode & MODE_CMD)
+	{
 		return;
+	}
 
 	/* path */
 	utf8 = g_filename_to_utf8(local.cwdir, -1, &br, &bw, NULL);
@@ -112,7 +137,7 @@ void labels_refresh(void)
 	str1 = g_strdup(format_bytes(remote.memory.ram_used, buf, sizeof(buf)));
 	str = g_strdup_printf(_("used: %s"), str1);
 	gtk_label_set_text(GTK_LABEL(label_wnd.label11), str);
-	
+
 	g_free(str1);
 	g_free(str);
 
@@ -120,9 +145,13 @@ void labels_refresh(void)
 	str2 = g_strdup(format_bytes(remote.memory.ram_free, buf, sizeof(buf)));
 
 	if(remote.memory.ram_free == -1U)
+	{
 		str = g_strdup_printf(_("free: N/A"));
+	}
 	else
+	{
 		str = g_strdup_printf(_("free: %s"), str2);
+	}
 	gtk_label_set_text(GTK_LABEL(label_wnd.label13), str);
 
 	g_free(str2);
@@ -140,8 +169,12 @@ void labels_refresh(void)
 	str2 = g_strdup(format_bytes(remote.memory.flash_free, buf, sizeof(buf)));
 
 	if(remote.memory.flash_free == -1U)
+	{
 		str = g_strdup_printf(_("free: N/A"));
+	}
 	else
+	{
 		str = g_strdup_printf(_("free: %s"), str2);
+	}
 	gtk_label_set_text(GTK_LABEL(label_wnd.label14), str);
 }
