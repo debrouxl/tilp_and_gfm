@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-04 11:55+0200\n"
+"POT-Creation-Date: 2015-10-25 11:43+0100\n"
 "PO-Revision-Date: 2013-08-30 13:29+0200\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -286,11 +286,6 @@ msgid "An TiLP session is already running. Check the task list."
 msgstr ""
 "Es läuft bereits eine TiLP-Sitzung. Prüfen Sie die Liste der laufenden "
 "Prozesse."
-
-#: ../src/screenshot.c:223
-#, c-format
-msgid "Unknown calculator model with pixel_format=%d\n"
-msgstr "Unbekanntes Taschenrechnermodell mit pixel_format=%d\n"
 
 #: ../src/support.c:83 ../src/support.c:102
 #, c-format
@@ -761,20 +756,25 @@ msgstr ""
 msgid "Screendump"
 msgstr "Bildschirmauszug"
 
-#: ../src/tilp_screen.c:264 ../src/tilp_screen.c:281
+#: ../src/tilp_screen.c:103 ../src/tilp_screen.c:120
 #, c-format
 msgid "Couldn't allocate memory!"
 msgstr "Speicher konnte nicht zugeteilt werden!"
 
-#: ../src/tilp_screen.c:296
+#: ../src/tilp_screen.c:135
 #, c-format
 msgid "zlib error"
 msgstr "Zlib-Fehler"
 
-#: ../src/tilp_screen.c:385 ../src/tilp_screen.c:455
+#: ../src/tilp_screen.c:224 ../src/tilp_screen.c:299
 #, c-format
 msgid "Couldn't open destination file for writing!"
 msgstr "Zieldatei kann nicht zum Schreiben geöffnet werden!"
+
+#: ../src/tilp_screen.c:252 ../src/tilp_screen.c:375
+#, c-format
+msgid "Couldn't convert screen!"
+msgstr ""
 
 #: ../src/tilp_slct.c:82
 msgid "A file must have been selected in the right window."
@@ -1721,6 +1721,9 @@ msgstr "/home/romain/"
 #: ../builder/tilp.ui.h:70
 msgid "Current folder:"
 msgstr "Aktueller Ordner"
+
+#~ msgid "Unknown calculator model with pixel_format=%d\n"
+#~ msgstr "Unbekanntes Taschenrechnermodell mit pixel_format=%d\n"
 
 #~ msgid "action.c: GUI loading failed !\n"
 #~ msgstr "action.c: Laden der grafischen Benutzeroberfläche fehlgeschlagen!\n"

@@ -84,167 +84,6 @@ int screen_capture(void)
 	return 0;
 }
 
-
-/*
-  Convert the B&W bitmap into a B&W bytemap.
-  The returned RRGGBB array must be freed when no longer used.
-*/
-uint8_t *screen_bw_convert(void)
-{
-	guchar *bitmap, *bytemap, data, mask;
-	gint w;
-	gint h;
-	int row, col, bit, pixel, pos;
-
-	bitmap = screen.bitmap;
-	w = screen.width;
-	h = screen.height;
-
-	bytemap = g_malloc(3 * w * h);
-
-	for (row = 0; row < h; row++) 
-	{
-		for (col = 0; col < (w >> 3); col++) 
-		{
-			data = bitmap[(w >> 3) * row + col];
-			mask = 0x80;
-
-			for (bit = 0; bit < 8; bit++) 
-			{
-				pixel = data & mask;
-				pos = row * w + 8 * col + bit;
-				if (pixel) 
-				{
-					bytemap[3 * pos + 0] = 0;
-					bytemap[3 * pos + 1] = 0;
-					bytemap[3 * pos + 2] = 0;
-				} 
-				else 
-				{
-					bytemap[3 * pos + 0] = 255;
-					bytemap[3 * pos + 1] = 255;
-					bytemap[3 * pos + 2] = 255;
-				}
-				mask >>= 1;
-			}
-		}
-	}
-
-	return bytemap;
-}
-
-/*
-  Convert the B&W bitmap into a 2-colors bytemap.
-  The returned RRGGBB array must be freed when no longer used.
-*/
-uint8_t *screen_bw_blurry(void)
-{
-	guchar *bitmap, *bytemap, data, mask;
-	gint w;
-	gint h;
-	int row, col, bit, pixel, pos;
-
-	bitmap = screen.bitmap;
-	w = screen.width;
-	h = screen.height;
-
-	bytemap = g_malloc(3 * w * h);
-
-	for (row = 0; row < h; row++) 
-	{
-		for (col = 0; col < (w >> 3); col++) 
-		{
-			data = bitmap[(w >> 3) * row + col];
-			mask = 0x80;
-
-			for (bit = 0; bit < 8; bit++) 
-			{
-				pixel = data & mask;
-				pos = row * w + 8 * col + bit;
-				if (pixel) 
-				{
-					bytemap[3 * pos + 0] = 0x00;
-					bytemap[3 * pos + 1] = 0x00;
-					bytemap[3 * pos + 2] = 0x34;
-				} else 
-				{
-					bytemap[3 * pos + 0] = 0xa8;
-					bytemap[3 * pos + 1] = 0xb4;
-					bytemap[3 * pos + 2] = 0xa8;
-				}
-				mask >>= 1;
-			}
-		}
-	}
-
-	return bytemap;
-}
-
-/*
-  Convert an NSpire grayscale bitmap into a bytemap.
-  The returned RRGGBB array must be freed when no longer used.
-*/
-uint8_t* screen_gs_convert(void)
-{
-	guchar *bitmap  = screen.bitmap;
-	gint w = screen.width;
-	gint h = screen.height;
-	guchar *bytemap = g_malloc(3 * w * h);
-	int i, j;
-
-	for (i = 0; i < h; i++) 
-	{
-		for (j = 0; j < w/2; j++)
-		{
-			uint8_t data = bitmap[(w/2) * i + j];
-			uint8_t lo = data & 0x0f;
-			uint8_t hi = data >> 4;
-
-			int pos = w*i + 2*j;
-
-			bytemap[3 * pos + 0] = hi << 4;
-			bytemap[3 * pos + 1] = hi << 4;
-			bytemap[3 * pos + 2] = hi << 4;
-
-			bytemap[3 * pos + 3] = lo << 4;
-			bytemap[3 * pos + 4] = lo << 4;
-			bytemap[3 * pos + 5] = lo << 4;
-		}
-	}
-
-	return bytemap;
-}
-
-/*
-  Convert an NSpire CX 16-bit color bitmap into a bytemap.
-  The returned RRGGBB array must be freed when no longer used.
-*/
-uint8_t* screen_16bitcolor_convert(void)
-{
-	guchar *bitmap  = screen.bitmap;
-	gint w = screen.width;
-	gint h = screen.height;
-	guchar *bytemap = g_malloc(3 * w * h);
-	int i, j;
-
-	for (i = 0; i < h; i++)
-	{
-		for (j = 0; j < w; j++)
-		{
-			uint16_t data = ((uint16_t *)bitmap)[w * i + j];
-
-			int pos = w * i + j;
-
-			// R5 G6 B5.
-			bytemap[3 * pos + 0] = ((data & 0xF800) >> 11) << 3;
-			bytemap[3 * pos + 1] = ((data & 0x07E0) >>  5) << 2;
-			bytemap[3 * pos + 2] = ((data & 0x001F) >>  0) << 3;
-		}
-	}
-
-	return bytemap;
-}
-
 /*
  * Utility function for the EPS and PDF output
  */
@@ -393,8 +232,7 @@ gboolean screen_write_eps(const gchar *filename, GError **error)
 
 	fprintf(fp, "%%!PS-Adobe-3.0 EPSF-3.0\n");
 	fprintf(fp, "%%%%Creator: TiLP %s / PostScript output Copyright (C) 2005 Julien BLACHE\n", TILP_VERSION);
-	fprintf(fp, "%%%%Title: TiLP %s screenshot\n",
-		tifiles_model_to_string(options.calc_model));
+	fprintf(fp, "%%%%Title: TiLP %s screenshot\n", tifiles_model_to_string(options.calc_model));
 	fprintf(fp, "%%%%CreationDate: %s", ctime(&t));
 	fprintf(fp, "%%%%LanguageLevel: 3\n");
 	fprintf(fp, "%%%%BoundingBox: 0 0 %d %d\n", w, h);
@@ -404,9 +242,15 @@ gboolean screen_write_eps(const gchar *filename, GError **error)
 	if (options.screen_blurry) {
 		fprintf(fp, "%d %d 8 [%d 0 0 -%d 0 %d] currentfile /ASCII85Decode filter /FlateDecode filter false 3 colorimage\n", w, h, w, h, h);
 
-		buf = screen_bw_blurry();
-
-		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
+		buf = g_malloc(3 * w * h);
+		ret = ticalcs_screen_convert_bw_to_blurry_rgb888(screen.bitmap, w, h, buf);
+		if (!ret) {
+			ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
+		}
+		else {
+			ret = 0;
+			g_set_error(&err, 0, 0, _("Couldn't convert screen!"));
+		}
 
 		g_free(buf);
 
@@ -521,9 +365,15 @@ gboolean screen_write_pdf(const gchar *filename, GError **error)
 		fprintf(fp, "  /F [/A85 /FlateDecode]\n");
 		fprintf(fp, "ID\n");
 
-		buf = screen_bw_blurry();
-
-		ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
+		buf = g_malloc(3 * w * h);
+		ret = ticalcs_screen_convert_bw_to_blurry_rgb888(screen.bitmap, w, h, buf);
+		if (!ret) {
+			ret = write_compressed_a85_screen(fp, buf, (h * w * 3), FALSE, &err);
+		}
+		else {
+			ret = 0;
+			g_set_error(&err, 0, 0, _("Couldn't convert screen!"));
+		}
 
 		g_free(buf);
 

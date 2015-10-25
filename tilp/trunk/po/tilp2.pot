@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-04 11:55+0200\n"
+"POT-Creation-Date: 2015-10-25 11:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,11 +269,6 @@ msgstr ""
 
 #: ../src/main.c:233
 msgid "An TiLP session is already running. Check the task list."
-msgstr ""
-
-#: ../src/screenshot.c:223
-#, c-format
-msgid "Unknown calculator model with pixel_format=%d\n"
 msgstr ""
 
 #: ../src/support.c:83 ../src/support.c:102
@@ -681,19 +676,24 @@ msgstr ""
 msgid "Screendump"
 msgstr ""
 
-#: ../src/tilp_screen.c:264 ../src/tilp_screen.c:281
+#: ../src/tilp_screen.c:103 ../src/tilp_screen.c:120
 #, c-format
 msgid "Couldn't allocate memory!"
 msgstr ""
 
-#: ../src/tilp_screen.c:296
+#: ../src/tilp_screen.c:135
 #, c-format
 msgid "zlib error"
 msgstr ""
 
-#: ../src/tilp_screen.c:385 ../src/tilp_screen.c:455
+#: ../src/tilp_screen.c:224 ../src/tilp_screen.c:299
 #, c-format
 msgid "Couldn't open destination file for writing!"
+msgstr ""
+
+#: ../src/tilp_screen.c:252 ../src/tilp_screen.c:375
+#, c-format
+msgid "Couldn't convert screen!"
 msgstr ""
 
 #: ../src/tilp_slct.c:82

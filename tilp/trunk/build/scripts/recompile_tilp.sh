@@ -9,7 +9,7 @@
 PREFIX="$HOME"
 
 # Common flags and definitions.
-CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Werror=shadow -Werror=write-strings -Werror=redundant-decls -Werror=format -Werror=format-nonliteral -Werror=format-security -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -Werror=return-type -Werror=pointer-arith -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=undefined"
+CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Werror=shadow -Werror=write-strings -Werror=redundant-decls -Werror=format -Werror=format-nonliteral -Werror=format-security -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -Werror=return-type -Werror=pointer-arith -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=undefined,bounds"
 CCPPFLAGS="-D_FORTIFY_SOURCE=2"
 
 # Configure and build the given module

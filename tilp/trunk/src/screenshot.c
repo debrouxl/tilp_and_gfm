@@ -196,33 +196,18 @@ TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button, gpointer user_dat
 	{
 		screen_success = TRUE;
 	}
-	
+
 	w = screen.width;
 	h = screen.height;
+	bytemap = g_malloc(3 * w * h);
 
-	switch (screen.pixel_format)
+	if (screen.pixel_format == CALC_PIXFMT_MONO && options.screen_blurry)
 	{
-	case CALC_PIXFMT_MONO:
-		if (options.screen_blurry)
-			bytemap = screen_bw_blurry();
-		else
-			bytemap = screen_bw_convert();
-		break;
-
-	case CALC_PIXFMT_GRAY_4:
-		// Nspire (CAS) Clickpad or Touchpad.
-		bytemap = screen_gs_convert();
-		break;
-
-	case CALC_PIXFMT_RGB_5_6_5:
-		// Nspire (CAS) CX or TI-84 Plus CSE.
-		bytemap = screen_16bitcolor_convert();
-		break;
-
-	default:
-		tilp_critical(_("Unknown calculator model with pixel_format=%d\n"), screen.pixel_format);
-		screen_success = FALSE;
-		return;
+		screen_success = !ticalcs_screen_convert_bw_to_blurry_rgb888(screen.bitmap, w, h, bytemap);
+	}
+	else
+	{
+		screen_success = !ticalcs_screen_convert_native_to_rgb888(screen.pixel_format, screen.bitmap, w, h, bytemap);
 	}
 
 	pixbuf = gdk_pixbuf_new_from_data(bytemap, GDK_COLORSPACE_RGB, FALSE,

@@ -177,6 +177,11 @@ EOF
   echo "CXX=$CXX exists and is not totally broken"
 
   echo "Checking whether $PREFIX can be written to"
+  mkdir -p $PREFIX
+  if [ "$?" -ne 0 ]; then
+    echo -e "\033[1mNo, cannot create $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"
+    return 1
+  fi
   TEMPFILE=`mktemp $PREFIX/XXXXXXXXXXX`
   if [ "$?" -ne 0 ]; then
     echo -e "\033[1mNo, cannot write to $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"

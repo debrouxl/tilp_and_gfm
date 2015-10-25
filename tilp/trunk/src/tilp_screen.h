@@ -33,10 +33,6 @@ typedef struct
 extern TilpScreen screen;
 
 int      screen_capture(void);
-uint8_t* screen_bw_convert(void);
-uint8_t* screen_bw_blurry(void);
-uint8_t* screen_gs_convert(void);
-uint8_t* screen_16bitcolor_convert(void);
 
 gboolean screen_write_eps(const gchar *filename, GError **error);
 gboolean screen_write_pdf(const gchar *filename, GError **error);
