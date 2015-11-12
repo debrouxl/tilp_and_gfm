@@ -24,7 +24,7 @@
 # **********************************************************************
 # (Debian and Fedora package names are given as examples, install respectively with `apt-get install ...` and `yum install ...`)
 # * Git (git, git)
-# * Suitable C compiler + C++ compiler:
+# * Suitable C compiler + C++ compiler (the newer, the better):
 #      * GCC + G++: (gcc + g++, gcc + gcc-c++)
 #      * Clang (clang, clang), preferably version 3.0 and later.
 # * GNU make (make, make). BSD make might work.
@@ -35,11 +35,10 @@
 # * GNU libtool (libtool, libtool)
 # * glib 2.x development files (libglib2.0-dev, glib2-devel)
 # * zlib development files (zlib1g-dev, zlib-devel)
-# * libusb development files (libusb-1.0-0-dev or libusb-dev, libusb1-devel or libusb-devel)
-#   (libusb 1.0 preferred, libticables' libusb 0.1 backend in maintenance mode now)
+# * libusb development files (libusb-1.0-0-dev, libusb1-devel)
+#   (libusb 1.0 preferred, libticables' libusb 0.1 backend based on libusb-dev or libusb-devel in maintenance mode now)
 # * GTK+ 2.x development files (libgtk2.0-dev, gtk2-devel)
 # * Glade development files (libglade2-dev, libglade2-devel)
-# * SDL 1.2 development files (libsdl1.2-dev, SDL-devel)
 # * GNU gettext (gettext, gettext)
 # * GNU bison (bison, bison)
 # * GNU flex (flex, flex)
@@ -48,10 +47,6 @@
 # * XDG utils (xdg-utils, xdg-utils)
 # * libarchive (libarchive-dev)
 # * intltool (intltool)
-#
-# Optional dependencies:
-# * KDE 3.x development files (kdelibs4-dev, kdelibs3-devel), if you want to compile tilp with support for the KDE file dialog.
-#   (this implies a slew of development files, among which the Qt development files, and is therefore disabled by default)
 
 
 # ******************************************************************************
@@ -233,13 +228,14 @@ echo -e "1) configured \033[1mPREFIX\033[m and \033[1mSRCDIR\033[m the way you w
 echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into using non-GCC compilers when the distro defaults to GCC);"
 echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which installs libraries to non-standard paths), added --libdir=/usr/lib64 to the marked line, or..."
 echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
-echo -e "3) installed the build dependencies listed in the script. Unless you're on Debian and derivatives, use libusb 1.0."
+echo -e "3) \033[1mpurged any installed distro packages\033[m for libticonv, libtifiles, libticables, libticalcs, gfm, tilp."
+echo -e "4) installed the build dependencies listed in the script."
 echo -e "        For instance, on Debian, you would run:"
-echo -e "        (sudo) apt-get install git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-dev libgtk2.0-dev libglade2-dev libsdl1.2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
+echo -e "        (sudo) apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
 echo -e "        On Jessie and latter, add libtool-bin to the above list"
 echo -e "        On Mac OS X, one can use 'brew' to easily install dependencies."
 echo -e "        (note that 'brew link --force libarchive gettext' will be needed before launching this script, you can use 'brew unlink' later)."
-echo -e "\033[4mOtherwise, the build will fail!\033[m."
+echo -e "\033[4mOtherwise, either the build will fail, or the system may not use the just-built version (e.g. if you didn't purge the distro packages) !\033[m."
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
 
