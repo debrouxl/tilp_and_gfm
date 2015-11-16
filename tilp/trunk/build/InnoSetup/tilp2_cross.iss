@@ -30,10 +30,10 @@ Compression=lzma2/Max
 
 [Files]
 ; TI libraries
-Source: "C:\lpg\packages\bin\libtifiles2-10.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libtifiles2-8.dll');
-Source: "C:\lpg\packages\bin\libticables2-7.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticables2-5.dll');
-Source: "C:\lpg\packages\bin\libticalcs2-12.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticalcs2-10.dll');
-Source: "C:\lpg\packages\bin\libticonv-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile; BeforeInstall: DeleteDll('libticonv-6.dll');
+Source: "C:\lpg\packages\bin\libtifiles2-10.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile replacesameversion; BeforeInstall: DeleteDll('libtifiles2-8.dll');
+Source: "C:\lpg\packages\bin\libticables2-7.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile replacesameversion; BeforeInstall: DeleteDll('libticables2-5.dll');
+Source: "C:\lpg\packages\bin\libticalcs2-12.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile replacesameversion; BeforeInstall: DeleteDll('libticalcs2-10.dll');
+Source: "C:\lpg\packages\bin\libticonv-8.dll"; DestDir: "{cf}\LPG Shared\libs"; Flags: sharedfile replacesameversion; BeforeInstall: DeleteDll('libticonv-6.dll');
 
 ; I18n files
 Source: "C:\lpg\packages\share\locale\fr\LC_MESSAGES\libtifiles2.mo"; DestDir: "{cf}\LPG Shared\libs\locale\fr\LC_MESSAGES"; DestName: "libtifiles2.mo"; Flags: ignoreversion sharedfile;
@@ -169,7 +169,7 @@ Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."
 
 ; GTK+ Runtime installer
-Filename: "{tmp}\gtk2-runtime-2.24.8-2011-12-03-ash.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
+Filename: "{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
 
 [UninstallRun]
 ;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -186,6 +186,11 @@ Root: HKLM; SubKey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environmen
 ; Nspire entries
 Root: HKCR; SubKey: ".tns"; ValueType: string;  ValueData: "TiLP.Document"; Tasks: tifiles;
 Root: HKCR; SubKey: ".tno"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tnc"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tco"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tcc"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tmo"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+Root: HKCR; SubKey: ".tmc"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
 ; TIGroup entries
 Root: HKCR; SubKey: ".tig"; ValueType: string;  ValueData: "TiLP.TIGroup"; Tasks: tifiles;
 ; V200 file entries
@@ -203,7 +208,7 @@ Root: HKCR; SubKey: ".v2m"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks:
 Root: HKCR; SubKey: ".v2n"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2q"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
-Root: HKCR; SubKey: ".v2r"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".v2r"; ValueType: string;  ValueData: "TiLP.LabReport"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2s"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
@@ -211,7 +216,7 @@ Root: HKCR; SubKey: ".v2x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: 
 Root: HKCR; SubKey: ".v2y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".v2?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI92+ file entries
+; TI-92+ file entries
 Root: HKCR; SubKey: ".9xa"; ValueType: string;  ValueData: "TiLP.Figure"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xb"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xc"; ValueType: string;  ValueData: "TiLP.Data"; Tasks: tifiles;
@@ -226,7 +231,7 @@ Root: HKCR; SubKey: ".9xm"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks:
 Root: HKCR; SubKey: ".9xn"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xp"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xq"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
-Root: HKCR; SubKey: ".9xr"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".9xr"; ValueType: string;  ValueData: "TiLP.LabReport"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xs"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xt"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xu"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
@@ -234,7 +239,7 @@ Root: HKCR; SubKey: ".9xx"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: 
 Root: HKCR; SubKey: ".9xy"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9xz"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".9x?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI92 file entries
+; TI-92 file entries
 Root: HKCR; SubKey: ".92a"; ValueType: string;  ValueData: "TiLP.Figure"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92c"; ValueType: string;  ValueData: "TiLP.Data"; Tasks: tifiles;
@@ -249,7 +254,7 @@ Root: HKCR; SubKey: ".92m"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks:
 Root: HKCR; SubKey: ".92n"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92q"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
-Root: HKCR; SubKey: ".92r"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".92r"; ValueType: string;  ValueData: "TiLP.LabReport"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92s"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
@@ -257,7 +262,7 @@ Root: HKCR; SubKey: ".92x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: 
 Root: HKCR; SubKey: ".92y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".92?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI89 file entries
+; TI-89 file entries
 Root: HKCR; SubKey: ".89a"; ValueType: string;  ValueData: "TiLP.Figure"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89c"; ValueType: string;  ValueData: "TiLP.Data"; Tasks: tifiles;
@@ -272,7 +277,7 @@ Root: HKCR; SubKey: ".89m"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks:
 Root: HKCR; SubKey: ".89n"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89p"; ValueType: string;  ValueData: "TiLP.Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89q"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
-Root: HKCR; SubKey: ".89r"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
+Root: HKCR; SubKey: ".89r"; ValueType: string;  ValueData: "TiLP.LabReport"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89s"; ValueType: string;  ValueData: "TiLP.String"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89t"; ValueType: string;  ValueData: "TiLP.Text"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
@@ -280,7 +285,22 @@ Root: HKCR; SubKey: ".89x"; ValueType: string;  ValueData: "TiLP.Macro"; Tasks: 
 Root: HKCR; SubKey: ".89y"; ValueType: string;  ValueData: "TiLP.Zipped"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89z"; ValueType: string;  ValueData: "TiLP.Asm_Program"; Tasks: tifiles;
 Root: HKCR; SubKey: ".89?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI86 file entries
+; TI-83PCE file entries
+Root: HKCR; SubKey: ".8pq"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8pu"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+; TI-84+CE file entries
+Root: HKCR; SubKey: ".8ek"; ValueType: string;  ValueData: "TiLP.Application"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8eq"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8eu"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+; TI-82A file entries
+Root: HKCR; SubKey: ".82u"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+; TI-84+CSE file entries
+Root: HKCR; SubKey: ".8ca"; ValueType: string;  ValueData: "TiLP.Image"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8ci"; ValueType: string;  ValueData: "TiLP.Picture"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8ck"; ValueType: string;  ValueData: "TiLP.Application"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8cq"; ValueType: string;  ValueData: "TiLP.Certificate"; Tasks: tifiles;
+Root: HKCR; SubKey: ".8cu"; ValueType: string;  ValueData: "TiLP.OS_Upgrade"; Tasks: tifiles;
+; TI-86 file entries
 Root: HKCR; SubKey: ".86c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86e"; ValueType: string;  ValueData: "TiLP.Equation"; Tasks: tifiles;
@@ -298,7 +318,7 @@ Root: HKCR; SubKey: ".86w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; 
 Root: HKCR; SubKey: ".86y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".86?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI85 file entries
+; TI-85 file entries
 Root: HKCR; SubKey: ".85b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
@@ -317,7 +337,7 @@ Root: HKCR; SubKey: ".85w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; 
 Root: HKCR; SubKey: ".85y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".85?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI83+ file entries
+; TI-83+ file entries
 Root: HKCR; SubKey: ".8xb"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".8xc"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".8xd"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
@@ -337,7 +357,7 @@ Root: HKCR; SubKey: ".8xw"; ValueType: string;  ValueData: "TiLP.Window_Setup"; 
 Root: HKCR; SubKey: ".8xy"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
 Root: HKCR; SubKey: ".8xz"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".8x?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI83 file entries
+; TI-83 file entries
 Root: HKCR; SubKey: ".83b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
@@ -353,7 +373,7 @@ Root: HKCR; SubKey: ".83w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; 
 Root: HKCR; SubKey: ".83y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".83?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI82 file entries
+; TI-82 file entries
 Root: HKCR; SubKey: ".82b"; ValueType: string;  ValueData: "TiLP.Backup"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82g"; ValueType: string;  ValueData: "TiLP.Group"; Tasks: tifiles;
@@ -367,10 +387,9 @@ Root: HKCR; SubKey: ".82w"; ValueType: string;  ValueData: "TiLP.Window_Setup"; 
 Root: HKCR; SubKey: ".82y"; ValueType: string;  ValueData: "TiLP.Y_Var"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82z"; ValueType: string;  ValueData: "TiLP.Zoom"; Tasks: tifiles;
 Root: HKCR; SubKey: ".82?"; ValueType: string;  ValueData: "TiLP.Unknown"; Tasks: tifiles;
-; TI73 file entries
+; TI-73 file entries
 Root: HKCR; SubKey: ".73c"; ValueType: string;  ValueData: "TiLP.Complex"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73d"; ValueType: string;  ValueData: "TiLP.GDB"; Tasks: tifiles;
-Root: HKCR; SubKey: ".73g"; ValueType: string;  ValueData: "TiLP.Group"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73i"; ValueType: string;  ValueData: "TiLP.Picture"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73m"; ValueType: string;  ValueData: "TiLP.Matrix"; Tasks: tifiles;
 Root: HKCR; SubKey: ".73k"; ValueType: string;  ValueData: "TiLP.Application"; Tasks: tifiles;
@@ -456,6 +475,16 @@ Root: HKCR; Subkey: "TiLP.Group"; ValueType: string; ValueName: ""; ValueData: "
 Root: HKCR; Subkey: "TiLP.Group\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Group.ico"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Group\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.Group\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+
+Root: HKCR; Subkey: "TiLP.Image"; ValueType: string; ValueName: ""; ValueData: "List"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Image\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Image.ico"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Image\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Image\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
+
+Root: HKCR; Subkey: "TiLP.Lab_Report"; ValueType: string; ValueName: ""; ValueData: "List"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Lab_Report\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\Group.ico"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Lab_Report\shell\open";  ValueType: string; ValueData: "Open with &TiLP"; Tasks: tifiles;
+Root: HKCR; Subkey: "TiLP.Lab_Report\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\tilp.exe"" ""%1"""; Tasks: tifiles;
 
 Root: HKCR; Subkey: "TiLP.List"; ValueType: string; ValueName: ""; ValueData: "List"; Tasks: tifiles;
 Root: HKCR; Subkey: "TiLP.List\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\icons\List.ico"; Tasks: tifiles;
@@ -833,7 +862,7 @@ begin
   ITD_SetOption('UI_DetailedMode','1');
 
   // We'll download the following file...
-  ITD_AddFileSize('http://garr.dl.sourceforge.net/project/gtk-win/GTK+%20Runtime%20Environment/GTK+%202.24/gtk2-runtime-2.24.8-2011-12-03-ash.exe', ExpandConstant('{tmp}\gtk2-runtime-2.24.8-2011-12-03-ash.exe'), 7907423);
+  ITD_AddFileSize('https://downloads.sourceforge.net/project/gtk-win/GTK%2B%20Runtime%20Environment/GTK%2B%202.24/gtk2-runtime-2.24.10-2012-10-10-ash.exe?use_mirror=autoselect', ExpandConstant('{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe'), 7944501);
   // ... after the user clicks on Install.
   ITD_DownloadAfter(wpPreparing);
 end;
