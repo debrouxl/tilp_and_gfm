@@ -3,13 +3,13 @@
 # Maintainer script for automating the compilation and installation of tilp & gfm
 # from a checkout of the complete tilp repository over at svn.tilp.info.
 #
-# Copyright (C) 2010, 2011, 2012, 2013 Lionel Debroux
+# Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015 Lionel Debroux
 
 # The prefix where the binaries will be installed, e.g. $HOME, /usr, /usr/local.
 PREFIX="$HOME"
 
 # Common flags and definitions.
-CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=address, undefined"
+CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Werror=shadow -Werror=write-strings -Werror=redundant-decls -Werror=format -Werror=format-nonliteral -Werror=format-security -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -Werror=return-type -Werror=pointer-arith -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=undefined"
 CCPPFLAGS="-D_FORTIFY_SOURCE=2"
 
 # Configure and build the given module
@@ -23,7 +23,7 @@ handle_one_module() {
   ./configure CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS $CFLAGS" CXXFLAGS="$CCFLAGS $CFLAGS" --prefix="$PREFIX" $@ || return 1
   echo "Building $module_name"
   make clean || return 1
-  make || return 1
+  make -j4 || return 1
   echo "Installing $module_name"
   make check || return 1
   make install || return 1

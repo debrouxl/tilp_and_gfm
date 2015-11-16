@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # This script, aimed at users, automates the compilation and installation of tilp & gfm
-# from the SVN repository.
+# from the Git repositories.
 # It's mirrored at http://lpg.ticalc.org/prj_tilp/download/install_tilp.sh
 #
 # **********
@@ -17,7 +17,6 @@
 # `./configure --help` run in $SRCDIR/tilp/tilibs/libticonv/trunk, $SRCDIR/tilp/tilibs/libtifiles/trunk,
 # $SRCDIR/tilp/tilibs/libticables/trunk, $SRCDIR/tilp/tilibs/libticalcs/trunk,
 # $SRCDIR/tilp/tilp_and_gfm/gfm/trunk and $SRCDIR/tilp/tilp_and_gfm/tilp/trunk.
-
 
 
 # **********************************************************************
@@ -36,8 +35,8 @@
 # * GNU libtool (libtool, libtool)
 # * glib 2.x development files (libglib2.0-dev, glib2-devel)
 # * zlib development files (zlib1g-dev, zlib-devel)
-# * libusb development files (libusb-dev + libusb-1.0-0-dev, libusb-devel + libusb1-devel)
-#   (libusb 0.1.x preferred, but libticables now has a libusb 1.0 backend activated with "--enable-libusb10", see below)
+# * libusb development files (libusb-1.0-0-dev or libusb-dev, libusb1-devel or libusb-devel)
+#   (libusb 1.0 preferred, libticables' libusb 0.1 backend in maintenance mode now)
 # * GTK+ 2.x development files (libgtk2.0-dev, gtk2-devel)
 # * Glade development files (libglade2-dev, libglade2-devel)
 # * SDL 1.2 development files (libsdl1.2-dev, SDL-devel)
@@ -75,9 +74,13 @@
 # and $PREFIX/lib to $LD_LIBRARY_PATH, for the SVN versions of libti*, tilp & gfm
 # to get picked up.
 if [ "x$PREFIX" = "x" ]; then
+    # Default to replacing system packages (if any), because
+    # 1) distro packages are usually outdated;
+    # 2) /usr/local subdirs are less likely to be in $PATH / $LD_LIBRARY_PATH / $PKG_CONFIG_PATH
+    #    than /usr subdirs => more spurious install issues which waste both user and maintainer time.
     PREFIX="/usr"
 fi
-echo Will use "PREFIX=$PREFIX"
+
 
 # ******************************************************************************
 # Default place where the sources will be stored, if it's not de
@@ -87,7 +90,6 @@ echo Will use "PREFIX=$PREFIX"
 if [ "x$SRCDIR" = "x" ]; then
     SRCDIR="$HOME/lpg"
 fi
-echo Will use "SRCDIR=$SRCDIR"
 
 
 # ******************************************************************************
@@ -111,11 +113,16 @@ handle_repository_copies() {
     echo "Updating $module_name"
     cd "$module_name"
     git pull || return 1
-    cd ..
   else
-    echo "Checking out $module_name"
+    echo "Cloning $module_name"
     git clone "https://github.com/debrouxl/$module_name" "$module_name" || return 1
+    cd "$module_name"
   fi
+  if [ "x$USE_EXPERIMENTAL" != "x" ]; then
+    echo "Checking out the 'experimental' branch"
+    git checkout experimental || return 1
+  fi
+  cd ..
 }
 
 # Subroutine: checkout/update, `configure`, `make` and `make install` the given module
@@ -127,7 +134,8 @@ handle_one_module() {
   echo "Configuring $module_name"
   # Add --libdir=/usr/lib64 on e.g. 64-bit Fedora 14, which insists on searching for 64-bit libs in /usr/lib64.
   # Or modify PKG_CONFIG_PATH as described above.
-  autoreconf -i -v -f
+  mkdir -p m4 || return 1
+  autoreconf -i -v -f || return 1
   ./configure "--prefix=$PREFIX" CC=$CC CXX=$CXX $@ || return 1
   echo "Building $module_name"
   make || return 1
@@ -138,6 +146,8 @@ handle_one_module() {
 
 # Subroutine: perform quick rough sanity check on compilers and PREFIX.
 rough_sanity_checks() {
+  mkdir -p "$SRCDIR/tilp" || return 1
+
   echo "Performing a quick rough sanity check on compilers"
   # Test CC, which also checks whether the user can write to SRCDIR
   cat << EOF > "$SRCDIR/tilp/hello.c"
@@ -149,9 +159,9 @@ int main(int argc, char * argv[]) {
 }
 EOF
 
-  "$CC" "$SRCDIR/tilp/hello.c" -o "$SRCDIR/tilp/hello" || exit 1
-  "$SRCDIR/tilp/hello" || exit 1
-  echo "CC=$CC exists"
+  "$CC" "$SRCDIR/tilp/hello.c" -o "$SRCDIR/tilp/hello" || return 1
+  "$SRCDIR/tilp/hello" || return 1
+  echo "CC=$CC exists and is not totally broken"
   # Test CXX, which also checks whether the user can write to SRCDIR
   cat << EOF > "$SRCDIR/tilp/hello.cc"
 #include <cstdio>
@@ -162,50 +172,81 @@ int main(int argc, char * argv[]) {
 }
 EOF
 
-  "$CXX" "$SRCDIR/tilp/hello.cc" -o "$SRCDIR/tilp/hello" || exit 1
-  "$SRCDIR/tilp/hello" || exit 1
-  echo "CXX=$CXX exists"
+  "$CXX" "$SRCDIR/tilp/hello.cc" -o "$SRCDIR/tilp/hello" || return 1
+  "$SRCDIR/tilp/hello" || return 1
+  echo "CXX=$CXX exists and is not totally broken"
 
   echo "Checking whether $PREFIX can be written to"
   TEMPFILE=`mktemp $PREFIX/XXXXXXXXXXX`
   if [ "$?" -ne 0 ]; then
     echo -e "\033[1mNo, cannot write to $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"
-    exit 1
+    return 1
   fi
   cat << EOF > "$TEMPFILE"
 This is a test file
 EOF
   if [ "$?" -ne 0 ]; then
     echo -e "\033[1mNo, cannot write to $PREFIX. Perhaps you need to run the script as root ?\nAborting.\033[m"
-    exit 1
+    return 1
   fi
   rm "$TEMPFILE"
 }
 
 # The main part of the script starts here.
+# First of all, platform-specific adjustments.
+UNAME=`uname`
+# On MacOS X 10.11, locally compiled programs are _really_ supposed to be installed to /usr/local.
+if [ "x$PREFIX" = "x/usr" ]; then
+    if [ "x$UNAME" = "xDarwin" ]; then
+        echo "Modern MacOS X versions don't like programs installing to /usr, using /usr/local instead"
+        PREFIX="/usr/local"
+    fi
+fi
+# On MacOS X 10.11, need to fiddle with PKG_CONFIG_PATH.
+if [ "x$UNAME" = "xDarwin" ]; then
+    if [ "x$PKG_CONFIG_PATH" = "x" ]; then
+        PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:/opt/X11/lib/pkgconfig"
+    else
+        PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:/opt/X11/lib/pkgconfig"
+    fi
+    export PKG_CONFIG_PATH
+fi
+
+echo Will use "PREFIX=$PREFIX"
+echo Will use "SRCDIR=$SRCDIR"
+if [ "x$USE_EXPERIMENTAL" != "x" ]; then
+echo "***** Will checkout experimental branches *****"
+fi
+echo Will use "PATH=$PATH"
+echo Will use "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo Will use "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+echo Will use "CC=$CC"
+echo Will use "CXX=$CXX"
+
 echo -e "\033[4mBefore proceeding further, make sure that you're ready to go (look inside the install script):\033[m"
 echo -e "1) configured \033[1mPREFIX\033[m and \033[1mSRCDIR\033[m the way you wish"
-echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into using non-GCC compilers);"
+echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into using non-GCC compilers when the distro defaults to GCC);"
 echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which installs libraries to non-standard paths), added --libdir=/usr/lib64 to the marked line, or..."
 echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
 echo -e "3) installed the build dependencies listed in the script. Unless you're on Debian and derivatives, use libusb 1.0."
 echo -e "        For instance, on Debian, you would run:"
 echo -e "        (sudo) apt-get install git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-dev libgtk2.0-dev libglade2-dev libsdl1.2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
 echo -e "        On Jessie and latter, add libtool-bin to the above list"
+echo -e "        On Mac OS X, one can use 'brew' to easily install dependencies."
+echo -e "        (note that 'brew link --force libarchive gettext' will be needed before launching this script, you can use 'brew unlink' later)."
 echo -e "\033[4mOtherwise, the build will fail!\033[m."
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
 
 echo "Creating output folder if necessary"
-mkdir -p "$SRCDIR/tilp" || exit 1
 
-rough_sanity_checks
+rough_sanity_checks || exit 1
 
 cd "$SRCDIR/tilp"
 echo "=== Downloading tilibs ==="
-handle_repository_copies tilibs
+handle_repository_copies tilibs || exit 1
 echo "=== Downloading tilp_and_gfm ==="
-handle_repository_copies tilp_and_gfm
+handle_repository_copies tilp_and_gfm || exit 1
 echo "=== libticonv ==="
 handle_one_module tilibs/libticonv || exit 1
 # Useful configure options include --disable-nls.
@@ -233,4 +274,4 @@ echo ""
 echo "=================================================="
 echo "IMPORTANT NOTES                    IMPORTANT NOTES"
 echo "=================================================="
-echo "If you want to use TILP as a non-root user, follow the instructions in $SRCDIR/tilp/libticables/CONFIG"
+echo "If you want to use TILP as a non-root user, follow the instructions in $SRCDIR/tilp/tilibs/libticables/CONFIG"

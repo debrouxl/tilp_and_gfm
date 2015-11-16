@@ -1,5 +1,5 @@
 SUBDIRS = mingw
-EXTRA_DIST = InnoSetup mingw msvc osx
+EXTRA_DIST = InnoSetup mingw msvc osx scripts
 
 dist-hook:
 	if test ! -d .svn; then \

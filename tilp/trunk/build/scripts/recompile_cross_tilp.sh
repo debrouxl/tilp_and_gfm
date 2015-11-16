@@ -3,7 +3,7 @@
 # Maintainer script for automating the cross-compilation and installation of tilp & gfm
 # from a checkout of the complete tilp repository over at svn.tilp.info.
 #
-# Copyright (C) 2010, 2011, 2012, 2013 Lionel Debroux, Benjamin Moody
+# Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015 Lionel Debroux, Benjamin Moody
 
 
 # REMINDERS: don't forget to:
@@ -45,7 +45,7 @@ handle_one_module() {
   ./configure --host="$CHOST" CPPFLAGS="$CCPPFLAGS" CFLAGS="$CCFLAGS" CXXFLAGS="$CCFLAGS" LDFLAGS="$CLDFLAGS" --prefix="$PREFIX" $@ || return 1
   echo "Building $module_name"
   make clean || return 1
-  make || return 1
+  make -j4 || return 1
   echo "Installing $module_name"
   make check || return 1
   make install || return 1
