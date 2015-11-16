@@ -9,7 +9,7 @@
 PREFIX="$HOME"
 
 # Common flags and definitions.
-CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Werror=declaration-after-statement -Werror=implicit-function-declaration -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=address"
+CCFLAGS="-Os -g3 -Wall -W -Wno-unused-parameter -Wshadow -Wwrite-strings -Wredundant-decls -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -fstack-protector-all -Wstack-protector --param=ssp-buffer-size=1 -fsanitize=address, undefined"
 CCPPFLAGS="-D_FORTIFY_SOURCE=2"
 
 # Configure and build the given module
@@ -30,11 +30,13 @@ handle_one_module() {
   cd -
 }
 
+if [ "x$NOAUTORECONF" = "x" -a "x$NO_AUTORECONF" = "x" ]; then
 echo "=== AUTORECONF ==="
-sh run_autoreconf.sh
+./run_autoreconf.sh || exit 1
+fi
 
 echo "=== UPDATEPOT ==="
-sh run_updatepot.sh
+./run_updatepot.sh || exit 1
 
 
 echo "=== tfdocgen ==="
@@ -48,7 +50,7 @@ echo "=== libtifiles ==="
 handle_one_module tilibs/libtifiles || exit 1
 # Useful configure options include --disable-nls, --enable-logging.
 echo "=== libticables ==="
-handle_one_module tilibs/libticables --enable-logging || exit 1
+handle_one_module tilibs/libticables --enable-logging --enable-libusb10 || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
 handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1

@@ -53,11 +53,13 @@ handle_one_module() {
 }
 
 
+if [ "x$NOAUTORECONF" = "x" -a "x$NO_AUTORECONF" = "x" ]; then
 echo "=== AUTORECONF ==="
-sh run_autoreconf.sh
+./run_autoreconf.sh || exit 1
+fi
 
 echo "=== UPDATEPOT ==="
-sh run_updatepot.sh
+./run_updatepot.sh || exit 1
 
 
 sed "s/+ _nl_msg.*$//" -i tilibs/libtifiles/trunk/configure
