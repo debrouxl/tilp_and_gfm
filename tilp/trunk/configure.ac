@@ -34,7 +34,10 @@ AC_MSG_RESULT([err: no fridge found!])
 # Setup libtool.
 AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
-AC_PROG_LIBTOOL
+
+# AC_PROG_LIBTOOL is deprecated, use LT_INIT.
+#AC_PROG_LIBTOOL
+LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
