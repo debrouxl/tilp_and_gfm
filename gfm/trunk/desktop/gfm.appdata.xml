@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 Ben Rosser <rosser.bjr@gmail.com> -->
+<application>
+	<id type="desktop">comical.desktop</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-2.0+</project_license>
+	<name>Group File Manager</name>
+	<summary>Texas Instruments handheld(s) file manipulation program</summary>
+	<description>
+		<p>
+			The GFM is an application allowing for the manipulation of
+			single/group/tigroup files from Texas Instruments handhelds.
+			It can create a new file, open an existing file, save file,
+			rename variables, remove variables, create folders, group files
+			into a group/tigroup file, and ungroup a group/tigroup file
+			into single files.
+		</p>
+		<p xml:lang="fr">
+			Le GFM est une application permettant la manipulation de fichiers
+			individuels/groupe/tigroup pour les calculatrices Texas Instruments.
+			GFM peut créer un nouveau fichier, ouvrir un fichier existant,
+			sauvegarder le fichier, renommer des variables, enlever des
+			variables, créer des répertoires, grouper des fichiers vers un
+			seul fichier group/tigroup, et dégrouper un fichier group/tigroup 
+			en fichiers individuels.
+		</p>
+		<p>
+			The GFM is intended to be used alongside TILP II, which can send
+			and receive files from/to the handhelds.
+		</p>
+		<p xml:lang="fr">
+			Le GFM est fait pour être utilisé à côté de TILP II, qui peut
+			envoyer vers et recevoir des fichiers depuis les calculatrices.
+		</p>
+	</description>
+	<screenshots>
+		<screenshot type="default">http://lpg.ticalc.org/prj_tilp/images/gfm_main_upscaled.png</screenshot>
+	</screenshots>
+	<url type="homepage">http://lpg.ticalc.org/prj_gfm/</url>
+	<updatecontact>rosser.bjr_at_gmail.com</updatecontact>
+</application>

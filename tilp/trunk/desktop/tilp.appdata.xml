@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 Ben Rosser <rosser.bjr@gmail.com> -->
+<application>
+	<id type="desktop">comical.desktop</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-2.0+</project_license>
+	<name>TILP2</name>
+	<summary>Texas Instruments handheld(s) to computer communication program</summary>
+	<summary xml:lang="fr">Programme de communication entre calculatrices Texas Instruments et ordinateur</summary>
+	<description>
+		<p>
+			TILP2 is a communication program between Texas Instruments 
+			handhelds and computers. It is able to use any supported type
+			of link cable (Gray/Black/Silver/Direct Link) with any TI
+			graphing calculator.
+		</p>
+		<p xml:lang="fr">
+			TILP2 est un programme de communication entre les calculatrices
+			Texas Instruments et l'ordinateur. Il peut utiliser tout type
+			de câble de communication (Gray/Black/Silver/Direct Link) et
+			toutes les calculatrices graphiques TI.
+		</p>
+		<p>
+			With TiLP, you can transfer files from your PC to your Texas
+			Instruments graphing calculator, and vice-versa. You can also
+			make a screen dump, send/receive data, backup/restore contents,
+			install FLASH applications, or upgrade the OS.
+		</p>
+		<p xml:lang="fr">
+			Avec TILP, vous pouvez transférer des fichiers dans les deux
+			sens entre votre calculatrice graphique Texas Instruments et
+			votre ordinateur. Vous pouvez également prendre une capture
+			d'écran, envoyer/recevoir des données, sauvegarder/restaurer
+			le contenu, installer des applications Flash, ou mettre à
+			jour l'OS.
+		</p>
+	</description>
+	<screenshots>
+		<screenshot type="default">http://lpg.ticalc.org/prj_tilp/images/tilp2_main.png</screenshot>
+	</screenshots>
+	<url type="homepage">http://lpg.ticalc.org/prj_tilp/</url>
+	<updatecontact>rosser.bjr_at_gmail.com</updatecontact>
+</application>
