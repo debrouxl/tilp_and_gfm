@@ -43,8 +43,8 @@ void toolbar_refresh_buttons(void)
 	gtk_widget_set_sensitive(toolbar_wnd.button11, features & OPS_DIRLIST);
 	gtk_widget_set_sensitive(toolbar_wnd.button12, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(toolbar_wnd.button13, features & OPS_BACKUP);
-	gtk_widget_set_sensitive(toolbar_wnd.button14, !(features & FTS_SILENT) || !options.full_gui);
-	gtk_widget_show(toolbar_wnd.button15);
+	gtk_widget_set_sensitive(toolbar_wnd.button14, features & FTS_NONSILENT);
+	gtk_widget_set_sensitive(toolbar_wnd.button15, features & FTS_NONSILENT);
 
 	gtk_widget_set_sensitive(menubar_wnd.backup, features & OPS_BACKUP);
 	gtk_widget_set_sensitive(menubar_wnd.restore, features & OPS_BACKUP);
