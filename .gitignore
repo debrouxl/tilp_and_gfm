@@ -21,6 +21,12 @@ ABOUT-NLS
 INSTALL
 compile
 test-driver
+POTFILES
+*.o
+*.dSYM
+stamp-po
+*.desktop
+Manpage.txt
 
 *.gmo
 Makevars.template
