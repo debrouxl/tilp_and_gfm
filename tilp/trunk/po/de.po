@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-25 11:43+0100\n"
+"POT-Creation-Date: 2016-01-30 16:21+0100\n"
 "PO-Revision-Date: 2013-08-30 13:29+0200\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -1121,92 +1121,96 @@ msgid "TI-82 Advanced"
 msgstr "TI-82 Advanced"
 
 #: ../builder/device.ui.h:24
+msgid "TI-84 Plus T"
+msgstr "TI-84 Plus T"
+
+#: ../builder/device.ui.h:25
 msgid "TI-85"
 msgstr "TI-85"
 
-#: ../builder/device.ui.h:25
+#: ../builder/device.ui.h:26
 msgid "TI-86"
 msgstr "TI-86"
 
-#: ../builder/device.ui.h:26
+#: ../builder/device.ui.h:27
 msgid "TI-89"
 msgstr "TI-89"
 
-#: ../builder/device.ui.h:27
+#: ../builder/device.ui.h:28
 msgid "TI-89 Titanium"
 msgstr "TI-89 Titanium"
 
-#: ../builder/device.ui.h:28
+#: ../builder/device.ui.h:29
 msgid "TI-92"
 msgstr "TI-92"
 
-#: ../builder/device.ui.h:29
+#: ../builder/device.ui.h:30
 msgid "TI-92+"
 msgstr "TI-92+"
 
-#: ../builder/device.ui.h:30
+#: ../builder/device.ui.h:31
 msgid "TI-V200 PLT"
 msgstr "TI-V200 PLT"
 
-#: ../builder/device.ui.h:31
+#: ../builder/device.ui.h:32
 msgid "TI-Nspire"
 msgstr "TI-Nspire"
 
-#: ../builder/device.ui.h:32
+#: ../builder/device.ui.h:33
 msgid "Communication Settings"
 msgstr "Kommunikationseinstellungen"
 
-#: ../builder/device.ui.h:33
+#: ../builder/device.ui.h:34
 msgid "Cable:"
 msgstr "Kabel:"
 
-#: ../builder/device.ui.h:34
+#: ../builder/device.ui.h:35
 msgid "Port:"
 msgstr "Port:"
 
-#: ../builder/device.ui.h:35
+#: ../builder/device.ui.h:36
 msgid "Calc:"
 msgstr "Taschenrechner:"
 
-#: ../builder/device.ui.h:36
+#: ../builder/device.ui.h:37
 msgid "Timeout:"
 msgstr "Zeitüberschreitung:"
 
-#: ../builder/device.ui.h:37
+#: ../builder/device.ui.h:38
 msgid "Delay:"
 msgstr "Verzögerung:"
 
-#: ../builder/device.ui.h:38
+#: ../builder/device.ui.h:39
 msgid "Timeout value in tenth of seconds."
 msgstr ""
 
-#: ../builder/device.ui.h:39
+#: ../builder/device.ui.h:40
 msgid "Inter-bit delay for serial/parallel link cables."
 msgstr ""
 
-#: ../builder/device.ui.h:40
+#: ../builder/device.ui.h:41
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
 msgstr ""
 
-#: ../builder/device.ui.h:41
+#: ../builder/device.ui.h:42
 msgid "USB scan at startup"
 msgstr ""
 
-#: ../builder/device.ui.h:42
+#: ../builder/device.ui.h:43
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../builder/device.ui.h:43
+#: ../builder/device.ui.h:44
 msgid "Don't know which device you have ? Click =>"
 msgstr ""
 
-#: ../builder/device.ui.h:44
+#: ../builder/device.ui.h:45
 msgid "Probe for attached devices..."
 msgstr ""
 
-#: ../builder/device.ui.h:45
+#: ../builder/device.ui.h:46
 msgid "Double-click a line to update settings."
 msgstr ""
 
