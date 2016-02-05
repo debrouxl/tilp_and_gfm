@@ -10,7 +10,9 @@
 #     * please read below for prerequisites (build dependencies) or peculiarities (e.g. 64-bit Fedora).
 #     * you should remove equivalent packages, if any, before running this script.
 #
-# Copyright (C) Lionel Debroux 2009, 2010, 2011, 2012, 2013, 2014, 2015
+# Copyright (C) Lionel Debroux 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016
+# Copyright (C) Adrien "Adriweb" Bertrand 2015
+# Copyright (C) Fabian "Vogtinator" Vogt 2016
 
 # libti* and tilp are compiled with a proposed set of configuration options,
 # but you may wish to use others. The complete list is available through
@@ -141,6 +143,7 @@ handle_one_module() {
 
 # Subroutine: perform quick rough sanity check on compilers and PREFIX.
 rough_sanity_checks() {
+  echo "Creating output folder if necessary"
   mkdir -p "$SRCDIR/tilp" || return 1
 
   echo "Performing a quick rough sanity check on compilers"
@@ -192,7 +195,32 @@ EOF
   rm "$TEMPFILE"
 }
 
+listdeps() {
+    echo "Debian 8:"
+    echo -e "    apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool\n"
+    echo "Fedora 23:"
+    echo -e "    dnf install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo "CentOS 7:"
+    echo -e "    yum install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo "OpenSUSE 42.1:"
+    echo -e "    zypper install git gcc gcc-c++ make pkg-config autoconf automake libtool glib2-devel zlib-devel libusb-1_0-devel gtk2-devel libglade2-devel gettext-tools bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo "Alpine 3.3:"
+    echo -e "    apk add git gcc g++ make pkgconfig autoconf automake libtool glib-dev zlib-dev libusb-dev gtk+-dev libglade-dev gettext-dev bison flex groff texinfo xdg-utils libarchive-dev intltool xz\n"
+    echo "Arch Linux 2015.06.01 + upgrades:"
+    echo -e "    pacman -S git gcc make pkgconfig autoconf automake libtool glib2 zlib libusb gtk2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz\n"
+    echo "MacOS X:"
+    echo -e "    brew install gettext libarchive autoconf automake libtool glib lzlib libusb gtk+ libglade sdl bison flex texinfo intltool"
+    echo -e "    brew link --force libarchive gettext (you can use 'brew unlink' later)."
+}
+
 # The main part of the script starts here.
+# Shall we list build deps ?
+if [ "x$1" = "x--listdeps" ]; then
+    echo "Build dependencies for libticonv, libtifiles, libticables, libticalcs, gfm and tilp:"
+    listdeps
+    exit 0
+fi
+
 # First of all, platform-specific adjustments.
 UNAME=`uname`
 # On MacOS X 10.11, locally compiled programs are _really_ supposed to be installed to /usr/local.
@@ -204,6 +232,7 @@ if [ "x$PREFIX" = "x/usr" ]; then
 fi
 # On MacOS X 10.11, need to fiddle with PKG_CONFIG_PATH.
 if [ "x$UNAME" = "xDarwin" ]; then
+    echo "Modifying PKG_CONFIG_PATH on MacOS X"
     if [ "x$PKG_CONFIG_PATH" = "x" ]; then
         PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:/opt/X11/lib/pkgconfig"
     else
@@ -211,7 +240,15 @@ if [ "x$UNAME" = "xDarwin" ]; then
     fi
     export PKG_CONFIG_PATH
 fi
+LIBDIR="$PREFIX/lib"
+# Some 64-bit Linux distros use /lib64 or /usr/lib64.
+if [ "x$UNAME" = "xLinux" ]; then
+    echo "Determining whether $PREFIX/lib64 is probably used"
+    ldd /usr/bin/getent | grep "=>" | grep /lib64/ || echo "No, $PREFIX/lib64 is probably not used"
+    ldd /usr/bin/getent | grep "=>" | grep /lib64/ && echo "Yes, $PREFIX/lib64 is probably used, will use it for LIBDIR" && LIBDIR="$PREFIX/lib64"
+fi
 
+# Go on.
 echo Will use "PREFIX=$PREFIX"
 echo Will use "SRCDIR=$SRCDIR"
 if [ "x$USE_EXPERIMENTAL" != "x" ]; then
@@ -220,26 +257,20 @@ fi
 echo Will use "PATH=$PATH"
 echo Will use "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 echo Will use "PKG_CONFIG_PATH=$PKG_CONFIG_PATH"
+echo Will use "LIBDIR=$LIBDIR"
 echo Will use "CC=$CC"
 echo Will use "CXX=$CXX"
 
 echo -e "\033[4mBefore proceeding further, make sure that you're ready to go (look inside the install script):\033[m"
 echo -e "1) configured \033[1mPREFIX\033[m and \033[1mSRCDIR\033[m the way you wish"
 echo -e "   (as well as \033[1mCC\033[m and \033[1mCXX\033[m if you're into using non-GCC compilers when the distro defaults to GCC);"
-echo -e "2a) if you're using \033[1m64-bit Fedora\033[m (or any distro which installs libraries to non-standard paths), added --libdir=/usr/lib64 to the marked line, or..."
-echo -e "2b) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
+echo -e "2) configured \033[1mPKG_CONFIG_PATH\033[m if necessary"
 echo -e "3) \033[1mpurged any installed distro packages\033[m for libticonv, libtifiles, libticables, libticalcs, gfm, tilp."
-echo -e "4) installed the build dependencies listed in the script."
-echo -e "        For instance, on Debian, you would run:"
-echo -e "        (sudo) apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool"
-echo -e "        On Jessie and latter, add libtool-bin to the above list"
-echo -e "        On Mac OS X, one can use 'brew' to easily install dependencies."
-echo -e "        (note that 'brew link --force libarchive gettext' will be needed before launching this script, you can use 'brew unlink' later)."
-echo -e "\033[4mOtherwise, either the build will fail, or the system may not use the just-built version (e.g. if you didn't purge the distro packages) !\033[m."
+echo -e "4) installed the build dependencies listed in the script. For instance:"
+listdeps
+echo -e "\033[4mOtherwise, either the build will fail, or the system may not use the just-built version (e.g. if you didn't purge the distro packages) !\033[m"
 echo -e "\033[1mENTER to proceed, CTRL + C to abort\033[m."
 read
-
-echo "Creating output folder if necessary"
 
 rough_sanity_checks || exit 1
 
@@ -249,22 +280,22 @@ handle_repository_copies tilibs || exit 1
 echo "=== Downloading tilp_and_gfm ==="
 handle_repository_copies tilp_and_gfm || exit 1
 echo "=== libticonv ==="
-handle_one_module tilibs/libticonv || exit 1
+handle_one_module tilibs/libticonv "--libdir=$LIBDIR" || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
-handle_one_module tilibs/libtifiles || exit 1
+handle_one_module tilibs/libtifiles "--libdir=$LIBDIR" || exit 1
 # Useful configure options include --disable-nls, --enable-logging
 echo "=== libticables ==="
-handle_one_module tilibs/libticables --enable-logging --enable-libusb10 || exit 1
+handle_one_module tilibs/libticables "--libdir=$LIBDIR" --enable-logging --enable-libusb10 || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
-handle_one_module tilibs/libticalcs || exit 1
+handle_one_module tilibs/libticalcs "--libdir=$LIBDIR" || exit 1
 
 # Use --with-kde if you want to use the native KDE file dialogs (it defaults to disabled because it requires a slew of development package dependencies).
 echo "=== gfm ==="
-handle_one_module tilp_and_gfm/gfm || exit 1
+handle_one_module tilp_and_gfm/gfm "--libdir=$LIBDIR" || exit 1
 echo "=== tilp ==="
-handle_one_module tilp_and_gfm/tilp || exit 1
+handle_one_module tilp_and_gfm/tilp "--libdir=$LIBDIR" || exit 1
 
 echo "=================================================="
 echo "=== libti* + gfm + tilp installed successfully ==="
@@ -275,4 +306,4 @@ echo ""
 echo "=================================================="
 echo "IMPORTANT NOTES                    IMPORTANT NOTES"
 echo "=================================================="
-echo "If you want to use TILP as a non-root user, follow the instructions in $SRCDIR/tilp/tilibs/libticables/CONFIG"
+echo "If you want to use TILP as a non-root user, follow the instructions in $SRCDIR/tilp/tilibs/libticables/trunk/CONFIG"
