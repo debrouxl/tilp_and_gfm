@@ -3,6 +3,18 @@ SubVersion: $Id$
 Log of changes:	gfm (calcs, files, ticonv)
 
 - xx/xx/201x, version 1.08 (1.1.9, 1.1.7, 1.1.5): debrouxl
+	- get rid of autocrap, and fix Manpage.txt problems.
+	- add AppData files for tilp and gfm in desktop/.
+	- modify desktop files to use PNG icons.
+	- replace deprecated AC_PROG_LIBTOOL with LT_INIT.
+	- update AUTHORS files, make them all use LF EOL. Reported by Fabian "Vogtinator" Vogt and Adrien "Adriweb" Bertrand.
+	- make several iteration variables unsigned after change in libtifiles; make TigEntry creation a bit more robust in gfm.
+	- bump libti* dependency versions due to the bunch of new APIs that we'll soon use.
+	- fix -Wmissing-prototypes warnings. Suggested by Benjamin Moody.
+	- remove usage of __DATE__ and __TIME__, which is of limited usefulness and makes builds trivially non-reproducible.
+	- remove auto-generated configure & Makefile.in from the repository; run autoreconf from install_tilp.sh.
+	- bump version numbers.
+	- remove all of those outdated SVN branches and tags which are taking lots of room in clones of the repository.
 
 - 31/03/2013, version 1.07 (1.1.8, 1.1.6, 1.1.4): debrouxl
 	- honor CFLAGS when compiling cleaner. Patch by Malcolm J. Lewis, SF bug #3491681.

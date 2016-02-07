@@ -3,6 +3,43 @@ SubVersion: $Id$
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
 - xx/xx/201x, version 1.18 (1.3.5, 1.1.9, 1.1.7, 1.1.5): debrouxl
+	- scripts: improvements in install_tilp.sh.
+	- enable non-silent linking only for calculators which advertise non-silent linking. Indirectly reported by at least ShootPad, thesignal and Greg Williamson.
+	- gfm, tilp: get rid of autocrap, and fix Manpage.txt problems.
+	- add .gitignore.
+	- add AppData files for tilp and gfm in desktop/.
+	- modify desktop files to use PNG icons.
+	- replace deprecated AC_PROG_LIBTOOL with LT_INIT.
+	- scripts: updates in install_tilp.sh.
+	- use the new bitmap (screen) conversion functions from libticalcs, where the relevant code from TILP was moved; maintainer and install script changes.
+	- use new ticalcs_infos_to_string() API, where the bulk of tilp_calc_get_infos() was moved.
+	- maintainer and install script changes.
+	- in the Windows installer, add Image and Lab Report types, add a bunch of file extensions, replace DLLs with same version, upgrade GTK+2 runtime version and server location; in the FD.o Desktop file, add Image, Matrix and Lab Report types, add and fix a bunch of extensions.
+	- update AUTHORS files, make them all use LF EOL. Reported by Fabian "Vogtinator" Vogt and Adrien "Adriweb" Bertrand.
+	- use new ticables probing API for USB devices.
+	- remove special case handling of 83+/84+ appvars.
+	- set increased timeouts for Flash transfers on all TI-8x models.
+	- use ticalcs_remap_model_from_usb to select model in combobox.
+	- use libticalcs' brand-new ticalcs_remap_model_{from,to}_usb() instead of own tilp_remap_{from,to}_usb().
+	- add the 84+CSE, 83PCE, 84+CE, 82A into the devices list; add dashes between TI and the calculator model to other entries of that list.
+	- maintainer script changes.
+	- make several iteration variables unsigned after change in libtifiles; make TigEntry creation a bit more robust in gfm.
+	- fix "TiGroup" typos; rename TiGroup.ico to TIGroup.ico; copy Picture.ico to Image.ico.
+	- bump libti* dependency versions due to the bunch of new APIs that we'll soon use.
+	- fix -Wmissing-prototypes warnings. Suggested by Benjamin Moody.
+	- tilp: in the Windows installer, use README.win32 as README instead of README, and don't install the dha driver by default; in the *nix installer, update Debian build-dep list, and switch to the libusb 1.0 backend by default (only Debian and derivatives still provide libusb 0.1 proper).
+	- remove usage of __DATE__ and __TIME__, which is of limited usefulness and makes builds trivially non-reproducible.
+	- in tilp_err(), call tifiles_error_get() instead of calling ticalcs_error_get() twice. Noticed during the making of libhpcalcs.
+	- maintainer Win32 cross-build script: add -static-libgcc to LDFLAGS, to fix dependency on __udivdi3 and __umoddi3 recently added indirectly by the MinGW upgrade, through subroutines of printf family functions. Reported by benryves.
+	- maintainer build script: promote -fsanitize=address CFLAG to the main recompile_tilp.sh script, now that GCC 4.8 (in addition to Clang) offers AddressSanitizer functionality.
+	- add partial German translation, updated from Debian bug #588411 and contributed by Andreas B. Mundt.
+	- remove auto-generated configure & Makefile.in from the repository; run autoreconf from install_tilp.sh.
+	- support screenshots for 84+CSE (and pave the way to future models).
+	- remove long-dead UsbKernel option from the cables list in the UI.
+	- remove outdated .desktop files for old versions of KDE.
+	- bump version numbers.
+	- scripts: adjust user and maintainer scripts to Git repositories.
+	- remove all of those outdated SVN branches and tags which are taking lots of room in clones of the repository.
 
 - 31/03/2013, version 1.17 (1.3.4, 1.1.8, 1.1.6, 1.1.4): debrouxl
 	- regenerate with Autoconf 2.69 and Automake 1.11.5.
