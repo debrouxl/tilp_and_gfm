@@ -456,7 +456,7 @@ int tilp_calc_send_os(const char *filename)
 int tilp_calc_recv_app(void)
 {
 	GList *ptr;
-	char filename[261];
+	char filename[263];
 	char *dst;
 	int i, l;
 
@@ -484,10 +484,9 @@ int tilp_calc_recv_app(void)
 		gtk_update.refresh();
 
 		str = ticonv_varname_to_filename(options.calc_model, ve->name, ve->type);
-		strcpy(filename, str);
-		strcat(filename, ".");
-		strcat(filename, tifiles_vartype2fext(options.calc_model, ve->type));
-		g_free(str);
+		snprintf(filename, sizeof(filename) - 1, "%s.%s", str, tifiles_vartype2fext(options.calc_model, ve->type));
+		filename[sizeof(filename) - 1] = 0;
+		ticonv_gfe_free(str);
 
 		ret = tilp_file_check(filename, &dst);
 		if (ret == 0)
@@ -714,8 +713,8 @@ tcrv1:
 				tifiles_vartype2fext(options.calc_model, ve->type), NULL);
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
-		g_free(fldname);
-		g_free(varname);
+		ticonv_gfe_free(fldname);
+		ticonv_gfe_free(varname);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 	}
@@ -807,9 +806,9 @@ tcrv2:
 				if (tmp_filename != NULL)
 				{
 					src_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S,
-						g_basename(tmp_filename), NULL);
+						g_path_get_basename(tmp_filename), NULL);
 					dst_filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S,
-						g_basename(tmp_filename), NULL);
+						g_path_get_basename(tmp_filename), NULL);
 
 					g_free(tmp_filename);
 
@@ -866,7 +865,7 @@ static int tilp_calc_recv_var2(void)
 		tilp_file_move_with_check(tmp_filename, dst_filename);
 
 		tifiles_ve_delete(ve);
-		g_free(basename);
+		ticonv_gfe_free(basename);
 		g_free(tmp_filename);
 		g_free(dst_filename);
 

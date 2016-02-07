@@ -71,7 +71,7 @@ int paths_init(void)
   /*******************************************/
   // Will replace /target/bin with /target/share/gfm in MinGW/MSYS
   #define MINGW_REL "share\\gfm"
-  if ((strlen(basename) == 3) && !g_strcasecmp(basename, "bin"))
+  if ((strlen(basename) == 3) && !g_ascii_strcasecmp(basename, "bin"))
   {
 	  gchar *token;
 	  dirname = g_realloc(dirname, strlen(dirname) + strlen(MINGW_REL) + 1);

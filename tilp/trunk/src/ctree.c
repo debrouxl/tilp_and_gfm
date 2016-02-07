@@ -386,7 +386,7 @@ void ctree_refresh(void)
 					   COLUMN_NAME, utf8, 
 					   COLUMN_DATA, (gpointer) fe,
 					   COLUMN_ICON, pix1, -1);
-			g_free(utf8);
+			ticonv_utf8_free(utf8);
 		}
 
 		for (j = 0; j < (int)g_node_n_children(parent); j++) 
@@ -395,8 +395,9 @@ void ctree_refresh(void)
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
+			char * utf8 = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 
-			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
+			row_text[0] = g_strdup(utf8); ticonv_utf8_free(utf8);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 			tilp_var_get_size(ve, &row_text[3]);
 
@@ -446,8 +447,9 @@ void ctree_refresh(void)
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
 			VarEntry *ve = (VarEntry *) (node->data);
 			char icon_name[256];
+			char * utf8 = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
 
-			row_text[0] = ticonv_varname_to_utf8(options.calc_model, ve->name, ve->type);
+			row_text[0] = g_strdup(utf8); ticonv_utf8_free(utf8);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, ve->type));
 			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
 

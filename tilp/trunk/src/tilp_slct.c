@@ -219,7 +219,7 @@ void tilp_local_contents_load(void)
 		{
 			FileEntry *fe0 = ptr->data;
 
-			if(!g_strcasecmp(tifiles_fext_get(fe0->name), "8xidl"))
+			if(!g_ascii_strcasecmp(tifiles_fext_get(fe0->name), "8xidl"))
 				continue;	// doesn't send this pseudo-variable
 
 			if(tifiles_file_is_single(fe0->name))

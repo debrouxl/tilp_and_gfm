@@ -130,7 +130,7 @@ TILP_EXPORT void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	while (ptr != NULL) 
 	{
 		src = (gchar *) (ptr->data);
-		dst = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, g_basename(src), NULL);
+		dst = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, g_path_get_basename(src), NULL);
 		if (local.copy_cut == COPY_FILE) 
 		{
 			tilp_file_copy(src, dst);

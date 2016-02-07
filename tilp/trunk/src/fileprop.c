@@ -78,7 +78,7 @@ gint display_properties_dbox(const char *filename)
 		pango_font_description_free (font_desc);
 	}
 
-	gtk_window_set_title(GTK_WINDOW(dbox), g_basename(filename));
+	gtk_window_set_title(GTK_WINDOW(dbox), g_path_get_basename(filename));
 	gtk_widget_show(GTK_WIDGET(dbox));
 
 	result = gtk_dialog_run(GTK_DIALOG(dbox));

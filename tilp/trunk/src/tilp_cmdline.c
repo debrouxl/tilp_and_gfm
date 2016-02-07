@@ -115,13 +115,13 @@ int tilp_cmdline_scan(int *argc, char ***argv)
 			{
 				for(i = 0; i < CABLE_MAX; i++)
 				{
-					if(!g_strcasecmp(ticables_model_to_string(i), *p))
+					if(!g_ascii_strcasecmp(ticables_model_to_string(i), *p))
 						options.cable_model = i;
 				}
 
 				for(i = 0; i < CALC_MAX; i++)
 				{
-					if(!g_strcasecmp(ticalcs_model_to_string(i), *p))
+					if(!g_ascii_strcasecmp(ticalcs_model_to_string(i), *p))
 						options.calc_model = i;
 				}
 			}

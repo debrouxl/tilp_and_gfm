@@ -260,7 +260,7 @@ static gboolean varnode_to_tigentry(GNode* node, gpointer data)
 		// create filename
 		basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
 		filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
-		g_free(basename);
+		ticonv_gfe_free(basename);
 
 		te = tifiles_te_create(filename, TIFILE_SINGLE, GFMFile.model);
 		g_free(filename);
@@ -287,7 +287,7 @@ static gboolean appnode_to_tigentry(GNode* node, gpointer data)
 		// create filename
 		basename = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
 		filename = g_strconcat(basename, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
-		g_free(basename);
+		ticonv_gfe_free(basename);
 
 		te = tifiles_te_create(filename, TIFILE_FLASH, GFMFile.model);
 		g_free(filename);

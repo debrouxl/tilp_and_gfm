@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.07\n"
 "Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2015-05-10 11:35+0200\n"
+"POT-Creation-Date: 2016-02-07 20:16+0100\n"
 "PO-Revision-Date: 2011-12-13 19:16+0100\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -89,55 +89,55 @@ msgstr "Sauver fichier"
 msgid "Open file"
 msgstr "Ouvrir fichier"
 
-#: src/gui.c:114 src/gui.c:417
+#: src/gui.c:114 src/gui.c:419
 msgid "TiGroup"
 msgstr "TiGroup"
 
-#: src/gui.c:114 src/gui.c:417
+#: src/gui.c:114 src/gui.c:419
 msgid "Single/Group"
 msgstr "Simple/Groupe"
 
-#: src/gui.c:114 src/gui.c:417
+#: src/gui.c:114 src/gui.c:419
 msgid "File type?"
 msgstr "Type de fichier?"
 
-#: src/gui.c:201
+#: src/gui.c:203
 msgid "Do you want to save previous file?"
 msgstr "Voulez-vous sauver le fichier précédent ?"
 
-#: src/gui.c:266
+#: src/gui.c:268
 msgid "Save"
 msgstr "Sauver"
 
-#: src/gui.c:266
+#: src/gui.c:268
 msgid "Quit"
 msgstr "Quitter"
 
-#: src/gui.c:266
+#: src/gui.c:268
 msgid "File has not been saved yet. Do you want to quit?"
 msgstr "Le fichier n'a pas été sauvé. Êtes-vous sûr de vouloir quitter ?"
 
-#: src/gui.c:310
+#: src/gui.c:312
 msgid "Importing of TiGroup files is not allowed."
 msgstr "L'importation d'un fichier TiGroup n'est pas permise."
 
-#: src/gui.c:317
+#: src/gui.c:319
 msgid "File is not compatible with current target."
 msgstr "Le fichier n'est pas compatible avec le modèle de calculatrice."
 
-#: src/gui.c:330
+#: src/gui.c:332
 msgid "The entry already exists. Skipped!"
 msgstr "Cette entrée existe déjà. Ignorée !"
 
-#: src/gui.c:394
+#: src/gui.c:396
 msgid "New Folder"
 msgstr "Nouveau dossier"
 
-#: src/gui.c:394
+#: src/gui.c:396
 msgid "folder"
 msgstr "dossier"
 
-#: src/gui.c:394
+#: src/gui.c:396
 msgid "Name of folder to create:"
 msgstr "Nom du dossier à créer:"
 

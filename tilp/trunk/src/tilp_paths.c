@@ -101,7 +101,7 @@ static void init_win32_paths(void)
 	  basename = g_path_get_basename(dirname);
 	  
       // Will replace /target/bin with /target/share/tilp2 in MinGW/MSYS
-      if ((strlen(basename) == 3) && !g_strcasecmp(basename, "bin"))
+      if ((strlen(basename) == 3) && !g_ascii_strcasecmp(basename, "bin"))
       {
           gchar *token;
           dirname = g_realloc(dirname, strlen(dirname) + strlen(MINGW_REL) + 1);

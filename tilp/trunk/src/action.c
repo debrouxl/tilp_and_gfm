@@ -222,7 +222,7 @@ gint display_action_dbox(gchar *target)
 				v->action = ACT_SKIP;	//don't overwrite as default behaviour
 
 			// file contains an already existing var: add it to the window
-			row_text[0] = trans;
+			row_text[0] = g_strdup(trans); ticonv_utf8_free(trans);
 			row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 			row_text[2] = g_strdup(f->name);
 			row_text[3] = g_strdup(action2string(v->action));
@@ -241,7 +241,7 @@ gint display_action_dbox(gchar *target)
 
 			empty = FALSE;
 		}
-	}		
+	}
 
 	if (empty == TRUE) 
 	{
@@ -355,7 +355,7 @@ TILP_EXPORT void action_rename_clicked(GtkButton * button, gpointer user_data)
 		trans = ticonv_varname_to_utf8(options.calc_model, (const char *)v->name, v->type);
 
 		// update entry
-		row_text[0] = g_strdup(trans); g_free(trans);
+		row_text[0] = g_strdup(trans); ticonv_utf8_free(trans);
 		row_text[1] = g_strdup(tifiles_attribute_to_string(v->attr));
 		row_text[3] = g_strdup(action2string(v->action));
 		gtk_list_store_set(list, &iter, 

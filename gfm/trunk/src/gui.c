@@ -157,13 +157,15 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 			// Single file
 			GNode *parent, *child;
 			VarEntry *ve;
+			char * filename2;
 
 			parent = g_node_nth_child(GFMFile.trees.vars, 0);
 			child = g_node_nth_child(parent, 0);
 			ve = (VarEntry *) (child->data);
 
-			filename = g_strconcat(ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type), ".", 
-				tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
+			filename2 = ticonv_varname_to_filename(GFMFile.model, ve->name, ve->type);
+			filename = g_strconcat(filename2, ".", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
+			ticonv_gfe_free(filename2);
 			ext = g_strconcat("*.", tifiles_vartype2fext(GFMFile.model, ve->type), NULL);
 		}
 		else
