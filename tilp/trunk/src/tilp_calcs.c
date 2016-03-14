@@ -903,26 +903,25 @@ int tilp_calc_recv_var(void)
 
 int tilp_calc_check_version(const char *ti9x_ver)
 {
-	if (tifiles_is_flash(options.calc_model))
+	if (tifiles_is_flash(options.calc_model) && ticonv_model_is_ti68k(options.calc_model))
 	{
 		CalcInfos infos;
 		int err;
 
 		err = ticalcs_calc_get_version(calc_handle, &infos);
 		if (tilp_err(err))
-			return -1;
-
-		if (tifiles_calc_is_ti9x(options.calc_model))
 		{
-			if ((ti9x_ver != NULL) && (strcmp(infos.os_version, ti9x_ver) < 0))
-			{
-				gchar *str = g_strdup_printf(_("You need AMS >=%s mini for this operation."), ti9x_ver);
-				gif->msg_box1(_("Information"), str);
-				g_free(str);
+			return -1;
+		}
 
-				return -1;
-			}
-		} 
+		if ((ti9x_ver != NULL) && (strcmp(infos.os_version, ti9x_ver) < 0))
+		{
+			gchar *str = g_strdup_printf(_("You need AMS >=%s mini for this operation."), ti9x_ver);
+			gif->msg_box1(_("Information"), str);
+			g_free(str);
+
+			return -1;
+		}
 	}
 
 	return 0;

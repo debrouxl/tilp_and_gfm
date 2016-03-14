@@ -51,7 +51,6 @@ extern "C" {
 #include "tilp_paths.h"
 #include "tilp_screen.h"
 #include "tilp_slct.h"
-#include "tilp_struct.h"
 #include "tilp_vars.h"
 #include "tilp_version.h"
 #include "tilp_device.h"

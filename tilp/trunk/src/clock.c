@@ -42,7 +42,7 @@ static void update_fields(const CalcClock* clk)
 
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton1"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->day);
-	
+
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "combobox1"));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->month - 1);
 
@@ -51,20 +51,24 @@ static void update_fields(const CalcClock* clk)
 
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton4"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->hours);
-	
+
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton5"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->minutes);
-	
+
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "spinbutton6"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(data), clk->seconds);
-	
+
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton1"));
-	if(clk->time_format == 12)
+	if (clk->time_format == 12)
+	{
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+	}
 
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "radiobutton2"));
-	if(clk->time_format == 24)
+	if (clk->time_format == 24)
+	{
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(data), TRUE);
+	}
 
 	data = GTK_WIDGET (gtk_builder_get_object (builder, "combobox2"));
 	gtk_combo_box_set_active(GTK_COMBO_BOX(data), clk->date_format - 1);
@@ -75,28 +79,30 @@ gint display_clock_dbox()
 	GError* error = NULL;
 	GtkWidget *dbox;
 	gint result;
-	int err;
+	int ret;
 
-	if(!(ticalcs_calc_features(calc_handle) & OPS_CLOCK))
+	if (!(ticalcs_calc_features(calc_handle) & OPS_CLOCK))
 	{
 		gif->msg_box1(_("Error"), _("No clock support!"));
 		return -1;
 	}
 
-	err = ticalcs_calc_isready(calc_handle);
-	if(err)
+	ret = ticalcs_calc_isready(calc_handle);
+	if (ret)
 	{
-		tilp_err(err);
+		tilp_err(ret);
 		return -1;
 	}
 
-	if(tilp_calc_check_version("2.08") < 0)
-		return -1;
-
-	err = ticalcs_calc_get_clock(calc_handle, &tmp_clk);
-	if(err)
+	if (tilp_calc_check_version("2.08") < 0)
 	{
-		tilp_err(err);
+		return -1;
+	}
+
+	ret = ticalcs_calc_get_clock(calc_handle, &tmp_clk);
+	if (ret)
+	{
+		tilp_err(ret);
 		return -1;
 	}
 
@@ -117,7 +123,7 @@ gint display_clock_dbox()
 
 	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "clock_dbox"));
 	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_CANCEL,-1);
+	                                        GTK_RESPONSE_CANCEL, -1);
 	update_fields(&tmp_clk);
 	modified = FALSE;
 
@@ -126,7 +132,9 @@ gint display_clock_dbox()
 	{
 	case GTK_RESPONSE_OK:
 		if(modified == FALSE)
+		{
 			break;
+		}
 
 		tilp_info("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n",
 			tmp_clk.day, tmp_clk.month, tmp_clk.year,
@@ -134,17 +142,17 @@ gint display_clock_dbox()
 			(tmp_clk.time_format == 12) ? "12" : "24",
 			ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
 
-		err = ticalcs_calc_isready(calc_handle);
-		if(err)
+		ret = ticalcs_calc_isready(calc_handle);
+		if (ret)
 		{
-			tilp_err(err);
+			tilp_err(ret);
 			return -1;
 		}
 
-		err = ticalcs_calc_set_clock(calc_handle, &tmp_clk);
-		if(err)
+		ret = ticalcs_calc_set_clock(calc_handle, &tmp_clk);
+		if(ret)
 		{
-			tilp_err(err);
+			tilp_err(ret);
 			return -1;
 		}
 
@@ -229,7 +237,7 @@ TILP_EXPORT void clock_sync_button_clicked(GtkButton * button, gpointer user_dat
 	time_t tt;
 	struct tm *lt;
 	CalcClock tc;
-	int err;
+	int ret;
 
 	time(&tt);
 	lt = localtime(&tt);
@@ -241,17 +249,17 @@ TILP_EXPORT void clock_sync_button_clicked(GtkButton * button, gpointer user_dat
 	tc.minutes = lt->tm_min;
 	tc.seconds = lt->tm_sec;
 
-	err = ticalcs_calc_isready(calc_handle);
-	if(err)
+	ret = ticalcs_calc_isready(calc_handle);
+	if (ret)
 	{
-		tilp_err(err);
+		tilp_err(ret);
 		return;
 	}
 
-	err = ticalcs_calc_set_clock(calc_handle, &tc);
-	if(err)
+	ret = ticalcs_calc_set_clock(calc_handle, &tc);
+	if (ret)
 	{
-		tilp_err(err);
+		tilp_err(ret);
 		return;
 	}
 
