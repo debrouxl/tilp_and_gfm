@@ -30,12 +30,11 @@
 
 #define LOG_DOMAIN	"tilp"
 
-void tilp_debug(const gchar *format, ...);
-void tilp_info(const gchar *format, ...);
-void tilp_message(const gchar *format, ...);
-void tilp_warning(const gchar *format, ...);
-void tilp_critical(const gchar *format, ...);
-void tilp_error(const gchar *format, ...);
+#define tilp_debug(format, ...) g_log("tilp", G_LOG_LEVEL_DEBUG, format, ##__VA_ARGS__)
+#define tilp_info(format, ...) g_log("tilp", G_LOG_LEVEL_INFO, format, ##__VA_ARGS__)
+#define tilp_warning(format, ...) g_log("tilp", G_LOG_LEVEL_WARNING, format, ##__VA_ARGS__)
+#define tilp_critical(format, ...) g_log("tilp", G_LOG_LEVEL_CRITICAL, format, ##__VA_ARGS__)
+#define tilp_error(format, ...) g_log("tilp", G_LOG_LEVEL_ERROR, format, ##__VA_ARGS__)
 
 #define TRYC(x) { int aaa_; if((aaa_ = (x))) return aaa_; }
 

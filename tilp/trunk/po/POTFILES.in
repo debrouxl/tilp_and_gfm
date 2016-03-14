@@ -35,7 +35,6 @@ src/tilp_device.c
 src/tilp_error.c
 src/tilp_files.c
 src/tilp_gif.c
-src/tilp_log.c
 src/tilp_main.c
 src/tilp_misc.c
 src/tilp_paths.c
