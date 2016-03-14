@@ -116,6 +116,31 @@ int tilp_init(int *argc, char ***argv)
 	/* Display program version */
 	tilp_cmdline_version();
 
+	/* Check the version of libraries and init framework */
+	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0)
+	{
+		tilp_critical(_("libticonv library version is %s but %s mini required.\n"), ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION);
+		return 1;
+	}
+
+	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0)
+	{
+		tilp_critical(_("libtifiles library version is %s but %s mini required.\n"), tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION);
+		return 1;
+	}
+
+	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0)
+	{
+		tilp_critical(_("libticables library version is %s but %s mini required.\n"), ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION);
+		return 1;
+	}
+
+	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0)
+	{
+		tilp_critical(_("libticalcs library version is %s but %s mini required.\n"), ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION);
+		return 1;
+	}
+
 	/* Initialize platform independant paths */
 	tilp_paths_init();
 
@@ -140,19 +165,6 @@ int tilp_init(int *argc, char ***argv)
 
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
-
-	/* Check the version of libraries and init framework */
-	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0) 
-		tilp_error(_("libticonv library version is %s but %s mini required.\n"), ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION);
-
-	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0) 
-		tilp_error(_("libtifiles library version is %s but %s mini required.\n"), tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION);
-	
-	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0) 
-		tilp_error(_("libticables library version is %s but %s mini required.\n"), ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION);
-	
-	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0) 
-		tilp_error(_("libticalcs library version is %s but %s mini required.\n"), ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION);
 
 	ticables_library_init();
 	tifiles_library_init();
