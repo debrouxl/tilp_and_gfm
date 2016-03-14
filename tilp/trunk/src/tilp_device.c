@@ -149,119 +149,76 @@ step3:
 */
 int tilp_device_probe_all(int ***result)
 {
-	int **array;
-	int i;
-	CableModel cable;
-	CablePort port;
-	CalcModel calc;
-	int found = 0;
-	//CableHandle* handle;
-	int err;
-	gchar *s;
+	int ret;
 
 	// Close device
-	err = tilp_device_close();
-	if(err)
-	  return err;
-
-	// search for cables
-	tilp_info("Searching for link cables...");
-	ticables_probing_do(&array, 5, PROBE_ALL);
-	*result = array;
-
-	for(i = 1; i <= 5; i++)
-		printf("%i: %i %i %i %i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
-
-	// found at least 1 cable ?
-	for(cable = CABLE_GRY; cable <= CABLE_USB; cable++)
-		for(port = PORT_1; port <= PORT_4; port++)
-			if(array[cable][port])
-				found = 1;
-	if(!found)
-		return -1;
-
-	// search for devices on all cables
-	for(cable = CABLE_GRY; cable <= CABLE_USB; cable++)
+	ret = tilp_device_close();
+	if (!ret)
 	{
-		for(port = PORT_1; port <= PORT_4; port++)
+		int **array;
+		CableModel cable;
+		CablePort port;
+		CalcModel calc;
+		int found = 0;
+
+		// Search for cables
+		tilp_info("Searching for link cables...");
+		ticables_probing_do(&array, 5, PROBE_ALL);
+		*result = array;
+
+		ticables_probing_show(array);
+
+		// Is there at least 1 cable ?
+		for (cable = CABLE_GRY; cable <= CABLE_MAX; cable++)
 		{
-			if(!array[cable][port])
-				continue;
-			
-			tilp_info("Searching for handhelds on %i:%i...",
-                                  cable, port);
-
-#if 1
-			err = ticalcs_probe(cable, port, &calc, !0);
-			if(err)
+			for (port = PORT_1; port <= PORT_4; port++)
 			{
-				array[cable][port] = CALC_NONE;
-				continue;
-			}
-			array[cable][port] = calc;
-
-			s = g_strdup_printf("Found: %s on %s:%s", 
-				ticalcs_model_to_string(calc),
-				ticables_model_to_string(cable),
-				ticables_port_to_string(port));
-			tilp_info(s);
-			g_free(s);
-#else
-			handle = ticables_handle_new(cable, port);
-			ticables_options_set_timeout(handle, 10);
-
-			err = ticables_cable_open(handle);
-			if(err)
-			{
-				ticables_handle_del(handle);
-				array[cable][port] = CALC_NONE;
-				continue;
-			}
-
-			if(cable != CABLE_USB)
-			{
-				err = ticalcs_probe_calc(handle, &calc);
-				if(err)
+				if (array[cable][port])
 				{
-					array[cable][port] = CALC_NONE;
-					goto reloop;
+					found = 1;
 				}
-				array[cable][port] = calc;
 			}
-			else
-			{
-				err = ticalcs_probe_usb_calc(handle, &calc);
-				if(err)
-				{
-					array[cable][port] = CALC_NONE;
-					goto reloop;
-				}
-				array[cable][port] = calc;
-			}
-			s = g_strdup_printf("Found: %s on %s:%s", 
-				ticalcs_model_to_string(calc),
-				ticables_model_to_string(cable),
-				ticables_port_to_string(port));
-			tilp_info(s);
-			g_free(s);
-
-reloop:
-			ticables_cable_close(handle);
-			ticables_handle_del(handle);
-#endif
 		}
+		if(!found)
+		{
+			return -1;
+		}
+
+		// search for devices on all cables
+		for (cable = CABLE_GRY; cable <= CABLE_USB; cable++)
+		{
+			for (port = PORT_1; port <= PORT_4; port++)
+			{
+				if (!array[cable][port])
+				{
+					continue;
+				}
+
+				tilp_info("Searching for handhelds on %i:%i...", cable, port);
+
+				ret = ticalcs_probe(cable, port, &calc, !0);
+				if (ret)
+				{
+					array[cable][port] = CALC_NONE;
+					continue;
+				}
+				array[cable][port] = calc;
+
+				tilp_info("Found: %s on %s:%s",
+					ticalcs_model_to_string(calc),
+					ticables_model_to_string(cable),
+					ticables_port_to_string(port));
+			}
+		}
+
+		// show list
+		ticables_probing_show(array);
+
+		// Re-open device
+		ret = tilp_device_open();
 	}
 
-	// show list
-	for(i = 1; i <= 5; i++) 
-		printf("%i: %02i %02i %02i %02i\n", i, array[i][1], array[i][2], array[i][3], array[i][4]);
-
-	// Re-open device
-	err = tilp_device_open();
-	if(err)
-	  return err;
-
-	return 0;
+	return ret;
 }
 
 //----------------------------------------------------------------------------
@@ -270,13 +227,15 @@ static int lk_open = 0; /* keep status to avoid multiple error messages */
 
 int tilp_device_open(void)
 {
-	int err = 0;
+	int ret = 0;
 	const char *calc;
 	const char *cable;
 
 	// close cable before opening a new one
-	if(lk_open)
+	if (lk_open)
+	{
 		tilp_device_close();
+	}
 
 	cable = ticables_model_to_string(options.cable_model);
 	calc = ticalcs_model_to_string(options.calc_model);
@@ -287,30 +246,32 @@ int tilp_device_open(void)
 	}
 
 	cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
-	if(cable_handle == NULL)
+	if (cable_handle == NULL)
+	{
 		gif->msg_box1("Error", "Can't set cable");
+	}
 	else
 	{
 		ticables_options_set_timeout(cable_handle, options.cable_timeout);
 		ticables_options_set_delay(cable_handle, options.cable_delay);
 
 		calc_handle = ticalcs_handle_new(options.calc_model);
-		if(calc_handle == NULL)
-			gif->msg_box1("Error", "Can't set cable");
+		if (calc_handle == NULL)
+		{
+			gif->msg_box1("Error", "Can't set calc");
+		}
 		else
 		{
-			err = ticalcs_cable_attach(calc_handle, cable_handle);
-			tilp_err(err);
+			ret = ticalcs_cable_attach(calc_handle, cable_handle);
+			tilp_err(ret);
 
-#if 1
-			if(options.cable_model != CABLE_USB)
+			if (options.cable_model != CABLE_USB)
 			{
 				// BlackLink & ParallelLink need a reset before use
-				err = ticables_cable_reset(cable_handle);
+				ret = ticables_cable_reset(cable_handle);
 				PAUSE(2000);
-				tilp_err(err);
+				tilp_err(ret);
 			}
-#endif
 		}
 
 		// Initialize callbacks with default functions
@@ -318,51 +279,60 @@ int tilp_device_open(void)
 		tilp_update_set_gtk();
 	}
 
-	lk_open = err ? 0 : 1;
-	return err;
+	lk_open = ret ? 0 : 1;
+	return ret;
 }
 
 int tilp_device_close(void)
 {
-	int err;
+	int ret;
 
 	// close cable unless already closed
-	if(!lk_open)
+	if (!lk_open)
+	{
 		return 0;
+	}
 
 	// detach cable (made by handle_del, too)
-	if(calc_handle == NULL)
+	if (calc_handle == NULL)
+	{
 		return 0;
-	err = ticalcs_cable_detach(calc_handle);
-	tilp_err(err);
+	}
+	ret = ticalcs_cable_detach(calc_handle);
+	tilp_err(ret);
 
 	// remove calc & cable
 	ticalcs_handle_del(calc_handle); calc_handle = NULL;
 	ticables_handle_del(cable_handle); cable_handle = NULL;
 
 	lk_open = 0;
-	return err;
+	return ret;
 }
 
 static int tilp_device_err(int err)
 {
-	char *s = NULL;	
+	char *s = NULL;
 	char *utf;
 	gsize bw;
-	
-	if(!err) return 0;
-	tilp_info("tilp_device_err catched error %i\n", err);
+
+	if (!err)
+	{
+		return 0;
+	}
+	tilp_info("tilp_device_err caught error %i\n", err);
 
 	err = ticables_error_get(err, &s);
 	if (err) 
 	{
 		g_free(s);
 		err = ticalcs_error_get(err, &s);
-		if (err) 
+		if (err)
+		{
 			g_free(s);
+		}
 	}
 
-	if(s)
+	if (s)
 	{
 		utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
 		gif->msg_box1(_("Error"), utf);
@@ -382,56 +352,14 @@ static int tilp_device_err(int err)
 */
 int tilp_device_reset(void)
 {
-  if(!lk_open)
-    return 0;
+	int ret = 0;
 
-#if 0	// disabled because this is managed by ticables v1.2.0 now
-    if(options.cable_model == CABLE_SLV || options.cable_model == CABLE_USB)
-    {
-		int err;
+	if (lk_open)
+	{
+		ret = ticables_cable_reset(cable_handle);
+		tilp_device_err(ret);
+		PAUSE(1000);
+	}
 
-		gif->msg_box("Information", _("Connection is being reset... Please wait for 2 seconds."), !0);
-
-		// detach cable (made by handle_del, too)
-		PAUSE(500);
-		err = ticalcs_cable_detach(calc_handle);
-		tilp_device_err(err);
-
-		// remove calc & cable
-		ticalcs_handle_del(calc_handle);
-		ticables_handle_del(cable_handle);
-
-		// this pause is needed (let's the cable reset its internal state...)
-		PAUSE(2000);
-
-		// get cable & attach
-		cable_handle = ticables_handle_new(options.cable_model, options.cable_port);
-		if(cable_handle == NULL)
-			gif->msg_box1(_("Error"), _("Can't set cable."));
-		else
-		{
-			ticables_options_set_timeout(cable_handle, options.cable_timeout);
-			ticables_options_set_delay(cable_handle, options.cable_delay);
-
-			calc_handle = ticalcs_handle_new(options.calc_model);
-			if(calc_handle == NULL)
-				gif->msg_box1(_("Error"), _("Can't set cable."));
-			else
-			{
-				err = ticalcs_cable_attach(calc_handle, cable_handle);
-				tilp_device_err(err);
-			}
-		}
-
-		gif->msg_box("", "", 0);
-    }
-    else
-#endif
-    {
-        int err = ticables_cable_reset(cable_handle);
-        tilp_device_err(err);
-        PAUSE(1000);
-    }
-
-    return 0;
+	return ret;
 }

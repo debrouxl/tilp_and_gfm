@@ -36,6 +36,4 @@
 #define tilp_critical(format, ...) g_log("tilp", G_LOG_LEVEL_CRITICAL, format, ##__VA_ARGS__)
 #define tilp_error(format, ...) g_log("tilp", G_LOG_LEVEL_ERROR, format, ##__VA_ARGS__)
 
-#define TRYC(x) { int aaa_; if((aaa_ = (x))) return aaa_; }
-
 #endif

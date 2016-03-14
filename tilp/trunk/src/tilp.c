@@ -605,25 +605,9 @@ TILP_EXPORT void on_tilp_button8_clicked(GtkButton* button, gpointer user_data)
 	if(ret != BUTTON1)
 		return;
 
-#if 1
 	filename = create_fsel(local.cwdir, NULL, "*.tig", FALSE);
 	if(filename)
 		tilp_calc_send_tigroup(filename, mode);
-#else
-	if(local.selection2 == NULL)
-		return;
-	if(g_list_length(local.selection) > 1)
-		return;
-	
-	{
-		FileEntry *f = (FileEntry *) local.selection->data;
-
-		if(!tifiles_file_is_tigroup(f->name))
-			return;
-	
-		tilp_calc_send_tigroup(f->name, mode);
-	}
-#endif
 
 	return;
 }

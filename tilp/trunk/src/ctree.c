@@ -245,9 +245,8 @@ void ctree_set_basetree(void)
 
 	// clear tree
 	gtk_tree_store_clear(tree);
-	
+
 	// top node
-#if 1
 	str = g_strdup_printf(_("%s -> %s:#%i"), tifiles_model_to_string(options.calc_model),
 		ticables_model_to_string(options.cable_model), options.cable_port);
 
@@ -257,7 +256,6 @@ void ctree_set_basetree(void)
 		COLUMN_NAME, str,
 		COLUMN_DATA, (gpointer) NULL, -1);
 	g_free(str);
-#endif
 
 	// lcd, rom, vars & apps nodes
 	gtk_tree_store_append(tree, &lcd_node, top_node);
