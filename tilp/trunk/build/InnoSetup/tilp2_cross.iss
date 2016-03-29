@@ -27,6 +27,7 @@ InfoAfterFile=C:\tilp\tilp_and_gfm\tilp\trunk\RELEASE
 PrivilegesRequired = admin
 SolidCompression=true
 Compression=lzma2/Max
+OutputBaseFileName=tilp2-setup
 
 [Files]
 ; TI libraries
@@ -862,7 +863,7 @@ begin
   ITD_SetOption('UI_DetailedMode','1');
 
   // We'll download the following file...
-  ITD_AddFileSize('https://downloads.sourceforge.net/project/gtk-win/GTK%2B%20Runtime%20Environment/GTK%2B%202.24/gtk2-runtime-2.24.10-2012-10-10-ash.exe?use_mirror=autoselect', ExpandConstant('{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe'), 7944501);
+  ITD_AddFileSize('http://downloads.sourceforge.net/project/gtk-win/GTK%2B%20Runtime%20Environment/GTK%2B%202.24/gtk2-runtime-2.24.10-2012-10-10-ash.exe?use_mirror=autoselect', ExpandConstant('{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe'), 7944501);
   // ... after the user clicks on Install.
   ITD_DownloadAfter(wpPreparing);
 end;
