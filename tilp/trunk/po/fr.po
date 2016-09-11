@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-14 21:17+0100\n"
+"POT-Creation-Date: 2016-09-11 20:11+0200\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -320,40 +320,40 @@ msgstr ""
 "\n"
 "Avant d'envoyer un mail à l'équipe de TiLP, assurez vous d'avoir lu la FAQ..."
 
-#: ../src/tilp.c:358 ../src/tilp.c:604 ../builder/tilp.ui.h:52
+#: ../src/tilp.c:358 ../src/tilp.c:609 ../builder/tilp.ui.h:52
 msgid "Restore"
 msgstr "Restaurer"
 
-#: ../src/tilp.c:358 ../src/tilp.c:604
+#: ../src/tilp.c:358 ../src/tilp.c:609
 msgid "Data to restore:"
 msgstr "Données à restaurer:"
 
-#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
 #: ../builder/tilp.ui.h:50
 msgid "Backup"
 msgstr "Sauvegarder"
 
-#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:5
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:5
 msgid "Data to backup:"
 msgstr "Données à sauvegarder:"
 
-#: ../src/tilp.c:624
+#: ../src/tilp.c:629
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: ../src/tilp.c:624 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
+#: ../src/tilp.c:629 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
 msgid "Name: "
 msgstr "Nom: "
 
-#: ../src/tilp.c:624
+#: ../src/tilp.c:629
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
-#: ../src/tilp.c:669
+#: ../src/tilp.c:674
 msgid "Path"
 msgstr "Chemin"
 
-#: ../src/tilp.c:669
+#: ../src/tilp.c:674
 msgid "Enter new path"
 msgstr "Saisir un nouveau chemin"
 

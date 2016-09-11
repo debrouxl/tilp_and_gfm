@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.17\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-14 21:17+0100\n"
+"POT-Creation-Date: 2016-09-11 20:11+0200\n"
 "PO-Revision-Date: 2013-08-30 13:29+0200\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -326,40 +326,40 @@ msgstr ""
 "Bevor Sie dem TiLP-Team mailen, stellen Sie sicher, dass Sie die FAQ gelesen "
 "haben ..."
 
-#: ../src/tilp.c:358 ../src/tilp.c:604 ../builder/tilp.ui.h:52
+#: ../src/tilp.c:358 ../src/tilp.c:609 ../builder/tilp.ui.h:52
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: ../src/tilp.c:358 ../src/tilp.c:604
+#: ../src/tilp.c:358 ../src/tilp.c:609
 msgid "Data to restore:"
 msgstr "Daten zur Wiederherstellung:"
 
-#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
 #: ../builder/tilp.ui.h:50
 msgid "Backup"
 msgstr "Sicherungskopie"
 
-#: ../src/tilp.c:563 ../builder/backupdbox.ui.h:5
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:5
 msgid "Data to backup:"
 msgstr "Zu sichernde Daten"
 
-#: ../src/tilp.c:624
+#: ../src/tilp.c:629
 msgid "Make a new directory"
 msgstr "Neues Verzeichnis erstellen"
 
-#: ../src/tilp.c:624 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
+#: ../src/tilp.c:629 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
 msgid "Name: "
 msgstr "Name: "
 
-#: ../src/tilp.c:624
+#: ../src/tilp.c:629
 msgid "new_directory"
 msgstr "neues_verzeichnis"
 
-#: ../src/tilp.c:669
+#: ../src/tilp.c:674
 msgid "Path"
 msgstr "Pfad"
 
-#: ../src/tilp.c:669
+#: ../src/tilp.c:674
 msgid "Enter new path"
 msgstr "Geben Sie den neuen Pfad ein"
 

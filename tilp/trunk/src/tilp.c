@@ -464,7 +464,7 @@ void on_tilp_send(const gchar *user_data)
 		f = (FileEntry *) local.selection3->data;
 
 		// send os upgrades
-		if(tifiles_file_is_flash(f->name) || tifiles_file_is_tigroup(f->name)) 
+		if(tifiles_file_is_flash(f->name))
 		{
 			if(tifiles_file_test(f->name, TIFILE_OS, options.calc_model))
 			{
@@ -473,6 +473,7 @@ void on_tilp_send(const gchar *user_data)
 			} 
 			else if(tifiles_file_is_app(f->name))
 			{
+do_app:
 				ret1 = tilp_calc_send_app();
 				if(!ret1)
 				{
@@ -482,7 +483,11 @@ void on_tilp_send(const gchar *user_data)
 					labels_refresh();
 				}
 			}
-		} 
+		}
+		else if (tifiles_file_is_tigroup(f->name))
+		{
+			goto do_app;
+		}
 	}
 
 	// send vars
