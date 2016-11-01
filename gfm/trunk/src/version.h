@@ -18,17 +18,22 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifndef __GFMVERSION_H__
-#define __GFMVERSION_H__
+#ifndef __GFM_VERSION_H__
+#define __GFM_VERSION_H__
+
+/*
+  This file contains version number
+  and library requirements.
+*/
 
 /* TiLibs2 version dependencies */
-#define LIBTICONV_REQUIRE_VERSION	"1.0.4"
-#define LIBTIFILES2_REQUIRE_VERSION "1.0.7"
-#define LIBTICALCS2_REQUIRE_VERSION "1.0.7"
+#define GFM_REQUIRES_LIBTICONV_VERSION   "1.1.6"
+#define GFM_REQUIRES_LIBTIFILES2_VERSION "1.1.8"
+#define GFM_REQUIRES_LIBTICALCS2_VERSION "1.1.10"
 
-/* Group File Manager Version */
+/* Group File Manager version */
 #ifdef __WIN32__
-# define GFM_VERSION "1.08"
+# define GFM_VERSION "1.09"
 #else
 # define GFM_VERSION VERSION
 #endif

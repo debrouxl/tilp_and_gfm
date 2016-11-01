@@ -27,15 +27,17 @@
   and library requirements.
 */
 
+/* TiLibs2 version dependencies */
+#define TILP_REQUIRES_LIBTICONV_VERSION   "1.1.6"
+#define TILP_REQUIRES_LIBTIFILES2_VERSION  "1.1.8"
+#define TILP_REQUIRES_LIBTICABLES2_VERSION "1.3.6"
+#define TILP_REQUIRES_LIBTICALCS2_VERSION  "1.1.10"
+
+/* TILP version */
 #ifdef __WIN32__
-# define TILP_VERSION "1.18"		// For Win32
+# define TILP_VERSION "1.19"
 #else
 # define TILP_VERSION VERSION
 #endif
-
-#define TILP_REQUIRES_LIBCABLES_VERSION	"1.3.0"
-#define TILP_REQUIRES_LIBCALCS_VERSION 	"1.1.8"
-#define TILP_REQUIRES_LIBFILES_VERSION	"1.1.6"
-#define TILP_REQUIRES_LIBCONV_VERSION	"1.1.4"
 
 #endif

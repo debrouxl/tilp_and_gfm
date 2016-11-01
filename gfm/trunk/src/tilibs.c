@@ -38,10 +38,10 @@ int load_tilibs(void)
 {
 #if defined(__WIN32__) && (defined(_MSC_VER) || defined(__DEVCPP__))
   // Check libticonv
-  if (g_ascii_strcasecmp(ticonv_version_get(), LIBTICONV_REQUIRE_VERSION) < 0)
+  if (g_ascii_strcasecmp(ticonv_version_get(), GFM_REQUIRES_LIBTICONV_VERSION) < 0)
   {
     gchar *error_msg;
-    error_msg = g_strconcat("You require libticonv version <b>", LIBTICONV_REQUIRE_VERSION, "</b>\nYou have version <b>", 
+    error_msg = g_strconcat("This application requires libticonv version <b>", GFM_REQUIRES_LIBTICONV_VERSION, "</b>\nYou have version <b>",
 				        ticonv_version_get(), "</b>\nPlease upgrade libticonv and try again.", NULL);
     msgbox_error(error_msg);
     g_free(error_msg);
@@ -49,10 +49,10 @@ int load_tilibs(void)
   }
 	
   // Check libtifiles2
-  if (g_ascii_strcasecmp(tifiles_version_get(), LIBTIFILES2_REQUIRE_VERSION) < 0)
+  if (g_ascii_strcasecmp(tifiles_version_get(), GFM_REQUIRES_LIBTIFILES2_VERSION) < 0)
   {
     gchar *error_msg;
-    error_msg = g_strconcat("You require libtifiles2 version <b>", LIBTIFILES2_REQUIRE_VERSION, "</b>\nYou have version <b>", 
+    error_msg = g_strconcat("This application requires libtifiles2 version <b>", GFM_REQUIRES_LIBTIFILES2_VERSION, "</b>\nYou have version <b>",
 				        tifiles_version_get(), "</b>\nPlease upgrade libtifiles2 and try again.", NULL);
     msgbox_error(error_msg);
     g_free(error_msg);
@@ -60,10 +60,10 @@ int load_tilibs(void)
   }
 
   // Check libticalcs2
-  if (g_ascii_strcasecmp(ticalcs_version_get(), LIBTICALCS2_REQUIRE_VERSION) < 0)
+  if (g_ascii_strcasecmp(ticalcs_version_get(), GFM_REQUIRES_LIBTICALCS2_VERSION) < 0)
   {
     gchar *error_msg;
-    error_msg = g_strconcat("You require libticalcs2 version <b>", LIBTICALCS2_REQUIRE_VERSION, "</b>\nYou have version <b>",
+    error_msg = g_strconcat("This application requireslibticalcs2 version <b>", GFM_REQUIRES_LIBTICALCS2_VERSION, "</b>\nYou have version <b>",
 				        ticalcs_version_get(), "</b>\nPlease upgrade libticalcs2 and try again.", NULL);
     msgbox_error(error_msg);
     g_free(error_msg);

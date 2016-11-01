@@ -117,27 +117,27 @@ int tilp_init(int *argc, char ***argv)
 	tilp_cmdline_version();
 
 	/* Check the version of libraries and init framework */
-	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION) < 0)
+	if (strcmp(ticonv_version_get(), TILP_REQUIRES_LIBTICONV_VERSION) < 0)
 	{
-		tilp_critical(_("libticonv library version is %s but %s mini required.\n"), ticonv_version_get(), TILP_REQUIRES_LIBCONV_VERSION);
+		tilp_critical(_("libticonv library version is %s but %s mini required.\n"), ticonv_version_get(), TILP_REQUIRES_LIBTICONV_VERSION);
 		return 1;
 	}
 
-	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION) < 0)
+	if (strcmp(tifiles_version_get(), TILP_REQUIRES_LIBTIFILES2_VERSION) < 0)
 	{
-		tilp_critical(_("libtifiles library version is %s but %s mini required.\n"), tifiles_version_get(), TILP_REQUIRES_LIBFILES_VERSION);
+		tilp_critical(_("libtifiles library version is %s but %s mini required.\n"), tifiles_version_get(), TILP_REQUIRES_LIBTIFILES2_VERSION);
 		return 1;
 	}
 
-	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION) < 0)
+	if (strcmp(ticables_version_get(), TILP_REQUIRES_LIBTICABLES2_VERSION) < 0)
 	{
-		tilp_critical(_("libticables library version is %s but %s mini required.\n"), ticables_version_get(), TILP_REQUIRES_LIBCABLES_VERSION);
+		tilp_critical(_("libticables library version is %s but %s mini required.\n"), ticables_version_get(), TILP_REQUIRES_LIBTICABLES2_VERSION);
 		return 1;
 	}
 
-	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION) < 0)
+	if (strcmp(ticalcs_version_get(), TILP_REQUIRES_LIBTICALCS2_VERSION) < 0)
 	{
-		tilp_critical(_("libticalcs library version is %s but %s mini required.\n"), ticalcs_version_get(), TILP_REQUIRES_LIBCALCS_VERSION);
+		tilp_critical(_("libticalcs library version is %s but %s mini required.\n"), ticalcs_version_get(), TILP_REQUIRES_LIBTICALCS2_VERSION);
 		return 1;
 	}
 
