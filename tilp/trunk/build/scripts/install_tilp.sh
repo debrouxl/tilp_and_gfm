@@ -280,7 +280,7 @@ handle_repository_copies tilibs || exit 1
 echo "=== Downloading tilp_and_gfm ==="
 handle_repository_copies tilp_and_gfm || exit 1
 echo "=== libticonv ==="
-handle_one_module tilibs/libticonv "--libdir=$LIBDIR" || exit 1
+handle_one_module tilibs/libticonv "--libdir=$LIBDIR" --enable-iconv || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
 handle_one_module tilibs/libtifiles "--libdir=$LIBDIR" || exit 1
