@@ -2,7 +2,16 @@ SubVersion: $Id$
 
 Log of changes:	tilp (cables, calcs, files, ticonv)
 
-- xx/xx/201x, version 1.18 (1.3.5, 1.1.9, 1.1.7, 1.1.5): debrouxl
+- 01/11/2016, version 1.18 (1.3.5, 1.1.9, 1.1.7, 1.1.5): debrouxl
+	- upgrade InnoSetup scripts for newer libarchive DLL; synchronize GFM InnoSetup script with TILP InnoSetup script; enable experimental libticonv iconv interface in maintainer scripts.
+	- make it possible to transfer FlashApps contained in a tigroup. Noticed after fixing a bug in libtifiles reported by JustRamon.
+	- for now, revert to HTTP downloads for the GTK+ runtime, because most SF download mirrors don't support HTTPS (sigh); change output base file name to avoid DLL hijacking.
+	- reformat and modernize the code in tilp_device.c; clean up several #if 1 / #if 0 blocks which have been this way for years.
+	- move libti* version check earlier in tilp_init.
+	- inline our trivial logging functions, like in libti*.
+	- when checking the calc OS version, move the TI-68k check earlier. Fixes getting the clock, which worked fine with test_ticalcs_2. Reported by uyjulian.
+	- quit using deprecated Glib functions; use the *_free() functions recently added to libticonv where appropriate.
+	- add the 84+T into the devices list.
 	- scripts: improvements in install_tilp.sh.
 	- enable non-silent linking only for calculators which advertise non-silent linking. Indirectly reported by at least ShootPad, thesignal and Greg Williamson.
 	- gfm, tilp: get rid of autocrap, and fix Manpage.txt problems.

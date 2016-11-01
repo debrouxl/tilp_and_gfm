@@ -2,7 +2,9 @@ SubVersion: $Id$
 
 Log of changes:	gfm (calcs, files, ticonv)
 
-- xx/xx/201x, version 1.08 (1.1.9, 1.1.7, 1.1.5): debrouxl
+- 01/11/2016, version 1.08 (1.1.9, 1.1.7, 1.1.5): debrouxl
+	- upgrade InnoSetup scripts for newer libarchive DLL; synchronize GFM InnoSetup script with TILP InnoSetup script; enable experimental libticonv iconv interface in maintainer scripts.
+	- quit using deprecated Glib functions; use the *_free() functions recently added to libticonv where appropriate.
 	- get rid of autocrap, and fix Manpage.txt problems.
 	- add AppData files for tilp and gfm in desktop/.
 	- modify desktop files to use PNG icons.
