@@ -65,6 +65,7 @@ echo "=== UPDATEPOT ==="
 sed "s/+ _nl_msg.*$//" -i tilibs/libtifiles/trunk/configure
 sed "s/+ _nl_msg.*$//" -i tilibs/libticables/trunk/configure
 sed "s/+ _nl_msg.*$//" -i tilibs/libticalcs/trunk/configure
+sed "s/+ _nl_msg.*$//" -i tilibs/libtiopers/trunk/configure
 sed "s/+ _nl_msg.*$//" -i tilp_and_gfm/gfm/trunk/configure
 sed "s/+ _nl_msg.*$//" -i tilp_and_gfm/tilp/trunk/configure
 
@@ -74,7 +75,7 @@ handle_one_module tfdocgen || exit 1
 
 
 echo "=== libticonv ==="
-handle_one_module tilibs/libticonv --enable-iconv || exit 1
+handle_one_module tilibs/libticonv || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
 handle_one_module tilibs/libtifiles || exit 1
@@ -84,6 +85,8 @@ handle_one_module tilibs/libticables --enable-logging || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
 handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1
+echo "=== libtiopers ==="
+handle_one_module tilibs/libtiopers || exit 1
 
 
 echo "=== gfm ==="

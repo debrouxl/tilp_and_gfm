@@ -19,8 +19,7 @@
 */
 
 /*
-  This file includes libtifiles, libticables & libticalcs headers and some
-  other needed headers.
+  This file includes libtifiles, libticables, libticalcs & tiopers headers.
 */
 
 #ifndef __GFMTILIBS_H__
@@ -33,12 +32,10 @@
 #include <ticonv.h>
 #include <tifiles.h>
 #include <ticalcs.h>
+#include <tiopers.h>
 
 #ifdef _MSC_VER
 #define snprintf	_snprintf
 #endif
-
-// Prototypes
-int load_tilibs(void);
 
 #endif

@@ -280,7 +280,7 @@ handle_repository_copies tilibs || exit 1
 echo "=== Downloading tilp_and_gfm ==="
 handle_repository_copies tilp_and_gfm || exit 1
 echo "=== libticonv ==="
-handle_one_module tilibs/libticonv "--libdir=$LIBDIR" --enable-iconv || exit 1
+handle_one_module tilibs/libticonv "--libdir=$LIBDIR" || exit 1
 # Useful configure options include --disable-nls.
 echo "=== libtifiles ==="
 handle_one_module tilibs/libtifiles "--libdir=$LIBDIR" || exit 1
@@ -290,6 +290,8 @@ handle_one_module tilibs/libticables "--libdir=$LIBDIR" --enable-logging --enabl
 # Useful configure options include --disable-nls.
 echo "=== libticalcs ==="
 handle_one_module tilibs/libticalcs "--libdir=$LIBDIR" || exit 1
+echo "=== libtiopers ==="
+handle_one_module tilibs/libtiopers "--libdir=$LIBDIR" || exit 1
 
 # Use --with-kde if you want to use the native KDE file dialogs (it defaults to disabled because it requires a slew of development package dependencies).
 echo "=== gfm ==="

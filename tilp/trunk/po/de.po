@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 13:30+0100\n"
+"POT-Creation-Date: 2016-11-06 22:05+0100\n"
 "PO-Revision-Date: 2016-11-18 19:49+0300\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -19,10 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/about.c:91
+#: ../src/about.c:92
 #, c-format
-msgid "Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"
-msgstr "Framework-Version (Kabel=%s, Dateien=%s, Rechner=%s, Conv=%s"
+msgid "Framework version (cables=%s, files=%s, calcs=%s, conv=%s, opers=%s)"
+msgstr ""
+"Framework-Version (Kabel=%s, Dateien=%s, Rechner=%s, Conv=%s, Opers=%s)"
 
 #: ../src/action.c:93
 msgid "Varname"
@@ -108,8 +109,8 @@ msgstr "Laufwerk ändern"
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
 #: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
-#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:338
-#: ../src/tilp_error.c:86 ../src/tilp_files.c:252 ../src/tilp_files.c:324
+#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:344
+#: ../src/tilp_error.c:96 ../src/tilp_files.c:252 ../src/tilp_files.c:324
 #: ../src/tilp_misc.c:39
 msgid "Error"
 msgstr "Fehler"
@@ -734,6 +735,13 @@ msgstr ""
 msgid "libticalcs library version is %s but %s mini required.\n"
 msgstr ""
 "Libticalcs-Bibliotheksversion ist %s, es wird aber mindestens Version %s "
+"benötigt.\n"
+
+#: ../src/tilp_main.c:146
+#, c-format
+msgid "libtiopers library version is %s but %s mini required.\n"
+msgstr ""
+"Libtiopers-Bibliotheksversion ist %s, es wird aber mindestens Version %s "
 "benötigt.\n"
 
 #: ../src/tilp_misc.c:43

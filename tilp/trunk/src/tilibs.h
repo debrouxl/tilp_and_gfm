@@ -31,9 +31,10 @@
 # include <config.h>
 #endif
 
-#include <ticables.h>
-#include <tifiles.h>
-#include <ticalcs.h>
 #include <ticonv.h>
+#include <tifiles.h>
+#include <ticables.h>
+#include <ticalcs.h>
+#include <tiopers.h>
 
 #endif

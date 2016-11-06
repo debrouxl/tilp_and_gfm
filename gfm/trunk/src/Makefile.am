@@ -6,7 +6,7 @@ AM_CFLAGS = -Wall -W
 bin_PROGRAMS = gfm
 
 # build instructions
-gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
+gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ @TIOPERS_CFLAGS@ \
 	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
 	@KDE_INCLUDES@ @QT_INCLUDES@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
@@ -15,14 +15,12 @@ gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
 gfm_LDFLAGS = -export-dynamic
 
 gfm_LDADD = \
-	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \
+	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ @TIOPERS_LIBS@\
 	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
 	@LIB_KDECORE@ @LIB_KDEUI@ @LIB_KIO@ @LIB_QT@ @KDE_LDFLAGS@ \
 	@QT_LDFLAGS@ @X_LDFLAGS@ \
 	@LTLIBINTL@
 
-# automake wants all .c files listed explicitly. This sucks. qmake does the
-# right thing with just "*.c".
 gfm_SOURCES = \
 	*.h \
 	cmdline.c \
@@ -37,7 +35,6 @@ gfm_SOURCES = \
 	rwgroup.c \
 	splashscreen.c \
 	support.c \
-	tilibs.c \
 	ungroup.c
 
 if OS_WIN32

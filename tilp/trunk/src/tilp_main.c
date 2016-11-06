@@ -141,15 +141,21 @@ int tilp_init(int *argc, char ***argv)
 		return 1;
 	}
 
+	if (strcmp(tiopers_version_get(), TILP_REQUIRES_LIBTIOPERS_VERSION) < 0)
+	{
+		tilp_critical(_("libtiopers library version is %s but %s mini required.\n"), tiopers_version_get(), TILP_REQUIRES_LIBTIOPERS_VERSION);
+		return 1;
+	}
+
 	/* Initialize platform independant paths */
 	tilp_paths_init();
 
 	/* Init i18n support */
 #ifdef ENABLE_NLS
 	tilp_info("setlocale: %s", setlocale(LC_ALL, ""));
-  	tilp_info("bindtextdomain: %s", bindtextdomain(PACKAGE, inst_paths.locale_dir));
-  	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
-  	tilp_info("textdomain: %s", textdomain(PACKAGE));
+	tilp_info("bindtextdomain: %s", bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	bind_textdomain_codeset(PACKAGE, "UTF-8"/*"ISO-8859-15"*/);
+	tilp_info("textdomain: %s", textdomain(PACKAGE));
 #endif
 
 	/* Initialize callbacks with default functions */ 
@@ -166,9 +172,10 @@ int tilp_init(int *argc, char ***argv)
 	/* Catch 'Ctrl-C' */
 	signal(SIGINT, signal_handler);
 
-	ticables_library_init();
 	tifiles_library_init();
+	ticables_library_init();
 	ticalcs_library_init();
+	tiopers_library_init();
 
 	/* Check for USB support */
 	options.usb_avail = ticables_is_usb_enabled();
@@ -213,9 +220,10 @@ int tilp_exit(void)
 {
 	tilp_device_close();
 
+	tiopers_library_exit();
+	ticalcs_library_exit();
 	ticables_library_exit();
 	tifiles_library_exit();
-	ticalcs_library_exit();
 
 	return 0;
 }

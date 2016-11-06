@@ -41,11 +41,17 @@
 #include "file.h"
 #include "splashscreen.h"
 #include "support.h"
+#include "dialog.h"
 #include "tilibs.h"
+#include "version.h"
 
 int main(int argc, char *argv[])
 {
     static gchar *icon_dir;
+
+    // Force GLib 2.32+ to print info and debug messages like older versions did, unless this variable is already set.
+    // No effect on earlier GLib versions.
+    g_setenv("G_MESSAGES_DEBUG", "all", /* overwrite = */ FALSE);
 
     /* Initialize GFM */
     paths_init();
@@ -53,8 +59,7 @@ int main(int argc, char *argv[])
     /* Init i18n support */
 #ifdef ENABLE_NLS
     g_message("setlocale: %s\n", setlocale(LC_ALL, ""));
-    g_message("bindtextdomain: %s\n", 
-	    bindtextdomain(PACKAGE, inst_paths.locale_dir));
+    g_message("bindtextdomain: %s\n", bindtextdomain(PACKAGE, inst_paths.locale_dir));
     bind_textdomain_codeset(PACKAGE, "UTF-8");
     g_message("textdomain: %s\n", textdomain(PACKAGE));
 #endif
@@ -86,7 +91,55 @@ int main(int argc, char *argv[])
 
     /* Load tilibs2 */
     splash_screen_message(_("Loading tilibs..."));
-    load_tilibs(); // Load tilibs
+
+    // Check libticonv
+    if (g_ascii_strcasecmp(ticonv_version_get(), GFM_REQUIRES_LIBTICONV_VERSION) < 0)
+    {
+      gchar *error_msg;
+      error_msg = g_strconcat("This application requires libticonv version <b>", GFM_REQUIRES_LIBTICONV_VERSION, "</b>\nYou have version <b>",
+                              ticonv_version_get(), "</b>\nPlease upgrade libticonv and try again.", NULL);
+      msgbox_error(error_msg);
+      g_free(error_msg);
+      exit(-1);
+    }
+
+    // Check libtifiles2
+    if (g_ascii_strcasecmp(tifiles_version_get(), GFM_REQUIRES_LIBTIFILES2_VERSION) < 0)
+    {
+      gchar *error_msg;
+      error_msg = g_strconcat("This application requires libtifiles2 version <b>", GFM_REQUIRES_LIBTIFILES2_VERSION, "</b>\nYou have version <b>",
+                              tifiles_version_get(), "</b>\nPlease upgrade libtifiles2 and try again.", NULL);
+      msgbox_error(error_msg);
+      g_free(error_msg);
+      exit(-1);
+    }
+
+    // Check libticalcs2
+    if (g_ascii_strcasecmp(ticalcs_version_get(), GFM_REQUIRES_LIBTICALCS2_VERSION) < 0)
+    {
+      gchar *error_msg;
+      error_msg = g_strconcat("This application requires libticalcs2 version <b>", GFM_REQUIRES_LIBTICALCS2_VERSION, "</b>\nYou have version <b>",
+                              ticalcs_version_get(), "</b>\nPlease upgrade libticalcs2 and try again.", NULL);
+      msgbox_error(error_msg);
+      g_free(error_msg);
+      exit(-1);
+    }
+
+    // Check libtiopers
+    if (g_ascii_strcasecmp(tiopers_version_get(), GFM_REQUIRES_LIBTIOPERS_VERSION) < 0)
+    {
+      gchar *error_msg;
+      error_msg = g_strconcat("This application requires libtiopers version <b>", GFM_REQUIRES_LIBTIOPERS_VERSION, "</b>\nYou have version <b>",
+                              tiopers_version_get(), "</b>\nPlease upgrade libtiopers and try again.", NULL);
+      msgbox_error(error_msg);
+      g_free(error_msg);
+      exit(-1);
+    }
+
+    // Load libtifiles2, libticalcs2 and tiopers
+    tifiles_library_init();
+    ticalcs_library_init();
+    tiopers_library_init();
 
     /* Launching GUI */
     splash_screen_message(_("Launching GUI..."));
@@ -97,6 +150,7 @@ int main(int argc, char *argv[])
     gtk_main();
     
     /* Close tilibs */
+    tiopers_library_exit();
     ticalcs_library_exit();
     tifiles_library_exit();
 

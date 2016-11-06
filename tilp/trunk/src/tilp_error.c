@@ -56,31 +56,41 @@ int tilp_err(int errcode)
 
 			/* Retrieve the error message */
 			err = ticables_error_get(err, &s);
-			if (err) 
+			if (err)
 			{
 				g_free(s);
 				err = tifiles_error_get(err, &s);
-				if (err) 
+				if (err)
 				{
 					g_free(s);
 					err = ticalcs_error_get(err, &s);
-					if (err) 
+					if (err)
 					{
-						// next level: error for TiLP
 						g_free(s);
+						err = tiopers_error_get(err, &s);
+						if (err)
+						{
+							// next level: error for TiLP
+							g_free(s);
+						}
+						else
+						{
+							// tiopers error => reset
+							tilp_device_reset();
+						}
 					}
 					else
 					{
-					    // ticalcs error => reset
-					    tilp_device_reset();
+						// ticalcs error => reset
+						tilp_device_reset();
 					}
 				}
 			}
 			else
 			{
-			    // ticables error => reset
-			    tilp_device_reset();
-			}			
+				// ticables error => reset
+				tilp_device_reset();
+			}
 
 			utf = g_locale_to_utf8(s, -1, NULL, &bw, NULL);
 			gif->msg_box1(_("Error"), utf);
@@ -102,10 +112,15 @@ int tilp_err(int errcode)
 			{
 				g_free(s);
 				err = ticalcs_error_get(err, &s);
-				if (err) 
+				if (err)
 				{
-					// next level: error for TiLP
 					g_free(s);
+					err = tiopers_error_get(err, &s);
+					if (err)
+					{
+						// next level: error for TiLP
+						g_free(s);
+					}
 				}
 			}
 		}

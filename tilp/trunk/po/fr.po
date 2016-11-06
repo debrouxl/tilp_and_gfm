@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-01 13:30+0100\n"
+"POT-Creation-Date: 2016-11-06 22:05+0100\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -17,10 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/about.c:91
+#: ../src/about.c:92
 #, c-format
-msgid "Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"
-msgstr "Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"
+msgid "Framework version (cables=%s, files=%s, calcs=%s, conv=%s, opers=%s)"
+msgstr ""
+"Version du framework (cables=%s, files=%s, calcs=%s, conv=%s, opers=%s)"
 
 #: ../src/action.c:93
 msgid "Varname"
@@ -106,8 +107,8 @@ msgstr "Changer de lecteur"
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
 #: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
-#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:338
-#: ../src/tilp_error.c:86 ../src/tilp_files.c:252 ../src/tilp_files.c:324
+#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:344
+#: ../src/tilp_error.c:96 ../src/tilp_files.c:252 ../src/tilp_files.c:324
 #: ../src/tilp_misc.c:39
 msgid "Error"
 msgstr "Erreur"
@@ -721,6 +722,11 @@ msgstr "libticables: version %s mais %s est requise.\n"
 #, c-format
 msgid "libticalcs library version is %s but %s mini required.\n"
 msgstr "libticalcs: version %s mais %s est requise.\n"
+
+#: ../src/tilp_main.c:146
+#, c-format
+msgid "libtiopers library version is %s but %s mini required.\n"
+msgstr "libtiopers: version %s mais %s requise.\n"
 
 #: ../src/tilp_misc.c:43
 msgid "This function is only available in the Windows version."

@@ -36,15 +36,16 @@
 
 static const char* authors[] =  
 {
-	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
-	"Julien Blache (Mac OS-X) <jb@jblache.org>", 
-	"Tijl Coosemans (*BSD) <tijl@ulyssis.org>", 
+	"Romain Lievin (Linux/Win32) <roms@tilp.info>",
+	"Julien Blache (Mac OS-X) <jb@jblache.org>",
+	"Tijl Coosemans (*BSD) <tijl@ulyssis.org>",
+	"Lionel Debroux (Linux mainly) <lionel_debroux@yahoo.fr>",
 	NULL 
 };
 
 static const char* documenters[] = 
 {
-	"Romain Lievin (Linux/Win32) <roms@tilp.info>", 
+	"Romain Lievin (Linux/Win32) <roms@tilp.info>",
 	NULL
 };
 
@@ -88,8 +89,8 @@ gint display_about_dbox(void)
 		}
 	}
 
-	version = g_strdup_printf(_("Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"),
-	     ticables_version_get(), tifiles_version_get(), ticalcs_version_get(), ticonv_version_get());
+	version = g_strdup_printf(_("Framework version (cables=%s, files=%s, calcs=%s, conv=%s, opers=%s)"),
+	                          ticables_version_get(), tifiles_version_get(), ticalcs_version_get(), ticonv_version_get(), tiopers_version_get());
 
 	//---
 
@@ -97,10 +98,10 @@ gint display_about_dbox(void)
 	dlg = GTK_ABOUT_DIALOG(widget);
 	pix = create_pixbuf("logo.png");
 
-	gtk_about_dialog_set_program_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
+	gtk_about_dialog_set_program_name(dlg, "TILP2 - TILP Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
-	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2010 The TiLP Team");
+	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2016 The TILP Team");
 	gtk_about_dialog_set_license(dlg, buffer);
 	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
 	gtk_about_dialog_set_authors(dlg, authors);
@@ -108,8 +109,7 @@ gint display_about_dbox(void)
 	gtk_about_dialog_set_artists(dlg, artists);
 	gtk_about_dialog_set_logo(dlg, pix);
 
-	g_signal_connect_swapped(dlg, "response",
-		G_CALLBACK(gtk_widget_destroy), dlg);
+	g_signal_connect_swapped(dlg, "response", G_CALLBACK(gtk_widget_destroy), dlg);
 
 	//gtk_show_about_dialog(NULL, "");
 	gtk_widget_show_all(widget);

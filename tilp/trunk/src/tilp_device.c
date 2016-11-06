@@ -319,6 +319,7 @@ static int tilp_device_err(int err)
 	{
 		return 0;
 	}
+
 	tilp_info("tilp_device_err caught error %i\n", err);
 
 	err = ticables_error_get(err, &s);
@@ -329,6 +330,11 @@ static int tilp_device_err(int err)
 		if (err)
 		{
 			g_free(s);
+			err = tiopers_error_get(err, &s);
+			if (err)
+			{
+				g_free(s);
+			}
 		}
 	}
 
