@@ -4,14 +4,14 @@
 # Lauris Kaplinski, 2003 Sylvain Garsault,2006 Tyler Cassidy.
 # This file is distributed under the same license as the tilp2 package.
 # Chris Leick <c.leick@vollbio.de>, 2010.
-# Andreas B. Mundt <andi@debian.org>, 2013.
+# Andreas B. Mundt <andi@debian.org>, 2013, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-01 13:30+0100\n"
-"PO-Revision-Date: 2013-08-30 13:29+0200\n"
+"PO-Revision-Date: 2016-11-18 19:49+0300\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
 "Language: de\n"
@@ -608,7 +608,7 @@ msgstr "Benutzt nicht die grafische Benutzeroberfläche"
 
 #: ../src/tilp_cmdline.c:46
 msgid "Silent mode (NO-GUI mode only"
-msgstr ""
+msgstr "Silent Modus (nur NO-GUI modus"
 
 #: ../src/tilp_cmdline.c:47
 msgid "filename(s)"
@@ -742,7 +742,7 @@ msgstr "Diese Funktion ist nur in der Windows-Version verfügbar."
 
 #: ../src/tilp_paths.c:130
 msgid "My TI Files"
-msgstr ""
+msgstr "Meine TI Dateien"
 
 #. Place a progress bar
 #: ../src/tilp_screen.c:59
@@ -767,7 +767,7 @@ msgstr "Zieldatei kann nicht zum Schreiben geöffnet werden!"
 #: ../src/tilp_screen.c:252 ../src/tilp_screen.c:375
 #, c-format
 msgid "Couldn't convert screen!"
-msgstr ""
+msgstr "Konnte Screen nicht konvertieren!"
 
 #: ../src/tilp_slct.c:82
 msgid "A file must have been selected in the right window."
@@ -1023,7 +1023,7 @@ msgstr "_Ordner erstellen"
 
 #: ../builder/device.ui.h:1
 msgid "Null"
-msgstr ""
+msgstr "Null"
 
 #: ../builder/device.ui.h:2
 msgid "GrayLink"
@@ -1055,7 +1055,7 @@ msgstr "TiEmu"
 
 #: ../builder/device.ui.h:9
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #: ../builder/device.ui.h:10
 msgid "#1"
@@ -1175,21 +1175,23 @@ msgstr "Verzögerung:"
 
 #: ../builder/device.ui.h:39
 msgid "Timeout value in tenth of seconds."
-msgstr ""
+msgstr "Timeout-Wert in Zehntelsekunden."
 
 #: ../builder/device.ui.h:40
 msgid "Inter-bit delay for serial/parallel link cables."
-msgstr ""
+msgstr "Inter-Bit-Verzögerung für serielle/parallele Verbindungen."
 
 #: ../builder/device.ui.h:41
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
 msgstr ""
+"Wenn aktiviert, wird TiLP beim Start die USB-Geräte abfragen und das erste "
+"gefundene Gerät verwenden."
 
 #: ../builder/device.ui.h:42
 msgid "USB scan at startup"
-msgstr ""
+msgstr "USB-Abfrage beim Start"
 
 #: ../builder/device.ui.h:43
 msgid "Settings"
@@ -1197,15 +1199,15 @@ msgstr "Einstellungen"
 
 #: ../builder/device.ui.h:44
 msgid "Don't know which device you have ? Click =>"
-msgstr ""
+msgstr "Sie wissen nicht, welches Gerät sie besitzen? Click =>"
 
 #: ../builder/device.ui.h:45
 msgid "Probe for attached devices..."
-msgstr ""
+msgstr "Teste angeschlossene Geräte..."
 
 #: ../builder/device.ui.h:46
 msgid "Double-click a line to update settings."
-msgstr ""
+msgstr "Doppel-Klick einer Zeile zum Update der Einstellungen."
 
 #: ../builder/entrydbox.ui.h:1
 msgid "Title"
@@ -1477,7 +1479,7 @@ msgstr "_Dateien senden"
 
 #: ../builder/tilp.ui.h:6
 msgid "Send Files to Device"
-msgstr ""
+msgstr "Sende Dateien zum Gerät"
 
 #: ../builder/tilp.ui.h:7
 msgid "_Backup"
@@ -1501,7 +1503,7 @@ msgstr "_Bearbeiten"
 
 #: ../builder/tilp.ui.h:12
 msgid "_View"
-msgstr ""
+msgstr "_Ansicht"
 
 #: ../builder/tilp.ui.h:13
 msgid "_Local View"
@@ -1509,15 +1511,15 @@ msgstr "_Lokale Ansicht"
 
 #: ../builder/tilp.ui.h:16
 msgid "_Tools"
-msgstr ""
+msgstr "_Werkzeuge"
 
 #: ../builder/tilp.ui.h:17
 msgid "Get Calc _Info"
-msgstr ""
+msgstr "Hole Rechner _Info"
 
 #: ../builder/tilp.ui.h:18
 msgid "Take _Screenshot"
-msgstr ""
+msgstr "Mache _Screenshot"
 
 #: ../builder/tilp.ui.h:19
 msgid "Dump _Rom"
@@ -1529,7 +1531,7 @@ msgstr "Uhr einstellen"
 
 #: ../builder/tilp.ui.h:21
 msgid "Get _ID-List"
-msgstr ""
+msgstr "Hole _ID-List"
 
 #: ../builder/tilp.ui.h:22
 msgid "The TiLP User's Manual in html format."
@@ -1607,7 +1609,7 @@ msgstr "TiLPs Website"
 
 #: ../builder/tilp.ui.h:40
 msgid "_Report Bug"
-msgstr ""
+msgstr "_Melde Bug"
 
 #: ../builder/tilp.ui.h:41
 msgid "How to send a bug report..."
