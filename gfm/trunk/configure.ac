@@ -77,6 +77,7 @@ AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
+AC_C_RESTRICT
 AC_HEADER_STAT
 AC_TYPE_UID_T
 AC_TYPE_MODE_T
