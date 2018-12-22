@@ -1,3 +1,4 @@
+# Build stuff
 Makefile
 Makefile.in
 config.h.in
@@ -11,25 +12,77 @@ libtool
 ltmain.sh
 m4/
 missing
+
 stamp-h?
+**/po/POTFILES
+**/po/stamp-po
+
 .deps/
 .dirstamp
 .libs/
-*.l[ao]
-*~
+*.d
+
+*.pc
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libs
+*.dll
+*.so
+*.so.*
+*.dylib
+*.l[aio]
+
+# Other
 ABOUT-NLS
 INSTALL
 compile
 test-driver
-POTFILES
-*.o
-*.dSYM
-stamp-po
+*.gmo
+Makevars.template
 *.desktop
 Manpage.txt
 
-*.gmo
-Makevars.template
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
 
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Editors
+*~
+.\#*
+\#*\#
+.idea/
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+.netrwhist
+[._]*.un~
+# -*- mode: gitignore; -*-
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# CMake
+cmake-build-*/
