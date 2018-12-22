@@ -209,8 +209,8 @@ listdeps() {
     echo "Arch Linux 2015.06.01 + upgrades:"
     echo -e "    pacman -S git gcc make pkgconfig autoconf automake libtool glib2 zlib libusb gtk2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz\n"
     echo "MacOS X:"
-    echo -e "    brew install gettext libarchive autoconf automake libtool glib lzlib libusb gtk+ libglade sdl bison flex texinfo intltool"
-    echo -e "    brew link --force libarchive gettext (you can use 'brew unlink' later)."
+    echo -e "    brew install gettext libarchive autoconf automake libtool glib lzlib libusb gtk+ libglade sdl bison flex texinfo libiconv intltool"
+    echo -e "    brew link --force gettext   (you can use 'brew unlink' later. Also, adjust PKG_CONFIG_PATH if needed/possible)."
 }
 
 # The main part of the script starts here.
@@ -230,13 +230,13 @@ if [ "x$PREFIX" = "x/usr" ]; then
         PREFIX="/usr/local"
     fi
 fi
-# On MacOS X 10.11, need to fiddle with PKG_CONFIG_PATH.
+# On MacOS X 10.11+, need to fiddle with PKG_CONFIG_PATH.
 if [ "x$UNAME" = "xDarwin" ]; then
     echo "Modifying PKG_CONFIG_PATH on MacOS X"
     if [ "x$PKG_CONFIG_PATH" = "x" ]; then
-        PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:/opt/X11/lib/pkgconfig"
+        PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig:/usr/local/opt/libarchive/lib/pkgconfig:/opt/X11/lib/pkgconfig"
     else
-        PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:/opt/X11/lib/pkgconfig"
+        PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:/usr/local/opt/libarchive/lib/pkgconfig:/opt/X11/lib/pkgconfig"
     fi
     export PKG_CONFIG_PATH
 fi
