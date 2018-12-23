@@ -224,7 +224,7 @@ TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
 	if (local.file_selection == NULL)
 		return;
 
-#ifdef __LINUX__
+#if defined(__LINUX__) || defined(__MACOSX__)
 	if(tilp_file_exist(app_path1))
 	  app_path = app_path1;
 	else if(tilp_file_exist(app_path2))
