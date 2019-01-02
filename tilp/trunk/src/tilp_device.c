@@ -353,6 +353,7 @@ static int tilp_device_err(int err)
 int tilp_device_reset(void)
 {
 	int ret = 0;
+	gtk_update.cancel = 0;
 
 	if (lk_open)
 	{
