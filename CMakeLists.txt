@@ -22,7 +22,6 @@ project(tilp_and_gfm C)
 # In the future...:
 #   - TODO: look at CPack features for bundling/packaging
 #   - WISH: do not hardcode the (auto-generated...) potfiles_* target names
-#   - WISH: make Travis try the cmake-based build too
 #   - WISH: add support for Windows (that will probably be annoying)
 #
 

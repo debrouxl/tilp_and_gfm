@@ -1,0 +1,57 @@
+language: c
+
+_linuxpackages: &_linuxpackages
+  addons:
+    apt:
+      packages:
+        - build-essential
+        - git
+        - autoconf
+        - automake
+        - autopoint
+        - libtool
+        - libglib2.0-dev
+        - libgtk2.0-dev
+        - libglade2-dev
+        - zlib1g-dev
+        - libusb-1.0-0-dev
+        - gettext
+        - bison
+        - flex
+        - groff
+        - texinfo
+        - intltool
+        - libarchive-dev
+        - cmake
+        - ninja-build
+        - liblz4-dev
+        - liblzma-dev
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      sudo: required
+      <<: *_linuxpackages
+    - os: osx
+
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then HOMEBREW_NO_AUTO_UPDATE=1 brew install cmake ninja gettext gtk+ libglade libarchive libtool glib libusb bison flex texinfo libiconv intltool ; brew link --force gettext libarchive ; export PKG_CONFIG_PATH="/usr/local/opt/libarchive/lib/pkgconfig"; fi
+
+# We do not need sudo to install to the default prefix on macOS (/usr/local/), but on Linux we do.
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DOSUDO=sudo && export setprefix="-DCMAKE_INSTALL_PREFIX=/usr"; fi
+  - git clone --depth 1 https://github.com/debrouxl/tilibs.git
+  - cd tilibs
+  - mkdir build && cd build
+  - cmake -GNinja .. ${setprefix}
+  - $DOSUDO cmake --build . --target install
+  - cd ..
+  - cd ..
+  - cd  gfm/trunk/po; intltool-update --pot; intltool-update fr; cd ../../..
+  - cd tilp/trunk/po; intltool-update --pot; intltool-update fr; intltool-update de; cd ../../..
+  - mkdir build && cd build
+  - cmake -GNinja .. ${setprefix}
+  - $DOSUDO cmake --build . --target install
+  - tilp2 --version
+  - gfm --version
