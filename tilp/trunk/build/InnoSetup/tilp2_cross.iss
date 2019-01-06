@@ -9,7 +9,7 @@
 ;
 ; $Id$
 
-#include ReadReg(HKEY_LOCAL_MACHINE,'Software\Sherlock Software\InnoTools\Downloader','ScriptPath','');
+#include ReadReg(HKLM, "Software\Mitrich Software\Inno Download Plugin", "InstallDir") + '\idp.iss';
 
 [Setup]
 AppName=TiLP2
@@ -86,7 +86,7 @@ Name: "tifiles"; Description: "Register file types"; GroupDescription: "Desktop 
 Name: "slv_drv"; Description: "Install USB drivers"; GroupDescription: "Drivers:";
 Name: "dha_drv"; Description: "Install BlackLink/Parallel cable for NT/2k/XP"; GroupDescription: "Drivers:"; MinVersion: 0,4; Flags: unchecked
 
-Name: "gtk_runtime"; Description: "Download GTK+ runtime"; GroupDescription: "GTK+ Runtime:"; MinVersion: 0,4
+Name: "gtk_runtime"; Description: "Install GTK+ runtime"; GroupDescription: "GTK+ Runtime:"; MinVersion: 0,4
 
 [Files]
 ; GTK+Builder files
@@ -129,6 +129,10 @@ Source: "C:\tilp\tilp_and_gfm\tilp\trunk\RELEASE"; DestDir: "{app}"; DestName: "
 
 ; Binaries
 Source: "C:\lpg\packages\bin\tilp.exe"; DestDir: "{app}"; DestName: "tilp.exe"; Flags: ignoreversion
+Source: "C:\lpg\packages\bin\test_ticalcs_2.exe"; DestDir: "{app}"; DestName: "test_ticalcs_2.exe"; Flags: ignoreversion
+
+; GTK+ Runtime installer
+Source: "{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe"; DestDir: "{app}"; Flags: external; ExternalSize: 7944501
 
 [Dirs]
 Name: "{app}\My TI files"; Flags: uninsneveruninstall;
@@ -170,8 +174,7 @@ Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\ti84pse.inf"; Tasks: slv_drv; StatusMsg: "Installing TI84+/SE driver (this may take a few seconds) ..."
 Filename: "rundll32"; Parameters: "libusb0.dll,usb_install_driver_np_rundll {cf}\LPG Shared\drivers\usb\nspire.inf"; Tasks: slv_drv; StatusMsg: "Installing Nspire driver (this may take a few seconds) ..."
 
-; GTK+ Runtime installer
-Filename: "{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe"; Description: "Install GTK+ Runtime"; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."; Flags: nowait postinstall runascurrentuser hidewizard;
+Filename: "{app}/gtk2-runtime-2.24.10-2012-10-10-ash.exe"; Parameters: ""; Tasks: gtk_runtime; StatusMsg: "Installing GTK+ runtime..."
 
 [UninstallRun]
 ;Filename: "C:\tilp\libticables\trunk\src\win32\dha\dhasetup.exe"; Parameters: "remove"; MinVersion: 0,4; Tasks: dha_drv;
@@ -746,17 +749,6 @@ begin
   Exists := RegQueryDWordValue (HKLM, 'Software\Microsoft\Windows\CurrentVersion\SharedDLLs\', Path, Count);
 end;
 
-// Check for minimum USB driver version
-function IsTiglUsbVersion3Mini (): Boolean;
-var
-  Version: String;
-begin
-  GetVersionNumbersString('C:\WinNT\System\TiglUsb.dll', Version);
-  if CompareStr(Version, '3.0.0.0') < 0 then begin
-    Result := false;
-  end;
-end;
-
 // Display warning about GTK version
 function DisplayWarning(I: Integer): Boolean;
 var
@@ -835,11 +827,6 @@ begin
     end;
   end;
 
-  // Check version of USB driver
-  if IsTiglUsbVersion3Mini() then begin
-    MsgBox('SilverLink driver v2.x has been removed of your system. Now, TiLP/TiEmu requires v3.x (check out the README for download location).', mbError, MB_OK);
-  end;
-
   // Check for non-NT and WiMP theme
   WimpPath := GetGtkPath('') + '\lib\gtk-2.0\2.4.0\engines\libwimp.dll';
   if FileExists(WimpPath) and not UsingWinNT() then begin
@@ -855,26 +842,11 @@ end;
 
 procedure InitializeWizard();
 begin
-  // Initialize InnoTools Downloader
-  ITD_Init();
-  
-  //ITD_SetOption('Debug_DownloadDelay','0');
-  //ITD_SetOption('Debug_Messages','1');
-  ITD_SetOption('UI_DetailedMode','1');
-
   // We'll download the following file...
-  ITD_AddFileSize('http://downloads.sourceforge.net/project/gtk-win/GTK%2B%20Runtime%20Environment/GTK%2B%202.24/gtk2-runtime-2.24.10-2012-10-10-ash.exe?use_mirror=autoselect', ExpandConstant('{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe'), 7944501);
-  // ... after the user clicks on Install.
-  ITD_DownloadAfter(wpPreparing);
-end;
+  idpAddFileSize('https://downloads.sourceforge.net/project/gtk-win/GTK%2B%20Runtime%20Environment/GTK%2B%202.24/gtk2-runtime-2.24.10-2012-10-10-ash.exe?use_mirror=autoselect', ExpandConstant('{tmp}\gtk2-runtime-2.24.10-2012-10-10-ash.exe'), 7944501);
 
-procedure CurPageChanged(CurPageID: Integer);
-begin
-  if CurPageID = wpReady then begin
-    if not IsTaskSelected('gtk_runtime') then begin
-      ITD_ClearFiles();
-    end;
-  end;
+  // ... after the user clicks on Install.
+  idpDownloadAfter(wpPreparing);
 end;
 
 // Delete shared DLL
