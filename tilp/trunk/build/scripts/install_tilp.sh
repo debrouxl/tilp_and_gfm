@@ -10,7 +10,7 @@
 #     * please read below for prerequisites (build dependencies) or peculiarities (e.g. 64-bit Fedora).
 #     * you should remove equivalent packages, if any, before running this script.
 #
-# Copyright (C) Lionel Debroux 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016
+# Copyright (C) Lionel Debroux 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2018
 # Copyright (C) Adrien "Adriweb" Bertrand 2015
 # Copyright (C) Fabian "Vogtinator" Vogt 2016
 
@@ -106,6 +106,7 @@ fi
 # Subroutine: clone/update repository copies.
 handle_repository_copies() {
   module_name="$1"
+  echo "=== Downloading $module_name ==="
   if [ -d "$module_name" -a -d "$module_name/.git" ]; then
     echo "Updating $module_name"
     cd "$module_name"
@@ -123,9 +124,11 @@ handle_repository_copies() {
 }
 
 # Subroutine: checkout/update, `configure`, `make` and `make install` the given module
-handle_one_module() {
-  module_name="$1"
-  shift # Kick the first argument, so as to be able to pass the rest to configure.
+install_one_module() {
+  echo "=== $2 ==="
+  module_name="$1/$2"
+  shift # Swallow the two first arguments, so as to be able to pass the rest to configure.
+  shift
 
   cd "$module_name/trunk"
   echo "Configuring $module_name"
@@ -138,6 +141,16 @@ handle_one_module() {
   make || return 1
   echo "Installing $module_name"
   make install || return 1
+  cd -
+}
+
+# Subroutine: `make uninstall` the given module
+remove_one_module() {
+  echo "=== $2 ==="
+  module_name="$1/$2"
+  cd "$module_name/trunk" || return 1
+  echo "Uninstalling $module_name"
+  make uninstall || return 1
   cd -
 }
 
@@ -196,9 +209,9 @@ EOF
 }
 
 listdeps() {
-    echo "Debian 8:"
+    echo "Debian and derivatives (Ubuntu 14.04 LTS \"Trusty\", Debian 8 \"Jessie\", Ubuntu 16.04 LTS \"Xenial\", Debian 9 \"Stretch\":"
     echo -e "    apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool\n"
-    echo "Fedora 23:"
+    echo "Fedora 23, Fedora 26:"
     echo -e "    dnf install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
     echo "CentOS 7:"
     echo -e "    yum install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
@@ -208,6 +221,8 @@ listdeps() {
     echo -e "    apk add git gcc g++ make pkgconfig autoconf automake libtool glib-dev zlib-dev libusb-dev gtk+-dev libglade-dev gettext-dev bison flex groff texinfo xdg-utils libarchive-dev intltool xz\n"
     echo "Arch Linux 2015.06.01 + upgrades:"
     echo -e "    pacman -S git gcc make pkgconfig autoconf automake libtool glib2 zlib libusb gtk2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz\n"
+    echo "Slackware 14.2:"
+    echo -e "    slackpkg install git gcc binutils make pkgconfig autoconf automake libtool glib2 zlib libusb gtk+2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz ca-certificates libmpc glibc cyrus-sasl curl perl m4 less kernel-headers pkg-config guile gc libffi libcroco libxml2 lzo nettle acl eudev pango cairo pixman fontconfig freetype libpng harfbuzz expat mesa libdrm libX11 xproto kbproto libxcb libpthread-stubs libXau libXdmcp libXext xextproto libXdamage damageproto libXfixes fixesproto libXxf86vm xf86vidmodeproto libXrender renderproto gdk-pixbuf2 atk libxshmfence libXinerama libXi libXrandr libXcursor libXcomposite\n"
     echo "MacOS X:"
     echo -e "    brew install gettext libarchive autoconf automake libtool glib lzlib libusb gtk+ libglade sdl bison flex texinfo libiconv intltool"
     echo -e "    brew link --force gettext   (you can use 'brew unlink' later. Also, adjust PKG_CONFIG_PATH if needed/possible)."
@@ -275,27 +290,27 @@ read
 rough_sanity_checks || exit 1
 
 cd "$SRCDIR/tilp"
-echo "=== Downloading tilibs ==="
+if [ "x$1" != "x--remove" ]; then
 handle_repository_copies tilibs || exit 1
-echo "=== Downloading tilp_and_gfm ==="
 handle_repository_copies tilp_and_gfm || exit 1
-echo "=== libticonv ==="
-handle_one_module tilibs/libticonv "--libdir=$LIBDIR" --enable-iconv || exit 1
+install_one_module tilibs libticonv "--libdir=$LIBDIR" --enable-iconv || exit 1
 # Useful configure options include --disable-nls.
-echo "=== libtifiles ==="
-handle_one_module tilibs/libtifiles "--libdir=$LIBDIR" || exit 1
+install_one_module tilibs libtifiles "--libdir=$LIBDIR" || exit 1
 # Useful configure options include --disable-nls, --enable-logging
-echo "=== libticables ==="
-handle_one_module tilibs/libticables "--libdir=$LIBDIR" --enable-logging --enable-libusb10 || exit 1
+install_one_module tilibs libticables "--libdir=$LIBDIR" --enable-logging --enable-libusb10 || exit 1
 # Useful configure options include --disable-nls.
-echo "=== libticalcs ==="
-handle_one_module tilibs/libticalcs "--libdir=$LIBDIR" || exit 1
+install_one_module tilibs libticalcs "--libdir=$LIBDIR" || exit 1
 
-# Use --with-kde if you want to use the native KDE file dialogs (it defaults to disabled because it requires a slew of development package dependencies).
-echo "=== gfm ==="
-handle_one_module tilp_and_gfm/gfm "--libdir=$LIBDIR" || exit 1
-echo "=== tilp ==="
-handle_one_module tilp_and_gfm/tilp "--libdir=$LIBDIR" || exit 1
+install_one_module tilp_and_gfm gfm "--libdir=$LIBDIR" || exit 1
+install_one_module tilp_and_gfm tilp "--libdir=$LIBDIR" || exit 1
+else
+remove_one_module tilp_and_gfm tilp || exit 1
+remove_one_module tilp_and_gfm gfm || exit 1
+remove_one_module tilibs libticalcs || exit 1
+remove_one_module tilibs libticables || exit 1
+remove_one_module tilibs libtifiles || exit 1
+remove_one_module tilibs libticonv || exit 1
+fi
 
 echo "=================================================="
 echo "=== libti* + gfm + tilp installed successfully ==="
