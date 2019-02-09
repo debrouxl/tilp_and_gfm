@@ -2,6 +2,8 @@
 /*  tilp - a linking program for TI graphing calculators
  *  Copyright (C) 1999-2003  Romain Lievin
  *  Copyright (C) 2005-2006  Kevin Kofler
+ *  Copyright (C) 2018-2019  Lionel Debroux
+ *  Copyright (C) 2018-2019  Adrien Bertrand
  *
  *  This program is free software you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -45,32 +47,41 @@ int go_to_bookmark(const char *link)
 		return -1;
 	}
 #else
-	// Kevin's list:
+	// Kevin/Adrien/Lionel's list:
 	// These ones should be first, as they will honor the user's choice rather
 	// than guessing an arbitrary one:
 	// * /usr/bin/xdg-open (runs the default browser of the desktop environment
 	// currently in use, this is the best solution)
 	// * /usr/bin/gnome-open (GNOME 2.6+ default browser, user-configurable)
+	// * /usr/bin/open (macOS user-configurable default browser)
 	// Distro-specific browser wrapper scripts:
 	// * /usr/bin/sensible-browser (Debian's browser script)
 	// * /usr/bin/htmlview (old RHL/Fedora default browser script, current
 	// versions will honor the GNOME browser preference)
-	// Fallback to a hardcoded list of browsers:
-	// * /usr/bin/firefox (Mozilla Firefox)
-	// * /usr/bin/seamonkey (Seamonkey)
-	// * /usr/bin/konqueror (Konqueror)
-	// * /usr/bin/mozilla (old Mozilla Suite)
+	// Fallbacks to a hardcoded list of browsers.
 	//
 	gboolean result;
 	static const char *apps[] = { 
 			"/usr/bin/xdg-open",
 			"/usr/bin/gnome-open",
+			"/usr/bin/open",
 			"/usr/bin/sensible-browser",
 			"/usr/bin/htmlview",
 			"/usr/bin/firefox",
+			"/usr/bin/firefox-esr",
+			"/usr/bin/chromium",
+			"/usr/bin/chromium-browser",
+			"/usr/bin/google-chrome",
+			"/usr/bin/google-chrome-stable",
+			"/usr/bin/google-chrome-beta",
+			"/usr/bin/google-chrome-unstable",
+			"/usr/bin/falkon",
+			"/usr/bin/midori",
 			"/usr/bin/seamonkey",
 			"/usr/bin/konqueror",
 			"/usr/bin/mozilla",
+			"/usr/bin/epiphany",
+			"/usr/bin/epiphany-browser",		
 	};
 	gint i, n;
 
@@ -92,7 +103,7 @@ int go_to_bookmark(const char *link)
 
 	if (i == n) 
 	{
-		msg_box1("Error", "Spawn error: do you have Firefox installed ?");
+		msg_box1("Error", "Spawn error: could not open the default browser...");
 		return -1;
 	} 
 #endif
