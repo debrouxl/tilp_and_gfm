@@ -58,6 +58,7 @@ int go_to_bookmark(const char *link)
 	// versions will honor the GNOME browser preference)
 	// Fallback to a hardcoded list of browsers:
 	// * /usr/bin/firefox (Mozilla Firefox)
+	// * /usr/bin/chromium (Chromium)
 	// * /usr/bin/chromium-browser (Chromium)
 	// * /usr/bin/seamonkey (Seamonkey)
 	// * /usr/bin/konqueror (Konqueror)
@@ -71,6 +72,7 @@ int go_to_bookmark(const char *link)
 			"/usr/bin/sensible-browser",
 			"/usr/bin/htmlview",
 			"/usr/bin/firefox",
+			"/usr/bin/chromium",
 			"/usr/bin/chromium-browser",
 			"/usr/bin/seamonkey",
 			"/usr/bin/konqueror",
