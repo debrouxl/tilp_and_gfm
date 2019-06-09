@@ -204,8 +204,10 @@ Known bugs:
 
 	- [nspire] sometimes need to restart TiLP if connection fails
 	- [linux] Titanium DirectLink support works but:
-		* w/ libusb: you will have to replug link cable whenever you exit TiLP
-		=> this bug is due to the Titanium USB internal firmware
+		* you have to replug link cable whenever you exit TiLP
+		=> this bug is due to the Titanium USB internal firmware.
+		* the calculator isn't detected when plugged to some USB 2.0 or 3.0 ports
+		=> try using a USB 1.1 hub. This bug is probably due to the Titanium USB internal firmware as well.
 
 
 Bug report:
