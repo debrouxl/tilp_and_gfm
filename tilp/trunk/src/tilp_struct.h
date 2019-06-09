@@ -169,6 +169,7 @@ typedef struct
 
 extern CableHandle* cable_handle;
 extern CalcHandle*  calc_handle;
+extern int          calc_busy;
 
 extern TilpOptions	options;
 extern TilpLocal	local;

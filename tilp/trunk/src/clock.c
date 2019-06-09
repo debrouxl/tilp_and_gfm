@@ -87,85 +87,91 @@ gint display_clock_dbox()
 		return -1;
 	}
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
 	ret = ticalcs_calc_isready(calc_handle);
+	if (!ret)
+	{
+		if (tilp_calc_check_version("2.07", 0) < 0)
+		{
+			calc_busy = 0;
+			return 271; // ERR_UNSUPPORTED
+		}
+
+		ret = ticalcs_calc_get_clock(calc_handle, &tmp_clk);
+		calc_busy = 0;
+		if (!ret)
+		{
+			tilp_info("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n", tmp_clk.day,
+				tmp_clk.month, tmp_clk.year, tmp_clk.hours,
+				tmp_clk.minutes, tmp_clk.seconds,
+				(tmp_clk.time_format == 12) ? "12" : "24",
+				ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
+
+			builder = gtk_builder_new();
+			if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("clock.ui"), &error))
+			{
+				g_warning (_("Couldn't load builder file: %s\n"), error->message);
+				g_error_free (error);
+				return 0; // THIS RETURNS !
+			}
+			gtk_builder_connect_signals(builder, NULL);
+
+			dbox = GTK_WIDGET (gtk_builder_get_object (builder, "clock_dbox"));
+			gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
+								GTK_RESPONSE_CANCEL, -1);
+			update_fields(&tmp_clk);
+			modified = FALSE;
+
+			result = gtk_dialog_run(GTK_DIALOG(dbox));
+			switch (result) 
+			{
+			case GTK_RESPONSE_OK:
+				if(modified == FALSE)
+				{
+					break;
+				}
+
+				tilp_info("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n",
+					tmp_clk.day, tmp_clk.month, tmp_clk.year,
+					tmp_clk.hours, tmp_clk.minutes, tmp_clk.seconds,
+					(tmp_clk.time_format == 12) ? "12" : "24",
+					ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
+
+				if (calc_busy)
+				{
+					tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+					return 269; // ERR_BUSY
+				}
+				calc_busy = 1;
+				ret = ticalcs_calc_isready(calc_handle);
+				if (!ret)
+				{
+					ret = ticalcs_calc_set_clock(calc_handle, &tmp_clk);
+				}
+
+				modified = FALSE;
+				break;
+			case GTK_RESPONSE_HELP:
+				break;
+			default:
+				break;
+			}
+			gtk_widget_destroy(dbox);
+		}
+	}
+
 	if (ret)
 	{
 		tilp_err(ret);
-		return -1;
 	}
+	calc_busy = 0;
 
-	if (tilp_calc_check_version("2.08") < 0)
-	{
-		return -1;
-	}
-
-	ret = ticalcs_calc_get_clock(calc_handle, &tmp_clk);
-	if (ret)
-	{
-		tilp_err(ret);
-		return -1;
-	}
-
-	tilp_info("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n", tmp_clk.day,
-		tmp_clk.month, tmp_clk.year, tmp_clk.hours,
-		tmp_clk.minutes, tmp_clk.seconds,
-		(tmp_clk.time_format == 12) ? "12" : "24",
-		ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
-
-	builder = gtk_builder_new();
-	if (!gtk_builder_add_from_file (builder, tilp_paths_build_builder("clock.ui"), &error))
-	{
-		g_warning (_("Couldn't load builder file: %s\n"), error->message);
-		g_error_free (error);
-		return 0; // THIS RETURNS !
-	}
-	gtk_builder_connect_signals(builder, NULL);
-
-	dbox = GTK_WIDGET (gtk_builder_get_object (builder, "clock_dbox"));
-	gtk_dialog_set_alternative_button_order(GTK_DIALOG(dbox), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_CANCEL, -1);
-	update_fields(&tmp_clk);
-	modified = FALSE;
-
-	result = gtk_dialog_run(GTK_DIALOG(dbox));
-	switch (result) 
-	{
-	case GTK_RESPONSE_OK:
-		if(modified == FALSE)
-		{
-			break;
-		}
-
-		tilp_info("%02i/%02i/%02i %02i:%02i:%02i, %s, %s\n",
-			tmp_clk.day, tmp_clk.month, tmp_clk.year,
-			tmp_clk.hours, tmp_clk.minutes, tmp_clk.seconds,
-			(tmp_clk.time_format == 12) ? "12" : "24",
-			ticalcs_clock_format2date(options.calc_model, tmp_clk.date_format));
-
-		ret = ticalcs_calc_isready(calc_handle);
-		if (ret)
-		{
-			tilp_err(ret);
-			return -1;
-		}
-
-		ret = ticalcs_calc_set_clock(calc_handle, &tmp_clk);
-		if(ret)
-		{
-			tilp_err(ret);
-			return -1;
-		}
-
-		modified = FALSE;
-		break;
-	case GTK_RESPONSE_HELP:
-		break;
-	default:
-		break;
-	}
-	gtk_widget_destroy(dbox);
-
-	return 0;
+	return ret;
 }
 
 TILP_EXPORT void clock_radiobutton1_toggled(GtkToggleButton * togglebutton, gpointer user_data)
@@ -249,19 +255,23 @@ TILP_EXPORT void clock_sync_button_clicked(GtkButton * button, gpointer user_dat
 	tc.minutes = lt->tm_min;
 	tc.seconds = lt->tm_sec;
 
-	ret = ticalcs_calc_isready(calc_handle);
-	if (ret)
+	if (calc_busy)
 	{
-		tilp_err(ret);
-		return;
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return; // ERR_BUSY
+	}
+	calc_busy = 1;
+	ret = ticalcs_calc_isready(calc_handle);
+	if (!ret)
+	{
+		ret = ticalcs_calc_set_clock(calc_handle, &tc);
 	}
 
-	ret = ticalcs_calc_set_clock(calc_handle, &tc);
 	if (ret)
 	{
 		tilp_err(ret);
-		return;
 	}
+	calc_busy = 0;
 
 	update_fields(&tc);
 	modified = FALSE;

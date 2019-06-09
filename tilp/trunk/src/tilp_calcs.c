@@ -77,7 +77,7 @@ static void tilp_options_increase_timeout(void)
 /*
   Check whether the calc is ready (with or without auto-detection)
 */
-int tilp_calc_isready(void)
+int tilp_calc_isready(int take_busy)
 {
 	int err;
 	int to;
@@ -88,7 +88,28 @@ int tilp_calc_isready(void)
 #else
 	win32 = 0;
 #endif
-	
+
+	if (take_busy)
+	{
+		if (calc_busy)
+		{
+			tilp_info("Busy, bailing out from %s", __FUNCTION__);
+			return 269; // ERR_BUSY
+		}
+		calc_busy = 1;
+	}
+	else
+	{
+		if (calc_busy)
+		{
+			tilp_info("Busy already taken before entering %s, good", __FUNCTION__);
+		}
+		else
+		{
+			tilp_critical("Eh, busy should already have been taken before entering %s, fix the code !", __FUNCTION__);
+			return 269; // ERR_BUSY
+		}
+	}
 	/* Hot-plug: we have to reopen USB cable because calc might have 
 	   turned off while using TiLP.
 	   Note: Titanium does _not_ like too fast close/open under Linux. 
@@ -129,10 +150,8 @@ int tilp_calc_isready(void)
 
 	if (options.calc_model == CALC_NSPIRE)
 	{
-		if (err)
-			return err;
-		else
-			return 0;
+		calc_busy = 0;
+		return err;
 	}
 
 	if (err) 
@@ -142,11 +161,15 @@ int tilp_calc_isready(void)
 		if (err)
 		{
 			tilp_err(err);
-			return -1;
+			err = -1;
 		}
 	}
 
-	return 0;
+	if (take_busy)
+	{
+		calc_busy = 0;
+	}
+	return err;
 }
 
 /*
@@ -154,13 +177,22 @@ int tilp_calc_isready(void)
 */
 int tilp_calc_dirlist(void)
 {
-	if (tilp_calc_isready())
-		return -1;
+	int err;
 
-	if (tilp_dirlist_remote())
-		return -1;
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	err = tilp_calc_isready(0);
+	if (!err)
+	{
+		err = tilp_dirlist_remote();
+	}
 
-	return 0;
+	calc_busy = 0;
+	return err;
 }
 
 /*
@@ -171,24 +203,34 @@ int tilp_calc_dirlist(void)
 int tilp_calc_send_backup(const char *filename)
 {
 	int ret;
-	int err;
+	int err = -1;
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
 	ret = gif->msg_box4(_("Warning"), _("You are going to restore the content\nof your calculator with a backup.\nThe whole memory will be erased.\nAre you sure you want to do that?"));
-	if (ret != BUTTON1)
-		return -1;
+	if (ret == BUTTON1)
+	{
+		err = tilp_calc_isready(0);
+		if (!err)
+		{
+			gif->create_pbar_(FNCT_SEND_BACKUP, _("Restoring"));
 
-	if (tilp_calc_isready())
-		return -1;
+			err = ticalcs_calc_send_backup2(calc_handle, filename);
+			if (err)
+			{
+				tilp_err(err);
+			}
 
-	gif->create_pbar_(FNCT_SEND_BACKUP, _("Restoring"));
+			gif->destroy_pbar();
+		}
+	}
+	calc_busy = 0;
 
-	err = ticalcs_calc_send_backup2(calc_handle, filename);
-	if (err)
-		tilp_err(err);
-
-	gif->destroy_pbar();
-
-	return 0;
+	return err;
 }
 
 
@@ -200,31 +242,41 @@ int tilp_calc_recv_backup(void)
 	int err = 0;
 	char *filename;
 
-	if (tilp_calc_isready())
-		return -1;
-
-	gif->create_pbar_(FNCT_RECV_BACKUP, _("Backing up"));
-	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
-
-	do 
+	if (calc_busy)
 	{
-		gtk_update.refresh();
-		if (gtk_update.cancel)
-			break;
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	err = tilp_calc_isready(0);
+	if (!err)
+	{
+		gif->create_pbar_(FNCT_RECV_BACKUP, _("Backing up"));
+		filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_BACKUP, NULL);
 
-		err = ticalcs_calc_recv_backup2(calc_handle, filename);
-	} 
-	while ((err == ERROR_READ_TIMEOUT) && 
-		((!(ticalcs_calc_features(calc_handle) & FTS_SILENT)) || 
-		(options.calc_model == CALC_TI86)));
+		do 
+		{
+			gtk_update.refresh();
+			if (gtk_update.cancel)
+				break;
 
-	g_free(filename);
-	gif->destroy_pbar();
+			err = ticalcs_calc_recv_backup2(calc_handle, filename);
+		} 
+		while ((err == ERROR_READ_TIMEOUT) && 
+			((!(ticalcs_calc_features(calc_handle) & FTS_SILENT)) || 
+			(options.calc_model == CALC_TI86)));
 
-	if (tilp_err(err))
-		return -1;
+		g_free(filename);
+		gif->destroy_pbar();
 
-	return 0;
+		if (tilp_err(err))
+		{
+			err = -1;
+		}
+	}
+	calc_busy = 0;
+
+	return err;
 }
 
 /*
@@ -236,53 +288,65 @@ int tilp_calc_idlist(int to_file)
 	char buffer[MAXCHARS];
 	char idlist[32];
 
-	if (tilp_calc_isready())
-		return -1;
-
-	err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t *)idlist);
-	if (err)
+	if (calc_busy)
 	{
-		tilp_err(err);
-		return -1;
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
 	}
-
-	strcpy(buffer, _("ID-LIST : "));
-	if (options.calc_model != CALC_NSPIRE)
+	calc_busy = 1;
+	err = tilp_calc_isready(0);
+	if (!err)
 	{
-		strncat(buffer, idlist, 5);
-		strcat(buffer, "-");
-		strncat(buffer, idlist + 5, 5);
-		strcat(buffer, "-");
-		strncat(buffer, idlist + 5 + 5, 4);
-		strcat(buffer, "\0");
-	}
-	else
-	{
-		strcat(buffer, idlist);
-	}
 
-	if (to_file)
-	{
-		gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, "IDLIST.txt", NULL);
-		FILE *f;
-
-		f = fopen(filename, "wt");
-		g_free(filename);
-
-		if (f == NULL)
-			return -1;
-
-		if (fwrite(buffer, strlen(buffer), 1, f) < 1)
+		err = ticalcs_calc_recv_idlist(calc_handle, (uint8_t *)idlist);
+		if (!err)
 		{
-			fclose(f);
-			return -1;
-		}
-		fclose(f);
-	}
-	else
-		gif->msg_box1(_("Information"), buffer);
+			strcpy(buffer, _("ID-LIST : "));
+			if (options.calc_model != CALC_NSPIRE)
+			{
+				strncat(buffer, idlist, 5);
+				strcat(buffer, "-");
+				strncat(buffer, idlist + 5, 5);
+				strcat(buffer, "-");
+				strncat(buffer, idlist + 5 + 5, 4);
+				strcat(buffer, "\0");
+			}
+			else
+			{
+				strcat(buffer, idlist);
+			}
 
-	return 0;
+			if (to_file)
+			{
+				gchar *filename = g_strconcat(local.cwdir, G_DIR_SEPARATOR_S, "IDLIST.txt", NULL);
+				FILE *f;
+
+				f = fopen(filename, "wt");
+				g_free(filename);
+
+				err = -1;
+				if (f != NULL)
+				{
+					if (fwrite(buffer, strlen(buffer), 1, f) == 1)
+					{
+						err = 0;
+					}
+					fclose(f);
+				}
+			}
+			else
+			{
+				gif->msg_box1(_("Information"), buffer);
+			}
+		}
+		if (err)
+		{
+			tilp_err(err);
+		}
+	}
+	calc_busy = 0;
+
+	return err;
 }
 
 /*
@@ -352,50 +416,57 @@ int tilp_calc_send_app(void)
 		}
 	}
 
-	if (tilp_calc_isready())
-		return -1;
-	
-	gif->create_pbar_(FNCT_SEND_APP, _("Sending app"));
-
-	// Now, send files
-	tilp_options_increase_timeout();
-	l = g_list_length(local.selection3);
-	for(sel = local.selection3, i = 0; sel != NULL; sel = sel->next, i++)
+	if (calc_busy)
 	{
-		FileEntry *f = (FileEntry *)sel->data;
-		int err;
-		int ret;
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (!tilp_calc_isready(0))
+	{
+		gif->create_pbar_(FNCT_SEND_APP, _("Sending app"));
 
-		if (tifiles_file_is_regular(f->name))
-			continue;
-
-		gtk_update.cnt3 = i+1;
-		gtk_update.max3 = l;
-		gtk_update.pbar();
-		gtk_update.refresh();
-
-tcsa:
-		err = ticalcs_calc_send_app(calc_handle, f->content2);
-		if (err && err != ERROR_ABORT)
+		// Now, send files
+		tilp_options_increase_timeout();
+		l = g_list_length(local.selection3);
+		for(sel = local.selection3, i = 0; sel != NULL; sel = sel->next, i++)
 		{
-			tilp_err(err);
+			FileEntry *f = (FileEntry *)sel->data;
+			int err;
+			int ret;
 
-			ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
-			switch(ret)
+			if (tifiles_file_is_regular(f->name))
 			{
-			case BUTTON1: goto tcsa;
-			case BUTTON2: continue;
-			default: break;
+				continue;
 			}
 
-			gif->destroy_pbar();
-			return -1;
-		}
-	}
-	ticables_options_set_timeout(cable_handle, options.cable_timeout);
+			gtk_update.cnt3 = i+1;
+			gtk_update.max3 = l;
+			gtk_update.pbar();
+			gtk_update.refresh();
 
-	gif->destroy_pbar();
-	
+tcsa:
+			err = ticalcs_calc_send_app(calc_handle, f->content2);
+			if (err && err != ERROR_ABORT)
+			{
+				tilp_err(err);
+
+				ret = gif->msg_box3(_("Question"), _("Action to take?"), _("Retry"), _("Skip"), _("Cancel"));
+				switch(ret)
+				{
+				case BUTTON1: goto tcsa;
+				case BUTTON2: continue;
+				default: break;
+				}
+
+				break;
+			}
+		}
+		ticables_options_set_timeout(cable_handle, options.cable_timeout);
+
+		gif->destroy_pbar();
+	}
+
 	return 0;
 }
 
@@ -431,9 +502,20 @@ int tilp_calc_send_os(const char *filename)
 	if (ret == BUTTON2)
 		return -1;
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
 	if (options.calc_model == CALC_NSPIRE)
-		if (tilp_calc_isready())
+	{
+		if (tilp_calc_isready(0))
+		{
+			calc_busy = 0;
 			return -1;
+		}
+	}
 
 	tilp_options_increase_timeout();
 
@@ -443,10 +525,10 @@ int tilp_calc_send_os(const char *filename)
 
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
-	if (tilp_err(err))
-		return -1;
+	err = tilp_err(err);
+	calc_busy = 0;
 
-	return 0;
+	return err;
 }
 
 
@@ -466,8 +548,17 @@ int tilp_calc_recv_app(void)
 	if (!(ticalcs_calc_features(calc_handle) & FTS_FLASH))
 		return -1;
 
-	if (tilp_calc_isready())
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
 	gif->create_pbar_(FNCT_RECV_APP, _("Receiving app"));
 
@@ -494,6 +585,7 @@ int tilp_calc_recv_app(void)
 		else if (ret == -1)
 		{
 			gif->destroy_pbar();
+			calc_busy = 0;
 			return -1;
 		}
 
@@ -514,6 +606,7 @@ tcra:
 			g_free(dst);
 			gif->destroy_pbar();
 
+			calc_busy = 0;
 			return -1;
 		}
 	}
@@ -521,6 +614,7 @@ tcra:
 	g_free(dst);
 	gif->destroy_pbar();
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -571,8 +665,17 @@ int tilp_calc_send_var(void)
 		}
 	}
 
-	if (tilp_calc_isready())
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
 	gif->create_pbar_(FNCT_SEND_VAR, _("Sending var(s)"));
 
@@ -611,6 +714,7 @@ tcsv1:
 				}
 
 				gif->destroy_pbar();
+				calc_busy = 0;
 				return -1;
 			}
 		} 
@@ -632,6 +736,7 @@ tcsv2:
 				}
 
 				gif->destroy_pbar();
+				calc_busy = 0;
 				return -1;
 			}
 		}
@@ -639,6 +744,7 @@ tcsv2:
 
 	gif->destroy_pbar();
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -660,9 +766,18 @@ static int tilp_calc_recv_var1(void)
 	if (!tilp_remote_selection_ready())
 		return -1;
 
-	if (tilp_calc_isready())
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
-	
+	}
+
 	gif->create_pbar_(FNCT_RECV_VAR, _("Receiving var(s)"));
 
 	l = g_list_length(remote.selection1);
@@ -697,6 +812,7 @@ tcrv1:
 			}
 
 			gif->destroy_pbar();
+			calc_busy = 0;
 			return -1;
 		}
 
@@ -728,7 +844,10 @@ tcrv1:
 
 		array = tifiles_content_create_group(l);
 		if (array == NULL)
+		{
+			calc_busy = 0;
 			return -1;
+		}
 
 		for(sel = remote.selection1, i = 0; sel; sel = sel->next, i++)
 		{
@@ -755,6 +874,7 @@ tcrv2:
 				}
 
 				gif->destroy_pbar();
+				calc_busy = 0;
 				return -1;
 			}
 		}
@@ -826,6 +946,7 @@ tcrv2:
 tcrv:
 	gif->destroy_pbar();
 
+	calc_busy = 0;
 	return ret;
 }
 
@@ -845,6 +966,12 @@ static int tilp_calc_recv_var2(void)
 	tmp_filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_GROUP, 
 		".", tifiles_fext_of_group(options.calc_model), NULL);
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
 	gif->create_pbar_(FNCT_RECV_VAR, _("Receiving var(s)"));
 	err = ticalcs_calc_recv_var_ns2(calc_handle, MODE_NORMAL, tmp_filename, &ve);
 	gif->destroy_pbar();
@@ -852,6 +979,7 @@ static int tilp_calc_recv_var2(void)
 	if (err)
 	{
 		tilp_err(err);
+		calc_busy = 0;
 		return -1;
 	}
 
@@ -869,6 +997,7 @@ static int tilp_calc_recv_var2(void)
 		g_free(tmp_filename);
 		g_free(dst_filename);
 
+		calc_busy = 0;
 		return 0;
 	}
 	else
@@ -879,16 +1008,16 @@ static int tilp_calc_recv_var2(void)
 			if (err)
 				tilp_err(err);
 			g_free(tmp_filename);
-			
+
+			calc_busy = 0;
 			return 0;
 		}
 		else
 		{
+			calc_busy = 0;
 			return 1;
 		}
 	}
-
-	return 0;
 }
 
 int tilp_calc_recv_var(void)
@@ -901,16 +1030,38 @@ int tilp_calc_recv_var(void)
 	return 0;
 }
 
-int tilp_calc_check_version(const char *ti9x_ver)
+int tilp_calc_check_version(const char *ti9x_ver, int take_busy)
 {
 	if (tifiles_is_flash(options.calc_model) && ticonv_model_is_ti68k(options.calc_model))
 	{
 		CalcInfos infos;
 		int err;
 
+		if (take_busy)
+		{
+			if (calc_busy)
+			{
+				tilp_info("Busy, bailing out from %s", __FUNCTION__);
+				return 269; // ERR_BUSY
+			}
+			calc_busy = 1;
+		}
+		else
+		{
+			if (calc_busy)
+			{
+				tilp_info("Busy already taken before entering %s, good", __FUNCTION__);
+			}
+			else
+			{
+				tilp_critical("Eh, busy should already have been taken before entering %s, fix the code !", __FUNCTION__);
+				return 269; // ERR_BUSY
+			}
+		}
 		err = ticalcs_calc_get_version(calc_handle, &infos);
 		if (tilp_err(err))
 		{
+			calc_busy = 0;
 			return -1;
 		}
 
@@ -920,7 +1071,12 @@ int tilp_calc_check_version(const char *ti9x_ver)
 			gif->msg_box1(_("Information"), str);
 			g_free(str);
 
+			calc_busy = 0;
 			return -1;
+		}
+		if (take_busy)
+		{
+			calc_busy = 0;
 		}
 	}
 
@@ -935,20 +1091,37 @@ int tilp_calc_del_var(void)
 	if (!remote.selection1 && !remote.selection2)
 		return 0;
 
-	if (tilp_calc_isready())
-		return -1;
-
 	if (!(ticalcs_calc_features(calc_handle) & OPS_DELVAR))
+	{
 		return 0;
+	}
 
-	if (tilp_calc_check_version("2.09") < 0)
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
+	}
+
+	if (tilp_calc_check_version("2.09", 0) < 0)
+	{
+		calc_busy = 0;
+		return -1;
+	}
 
 	if (options.overwrite)
 	{
 		int ret = gif->msg_box2(_("Warning"), _("You are about to delete variable(s).\nAre you sure you want to do that?"));
 		if (ret == BUTTON2)
+		{
+			calc_busy = 0;
 			return 0;
+		}
 	}
 
 	gif->create_pbar_(FNCT_DEL_VAR, _("Deleting..."));
@@ -961,6 +1134,7 @@ int tilp_calc_del_var(void)
 		if (tilp_err(err))
 		{
 			gif->destroy_pbar();
+			calc_busy = 0;
 			return -1;
 		}
 		else
@@ -976,6 +1150,7 @@ int tilp_calc_del_var(void)
 		if (tilp_err(err))
 		{
 			gif->destroy_pbar();
+			calc_busy = 0;
 			return -1;
 		}
 	}
@@ -983,6 +1158,7 @@ int tilp_calc_del_var(void)
 
 	gif->destroy_pbar();
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -993,22 +1169,37 @@ int tilp_calc_new_fld(void)
 	VarEntry vr;
 	VarEntry ve;
 
-	if (tilp_calc_isready())
-		return -1;
-
 	if (!(ticalcs_calc_features(calc_handle) & OPS_NEWFLD))
 		return 0;
+
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
+		return -1;
+	}
 
 	// This operation is currently implemented the following way:
 	// * for the legacy I/O port, a temporary file is created and then deleted. The latter requires AMS 2.09.
 	// * for the USB port (AMS >= 3.00), it's always supported.
 	// => require AMS 2.09 or later.
-	if (tilp_calc_check_version("2.09") < 0)
+	if (tilp_calc_check_version("2.09", 0) < 0)
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
 	fldname = gif->msg_entry(_("New Folder"), _("Name: "), _("folder"));
 	if (fldname == NULL)
+	{
+		calc_busy = 0;
 		return 0;
+	}
 
 	gif->create_pbar_(FNCT_NEW_FOLDER, _("Creating..."));
 
@@ -1019,6 +1210,7 @@ int tilp_calc_new_fld(void)
 	if (tilp_err(err))
 	{
 		gif->destroy_pbar();
+		calc_busy = 0;
 		return -1;
 	}
 	else
@@ -1029,6 +1221,7 @@ int tilp_calc_new_fld(void)
 	}
 
 	gif->destroy_pbar();
+	calc_busy = 0;
 	return 0;
 }
 
@@ -1037,19 +1230,27 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	int err;
 	char str[2048];
 
-	if (tilp_calc_isready())
-	{
-		return -1;
-	}
-
 	if (!(ticalcs_calc_features(calc_handle) & OPS_VERSION))
 	{
 		return 0;
 	}
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
+		return -1;
+	}
+
 	err = ticalcs_calc_get_version(calc_handle, infos);
 	if (tilp_err(err))
 	{
+		calc_busy = 0;
 		return -1;
 	}
 
@@ -1063,6 +1264,7 @@ int tilp_calc_get_infos(CalcInfos *infos)
 	{
 		gif->msg_box1(_("Error"), str);
 	}
+	calc_busy = 0;
 
 	return 0;
 }
@@ -1077,11 +1279,20 @@ int tilp_calc_recv_cert(void)
 			tifiles_model_to_string(options.calc_model), ".", tifiles_fext_of_certif (options.calc_model),
 			NULL);
 
-	if (tilp_calc_isready())
-		return -1;
-
 	if (!(ticalcs_calc_features(calc_handle) & FTS_CERT))
 		return -1;
+
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
+		return -1;
+	}
 
 	gif->create_pbar_(FNCT_RECV_CERT, _("Receiving cert"));
 
@@ -1091,6 +1302,7 @@ int tilp_calc_recv_cert(void)
 	if (err) 
 		tilp_err(err);
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -1108,16 +1320,29 @@ int tilp_calc_send_cert(const char *filename)
 		return -1;
 	}
 
-	if (tilp_calc_isready())
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
 	gif->create_pbar_(FNCT_SEND_CERT, _("Sending cert"));
 	err = ticalcs_calc_send_cert2(calc_handle, filename);
 	gif->destroy_pbar();
 
 	if (tilp_err(err))
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -1135,8 +1360,17 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 	if (ret != BUTTON1)
 		return -1;
 
-	if (tilp_calc_isready())
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
+	if (tilp_calc_isready(0))
+	{
+		calc_busy = 0;
 		return -1;
+	}
 
 	tilp_options_increase_timeout();
 
@@ -1148,6 +1382,7 @@ int tilp_calc_send_tigroup(const char *filename, TigMode mode)
 
 	ticables_options_set_timeout(cable_handle, options.cable_timeout);
 
+	calc_busy = 0;
 	return 0;
 }
 
@@ -1160,19 +1395,28 @@ int tilp_calc_recv_tigroup(TigMode mode)
 	int err = 0;
 	char *filename;
 
-	if (tilp_calc_isready())
+	if (tilp_calc_isready(0))
 		return -1;
 
 	gif->create_pbar_type5(_("Backing up"));
 	filename = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, TMPFILE_TIGROUP, NULL);
 
+	if (calc_busy)
+	{
+		tilp_warning("Busy, bailing out from %s", __FUNCTION__);
+		return 269; // ERR_BUSY
+	}
+	calc_busy = 1;
 	err = ticalcs_calc_recv_tigroup2(calc_handle, filename, mode);
 	
 	g_free(filename);
 	gif->destroy_pbar();
 
-	if (tilp_err(err))
-		return -1;
+	if (err)
+	{
+		tilp_err(err);
+	}
 
-	return 0;
+	calc_busy = 0;
+	return err;
 }

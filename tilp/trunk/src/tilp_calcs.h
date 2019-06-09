@@ -24,7 +24,7 @@
 
 int tilp_pbar_type(CalcFnctsIdx op);
 
-int tilp_calc_isready(void);
+int tilp_calc_isready(int take_busy);
 int tilp_calc_dirlist(void);
 
 int tilp_calc_send_var(void);
@@ -52,6 +52,6 @@ int tilp_calc_recv_cert(void);
 int tilp_calc_send_tigroup(const char *filename, TigMode mode);
 int tilp_calc_recv_tigroup(TigMode mode);
 
-int tilp_calc_check_version(const char*);
+int tilp_calc_check_version(const char*, int take_busy);
 
 #endif

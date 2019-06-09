@@ -278,7 +278,7 @@ TILP_EXPORT void on_rom_dump1_activate(GtkMenuItem* menuitem, gpointer user_data
 // Ready
 TILP_EXPORT void on_tilp_button1_clicked(GtkButton* button, gpointer user_data)
 {
-	tilp_calc_isready();
+	tilp_calc_isready(1);
 }
 
 // Dirlist

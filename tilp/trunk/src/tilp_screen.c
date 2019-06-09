@@ -52,7 +52,7 @@ int screen_capture(void)
 
 	/* Don't check whether calc is ready to avoid sending of HOME key */
 	if(options.calc_model == CALC_NSPIRE)
-		if(tilp_calc_isready())
+		if(tilp_calc_isready(1))
 			return -1;
 
 	/* Place a progress bar */

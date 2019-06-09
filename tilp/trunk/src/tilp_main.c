@@ -38,6 +38,7 @@
 /* Global variables */
 CableHandle* cable_handle = NULL;
 CalcHandle*  calc_handle  = NULL;
+int          calc_busy    = 0;
 
 TilpOptions options    = { 0, /* cable_model */
                            0, /* cable_port */
@@ -181,6 +182,7 @@ int tilp_init(int *argc, char ***argv)
 		CalcModel calc;
 		CablePort port;
 
+		// NOTE: we don't need to add mutual exclusion here because this runs before the UI starts.
 		ret = tilp_device_probe_usb(&cable, &port, &calc);
 		if(!ret)
 		{
