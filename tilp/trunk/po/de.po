@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 09:58+0100\n"
+"POT-Creation-Date: 2023-11-12 10:14+0100\n"
 "PO-Revision-Date: 2016-11-18 19:49+0300\n"
 "Last-Translator: Andreas B. Mundt <andi@debian.org>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -1118,70 +1118,150 @@ msgid "TI-84 Plus T"
 msgstr "TI-84 Plus T"
 
 #: ../builder/device.ui.h:25
+msgid "TI-82 Advanced Edition Python"
+msgstr "TI-82 Advanced Edition Python"
+
+#: ../builder/device.ui.h:26
 msgid "TI-85"
 msgstr "TI-85"
 
-#: ../builder/device.ui.h:26
+#: ../builder/device.ui.h:27
 msgid "TI-86"
 msgstr "TI-86"
 
-#: ../builder/device.ui.h:27
+#: ../builder/device.ui.h:28
 msgid "TI-89"
 msgstr "TI-89"
 
-#: ../builder/device.ui.h:28
+#: ../builder/device.ui.h:29
 msgid "TI-89 Titanium"
 msgstr "TI-89 Titanium"
 
-#: ../builder/device.ui.h:29
+#: ../builder/device.ui.h:30
 msgid "TI-92"
 msgstr "TI-92"
 
-#: ../builder/device.ui.h:30
+#: ../builder/device.ui.h:31
 msgid "TI-92+"
 msgstr "TI-92+"
 
-#: ../builder/device.ui.h:31
+#: ../builder/device.ui.h:32
 msgid "TI-V200 PLT"
 msgstr "TI-V200 PLT"
 
-#: ../builder/device.ui.h:32
+#: ../builder/device.ui.h:33
 msgid "TI-Nspire"
 msgstr "TI-Nspire"
 
-#: ../builder/device.ui.h:33
+#: ../builder/device.ui.h:34
+msgid "TI-Nspire Lab Cradle"
+msgstr "TI-Nspire Lab Cradle"
+
+#: ../builder/device.ui.h:35
+msgid "TI-Nspire Clickpad"
+msgstr "TI-Nspire Clickpad"
+
+#: ../builder/device.ui.h:36
+msgid "TI-Nspire Clickpad CAS"
+msgstr "TI-Nspire Clickpad"
+
+#: ../builder/device.ui.h:37
+msgid "TI-Nspire Touchpad"
+msgstr "TI-Nspire Touchpad"
+
+#: ../builder/device.ui.h:38
+msgid "TI-Nspire Touchpad CAS"
+msgstr "TI-Nspire Touchpad CAS"
+
+#: ../builder/device.ui.h:39
+msgid "TI-Nspire CX"
+msgstr "TI-Nspire CX"
+
+#: ../builder/device.ui.h:40
+msgid "TI-Nspire CX CAS"
+msgstr "TI-Nspire CX CAS"
+
+#: ../builder/device.ui.h:41
+msgid "TI-Nspire CM-C"
+msgstr "TI-Nspire CM-C"
+
+#: ../builder/device.ui.h:42
+msgid "TI-Nspire CM-C CAS"
+msgstr "TI-Nspire CM-C CAS"
+
+#: ../builder/device.ui.h:43
+msgid "TI-Nspire CX II"
+msgstr "TI-Nspire CX II"
+
+#: ../builder/device.ui.h:44
+msgid "TI-Nspire CX II CAS"
+msgstr "TI-Nspire CX II CAS"
+
+#: ../builder/device.ui.h:45
+msgid "TI-Nspire CX II-T"
+msgstr "TI-Nspire CX II-T"
+
+#: ../builder/device.ui.h:46
+msgid "TI-Nspire CX II-T CAS"
+msgstr "TI-Nspire CX II-T CAS"
+
+#: ../builder/device.ui.h:47
+msgid "CBL"
+msgstr "CBL"
+
+#: ../builder/device.ui.h:48
+msgid "CBR"
+msgstr "CBR"
+
+#: ../builder/device.ui.h:49
+msgid "CBR2"
+msgstr "CBR2"
+
+#: ../builder/device.ui.h:50
+msgid "CBL2"
+msgstr "CBL2"
+
+#: ../builder/device.ui.h:51
+msgid "LabPro"
+msgstr "LabPro"
+
+#: ../builder/device.ui.h:52
+msgid "TI-Presenter"
+msgstr "TI-Presenter"
+
+#: ../builder/device.ui.h:53
 msgid "Communication Settings"
 msgstr "Kommunikationseinstellungen"
 
-#: ../builder/device.ui.h:34
+#: ../builder/device.ui.h:54
 msgid "Cable:"
 msgstr "Kabel:"
 
-#: ../builder/device.ui.h:35
+#: ../builder/device.ui.h:55
 msgid "Port:"
 msgstr "Port:"
 
-#: ../builder/device.ui.h:36
+#: ../builder/device.ui.h:56
 msgid "Calc:"
 msgstr "Taschenrechner:"
 
-#: ../builder/device.ui.h:37
+#: ../builder/device.ui.h:57
 msgid "Timeout:"
 msgstr "Zeitüberschreitung:"
 
-#: ../builder/device.ui.h:38
+#: ../builder/device.ui.h:58
 msgid "Delay:"
 msgstr "Verzögerung:"
 
-#: ../builder/device.ui.h:39
+#: ../builder/device.ui.h:59
 msgid "Timeout value in tenth of seconds."
 msgstr "Timeout-Wert in Zehntelsekunden."
 
-#: ../builder/device.ui.h:40
+#: ../builder/device.ui.h:60
 msgid "Inter-bit delay for serial/parallel link cables."
 msgstr "Inter-Bit-Verzögerung für serielle/parallele Verbindungen."
 
-#: ../builder/device.ui.h:41
+#: ../builder/device.ui.h:61
 msgid ""
 "If checked, TiLP will scan USB devices at startup and will use the first "
 "device found."
@@ -1189,23 +1269,23 @@ msgstr ""
 "Wenn aktiviert, wird TiLP beim Start die USB-Geräte abfragen und das erste "
 "gefundene Gerät verwenden."
 
-#: ../builder/device.ui.h:42
+#: ../builder/device.ui.h:62
 msgid "USB scan at startup"
 msgstr "USB-Abfrage beim Start"
 
-#: ../builder/device.ui.h:43
+#: ../builder/device.ui.h:63
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../builder/device.ui.h:44
+#: ../builder/device.ui.h:64
 msgid "Don't know which device you have ? Click =>"
 msgstr "Sie wissen nicht, welches Gerät sie besitzen? Click =>"
 
-#: ../builder/device.ui.h:45
+#: ../builder/device.ui.h:65
 msgid "Probe for attached devices..."
 msgstr "Teste angeschlossene Geräte..."
 
-#: ../builder/device.ui.h:46
+#: ../builder/device.ui.h:66
 msgid "Double-click a line to update settings."
 msgstr "Doppel-Klick einer Zeile zum Update der Einstellungen."
 

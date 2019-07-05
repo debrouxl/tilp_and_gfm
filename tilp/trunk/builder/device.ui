@@ -134,6 +134,10 @@
         <col id="1" translatable="no">ti84pt</col>
       </row>
       <row>
+        <col id="0" translatable="yes">TI-82 Advanced Edition Python</col>
+        <col id="1" translatable="no">ti82aep</col>
+      </row>
+      <row>
         <col id="0" translatable="yes">TI-85</col>
         <col id="1" translatable="no">ti85</col>
       </row>
@@ -164,6 +168,82 @@
       <row>
         <col id="0" translatable="yes">TI-Nspire</col>
         <col id="1" translatable="no">nspire</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire Lab Cradle</col>
+        <col id="1" translatable="no">nspirecradle</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire Clickpad</col>
+        <col id="1" translatable="no">nspireclickpad</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire Clickpad CAS</col>
+        <col id="1" translatable="no">nspireclickpadcas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire Touchpad</col>
+        <col id="1" translatable="no">nspiretouchpad</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire Touchpad CAS</col>
+        <col id="1" translatable="no">nspiretouchpadcas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX</col>
+        <col id="1" translatable="no">nspirecx</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX CAS</col>
+        <col id="1" translatable="no">nspirecxcas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CM-C</col>
+        <col id="1" translatable="no">nspirecmc</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CM-C CAS</col>
+        <col id="1" translatable="no">nspirecmccas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX II</col>
+        <col id="1" translatable="no">nspirecxii</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX II CAS</col>
+        <col id="1" translatable="no">nspirecxiicas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX II-T</col>
+        <col id="1" translatable="no">nspirecxiit</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Nspire CX II-T CAS</col>
+        <col id="1" translatable="no">nspirecxiitcas</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">CBL</col>
+        <col id="1" translatable="no">cbl</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">CBR</col>
+        <col id="1" translatable="no">cbr</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">CBR2</col>
+        <col id="1" translatable="no">cbr2</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">CBL2</col>
+        <col id="1" translatable="no">cbl2</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">LabPro</col>
+        <col id="1" translatable="no">labpro</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">TI-Presenter</col>
+        <col id="1" translatable="no">presenter</col>
       </row>
     </data>
   </object>
