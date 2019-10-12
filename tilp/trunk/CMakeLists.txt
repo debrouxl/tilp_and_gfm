@@ -52,7 +52,8 @@ set(SRC_FILES
 add_executable(tilp2 ${SRC_FILES})
 
 # External deps
-pkg_check_modules(DEPS REQUIRED glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
+pkg_check_modules(DEPS REQUIRED gtk+-2.0 glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
+string(REPLACE ";" " " DEPS_LDFLAGS "${DEPS_LDFLAGS}")
 find_package(Iconv REQUIRED)
 find_package(GTK2 REQUIRED gtk)
 
@@ -66,8 +67,8 @@ target_include_directories(tilp2 PRIVATE src ${GTK2_INCLUDE_DIRS})
 
 # Link-related properties, flags...
 link_directories(${DEPS_LIBRARY_DIRS})
-target_link_libraries(tilp2 "${DEPS_LDFLAGS}" ${DEPS_LIBRARIES} ${GTK2_LIBRARIES} ${Iconv_LIBRARIES} ${Intl_LIBRARIES})
-set_target_properties(tilp2 PROPERTIES LINK_FLAGS "-rdynamic")  # Needed for the GUI callback functions
+target_link_libraries(tilp2 ${DEPS_LIBRARIES} ${GTK2_LIBRARIES} ${Iconv_LIBRARIES} ${Intl_LIBRARIES})
+set_target_properties(tilp2 PROPERTIES LINK_FLAGS "${DEPS_LDFLAGS} -rdynamic")  # rdynamic is needed for the GUI callback functions
 
 # Takes care of the i18n po/pot/gmo/mo files
 i18n_mo_from_po_pot()
