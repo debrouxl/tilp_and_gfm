@@ -51,23 +51,28 @@ set(SRC_FILES
 
 add_executable(tilp2 ${SRC_FILES})
 
+option(BUILD_USING_GTK3 "Build using GTK+3 instead of GTK+2" OFF)
+if(BUILD_USING_GTK3)
+    set(GTK_DEP "gtk+-3.0")
+else()
+    set(GTK_DEP "gtk+-2.0")
+endif()
+
 # External deps
-pkg_check_modules(DEPS REQUIRED gtk+-2.0 glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
+pkg_check_modules(DEPS REQUIRED ${GTK_DEP} glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
 string(REPLACE ";" " " DEPS_LDFLAGS "${DEPS_LDFLAGS}")
 find_package(Iconv REQUIRED)
-find_package(GTK2 REQUIRED gtk)
 
 # Defines
 set(SHAREDIR  "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}")
 target_compile_definitions(tilp2 PRIVATE PACKAGE="${PROJECT_NAME}" VERSION="${PROJECT_VERSION}" SHARE_DIR="${SHAREDIR}")
 
-# CFLAGS and include dirs
-target_compile_options(tilp2 PRIVATE ${DEPS_CFLAGS} ${GTK2_DEFINITIONS})
-target_include_directories(tilp2 PRIVATE src ${GTK2_INCLUDE_DIRS})
+# CFLAGS
+target_compile_options(tilp2 PRIVATE ${DEPS_CFLAGS})
 
 # Link-related properties, flags...
 link_directories(${DEPS_LIBRARY_DIRS})
-target_link_libraries(tilp2 ${DEPS_LIBRARIES} ${GTK2_LIBRARIES} ${Iconv_LIBRARIES} ${Intl_LIBRARIES})
+target_link_libraries(tilp2 ${DEPS_LIBRARIES} ${Iconv_LIBRARIES} ${Intl_LIBRARIES})
 set_target_properties(tilp2 PROPERTIES LINK_FLAGS "${DEPS_LDFLAGS} -rdynamic")  # rdynamic is needed for the GUI callback functions
 
 # Takes care of the i18n po/pot/gmo/mo files

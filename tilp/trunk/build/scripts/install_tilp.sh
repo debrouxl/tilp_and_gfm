@@ -40,6 +40,7 @@
 # * libusb development files (libusb-1.0-0-dev, libusb1-devel)
 #   (libusb 1.0 preferred, libticables' libusb 0.1 backend based on libusb-dev or libusb-devel in maintenance mode now)
 # * GTK+ 2.x development files (libgtk2.0-dev, gtk2-devel)
+# * GTK+ 3.x development files (libgtk-3-dev, gtk3-devel)
 # * Glade development files (libglade2-dev, libglade2-devel)
 # * GNU gettext (gettext, gettext)
 # * GNU bison (bison, bison)
@@ -210,22 +211,25 @@ EOF
 
 listdeps() {
     echo "Debian and derivatives (Ubuntu 14.04 LTS \"Trusty\", Debian 8 \"Jessie\", Ubuntu 16.04 LTS \"Xenial\", Debian 9 \"Stretch\":"
-    echo -e "    apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool\n"
+    echo -e "    apt-get install build-essential git autoconf automake autopoint libtool libtool-bin libglib2.0-dev zlib1g-dev libusb-1.0-0-dev libgtk2.0-dev libgtk-3-dev libglade2-dev gettext bison flex groff texinfo xdg-utils libarchive-dev intltool\n"
     echo "Fedora 23, Fedora 26:"
-    echo -e "    dnf install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo -e "    dnf install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel gtk3-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
     echo "CentOS 7:"
-    echo -e "    yum install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo -e "    yum install git gcc gcc-c++ make pkgconfig autoconf automake libtool glib2-devel zlib-devel libusb1-devel gtk2-devel gtk3-devel libglade2-devel gettext bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
     echo "OpenSUSE 42.1:"
-    echo -e "    zypper install git gcc gcc-c++ make pkg-config autoconf automake libtool glib2-devel zlib-devel libusb-1_0-devel gtk2-devel libglade2-devel gettext-tools bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
+    echo -e "    zypper install git gcc gcc-c++ make pkg-config autoconf automake libtool glib2-devel zlib-devel libusb-1_0-devel gtk2-devel gtk3-devel libglade2-devel gettext-tools bison flex groff texinfo xdg-utils libarchive-devel intltool xz\n"
     echo "Alpine 3.3:"
-    echo -e "    apk add git gcc g++ make pkgconfig autoconf automake libtool glib-dev zlib-dev libusb-dev gtk+-dev libglade-dev gettext-dev bison flex groff texinfo xdg-utils libarchive-dev intltool xz\n"
+    echo -e "    apk add git gcc g++ make pkgconfig autoconf automake libtool glib-dev zlib-dev libusb-dev gtk+-dev gtk+3.0-dev libglade-dev gettext-dev bison flex groff texinfo xdg-utils libarchive-dev intltool xz\n"
     echo "Arch Linux 2015.06.01 + upgrades:"
-    echo -e "    pacman -S git gcc make pkgconfig autoconf automake libtool glib2 zlib libusb gtk2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz\n"
+    echo -e "    pacman -S git gcc make pkgconfig autoconf automake libtool glib2 zlib libusb gtk2 gtk3 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz\n"
     echo "Slackware 14.2:"
-    echo -e "    slackpkg install git gcc binutils make pkgconfig autoconf automake libtool glib2 zlib libusb gtk+2 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz ca-certificates libmpc glibc cyrus-sasl curl perl m4 less kernel-headers pkg-config guile gc libffi libcroco libxml2 lzo nettle acl eudev pango cairo pixman fontconfig freetype libpng harfbuzz expat mesa libdrm libX11 xproto kbproto libxcb libpthread-stubs libXau libXdmcp libXext xextproto libXdamage damageproto libXfixes fixesproto libXxf86vm xf86vidmodeproto libXrender renderproto gdk-pixbuf2 atk libxshmfence libXinerama libXi libXrandr libXcursor libXcomposite\n"
-    echo "MacOS X:"
-    echo -e "    brew install gettext libarchive autoconf automake pkgconfig libtool glib lzlib libusb gtk+ libglade sdl bison flex texinfo libiconv intltool"
+    echo -e "    slackpkg install git gcc binutils make pkgconfig autoconf automake libtool glib2 zlib libusb gtk+2 gtk+3 libglade gettext bison flex groff texinfo xdg-utils libarchive intltool xz ca-certificates libmpc glibc cyrus-sasl curl perl m4 less kernel-headers pkg-config guile gc libffi libcroco libxml2 lzo nettle acl eudev pango cairo pixman fontconfig freetype libpng harfbuzz expat mesa libdrm libX11 xproto kbproto libxcb libpthread-stubs libXau libXdmcp libXext xextproto libXdamage damageproto libXfixes fixesproto libXxf86vm xf86vidmodeproto libXrender renderproto gdk-pixbuf2 atk libxshmfence libXinerama libXi libXrandr libXcursor libXcomposite\n"
+    echo "macOS:"
+    echo -e "    brew install gettext libarchive autoconf automake pkgconfig libtool glib lzlib libusb gtk+ gtk+3 libglade sdl bison flex texinfo libiconv intltool"
     echo -e "    brew link --force gettext   (you can use 'brew unlink' later. Also, adjust PKG_CONFIG_PATH if needed/possible)."
+    echo -e " "
+    echo "*** Note regarding GTK+3 ***"
+    echo -e "    If you're using the Adwaita theme, you may need to install adwaita-icon-theme-full or similar (adwaita-icon-theme on macOS/brew)"
 }
 
 # The main part of the script starts here.
