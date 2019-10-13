@@ -129,6 +129,27 @@ GtkWidget *display_tilp_dbox(void)
 	menubar_wnd.setclock = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem9"));
 	menubar_wnd.dumprom = GTK_WIDGET (gtk_builder_get_object (builder, "menuitem8"));
 
+	// Force toolbar labels
+	gtk_toolbar_set_style(GTK_TOOLBAR (gtk_builder_get_object (builder, "toolbar2")), GTK_TOOLBAR_BOTH);
+	gtk_toolbar_set_style(GTK_TOOLBAR (gtk_builder_get_object (builder, "toolbar3")), GTK_TOOLBAR_BOTH);
+
+#if ! GTK_CHECK_VERSION(3,10,0)
+	// Force menu icons
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "menuitem5")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "imagemenuitem2")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "imagemenuitem3")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "imagemenuitem4")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "imagemenuitem5")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "imagemenuitem9")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "menuitem12")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "menuitem7")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "manual1")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "manpage1")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "bug_report1")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "changelog1")), 1);
+	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM (gtk_builder_get_object (builder, "about1")), 1);
+#endif
+
 	paned = GTK_WIDGET (gtk_builder_get_object (builder, "hpaned1"));
 	gtk_paned_set_position(GTK_PANED(paned), options.pane_x_size);
 
