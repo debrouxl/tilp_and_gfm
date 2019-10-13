@@ -372,7 +372,7 @@
           <object class="GtkHPaned" id="hpaned1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <signal name="size_request" handler="on_hpaned1_size_request"/>
+            <!-- <signal name="size_request" handler="on_hpaned1_size_request"/> -->
             <child>
               <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
