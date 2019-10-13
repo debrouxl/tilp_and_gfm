@@ -15,7 +15,6 @@
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
     <property name="focus_on_map">True</property>
-    <property name="has_separator">True</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox9">
         <property name="visible">True</property>
@@ -79,7 +78,6 @@
             <child>
               <object class="GtkProgressBar" id="progressbar40">
                 <property name="visible">True</property>
-                <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
                 <property name="fraction">0</property>
                 <property name="pulse_step">0.10000000149</property>
                 <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
