@@ -60,8 +60,8 @@ endif()
 
 # External deps
 pkg_check_modules(DEPS REQUIRED ${GTK_DEP} glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
-string(REPLACE ";" " " DEPS_LDFLAGS "${DEPS_LDFLAGS}")
-find_package(Iconv REQUIRED)
+
+try_static_libs_if_needed()
 
 # Defines
 set(SHAREDIR  "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}")
@@ -71,9 +71,22 @@ target_compile_definitions(tilp2 PRIVATE PACKAGE="${PROJECT_NAME}" VERSION="${PR
 target_compile_options(tilp2 PRIVATE ${DEPS_CFLAGS})
 
 # Link-related properties, flags...
-link_directories(${DEPS_LIBRARY_DIRS})
-target_link_libraries(tilp2 ${DEPS_LIBRARIES} ${Iconv_LIBRARIES} ${Intl_LIBRARIES})
-set_target_properties(tilp2 PROPERTIES LINK_FLAGS "${DEPS_LDFLAGS} -rdynamic")  # rdynamic is needed for the GUI callback functions
+if(TRY_STATIC_LIBS)
+    find_package(BZip2 REQUIRED) # Needed for some reason
+    target_link_libraries(tilp2 ${BZIP2_LIBRARIES})
+    target_link_libraries(tilp2 ${TRY_STATIC_DEPS_LDFLAGS})
+    if(Iconv_FOUND AND NOT Iconv_IS_BUILT_IN)
+        target_include_directories(tilp2 PRIVATE ${Iconv_INCLUDE_DIRS})
+        target_link_libraries(tilp2 ${Iconv_LIBRARIES})
+    endif()
+else()
+    string(REPLACE ";" " " DEPS_LDFLAGS "${DEPS_LDFLAGS}")
+    target_link_libraries(tilp2 "${DEPS_LDFLAGS}" ${DEPS_LIBRARIES} ${Intl_LIBRARIES})
+endif()
+
+if(APPLE OR UNIX)
+    set_target_properties(tilp2 PROPERTIES LINK_FLAGS "-rdynamic")  # rdynamic is needed for the GUI callback functions
+endif()
 
 # Takes care of the i18n po/pot/gmo/mo files
 if(ENABLE_NLS)
