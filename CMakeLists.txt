@@ -28,6 +28,16 @@ project(tilp_and_gfm C)
 message(STATUS "Detected system: ${CMAKE_SYSTEM_NAME} - host processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+
+option(TRY_STATIC_LIBS "Build using as many static libs as possible" OFF)
+if(TRY_STATIC_LIBS)
+    if(WIN32)
+        set(CMAKE_FIND_LIBRARY_SUFFIXES .lib .a ${CMAKE_FIND_LIBRARY_SUFFIXES})
+    else()
+        set(CMAKE_FIND_LIBRARY_SUFFIXES .a ${CMAKE_FIND_LIBRARY_SUFFIXES})
+    endif()
+endif()
+
 include(GNUInstallDirs)
 
 set(CMAKE_C_STANDARD 99)
