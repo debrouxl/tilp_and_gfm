@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.9)
 
 project(tilp_and_gfm C)
 
@@ -27,6 +27,7 @@ project(tilp_and_gfm C)
 
 message(STATUS "Detected system: ${CMAKE_SYSTEM_NAME} - host processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 include(GNUInstallDirs)
 
 set(CMAKE_C_STANDARD 99)
