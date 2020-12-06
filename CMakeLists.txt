@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.9)
 
 project(tilp_and_gfm C)
 
-###############################################
-# Experimental CMake support for tilp and gfm #
-###############################################
+##################################
+# CMake support for tilp and gfm #
+##################################
 #
 # This aims to provide a much simpler way to build and install tilp and gfm
 # on computers that have decent and recent OS and toolchains.
@@ -18,6 +18,13 @@ project(tilp_and_gfm C)
 #   - you'll need to generate the pot files first (intltool-update --pot)
 #   - not all the autotools/configure options are available
 #   - probably doesn't work very well with ancient toolchains or on uncommon OSes
+#
+# Notes:
+#   - this has been succesfully tested on recent macOS and Linux.
+#   - The TRY_STATIC_LIBS CMake option will try to build both executables using as many static dependent libraries as possible.
+#     This would be particularly useful if you also built the tilibs with TRY_STATIC_LIBS as well.
+#     Let's note however that there is currently not much advantage in building that way, using shared libs is preferred, but
+#     at least you have the choice to do whatever you want should you ever really need a static build.
 #
 # In the future...:
 #   - TODO: look at CPack features for bundling/packaging
