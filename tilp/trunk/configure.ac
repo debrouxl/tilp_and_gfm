@@ -79,15 +79,17 @@ AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
 # Default to GTK+2 for now.
-AC_ARG_WITH(gtk,AS_HELP_STRING([--with-gtk=gtk2|gtk3],
+AC_ARG_WITH(gtk,AS_HELP_STRING([--with-gtk=gtk2|gtk3|gtk4],
                                 [GTK+ version]),
 [
   if test "x$withval" = "xgtk2" ; then
     PKG_CHECK_MODULES([GTK2], [gtk+-2.0 >= 2.20.0])
   elif test "x$withval" = "xgtk3"; then
     PKG_CHECK_MODULES([GTK3], [gtk+-3.0 >= 3.0.0])
+  elif test "x$withval" = "xgtk4"; then
+    PKG_CHECK_MODULES([GTK3], [gtk4 >= 3.99.0])
   else
-    AC_MSG_ERROR([--with-gtk must be either gtk2 or gtk3])
+    AC_MSG_ERROR([--with-gtk must be either gtk2, gtk3 or gtk4])
   fi
 ],
 [
@@ -98,6 +100,8 @@ AC_SUBST(GTK2_CFLAGS)
 AC_SUBST(GTK2_LIBS)
 AC_SUBST(GTK3_CFLAGS)
 AC_SUBST(GTK3_LIBS)
+AC_SUBST(GTK4_CFLAGS)
+AC_SUBST(GTK4_LIBS)
 
 # Check for zlib
 AC_CHECK_HEADER(zlib.h)
