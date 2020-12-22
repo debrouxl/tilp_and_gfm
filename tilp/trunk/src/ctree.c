@@ -309,11 +309,14 @@ void ctree_refresh(void)
 	GtkTreeViewColumn *col;
 	GdkPixbuf *pix1, *pix2, *pix3, *pix4, *pix5, *pix6;
 	GdkPixbuf *pix9 = NULL;
+	GdkPixbuf *pix_file = NULL;
 	GtkTreeIter parent_node;
 	GtkTreeIter child_node;
 	GtkIconTheme *theme;
 	GNode *vars, *apps;
 	int i, j;
+
+	const uint8_t folder_type_for_model = tifiles_folder_type(options.calc_model);
 
 	if (remote.var_tree == NULL)
 		return;
@@ -363,6 +366,7 @@ void ctree_refresh(void)
 	// load pixmaps
 	theme = gtk_icon_theme_get_default();
 	pix1 = gtk_icon_theme_load_icon(theme, GTK_STOCK_DIRECTORY, 16, 0, NULL);
+	pix_file = create_pixbuf("TIicon1.ico");
 	pix2 = create_pixbuf("TIicon2.ico");
 	pix3 = gtk_icon_theme_load_icon(theme, "folder-open", 16, 0, NULL);
 	if (pix3 == NULL)
@@ -388,15 +392,31 @@ void ctree_refresh(void)
 		GNode *parent = g_node_nth_child(vars, i);
 		VarEntry *fe = (VarEntry *) (parent->data);
 
-		if ((fe != NULL) || (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
+		if ((fe != NULL) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
 		{
 			char *utf8 = ticonv_varname_to_utf8(options.calc_model, fe->name, -1);
 
 			gtk_tree_store_append(tree, &parent_node, &vars_node);
-			gtk_tree_store_set(tree, &parent_node,
-					   COLUMN_NAME, utf8,
-					   COLUMN_DATA, (gpointer) fe,
-					   COLUMN_ICON, pix1, -1);
+			if (fe->type == folder_type_for_model)
+			{
+				gtk_tree_store_set(tree, &parent_node,
+						   COLUMN_NAME, utf8,
+						   COLUMN_DATA, (gpointer) fe,
+						   COLUMN_ICON, pix1, -1);
+			}
+			else
+			{
+				gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
+				row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(options.calc_model, fe->type));
+				tilp_var_get_size(fe, &row_text[3]);
+				gtk_tree_store_set(tree, &parent_node,
+						   COLUMN_NAME, utf8,
+						   COLUMN_TYPE, row_text[2],
+						   COLUMN_SIZE, row_text[3],
+						   COLUMN_DATA, (gpointer) fe,
+						   COLUMN_ICON, pix_file, -1);
+				g_strfreev(row_text);
+			}
 			ticonv_utf8_free(utf8);
 		}
 
@@ -484,6 +504,7 @@ void ctree_refresh(void)
 	}
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(ctree_wnd));
 
+	g_object_unref(pix_file);
 	g_object_unref(pix1);
 	g_object_unref(pix2);
 	g_object_unref(pix3);
