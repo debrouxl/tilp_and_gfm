@@ -1,10 +1,10 @@
 # Build stuff
 Makefile
 Makefile.in
-config.h.in
 aclocal.m4
 autom4te.cache/
 config.*
+!win32_config/config.h
 configure
 depcomp
 install-sh
@@ -45,8 +45,6 @@ compile
 test-driver
 *.gmo
 Makevars.template
-*.desktop
-Manpage.txt
 
 # Debug files
 *.dSYM/
@@ -72,6 +70,7 @@ Thumbs.db
 .\#*
 \#*\#
 .idea/
+.vs/
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
 [._]s[a-rt-v][a-z]
@@ -87,4 +86,5 @@ Session.vim
 
 # CMake
 cmake-build-*/
+tilibs.build/
 /build/

@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.12)
 
 project(gfm
         VERSION     1.09
-        LANGUAGES   C)
+        LANGUAGES   C CXX)
 
 file(GLOB HEADER_FILES src/*.h)
 set(SRC_FILES
@@ -24,6 +24,10 @@ set(SRC_FILES
 
 add_executable(gfm ${SRC_FILES})
 
+if(WIN32)
+    target_include_directories(gfm PRIVATE "build/msvc")
+endif()
+
 # External deps
 pkg_check_modules(DEPS REQUIRED gtk+-2.0 libglade-2.0 glib-2.0 ticonv tifiles2 ticalcs2)
 
@@ -37,19 +41,20 @@ target_compile_definitions(gfm PRIVATE PACKAGE="${PROJECT_NAME}" VERSION="${PROJ
 target_compile_options(gfm PRIVATE ${DEPS_CFLAGS})
 
 # Link-related properties, flags...
-link_directories(${DEPS_LIBRARY_DIRS})
 if(TRY_STATIC_LIBS)
-    find_package(BZip2 REQUIRED) # Needed for some reason
-    find_package(EXPAT REQUIRED) # Needed for some reason
-    target_link_libraries(gfm ${BZIP2_LIBRARIES} ${EXPAT_LIBRARIES})
-    target_link_libraries(gfm ${TRY_STATIC_DEPS_LDFLAGS})
+    target_link_directories(gfm PRIVATE ${TRY_STATIC_DEPS_LIBSDIRS})
+    target_link_libraries(gfm ${TRY_STATIC_DEPS_LDFLAGS} ${TRY_STATIC_DEPS_LIBS})
     if(Iconv_FOUND AND NOT Iconv_IS_BUILT_IN)
         target_include_directories(gfm PRIVATE ${Iconv_INCLUDE_DIRS})
+        target_link_directories(gfm PRIVATE ${Iconv_LIBRARY_DIRS})
         target_link_libraries(gfm ${Iconv_LIBRARIES})
     endif()
+    if(LINUX)
+        target_link_libraries(gfm ${CMAKE_DL_LIBS} -static-libgcc -static-libstdc++)
+    endif()
 else()
-    string(REPLACE ";" " " DEPS_LDFLAGS "${DEPS_LDFLAGS}")
-    target_link_libraries(gfm "${DEPS_LDFLAGS}" ${DEPS_LIBRARIES} ${Intl_LIBRARIES})
+    target_link_directories(gfm PRIVATE ${DEPS_LIBRARY_DIRS})
+    target_link_libraries(gfm ${DEPS_LDFLAGS_OTHER} ${DEPS_LIBRARIES})
 endif()
 
 if(APPLE OR UNIX)
@@ -59,7 +64,12 @@ endif()
 # Takes care of the i18n po/pot/gmo/mo files
 if(ENABLE_NLS)
     i18n_mo_from_po_pot()
-    add_dependencies(gfm potfiles_1)
+    if(TARGET potfiles_2)
+        add_dependencies(gfm potfiles_2)
+    else()
+        message(WARNING "gfm target potfiles_2 (i18n) is not available - did you run intltool-update?")
+        remove_definitions(-DENABLE_NLS)
+    endif()
 endif()
 
 # .app bundle for macOS - disabled for now, we'll have to check how to make packaging better (see CPack?)

@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.12)
 
-project(tilp_and_gfm C)
+project(tilp_and_gfm C CXX)
 
 ##################################
 # CMake support for tilp and gfm #
@@ -32,14 +32,56 @@ project(tilp_and_gfm C)
 #   - WISH: add support for Windows (that will probably be annoying)
 #
 
-message(STATUS "Detected system: ${CMAKE_SYSTEM_NAME} - host processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+# In case there was an env-var override...
+if(DEFINED ENV{CMAKE_INSTALL_PREFIX_OVERRIDE})
+    set(CMAKE_INSTALL_PREFIX "$ENV{CMAKE_INSTALL_PREFIX_OVERRIDE}")
+endif()
+# Be sure to have the expected install prefix format
+if(CMAKE_INSTALL_PREFIX)
+    file(TO_CMAKE_PATH "${CMAKE_INSTALL_PREFIX}" CMAKE_INSTALL_PREFIX)
+    set(CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX} CACHE PATH "CMAKE_INSTALL_PREFIX" FORCE)
+    message("CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
+endif()
 
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+# Our modules
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/.cmake)
+file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/.cmake/*.cmake")
+foreach(file ${files})
+    include(${file})
+endforeach()
+
+set(USED_CMAKE_GENERATOR "${CMAKE_GENERATOR}" CACHE STRING "Expose CMAKE_GENERATOR" FORCE)
+message(STATUS "Detected system: ${CMAKE_SYSTEM_NAME} - host processor: ${CMAKE_HOST_SYSTEM_PROCESSOR} - CXX_COMPILER: ${CMAKE_CXX_COMPILER_ID}")
+
+if(CMAKE_BUILD_TYPE STREQUAL Release OR CMAKE_BUILD_TYPE STREQUAL RelWithDebInfo)
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT supported OUTPUT error)
+    if(supported)
+        message(STATUS "IPO/LTO enabled")
+        set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+    else()
+        message(STATUS "IPO/LTO not supported: <${error}>")
+    endif()
+else()
+    message("IPO/LTO not enabled because this is not a release build")
+endif()
 
 option(TRY_STATIC_LIBS "Build using as many static libs as possible" OFF)
+if (VCPKG_TARGET_TRIPLET MATCHES "-static(-md|-release)?$")
+    if(NOT TRY_STATIC_LIBS)
+        message(WARNING "Setting TRY_STATIC_LIBS to ON anyway due to static vcpkg target")
+        set(TRY_STATIC_LIBS ON)
+    endif()
+endif()
+
 if(TRY_STATIC_LIBS)
+    message("Will try to build as statically as possible...")
     if(WIN32)
         set(CMAKE_FIND_LIBRARY_SUFFIXES .lib .a ${CMAKE_FIND_LIBRARY_SUFFIXES})
+        if (NOT VCPKG_TARGET_TRIPLET MATCHES "-static-md$")
+            message("Using static MSVC runtime...")
+            set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+        endif()
     else()
         set(CMAKE_FIND_LIBRARY_SUFFIXES .a ${CMAKE_FIND_LIBRARY_SUFFIXES})
     endif()
@@ -48,16 +90,35 @@ endif()
 include(GNUInstallDirs)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall -Wextra -Wno-unused-parameter -Werror=shadow -Werror=write-strings -Wredundant-decls -Werror=format -Werror=format-nonliteral -Werror=format-security -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=date-time -Werror=missing-prototypes -Werror=return-type -Werror=pointer-arith ")
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    # sane defaults + hardening
+    set(GLOBAL_COMPILE_FLAGS "-W -Wall -Wextra -Wno-unused-parameter -Werror=shadow -Werror=write-strings -Wredundant-decls -Werror=date-time -Werror=return-type -Werror=pointer-arith")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GLOBAL_COMPILE_FLAGS} -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=missing-prototypes")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GLOBAL_COMPILE_FLAGS}")
+    # useful flags for debugging
+    set(GLOBAL_DEBUG_FLAGS "-fno-omit-frame-pointer -fsanitize=address,bounds -fsanitize-undefined-trap-on-error")
+    set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${GLOBAL_DEBUG_FLAGS} ")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${GLOBAL_DEBUG_FLAGS} ")
+    set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} ${GLOBAL_DEBUG_FLAGS} ")
+    # only for clang/gcc
+    add_compile_definitions(HAVE_FVISIBILITY=1)
+endif()
 
 if(APPLE)
-    add_definitions(-D__MACOSX__)
+    add_compile_definitions(__MACOSX__)
 elseif(UNIX)
-    add_definitions(-D__LINUX__)
+    add_compile_definitions(__LINUX__)
+    set(LINUX TRUE)
 elseif(MINGW)
-    add_definitions(-D__MINGW32__)
+    add_compile_definitions(__MINGW32__)
 elseif(WIN32)
-    add_definitions(-D__WIN32__)
+    add_compile_definitions(__WIN32__)
+    add_compile_definitions(HAVE_CONFIG_H)
+    include_directories(${CMAKE_SOURCE_DIR}/win32_config)
 endif()
 
 # i18n support checking
@@ -65,24 +126,37 @@ include(FindGettext)
 include(FindIntl)
 if(Intl_FOUND AND GETTEXT_FOUND)
     set(ENABLE_NLS 1)
-    add_definitions(-DENABLE_NLS=1)
+    include_directories(${Intl_INCLUDE_DIR})
+    add_compile_definitions(ENABLE_NLS=1)
+    if(TRY_STATIC_LIBS)
+        # needed by __nl_find_msg in libintl.a(dcigettext.o)...
+        find_package(Iconv REQUIRED)
+    else()
+        link_directories(${Intl_LIBRARY_DIRS})
+        link_libraries(${Intl_LIBRARIES})
+    endif()
 else()
-    message(WARNING "The Intl and GetText libs are needed for translations - English only will be available")
+    message(WARNING "The Intl and GetText libs are needed for translations - Only English will be available")
 endif()
 set(LOCALEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
 
 # Global defines
-add_definitions(-DENABLE_LOGGING=1 -DHAVE_FVISIBILITY=1 -DLOCALEDIR="${LOCALEDIR}")
+add_compile_definitions(ENABLE_LOGGING=1 LOCALEDIR="${LOCALEDIR}")
 
 # For libs finding
 find_package(PkgConfig)
 
-# Our modules
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/.cmake)
-file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/.cmake/*.cmake")
-foreach(file ${files})
-    include(${file})
-endforeach()
+# Set manually when installed with Homebrew, see https://github.com/Homebrew/legacy-homebrew/issues/45891
+# Note: we can't do the same for libiconv because it exports libiconv_* symbols and not iconv_*, so we fallback on the non-static system lib...
+if(APPLE)
+    set(BREW_LIB_PATHS "/opt/homebrew/lib" "/usr/local/opt" "/usr/local/lib")
+    foreach(LIB_DIR ${BREW_LIB_PATHS})
+        if(EXISTS "${LIB_DIR}/libarchive/lib/pkgconfig")
+            set(ENV{PKG_CONFIG_PATH} "${LIB_DIR}/libarchive/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+            break()
+        endif()
+    endforeach()
+endif()
 
 # Set RPath on macOS, this is somehow needed now?
 if(APPLE)
