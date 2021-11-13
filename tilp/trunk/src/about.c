@@ -97,12 +97,12 @@ gint display_about_dbox(void)
 	dlg = GTK_ABOUT_DIALOG(widget);
 	pix = create_pixbuf("logo.png");
 
-	gtk_about_dialog_set_program_name(dlg, "TiLP2 - Tilp Is a Linking Program - ");
+	gtk_about_dialog_set_program_name(dlg, "TILP2 - Tilp Is a Linking Program - ");
 	gtk_about_dialog_set_version(dlg, TILP_VERSION);
 	gtk_about_dialog_set_comments(dlg, version);
-	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2010 The TiLP Team");
+	gtk_about_dialog_set_copyright(dlg, "Copyright (c) 2001-2023 The TILP Team");
 	gtk_about_dialog_set_license(dlg, buffer);
-	gtk_about_dialog_set_website(dlg, "http://www.tilp.info");
+	gtk_about_dialog_set_website(dlg, "https://github.com/debrouxl/tilp_and_gfm");
 	gtk_about_dialog_set_authors(dlg, authors);
 	gtk_about_dialog_set_documenters(dlg, documenters);
 	gtk_about_dialog_set_artists(dlg, artists);

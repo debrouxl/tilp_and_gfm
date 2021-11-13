@@ -266,7 +266,7 @@ int tilp_config_write(void)
 
 	g_key_file_set_comment(kf, NULL, NULL, 
 		"# Config file for TiLP\n" \
-		"# Copyright (C) 1999-2011 The TiLP Team <tilp-devel@lists.sf.net>\n" \
+		"# Copyright (C) 1999-2023 The TILP Team <tilp-devel@lists.sf.net>\n" \
 		"# Warning: any comments that you add to this file WILL be overwritten", &error);
 
 	// Section [DEVICE]

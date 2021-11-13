@@ -50,7 +50,7 @@ static GOptionEntry entries[] =
 
 void tilp_cmdline_version(void)
 {
-	printf(_("TiLP2 - Version %s, (C) 1999-2008 Romain Lievin\n"), TILP_VERSION);
+	printf(_("TiLP2 - Version %s, (C) 1999-2023 The TILP Team\n"), TILP_VERSION);
 #ifdef __BSD__
 	printf(_("FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"));
 #endif
