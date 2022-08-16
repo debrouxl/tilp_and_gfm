@@ -9,7 +9,7 @@ if USE_GROFF
   SUBDIRS += man
 endif
 
-dist_pkgdata_DATA = COPYING RELEASE
+dist_doc_DATA = COPYING RELEASE
 
 DISTCLEANFILES = ... intltool-extract intltool-merge intltool-update po/.intltool-merge-cache
 

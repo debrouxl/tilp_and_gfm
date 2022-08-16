@@ -1,4 +1,4 @@
-helpdir = $(pkgdatadir)/help
+helpdir = $(docdir)/help
 dist_help_DATA = *.html *.png
 
 dos2unix:
