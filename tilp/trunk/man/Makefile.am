@@ -1,5 +1,5 @@
 man_MANS = tilp.1
-pkgdata_DATA = Manpage.txt
+doc_DATA = Manpage.txt
 
 EXTRA_DIST = $(man_MANS) cleaner.c Manpage.txt
 
