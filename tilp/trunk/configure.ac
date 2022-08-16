@@ -213,7 +213,7 @@ AC_MSG_CHECKING([for the host compiler])
 if test "x$build" == "x$host" ; then
   # Not cross-compiling.
   CC_FOR_BUILD=$CC
-  CFLAGS_FOR_BUILD=$CFLAGS
+  CFLAGS_FOR_BUILD="$CFLAGS $CPPFLAGS $LDFLAGS"
   AC_MSG_RESULT([${CC_FOR_BUILD}])
 else
   # Try to find the host CC among several choices
