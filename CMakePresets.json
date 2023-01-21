@@ -1,0 +1,123 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 21,
+    "patch": 1
+  },
+  "configurePresets": [
+    {
+      "name": "ninja-vcpkg",
+      "hidden": true,
+      "generator": "Ninja",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "binaryDir": "${sourceDir}/tilp.build/${presetName}",
+      "installDir": "${sourceDir}/tilp.build/${presetName}",
+      "cacheVariables": {
+        "VCPKG_MANIFEST_MODE": {
+          "type": "BOOL",
+          "value": "True"
+        },
+        "VCPKG_MANIFEST_INSTALL": {
+          "type": "BOOL",
+          "value": "True"
+        }
+      }
+    },
+    {
+      "name": "ninja-vcpkg-x64",
+      "hidden": true,
+      "inherits": "ninja-vcpkg",
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "cacheVariables": {
+        "TRY_STATIC_LIBS": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "BUILD_USING_GTK3": {
+          "type": "BOOL",
+          "value": "ON"
+        },
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-release"
+        }
+      }
+    },
+    {
+      "name": "x64-Debug",
+      "inherits": "ninja-vcpkg-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
+        }
+      }
+    },
+    {
+      "name": "x64-ReleaseStatic",
+      "inherits": "ninja-vcpkg-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        },
+        "TRY_STATIC_LIBS": {
+          "type": "BOOL",
+          "value": "ON"
+        },
+        "VCPKG_HOST_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-static-release"
+        },
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-static-release"
+        },
+        "VCPKG_INSTALL_OPTIONS": {
+          "type": "STRING",
+          "value": "--allow-unsupported;--overlay-ports=${sourceDir}/.cmake/vcpkg_overlay_ports"
+        }
+      }
+    },
+    {
+      "name": "x64-ReleaseDynamic",
+      "inherits": "ninja-vcpkg-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        },
+        "TRY_STATIC_LIBS": {
+          "type": "BOOL",
+          "value": "ON"
+        },
+        "VCPKG_HOST_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-release"
+        },
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-release"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64-Debug",
+      "configurePreset": "x64-Debug"
+    },
+    {
+      "name": "x64-ReleaseStatic",
+      "configurePreset": "x64-ReleaseStatic"
+    },
+    {
+      "name": "x64-ReleaseDynamic",
+      "configurePreset": "x64-ReleaseDynamic"
+    }
+  ]
+}

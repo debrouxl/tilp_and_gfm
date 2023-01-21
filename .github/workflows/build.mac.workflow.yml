@@ -1,0 +1,84 @@
+name: Build macOS
+
+on:
+  push:
+    branches: [ master, gtk3 ]
+  pull_request:
+    branches: [ master, gtk3 ]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: "Build: ${{ matrix.os }} - GTK+${{ matrix.gtkver }} - static ${{ matrix.statictype }}"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macOS-latest]
+        statictype: [OFF,ON]
+        gtkver: [2,3]
+        include:
+          - gtkver: 2
+            gtk3: OFF
+            gtkdep: "gtk+"
+          - gtkver: 3
+            gtk3: ON
+            gtkdep: "gtk+3"
+
+    steps:
+    - name: Checkout Git Repo
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: Install dependencies
+      run: |
+        set -e
+        brew install cmake ninja gettext libarchive glib libusb libiconv intltool expat bzip2 zlib ${{ matrix.gtkdep }} intltool
+
+    # Workaround!
+    # libarchive.pc now has (lib)iconv in Requires.private, which doesn't work here
+    # See https://github.com/libarchive/libarchive/pull/1813 and other issues
+    - name: Fix libarchive pkg-config file
+      run: |
+        sudo sed -i '' -E '/^Requires.private: (lib)?iconv/d' /usr/local/opt/libarchive/lib/pkgconfig/libarchive.pc
+
+    - name: Get and build and install tilibs
+      run: |
+        set -e
+        cd /tmp
+        mkdir lpg_install
+        git clone --depth 1 https://github.com/debrouxl/tilibs
+        cd tilibs
+        mkdir build && cd build
+        cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DTRY_STATIC_LIBS=${{ matrix.statictype }} -DCMAKE_INSTALL_PREFIX=/tmp/lpg_install ..
+        cmake --build . --target all
+        cmake --build . --target install
+
+    - name: Generate tilp+gfm i18n resources
+      run: |
+        cd  gfm/trunk/po; intltool-update --pot; intltool-update fr; cd ../../..
+        cd tilp/trunk/po; intltool-update --pot; intltool-update fr; intltool-update de; cd ../../..
+
+    - name: Build tilp+gfm
+      run: |
+        set -e
+        mkdir build && cd build
+        export PKG_CONFIG_PATH="/tmp/lpg_install/lib/pkgconfig:$PKG_CONFIG_PATH"
+        cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DTRY_STATIC_LIBS=${{ matrix.statictype }} -DBUILD_USING_GTK3=${{ matrix.gtk3 }} -DCMAKE_INSTALL_PREFIX=/tmp/lpg_install ..
+        cmake --build . --target all
+
+    - name: Install tilp+gfm
+      run: |
+        cd build
+        cmake --build . --target install
+
+    - name: Prepare install folder for upload
+      run: mv /tmp/lpg_install /tmp/tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
+
+    - name: Upload install folder
+      uses: actions/upload-artifact@v3
+      with:
+        name: tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
+        path: /tmp/tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}/
