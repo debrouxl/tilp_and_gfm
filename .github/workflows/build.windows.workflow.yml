@@ -1,0 +1,94 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [ master, gtk3 ]
+  pull_request:
+    branches: [ master, gtk3 ]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: "Build target: ${{ matrix.arch }}-${{ matrix.config }}"
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x64]
+        config: [ReleaseDynamic, ReleaseStatic]
+        include:
+          - arch: x64
+            arch_name: 64-bit
+            arch_suffix: "64"
+          - config: ReleaseDynamic
+            tilibsdeps: "tilibs_windows_sharedDeps"
+          - config: ReleaseStatic
+            tilibsdeps: "tilibs_windows_staticDeps"
+    steps:
+    - name: Checkout Git Repo
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: Install latest CMake
+      uses: lukka/get-cmake@9781783c006d9d607cb391b971a1dcbed768a25a # latest as of 2023-11-12
+
+    - name: Restore artifacts, or setup vcpkg (do not install any package)
+      uses: lukka/run-vcpkg@6fe69898af670ac05f4a8427cc5cff4fb361cee5 # latest as of 2023-11-12
+      with:
+        vcpkgGitCommitId: '61f610845fb206298a69f708104a51d651872877' # latest as of 2023-11-12
+        vcpkgDirectory: C:/vcpkg
+      env:
+        VCPKG_ROOT: C:/vcpkg
+
+    - name: Create prefix folder
+      shell: cmd
+      run: mkdir prefix
+
+    - name: TEMP create tilibs folder stuff where they are expected
+      shell: cmd
+      run: mkdir D:\a\tilibs\tilibs
+
+    - name: Get tilibs artifact
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e # latest as of 2023-11-12
+      with:
+        repo: adriweb/tilibs
+        branch: feature/ci-windows
+        workflow: build.windows.workflow.yml
+        workflow_conclusion: success
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        path: 'D:\a\tilibs\tilibs\'
+
+    - name: TEMP move tilibs stuff where they are expected
+      shell: cmd
+      run: rename "D:\a\tilibs\tilibs\${{ matrix.tilibsdeps }}" "prefix"
+
+    - name: Build tilp ${{ matrix.config }} on Windows ${{ matrix.arch_name }}
+      uses: lukka/run-cmake@2ce8982be71b8e9a3c4d5e432135035afd1e76a7 # latest as of 2023-11-12
+      with:
+        cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+        configurePreset: '${{ matrix.arch }}-${{ matrix.config }}'
+        buildPreset: '${{ matrix.arch }}-${{ matrix.config }}'
+      env:
+        VCPKG_FORCE_SYSTEM_BINARIES: 1
+        CMAKE_INSTALL_PREFIX_OVERRIDE: '${{ github.workspace }}/prefix'
+        VCPKG_ROOT: C:/vcpkg
+
+    - name: Install tilp
+      uses: lukka/run-cmake@2ce8982be71b8e9a3c4d5e432135035afd1e76a7 # latest as of 2023-11-12
+      with:
+        cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+        buildPreset: '${{ matrix.arch }}-${{ matrix.config }}'
+        buildPresetAdditionalArgs: "['--target install']"
+
+    - name: Prepare install folder for upload
+      shell: cmd
+      run: rename prefix tilp_windows_gtk3_${{ matrix.config }}
+
+    - name: Upload install folder
+      uses: actions/upload-artifact@v3
+      with:
+        name: tilp_windows_gtk3_${{ matrix.config }}
+        path: tilp_windows_gtk3_${{ matrix.config }}
