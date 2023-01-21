@@ -64,6 +64,10 @@ endif()
 
 # External deps
 pkg_check_modules(DEPS REQUIRED ${GTK_DEP} glib-2.0 ticonv tifiles2 ticables2 ticalcs2 zlib)
+if(TRY_STATIC_LIBS AND WIN32)
+    list(APPEND DEPS_LIBRARIES "libusb0")
+    list(APPEND DEPS_STATIC_LIBRARIES "libusb0")
+endif()
 
 try_static_libs_if_needed()
 
