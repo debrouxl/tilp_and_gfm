@@ -122,17 +122,17 @@ gint display_options_dbox()
 	return 0;
 }
 
-TILP_EXPORT void options_radiobutton51_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton51_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.show_all = 1;
 } 
 
-TILP_EXPORT void options_radiobutton52_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton52_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.show_all = 0;
 } 
 
-TILP_EXPORT void options_checkbutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_checkbutton2_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	if (gtk_toggle_button_get_active(togglebutton) == TRUE)
 		tmp_options.overwrite = CONFIRM_YES;
@@ -140,22 +140,22 @@ TILP_EXPORT void options_checkbutton2_toggled(GtkToggleButton * togglebutton, gp
 		tmp_options.overwrite = CONFIRM_NO;
 }
 
-TILP_EXPORT void options_radiobutton81_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton81_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.recv_as_group = 0;
 } 
 
-TILP_EXPORT void options_radiobutton82_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton82_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.recv_as_group = 1;
 }
 
-TILP_EXPORT void options_radiobutton31_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton31_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.backup_as_tigroup = 0;
 } 
 
-TILP_EXPORT void options_radiobutton32_toggled(GtkToggleButton * togglebutton, gpointer user_data)
+void options_radiobutton32_toggled(GtkToggleButton * togglebutton, gpointer user_data)
 {
 	tmp_options.backup_as_tigroup = 1;
 }

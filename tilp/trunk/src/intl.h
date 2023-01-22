@@ -56,6 +56,7 @@
 
 #if defined(__WIN32__) && !defined(__MINGW32__)
 # undef PACKAGE
+# undef LOCALEDIR
 # define PACKAGE "tilp2"		// name of package
 # define LOCALEDIR ""		// place of the translated file
 #endif

@@ -22,11 +22,13 @@
 #ifndef __CLIST_H__
 #define __CLIST_H__
 
+#include "tilp_defs.h"
+
 void clist_init(void);
 void clist_refresh(void);
 void clist_selection_refresh(void);
 
-gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data);
-gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
+TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data);
+TILP_EXPORT gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
 
 #endif

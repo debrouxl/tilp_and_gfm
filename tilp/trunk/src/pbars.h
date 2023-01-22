@@ -22,6 +22,7 @@
 #ifndef __PBARS_H__
 #define __PBARS_H__
 
+#include "tilp_defs.h"
 #include <gtk/gtk.h>
 
 void create_pbar_type1(const gchar* title);
@@ -33,6 +34,6 @@ void create_pbar_type5(const gchar* title);
 void create_pbar(int type, const gchar * title);
 void destroy_pbar(void);
 
-void on_pbar_okbutton1_pressed(GtkButton* button, gpointer user_data);
+TILP_EXPORT void on_pbar_okbutton1_pressed(GtkButton* button, gpointer user_data);
 
 #endif
