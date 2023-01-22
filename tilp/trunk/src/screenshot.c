@@ -65,7 +65,7 @@ gint display_screenshot_dbox(void)
 	return 0;
 }
 
-TILP_EXPORT void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data)
+void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	const gchar *filename;
 	GdkPixbuf *pixbuf;
@@ -88,7 +88,7 @@ TILP_EXPORT void on_sc_load1_activate(GtkMenuItem * menuitem, gpointer user_data
 
 static gboolean screen_success = FALSE;
 
-TILP_EXPORT void on_sc_save1_activate(GtkMenuItem * menuitem, gpointer user_data)
+void on_sc_save1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	GdkPixbuf *pixbuf;
 	gboolean result = FALSE;
@@ -166,12 +166,12 @@ TILP_EXPORT void on_sc_save1_activate(GtkMenuItem * menuitem, gpointer user_data
 	filename = NULL;
 }
 
-TILP_EXPORT void on_sc_quit1_activate(GtkMenuItem * menuitem, gpointer user_data)
+void on_sc_quit1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	gtk_widget_destroy(scrn_win);
 }
 
-TILP_EXPORT void on_sc_options1_activate(GtkMenuItem * menuitem, gpointer user_data)
+void on_sc_options1_activate(GtkMenuItem * menuitem, gpointer user_data)
 {
 	display_scroptions_dbox();
 }
@@ -181,7 +181,7 @@ static void destroy_pixbuf(guchar * pixels, gpointer data)
 	g_free(pixels);
 }
 
-TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button, gpointer user_data)
+void on_scdbox_button1_clicked(GtkButton * button, gpointer user_data)
 {
 	GdkPixbuf *pixbuf;
 	guchar *bytemap;
@@ -216,22 +216,22 @@ TILP_EXPORT void on_scdbox_button1_clicked(GtkButton * button, gpointer user_dat
 	g_object_unref(pixbuf);
 }
 
-TILP_EXPORT void on_scdbox_button2_clicked(GtkButton * button, gpointer user_data)
+void on_scdbox_button2_clicked(GtkButton * button, gpointer user_data)
 {
 	on_sc_save1_activate(NULL, NULL);
 }
 
-TILP_EXPORT void on_scdbox_button3_clicked(GtkButton * button, gpointer user_data)
+void on_scdbox_button3_clicked(GtkButton * button, gpointer user_data)
 {
 	gtk_widget_destroy(scrn_win);
 }
 
-TILP_EXPORT void on_scdbox_button4_clicked(GtkButton * button, gpointer user_data)
+void on_scdbox_button4_clicked(GtkButton * button, gpointer user_data)
 {
 	on_manual1_activate(NULL, NULL);
 }
 
-TILP_EXPORT void on_scdbox_button5_clicked(GtkButton * button, gpointer user_data)
+void on_scdbox_button5_clicked(GtkButton * button, gpointer user_data)
 {
 	GdkPixbuf *pixbuf;
 	GtkClipboard *clipboard;

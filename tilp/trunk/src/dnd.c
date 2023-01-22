@@ -96,7 +96,7 @@ void dnd_init(void)
 /* CList -> CTree */
 
 // pass data
-TILP_EXPORT void on_treeview2_drag_data_get(GtkWidget * widget,
+void on_treeview2_drag_data_get(GtkWidget * widget,
                                             GdkDragContext * drag_context,
                                             GtkSelectionData * data,
                                             guint info, guint _time, gpointer user_data)
@@ -106,7 +106,7 @@ TILP_EXPORT void on_treeview2_drag_data_get(GtkWidget * widget,
 }
 
 // retrieve data
-TILP_EXPORT void on_treeview1_drag_data_received(GtkWidget * widget,
+void on_treeview1_drag_data_received(GtkWidget * widget,
                                                  GdkDragContext * drag_context,
                                                  gint x,
                                                  gint y,
@@ -207,7 +207,7 @@ end:
 extern gchar *name_to_drag;
 extern GtkTreePath *path_to_drag;
 
-TILP_EXPORT void on_treeview1_drag_begin(GtkWidget * widget, GdkDragContext * drag_context, gpointer user_data)
+void on_treeview1_drag_begin(GtkWidget * widget, GdkDragContext * drag_context, gpointer user_data)
 {
 	// Folder
 	if (!strcmp(name_to_drag, NODEx) && (ticalcs_calc_features(calc_handle) & FTS_FOLDER))
@@ -226,7 +226,7 @@ TILP_EXPORT void on_treeview1_drag_begin(GtkWidget * widget, GdkDragContext * dr
 		ctree_select_vars(!0);
 }
 
-TILP_EXPORT void on_treeview1_drag_data_get(GtkWidget * widget,
+void on_treeview1_drag_data_get(GtkWidget * widget,
                                             GdkDragContext * drag_context,
                                             GtkSelectionData * data,
                                             guint info, guint _time, gpointer user_data)
@@ -243,7 +243,7 @@ TILP_EXPORT void on_treeview1_drag_data_get(GtkWidget * widget,
 	}
 }
 
-TILP_EXPORT void on_treeview2_drag_data_received(GtkWidget * widget,
+void on_treeview2_drag_data_received(GtkWidget * widget,
                                                  GdkDragContext * drag_context,
                                                  gint x,
                                                  gint y,

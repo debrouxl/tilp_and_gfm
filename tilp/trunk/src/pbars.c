@@ -219,7 +219,7 @@ void destroy_pbar(void)
 	}
 }
 
-TILP_EXPORT void on_pbar_okbutton1_pressed(GtkButton * button, gpointer user_data)
+void on_pbar_okbutton1_pressed(GtkButton * button, gpointer user_data)
 {
 	gtk_update.cancel = 1;
 }
