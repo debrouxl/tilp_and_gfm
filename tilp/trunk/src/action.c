@@ -279,7 +279,7 @@ out_clean:
 	return button;
 }
 
-TILP_EXPORT void action_overwrite_clicked(GtkButton * button, gpointer user_data)
+void action_overwrite_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -307,7 +307,7 @@ TILP_EXPORT void action_overwrite_clicked(GtkButton * button, gpointer user_data
 	}
 }
 
-TILP_EXPORT void action_rename_clicked(GtkButton * button, gpointer user_data)
+void action_rename_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -366,7 +366,7 @@ TILP_EXPORT void action_rename_clicked(GtkButton * button, gpointer user_data)
 	}
 }
 
-TILP_EXPORT void action_skip_clicked(GtkButton * button, gpointer user_data)
+void action_skip_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
 	GtkTreeIter iter;
@@ -391,7 +391,7 @@ TILP_EXPORT void action_skip_clicked(GtkButton * button, gpointer user_data)
 	}
 }
 
-TILP_EXPORT void action_select_all_clicked(GtkButton * button, gpointer user_data)
+void action_select_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
@@ -400,7 +400,7 @@ TILP_EXPORT void action_select_all_clicked(GtkButton * button, gpointer user_dat
 	gtk_tree_selection_select_all(sel);
 } 
 
-TILP_EXPORT void action_deselect_all_clicked(GtkButton * button, gpointer user_data)
+void action_deselect_all_clicked(GtkButton * button, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(clist);
 	GtkTreeSelection *sel;
@@ -409,7 +409,7 @@ TILP_EXPORT void action_deselect_all_clicked(GtkButton * button, gpointer user_d
 	gtk_tree_selection_unselect_all(sel);
 }
 
-TILP_EXPORT gboolean action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
+gboolean action_treeview1_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);

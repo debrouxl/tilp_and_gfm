@@ -381,7 +381,7 @@ void clist_refresh(void)
 
 /* Callbacks */
 
-TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
+gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEventButton* event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(widget);
 	GtkTreeModel *model = GTK_TREE_MODEL(list);
@@ -441,7 +441,7 @@ TILP_EXPORT gboolean on_treeview2_button_press_event(GtkWidget* widget, GdkEvent
 
 
 /* Key pressed */
-TILP_EXPORT gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
+gboolean on_treeview2_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
 {
 	if (event->keyval == GDK_KEY_Delete)
 	{

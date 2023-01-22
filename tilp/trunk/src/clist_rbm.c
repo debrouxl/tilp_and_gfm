@@ -105,17 +105,17 @@ static void set_drives(GtkWidget* widget, gpointer user_data)
 
 /* Callbacks */
 
-TILP_EXPORT void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_cut1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	local.copy_cut = CUT_FILE;
 } 
 
-TILP_EXPORT void rbm_copy1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_copy1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	local.copy_cut = COPY_FILE;
 } 
 
-TILP_EXPORT void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_paste1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	GList *ptr;
 	gchar *src;
@@ -210,7 +210,7 @@ static const char* get_gfm_path(void)
 }
 #endif
 
-TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 #ifdef __WIN32__
 	const char *app_path = get_gfm_path();
@@ -257,7 +257,7 @@ TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
 	}
 }
 
-TILP_EXPORT void rbm_rename1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_rename1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	tilp_file_selection_rename();
 	clist_refresh();
@@ -289,12 +289,12 @@ TILP_EXPORT void rbm_rename1_activate(GtkMenuItem* menuitem, gpointer user_data)
 	labels_refresh();
 }*/
 
-TILP_EXPORT void rbm_delete_file1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_delete_file1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	on_tilp_button11_clicked(NULL, NULL);
 } 
 
-TILP_EXPORT void rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
+void rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 	g_free(options.working_dir);
 	options.working_dir = g_get_current_dir();
@@ -302,19 +302,19 @@ TILP_EXPORT void rbm_set_as_working_dir1_activate(GtkMenuItem* menuitem, gpointe
 	tilp_config_write();
 } 
 
-TILP_EXPORT void rbm_show_all_files1_activate(GtkCheckMenuItem *menuitem, gpointer user_data)
+void rbm_show_all_files1_activate(GtkCheckMenuItem *menuitem, gpointer user_data)
 {
 	options.show_all = gtk_check_menu_item_get_active(menuitem);
 	toolbar_refresh_buttons();
 	clist_refresh();
 }
 
-TILP_EXPORT void rbm_confirm_delete_activate(GtkCheckMenuItem *action, gpointer user_data)
+void rbm_confirm_delete_activate(GtkCheckMenuItem *action, gpointer user_data)
 {
 	options.overwrite = gtk_check_menu_item_get_active(action);
 }
 
-TILP_EXPORT void rbm_properties1_activate(GtkMenuItem *menuitem, gpointer user_data)
+void rbm_properties1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
 	GList *ptr;
 
