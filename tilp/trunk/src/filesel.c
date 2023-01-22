@@ -44,6 +44,7 @@
 #ifdef __WIN32__
 #include <windows.h>
 #include <wchar.h>
+#include <commdlg.h>
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 3)))
 	typedef OPENFILENAME OPENFILENAME_MAYALIAS __attribute__((may_alias));
 #else
