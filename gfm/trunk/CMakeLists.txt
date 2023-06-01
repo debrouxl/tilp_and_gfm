@@ -44,8 +44,10 @@ target_link_libraries(gfm ${DEPS_LIBRARIES} ${GTK2_LIBRARIES} ${Iconv_LIBRARIES}
 set_target_properties(gfm PROPERTIES LINK_FLAGS "${DEPS_LDFLAGS} -rdynamic")  # rdynamic is needed for the GUI callback functions
 
 # Takes care of the i18n po/pot/gmo/mo files
-i18n_mo_from_po_pot()
-add_dependencies(gfm potfiles_1)
+if(ENABLE_NLS)
+    i18n_mo_from_po_pot()
+    add_dependencies(gfm potfiles_1)
+endif()
 
 # .app bundle for macOS - disabled for now, we'll have to check how to make packaging better (see CPack?)
 #set_target_properties(gfm PROPERTIES MACOSX_BUNDLE TRUE)
