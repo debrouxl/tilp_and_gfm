@@ -86,3 +86,4 @@ Session.vim
 
 # CMake
 cmake-build-*/
+/build/
