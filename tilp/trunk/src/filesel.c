@@ -72,6 +72,7 @@ static const gchar* create_fsel_2(const gchar *dirname, const gchar *filename, c
 	gchar **sarray;
 	gint i;
 	gchar *sfilename, *sext;
+	gchar *mext;
 
 	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
 	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
@@ -102,7 +103,17 @@ static const gchar* create_fsel_2(const gchar *dirname, const gchar *filename, c
 	filter = gtk_file_filter_new();
 	sarray = g_strsplit(sext, ";", -1);
 	for(i = 0; sarray[i] != NULL; i++)
+	{
 		gtk_file_filter_add_pattern (filter, sarray[i]);
+
+		mext = g_utf8_strup(sarray[i], strlen(sarray[i]));
+		gtk_file_filter_add_pattern (filter, mext);
+		g_free(mext);
+
+		mext = g_utf8_strdown(sarray[i], strlen(sarray[i]));
+		gtk_file_filter_add_pattern (filter, mext);
+		g_free(mext);
+	}
 	g_strfreev(sarray);
 	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), filter);
 
