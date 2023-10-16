@@ -27,7 +27,7 @@
 
 #include "tilp_core.h"
 
-extern CalcUpdate	default_update;
+static CalcUpdate	default_update;
 
 static void default_start(void)
 {
@@ -82,7 +82,7 @@ static void default_refresh(void)
 {
 }
 
-CalcUpdate default_update =
+static CalcUpdate default_update =
 {
 	"", 0,
 	0.0, 0, 0, 0, 0, 0, 0, (1 << 0), 0,
