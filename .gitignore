@@ -16,6 +16,7 @@ missing
 stamp-h?
 **/po/POTFILES
 **/po/stamp-po
+**/po/*.pot
 
 .deps/
 .dirstamp
@@ -86,3 +87,4 @@ Session.vim
 
 # CMake
 cmake-build-*/
+/build/
