@@ -84,5 +84,11 @@ foreach(file ${files})
     include(${file})
 endforeach()
 
+# Set RPath on macOS, this is somehow needed now?
+if(APPLE)
+    set(CMAKE_MACOSX_RPATH 1)
+    list(APPEND CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
+endif()
+
 add_subdirectory(gfm/trunk)
 add_subdirectory(tilp/trunk)
