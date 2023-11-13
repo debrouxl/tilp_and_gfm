@@ -90,5 +90,12 @@ if(APPLE)
     list(APPEND CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
 endif()
 
-add_subdirectory(gfm/trunk)
 add_subdirectory(tilp/trunk)
+
+# libglade isn't available (anymore) on brew or on vcpkg... so let's check that here
+pkg_check_modules(TEST_GLADE libglade-2.0)
+if(TEST_GLADE_FOUND)
+    add_subdirectory(gfm/trunk)
+else()
+    message(WARNING "libglade is not available on your system, gfm will not be built")
+endif()
