@@ -71,8 +71,10 @@ target_link_libraries(tilp2 ${DEPS_LIBRARIES} ${GTK2_LIBRARIES} ${Iconv_LIBRARIE
 set_target_properties(tilp2 PROPERTIES LINK_FLAGS "${DEPS_LDFLAGS} -rdynamic")  # rdynamic is needed for the GUI callback functions
 
 # Takes care of the i18n po/pot/gmo/mo files
-i18n_mo_from_po_pot()
-add_dependencies(tilp2 potfiles_2)
+if(ENABLE_NLS)
+    i18n_mo_from_po_pot()
+    add_dependencies(tilp2 potfiles_2)
+endif()
 
 # .app bundle for macOS - disabled for now, we'll have to check how to make packaging better (see CPack?)
 #set_target_properties(tilp2 PROPERTIES MACOSX_BUNDLE TRUE)
