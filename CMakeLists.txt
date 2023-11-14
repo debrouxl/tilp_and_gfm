@@ -142,6 +142,10 @@ set(LOCALEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LOCALEDIR}")
 
 # Global defines
 add_compile_definitions(ENABLE_LOGGING=1 LOCALEDIR="${LOCALEDIR}")
+if(TRY_STATIC_LIBS)
+    # When we link statically, we don't want the dllimport stuff, so let's workaround that here
+    add_compile_definitions(TICALCS_EXPORTS TIFILES_EXPORTS TICONV_EXPORTS TICABLES_EXPORTS)
+endif()
 
 # For libs finding
 find_package(PkgConfig)
