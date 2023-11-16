@@ -88,7 +88,7 @@ static void init_win32_paths(void)
 
 	// Init the path for the Windows version by getting the 
 	// executable location.
-	hModule = GetModuleHandle("tilp.exe");
+	hModule = GetModuleHandle(NULL);
 	sBuffer = (char *) malloc(4096 * sizeof(char));
 	dWord = GetModuleFileName(hModule, sBuffer, 4096);
 	dirname = g_dirname(sBuffer);
