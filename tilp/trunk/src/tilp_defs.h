@@ -84,13 +84,6 @@
 #define MODE_GUI (1<<4)		/* GUI mode (GTK, MFC, Cocoa)    */
 #define MODE_TXT (1<<5)		/* no GUI (unused)				 */
 
-/* Action */
-
-#define ACT_NONE	0
-#define ACT_RENAME	1
-#define ACT_OVER	2
-#define ACT_SKIP	3
-
 #define GTK_WIN_POS_TYPE		GTK_WIN_POS_CENTER
 
 // GTK+ only (export callbacks for GtkBuilder linking at runtime)
