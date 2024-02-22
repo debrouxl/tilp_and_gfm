@@ -357,7 +357,7 @@ int tilp_config_write(void)
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
-		gif->msg_box1(_("Error"), _("Unable to write the config file (~/.tilp or ~/tilp.ini).\n"));
+		gif->msg_box1(_("Error"), _("Unable to write the config file ($XDG_CONFIG_HOME/tilp.ini).\n"));
 		ret = -1;
 		goto exit;
 	}
