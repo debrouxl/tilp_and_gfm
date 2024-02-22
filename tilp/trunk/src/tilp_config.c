@@ -149,10 +149,10 @@ int tilp_config_exist(void)
 	char * ini_file;
 	char* old_ini_file;
 	old_ini_file = g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, OLD_INI_FILE, NULL);
+	ini_file = get_config_path();
 	deprecated_config_path(old_ini_file, ini_file);
 	free(old_ini_file);
 
-	ini_file = get_config_path();
 #if defined(__WIN32__)
 	// On Windows, there can be two config files:
 	// * per-user config files (which the *nix versions have been using for ages).
