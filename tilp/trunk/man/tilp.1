@@ -73,7 +73,7 @@ Starting at version 1.13, a new and shorter syntax can be used:
 tilp ti89 blacklink \-p2 \-t20 \-n group.89g
 
 .SH CONFIG FILE FORMAT
-This section describes the format of the .tilp config file which is in the home directory of the user (*nix, Win32), or the old tilp.ini file formerly stored alongside the program (Win32). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc).
+This section describes the format of the tilp.ini config file which is in the configuration directory of the user ($XDG_CONFIG_HOME or LocalAppData on windows). The file is separated into several sections (hardware, gui, calc, external programs, fonts, screen, misc).
 A line preceded by the '#' symbol is a comment. Each line has the following format: option=something.
 Every line can be put in any order. Beware: any comment added to the file will be overwritten!
 Here's a description of the options and their possible values:
