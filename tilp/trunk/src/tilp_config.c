@@ -137,7 +137,7 @@ static char * get_config_path(void)
 }
 
 #if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
-# define OLD_INI_FILE  "tilp"
+# define OLD_INI_FILE  ".tilp"
 #elif defined(__WIN32__)
 # define OLD_INI_FILE  "tilp.ini"
 #endif
