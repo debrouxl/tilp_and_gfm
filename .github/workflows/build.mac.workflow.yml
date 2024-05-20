@@ -42,7 +42,7 @@ jobs:
     # See https://github.com/libarchive/libarchive/pull/1813 and other issues
     - name: Fix libarchive pkg-config file
       run: |
-        sudo sed -i '' -E '/^Requires.private: (lib)?iconv/d' /usr/local/opt/libarchive/lib/pkgconfig/libarchive.pc
+        sudo sed -i '' -E '/^Requires.private: (lib)?iconv/d' $(brew --prefix libarchive)/lib/pkgconfig/libarchive.pc
 
     - name: Get and build and install tilibs
       run: |
