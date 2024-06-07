@@ -49,7 +49,7 @@ jobs:
         set -e
         cd /tmp
         mkdir lpg_install
-        git clone --depth 1 https://github.com/debrouxl/tilibs
+        git clone --depth 1 -b experimental2 https://github.com/debrouxl/tilibs
         cd tilibs
         mkdir build && cd build
         export PKG_CONFIG_PATH="$(brew --prefix libarchive)/lib/pkgconfig/:$PKG_CONFIG_PATH"
