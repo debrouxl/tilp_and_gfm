@@ -48,7 +48,7 @@ jobs:
         set -e
         cd /tmp
         mkdir lpg_install
-        git clone --depth 1 https://github.com/debrouxl/tilibs
+        git clone --depth 1 -b experimental2 https://github.com/debrouxl/tilibs
         cd tilibs
         mkdir build && cd build
         cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DTRY_STATIC_LIBS=${{ matrix.statictype }} -DCMAKE_INSTALL_PREFIX=/tmp/lpg_install ..
