@@ -55,7 +55,7 @@ jobs:
       uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e # latest as of 2023-11-12
       with:
         repo: adriweb/tilibs
-        branch: feature/ci-windows
+        branch: experimental2
         workflow: build.windows.workflow.yml
         workflow_conclusion: success
         github_token: ${{secrets.GITHUB_TOKEN}}
