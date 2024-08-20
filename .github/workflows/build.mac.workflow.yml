@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macOS-latest]
+        os: [macos-12, macos-14]
         statictype: [OFF,ON]
         gtkver: [2,3]
         include:
@@ -76,10 +76,10 @@ jobs:
         cmake --build . --target install
 
     - name: Prepare install folder for upload
-      run: mv /tmp/lpg_install /tmp/tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
+      run: mv /tmp/lpg_install /tmp/tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
 
     - name: Upload install folder
       uses: actions/upload-artifact@v3
       with:
-        name: tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
-        path: /tmp/tilp_gfm_mac_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}/
+        name: tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
+        path: /tmp/tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}/
