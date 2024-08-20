@@ -32,12 +32,12 @@ jobs:
         submodules: 'recursive'
 
     - name: Install latest CMake
-      uses: lukka/get-cmake@9781783c006d9d607cb391b971a1dcbed768a25a # latest as of 2023-11-12
+      uses: lukka/get-cmake@a70f1cfa1857a3eecfe0d34962269e1b1e8be56c # latest as of 2024-08-08
 
     - name: Restore artifacts, or setup vcpkg (do not install any package)
-      uses: lukka/run-vcpkg@6fe69898af670ac05f4a8427cc5cff4fb361cee5 # latest as of 2023-11-12
+      uses: lukka/run-vcpkg@d87e7fac99f22776a4973d7e413921ea254c1fc9 # latest as of 2024-08-08
       with:
-        vcpkgGitCommitId: '61f610845fb206298a69f708104a51d651872877' # latest as of 2023-11-12
+        vcpkgGitCommitId: 'a993be073c6baea8674117f3eaed6e2d2486aaae' # latest as of 2024-08-20
         vcpkgDirectory: C:/vcpkg
       env:
         VCPKG_ROOT: C:/vcpkg
@@ -66,7 +66,7 @@ jobs:
       run: rename "D:\a\tilibs\tilibs\${{ matrix.tilibsdeps }}" "prefix"
 
     - name: Build tilp ${{ matrix.config }} on Windows ${{ matrix.arch_name }}
-      uses: lukka/run-cmake@2ce8982be71b8e9a3c4d5e432135035afd1e76a7 # latest as of 2023-11-12
+      uses: lukka/run-cmake@4b1adc1944be8367be9f4e08303ce49918db8e3c # latest as of 2024-08-08
       with:
         cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
         configurePreset: '${{ matrix.arch }}-${{ matrix.config }}'
@@ -77,7 +77,7 @@ jobs:
         VCPKG_ROOT: C:/vcpkg
 
     - name: Install tilp
-      uses: lukka/run-cmake@2ce8982be71b8e9a3c4d5e432135035afd1e76a7 # latest as of 2023-11-12
+      uses: lukka/run-cmake@4b1adc1944be8367be9f4e08303ce49918db8e3c # latest as of 2024-08-08
       with:
         cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
         buildPreset: '${{ matrix.arch }}-${{ matrix.config }}'
