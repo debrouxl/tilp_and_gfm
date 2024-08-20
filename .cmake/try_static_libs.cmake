@@ -34,8 +34,13 @@ macro(try_static_libs_if_needed)
                 #   /usr/bin/ld: /usr/lib/x86_64-linux-gnu/libz.a(deflate.o): relocation R_X86_64_PC32 against symbol `z_errmsg'
                 #   /usr/bin/ld: /usr/lib/x86_64-linux-gnu/libusb-1.0.a(libusb_1_0_la-core.o): relocation R_X86_64_PC32 against symbol `stderr@@GLIBC_2.2.5'
                 #                can not be used when making a shared object; recompile with -fPIC
-                if(LIB_NAME MATCHES "^(bz2|z|m|cairo|cairo-gobject|usb-1.0|png16|fontconfig|freetype|harfbuzz|harfbuzz-gobject|icu.+)$" AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+                if(LIB_NAME MATCHES "^(bz2|z|m|cairo|cairo-gobject|gio-2\.0|usb-1.0|png16|fontconfig|freetype|harfbuzz|harfbuzz-gobject|icu.+)$" AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
                     message(WARNING "[Linux] Skipping '${LIB_NAME}' static lib search due to a linking issue, will fallback on the shared lib")
+                    break()
+                endif()
+                # Those lower-level libs don't have relocation issues but can't be linked correctly...
+                if(LIB_NAME MATCHES "^(dl|pthread|Xrender|Xcursor|X11)$" AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+                    message(WARNING "[Linux] Skipping low-level '${LIB_NAME}' static lib search due to a linking issue, will fallback on the shared lib")
                     break()
                 endif()
                 set(LIB_FULLPATH "${LIB_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}${LIB_NAME}-static${CMAKE_STATIC_LIBRARY_SUFFIX}")
