@@ -150,7 +150,7 @@ find_package(PkgConfig)
 # Set manually when installed with Homebrew, see https://github.com/Homebrew/legacy-homebrew/issues/45891
 # Note: we can't do the same for libiconv because it exports libiconv_* symbols and not iconv_*, so we fallback on the non-static system lib...
 if(APPLE)
-    set(BREW_LIB_PATHS "/opt/homebrew/lib" "/usr/local/opt" "/usr/local/lib")
+    set(BREW_LIB_PATHS "/opt/homebrew/lib" "/opt/homebrew/opt" "/usr/local/opt" "/usr/local/lib")
     foreach(LIB_DIR ${BREW_LIB_PATHS})
         if(EXISTS "${LIB_DIR}/libarchive/lib/pkgconfig")
             set(ENV{PKG_CONFIG_PATH} "${LIB_DIR}/libarchive/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
