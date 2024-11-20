@@ -111,6 +111,9 @@ endif()
 # .app bundle for macOS - disabled for now, we'll have to check how to make packaging better (see CPack?)
 #set_target_properties(tilp2 PROPERTIES MACOSX_BUNDLE TRUE)
 
+# The binary should not have the "2" suffix, to match other build systems.
+set_target_properties(tilp2 PROPERTIES OUTPUT_NAME "tilp")
+
 # Install rules
 install(TARGETS tilp2
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
