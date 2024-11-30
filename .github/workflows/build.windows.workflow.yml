@@ -2,9 +2,9 @@ name: Build Windows
 
 on:
   push:
-    branches: [ master, feature/github-actions ]
+    branches: [ master, gtk3 ]
   pull_request:
-    branches: [ master, feature/github-actions ]
+    branches: [ master, gtk3 ]
   release:
     types: [published]
 
