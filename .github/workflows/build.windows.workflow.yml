@@ -20,11 +20,7 @@ jobs:
         include:
           - arch: x64
             arch_name: 64-bit
-            arch_suffix: "64"
-          - config: ReleaseDynamic
-            tilibsdeps: "tilibs_windows_sharedDeps"
-          - config: ReleaseStatic
-            tilibsdeps: "tilibs_windows_staticDeps"
+            tilibsdeps: tilibs_windows-2022-x64
     steps:
     - name: Checkout Git Repo
       uses: actions/checkout@v3
@@ -48,22 +44,22 @@ jobs:
 
     - name: TEMP create tilibs folder stuff where they are expected
       shell: cmd
-      run: mkdir D:\a\tilibs\tilibs
+      run: mkdir D:\a\tilibs\tilibs\tilibs.build\Win-${{ matrix.arch }}
 
     - name: Get tilibs artifact
       id: download-artifact
       uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e # latest as of 2023-11-12
       with:
-        repo: adriweb/tilibs
+        repo: debrouxl/tilibs
         branch: experimental2
         workflow: build.windows.workflow.yml
         workflow_conclusion: success
         github_token: ${{secrets.GITHUB_TOKEN}}
-        path: 'D:\a\tilibs\tilibs\'
+        path: 'D:\a\tilibs\tilibs\tilibs.build\Win-${{ matrix.arch }}'
 
     - name: TEMP move tilibs stuff where they are expected
       shell: cmd
-      run: rename "D:\a\tilibs\tilibs\${{ matrix.tilibsdeps }}" "prefix"
+      run: rename "D:\a\tilibs\tilibs\tilibs.build\Win-${{ matrix.arch }}\${{ matrix.tilibsdeps }}" "prefix"
 
     - name: Build tilp ${{ matrix.config }} on Windows ${{ matrix.arch_name }}
       uses: lukka/run-cmake@4b1adc1944be8367be9f4e08303ce49918db8e3c # latest as of 2024-08-08
