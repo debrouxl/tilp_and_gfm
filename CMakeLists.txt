@@ -168,7 +168,7 @@ if(APPLE)
     endforeach()
 elseif(WIN32)
     # tmp test for CI
-    set(ENV{PKG_CONFIG_PATH} "D:/a/tilibs/tilibs/prefix/lib/pkgconfig;$ENV{PKG_CONFIG_PATH}")
+    set(ENV{PKG_CONFIG_PATH} "D:/a/tilibs/tilibs/tilibs.build/Win-x64/prefix/lib/pkgconfig;$ENV{PKG_CONFIG_PATH}")
 endif()
 
 # Set RPath on macOS, this is somehow needed now?
