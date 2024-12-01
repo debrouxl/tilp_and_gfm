@@ -102,90 +102,68 @@ int tilp_config_default(void)
 	return 0;
 }
 
+static void deprecated_config_path(char* old_ini_file, char* ini_file)
+{
+	int old_exists, new_exists;
+	old_exists = !access(old_ini_file, F_OK);
+	new_exists = !access(ini_file, F_OK);
+
+	if (old_exists && !new_exists)
+	{
+		FILE *in;
+		FILE *out;
+
+		in = fopen(old_ini_file, "rb");
+		out = fopen(ini_file, "wb");
+		if (in && out)
+		{
+			int c;
+			while ((c = fgetc(in)) != EOF)
+			{
+				fputc(c, out);
+			}
+			fclose(out);
+			fclose(in);
+			// A config file now exists at the new location.
+			// Delete the old file.
+			unlink(old_ini_file);
+		}
+	}
+}
+
 static char * get_config_path(void)
 {
-	return g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, INI_FILE, NULL);
+	return g_build_path(G_DIR_SEPARATOR_S, g_get_user_config_dir(), "tilp.ini", NULL);
 }
+
+#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
+# define OLD_INI_FILE  ".tilp"
+#elif defined(__WIN32__)
+# define OLD_INI_FILE  "tilp.ini"
+#endif
 
 /* Chech whether a RC file exists */
 int tilp_config_exist(void)
 {
-#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
-	char * ini_file;
 	int retval;
-
+	char * ini_file;
+	char* old_ini_file;
+	old_ini_file = g_strconcat(g_get_home_dir(), G_DIR_SEPARATOR_S, OLD_INI_FILE, NULL);
 	ini_file = get_config_path();
+	deprecated_config_path(old_ini_file, ini_file);
+	free(old_ini_file);
 
+#if defined(__WIN32__)
+	// On Windows, there can be two config files:
+	// * per-user config files (which the *nix versions have been using for ages).
+	// * in the install dir (deprecated, as it does not work well with the UAC);
+	old_ini_file = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, OLD_INI_FILE, NULL);
+	deprecated_config_path(old_ini_file, ini_file);
+	g_free(old_ini_file);
+#endif
 	retval = !access(ini_file, F_OK);
 	g_free(ini_file);
 	return retval;
-#elif defined(__WIN32__)
-	char* old_ini_file;
-	char* ini_file;
-	int result1, result2, retval;
-
-	// On Windows, there can be two config files:
-	// * in the install dir (deprecated, as it does not work well with the UAC);
-	old_ini_file = g_strconcat(inst_paths.base_dir, G_DIR_SEPARATOR_S, INI_FILE, NULL);
-	result1 = !access(old_ini_file, F_OK);
-	// * per-user config files (which the *nix versions have been using for ages).
-	ini_file = get_config_path();
-	result2 = !access(ini_file, F_OK);
-
-	if (result1)
-	{
-		// A config file exists at the old location
-		if (!result2)
-		{
-			// No config file exists at the new location, bad.
-			// Create it.
-			FILE *in;
-			FILE *out;
-
-			in = fopen(old_ini_file, "rb");
-			out = fopen(ini_file, "wb");
-			if (in && out)
-			{
-				int c;
-
-				while ((c = fgetc(in)) != EOF)
-				{
-					fputc(c, out);
-				}
-				fclose(out);
-				fclose(in);
-				// A config file now exists at the new location.
-				// Delete the old file.
-				unlink(old_ini_file);
-				retval = 1;
-			}
-			else
-			{
-				// There's a problem...
-				// Trigger failure in the callers.
-				retval = 0;
-			}
-		}
-		else
-		{
-			// A config file exists at the new location (even if a config file exists at the old location), good.
-			retval = 1;
-		}
-	}
-	else if (result2)
-	{
-		// A config file exists at the new location, good.
-		retval = 1;
-	}
-	else
-	{
-		// No config file at either location.
-		retval = 0;
-	}
-	g_free(old_ini_file);
-	g_free(ini_file);
-	return retval;
-#endif
 }
 
 
@@ -379,7 +357,7 @@ int tilp_config_write(void)
 	f = fopen(ini_file, "wt");
 	if (f == NULL) 
 	{
-		gif->msg_box1(_("Error"), _("Unable to write the config file (~/.tilp or ~/tilp.ini).\n"));
+		gif->msg_box1(_("Error"), _("Unable to write the config file ($XDG_CONFIG_HOME/tilp.ini).\n"));
 		ret = -1;
 		goto exit;
 	}
