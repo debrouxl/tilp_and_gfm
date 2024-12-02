@@ -233,7 +233,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 		MessageBox(NULL, _("An TiLP session is already running. Check the task list."), _("Error"), MB_OK);
 	}
 
-	return main(__argc, __argv, NULL);
+	return main(__argc, __argv);
 }
 
 
