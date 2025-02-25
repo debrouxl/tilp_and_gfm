@@ -18,8 +18,8 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifndef __GFM_VERSION_H__
-#define __GFM_VERSION_H__
+#ifndef __GFMVERSION_H__
+#define __GFMVERSION_H__
 
 /*
   This file contains version number

@@ -45,63 +45,63 @@
 
 int main(int argc, char *argv[])
 {
-    static gchar *icon_dir;
+	static gchar *icon_dir;
 
-    /* Initialize GFM */
-    paths_init();
+	/* Initialize GFM */
+	paths_init();
 
-    /* Init i18n support */
+	/* Init i18n support */
 #ifdef ENABLE_NLS
-    g_message("setlocale: %s\n", setlocale(LC_ALL, ""));
-    g_message("bindtextdomain: %s\n", 
-	    bindtextdomain(PACKAGE, inst_paths.locale_dir));
-    bind_textdomain_codeset(PACKAGE, "UTF-8");
-    g_message("textdomain: %s\n", textdomain(PACKAGE));
+	g_message("setlocale: %s\n", setlocale(LC_ALL, ""));
+	g_message("bindtextdomain: %s\n", 
+		bindtextdomain(PACKAGE, inst_paths.locale_dir));
+	bind_textdomain_codeset(PACKAGE, "UTF-8");
+	g_message("textdomain: %s\n", textdomain(PACKAGE));
 #endif
 
-    /* Scan command line */
-    cmdline_scan(&argc, &argv);
+	/* Scan command line */
+	cmdline_scan(&argc, &argv);
 
-    /* Load GTK */
-    gtk_init(&argc, &argv); // Loadup GTK+
-    add_pixmap_directory(inst_paths.pixmap_dir); // Add Pixmap directory
-    icon_dir = g_strconcat(inst_paths.base_dir, "icons/", NULL);
-    add_pixmap_directory(icon_dir); // Add Icon Directory
-    g_free(icon_dir);
+	/* Load GTK */
+	gtk_init(&argc, &argv); // Loadup GTK+
+	add_pixmap_directory(inst_paths.pixmap_dir); // Add Pixmap directory
+	icon_dir = g_strconcat(inst_paths.base_dir, "icons/", NULL);
+	add_pixmap_directory(icon_dir); // Add Icon Directory
+	g_free(icon_dir);
 
-    /* Load Splash Screen */
-    splash_screen_start();
+	/* Load Splash Screen */
+	splash_screen_start();
 
 #if WITH_KDE
-    splash_screen_message(_("Initializing KDE..."));
-    sp_kde_init(argc, argv, "gfm", _("GFM"), VERSION, _("Group File Manager"), "Copyright (c) 2006-2007 Tyler Cassidy, Romain Lievin", "http://lpg.ticalc.org/prj_gfm/", "tilp-users@lists.sf.net");
-    atexit(sp_kde_finish);
-    // Not needed unless we want to add a DCOP interface.
-    // g_timeout_add(26, sp_kde_process_qt_events, NULL);
+	splash_screen_message(_("Initializing KDE..."));
+	sp_kde_init(argc, argv, "gfm", _("GFM"), VERSION, _("Group File Manager"), "Copyright (c) 2006-2007 Tyler Cassidy, Romain Lievin", "http://lpg.ticalc.org/prj_gfm/", "tilp-users@lists.sf.net");
+	atexit(sp_kde_finish);
+	// Not needed unless we want to add a DCOP interface.
+	// g_timeout_add(26, sp_kde_process_qt_events, NULL);
 #endif
 
-    /* Checking for GUI Files */
-    splash_screen_message(_("Checking for GUI files..."));
-    glade_files_check();
+	/* Checking for GUI Files */
+	splash_screen_message(_("Checking for GUI files..."));
+	builder_files_check();
 
-    /* Load tilibs2 */
-    splash_screen_message(_("Loading tilibs..."));
-    load_tilibs(); // Load tilibs
+	/* Load tilibs2 */
+	splash_screen_message(_("Loading tilibs..."));
+	load_tilibs(); // Load tilibs
 
-    /* Launching GUI */
-    splash_screen_message(_("Launching GUI..."));
-    launch_gfmgui();
-    splash_screen_delete(); // Delete Splash Screen
+	/* Launching GUI */
+	splash_screen_message(_("Launching GUI..."));
+	launch_gfmgui();
+	splash_screen_delete(); // Delete Splash Screen
 
-    /* Run into a loop! */
-    gtk_main();
-    
-    /* Close tilibs */
-    ticalcs_library_exit();
-    tifiles_library_exit();
+	/* Run into a loop! */
+	gtk_main();
+	
+	/* Close tilibs */
+	ticalcs_library_exit();
+	tifiles_library_exit();
 
-    /* Done */
-    return 0;
+	/* Done */
+	return 0;
 }
 
 #if defined(__WIN32__) && defined(_WINDOWS)
@@ -112,6 +112,6 @@ int main(int argc, char *argv[])
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    return main(__argc, __argv);
+	return main(__argc, __argv);
 }
 #endif

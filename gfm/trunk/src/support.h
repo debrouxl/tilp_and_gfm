@@ -18,8 +18,8 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifndef __SUPPORT_H__
-#define __SUPPORT_H__
+#ifndef __GFMSUPPORT_H__
+#define __GFMSUPPORT_H__
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -83,17 +83,17 @@ GtkWidget *create_pixmap(GtkWidget * widget, const gchar * filename);
 GdkPixbuf *create_pixbuf(const gchar * filename);
 
 /* This is used to set ATK action descriptions. */
-void glade_set_atk_action_description(AtkAction * action,
+/*void glade_set_atk_action_description(AtkAction * action,
 				      const gchar * action_name,
-				      const gchar * description);
+				      const gchar * description);*/
 
- // GTK+ only (export callbacks for Glade linking at runtime)
+ // GTK+ only (export callbacks for GtkBuilder linking at runtime)
 #if defined(__WIN32__) && !defined(HAVE_FVISIBILITY)
-# define GLADE_CB __declspec(dllexport)
+# define GFM_EXPORT __declspec(dllexport)
 #elif defined(HAVE_FVISIBILITY)
-# define GLADE_CB __attribute__ ((visibility("default")))
+# define GFM_EXPORT __attribute__ ((visibility("default")))
 #else
-# define GLADE_CB
+# define GFM_EXPORT
 #endif
 
 /* Update GTK Interface in Froze Position */

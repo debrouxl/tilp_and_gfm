@@ -17,6 +17,11 @@ src/tilibs.c
 src/ungroup.c
 
 # GFM GUI
-glade/dialogs.str
-glade/gfm.str
-
+[type: gettext/glade]builder/dialogs1.ui
+[type: gettext/glade]builder/dialogs2.ui
+[type: gettext/glade]builder/dialogs3.ui
+[type: gettext/glade]builder/dialogs4.ui
+[type: gettext/glade]builder/dialogs5.ui
+[type: gettext/glade]builder/gfm.ui
+# files added by intltool-prepare
+desktop/gfm.desktop.in

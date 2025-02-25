@@ -23,7 +23,6 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <string.h>
 
 #include "gui.h"
@@ -53,39 +52,38 @@ void enable_tree(int state)
 	gtk_widget_set_sensitive(gfm_widget.tree, state);
 }
 
-GLADE_CB void
-on_open_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data);
+GFM_EXPORT void on_open_clicked (GtkToolButton *toolbutton, gpointer user_data);
 
 /* The Main Interface Launcher */
 int launch_gfmgui(void)
 {
-    GladeXML *xml;
-    GtkWidget *widget;
+	GtkBuilder *builder;
+	GError* error = NULL;
+	GtkWidget *widget;
 
-    // Load the GFM Dialog from gfm.glade
-    xml = glade_xml_new(paths_build_glade("gfm.glade"), "gfm_dbox", NULL);
+	// Load the GFM Dialog from gfm.ui
+	builder = gtk_builder_new();
+	if (!gtk_builder_add_from_file (builder, paths_build_builder("gfm.ui"), &error))
+	{
+		g_warning (_("Couldn't load builder file: %s\n"), error->message);
+		g_error_free (error);
+		return 0; // THIS RETURNS !
+	}
+	gtk_builder_connect_signals(builder, NULL);
 
-    // Glade File Error
-    if (!xml)
-        g_error("Failure GFM GUI (%s)!\n", __FILE__);
-		
-    // Connect The Symbols
-    glade_xml_signal_autoconnect(xml);
-		
-    // Retrieve the dialog widget
-    widget = glade_xml_get_widget(xml, "gfm_dbox");
+	// Retrieve the dialog widget
+	widget = GTK_WIDGET (gtk_builder_get_object (builder, "gfm_dbox"));
 
-    // Global Widget Access
-	gfm_widget.tree = glade_xml_get_widget(xml, "treeview1");
-	gfm_widget.model = glade_xml_get_widget(xml, "label6");
-	gfm_widget.entries = glade_xml_get_widget(xml, "label7");
-	gfm_widget.comment = glade_xml_get_widget(xml, "button1");
-	gfm_widget.ram = glade_xml_get_widget(xml, "label9");
-	gfm_widget.flash = glade_xml_get_widget(xml, "label10");
-	gfm_widget.save = glade_xml_get_widget(xml, "toolbutton3");
-	//gfm_widget.test = glade_xml_get_widget(xml, "label11");
-	gfm_widget.pbar = glade_xml_get_widget(xml, "progressbar1");
+	// Global Widget Access
+	gfm_widget.tree = GTK_WIDGET (gtk_builder_get_object(builder, "treeview1"));
+	gfm_widget.model = GTK_WIDGET (gtk_builder_get_object(builder, "label6"));
+	gfm_widget.entries = GTK_WIDGET (gtk_builder_get_object(builder, "label7"));
+	gfm_widget.comment = GTK_WIDGET (gtk_builder_get_object(builder, "button1"));
+	gfm_widget.ram = GTK_WIDGET (gtk_builder_get_object(builder, "label9"));
+	gfm_widget.flash = GTK_WIDGET (gtk_builder_get_object(builder, "label10"));
+	gfm_widget.save = GTK_WIDGET (gtk_builder_get_object(builder, "toolbutton3"));
+	//gfm_widget.test = GTK_WIDGET (gtk_builder_get_object(builder, "label11"));
+	gfm_widget.pbar = GTK_WIDGET (gtk_builder_get_object(builder, "progressbar1"));
 
 	// Inits global vars
 	enable_save(FALSE);
@@ -93,24 +91,22 @@ int launch_gfmgui(void)
 
 	// Show the Widget
 	ctree_init();
-    gtk_widget_show(widget);
+	gtk_widget_show(widget);
 
 	if(cmdline_get() != NULL)
 		on_open_clicked(NULL, (gpointer)cmdline_get());
 
-    // Return
-    return 0;
+	// Return
+	return 0;
 }
 
 /* Callback Functions */
 
-GLADE_CB void
-on_new_clicked                         (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_new_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
 	CalcModel model;
 	int result;
-	
+
 	result = msgbox_three(_("TiGroup"), _("Single/Group"), _("File type?"));
 	if(!result)
 		return;
@@ -130,11 +126,10 @@ on_new_clicked                         (GtkToolButton   *toolbutton,
 	labels_refresh();
 }
 
-GLADE_CB void
-on_save_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_save_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
-	gchar *fn = NULL, *ext = NULL;
+	const gchar *fn = NULL;
+	gchar *ext = NULL;
 	gchar *filename = NULL;
 
 	if(GFMFile.filename != NULL)
@@ -175,7 +170,7 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 		}
 	}
 
-	fn = (char *)create_fsel(inst_paths.home_dir, filename, ext, TRUE);
+	fn = create_fsel(inst_paths.home_dir, filename, ext, TRUE);
 	if(fn == NULL)
 		return;
 	g_free(filename);
@@ -190,11 +185,9 @@ on_save_clicked                        (GtkToolButton   *toolbutton,
 }
 
 
-GLADE_CB void
-on_open_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_open_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
-	gchar *fn;
+	const gchar *fn;
 
 	if(user_data == NULL)
 	{
@@ -205,14 +198,14 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 				on_save_clicked(toolbutton,user_data);
 		}
 
-		fn = (char *)create_fsel(inst_paths.home_dir, "", "*.73?;*.82?;*.83?;*.8X?;*.85?;*.86?;*.89?;*.92?;*.9x?;*.V2?;*.tig", FALSE);
+		fn = create_fsel(inst_paths.home_dir, "", "*.73?;*.82?;*.83?;*.8X?;*.85?;*.86?;*.89?;*.92?;*.9x?;*.V2?;*.tig", FALSE);
 		if(fn == NULL)
 			return;
 	}
 	else
 	{
 		// command line
-		fn = (char *)user_data;
+		fn = (const char *)user_data;
 	}
 
 	if(tifiles_file_is_tigroup(fn))
@@ -238,28 +231,21 @@ on_open_clicked                        (GtkToolButton   *toolbutton,
 }
 
 
-GLADE_CB void
-on_quit_clicked                        (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_quit_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
 	file_destroy();
 	gtk_main_quit();
 }
 
 
-GLADE_CB void
-on_gfm_dbox_destroy                    (GtkObject       *object,
-                                        gpointer         user_data)
+GFM_EXPORT void on_gfm_dbox_destroy (GtkWidget *object, gpointer user_data)
 {
 	// Quit Main GTK Loop
 	//printf("on_gfm_dbox_destroy\n");
 }
 
 
-GLADE_CB gboolean
-on_gfm_dbox_delete_event               (GtkWidget       *widget,
-                                        GdkEvent        *event,
-                                        gpointer         user_data)
+GFM_EXPORT gboolean on_gfm_dbox_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
 	if(!GFMFile.saved)
 	{
@@ -277,7 +263,8 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 			on_quit_clicked(NULL, NULL);
 			return FALSE;
 			break;
-		case MSGBOX_NO: 
+		case MSGBOX_NO:
+		default:
 			return TRUE; 
 			break;
 		}
@@ -289,9 +276,7 @@ on_gfm_dbox_delete_event               (GtkWidget       *widget,
 }
 
 
-GLADE_CB void
-on_add_clicked                         (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_add_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
 	char **array, **ptr;
 	CalcModel model;
@@ -323,17 +308,20 @@ on_add_clicked                         (GtkToolButton   *toolbutton,
 		content = tifiles_content_create_regular(model);
 		ret = tifiles_file_read_regular(fn, content);
 
-		for(i = 0; i < content->num_entries; i++)
+		if (ret == 0)
 		{
-			VarEntry *ve = content->entries[i];
-
-			if(ticalcs_dirlist_ve_exist(GFMFile.trees.vars, ve))
+			for(i = 0; i < content->num_entries; i++)
 			{
-				msgbox_one(MSGBOX_ERROR, _("The entry already exists. Skipped!"));
-				continue;
-			}
+				VarEntry *ve = content->entries[i];
 
-			ticalcs_dirlist_ve_add(GFMFile.trees.vars, ve);
+				if(ticalcs_dirlist_ve_exist(GFMFile.trees.vars, ve))
+				{
+					msgbox_one(MSGBOX_ERROR, _("The entry already exists. Skipped!"));
+					continue;
+				}
+
+				ticalcs_dirlist_ve_add(GFMFile.trees.vars, ve);
+			}
 		}
 
 		ret = tifiles_content_delete_regular(content);
@@ -346,9 +334,7 @@ on_add_clicked                         (GtkToolButton   *toolbutton,
 	labels_refresh();
 }
 
-GLADE_CB void
-on_delete_clicked                      (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_delete_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
 	GList *ptr;
 
@@ -379,9 +365,7 @@ on_delete_clicked                      (GtkToolButton   *toolbutton,
 }
 
 
-GLADE_CB void
-on_mkdir_clicked                       (GtkToolButton   *toolbutton,
-                                        gpointer         user_data)
+GFM_EXPORT void on_mkdir_clicked (GtkToolButton *toolbutton, gpointer user_data)
 {
 	gchar *ret;
 	GNode *node;
@@ -409,13 +393,11 @@ on_mkdir_clicked                       (GtkToolButton   *toolbutton,
 	labels_refresh();
 }
 
-GLADE_CB void
-on_group_clicked                       (GtkButton       *button,
-                                        gpointer         user_data)
+GFM_EXPORT void on_group_clicked (GtkButton *button, gpointer user_data)
 {
 	int result;
 	char **array;
-	
+
 	result = msgbox_three(_("TiGroup"), _("Single/Group"), _("File type?"));
 	if(!result)
 		return;
@@ -427,21 +409,18 @@ on_group_clicked                       (GtkButton       *button,
 	gfm_tifiles_group((const char **)array, result == MSGBOX_BUTTON1 ? TIFILE_TIGROUP : TIFILE_GROUP);
 }
 
-GLADE_CB void
-on_ungroup_clicked                     (GtkButton       *button,
-                                        gpointer         user_data)
+GFM_EXPORT void on_ungroup_clicked (GtkButton *button, gpointer user_data)
 {
-	char *fn;
-	
-	fn = (char *)create_fsel(inst_paths.home_dir, "", "*.73g;*.82g;*.83g;*.8Xg;*.85g;*.86g;*.89g;*.92g;*.9Xg;*.V2g;*.tig", FALSE);
+	const gchar *fn;
+
+	fn = create_fsel(inst_paths.home_dir, "", "*.73g;*.82g;*.83g;*.8Xg;*.85g;*.86g;*.89g;*.92g;*.9Xg;*.V2g;*.tig", FALSE);
 	if(fn == NULL)
 		return;
-	
+
 	if(tifiles_file_is_tigroup(fn))
 		gfm_tifiles_ungroup(fn, TIFILE_TIGROUP);
 	else if(tifiles_file_is_regular(fn))
 		gfm_tifiles_ungroup(fn, TIFILE_GROUP);
 	else
-		return;	
-
+		return;
 }

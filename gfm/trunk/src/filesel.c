@@ -77,17 +77,16 @@ static const gchar* create_fsel_2(const gchar *dirname, const gchar *filename, c
 	gchar *mext;
 
 	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
-	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
-	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
+	sfilename = filename ? g_filename_to_utf8(filename, -1, NULL, NULL, NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext, -1, NULL, NULL, NULL) : NULL;
     
 	// create box
-	dialog = gtk_file_chooser_dialog_new (
-					  save ? "Save File" : "Open File",
-				      NULL,
-					  save ? GTK_FILE_CHOOSER_ACTION_SAVE : GTK_FILE_CHOOSER_ACTION_OPEN,
-				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-				      NULL);
+	dialog = gtk_file_chooser_dialog_new(save ? "Save File" : "Open File",
+	                                     NULL,
+	                                     save ? GTK_FILE_CHOOSER_ACTION_SAVE : GTK_FILE_CHOOSER_ACTION_OPEN,
+	                                     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+	                                     GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+	                                     NULL);
 
 	// set default folder
 	tmp = g_strconcat(dirname, G_DIR_SEPARATOR_S, NULL);	// add leading '/' otherwise get_dirname is confused
@@ -104,7 +103,7 @@ static const gchar* create_fsel_2(const gchar *dirname, const gchar *filename, c
 	// set wildcards
 	filter = gtk_file_filter_new();
 	sarray = g_strsplit(sext, ";", -1);
-	for(i = 0; sarray[i] != NULL; i++)
+	for (i = 0; sarray[i] != NULL; i++)
 	{
 		gtk_file_filter_add_pattern (filter, sarray[i]);
 
@@ -326,16 +325,16 @@ static gchar** create_fsels_2(const gchar *dirname, const gchar *filename, const
 	gchar *sfilename, *sext;
 
 	// gtk_file_chooser_set_current_name and gtk_file_filter_add_pattern ALWAYS want UTF-8.
-	sfilename = filename ? g_filename_to_utf8(filename,-1,NULL,NULL,NULL) : NULL;
-	sext = ext ? g_filename_to_utf8(ext,-1,NULL,NULL,NULL) : NULL;
+	sfilename = filename ? g_filename_to_utf8(filename, -1, NULL, NULL, NULL) : NULL;
+	sext = ext ? g_filename_to_utf8(ext, -1, NULL, NULL, NULL) : NULL;
     
 	// create box
-	dialog = gtk_file_chooser_dialog_new ("Open File",
-				      NULL,
-					  GTK_FILE_CHOOSER_ACTION_OPEN,
-				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-				      NULL);
+	dialog = gtk_file_chooser_dialog_new("Open File",
+	                                     NULL,
+	                                     GTK_FILE_CHOOSER_ACTION_OPEN,
+	                                     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+	                                     GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+	                                     NULL);
 
 	// set default folder
 	path = g_path_get_dirname(dirname);
@@ -366,8 +365,7 @@ static gchar** create_fsels_2(const gchar *dirname, const gchar *filename, const
 		// convert list into string array
 		list=gtk_file_chooser_get_filenames(GTK_FILE_CHOOSER (dialog));
 	      
-		filenames = (gchar **)g_malloc0((g_slist_length(list)+1) * 
-						sizeof(gchar *));
+		filenames = (gchar **)g_malloc0((g_slist_length(list)+1) * sizeof(gchar *));
 		for(p = list, q = filenames; p; p = g_slist_next(p), q++)
 			*q = p->data;
 		*q = NULL;
@@ -457,7 +455,7 @@ static gchar** create_fsels_3(const gchar *dirname, const gchar *filename, const
 	g_strfreev(sarray);
 
 	// set structure
-	o.lStructSize = sizeof (o);	
+	o.lStructSize = sizeof (o);
 	o.lpstrFilter = lpstrFilter;	//"All\0*.*\0Text\0*.TXT\0";
 	o.lpstrFile = lpstrFile;		//"C:\msvc\tilp\0foo.txt\0bar.txt"
 	if (have_widechar)

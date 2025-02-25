@@ -67,7 +67,7 @@ void cmdline_scan(int *argc, char ***argv)
 
 	gfm_version();
 
-  // Get rid of GTK+ Logging if need-be (GTK, GDK, GLib, libglade)
+  // Get rid of GTK+ Logging if need-be (GTK, GDK, GLib)
 #if !defined(_DEBUG)
   g_log_set_handler("Gtk", G_LOG_LEVEL_WARNING | 
                            G_LOG_LEVEL_MESSAGE | 

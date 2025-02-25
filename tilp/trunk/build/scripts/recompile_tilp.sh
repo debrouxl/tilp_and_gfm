@@ -30,14 +30,17 @@ handle_one_module() {
   cd -
 }
 
+set -x
+
 if [ "x$NOAUTORECONF" = "x" -a "x$NO_AUTORECONF" = "x" ]; then
 echo "=== AUTORECONF ==="
 ./run_autoreconf.sh || exit 1
 fi
 
+if [ "x$NOUPDATEPOT" = "x" -a "x$NO_UPDATEPOT" = "x" ]; then
 echo "=== UPDATEPOT ==="
 ./run_updatepot.sh || exit 1
-
+fi
 
 echo "=== tfdocgen ==="
 handle_one_module tfdocgen || exit 1
@@ -57,6 +60,6 @@ handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1
 
 
 echo "=== gfm ==="
-handle_one_module tilp_and_gfm/gfm || exit 1
+handle_one_module tilp_and_gfm/gfm --with-gtk=gtk3 || exit 1
 echo "=== tilp ==="
 handle_one_module tilp_and_gfm/tilp --with-gtk=gtk3 || exit 1

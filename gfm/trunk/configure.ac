@@ -17,13 +17,12 @@ AC_CONFIG_FILES([
   Makefile
   build/Makefile
   build/mingw/Makefile
+  builder/Makefile
   desktop/Makefile
-  glade/Makefile
   help/Makefile
   icons/Makefile
   man/Makefile
   pixmaps/Makefile
-  po/Makefile.in
   src/Makefile
 ])
 
@@ -43,10 +42,15 @@ AC_CHECK_PROG(GROFF, groff, yes, no)
 AM_CONDITIONAL(USE_GROFF, test "$GROFF" != "no")
 AC_CHECK_TOOL(RC, windres, windres)
 
-# Checks for libraries.
-AM_GNU_GETTEXT(external)
-AM_GNU_GETTEXT_VERSION([0.17])
+# Translation
+AC_PROG_INTLTOOL([0.40.0])
 
+GETTEXT_PACKAGE=gfm
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [gfm])
+AM_GLIB_GNU_GETTEXT
+
+# Checks for libraries.
 PKG_CHECK_MODULES(TICONV, ticonv >= 1.1.5)
 AC_SUBST(TICONV_CFLAGS)
 AC_SUBST(TICONV_LIBS)
@@ -63,13 +67,30 @@ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.6.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.6.0)
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
+# Default to GTK+2 for now.
+AC_ARG_WITH(gtk,AS_HELP_STRING([--with-gtk=gtk2|gtk3|gtk4],
+                                [GTK+ version]),
+[
+  if test "x$withval" = "xgtk2" ; then
+    PKG_CHECK_MODULES([GTK2], [gtk+-2.0 >= 2.20.0])
+  elif test "x$withval" = "xgtk3"; then
+    PKG_CHECK_MODULES([GTK3], [gtk+-3.0 >= 3.0.0])
+  elif test "x$withval" = "xgtk4"; then
+    PKG_CHECK_MODULES([GTK4], [gtk4 >= 4.0.0])
+  else
+    AC_MSG_ERROR([--with-gtk must be either gtk2, gtk3 or gtk4])
+  fi
+],
+[
+  PKG_CHECK_MODULES([GTK3], [gtk+-3.0 >= 3.0.0])
+])
 
-PKG_CHECK_MODULES(GLADE, libglade-2.0 >= 2.5.0)
-AC_SUBST(GLADE_CFLAGS)
-AC_SUBST(GLADE_LIBS)
+AC_SUBST(GTK2_CFLAGS)
+AC_SUBST(GTK2_LIBS)
+AC_SUBST(GTK3_CFLAGS)
+AC_SUBST(GTK3_LIBS)
+AC_SUBST(GTK4_CFLAGS)
+AC_SUBST(GTK4_LIBS)
 
 # Checks for header files.
 AC_HEADER_STDC
@@ -227,6 +248,8 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(CXXFLAGS)
 
 # Output.
-AC_OUTPUT
+AC_OUTPUT([
+po/Makefile.in
+])
 
 echo "Now, you can type 'make' and 'make install'."

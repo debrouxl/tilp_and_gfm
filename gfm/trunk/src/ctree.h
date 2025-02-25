@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __CTREE_H__
-#define __CTREE_H__
+#ifndef __GFMCTREE_H__
+#define __GFMCTREE_H__
 
 #include "support.h"
 
@@ -50,7 +50,7 @@ void ctree_set_basetree(void);
 void ctree_selection_get(void);
 void ctree_selection_destroy(void);
 
-GLADE_CB gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data);
-GLADE_CB gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
+GFM_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data);
+GFM_EXPORT gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data);
 
 #endif

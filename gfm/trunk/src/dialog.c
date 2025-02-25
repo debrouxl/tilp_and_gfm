@@ -25,8 +25,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
+#include "support.h"
 #include "dialog.h"
 #include "paths.h"
 #include "tilibs.h"
@@ -34,23 +34,24 @@
 /* One Button Dialog Box */
 int msgbox_one(int type, const char *message)
 {
-    GladeXML *xml;
+    GtkBuilder *builder;
+    GError* error = NULL;
     GtkWidget *widget, *data;
     const gchar *image;
-    
-    // Load the One Button Dialog from dialogs.glade
-    xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog1", NULL);
-    
-    // Glade File Error
-    if (!xml)
-       g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
-       
-    // Connect The Symbols
-    glade_xml_signal_autoconnect(xml);
-    
+
+    // Load the One Button Dialog from dialogs1.ui
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file (builder, paths_build_builder("dialogs1.ui"), &error))
+    {
+        g_warning (_("Couldn't load builder file: %s\n"), error->message);
+        g_error_free (error);
+        return 0; // THIS RETURNS !
+    }
+    gtk_builder_connect_signals(builder, NULL);
+
     // Retrieve the Widget into data & widget
-    widget = glade_xml_get_widget(xml, "dialog1");
-    
+    widget = GTK_WIDGET (gtk_builder_get_object (builder, "dialog1"));
+
     /* Set some Stuff */
     switch(type)
     {
@@ -67,22 +68,23 @@ int msgbox_one(int type, const char *message)
              image = "gtk-dialog-error"; // The Image
         break;
     }
-    
+
     /* Set the Dialog up */
     // Set the message into the label ;)
-    data = glade_xml_get_widget(xml, "dialog1_label");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog1_label"));
     gtk_label_set_markup(GTK_LABEL(data), message);
-    
+
     // Set the Image
-    data = glade_xml_get_widget(xml, "dialog1_image");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog1_image"));
     gtk_image_set_from_stock(GTK_IMAGE(data), image, GTK_ICON_SIZE_DIALOG);
-    
+
     // Run Dialog
     gtk_dialog_run(GTK_DIALOG(widget));
-    
+
     // Destroy Dialog
     gtk_widget_destroy(widget);
-    
+    g_object_unref(builder);
+
     // Return
     return MSGBOX_YES;
 }
@@ -90,26 +92,27 @@ int msgbox_one(int type, const char *message)
 /* Message Dialog with Two Buttons */
 int msgbox_two(int type, const char *message)
 {
-    GladeXML *xml;
+    GtkBuilder *builder;
+    GError* error = NULL;
     GtkWidget *widget, *data;
     int choice, ret;
     const gchar *image, *cancel_button, *ok_button;
-    
-    // Load the Two Button Dialog from dialogs.glade
-    xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog2", NULL);
-    
-    // Glade File Error
-    if (!xml)
-       g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
-       
-    // Connect The Symbols
-    glade_xml_signal_autoconnect(xml);
-    
+
+    // Load the Two Button Dialog from dialogs2.ui
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file (builder, paths_build_builder("dialogs2.ui"), &error))
+    {
+        g_warning (_("Couldn't load builder file: %s\n"), error->message);
+        g_error_free (error);
+        return 0; // THIS RETURNS !
+    }
+    gtk_builder_connect_signals(builder, NULL);
+
     // Retrieve the Widget into data & widget
-    widget = glade_xml_get_widget(xml, "dialog2");
+    widget = GTK_WIDGET (gtk_builder_get_object (builder, "dialog2"));
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
                                             GTK_RESPONSE_CANCEL,-1);
-    
+
     /* Set some Stuff */
     switch(type)
     {
@@ -133,23 +136,23 @@ int msgbox_two(int type, const char *message)
              ok_button = "_Ok"; // Ok Button
         break;
     }
-    
+
     // The Message
-    data = glade_xml_get_widget(xml, "dialog2_label");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog2_label"));
     gtk_label_set_markup(GTK_LABEL(data), message);
-    
+
     // The Cancel Button
-    data = glade_xml_get_widget(xml, "dialog2_cancelbutton");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog2_cancelbutton"));
     gtk_button_set_label(GTK_BUTTON(data), cancel_button);
-    
+
     // The Ok Button
-    data = glade_xml_get_widget(xml, "dialog2_okbutton");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog2_okbutton"));
     gtk_button_set_label(GTK_BUTTON(data), ok_button);
-    
+
     // The Main Image
-    data = glade_xml_get_widget(xml, "dialog2_image");
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog2_image"));
     gtk_image_set_from_stock(GTK_IMAGE(data), image, GTK_ICON_SIZE_DND);
-    
+
     /* Launch the Dialog */
     choice = gtk_dialog_run(GTK_DIALOG(widget));
     switch (choice)
@@ -164,8 +167,11 @@ int msgbox_two(int type, const char *message)
              ret = MSGBOX_NO; // Just Cancel
              break;       
     }
+
+    // Destroy Dialog
     gtk_widget_destroy(widget);
-    
+    g_object_unref(builder);
+
     // Return
     return ret;
 }
@@ -173,160 +179,187 @@ int msgbox_two(int type, const char *message)
 /* Message Dialog with Three Buttons */
 int msgbox_three(const char *button1, const char *button2, const char *message)
 {
-	GladeXML *xml;
-	GtkWidget *widget, *data;
-	int choice, ret;
-    
-    // Load the Two Button Dialog from dialogs.glade
-	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "dialog3", NULL);
-    
-    // Glade File Error
-	if (!xml)
-		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
-       
-    // Connect The Symbols
-	glade_xml_signal_autoconnect(xml);
-    
+    GtkBuilder *builder;
+    GError* error = NULL;
+    GtkWidget *widget, *data;
+    int choice, ret;
+
+    // Load the Three Button Dialog from dialogs3.ui
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file (builder, paths_build_builder("dialogs3.ui"), &error))
+    {
+        g_warning (_("Couldn't load builder file: %s\n"), error->message);
+        g_error_free (error);
+        return 0; // THIS RETURNS !
+    }
+    gtk_builder_connect_signals(builder, NULL);
+
     // Retrieve the Widget into data & widget
-	widget = glade_xml_get_widget(xml, "dialog3");
-	/* button1, button2, cancel */
-	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_YES, GTK_RESPONSE_CANCEL,-1);
-    
+    widget = GTK_WIDGET (gtk_builder_get_object (builder, "dialog3"));
+    /* button1, button2, cancel */
+    gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+                                            GTK_RESPONSE_YES, GTK_RESPONSE_CANCEL,-1);
+
     // The Message
-	data = glade_xml_get_widget(xml, "dialog3_label");
-	gtk_label_set_markup(GTK_LABEL(data), message);
-    
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog3_label"));
+    gtk_label_set_markup(GTK_LABEL(data), message);
+
     // Button 1
-	data = glade_xml_get_widget(xml, "dialog3_button1");
-	gtk_button_set_label(GTK_BUTTON(data), button1);
-    
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog3_button1"));
+    gtk_button_set_label(GTK_BUTTON(data), button1);
+
     // The Ok Button
-	data = glade_xml_get_widget(xml, "dialog3_button2");
-	gtk_button_set_label(GTK_BUTTON(data), button2);
-    
-	/* Launch the Dialog */
-	choice = gtk_dialog_run(GTK_DIALOG(widget));
-	switch (choice)
-	{
-		case GTK_RESPONSE_OK:
-			ret = MSGBOX_BUTTON1;
-			break;
-		case GTK_RESPONSE_YES:
-			ret = MSGBOX_BUTTON2;
-			break;
-		case GTK_RESPONSE_CANCEL:
-			ret = MSGBOX_NO; // Just Cancel
-			break;
-		default:
-			ret = MSGBOX_NO; // Just Cancel
-			break;       
-	}
-	gtk_widget_destroy(widget);
-    
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "dialog3_button2"));
+    gtk_button_set_label(GTK_BUTTON(data), button2);
+
+    /* Launch the Dialog */
+    choice = gtk_dialog_run(GTK_DIALOG(widget));
+    switch (choice)
+    {
+        case GTK_RESPONSE_OK:
+            ret = MSGBOX_BUTTON1;
+            break;
+        case GTK_RESPONSE_YES:
+            ret = MSGBOX_BUTTON2;
+            break;
+        case GTK_RESPONSE_CANCEL:
+            ret = MSGBOX_NO; // Just Cancel
+            break;
+        default:
+            ret = MSGBOX_NO; // Just Cancel
+            break;       
+    }
+
+    // Destroy Dialog
+    gtk_widget_destroy(widget);
+    g_object_unref(builder);
+
     // Return
-	return ret;
+    return ret;
 }
 
 /* Input Dialog */
 char *msgbox_input(const char *title, const char *input, const char *question)
 {
-	GladeXML *xml;
-	GtkWidget *widget, *data;
-	int result;
-	gchar *ret = NULL;  
-	
-    // Load the One Button Dialog from dialogs.glade
-	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "inputdialog", NULL);
-    
-    // Glade File Error
-	if (!xml)
-		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
-       
-    // Connect The Symbols
-	glade_xml_signal_autoconnect(xml);
-    
+    GtkBuilder *builder;
+    GError* error = NULL;
+    GtkWidget *widget, *data;
+    int result;
+    gchar *ret = NULL;  
+
+    // Load the Input Dialog from dialogs4.ui
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file (builder, paths_build_builder("dialogs4.ui"), &error))
+    {
+        g_warning (_("Couldn't load builder file: %s\n"), error->message);
+        g_error_free (error);
+        return 0; // THIS RETURNS !
+    }
+    gtk_builder_connect_signals(builder, NULL);
+
     // Retrieve the Widget into data & widget
-	widget = glade_xml_get_widget(xml, "inputdialog");
-	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_CANCEL,-1);
-    
-	/* Set the Dialog up */
+    widget = GTK_WIDGET (gtk_builder_get_object (builder, "inputdialog"));
+    gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+                                            GTK_RESPONSE_CANCEL,-1);
+
+    /* Set the Dialog up */
     // Set the message into the label ;)
-	data = glade_xml_get_widget(xml, "input_label");
-	gtk_label_set_markup(GTK_LABEL(data), question);
-    
-	// If data in input variable, place in entrybox and select
-	if (input != NULL)
-	{
-		// Set data
-		data = glade_xml_get_widget(xml, "input_entry");
-		gtk_entry_set_text(GTK_ENTRY(data), input);
-		
-		// Select
-		gtk_editable_select_region(GTK_EDITABLE(data), 0, -1);
-	}
-  
-	// Set the Title
-	gtk_window_set_title(GTK_WINDOW(widget), title);
-	
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "input_label"));
+    gtk_label_set_markup(GTK_LABEL(data), question);
+
+    // If data in input variable, place in entrybox and select
+    if (input != NULL)
+    {
+        // Set data
+        data = GTK_WIDGET (gtk_builder_get_object (builder, "input_entry"));
+        gtk_entry_set_text(GTK_ENTRY(data), input);
+        
+        // Select
+        gtk_editable_select_region(GTK_EDITABLE(data), 0, -1);
+    }
+
+    // Set the Title
+    gtk_window_set_title(GTK_WINDOW(widget), title);
+
     // Run Dialog
-	result = gtk_dialog_run(GTK_DIALOG(widget));
-	switch(result)
-	{
-		case GTK_RESPONSE_OK:
-			data = glade_xml_get_widget(xml, "input_entry");
-			ret = g_strdup(gtk_entry_get_text(GTK_ENTRY(data)));
-		break;
-		case GTK_RESPONSE_CANCEL:
-			ret = NULL;
-		break;
-	}
-    
+    result = gtk_dialog_run(GTK_DIALOG(widget));
+    switch(result)
+    {
+        case GTK_RESPONSE_OK:
+            data = GTK_WIDGET (gtk_builder_get_object (builder, "input_entry"));
+            ret = g_strdup(gtk_entry_get_text(GTK_ENTRY(data)));
+        break;
+        case GTK_RESPONSE_CANCEL:
+            ret = NULL;
+        break;
+        default: break;
+    }
+
     // Destroy Dialog
-	gtk_widget_destroy(widget);
-    
+    gtk_widget_destroy(widget);
+    g_object_unref(builder);
+
     // Return
-	return ret;
+    return ret;
 }
+
+enum { COL_LABEL, COL_VALUE };	// columns in calc tree models
 
 int msgbox_model(void)
 {
-	GladeXML *xml;
-	GtkWidget *widget, *data;
-	int choice;
-	int calc = 0;
-    
-    // Load the Two Button Dialog from dialogs.glade
-	xml = glade_xml_new(paths_build_glade("dialogs.glade"), "combodialog", NULL);
-    
-    // Glade File Error
-	if (!xml)
-		g_error("Failure Loading GUI Dialog (%s)!\n", __FILE__);
-       
-    // Connect The Symbols
-	glade_xml_signal_autoconnect(xml);
-    
+    GtkBuilder *builder;
+    GError* error = NULL;
+    GtkWidget *widget, *data;
+    int choice;
+    CalcModel calc = CALC_NONE;
+    char *str = NULL;
+    GtkTreeModel *model;
+    GtkTreeIter iter;
+
+    // Load the Combo Dialog from dialogs5.ui
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file (builder, paths_build_builder("dialogs5.ui"), &error))
+    {
+        g_warning (_("Couldn't load builder file: %s\n"), error->message);
+        g_error_free (error);
+        return 0; // THIS RETURNS !
+    }
+    gtk_builder_connect_signals(builder, NULL);
+
     // Retrieve the Widget into data & widget
-	widget = glade_xml_get_widget(xml, "combodialog");
-	gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
-	                                        GTK_RESPONSE_CANCEL,-1);
-	data = glade_xml_get_widget(xml, "combodialog_combobox");
-	    
-	/* Launch the Dialog */
-	choice = gtk_dialog_run(GTK_DIALOG(widget));
-	switch (choice)
-	{
-		case GTK_RESPONSE_OK:
-		case GTK_RESPONSE_YES:
-			calc = tifiles_string_to_model(gtk_combo_box_get_active_text(GTK_COMBO_BOX(data)));
-			break;
-		case GTK_RESPONSE_CANCEL:
-		default:
-			break;       
-	}
+    widget = GTK_WIDGET (gtk_builder_get_object (builder, "combodialog"));
+    gtk_dialog_set_alternative_button_order(GTK_DIALOG(widget), GTK_RESPONSE_OK,
+                                            GTK_RESPONSE_CANCEL,-1);
+    data = GTK_WIDGET (gtk_builder_get_object (builder, "combobox"));
 
-	gtk_widget_destroy(widget);	
+    /* Launch the Dialog */
+    choice = gtk_dialog_run(GTK_DIALOG(widget));
+    switch (choice)
+    {
+        case GTK_RESPONSE_OK:
+        case GTK_RESPONSE_YES:
+        {
+            model = gtk_combo_box_get_model(GTK_COMBO_BOX(data));
 
-	return calc;
+            if (gtk_combo_box_get_active_iter(GTK_COMBO_BOX(data), &iter))
+            {
+                gtk_tree_model_get(model, &iter, COL_VALUE, &str, -1);
+                if (str)
+                {
+                    calc = ticonv_string_to_model(str);
+                    g_free(str);
+                }
+            }
+
+        }
+            break;
+        case GTK_RESPONSE_CANCEL:
+        default:
+            break;       
+    }
+
+    gtk_widget_destroy(widget);
+    g_object_unref(builder);
+
+    return calc;
 }

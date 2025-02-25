@@ -68,31 +68,31 @@ int paths_init(void)
 	dirname = g_path_get_dirname(sBuffer);
 	basename = g_path_get_basename(dirname);
 
-  /*******************************************/
-  // Will replace /target/bin with /target/share/gfm in MinGW/MSYS
-  #define MINGW_REL "share\\gfm"
-  if ((strlen(basename) == 3) && !g_ascii_strcasecmp(basename, "bin"))
-  {
-	  gchar *token;
-	  dirname = g_realloc(dirname, strlen(dirname) + strlen(MINGW_REL) + 1);
-	  token = dirname + strlen(dirname) - 3;
-	  strcpy(token, MINGW_REL);
-  }
-  /********************************************/
+	/*******************************************/
+	// Will replace /target/bin with /target/share/gfm in MinGW/MSYS
+	#define MINGW_REL "share\\gfm"
+	if ((strlen(basename) == 3) && !g_ascii_strcasecmp(basename, "bin"))
+	{
+		gchar *token;
+		dirname = g_realloc(dirname, strlen(dirname) + strlen(MINGW_REL) + 1);
+		token = dirname + strlen(dirname) - 3;
+		strcpy(token, MINGW_REL);
+	}
+	/********************************************/
 
 	// Set the Base Directory
 	inst_paths.base_dir = g_strconcat(dirname, "\\", NULL);
-	
+
 	// Free some stuff
 	free(sBuffer);
 	g_free(dirname);
 	g_free(basename);
 #endif
-	
+
 	// Set the rest of the paths
 	inst_paths.help_dir = g_strconcat(inst_paths.base_dir, "help", G_DIR_SEPARATOR_S, NULL);
 	inst_paths.pixmap_dir = g_strconcat(inst_paths.base_dir, "pixmaps", G_DIR_SEPARATOR_S, NULL);
-	inst_paths.glade_dir = g_strconcat(inst_paths.base_dir, "glade", G_DIR_SEPARATOR_S, NULL);
+	inst_paths.builder_dir = g_strconcat(inst_paths.base_dir, "builder", G_DIR_SEPARATOR_S, NULL);
 	inst_paths.tmp_dir = g_strconcat(g_get_tmp_dir(), G_DIR_SEPARATOR_S, NULL);
 	inst_paths.home_dir = g_strconcat(g_get_user_data_dir(), G_DIR_SEPARATOR_S, NULL);
 
@@ -100,8 +100,7 @@ int paths_init(void)
 #ifndef __WIN32__
 	inst_paths.locale_dir = g_strconcat(LOCALEDIR, "/", NULL);
 #else
-	inst_paths.locale_dir = g_strconcat(inst_paths.base_dir, "locale\\",
-					    NULL);
+	inst_paths.locale_dir = g_strconcat(inst_paths.base_dir, "locale\\", NULL);
 #endif
 #endif
 
@@ -109,13 +108,13 @@ int paths_init(void)
   return 0;
 }
 
-/* Will return full path from executable to glade file given */
-const char *paths_build_glade(const char *name)
+/* Will return full path from executable to GTK+Builder file given */
+const char *paths_build_builder(const char *name)
 {
-      static gchar *gladepath = NULL;
-      g_free(gladepath);
+	static gchar *builderpath = NULL;
+	g_free(builderpath);
 
-	  // Set new gladepath and return
-      gladepath = g_strconcat(inst_paths.glade_dir, name, NULL);
-      return gladepath;
+	// Set new builderpath and return
+	builderpath = g_strconcat(inst_paths.builder_dir, name, NULL);
+	return builderpath;
 }

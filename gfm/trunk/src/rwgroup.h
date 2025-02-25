@@ -18,8 +18,8 @@
   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifndef __GFM_GFILE_H__
-#define __GFM_GFILE_H__
+#ifndef __GFMRWGROUP_H__
+#define __GFMRWGROUP_H__
 
 #include <glib.h>
 
@@ -55,12 +55,12 @@ typedef struct
 extern GFileStruct GFMFile;
 
 // Prototypes
-int	tigroup_create(CalcModel model);
+int tigroup_create(CalcModel model);
 int tigroup_load(const char *filename);
 int tigroup_save(const char *filename);
 int tigroup_destroy(void);
 
-int	group_create(CalcModel model);
+int group_create(CalcModel model);
 int group_load(const char *filename);
 int group_save(const char *filename);
 int group_destroy(void);

@@ -19,8 +19,8 @@
  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#ifndef __TILP_MISC__
-#define __TILP_MISC__
+#ifndef __GFMUNGROUP_H__
+#define __GFMUNGROUP_H__
 
 int gfm_tifiles_ungroup(const char* filename, int type);
 int gfm_tifiles_group(const char** filenames, int type);

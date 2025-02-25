@@ -7,18 +7,15 @@ bin_PROGRAMS = gfm
 
 # build instructions
 gfm_CPPFLAGS = @TIFILES_CFLAGS@ @TICONV_CFLAGS@ @TICALCS_CFLAGS@ \
-	@GLIB_CFLAGS@ @GTK_CFLAGS@ @GLADE_CFLAGS@ \
+	@GLIB_CFLAGS@ @GTK2_CFLAGS@ @GTK3_CFLAGS@ @GTK4_CFLAGS@ \
 	-DSHARE_DIR=\"$(pkgdatadir)\" \
 	-DLOCALEDIR=\"$(datadir)/locale\"
-#	@KDE_INCLUDES@ @QT_INCLUDES@
 
 gfm_LDFLAGS = -export-dynamic
 
 gfm_LDADD = \
 	@TIFILES_LIBS@ @TICONV_LIBS@ @TICALCS_LIBS@ \
-	@GLIB_LIBS@ @GTK_LIBS@ @GLADE_LIBS@ \
-	@LTLIBINTL@
-#	@LIB_KDECORE@ @LIB_KDEUI@ @LIB_KIO@ @LIB_QT@ @KDE_LDFLAGS@ @QT_LDFLAGS@ @X_LDFLAGS@
+	@GLIB_LIBS@ @GTK2_LIBS@ @GTK3_LIBS@ @GTK4_LIBS@
 
 # automake wants all .c files listed explicitly. This sucks. qmake does the
 # right thing with just "*.c".

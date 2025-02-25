@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gfm 1.09\n"
-"Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
-"POT-Creation-Date: 2019-10-12 21:48+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-09 12:44+0100\n"
 "PO-Revision-Date: 2011-12-13 19:16+0100\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -16,54 +16,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/cmdline.c:49
+#: ../src/cmdline.c:49
 msgid "Version"
 msgstr "Version"
 
-#: src/cmdline.c:50
+#: ../src/cmdline.c:50
 msgid "filename(s)"
 msgstr "fichier(s)"
 
-#: src/cmdline.c:56
+#: ../src/cmdline.c:56
 #, c-format
 msgid "GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
 msgstr "GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
 
-#: src/cmdline.c:57
+#: ../src/cmdline.c:57
 #, c-format
 msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
 msgstr "CE PROGRAME NE VIENT AVEC AUCUNE GARANTIE\n"
 
-#: src/cmdline.c:58
+#: ../src/cmdline.c:58
 #, c-format
 msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
 msgstr "VEUILLEZ LIRE LA DOCUMENTATION POUR LES DETAILS\n"
 
-#: src/ctree.c:186
+#: ../src/ctree.c:185
 msgid "The name already exists. Please choose another one..."
 msgstr "Le nom existe déjà. Veuillez en choisir un autre..."
 
-#: src/ctree.c:223
+#: ../src/ctree.c:224
 msgid "Name"
 msgstr "Nom"
 
-#: src/ctree.c:243
+#: ../src/ctree.c:244
 msgid "Attr"
 msgstr "Attr"
 
-#: src/ctree.c:248
+#: ../src/ctree.c:249
 msgid "Type"
 msgstr "Type"
 
-#: src/ctree.c:253
+#: ../src/ctree.c:254
 msgid "Size"
 msgstr "Taille"
 
-#: src/file.c:190
+#: ../src/dialog.c:46 ../src/dialog.c:105 ../src/dialog.c:191
+#: ../src/dialog.c:254 ../src/dialog.c:323 ../src/gui.c:68
+#, c-format
+msgid "Couldn't load builder file: %s\n"
+msgstr "Impossible de trouver le fichier builder: %s\n"
+
+#: ../src/file.c:190
 msgid "Unable to change directory."
 msgstr "Impossible de changer de répertoire"
 
-#: src/file.c:208
+#: ../src/file.c:208
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -71,302 +77,273 @@ msgstr ""
 "Impossible de créer le répertoire.\n"
 "\n"
 
-#: src/file.c:270
+#: ../src/file.c:274
 #, c-format
 msgid "%i KB"
 msgstr "%i Ko"
 
-#: src/file.c:273
+#: ../src/file.c:277
 #, c-format
 msgid "%i MB"
 msgstr "%i Mo"
 
-#: src/filesel.c:257
+#: ../src/filesel.c:268
 msgid "Save file"
 msgstr "Sauver fichier"
 
-#: src/filesel.c:260 src/filesel.c:524
+#: ../src/filesel.c:271 ../src/filesel.c:534
 msgid "Open file"
 msgstr "Ouvrir fichier"
 
-#: src/gui.c:114 src/gui.c:419
+#: ../src/gui.c:110 ../src/gui.c:401
 msgid "TiGroup"
 msgstr "TiGroup"
 
-#: src/gui.c:114 src/gui.c:419
+#: ../src/gui.c:110 ../src/gui.c:401
 msgid "Single/Group"
 msgstr "Simple/Groupe"
 
-#: src/gui.c:114 src/gui.c:419
+#: ../src/gui.c:110 ../src/gui.c:401
 msgid "File type?"
 msgstr "Type de fichier?"
 
-#: src/gui.c:203
+#: ../src/gui.c:196
 msgid "Do you want to save previous file?"
 msgstr "Voulez-vous sauver le fichier précédent ?"
 
-#: src/gui.c:268
+#: ../src/gui.c:254 ../builder/gfm.ui.h:7
 msgid "Save"
 msgstr "Sauver"
 
-#: src/gui.c:268
+#: ../src/gui.c:254
 msgid "Quit"
 msgstr "Quitter"
 
-#: src/gui.c:268
+#: ../src/gui.c:254
 msgid "File has not been saved yet. Do you want to quit?"
 msgstr "Le fichier n'a pas été sauvé. Êtes-vous sûr de vouloir quitter ?"
 
-#: src/gui.c:312
+#: ../src/gui.c:297
 msgid "Importing of TiGroup files is not allowed."
 msgstr "L'importation d'un fichier TiGroup n'est pas permise."
 
-#: src/gui.c:319
+#: ../src/gui.c:304
 msgid "File is not compatible with current target."
 msgstr "Le fichier n'est pas compatible avec le modèle de calculatrice."
 
-#: src/gui.c:332
+#: ../src/gui.c:319
 msgid "The entry already exists. Skipped!"
 msgstr "Cette entrée existe déjà. Ignorée !"
 
-#: src/gui.c:396
+#: ../src/gui.c:380
 msgid "New Folder"
 msgstr "Nouveau dossier"
 
-#: src/gui.c:396
+#: ../src/gui.c:380
 msgid "folder"
 msgstr "dossier"
 
-#: src/gui.c:396
+#: ../src/gui.c:380
 msgid "Name of folder to create:"
 msgstr "Nom du dossier à créer:"
 
-#: src/labels.c:122 src/labels.c:137
+#: ../src/labels.c:124 ../src/labels.c:139
 #, c-format
-msgid "%d bytes"
-msgstr "%d octets"
+msgid "%u bytes"
+msgstr "%u octets"
 
-#: src/labels.c:124 src/labels.c:139
+#: ../src/labels.c:126 ../src/labels.c:141
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f Ko"
 
-#: src/labels.c:126 src/labels.c:141
+#: ../src/labels.c:128 ../src/labels.c:143
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mo"
 
-#: src/main.c:76
+#: ../src/main.c:76
 msgid "Initializing KDE..."
 msgstr "Initialisation de KDE..."
 
-#: src/main.c:77 glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
-#: glade/dialogs.str:16
+#: ../src/main.c:77 ../builder/dialogs1.ui.h:1 ../builder/dialogs2.ui.h:1
+#: ../builder/dialogs3.ui.h:1 ../builder/dialogs4.ui.h:1
 msgid "GFM"
 msgstr "GFM"
 
-#: src/main.c:77 glade/dialogs.str:21 glade/gfm.str:7
+#: ../src/main.c:77 ../builder/dialogs5.ui.h:2 ../builder/gfm.ui.h:1
 msgid "Group File Manager"
 msgstr "Gestionnaire Fichiers Groupés"
 
-#: src/main.c:84
+#. Checking for GUI Files
+#: ../src/main.c:84
 msgid "Checking for GUI files..."
 msgstr "Vérification fichiers IHM..."
 
-#: src/main.c:88
+#. Load tilibs2
+#: ../src/main.c:88
 msgid "Loading tilibs..."
 msgstr "Chargement tilibs..."
 
-#: src/main.c:92
+#. Load tilibs
+#. Launching GUI
+#: ../src/main.c:92
 msgid "Launching GUI..."
 msgstr "Lancement IHM..."
 
-#: src/rwgroup.c:146
+#: ../src/rwgroup.c:146
 msgid "Loading..."
 msgstr "Chargement..."
 
-#: src/rwgroup.c:313
+#: ../src/rwgroup.c:313
 msgid "Saving..."
 msgstr "Sauvegarde..."
 
-#: src/splashscreen.c:82
+#. Set the Text Label
+#: ../src/splashscreen.c:81
 msgid "Starting Group File Manager..."
 msgstr "Démarrage du GFM..."
 
-#: src/support.c:96 src/support.c:115
+#: ../src/support.c:94 ../src/support.c:113
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Impossible de trouver le fichier pixmap: %s"
 
-#: src/ungroup.c:52
+#: ../src/ungroup.c:52
 msgid "Create new directory"
 msgstr "Crée un nouveau dossier."
 
-#: src/ungroup.c:52
+#: ../src/ungroup.c:52
 msgid "Directory where files will be ungrouped: "
 msgstr "Dossier où les fichiers seront dégroupés: "
 
-#: src/ungroup.c:66
+#: ../src/ungroup.c:66
 msgid "You can't ungroup in this folder."
 msgstr "Vous ne pouvez pas dégrouper dans ce dossier."
 
-#: src/ungroup.c:124
+#: ../src/ungroup.c:124
 msgid "Group files are not allowed in selection."
 msgstr "Les fichiers groupés ne sont pas autorisés dans la sélection."
 
-#: src/ungroup.c:130
+#: ../src/ungroup.c:130
 msgid "FLASH files are not allowed in group files."
 msgstr "Les fichiers FLASH ne sont pas autorisés dans les fichiers groupe."
 
-#: src/ungroup.c:136
+#. Ask for group name
+#: ../src/ungroup.c:136
 msgid "Group files"
 msgstr "Grouper fichiers"
 
-#: src/ungroup.c:136
+#: ../src/ungroup.c:136
 msgid "Group name: "
 msgstr "Nom groupe: "
 
-#: glade/dialogs.str:8 glade/dialogs.str:12
+#: ../builder/dialogs1.ui.h:2 ../builder/dialogs2.ui.h:2
 msgid "Message"
 msgstr "Message"
 
-#: glade/dialogs.str:10
-msgid "_Cancel"
-msgstr "_Annuler"
-
-#: glade/dialogs.str:11
-msgid "_Ok"
-msgstr "_Ok"
-
-#: glade/dialogs.str:14
-msgid "Input:"
-msgstr "Entrée:"
-
-#: glade/dialogs.str:15
-msgid "Input"
-msgstr "Entrée"
-
-#: glade/dialogs.str:17
+#: ../builder/dialogs3.ui.h:2
 msgid "Ok"
 msgstr "Ok"
 
-#: glade/dialogs.str:18
+#: ../builder/dialogs3.ui.h:3
 msgid "Yes"
 msgstr "Oui"
 
-#: glade/dialogs.str:19
+#: ../builder/dialogs3.ui.h:4
 msgid "Cancel"
 msgstr "Annuler"
 
-#: glade/dialogs.str:20
+#: ../builder/dialogs3.ui.h:5
 msgid "3 button Window"
 msgstr "..."
 
-#: glade/dialogs.str:22
+#: ../builder/dialogs4.ui.h:2
+msgid "Input:"
+msgstr "Entrée:"
+
+#: ../builder/dialogs4.ui.h:3
+msgid "Input"
+msgstr "Entrée"
+
+#: ../builder/dialogs5.ui.h:1
+msgid "None"
+msgstr ""
+
+#: ../builder/dialogs5.ui.h:3
 msgid "Please select a calculator model."
 msgstr "Sélectionner un modèle de calculatrice."
 
-#: glade/dialogs.str:23
-msgid "TI73"
-msgstr "TI73"
-
-#: glade/dialogs.str:24
-msgid "TI82"
-msgstr "TI82"
-
-#: glade/dialogs.str:25
-msgid "TI83"
-msgstr "TI83"
-
-#: glade/dialogs.str:26
-msgid "TI83+"
-msgstr "TI83+"
-
-#: glade/dialogs.str:27
-msgid "TI84+"
-msgstr "TI84+"
-
-#: glade/dialogs.str:28
-msgid "TI85"
-msgstr "TI85"
-
-#: glade/dialogs.str:29
-msgid "TI86"
-msgstr "TI86"
-
-#: glade/dialogs.str:30
-msgid "TI89"
-msgstr "TI89"
-
-#: glade/dialogs.str:31
-msgid "TI89t"
-msgstr "TI89"
-
-#: glade/dialogs.str:32
-msgid "TI92"
-msgstr "TI92"
-
-#: glade/dialogs.str:33
-msgid "TI92+"
-msgstr "TI92+"
-
-#: glade/dialogs.str:34
-msgid "V200"
-msgstr "V200PLT"
-
-#: glade/gfm.str:8
+#: ../builder/gfm.ui.h:2
 msgid "Create a new file."
 msgstr "Créer un nouveau fichier."
 
-#: glade/gfm.str:9
+#: ../builder/gfm.ui.h:3
+msgid "New"
+msgstr ""
+
+#: ../builder/gfm.ui.h:4
 msgid "Open existing file."
 msgstr "Ouvrir un fichier existant."
 
-#: glade/gfm.str:10
+#: ../builder/gfm.ui.h:5
+#, fuzzy
+msgid "Open"
+msgstr "Ouvrir fichier"
+
+#: ../builder/gfm.ui.h:6
 msgid "Save current file."
 msgstr "Sauver le fichier actuel."
 
-#: glade/gfm.str:11
+#: ../builder/gfm.ui.h:8
 msgid "Create a new folder."
 msgstr "Créer un nouveau dossier."
 
-#: glade/gfm.str:12
+#: ../builder/gfm.ui.h:9
 msgid "Folder"
 msgstr "Dossier"
 
-#: glade/gfm.str:13
+#: ../builder/gfm.ui.h:10
 msgid "Add entries from file."
 msgstr "Ajouter des entrées au fichier."
 
-#: glade/gfm.str:14
+#: ../builder/gfm.ui.h:11
+msgid "Add"
+msgstr ""
+
+#: ../builder/gfm.ui.h:12
 msgid "Delete selected entries."
 msgstr "Supprimer les entrées sélectionnées."
 
-#: glade/gfm.str:15
+#: ../builder/gfm.ui.h:13
+msgid "Delete"
+msgstr ""
+
+#: ../builder/gfm.ui.h:14
 msgid "Entries:"
 msgstr "Entrées:"
 
-#: glade/gfm.str:16
+#: ../builder/gfm.ui.h:15
 msgid "Model:"
 msgstr "Modèle:"
 
-#: glade/gfm.str:17
+#: ../builder/gfm.ui.h:16
 msgid "N/A"
 msgstr "N/D"
 
-#: glade/gfm.str:18 glade/gfm.str:20 glade/gfm.str:22
+#: ../builder/gfm.ui.h:17
 msgid "0"
 msgstr "0"
 
-#: glade/gfm.str:19
+#: ../builder/gfm.ui.h:18
 msgid "RAM used:"
 msgstr "RAM utilisée:"
 
-#: glade/gfm.str:21
+#: ../builder/gfm.ui.h:19
 msgid "FLASH used:"
 msgstr "FLASH utilisée:"
 
-#: glade/gfm.str:23
+#: ../builder/gfm.ui.h:20
 msgid ""
 "More actions:\n"
 "- click to edit name\n"
@@ -389,13 +366,55 @@ msgstr ""
 "- pas de déplacement d'entrée\n"
 "- pas d'édition des applications\n"
 
-#: glade/gfm.str:34
+#: ../builder/gfm.ui.h:31
 msgid "_Group files..."
 msgstr "_Grouper fichiers..."
 
-#: glade/gfm.str:35
+#: ../builder/gfm.ui.h:32
 msgid "_Ungroup file..."
 msgstr "_Dégrouper fichiers..."
+
+#~ msgid "TI73"
+#~ msgstr "TI73"
+
+#~ msgid "TI82"
+#~ msgstr "TI82"
+
+#~ msgid "TI83"
+#~ msgstr "TI83"
+
+#~ msgid "TI83+"
+#~ msgstr "TI83+"
+
+#~ msgid "TI84+"
+#~ msgstr "TI84+"
+
+#~ msgid "TI85"
+#~ msgstr "TI85"
+
+#~ msgid "TI86"
+#~ msgstr "TI86"
+
+#~ msgid "TI89"
+#~ msgstr "TI89"
+
+#~ msgid "TI89t"
+#~ msgstr "TI89"
+
+#~ msgid "TI92"
+#~ msgstr "TI92"
+
+#~ msgid "TI92+"
+#~ msgstr "TI92+"
+
+#~ msgid "V200"
+#~ msgstr "V200PLT"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Annuler"
+
+#~ msgid "_Ok"
+#~ msgstr "_Ok"
 
 #~ msgid "built on %s %s\n"
 #~ msgstr "construit sur %s %s\n"

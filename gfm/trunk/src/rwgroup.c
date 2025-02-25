@@ -43,7 +43,7 @@
 
 GFileStruct GFMFile;
 
-int	tigroup_create(CalcModel model)
+int tigroup_create(CalcModel model)
 {
 	TreeInfo *ti;
 
@@ -70,12 +70,12 @@ int	tigroup_create(CalcModel model)
 
 typedef struct
 {
-	int		found;
+	int	found;
 	GNode*	node;
 	gchar	folder[20];
 } SearchArg;
 
-static void	search_for_folder(GNode *node, gpointer data)
+static void search_for_folder(GNode *node, gpointer data)
 {
 	SearchArg *sa = (gpointer)data;
 	VarEntry *ve = (VarEntry *)node->data;
@@ -140,7 +140,7 @@ int tigroup_load(const char *filename)
 	TreeInfo *ti;
 	TigContent *content;
 	int m, n, k=0;
-	
+
 	// Progress bar & message
 	gtk_widget_show(gfm_widget.pbar);
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(gfm_widget.pbar), _("Loading..."));
@@ -160,7 +160,7 @@ int tigroup_load(const char *filename)
 	GFMFile.model = GFMFile.contents.tigroup->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFMFile.trees.vars = g_node_new(NULL);
+	GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFMFile.contents.tigroup->model;
 	ti->type = VAR_NODE_NAME;
@@ -214,7 +214,7 @@ int tigroup_load(const char *filename)
 
 		for(ptr = content->app_entries, i =0; *ptr; ptr++, i++)
 		{
-			TigEntry* entry = *ptr;			
+			TigEntry* entry = *ptr;
 			VarEntry *ve = tifiles_ve_create();
 			GNode *node;
 			int *p;
@@ -360,7 +360,7 @@ int tigroup_destroy(void)
 
 /* */
 
-int	group_create(CalcModel model)
+int group_create(CalcModel model)
 {
 	TreeInfo *ti;
 	FileContent *content;
@@ -371,7 +371,7 @@ int	group_create(CalcModel model)
 	GFMFile.model = GFMFile.contents.group->model;
 
 	// Recreate folder listing (ticalcs2 compatible)
-    GFMFile.trees.vars = g_node_new(NULL);
+	GFMFile.trees.vars = g_node_new(NULL);
 	ti = (TreeInfo *)g_malloc(sizeof(TreeInfo));
 	ti->model = GFMFile.contents.group->model;
 	ti->type = VAR_NODE_NAME;

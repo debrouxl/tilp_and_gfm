@@ -53,10 +53,10 @@ static gint column2index(GtkTreeViewColumn* column)
 }
 
 static gboolean allow_selection(GtkTreeSelection * selection,
-			    GtkTreeModel * model,
-			    GtkTreePath * path,
-			    gboolean path_currently_selected,
-			    gpointer data)
+                                GtkTreeModel * model,
+                                GtkTreePath * path,
+                                gboolean path_currently_selected,
+                                gpointer data)
 {
 	GtkTreeIter iter;
 	VarEntry *ve;
@@ -78,10 +78,10 @@ static gboolean allow_selection(GtkTreeSelection * selection,
 	return TRUE;
 }
 
-static void get_selection                               (GtkTreeModel *model,
-                                                         GtkTreePath *path,
-                                                         GtkTreeIter *iter,
-                                                         gpointer data)
+static void get_selection(GtkTreeModel *model,
+                          GtkTreePath *path,
+                          GtkTreeIter *iter,
+                          gpointer data)
 {
 	VarEntry *ve;
 
@@ -97,7 +97,7 @@ static void get_selection                               (GtkTreeModel *model,
 	{
 		gfm_widget.sel2 = g_list_append(gfm_widget.sel2, ve);
 	}
-}			
+}
 
 void ctree_selection_destroy(void)
 {
@@ -120,8 +120,7 @@ void ctree_selection_get(void)
 	gtk_tree_selection_selected_foreach(selection, get_selection, NULL);
 }
 
-static void tree_selection_changed(GtkTreeSelection * selection,
-				   gpointer user_data)
+static void tree_selection_changed(GtkTreeSelection * selection, gpointer user_data)
 {
 	GList *list;
 	GtkTreeIter iter;
@@ -156,8 +155,8 @@ static void tree_selection_changed(GtkTreeSelection * selection,
 }
 
 static void renderer_edited(GtkCellRendererText * cell,
-			    const gchar * path_string,
-			    const gchar * new_text, gpointer user_data)
+                            const gchar * path_string,
+                            const gchar * new_text, gpointer user_data)
 {
 	GtkTreeModel *model = GTK_TREE_MODEL(tree);
 	GtkTreePath *path = gtk_tree_path_new_from_string(path_string);
@@ -208,15 +207,17 @@ void ctree_init(void)
 	gint i;
 
 	tree = gtk_tree_store_new(CTREE_NCOLS, G_TYPE_STRING,
-				  GDK_TYPE_PIXBUF, G_TYPE_STRING,
-				  G_TYPE_STRING, G_TYPE_POINTER,
-				  G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_INT);
+	                          GDK_TYPE_PIXBUF, G_TYPE_STRING,
+	                          G_TYPE_STRING, G_TYPE_POINTER,
+	                          G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_INT);
 	model = GTK_TREE_MODEL(tree);
 
 	gtk_tree_view_set_model(view, model);
 	gtk_tree_view_set_headers_visible(view, TRUE);
 	gtk_tree_view_set_headers_clickable(view, TRUE);
+#if !GTK_CHECK_VERSION(3,14,0)
 	gtk_tree_view_set_rules_hint(view, FALSE);
+#endif
 
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_append_column(view, column);
@@ -224,35 +225,35 @@ void ctree_init(void)
 
 	renderer = gtk_cell_renderer_pixbuf_new();
 	gtk_tree_view_column_pack_start(GTK_TREE_VIEW_COLUMN(column),
-					renderer, FALSE);
+	                                renderer, FALSE);
 	gtk_tree_view_column_set_attributes(GTK_TREE_VIEW_COLUMN(column),
-					    renderer, "pixbuf",
-					    COLUMN_ICON, NULL);
+	                                    renderer, "pixbuf",
+	                                    COLUMN_ICON, NULL);
 
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(GTK_TREE_VIEW_COLUMN(column),
-					renderer, FALSE);
+	                                renderer, FALSE);
 	gtk_tree_view_column_set_attributes(GTK_TREE_VIEW_COLUMN(column),
-					    renderer, "text", COLUMN_NAME,
-						"font", COLUMN_FONT,
-						"editable", COLUMN_EDIT,
-					    NULL);
+	                                    renderer, "text", COLUMN_NAME,
+	                                    "font", COLUMN_FONT,
+	                                    "editable", COLUMN_EDIT,
+	                                    NULL);
 	g_signal_connect(G_OBJECT(renderer), "edited",	 G_CALLBACK(renderer_edited), NULL);
 
 	renderer = gtk_cell_renderer_pixbuf_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Attr"),
-						    renderer, "pixbuf",
-						    COLUMN_ATTR, NULL);
+	                                            renderer, "pixbuf",
+	                                            COLUMN_ATTR, NULL);
 
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Type"),
-						    renderer, "text",
-						    COLUMN_TYPE, NULL);
+	                                            renderer, "text",
+	                                            COLUMN_TYPE, NULL);
 
 	renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_insert_column_with_attributes(view, -1, _("Size"),
-						    renderer, "text",
-						    COLUMN_SIZE, NULL);
+	                                            renderer, "text",
+	                                            COLUMN_SIZE, NULL);
 
 	for (i = 0; i < CTREE_NVCOLS; i++) 
 	{
@@ -280,13 +281,13 @@ void ctree_set_basetree(void)
 
 	gtk_tree_store_append(tree, &vars_node, top_node);
 	gtk_tree_store_set(tree, &vars_node, COLUMN_NAME, NODE3,
-			   COLUMN_DATA, (gpointer) NULL, -1);
+	                   COLUMN_DATA, (gpointer) NULL, -1);
 
 	if (tifiles_is_flash(GFMFile.model)) 
 	{
 		gtk_tree_store_append(tree, &apps_node, top_node);
 		gtk_tree_store_set(tree, &apps_node, COLUMN_NAME, NODE4,
-				   COLUMN_DATA, (gpointer) NULL, -1);
+		                   COLUMN_DATA, (gpointer) NULL, -1);
 	}
 
 	gtk_tree_view_expand_all(GTK_TREE_VIEW(gfm_widget.tree));
@@ -299,7 +300,7 @@ void ctree_refresh(void)
 	GtkTreeIter pareng_node;
 	GtkTreeIter child_node;
 	GNode *vars, *apps;
-	int i, j;
+	unsigned int i, j;
 
 	if (GFMFile.trees.vars == NULL)
 		return;
@@ -319,26 +320,26 @@ void ctree_refresh(void)
 
 	// variables tree
 	vars = GFMFile.trees.vars;
-	for (i = 0; i < (int)g_node_n_children(vars); i++) 
+	for (i = 0; i < g_node_n_children(vars); i++) 
 	{
 		GNode *parent = g_node_nth_child(vars, i);
 		VarEntry *fe = (VarEntry *) (parent->data);
 
 		if ((fe != NULL) || tifiles_calc_is_ti9x(GFMFile.model))
 		{
-			char *utf8 = ticonv_varname_to_utf8(GFMFile.model, fe->name, -1);
+			char *utf8 = ticonv_varname_to_utf8(GFMFile.model, fe->name, 0xFF);
 
 			gtk_tree_store_append(tree, &pareng_node, &vars_node);
 			gtk_tree_store_set(tree, &pareng_node, 
-					   COLUMN_NAME, utf8, 
-					   COLUMN_DATA, (gpointer) fe,
-					   COLUMN_ICON, pix1, 
-					   COLUMN_EDIT, FALSE,
-					   -1);
+			                   COLUMN_NAME, utf8, 
+			                   COLUMN_DATA, (gpointer) fe,
+			                   COLUMN_ICON, pix1, 
+			                   COLUMN_EDIT, FALSE,
+			                   -1);
 			ticonv_utf8_free(utf8);
 		}
 
-		for (j = 0; j < (int)g_node_n_children(parent); j++) 
+		for (j = 0; j < g_node_n_children(parent); j++) 
 		{
 			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
@@ -360,14 +361,14 @@ void ctree_refresh(void)
 
 			gtk_tree_store_append(tree, &child_node, &pareng_node);
 			gtk_tree_store_set(tree, &child_node, COLUMN_NAME,
-					   row_text[0],
-					   COLUMN_TYPE,
-					   row_text[2], COLUMN_SIZE,
-					   row_text[3], COLUMN_DATA,
-					   (gpointer) ve, COLUMN_ICON, pix9,
-					   COLUMN_FONT, FONT_NAME,
-					   COLUMN_EDIT, TRUE,
-					   -1);
+			                   row_text[0],
+			                   COLUMN_TYPE,
+			                   row_text[2], COLUMN_SIZE,
+			                   row_text[3], COLUMN_DATA,
+			                   (gpointer) ve, COLUMN_ICON, pix9,
+			                   COLUMN_FONT, FONT_NAME,
+			                   COLUMN_EDIT, TRUE,
+			                   -1);
 
 			switch (ve->attr) 
 			{
@@ -390,11 +391,11 @@ void ctree_refresh(void)
 
 	// appplications tree
 	apps = GFMFile.trees.apps;
-	for (i = 0; i < (int)g_node_n_children(apps) && tifiles_is_flash(GFMFile.model); i++) 
+	for (i = 0; i < g_node_n_children(apps) && tifiles_is_flash(GFMFile.model); i++) 
 	{
 		GNode *parent = g_node_nth_child(apps, i);
 
-		for (j = 0; j < (int)g_node_n_children(parent); j++) 
+		for (j = 0; j < g_node_n_children(parent); j++) 
 		{
 			GNode *node = g_node_nth_child(parent, j);
 			gchar **row_text = g_malloc0((CTREE_NCOLS + 1) * sizeof(gchar *));
@@ -404,7 +405,7 @@ void ctree_refresh(void)
 
 			row_text[0] = g_strdup(utf8); ticonv_utf8_free(utf8);
 			row_text[2] = g_strdup_printf("%s", tifiles_vartype2string(GFMFile.model, ve->type));
-			row_text[3] = g_strdup_printf("%u", (int) (ve->size));
+			row_text[3] = g_strdup_printf("%u", ve->size);
 
 			strcpy(icon_name, tifiles_vartype2icon(GFMFile.model, ve->type));
 			strcat(icon_name, ".ico");
@@ -413,13 +414,13 @@ void ctree_refresh(void)
 
 			gtk_tree_store_append(tree, &child_node, &apps_node);
 			gtk_tree_store_set(tree, &child_node, 
-					COLUMN_NAME, row_text[0], 
-					COLUMN_TYPE, row_text[2],
-					COLUMN_SIZE, row_text[3], 
-					COLUMN_DATA, (gpointer) ve, 
-					COLUMN_ICON, pix9,
-					COLUMN_FONT, FONT_NAME,
-					   -1);
+			                   COLUMN_NAME, row_text[0], 
+			                   COLUMN_TYPE, row_text[2],
+			                   COLUMN_SIZE, row_text[3], 
+			                   COLUMN_DATA, (gpointer) ve, 
+			                   COLUMN_ICON, pix9,
+			                   COLUMN_FONT, FONT_NAME,
+			                   -1);
 			g_object_unref(pix9);
 			g_strfreev(row_text);
 		}
@@ -436,9 +437,7 @@ void ctree_refresh(void)
 
 /* Callbacks */
 
-GLADE_CB gboolean
-on_treeview1_button_press_event(GtkWidget * widget,
-				GdkEventButton * event, gpointer user_data)
+GFM_EXPORT gboolean on_treeview1_button_press_event(GtkWidget * widget, GdkEventButton * event, gpointer user_data)
 {
 	GtkTreeView *view = GTK_TREE_VIEW(gfm_widget.tree);
 	GtkTreeModel *model = GTK_TREE_MODEL(tree);
@@ -507,9 +506,7 @@ on_treeview1_button_press_event(GtkWidget * widget,
 
 #include <gdk/gdkkeysyms.h>
 
-GLADE_CB gboolean
-on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event,
-								gpointer user_data)
-{	
+GFM_EXPORT gboolean on_treeview1_key_press_event(GtkWidget* widget, GdkEventKey* event, gpointer user_data)
+{
 	return FALSE;
 }

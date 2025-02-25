@@ -19,7 +19,7 @@
 */
 
 /*
-	File Selector and GLADE checks.
+	File Selector and GTK+Builder checks.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -102,15 +102,15 @@ int g_chdir (const gchar *path)
 
 int file_exists(const char *filename)
 {
-    FILE *fpointer;
+	FILE *fpointer;
 
-    // Does it exist?
-    if ((fpointer = fopen(filename, "r")) == NULL)
-        return 0;
-    else
-        fclose(fpointer);
+	// Does it exist?
+	if ((fpointer = fopen(filename, "r")) == NULL)
+		return 0;
+	else
+		fclose(fpointer);
 
-    return 1;
+	return 1;
 }
 
 #ifndef __WIN32__
@@ -143,7 +143,7 @@ int file_copy(const char *src, const char *dst)
 	return 0;
 }
 
-#else				
+#else
 
 int file_copy(const char *src, const char *dst)
 {
@@ -153,8 +153,8 @@ int file_copy(const char *src, const char *dst)
 
 	if(G_WIN32_HAVE_WIDECHAR_API())
 	{
-		gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8,-1,NULL,NULL,NULL);
-		gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8,-1,NULL,NULL,NULL);
+		gunichar2 *src_utf16 = g_utf8_to_utf16(src_utf8, -1, NULL, NULL, NULL);
+		gunichar2 *dst_utf16 = g_utf8_to_utf16(dst_utf8, -1, NULL, NULL, NULL);
 		
 		if(src_utf16 && dst_utf16)
 			if (!CopyFileW(src_utf16, dst_utf16, FALSE))
@@ -166,7 +166,7 @@ int file_copy(const char *src, const char *dst)
 	else
 	{
 		gchar *src_loc = g_locale_from_utf8(src_utf8, -1, NULL, NULL, NULL);
-		gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);	
+		gchar *dst_loc = g_locale_from_utf8(dst_utf8, -1, NULL, NULL, NULL);
 		
 		if(src_loc && dst_loc)
 			if (!CopyFile(src_loc, dst_loc, FALSE))
@@ -212,35 +212,39 @@ int file_mkdir(const char *pathname)
 	return 0;
 }
 
-/* Check to see if we have all of our Glade Files */
-void glade_files_check(void)
+/* Check to see if we have all of our GTK+Builder Files */
+void builder_files_check(void)
 {
-    const char *glade_files[] = {
-        "dialogs.glade",
-        "gfm.glade",
-    };
-    short i, num_files;
-    gchar *msg;
-    num_files = sizeof(glade_files) / sizeof(char *);
+	static const char *ui_files[] = {
+		"dialogs1.ui",
+		"dialogs2.ui",
+		"dialogs3.ui",
+		"dialogs4.ui",
+		"dialogs5.ui",
+		"gfm.ui",
+	};
+	unsigned int i;
+	const unsigned int num_files = sizeof(ui_files) / sizeof(ui_files[0]);
+	gchar *msg;
 
-    // Loop em all up!
-    for (i=0; i<num_files; i++)
-    {
-        if (!file_exists((const char *)paths_build_glade(glade_files[i])))
-        {
-            msg = g_strconcat("Could not find: <b>",
-                              glade_files[i],
-                              "</b> GUI File in '",
-                              inst_paths.glade_dir,
-                              "' directory!", NULL);
-            msgbox_error(msg);
-            g_free(msg);
-            exit(-1); // Exit
-        }
-    }
+	// Loop em all up!
+	for (i=0; i<num_files; i++)
+	{
+		if (!file_exists((const char *)paths_build_builder(ui_files[i])))
+		{
+			msg = g_strconcat("Could not find: <b>",
+			                  ui_files[i],
+			                  "</b> GUI File in '",
+			                  inst_paths.builder_dir,
+			                  "' directory!", NULL);
+			msgbox_error(msg);
+			g_free(msg);
+			exit(-1); // Exit
+		}
+	}
 
-    // Return
-    return;
+	// Return
+	return;
 }
 
 /* Replace any invalid chars in the filename by an underscore '_' */

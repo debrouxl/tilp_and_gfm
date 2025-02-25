@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=GFM
-Name[fr_FR]=GFM
+Name[fr]=GFM
 Comment=TI Calculators Group File Manager
-Comment[fr_FR]=Gestionnaire de fichiers groupés pour calculatrices TI
+Comment[fr]=Gestionnaire de fichiers groupés pour calculatrices TI
 GenericName=TI Groups File Manager for TILP
-GenericName[fr_FR]=Gestionnaire de fichiers groupés pour TILP
+GenericName[fr]=Gestionnaire de fichiers groupés pour TILP
 Version=1.0
 Type=Application
 Exec=@bindir@/gfm

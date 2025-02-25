@@ -40,11 +40,9 @@ GtkWidget *lookup_widget(GtkWidget * widget, const gchar * widget_name)
 			    gtk_menu_get_attach_widget(GTK_MENU(widget));
 
 		else
-			parent = widget->parent;
+			parent = gtk_widget_get_parent(widget);
 		if (!parent)
-			parent =
-			    g_object_get_data(G_OBJECT(widget),
-					      "GladeParentKey");
+			parent = g_object_get_data(G_OBJECT(widget), "GladeParentKey");
 		if (parent == NULL)
 			break;
 		widget = parent;
@@ -126,7 +124,7 @@ GdkPixbuf *create_pixbuf(const gchar * filename)
 
 
 /* This is used to set ATK action descriptions. */
-void
+/*void
 glade_set_atk_action_description(AtkAction * action,
 				 const gchar * action_name,
 				 const gchar * description)
@@ -137,4 +135,4 @@ glade_set_atk_action_description(AtkAction * action,
 		if (!strcmp(atk_action_get_name(action, i), action_name))
 			atk_action_set_description(action, i, description);
 	}
-}
+}*/

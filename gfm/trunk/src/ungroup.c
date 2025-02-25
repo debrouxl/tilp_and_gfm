@@ -35,12 +35,12 @@ int gfm_tifiles_ungroup(const char *filename, int type)
 {
 	gchar *dirname = g_path_get_dirname(filename);
 	gchar *basename = g_path_get_basename(filename);
-	
+
 	gchar *src_file;
 	gchar *dst_file;
-	
+
 	gchar *folder, *tmp;
-	gchar *input;	
+	gchar *input;
 	gchar *e;
 	int err = 0;
 
@@ -113,7 +113,7 @@ int gfm_tifiles_group(const char **filenames, int type)
 	gchar *input;
 	gchar *target = NULL;
 	gchar *dirname = g_path_get_dirname(filenames[0]);
-	//	gchar *basename = g_path_get_basename(filenames[0]);
+	//gchar *basename = g_path_get_basename(filenames[0]);
 	int err = 0;
 
 	// Check for selection consistency
@@ -140,7 +140,7 @@ int gfm_tifiles_group(const char **filenames, int type)
 	// And group
 	if(type == TIFILE_GROUP)
 	{
-		target = g_strconcat(dirname, G_DIR_SEPARATOR_S, input,	".", 
+		target = g_strconcat(dirname, G_DIR_SEPARATOR_S, input, ".", 
 			tifiles_fext_of_group(tifiles_file_get_model(filenames[0])), NULL);
 		g_free(input);
 
@@ -148,7 +148,7 @@ int gfm_tifiles_group(const char **filenames, int type)
 	}
 	else if(type == TIFILE_TIGROUP)
 	{
-		target = g_strconcat(dirname, G_DIR_SEPARATOR_S, input,	".tig", NULL);
+		target = g_strconcat(dirname, G_DIR_SEPARATOR_S, input, ".tig", NULL);
 		g_free(input);
 
 		err = tifiles_tigroup_files((char **)filenames, target);
