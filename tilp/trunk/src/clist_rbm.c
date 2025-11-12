@@ -210,27 +210,55 @@ static const char* get_gfm_path(void)
 }
 #endif
 
+#if !defined(__WIN32__)
+static const void safe_strncpy(char* dest, const char *src, const int max)
+{
+	strncpy(dest, src, max - 2);
+	dest[max - 1] = '\0';
+}
+#endif
+
 TILP_EXPORT void rbm_opengfm_activate(GtkMenuItem* menuitem, gpointer user_data)
 {
 #ifdef __WIN32__
 	const char *app_path = get_gfm_path();
 #else
-	const char *app_path1 = "/usr/bin/gfm";
-	const char *app_path2 = "/usr/local/bin/gfm";
-	const char *app_path = app_path1;
+	const char *app_paths[4] =
+	{
+		"/usr/bin/gfm",
+		"/usr/local/bin/gfm",
+		"/app/bin/gfm",
+		NULL,
+	};
+
+	char app_path[PATH_MAX];
+	char *found_path;
 #endif
 	GList *sel;
 
 	if (local.file_selection == NULL)
 		return;
 
-#if defined(__LINUX__) || defined(__MACOSX__)
-	if(tilp_file_exist(app_path1))
-	  app_path = app_path1;
-	else if(tilp_file_exist(app_path2))
-	  app_path = app_path2;
+#if !defined(__WIN32__)
+	app_path[0] = '\0';
+
+	for(int i = 0; app_paths[i]; i++)
+	{
+		if(tilp_file_exist(app_paths[i]))
+		{
+			safe_strncpy(app_path, app_paths[i], PATH_MAX);
+			break;
+		}
+	}
+
+	if(!app_path[0])
+	{
+		found_path = g_find_program_in_path("gfm");
+		safe_strncpy(app_path, found_path, PATH_MAX);
+		g_free(found_path);
+	}
 #endif
-	if(!tilp_file_exist(app_path))
+	if(!app_path[0] || !tilp_file_exist(app_path))
 	{
 		msg_box1(_("Error"), _("The Group File Manager doesn't seem to be installed on your system.\nDownload it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP user manual for more information."));
 		return;
