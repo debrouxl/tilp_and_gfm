@@ -43,7 +43,7 @@ static char* format_path(char *src, char *dst)
 	char header[5]; // "C:\" as Win32 or "/" as Linux)
 	char *path;	// leading path
 	char *p;
-	int n;
+	uint32_t n;
 	char *left = NULL;	// left part
 	char *right = NULL;	// right part
 	char str[8];
