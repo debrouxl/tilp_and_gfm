@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tilp2 1.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-12 09:58+0100\n"
+"POT-Creation-Date: 2026-01-09 12:44+0100\n"
 "PO-Revision-Date: 2012-07-24 08:29+0200\n"
 "Last-Translator: Lionel Debroux <lionel_debroux@yahoo.fr>\n"
 "Language-Team: Français <tilp-users@lists.sf.net>\n"
@@ -55,7 +55,7 @@ msgid "skip"
 msgstr "sauter"
 
 #: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:118
-#: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
+#: ../src/ctree_rbm.c:106 ../src/dboxes.c:254 ../src/dboxes.c:302
 #: ../src/device.c:307 ../src/fileprop.c:62 ../src/manpage.c:74
 #: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
 #: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:78
@@ -64,15 +64,15 @@ msgstr "sauter"
 msgid "Couldn't load builder file: %s\n"
 msgstr "Impossible de trouver le fichier builder: %s\n"
 
-#: ../src/action.c:339 ../src/tilp_files.c:209 ../src/tilp_slct.c:542
+#: ../src/action.c:339 ../src/tilp_files.c:213 ../src/tilp_slct.c:542
 msgid "Rename the file"
 msgstr "Renommer le fichier"
 
-#: ../src/action.c:339 ../src/tilp_files.c:210
+#: ../src/action.c:339 ../src/tilp_files.c:214
 msgid "New name: "
 msgstr "Nouveau nom: "
 
-#: ../src/bookmark.c:112
+#: ../src/bookmark.c:113
 msgid ""
 "A web browser has been launched: this may take a while before it appears. If "
 "it is already launched, the page may be opened in the existing frame."
@@ -81,19 +81,19 @@ msgstr ""
 "temps.S'il est déjà lancé, la page sera peut-être ouverte dans l'onglet "
 "existant."
 
-#: ../src/clist.c:213 ../src/ctree.c:200
+#: ../src/clist.c:218 ../src/ctree.c:199
 msgid "Name"
 msgstr "Nom"
 
-#: ../src/clist.c:218 ../src/ctree.c:223
+#: ../src/clist.c:223 ../src/ctree.c:222
 msgid "Type"
 msgstr "Type"
 
-#: ../src/clist.c:223 ../src/ctree.c:228
+#: ../src/clist.c:228 ../src/ctree.c:227
 msgid "Size"
 msgstr "Taille"
 
-#: ../src/clist.c:228
+#: ../src/clist.c:233
 msgid "Date"
 msgstr "Date"
 
@@ -102,12 +102,12 @@ msgid "Change drive"
 msgstr "Changer de lecteur"
 
 #: ../src/clist_rbm.c:235 ../src/clist_rbm.c:255 ../src/clock.c:86
-#: ../src/dboxes.c:46 ../src/dnd.c:183 ../src/main.c:233 ../src/tilp.c:172
+#: ../src/dboxes.c:52 ../src/dnd.c:183 ../src/main.c:233 ../src/tilp.c:193
 #: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
 #: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
 #: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
-#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:338
-#: ../src/tilp_error.c:86 ../src/tilp_files.c:252 ../src/tilp_files.c:324
+#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:342
+#: ../src/tilp_error.c:86 ../src/tilp_files.c:256 ../src/tilp_files.c:328
 #: ../src/tilp_misc.c:39
 msgid "Error"
 msgstr "Erreur"
@@ -126,64 +126,72 @@ msgstr ""
 msgid "No clock support!"
 msgstr "Horloge non gérée !"
 
-#: ../src/ctree.c:218
+#: ../src/ctree.c:217
 msgid "Attr"
 msgstr "Attribut"
 
 #. top node
-#: ../src/ctree.c:264
+#: ../src/ctree.c:263
 #, c-format
 msgid "%s -> %s:#%i"
 msgstr "%s -> %s:#%i"
 
-#: ../src/ctree.h:25
+#: ../src/ctree.h:27
 msgid "Calc"
 msgstr "Calc: "
 
-#: ../src/ctree.h:26
+#: ../src/ctree.h:28
 msgid "Screen"
 msgstr "Ecran"
 
-#: ../src/ctree.h:27
+#: ../src/ctree.h:29
 msgid "Operating System"
 msgstr "Système d'exploitation"
 
-#: ../src/ctree.h:28
+#: ../src/ctree.h:30
 msgid "Variables"
 msgstr "Variables"
 
-#: ../src/ctree.h:29
+#: ../src/ctree.h:31
 msgid "Applications"
 msgstr "Applications"
 
-#: ../src/ctree.h:30
+#: ../src/ctree.h:32
 msgid "ID-LIST"
 msgstr "ID-LIST"
 
-#: ../src/ctree.h:31
+#: ../src/ctree.h:33
 msgid "Clock"
 msgstr "Horloge"
 
-#: ../src/ctree.h:32
+#: ../src/ctree.h:34
 msgid "A Folder"
 msgstr "Un Dossier"
 
-#: ../src/dboxes.c:40 ../src/device.c:384 ../src/device.c:388
+#: ../src/dboxes.c:36 ../src/filesel.c:64
+msgid "_Cancel"
+msgstr "_Annuler"
+
+#: ../src/dboxes.c:37
+msgid "Forward"
+msgstr "Passer"
+
+#: ../src/dboxes.c:46 ../src/device.c:384 ../src/device.c:388
 #: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:920
 #: ../src/tilp_calcs.c:1060 ../src/tilp_config.c:544 ../src/tilp_config.c:552
-#: ../src/tilp_files.c:137 ../src/tilp_files.c:150 ../src/tilp_files.c:169
+#: ../src/tilp_files.c:141 ../src/tilp_files.c:154 ../src/tilp_files.c:173
 #: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
 #: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
 msgid "Information"
 msgstr "Information"
 
-#: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
+#: ../src/dboxes.c:48 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
 #: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:949 ../src/tilp_calcs.c:1134
-#: ../src/tilp_files.c:199 ../src/tilp_slct.c:517
+#: ../src/tilp_files.c:203 ../src/tilp_slct.c:517
 msgid "Warning"
 msgstr "Avertissement"
 
-#: ../src/dboxes.c:44 ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506
+#: ../src/dboxes.c:50 ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506
 #: ../src/tilp_calcs.c:605 ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691
 #: ../src/tilp_calcs.c:749
 msgid "Question"
@@ -215,11 +223,15 @@ msgstr ""
 msgid "Please note you will have to restart TiLP if connection fails."
 msgstr "Veuillez noter que vous devrez redémarrer TiLP si la connexion échoue."
 
-#: ../src/filesel.c:267
+#: ../src/filesel.c:65
+msgid "_Open"
+msgstr "_Ouvrir"
+
+#: ../src/filesel.c:273
 msgid "Save file"
 msgstr "Sauver un fichier"
 
-#: ../src/filesel.c:270 ../src/filesel.c:534
+#: ../src/filesel.c:276 ../src/filesel.c:540
 msgid "Open file"
 msgstr "Ouvrir un fichier"
 
@@ -286,15 +298,15 @@ msgstr "Une session de TILP est déjà en cours d'exécution."
 msgid "Couldn't find pixmap file: %s"
 msgstr "Impossible de trouver le fichier pixmap : %s"
 
-#: ../src/tilp.c:169
+#: ../src/tilp.c:190
 msgid "Manual_en.html"
 msgstr "Manual_en.html"
 
-#: ../src/tilp.c:172
+#: ../src/tilp.c:193
 msgid "Failed to run browser."
 msgstr "Impossible de lancer un navigateur."
 
-#: ../src/tilp.c:219
+#: ../src/tilp.c:240
 msgid ""
 "There are several ways to get in touch if you encounter a problem with TiLP "
 "or if you have questions, suggestions, bug reports, etc:\n"
@@ -320,40 +332,40 @@ msgstr ""
 "\n"
 "Avant d'envoyer un mail à l'équipe de TiLP, assurez vous d'avoir lu la FAQ..."
 
-#: ../src/tilp.c:358 ../src/tilp.c:609 ../builder/tilp.ui.h:52
+#: ../src/tilp.c:379 ../src/tilp.c:630 ../builder/tilp.ui.h:52
 msgid "Restore"
 msgstr "Restaurer"
 
-#: ../src/tilp.c:358 ../src/tilp.c:609
+#: ../src/tilp.c:379 ../src/tilp.c:630
 msgid "Data to restore:"
 msgstr "Données à restaurer:"
 
-#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
+#: ../src/tilp.c:589 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
 #: ../builder/tilp.ui.h:50
 msgid "Backup"
 msgstr "Sauvegarder"
 
-#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:5
+#: ../src/tilp.c:589 ../builder/backupdbox.ui.h:5
 msgid "Data to backup:"
 msgstr "Données à sauvegarder:"
 
-#: ../src/tilp.c:629
+#: ../src/tilp.c:650
 msgid "Make a new directory"
 msgstr "Créer un nouveau dossier"
 
-#: ../src/tilp.c:629 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
+#: ../src/tilp.c:650 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
 msgid "Name: "
 msgstr "Nom: "
 
-#: ../src/tilp.c:629
+#: ../src/tilp.c:650
 msgid "new_directory"
 msgstr "nouveau_dossier"
 
-#: ../src/tilp.c:674
+#: ../src/tilp.c:695
 msgid "Path"
 msgstr "Chemin"
 
-#: ../src/tilp.c:674
+#: ../src/tilp.c:695
 msgid "Enter new path"
 msgstr "Saisir un nouveau chemin"
 
@@ -610,8 +622,8 @@ msgstr "nom(s) de fichier"
 
 #: ../src/tilp_cmdline.c:53
 #, c-format
-msgid "TiLP2 - Version %s, (C) 1999-2008 Romain Lievin\n"
-msgstr "TiLP2 - Version %s, (C) 1999-2009 Romain Liévin\n"
+msgid "TiLP2 - Version %s, (C) 1999-2026 The TILP Team\n"
+msgstr "TiLP2 - Version %s, (C) 1999-2026 The TILP Team\n"
 
 #: ../src/tilp_cmdline.c:55
 #, c-format
@@ -636,8 +648,8 @@ msgstr "Le fichier <%s> n'existe pas."
 #: ../src/tilp_config.c:382
 msgid "Unable to write the config file (~/.tilp or ~/tilp.ini).\n"
 msgstr ""
-"Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/tilp."
-"ini).\n"
+"Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/"
+"tilp.ini).\n"
 
 #: ../src/tilp_config.c:544
 msgid "Configuration file saved."
@@ -647,17 +659,17 @@ msgstr "Fichier de configuration enregistré"
 msgid "Configuration file loaded."
 msgstr "Fichier de configuration chargé"
 
-#: ../src/tilp_files.c:137
+#: ../src/tilp_files.c:141
 msgid ""
 "Unable to move file.\n"
 "\n"
 msgstr "Impossible de déplacer le fichier.\n"
 
-#: ../src/tilp_files.c:150
+#: ../src/tilp_files.c:154
 msgid "Unable to remove the file !"
 msgstr "Impossible de supprimer le fichier !"
 
-#: ../src/tilp_files.c:169
+#: ../src/tilp_files.c:173
 msgid ""
 "Unable to create the directory.\n"
 "\n"
@@ -665,7 +677,7 @@ msgstr ""
 "Impossible de créer le dossier.\n"
 "\n"
 
-#: ../src/tilp_files.c:197
+#: ../src/tilp_files.c:201
 #, c-format
 msgid ""
 "The file %s already exists.\n"
@@ -674,23 +686,23 @@ msgstr ""
 "Le fichier %s existe déjà.\n"
 "L'écraser ?"
 
-#: ../src/tilp_files.c:200
+#: ../src/tilp_files.c:204
 msgid "Overwrite "
 msgstr "Ecraser"
 
-#: ../src/tilp_files.c:200
+#: ../src/tilp_files.c:204
 msgid "Rename "
 msgstr "Renommer"
 
-#: ../src/tilp_files.c:200
+#: ../src/tilp_files.c:204
 msgid "Skip "
 msgstr "Sauter"
 
-#: ../src/tilp_files.c:252
+#: ../src/tilp_files.c:256
 msgid "Unable to move the temporary file.\n"
 msgstr "Impossible de déplacer le fichier temporaire.\n"
 
-#: ../src/tilp_files.c:324 ../src/tilp_misc.c:39
+#: ../src/tilp_files.c:328 ../src/tilp_misc.c:39
 msgid "Unable to change directory."
 msgstr "Impossible de changer de dossier."
 
@@ -726,7 +738,7 @@ msgstr "libticalcs: version %s mais %s est requise.\n"
 msgid "This function is only available in the Windows version."
 msgstr "Cette fonction n'est disponible que dans la version Windows."
 
-#: ../src/tilp_paths.c:130
+#: ../src/tilp_paths.c:134
 msgid "My TI Files"
 msgstr "Mes Fichiers TI"
 
@@ -776,7 +788,7 @@ msgid "Unable to rename the file or directory."
 msgstr "Impossible de renommer le fichier ou le dossier."
 
 #. get new trees
-#: ../src/tilp_vars.c:53
+#: ../src/tilp_vars.c:57
 msgid "Directory list"
 msgstr "Liste des dossiers"
 
@@ -1327,10 +1339,10 @@ msgid ""
 "Latest version of TiLP can  be found at: <http://lpg.ticalc.org/prj_tilp>\n"
 "Please report any bugs to the TiLP team: <tilp-users@lists.sf.net>."
 msgstr ""
-"La dernière version de TiLP peut être téléchargée depuis: <http://lpg.ticalc."
-"org/prj_tilp>\n"
-"Prière de reporter n'importe quel bug à l'équipe de TiLP: <tilp-users@lists."
-"sf.net>."
+"La dernière version de TiLP peut être téléchargée depuis: <http://"
+"lpg.ticalc.org/prj_tilp>\n"
+"Prière de reporter n'importe quel bug à l'équipe de TiLP: <tilp-"
+"users@lists.sf.net>."
 
 #: ../builder/screenopts.ui.h:1
 msgid "Screen Capture Options"

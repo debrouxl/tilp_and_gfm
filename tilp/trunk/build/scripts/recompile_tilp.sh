@@ -59,4 +59,4 @@ handle_one_module tilibs/libticalcs --disable-builtin-rom-dumpers || exit 1
 echo "=== gfm ==="
 handle_one_module tilp_and_gfm/gfm || exit 1
 echo "=== tilp ==="
-handle_one_module tilp_and_gfm/tilp || exit 1
+handle_one_module tilp_and_gfm/tilp --with-gtk=gtk3 || exit 1
