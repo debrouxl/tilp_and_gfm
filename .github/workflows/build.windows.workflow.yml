@@ -84,7 +84,7 @@ jobs:
       run: rename prefix tilp_windows_gtk3_${{ matrix.config }}
 
     - name: Upload install folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tilp_windows_gtk3_${{ matrix.config }}
         path: tilp_windows_gtk3_${{ matrix.config }}

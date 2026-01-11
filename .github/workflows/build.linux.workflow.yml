@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-22.04, ubuntu-24.04]
         statictype: [OFF,ON]
         gtkver: [2,3]
         include:
@@ -77,7 +77,7 @@ jobs:
       run: mv /tmp/lpg_install /tmp/tilp_gfm_linux_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
 
     - name: Upload install folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tilp_gfm_linux_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
         path: /tmp/tilp_gfm_linux_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}/

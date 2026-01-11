@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, macos-14]
+        os: [macos-14, macos-15-intel]
         statictype: [OFF,ON]
         gtkver: [2,3]
         include:
@@ -79,7 +79,7 @@ jobs:
       run: mv /tmp/lpg_install /tmp/tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
 
     - name: Upload install folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}
         path: /tmp/tilp_gfm_mac${{ runner.arch }}_gtk${{ matrix.gtkver }}_static${{ matrix.statictype }}/
