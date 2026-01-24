@@ -94,7 +94,7 @@ gint display_clock_dbox()
 		return -1;
 	}
 
-	if (tilp_calc_check_version("2.08") < 0)
+	if (tilp_calc_check_version("2.06") < 0)
 	{
 		return -1;
 	}
