@@ -138,15 +138,17 @@ EXAMPLE
 
 
 CONFIG FILE FORMAT
-       This section describes the format of the .tilp config file which is  in
-       the  home  directory  of the user (Linux) or the tilp.ini file (Win32).
-       The file is separated  into  several  sections  (hardware,  gui,  calc,
-       external  programs,  fonts,  screen, misc). But, there is no order, you
-       can write lines as you want.  A line preceded by the '#'  symbol  is  a
-       comment.  Each  line has the following format: option=something.  Every
-       line can be put in any order. Beware: any comment  added  to  the  file
-       will  be overwritten !  Below is described each option and the possible
-       values:
+       This section describes the format of the  tilp.ini config file which is
+       in  the  configuration  directory of  the  user   ($XDG_CONFIG_HOME  or
+       LocalAppData on  Windows).  Note that  the  configuration  used  to  be
+       located in the user's  home directory. This file  will be automatically
+       migrated to  the  new  location.  The file is  separated  into  several
+       sections (hardware, gui, calc, external programs, fonts, screen, misc).
+       But,  there  is no order,  you can  write lines  as  you want.  A  line
+       preceded  by the '#' symbol is a comment. Each  line has the  following
+       format: option=something.  Every line can be put in any  order. Beware:
+       any comment added to the file will be overwritten! Below  is  described
+       each option and the possible values:
 
        version= Which version of TiLP has written the  config  file.  Used  to
        display the Release the file and to keep compatibility.

@@ -28,13 +28,6 @@
 
 #include <stdio.h>
 
-/* Paths */
-#if defined(__LINUX__) || defined(__BSD__) || defined(__MACOSX__)
-# define INI_FILE  "/.tilp"
-#elif defined(__WIN32__)
-# define INI_FILE  "tilp.ini"
-#endif
-
 /* Temporary filenames (used by cb_calc.c) */
 #define TMPFILE_BACKUP   "tilp.backup"
 #define TMPFILE_ROMDUMP  "tilp.romdump"

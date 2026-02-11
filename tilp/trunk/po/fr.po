@@ -634,10 +634,10 @@ msgid "The file <%s> does not exist."
 msgstr "Le fichier <%s> n'existe pas."
 
 #: ../src/tilp_config.c:382
-msgid "Unable to write the config file (~/.tilp or ~/tilp.ini).\n"
+msgid "Unable to write the config file ($XDG_CONFIG_HOME/tilp.ini).\n"
 msgstr ""
-"Impossible d'enregistrer le fichier de configuration (~/.tilp ou ~/tilp."
-"ini).\n"
+"Impossible d'enregistrer le fichier de configuration ($XDG_CONFIG_HOME/"
+"tilp.ini).\n"
 
 #: ../src/tilp_config.c:544
 msgid "Configuration file saved."
