@@ -88,7 +88,7 @@ static char* format_path(char *src, char *dst)
 		strcat(dst, "...");
 		strcat(dst, p);
 		
-		snprintf(str, 8, " (%i)", n);
+		snprintf(str, 8, " (%i)", n%6);
 		strcat(dst, str);
 
 		free(left);
