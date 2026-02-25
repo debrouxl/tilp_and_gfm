@@ -1,0 +1,400 @@
+# Georgian translation for gfm.
+# Copyright (C) 2026 gfm's authors.
+# This file is distributed under the same license as the gfm package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gfm 1.09\n"
+"Report-Msgid-Bugs-To: tilp-users@lists.sourceforge.net\n"
+"POT-Creation-Date: 2024-12-01 22:45+0100\n"
+"PO-Revision-Date: 2026-02-25 15:20+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: src/cmdline.c:49
+msgid "Version"
+msgstr "ვერსია"
+
+#: src/cmdline.c:50
+msgid "filename(s)"
+msgstr "ფაილის სახელ(ებ)-ი"
+
+#: src/cmdline.c:56
+#, c-format
+msgid "GFM - Version %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
+msgstr "GFM - ვერსია %s, (C) 2006-2007 Tyler Cassidy & Romain Lievin\n"
+
+#: src/cmdline.c:57
+#, c-format
+msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
+msgstr "პროგრამას ყოველგვარი გარანტიების გარეშე იღებთ\n"
+
+#: src/cmdline.c:58
+#, c-format
+msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
+msgstr "დეტალებისთვის წაიკითხეთ დოკუმენტაცია\n"
+
+#: src/ctree.c:186
+msgid "The name already exists. Please choose another one..."
+msgstr "სახელი უკვე არსებობს. სხვა აირჩიეთ..."
+
+#: src/ctree.c:223
+msgid "Name"
+msgstr "სახელი"
+
+#: src/ctree.c:243
+msgid "Attr"
+msgstr "ატრ"
+
+#: src/ctree.c:248
+msgid "Type"
+msgstr "ტიპი"
+
+#: src/ctree.c:253
+msgid "Size"
+msgstr "ზომა"
+
+#: src/file.c:190
+msgid "Unable to change directory."
+msgstr "საქაღალდის შეცვლის შეცდომა."
+
+#: src/file.c:208
+msgid ""
+"Unable to create the directory.\n"
+"\n"
+msgstr ""
+"საქაღალდის შექმნის შეცდომა.\n"
+"\n"
+
+#: src/file.c:270
+#, c-format
+msgid "%i KB"
+msgstr "%i კბ"
+
+#: src/file.c:273
+#, c-format
+msgid "%i MB"
+msgstr "%i მბ"
+
+#: src/filesel.c:269
+msgid "Save file"
+msgstr "ფაილის შენახვა"
+
+#: src/filesel.c:272 src/filesel.c:536
+msgid "Open file"
+msgstr "ფაილის გახსნა"
+
+#: src/gui.c:114 src/gui.c:419
+msgid "TiGroup"
+msgstr "TiGroup"
+
+#: src/gui.c:114 src/gui.c:419
+msgid "Single/Group"
+msgstr "ერთი/ჯგუფი"
+
+#: src/gui.c:114 src/gui.c:419
+msgid "File type?"
+msgstr "ფაილის ტიპი?"
+
+#: src/gui.c:203
+msgid "Do you want to save previous file?"
+msgstr "გნებავთ წინა ფაილის შენახვა?"
+
+#: src/gui.c:268
+msgid "Save"
+msgstr "შენახვა"
+
+#: src/gui.c:268
+msgid "Quit"
+msgstr "გასვლა"
+
+#: src/gui.c:268
+msgid "File has not been saved yet. Do you want to quit?"
+msgstr "ფაილი ჯერ არ შენახულა. გნებავთ გასვლა?"
+
+#: src/gui.c:312
+msgid "Importing of TiGroup files is not allowed."
+msgstr "TiGroup-ის ფაილების შემოტანა დაშვებული არაა."
+
+#: src/gui.c:319
+msgid "File is not compatible with current target."
+msgstr "ფაილი მიმდინარე სამიზნესთან მხარდაჭერილი არაა."
+
+#: src/gui.c:332
+msgid "The entry already exists. Skipped!"
+msgstr "ჩანაწერი უკვე არსებობს. გამოტოვება!"
+
+#: src/gui.c:396
+msgid "New Folder"
+msgstr "ახალი საქაღალდე"
+
+#: src/gui.c:396
+msgid "folder"
+msgstr "საქაღალდე"
+
+#: src/gui.c:396
+msgid "Name of folder to create:"
+msgstr "შესაქმნელი საქაღალდის სახელი:"
+
+#: src/labels.c:122 src/labels.c:137
+#, c-format
+msgid "%d bytes"
+msgstr "%d ბაიტი"
+
+#: src/labels.c:124 src/labels.c:139
+#, c-format
+msgid "%.1f KB"
+msgstr "%.1f კბ"
+
+#: src/labels.c:126 src/labels.c:141
+#, c-format
+msgid "%.1f MB"
+msgstr "%.1f მბ"
+
+#: src/main.c:76
+msgid "Initializing KDE..."
+msgstr "KDE-ის ინიციალიზაცია..."
+
+#: src/main.c:77 glade/dialogs.str:7 glade/dialogs.str:9 glade/dialogs.str:13
+#: glade/dialogs.str:16
+msgid "GFM"
+msgstr "GFM"
+
+#: src/main.c:77 glade/dialogs.str:21 glade/gfm.str:7
+msgid "Group File Manager"
+msgstr "ჯგუფური ფაილების მმართველი"
+
+#: src/main.c:84
+msgid "Checking for GUI files..."
+msgstr "GUI-ის ფაილების შემოწმება..."
+
+#: src/main.c:88
+msgid "Loading tilibs..."
+msgstr "იტვირთება tilibs..."
+
+#: src/main.c:92
+msgid "Launching GUI..."
+msgstr "GUI-ის გაშვება..."
+
+#: src/rwgroup.c:146
+msgid "Loading..."
+msgstr "იტვირთება..."
+
+#: src/rwgroup.c:313
+msgid "Saving..."
+msgstr "Შენახვა..."
+
+#: src/splashscreen.c:82
+msgid "Starting Group File Manager..."
+msgstr "ეშვება ჯგუფური ფაილების მმართველი..."
+
+#: src/support.c:96 src/support.c:115
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "ვერ ვიპოვე რასტრული ფაილი: %s"
+
+#: src/ungroup.c:52
+msgid "Create new directory"
+msgstr "ახალი საქაღალდის შექმნა"
+
+#: src/ungroup.c:52
+msgid "Directory where files will be ungrouped: "
+msgstr "საქაღალდე, სადაც ფაილების განჯგუფება მოხდება: "
+
+#: src/ungroup.c:66
+msgid "You can't ungroup in this folder."
+msgstr "ამ საქაღალდის განჯგუფება არ შეგიძლიათ."
+
+#: src/ungroup.c:124
+msgid "Group files are not allowed in selection."
+msgstr "მონიშნულში ჯგუფური ფაილები დაშვებული არაა."
+
+#: src/ungroup.c:130
+msgid "FLASH files are not allowed in group files."
+msgstr "ჯგუფურ ფაილებში FLASH ფაილები დაშვებული არაა."
+
+#: src/ungroup.c:136
+msgid "Group files"
+msgstr "ფაილების დაჯგუფება"
+
+#: src/ungroup.c:136
+msgid "Group name: "
+msgstr "ჯგუფის_სახელი: "
+
+#: glade/dialogs.str:8 glade/dialogs.str:12
+msgid "Message"
+msgstr "შეტყობინება"
+
+#: glade/dialogs.str:10
+msgid "_Cancel"
+msgstr "გაუ_ქმება"
+
+#: glade/dialogs.str:11
+msgid "_Ok"
+msgstr "_დიახ"
+
+#: glade/dialogs.str:14
+msgid "Input:"
+msgstr "შეყვანა:"
+
+#: glade/dialogs.str:15
+msgid "Input"
+msgstr "შეყვანა"
+
+#: glade/dialogs.str:17
+msgid "Ok"
+msgstr "დიახ"
+
+#: glade/dialogs.str:18
+msgid "Yes"
+msgstr "დიახ"
+
+#: glade/dialogs.str:19
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: glade/dialogs.str:20
+msgid "3 button Window"
+msgstr "3 ღილაკიანი ფანჯარა"
+
+#: glade/dialogs.str:22
+msgid "Please select a calculator model."
+msgstr "აირჩიეთ კალკულატორის მოდელი."
+
+#: glade/dialogs.str:23
+msgid "TI73"
+msgstr "TI73"
+
+#: glade/dialogs.str:24
+msgid "TI82"
+msgstr "TI82"
+
+#: glade/dialogs.str:25
+msgid "TI83"
+msgstr "TI83"
+
+#: glade/dialogs.str:26
+msgid "TI83+"
+msgstr "TI83+"
+
+#: glade/dialogs.str:27
+msgid "TI84+"
+msgstr "TI84+"
+
+#: glade/dialogs.str:28
+msgid "TI85"
+msgstr "TI85"
+
+#: glade/dialogs.str:29
+msgid "TI86"
+msgstr "TI86"
+
+#: glade/dialogs.str:30
+msgid "TI89"
+msgstr "TI89"
+
+#: glade/dialogs.str:31
+msgid "TI89t"
+msgstr "TI89t"
+
+#: glade/dialogs.str:32
+msgid "TI92"
+msgstr "TI92"
+
+#: glade/dialogs.str:33
+msgid "TI92+"
+msgstr "TI92+"
+
+#: glade/dialogs.str:34
+msgid "V200"
+msgstr "V200"
+
+#: glade/gfm.str:8
+msgid "Create a new file."
+msgstr "ახალი ფაილის შექმნა."
+
+#: glade/gfm.str:9
+msgid "Open existing file."
+msgstr "არსებული ფაილის გახსნა."
+
+#: glade/gfm.str:10
+msgid "Save current file."
+msgstr "მიმდინარე ფაილის შენახვა."
+
+#: glade/gfm.str:11
+msgid "Create a new folder."
+msgstr "ახალი საქაღალდის შექმნა."
+
+#: glade/gfm.str:12
+msgid "Folder"
+msgstr "საქაღალდე"
+
+#: glade/gfm.str:13
+msgid "Add entries from file."
+msgstr "ჩანაწერების ფაილიდან დამატება."
+
+#: glade/gfm.str:14
+msgid "Delete selected entries."
+msgstr "მონიშნული ჩანაწერების წაშლა."
+
+#: glade/gfm.str:15
+msgid "Entries:"
+msgstr "ჩანაწერები:"
+
+#: glade/gfm.str:16
+msgid "Model:"
+msgstr "მოდელი:"
+
+#: glade/gfm.str:17
+msgid "N/A"
+msgstr "ა/მ"
+
+#: glade/gfm.str:18 glade/gfm.str:20 glade/gfm.str:22
+msgid "0"
+msgstr "0"
+
+#: glade/gfm.str:19
+msgid "RAM used:"
+msgstr "გამოყენებული RAM:"
+
+#: glade/gfm.str:21
+msgid "FLASH used:"
+msgstr "გამოყენებული FLASH:"
+
+#: glade/gfm.str:23
+msgid ""
+"More actions:\n"
+"- click to edit name\n"
+"- click twice to change\n"
+"attribute\n"
+"- click to edit comment\n"
+"\n"
+"Limitations:\n"
+"- no folder deletion\n"
+"- no entry move\n"
+"- no application edition\n"
+msgstr ""
+"მეტი ქმედება:\n"
+" - დააწკაპუნეთ სახელის ჩასასწორებლად\n"
+" - ორმაგი წკაპი ატრიბუტის\n"
+"შესაცვლელად\n"
+" - წკაპი კომენტარის ჩასასწორებლად\n"
+"\n"
+"შეზღუდვები:\n"
+" - არა საქაღალდის წაშლა\n"
+" - არა ჩანაწერის გადატანა\n"
+" - არა აპლიკაციის გამოცემა\n"
+
+#: glade/gfm.str:34
+msgid "_Group files..."
+msgstr "ფაილების დაჯ_გუფება..."
+
+#: glade/gfm.str:35
+msgid "_Ungroup file..."
+msgstr "ფაილის განჯგ_უფება..."
