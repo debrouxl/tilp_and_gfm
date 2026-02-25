@@ -1,0 +1,1647 @@
+# Georgian translation for tilp2.
+# Copyright (C) 2026 tilp2's authors.
+# This file is distributed under the same license as the tilp2 package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tilp2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-25 12:13+0100\n"
+"PO-Revision-Date: 2026-02-25 17:32+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: ../src/about.c:91
+#, c-format
+msgid "Framework version (cables=%s, files=%s, calcs=%s, conv=%s)"
+msgstr ""
+"ბიბლიოთეკის ვერსია (კაბელები=%s, ფაილები=%s, კალკულატორები=%s, გადაყვანა=%s)"
+
+#: ../src/action.c:93
+msgid "Varname"
+msgstr "ცვლდსხლ"
+
+#: ../src/action.c:98
+msgid "Attribute"
+msgstr "ატრიბუტი"
+
+#: ../src/action.c:103
+msgid "Filename"
+msgstr "ფაილის სახელი"
+
+#: ../src/action.c:108
+msgid "Action"
+msgstr "ქმედება"
+
+#: ../src/action.c:128
+msgid "none"
+msgstr "არცერთი"
+
+#: ../src/action.c:129
+msgid "rename"
+msgstr "სახელის შეცვლა"
+
+#: ../src/action.c:130 ../src/action.c:306
+msgid "overwrite"
+msgstr "გადაწერა"
+
+#: ../src/action.c:131
+msgid "skip"
+msgstr "გამოტოვება"
+
+#: ../src/action.c:168 ../src/clist_rbm.c:342 ../src/clock.c:118
+#: ../src/ctree_rbm.c:106 ../src/dboxes.c:248 ../src/dboxes.c:296
+#: ../src/device.c:307 ../src/fileprop.c:58 ../src/manpage.c:70
+#: ../src/options.c:48 ../src/pbars.c:56 ../src/pbars.c:84 ../src/pbars.c:112
+#: ../src/pbars.c:141 ../src/pbars.c:172 ../src/release.c:74
+#: ../src/screenshot.c:49 ../src/scroptions.c:49 ../src/tilp.c:91
+#, c-format
+msgid "Couldn't load builder file: %s\n"
+msgstr "ამგების ფაილის ჩატვირთვა შეუძლებელია: %s\n"
+
+#: ../src/action.c:339 ../src/tilp_files.c:213 ../src/tilp_slct.c:542
+msgid "Rename the file"
+msgstr "ფაილის სახელის გადარქმევა"
+
+#: ../src/action.c:339 ../src/tilp_files.c:214
+msgid "New name: "
+msgstr "ახალი სახელი: "
+
+#: ../src/bookmark.c:113
+msgid ""
+"A web browser has been launched: this may take a while before it appears. If "
+"it is already launched, the page may be opened in the existing frame."
+msgstr ""
+"ბრაუზერი გაეშვა: მის გამოჩენამდე, შეიძლება, დიდი დრო გავიდეს. თუ ის უკვე "
+"გაშვებულია, გვერდი შეიძლება, არსებულ ჩარჩოში გაიხსნას."
+
+#: ../src/clist.c:199 ../src/ctree.c:186
+msgid "Name"
+msgstr "სახელი"
+
+#: ../src/clist.c:204 ../src/ctree.c:209
+msgid "Type"
+msgstr "ტიპი"
+
+#: ../src/clist.c:209 ../src/ctree.c:214
+msgid "Size"
+msgstr "ზომა"
+
+#: ../src/clist.c:214
+msgid "Date"
+msgstr "თარიღი"
+
+#: ../src/clist_rbm.c:66
+msgid "Change drive"
+msgstr "დისკის შეცვლა"
+
+#: ../src/clist_rbm.c:235 ../src/clist_rbm.c:255 ../src/clock.c:86
+#: ../src/dboxes.c:46 ../src/dnd.c:177 ../src/main.c:233 ../src/tilp.c:172
+#: ../src/tilp_calcs.c:350 ../src/tilp_calcs.c:418 ../src/tilp_calcs.c:425
+#: ../src/tilp_calcs.c:550 ../src/tilp_calcs.c:559 ../src/tilp_calcs.c:564
+#: ../src/tilp_calcs.c:569 ../src/tilp_calcs.c:1064 ../src/tilp_calcs.c:1106
+#: ../src/tilp_cmdline.c:191 ../src/tilp_config.c:382 ../src/tilp_device.c:342
+#: ../src/tilp_error.c:86 ../src/tilp_files.c:256 ../src/tilp_files.c:328
+#: ../src/tilp_misc.c:39
+msgid "Error"
+msgstr "შეცდომა"
+
+#: ../src/clist_rbm.c:235
+msgid ""
+"The Group File Manager doesn't seem to be installed on your system.\n"
+"Download it from <http://lpg.ticalc.org/prj_gfm/> or take a look at the TiLP "
+"user manual for more information."
+msgstr ""
+
+#: ../src/clock.c:86
+msgid "No clock support!"
+msgstr "საათის მხარდაჭერის გარეშე!"
+
+#: ../src/ctree.c:204
+msgid "Attr"
+msgstr "ატრ"
+
+#. top node
+#: ../src/ctree.c:250
+#, c-format
+msgid "%s -> %s:#%i"
+msgstr "%s -> %s:#%i"
+
+#: ../src/ctree.h:25
+msgid "Calc"
+msgstr "გამოთვლა"
+
+#: ../src/ctree.h:26
+msgid "Screen"
+msgstr "ეკრანი"
+
+#: ../src/ctree.h:27
+msgid "Operating System"
+msgstr "ოპერაციული სისტემა"
+
+#: ../src/ctree.h:28
+msgid "Variables"
+msgstr "ცვლადები"
+
+#: ../src/ctree.h:29
+msgid "Applications"
+msgstr "აპლიკაციები"
+
+#: ../src/ctree.h:30
+msgid "ID-LIST"
+msgstr "ID-LIST"
+
+#: ../src/ctree.h:31
+msgid "Clock"
+msgstr "საათი"
+
+#: ../src/ctree.h:32
+msgid "A Folder"
+msgstr "საქაღალდე"
+
+#: ../src/dboxes.c:40 ../src/device.c:384 ../src/device.c:388
+#: ../src/tilp_calcs.c:283 ../src/tilp_calcs.c:296 ../src/tilp_calcs.c:920
+#: ../src/tilp_calcs.c:1060 ../src/tilp_config.c:544 ../src/tilp_config.c:552
+#: ../src/tilp_files.c:141 ../src/tilp_files.c:154 ../src/tilp_files.c:173
+#: ../src/tilp_misc.c:43 ../src/tilp_slct.c:81 ../src/tilp_slct.c:448
+#: ../src/tilp_slct.c:459 ../src/tilp_slct.c:551
+msgid "Information"
+msgstr "ინფორმაცია"
+
+#: ../src/dboxes.c:42 ../src/tilp_calcs.c:176 ../src/tilp_calcs.c:300
+#: ../src/tilp_calcs.c:430 ../src/tilp_calcs.c:949 ../src/tilp_calcs.c:1134
+#: ../src/tilp_files.c:203 ../src/tilp_slct.c:517
+msgid "Warning"
+msgstr "გაფრთხილება"
+
+#: ../src/dboxes.c:44 ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506
+#: ../src/tilp_calcs.c:605 ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691
+#: ../src/tilp_calcs.c:749
+msgid "Question"
+msgstr "კითხვა"
+
+#: ../src/device.c:59
+msgid "Cable"
+msgstr "კაბელი"
+
+#: ../src/device.c:59
+msgid "Port"
+msgstr "პორტი"
+
+#: ../src/device.c:59
+msgid "Device"
+msgstr "მოწყობილობა"
+
+#: ../src/device.c:384
+msgid ""
+"Please note that Titanium through DirectLink USB works under Linux but it "
+"suffers from a limitation: the cable has to unplugged/plugged whenever TiLP "
+"is exited."
+msgstr ""
+
+#: ../src/device.c:388
+msgid "Please note you will have to restart TiLP if connection fails."
+msgstr "დაიმახსოვრეთ, რომ თუ კავშირი ჩავარდება, TiLP უნდა გადატვირთოთ."
+
+#: ../src/filesel.c:268
+msgid "Save file"
+msgstr "ფაილის შენახვა"
+
+#: ../src/filesel.c:271 ../src/filesel.c:535
+msgid "Open file"
+msgstr "ფაილის გახსნა"
+
+#: ../src/labels.c:102
+#, c-format
+msgid "%lu bytes"
+msgstr "%lu ბაიტი"
+
+#: ../src/labels.c:106
+#, c-format
+msgid "%lu KB"
+msgstr "%lu კბ"
+
+#: ../src/labels.c:110
+#, c-format
+msgid "%lu MB"
+msgstr "%lu მბ"
+
+#: ../src/labels.c:138 ../src/labels.c:162
+#, c-format
+msgid "used: %s"
+msgstr "გამოყენებულია: %s"
+
+#: ../src/labels.c:149 ../src/labels.c:173
+#, c-format
+msgid "free: N/A"
+msgstr "თავისუფალი: N/A"
+
+#: ../src/labels.c:153 ../src/labels.c:177
+#, c-format
+msgid "free: %s"
+msgstr "თავისუფალი: %s"
+
+#: ../src/main.c:157
+msgid "Initializing KDE..."
+msgstr "KDE-ის ინიციალიზაცია..."
+
+#: ../src/main.c:158
+msgid "TiLP"
+msgstr "TiLP"
+
+#: ../src/main.c:158
+msgid "Tilp Is a Linking Program"
+msgstr "Tilp დამაკავშირებელი პროგრამაა"
+
+#: ../src/main.c:164
+msgid "Loading GUI..."
+msgstr "ინტერფეისის ჩატვირთვა..."
+
+#: ../src/main.c:190
+msgid "TiLP2"
+msgstr "TiLP2"
+
+#: ../src/main.c:199
+msgid "Command line..."
+msgstr "ბრძანების სტრიქონი..."
+
+#: ../src/main.c:233
+msgid "An TiLP session is already running. Check the task list."
+msgstr "TiLP-ის სესია უკვე გაშვებულია. შეამოწმეთ ამოცანების სია."
+
+#: ../src/support.c:83 ../src/support.c:102
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "ვერ ვიპოვე რასტრული ფაილი: %s"
+
+#: ../src/tilp.c:169
+msgid "Manual_en.html"
+msgstr "Manual_en.html"
+
+#: ../src/tilp.c:172
+msgid "Failed to run browser."
+msgstr "ბრაუზერის გაშვების შეცდომა."
+
+#: ../src/tilp.c:219
+msgid ""
+"There are several ways to get in touch if you encounter a problem with TiLP "
+"or if you have questions, suggestions, bug reports, etc:\n"
+"- if you have general questions or problems, please consider the users' "
+"mailing list first (mailto:tilp-users@list.sf.net).\n"
+"- if you want to discuss about TiLP, you can use the TiLP forum (http://"
+"sourceforge.net/forum/?group_id=18378).\n"
+"- for bug reports, use the 'Bug Tracking System' (https://github.com/"
+"debrouxl/tilp_and_gfm/issues).\n"
+"\n"
+"Before e-mailing the TiLP team, make sure you have read the FAQ...."
+msgstr ""
+
+#: ../src/tilp.c:358 ../src/tilp.c:609 ../builder/tilp.ui.h:52
+msgid "Restore"
+msgstr "აღდგენა"
+
+#: ../src/tilp.c:358 ../src/tilp.c:609
+msgid "Data to restore:"
+msgstr "აღსადგენი მონაცემები:"
+
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:1 ../builder/options.ui.h:10
+#: ../builder/tilp.ui.h:50
+msgid "Backup"
+msgstr "მარქაფი"
+
+#: ../src/tilp.c:568 ../builder/backupdbox.ui.h:5
+msgid "Data to backup:"
+msgstr "დასამარქაფებელი მონაცემები:"
+
+#: ../src/tilp.c:629
+msgid "Make a new directory"
+msgstr "ახალი საქაღალდის შექმნა"
+
+#: ../src/tilp.c:629 ../src/tilp_calcs.c:1009 ../src/tilp_slct.c:542
+msgid "Name: "
+msgstr "სახელი: "
+
+#: ../src/tilp.c:629
+msgid "new_directory"
+msgstr "ახალი_საქაღალდე"
+
+#: ../src/tilp.c:674
+msgid "Path"
+msgstr "ბილიკი"
+
+#: ../src/tilp.c:674
+msgid "Enter new path"
+msgstr "შეიყვანეთ ახალი ბილიკი"
+
+#: ../src/tilp_calcs.c:176
+msgid ""
+"You are going to restore the content\n"
+"of your calculator with a backup.\n"
+"The whole memory will be erased.\n"
+"Are you sure you want to do that?"
+msgstr ""
+
+#: ../src/tilp_calcs.c:183 ../src/tilp_calcs.c:1143
+msgid "Restoring"
+msgstr "აღდგენა"
+
+#: ../src/tilp_calcs.c:206 ../src/tilp_calcs.c:1166
+msgid "Backing up"
+msgstr "მიმდინარეობს მარქაფი"
+
+#: ../src/tilp_calcs.c:249
+msgid "ID-LIST : "
+msgstr "ID-LIST : "
+
+#: ../src/tilp_calcs.c:296
+msgid ""
+"ROM contents is copyrighted by Texas Instruments. You are not allowed to "
+"copy and/or distribute any ROM image! For more information, see the License "
+"Agreement provided with any FLASH OS upgrade."
+msgstr ""
+
+#: ../src/tilp_calcs.c:300
+msgid ""
+"An assembly program is about to be sent on your calculator.\n"
+"If you have not made a backup yet, you should do one before\n"
+"proceeding with ROM dumping...\n"
+"\n"
+"For the way of proceeding, take a look at the TiLP manual \n"
+"(especially if you have a USB cable)."
+msgstr ""
+
+#. Transfer ROM dumper
+#: ../src/tilp_calcs.c:306
+msgid "Dumping ROM"
+msgstr "ROM-ის დამპი"
+
+#: ../src/tilp_calcs.c:350
+msgid "You cannot send variables/applications and upgrades simultaneously."
+msgstr "ცვლადებს/აპლიკაციებს და განახლებებს ერთდროულად ვერ გააგზავნით."
+
+#: ../src/tilp_calcs.c:358
+msgid "Sending app"
+msgstr "აპის გაგზავნა"
+
+#: ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506 ../src/tilp_calcs.c:605
+#: ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691 ../src/tilp_calcs.c:749
+msgid "Action to take?"
+msgstr "ქმედება?"
+
+#: ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506 ../src/tilp_calcs.c:605
+#: ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691 ../src/tilp_calcs.c:749
+msgid "Retry"
+msgstr "თავიდან ცდა"
+
+#: ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506 ../src/tilp_calcs.c:605
+#: ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691 ../src/tilp_calcs.c:749
+msgid "Skip"
+msgstr "გამოტოვება"
+
+#: ../src/tilp_calcs.c:383 ../src/tilp_calcs.c:506 ../src/tilp_calcs.c:605
+#: ../src/tilp_calcs.c:626 ../src/tilp_calcs.c:691 ../src/tilp_calcs.c:749
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: ../src/tilp_calcs.c:414
+msgid ""
+"You are going to upgrade the Operating System\n"
+"of your calculator.\n"
+"You are advised to eventually turn off\n"
+"your screen saver, which could cause the transfer to crash.\n"
+"If the transfer fails, wait until the TI89/TI92+ displays\n"
+"\"Waiting to receive\"\n"
+"and restart the transfer again.\n"
+"TI73/83+ users need to turn the calculator off and press a key."
+msgstr ""
+
+#: ../src/tilp_calcs.c:419
+msgid "You have to select _one_ upgrade to send."
+msgstr "გასაგზავნად _ერთი_ განახლება უნდა აირჩიოთ."
+
+#: ../src/tilp_calcs.c:426
+msgid ""
+"It's not an FLASH upgrade or this FLASH upgrade is not intended for this "
+"calculator type."
+msgstr ""
+"ეს FLASH-ის განახლება არაა, ან ეს FLASH-ის განახლება ამ კალკულატორის "
+"ტიპისთვის არაა განკუთვნილი."
+
+#: ../src/tilp_calcs.c:440
+msgid "Upgrading OS"
+msgstr "ოს-ის განახლება"
+
+#: ../src/tilp_calcs.c:472
+msgid "Receiving app"
+msgstr "აპის მიღება"
+
+#: ../src/tilp_calcs.c:550
+msgid ""
+"You cannot send both variables/applications and upgrades simultaneously."
+msgstr "ცვლადებს/აპლიკაციებს და განახლებებს ერთდროულად ვერ გააგზავნით."
+
+#: ../src/tilp_calcs.c:559
+msgid "You cannot send backups in this way. Use the 'Restore' button instead."
+msgstr "ასე მარქაფებს ვერ გააგზავნით. ამის მაგიერ გამოიყენეთ ღილაკი 'აღდგენა'."
+
+#: ../src/tilp_calcs.c:564
+msgid ""
+"There is an unknown file type in the selection or the path is incorrect."
+msgstr "ან მონიშნულში უცნობილი ფაილის ტიპია, ან ბილიკი არასწორია."
+
+#: ../src/tilp_calcs.c:569
+msgid ""
+"There is a file type incompatible with the target handheld in the selection."
+msgstr ""
+"მონიშნულში არსებობს ფაილი ტიპით, რომელიც სამიზნე ჯიბის კომპიუტერთან "
+"თავსებადი არაა."
+
+#: ../src/tilp_calcs.c:577
+msgid "Sending var(s)"
+msgstr "ცვლად(ებ)-ის გაგზავნა"
+
+#: ../src/tilp_calcs.c:666 ../src/tilp_calcs.c:848
+msgid "Receiving var(s)"
+msgstr "ცვლად(ებ)-ის მიღება"
+
+#: ../src/tilp_calcs.c:919
+#, c-format
+msgid "You need AMS >=%s mini for this operation."
+msgstr "ამ ოპერაციისთვისAMS >=%s mini გჭირდებათ."
+
+#: ../src/tilp_calcs.c:949
+msgid ""
+"You are about to delete variable(s).\n"
+"Are you sure you want to do that?"
+msgstr ""
+"აპირებთ, წაშალოთ ცვლად(ებ)-ი\n"
+"მართლა გნებავთ ამისი გაკეთება?"
+
+#: ../src/tilp_calcs.c:954
+msgid "Deleting..."
+msgstr "მიმდინარეობს წაშლა…"
+
+#: ../src/tilp_calcs.c:1009
+msgid "New Folder"
+msgstr "ახალი საქაღალდე"
+
+#: ../src/tilp_calcs.c:1009
+msgid "folder"
+msgstr "საქაღალდე"
+
+#: ../src/tilp_calcs.c:1013
+msgid "Creating..."
+msgstr "იქმნება..."
+
+#: ../src/tilp_calcs.c:1086
+msgid "Receiving cert"
+msgstr "სერტიფიკატის მიღება"
+
+#: ../src/tilp_calcs.c:1107
+msgid ""
+"It's not a certificate or this certificate is not targeted at this "
+"calculator type."
+msgstr ""
+"ეს სერტიფიკატი არაა, ან სერტიფიკატი ამ კალკულატორის ტიპისთვი არაა "
+"განკუთვნილი."
+
+#: ../src/tilp_calcs.c:1114
+msgid "Sending cert"
+msgstr "სერტიფიკატის გაგზავნა"
+
+#: ../src/tilp_calcs.c:1134
+msgid ""
+"You are about to restore the content\n"
+"of your calculator with a backup.\n"
+"The whole memory will be erased.\n"
+"Are you sure you want to do that?"
+msgstr ""
+
+#: ../src/tilp_cmdline.c:39
+msgid "Version"
+msgstr "ვერსია"
+
+#: ../src/tilp_cmdline.c:40
+msgid "Handheld model"
+msgstr "ხელის კომპიუტერის მოდელი"
+
+#: ../src/tilp_cmdline.c:41
+msgid "Link cable model"
+msgstr "კავშირის კაბელის მოდელი"
+
+#: ../src/tilp_cmdline.c:42
+msgid "Link cable port"
+msgstr "კავშირის კაბელის პორტი"
+
+#: ../src/tilp_cmdline.c:43
+msgid "Link cable timeout"
+msgstr "კავშირის კაბელის მოლოდინის დრო"
+
+#: ../src/tilp_cmdline.c:44
+msgid "Link cable delay"
+msgstr "კავშირის კაბელის დაყოვნება"
+
+#: ../src/tilp_cmdline.c:45
+msgid "Does not use GUI"
+msgstr "გრაფიკული ინტერფეისის არგამოყენება"
+
+#: ../src/tilp_cmdline.c:46
+msgid "Silent mode (NO-GUI mode only"
+msgstr "ჩუმი რეჟიმი (მხოლოდ NO-GUI რეჟიმში"
+
+#: ../src/tilp_cmdline.c:47
+msgid "filename(s)"
+msgstr "ფაილის სახელ(ებ)-ი"
+
+#: ../src/tilp_cmdline.c:53
+#, c-format
+msgid "TiLP2 - Version %s, (C) 1999-2023 The TILP Team\n"
+msgstr "TiLP2 - ვერსია %s, (C) 1999-2023 TILP-ის გუნდი\n"
+
+#: ../src/tilp_cmdline.c:55
+#, c-format
+msgid "FreeBSD port, (c) 2003-2004 Tijl Coosemans\n"
+msgstr "FreeBSD-ზე გადატანა, (c) 2003-2004 Tijl Coosemans\n"
+
+#: ../src/tilp_cmdline.c:57
+#, c-format
+msgid "THIS PROGRAM COMES WITH ABSOLUTELY NO WARRANTY\n"
+msgstr "პროგრამას ყოველგვარი გარანტიების გარეშე იღებთ\n"
+
+#: ../src/tilp_cmdline.c:58
+#, c-format
+msgid "PLEASE READ THE DOCUMENTATION FOR DETAILS\n"
+msgstr "დეტალებისთვის წაიკითხეთ დოკუმენტაცია\n"
+
+#: ../src/tilp_cmdline.c:190
+#, c-format
+msgid "The file <%s> does not exist."
+msgstr "ფაილი <%s> არ არსებობს."
+
+#: ../src/tilp_config.c:382
+msgid "Unable to write the config file (~/.tilp or ~/tilp.ini).\n"
+msgstr "კონფიგურაციის ფაილის ჩაწერა შეუძლებელია (~/.tilp ან ~/tilp.ini).\n"
+
+#: ../src/tilp_config.c:544
+msgid "Configuration file saved."
+msgstr "კონფიგურაციის ფაილი შენახულია."
+
+#: ../src/tilp_config.c:552
+msgid "Configuration file loaded."
+msgstr "კონფიგურაციის ფაილი ჩაიტვირთა."
+
+#: ../src/tilp_files.c:141
+msgid ""
+"Unable to move file.\n"
+"\n"
+msgstr "ფაილის გადატანა შეუძლებელია.\n"
+
+#: ../src/tilp_files.c:154
+msgid "Unable to remove the file !"
+msgstr "ფაილის წაშლა შეუძლებელია !"
+
+#: ../src/tilp_files.c:173
+msgid ""
+"Unable to create the directory.\n"
+"\n"
+msgstr ""
+"საქაღალდის შექმნის შეცდომა.\n"
+"\n"
+
+#: ../src/tilp_files.c:201
+#, c-format
+msgid ""
+"The file %s already exists.\n"
+"Overwrite ?"
+msgstr ""
+"ფაილი '%s' უკვე არსებობს.\n"
+"გადავაწერო თავზე?"
+
+#: ../src/tilp_files.c:204
+msgid "Overwrite "
+msgstr "თავზე გადაწერა ფაილის "
+
+#: ../src/tilp_files.c:204
+msgid "Rename "
+msgstr "სახელის გადარქმევა ფაილისთვის "
+
+#: ../src/tilp_files.c:204
+msgid "Skip "
+msgstr "გამოტოვება ფაილის "
+
+#: ../src/tilp_files.c:256
+msgid "Unable to move the temporary file.\n"
+msgstr "დროებითი ფაილისთვის გადატანა შეუძლებელია.\n"
+
+#: ../src/tilp_files.c:328 ../src/tilp_misc.c:39
+msgid "Unable to change directory."
+msgstr "საქაღალდის შეცვლის შეცდომა."
+
+#: ../src/tilp_main.c:103
+msgid "Signal SIGINT (Ctrl+C) caught...\n"
+msgstr "დაჭერილია სიგნალი SIGINT (Ctrl+C)...\n"
+
+#: ../src/tilp_main.c:105
+msgid "Done.\n"
+msgstr "დასრულდა.\n"
+
+#: ../src/tilp_main.c:122
+#, c-format
+msgid "libticonv library version is %s but %s mini required.\n"
+msgstr "libticonv ბიბლიოთეკის ვერსიაა %s მაგრამ საჭიროა მინიმუმ %s.\n"
+
+#: ../src/tilp_main.c:128
+#, c-format
+msgid "libtifiles library version is %s but %s mini required.\n"
+msgstr "libtifiles ბიბლიოთეკის ვერსიაა %s მაგრამ საჭიროა მინიმუმ %s.\n"
+
+#: ../src/tilp_main.c:134
+#, c-format
+msgid "libticables library version is %s but %s mini required.\n"
+msgstr "libticables ბიბლიოთეკის ვერსიაა %s მაგრამ საჭიროა მინიმუმ %s.\n"
+
+#: ../src/tilp_main.c:140
+#, c-format
+msgid "libticalcs library version is %s but %s mini required.\n"
+msgstr "libticalcs ბიბლიოთეკის ვერსიაა %s მაგრამ საჭიროა მინიმუმ %s.\n"
+
+#: ../src/tilp_misc.c:43
+msgid "This function is only available in the Windows version."
+msgstr "ეს ფუნქცია, მხოლოდ, Windows-ის ვერსიაშია ხელმისაწვდომი."
+
+#: ../src/tilp_paths.c:134
+msgid "My TI Files"
+msgstr "ჩემი TI-ის ფაილები"
+
+#. Place a progress bar
+#: ../src/tilp_screen.c:59
+msgid "Screendump"
+msgstr "ეკრანის დამპი"
+
+#: ../src/tilp_screen.c:103 ../src/tilp_screen.c:120
+#, c-format
+msgid "Couldn't allocate memory!"
+msgstr "მეხსიერების გამოყოფის შეცდომა!"
+
+#: ../src/tilp_screen.c:135
+#, c-format
+msgid "zlib error"
+msgstr "zlib-ის შეცდომა"
+
+#: ../src/tilp_screen.c:224 ../src/tilp_screen.c:299
+#, c-format
+msgid "Couldn't open destination file for writing!"
+msgstr "სამიზნე ფაილის ჩასაწერად გახსნის შეცდომა!"
+
+#: ../src/tilp_screen.c:252 ../src/tilp_screen.c:375
+#, c-format
+msgid "Couldn't convert screen!"
+msgstr "ეკრანის გადაყვანა შეუძლებელია!"
+
+#: ../src/tilp_slct.c:82
+msgid "A file must have been selected in the right window."
+msgstr "მარჯვენა ფანჯარაში ფაილი უნდა აირჩიოთ."
+
+#: ../src/tilp_slct.c:449 ../src/tilp_slct.c:460
+msgid "An item must have been selected in the left window."
+msgstr "მარცხენა ფანჯარაში ელემენტი უნდა აირჩიოთ."
+
+#: ../src/tilp_slct.c:518
+msgid ""
+"Are you sure you want to remove these file(s) ?\n"
+"\n"
+msgstr ""
+"მართლა გნებავთ ამ ფაილ(ებ)-ის წაშლა?\n"
+"\n"
+
+#: ../src/tilp_slct.c:552
+msgid "Unable to rename the file or directory."
+msgstr "ფაილის, ან საქაღალდის სახელის გადარქმევა შეუძლებელია."
+
+#. get new trees
+#: ../src/tilp_vars.c:57
+msgid "Directory list"
+msgstr "საქაღალდეების სია"
+
+#: ../builder/action.ui.h:1
+msgid "Upload Variables"
+msgstr "ცვლადების ატვირთვა"
+
+#: ../builder/action.ui.h:2
+msgid ""
+"The following variable(s) exist(s) on calculator. Please select what you "
+"would like to do...\n"
+"Note that locked/archived cannot be overwritten unless renamed."
+msgstr ""
+
+#: ../builder/action.ui.h:4
+msgid "_Overwrite"
+msgstr "_ზედ გადაწერა"
+
+#: ../builder/action.ui.h:5 ../builder/clist_rbm.ui.h:8
+msgid "_Rename"
+msgstr "_სახელის გადარქმევა"
+
+#: ../builder/action.ui.h:6
+msgid "_Skip"
+msgstr "_გამოტოვება"
+
+#: ../builder/action.ui.h:7
+msgid "Select _All"
+msgstr "ყველ_აფრის მონიშვნა"
+
+#: ../builder/action.ui.h:8
+msgid "_Deselect All"
+msgstr "შენიშვნის მო_ხსნა"
+
+#: ../builder/backupdbox.ui.h:2
+msgid "vars in RAM"
+msgstr "ცვლადები RAM-ში"
+
+#: ../builder/backupdbox.ui.h:3
+msgid "vars in FLASH"
+msgstr "ცვლადები FLASH-ში"
+
+#: ../builder/backupdbox.ui.h:4
+msgid "apps"
+msgstr "აპები"
+
+#: ../builder/clist_rbm.ui.h:1
+msgid "Set As Working _Folder"
+msgstr "სამუშაო სა_ქაღალდედ დაყენება"
+
+#: ../builder/clist_rbm.ui.h:2
+msgid "Set the current directory as working directory whenever TiLP starts."
+msgstr "მიმდინარე საქაღალდის სამუშაოდ დაყენება, როცა TiLP ეშვება."
+
+#: ../builder/clist_rbm.ui.h:3
+msgid "Cut selected files"
+msgstr "მონიშნული ფაილების ამოჭრა"
+
+#: ../builder/clist_rbm.ui.h:4
+msgid "Copy selected files"
+msgstr "მონიშნული ფაილების კოპირება"
+
+#: ../builder/clist_rbm.ui.h:5
+msgid "Paste previously selected files"
+msgstr "ადრე მონიშნული ფაილების წაშლა"
+
+#: ../builder/clist_rbm.ui.h:6
+msgid "Delete selected file(s)"
+msgstr "მონიშნული ფაილ(ებ)-ის წაშლა"
+
+#: ../builder/clist_rbm.ui.h:7
+msgid "Rename file(s)"
+msgstr "ფაილ(ებ)-ის სახელის გადარქმევა"
+
+#: ../builder/clist_rbm.ui.h:9
+msgid "Open With _GFM"
+msgstr "გახსნა _GFM-ში"
+
+#: ../builder/clist_rbm.ui.h:10 ../builder/tilp.ui.h:14
+msgid "Show all Files in local view"
+msgstr "ყველა ფაილის ჩვენება ლოკალურ ხედში"
+
+#: ../builder/clist_rbm.ui.h:11 ../builder/tilp.ui.h:15
+msgid "_Show all files"
+msgstr "ყველა ფაილი_ს ჩვენება"
+
+#: ../builder/clist_rbm.ui.h:12
+msgid "_Confirm delete/overwrite"
+msgstr "წაშლის/თავზე გადაწერის _დადასტურება"
+
+#: ../builder/clock.ui.h:1
+msgid "MM/DD/YY"
+msgstr "თთ/დდ/წწ"
+
+#: ../builder/clock.ui.h:2
+msgid "DD/MM/YY"
+msgstr "დდ/თთ/წწ"
+
+#: ../builder/clock.ui.h:3
+msgid "MM.DD.YY"
+msgstr "თთ.დდ.წწ"
+
+#: ../builder/clock.ui.h:4
+msgid "DD.MM.YY"
+msgstr "დდ.თთ.წწ"
+
+#: ../builder/clock.ui.h:5
+msgid "YY.MM.DD"
+msgstr "წწ.თთ.დდ"
+
+#: ../builder/clock.ui.h:6
+msgid "MM-DD-YY"
+msgstr "თთ-დდ-წწ"
+
+#: ../builder/clock.ui.h:7
+msgid "DD-MM-YY"
+msgstr "დდ-თთ-წწ"
+
+#: ../builder/clock.ui.h:8
+msgid "YY-MM-DD"
+msgstr "წწ-თთ-დდ"
+
+#: ../builder/clock.ui.h:9
+msgid "Jan"
+msgstr "იან"
+
+#: ../builder/clock.ui.h:10
+msgid "Feb"
+msgstr "თებ"
+
+#: ../builder/clock.ui.h:11
+msgid "Mar"
+msgstr "მარ"
+
+#: ../builder/clock.ui.h:12
+msgid "Apr"
+msgstr "აპრ"
+
+#: ../builder/clock.ui.h:13
+msgid "May"
+msgstr "მაისი"
+
+#: ../builder/clock.ui.h:14
+msgid "Jun"
+msgstr "ივნ"
+
+#: ../builder/clock.ui.h:15
+msgid "Jul"
+msgstr "ივლ"
+
+#: ../builder/clock.ui.h:16
+msgid "Aug"
+msgstr "აგვ"
+
+#: ../builder/clock.ui.h:17
+msgid "Sep"
+msgstr "სექ"
+
+#: ../builder/clock.ui.h:18
+msgid "Oct"
+msgstr "ოქტ"
+
+#: ../builder/clock.ui.h:19
+msgid "Nov"
+msgstr "ნოე"
+
+#: ../builder/clock.ui.h:20
+msgid "Dec"
+msgstr "დეკ"
+
+#: ../builder/clock.ui.h:21
+msgid "Clock Management"
+msgstr "საათის მართვა"
+
+#: ../builder/clock.ui.h:22
+msgid "_on"
+msgstr "ჩა_რთ"
+
+#: ../builder/clock.ui.h:23
+msgid "of_f"
+msgstr "გამ_ორთ"
+
+#: ../builder/clock.ui.h:24
+msgid "Clock is..."
+msgstr "საათი არის..."
+
+#: ../builder/clock.ui.h:25
+msgid "_AM/PM"
+msgstr "_AM/PM"
+
+#: ../builder/clock.ui.h:26
+msgid "_24h"
+msgstr "_24სთ"
+
+#: ../builder/clock.ui.h:27
+msgid "Format"
+msgstr "ფორმატი"
+
+#: ../builder/clock.ui.h:28
+msgid "Date & Time"
+msgstr "დრო და თარიღი"
+
+#: ../builder/clock.ui.h:29
+msgid " _Sync with PC "
+msgstr " _სინქრონიზებული კომპიუტერთან "
+
+#: ../builder/ctree_rbm.ui.h:1
+msgid "Change _Device"
+msgstr "მოწყობილობის შეცვლა"
+
+#: ../builder/ctree_rbm.ui.h:2
+msgid "_Local view"
+msgstr "_ლოკალური ხედი"
+
+#: ../builder/ctree_rbm.ui.h:3
+msgid "Recv as _group"
+msgstr "მიღება ჯ_გუფის სახით"
+
+#: ../builder/ctree_rbm.ui.h:4
+msgid "Backup as TIGroup"
+msgstr "მარქაფი TIGroup"
+
+#: ../builder/ctree_rbm.ui.h:5
+msgid "Create _Folder"
+msgstr "საქაღალდის _შექმნა"
+
+#: ../builder/device.ui.h:1
+msgid "Null"
+msgstr "Null"
+
+#: ../builder/device.ui.h:2
+msgid "GrayLink"
+msgstr "GrayLink"
+
+#: ../builder/device.ui.h:3
+msgid "BlackLink"
+msgstr "BlackLink"
+
+#: ../builder/device.ui.h:4
+msgid "Parallel"
+msgstr "პარალელური"
+
+#: ../builder/device.ui.h:5
+msgid "SilverLink"
+msgstr "SilverLink"
+
+#: ../builder/device.ui.h:6
+msgid "DirectLink"
+msgstr "DirectLink"
+
+#: ../builder/device.ui.h:7
+msgid "VTI"
+msgstr "VTI"
+
+#: ../builder/device.ui.h:8
+msgid "TiEmu"
+msgstr "TiEmu"
+
+#: ../builder/device.ui.h:9
+msgid "None"
+msgstr "არცერთი"
+
+#: ../builder/device.ui.h:10
+msgid "#1"
+msgstr "#1"
+
+#: ../builder/device.ui.h:11
+msgid "#2"
+msgstr "#2"
+
+#: ../builder/device.ui.h:12
+msgid "#3"
+msgstr "#3"
+
+#: ../builder/device.ui.h:13
+msgid "#4"
+msgstr "#4"
+
+#: ../builder/device.ui.h:14
+msgid "TI-73"
+msgstr "TI-73"
+
+#: ../builder/device.ui.h:15
+msgid "TI-80"
+msgstr "TI-80"
+
+#: ../builder/device.ui.h:16
+msgid "TI-82"
+msgstr "TI-82"
+
+#: ../builder/device.ui.h:17
+msgid "TI-83 / TI-82 Stats(.fr) / TI-76.fr"
+msgstr "TI-83 / TI-82 Stats(.fr) / TI-76.fr"
+
+#: ../builder/device.ui.h:18
+msgid "TI-83+(.fr) / TI-82+"
+msgstr "TI-83+(.fr) / TI-82+"
+
+#: ../builder/device.ui.h:19
+msgid "TI-84+ / TI-83+.fr USB"
+msgstr "TI-84+ / TI-83+.fr USB"
+
+#: ../builder/device.ui.h:20
+msgid "TI-84+CSE"
+msgstr "TI-84+CSE"
+
+#: ../builder/device.ui.h:21
+msgid "TI-83 Premium CE"
+msgstr "TI-83 Premium CE"
+
+#: ../builder/device.ui.h:22
+msgid "TI-84 Plus CE"
+msgstr "TI-84 Plus CE"
+
+#: ../builder/device.ui.h:23
+msgid "TI-82 Advanced"
+msgstr "TI-82 Advanced"
+
+#: ../builder/device.ui.h:24
+msgid "TI-84 Plus T"
+msgstr "TI-84 Plus T"
+
+#: ../builder/device.ui.h:25
+msgid "TI-85"
+msgstr "TI-85"
+
+#: ../builder/device.ui.h:26
+msgid "TI-86"
+msgstr "TI-86"
+
+#: ../builder/device.ui.h:27
+msgid "TI-89"
+msgstr "TI-89"
+
+#: ../builder/device.ui.h:28
+msgid "TI-89 Titanium"
+msgstr "TI-89 Titanium"
+
+#: ../builder/device.ui.h:29
+msgid "TI-92"
+msgstr "TI-92"
+
+#: ../builder/device.ui.h:30
+msgid "TI-92+"
+msgstr "TI-92+"
+
+#: ../builder/device.ui.h:31
+msgid "TI-V200 PLT"
+msgstr "TI-V200 PLT"
+
+#: ../builder/device.ui.h:32
+msgid "TI-Nspire"
+msgstr "TI-Nspire"
+
+#: ../builder/device.ui.h:33
+msgid "Communication Settings"
+msgstr "კომუნიკაციის პარამეტრები"
+
+#: ../builder/device.ui.h:34
+msgid "Cable:"
+msgstr "კაბელი:"
+
+#: ../builder/device.ui.h:35
+msgid "Port:"
+msgstr "პორტი:"
+
+#: ../builder/device.ui.h:36
+msgid "Calc:"
+msgstr "კალკ:"
+
+#: ../builder/device.ui.h:37
+msgid "Timeout:"
+msgstr "მოლოდინის ვადა:"
+
+#: ../builder/device.ui.h:38
+msgid "Delay:"
+msgstr "დაყოვნება:"
+
+#: ../builder/device.ui.h:39
+msgid "Timeout value in tenth of seconds."
+msgstr "მოლოდინის დროის მნიშვნელობა წამის მეათედებში."
+
+#: ../builder/device.ui.h:40
+msgid "Inter-bit delay for serial/parallel link cables."
+msgstr "ბიტთაშორისი დაყოვნება სერიული/პარალელური კავშირის კაბელებისთვის."
+
+#: ../builder/device.ui.h:41
+msgid ""
+"If checked, TiLP will scan USB devices at startup and will use the first "
+"device found."
+msgstr ""
+"თუ ჩართულია, TiLP USB მოწყობილობების სკანირებას მოახდენს გაშვებისას და "
+"გამოიყენებს პირველივე მოწყობილობას, რომელსაც აღმოაჩენს."
+
+#: ../builder/device.ui.h:42
+msgid "USB scan at startup"
+msgstr "USB-ის სკანირება გაშვებისას"
+
+#: ../builder/device.ui.h:43
+msgid "Settings"
+msgstr "მორგება"
+
+#: ../builder/device.ui.h:44
+msgid "Don't know which device you have ? Click =>"
+msgstr "არ იცით, რომელი მოწყობილობები გაქვთ ? დააწკაპუნეთ =>"
+
+#: ../builder/device.ui.h:45
+msgid "Probe for attached devices..."
+msgstr "მიერთებული მოწყობილობების ძებნა..."
+
+#: ../builder/device.ui.h:46
+msgid "Double-click a line to update settings."
+msgstr "ორმაგი წკაპი ხაზზე პარამეტრების განახლებისთვის."
+
+#: ../builder/entrydbox.ui.h:1
+msgid "Title"
+msgstr "სათაური"
+
+#: ../builder/entrydbox.ui.h:2
+msgid "Name:"
+msgstr "სახელი:"
+
+#: ../builder/manpage.ui.h:1
+msgid "Page of Manual"
+msgstr "სახელმძღვანელოს გვერდი"
+
+#: ../builder/options.ui.h:1
+msgid "Options"
+msgstr "მორგება"
+
+#: ../builder/options.ui.h:2
+msgid "sin_gle"
+msgstr "_ერთი"
+
+#: ../builder/options.ui.h:3
+msgid "_group"
+msgstr "ჯ_გუფი"
+
+#: ../builder/options.ui.h:4
+msgid "Receive as"
+msgstr "მიღება, როგორც"
+
+#: ../builder/options.ui.h:5
+msgid "delete files & vars"
+msgstr "ფაილების და ცვლადების წაშლა"
+
+#: ../builder/options.ui.h:6
+msgid "Confirm"
+msgstr "დადასტურება"
+
+#: ../builder/options.ui.h:7
+msgid "all _files"
+msgstr "ყველა _ფაილი"
+
+#: ../builder/options.ui.h:8
+msgid "T_I only"
+msgstr "მხოლოდ T_I"
+
+#: ../builder/options.ui.h:9
+msgid "Display"
+msgstr "ჩვენება"
+
+#: ../builder/options.ui.h:11
+msgid "_TIGroup"
+msgstr "_TIGroup"
+
+#: ../builder/options.ui.h:12
+msgid "Backup/Restore with"
+msgstr "მარქაფი/აღდგენა პროგრამით"
+
+#: ../builder/pbar1.ui.h:1
+msgid "Title 1"
+msgstr "სათაური 1"
+
+#: ../builder/pbar1.ui.h:2
+msgid "Transfer status:"
+msgstr "გადაცემის სტატუსი:"
+
+#: ../builder/pbar1.ui.h:3
+msgid "Rate: 0.00 Kb/s"
+msgstr "სიჩქარე: 0.00 კბ/წმ"
+
+#: ../builder/pbar2.ui.h:1
+msgid "Title 2"
+msgstr "სათაური 2"
+
+#: ../builder/pbar2.ui.h:2
+msgid "Message."
+msgstr "შეტყობინება."
+
+#: ../builder/pbar3.ui.h:1
+msgid "Title 3"
+msgstr "სათაური 3"
+
+#: ../builder/pbar3.ui.h:2 ../builder/pbar5.ui.h:2
+msgid "Total transfer:"
+msgstr "სულ გადაცემულია:"
+
+#: ../builder/pbar3.ui.h:3 ../builder/pbar4.ui.h:2 ../builder/pbar5.ui.h:3
+msgid "Current transfer:"
+msgstr "მიმდინარე გადაცემა:"
+
+#: ../builder/pbar3.ui.h:4 ../builder/pbar4.ui.h:5 ../builder/pbar5.ui.h:6
+msgid "Rate: 0.0 Kbytes/s"
+msgstr "სიჩქარე: 0.0 კბაიტი/წმ"
+
+#: ../builder/pbar4.ui.h:1
+msgid "Title 4"
+msgstr "სათაური 4"
+
+#: ../builder/pbar4.ui.h:3 ../builder/pbar5.ui.h:4
+msgid "1/1: "
+msgstr "1/1: "
+
+#: ../builder/pbar4.ui.h:4 ../builder/pbar5.ui.h:5
+msgid "Text"
+msgstr "ტექსტი"
+
+#: ../builder/pbar5.ui.h:1
+msgid "Title 5"
+msgstr "სათაური 5"
+
+#: ../builder/release.ui.h:1
+msgid "Cannot find the RELEASE file."
+msgstr "ფაილი RELEASE აღმოჩენილი არაა."
+
+#: ../builder/release.ui.h:2
+msgid "Welcome to TiLP !"
+msgstr "მოგესალმებათ TiLP !"
+
+#: ../builder/release.ui.h:3
+msgid ""
+"This box appears only 1 time or whenever a new version is installed.\n"
+"You will find in the box below some news about TiLP (the RELEASE file):"
+msgstr ""
+
+#: ../builder/release.ui.h:5
+msgid ""
+"Latest version of TiLP can  be found at: <http://lpg.ticalc.org/prj_tilp>\n"
+"Please report any bugs to the TiLP team: <tilp-users@lists.sf.net>."
+msgstr ""
+
+#: ../builder/screenopts.ui.h:1
+msgid "Screen Capture Options"
+msgstr "ეკრანის გადაღების პარამეტრები"
+
+#: ../builder/screenopts.ui.h:2
+msgid "_full"
+msgstr "_სრული"
+
+#: ../builder/screenopts.ui.h:3
+msgid "_clipped (TI89)"
+msgstr "_ წაკვეთილი (TI89)"
+
+#: ../builder/screenopts.ui.h:4
+msgid "Screen mode:"
+msgstr "ეკრანის რეჟიმი:"
+
+#: ../builder/screenopts.ui.h:5
+msgid "_emulate"
+msgstr "_ემულაცია"
+
+#: ../builder/screenopts.ui.h:6
+msgid "Grayscale:"
+msgstr "შავთეთრი:"
+
+#: ../builder/screenopts.ui.h:7
+msgid "Screen Format"
+msgstr "ეკრანის ფორმატი"
+
+#: ../builder/screenopts.ui.h:8
+msgid "_PNG"
+msgstr "_PNG"
+
+#: ../builder/screenopts.ui.h:9
+msgid "_XPM (Unix format)"
+msgstr "_XPM (Unix-ის ფორმატი)"
+
+#: ../builder/screenopts.ui.h:10
+msgid "_JPEG (non interlaced)"
+msgstr "_JPEG (არა-ხაზგამოტოვებითი)"
+
+#: ../builder/screenopts.ui.h:11
+msgid "_BMP (Windows)"
+msgstr "_BMP (Windows)"
+
+#: ../builder/screenopts.ui.h:12
+msgid "PDF"
+msgstr "PDF"
+
+#: ../builder/screenopts.ui.h:13
+msgid "EPS (PostScript)"
+msgstr "EPS (PostScript)"
+
+#: ../builder/screenopts.ui.h:14
+msgid "Image type:"
+msgstr "ასლის ტიპი:"
+
+#: ../builder/screenopts.ui.h:15
+msgid "File Format"
+msgstr "ფაილის ფორმატი"
+
+#: ../builder/screenshot.ui.h:1 ../builder/tilp.ui.h:2
+msgid "_File"
+msgstr "_ფაილი"
+
+#: ../builder/screenshot.ui.h:2
+msgid "_Options"
+msgstr "_პარამეტრები"
+
+#: ../builder/screenshot.ui.h:3
+msgid "Screen capture"
+msgstr "ეკრანის გადაღება"
+
+#: ../builder/screenshot.ui.h:4
+msgid "Refresh capture."
+msgstr "გადაღების განახლება."
+
+#: ../builder/screenshot.ui.h:5 ../builder/tilp.ui.h:67
+msgid "Refresh"
+msgstr "განახლება"
+
+#: ../builder/screenshot.ui.h:6
+msgid "Save capture to picture file."
+msgstr "სურათის ფაილში შენახვა."
+
+#: ../builder/screenshot.ui.h:7
+msgid "Save"
+msgstr "შენახვა"
+
+#: ../builder/screenshot.ui.h:8
+msgid "Quit."
+msgstr "გასვლა."
+
+#: ../builder/screenshot.ui.h:9
+msgid "Quit"
+msgstr "გასვლა"
+
+#: ../builder/screenshot.ui.h:10
+msgid "User's manual."
+msgstr "მომხმარებლის სახელმძღვანელო."
+
+#: ../builder/screenshot.ui.h:11
+msgid "Help"
+msgstr "დახმარება"
+
+#: ../builder/screenshot.ui.h:12
+msgid "Copy capture to clipboard."
+msgstr "გადაღებულის ბუფერში კოპირება."
+
+#: ../builder/screenshot.ui.h:13
+msgid "Copy"
+msgstr "კოპირება"
+
+#: ../builder/screenshot.ui.h:14
+msgid "Calculator screen"
+msgstr "კალკულატორის ეკრანი"
+
+#: ../builder/tilp.ui.h:1
+msgid "TiLP2 ('Tilp Is a Linking Program')"
+msgstr "TiLP2 ('Tilp Is a Linking Program')"
+
+#: ../builder/tilp.ui.h:3
+msgid "_Change Device"
+msgstr "მოწყობილობის შე_ცვლა"
+
+#: ../builder/tilp.ui.h:4
+msgid "Change Connection Settings"
+msgstr "შეერთების პარამეტრების შეცვლა"
+
+#: ../builder/tilp.ui.h:5
+msgid "_Send Files"
+msgstr "ფაილები_ს გაგზავნა"
+
+#: ../builder/tilp.ui.h:6
+msgid "Send Files to Device"
+msgstr "ფაილების გაგზავნა მოწყობილობაზე"
+
+#: ../builder/tilp.ui.h:7
+msgid "_Backup"
+msgstr "_მარქაფი"
+
+#: ../builder/tilp.ui.h:8
+msgid "Backup Device Contents"
+msgstr "მოწყობილობის შემცველობის დამარქაფება"
+
+#: ../builder/tilp.ui.h:9
+msgid "_Restore"
+msgstr "_აღდგენა"
+
+#: ../builder/tilp.ui.h:10
+msgid "Restore Device Contents"
+msgstr "მოწყობილობის შემცველობის აღდგენა"
+
+#: ../builder/tilp.ui.h:11
+msgid "_Edit"
+msgstr "_ჩასწორება"
+
+#: ../builder/tilp.ui.h:12
+msgid "_View"
+msgstr "_ხედი"
+
+#: ../builder/tilp.ui.h:13
+msgid "_Local View"
+msgstr "_ლოკალური ხედი"
+
+#: ../builder/tilp.ui.h:16
+msgid "_Tools"
+msgstr "_ხელსაწყოები"
+
+#: ../builder/tilp.ui.h:17
+msgid "Get Calc _Info"
+msgstr "კალკულატორის _ინფორმაციის მიღება"
+
+#: ../builder/tilp.ui.h:18
+msgid "Take _Screenshot"
+msgstr "ეკრანის ანაბეჭდის გადაღება"
+
+#: ../builder/tilp.ui.h:19
+msgid "Dump _Rom"
+msgstr "_ROM-ის დამპი"
+
+#: ../builder/tilp.ui.h:20
+msgid "Set _Clock"
+msgstr "საათის და_ყენება"
+
+#: ../builder/tilp.ui.h:21
+msgid "Get _ID-List"
+msgstr "_ID-List-ის მიღება"
+
+#: ../builder/tilp.ui.h:22
+msgid "The TiLP User's Manual in html format."
+msgstr "TiLP-ის მომხმარებლის სახელმძღვანელო HTML ფორმატში."
+
+#: ../builder/tilp.ui.h:23
+msgid "_Man Page"
+msgstr "_მთავარი გვერდი"
+
+#: ../builder/tilp.ui.h:24
+msgid "The Linux manual page."
+msgstr "Linux-ის სახელმძღვანელოების გვერდი."
+
+#: ../builder/tilp.ui.h:25
+msgid "_Bookmarks"
+msgstr "_სანიშნეები"
+
+#: ../builder/tilp.ui.h:26
+msgid "http://education.ti.com, the Texas Instruments web site"
+msgstr "http://education.ti.com, Texas Instruments-ის ვებგსაიტი"
+
+#: ../builder/tilp.ui.h:27
+msgid "TI's web site"
+msgstr "TI-ის ვებსაიტი"
+
+#: ../builder/tilp.ui.h:28
+msgid ""
+"http://epsstore.ti.com, TI's store for OS upgrades and FLASH applications."
+msgstr ""
+"http://epsstore.ti.com, TI-ის მაღაზია ოს-ის განახლებებისთვის და FLASH-ის "
+"აპლიკაციებისთვის."
+
+#: ../builder/tilp.ui.h:29
+msgid "Calculator software"
+msgstr "კალკულატორის როგრამა"
+
+#: ../builder/tilp.ui.h:30
+msgid "A great web site on TI related stuffs."
+msgstr "კარგი ვებსაიტი TI-ისთან დაკავშირებულ თემებზე."
+
+#: ../builder/tilp.ui.h:31
+msgid "ticalc.org"
+msgstr "ticalc.org"
+
+#: ../builder/tilp.ui.h:32
+msgid "The leading French-speaking calculator web site."
+msgstr "მოწინავე კალკულატორის ვებსაიტი ფრანგულად მოლაპარაკეთათვის."
+
+#: ../builder/tilp.ui.h:33
+msgid "tiplanet.org"
+msgstr "tiplanet.org"
+
+#: ../builder/tilp.ui.h:34
+msgid "A French calculator web site."
+msgstr "ფრანგული კალკულატორის ვებსაიტი."
+
+#: ../builder/tilp.ui.h:35
+msgid "ti-fr.org"
+msgstr "ti-fr.org"
+
+#: ../builder/tilp.ui.h:36
+msgid "http://lpg.ticalc.org, the Linux Programmer Group"
+msgstr "http://lpg.ticalc.org, Linux-ის პროგრამისტების ჯგუფი"
+
+#: ../builder/tilp.ui.h:37
+msgid "The LPG"
+msgstr "The LPG"
+
+#: ../builder/tilp.ui.h:38
+msgid "http://tilp.info, the TiLP web site."
+msgstr "http://tilp.info, TiLP-ის ვებსაიტი."
+
+#: ../builder/tilp.ui.h:39
+msgid "TiLP's web site"
+msgstr "TiLP-ის ვებგვერდი"
+
+#: ../builder/tilp.ui.h:40
+msgid "_Report Bug"
+msgstr "_შეცდომის გადაგზავნა"
+
+#: ../builder/tilp.ui.h:41
+msgid "How to send a bug report..."
+msgstr "როგორ გააგზავნოთ ანგარიში შეცდომის შესახებ..."
+
+#: ../builder/tilp.ui.h:42
+msgid "_ChangeLog"
+msgstr "_ცვლილებათა ჟურნალი"
+
+#: ../builder/tilp.ui.h:43
+msgid "Display the log file generated by TiLP. Useful for debugging problems."
+msgstr ""
+"TiLP-ის მიერ გენერირებული ჟურნალის ფაილის ჩვენება. სასარგებლოა გამართვისთვის."
+
+#: ../builder/tilp.ui.h:44
+msgid "About TiLP..."
+msgstr "TiLP-ის შესახებ..."
+
+#: ../builder/tilp.ui.h:45
+msgid "Check whether calculator is ready..."
+msgstr "შემოწმება, მზადაა, თუ არა კალკულატორი..."
+
+#: ../builder/tilp.ui.h:46
+msgid "Ready ?"
+msgstr "მზად ბრძანდებით?"
+
+#: ../builder/tilp.ui.h:47
+msgid "List calculator content (folders, variables and applications)."
+msgstr ""
+"კალკულატორის შემცველობის (საქაღალდეების, ცვლადების და აპლიკაციების) "
+"ჩამონათვალი."
+
+#: ../builder/tilp.ui.h:48
+msgid "Dirlist"
+msgstr "საქ.სია"
+
+#: ../builder/tilp.ui.h:49
+msgid "Backup the calculator content."
+msgstr "კალკულატორის შემცველობის მარქაფი."
+
+#: ../builder/tilp.ui.h:51
+msgid "Restore the calculator content."
+msgstr "კალკულატორის შემცველობის აღდგენა."
+
+#: ../builder/tilp.ui.h:53
+msgid "Receive variables from non-silent calculators."
+msgstr "ცვალდების მიღება არაჩუმი კალკულატორებიდან."
+
+#: ../builder/tilp.ui.h:54
+msgid "Receive"
+msgstr "მიღება"
+
+#: ../builder/tilp.ui.h:55
+msgid "Send variables to non-silent calculators."
+msgstr "ცვალდების გაგზავნა არაჩუმ კალკულატორებზე."
+
+#: ../builder/tilp.ui.h:56
+msgid "Send"
+msgstr "გაგზავნა"
+
+#: ../builder/tilp.ui.h:57
+msgid "Calculator files"
+msgstr "კალკულატორის ფაილები"
+
+#: ../builder/tilp.ui.h:58
+msgid "0 bytes free"
+msgstr "თავისუფალია 0 ბაიტი"
+
+#: ../builder/tilp.ui.h:59
+msgid "RAM "
+msgstr "RAM "
+
+#: ../builder/tilp.ui.h:60
+msgid "FLASH "
+msgstr "FLASH "
+
+#: ../builder/tilp.ui.h:61
+msgid "Memory:"
+msgstr "მეხსიერება:"
+
+#: ../builder/tilp.ui.h:62
+msgid "Create a new directory."
+msgstr "ახალი საქაღალდის შექმნა."
+
+#: ../builder/tilp.ui.h:63
+msgid "Folder"
+msgstr "საქაღალდე"
+
+#: ../builder/tilp.ui.h:64
+msgid "Delete selected files."
+msgstr "მონიშნული ფაილების წაშლა."
+
+#: ../builder/tilp.ui.h:65
+msgid "Delete"
+msgstr "წაშლა"
+
+#: ../builder/tilp.ui.h:66
+msgid "Refresh right frame."
+msgstr "მარჯვენა ჩარჩოს განახლება."
+
+#: ../builder/tilp.ui.h:68
+msgid "Computer files"
+msgstr "კომპიუტერის ფაილები"
+
+#: ../builder/tilp.ui.h:69
+msgid "/home/romain/"
+msgstr "/home/romain/"
+
+#: ../builder/tilp.ui.h:70
+msgid "Current folder:"
+msgstr "მიმდინარე საქაღალდე:"
